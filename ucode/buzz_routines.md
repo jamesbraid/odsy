@@ -84,8 +84,8 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
 
 - **`418`** (routine; kernel record 418), **inferred**: the sixteen-word parameter store of opcode
   0x1a2 (`odsyRestoreXform` in `odsy_ctxsw.o`, `ValidateLight` and the constant block in
-  `ody_lighting.s` and `ody_context.s`). Inputs: operands 0 to 15, loaded one per record (418 to
-  433) and passed unchanged by the vector unit. Each operand lands in lane x or y of R16 seven
+  `ody_lighting.s` and `ody_context.s`). Inputs: operands 0 to 15, loaded one per record (418 to 433)
+  and passed unchanged by the vector unit. Each operand lands in lane x or y of R16 seven
   records later (425 to 440), is read back one lane at a time in lane mode the record after, and is
   stored at parameter word 0x200 + k (427 to 442); bit 9 of that address adds sequencer 0x31, so the
   output is the sixteen words at the index the host loaded there. The routine copies and computes
@@ -279,8 +279,8 @@ sets a bit in the program key and adds no routine.
   `so_attrib.s`), the case that needs the most per-vertex work. Its inputs are the position, the
   normal, light words 0x200 to 0x202 and 0x209, the constants -1.0 and 0.0 and the material slots 6,
   9, 10 and 13. It computes the eye position (R12, R9, R10, R11 at 611 to 614), the eye normal into
-  R16 (615 to 617), two dot products of the working registers R19 and R18 against the latch (620,
-  621) and, through scalar code 4, the per-vertex viewer vector in R26 (623 to 625); it stores
+  R16 (615 to 617), two dot products of the working registers R19 and R18 against the latch (620, 621)
+  and, through scalar code 4, the per-vertex viewer vector in R26 (623 to 625); it stores
   parameter word 0x1f4 at 620 like 626. Outputs: R16 holds the eye normal and R26 the viewer vector
   for the lighting core 668 or 694.
 - **`626`** (routine; kernel record 626), **inferred**: the first-light set-up for a local light
@@ -304,8 +304,8 @@ sets a bit in the program key and adds no routine.
   slot 1, words 0, 1, 2 and 9 of the light record (parameter 0x200 to 0x202 and 0x209: the unit
   direction and the quadratic attenuation `ValidateLight` stores) and the material slots 9, 6, 13
   and 10, which it copies into the colour unit (codes 0x1f20 and 0x1828, records 658 to 662). It
-  transforms the normal by the normal-matrix rows R13 to R15 into R16 (657 to 659, results at 664 to
-  666) and loads the infinite viewer direction (0, 0, 1) into R26 from the constants 0.0, 0.0 and
+  transforms the normal by the normal-matrix rows R13 to R15 into R16 (657 to 659, results at 664 to 666)
+  and loads the infinite viewer direction (0, 0, 1) into R26 from the constants 0.0, 0.0 and
   1.0 (0x1e3, 0x1e3, 0x1e0). Its delay slots start the next vertex transform rows (clip w on the
   position, texture q and s on slot 3).
 - **`694`** (routine; kernel record 694), **inferred**: the lighting core added after the first
@@ -564,8 +564,8 @@ from the routine map below.
   it outputs fourteen-word packets with 1/w, x, y and z as words 10, 12, 13 and 11, d2 code 0x10 on
   word 3, 0xa6 on word 13 and front and back fragment terms as words 4 to 9.
 - **`1433`** (routine; kernel record 1334), **established** selection, **inferred** arithmetic: the
-  per-vertex entry of table record 8 (at 0x0dae48c0 in `libGLcore.so`), the two-sided form of record
-  4. Its inputs are 1390's plus the texture slot and rows R5 to R8; it computes 1390's front and back
+  per-vertex entry of table record 8 (at 0x0dae48c0 in `libGLcore.so`), the two-sided form of record 4.
+  Its inputs are 1390's plus the texture slot and rows R5 to R8; it computes 1390's front and back
   fragment terms and the texture transform and outputs a sixteen-word packet (header 15): 1/w and x
   as words 13 and 15, a third coordinate as word 16 (field 0), s and t as 4 and 5, colour words 1, 9 and 10. Patch: its mark
   1447 takes its end mark 1452.
@@ -577,8 +577,8 @@ from the routine map below.
 - **`1483`** (routine; kernel record 1384), **established** selection, **inferred** arithmetic: the
   whole program of table record 3 (at 0x0dae4758 in `libGLcore.so`): one directional light,
   infinite viewer, single colour, RGBA, no texture and no texture generation or clip planes, so the
-  record carries no patch; its value-3 marks lie five before the 0x2a entry 1496 and the 0x2c entry
-  1509. Inputs: the normal and position slots, the material slots 6 to 9, R0 to R4, R13 to R15, and
+  record carries no patch; its value-3 marks lie five before the 0x2a entry 1496 and the 0x2c entry 1509.
+  Inputs: the normal and position slots, the material slots 6 to 9, R0 to R4, R13 to R15, and
   what set-up 1226 left: light 0's direction in R17, its half vector scaled by word 0x0f0 in R18, and
   the ambient sum at colour address 25. Each pass transforms the normal into R16, fires N.L against
   R17 and the scaled N.H against R18, turns the latter into the specular factor with code 3, and
@@ -614,8 +614,8 @@ from the routine map below.
   specular products of addresses 1, 2, 4 and 5).
 - **`1623`** (routine; kernel record 1524), **established** selection, **inferred** arithmetic: the
   per-vertex entry of table record 10 (at 0x0dae4950 in `libGLcore.so`), two directional lights with
-  GL_NORMALIZE on; it reads 0.0 and 1.0 and its mark 1640 takes end mark 1645 as the patch. Inputs: as
-  1580. It normalises the eye normal (code 1, six code-6 operations), computes two code-3 specular
+  GL_NORMALIZE on; it reads 0.0 and 1.0 and its mark 1640 takes end mark 1645 as the patch. Inputs: as 1580.
+  It normalises the eye normal (code 1, six code-6 operations), computes two code-3 specular
   factors and the two lights' colour products (addresses 1, 2, 4, 5), and outputs a ten-word packet
   with the colour as words 1 and 2 and three extra words 3 to 5.
 - **`1650`** (routine; kernel record 1551), **established** selection, **inferred** arithmetic: the
@@ -657,8 +657,8 @@ from the routine map below.
   colours as 1, 2 and 6, 7.
 - **`1828`** (routine; kernel record 1729), **established** selection, **inferred** arithmetic: the
   two-sided half of table record 13's program for two directional lights with texture (+16 at
-  0x0dae4a38 in `libGLcore.so`), thirty records, eleven longer than 1775; mark 1846 leads to entry
-  1851. It takes 1798's inputs and computes the same front and back colours (five code-3 factors per
+  0x0dae4a38 in `libGLcore.so`), thirty records, eleven longer than 1775; mark 1846 leads to entry 1851.
+  It takes 1798's inputs and computes the same front and back colours (five code-3 factors per
   pass); it outputs 1798's packet for each further vertex.
 - **`1862`** (routine; kernel record 1763), **established** selection, **inferred** arithmetic: the
   per-vertex entry of table record 16 (at 0x0dae4b00 in `libGLcore.so`), one local light without
@@ -954,8 +954,8 @@ routine (611 to 656) and a normal transform (694 or 668); otherwise 768 or 920.
 - **`911`** (routine; kernel record 812), **established** selection, **inferred** arithmetic: added
   with GL_LIGHTING on and one colour output (`ody_program.s`, source line 921). Nine records. Inputs:
   the constant 3.0 (word 0x1e5), R26 and working address 27. It computes one product of R26, reads working address 27
-  (0x1b38) and sends the colour unit's result twice, as words 1 and 2 (0x9f3a, which also stores at
-  31) and as words 9 and 10 (0x000a). It does no scalar work; its output is the colour pair the
+  (0x1b38) and sends the colour unit's result twice, as words 1 and 2 (0x9f3a, which also stores at 31)
+  and as words 9 and 10 (0x000a). It does no scalar work; its output is the colour pair the
   fragment-lighting packet carries in both places.
 - **`902`** (routine; kernel record 803), **established** selection, **inferred** arithmetic: the
   two-colour choice at the same `ody_program.s` line, when two-sided lighting is on (context byte

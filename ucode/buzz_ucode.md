@@ -85,8 +85,8 @@ Installation Tools and Overlays disc 1, compared record by record.
   RGBA mode with no attenuation or spot flag, one colour and no perspective texture (6.5.27
   immediate at 0x0d9db470). Same records as image routine 975. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes the window-coordinate products held in R23 and the last per-light code-4 result, passes R23's lanes through code 8 so that x, y and z go out as words 8, 9 and 7 (d2 0x44, 0x24, 0x26), outputs the code-4 result as word 6, and adds the ambient product before sending the lit colour as words 1 and 2.
 - **`887`** (routine; kernel copy, `odsy_init.o` .data +0x3164), **established**: the perspective-texture
-  variant of 876's finish, named at 0x0d9db45c in the 6.5.27 library. Same records as image routine
-  986. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes 876's inputs and computes the same code-8 passes and colour sum; its outputs sit one word higher under an eleven-word header: x 9, y 10, z 8 and the code-4 result 7.
+  variant of 876's finish, named at 0x0d9db45c in the 6.5.27 library. Same records as image routine 986.
+  Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes 876's inputs and computes the same code-8 passes and colour sum; its outputs sit one word higher under an eleven-word header: x 9, y 10, z 8 and the code-4 result 7.
 - **`898`** (routine; kernel copy, `odsy_init.o` .data +0x31e8), **established**: twelve records finishing
   two colour outputs, writing lanes 4 and 6; 6.5.27 picks it at 0x0d9db474. Same records as image
   routine 997. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: beyond 876's inputs it takes the back material slots 10 to 12, computes the back colour from the light-relative colours, and outputs the front colour as words 1 and 2, the back as 6 and 7 and the coordinates as words 9 to 11.
@@ -94,8 +94,8 @@ Installation Tools and Overlays disc 1, compared record by record.
   or a spot cone is in play with one colour, and also the colour-index finish (6.5.27, 0x0d9db384).
   Same records as image routine 1013. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are R23 and colour working addresses 25 and 26; it combines the stored sums and outputs them as words 1 and 2, with x, y and z through code 8 as words 8, 9 and 7 under a ten-word header.
 - **`924`** (routine; kernel copy, `odsy_init.o` .data +0x3320), **established**: adds the separate specular
-  colour to a one-colour finish; 6.5.27 selects it at 0x0d9db3d4. Same records as image routine
-  1023. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes R23 and working addresses 25 to 27, selects the coordinates through code 8 and outputs them with the primary colour as words 1 and 2 and the separate specular colour as words 6 to 8, under a thirteen-word header.
+  colour to a one-colour finish; 6.5.27 selects it at 0x0d9db3d4. Same records as image routine 1023.
+  Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes R23 and working addresses 25 to 27, selects the coordinates through code 8 and outputs them with the primary colour as words 1 and 2 and the separate specular colour as words 6 to 8, under a thirteen-word header.
 - **`936`** (routine; kernel copy, `odsy_init.o` .data +0x33b0), **established**: the attenuated or spot-lit
   finish once the perspective-texture flag is set (6.5.27 immediate 0x0d9db428). Same records as
   image routine 1035. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: with 914's inputs it computes the same sums and outputs them one word higher (x 9, y 10, z 8) under an eleven-word header.
@@ -227,8 +227,8 @@ Installation Tools and Overlays disc 1, compared record by record.
 - **`1801`** (routine; kernel copy, `odsy_init.o` .data +0x5c3c), **established**: the 51-record second
   routine of record 16, holding the +16 entry 1830. Same records as image routine 1900.
 - **`1856`** (routine; kernel copy, `odsy_init.o` .data +0x5ed0), **established**: enters record 17, one
-  local light accepting either normalize setting, patched at 1885. Same records as image routine
-  1955. The start-up load leaves it at RAM 1856, inside the top 200 records.
+  local light accepting either normalize setting, patched at 1885. Same records as image routine 1955.
+  The start-up load leaves it at RAM 1856, inside the top 200 records.
 - **`1895`** (routine; kernel copy, `odsy_init.o` .data +0x60a4), **established**: is record 17's 52-record
   second half reading the light table up to the constants, with the +16 entry 1925. Same records as
   image routine 1994. The start-up load leaves it at RAM 1895, inside the top 200 records.
@@ -256,8 +256,8 @@ Installation Tools and Overlays disc 1, compared record by record.
   records as image routine 2300. It lies in the 218-record tail that `odsyInitCfifo` never sends, so
   the kernel never puts it in RAM.
 - **`2233`** (routine; kernel copy, `odsy_init.o` .data +0x707c), **established**: is record 12's second
-  routine, reading data word 0x1e1 and holding the +16 entry 2256. Same records as image routine
-  2332. It lies in the 218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it
+  routine, reading data word 0x1e1 and holding the +16 entry 2256. Same records as image routine 2332.
+  It lies in the 218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it
   in RAM.
 
 ## Instruction set
