@@ -625,7 +625,7 @@
  * and 0x7b5. established: arithmetic of both routines.
  *
  * odsyDMAOp, in order (established unless marked):
- *   - pins the user buffer (unuseracc), builds a page list with
+ *   - locks the user buffer (useracc; unuseracc on the way out), builds a page list with
  *     generatePageTable and a work list with ConstructTftchWarList, and
  *     allocates a context-set id (OdsyAllocCSetId);
  *   - writes 0x800 (the DMA_DONE_FLAG bit) to the flags-clear register
@@ -634,8 +634,8 @@
  *   - kicks each 128-byte table entry's physical address (the entries
  *     are at the work list pointer plus 128 per index) with the pair
  *     above;
- *   - then, when bit 3 of the second byte of the gfx word at offset 28
- *     is set, sends 0x00014001 (primitive end), the whole settle
+ *   - then, when bit 27 of the word at offset 28 of the transfer
+ *     structure is set, sends 0x00014001 (primitive end), the whole settle
  *     sequence (0x443/250, 0x46 x2, 0x019, 0x443/150, 0x46 x4, 0x443/250,
  *     0x46 x2), and, if a completion tag is wanted, the class-1 word
  *     0x00010a5a with two operands: a record word (offset 5840) ORed with
