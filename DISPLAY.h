@@ -112,12 +112,25 @@
  *   2 -> 24-bit TrueColor (8 bits a channel)
  *   1 -> 30-bit TrueColor (10 bits a channel)
  *   6 -> 30-bit TrueColor, second layout (bits 23:12 0x600 / 0xa40)
- * inferred: the code falls by one as the channel widens through 4, 5, 8
- * and 10 bits, and the 4- and 5-bit visuals are the only narrow ones
- * the X module encodes pixels for (section 3). Reading the X visual
- * table that binds each id to a depth would make it established.
- * Among colour-index modes 7 is the 8-bit group modes, 6 the group-0
- * mode 5 (inferred: 12-bit index) and 3 and 0 are unexplained.
+ * Binding: the X module's visual table odsyVisuals (VA 0x017345f8, 53
+ * VisualRec entries of 36 bytes) and odsyVisualPrivs (VA 0x0172af08, 20
+ * bytes each) give every visual's class, depth and masks; the first
+ * word of each private record is a mode-table id. established (both
+ * tables read in full). Where it points:
+ *   TrueColor 12 (masks 0xf/0xf0/0xf00)        ids 8, 18
+ *   TrueColor 15 (0x1f/0x3e0/0x7c00)            ids 9, 19
+ *   TrueColor 24                                ids 10, 20
+ *   DirectColor 24                              id 13 (group 0x19)
+ *   TrueColor 30, first set                     ids 11, 21
+ *   TrueColor 30, second set                    ids 12, 22
+ *   PseudoColor 12 (4096 entries)               ids 5, 16, 6, 17, 7, 23
+ *   PseudoColor 8, StaticColor 8                ids 0, 4, 14, 15
+ * inferred that the private word is the mode-table id: every TrueColor
+ * and DirectColor row lands on a mode with group 26 or 25 and the
+ * single/double pair the table pairs, and no row lands elsewhere.
+ * So for TrueColor, 4 = 4-bit, 3 = 5-bit, 2 = 8-bit and 1 or 6 = 10-bit
+ * channels. Among colour-index modes the code is not a width: 12-bit
+ * PseudoColor uses 6, 3 and 7.
  */
 #define MODE_FMT_SHIFT             9
 #define MODE_FMT_MASK              0xe00u
@@ -158,15 +171,20 @@
  * confirms the reading that bits 11:9 select the channel width and
  * scanout keeps the top N bits.
  *
- * Whether widening repeats the top bits or scales is not shown by the
- * driver: unknown. Repeating gives 0xf -> 0xff and is the only choice
- * that maps the X module's 0x0 and 0xf to the map's ends. Whether the
- * board stores the low bits at all for a narrow window (readback,
- * blending and logic ops would see them): unknown. The X module's own
- * readback path for 15-bit data, odsyReadConvertPixels, widens 1-5-5-5
- * halfwords by repeating the top three bits of each channel; that is the
- * server's conversion for 16-bit data, not evidence of how the board
- * scans out.
+ * Repeat or scale: the X module's own conversion from a window's pixel
+ * values to displayed RGB, odsyReadConvertPixels (VA from 0x015b30f0),
+ * switches on the visual's depth. For 12-bit TrueColor it widens each
+ * nibble n to n << 4 | n (VA 0x015b3c70); for 15-bit to
+ * c << 3 | c >> 2; for 12-bit PseudoColor it looks the index up in the
+ * 10-bit colour map and keeps the top 8 bits. established.
+ * inferred: scanout repeats the top bits (0xf -> 0xff), because the
+ * server's model of what a narrow pixel looks like repeats them. For 4
+ * bits repeating equals scaling by 255/15 exactly; for 5 bits it differs
+ * from a rounded scale by 255/31 at c = 3, 7, 24 and 28 (repeat 24, 57,
+ * 198, 231; scale 25, 58, 197, 230), which is the test that would tell
+ * them apart on a board. On hardware: unknown.
+ * Whether the board stores the low bits at all for a narrow window
+ * (readback, blending and logic ops would see them): unknown.
  */
 
 #endif /* DISPLAY_H */

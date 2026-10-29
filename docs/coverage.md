@@ -64,7 +64,7 @@ Display channels, colour formats, cursor and scanout (single and dual channel).
 | Registers and fields | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | Display-mode table address and colour-map entry format written |
 | Command and FIFO formats | none | `DISPLAY.h`, `docs/display.md` | display, colour and cursor |  |
 | Interrupts | none | `DISPLAY.h`, `docs/display.md` | display, colour and cursor |  |
-| Display and scanout | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | display-mode word with visual-format bits reported by prior work. Written: display FIFO word, mode table constants from odyssey.so, field split, X pixel encoding for 12/15-bit TrueColor; narrow reading confirmed as inferred (top N bits widened before the shared gamma map). Missing: id-to-depth binding, widening rule, bits 23:12 and 3:0 |
+| Display and scanout | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | display-mode word with visual-format bits reported by prior work. Written: display FIFO word, mode table constants from odyssey.so, field split, X pixel encoding for 12/15-bit TrueColor; narrow reading confirmed as inferred (top N bits widened before the shared gamma map). Pass 2: id-to-depth binding from odsyVisuals/odsyVisualPrivs; the X module's pixel-to-RGB conversion repeats top bits. Missing: hardware confirmation of repeat versus scale, bits 23:12 and 3:0 |
 
 ### Kernel driver
 
