@@ -332,6 +332,14 @@
     }
   ],
   "tokens": {
+    "docs": [
+      "docs/tokens.md",
+      "docs/buzz.md",
+      "docs/kernel.md",
+      "docs/opengl.md",
+      "BUZZ.h",
+      "ucode/buzz_isa.md"
+    ],
     "widths": {
       "word": 8,
       "block": 3

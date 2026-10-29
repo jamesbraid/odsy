@@ -1,0 +1,8 @@
+# The latest independent audit of each table: an auditor who did not write the entries drew a random sample of rows graded understood
+# and re-derived each from the binaries or the cited specification. real = the entry held up, shallow = true but derived from a name or
+# credited without behaviour of its own, wrong = contradicted. sample is small: read it with the percentage. The last row of a table with
+# the latest date is the one summary.tsv and docs/coverage.md show.
+table	date	sample	real	shallow	wrong	note
+ucode	2026-10-29	15	15	0	0	substantive rows: extents and counts re-derived; what each routine computes is stated as unknown. Sample drawn from the new chapter's rows at 59525e5
+tokens	2026-10-29	15	15	0	0	substantive rows: words and shadow offsets re-derived; five blocks have contents unknown. Sample drawn from the new chapter's rows at 59525e5
+functions	2026-10-29	20	0	18	2	sample of the function chapters at 59525e5, before they were re-marked as name lists
