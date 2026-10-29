@@ -606,6 +606,59 @@
  * widened to 12 bits a channel (section 4); 0x00010404 + one word of
  * raster mode; 0x00010424 + one word. established. */
 
+/* --- DMA kick: odsy_DmaRegion_DoTransfer and odsyDMAOp (odsy_dma.o) ---
+ * Pass 3. A host-memory transfer is started with two doubleword stores to
+ * the command FIFO port, high word first (inferred, as for the other
+ * doubleword writes):
+ *     word A: 0x00000e01 or 0x00000e03 (high), PACK(phys >> 24) (low)
+ *     word B: PACK(phys & 0xffffff) (high), 0 (low)
+ *     PACK(x) = (x & 0x1ffff) | ((x & 0xfe0000) << 6)
+ * so each 24-bit half of the physical address is split after bit 16 and
+ * the upper seven bits sit six places higher (bits 29:23 of the word).
+ * Anything of phys >> 24 above 24 bits is dropped, so the board takes a
+ * 48-bit physical address. The id is 0xe03 when the caller's flag 4 is
+ * set (odsy_DmaRegion_DoTransfer) or when a per-transfer flag word is
+ * nonzero (odsyDMAOp), else 0xe01; what bit 1 of the id selects: unknown
+ * (inferred a direction or kind, not read). The id 0xe01 is above the
+ * class-1 REG field (10 bits), so the doubleword form has a wider
+ * register space than the class-1 words, which also carries 0x6b0-0x6b3
+ * and 0x7b5. established: arithmetic of both routines.
+ *
+ * odsyDMAOp, in order (established unless marked):
+ *   - pins the user buffer (unuseracc), builds a page list with
+ *     generatePageTable and a work list with ConstructTftchWarList, and
+ *     allocates a context-set id (OdsyAllocCSetId);
+ *   - writes 0x800 (the DMA_DONE_FLAG bit) to the flags-clear register
+ *     0x101c before the first kick (board record offset 5844 holds a
+ *     7-bit transfer counter that it increments);
+ *   - kicks each 128-byte table entry's physical address (the entries
+ *     are at the work list pointer plus 128 per index) with the pair
+ *     above;
+ *   - then, when bit 3 of the second byte of the gfx word at offset 28
+ *     is set, sends 0x00014001 (primitive end), the whole settle
+ *     sequence (0x443/250, 0x46 x2, 0x019, 0x443/150, 0x46 x4, 0x443/250,
+ *     0x46 x2), and, if a completion tag is wanted, the class-1 word
+ *     0x00010a5a with two operands: a record word (offset 5840) ORed with
+ *     0x8000, and a tag of the form 0x5a00 | an 8-bit value.
+ *     inferred: block 0x5a marks the end of the transfer and returns the
+ *     tag through DMA_DONE_FLAG; not confirmed.
+ *   - odsyDmaInterrupt (the DMA interrupt vector, separate from the flags
+ *     vector) calls odsyDMAIrptWakeup; odsySsyncInterrupt calls
+ *     odsyDMAWakeup. The flags handler also logs DMA_DONE_FLAG and
+ *     DMA_CMD_OFLO (a fatal flag). What each wake-up tests: not read.
+ *
+ * Page list format from generatePageTable (odsy_DmaRegion_BuildXlatTbl
+ * allocates pages * 8 + 40 bytes, pages = ceil(length / 16384), zeroed):
+ * a 32-byte header copied from the region record, then 8-byte entries.
+ * Each entry is two 32-bit words: word 0 = the physical address >> 16,
+ * word 1 = (physical address & 0xffff) << 16 | a 16-bit byte count. The
+ * walk consumes the buffer through alenlist chunks of up to 16384 bytes
+ * and treats the region as rows (a 16-bit row count at record offset +12
+ * bits 31:16, a 20-bit row length in bytes at +24, a stride at +20), so
+ * the table describes a two-dimensional transfer. The word-1 count's
+ * exact unit and the row semantics are inferred from the loop shape and
+ * not confirmed; the header's contents are unknown. */
+
 /* --- Board registers used for flow control --------------------------- */
 /* flags (printed as "odsy flags: %R" by odsyPrintRegs with this bit
  * table) and status0 ("odsy status0: %R"). Names, masks and widths
