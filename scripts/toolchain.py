@@ -21,3 +21,7 @@ def objdump():
 
 def readelf():
     return find('readelf', 'MIPS_READELF')
+
+
+def nm():
+    return find('nm', 'MIPS_NM')
