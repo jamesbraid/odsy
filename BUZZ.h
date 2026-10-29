@@ -329,4 +329,171 @@
                                             textport), RG12, BA12;
                                             established as used */
 
+/* ===================================================================
+ * 5. FIFO ports, flow control and the textport stream
+ * ===================================================================
+ * Offsets are from the board's PIO base as the IP30 kernel maps it
+ * (the pointer at board-info offset 824 in odyssey.a).
+ */
+
+/* Kernel command FIFO port. The kernel writes command and operand words
+ * here with 32-bit stores, and in odsyInitCfifo also with 64-bit stores
+ * (four doublewords after 0x00010854). established: odsy_tport.o (every
+ * routine adds 0x110000 to the base), odsyInitCfifo (odsy_init.o).
+ * How a 64-bit store splits into two words: inferred high word first,
+ * from big-endian order; unknown on the board. */
+#define ODSY_CFIFO_PORT            0x110000
+/* User command FIFO: libGLcore stores to virtual 0x10000, see
+ * libglcore/include/glcore_odsy.h. Which board window backs that
+ * mapping: unknown (gf_OdsyMapGfx not yet read). */
+
+/* Display FIFO port: 64-bit stores only, one per update (layout in
+ * DISPLAY.h). established: gf_OdsySetDisplayMode (odsy_retrace.o),
+ * odsy_mapcolor (odsy_tport.o): base + 0x400000, sd. */
+#define ODSY_DFIFO_PORT            0x400000
+
+/* COUNT encoding: a class-1 word with COUNT 15 is followed by 16
+ * operands. established: odsy_drawbitmap sends 0x00013c4e and
+ * 0x00013c4f each followed by 16 words (offsets 0..60 and 64..124 of
+ * its bitmap buffer). COUNT 1..7 are followed by exactly COUNT words
+ * (section 1). Whether COUNT 8..14 also mean themselves: unknown. */
+
+/* --- Ordering of posted writes ---------------------------------------
+ * The kernel textport (ODSY_SET_GC) issues a MIPS sync after every FIFO
+ * store; odsy_sboxfi, odsy_pnt2i and odsy_drawbitmap do not, and bracket
+ * the whole primitive with wbflush calls under the textport spinlock.
+ * libGLcore issues no barrier between user FIFO stores.
+ * established: odsy_tport.o, __glOdysseyValidateHardware.
+ * inferred: the board accepts words in store order and needs no per-word
+ * fence; the syncs in ODSY_SET_GC are the driver's choice, not a
+ * protocol requirement (the other textport routines omit them). */
+
+/* --- The settle sequence ----------------------------------------------
+ * After every textport primitive and at the start of a hardware
+ * validation that follows a context change, the drivers send:
+ *     0x00010443, N, 0x00010046, 0x00010046     N = 250
+ *     0x00010019
+ *     0x00010443, 150, 0x00010046 x4
+ *     0x00010443, 250, 0x00010046, 0x00010046
+ * (the first group twice when kernel flag word 7036 is set).
+ * established: odsy_sboxfi, odsy_pnt2i, odsy_drawbitmap, ODSY_SET_GC;
+ * the 250-and-two form alone in __glOdysseyValidateHardware.
+ * Register 0x043 takes one operand (a count: 150 or 250); 0x046 and
+ * 0x019 take none. Their effect: unknown. inferred: a wait of N units
+ * followed by padding, given the decimal round numbers and that 0x046
+ * also ends odsyInitCfifo's setup. */
+#define BUZZ_REG_SETTLE            0x043 /* 1 operand. established as used */
+#define BUZZ_REG_PAD               0x046 /* 0 operands. established as used */
+#define BUZZ_REG_SYNC19            0x019 /* 0 operands. established as used */
+
+/* --- Textport primitives --------------------------------------------
+ * Filled rectangle (odsy_sboxfi) and point (odsy_pnt2i):
+ *     0x00014400, 7                begin, primitive 7 (quads, as GL)
+ *     0x8080c800, x, y             per vertex, y counted from the top:
+ *                                  y_hw = height - y + 1 (+2 for the
+ *                                  far edge of a box)
+ *     0x00014001                   end
+ * odsy_pnt2i sends primitive 0 with one vertex. established.
+ * Glyph (odsy_drawbitmap): 0x0001043f, 6, then 0x00013c4e + 16 words and
+ * 0x00013c4f + 16 words of bitmap rows, then a quad as above.
+ * established. Colour (ODSY_SET_GC): 0x00010c21 with the textport colour
+ * widened to 12 bits a channel (section 4); 0x00010404 + one word of
+ * raster mode; 0x00010424 + one word. established. */
+
+/* --- Board registers used for flow control --------------------------- */
+/* flags (printed as "odsy flags: %R" by odsyPrintRegs with this bit
+ * table) and status0 ("odsy status0: %R"). Names, masks and widths
+ * established from the register-description tables in odsy_init.o
+ * .data (offset 0x0 and 0x460); the register offsets from
+ * odsyPrintRegs, which loads base+0x1014 and base+0x1064. */
+#define ODSY_REG_FLAGS             0x1014
+#define   FLAGS_GEN_LOCK_INTR            (1u << 31)
+#define   FLAGS_CLOCK_STOPPED_INTR       (1u << 30)
+#define   FLAGS_READ_DURING_DIAG_ERR     (1u << 29)
+#define   FLAGS_PUSH_CMD_ERROR           (1u << 28)
+#define   FLAGS_GFX_OFLOW_INTR           (1u << 27)
+#define   FLAGS_CFIFO_HW_FLAG            (1u << 25)
+#define   FLAGS_DBE_OFLOW_INTR           (1u << 24)
+#define   FLAGS_XFORM_DFIFO_OFLOW_INTR   (1u << 23)
+#define   FLAGS_XFORM_IFIFO_INTR         (1u << 22)
+#define   FLAGS_XFORM_UCODE_OFLOW_INTR   (1u << 21)
+#define   FLAGS_XFORM_PTABLE_OFLOW_INTR  (1u << 20)
+#define   FLAGS_GFX_XTALK_STALL          (1u << 18)
+#define   FLAGS_HOST_FLAG_INTR           (0xfu << 14) /* 4-bit field */
+#define   FLAGS_PRIV_VIOLATE_GFX         (1u << 13)
+#define   FLAGS_CTXSW_DONE               (1u << 12)
+#define   FLAGS_DMA_DONE_FLAG            (1u << 11)
+#define   FLAGS_DMA_CMD_OFLO_INTR        (1u << 10)
+#define   FLAGS_CFIFO_LW_FLAG            (1u << 9)
+#define   FLAGS_ILLEGAL_OUT_FORMAT       (1u << 8)
+#define   FLAGS_MULTGET_INTR             (1u << 7)
+#define   FLAGS_CORRECTABLE_ECC_ERROR    (1u << 4)
+#define   FLAGS_MLT_CORRECTABLE_ECC_ERROR (1u << 3)
+#define   FLAGS_UNCORRECTABLE_ECC_ERROR  (1u << 2)
+#define   FLAGS_SYNC_TIMEOUT_FLAG        (1u << 1)
+#define   FLAGS_HEURISTIC_OVERFLOW       (1u << 0)
+#define ODSY_REG_STATUS0           0x1064
+#define   STATUS0_CFIFO_ENABLED          (1u << 28)
+#define   STATUS0_SHIFT_DONE             (1u << 27)
+#define   STATUS0_ONE_SHIFT_DONE         (1u << 26)
+#define   STATUS0_SCAN_DONE              (1u << 25)
+#define   STATUS0_CLK_DISABLED           (1u << 24)
+#define   STATUS0_XFORM_ACTV             (1u << 23)
+#define   STATUS0_CTXSW_ACTV             (1u << 22)
+#define   STATUS0_DMA_DONE               (1u << 21)
+#define   STATUS0_COPY_DONE              (1u << 20)
+#define   STATUS0_CFIFO_LW               (1u << 17) /* below low water */
+#define   STATUS0_CFIFO_MT               (1u << 16) /* empty */
+#define   STATUS0_CFIFO_HW               (1u << 15) /* above high water */
+#define   STATUS0_XRFIFO_LW              (1u << 14)
+#define   STATUS0_XRFIFO_HW              (1u << 13)
+#define   STATUS0_RASTER_SYNC_SRC        (3u << 11) /* 2-bit field */
+#define   STATUS0_CFIFO_SYNC_SRC         (3u << 9)  /* 2-bit field */
+#define   STATUS0_DMA_SYNC_SRC           (3u << 7)  /* 2-bit field */
+#define   STATUS0_GFX_REG_RD_ACTV        (1u << 4)
+#define   STATUS0_SYNC_PUSH_ACTV         (1u << 3)
+#define   STATUS0_PERF_STATS_PUSH_ACTV   (1u << 2)
+#define   STATUS0_DIAG_HIST_PUSH_ACTV    (1u << 0)
+/* The three *_SYNC_SRC fields share one value-name table (odsy_init.o
+ * .data 0x410): 0 and 1 "unset", 2 SRC_DMA, 3 SRC_PIX_PIPE. established. */
+
+/* FIFO levels. Bits 6:0: display FIFO level; odsy_poll_dfifo_level
+ * waits (5 us steps, at most 10000) until it is <= its argument: 15
+ * before a display-mode write, 12 inside the swap path, 0 before a
+ * colour-map write. Bits 15:7: inferred command FIFO level, 9 bits;
+ * odsy_tpinit waits for it to read zero before resetting the FIFO.
+ * established: odsy_flow.o, odsy_retrace.o, odsy_tport.o. */
+#define ODSY_REG_FIFO_LEVELS       0x106c
+#define   LEVELS_DFIFO_MASK              0x7fu
+#define   LEVELS_CFIFO_SHIFT             7
+#define   LEVELS_CFIFO_MASK              0x1ffu
+/* Flow-control setup. Bits 16:12 take the HEART flow-control credit
+ * target number (gfx_flow_credit_tnum_get) when the kernel attaches the
+ * board to flow control; the other bits keep a driver copy (board-info
+ * 0x10000-31292). established: odsyInitCfifo. odsy_tpinit writes 0. */
+#define ODSY_REG_FLOW_CFG          0x1074
+#define   FLOW_CFG_TNUM_SHIFT            12
+#define   FLOW_CFG_TNUM_MASK             0x1f000u
+/* Written 0 when the kernel attaches flow control, 1 when it detaches
+ * or before the textport reinitialises. established: odsyInitCfifo,
+ * odsy_tpinit. inferred: 1 disables credit flow control. */
+#define ODSY_REG_FLOW_OFF          0x107c
+/* odsy_tpinit pulses this 0, 1, 0 before odsyInitCfifo. established.
+ * inferred: command FIFO reset. */
+#define ODSY_REG_CFIFO_RESET       0x1084
+/* Low-water interrupt handling, all writes of 0x200 (the CFIFO_LW_FLAG
+ * bit). odsyHiwaterInterrupt, after HEART reports credits below its
+ * bias: write 0x101c; if STATUS0_CFIFO_LW is already set write 0x1014
+ * (the flags register itself); then write 0x1034.
+ * odsyLowaterInterrupt: write 0x103c. established.
+ * inferred: 0x101c clears the flag, 0x1034 enables and 0x103c disables
+ * the low-water interrupt, and a write to 0x1014 sets flag bits. The
+ * driver waits 10 polls of 1 us for credits to recover before it parks
+ * the writer, then a 1500-tick timeout ends in odsyFifoTimeout
+ * ("CFIFO timeout"). The high- and low-water marks themselves are never
+ * written by the IP30 driver: unknown. */
+#define ODSY_REG_FLAGS_CLR         0x101c /* inferred */
+#define ODSY_REG_INTR_ENABLE       0x1034 /* inferred */
+#define ODSY_REG_INTR_DISABLE      0x103c /* inferred */
+
 #endif /* BUZZ_H */
