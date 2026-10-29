@@ -153,3 +153,60 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 ## 5. Display timing
 
 See `docs/display.md`.
+
+## 6. Interrupt sources, routing and the handlers not covered earlier
+
+Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_dma.o`, `odsy_retrace.o`). IP35 was not diffed: **unknown**. Handler order was read from the `.rel.srdata` relocations of `odsy_init.o` (`readelf -r`), the board offsets from the disassembly in `odsy_kernel/disasm/`.
+
+### Five interrupt sources
+
+- **established.** `odsyInitIntr` (`odsy_init.o`) allocates five crossbar-widget interrupts with `xtalk_intr_alloc`, reads the vector number of each with `xtalk_intr_vector_get`, and connects them to five handlers with `xtalk_intr_connect`. The handler pointers sit in `.srdata` at offsets 0x30 to 0x50 in this order:
+
+| Source | Handler | Vector kept at board record offset (+0x10000 base) |
+|---|---|---|
+| 0 | `odsyXtErrorInterrupt` | -19704 |
+| 1 | `odsyFlagInterrupt` | -19702 |
+| 2 | `odsyDmaInterrupt` | -19700 |
+| 3 | `odsyRetraceHandler` | -19698 |
+| 4 | `odsySsyncInterrupt` | -19696 |
+
+- **established.** The target address of source 0 is stored at record -19688 and of source 1 at -19680. No address is read for sources 2 to 4.
+- **inferred.** Sources 1 to 4 share the one address of source 1 (the board gets one address word for them, below) and the board tells them apart by vector number only. Reason: only two addresses are fetched and only one register pair is written for 1 to 4.
+
+### Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+
+**established** as stores (offsets from the board PIO base; each word is built in a record copy by read-modify-write and then stored once):
+
+| Offset | Content as written |
+|---|---|
+| 0x34 | bits 31:24 vector of source 0; bits 23, 22, 21 set; bits 19:16 = `xtalk_intr_target_get` & 0xf; bits 15:0 = bits 47:32 of the source 0 address |
+| 0x3c | bits 31:0 of the source 0 address |
+| 0x5c | bit 13 set, bits 12:8 cleared, then bits 12:10 and 7:0 set |
+| 0x1034 | the interrupt enable mask (`BUZZ.h` flags section) |
+| 0x103c | `odsyDisableInterrupts` stores 0xffffffff |
+| 0x1044 | bits 28:25 = the target number (bits 19:16 of the 0x34 word), bit 29 set, bits 24:22, 19 and 18:16 set, bits 15:0 = bits 47:32 of the source 1 address |
+| 0x104c | bits 31:0 of the source 1 address |
+| 0x1054 | bits 7:0 vector of source 1, 15:8 source 2, 23:16 source 3, 31:24 source 4 |
+| 0x105c | a word that carries the target number in three places (bits 9:6, 19:16, 29:26) plus constant bit runs; not decoded further |
+
+- **established.** `odsyDisableInterrupts` clears bit 21 of the 0x34 word, clears bits 18:16 of the 0x1044 word, then writes 0xffffffff to 0x1034's neighbour 0x103c. (It stores to record offset 4156 = 0x103c.)
+- **inferred.** 0x34/0x3c is the error-widget interrupt (vector, target, address of the crossbar error source) and bit 21 of 0x34 its enable; 0x1054 carries the four other sources' vector numbers. 0x103c is a write-one-to-clear counterpart of 0x1034, because `odsyDisableInterrupts` writes all ones to it and `odsyLowaterInterrupt` writes 0x200 to it. Not confirmed by hardware.
+- **unknown.** The meaning of 0x5c, of the bit runs in 0x1044 and 0x105c, and which register fields the target number selects.
+
+### `odsyDmaInterrupt` and `odsySsyncInterrupt`
+
+- **established.** `odsyDmaInterrupt` calls `odsyDMAIrptWakeup`, then increments a per-CPU counter; it reads no board register. `odsyDMAIrptWakeup` takes the board DMA mutex, pops the head of a singly linked list at record offset 28448, clears bit 1 of the entry's word at +8, and when the word is then zero calls `odsyDMADone` and broadcasts the DMA condition variable (record +5816).
+- **established.** `odsySsyncInterrupt` calls `odsySwap_softsync_intr`, then `odsyDMAWakeup`, then the same counter increment. `odsySwap_softsync_intr` walks 32 swap slots (bit s of the words at 28568 and 28548) and, for each slot whose condition value read from a host-visible halfword table has reached its limit, calls `odsySwapBuffer`.
+- **established.** `odsyDMAWakeup` reads the halfword at the host-mapped page whose address is kept at record +5824; if its high byte is 0x5a it is a block 0x5a tag (`BUZZ_REG_TAG_WRITEBACK`), low byte 0 to 127. It compares the tag with a ring index kept at record +5848 (modulo 128, the 128-entry ring of in-flight DMA ops at record +5856, eight bytes per entry) and retires that many ring entries: for each it clears bit 1 of the op's word at +8, and when that leaves the word zero calls `odsyDMADone`. Counters at record +6880 and +6888 are the retired and issued counts.
+- **inferred.** The tag is what `odsyDMAOp` sends with block 0x5a after each op (`0x5a00 | n`, n mod 128), so the board reports completion by writing the tag into the host page, and the Ssync handler is the interrupt that makes the host look at it. The fallback bit-1 list in `odsyDMAIrptWakeup` is for ops that complete by interrupt instead. Not confirmed on hardware.
+- **unknown.** Why `odsySsyncInterrupt` runs both swap and DMA retirement, and the meaning of the flag bits other than bit 1 in an op's word at +8.
+
+### `odsyRetraceHandler` and the swap registers
+
+**established** (`odsy_retrace.o`, `odsyRetraceHandler`, `odsySwapBuffer`, `odsyValidateBuffer`, `gf_OdsySchedRetraceEvent`):
+
+- The handler takes the retrace mutex (record +28504), counts the retrace (record +124 and +128), reads the 32-bit word at board +0x10d4 and XORs it with the record copy at +28528 to find the slots whose state changed. For each of the 32 slots with a pending swap (bit in word +28568) it either calls `odsyValidateBuffer`, calls `odsySwapBuffer`, or writes the slot's bit to +0x10b4 after a repeat count (a slot not completing within 300 retraces is forced and logged).
+- `odsySwapBuffer` writes bit sets to +0x10c4 and +0x10cc (the first word is the bits that go to one state, the second the complement among the same slots), a toggle-like set to +0x10b4, and a word to +0x10bc; each write is followed by `sync`. `odsyRetraceHandler` writes 0 to +0x10bc when a pending word (record +28544) is nonzero and the swap list head (record +28536) is empty.
+- After the loop the handler wakes the retrace condition variable (record +28520), calls `rrmValidateRetrace` for each client event queued at record +29864 (`gf_OdsySchedRetraceEvent` adds to that list), `rrmValidateVideoSync` when record +136 is set, and `odsyDMAWakeup`.
+- **inferred.** +0x10d4 is a read-back of per-slot buffer-select bits (one bit per double-buffered window or screen slot, 32 slots), +0x10c4 and +0x10cc set and clear those bits, +0x10b4 and +0x10bc are further per-slot enable or pending bitmaps. Reason: every register is written with masks derived from the same 32-bit slot words, and the record keeps an XOR shadow of +0x10d4. The retrace event itself reaching the host as interrupt source 3 is established by the handler table; which board condition raises it (vertical retrace is the handler's name only) is **unknown**.
+- **unknown.** The exact semantics of each of the five registers; the 300 and 2 repeat counts' units; `rrm*` internals (`rrm.o`, not read).
