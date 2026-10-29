@@ -420,3 +420,81 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
   Index 52, the fourth block of the full replay in `odsyRestoreXform`.
 - `0x35008000` (register 0x35, value 0, `libGLcore.so`): **established.**
   The context default that `__glOdysseyValidateContext` stores for register 0x35 (`ucode/buzz_isa.md`); its meaning is unknown.
+
+## GLX request-code words stored by libGL (not command words)
+
+These words are not FIFO commands. `libGL.so` (the IP30 build under `usr/gfx/arch/IP30ODSY`) stores each into byte +4 of an X protocol request after setting request byte +1 to 16 or 17 (`X_GLXVendorPrivate`, `X_GLXVendorPrivateWithReply`), so the number is a GLX opcode. The names come from the numbering of the public GLX protocol header (X.Org `glxproto.h`) and are **inferred**; the store address and the routine that the symbol table puts it in are **established**, and where the symbol is an exported stub next to the real routine that is said so.
+
+- `0x00010001` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d824468, inside the code the symbol table attributes to
+  `glXGetCurrentReadDrawableSGI`. By the header numbering it is `X_GLXvop_MakeCurrentReadSGI`, the request
+  that makes a context current with separate draw and read drawables.
+- `0x00010002` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d824c74, inside the code the symbol table attributes to
+  `glXCreateGLXVideoSourceSGIX`. By the header numbering it is `X_GLXvop_CreateGLXVideoSourceSGIX`,
+  creating a video-source object on the server.
+- `0x00010003` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d82491c, inside the code the symbol table attributes to
+  `glXDestroyGLXVideoSourceSGIX`. By the header numbering it is `X_GLXvop_DestroyGLXVideoSourceSGIX`,
+  destroying that video-source object.
+- `0x00010004` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d8382dc, inside the code the symbol table attributes to
+  `glXGetCurrentDrawableEXT`. By the header numbering it is `X_GLXvop_GetFBConfigsSGIX`, listing a
+  screen's framebuffer configurations; the routine that holds the store is an unnamed one that follows the
+  exported stub, with a loop over 32-byte configuration records.
+- `0x00010005` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d80fc3c, inside the code the symbol table attributes to
+  `glXMakeCurrentReadSGI`. By the header numbering it is `X_GLXvop_CreateContextWithConfigSGIX`, creating
+  a context from a framebuffer configuration.
+- `0x00010006` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d827720, inside the code the symbol table attributes to
+  `glXCreateGLXPixmapWithConfigSGIX`. By the header numbering it is
+  `X_GLXvop_CreateGLXPixmapWithConfigSGIX`, creating a GLX pixmap tied to a framebuffer configuration.
+- `0x00010007` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d823ca4, inside the code the symbol table attributes to
+  `glXCreateGLXPbufferSGIX`. By the header numbering it is `X_GLXvop_CreateGLXPbufferSGIX`, creating an
+  off-screen pixel buffer.
+- `0x00010008` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d8214e0, inside the code the symbol table attributes to
+  `glXDestroyGLXPbufferSGIX`. By the header numbering it is `X_GLXvop_DestroyGLXPbufferSGIX`, destroying a
+  pixel buffer.
+- `0x00010009` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d820e18, inside the code the symbol table attributes to
+  `glXSelectEventSGIX`. By the header numbering it is `X_GLXvop_ChangeDrawableAttributesSGIX`, changing a
+  drawable's attributes, which is how an event mask is selected on a pixel buffer.
+- `0x0001000a` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d821064, inside the code the symbol table attributes to
+  `__glXGetDrawableAttributes`. By the header numbering it is `X_GLXvop_GetDrawableAttributesSGIX`,
+  reading a drawable's attributes back.
+- `0x0001000b` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d839934, inside the code the symbol table attributes to
+  `glXJoinSwapGroupSGIX`. By the header numbering it is `X_GLXvop_JoinSwapGroupSGIX`, joining a drawable
+  to a swap group.
+- `0x0001000c` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d839a60, inside the code the symbol table attributes to
+  `glXBindSwapBarrierSGIX`. By the header numbering it is `X_GLXvop_BindSwapBarrierSGIX`, binding a
+  drawable to a swap barrier.
+- `0x0001000d` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d839b90, inside the code the symbol table attributes to
+  `glXQueryMaxSwapBarriersSGIX`. By the header numbering it is `X_GLXvop_QueryMaxSwapBarriersSGIX`, asking
+  the server how many swap barriers a screen supports.
+- `0x0001000e` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d83a548, inside the code the symbol table attributes to
+  `glXQueryHyperpipeNetworkSGIX`. By the header numbering it is `X_GLXvop_QueryHyperpipeNetworkSGIX`,
+  listing the hyperpipe network.
+- `0x0001000f` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d83aca8, inside the code the symbol table attributes to
+  `glXQueryHyperpipeConfigSGIX`. By the header numbering it is `X_GLXvop_QueryHyperpipeConfigSGIX`,
+  querying one hyperpipe configuration.
+- `0x00010010` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d83a880, inside the code the symbol table attributes to
+  `glXHyperpipeConfigSGIX`. By the header numbering it is `X_GLXvop_HyperpipeConfigSGIX`, installing a
+  hyperpipe configuration.
+- `0x00010011` (GLX vendor-private code, `libGL.so`): **inferred.**
+  The `ori` that completes the constant is at 0x0d83aafc, inside the code the symbol table attributes to
+  `glXDestroyHyperpipeConfigSGIX`. By the header numbering it is `X_GLXvop_DestroyHyperpipeConfigSGIX`,
+  destroying a hyperpipe configuration.
+- `0x00010000` (constant 0x10000, `libGL.so`): **inferred.**
+  Not a command: 37 sites in 25 binaries, led by `glXSwapIntervalSGI` in libGL, load a 64 KB value with `lui` as an
+  address offset or mask, the usual way MIPS code builds the constant. It lies one step below the GLX vendor-private
+  numbers (0x10001 upwards), which is why the word scan lists it.
