@@ -334,6 +334,7 @@
   "tokens": {
     "docs": [
       "docs/tokens.md",
+      "docs/words.md",
       "docs/buzz.md",
       "docs/kernel.md",
       "docs/opengl.md",
