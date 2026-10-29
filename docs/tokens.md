@@ -88,53 +88,118 @@ Release IRIX 6.5.30m, N32 libGLcore (`libglcore/asm/ODYSSEY/ody_attrib.s` and
 Each setter keeps a shadow word in the context, rewrites its field, and sends the block
 after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context flag asks for it.
 
-- **Block 0x01e**, word `0x0001041e`, **established**: the alpha test. Bits 14:12 hold the
+- **0x01e**, word `0x0001041e`, **established**: the alpha test. Bits 14:12 hold the
   comparison as the GL enum minus 0x200 (GL_NEVER 0 to GL_ALWAYS 7), and bits 11:0 the
   reference value clamped to 0 to 1 and scaled by 4096, with 1.0 sent as 4095.
   Sender `__glOdyim_AlphaFunc` (`ody_attrib.s`, source lines 1682 to 1692), shadow at
   context +31784; the other bits of the word are kept.
-- **Block 0x020**, word `0x00010420`, **established**: the depth test. Bits 2:0 hold the
+- **0x020**, word `0x00010420`, **established**: the depth test. Bits 2:0 hold the
   comparison as the GL enum minus 0x200; `__glOdyim_DepthFunc` (`ody_attrib.s`, line 1922)
   rewrites only those bits of the shadow at context +31792 and sends the whole word.
-- **Block 0x022**, word `0x00010422`, **established**: the logic operation. Bits 3:0 hold
+- **0x022**, word `0x00010422`, **established**: the logic operation. Bits 3:0 hold
   the GL enum minus 0x1500 (GL_CLEAR 0 to GL_SET 15), from `__glOdyim_LogicOp`
   (`ody_attrib.s`, line 2315). The kernel textport sends 3, GL_COPY.
-- **Block 0x015**, word `0x00010415`, **established**: the polygon mode. Bits 3:2 hold the
+- **0x015**, word `0x00010415`, **established**: the polygon mode. Bits 3:2 hold the
   front-face mode and bits 1:0 the back-face mode, each as the GL enum minus 0x1b00
   (GL_POINT 0, GL_LINE 1, GL_FILL 2), from `__glOdyim_PolygonMode` (`ody_attrib.s`, line 2721).
   The kernel textport sends 10 (binary 1010) (fill for both faces by the enum minus 0x1b00 rule above).
-- **Block 0x048**, word `0x00010c48`, **established**: the line stipple, three operands.
+- **0x048**, word `0x00010c48`, **established**: the line stipple, three operands.
   Operands 0 and 1 carry the 16-bit pattern in bits 15:0, and operand 2 carries the repeat
   factor minus one in bits 7:0, the factor clamped to 1 to 256
   (`__glOdyim_LineStipple`, `ody_attrib.s`, source lines 2268 to 2276).
-- **Block 0x058**, word `0x00010458`, **established**: the polygon offset. Bits 24:0 hold a
+- **0x058**, word `0x00010458`, **established**: the polygon offset. Bits 24:0 hold a
   signed depth offset in units of the depth buffer, clamped to plus or minus 2^24,
   and bits 31:25 are kept. `__glOdyim_PolygonOffsetEXT` (`ody_attrib.s`, line 3445)
   builds it from the factor and bias, scaled by the depth range and the projection.
-- **Block 0x01d**, word `0x0001081d`, **established**: the scissor box, two operands, each
+- **0x01d**, word `0x0001081d`, **established**: the scissor box, two operands, each
   with a 12-bit field in bits 23:12 and one in bits 11:0. `__glOdysseyValidateScissor`
   (`ody_context.s`, source line 2120) also hands the four fields to ioctl 0x6f64000d
   as minimum x, minimum y, maximum x and maximum y, so operand 0 is the x range and
   operand 1 the y range, low limit in the upper field.
-- **Block 0x04e**, word `0x00013c4e`, **established**: rows 31 down to 16 of the 32 by 32
+- **0x04e**, word `0x00013c4e`, **established**: rows 31 down to 16 of the 32 by 32
   polygon stipple, one 32-bit row per operand. `__glOdysseyConvertStipple` (`ody_attrib.s`,
   line 2790) reverses the row order of the GL pattern before it sends the two blocks,
   so the board's first stipple row is the top row of the GL pattern.
-- **Block 0x04f**, word `0x00013c4f`, **established**: rows 15 down to 0 of the polygon
+- **0x04f**, word `0x00013c4f`, **established**: rows 15 down to 0 of the polygon
   stipple, sent right after block 0x04e by `__glOdysseyConvertStipple` (`ody_attrib.s`).
-- **Block 0x03f**, word `0x0001043f`, **established**: the stipple mode word, sent before
+- **0x03f**, word `0x0001043f`, **established**: the stipple mode word, sent before
   the two pattern blocks from context +31736 (`__glOdysseyConvertStipple`, `ody_attrib.s`).
   **inferred:** it carries the binaries read here; the kernel
   routines' other callers would settle the fields.
-- **Block 0x04b**, word `0x0001204b`, **inferred**: the screen mask, four rectangles as
+- **0x04b**, word `0x0001204b`, **inferred**: the screen mask, four rectangles as
   eight operands, a minimum and a maximum word each, with x in bits 23:12 and y in bits 11:0.
   The kernel textport sends 0x4ff3ff as the first maximum, 1279 by 1023 for its 1280 by 1024
   screen, and 0xffffff as the other three (`buzz_init`, `odsy_tport.o`).
 
-- **Block 0x04a**, word `0x0001084a`, **inferred**: the line width and point size, one
+- **0x04a**, word `0x0001084a`, **inferred**: the line width and point size, one
   operand each. The kernel textport sends 0x80 for both (`buzz_init`, `odsy_tport.o`)
   which would read as 1.0 in fixed point with seven
   fraction bits.
+
+## Blocks only the hardware validator sends
+
+Release IRIX 6.5.30m, N32 libGLcore. `__glOdysseyValidateHardware` (`ody_context.s`, source
+lines 1840 to 2014) tests the dirty word at context +0x10000 + 26976 bit by bit and, for each set
+bit, sends the settle group and then one block from its context shadow. Setters raise the bit
+after changing the shadow. Within libGLcore only this routine sends the nine blocks below; the
+kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
+
+- **0x01a**, word `0x0001181a`, **established**: the fog block, six operands from context
+  +31752 to +31772, sent when dirty bit 3 is set (`ody_context.s`, source line 1871).
+  `__glOdysseyValidateFog` sets that bit when it finishes (`ody_fog.s`, line 533).
+- **0x01a** operands 0 and 1, **established**: the fog colour. `__glOdyim_Fogfv`
+  (`ody_fog.s`, source lines 542 to 550) scales each GL fog colour component by 4096, with 1.0
+  sent as 4095, and puts red in bits 23:12 and green in bits 11:0 of operand 0, blue and alpha
+  likewise in operand 1. In colour-index mode the fog index goes to bits 23:12 of operand 0 (line 578).
+- **0x01a** operands 2 to 5, **established**: the fog function, rebuilt by
+  `__glOdysseyValidateFog` (`ody_fog.s`, source lines 526 to 532) for each GL fog mode it switches
+  on at line 312 (GL_EXP, GL_EXP2, GL_LINEAR and GL_FOG_FUNC_SGIS). Five coefficients go out as
+  signed 12-bit values with eight fraction bits: bits 11:0 of operand 3 and both 12-bit halves of
+  operands 4 and 5. Bits 14:12 of operand 3 take a 3-bit code (7 on the paths read). Bits 23:0 of
+  operand 2 take a positive scale: the IEEE single with 96 taken from its exponent, then shifted
+  right five places, which leaves six exponent bits and an 18-bit mantissa. **inferred:** the board
+  evaluates the fog factor from eye depth with these; the depth range at context +1704 and +1712
+  enters the scale at source lines 471 to 475.
+- **0x051**, word `0x00010451`, one operand from context +0x10000 - 26984, sent when dirty
+  bit 24 is set (`ody_context.s`, source line 2002). **established:** `__glOdysseyValidateMatrixComb`
+  (`ody_xform.s`, source lines 596 to 602) sets bit 0 when the projection class word at
+  +0x10000 - 25156 is 2 or 3, and sets bit 1 when the far depth-range value (context +1712) is
+  below the near one (+1704). **inferred:** bit 1 marks a reversed depth range. What bit 0 tells
+  the board is unknown (`docs/open-questions.md`).
+- **0x013**, word `0x00011013`, four operands from context +0x10000 - 26844 to - 26832,
+  sent when dirty bit 14 is set (`ody_context.s`, source line 1880). **established:**
+  `__glOdysseyValidateTextureState` (`ody_texture.s`, source line 2488) copies the four words
+  from offsets 192 to 204 of the bound texture object; the context starts with 0, 0, 0x3100 and
+  0xf00 (`__glOdysseyInitDefaultValues`, `ody_context.s`, lines 2482 to 2485). Their field
+  layout is unknown until the code that fills those texture-object words is read.
+- **0x01c**, word `0x00010c1c`, **established**: the fragment light model, three operands
+  from context +0x10000 - 27268, sent when dirty bit 23 is set (`ody_context.s`, line 1989).
+  `__glOdyim_FragmentLightModelfvSGIX` (`ody_fragment.s`, source lines 442 to 446) writes the
+  model's ambient colour scaled by 4096: red in bits 23:12 and green in bits 11:0 of operand 0,
+  blue in bits 23:12 of operand 1.
+- **0x01c** operands 1 and 2, low bits, **inferred**: the fragment colour-material
+  selection. `ValidateFragmentColorMaterial` (`ody_fragment.s`, source lines 35 to 81)
+  clears and sets single bits from bit 1 to bit 7 of both words according to which material
+  colour tracks the current colour.
+- **0x004**, word `0x00010404`, one operand from context +31740, sent when dirty bit 1
+  is set (`ody_context.s`, source line 1847). **established:** some 140 stores in
+  `ody_attrib.s`, `ody_image_chain.s`, `ody_accumop.s` and others write that word; its fields
+  are unknown (`docs/open-questions.md`).
+- **0x005**, word `0x00010405`, one operand from context +31744, sent when dirty bit 2
+  is set (`ody_context.s`, source line 1852). **established:** bit 25 is the perspective-texture
+  flag `AddProgram` writes (`ody_program.s`, line 794) before it raises dirty bit 2 (line 1267).
+  The other bits, written from `ody_texture.s`, `ody_image_chain.s` and others, are unknown.
+- **0x006**, word `0x00010406`, one operand from context +32736, sent when dirty bit 11
+  is set (`ody_context.s`, source lines 1964 to 1967). **established:** five stores in
+  `ody_texture.s` and two in `ody_image_move.s` write it; the fields are unknown.
+- **0x047**, word `0x00011847`, six operands from context +0x10000 - 26868 to - 26848, sent
+  when dirty bit 13 is set (`ody_context.s`, source line 1877). **established:**
+  `__glOdysseyInitDefaultValues` (`ody_context.s`, lines 2536 to 2541) zeroes all six and raises
+  the bit, and no constant-offset store in libGLcore writes them again, so libGLcore sends six
+  zero words. What they set on the board is unknown.
+- **0x052**, word `0x00010452`, one operand from context +31836, sent when dirty bit 7 is
+  set (`ody_context.s`, source line 1976). **established:** written by about fifty stores in
+  `ody_attrib.s`, `ody_texture.s`, `ody_image_chain.s` and the image paths; fields unknown.
 
 ## Block 0x045, 0x250 and the level descriptors
 
