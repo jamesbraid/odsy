@@ -106,7 +106,7 @@ usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	objec
 usr/cpu/sysgen/IP30boot/kernel.o	kernel-shared	shared-kernel	object	n64	577112	32d900592e14a557		726	0	0	documented	docs/buzz.md#what-was-compared	What was compared
 usr/cpu/sysgen/IP30boot/odysseystubs.a(odysseystubs.o)	kernel-shared	shared-kernel	object	n64	3476	8e6cf21717743f03	usr/cpu/sysgen/IP35boot/odysseystubs.a(odysseystubs.o)	1	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/cpu/sysgen/IP30boot/rrm.o	kernel-shared	shared-kernel	object	n64	63904	ad36cdbdba058c54		72	0	0	documented	docs/buzz.md#what-was-compared	What was compared
-usr/cpu/sysgen/IP30boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23588	12a1e64b81279ccb		22	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP30boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23588	12a1e64b81279ccb		22	0	0	documented	docs/kernel-functions.md#kernel-driver-functions-by-object-and-role	Kernel driver functions by object and role
 usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	documented	docs/buzz.md#what-was-compared	What was compared
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	0	0	documented	docs/buzz.md#what-was-compared	What was compared
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	0	0	documented	docs/buzz.md#what-was-compared	What was compared
@@ -141,7 +141,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	37668	0b93c811ad9c1436		11	6	0	documented	docs/buzz.md#what-was-compared	What was compared
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	6	0	documented	docs/buzz.md#what-was-compared	What was compared
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	documented	docs/buzz.md#what-was-compared	What was compared
-usr/cpu/sysgen/IP35boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23668	312f6d991747e24c		22	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP35boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23668	312f6d991747e24c		22	0	0	documented	docs/kernel-functions.md#kernel-driver-functions-by-object-and-role	Kernel driver functions by object and role
 usr/diags/compositor/bin/sting	diagnostics	board-diagnostic	executable	n32	368640	8781b667660f08c5		323	0	0	undocumented		
 usr/diags/compositor/data/1280_1024_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	a081259ae69eea74	usr/gfx/ucode/STINGRAY/cmb/1280_1024_60_no_tiles.cmb	0	0	0	undocumented		
 usr/diags/compositor/data/1280_1024_72_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6a2908b2502c5451	usr/gfx/ucode/STINGRAY/cmb/1280_1024_72_no_tiles.cmb	0	0	0	undocumented		
