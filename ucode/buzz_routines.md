@@ -133,7 +133,9 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   built-in program. The 4165-word start-up stream `buzz_init` that `odsy_tpinit`
   (`odsy_tport.o`) replays sets sequencer 0x29 to 214, 0x2a to 224 and 0x2c to 234, and the
   textport then draws with vertex words such as `0x8080c800` (two integer coordinates).
-  No record from 214 to 242 has a data address, so this program applies no matrix: the
+  No record from 214 to 242 has a data address; the textport's coordinates are already window
+  with each vertex). libGLcore's program table uses the same routine for unlit GL drawing
+  ("The program table" below), so the missing data address does not mean the routine skips the matrix.
   Records 224 and 234 sit five after the value-3 marks at 219 and 229, so a value-3 mark ends
   a part that a register names, the way values 1 and 2 end a routine.
 - **Routine 51** (kernel record 51), **inferred**: texture generation from planes, the routine
@@ -232,6 +234,366 @@ sets a bit in the program key and adds no routine.
   light in the colour-index form (`ody_program.s`, line 860); it is the tail of routine 768.
 - **Routine 931** (kernel record 832), **inferred**: the second part of a further local light
   in the colour-index form (`ody_program.s`, line 860); it is the tail of routine 920.
+
+### The program table
+
+**established.** `AddProgram` (`ody_program.s`, source lines 1041 to 1043) compares the
+program key it has built against a table in the N32 libGLcore of 6.5.30m at address
+0x0dae4680, file offset 0x1e4680 in the read-only `.rodata` section. The listing writes the
+address as `__glim_Color3f` + 18048 only because 0x0dae0000, the GOT page base the code loads,
+is also where that function starts. The table holds 24 records of 72 bytes and ends with a
+record whose mask is zero.
+
+**established.** Each record is laid out as follows, read from the loads in `AddProgram`:
+
+- +0, a 64-bit mask. The walk stops at the first record whose mask covers every set bit of the
+  key (`nor` then `and` at source line 1042), or at the zero mask, which means no match.
+- +8, +12 and +16: the three words stored as the program's sequencer 0x29, 0x2a and 0x2c values
+  (source lines 1197 to 1199).
+- +20 and +24: a patch. `__glOdysseySetProgram` (source lines 1455 to 1462) sends +20 as the
+  instruction write address and then the image record that +24 names, so +24 overwrites +20 in RAM.
+- +28: the closing routine, kept at source line 1066 and added to the list at line 1164.
+- +32: up to three routine entries ending with 1221.
+- +52: a second list ending with 1221, copied after record 515 (source lines 1208 to 1213).
+
+**established.** On a match the routines `AddProgram` has already chosen for lighting are
+dropped: the list position goes back to where this program started (source line 1073). When
+texture generation is on, hardware clip planes are on, or +8 holds 1221 (source line 1069),
+the +32 list is copied, sequencer 0x29 is taken from its first element (source line 1203) and the
+patch is kept. Otherwise the +32 list is skipped and the patch is reset to 1221 over 1221, which
+rewrites the null routine with itself. Texture generation and clip routines are then appended
+as usual (source lines 1079 to 1139). **inferred:** each table program is a hand-fused copy of
+the transform and lighting chain for one common state, and the patch turns a value-3 mark in
+its first routine into an end so that the appended texture-generation or clip routines can run.
+Every patch address in the table is a value-3 mark and every patch record is the end mark of the
+same routine.
+
+**established.** `__glOdysseySetProgram` (source lines 1469 to 1483) sets sequencer 0x29 to the
+list element at the second-list position, which is 515, and 0x33 to the position after it,
+sends `0x90808800`, and only then loads 0x33 with the first list's start and 0x29, 0x2a and
+0x2c with the per-vertex values. **inferred:** the second list runs once when a program is
+selected, as its set-up pass, and the first list runs for every vertex.
+
+
+
+
+
+
+
+
+**established** (VPro patches 4103 and 4104, N32 `libGLcore.so` file offset 0x1d0bf0): the older
+library has the same table with 21 records, every record number 99 lower (the kernel copy's
+numbering), and without records 20 to 23 of 6.5.30m. Its last record, mask 0x40e40 (unlit with the
+perspective-texture bit), lists 1099 and 1112 and closes with 1074, which are 1198, 1211 and 1173 in
+the 6.5.30m image: the same three routines 6.5.30m adds at source lines 1148 to 1150 instead.
+That agreement is the check on the reading of bit 6 below.
+
+#### The program key
+
+**inferred**, from the code that sets each bit in `AddProgram`; the GL names come from the
+enable bits `__glim_IsEnabled` tests (`so_attrib.s`) and `__glOdyim_IsEnabled` (`ody_attrib.s`).
+
+- Bit 0 (source line 1011): two colour outputs. It is set for two-sided lighting while
+  GL_LIGHTING is on (context byte +1413) and is forced at source line 810 for separate specular.
+- Bits 1 and 2: local and infinite viewer (context byte +1412), set only when a light is enabled.
+- Bits 3 and 4: separate specular in effect, or not. Separate specular counts when
+  GL_LIGHT_MODEL_COLOR_CONTROL (context +1416) is 0x81fa, texturing is on, a light is enabled
+  and fragment lighting is off (source lines 675 and 797 to 800).
+- Bits 5 and 6: texturing on, without and with the perspective-texture flag. The flag is set
+  when texturing is on under a perspective projection (context word +0x10000 + 26428, written by
+  `__glOdysseyUpdateTransform`) with one colour, no separate specular and no fragment lighting
+  (source lines 686 to 794).
+- Bits 7 and 8: GL_NORMALIZE on and off (bit 22 of the enables word at context +1792), set with a
+  light enabled or for the fragment light.
+- Bits 9, 10 and 11: texture dimension at least 1, 2 and 3, as a run of ones (source line 677).
+- Bits 12 and 13: RGBA and colour-index lighting (context byte +3220), with a light enabled.
+- Bits 14 and 15: local and infinite viewer of the fragment light model (context
+  byte +0x10000 + 26020, set by `__glOdyim_FragmentLightModelfvSGIX`), with fragment light 0 on.
+- Bit 16: fragment light model two-sided (context byte +0x10000 + 26021).
+- Bit 17: texture generation or hardware clip planes on. The texture bits are left out then.
+- Bit 18: GL_LIGHTING off (bit 6 of the enables word).
+- Bits 19 to 22, 23 to 26 and so on: one nibble per enabled light in order (source line 851):
+  local, directional, attenuated (local only), spot (local only).
+- Bits 51 to 54: the same nibble for fragment light 0 (source line 902) when
+  GL_FRAGMENT_LIGHTING_SGIX (bit 12 of context +1796) is on.
+
+`AddProgram` skips the table when the light nibbles would run past bit 63 (source line 999) and,
+with separate specular, while building program 1 (source line 810).
+
+#### Table records
+
+Release 6.5.30m, N32 libGLcore; record index, address, the state the mask admits (by the bit
+reading above), the three sequencer words, the patch, the closing routine and both lists.
+
+| # | Address | State admitted | 0x29, 0x2a, 0x2c | Patch | Close | List | Set-up |
+|---:|---|---|---|---|---:|---|---|
+| 0 | 0x0dae4680 | unlit, untextured | 214, 224, 234 | none | 1153 | 214, 234 | - |
+| 1 | 0x0dae46c8 | unlit, textured or texgen or clip | 243, 256, 268 | 250 from 255 | 1178 | 243, 268 | - |
+| 2 | 0x0dae4710 | unlit, directional fragment light | 1313, 1325, 1337 | none | 1163 | 1313, 1337 | 1304 |
+| 3 | 0x0dae4758 | one directional light, untextured | 1483, 1496, 1509 | none | 1153 | 1483, 1509 | 1226 |
+| 4 | 0x0dae47a0 | as 2, textured or texgen or clip | 1348, 1364, 1379 | 1358 from 1363 | 1188 | 1348, 1379 | 1304 |
+| 5 | 0x0dae47e8 | as 2, fragment two-sided | 1390, 1406, 1422 | none | 1168 | 1390, 1422 | 1304 |
+| 6 | 0x0dae4830 | two directional lights, texgen or clip | 1580, 1597, 1613 | 1591 from 1596 | 1178 | 1580, 1613 | 1226 |
+| 7 | 0x0dae4878 | one directional light, two colours | 1752, 1771, 1789 | 1765 from 1770 | 1183 | 1752, 1789 | 1226, 1265 |
+| 8 | 0x0dae48c0 | as 4, fragment two-sided | 1433, 1453, 1472 | 1447 from 1452 | 1193 | 1433, 1472 | 1304 |
+| 9 | 0x0dae4908 | one directional light, normalize on, textured | 1520, 1541, 1561 | 1535 from 1540 | 1178 | 1520, 1561 | 1226 |
+| 10 | 0x0dae4950 | two directional lights, normalize on | 1623, 1646, 1668 | 1640 from 1645 | 1178 | 1623, 1668 | 1226 |
+| 11 | 0x0dae4998 | up to four directional lights, textured | 1689, 1716, 1742 | 1710 from 1715 | 1178 | 1689, 1742 | 1226 |
+| 12 | 0x0dae49e0 | up to three directional lights and a directional fragment light | 2300, 2328, 2355 | 2322 from 2327 | 1188 | 2300, 2355 | 1226, 1286 |
+| 13 | 0x0dae4a28 | two directional lights, two colours, textured | 1798, 1824, 1851 | 1818 from 1823 | 1183 | 1798, 1851 | 1226, 1265 |
+| 14 | 0x0dae4a70 | one directional light, separate specular | 1221, 1221, 1221 | none | 1188 | 2240 | 1226 |
+| 15 | 0x0dae4ab8 | as 14, two colours | 1221, 1221, 1221 | none | 1193 | 2268 | 1226, 1265 |
+| 16 | 0x0dae4b00 | one local light, normalize off | 1862, 1896, 1929 | 1890 from 1895 | 1178 | 1862, 1929 | 1295 |
+| 17 | 0x0dae4b48 | one local light, either normalize | 1955, 1990, 2024 | 1984 from 1989 | 1178 | 1955, 2024 | 1295 |
+| 18 | 0x0dae4b90 | one local light, local viewer, normalize on | 2050, 2085, 2119 | 2079 from 2084 | 1178 | 2050, 2119 | 1295 |
+| 19 | 0x0dae4bd8 | one local light, local viewer, normalize off | 2145, 2180, 2214 | 2174 from 2179 | 1178 | 2145, 2214 | 1295 |
+| 20 | 0x0dae4c20 | lit with no vertex light, local fragment light | 2590, 2626, 2661 | 2620 from 2625 | 1188 | 2590, 2661 | - |
+| 21 | 0x0dae4c68 | as 20, normalize on | 2691, 2728, 2764 | 2722 from 2727 | 1188 | 2691, 2764 | - |
+| 22 | 0x0dae4cb0 | two local lights, normalize off | 2365, 2404, 2442 | 2398 from 2403 | 1178 | 2365, 2442 | - |
+| 23 | 0x0dae4cf8 | two local lights, normalize on | 2476, 2516, 2555 | 2510 from 2515 | 1178 | 2476, 2555 | 1295 |
+
+Every lit record also admits RGBA lighting, single colour unless stated, an infinite viewer
+unless stated and normalize off unless stated. Records 1, 4, 8, 9 and 11 to 23 admit texture
+of up to three dimensions; records 1, 4, 6 to 8 and 10 to 23 admit texture generation or clip planes.
+
+#### Table program routines
+
+Each table program is two routines in the image: the entry in +8, which ends at an end mark,
+and the routine after it, which holds the +16 entry. Data addresses and value-3 marks are
+from the routine map below.
+
+- **Routine 243** (kernel record 243), **established**: the per-vertex entry of table record 1
+  (0x0dae46c8 in `libGLcore.so`), the unlit program that admits texturing. Its value-3 mark at 250 is the patch
+  address and its end mark 255 the patch record, so with texture generation or clip planes the
+  routine stops at 250. It reads no data-table word.
+- **Routine 260** (kernel record 260), **established**: the second half of the unlit textured
+  program of table record 1 (+16 at 0x0dae46d8 in `libGLcore.so`); the sequencer 0x2c entry 268 and the second list element are inside
+  it, five records after its value-3 mark at 263.
+- **Routine 1313** (kernel record 1214), **established**: the whole per-vertex program of table
+  record 2 (0x0dae4710 in `libGLcore.so`), fragment lighting from one directional fragment light with GL_LIGHTING
+  off and no texture. Its 0x2a entry 1325 sits five after its value-3 mark at 1320 and its 0x2c
+  entry 1337 near its end; it reads data word 0x1e1 only.
+- **Routine 1348** (kernel record 1249), **established**: the per-vertex entry of table record 4
+  (0x0dae47a0 in `libGLcore.so`), the record-2 state with texturing or texture generation or clip planes allowed.
+  Its value-3 mark 1358 is patched with its end mark 1363 when texture generation or clipping follow.
+- **Routine 1368** (kernel record 1269), **established**: the second routine of table record 4 (its +16 word at 0x0dae47b0 in `libGLcore.so`);
+  it holds the 0x2c entry 1379, five after its value-3 mark 1374, and reads no data-table word.
+- **Routine 1390** (kernel record 1291), **established**: the single routine of table record 5
+  (0x0dae47e8 in `libGLcore.so`), record 2's fragment-lighting program with the fragment model two-sided. It has two
+  value-3 marks and reads data words 0x1e1 to 0x1eb in lane 7, which record 2's routine 1313 does not.
+- **Routine 1433** (kernel record 1334), **established**: the per-vertex entry of table record 8
+  (0x0dae48c0 in `libGLcore.so`), the two-sided form of record 4. Patch: its mark 1447 takes its end mark 1452.
+- **Routine 1457** (kernel record 1358), **established**: the second routine of table record 8 (its +16 word at 0x0dae48d0 in `libGLcore.so`),
+  holding the 0x2c entry 1472; like 1433 it reads data words 0x1e1 to 0x1eb in lane 7.
+- **Routine 1483** (kernel record 1384), **established**: the whole program of table record 3
+  (0x0dae4758 in `libGLcore.so`): one directional light, infinite viewer, single colour, RGBA, no texture and no
+  texture generation or clip planes, so the record carries no patch. It has two value-3 marks,
+  five before the 0x2a entry 1496 and the 0x2c entry 1509.
+- **Routine 1520** (kernel record 1421), **established**: the per-vertex entry of table record 9
+  (0x0dae4908 in `libGLcore.so`), one directional light with GL_NORMALIZE on and texturing allowed. It reads data
+  words 0x1e0 to 0x1e3 in lanes 4 to 6; patch: mark 1535 takes end mark 1540.
+- **Routine 1545** (kernel record 1446), **established**: the second routine of table record 9 (its +16 word at 0x0dae4918 in `libGLcore.so`),
+  which holds the 0x2c entry 1561 and reads the same constants 0x1e0 to 0x1e3.
+- **Routine 1580** (kernel record 1481), **established**: the per-vertex entry of table record 6
+  (0x0dae4830 in `libGLcore.so`), two directional lights with texture generation or clip planes allowed and no
+  texture; patch: mark 1591 takes end mark 1596.
+- **Routine 1601** (kernel record 1502), **established**: the second routine of table record 6 (its +16 word at 0x0dae4840 in `libGLcore.so`),
+  holding the 0x2c entry 1613.
+- **Routine 1623** (kernel record 1524), **established**: the per-vertex entry of table record 10
+  (0x0dae4950 in `libGLcore.so`), two directional lights with GL_NORMALIZE on; it reads data words 0x1e0 to 0x1e3,
+  and its mark 1640 takes end mark 1645 as the patch.
+- **Routine 1650** (kernel record 1551), **established**: the second routine of table record 10 (its +16 word at 0x0dae4960 in `libGLcore.so`),
+  35 records long, holding the 0x2c entry 1668.
+- **Routine 1689** (kernel record 1590), **established**: the per-vertex entry of table record 11
+  (0x0dae4998 in `libGLcore.so`), the widest directional record: up to four directional lights, textured,
+  normalize off. Patch: mark 1710 takes end mark 1715.
+- **Routine 1720** (kernel record 1621), **established**: the second routine of table record 11 (its +16 word at 0x0dae49a8 in `libGLcore.so`),
+  holding the 0x2c entry 1742.
+- **Routine 1752** (kernel record 1653), **established**: the per-vertex entry of table record 7
+  (0x0dae4878 in `libGLcore.so`), one directional light with two colour outputs (two-sided lighting). Patch: mark
+  1765 takes end mark 1770; the record's set-up list adds routine 1265 after 1226.
+- **Routine 1775** (kernel record 1676), **established**: the second routine of table record 7 (its +16 word at 0x0dae4888 in `libGLcore.so`),
+  holding the 0x2c entry 1789.
+- **Routine 1798** (kernel record 1699), **established**: the per-vertex entry of table record 13
+  (0x0dae4a28 in `libGLcore.so`), two directional lights, two colours, textured; patch: mark 1818 takes end mark 1823.
+- **Routine 1828** (kernel record 1729), **established**: the second routine of table record 13 (its +16 word at 0x0dae4a38 in `libGLcore.so`),
+  holding the 0x2c entry 1851.
+- **Routine 1862** (kernel record 1763), **established**: the per-vertex entry of table record 16
+  (0x0dae4b00 in `libGLcore.so`), one local light without attenuation or spot, infinite viewer, normalize off. It is
+  the first table routine that reads the light record at data index 0 onward (addresses 0x1 to
+  0x1e3, lanes 4 to 7). Patch: mark 1890 takes end mark 1895.
+- **Routine 1900** (kernel record 1801), **established**: the 51-record second routine of table
+  record 16 (its +16 word at 0x0dae4b10 in `libGLcore.so`), holding the 0x2c entry 1929.
+- **Routine 1955** (kernel record 1856), **established**: the per-vertex entry of table record 17
+  (0x0dae4b48 in `libGLcore.so`): one local light whose mask admits both normalize bits, so it also serves the
+  normalize-on case record 16 rejects. Patch: mark 1984 takes end mark 1989.
+- **Routine 1994** (kernel record 1895), **established**: the second routine of table record 17 (its +16 word at 0x0dae4b58 in `libGLcore.so`),
+  holding the 0x2c entry 2024.
+- **Routine 2050** (kernel record 1951), **established**: the per-vertex entry of table record 18
+  (0x0dae4b90 in `libGLcore.so`), one local light with a local viewer and GL_NORMALIZE on. It lies past RAM record
+  2047, so it runs from the overlay window; patch: mark 2079 takes end mark 2084.
+- **Routine 2089** (kernel record 1990), **established**: the second routine of table record 18 (its +16 word at 0x0dae4ba0 in `libGLcore.so`),
+  holding the 0x2c entry 2119; it is also paged in through the overlay.
+- **Routine 2145** (kernel record 2046), **established**: the per-vertex entry of table record 19
+  (0x0dae4bd8 in `libGLcore.so`), one local light with a local viewer and normalize off; patch: mark 2174 takes 2179.
+- **Routine 2184** (kernel record 2085), **established**: the second routine of table record 19 (its +16 word at 0x0dae4be8 in `libGLcore.so`),
+  holding the 0x2c entry 2214.
+- **Routine 2240** (kernel record 2141), **established**: the only list entry of table record 14
+  (0x0dae4a70 in `libGLcore.so`), one directional light with separate specular colour. The record's three sequencer
+  words are 1221, so `AddProgram` always copies the list and sets sequencer 0x29 to 2240.
+- **Routine 2268** (kernel record 2169), **established**: the only list entry of table record 15
+  (0x0dae4ab8 in `libGLcore.so`), the two-colour form of record 14 with the same 1221 sequencer words.
+- **Routine 2300** (kernel record 2201), **established**: the per-vertex entry of table record 12
+  (0x0dae49e0 in `libGLcore.so`), up to three directional lights together with a directional fragment light,
+  textured. Patch: mark 2322 takes end mark 2327; its set-up list adds 1286 after 1226.
+- **Routine 2332** (kernel record 2233), **established**: the second routine of table record 12 (its +16 word at 0x0dae49f0 in `libGLcore.so`),
+  holding the 0x2c entry 2355 and reading data word 0x1e1 as 2300 does.
+- **Routine 2365** (kernel record 2266), **established**: the per-vertex entry of table record 22
+  (0x0dae4cb0 in `libGLcore.so`), two local lights with normalize off; it reads data from index 1 to 0x1e3. Patch:
+  mark 2398 takes end mark 2403. The record has no set-up routine.
+- **Routine 2408** (kernel record 2309), **established**: the 64-record second routine of table
+  record 22 (its +16 word at 0x0dae4cc0 in `libGLcore.so`), holding the 0x2c entry 2442.
+- **Routine 2476** (kernel record 2377), **established**: the per-vertex entry of table record 23
+  (0x0dae4cf8 in `libGLcore.so`), two local lights with GL_NORMALIZE on; patch: mark 2510 takes end mark 2515.
+- **Routine 2520** (kernel record 2421), **established**: the 66-record second routine of table
+  record 23 (its +16 word at 0x0dae4d08 in `libGLcore.so`), holding the 0x2c entry 2555.
+- **Routine 2590** (kernel record 2491), **established**: the per-vertex entry of table record 20
+  (0x0dae4c20 in `libGLcore.so`), lighting on with no vertex light and one local fragment light, normalize off.
+  It reads data words 0x80 to 0x1e5; patch: mark 2620 takes end mark 2625.
+- **Routine 2630** (kernel record 2531), **established**: the second routine of table record 20 (its +16 word at 0x0dae4c30 in `libGLcore.so`),
+  holding the 0x2c entry 2661.
+- **Routine 2691** (kernel record 2592), **established**: the per-vertex entry of table record 21
+  (0x0dae4c68 in `libGLcore.so`), record 20 with GL_NORMALIZE on; patch: mark 2722 takes end mark 2727.
+- **Routine 2732** (kernel record 2633), **established**: the second routine of table record 21 (its +16 word at 0x0dae4c78 in `libGLcore.so`),
+  holding the 0x2c entry 2764, the last routine of the image (it ends at 2789).
+- **Routine 214**, table use (kernel record 214), **established**: table record 0 (0x0dae4680 in `libGLcore.so`)
+  gives libGLcore's unlit, untextured program the same 214, 224 and 234 the kernel textport uses.
+  **inferred:** routine 214 therefore applies the combined matrix, through storage its
+  data-address field does not show.
+
+#### Closing routines
+
+`AddProgram` ends every per-vertex list with one closing entry (source lines 1147 to 1164).
+For a table program it is the record's +28 word; otherwise it is chosen at source line 1159.
+Every one of these is a bit-for-bit copy of the null routine 1221: an end mark and four idle
+slots. **inferred:** the routine does no work, so what the choice tells the board is the address
+itself; which unit reads it is not shown by any host code (`docs/open-questions.md`).
+
+- **Routine 1153** (kernel record 1054), **established**: the closing entry of table records 0 and
+  3 (+28 at 0x0dae469c and 0x0dae4774 in `libGLcore.so`), the two programs with neither texture nor clip planes.
+- **Routine 1158** (kernel record 1059), **established**: a null routine that no table record and
+  no immediate in the 6.5.30m N32 libGLcore `ody_program.s` names.
+- **Routine 1163** (kernel record 1064), **established**: the closing entry of table record 2 only (+28 at 0x0dae472c in `libGLcore.so`),
+  the one-sided, untextured fragment-lighting program.
+- **Routine 1168** (kernel record 1069), **established**: the closing entry of table record 5 only (+28 at 0x0dae4804 in `libGLcore.so`),
+  the two-sided form of record 2.
+- **Routine 1173** (kernel record 1074), **established**: the closing entry whenever the
+  perspective-texture flag is set: `AddProgram` (`ody_program.s`) adds it at source line 1159 for a generic program and
+  at line 1150 for a table program, where it also puts routines 1200 and 1211 in front of it.
+- **Routine 1178** (kernel record 1079), **established**: the generic closing entry for one colour
+  without separate specular or fragment lighting (`ody_program.s`, source line 1159, chosen when the two-colour flag
+  is clear), and the +28 word of eleven table records.
+- **Routine 1183** (kernel record 1084), **established**: the same closing entry for two colour
+  outputs (`ody_program.s`, source line 1159); table records 7 and 13 carry it.
+- **Routine 1188** (kernel record 1089), **established**: the closing entry when separate specular or
+  fragment lighting is on, one-sided (`ody_program.s`, source line 1159).
+- **Routine 1193** (kernel record 1094), **established**: the two-sided form of 1188, picked when the
+  two-colour flag or the fragment model's two-sided byte (context +0x10000 + 26021) is set.
+
+#### Unlit colour routines
+
+- **Routine 1198** (kernel record 1099), **established**: added with lighting off and no light
+  (`ody_program.s`, source line 991). **inferred:** it carries the vertex colour through unlit;
+  record 1198 reads attribute slot 5 (`r3` 5) and sets the `e` group to 1, f, 2, 2.
+- **Routine 1200** (kernel record 1101), **established**: the tail of 1198 two records in, added
+  by `AddProgram` (`ody_program.s`) before 1211 when a table program meets the perspective-texture flag (source
+  line 1148).
+- **Routine 1211** (kernel record 1112), **established**: the perspective-texture form of the
+  colour finish, chosen in `ody_program.s` at source line 992 when the flag is set and at line 1149. Its one record
+  differs from 1216 in `d2` (0x33 against 0x2b) and in `s0` (7 against 6).
+- **Routine 1216** (kernel record 1117), **established**: the colour finish without the
+  perspective-texture flag (`ody_program.s`, source line 992); the single record pairs with 1211 above.
+
+#### Set-up routines
+
+The second list of a program runs once when `__glOdysseySetProgram` selects it (above).
+
+- **Routine 515** (kernel record 515), **established**: the head of every program's set-up list,
+  stored by `ody_program.s` at source lines 1179 and 1209. Its own record is an end mark; **inferred:** the work is in its
+  four delay slots, which read data words 0x1e3 and 0x1e0 and write registers 0x11 and 0x10 in lane 7.
+- **Routine 606** (kernel record 606), **established**: the set-up routine of every program built
+  without the table (`ody_program.s`, source line 1180). Its delay slots read data word 0x1e3 and write registers
+  0x0d to 0x0f in lane 7.
+- **Routine 1226** (kernel record 1127), **established**: the set-up routine of the ten table records
+  whose first light is directional, 3, 6, 7 and 9 to 15 (second list at record +52 in `libGLcore.so`, first at 0x0dae478c). It reads the data
+  table from index 1 up to 0x1e3 in lanes 4 to 7. **inferred:** it loads per-light constants.
+- **Routine 1265** (kernel record 1166), **established**: the second set-up routine, after 1226, of
+  the two-colour table records 7, 13 and 15 (+56 at 0x0dae48b0 for record 7, `libGLcore.so`); it reads data words 0x1 to 0xf9 in lanes 4 to 7.
+- **Routine 1286** (kernel record 1187), **established**: the second set-up routine, after 1226, of
+  table record 12 (+56 at 0x0dae4a18 in `libGLcore.so`), the one that mixes vertex lights with a directional fragment light; data words
+  0x80 to 0x1e5.
+- **Routine 1295** (kernel record 1196), **established**: the set-up routine of the local-light
+  table records 16 to 19 and 23 (+52 at 0x0dae4b34 for record 16, `libGLcore.so`). It reads constants 0x1e0 to 0x1e3 in lane 7.
+- **Routine 1304** (kernel record 1205), **established**: the set-up routine of the four
+  fragment-lighting table records with GL_LIGHTING off, 2, 4, 5 and 8
+  (+52 at 0x0dae4744 for record 2, `libGLcore.so`); it reads data words 0x80
+  to 0x85 in lane 7. **inferred:** 0x80 is where the fragment light's constants sit.
+
+#### Lighting finish routines
+
+`AddProgram` closes the lighting of a program built without the table with one of these
+(`ody_program.s`, source lines 942 to 992), after the per-light routines.
+
+- **Routine 975** (kernel record 876), **established**: the RGBA finish when the light loop leaves its
+  attenuation and spot flags clear, or no light is enabled, with one colour and no
+  perspective-texture flag (`ody_program.s`, source lines 972 and 985).
+- **Routine 986** (kernel record 887), **established**: the same finish with the perspective-texture
+  flag set (`ody_program.s`, source lines 970 and 985).
+- **Routine 997** (kernel record 898), **established**: the two-colour form of 975 (`ody_program.s`, source lines
+  972 and 985); it writes lanes 4 and 6.
+- **Routine 1013** (kernel record 914), **established**: the one-colour finish when the light loop
+  leaves its attenuation or spot flag set (`ody_program.s`, source line 967), and the colour-index finish (line 951).
+- **Routine 1035** (kernel record 936), **established**: the attenuation-or-spot finish with the
+  perspective-texture flag (`ody_program.s`, source line 967).
+- **Routine 1045** (kernel record 946), **established**: the two-colour form of 1013, in both the
+  RGBA and the colour-index paths (`ody_program.s`, source lines 951 and 967).
+- **Routine 1023** (kernel record 924), **established**: the one-colour finish with separate
+  specular (`ody_program.s`, source line 958), added after routine 768.
+- **Routine 1057** (kernel record 958), **established**: the separate-specular finish with two
+  colours (`ody_program.s`, source line 958).
+- **Routine 758** (kernel record 758), **established**: added between 768 and the separate-specular
+  finish only while building program 1, the program `__glOdysseyValidateProgram` adds when software
+  clip planes are on (`ody_program.s`, source lines 956 and 1328). It is six records, three idle.
+- **Routine 792** (no kernel record), **established**: the attenuation-or-spot routine used when the
+  environment variable `ODYSSEY_SPOT_INTERPOLATE` is set (the string at 0x0dae4d88, passed to `getenv` at
+  source line 961). `AddProgram` then adds 792 and 780 instead of 768. It is the 95-record routine the
+  kernel's older copy lacks, so the variable selects code that 6.5.30m added.
+
+#### Fragment lighting routines
+
+With GL_FRAGMENT_LIGHTING_SGIX on in RGBA mode and fragment light 0 enabled (bit 0 of
+context word +0x10000 + 25724), `AddProgram` reads that light's record at +0x10000 + 25728 with the
+vertex-light layout (w at +76, cutoff at +100, attenuation at +104 to +112; source lines 888 to 897)
+and adds its routines at source lines 902 to 942. With no vertex light it first adds a first-light
+routine (611 to 656) and a normal transform (694 or 668); otherwise 768 or 920.
+
+- **Routine 911** (kernel record 812), **established**: added with GL_LIGHTING on and one colour
+  output (`ody_program.s`, source line 921). It has 902's length, but its third and fourth records
+  (913, 914) differ from 902's (904, 905) and its end record carries no `s0` value.
+- **Routine 902** (kernel record 803), **established**: the two-colour choice at the same `ody_program.s` line,
+  when two-sided lighting is on (context byte +1413).
+- **Routine 1094** (kernel record 995), **established**: added when the fragment light is local and
+  attenuated (`ody_program.s`, source line 926). It reads data word 0x207 in lanes 4 to 6.
+- **Routine 1071** (kernel record 972), **established**: always added for the fragment light (`ody_program.s`,
+  source line 928). It reads data words 0x1e4 to 0x20e in all four lanes. **inferred:** it evaluates the
+  fragment light's terms for the vertex.
+- **Routine 1136** (kernel record 1037), **established**: the last fragment-lighting routine when
+  either two-sided flag is set (`ody_program.s`, source line 942: GL two-sided lighting or the fragment model's
+  two-sided byte).
+- **Routine 1106** (kernel record 1007), **established**: the one-sided last routine when the
+  fragment light is not attenuated (`ody_program.s`, source line 942).
+- **Routine 1119** (kernel record 1020), **established**: the one-sided last routine when the
+  fragment light is local and attenuated (`ody_program.s`, source line 942).
 
 ## Routines
 
