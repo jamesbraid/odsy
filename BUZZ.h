@@ -18,6 +18,8 @@
 #ifndef BUZZ_H
 #define BUZZ_H
 
+#include <stdint.h>
+
 /* ===================================================================
  * 1. Command-FIFO word framing
  * ===================================================================
@@ -842,5 +844,24 @@
  * Register names (a crossbar widget's error and header words): inferred
  * from the message text only. Bits 8, 7, 6 in the order tested are
  * established; whether any other bit of +0x0c matters: unknown. */
+
+/* --- Context save and switch (odsy_ctxsw.o), pass 4 -------------------
+ * established: gf_OdsyPcxSwap, gfP_OdsySaveHwShadow (IP30; IP35 not
+ * diffed). A context is saved by one doubleword store to board +
+ * 0x118000: (7 << 40) | (slot << 16) | 1, slot 7 bits, 127 meaning none
+ * (the constant 0x00000700_007f0001). The driver zeroes the word at +2300
+ * of the outgoing context's record first and waits up to 1500 ticks for
+ * it to become nonzero; the writer is inferred to be the board. The save
+ * area's physical address is announced at board + 0x4004 (bits 47:32)
+ * and + 0x400c (bits 31:0) before the swap. Switching a context in sends
+ * class-1 block 0x050 with operands ((slot << 12) & 0x7f000) | x | 0xf
+ * and 0, then 0x00014400 (operand 0) and 0x00014001. Details and the
+ * restore routines: docs/buzz.md section 4. */
+#define BUZZ_CTX_SAVE_OFFSET       0x118000u /* established */
+#define BUZZ_CTX_SAVE_WORD(slot)   ((7ull << 40) | ((uint64_t)(slot) << 16) | 1)
+#define BUZZ_CTX_SLOT_NONE         127       /* established */
+#define BUZZ_CTX_SAVE_ADDR_HI      0x4004u   /* established, 16 bits */
+#define BUZZ_CTX_SAVE_ADDR_LO      0x400cu   /* established, 32 bits */
+#define BUZZ_REG_CTX_SELECT        0x050     /* established, 2 words */
 
 #endif /* BUZZ_H */
