@@ -32,6 +32,13 @@ below was copied from that install.
 /usr/cpu/sysgen/IP30boot/gfxs.a
 /usr/cpu/sysgen/IP30boot/gfxstubs.a
 /usr/cpu/sysgen/IP30boot/rrm.o
+/usr/cpu/sysgen/IP35boot/kernel.o
+/usr/cpu/sysgen/IP35boot/odyssey.a
+/usr/cpu/sysgen/IP35boot/odysseystubs.a
+/usr/cpu/sysgen/IP35boot/gfx.o
+/usr/cpu/sysgen/IP35boot/gfxs.a
+/usr/cpu/sysgen/IP35boot/gfxstubs.a
+/usr/cpu/sysgen/IP35boot/rrm.o
 /usr/gfx/gfxinit
 /usr/gfx/arch/GENERIC/Xsgi
 /usr/gfx/arch/IP30ODSY
@@ -52,11 +59,12 @@ below was copied from that install.
 | OpenGL core (`libglcore/`) | `libGLcore.so`, `libGL.so` | `usr/gfx/arch/IP30ODSY64/` (also `IP30ODSY/` for o32 and `IP30ODSY32/` for N32) |
 | IrisGL (`irisgl/`) | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` |
 | X server modules (`ddx/`) | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` |
+| IP35 kernel (`odsy_kernel_ip35/`) | the same seven files as the IP30 row, from `IP35boot/` (Fuel, Tezro, Onyx 350). Not installed on the Octane2 reference image: take them from the 6.5.30 Installation Tools and Overlays (1 of 3) disc with `instigator extract --unpack --path /usr/cpu/sysgen/IP35boot <iso> <outdir>` | `usr/cpu/sysgen/IP35boot/` |
 | Microcode (`ucode/`) | `buzz_xform.bin`, `vof/` | `usr/gfx/ucode/ODSY/` |
 | Firmware | `IP30prom.bin` | `usr/cpu/firmware/` |
 
 The Odyssey kernel driver on an IP30 install is `odyssey.a` under `IP30boot/`
-(confirmed on 6.5.30m). The `IP35boot/` location in earlier drafts was wrong.
+(confirmed on 6.5.30m). The `IP35boot/` location in earlier drafts was wrong for the Octane2; IP35 systems carry their own copy of the same files there (checked on the 6.5.30 disc).
 `odysseystubs.a` is the stub used when no VPro is fitted.
 
 Verify the install on your own system with `ls /usr/gfx/arch`, `ls
@@ -82,6 +90,7 @@ lines are `LINK TARGET`, relative to the repository root.
 
 ```archives
 root/usr/cpu/sysgen/IP30boot/odyssey.a odsy_kernel
+root/usr/cpu/sysgen/IP35boot/odyssey.a odsy_kernel_ip35
 ```
 
 ```links
@@ -92,6 +101,13 @@ odsy_kernel/gfx.o root/usr/cpu/sysgen/IP30boot/gfx.o
 odsy_kernel/gfxs.a root/usr/cpu/sysgen/IP30boot/gfxs.a
 odsy_kernel/gfxstubs.a root/usr/cpu/sysgen/IP30boot/gfxstubs.a
 odsy_kernel/rrm.o root/usr/cpu/sysgen/IP30boot/rrm.o
+odsy_kernel_ip35/odyssey.a root/usr/cpu/sysgen/IP35boot/odyssey.a
+odsy_kernel_ip35/odysseystubs.a root/usr/cpu/sysgen/IP35boot/odysseystubs.a
+odsy_kernel_ip35/kernel.o root/usr/cpu/sysgen/IP35boot/kernel.o
+odsy_kernel_ip35/gfx.o root/usr/cpu/sysgen/IP35boot/gfx.o
+odsy_kernel_ip35/gfxs.a root/usr/cpu/sysgen/IP35boot/gfxs.a
+odsy_kernel_ip35/gfxstubs.a root/usr/cpu/sysgen/IP35boot/gfxstubs.a
+odsy_kernel_ip35/rrm.o root/usr/cpu/sysgen/IP35boot/rrm.o
 libglcore/libGLcore.so root/usr/gfx/arch/IP30ODSY64/libGLcore.so
 libglcore/libGL.so root/usr/gfx/arch/IP30ODSY64/libGL.so
 libglcore/libGLcore_n32.so root/usr/gfx/arch/IP30ODSY32/libGLcore.so

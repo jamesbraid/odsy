@@ -231,7 +231,7 @@ def disassemble_module(obj_path, out_dir):
 
     print(f"[+] [{mod_name}] Disassembled {len(insns)} instructions -> {out_s}")
 
-KERNEL_DIR = 'odsy_kernel'
+KERNEL_DIR = os.environ.get('KERNEL_DIR', 'odsy_kernel')  # e.g. odsy_kernel_ip35
 
 
 def main():

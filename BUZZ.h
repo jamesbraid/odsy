@@ -6,7 +6,8 @@
  *   inferred    - a reasoned reading; the reasoning is given
  *   unknown     - not yet derived
  *
- * Release: IRIX 6.5.30m, IP30 (Octane2) install with a V12 board.
+ * Release: IRIX 6.5.30m, IP30 (Octane2) install with a V12 board; the
+ * IP35 kernel objects (odsy_kernel_ip35/) are cited where they were read.
  * Binaries:
  *   libGLcore_n32.so  usr/gfx/arch/IP30ODSY32/libGLcore.so (N32, DWARF
  *                     names and line numbers only; no types)
@@ -560,9 +561,12 @@
  * left by 3). So the 552 and the board marks are different quantities;
  * 552 is not derived from them in any code read. established.
  *
- * The IP35 kernel's flow-control code and any different board marks: the
- * IP35 objects are not in this workspace's root, so unknown. A fact
- * about the IP35 board records must come from reading that kernel. */
+ * IP35 (6.5.30, odsy_kernel_ip35/): odsyInitCfifo stores the same five
+ * doublewords with the same values, so the water marks do not depend on
+ * the host; the board-side flow registers are the same too. The host-side
+ * credit source differs: IP35 has no HEART access and its bias is 544
+ * (a record field), not 552. Details and the register offsets IP35
+ * programs are in docs/buzz.md section 1. established. */
 
 /* --- The settle sequence ----------------------------------------------
  * After every textport primitive and at the start of a hardware
