@@ -61,6 +61,7 @@ below was copied from that install.
 | X server modules (`ddx/`) | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` |
 | IP35 kernel (`odsy_kernel_ip35/`) | the same seven files as the IP30 row, from `IP35boot/` (Fuel, Tezro, Onyx 350). Not installed on the Octane2 reference image: take them from the 6.5.30 Installation Tools and Overlays (1 of 3) disc with `instigator extract --unpack --path /usr/cpu/sysgen/IP35boot <iso> <outdir>` | `usr/cpu/sysgen/IP35boot/` |
 | Microcode (`ucode/`) | `buzz_xform.bin`, `vof/` | `usr/gfx/ucode/ODSY/` |
+| Microcode in the kernel (`ucode/buzz_ucode_ip30.bin`, `_ip35.bin`) | the `buzz_ucode` array of `odsy_init.o`, written unchanged by `scripts/extract_buzz_ucode.py` | `usr/gfx/ucode/ODSY-kernel/` |
 | Firmware | `IP30prom.bin` | `usr/cpu/firmware/` |
 
 The Odyssey kernel driver on an IP30 install is `odyssey.a` under `IP30boot/`

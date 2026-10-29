@@ -38,7 +38,7 @@ The subdirectories below contain relative symbolic links resolving into `root/` 
 | `libglcore/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP30ODSY64/`, `IP30ODSY32/`, `IP30ODSY/` | **DWARF** in the 64-bit and N32 libGLcore (N32: 200 compilation units) and libGL; o32 stripped. `pyelftools` cannot read the 64-bit DWARF header, so the extractor uses its symbol table; `dwarfdump` shows no type entries either |
 | `irisgl/` | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` | **DWARF** (160 and 61 compilation units) |
 | `ddx/` | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` | Stripped; dynamic symbols only (`odyssey.so`: 1010 functions) |
-| `ucode/` | `ODSY/` (`buzz_xform.bin`, `vof/`) | `usr/gfx/ucode/ODSY/` | Data |
+| `ucode/` | `ODSY/` (`buzz_xform.bin`, `vof/`), `buzz_ucode_ip30.bin`, `buzz_ucode_ip35.bin` | `usr/gfx/ucode/ODSY/`, `ODSY-kernel/` (the kernel array, see `ucode/buzz_ucode.md`) | Data |
 | `firmware/` | `IP30prom.bin` | `usr/cpu/firmware/` | Data |
 
 The 6.5.30m DWARF in the kernel objects and the N32 libGLcore holds only compile units, function and variable names, and line tables: `dwarfdump -i` finds no structure, member or base-type entries. Structure layouts have to be recovered from the code. The install carries no VPro register-dump or diagnostic tool: `/usr/stand/ide` is the IP30 IDE with only the textport part of the driver, and `/usr/diags` holds the compositor and IR tools.

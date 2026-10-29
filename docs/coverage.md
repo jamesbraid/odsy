@@ -97,5 +97,6 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 | Program | Behaviour to cover | Status | Owner | Datasheet topic |
 |---|---|---|---|---|
 | buzz_xform.bin | Transform program uploaded by the guest: instruction format, entry points, what it computes | none | `ucode/buzz_xform.md, BUZZ.h` | direct XIO interface |
+| buzz_ucode (kernel array) | 13598 16-bit values in `odsy_init.o`, 12288 loaded by odsyInitCfifo in groups of six; location, load path and shape written, instruction set not read | partial | `ucode/buzz_ucode.md` | direct XIO interface |
 
-Rows: 30.
+Rows: 31.
