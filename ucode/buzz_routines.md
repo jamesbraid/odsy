@@ -534,113 +534,246 @@ from the routine map below.
   slot 267. The value-3 mark at 263 chooses between the loop entry and the exit entry 268 (sequencer
   0x2c), which produces the last vertex's outputs without new inputs. Because q is consumed and not
   divided by, the texture results are affine coordinates scaled by 1/w.
-- **`1313`** (routine; kernel record 1214), **established**: the whole per-vertex program of table
-  record 2 (at 0x0dae4710 in `libGLcore.so`), fragment lighting from one directional fragment light with GL_LIGHTING
-  off and no texture. Its 0x2a entry 1325 sits five after its value-3 mark at 1320 and its 0x2c
-  entry 1337 near its end; it reads data word 0x1e1 only.
-- **`1348`** (routine; kernel record 1249), **established**: the per-vertex entry of table record 4
-  (at 0x0dae47a0 in `libGLcore.so`), the record-2 state with texturing or texture generation or clip planes allowed.
-  Its value-3 mark 1358 is patched with its end mark 1363 when texture generation or clipping follow.
-- **`1368`** (routine; kernel record 1269), **established**: the second routine of table record 4 (its +16 word at 0x0dae47b0 in `libGLcore.so`);
-  it holds the 0x2c entry 1379, five after its value-3 mark 1374, and reads no data-table word.
-- **`1390`** (routine; kernel record 1291), **established**: the single routine of table record 5
-  (at 0x0dae47e8 in `libGLcore.so`), record 2's fragment-lighting program with the fragment model two-sided. It has two
-  value-3 marks and reads data words 0x1e1 to 0x1eb in lane 7, which record 2's routine 1313 does not.
-- **`1433`** (routine; kernel record 1334), **established**: the per-vertex entry of table record 8
-  (at 0x0dae48c0 in `libGLcore.so`), the two-sided form of record 4. Patch: its mark 1447 takes its end mark 1452.
-- **`1457`** (routine; kernel record 1358), **established**: the second routine of table record 8 (its +16 word at 0x0dae48d0 in `libGLcore.so`),
-  holding the 0x2c entry 1472; like 1433 it reads data words 0x1e1 to 0x1eb in lane 7.
-- **`1483`** (routine; kernel record 1384), **established**: the whole program of table record 3
-  (at 0x0dae4758 in `libGLcore.so`): one directional light, infinite viewer, single colour, RGBA, no texture and no
-  texture generation or clip planes, so the record carries no patch. It has two value-3 marks,
-  five before the 0x2a entry 1496 and the 0x2c entry 1509.
-- **`1520`** (routine; kernel record 1421), **established**: the per-vertex entry of table record 9
-  (at 0x0dae4908 in `libGLcore.so`), one directional light with GL_NORMALIZE on and texturing allowed. It reads data
-  words 0x1e0 to 0x1e3 in lanes 4 to 6; patch: mark 1535 takes end mark 1540.
-- **`1545`** (routine; kernel record 1446), **established**: the second routine of table record 9 (its +16 word at 0x0dae4918 in `libGLcore.so`),
-  which holds the 0x2c entry 1561 and reads the same constants 0x1e0 to 0x1e3.
-- **`1580`** (routine; kernel record 1481), **established**: the per-vertex entry of table record 6
-  (at 0x0dae4830 in `libGLcore.so`), two directional lights with texture generation or clip planes allowed and no
-  texture; patch: mark 1591 takes end mark 1596.
-- **`1601`** (routine; kernel record 1502), **established**: 18 records with no data-table
-  read, the second half of the two-directional-light program of table record 6 (+16 at
-  0x0dae4840 in `libGLcore.so`). Its single value-3 mark is 1608, five records before the
-  alternate loop entry 1613 that the record names.
-- **`1623`** (routine; kernel record 1524), **established**: the per-vertex entry of table record 10
-  (at 0x0dae4950 in `libGLcore.so`), two directional lights with GL_NORMALIZE on; it reads data words 0x1e0 to 0x1e3,
-  and its mark 1640 takes end mark 1645 as the patch.
-- **`1650`** (routine; kernel record 1551), **established**: the second routine of table record 10 (its +16 word at 0x0dae4960 in `libGLcore.so`),
-  35 records long, holding the 0x2c entry 1668.
-- **`1689`** (routine; kernel record 1590), **established**: the per-vertex entry of table record 11
-  (at 0x0dae4998 in `libGLcore.so`), the widest directional record: up to four directional lights, textured,
-  normalize off. Patch: mark 1710 takes end mark 1715.
-- **`1720`** (routine; kernel record 1621), **established**: second half of the program for up
-  to four directional lights (table record 11, +16 at 0x0dae49a8 in `libGLcore.so`). Like its
-  first half 1689 it reads no data-table word; its mark 1737 precedes the alternate loop
-  entry 1742.
-- **`1752`** (routine; kernel record 1653), **established**: the per-vertex entry of table record 7
-  (at 0x0dae4878 in `libGLcore.so`), one directional light with two colour outputs (two-sided lighting). Patch: mark
-  1765 takes end mark 1770; the record's set-up list adds routine 1265 after 1226.
-- **`1775`** (routine; kernel record 1676), **established**: 19 records closing the one-light,
-  two-colour program of table record 7 (+16 at 0x0dae4888 in `libGLcore.so`); mark 1784 sits five before the alternate loop entry 1789.
-- **`1798`** (routine; kernel record 1699), **established**: the per-vertex entry of table record 13
-  (at 0x0dae4a28 in `libGLcore.so`), two directional lights, two colours, textured; patch: mark 1818 takes end mark 1823.
-- **`1828`** (routine; kernel record 1729), **established**: 30 records, the two-sided half of
-  table record 13's program for two directional lights with texture (+16 at 0x0dae4a38 in
-  `libGLcore.so`), eleven records longer than record 7's 1775; mark 1846 leads to entry 1851.
-- **`1862`** (routine; kernel record 1763), **established**: the per-vertex entry of table record 16
-  (at 0x0dae4b00 in `libGLcore.so`), one local light without attenuation or spot, infinite viewer, normalize off. It is
-  the first table routine that reads the light record at data index 0 onward (addresses 0x1 to
-  0x1e3, lanes 4 to 7). Patch: mark 1890 takes end mark 1895.
-- **`1900`** (routine; kernel record 1801), **established**: the 51-record second routine of table
-  record 16 (its +16 word at 0x0dae4b10 in `libGLcore.so`), holding the 0x2c entry 1929.
-- **`1955`** (routine; kernel record 1856), **established**: the per-vertex entry of table record 17
-  (at 0x0dae4b48 in `libGLcore.so`): one local light whose mask admits both normalize bits, so it also serves the
-  normalize-on case record 16 rejects. Patch: mark 1984 takes end mark 1989.
-- **`1994`** (routine; kernel record 1895), **established**: a 52-record routine reading the
-  light table from index 1 to the constants at 0x1e3 in all four lanes, the second half of the
-  one-local-light program that accepts either normalize setting (table record 17, +16 at
-  0x0dae4b58 in `libGLcore.so`). Mark 2019 precedes the alternate loop entry 2024.
-- **`2050`** (routine; kernel record 1951), **established**: the per-vertex entry of table record 18
-  (at 0x0dae4b90 in `libGLcore.so`), one local light with a local viewer and GL_NORMALIZE on. It lies past RAM record
-  2047, so it runs from the overlay window; patch: mark 2079 takes end mark 2084.
-- **`2089`** (routine; kernel record 1990), **established**: the second routine of table record 18 (its +16 word at 0x0dae4ba0 in `libGLcore.so`),
-  holding the 0x2c entry 2119; it is also paged in through the overlay.
-- **`2145`** (routine; kernel record 2046), **established**: the per-vertex entry of table record 19
-  (at 0x0dae4bd8 in `libGLcore.so`), one local light with a local viewer and normalize off; patch: mark 2174 takes 2179.
-- **`2184`** (routine; kernel record 2085), **established**: the local-viewer, normalize-off
-  counterpart of 2089 (table record 19, +16 at 0x0dae4be8 in `libGLcore.so`), also 52 records,
-  and paged into the overlay window because it starts past RAM record 2047. Mark 2209, entry 2214.
-- **`2240`** (routine; kernel record 2141), **established**: the only list entry of table record 14
-  (at 0x0dae4a70 in `libGLcore.so`), one directional light with separate specular colour. The record's three sequencer
-  words are 1221, so `AddProgram` always copies the list and sets sequencer 0x29 to 2240.
-- **`2268`** (routine; kernel record 2169), **established**: the only list entry of table record 15
-  (at 0x0dae4ab8 in `libGLcore.so`), the two-colour form of record 14 with the same 1221 sequencer words.
-- **`2300`** (routine; kernel record 2201), **established**: the per-vertex entry of table record 12
-  (at 0x0dae49e0 in `libGLcore.so`), up to three directional lights together with a directional fragment light,
-  textured. Patch: mark 2322 takes end mark 2327; its set-up list adds 1286 after 1226.
-- **`2332`** (routine; kernel record 2233), **established**: the second routine of table record 12 (its +16 word at 0x0dae49f0 in `libGLcore.so`),
-  holding the 0x2c entry 2355 and reading data word 0x1e1 as 2300 does.
-- **`2365`** (routine; kernel record 2266), **established**: the per-vertex entry of table record 22
-  (at 0x0dae4cb0 in `libGLcore.so`), two local lights with normalize off; it reads data from index 1 to 0x1e3. Patch:
-  mark 2398 takes end mark 2403. The record has no set-up routine.
-- **`2408`** (routine; kernel record 2309), **established**: the 64-record second routine of table
-  record 22 (its +16 word at 0x0dae4cc0 in `libGLcore.so`), holding the 0x2c entry 2442.
-- **`2476`** (routine; kernel record 2377), **established**: the per-vertex entry of table record 23
-  (at 0x0dae4cf8 in `libGLcore.so`), two local lights with GL_NORMALIZE on; patch: mark 2510 takes end mark 2515.
-- **`2520`** (routine; kernel record 2421), **established**: the 66-record second routine of table
-  record 23 (its +16 word at 0x0dae4d08 in `libGLcore.so`), holding the 0x2c entry 2555.
-- **`2590`** (routine; kernel record 2491), **established**: the per-vertex entry of table record 20
-  (at 0x0dae4c20 in `libGLcore.so`), lighting on with no vertex light and one local fragment light, normalize off.
-  It reads data words 0x80 to 0x1e5; patch: mark 2620 takes end mark 2625.
-- **`2630`** (routine; kernel record 2531), **established**: 57 records for the local fragment
-  light with no vertex light (table record 20, +16 at 0x0dae4c30 in `libGLcore.so`). It reads
-  data words 0x80 to 0x1e7; **inferred:** 0x80 onward holds the fragment light, as for set-up
-  routine 1304. Mark 2656 precedes the alternate loop entry 2661.
-- **`2691`** (routine; kernel record 2592), **established**: the per-vertex entry of table record 21
-  (at 0x0dae4c68 in `libGLcore.so`), record 20 with GL_NORMALIZE on; patch: mark 2722 takes end mark 2727.
-- **`2732`** (routine; kernel record 2633), **established**: the second routine of table record 21 (its +16 word at 0x0dae4c78 in `libGLcore.so`),
-  holding the 0x2c entry 2764, the last routine of the image (it ends at 2789).
+- **`1313`** (routine; kernel record 1214), **established** selection, **inferred** arithmetic: the
+  whole per-vertex program of table record 2 (at 0x0dae4710 in `libGLcore.so`), one directional
+  fragment light with GL_LIGHTING off and no texture; 0x2a entry 1325 follows its value-3 mark at
+  1320 and 0x2c entry 1337 sits near its end. Inputs: the normal and position slots, the colour slot,
+  R0 to R4 and R13 to R15, and data word 0x1e1 (0.5). Each pass transforms the normal (R13 to R15)
+  and the position, latches R21 (the fragment light that set-up 1304 placed) against the normal and
+  runs six code-5 and two code-2 operations. Outputs, under a header for ten words: 1/w, x/w, y/w and
+  z/w (0x2b, 0x46, 0x26) as words 6, 8, 9 and 7, the colour slot as words 1 and 2 (0x1f20, 0x1932)
+  and colour-unit copies of the per-vertex fragment terms as words 3, 4 and 5 (0x1f36, 0x1f16, 0x1f14).
+- **`1348`** (routine; kernel record 1249), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 4 (at 0x0dae47a0 in `libGLcore.so`), record 2's state with
+  texturing or texture generation or clip planes allowed. Inputs: normal, position and texture slots,
+  R0 to R8 and R13 to R15, and 0.5. Beyond 1313's work it transforms the texture coordinate by R8,
+  R5, R6 and R7 and outputs it, so the header announces thirteen words: 1/w, x and y as words 9, 11
+  and 12, z as 10, the fragment terms as 7 and 8 and the colour as word 1. Its value-3 mark 1358 is
+  patched with its end mark 1363 when texture generation or clipping follow.
+- **`1368`** (routine; kernel record 1269), **established** selection, **inferred** arithmetic: the
+  second routine of table record 4 (its +16 word at 0x0dae47b0 in `libGLcore.so`), holding the 0x2c
+  entry 1379. Its inputs are 1348's registers and the texture slot; it outputs the previous vertex's
+  texture coordinate (q consumed by 0x08, s, t and r times 1/w as words 3, 4 and 5) and, in its loop,
+  computes the next vertex's position, texture and fragment terms with three code-5 and two code-2
+  operations, sending the same thirteen-word packet as 1348.
+- **`1390`** (routine; kernel record 1291), **established** selection, **inferred** arithmetic: the
+  single routine of table record 5 (at 0x0dae47e8 in `libGLcore.so`), record 2's fragment-lighting
+  program with the fragment model two-sided. Inputs: normal and position slots, the constants -0.5,
+  -1.0 and 0.5 (words 0x1eb, 0x1e2, 0x1e1) and the matrices. It transforms the normal twice, once as
+  is and once for the back face, and runs sixteen code-5 and three code-2 operations per two passes;
+  it outputs fourteen-word packets with 1/w, x, y and z as words 10, 12, 13 and 11, d2 code 0x10 on
+  word 3, 0xa6 on word 13 and front and back fragment terms as words 4 to 9.
+- **`1433`** (routine; kernel record 1334), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 8 (at 0x0dae48c0 in `libGLcore.so`), the two-sided form of record
+  4. Its inputs are 1390's plus the texture slot and rows R5 to R8; it computes 1390's front and back
+  fragment terms and the texture transform and outputs a sixteen-word packet (header 15): 1/w and x
+  as words 13 and 15, a third coordinate as word 16 (field 0), s and t as 4 and 5, colour words 1, 9 and 10. Patch: its mark
+  1447 takes its end mark 1452.
+- **`1457`** (routine; kernel record 1358), **established** selection, **inferred** arithmetic: the
+  second routine of table record 8 (its +16 word at 0x0dae48d0 in `libGLcore.so`), holding the 0x2c
+  entry 1472. It takes 1433's registers, outputs the previous vertex's texture words (q consumed,
+  s, t and r as words 3 to 5, y as word 14 through 0x24) and computes the next vertex with ten code-5
+  operations, reading data words 0x1e1, 0x1e2 and 0x1eb as 1433 does.
+- **`1483`** (routine; kernel record 1384), **established** selection, **inferred** arithmetic: the
+  whole program of table record 3 (at 0x0dae4758 in `libGLcore.so`): one directional light,
+  infinite viewer, single colour, RGBA, no texture and no texture generation or clip planes, so the
+  record carries no patch; its value-3 marks lie five before the 0x2a entry 1496 and the 0x2c entry
+  1509. Inputs: the normal and position slots, the material slots 6 to 9, R0 to R4, R13 to R15, and
+  what set-up 1226 left: light 0's direction in R17, its half vector scaled by word 0x0f0 in R18, and
+  the ambient sum at colour address 25. Each pass transforms the normal into R16, fires N.L against
+  R17 and the scaled N.H against R18, turns the latter into the specular factor with code 3, and
+  computes the colour in the colour unit: emission plus address 25 times the ambient slot, plus N.L
+  times light 0's diffuse colour times the diffuse slot, plus the code-3 factor times its specular
+  colour times the specular slot (`ucode/buzz_isa.md`, pass 13). Outputs, under a header for seven
+  words: 1/w (0x2b) as word 3, x/w (0x46) as 5, y/w and z/w (0x26) as 6 and 4, and the colour as
+  words 1 and 2.
+- **`1520`** (routine; kernel record 1421), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 9 (at 0x0dae4908 in `libGLcore.so`), one directional light with
+  GL_NORMALIZE on and texturing allowed; patch: mark 1535 takes end mark 1540. Inputs: 1483's plus
+  the texture slot, R5 to R8 and the constants 0.0 and 1.0. It computes 1483's colour, with the
+  normal first normalised (code 1 on its squared length, three code-6 operations), and transforms the
+  texture coordinate; outputs: a ten-word packet with s, t and r as words 3 to 5 and the colour as
+  words 1 and 2.
+- **`1545`** (routine; kernel record 1446), **established** selection, **inferred** arithmetic: the
+  second routine of table record 9 (its +16 word at 0x0dae4918 in `libGLcore.so`), holding the 0x2c
+  entry 1561. It takes 1520's inputs and computes the same normalised lighting and texture transform
+  for the following vertices (two code-1, three code-6 and two code-3 operations per pass) and outputs
+  1520's ten-word packet.
+- **`1580`** (routine; kernel record 1481), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 6 (at 0x0dae4830 in `libGLcore.so`), two directional lights with
+  texture generation or clip planes allowed and no texture; patch: mark 1591 takes end mark 1596.
+  Inputs: normal and position slots, the material slots and both lights' vectors from set-up 1226.
+  It computes 1483's colour for two lights: diffuse colours at addresses 1 and 4 and specular at 2 and
+  5 times the material slots, three code-3 specular factors per pass, and the scaled sums (0x1a58,
+  0x1b98). Outputs: a ten-word packet, the colour as words 1 and 2.
+- **`1601`** (routine; kernel record 1502), **established** selection, **inferred** arithmetic: the
+  second half of table record 6's two-directional-light program (+16 at 0x0dae4840 in
+  `libGLcore.so`), eighteen records with its single value-3 mark at 1608, five before the alternate
+  loop entry 1613. It takes 1580's registers and outputs the previous vertex's coordinates and
+  colour while it computes the next vertex's two-light colour (three code-3 factors, the diffuse and
+  specular products of addresses 1, 2, 4 and 5).
+- **`1623`** (routine; kernel record 1524), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 10 (at 0x0dae4950 in `libGLcore.so`), two directional lights with
+  GL_NORMALIZE on; it reads 0.0 and 1.0 and its mark 1640 takes end mark 1645 as the patch. Inputs: as
+  1580. It normalises the eye normal (code 1, six code-6 operations), computes two code-3 specular
+  factors and the two lights' colour products (addresses 1, 2, 4, 5), and outputs a ten-word packet
+  with the colour as words 1 and 2 and three extra words 3 to 5.
+- **`1650`** (routine; kernel record 1551), **established** selection, **inferred** arithmetic: the
+  second routine of table record 10 (its +16 word at 0x0dae4960 in `libGLcore.so`), thirty-five
+  records holding the 0x2c entry 1668. It takes 1623's inputs and computes the same normalised
+  two-light colour for each further vertex (four code-3, five code-6, two code-1 operations), with
+  1623's packet as output.
+- **`1689`** (routine; kernel record 1590), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 11 (at 0x0dae4998 in `libGLcore.so`), up to four directional
+  lights, textured, normalize off; patch: mark 1710 takes end mark 1715. Inputs: normal, position and
+  texture slots, R0 to R8, R13 to R15 and the four light vectors set-up 1226 left. It computes
+  four code-3 specular factors and the colour products of all four lights (diffuse at colour
+  addresses 1, 4, 7 and 10 with slot 7, specular at 2, 5, 8 and 11 with slot 8), and outputs a
+  ten-word packet: s, t and r as words 3 to 5, the coordinates as 6 to 9, the colour as 1 and 2.
+- **`1720`** (routine; kernel record 1621), **established** selection, **inferred** arithmetic: the
+  second half of the four-light program (table record 11, +16 at 0x0dae49a8 in `libGLcore.so`); its
+  mark 1737 precedes the alternate loop entry 1742. It takes 1689's inputs, outputs the previous
+  vertex's packet and computes the next vertex's four-light colour with four code-3 factors and the
+  same address-and-slot products; like 1689 it reads no parameter word, everything coming from
+  set-up 1226.
+- **`1752`** (routine; kernel record 1653), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 7 (at 0x0dae4878 in `libGLcore.so`), one directional light with
+  two colour outputs (two-sided lighting); patch: mark 1765 takes end mark 1770; its set-up list
+  adds routine 1265 after 1226. Inputs: 1483's plus the back material slots and 1265's negated
+  vectors. It computes the front colour as 1483 does and the back colour from the back slots (0x1928
+  with slot 10, 0x0120 with slot 11) with four code-3 factors, and outputs a twelve-word packet whose
+  words 3, 4 and 5 come from d2 code 0x21 and whose colours are words 1, 2 and 6, 7.
+- **`1775`** (routine; kernel record 1676), **established** selection, **inferred** arithmetic: the
+  nineteen records closing the one-light, two-colour program of table record 7 (+16 at 0x0dae4888 in
+  `libGLcore.so`); mark 1784 sits five before the alternate loop entry 1789. It takes 1752's
+  registers, outputs the previous vertex's front and back colours (0x9f9a, 0x9f50, 0x1c3a) and
+  coordinates, and computes the next vertex's two-sided colour with two code-3 factors.
+- **`1798`** (routine; kernel record 1699), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 13 (at 0x0dae4a28 in `libGLcore.so`), two directional lights,
+  two colours, textured; patch: mark 1818 takes end mark 1823. Inputs: normal, position and texture
+  slots, both material sides and set-up 1226 and 1265's vectors. It computes six code-3 factors, the
+  front and back products of lights 0 and 1 (addresses 1, 2, 4 and 5 with slots 7, 8, 11 and 12) and
+  the texture transform; it outputs a twelve-word packet with s, t, r as words 3 to 5 and the
+  colours as 1, 2 and 6, 7.
+- **`1828`** (routine; kernel record 1729), **established** selection, **inferred** arithmetic: the
+  two-sided half of table record 13's program for two directional lights with texture (+16 at
+  0x0dae4a38 in `libGLcore.so`), thirty records, eleven longer than 1775; mark 1846 leads to entry
+  1851. It takes 1798's inputs and computes the same front and back colours (five code-3 factors per
+  pass); it outputs 1798's packet for each further vertex.
+- **`1862`** (routine; kernel record 1763), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 16 (at 0x0dae4b00 in `libGLcore.so`), one local light without
+  attenuation or spot, infinite viewer, normalize off; the first table routine that reads the light
+  record (words 1 and 2) and shininess words 0x0f4 and 0x0f8. Inputs: position, normal and texture
+  slots and the matrices. It computes the eye position (R12, R9, R10, R11), the vector to the light,
+  its reciprocal length (code 1, twice), the specular operand through codes 5, 0xd and 3, and the
+  colour (emission, address 25 times the ambient slot, light 0's products); outputs: a ten-word packet
+  with y through d2 0x24 as word 7. Patch: mark 1890 takes end mark 1895.
+- **`1900`** (routine; kernel record 1801), **established** selection, **inferred** arithmetic: the
+  fifty-one-record second routine of table record 16 (its +16 word at 0x0dae4b10 in `libGLcore.so`),
+  holding the 0x2c entry 1929. It takes 1862's inputs and computes the same local-light colour for
+  each further vertex (three code-1 and two each of codes 5, 8, 0xd and 3); it outputs 1862's packet.
+- **`1955`** (routine; kernel record 1856), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 17 (at 0x0dae4b48 in `libGLcore.so`), one local light whose mask
+  admits both normalize bits. Inputs: 1862's. It computes 1862's lighting with the normal normalised
+  as well: four code-1, three code-4 and two code-6 operations, and d2 code 0xc6 on one product.
+  Outputs: a ten-word packet, the colour as words 1 and 2. Patch: mark 1984 takes end mark 1989.
+- **`1994`** (routine; kernel record 1895), **established** selection, **inferred** arithmetic: the
+  fifty-two-record second half of table record 17's program (+16 at 0x0dae4b58 in `libGLcore.so`),
+  reading the light record from index 1 and the constants; mark 2019 precedes the alternate loop
+  entry 2024. It takes 1955's inputs, computes the same normalised local-light colour per vertex
+  (seven code-1 and six code-4 operations) and outputs x through d2 0xc6 as word 8 with the rest of
+  1955's packet.
+- **`2050`** (routine; kernel record 1951), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 18 (at 0x0dae4b90 in `libGLcore.so`), one local light with a local
+  viewer and GL_NORMALIZE on, run from the overlay window because it lies past RAM record 2047;
+  patch: mark 2079 takes end mark 2084. Its inputs are 1955's without the constant 1.0; it computes
+  the viewer vector per vertex as well (five code-1 and three code-6 operations) and outputs 1955's
+  ten-word packet.
+- **`2089`** (routine; kernel record 1990), **established** selection, **inferred** arithmetic: the
+  second routine of table record 18 (its +16 word at 0x0dae4ba0 in `libGLcore.so`), holding the 0x2c
+  entry 2119, also paged in through the overlay. It takes 2050's inputs and computes its local-light,
+  local-viewer colour for each further vertex (nine code-1, six code-4 and four code-6 operations);
+  it outputs 2050's packet.
+- **`2145`** (routine; kernel record 2046), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 19 (at 0x0dae4bd8 in `libGLcore.so`), one local light with a local
+  viewer and normalize off; patch: mark 2174 takes 2179. Inputs: 2050's. It computes the same light
+  and viewer vectors without normalising the normal, so one code-6 operation instead of three and
+  three code-1, and outputs the same ten-word packet.
+- **`2184`** (routine; kernel record 2085), **established** selection, **inferred** arithmetic: the
+  local-viewer, normalize-off counterpart of 2089 (table record 19, +16 at 0x0dae4be8 in
+  `libGLcore.so`), fifty-two records paged into the overlay window; mark 2209, entry 2214. It takes
+  2145's inputs and computes the further vertices with five code-1 and six code-4 operations;
+  it outputs 2145's packet.
+- **`2240`** (routine; kernel record 2141), **established** selection, **inferred** arithmetic: the
+  only list entry of table record 14 (at 0x0dae4a70 in `libGLcore.so`), one directional light with
+  separate specular colour; its three sequencer words are 1221, so `AddProgram` always copies the
+  list and sets sequencer 0x29 to 2240. Inputs: 1483's plus the texture slot. It computes 1483's
+  colour with one code-3 factor but keeps the specular term apart: it outputs the primary colour as
+  words 1 and 2 (0x1a5a, 0x1b90) and the specular colour as words 6, 7 and 8, under a header for
+  thirteen words with s, t, r as words 3 to 5.
+- **`2268`** (routine; kernel record 2169), **established** selection, **inferred** arithmetic: the
+  only list entry of table record 15 (at 0x0dae4ab8 in `libGLcore.so`), the two-colour form of 2240
+  with the same 1221 sequencer words. Inputs: 2240's plus the back slots. It computes front and back
+  primary and specular colours with two code-3 factors and outputs them as words 1, 2 and 7 to 12
+  under a header for sixteen words.
+- **`2300`** (routine; kernel record 2201), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 12 (at 0x0dae49e0 in `libGLcore.so`), up to three directional
+  lights with a directional fragment light, textured; patch: mark 2322 takes end mark 2327; its
+  set-up list adds 1286 after 1226. Inputs: normal, texture and position slots, 0.5, the three
+  lights' vectors and the fragment light in R24 and R13 to R15. It computes three code-3 specular
+  factors and the lights' products (addresses 1, 2, 4, 5, 7, 8) plus three code-5 fragment terms,
+  and outputs a thirteen-word packet with the fragment terms as words 6 to 8.
+- **`2332`** (routine; kernel record 2233), **established** selection, **inferred** arithmetic: the
+  second routine of table record 12 (its +16 word at 0x0dae49f0 in `libGLcore.so`), holding the 0x2c
+  entry 2355 and reading data word 0x1e1 as 2300 does. It takes 2300's inputs and computes the same
+  three-light and fragment-light values per further vertex; it outputs 2300's packet (y through d2
+  0xa6 as word 12).
+- **`2365`** (routine; kernel record 2266), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 22 (at 0x0dae4cb0 in `libGLcore.so`), two local lights with
+  normalize off; the record has no set-up routine. Inputs: position, normal and texture slots and
+  words 1, 2 and 0x010 to 0x012 of two light records. With no set-up it computes the ambient itself:
+  emission, light-model ambient times the ambient slot and both lights' ambient colours (0x1828,
+  0x0028, 0x0328), then the diffuse and specular products of addresses 1, 2, 4, 5; it outputs the
+  texture and 1/w words of a ten-word packet. Patch: mark 2398 takes end mark 2403.
+- **`2408`** (routine; kernel record 2309), **established** selection, **inferred** arithmetic: the
+  sixty-four-record second routine of table record 22 (its +16 word at 0x0dae4cc0 in
+  `libGLcore.so`), holding the 0x2c entry 2442. It takes 2365's inputs and computes, per vertex, both
+  local lights' vectors (six code-1), their specular operands (four each of codes 5, 8, 0xd and 3)
+  and the scaled sums (0x1b58, 0x1c98, 0x1d58); it outputs x, y and z through d2 0x46, 0xa6 and 0x24
+  and the colour as words 1 and 2.
+- **`2476`** (routine; kernel record 2377), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 23 (at 0x0dae4cf8 in `libGLcore.so`), two local lights with
+  GL_NORMALIZE on; patch: mark 2510 takes end mark 2515. Inputs: 2365's. It computes 2365's ambient
+  and colour products with the normal normalised (three code-1, two code-5) and outputs the texture
+  and 1/w words of a ten-word packet.
+- **`2520`** (routine; kernel record 2421), **established** selection, **inferred** arithmetic: the
+  sixty-six-record second routine of table record 23 (its +16 word at 0x0dae4d08 in
+  `libGLcore.so`), holding the 0x2c entry 2555. It takes 2476's inputs and computes both lights per
+  vertex with eight code-5, seven code-1 and four code-3 operations; it outputs x through d2 0xc6 as
+  word 8 and the colour as words 1 and 2.
+- **`2590`** (routine; kernel record 2491), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 20 (at 0x0dae4c20 in `libGLcore.so`), lighting on with no vertex
+  light and one local fragment light, normalize off. Inputs: position, normal and texture slots, the
+  fragment light's words 0x080 to 0x082 and 0x08a to 0x08e, and 2.828 and 3.0. It computes the eye
+  position, the normal (three normal-slot loads) and the vector to the fragment light with one code-1
+  and one code-4, and outputs a thirteen-word packet with s, t, r as words 3 to 5. Patch: mark 2620
+  takes end mark 2625.
+- **`2630`** (routine; kernel record 2531), **established** selection, **inferred** arithmetic:
+  fifty-seven records for the local fragment light with no vertex light (table record 20, +16 at
+  0x0dae4c30 in `libGLcore.so`). It takes 2590's inputs plus 0.354 and 1.414 and computes the
+  per-vertex fragment-light terms (five code-4, six code-5, three code-1, two each of 0xc, 2 and 3);
+  it outputs them as words 6 to 8 beside the colour (0x1a32, words 1 and 2) and the coordinates. Mark
+  2656 precedes the alternate loop entry 2661.
+- **`2691`** (routine; kernel record 2592), **established** selection, **inferred** arithmetic: the
+  per-vertex entry of table record 21 (at 0x0dae4c68 in `libGLcore.so`), record 20 with GL_NORMALIZE
+  on; patch: mark 2722 takes end mark 2727. Inputs: 2590's plus -1.414 and 0.5. It normalises the
+  normal (two code-1, four code-0xe) before the fragment-light terms and outputs 2590's packet,
+  with two words from d2 0x21.
+- **`2732`** (routine; kernel record 2633), **established** selection, **inferred** arithmetic: the
+  second routine of table record 21 (its +16 word at 0x0dae4c78 in `libGLcore.so`), holding the 0x2c
+  entry 2764, the last routine of the image (it ends at 2789). It takes 2691's inputs plus -0.707 and
+  1.414 and computes the normalised fragment-light terms per further vertex (nine code-0xe, six
+  code-5, four code-1); it outputs them as words 6 to 8 with the coordinates and colour.
 
 #### Closing routines
 
