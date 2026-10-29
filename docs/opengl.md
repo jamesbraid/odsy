@@ -73,3 +73,105 @@ Sources: `MakeCurrentRead`, `MakeCurrent` and `LoseCurrent` in `libglcore/decomp
 
 - **established.** The handler copies 80 bytes in from the caller (two 40-byte descriptors, one per buffer class: the first word of each is the flag word above), validates the caller with `RRM_CheckValidFault`, increments a per-process counter at +80 of the process record, and if the process is not attached to flow control attaches it (`gfx_flow_attach_me`, then writes the board's flow-config register 0x1074 with the credit target number in bits 16:12 and clears 0x107c; see `docs/buzz.md` section 1). It then unbinds and binds both drawable classes (`odsyUnbindDrawable` and `odsyBindDrawable` for classes 1 and 2 with each descriptor's flag word), copies the bound drawable's geometry words (record +472 to +552) into the reply, calls `odsyClipPush`, decrements the counter and copies 80 bytes out. When the process was already attached it skips the flow-control attach; when the drawable pointer is missing it logs and returns 1.
 - **unknown.** The layout of the 80-byte descriptors, what `odsyBindDrawable` writes to the board (it was not read), and the clip push's FIFO words.
+
+## Pass 10: sender catalogue, image paths, ioctl argument sizes and texture memory
+
+IRIX 6.5.30m, IP30, N32 libGLcore and `odyssey.so`. Labels as above.
+
+### Which libGLcore file sends which block
+
+**established** for constant forms only: every `lui`/`ori` class-1 word (`BUZZ.h` section 1) in `libglcore/asm/ODYSSEY/*.s`, kept when its id and count match a block the kernel replays or one of the table ranges (`docs/buzz.md` section 8), with words that are context offsets or address constants removed by hand (the words 0x1201c and 0x13420 of the accumulation and texture code are offsets, not commands; words with bit 14 set other than the primitive begin and end are offsets too). Words built by shifts and masks, such as the level descriptor ids 0x280 + i or the table ids 0x200 + i, show only as their base form. The per-vertex and attribute words are catalogued in `docs/buzz.md` section 2.
+
+| File | Blocks sent |
+|---|---|
+| `ody_context.s` (`__glOdysseyValidateHardware`, make-current) | the full raster-state set: 0x004-0x007, 0x015, 0x01a, 0x01b, 0x01c, 0x01d, 0x01f, 0x021, 0x023, 0x03a, 0x03d, 0x03e, 0x047, 0x04a, 0x04c, 0x051, 0x052, 0x053, 0x056, 0x057, 0x013, 0x016, 0x017, 0x030-0x033, 0x03b, 0x028-0x02b, 0x038, the level descriptors, the five 256-word tables, the sync group |
+| `ody_unixcontext.s` (swap) | 0x017, 0x25a, sync group |
+| `ody_texture.s` | sync group, level descriptor words, 0x14400 |
+| `ody_bitmap.s`, `ody_attrib.s` | stipple blocks 0x04e and 0x04f (and 0x04d), 0x01d, 0x03f, 0x004-0x005, 0x015, 0x056, 0x058, primitive begin and end |
+| `ody_clear.s`, `ody_accumop.s`, `ody_fragment.s`, `ody_lighting.s`, `ody_image_chain.s`, `ody_image_move.s`, `ody_pmobj.s`, `ody_get.s` | sync group with one or more of 0x007, 0x015, 0x01d, 0x01f, 0x020, 0x022, 0x041, 0x053, 0x000 (six operands), 0x25a and, in the image-move code, a word of the 0x280 + i level-descriptor form with i = 60 (`0x10ebc`) (image move and chain, lighting, fragment and the memory-object code) |
+| `ody_dlist.s`, `ody_linedraw.s`, `ody_pntdraw.s`, `ody_polydraw.s`, `ody_polyclip.s`, `ody_vertex.s`, `ody_prim.s` | primitive begin and end (0x14400, 0x14001) around vertex words, sync group |
+| `ody_clip.s` | 0x044 |
+
+This is the by-file view of the senders the earlier passes found by function; the by-block view is the table in `docs/buzz.md` section 8. Everything beyond this list is not a command word in libGLcore: **established** as a negative result of the scan above, **inferred** where a word is built at run time.
+
+### The X module's image paths
+
+**established** by reading the word families in `odsyDrawImageDMA`, `odsyDrawImagePIO`, `odsyReadImage`, `odsyReadDeepImage`, `odsyDrawSmallCI8Image`, `odsyDrawMonoImage`, `odsyDrawOpaqueMonoImage` and `odsyImageGlyphBlt` (`ddx/asm/odyssey/odsy/odsy.s`):
+
+- **State words.** All of the drawing image routines send the sync group and the window descriptor block 0x04b, then blocks 0x405 (the textport's raster mode, here one operand), 0x422, 0x053 (five operands, as in the rectangle copy) and register 0x29 (`0x29008000 | enc(n)`, the routine-entry register). They then send the colour as in the fill path (the index and RGB forms and the 0x22/0x23 pair), and block 0x023 (`0x11023`, four operands).
+- **DMA draw (`odsyDrawImageDMA`)** sends those words and the pixel data goes by kernel DMA: the ioctl is `0x6f640006` (`gfP_OdsyMMxfr`, 80-byte argument both ways), which `odsyReadImage` and `odsyReadDeepImage` use for reads. The request layout: **unknown, needs a capture** (the 80-byte argument of an XPutImage and an XGetImage of a known 8 x 8 image).
+- **PIO draw (`odsyDrawImagePIO`)** sends the state words, a ten-operand state word `0xcf80a92f` with a Vertex2 `0x8080c800` (the destination quad), a word `0x00004570` (bit 14 set, one operand, id field 0x170) with one operand taken from a shadow word, then the bare word 0x71, and then the pixels in chunks of up to 15 words, each chunk led by a word built at run time as `0x00014000 | (count << 10) | id` and followed by `count` pixel words stored one at a time. So bit 14 (`BUZZ_CMD_PRIM`) is also set on the leading word of a pixel-data chunk. The id field of that word comes from a local variable: **unknown**; the meaning of the 0x170 block and of 0x71: **unknown, needs a hardware capture** (the FIFO stream of one small `XPutImage` with known pixel values).
+- **Small CI8 images (`odsyDrawSmallCI8Image`)** use the fill path: primitive begin 0x14400, `0xce80cc08`, `0xc580c406` (index), Vertex2 words and end.
+- **Mono and glyph images.** The text of `odsyDrawMonoImage` and `odsyDrawOpaqueMonoImage` (141 and 136 lines) sends only the window descriptor 0x04b (and the sync group in the first); the pixel work is in routines they call, which were not traced. `odsyImageGlyphBlt` sends the sync group and the window descriptor in its own text and delegates to the per-cell routines. The terminal-emulator variant `odsyImageGlyphBltTE8` sends the words of the polygon glyph path (blocks 0x03f, 0x04e and 0x04f, primitive begin 0x14400 with Vertex2 words and end 0x14001, `docs/opengl.md` text section) plus blocks 0x022, 0x021 (`0x10c21`) and 0x004 and both colour forms. **established** as the word set; the order, whether a background cell is drawn first, and the begin operand: **unknown** (not traced).
+
+### Private ioctl argument sizes
+
+**established** from the literal size in the `copyin` and `copyout` calls of each handler (`odsy_kernel/disasm`, IP30), bytes in and out; a blank means no copy, `var` means the size is a computed value:
+
+| n | Handler | In | Out |
+|---|---|---|---|
+| 0 | `MMattach` | 72 | 72 |
+| 1, 2 | `MMalloc`, `MMdealloc` | 72 | 72 |
+| 3 | `MMmakeResident` | 8 | |
+| 4 | `MMquery` | 40 | 40 |
+| 6 | `MMxfr` | 80 | 80 |
+| 7 | `GLGet` | 4 | |
+| 8 | `MakeCurrent` | 80 | 80 |
+| 9 | `SetDrawBuffer` | 4 | |
+| 10, 11 | `MMdebug`, `MMwaitXfr` | 24, 8 | 4, |
+| 12 | `SaveHwShadow` | | |
+| 13 | `SetClipMask` | 16 | |
+| 14 | `ClearBuffer` | 44 | |
+| 15 | `GetDrawableGeometry` | | 16 |
+| 16, 17 | `HPgetTopology`, `HPgetConfig` | , 524 | 388, 524 |
+| 18 | `HPconfig` | 524 | 524 |
+| 19, 20, 21 | `HPdestroyConfig`, `HPbind`, `HPunbind` | 4 each | |
+| 22, 23, 24 | `HPqueryAttrib`, `HPqueryBestAttrib`, `HPsetAttrib` | 32 each (plus a variable tail) | 4, 4 (query) |
+| 26 | `BRDMGRsetColors` | 16 (plus a variable tail) | |
+| 27 | `BRDMGRconfigFb` | 52 | 52 |
+| 28 | `BRDMGRcursor` | 40, 60, 512, 256 | |
+| 29, 30 | `BRDMGRsetDpyMode`, `BRDMGRsetBlanking` | 8, 4 | |
+| 31, 32 | `BRDMGRloadTimingTable`, `BRDMGRVTGcontrol` | 320, 8 | |
+| 33 | `BRDMGRi2ccmd` | 48 | |
+| 35 | `BRDMGRSetDACGain` | 4 | |
+| 37 | `CompositorRegAccess` | 12 | 12 (twice) |
+| 38, 39 | `I2CPassthrough`, `SetNicinfo` | 8, 80 | |
+| 42, 43 | `PbufAssoc`, `PbufDeassoc` | 8, 8 | , 8 |
+| 46 | `DIAGdma` | 48 | |
+| 47, 48 | `DIAGallocScanbuf`, `DIAGfreeScanbuf` | 24, | 24, |
+| 49 | `DIAGgetShadowPtrs` | 80 | 80 |
+| 51 | `PerfStat` | 24 | 24 |
+
+The generic resource-manager ioctls 1000 to 1025 take 4 to 64 bytes (`docs/display.md` pass 10). Field layouts: most are **unknown** here; known layouts are in the sections of `docs/display.md`, `docs/kernel.md` and `docs/buzz.md` that name each call (the cursor request, the timing structure, the performance-statistics argument, the DMA transfer and the swap request). For the memory-manager calls: `MMalloc` copies in 72 bytes and uses word 1 (a set id, -1 meaning none), a halfword at +8 below 16 (the object type), bytes at +12 and +13, and words at +16, +20, +24, +28, +32 and +36 as the description it compares with an existing object of that type before creating one (`odsy_mm_obj_new`); **established**. What each description field is (dimensions, format, level count): **unknown, needs a capture** (the 72-byte argument of one texture allocation of a known size and format).
+
+### Texture level records and memory
+
+**established** from `__glOdysseyTextureActivate` and `docs/buzz.md` section 9: a texture object keeps a 16-word array of per-level memory values at object offset 1300 and a 68-byte record per level from offset 1364 (record offset 0 and 4 feed the level descriptor's top bits, record offset 28 holds the level's width in texels). Texture memory itself is allocated by `MMalloc` above (the kernel's memory manager keeps an object per texture level group), made resident by `MMmakeResident` and filled by `MMxfr` transfers. The record's other fields and the allocation arguments: **unknown, needs a capture** (named above and in `docs/buzz.md` section 9).
+
+### The 20-byte shadow descriptors
+
+**established** from `__glOdyDecodeShadowFormat` (`ody_get.s`, jump tables read from `libGLcore_n32.so`): word 0 bits 5:0 select one of 59 decode forms (a value of 59 or more raises GL error 1280; bits 28:24 give an element count in kind 46); words 1 to 3 (and 4 in kind 15) are either indices (times four) into the array of shadow words at hardware-state offset 3824, or raw values held in the descriptor, depending on the form. A second table by the same kind number gives the result type code passed to `__glConvertResult`: 4 for the float forms, 3 for integer forms, 1 for a single value. Each form builds up to four values in a local buffer and a count code, then converts to the caller's type. The forms, by kind:
+
+| Kinds | Form (established as code) |
+|---|---|
+| 0, 2, 4, 6, 26, 27, 28 | return the descriptor's own three words as the values (type 4 for 0, 2 and 4, type 1 for 6, type 3 for 26 to 28) |
+| 1, 3, 5, 7 | no value (count zero) |
+| 8 | three floats from the shadow array at the indices in words 1 to 3, plus the constant 1.0 |
+| 15 | four floats from the shadow array at the indices in words 1 to 4 |
+| 14 | three floats held in the descriptor, plus 1.0 |
+| 11, 18, 22 | signed integers to colour range for the first colour scale: each word becomes `(2 x + 1)` times the hardware-state float at offset 3552 |
+| 12, 19, 23 | the same with the scale at offset 3560 |
+| 13, 20, 24 | the same with the scale at offset 3568 (kind 20 also folds the constant pair 1.0 and 2.0) |
+| 9, 17, 10, 16 | unsigned integers times the scale at 3560 (9, 16) or 3568 (10, 17) |
+| 30, 38 | the descriptor's first value as an integer, then 0, 0 and 1 |
+| 31, 39 | one float from the descriptor, then 0.0, 0.0 and 1.0 |
+| 32, 40 | two integer words, then 0 and 1 |
+| 33, 41 | two floats, then 0.0 and 1.0 |
+| 34, 42 | three integer words, then 1 |
+| 35, 43 | three floats, then 1.0 |
+| 36, 44 | no values loaded, count code 3 (the values are the descriptor's words) |
+| 37, 45 | no value (count zero) |
+| 46 | element count from bits 28:24 of word 0 (15 gives the single value 1, 16 gives 0, other counts the descriptor's words) |
+| 21, 25, 29, 47 to 58 | no loads; the descriptor's words are returned with count code 5 (four values) |
+
+**inferred** that the colour forms convert signed and unsigned integer colour state to the floats that glGet returns, with the three scale words being per-channel-group colour scales kept in the hardware-state area (`docs/opengl.md` make-current). Which GL query uses which descriptor lives in the context's initialisation tables, which this pass did not read; they are host software, not a hardware interface, and **unknown** here.
