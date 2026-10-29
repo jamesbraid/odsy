@@ -175,9 +175,9 @@ The board record itself is driver state, not hardware. Its offsets are defined i
 | `gf_OdsyPcxSwap` | 0x10443, 0x10444, 0x10850, 0x14001, 0x14400 |
 | `odsyDMAOp` | 0x10019, 0x10443, 0x10658, 0x10a5a, 0x14001 |
 | `odsyDMAOps` | 0x10443, 0x10444, 0x10658, 0x10a5a, 0x14400, 0x8080c800, 0xcf80a92f |
-| `odsyClipPush` | 0x10019, 0x10443, 0x10840, 0x10841, 0x1204b, 0x9000bda2 |
+| `odsyClipPush` | 0x10019, 0x10443, 0x10840, 0x10841, 0x1204b, 0x9000bda2, 0x31008140, 0x90008116, and the wide doubleword writes to registers 0x608-0x60f (`docs/opengl.md`, the clip push) |
 | `odsyRestartContext` | 0x10019, 0x10400, 0x10443, 0x10658, 0x10850, 0x11017, 0x8080c800, 0xcf80a92f |
-| `odsyPushBufferSelect` | 0x10019, 0x10046, 0x10424 |
+| `odsyPushBufferSelect` | 0x10019, 0x10046, 0x10424, and the wide doubleword writes to registers 0x608 and 0x609 |
 | `odsyInitCfifo` | 0x10046 (plus the microcode load words of `BUZZ.h` section 5) |
 | `odsyResetHwShadow` | the default attribute words of `docs/buzz.md` section 8 |
 | `odsyRestoreGfe` | 0x14001, 0x14400 |

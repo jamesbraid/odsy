@@ -71,8 +71,53 @@ Sources: `MakeCurrentRead`, `MakeCurrent` and `LoseCurrent` in `libglcore/decomp
 
 ### Kernel side (`gfP_OdsyMakeCurrent`)
 
-- **established.** The handler copies 80 bytes in from the caller (two 40-byte descriptors, one per buffer class: the first word of each is the flag word above), validates the caller with `RRM_CheckValidFault`, increments a per-process counter at +80 of the process record, and if the process is not attached to flow control attaches it (`gfx_flow_attach_me`, then writes the board's flow-config register 0x1074 with the credit target number in bits 16:12 and clears 0x107c; see `docs/buzz.md` section 1). It then unbinds and binds both drawable classes (`odsyUnbindDrawable` and `odsyBindDrawable` for classes 1 and 2 with each descriptor's flag word), copies the bound drawable's geometry words (record +472 to +552) into the reply, calls `odsyClipPush`, decrements the counter and copies 80 bytes out. When the process was already attached it skips the flow-control attach; when the drawable pointer is missing it logs and returns 1.
-- **unknown.** The layout of the 80-byte descriptors, what `odsyBindDrawable` writes to the board (it was not read), and the clip push's FIFO words.
+- **established.** The handler copies 80 bytes in from the caller (two 40-byte descriptors, one per buffer class: the first word of each is the flag word above), validates the caller with `RRM_CheckValidFault`, increments a per-process counter at +80 of the process record, and if the process is not attached to flow control attaches it (`gfx_flow_attach_me`, then writes the board's flow-config register 0x1074 with the credit target number in bits 16:12 and clears 0x107c; see `docs/buzz.md` section 1). It then unbinds and binds both drawable classes (`odsyUnbindDrawable` and `odsyBindDrawable` for classes 1 and 2 with each descriptor's flag word), copies the two binding records (below) into the reply, calls `odsyClipPush`, decrements the counter and copies 80 bytes out. When the process was already attached it skips the flow-control attach; when the drawable pointer is missing it logs and returns 1.
+- **established.** The 80-byte argument is two 40-byte halves. Going in, the kernel reads only the first word of each half (offset 0 for class 1, offset 40 for class 2) and passes it to `odsyBindDrawable`. Coming out, each half is a copy of bytes 8 to 47 of that class's binding record (below): class 1 from per-process record offsets 472-511, class 2 from 520-559 (five doubleword loads each after the second bind call, `gfP_OdsyMakeCurrent`, `odsy_drawable.o` .text 0xa2c-0xd1f). The reply therefore starts with the flag word the caller sent.
+- **inferred.** Class 1 is the draw drawable and class 2 the read drawable. `gf_OdsyValidateClip` builds the clip rectangles from class 1 only (the drawable at offset 120 of the resource node), and libGLcore builds the two flag words from two separate buffer configurations (context +0xc94/+0xce4 for class 1, +0xd34/+0xd84 for class 2).
+
+### Drawable binding (`odsyBindDrawable`, `odsyUnbindDrawable`)
+
+Source: IP30 `odsy_drawable.o`: `odsyBindDrawable` .text 0x138-0x3eb, `odsyUnbindDrawable` 0x3ec-0x53b, `gfP_OdsyPbufAssoc` 0xd20-0xee3. Also `odsy_mm_obj_new` and `odsy_mm_commit` in `odsy_pmm.o`. Below, *R* is the per-process record the make-current handler works on (offset 112 of the resource node; *R* + 224 points back to the node).
+
+- **established.** `odsyBindDrawable(board, R, class, flags)` makes no PIO store and sends no FIFO word. It fills a 48-byte binding record at *R* + 464 (class 1) or *R* + 512 (class 2), and patches one word of *R*:
+
+| Record offset | Content |
+|---|---|
+| 0 | state bits: bit 0 set on entry; bit 2 set when the drawable id was found in the board's drawable hash; bit 1 set when the bind completed. All three are cleared when the id is 0 |
+| 4 | drawable id, word 100 of the resource node's drawable object (node offset 120 for class 1, 128 for class 2). The hash index is `((id >> 16) \| (id & 0xffff)) mod 13`, over the table at board record +0x8658 |
+| 8 | the caller's flag word |
+| 12 | first buffer: word 56 of a memory object |
+| 16 | second buffer: word 56 of another memory object, or 0 |
+| 20-35 | four more buffer words (word 56 of each), or 0 |
+| 36 | not written by any IP30 kernel object (no store to *R* + 500 or *R* + 548) |
+| 40 | halfword 44 of the first buffer's memory object |
+| 42 | byte 17 of the first buffer's memory object |
+| 43 | always written 0 |
+| 44, 45 | bytes 19 and 17 of the first extra buffer's object (two-buffer path only) |
+
+- **established.** The drawable found in the hash points, at its offset 24, to a buffer-set object. `gfP_OdsyPbufAssoc` attaches it (8-byte argument: drawable id, then a context-set id looked up with `OdsyLookupCSetId`). When flag bit 1 is set, the record takes its first buffer from the set's entry at offset 24 and zeroes the second buffer and the four extras. When the bit is clear, the first buffer comes from entry 16, the second from entry 32 and the extras from entries 40-64. Bind also takes a reference on the drawable (its word 32). `odsyUnbindDrawable` drops the reference, removes the drawable from the hash and frees it when the count reaches zero, and clears the record's bits 1:0 and id.
+- **established.** Bind copies the first buffer word's low 31 bits into *R* + 140 (class 1) or *R* + 144 (class 2), keeping bit 31 of the old value.
+- **established.** A buffer word is a board-memory location. `odsy_mm_commit` stores word 56 of a memory object as the first word of its allocated extent shifted left by 5. `odsy_mm_obj_new` copies the allocation description of the `MMalloc` call (private ioctl argument sizes, below) into the object, so halfword 44 is the description's width in 16-texel tiles and byte 17 its element-size byte.
+- **established, libGLcore.** `__glOdysseyDriverMakeCurrent` (`ody_unixcontext.s`, N32 0x0d9d9d50-0x0d9d9fac) reads these reply offsets within each 40-byte half, by its `lw`, `lhu` and `lbu` offsets: 4 and 8 (first and second buffer), 12-24 (the four extras), 32 (halfword, the tile width), bytes 34, 35 and 37, and byte 36 as the selector 0, 1 or 2 for how many extra descriptor sets it builds. It never reads offset 28. So the libGLcore descriptor words above take: context +0x969c and +0x96a8, the first and second buffer locations; +0x96a0, the tile width; +0x96a4 bit 21, reply byte 35, which is record byte 43 and so always 0 as shipped.
+- **inferred.** Block 0x017 is the drawable's buffer descriptor: word 0 the draw buffer's location, word 1 its width in tiles, word 3 the second buffer's location, word 2 format and mode fields. Basis: the sources above. What the board does with each field: **unknown** (the swap-time capture in `docs/display.md`).
+
+### The clip push (`odsyClipPush`)
+
+Source: IP30 `odsy_clip.o`, `odsyClipPush` .text 0x728-0xadb and `gf_OdsyValidateClip` 0x0-0x51f. **established** as the FIFO word order. Every store goes to board +0x110000 and is followed by `sync`:
+
+1. The settle sequence of `BUZZ.h` section 5 (0x10443/250, 0x10046 x2, 0x10019, 0x10443/150, 0x10046 x4, 0x10443/250, 0x10046 x2).
+2. `0x31008140`, `0x9000bda2`, `0x00010019`.
+3. Block 0x041 (`0x10841`) with *R* + 108 and *R* + 112. `gf_OdsyValidateClip` fills their low 13 bits from the draw drawable's x and y (drawable offsets 104 and 108) and mirrors them into hardware-state offsets 11104 and 11108, the block 0x041 shadow of `docs/buzz.md` section 8.
+4. Block 0x040 (`0x10840`) with one doubleword: board record word +1496 high, *R* + 4 low. *R* + 4 bit 16 is set when the draw drawable's word at offset 144 is nonzero, and bits 15:0 are then built from its words at offsets 136 and 152; otherwise bit 16 is cleared.
+5. Block 0x04b (`0x1204b`) with four doublewords from *R* + 8 to *R* + 39. They are four rectangles of two words each. The first word carries x0 in bits 23:12 and y0 in bits 11:0, the second x1 and y1, inclusive (origin plus size minus 1). The top byte of each word is kept. `gf_OdsyValidateClip` first resets all four to (1, 1)-(0, 0), an empty rectangle, and then fills them one of three ways. When drawable word 144 is nonzero, rectangle 0 is the drawable's extent (offsets 104-116: x, y, width, height) clamped to at least 0 and at most the screen size at offsets 32 and 36 of the structure at board record +2136. When it is zero, and word 140 is zero and the rectangle count (offset 120) is 1, rectangle 0 is the unclamped extent. Otherwise rectangles 0 to count - 2 come from the drawable's list (16-byte entries x, y, width, height at the pointer at offset 128), and the last entry's width and height go to *R* + 116 and *R* + 120 instead. The loop has no bound of its own, so a list of more than five entries would write past *R* + 39. **inferred** that the window system never hands the kernel more than five.
+6. One word `0x31008000 | (v & 0x3ff) | ((v >> 10) << 23)`, where v is hardware-state word 9888 (the sequencer-register form of `ucode/buzz_isa.md`, register 0x31).
+7. When bit 27 of hardware-state word 6956 is clear, the state word `0x90008116`. Otherwise block 0x041 with two zeros, block 0x04b in the reset form `0, 0xffffff, 0, 0, 0, 0, 0, 0`, and block 0x040 with two zeros. libGLcore makes the same choice at make-current (above).
+8. The settle tail (0x10443/150, 0x10046 x4, 0x10443/250, 0x10046 x2).
+9. Eight doubleword register writes in the wide form of `BUZZ.h` section 5 (register id high, value low): 0x608 from *R* + 140, 0x60a from *R* + 148, 0x609 from *R* + 144, 0x60b from *R* + 152, 0x60c from *R* + 156, 0x60d from *R* + 160, 0x60e from *R* + 164, 0x60f from *R* + 168. The ids are built as `193 << 35`, `773 << 33`, `1545 << 32`, `1547 << 32`, `387 << 34`, `1549 << 32`, `775 << 33` and `1551 << 32`.
+
+- **established.** *R* + 140 and *R* + 144 are the class 1 and class 2 first-buffer locations from the bind. `odsyPushBufferSelect` sets their bit 31 when that class has no drawable object or the object's halfword 18 is zero. *R* + 148 and *R* + 152 are written by `gf_OdsyValidateClip` as `(x & 0xffff) | (y << 16)` from words 8 and 12 of the draw and read drawables' geometry (drawable offset 96 on). *R* + 156 to *R* + 168 have no store in any IP30 `odsy*.o`: the search covered every word and doubleword store at those offsets.
+- **inferred.** Registers 0x608 and 0x609 select the draw and read buffers and 0x60a and 0x60b give their window origins. 0x60c-0x60f are sent with whatever the record holds there, which no kernel code sets. Basis: the sources above. What the board does with them: **unknown**, and the same swap-time FIFO capture in `docs/display.md` would show the values sent.
+- **established.** `odsyPushBufferSelect` (`odsy_drawable.o` .text 0x744-0xa2b) is called by `gfP_OdsySetDrawBuffer` with the 4-byte draw-buffer mask the caller sends (stored at *R* + 568). It computes a 4-bit buffer select from the mask, stores it with four context words into shadow memory, sends the settle sequence, block 0x024 (`0x10424`) with the select, the settle sequence again, and then only the 0x608 and 0x609 writes. The select is the mask unchanged when there is no draw drawable object or its halfword 18 is zero. When that halfword is nonzero, the two bit pairs are exchanged (select bits 1:0 from mask bits 3:2, bits 3:2 from mask bits 1:0). When the draw object's word 32 has any of bits 13:10 set, the select is 12 if any mask bit is set and 0 otherwise.
 
 ## Pass 10: sender catalogue, image paths, ioctl argument sizes and texture memory
 
@@ -142,11 +187,51 @@ This is the by-file view of the senders the earlier passes found by function; th
 | 49 | `DIAGgetShadowPtrs` | 80 | 80 |
 | 51 | `PerfStat` | 24 | 24 |
 
-The generic resource-manager ioctls 1000 to 1025 take 4 to 64 bytes (`docs/display.md` pass 10). Field layouts: most are **unknown** here; known layouts are in the sections of `docs/display.md`, `docs/kernel.md` and `docs/buzz.md` that name each call (the cursor request, the timing structure, the performance-statistics argument, the DMA transfer and the swap request). For the memory-manager calls: `MMalloc` copies in 72 bytes and uses word 1 (a set id, -1 meaning none), a halfword at +8 below 16 (the object type), bytes at +12 and +13, and words at +16, +20, +24, +28, +32 and +36 as the description it compares with an existing object of that type before creating one (`odsy_mm_obj_new`); **established**. What each description field is (dimensions, format, level count): **unknown, needs a capture** (the 72-byte argument of one texture allocation of a known size and format).
+The generic resource-manager ioctls 1000 to 1025 take 4 to 64 bytes (`docs/display.md` pass 10). Field layouts: most are **unknown** here; known layouts are in the sections of `docs/display.md`, `docs/kernel.md` and `docs/buzz.md` that name each call (the cursor request, the timing structure, the performance-statistics argument, the DMA transfer and the swap request). For the memory-manager calls: `MMalloc` copies in 72 bytes and uses word 1 (a set id, -1 meaning none), a halfword at +8 below 16 (the object type), bytes at +12 and +13, and words at +16, +20, +24, +28, +32 and +36 as the description it compares with an existing object of that type before creating one (`odsy_mm_obj_new`); **established**. The fields, **established** from the libGLcore sender `__glOdysseyCreatePMObj` (`ody_pmobj.s`, N32 0x0d9c67f0-0x0d9c69ec), the kernel's `odsy_mm_obj_new` and the texture caller `AllocateGfxMemForTexture` (`ody_texture.s`, N32 0x0d9d03b0-0x0d9d089f):
+
+| Offset | Going in | Coming out |
+|---|---|---|
+| 0 | -1 | |
+| 4 | group (set) id, -1 for a new group | the group id assigned |
+| 8 | halfword object type (the caller's fourth argument; 0 from every caller read) | |
+| 12-51 | a 40-byte description, copied word for word from the caller | |
+| 52 | 0 | flag word; bit 1 means the value at 56 is valid |
+| 56 | | doubleword stored into the group's entry selected by the halfword at 64 |
+| 64 | | halfword entry index |
+
+`odsy_mm_obj_new` copies description bytes 0-3 into object bytes 16-19, words 4, 8 and 12 into object words 20, 24 and 28, words 16, 20 and 24 into 32, 36 and 40, word 28 into 44 and word 32 into 48. For a texture level, `AllocateGfxMemForTexture` fills the description as:
+
+| Description offset | Texture value |
+|---|---|
+| byte 0 | 4 for the detail texture target (0x8095), 20 for every other target |
+| byte 1 | element size, `2 << c` where c is the size code `CalcTexelSizes` returns |
+| 4, 8, 12 | `(16 - b) & 15` for the border width b of each axis: the image's offset within its first 16-texel tile, 0 with no border |
+| 16, 20, 24 | width, height and depth in texels, border included |
+| 28 | width in 16-texel tiles: twice the border plus the interior width over 16 rounded up, then rounded up to even |
+| 32 | tile count: the width in tiles times the height in tiles (computed the same way), scaled by a power of two from `__glOdysseyImageLogBase2` when the depth is 2 or more |
+
+The colour-table caller (`ody_lut.s`) sends byte 0 = 6, byte 1 = 8, width 256, height 16, depth 1. The accumulation caller (`ody_accumop.s`) sends byte 0 = 6 and byte 1 = 8 with sizes from the window. **inferred** that byte 0 is a kind code the kernel uses to choose the free list (`odsy_mm_reserve_texture`, the detail and image texture lists).
 
 ### Texture level records and memory
 
-**established** from `__glOdysseyTextureActivate` and `docs/buzz.md` section 9: a texture object keeps a 16-word array of per-level memory values at object offset 1300 and a 68-byte record per level from offset 1364 (record offset 0 and 4 feed the level descriptor's top bits, record offset 28 holds the level's width in texels). Texture memory itself is allocated by `MMalloc` above (the kernel's memory manager keeps an object per texture level group), made resident by `MMmakeResident` and filled by `MMxfr` transfers. The record's other fields and the allocation arguments: **unknown, needs a capture** (named above and in `docs/buzz.md` section 9).
+**established** from `__glOdysseyTextureActivate` and `docs/buzz.md` section 9: a texture object keeps a 16-word array of per-level memory values at object offset 1300 and a 68-byte record per level from offset 1364 (record offset 0 and 4 feed the level descriptor's top bits, record offset 28 holds the level's width in texels). Texture memory itself is allocated by `MMalloc` above (the kernel's memory manager keeps an object per texture level group), made resident by `MMmakeResident` and filled by `MMxfr` transfers.
+
+**established**, the record's fields as `AllocateGfxMemForTexture` stores them (`ody_texture.s`, N32 0x0d9d03b0-0x0d9d089f, the stores at offsets 1364-1428 of the texture object plus 68 times the level):
+
+| Record offset | Content |
+|---|---|
+| 0 | the board texture format chosen by `ChooseSuitableBuzzTexObjFormat` for the internal format |
+| 4 | the element-size code from `CalcTexelSizes` (the `c` of the description above) |
+| 8 | `CalcPixelModePixelFormat` of that code |
+| 12 | width in 16-texel tiles (description word 28) |
+| 16 | tile count (description word 32) |
+| 20 | not stored here; the routine compares it across levels to find levels already in one group (the memory value of the per-level array) |
+| 24 | the internal format argument |
+| 28, 32, 36 | width, height and depth in texels |
+| 40 | border width |
+| 44-64 | six further words returned by `CalcTexelSizes` |
+
+What the board makes of each format code is the hardware question; the codes and where they go are not.
 
 ### The 20-byte shadow descriptors
 
@@ -174,4 +259,4 @@ The generic resource-manager ioctls 1000 to 1025 take 4 to 64 bytes (`docs/displ
 | 46 | element count from bits 28:24 of word 0 (15 gives the single value 1, 16 gives 0, other counts the descriptor's words) |
 | 21, 25, 29, 47 to 58 | no loads; the descriptor's words are returned with count code 5 (four values) |
 
-**inferred** that the colour forms convert signed and unsigned integer colour state to the floats that glGet returns, with the three scale words being per-channel-group colour scales kept in the hardware-state area (`docs/opengl.md` make-current). Which GL query uses which descriptor lives in the context's initialisation tables, which this pass did not read; they are host software, not a hardware interface, and **unknown** here.
+**inferred** that the colour forms convert signed and unsigned integer colour state to the floats that glGet returns, with the three scale words being per-channel-group colour scales kept in the hardware-state area (`docs/opengl.md` make-current). Which GL query uses which descriptor is **established** from the callers. `__glOdysseyDoGet` (`ody_get.s`, N32 0x0d986380-0x0d986bf3) calls `__glOdyGetFromShadow` (0x0d986300-0x0d98637f) with slot 0 for `GL_CURRENT_INDEX` (0x0b01), 1 for `GL_CURRENT_COLOR` (0x0b00), 2 for `GL_CURRENT_NORMAL` (0x0b02), 4 for `GL_CURRENT_TEXTURE_COORDS` (0x0b03) and 6 for `GL_EDGE_FLAG` (0x0b43). `__glOdysseyUpdateRasterPos` (0x0d986d00-0x0d986dcb) reads the board with selector 3 and decodes slot 2 or 3 (by the context byte at 3220) into context +384, then slot 4 into context +288. The slot table starts at the pointer held at context +0x16d24, the shared buffer whose word 124 is the read-back sequence number (`docs/buzz.md` section 4); slot 6 therefore overlaps that word. `__glOdysseyInitKernel` (`ody_pmobj.s`, N32 0x0d9c63c0-0x0d9c664f) takes the pointer from the reply of `MMattach` (ioctl `0x6f640000`, reply doubleword at offset 40) and stores the pointer minus 2304 at context +27944, so the table follows a 2304-byte area, the size of the saved record that the kernel's `odsyResetHwShadow` clears. No libGLcore code stores into the table: the pointer is loaded in four places (`__glOdyGetFromHardware`, `__glOdyGetFromShadow`, `__glOdysseyUpdateRasterPos` and one routine in `ody_eval.s`), and each only reads through it. **inferred** that the kernel or the board fills it. Who writes the descriptors, and their values, are **unknown, needs a capture**: a dump of the first 140 bytes of the buffer after one glGet of each of the five names.

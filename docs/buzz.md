@@ -143,7 +143,7 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 
 - **established.** `__glOdysseyGetHardwareShadow` (`ody_unixcontext.s`) issues ioctl `0x6f64000c` on the device descriptor. **inferred** from the name that the kernel side is `gfP_OdsySaveHwShadow`; the ioctl switch was not traced.
 - **established.** `__glOdyGetFromShadow` calls `__glOdyGetFromHardware` (above) and then `__glOdyDecodeShadowFormat` on a table of 20-byte descriptors (index times 20 from a context pointer at `0x16d24`), which is how glGet reads state that exists only on the board. The descriptor layout is **established** in `docs/opengl.md` ("The 20-byte shadow descriptors").
-- **unknown.** What libGLcore does at make-current and lose-current with respect to the board's saved state (`MakeCurrent`, `LoseCurrent`, `__glOdysseyDriverMakeCurrent` not read), and the IP35 diff of `odsy_ctxsw`.
+- Make-current and lose-current were read in a later pass (`docs/opengl.md`, make-current and lose-current), and the IP35 `odsy_ctxsw` diff is in section 7 below.
 
 ### Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
 
@@ -409,7 +409,7 @@ Release IRIX 6.5.30m, IP30 kernel objects and the N32 libGLcore unless named. Ea
 | 1 | bits 11:0 from the level's width in 16-texel units, `(w + 15) >> 4`, rounded up to even (when that value is 4096 the field is cleared and bit 0 is set instead); bits 25:20 from a per-level field at offset 1364 of the texture object's 68-byte per-level record; bits 31:30 from the field at offset 1368 of the same record; other bits kept |
 | 2 | not written by this routine |
 
-The rounding to an even tile count and the 16-texel unit are **established** as arithmetic; that word 0 is a board-memory address of the level (the object's per-level value comes from a memory-object reference opened just before) and that word 1 holds a pitch in tiles are **inferred**. The record fields behind bits 25:20 and 31:30, and word 2, are **unknown, needs a hardware capture** (the block 0x280 + i operands of a command stream for a known mipmapped texture, to be matched with the texture's size and format).
+The rounding to an even tile count and the 16-texel unit are **established** as arithmetic; that word 0 is a board-memory address of the level (the object's per-level value comes from a memory-object reference opened just before) and that word 1 holds a pitch in tiles are **inferred**. The record fields behind bits 25:20 and 31:30 are **established** from `AllocateGfxMemForTexture` (`ody_texture.s`, N32 0x0d9d03b0-0x0d9d089f), which fills the per-level record (`docs/opengl.md`, texture level records): record offset 0 (bits 25:20) is the texel format index that `ChooseSuitableBuzzTexObjFormat` returns (`BUZZ.h` section 3, 0 to 49, so six bits hold it), and record offset 4 (bits 31:30) is the storage class `CalcTexelSizes` returns (0, 1 or 2, the `c` of the allocation's element size `2 << c`). **established** that word 2 has no writer in libGLcore: the only constant-displacement accesses to the level descriptors (`__glOdysseyTextureActivate`, `ody_texture.s` 0x0d9d1f90-0x0d9d2537, the stores at 31968 and 31972; and the loads at 31968-31988 in `ody_context.s` that send them) store words 0 and 1 and only load word 2. So word 2 is sent as whatever the context holds at that place. What the board does with each field: **unknown**. The capture that settles it is the block 0x280 + i operands, matched with the rendered result, for one texture of each storage class.
 
 ### The windows at board +0x100000, +0x120000 and +0x200000
 
