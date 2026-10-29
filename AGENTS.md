@@ -18,7 +18,7 @@ Facts in this file are labelled **established** (read directly from a binary, wi
 ### Major ASIC and block roles
 
 - **BUZZ**: the graphics ASIC named in the board inventory. A transform program, `buzz_xform.bin`, is uploaded by the driver. Internal role and registers: unknown.
-- **PB&J**: a second ASIC named in the board inventory (version 1). Role: unknown.
+- **PB&J**: a second chip named in the board inventory. Inferred to be the display back end behind the display FIFO; see `PBJ.h`.
 - **Board memory**: bank count and timing are reported in the inventory. Organisation and addressing: unknown.
 - **Display output**: single- and dual-channel options. Output hardware and timing: unknown.
 
@@ -55,7 +55,7 @@ Planned headers (none written yet; `docs/coverage.md` tracks each):
 
 1. **`ODSY.h`**: overall address map, board identification, configurations and common types.
 2. **`BUZZ.h`**: the graphics ASIC: registers, command and FIFO formats, texture and raster state, transform program interface.
-3. **`PBJ.h`**: the second ASIC.
+3. **`PBJ.h`**: the second chip, the display back end.
 4. **`DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout.
 
 [docs/coverage.md](docs/coverage.md) is the map of what is written and what is missing, with the open problems in priority order. Prose that does not fit a header goes in `docs/` chapters.

@@ -1,0 +1,31 @@
+# PB&J notes
+
+Companion to `PBJ.h`. Labels: **established** (read from a binary, with where), **inferred** (reasoned, with the reasoning), **unknown**. IRIX 6.5.30m, IP30 kernel objects unless IP35 is named; `usr/gfx/gfxinit` (N32, stripped, from the same install).
+
+## How the chip was identified
+
+1. **established.** No kernel object, `odyssey.so`, `Xsgi` or libGLcore contains the string "PB&J" or "PBJ". The only binary in `root/` that does is `usr/gfx/gfxinit`, at file offset 0x228c8 (`"\tPB&J version %d\n"`), next to `"\tBUZZ version "`, the memory size and the SDRAM bank and CAS-latency lines.
+2. **established.** The gfxinit routine at VA 0x1000e03c prints those lines from a structure: "BUZZ version" then a letter chosen by word 80 (0 `A`, 1 `B`, 2 `N`), then `.%d` of word 64 minus 1; "PB&J version %d" from word 68; memory from word 52; banks and CAS latency from words 60 and 56; "Dual Channel Display option" when the halfword at 98 is 3.
+3. **established.** The kernel side of that structure is `gf_OdsyInfo` (`odsy.o`), which copies at most 588 bytes from board record +200. Record +252, +256, +260, +264 and +280 are the size, CAS latency, banks, BUZZ revision and variant flag that `docs/board.md` traced in `odsyGatherInfo`, so the gfxinit words line up with them at record offset = word + 200. Word 68 is record +268, which `odsyGatherInfo` sets to bits 2:0 of the word at board PIO +0x23380c.
+4. **established.** Board PIO +0x220000 + 8 * a + 4 returns display address a (the read-back test in `PBJ.h` section 2). +0x23380c is display address 0x2701.
+5. **inferred.** PB&J is the chip behind the display FIFO: its version sits in that address space, among the timing generator, colour maps, cursor, display modes and I2C controllers, while BUZZ's revision is BUZZ's own PIO register +0x04. The kernel names that side the DBE (`odsyInitDBE`, flag `DBE_OFLOW_INTR`). Nothing ties the strings "PB&J" and "DBE" together directly.
+
+## Method for the address list
+
+- **established.** Every 64-bit `.lit8` constant in every IP30 and IP35 `odsy*.o` whose high word decodes as a display-FIFO header (type 3 or 7, address 0x2000 and up) was listed; the two hosts use the same set: 0x2481-0x2483, 0x2580, 0x2581, 0x2600, 0x2680, 0x26c0, 0x2700, 0x27c0-0x27cc, 0x2800-0x2807, 0x2809, 0x2929-0x292c, 0x2b00. Headers built in registers add the colour map (index << 14), the display-mode table (0x2900 + id), the cursor image and colour blocks, the line and frame tables, and the I2C register pairs.
+- **established.** A base-register scan of the IP30 disassembly (loads of the PIO base from record +824, followed through constant adds) lists every read of the window: 0x232414, 0x23241c (`odsyInitDBE`), 0x233604 (`odsyBlankScreen`, `odsySetDACGain`), 0x233804 (`odsyLoadTimingTable`, `odsy_i2cProbe2b`, the Denali read and write), 0x23380c (`odsyGatherInfo`, `odsyInitDBE`), 0x233e64 and 0x233e6c (`odsyGenlockInterrupt`), plus the I2C routines' computed addresses. The IP35 scan gives the same list.
+- The scan follows a base only within straight-line code and misses bases passed in as arguments (the textport's `odsy_mapcolor`), so the list is complete for constant offsets only.
+
+## Genlock clock values
+
+`odsyGenlockInterrupt` names its two branches in its error messages ("(lost)" and "(got)") and the clock registers it writes ("pll_input_control", "pll_osc_div", "ami_pll_0x1".."0x6", "gen_ami_pll_0x1".."0x6"). `PBJ.h` section 5 gives the sequence. The values are not constants: they come from the timing structure the X server loads (`docs/display.md`), words 132-152 for free running and 236-248 for genlock, so the clock part's PLL settings for each video format live in the `.vfo` files, not in the kernel. For the part at I2C address 0x26 the driver itself sets register 0 to 0x01 (lost) or 0x11 (got) and toggles bit 7 of register 7. **established.**
+
+The register names in `odsyLoadTimingTable`'s messages for the 0x26 part are DPA Control, DPA Offset, FdBkDiv0, FdBkDiv1, Input Control, Loop Control, OscDiv and Output Enable, and the genlock code fixes two of them by number (0 Input Control, 7 OscDiv). Which number carries each of the other six: **unknown** (the order of the messages suggests 5, 4, 2, 3, 0, 1, 7, 6 as in the write order, which agrees with the two known ones, but the error paths were not tied one by one).
+
+## Open questions
+
+- What PB&J stands for and whether it is a single chip: **unknown**.
+- How PB&J reads pixels: no host-visible DMA; the scanout base and pitch registers (0x2800, 0x2801, 0x2807, 0x2809) name BUZZ memory locations in tile units. The link between the two chips: **unknown**.
+- Reset: the board-level reset (`odsyLowLevelReset`, `docs/kernel.md`) is the only reset; no PB&J-specific reset register was found. `odsyInitDBE` starts by writing 0x2b00 = 0 five times, which may be a reset or a flush of that register's function: **unknown**.
+- Bits of 0x2482, 0x2483, 0x2600, 0x2680, 0x27c0-0x27cb, 0x2b00 beyond what `PBJ.h` names: **unknown**.
+- Whether the I2C registers return data in both halves of the read slot: **unknown**.

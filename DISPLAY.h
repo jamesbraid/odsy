@@ -223,6 +223,9 @@
                                          40..84 */
 #define VTG_REG_27CC           0x27cc /* struct word 88; 0 while the
                                          clock is reprogrammed */
+/* odsyConfigFb and odsyInitDBE also write 0x2802 and 0x2803 with 0,
+ * so the active-size names below are one reading; a pan offset fits
+ * the writes as well (PBJ.h section 6). */
 #define VTG_ACTIVE_PIXELS      0x2802 /* struct word 176 (inferred name:
                                          1280 in the 1280x1024 timings) */
 #define VTG_ACTIVE_LINES       0x2803 /* struct word 180 (inferred name) */

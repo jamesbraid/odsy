@@ -36,15 +36,15 @@ Graphics ASIC named in the board inventory: command intake, rasterisation, textu
 
 ### PB&J
 
-Second ASIC named in the board inventory (version 1): role unknown.
+Second chip named in the board inventory (gfxinit prints "PB&J version" from bits 2:0 of display address 0x2701). Inferred to be the display back end the display FIFO feeds (`PBJ.h` section 1).
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `PBJ.h`, `docs/pb&j.md` | direct XIO interface |  |
-| Command and FIFO formats | none | `PBJ.h`, `docs/pb&j.md` | direct XIO interface |  |
-| DMA | none | `PBJ.h`, `docs/pb&j.md` | direct XIO interface |  |
-| Interrupts | none | `PBJ.h`, `docs/pb&j.md` | direct XIO interface |  |
-| Reset | none | `PBJ.h`, `docs/pb&j.md` | direct XIO interface |  |
+| Registers and fields | partial | `PBJ.h`, `docs/pbj.md` | direct XIO interface | Pass 7: identification, the 14-bit display address space with its read-back window (board +0x220000 + 8a + 4), the address list from every kernel header, identification word 0x2701, I2C register pairs, blanking and DAC bits, scanout base, pitch and depth registers (`PBJ.h` sections 1-4, 6). Missing: most bit fields, top of the colour map, 0x2600/0x2680/0x27c0-0x27cb/0x2b00 |
+| Command and FIFO formats | partial | `PBJ.h`, `docs/pbj.md` | direct XIO interface | Pass 7: the display FIFO as a 32-bit word stream with multi-word headers packed two words per doubleword (setColors, timing tables); type 3 against type 7 uses, with a weak inferred vertical-blank reading (`PBJ.h` section 2). Missing: confirmation of type 7, other type values, FIFO depth |
+| DMA | partial | `PBJ.h`, `docs/pbj.md` | direct XIO interface | Pass 7: negative result, no kernel path moves data to or from PB&J except by PIO; scanout source registers only (`PBJ.h` section 7). Missing: how PB&J fetches pixels from BUZZ memory |
+| Interrupts | partial | `PBJ.h`, `docs/pbj.md` | direct XIO interface | Pass 7: genlock handler decoded with its status and control registers 0x27cd/0x27cc and the lost/got clock programming; the flags bits that concern the display (`PBJ.h` sections 5, 7). Missing: what raises GEN_LOCK, DBE_OFLOW and retrace on the chip |
+| Reset | partial | `PBJ.h`, `docs/pbj.md` | direct XIO interface | Pass 7: odsyInitDBE start-up order and odsyConfigFb's scanout writes (`PBJ.h` section 6). Missing: any PB&J-specific reset, meaning of the 0x2b00 writes and of 0x2700 = 0x6d3e0 |
 
 ### Board memory
 
@@ -63,7 +63,7 @@ Display channels, colour formats, cursor and scanout (single and dual channel).
 |---|---|---|---|---|
 | Registers and fields | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | Display-mode table address and colour-map entry format written |
 | Command and FIFO formats | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | Pass 6 (`docs/display.md`, cursor section): the cursor request and its display-FIFO words (position 0x2580, control 0x2581, image 0x2500 and 0x25c0, colours 0x2590) with the X module's 32 x 32 buffer and colour packing. Missing: image pixel encoding, control word bits, overlay planes (dead end, see doc) |
-| Interrupts | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | Pass 6: retrace interrupt is source 3 of five; its handler reads +0x10d4 and drives per-slot swap registers +0x10b4/+0x10bc/+0x10c4/+0x10cc (`docs/buzz.md` section 6). Missing: what raises it, genlock handler, register semantics |
+| Interrupts | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | Pass 6: retrace interrupt is source 3 of five; its handler reads +0x10d4 and drives per-slot swap registers +0x10b4/+0x10bc/+0x10c4/+0x10cc (`docs/buzz.md` section 6). Pass 7: genlock handler in `PBJ.h` section 5. Missing: what raises it, register semantics |
 | Display and scanout | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | display-mode word with visual-format bits reported by prior work. Written: display FIFO word, mode table constants from odyssey.so, field split, X pixel encoding for 12/15-bit TrueColor; narrow reading confirmed as inferred (top N bits widened before the shared gamma map). Pass 2: id-to-depth binding from odsyVisuals/odsyVisualPrivs; the X module's pixel-to-RGB conversion repeats top bits. Pass 4 (timing, `docs/display.md`): the `.vfo` container and field names, the 320-byte kernel timing structure and the two built-in timings, the load and VTG-control entry points. Pass 5 (`docs/display.md`): 320-byte structure fields tied to display-FIFO addresses and clock registers through `odsyLoadTimingTable`; frame table format and line-table packing and addresses; `.vfo` offsets of the geometry and clock values. Pass 6 (`docs/display.md`, line-table structure): end bit and trailer, the types' mapping to vertical sync, back porch, active and front porch checked on both built-in timings, entry duration rule with its counter-evidence, bit 13 candidate. Missing: hardware confirmation of repeat versus scale, bits 23:12 and 3:0, the low-byte bits and the event entries' meaning, the unread structure words and branches, `.vfo` to structure conversion in the X module, retrace and genlock handlers, `odsy_dvi` (IP35) |
 
 ### Kernel driver
@@ -75,7 +75,7 @@ The IP30 kernel graphics driver and resource manager: attach, ioctls, context an
 | Registers and fields | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Board record offsets used by the flow, display-mode and textport paths written |
 | Command and FIFO formats | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Kernel textport and flow-control paths written in `BUZZ.h` section 5 |
 | DMA | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Kernel DMA kick and page list written in `BUZZ.h` (pass 3). Missing: region record layout, odsyDMAWait/Done/Finish, diagnostic DMA (gfP_OdsyDIAGdma) |
-| Interrupts | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | High- and low-water handlers written. Pass 3: odsyFlagInterrupt, odsyXtErrorInterrupt and the start-up enable mask written in `BUZZ.h`. Pass 6: odsyDmaInterrupt, odsySsyncInterrupt, odsyDMAWakeup, odsyDMAIrptWakeup and odsyRetraceHandler bodies written (`docs/buzz.md` section 6). Missing: odsyGenlockInterrupt PLL values, odsy_teardown, rrm retrace callbacks |
+| Interrupts | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | High- and low-water handlers written. Pass 3: odsyFlagInterrupt, odsyXtErrorInterrupt and the start-up enable mask written in `BUZZ.h`. Pass 6: odsyDmaInterrupt, odsySsyncInterrupt, odsyDMAWakeup, odsyDMAIrptWakeup and odsyRetraceHandler bodies written (`docs/buzz.md` section 6). Pass 7: odsyGenlockInterrupt decoded, its clock values come from the timing structure (`PBJ.h` section 5). Missing: odsy_teardown, rrm retrace callbacks |
 | Reset | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Pass 6: attach and probe (`docs/kernel.md`), odsyReset order of operations including the register zeroing list and the 0x1004 and 0x100c writes. Missing: bit meanings of 0x100c, 0x4014, 0x4044, host-chip widget words, odsyInitDBE, gf_OdsyInitialize/Start, IP35 diff |
 | Context save and restore | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Save and switch protocol written in `BUZZ.h` and `docs/buzz.md` section 4 (pass 4). Pass 5: walker vertex selection and the record offsets they read. Missing: full record layout, `odsyRestoreXform` |
 
