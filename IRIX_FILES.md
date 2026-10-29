@@ -13,11 +13,9 @@ Two releases matter:
 - **IRIX 6.5.30** is the primary release. Every path in section 1 was checked
   against an installed 6.5.30m Octane2 with a VPro (V12) board. Which of its binaries carry
   DWARF is in the table in `AGENTS.md`.
-- **Earlier releases.** IRIX 6.5.0 has no VPro. Which release first ships the
-  VPro files is **unknown**. It may not matter: 6.5.30m already carries DWARF
-  in the Odyssey kernel objects, the N32 and 64-bit `libGLcore.so` and the
-  IrisGL libraries; only the X modules and the o32 `libGLcore.so` are stripped.
-  If you check another release, record what `scripts/map_binaries.py` shows.
+- **Earlier releases.** IRIX 6.5.0 has no VPro. The first release with the
+  VPro files is 6.5.8. No release has richer debug information than 6.5.30m:
+  section 5 has the survey.
 
 ## 1. IRIX 6.5.30 (primary)
 
@@ -106,3 +104,24 @@ ddx/Xsgi root/usr/gfx/arch/GENERIC/Xsgi
 ucode/ODSY root/usr/gfx/ucode/ODSY
 firmware/IP30prom.bin root/usr/cpu/firmware/IP30prom.bin
 ```
+
+## 5. Debug information by release
+
+Checked on the retail discs: the overlay discs of every 6.5.x release from 6.5.2 to 6.5.30,
+and the Octane2 VPro Patches disc. No release ships DWARF with types or struct members for
+this board. Every unstripped file carries compile units, function and variable names and
+line tables only (`dwarfdump -i` shows no structure, member or typedef entries), and the
+o32 `.mdebug` table holds procedures and line numbers with no member or typedef symbols.
+
+First release with each file: `odyssey.a` and `libGLcore.so` for IP30 (Octane2) in 6.5.8;
+the IP35 (Origin 350) `odyssey.a` and `libGLcore.so` in 6.5.14. 6.5.0 to 6.5.7 have none.
+
+| Files | Debug level | Best release |
+|---|---|---|
+| `odyssey.a` members (IP30, IP35), `gfx.o` | DWARF with names and lines | 6.5.30 |
+| `libGLcore.so` N32 and 64-bit | DWARF with names and lines | 6.5.30 |
+| `libGLcore.so` o32 | `.mdebug` names and lines | 6.5.30 |
+| `odyssey.so`, `glx.so`, `Xsgi` | stripped to `.dynsym` in every release | none |
+
+Types have to come from headers, the ucode and the RE notes. 6.5.30 is the latest build;
+6.5.8 is the earliest VPro build and is only useful for diffing.
