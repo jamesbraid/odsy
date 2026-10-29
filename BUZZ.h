@@ -387,6 +387,26 @@
  * and the table sits between the 0x7fe4 table and the detail table, so it
  * may be an unused sibling of the detail table: inferred, weak.
  *
+ * Pass 7. The kernel resends the table on a context restore
+ * (odsyRestoreRaster, sixteen 0x00013e30 | i words from hardware-shadow
+ * offset 0x86c), so the board's context state includes it. The shadow is
+ * the libGLcore context from offset 0x7b78 on: every shadow offset the
+ * restore reads equals a context offset above minus 0x7b78 (0x46c, 0x86c,
+ * 0xc6c, 0x1204 and 0x1604 for the five tables at 0x7fe4, 0x83e4, 0x87e4,
+ * 0x8d7c, 0x917c; 0x1170/0x1174 for the post-filter mode and words at
+ * 0x8ce8/0x8cec), and libGLcore puts context + 0x7b78 in the argument
+ * of its first private ioctl, 0x6f640000 (gfP_OdsyMMattach), in
+ * __glOdysseyInitKernel (ody_pmobj.c). established. So the
+ * table the board receives is whatever the context holds at 0x83e4, which
+ * no libGLcore code writes. Candidate use, inferred and weak: the
+ * function table of GL_SGIS_sharpen_texture. It has the same (LOD,
+ * weight) shape as the detail function that 0x240-0x24f carries, the
+ * texture setters reject the sharpen filters, and libGLcore has an
+ * Odyssey entry for glDetailTexFuncSGIS (__glOdyim_DetailTexFuncSGIS)
+ * but only the generic ones for glSharpenTexFuncSGIS (__glce_, __gllc_,
+ * __glle_), so a sharpen table would have no Odyssey writer. Nothing
+ * names the table.
+ *
  * The 0x200-0x21f pair are written by the image-processing code
  * (ody_image_api.c copies into context 0x8d7c; ody_image_chain.c at
  * line 2056 builds the same address). What they hold (a lookup table

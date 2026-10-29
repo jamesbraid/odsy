@@ -300,3 +300,22 @@ The full set of blocks the board holds as context state is what the kernel repla
 - **established.** The 0x028-0x02b / 0x03a / 0x038 choice is a new instance of the three-layout pattern of the post-filter blocks: one shadow region (0x1070-0x116f, 64 words) goes out as four 16-word blocks, one 16-word block or one 4-word block. libGLcore sends 0x00013c28-0x00013c2b, 0x0001103a and 0x00013c38 only from `ody_context.s` (`__glOdysseyValidateHardware`). What these blocks hold: **unknown**; their size (a 4 x 4 matrix per block, or four 16-entry sets) is the only clue.
 - **established.** Every block id the kernel replays is below 0x060 apart from the tables (0x200-0x24f), the level descriptors (0x280+) and 0x258 (`0x00010658` with one operand, the last word of the routine). A scan of `lui 1` / `ori` command words in libGLcore, the X module and the kernel finds no class-1 id between 0x060 and 0x1ff that is stored to the FIFO; the libGLcore hits in that range are context offsets, not command words (checked by their use as load and store displacements). So the raster state the board holds as context is the set above. **inferred**, because the scan relies on the immediate form.
 - **unknown.** Field layouts of the blocks with no "Known from" entry, and the meaning of the shadow record outside these offsets.
+
+### Attribute word defaults (`odsyResetHwShadow`)
+
+**established.** `odsyResetHwShadow` (`odsy_ctxsw.o`) clears 0x900 bytes of the vertex shadow and stores one default attribute word per slot (`BUZZ_ATTR_WORD` layout, `BUZZ.h` section 1). Slot is bits 31:24 (0x80 for position, 0xc0 | slot otherwise); the opcode is bits 9:0; the count bits 13:10.
+
+| Slot | Default word | Opcode | Count | Note |
+|---|---|---|---|---|
+| 0 (position) | 0x8080c800 | 0x00 | 2 | Vertex2 integer |
+| 1 | 0xc180cc18 | 0x18 | 3 | a Normal3 form (0x16-0x19 are Normal3) |
+| 2 | 0xc280cc1c | 0x1c | 3 | |
+| 3 | 0xc380c41e | 0x1e | 1 | TexCoord1 integer |
+| 4 | 0xc480c426 | 0x26 | 1 | |
+| 5 | 0xc580cc0d | 0x0d | 3 | Color3 (0x08-0x0e), the int form |
+| 6-9 | 0xc680d02f .. 0xc980d032 | 0x2f-0x32 | 4 | the clipped-vertex senders' forms |
+| 10-13 | 0xca80d035 .. 0xcd80d038 | 0x35-0x38 | 4 | as above |
+| 14 | 0xce80c406 | 0x06 | 1 | Index |
+| 16 | 0xd080c433, 0xd080cc34, 0xd080c439, 0xd080cc3a | 0x33, 0x34, 0x39, 0x3a | 1, 3, 1, 3 | four words for one slot |
+
+The word `0x3000c02e` (sequencer register 0x30 form, `ucode/buzz_isa.md`) is stored beside them. So opcodes 0x1c (slot 2, three components), 0x26 (slot 4, one component) and the slot-16 family 0x33/0x34/0x39/0x3a exist as board-visible defaults; what attributes slots 2, 4 and 16 carry: **unknown** (slot 2 with three components and slot 4 with one are consistent with a secondary colour and a fog coordinate, but nothing names them).
