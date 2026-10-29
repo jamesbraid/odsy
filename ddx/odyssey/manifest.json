@@ -1,0 +1,18 @@
+{
+  "target": "ddx/odyssey.so",
+  "total_funcs": 1000,
+  "total_objects": 147,
+  "modules": {
+    "al": 26,
+    "cfb": 218,
+    "mfb": 59,
+    "mi": 166,
+    "misc": 25,
+    "nfb": 170,
+    "odsy": 157,
+    "other": 134,
+    "rrm": 24,
+    "vfmt": 13,
+    "xdr": 8
+  }
+}
