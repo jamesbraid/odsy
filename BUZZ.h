@@ -65,6 +65,21 @@
  */
 #define BUZZ_WORD_VERTEX_XY        0x8080c800u /* + x, y: established operand
                                                   count in odsy_sboxfi */
+/*
+ * Per-vertex words (pass 2). The immediate-mode entry points in
+ * libGLcore emit one fixed word per call, followed by its components:
+ *   0x8080c800  Vertex2i/2s       0x8080cc03  Vertex3f/3d
+ *   0x8080d005  four floats (clipped-vertex senders)
+ *   0xc380c41e  TexCoord1i/1s     0xc380c820  TexCoord2i/2s
+ *   0xc580cc08  Color3ub          0xc580c406  Indexi/s/ub
+ *   0xc180cc19  three words from the clipped-vertex senders
+ * established: __glOdylc_* functions and the CISend / RGBSend senders.
+ * inferred structure: bits 31:24 name the attribute (0x80 position,
+ * 0xc1, 0xc3 texture coordinate, 0xc5 colour or index), bit 23 and
+ * bits 15:14 are set on every such word, bits 13:10 count the
+ * components that follow, and bit 0 of the low field separates integer
+ * (0) from float (1) forms (0x8080c800/c801, cc02/cc03, d004/d005;
+ * 0xc380c41e/c41f, c820/c821 all occur). */
 
 /* ===================================================================
  * 2. Texture state
@@ -250,8 +265,14 @@
  * cleared on every write; bits 11:0 are preserved (another table shares
  * the entry; unknown). established: __glOdysseyTextureSetDetailTable
  * (0x0d9d8590, constant 0.03125 at _lit8_3fa0000000000000) and
- * SetDetailEntry (0x0d9d84c0). Register id carrying the table: unknown
- * (it is copied with the texture state at line 2492, 256 words). */
+ * SetDetailEntry (0x0d9d84c0).
+ * Transport: sixteen class-1 words 0x00013e40 + j (j = 0..15), each
+ * followed by 16 entries, i.e. register ids 0x240-0x24f with COUNT 15,
+ * sent when context dirty bit 0x00100000 is set. A second 256-word table
+ * goes the same way through ids 0x230-0x23f (dirty bit 0x00080000);
+ * which table it is: unknown. established: __glOdysseyValidateHardware
+ * (loops at VA 0x0d9686e0 and 0x0d968780). */
+#define BUZZ_REG_DETAIL(j)         (0x240 + (j)) /* established, j < 16 */
 #define BUZZ_DETAIL_ENTRIES        256
 #define BUZZ_DETAIL_LOD_STEP_DEN   32 /* entry i <-> LOD -i/32 */
 #define BUZZ_DETAIL_WEIGHT_SHIFT   12
@@ -343,9 +364,22 @@
  * How a 64-bit store splits into two words: inferred high word first,
  * from big-endian order; unknown on the board. */
 #define ODSY_CFIFO_PORT            0x110000
-/* User command FIFO: libGLcore stores to virtual 0x10000, see
- * libglcore/include/glcore_odsy.h. Which board window backs that
- * mapping: unknown (gf_OdsyMapGfx not yet read). */
+/* User mappings. gf_OdsyMapGfx (odsy_map.o) maps board windows into a
+ * client in 16 KB pages, offsets relative to the client's mapping base:
+ *   +0x00000  board+0x100000  1 page   (mode 0)
+ *   +0x04000  board+0x120000  1 page   (mode 2)
+ * and only when bit 0x20 of the gfx structure's word 4 is set:
+ *   +0x08000  board+0x000000  2 pages  (mode 2)
+ *   +0x10000  board+0x110000  1 page   (mode 0)   the command FIFO port
+ *   +0x14000  board+0x118000  1 page   (mode 2)
+ *   +0x18000  board+0x200000  1 page   (mode 2)
+ *   +0x1c000  board+0x220000  8 pages  (mode 2)
+ *   +0x3c000  board+0x400000  1 page   (mode 2)   the display FIFO port
+ * established: the v_mapkvsegment arguments. inferred: libGLcore's
+ * stores to virtual 0x10000 reach board+0x110000, the same command FIFO
+ * port the kernel uses, with the mapping placed at virtual 0; the mode
+ * argument (0 for both FIFO-style windows at 0x100000 and 0x110000, 2
+ * elsewhere) is the cache attribute, unknown which. */
 
 /* Display FIFO port: 64-bit stores only, one per update (layout in
  * DISPLAY.h). established: gf_OdsySetDisplayMode (odsy_retrace.o),
@@ -368,6 +402,18 @@
  * fence; the syncs in ODSY_SET_GC are the driver's choice, not a
  * protocol requirement (the other textport routines omit them). */
 
+/* --- 64-bit stores to the command FIFO ------------------------------
+ * odsyInitCfifo stores five doublewords whose high word is below 0x10000:
+ *   0x000006b0_00000000, 0x000006b1_00000100, 0x000006b3_00005e50,
+ *   0x000006b2_00007dc0, 0x000007b5_00000001
+ * established (.lit8 0x30-0x48 of odsy_init.o and the li 107 << 36).
+ * inferred: a doubleword store is a direct register write, high word
+ * the register address and low word the value. Registers 0x6b0-0x6b3
+ * written once at FIFO set-up with 0, 256, 32192 and 24144 are the best
+ * candidates for the command FIFO's high- and low-water marks
+ * (inferred, from the values' order and that no other driver path sets
+ * a mark); unit and which is which: unknown. IP35 kernel not read. */
+
 /* --- The settle sequence ----------------------------------------------
  * After every textport primitive and at the start of a hardware
  * validation that follows a context change, the drivers send:
@@ -379,12 +425,22 @@
  * established: odsy_sboxfi, odsy_pnt2i, odsy_drawbitmap, ODSY_SET_GC;
  * the 250-and-two form alone in __glOdysseyValidateHardware.
  * Register 0x043 takes one operand (a count: 150 or 250); 0x046 and
- * 0x019 take none. Their effect: unknown. inferred: a wait of N units
- * followed by padding, given the decimal round numbers and that 0x046
- * also ends odsyInitCfifo's setup. */
-#define BUZZ_REG_SETTLE            0x043 /* 1 operand. established as used */
-#define BUZZ_REG_PAD               0x046 /* 0 operands. established as used */
-#define BUZZ_REG_SYNC19            0x019 /* 0 operands. established as used */
+ * 0x019 take none.
+ * Pass 2: __glOdysseyFlush (0x0d9d97a0) is exactly the full sequence
+ * above, and __glOdysseyFinish starts with it twice. libGLcore sets a
+ * context flag (context + 0x10000 - 26576) after each primitive's end
+ * word and, before the next register block, sends the short form
+ * (0x043 with 250, two 0x046) and clears the flag; a second flag
+ * (-26892) makes glClear send it at once. established: ody_clear.c,
+ * ody_prim.c, ody_unixcontext.c.
+ * inferred: 0x043 + count is a wait that lets the primitive in flight
+ * drain before later state lands, 0x046 is a no-op filler and 0x019 is
+ * a pipeline flush (it appears only in flush, finish, buffer swap,
+ * draw-buffer and make-current changes, pipe-memory object opens, pixel
+ * copies and the kernel textport). */
+#define BUZZ_REG_WAIT              0x043 /* 1 operand. inferred wait */
+#define BUZZ_REG_PAD               0x046 /* 0 operands. inferred no-op */
+#define BUZZ_REG_FLUSH             0x019 /* 0 operands. inferred flush */
 
 /* --- Textport primitives --------------------------------------------
  * Filled rectangle (odsy_sboxfi) and point (odsy_pnt2i):
@@ -491,7 +547,8 @@
  * driver waits 10 polls of 1 us for credits to recover before it parks
  * the writer, then a 1500-tick timeout ends in odsyFifoTimeout
  * ("CFIFO timeout"). The high- and low-water marks themselves are never
- * written by the IP30 driver: unknown. */
+ * written through these registers; see the 0x6b0-0x6b3 candidates in
+ * the command FIFO section. */
 #define ODSY_REG_FLAGS_CLR         0x101c /* inferred */
 #define ODSY_REG_INTR_ENABLE       0x1034 /* inferred */
 #define ODSY_REG_INTR_DISABLE      0x103c /* inferred */

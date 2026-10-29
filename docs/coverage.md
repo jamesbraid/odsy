@@ -26,12 +26,12 @@ Graphics ASIC named in the board inventory: command intake, rasterisation, textu
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
 | Registers and fields | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
-| Command and FIFO formats | partial | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | posted-write and textport submission reported by prior work. Written: class-1 word layout and COUNT (15 = 16 operands), kernel CFIFO and DFIFO ports, store ordering, settle sequence, textport primitives, flags/status0 bit names, FIFO level register, flow-control registers. Missing: user FIFO window, the second word family, COUNT 8-14, meaning of 0x043/0x046/0x019, water marks |
+| Command and FIFO formats | partial | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | posted-write and textport submission reported by prior work. Written: class-1 word layout and COUNT (15 = 16 operands), kernel CFIFO and DFIFO ports, store ordering, settle sequence, textport primitives, flags/status0 bit names, FIFO level register, flow-control registers. Pass 2: settle sequence tied to glFlush and to the primitive-to-state boundary, per-vertex word family, user mapping table, doubleword register writes with water-mark candidates 0x6b0-0x6b3. Missing: COUNT 8-14, hardware meaning of 0x043/0x046/0x019, confirmation of the water marks |
 | DMA | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
 | Interrupts | partial | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | Flags register bit names written; interrupt routing not read |
 | Reset | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | initialisation sequence reported by prior work |
 | Context save and restore | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
-| Texture formats and filtering (incl. precision) | partial | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | checked partial-window draw behaviour reported by prior work. Written: texture register blocks 0x16/0x13/0x30/0x1b/0x280+i, filter and wrap codes, LOD fields (S5.8), 12-bit border/env colour, S3.12 scale/bias, detail table (LOD -i/32, 0.12 weights), texel format table. Missing: sub-texel and filter-weight widths (not visible in the driver), level descriptor words, register carrying the detail table |
+| Texture formats and filtering (incl. precision) | partial | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | checked partial-window draw behaviour reported by prior work. Written: texture register blocks 0x16/0x13/0x30/0x1b/0x280+i, filter and wrap codes, LOD fields (S5.8), 12-bit border/env colour, S3.12 scale/bias, detail table (LOD -i/32, 0.12 weights), texel format table. Pass 2: detail table travels as ids 0x240-0x24f. Missing: sub-texel and filter-weight widths (not visible in the driver), level descriptor words, the second 256-word table at 0x230-0x23f |
 | Display and scanout | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
 
 ### PB&J

@@ -172,7 +172,7 @@
  * scanout keeps the top N bits.
  *
  * Repeat or scale: the X module's own conversion from a window's pixel
- * values to displayed RGB, odsyReadConvertPixels (VA from 0x015b30f0),
+ * values to displayed RGB, odsyReadConvertPixels,
  * switches on the visual's depth. For 12-bit TrueColor it widens each
  * nibble n to n << 4 | n (VA 0x015b3c70); for 15-bit to
  * c << 3 | c >> 2; for 12-bit PseudoColor it looks the index up in the
