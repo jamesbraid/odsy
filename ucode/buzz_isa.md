@@ -170,9 +170,7 @@ No instruction field or routine is named an operation in this pass. The only rea
 
 ## Next steps
 
-1. Tie `a`, `d2` and `e0`-`e2` to operations by comparing routines that libGLcore selects under one GL state difference (for example the list entries chosen with and without lighting in AddProgram, source lines 851-942).
-2. Trace one host data load end to end: register 0x32 = 24, word `0x8e809015`, four floats, entry 410. Records 410-417 should store four values at data address 24.
-3. Decide what value 3 of bits 1:0 does from the instructions between each pair.
+Passes 6 and 7 above found no operation from the host side alone; pass 12 names the units by the routines whose inputs the host fixes. What remains is listed in `docs/open-questions.md` ("Remaining operation codes and end marks 1 and 2"): pairing d2 codes with results across routine boundaries by simulating the sequencer over one program list, the scalar and colour-unit codes, and the value-3 marks (pass 10 below; routine 260 shows one choosing between the loop and exit entries).
 
 ## Pass 10: the list's path to the board, the value-3 marks and what no software can settle
 
