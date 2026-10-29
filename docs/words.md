@@ -498,3 +498,150 @@ These words are not FIFO commands. `libGL.so` (the IP30 build under `usr/gfx/arc
   Not a command: 37 sites in 25 binaries, led by `glXSwapIntervalSGI` in libGL, load a 64 KB value with `lui` as an
   address offset or mask, the usual way MIPS code builds the constant. It lies one step below the GLX vendor-private
   numbers (0x10001 upwards), which is why the word scan lists it.
+
+## Texture, post-filter and level-descriptor words stored to the FIFO
+
+- `0x00011c16` (block 0x016, seven operands, `libGLcore.so`): **established.**
+  The texture mode block, TEXMODE0 to TEXMODE6, sent by `__glOdysseyValidateHardware` when the texture dirty bit
+  0x200 is set. The setters (`__glOdysseyTextureSetMinFilter`, `SetSWrap` and their neighbours) rewrite single
+  fields of the texture object's shadow; the kernel replays the block from hardware-shadow offset 0x14c in
+  `odsyRestoreRaster`. Field layouts are in `BUZZ.h` section 2.
+- `0x0001141b` (block 0x01b, five operands, `libGLcore.so`): **established.**
+  The texture environment block, sent from `__glOdysseyValidateHardware` when dirty bit 0x100 is set; word 0
+  bits 2:0 take the environment mode (replace 1, modulate 2, decal 3, from `__glOdysseyTextureSetOp`). Replayed from
+  hardware-shadow offset 0x138 by `odsyRestoreRaster`.
+- `0x00011013` (block 0x013, four operands, `libGLcore.so`): **established.**
+  The level-of-detail limits: operands 0 and 1 are the S and T biases and 2 and 3 the minimum and maximum LOD, each
+  a 14-bit two's-complement value with eight fraction bits from `floatToS58_Clamp`. `__glOdysseyValidateHardware`
+  sends it when dirty bit 0x4000 is set, and `odsyRestoreRaster` replays it from offset 0x1bac.
+- `0x00010c3e` (block 0x03e, three operands, `libGLcore.so`): **established.**
+  The texture offset block, sent when dirty bit 0x8000 is set. The only writer of its source words
+  (`SetTexOffsetValues`) zeroes them for any border value, so the driver always sends three zero operands; the
+  kernel replays it from offset 0x11f4. What the fields select is unknown.
+- `0x00012030` (block 0x030, eight operands, `libGLcore.so`): **established.**
+  The first of four eight-operand post-filter blocks 0x030 to 0x033, each a scale and bias pair in signed 3.12
+  per colour channel; mode 1 of the post-filter mode word sends all four from the image-processing state
+  (`__glOdysseyValidateHardware`), and `odsyRestoreRaster` replays them from hardware-shadow offset 0x1174.
+- `0x00012031` (block 0x031, eight operands, `libGLcore.so`): **established.**
+  Second of the four mode-1 post-filter blocks, sent straight after 0x030 with the next eight words of the
+  shadow region; the kernel's `odsyRestoreRaster` sends it twice, once in each replay path.
+- `0x00012032` (block 0x032, eight operands, `libGLcore.so`): **established.**
+  Third of the four mode-1 post-filter blocks, again from `__glOdysseyValidateHardware` and replayed twice by `odsyRestoreRaster`.
+- `0x00012033` (block 0x033, eight operands, `libGLcore.so`): **established.**
+  Fourth and last of the mode-1 post-filter blocks, following 0x032 in `__glOdysseyValidateHardware`
+  and in both replay paths of `odsyRestoreRaster`.
+- `0x0001203b` (block 0x03b, eight operands, `libGLcore.so`): **established.**
+  The mode-2 post-filter layout: one set of eight words from context 0x8cec, which `__glOdysseyTextureActivate`
+  writes after copying the texture object's post-filter scale and bias, so texture post-filtering goes to this block.
+  `odsyRestoreRaster` replays it.
+- `0x0001083d` (block 0x03d, two operands, `odsy_ctxsw.o`): **established.**
+  The mode-3 post-filter layout: two words (a scale of 1.0 as 0x1000 and a bias of 0, the identity) that the context's
+  default-state routine writes; `odsyRestoreRaster` replays it. No libGLcore routine builds the word by name,
+  so the sender evidence is the kernel replay only.
+- `0x00013c28` (block 0x028, sixteen operands, `libGLcore.so`): **established.**
+  First of the four sixteen-operand blocks 0x028 to 0x02b that `__glOdysseyValidateHardware` sends from the
+  64-word shadow region at context 0x1070, `odsyRestoreRaster` replaying them from hardware-shadow offset 0x1070. What
+  the sixteen words hold is unknown; the size suggests a 4 by 4 matrix per block.
+- `0x00013c29` (block 0x029, sixteen operands, `libGLcore.so`): **established.**
+  Second of the four sixteen-operand blocks, from the next sixteen words of the shadow region, in
+  `__glOdysseyValidateHardware` and twice in `odsyRestoreRaster`; contents unknown.
+- `0x00013c2a` (block 0x02a, sixteen operands, `libGLcore.so`): **established.**
+  Third of the four sixteen-operand blocks, sent after 0x029 in `__glOdysseyValidateHardware`; contents unknown.
+- `0x00013c2b` (block 0x02b, sixteen operands, `libGLcore.so`): **established.**
+  Fourth of the sixteen-operand set, ending the mode in which the 64 shadow words go out as four blocks, from
+  `__glOdysseyValidateHardware`; contents unknown.
+- `0x0001103a` (block 0x03a, four operands, `odsy_ctxsw.o`): **established.**
+  The four-word layout of the same 64-word region, chosen by the mode word at 0x106c of the shadow (3 selects this one);
+  libGLcore sends it only from `ody_context.s` and the kernel's `odsyRestoreRaster` replays it. Contents unknown.
+- `0x00013c38` (block 0x038, sixteen operands, `odsy_ctxsw.o`): **established.**
+  The one-block layout of the 64-word region: mode 2 sends all sixteen words as a single block. Built in
+  `odsyRestoreRaster`; libGLcore's `__glOdysseyValidateHardware` has the same constant. Contents unknown.
+- `0x00010ebc` (block 0x2bc, three operands, `libGLcore.so`): **established.**
+  Level descriptor 60 of the 64-entry level table (0x280 + 60), a block `DownsampleTextureThruHW` and
+  `__glOdysseyImageMovePixelsTexture` fill and send to render into a texture level; `__glOdysseyGetCurrentTexture` also builds it.
+  Word 0 is the board address of the level, word 1 the pitch in tiles (inferred, `docs/buzz.md`).
+- `0x00011a50` (block 0x250, six operands, `libGLcore.so`): **established.**
+  Sent by `__glOdysseyValidateContext` (`ody_context.s`, source line 2529) after `0x00010407`, with six operands
+  taken from the context words at +0x10000 - 26796 to - 26776, which the routine masks and rewrites just before. The
+  fields' meaning is unknown.
+
+## Validator-only raster blocks stored to the FIFO
+
+`__glOdysseyValidateHardware` (`ody_context.s`) tests a dirty word at context +0x10000 + 26976 bit by bit and,
+for each bit set, sends the settle group and then one block from its shadow; the kernel's `odsyRestoreRaster` replays
+the same blocks after a lost context.
+
+- `0x00010404` (block 0x004, one operand, `libGLcore.so`): **established.**
+  The raster enable word, one bit or small field per fragment operation, from context +31740 when dirty bit 1 is set:
+  bit 0 point smoothing, 1 line smoothing, 2 polygon smoothing, 3 and 4 line and polygon stipple, 5 to 7 polygon offset
+  for points, lines and fill, 8 cull enable with 9 and 10 for back and front, 11 two-sided lighting, 12 flat shading,
+  14 alpha test, 15 stencil test, 16 depth test, 17 blending, 18 dither, 19 and 20 index and colour logic op, 22 fog,
+  23 clockwise front face. The setters are `__glOdyim_Enable`, `__glOdyim_CullFace` and `__glOdyim_ShadeModel`; the
+  kernel textport's `ODSY_SET_GC` stores the word with the constant its own drawing needs.
+- `0x00010405` (block 0x005, one operand, `libGLcore.so`): **established.**
+  The transform and texture path selection, from context +31744 when dirty bit 2 is set: bits 2:0 are the user clip planes as
+  a thermometer code from `__glOdysseyValidateClipPlanes`, bits 5:3 the active texture target (1-D, 2-D, 3-D) from
+  `__glOdysseyValidateTextureState`, bit 25 the perspective-texture flag that `AddProgram` writes, and bits 15:13 and 19
+  the interpolated-colour count from `__glOdysseyValidateFragment`.
+- `0x00010406` (block 0x006, one operand, `libGLcore.so`): **established.**
+  Bits 5:0 are the index of the first texture level descriptor the texture unit reads, from context +32736 when dirty
+  bit 11 is set. `__glOdysseyTextureActivate` writes 0 for level 0, and `DownsampleTextureThruHW` writes 60 so
+  its draw reads descriptor 60; `odsyRestoreRaster` replays the word from hardware-shadow offset 0x468.
+- `0x00010407` (block 0x007, one operand, `libGLcore.so`): **established.**
+  Built in `__glOdyim_LightModeli`, `__glOdysseyValidateContext` and `__glOdysseyValidateFragment`; the context
+  validator sends it with a zero operand just before block 0x250. What the register controls is unknown.
+- `0x0001041f` (block 0x01f, one operand, `libGLcore.so`): **established.**
+  Sent by `__glOdysseyClear` twice and by `__glOdysseyValidateHardware`; `odsyRestoreRaster` replays it from hardware-shadow offset
+  0xb4 beside 0x01e, 0x020 and 0x058. What field it holds is unknown.
+- `0x00010452` (block 0x052, one operand, `libGLcore.so`): **established.**
+  The write masks, from context +31836 when dirty bit 7 is set: bits 11:0 the colour-index write mask, 19:12 the
+  stencil write mask (zero when the visual has no stencil), bits 20 to 23 red, green, blue and alpha write enables, and bit 24
+  the depth write enable. The setters are `__glOdyim_IndexMask`, `__glOdyim_StencilMask`, `__glOdyim_ColorMask` and
+  `__glOdyim_DepthMask`.
+- `0x00010451` (block 0x051, one operand, `libGLcore.so`): **established.**
+  One operand from context +0x10000 - 26984, sent when dirty bit 24 is set: `__glOdysseyValidateMatrixComb` sets bit 0 when
+  the vertex pre-clip class is 2 or 3 and bit 1 when the far depth-range value is below the near one. **inferred**
+  that bit 1 marks a reversed depth range and bit 0 tells the transform engine to pre-clip vertices.
+- `0x00011847` (block 0x047, six operands, `libGLcore.so`): **established.**
+  Six operands from context +0x10000 - 26868 onward when dirty bit 13 is set. `__glOdysseyInitDefaultValues` zeroes them
+  and no other store in libGLcore, the X module or the kernel writes them, so the board receives only zeros here;
+  what they set is unknown.
+- `0x0001181a` (block 0x01a, six operands, `libGLcore.so`): **established.**
+  The fog block from context +31752 when dirty bit 3 is set: operands 0 and 1 hold the fog colour as 12-bit red, green,
+  blue and alpha scaled by 4096 (`__glOdyim_Fogfv`), operands 2 to 5 the fog function coefficients that
+  `__glOdysseyValidateFog` rebuilds for GL_EXP, GL_EXP2 and GL_LINEAR. **inferred** that the board evaluates the fog
+  factor from eye depth with them.
+- `0x00010c1c` (block 0x01c, three operands, `libGLcore.so`): **established.**
+  The fragment light model from context +0x10000 - 27268 when dirty bit 23 is set: operands 0 and 1 carry the model's
+  ambient colour scaled by 4096 (`__glOdyim_FragmentLightModelfvSGIX`), and the low bits of operands 1 and 2 the
+  colour-material selection that `ValidateFragmentColorMaterial` sets (inferred).
+- `0x00010456` (block 0x056, one operand, `libGLcore.so`): **established.**
+  Built by `__glOdyim_PolygonOffsetEXT`, `__glOdysseyFindWindowSize` and `__glOdysseyValidateContext`; replayed from
+  hardware-shadow offset 0x1cb0 by `odsyRestoreRaster`. The register's field layout is unknown.
+- `0x00010457` (block 0x057, one operand, `libGLcore.so`): **established.**
+  Sent by `__glOdysseyValidateContext` only and replayed from hardware-shadow offset 0x1cb4 by `odsyRestoreRaster`;
+  the register's field layout is unknown.
+- `0x00010842` (block 0x042, two operands, `libGLcore.so`): **established.**
+  Built by `__glOdysseyImageChainAddOpAcceptSignedDataFromHost` twice and `__glOdysseyImageChainFree`, so it belongs to the
+  image-processing chain set-up; replayed from hardware-shadow offset 0x1ca4. Its fields are unknown.
+- `0x00010845` (block 0x045, two operands, `odyssey.so`): **established.**
+  The X module sends it in `odsyGammaFit`, with an operand equal to a float result truncated and clamped to 255 and the
+  constant 30463 (0x76ff), and in `odsyInitDefaultHW` with two words from the screen set-up; no libGLcore or kernel
+  routine builds it. What the two operands set is unknown.
+- `0x00011453` (block 0x053, five operands, `libGLcore.so`): **established.**
+  The rectangle-copy block: `odsyCopyRectBody` sends it after sync with five operands from context +6964 to +6980,
+  and `__glOdysseyImageMovePixelsCopy`, `__glOdysseyImageMovePixelsDMAtoGfx` and the image-chain routines send it before
+  pixel passes. Replayed from hardware-shadow offset 0x1b34.
+- `0x00013c4d` (block 0x04d, sixteen operands, `libGLcore.so`): **established.**
+  A third sixteen-word bitmap beside the polygon stipple halves 0x04e and 0x04f, sent by
+  `__glOdyim_FragmentLightModeliSGIX` and `__glOdyim_Materialf` and replayed from hardware-shadow offset 0xf8 by `odsyRestoreRaster`.
+  What it holds is unknown.
+- `0x0001044c` (block 0x04c, one operand, `libGLcore.so`): **established.**
+  Sent by `__glOdysseyValidateContext` and replayed from hardware-shadow offset 0x1cac by `odsyRestoreRaster`; the
+  field layout is unknown.
+- `0x00010018` (block 0x018, no operand, `odsy_ctxsw.o`): **established.**
+  Built by `__glOdysseyValidateHardware`, `odsyRestoreRaster` and `odsy_mm_obj_xfr_bs`, ahead of memory-object
+  transfers; it takes no operand, and what it does is unknown.
+- `0x00010400` (block 0x000, one operand, `libGLcore.so`): **established.**
+  Built in `__glOdyim_Enable`, `__glOdyim_Disable` and `__glOdyim_Hint` and by `odsyRestartContext` in the kernel;
+  the operand layout and effect are unknown.
