@@ -35,10 +35,10 @@ This is a first pass over the pieces that carry timing. It names what exists and
 | 200 | bits 1:0 to 0x2804; bit 5 to 0x2806 and to 0x2929; bit 4 selects a branch | **established** |
 | 208 | bits 2:0 to 0x2b00 | **established** |
 | 212, 216 | bits 2:0 of each placed in bits 14:12 and 17:15 of the word read from board + 0x233804, then written to 0x2700 twice: with bit 18 clear before the clock is programmed and with bit 18 set after a 100 ms delay; 0x2481 = 1 follows | **established** |
-| 220, 224 | 220 = -2 selects a path; 224 is kept in the board record | **established** (the paths were not traced) |
+| 220, 224 | 220 = -2 skips the mode-load steps from the `0x2481` rewrite on; 224 is stored in the board record at +0x10000 - 19504, which `odsyGenlockInterrupt` (`odsy_intr.o` .text 0x5c0-0x159f) tests before it services a genlock event | **established** |
 | 236 to 248 | low bytes rewritten to clock registers 1, 2, 5, 6 on one later path; with 132, 136, 148 and 152 also kept in the board record | **established** |
-| 264 to 280 | read on another path | **established** as read; destination not traced |
-| 92, 172, 184 to 196, 204, 228, 232, 252 to 260, 284 to 316 | not read in the parts traced | **unknown** |
+| 264 to 280 | copied to the board record (+0x10000 - 31168 to - 31152) when the board-record halfword 298 matches the variant the loader is handling; `odsy_restoreDCD2FPGA` (`odsy_brdmgr.o` .text 0x67f4-0x6973) later sends the low and next bytes of word 280 over I2C as clock-part registers 4 and 5 | **established** |
+| 92, 172, 184 to 196, 204, 228, 232, 252 to 260, 284 to 316 | not read by the kernel loader | **established** as unread there; what the X module puts in them is in the next table |
 
 The built-in values, for reference: `default_1280x1024_72_timing` has clock bytes (128-156) 0x30, 0, 0, 5, 2, 0x10, 0, 0; `odsy_default_timing1` has 1, 0, 1, 9, 0, 0, 0, 0. Word 184 holds 72 or 60, the refresh rate, and is not read in the parts traced.
 
@@ -200,7 +200,7 @@ Release IRIX 6.5.30m. Kernel objects `rrm.o`, `odsy_retrace.o`, `odsy_dvi.o` (IP
 
 **established** by reading the routine in full (disassembly `ddx/asm/odyssey/odsy/odsy.s`, 13454): it works on a 32-row cursor, clamping width and height to 32, and fills the 768-byte buffer in two parts per row.
 
-- Part one, 16 bytes per row (32 rows, 512 bytes): the cursor's source row word masked by a left-aligned width mask is cut into eight nibbles; each nibble indexes a 16-entry table of 32-bit constants in the module's read-only data, and the eight results are packed two per word (the entry from the lower nibble in the low half) into four words. So each source pixel becomes four bits through a table lookup. The table's contents were not extracted: **unknown**.
+- Part one, 16 bytes per row (32 rows, 512 bytes): the cursor's source row word masked by a left-aligned width mask is cut into eight nibbles; each nibble indexes a 16-entry table of 32-bit constants in the module's read-only data, and the eight results are packed two per word (the entry from the lower nibble in the low half) into four words. So each source pixel becomes four bits through a table lookup. The table (at 0x172b830, the GOT entry at `gp` - 28680 plus 2928; loads at 0x1582ca8-0x1582d20) is **established** as `0x0000, 0x1000, 0x0100, 0x1100, 0x0010, 0x1010, 0x0110, 0x1110, 0x0001, 0x1001, 0x0101, 0x1101, 0x0011, 0x1011, 0x0111, 0x1111`: each source bit becomes a 4-bit pixel of value 1 or 0, and the nibble's bit 3 (the leftmost pixel) lands in the lowest four bits. Part one therefore stores the source as colour index 1 on index 0.
 - Part two, 8 bytes per row (256 bytes, written at offset 512 onward): each pixel gets two bits built from a source bit and a mask bit by conditional moves in a fixed pattern, two words per row. Which of the four codes means transparent or inverted: **unknown, needs a hardware capture** (the displayed result of each of the sixteen code pairs on a known background).
 
 ### Digital output on IP35 (`odsy_dvi.o`, IP35 only)
@@ -209,7 +209,37 @@ Release IRIX 6.5.30m. Kernel objects `rrm.o`, `odsy_retrace.o`, `odsy_dvi.o` (IP
 
 ### The 320-byte structure builder in the X module
 
-**established** (partly). `odsyLoadTimingTable` in `odyssey.so` (disassembly `ddx/asm/odyssey/odsy/odsy.s`, 137839) clears a 320-byte local structure and fills it by calling `SDBgetSymbolValueScalar(file, name, &field)` once per `.vfo` field name (36 calls), then hands it to the kernel with the timing-table ioctl. Names that decode cleanly from the module's read-only strings include `FormatInfo_H_Active`, `ODY_AMI_PLL_0x0`, `ODY_AMI_PLL_0x4`, `ODY_PLL_OutputEnables`, `ODY_VTG_Control`, `ODY_VTG_InitState`, `ODY_VTG_ChanEn`, `TTL_Sync`, `LineSeqTab`, `FrameTab`, `FormatInfo_DualHead`, `ODY_I2CClockSpeed`, `DPAControl`, `DPAOffset` and `ODY_GEN_hPSD`. Two words come from the caller's format record instead: structure word 184 (the refresh rate, truncated from a floating-point value at record offset 272) and word 172 (record offset 300). **inferred** that each word of the structure table above is one of those names. The name-to-offset map is not recovered: the routine addresses the module's strings relative to a symbol whose address the disassembly does not show, and about half the string offsets do not land on a string start with the base that decodes the others, so a pairing from this text would be a guess. **unknown, needs a capture:** a trace of the calls to `SDBgetSymbolValueScalar` from a running X server (name and destination per call), which gives the whole map in one run.
+**established.** `odsyLoadTimingTable` in `odyssey.so` (disassembly `ddx/asm/odyssey/odsy/odsy.s`, 137839) clears a 320-byte local structure and fills it by calling `SDBgetSymbolValueScalar(file, name, &field)` once per `.vfo` field name (the main path makes 49 such calls, some into locals), then hands it to the kernel with the timing-table ioctl. An earlier pass decoded only some names from the module's strings: `FormatInfo_H_Active`, `ODY_AMI_PLL_0x0`, `ODY_AMI_PLL_0x4`, `ODY_PLL_OutputEnables`, `ODY_VTG_Control`, `ODY_VTG_InitState`, `ODY_VTG_ChanEn`, `TTL_Sync`, `LineSeqTab`, `FrameTab`, `FormatInfo_DualHead`, `ODY_I2CClockSpeed`, `DPAControl`, `DPAOffset` and `ODY_GEN_hPSD`. Two words come from the caller's format record instead: structure word 184 (the refresh rate, truncated from a floating-point value at record offset 272) and word 172 (record offset 300). The name-to-offset map, **established** by resolving each call's name argument through the module's global offset table (`gp` = 0x173a9c0, the `.got` start plus 0x7ff0; the names are offsets from the GOT entry at `gp` - 28680, 0x172acc0) and its destination from the `a2` argument, for the calls at 0x170a8cc to 0x170b86c of `odsyLoadTimingTable` (`odyssey.so` 0x170a7f0):
+
+| Structure offset | Source |
+|---|---|
+| 0 and 8, 16 and 24 | `FrameTab` and `LineSeqTab`: a buffer allocated for each array and its length |
+| 28, 32, 36 | `ODY_VTG_Control` (bit 1 also set when the screen record's word 136 is nonzero), `ODY_VTG_InitState`, `ODY_VTG_ChanEn` |
+| 40 to 76 | when the screen record's word 136 is nonzero, its words 268 to 304; otherwise `ODY_GEN_lPFD`, `hPFD`, `lPFD_HI`, `hPFD_HI`, `lPFD_LO`, `hPFD_LO`, `lPSD`, `hPSD`, `lHMASK`, `hHMASK` |
+| 80, 84 | `ODY_GEN_BP_CLAMP`, `ODY_GENLOCK` |
+| 88 | `ODY_GEN_CONTROL` ORed with `GEN_Control_mask` |
+| 96 to 124 | `ODY_PLL_DPAControl`, `DPAOffset`, `FdBkDiv0`, `FdBkDiv1`, `InputControl`, `LoopControl`, `Osc_Div`, `OutputEnables` |
+| 128 to 156 | `ODY_AMI_PLL_0x0` to `ODY_AMI_PLL_0x7` |
+| 160, 164, 168 | `ODY_DAC_Cntrl`, `ODY_DP_Cntrl`, `ODY_SM_Cntrl` |
+| 172, 184 | the caller's format record (offset 300; offset 272 truncated, the refresh rate) |
+| 176, 180 | `ActivePixelsPerLine`, `FrameBufferHeight` |
+| 192 | `AchievedFrequency` |
+| 200 | format flags: bit 0 `FormatInfo_Interlaced` (bit 1 also when the format record's word 304 points at a nonzero word), bit 2 `FormatInfo_Stereo`, bit 3 `FormatInfo_FullScreenStereo`, bit 4 `FormatInfo_DualHead`, bit 5 `FormatInfo_FieldSequential` |
+| 208, 212, 216 | `ODY_DCBClockSpeed`, `ODY_DDCClockSpeed`, `ODY_I2CClockSpeed` |
+| 220 | the routine's fifth argument |
+| 224 | the screen record's word 136 |
+| 236 to 248 | `GEN_AMI_REG1`, `GEN_AMI_REG2`, `GEN_AMI_REG5`, `GEN_AMI_REG6` |
+| 252 | 1 when the board's halfword 58 is 3, else 0 |
+| 256, 284, 312 | 0 |
+| 260 | 255 or 187, by whether the computed pixel clock exceeds a constant |
+| 264 | 240 when `TTL_Sync` is 3, else 0 |
+| 268 to 280 | `DCDHorizontalFrontPorch`, `DCDHorizontalSync`, `DCDHorizontalBackPorch` and `ActivePixelsPerLine`, each halved |
+| 288, 308 | 64, 142 |
+| 292 | divider selection found by a search over a 4 x 4 table of ratios: index bits 1:0, 3:2 and 5:4 |
+| 296, 300 | `DCDTotalPixelsPerLine` bits 7:0 and bits 13:8 |
+| 304 | 3, 18 or 19 by the pixel clock (`DCDTotalPixelsPerLine` times `TotalLinesPerFrame` times `FramesPerSecond`, over a constant) |
+
+Words 92, 188, 204, 228, 232 and 316 get no store after the routine clears the structure, so they reach the kernel as 0; word 196 is 0 too unless `AchievedFrequency` is an eight-byte value, which this reading does not settle. With the loader's table above this names every display-FIFO destination: 0x2481-0x2483 take the VTG control, initial state and channel enable; 0x27c0-0x27cc the genlock words and control; 0x26c0, 0x2600 and 0x2680 the DAC, data-path and SM controls; 0x2802 and 0x2803 the active width and frame-buffer height; 0x2b00 the DCB clock-speed code; 0x2700 bits 14:12 and 17:15 the DDC and I2C clock-speed codes. Words 264 to 304 are the timing of the digital (DCD) output, which reaches its FPGA over I2C. The names are the format compiler's; what each field does in the chip is still the hardware question below.
 
 ### What the display rows still lack
 
@@ -220,5 +250,4 @@ Everything left in the display rows is a property of the hardware that no softwa
 - **Line-table low-byte bits, event entries, bit 13 and the entry duration rule:** a logic-analyser capture of the video output signals (sync, blank, pixel data) with a known timing loaded, changing one table entry bit at a time and recording which output line moves.
 - **Display-mode word bits 23:12 and 3:0 (`DISPLAY.h` section 2) and the repeat-versus-scale reading of the mode field:** the display-FIFO mode word for each id read back through +0x220000 (`docs/pbj.md`), with the displayed width of a known test image at each id.
 - **Narrow-visual scanout and overlays:** a screenshot of a known 12-bit and 15-bit image through the real output (compare with the widened values in the tables above), and a run of the X server that lists overlay visuals with its call trace of the overlay capability registration.
-- **Structure words 220, 224, 264 to 280 and the words listed as unread in the structure table:** the kernel loader's branches on them were not traced. A capture that settles each: the display-FIFO and I2C writes of a mode load, repeated with that one word changed; the writes that change name the word's use.
 - **Which pixels move from BUZZ memory to PB&J:** the bus trace named in `docs/pbj.md`.
