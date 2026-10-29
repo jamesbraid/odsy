@@ -38,3 +38,45 @@ Board-side registers are the same on both hosts. **established.** `odsyHiwaterIn
 
 The host-side threshold in `BUZZ.h` (552 on IP30) is a different number on IP35 (544, from the record). **established** by the disassembly cited above; why the two differ is **unknown**.
 
+## 2. Per-vertex and attribute words
+
+The words below are written to the command FIFO by the immediate-mode entry points (`__glOdylc_*`), the vertex-array senders and the clipped-vertex senders in `libGLcore` (N32 build). Values come from every `lui`/`ori` pair in `libglcore/asm/ODYSSEY/*.s` whose result has bit 31 set and bit 15 set (script-free search; the function names are the first owners listed per value).
+
+### Layout
+
+**inferred** from the table below and from `ApplyParameterF/I` (`ody_attrib.s`, from 0x0d95c4e0), which builds the word as `0xc080d000 | (slot << 24) | opcode` in a loop (slot starts at 6, opcode at 47, count from the d0 field, both counted up per iteration; slot 10, opcode 53 for the second set):
+
+```
+ 31 30 29      24 23      16 15 14 13    10 9           0
+ +----+---------+----------+-----+--------+-------------+
+ | T  |  SLOT   | 0x80     | 1 1 | COUNT  |   OPCODE    |  T=1,0 for slot 0; 1,1 otherwise
+ +----+---------+----------+-----+--------+-------------+
+```
+
+- Bits 15:0 are laid out like a class-1 word's low half (`BUZZ.h` section 1: count in 13:10, id in 9:0), with bits 15:14 both set where class 1 has 0 and P. **established** for the values; the equivalence is inferred.
+- Bits 31:24 name an attribute slot: 0x80 position, 0xc1 normal, 0xc3 texture coordinate, 0xc5 colour or colour index, 0xc6 to 0xc9 and 0xca to 0xcd the slots used by the clipped-vertex senders. **established** as values; reading bits 29:24 as a slot number is **inferred** from the loop above.
+- COUNT is the number of operand words that follow. **established** for every immediate-mode sender (Vertex3f sends 0x8080cc03 and three floats).
+- The opcode numbers a conversion: low bit 1 means the operands are floats, 0 means integer forms converted by the board (Vertex2i/2s share 0x8080c800, Vertex2d/2f share 0x8080c801). **inferred** from the pairs.
+
+### Opcodes (established as values, in the functions named)
+
+| Opcode | Word (slot 0 base) | Sender |
+|---|---|---|
+| 0x00, 0x01 | 0x8080c800 / c801 | Vertex2 integer / float |
+| 0x02, 0x03 | 0x8080cc02 / cc03 | Vertex3 integer / float |
+| 0x04, 0x05 | 0x8080d004 / d005 | Vertex4 integer / float |
+| 0x06, 0x07 | 0xc580c406 / c407 | Index integer / float |
+| 0x08 to 0x0e | 0xc580cc08 to cc0e | Color3 ub, us, ui, b, s, i, float |
+| 0x0f to 0x15 | 0xc580d00f to d015 | Color4 ub, us, ui, b, s, i, float |
+| 0x16 to 0x19 | 0xc180cc16 to cc19 | Normal3 b, s, i, float |
+| 0x1e, 0x1f | 0xc380c41e / c41f | TexCoord1 integer / float |
+| 0x20, 0x21 | 0xc380c820 / c821 | TexCoord2 integer / float |
+| 0x22, 0x23 | 0xc380cc22 / cc23 | TexCoord3 integer / float |
+| 0x24, 0x25 | 0xc380d024 / d025 | TexCoord4 integer / float |
+| 0x2f to 0x32 | 0xc680d02f, c780d030, c880d031, c980d032 | clipped-vertex senders (`CISendClipped*`, `RGBSendClipped*`), four floats each, slots 6 to 9 |
+| 0x35 to 0x38 | 0xca80d035, cb80d036, cc80d037, cd80d038 | same senders, slots 10 to 13 |
+
+Order of the data type codes: unsigned byte, unsigned short, unsigned int, byte, short, int, float (colours); byte, short, int, float (normals). **established** from the opcode to entry-point pairing. Opcodes 0x1a to 0x1d, 0x26 to 0x2e and 0x33, 0x34 were not seen: **unknown** whether they exist.
+
+Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`, `0x908091ea`, `0x9080bda2`, `0x9080bdc8`, `0x90008116`, `0x90808800`, `0x8f80a944`, `0x8f80b968`, `0xcf80a92f`, `0xd080c433`, `0xd080c439`) have bits 15:14 = 10 (or 11 for `0xd080c4xx`) and are state, program and pixel-transfer words (lighting, clip planes, matrices, `__glOdysseySetProgram`, `ApplyParameter`). Their field meaning: **unknown**. `0x80000000`, `0xdeadbeef` and `0xbaadcade` in the same list are masks or markers, not words.
+

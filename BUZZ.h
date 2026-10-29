@@ -80,7 +80,25 @@
  * bits 15:14 are set on every such word, bits 13:10 count the
  * components that follow, and bit 0 of the low field separates integer
  * (0) from float (1) forms (0x8080c800/c801, cc02/cc03, d004/d005;
- * 0xc380c41e/c41f, c820/c821 all occur). */
+ * 0xc380c41e/c41f, c820/c821 all occur).
+ *
+ * Pass 4: every lui/ori word of this form in libGLcore was collected
+ * (docs/buzz.md section 2 has the table). The low 16 bits read like a
+ * class-1 word (count in 13:10, id in 9:0) with bits 15:14 both set; bits
+ * 31:24 are 0x80 for position or 0xc0 | slot for the other attributes
+ * (inferred: ApplyParameterF/I in ody_attrib.s builds
+ * 0xc080d000 | slot << 24 | opcode in a loop). The id numbers a type:
+ * 0x00-0x05 Vertex2/3/4 integer then float, 0x06/0x07 Index, 0x08-0x0e
+ * Color3 (ub us ui b s i f), 0x0f-0x15 Color4, 0x16-0x19 Normal3
+ * (b s i f), 0x1e-0x25 TexCoord1-4 integer then float, 0x2f-0x32 and
+ * 0x35-0x38 the clipped-vertex senders (slots 6-9 and 10-13). */
+#define BUZZ_ATTR_WORD(slot, count, op) \
+    ((((slot) == 0 ? 0x80u : (0xc0u | (slot))) << 24) | 0x00808000u | \
+     0x4000u | ((count) << 10) | (op))
+#define BUZZ_ATTR_SLOT_POS         0   /* established as values */
+#define BUZZ_ATTR_SLOT_NORMAL      1
+#define BUZZ_ATTR_SLOT_TEXCOORD    3
+#define BUZZ_ATTR_SLOT_COLOR       5
 
 /* ===================================================================
  * 2. Texture state
