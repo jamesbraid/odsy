@@ -645,3 +645,171 @@ the same blocks after a lost context.
 - `0x00010400` (block 0x000, one operand, `libGLcore.so`): **established.**
   Built in `__glOdyim_Enable`, `__glOdyim_Disable` and `__glOdyim_Hint` and by `odsyRestartContext` in the kernel;
   the operand layout and effect are unknown.
+
+## Block ids 0x000 to 0x011 that are not board registers
+
+The scan builds the word 0x1000n from a `lui` of 1 and an `ori`, which is also how MIPS code sets bit n of a word
+in the context. In `__glOdyim_BlendFunc` (`libGLcore.so`, 0x0d95d6f4 to 0x0d95d718) the `lui` reg is reloaded from the
+dirty word at context +0x10000 + 26976, the `ori` sets bit 0 of it and the result is stored back, so for the low
+ids these words are dirty-bit updates, not FIFO words. The same `ori` shape also builds the GLX vendor-private codes of
+`libGL.so` (see the GLX section above); each entry says which reading its senders support.
+
+- `0x000` (low ten bits of 0x00010000): **inferred.**
+  Not a block: the constant 0x10000 is only the `lui` half of every such pair, and 37 sites in 25 binaries, led by
+  `glXSwapIntervalSGI` in `libGL.so`, load it as a base before adding an offset, as `__glOdyim_BlendFunc` does at 0x0d95d6f4.
+- `0x001` (low ten bits of 0x00010001): **established.**
+  Not a board block. `__glOdyim_BlendFunc` ORs it into the context dirty word at +26976 (0x0d95d714), and
+  `__glOdyim_Viewport` and `__glOdyim_BlendEquationEXT` do the same; `libGL.so` also stores it as the GLX
+  make-current-read request (`glXGetCurrentReadDrawableSGI`).
+- `0x002` (low ten bits of 0x00010002): **established.**
+  Not a board block: the dirty-word update that `__glOdyim_Enable`, `__glOdyim_Disable` and `__glOdyim_ShadeModel` build
+  (eight sites in the first two), and the GLX create-video-source request that `glXCreateGLXVideoSourceSGIX` stores at 0x0d824c74 in `libGL.so`.
+- `0x003` (low ten bits of 0x00010003): **inferred.**
+  Not a board block: the scan finds no libGLcore or kernel sender, and `libGL.so` builds it in
+  `glXDestroyGLXVideoSourceSGIX` as the destroy half of the video-source pair.
+- `0x008` (low ten bits of 0x00010008): **inferred.**
+  Not a board block: `__glOdyim_FogFuncSGIS` builds it as a dirty bit, and `glXDestroyGLXPbufferSGIX` in `libGL.so` stores
+  it as the pixel-buffer destroy request.
+- `0x009` (low ten bits of 0x00010009): **established.**
+  The GLX change-drawable-attributes request, stored by `glXSelectEventSGIX` at 0x0d820e18 in `libGL.so` after request byte +1 is set
+  to 16; no libGLcore or kernel routine builds it.
+- `0x00a` (low ten bits of 0x0001000a): **established.**
+  The GLX get-drawable-attributes request, stored at 0x0d821064 by `__glXGetDrawableAttributes` in `libGL.so`, a with-reply
+  request (byte +1 is 17).
+- `0x00b` (low ten bits of 0x0001000b): **established.**
+  The GLX join-swap-group request, stored at 0x0d839934 by `glXJoinSwapGroupSGIX`; the kernel half of a swap group is
+  `RRM_SwapGroup` (`docs/ioctls.md`).
+- `0x00c` (low ten bits of 0x0001000c): **established.**
+  The GLX bind-swap-barrier request, stored at 0x0d839a60 by `glXBindSwapBarrierSGIX` in `libGL.so`.
+- `0x00d` (low ten bits of 0x0001000d): **established.**
+  The GLX query-maximum-swap-barriers request, a with-reply request stored at 0x0d839b90 by
+  `glXQueryMaxSwapBarriersSGIX`.
+- `0x00e` (low ten bits of 0x0001000e): **established.**
+  The GLX query-hyperpipe-network request, stored at 0x0d83a548 by `glXQueryHyperpipeNetworkSGIX`; its kernel
+  counterpart is `gfP_OdsyHPgetTopology` (`docs/ioctls.md`).
+- `0x00f` (low ten bits of 0x0001000f): **established.**
+  The GLX query-hyperpipe-config request, stored at 0x0d83aca8 by `glXQueryHyperpipeConfigSGIX`, with the kernel counterpart
+  `gfP_OdsyHPgetConfig`.
+- `0x010` (low ten bits of 0x00010010): **established.**
+  The GLX hyperpipe-config request stored at 0x0d83a880 by `glXHyperpipeConfigSGIX`; `__glOdyim_ClipPlane` builds the
+  same low bits as a dirty-word update in libGLcore.
+- `0x011` (low ten bits of 0x00010011): **established.**
+  The GLX destroy-hyperpipe-config request, stored at 0x0d83aafc by `glXDestroyHyperpipeConfigSGIX` in `libGL.so`.
+
+## Block ids of the command words above
+
+Each entry starts with the block id, the ten-bit register number inside a class-1 word, and names the word or words
+that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`odsy_ctxsw.o`, `docs/buzz.md`).
+
+- `0x016` (texture mode block): **established.**
+  Seven operands TEXMODE0 to TEXMODE6 sent as word 0x00011c16 when the texture dirty bit 0x200 is set;
+  the kernel replays the same seven words from hardware-shadow offset 0x14c.
+- `0x017` (window descriptor block): **established.**
+  Four operands copied from context +6948 to +6960 by `__glOdysseyValidateHardware` as word 0x00011017; the kernel's
+  `odsyRestartContext` sends it too and replays it from hardware-shadow offset 0x1b24.
+- `0x018` (block with no operand, `odsy_ctxsw.o`): **established.**
+  Word 0x00010018 is built in `odsyRestoreRaster` and `odsy_mm_obj_xfr_bs`; the replay table lists the block with zero
+  operands and no shadow offset. The block's effect is unknown.
+- `0x019` (flush block, `libGLcore.so`): **inferred.**
+  Word 0x00010019, no operand, opens the flush step of the settle sequence in `__glOdysseyFlush` and the kernel's
+  `odsyPushBufferSelect`, `odsyDMAOp` and textport; only buffer swaps, make-current, finish and pixel copies send
+  it, which is the basis for reading it as a pipeline flush.
+- `0x01b` (texture environment block): **established.**
+  Five operands as word 0x0001141b when dirty bit 0x100 is set; the first operand's bits 2:0 are the environment
+  mode from `__glOdysseyTextureSetOp`. Replayed from hardware-shadow offset 0x138.
+- `0x01f` (state block between alpha test and depth test): **established.**
+  Word 0x0001041f with one operand, replayed from hardware-shadow offset 0xb4 beside 0x01e at 0xb0 and
+  0x020 at 0xb8; libGLcore's `__glOdysseyClear` sends it twice. The register's field is unknown.
+- `0x021` (constant colour block): **established.**
+  Word 0x00010c21 with three operands, a control word and a packed RG and BA colour, from `ODSY_SET_GC` and
+  `__glOdysseyValidateHardware`; the kernel replays it from hardware-shadow offset 0xbc.
+- `0x023` (texture-clip block): **inferred.**
+  Word 0x00011023, four operands, replayed from hardware-shadow offset 0xe8 and sent by `ODSY_SET_GC` twice; `docs/opengl.md`
+  records that the X module and textport send it with the 0x022 sequencer pair, which is why it reads as part of
+  the colour-handling state.
+- `0x028` (first of four 16-operand blocks): **established.**
+  Word 0x00013c28 goes out from `__glOdysseyValidateHardware` as the first sixteen words of the shadow region at
+  context 0x1070; the kernel replays it from hardware-shadow offset 0x1070. What the words hold is unknown.
+- `0x029` (second 16-operand block, `libGLcore.so`): **established.**
+  Word 0x00013c29, the next sixteen shadow words after 0x028, replayed twice by `odsyRestoreRaster`; contents unknown.
+- `0x02a` (third 16-operand block, `libGLcore.so`): **established.**
+  Word 0x00013c2a, sent between 0x029 and 0x02b by `__glOdysseyValidateHardware`; contents unknown.
+- `0x02b` (fourth 16-operand block, `libGLcore.so`): **established.**
+  Word 0x00013c2b closes the four-block layout of the 64-word region in `__glOdysseyValidateHardware`; contents unknown.
+- `0x030` (first post-filter block): **established.**
+  Word 0x00012030, eight operands in mode 1 of the post-filter mode word at context 0x8ce8, taken from the image
+  state; replayed from hardware-shadow offset 0x1174 by `odsyRestoreRaster`.
+- `0x031` (second post-filter block, `libGLcore.so`): **established.**
+  Word 0x00012031, the next eight words in mode 1. A copy command shares the id 0x031 in the class-0 space
+  (`docs/opengl.md`, `odsyCopyRectBody`), so the two id spaces are separate.
+- `0x032` (third post-filter block, `libGLcore.so`): **established.**
+  Word 0x00012032, eight operands in mode 1 from `__glOdysseyValidateHardware`; the third of the four colour-channel sets.
+- `0x033` (fourth post-filter block): **established.**
+  Word 0x00012033, eight operands, the last of the mode-1 sets; the layout of its words is signed 3.12 scale and bias
+  pairs (`BUZZ.h`, post-filter block).
+- `0x038` (one-block layout of the 64-word region, `odsy_ctxsw.o`): **established.**
+  Word 0x00013c38, sixteen operands, chosen when the mode word at shadow 0x106c is 2; sent by `odsyRestoreRaster`
+  and `__glOdysseyValidateHardware`. Contents unknown.
+- `0x03a` (four-word layout of the 64-word region, `odsy_ctxsw.o`): **established.**
+  Word 0x0001103a, four operands, chosen when the mode word at shadow 0x106c is 3, from `odsyRestoreRaster`;
+  contents unknown.
+- `0x03b` (mode-2 post-filter block, `libGLcore.so`): **established.**
+  Word 0x0001203b, eight operands from context 0x8cec; `__glOdysseyTextureActivate` fills them from the texture object's
+  post-filter scale and bias, so texture post-filtering uses this block.
+- `0x03d` (mode-3 post-filter block, `odsy_ctxsw.o`): **established.**
+  Word 0x0001083d, two operands, a scale of 0x1000 and a bias of 0 that the context's default-state routine
+  writes; the kernel replays it in `odsyRestoreRaster`.
+- `0x03e` (texture offset block): **established.**
+  Word 0x00010c3e with three operands from context 0x8d6c to 0x8d74, always zero because `SetTexOffsetValues` zeroes
+  them; replayed from hardware-shadow offset 0x11f4. Field meaning unknown.
+- `0x040` (clip-origin block): **established.**
+  Word 0x00010840 with a doubleword built from the board record and a drawable word, stored twice by `odsyClipPush`
+  (`odsy_clip.o`) and by `__glOdysseySetDrawbuf` in libGLcore; the kernel's clip push writes it before block 0x041.
+- `0x041` (drawable origin block): **established.**
+  Word 0x00010841 with two operands whose low 13 bits `gf_OdsyValidateClip` fills from the drawable's x and y at
+  offsets 104 and 108; replayed from hardware-shadow offset 0x2b60.
+- `0x042` (image-chain state block): **established.**
+  Word 0x00010842, two operands, built by `__glOdysseyImageChainAddOpAcceptSignedDataFromHost` and replayed from
+  hardware-shadow offset 0x1ca4. Field layout unknown.
+- `0x044` (block around save and DMA, `odsy_ctxsw.o`): **established.**
+  Word 0x00010444 with operand 0: `gf_OdsyPcxSwap` stores it once and `odsyDMAOps` twice, including on the error drain
+  (`docs/kernel.md`); libGLcore's `__glOdysseyVertexWARClip` builds it too. Effect unknown.
+- `0x045` (gamma-fit block, `odyssey.so`): **established.**
+  Word 0x00010845, two operands, sent only by the X module: `odsyGammaFit` with a clamped float result and 0x76ff, and
+  `odsyInitDefaultHW` with screen set-up words. Effect unknown.
+- `0x046` (pad block, `odsy_init.o`): **inferred.**
+  Word 0x00010046, no operand, repeated after each wait of the settle sequence and stored by `odsyInitCfifo` before the
+  2000 microsecond delay of microcode load; read as a no-op filler from the repeats.
+- `0x047` (zero state block): **established.**
+  Word 0x00011847 with six operands, always zero because `__glOdysseyInitDefaultValues` zeroes the source words and
+  nothing else writes them; replayed from hardware-shadow offset 0x1b94. Effect unknown.
+- `0x04c` (state block replayed from 0x1cac, `libGLcore.so`): **established.**
+  Word 0x0001044c, one operand, sent by `__glOdysseyValidateContext` and replayed by `odsyRestoreRaster`. Field unknown.
+- `0x04d` (third stipple-sized bitmap): **established.**
+  Word 0x00013c4d, sixteen operands, replayed from hardware-shadow offset 0xf8 beside the stipple halves 0x04e at 0x00 and
+  0x04f at 0x40. Contents unknown.
+- `0x050` (context select block): **established.**
+  Word 0x00010850, two operands: `gf_OdsyPcxSwap` and `odsyRestartContext` send ((slot << 12) AND 0x7f000) OR x OR 0xf and 0
+  to switch the board's context (`BUZZ.h`, context save).
+- `0x053` (rectangle-copy block): **established.**
+  Word 0x00011453, five operands from context +6964 to +6980, sent by `odsyCopyRectBody` after block 0x258;
+  replayed from hardware-shadow offset 0x1b34.
+- `0x054` (command FIFO set-up block, `odsy_init.o`): **established.**
+  Word 0x00010854, operands 0 and 0x0fffffff, built by `odsyInitCfifo` alone before the microcode download. Effect unknown.
+- `0x056` (state block replayed from 0x1cb0, `libGLcore.so`): **established.**
+  Word 0x00010456, one operand, built by `__glOdyim_PolygonOffsetEXT`, `__glOdysseyFindWindowSize` and
+  `__glOdysseyValidateContext`. Field layout unknown.
+- `0x057` (state block replayed from 0x1cb4, `libGLcore.so`): **established.**
+  Word 0x00010457, one operand, sent by `__glOdysseyValidateContext` only. Field layout unknown.
+- `0x250` (six-operand context block): **established.**
+  Word 0x00011a50, six operands from context +0x10000 - 26796, sent by `__glOdysseyValidateContext` after block 0x007.
+  Field meaning unknown.
+- `0x258` (copy-prefix block, `odsy_dma.o`): **established.**
+  Word 0x00010658 with operand 0x00120000, sent by `odsyCopyRectBody` before block 0x053, by the image-move paths, and by
+  `odsyDMAOp` and `odsyRestartContext` in the kernel. Effect unknown.
+- `0x25a` (tag write-back block, `libGLcore.so`): **inferred.**
+  Word 0x00010a5a, two operands, a host location ORed with 0x8000 and a 16-bit tag, sent by `__glOdyGetFromHardware`
+  and the kernel's `odsyDMAOp`; the reading is that the board writes the tag to that location, which libGLcore polls.
+- `0x2bc` (level descriptor 60, `libGLcore.so`): **established.**
+  Word 0x00010ebc is block 0x280 + 60 with three operands, which `DownsampleTextureThruHW` fills and sends to render into
+  a texture level; word 0 is the level's board address and word 1 its pitch in tiles (inferred, `docs/buzz.md`).
