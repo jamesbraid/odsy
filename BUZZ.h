@@ -652,4 +652,65 @@
 #define ODSY_REG_INTR_ENABLE       0x1034 /* inferred */
 #define ODSY_REG_INTR_DISABLE      0x103c /* inferred */
 
+/* --- Flags interrupt handler: odsyFlagInterrupt (odsy_intr.o) ---------
+ * established. The handler reads flags (0x1014) and the register at
+ * 0x1034, and works on pending = flags & [0x1034]. It is therefore an
+ * interrupt-enable mask, upgrading the earlier inferred label; the same
+ * routine's last step writes `pending` to 0x101c (the clear register).
+ * 0x103c is written 0x200 by odsyLowaterInterrupt, and 0x1034 is written
+ * 0x200 by odsyHiwaterInterrupt; both stay inferred as set and clear
+ * forms of the one enable. Bit actions, in the order tested:
+ *   bit 9  CFIFO_LW_FLAG        odsyLowaterInterrupt (wake the writer)
+ *   bit 31 GEN_LOCK_INTR        odsyGenlockInterrupt (re-programs the
+ *                               display PLL over I2C, see DISPLAY.h)
+ *   bits 30, 29, 28, 27, 25, 24, 23, 22, 21, 20, 18, 17:14, 13, 11, 10,
+ *   8, 7, 4, 2, 1, 0: log a message that names the bit
+ *   (CLOCK_STOPPED, READ_DURING_DIAG_ERROR, PUSH_CMD_ERROR,
+ *   GFX_OFLOW, CFIFO HW, DBE_OFLOW, DFIFO_OFLOW, XFORM_IFIFO_OFLOW,
+ *   XFORM_UCODE_OFLOW, XFORM_PTABLE_OFLOW, GFX_XTALK_STALL, HOST_FLAG,
+ *   PRIV_VIOLATE_GFX, DMA_DONE_FLAG, DMA_CMD_OFLO, ILLEGAL_OUT_FORMAT,
+ *   MULTGET, CORRECTABLE_ECC (bit 4, the text adds a running count and
+ *   "single" or "multiple" by bit 3), UNCORRECTABLE_ECC, SYNC_TIMEOUT,
+ *   HEURISTIC_OVERFLOW). Bit 12 CTXSW_DONE and bit 26 are not tested.
+ * Then, if the raw flags (before the enable mask) intersect
+ * 0x39f02587, the handler calls odsy_teardown (the board is shut down);
+ * otherwise it clears the pending bits. The teardown set is bits 29,
+ * 28, 27, 24-20, 13, 10, 8, 7, 2, 1, 0: every logged bit except the two
+ * ECC-correctable bits, CLOCK_STOPPED, XTALK_STALL, HOST_FLAG, DMA_DONE
+ * and CFIFO HW. Note the test uses the raw flags: a set flag that is not
+ * enabled still tears the board down when any other interrupt arrives.
+ * established as code; the practical reading is inferred.
+ *
+ * Initial enable mask. odsyInitInterrupts builds the value in a record
+ * shadow and stores it to 0x1034 with a chain of read-modify-writes:
+ * clear bit 31; set 30, 29, 28, 27; clear 25; set 24, 23, 22, 21 and 18;
+ * clear 17:14 (mask 0xfffc3fff); set 13; clear 12 and 11; set 10; clear 9;
+ * set 8, 7, 4, 3, 2, 1; clear 0. Bits 26, 20, 19, 6, 5 are never touched.
+ * established. If the shadow starts at zero (inferred: the record is
+ * cleared by odsyZeroOut, not re-checked here) the final mask is
+ * 0x79e4259e. Bit 9 is added later by the high-water path.
+ * So at start-up GEN_LOCK (31), CFIFO_HW (25), the host flags (17:14),
+ * DMA_DONE (11), CFIFO_LW (9) and HEURISTIC_OVERFLOW (0) are masked
+ * off, and PTABLE_OFLOW (20) stays masked although it is in the
+ * teardown set. */
+
+/* --- Crossbar error interrupt: odsyXtErrorInterrupt (odsy_intr.o) -----
+ * A second interrupt source, separate from the flags register. It reads
+ * the word at board + 0x0c and tests three bits, then reads +0x44 (error
+ * header), +0x1c, +0x14. established as loads and messages:
+ *   bit 8  "Response Time-out Error"
+ *   bit 7  "Address Error": prints 0 as the high address, +0x1c as the
+ *          low address, +0x44 as the header and +0x14 & 0xffff0000 as
+ *          the high error, calls odsyPrintRegs, then logs "xt.error: %R"
+ *          with a 480-byte bit-description table copied to the stack
+ *          (the table's contents were not read). It is the only case
+ *          that calls odsy_teardown
+ *   bit 6  "Packet Format Error"
+ *   none   "unknown xt interrupt"
+ * The handler then writes 0 to +0x44 (clears the header). For the two
+ * non-address cases it also prints "Fatal widget error (header=...)".
+ * Register names (a crossbar widget's error and header words): inferred
+ * from the message text only. Bits 8, 7, 6 in the order tested are
+ * established; whether any other bit of +0x0c matters: unknown. */
+
 #endif /* BUZZ_H */
