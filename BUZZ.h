@@ -557,8 +557,10 @@
  *      taken in groups of six in reverse order (h[5] first, h[0] last,
  *      then h[11]..h[6], and so on, 2048 groups). established. The
  *      array is not buzz_xform.bin: that image goes through
- *      odsyDownloadUcode (odsy_ucode.o), a separate path. What this
- *      program is and the meaning of the header words: unknown.
+ *      odsyDownloadUcode (odsy_ucode.o), a separate path, though the
+ *      array is an older build of the same program. The header words set
+ *      sequencer registers 0x2e and 0x26 and the write address (0x27);
+ *      format and meaning in ucode/buzz_isa.md.
  *   6. 0x000007f0_3b9aca00         one more doubleword (value 10^9), the
  *                                  last FIFO store of the routine.
  *      Register 0x7f0 and the value: unknown.

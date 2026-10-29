@@ -7,18 +7,20 @@ Facts are labelled established (read from a binary, with where), inferred (a rea
 - **established.** The global object symbol `buzz_ucode` (type OBJECT, size 27196 bytes) sits at offset 0x7d0 of `.data` in `odsy_init.o`, a member of `odyssey.a`. Source: `readelf -s` on `odsy_kernel/odsy_init.o` and on `odsy_kernel_ip35/odsy_init.o`; `.data` is 0x720c bytes in both.
 - **established.** The IP30 (Octane2) and IP35 (Fuel, Tezro, Onyx 350) copies are byte-identical (same size, same SHA-256 `9955bc1bad614a4d28bc3a56914b2037cb1ab45bcb7e8bc2432d9d31804d9133`). Release 6.5.30 for both.
 - `scripts/extract_buzz_ucode.py` writes each copy unchanged to `root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin` and `..._ip35.bin`, and links them from `ucode/`, the way the shipped files in `ucode/ODSY/` are linked. `--stats` prints the numbers below.
-- It is not `buzz_xform.bin`. That file is downloaded by `odsyDownloadUcode` in `odsy_ucode.o` (a separate path, host-side download through DMA, not read here). established: `odsy_init.o` and `odsy_ucode.o` use different data.
+- It is not the file `buzz_xform.bin`, but it is an older build of the same program (`ucode/buzz_isa.md`, "Two copies"). That file reaches the board through `gf_OdsyDownload` and `odsyDownloadUcode` (`odsy_ucode.o`), which copy a caller's image into the kernel shadow and load it; this array is sent only by `odsyInitCfifo`. established.
 
 ## Element format
 
 - **established.** The array is read as big-endian 16-bit values (`lhu`, element i at byte offset 2i): 13598 values, 27196 bytes, no odd byte.
 - **established.** `odsyInitCfifo` (odsy_init.o) uses only the first 12288 values. The loader loops 2048 times over groups of six; within a group it reads index 5 first, then 4, 3, 2, 1, 0, then the next group at 11..6, and so on. Each value h becomes the 32-bit FIFO word `0x40008000 | (h & 0x3ff) | ((h >> 10) << 23)`: the low ten bits keep their place, the top six bits go to bits 28:23. This is the same word split in IP30 and IP35 (`odsyInitCfifo` disassembly of both).
-- **established.** The remaining 1310 values (218 groups of six plus two values, from value index 12288 to the end) are never sent by this routine. They have the same look as the loaded part (see below). Whether another path loads them, or they are leftover or a second program: **unknown**. No relocation in any IP30 or IP35 kernel object names the symbol (`readelf -r` over every `.o` in `odsy_kernel/` and `odsy_kernel_ip35/`). The loader reaches the array through the `.data` section symbol, so another reader of that section cannot be excluded by name; none was found in the code read.
+- **established.** The remaining 1310 values (index 12288 to the end) are 218 whole records (2048 to 2265) and a 4-byte trailer `ffffffff`. They are never sent by this routine, and no other path sends them: the kernel's microcode shadow (board record offset -31400, used by `odsyDownloadUcode` and the overlay loader `odsySetProgram`) is a zeroed `kmem_zalloc(0xc000)` buffer set up in `odsyInitBoardGfx` and filled only by `gf_OdsyDownload`'s `bcopy` from the caller. No relocation in any IP30 or IP35 kernel object names `buzz_ucode` (`readelf -r` over every `.o` in `odsy_kernel/` and `odsy_kernel_ip35/`); the loader reaches it through the `.data` section symbol.
+- **established.** What the tail is: the end of the program. The 2266 records equal records 0-791 and 891-2364 of `ucode/ODSY/buzz_xform.bin` (`ucode/buzz_isa.md`, "Two copies"), so records 2048-2265 are the same code as image records 2147-2364. Every routine address of 1799 or more is paged by libGLcore and the kernel into a 200-word window at RAM 1848-2047 (`ucode/buzz_isa.md`, "Overlays"), so the tail is overlay code that only that paging can place, and the paging reads the shadow, never this array.
+- **inferred.** After a start-up load alone, the RAM holds the old build's records 0-2047, including its resident overlay at 1848-2047, and none of the tail. The array keeps the tail because it is a copy of the whole program image, of which the loop sends only what fits. The `ffffffff` trailer: **unknown** (padding or an end marker of the tool that wrote the array).
 
 ## Header written before the data
 
 - **established.** Before the data words the driver writes three FIFO words: `0x2e008380`, `0x2600807f`, `0x27008000`. After the data, one doubleword `0x000007f0_3b9aca00` goes out (see `BUZZ.h`, section on odsyInitCfifo). The board ID word at board+0x201594 must read `0x003d0046` first, else the load is skipped.
-- **unknown.** What the three header words mean (an address, a length, a mode). **inferred** only that they select the destination and mode of the 12288 data words that follow: every data word has bit 30 and bit 15 set, as the header words have bit 15 set, and the loader sends nothing between header and data.
+- **established.** `0x27008000` sets the instruction write address to 0 (`odsyDownloadUcode` builds the same word from its address argument). `0x2e008380` and `0x2600807f` write sequencer registers 0x2e = 896 and 0x26 = 127 (`ucode/buzz_isa.md`, "Sequencer registers"); their meaning is **unknown**, with 127 **inferred** to be a routine address.
 
 ## Shape of the data (from `--stats`, groups in sending order)
 
@@ -43,10 +45,9 @@ Slot 0 is the first value sent in each group of six, slot 5 the last.
 018c 06c8 0124 9000 0008 0000
 0000 07c8 0125 9000 0008 0000
 ```
-- **inferred.** The data is a table of 96-bit records (six 16-bit fields), loaded in order. Reason: groups of six, a per-slot bit profile that differs by slot, and the same profile in the unloaded tail. Whether the record is an instruction, a table entry or something else: unknown.
-- **established.** The last two values of the array are `0xffff 0xffff`, and the value before them is `0xa200`. Whether the pair is a terminator: unknown.
+- **established.** The data is a table of 96-bit microcode instructions, six 16-bit fields each: `odsyDownloadUcode` loads the same format, one instruction per address, and `buzz_xform.bin` is a newer build of the same program. Instruction format and sequencing: `ucode/buzz_isa.md`.
 - **inferred.** The only text-visible kernel consumer is the loop above; the kernel does not interpret the contents.
 
-## For the instruction-set pass
+## Instruction set
 
-Start with the six-slot table above and the first groups in stored order. In those groups index 2 counts up by one (0x120, 0x121, ...), index 0 steps by 0x84 and index 1 by 0x100 once it is nonzero, index 3 is 0xc000 then 0x9000, index 4 is 0x0008 and index 5 is zero. The odsyInitCfifo header words and the post-data doubleword `0x7f0 = 10^9` may name a clock or timeout and are not read. No emitter for this format was found on the host side, so the decode has to come from the data and from what the driver does around the load.
+The instruction format, loading words, sequencer registers, routine entries and overlays are in `ucode/buzz_isa.md`; the listing of this copy is `ucode/disasm/buzz_ucode_kernel.lst`. The post-data doubleword `0x7f0 = 10^9` is still not read.
