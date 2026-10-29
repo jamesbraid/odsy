@@ -93,26 +93,80 @@ Scripts (`scripts/`, run from the repository root):
 - `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
 - `extract_libglcore_odsy.py`: extract compilation units, types and functions from `libGLcore.so` into `libglcore/asm/` and `manifest.json`, and write `libglcore/decompile_libglcore.sh`. A binary without DWARF falls back to its symbol table.
 - `extract_odsy_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `ddx/groups.json`.
+- `inventory.py` (config `inventory.json`): measure coverage from the binaries. It lists every function, board offset, command word, ioctl and microcode routine in the in-scope files and marks each `documented`, `named-only` or `undocumented` by grepping the docs and headers. Output is `docs/inventory/*.tsv` (see `docs/inventory/README.md`).
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
 
 The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
 
 ---
 
-## 6. Working on this repository
+## 6. Evidence: software only, any source
 
-Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the scripts above, then read, write headers and docs, and update `docs/coverage.md`.
+No hardware is available for this work. Do not plan, request or wait for
+measurements on a real machine. Every question is answered from software and
+published material, and a row is not finished while either still has
+something to read.
+
+Readers may open anything:
+
+- every shipped binary on every IRIX release, and any disassembly or
+  decompilation of it;
+- the IRIX source tree linked from this repository;
+- vendor specifications, including any embedded source code or HDL pages;
+- public drivers and emulators: Linux, NetBSD, OpenBSD, MAME and others;
+- manuals, release notes and man pages;
+- published output from real machines: `hinv`, `gfxinfo`, `irsaudit`, ide
+  diagnostic transcripts, X server logs and screenshots in newsgroup and
+  mailing-list posts, web pages, archives and forums.
+
+Running the shipped software under an emulator, to watch which registers it
+touches and what it expects back, is also software evidence. Label what it
+shows as the driver's expectation, not as proof of hardware behaviour.
+
+Write findings in your own words. Never paste vendor source, HDL or
+proprietary binaries into the repository.
+
+Some facts no software reveals, such as the reset value of a register no
+driver reads. When every route is exhausted, label the fact "unknown: no
+shipped software or published source depends on it" and list the routes you
+tried. An emulator author then chooses a value and documents the choice. Never
+write "needs capture".
+
+An open question is not a stopping point. Record it in
+`docs/open-questions.md` with every route already tried and the next one to
+try, then carry on with other work. When a question is answered, move it into
+the owning chip header or chapter and delete the entry.
+
+## 7. When work is finished
+
+A coverage row is done when every inventory entry in its area
+(`docs/inventory/`) is documented and every remaining unknown is labelled
+"unknown: no shipped software or published source depends on it", with the
+routes tried. Anything less is partial. The repository is finished when every
+inventory table reaches that state, not when the rows look full.
+
+When you finish a task, regenerate the inventory, then pick the next
+undocumented entries and carry on. Hand off only when your assigned area meets
+the definition above, or when the session ends. In that case, say in
+`docs/open-questions.md` where you stopped and what comes next.
+
+---
+
+## 8. Working on this repository
+
+Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the scripts above, then read, write headers and docs, and regenerate the inventory.
 
 Roles:
 
-- **Opus readers** take the Priority list in `docs/coverage.md`, in order.
-- **Sonnet readers** backfill `docs/coverage.md` rows one block at a time.
+- **Opus readers** take the Priority list in `docs/coverage.md`, in order, and read the `undocumented` rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item.
+- **Sonnet readers** pick `undocumented` rows from the inventory, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the board-role functions in `functions.tsv`, then `named-only` rows that need their meaning written. Backfill `docs/coverage.md` area rows the same way.
+- Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have documented must show `documented` in the regenerated file; if it does not, the text is too thin or does not name the thing.
 
 Output rules:
 
 - Findings go in chip headers at the repository root plus `docs/` chapters, written in your own words.
 - Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the public source path.
-- Update `docs/coverage.md` in the same commit as the finding.
+- Update `docs/coverage.md` and the inventory (`scripts/inventory.py`) in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 - Commit what you cite: findings may rest on IRIX binaries or public sources only.
 
