@@ -223,3 +223,115 @@ them, so each entry says only where the kernel stores it; what slot 16 carries i
   per-pipe slot at offset 768 plus 40 times a record bit, writes 1 to board register 0x107c and records 64
   in a second slot. It occurs nowhere else and is an arbitrary pattern outside every word family.
 
+
+## Raster-state words stored to the FIFO
+
+Each word is `0x10000 | count << 10 | id`, a class-1 register write with its operand count. The senders are
+libGLcore's attribute setters (`ody_attrib.s`), which keep a shadow word, rewrite one field and store the block
+after the settle group, and the kernel's `odsyRestoreRaster`, which replays the shadow after a lost context.
+
+- `0x0001041e` (block 0x01e, one operand, `libGLcore.so`): **established.**
+  The alpha test. Bits 14:12 hold the comparison as the GL enum minus 0x200 and bits 11:0 the reference
+  value clamped to 0 to 1 and scaled by 4096; `__glOdyim_AlphaFunc` builds the word from the shadow at context
+  +31784, and I read the shift by 12 and the 4096.0 multiply in its code. `odsyRestoreRaster` replays it from
+  hardware-shadow offset 0xb0.
+- `0x00010420` (block 0x020, one operand, `libGLcore.so`): **established.**
+  The depth test function. `__glOdyim_DepthFunc` rewrites only bits 2:0 of the shadow at context +31792 with the
+  GL comparison enum minus 0x200 and stores the whole word; `__glOdysseyClear` stores it as well.
+- `0x00010422` (block 0x022, one operand, `libGLcore.so`): **established.**
+  The logic operation in bits 3:0, the GL enum minus 0x1500 from `__glOdyim_LogicOp`; the kernel textport's
+  `ODSY_SET_GC` stores the constant for GL_COPY, and the image-chain routines resend it before a pixel pass.
+- `0x00010415` (block 0x015, one operand, `libGLcore.so`): **established.**
+  The polygon mode: bits 3:2 front face and bits 1:0 back face, each GL enum minus 0x1b00, from
+  `__glOdyim_PolygonMode`. `__glOdysseyClear` and `__glOdyim_PolygonOffsetEXT` also store it. Replay reads
+  hardware-shadow offset 0x8c.
+- `0x00010c48` (block 0x048, three operands, `libGLcore.so`): **established.**
+  The line stipple: two operands carry the 16-bit pattern in bits 15:0 and the third the repeat factor minus one,
+  clamped to 1 through 256, from `__glOdyim_LineStipple`. `odsyRestoreRaster` replays it from offset 0xcc.
+- `0x00010458` (block 0x058, one operand, `libGLcore.so`): **established.**
+  The polygon offset: bits 24:0 are a signed depth offset in depth-buffer units clamped to plus or minus 2^24
+  and bits 31:25 are kept from the shadow; `__glOdyim_PolygonOffsetEXT` computes it from factor, bias and the
+  depth range. Replayed from hardware-shadow offset 0xd8.
+- `0x0001081d` (block 0x01d, two operands, `libGLcore.so`): **established.**
+  The scissor box as two operands, each a 12-bit field in bits 23:12 and one in bits 11:0; `__glOdyim_Clear` and `__glOdysseyAccumClose` send it and `__glOdysseyValidateScissor` passes the same four fields to ioctl
+  0x6f64000d. Replay reads hardware-shadow offset 0xa8.
+- `0x00013c4e` (block 0x04e, sixteen operands, `libGLcore.so`): **established.**
+  Rows 31 down to 16 of the 32 by 32 polygon stipple, one 32-bit row per operand, written by
+  `__glOdysseyConvertStipple`, which reverses the GL row order first; the kernel's `odsy_drawbitmap` sends the
+  same block for glyph stipples.
+- `0x00013c4f` (block 0x04f, sixteen operands, `libGLcore.so`): **established.**
+  Rows 15 down to 0 of the polygon stipple, sent straight after 0x04e by `__glOdysseyConvertStipple` and, for
+  glyph bitmaps, by the kernel's `odsy_drawbitmap`; replay reads hardware-shadow offset 0x40.
+- `0x0001043f` (block 0x03f, one operand, `libGLcore.so`): **inferred.**
+  The stipple mode word, sent before the two pattern blocks from context +31736 by `__glOdysseyConvertStipple`;
+  the kernel textport stores the constant 6. What 6 selects is **unknown**.
+ uses for primitive-relative stipple with the tall
+  glyph aspect.
+- `0x0001204b` (block 0x04b, eight operands, `libGLcore.so`): **inferred.**
+  The screen mask: four rectangles as minimum and maximum words with x in bits 23:12 and y in bits 11:0.
+  `odsyClipPush` (`odsy_clip.o`) stores it with the clip, and the textport's start-up stream sends 0x4ff3ff for
+  the first maximum, 1279 by 1023 for its 1280 by 1024 screen.
+- `0x0001084a` (block 0x04a, two operands, `libGLcore.so`): **inferred.**
+  The line width and point size, one operand each; `__glOdysseyValidateHardware` sends it from the context and
+  the kernel textport start-up stream stores 0x80 for both, which would read as 1.0 in a fixed-point
+  number with seven fraction bits (inferred from the value alone).
+- `0x00010c21` (block 0x021, three operands, `odsy_tport.o`): **established.**
+  The constant colour block. `ODSY_SET_GC` stores a control word and then the colour as two packed words, and
+  libGLcore's `__glOdysseyValidateHardware` sends the same block with what reads as the blend factors as its first operand (inferred from the GL blend paths). The textport's fills use the colour as the drawing colour.
+- `0x00011023` (block 0x023, four operands, `odsy_tport.o`): **established.**
+  Stored by `ODSY_SET_GC` twice and by `__glOdysseyValidateContext` in libGLcore, beside the sequencer
+  registers 0x22 and 0x23 that choose colour-index or RGB handling (`docs/words.md`, sequencer section).
+- `0x00011017` (block 0x017, four operands, `odsy_tport.o`): **established.**
+  The window descriptor sent when the graphics context or clip changes: four operands copied from context
+  +6948 onwards by `__glOdysseyValidateHardware`, stored once by `ODSY_SET_GC` and by `odsyRestartContext`.
+  `__glOdysseySwapBuffers` ORs bit 23 into the third operand of the last of its three sends.
+- `0x00010424` (block 0x024, one operand, `odsy_tport.o`): **established.**
+  Stored by `ODSY_SET_GC`, `odsyPushBufferSelect` (`odsy_drawable.o`) and replayed by `odsyRestoreRaster`; its use by the buffer-select push suggests, inferred, that it carries the drawable's draw-buffer choice.
+
+## Framing and synchronisation words stored to the FIFO
+
+- `0x00010019` (block 0x019, no operand, `libGLcore.so`): **inferred.**
+  The pipeline flush of the settle sequence (`BUZZ.h`): built in `__glOdysseyFlush` and `__glOdysseyFinish`, in the
+  pipe-memory object opens, and in the kernel's `odsyPushBufferSelect`, `odsyDMAOp` and textport. The reading
+  rests on that sender set: it appears at buffer swaps, make-current and pixel copies, never in
+  ordinary primitive streams.
+- `0x00010046` (block 0x046, no operand, `libGLcore.so`): **inferred.**
+  The filler of the settle sequence: two or four copies follow each wait word, sent in about forty libGLcore routines
+  and in `odsyInitCfifo` (`odsy_init.o`) just before the microcode download, where the routine waits 2000 us.
+  A no-op reading is inferred from the pattern of repeats.
+- `0x00010443` (block 0x043, one operand, `libGLcore.so`): **inferred.**
+  The wait that opens each settle group; its operand is the count 250 or 150. Built in about forty libGLcore routines
+  and in `odsyClipPush`, `gf_OdsyPcxSwap`, `odsyRestartContext` and `odsyDMAOps` of the kernel; read as a wait that
+  lets the primitive in flight drain before state lands.
+- `0x00014400` (primitive begin, one operand, `libGLcore.so`): **established.**
+  Bit 14 set with id 0, one operand: libGLcore stores it from `__glOdyim_Begin` and the clear and clip routines, and the
+  kernel from `odsy_drawbitmap`, `odsy_pnt2i`, `gf_OdsyPcxSwap`, `odsyRestoreGfe` and `odsyDMAOps`; the operand is
+  the primitive type.
+- `0x00014001` (primitive end, no operand, `libGLcore.so`): **established.**
+  The matching end word, built in `__glOdyim_End` and `sseyDoTriangleClip`, in `gfP_OdsyClearBuffer`, `odsyDMAOp` and
+  the textport paths, and replayed with 0x14400 by `odsyRestoreGfe`; libGLcore flags it to insert a short settle
+  group before the next register block.
+- `0x00010444` (block 0x044, one operand, `odsy_ctxsw.o`): **established.**
+  Appears only around context save and DMA: stored by `gf_OdsyPcxSwap` and twice by `odsyDMAOps`, and by
+  libGLcore's `__glOdysseyVertexWARClip`; the register's effect is not known from any sender.
+- `0x00010850` (block 0x050, two operands, `odsy_ctxsw.o`): **established.**
+  Context select: `gf_OdsyPcxSwap` stores it twice and `odsyRestartContext` once, with operands
+  ((slot << 12) AND 0x7f000) OR x OR 0xf and 0 (`BUZZ.h`, context save).
+- `0x00010854` (block 0x054, two operands, `odsy_init.o`): **established.**
+  Built by `odsyInitCfifo` alone, at the start of the command-FIFO set-up, followed by five doubleword stores and a
+  2000 microsecond delay; the operands 0 and 0x0fffffff are built with `lui`/`ori` just before the doubleword stores. What the board does with them is unknown.
+- `0x00010658` (block 0x258, one operand, `odsy_dma.o`): **established.**
+  Sent with operand 0x00120000 before a rectangle copy, by `odsyCopyRectBody`, the image paths
+  (`__glOdysseyImageMovePixelsDMAtoGfx`) and the kernel's `odsyDMAOp` and `odsyRestartContext`.
+- `0x00010a5a` (block 0x25a, two operands, `odsy_dma.o`): **established.**
+  The tag write-back block: operand 0 is a host location ORed with 0x8000 and operand 1 a 16-bit tag. Built by
+  `__glOdyGetFromHardware`, `__glOdysseyFinish`, the pipe-memory object closes and the kernel's `odsyDMAOp` and `odsyDMAOps`.
+  **inferred** that the board writes the tag to that location when it reaches the word.
+- `0x00010840` (block 0x040, two operands, `odsy_clip.o`): **established.**
+  Part of the clip push: `odsyClipPush` stores it twice with a doubleword holding the board record's word and a
+  drawable word, and `__glOdysseySetDrawbuf`, `__glOdysseySwapBuffers` and `__glOdysseyFinish` build it in
+  libGLcore.
+- `0x00010841` (block 0x041, two operands, `odsy_clip.o`): **established.**
+  The drawable origin: `gf_OdsyValidateClip` fills the low 13 bits of its two operands from the draw
+  drawable's x and y, and `odsyClipPush` stores the word; `__glOdysseyImageMovePixelsCopy` and
+  `__glOdysseyFinish` send it in libGLcore.
