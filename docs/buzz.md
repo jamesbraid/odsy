@@ -80,3 +80,14 @@ Order of the data type codes: unsigned byte, unsigned short, unsigned int, byte,
 
 Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`, `0x908091ea`, `0x9080bda2`, `0x9080bdc8`, `0x90008116`, `0x90808800`, `0x8f80a944`, `0x8f80b968`, `0xcf80a92f`, `0xd080c433`, `0xd080c439`) have bits 15:14 = 10 (or 11 for `0xd080c4xx`) and are state, program and pixel-transfer words (lighting, clip planes, matrices, `__glOdysseySetProgram`, `ApplyParameter`). Their field meaning: **unknown**. `0x80000000`, `0xdeadbeef` and `0xbaadcade` in the same list are masks or markers, not words.
 
+## 3. The maximum texture clamp field
+
+Owner: `BUZZ.h` TEXMODE1 to TEXMODE3.
+
+- **established.** `__glOdysseyValidateTexture` (0x0d9d26d0, `ody_texture.s`, source lines 2183 to 2195) builds words 1 to 3 of block 0x016 as follows. For each axis it takes n = max(0, size_level_n - base_level) (object offsets 144, 152 and 148 minus 92 for S, T, R; the S/T/R assignment follows `BUZZ.h`), forms the float 2^n, multiplies by the object's clamp float (offsets 72, 76 and 80, set from `GL_TEXTURE_MAX_CLAMP_S/T/R_SGIX`), converts with `trunc.w.s`, masks with 0x1ffff and ORs it into the context word (offsets 168, 172, 176), keeping the old bits 31:17 (mask 0xfffe0000).
+- **established.** The result is not saturated: a product above 0x1ffff wraps through the mask. A size of 2^17 texels reads as 0. Reaching that needs a level of 2^17 or a clamp float of 2^(17-n) or more; the largest texture the driver validates was not checked, so whether the wrap is reachable is **unknown**.
+- **established.** The default is 1.0 for all three (`InitTextureObject`, 0x0d9cf5a0, `_lit_3f800000` stored at offsets 72, 76, 80), so the register carries 2^n, the full level size in texels, not size - 1.
+- **established.** The TexParameter setters reject a negative value (`c.lt.s` against zero, then `__glSetError`); the float is stored unconverted and the conversion happens in the validate step above.
+- **established.** Bits 31:24 and 17 of words 2 and 3 start at 0 (`InitTextureObject`, offsets 172, 176) and this routine only preserves them; bits 23:18 are the wrap auxiliary field written by the wrap setters (see `BUZZ.h`). Word 1 (offset 168) keeps the bits it already holds in 31:17 in the same way. What a nonzero bit 17 or bits 31:24 would do: **unknown**.
+- **unknown.** How the board uses the value (clamp coordinate scale, comparison against texel coordinates, interaction with borders). No code in the driver reads it back.
+

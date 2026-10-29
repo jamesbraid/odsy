@@ -161,7 +161,11 @@
 /* Bits 16:0: maximum clamp coordinate in whole texels:
  * trunc(2^log2size * TEXTURE_MAX_CLAMP_{S,T,R}_SGIX). Integer, no
  * fraction bits. established: __glOdysseyValidateTexture lines
- * 2191-2195 (mask 0x1ffff). */
+ * 2191-2195 (mask 0x1ffff). Pass 4: the float is 2^n * clamp with
+ * n = max(0, level size exponent - base level) and clamp defaulting to
+ * 1.0, so the default value is the whole level size, not size - 1; the
+ * conversion truncates and the mask wraps, it does not saturate; the old
+ * bits 31:17 of the word are kept. docs/buzz.md section 3. */
 #define TEXMODEn_MAX_CLAMP_MASK    0x0001ffffu
 /* Bits 23:18: a 6-bit value set with the wrap mode: 0 for GL_REPEAT and
  * GL_CLAMP, 1 for GL_CLAMP_TO_EDGE, 63 for GL_CLAMP_TO_BORDER.
