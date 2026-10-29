@@ -324,24 +324,72 @@ sets a bit in the program key and adds no routine.
   and R17 and produces the same texture, position and colour output words at the same offsets from
   its entry as 694.
 - **`719`** (routine; kernel record 719), **inferred**: closes each light's lighting when it has no
-  distance attenuation (`ody_program.s`, line 874).
-- **`734`** (routine; kernel record 734), **inferred**: closes each light's lighting when it is
-  local and attenuated (`ody_program.s`, line 874); it runs twenty records against eleven.
+  distance attenuation (`ody_program.s`, line 874), fifteen records with no vertex output. Its inputs
+  are what 694 or 668 left behind: the eye normal in R16, the light vector in R17, the viewer vector
+  in R26 and the spot direction and cutoff in R20, plus light word 14 (the negated spot exponent)
+  and the shininess words 0x0f0, 0x0f1, 0x0f4 and 0x0f5 that routine 490 derives. Run after 656 and
+  694 (`scripts/buzz_ucode_dataflow.py`), it fires products of R26 and R17 against the normal and
+  each other, takes reciprocal square roots of two of them (code 1, records 724 and 725) into
+  R18.y and R18.z, negates the spot exponent into R20.x (code 0xc, 723), loads K from words 0x0f4
+  and 0x0f5 (724, 728), and passes four products through code 5 and two through code 4 (726 to 733).
+  The colour unit multiplies light-relative colour word 0 by the diffuse slots 11 and 7 and words 1
+  and 2 by slots 7 and 8 (operations 0x4020, 0x4120, 0x4220) and stores results at working
+  addresses 25 to 30. Outputs: the code-4 result of record 733, which the finish sends as word 6, and
+  the read of R23.x at 733 that starts the finish's coordinate output.
+- **`734`** (routine; kernel record 734), **inferred**: the attenuated form of 719 for a local
+  light (`ody_program.s`, line 874), twenty-four records against fifteen. Inputs: 719's registers
+  and shininess words, plus light words 7 and 8. Its first nine records
+  are the addition: they read light word 7 (constant attenuation) into R21.x and word 8 (linear),
+  scaled by K through code 0xd, into R22, put 1.0 in R22.x, read R22.w and R22.y back through codes 8
+  and 0xd, and latch R21 with the attenuation terms for the products that follow. From record
+  742 the routine repeats 719's work in a different schedule: two reciprocal square roots, the spot
+  exponent negated by code 0xc, K from words 0x0f4 and 0x0f5, four code-5 and two code-4 results,
+  and the colour products 0x4020, 0x4220 and 0x4120 with the diffuse and specular slots. Its last
+  record, 757, outputs the code-4 result the finish sends as word 6 and reads R23.x; in between it
+  computes 719's terms with the attenuation registers latched in front of them.
 - **`768`** (routine; kernel record 768), **inferred**: lighting for each further light that is
-  directional (`ody_program.s`, line 862).
-- **`920`** (routine; kernel record 821), **inferred**: lighting for each further light that is
-  local (`ody_program.s`, line 862).
-- **`891`** (routine), **inferred**: the first part of a further directional light when context
-  byte +3220 is zero (`ody_program.s`, line 859); the generic
-  `__glGenericPickColorMaterialProcs` (`so_lighting.s`) needs the same byte set, which reads
-  as the RGBA-mode flag, so this is the colour-index form. The kernel's copy of the program
-  has it 99 lower, at 792, where the 6.5.30m file has its inserted routine.
-- **`964`** (routine; kernel record 865), **inferred**: the first part of a further local light
-  in the colour-index form (`ody_program.s`, line 859).
+  directional (`ody_program.s`, line 862). Inputs: the next light's record, words 0 to 2 (its
+  direction), 8 and 9 (linear and quadratic attenuation), 10 to 13 (spot direction and cutoff) and 14;
+  shininess word 0x0f1; and the results of the routine before. It loads the new direction into R17
+  (781 to 783), the spot direction and cutoff into R20 and the attenuation into R22.y and, through K,
+  word 9; it latches R18 twice and R26 once, and runs code 3 three times, code 4 and code 8 once
+  and code 0xe four times. In the colour unit it multiplies the
+  light-relative specular and diffuse colours (0x4220, 0x4120) and the ambient colour by the ambient
+  slots 6 and 10 (0x4028, 0x4020) and sends one colour word (0x1a9a). Its tail from record 779 is the
+  colour-index second part.
+- **`920`** (routine; kernel record 821), **inferred**: lighting for each further local light in
+  RGBA mode (`ody_program.s`, line 862), forty-four records. Inputs: the position slot, the
+  modelview rows R9 to R11, the next light's position, attenuation and spot words, the constants
+  -1.0, 0.0, 1.0 and 2.828 and the stored word 0x1f4. Beyond 768's work it recomputes the eye
+  position from the position slot (latches of R9, R10 and R11), fires products of R18, R19 and R17,
+  and scales them with one reciprocal square root (code 1) and seven code-0xe multiplies.
+  The colour unit runs the same light-relative products as 768 (0x4220, 0x4120, 0x4028 and, for the
+  back ambient, 0x6020) and outputs two colour words (0x9f9a, 0x9f92).
+- **`891`** (routine), **inferred**: the
+  first part of a further directional light in the colour-index form (`ody_program.s`, line 859),
+  eleven records. Its only parameter input is light word 14; it runs two code-3 operations, one
+  code 4 and one code 8, and in the colour unit multiplies the light-relative specular and diffuse
+  colours (0x4220, 0x4120) and stores to working addresses 26 and 29. It produces no vertex word: 779
+  follows it and finishes the light. Context byte +3220, which picks this path, is the RGBA flag
+  `__glGenericPickColorMaterialProcs` (`so_lighting.s`) also tests.
+- **`964`** (routine; kernel record 865), **inferred**: the first part of a further local light in
+  the colour-index form (`ody_program.s`, line 859). Inputs: the position slot, the modelview rows
+  R9 to R11, -1.0, 0.0, light word 14 and the stored word 0x1f4. It computes the eye position again
+  from those rows, runs two code-3, one code-4 and one code-8 operation, and multiplies the
+  light-relative specular and diffuse colours (0x4220, and 0x4120 with the back diffuse slot 11) as
+  891 does. Outputs: registers and working addresses for 931, no vertex word.
 - **`779`** (routine; kernel record 779), **inferred**: the second part of a further directional
-  light in the colour-index form (`ody_program.s`, line 860); it is the tail of routine 768.
+  light in the colour-index form (`ody_program.s`, line 860), entered eleven records into 768. It
+  takes the next light's direction, attenuation and spot words exactly as 768's tail does (words 0
+  to 2, 8 to 13), runs four code-0xe multiplies and one code 3, and outputs one colour word
+  through 0x1a9a.
+  What it omits against 768 is the first eleven records: the specular, diffuse and ambient colour
+  products and the code-3 and code-4 work on the previous light.
 - **`931`** (routine; kernel record 832), **inferred**: the second part of a further local light
-  in the colour-index form (`ody_program.s`, line 860); it is the tail of routine 920.
+  in the colour-index form (`ody_program.s`, line 860), entered eleven records into 920. It takes the
+  next light's position, attenuation and spot words and the constant 2.828, computes one
+  reciprocal square root (code 1) and seven code-0xe scalings, and outputs two colour words
+  (0x9f9a and 0x9f92); it drops 920's opening colour products for the previous light.
 
 ### The program table
 
@@ -676,26 +724,64 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 `AddProgram` closes the lighting of a program built without the table with one of these
 (`ody_program.s`, source lines 942 to 992), after the per-light routines.
 
-- **`975`** (routine; kernel record 876), **established**: the RGBA finish when the light loop leaves its
-  attenuation and spot flags clear, or no light is enabled, with one colour and no
-  perspective-texture flag (`ody_program.s`, source lines 972 and 985).
-- **`986`** (routine; kernel record 887), **established**: the same finish with the perspective-texture
-  flag set (`ody_program.s`, source lines 970 and 985).
-- **`997`** (routine; kernel record 898), **established**: the two-colour form of 975 (`ody_program.s`, source lines
-  972 and 985); it writes lanes 4 and 6.
-- **`1013`** (routine; kernel record 914), **established**: the one-colour finish when the light loop
-  leaves its attenuation or spot flag set (`ody_program.s`, source line 967), and the colour-index finish (line 951).
-- **`1035`** (routine; kernel record 936), **established**: the attenuation-or-spot finish with the
-  perspective-texture flag (`ody_program.s`, source line 967).
-- **`1045`** (routine; kernel record 946), **established**: the two-colour form of 1013, in both the
-  RGBA and the colour-index paths (`ody_program.s`, source lines 951 and 967).
-- **`1023`** (routine; kernel record 924), **established**: the one-colour finish with separate
-  specular (`ody_program.s`, source line 958), added after routine 768.
-- **`1057`** (routine; kernel record 958), **established**: the separate-specular finish with two
-  colours (`ody_program.s`, source line 958).
-- **`758`** (routine; kernel record 758), **established**: added between 768 and the separate-specular
-  finish only while building program 1, the program `__glOdysseyValidateProgram` adds when software
-  clip planes are on (`ody_program.s`, source lines 956 and 1328). It is six records, three idle.
+- **`975`** (routine; kernel record 876), **established** selection, **inferred** arithmetic: the RGBA
+  finish when the light loop leaves its attenuation and spot flags clear, or no light is enabled, with
+  one colour and no perspective-texture flag (`ody_program.s`, source lines 972 and 985). It issues
+  no dot product. Inputs: the window-coordinate products in R23 (stored by 694 or 668), the code-4
+  result of the per-light routine's last record and the colour unit's working addresses. It passes
+  R23.x, .y and .z through code 8 and outputs x as word 8 (d2 0x44), y as word 9 (0x24) and z as word
+  7 (0x26), the code-4 result as word 6 (0x25), writes a header for ten words at 983, and in the
+  colour unit adds the light-relative ambient product with slot 6 (0x4028) to the stored sums and
+  sends the lit colour as words 1 and 2 (0x1a9a).
+- **`986`** (routine; kernel record 887), **established** selection, **inferred** arithmetic: 975
+  for the perspective-texture flag (`ody_program.s`, source lines 970 and 985). It takes 975's
+  inputs and computes the same code-8 passes and colour sums; every coordinate output moves up by one, x to word 9, y to 10, z to 8
+  and the code-4 result to word 7, because the header at 994 announces eleven words.
+- **`997`** (routine; kernel record 898), **established** selection, **inferred** arithmetic: the
+  two-colour form of 975 (`ody_program.s`, source lines 972 and 985), sixteen records. Its inputs
+  are 975's plus the back material slots 10 to 12. It outputs the
+  coordinates as words 10, 11 and 9 and the code-4 result as word 8, and computes the back face in
+  the colour unit: the light-relative specular, diffuse and ambient colours times the back slots 12,
+  11 and 10 (0x4220, 0x4120, 0x4020), with the front ambient again from slot 6 (0x4028). It sends the
+  front colour as words 1 and 2 and the back colour as words 6 and 7 (0x193a, 0x4020 and 0x1d9a);
+  its header at 1010 announces twelve words. One code 0xc and two code 3 operations scale the back
+  terms.
+- **`1013`** (routine; kernel record 914), **established** selection, **inferred** arithmetic: the
+  one-colour finish when the light loop leaves its attenuation or spot flag set, and the
+  colour-index finish (`ody_program.s`, source lines 967 and 951). Inputs: R23, the per-light
+  routine's last code-4 result and working addresses 25 and 26. Outputs, over ten records: a header
+  for ten words in its first record, R23's three lanes through code 8 to words 8, 9 and 7, word 6 from code
+  0x25, and a colour unit that only reads working addresses 25 and 26 (0x9930, 0x9a38) and sends
+  the sum as words 1 and 2 (0x1b3a); unlike 975 it adds no ambient product of its own.
+- **`1035`** (routine; kernel record 936), **established** selection, **inferred** arithmetic: 1013
+  with the perspective-texture flag (`ody_program.s`, source line 967). It takes 1013's inputs and
+  computes the same sums; its header announces eleven words and its coordinate outputs land one word
+  higher (x 9, y 10, z 8, code 0x25 word 7), while the colour reads and colour words are 1013's.
+- **`1045`** (routine; kernel record 946), **established** selection, **inferred** arithmetic: the
+  two-colour form of 1013 in both the RGBA and colour-index paths (`ody_program.s`, source lines 951
+  and 967). It takes 1013's inputs and also reads working addresses 28 to 30, where the per-light
+  routines accumulated the back colour; it combines them (0x1e30, 0x9c38, 0x9d38) and outputs that
+  colour as words 6 and 7 (0x9c32), besides 1013's outputs (here x 10, y 11, z 9, code 0x25 word 8,
+  header for twelve words).
+- **`1023`** (routine; kernel record 924), **established** selection, **inferred** arithmetic: the
+  one-colour finish with separate specular (`ody_program.s`, source line 958), added after 768.
+  Inputs: R23 and working addresses 25 to 27. It selects the coordinates through code 8 and outputs
+  them under a header for thirteen words (x 11, y 12, z 10, code 0x25 word 9) and
+  three colour pairs: words 6 (0x1f34), 1 and 2 (0x000a, 0x1b30) and 7 and 8 (0x1a3a), the primary
+  and the separate specular colour GL_SEPARATE_SPECULAR_COLOR keeps apart.
+- **`1057`** (routine; kernel record 958), **established** selection, **inferred** arithmetic: the
+  separate-specular finish with two colours (`ody_program.s`, source line 958). Inputs: R23, the
+  last code-4 result and working addresses 26 to 30. It selects R23's lanes through code 8 and
+  outputs them under a header for sixteen words; y lands in word 16, which the four-bit word field writes as 0. The colour unit
+  reads working addresses 26 to 30 and sends colour words 1 and 2, 6, 7 and 8, 9 and 10, and 11 and
+  12: front and back primary and specular colours for two-sided separate specular.
+- **`758`** (routine; kernel record 758), **established** selection, **inferred** arithmetic: added
+  between 768 and the separate-specular finish only while building program 1, the program
+  `__glOdysseyValidateProgram` adds when software clip planes are on (`ody_program.s`, source lines
+  956 and 1328). Its inputs are the specular slots; it computes nothing in the vector or scalar
+  units: it copies the specular slots 12
+  and 8 into the colour unit (0x1f20), reads working addresses 28 and 25 and stores to 30 and 27, so
+  its output is the specular material placed where the separate-specular finish reads it.
 - **`792`** (routine; no kernel record), **established**: the attenuation-or-spot routine used when the
   environment variable `ODYSSEY_SPOT_INTERPOLATE` is set (the string at 0x0dae4d88, passed to `getenv` at
   source line 961). `AddProgram` then adds 792 and 780 instead of 768. It is the 95-record routine the
@@ -709,23 +795,48 @@ vertex-light layout (w at +76, cutoff at +100, attenuation at +104 to +112; sour
 and adds its routines at source lines 902 to 942. With no vertex light it first adds a first-light
 routine (611 to 656) and a normal transform (694 or 668); otherwise 768 or 920.
 
-- **`911`** (routine; kernel record 812), **established**: added with GL_LIGHTING on and one colour
-  output (`ody_program.s`, source line 921). It has 902's length, but its third and fourth records
-  (913, 914) differ from 902's (904, 905) and its end record carries no `s0` value.
-- **`902`** (routine; kernel record 803), **established**: the two-colour choice at the same `ody_program.s` line,
-  when two-sided lighting is on (context byte +1413).
-- **`1094`** (routine; kernel record 995), **established**: added when the fragment light is local and
-  attenuated (`ody_program.s`, source line 926). It reads data word 0x207 in lanes 4 to 6.
-- **`1071`** (routine; kernel record 972), **established**: always added for the fragment light (`ody_program.s`,
-  source line 928). It reads data words 0x1e4 to 0x20e in all four lanes. **inferred:** it evaluates the
-  fragment light's terms for the vertex.
-- **`1136`** (routine; kernel record 1037), **established**: the last fragment-lighting routine when
-  either two-sided flag is set (`ody_program.s`, source line 942: GL two-sided lighting or the fragment model's
-  two-sided byte).
-- **`1106`** (routine; kernel record 1007), **established**: the one-sided last routine when the
-  fragment light is not attenuated (`ody_program.s`, source line 942).
-- **`1119`** (routine; kernel record 1020), **established**: the one-sided last routine when the
-  fragment light is local and attenuated (`ody_program.s`, source line 942).
+- **`911`** (routine; kernel record 812), **established** selection, **inferred** arithmetic: added
+  with GL_LIGHTING on and one colour output (`ody_program.s`, source line 921). Nine records. Inputs:
+  the constant 3.0 (word 0x1e5), R26 and working address 27. It computes one product of R26, reads working address 27
+  (0x1b38) and sends the colour unit's result twice, as words 1 and 2 (0x9f3a, which also stores at
+  31) and as words 9 and 10 (0x000a). It does no scalar work; its output is the colour pair the
+  fragment-lighting packet carries in both places.
+- **`902`** (routine; kernel record 803), **established** selection, **inferred** arithmetic: the
+  two-colour choice at the same `ody_program.s` line, when two-sided lighting is on (context byte
+  +1413). Its inputs are 911's and it computes the same product of R26, but its third and fourth records store
+  the colour at address 31 (0x9f30) before sending, so it outputs the front colour goes out as words 9 and 10
+  and the back colour as words 1 and 2, each through 0x9f3a.
+- **`1094`** (routine; kernel record 995), **established** selection, **inferred** arithmetic: added
+  when the fragment light is local and attenuated (`ody_program.s`, source line 926). Inputs: light
+  word 7 of the fragment light's record (constant attenuation), the constant 3.0 and the products
+  the routine before left; it latches R21 and R26, multiplies two values by K (code 0xd), passes one
+  through code 8 and loads K once more (d2 0x80). It outputs no word and uses no colour operation;
+  its results stay in R21 and R22 for 1119, the routine `AddProgram` puts last in this case.
+- **`1071`** (routine; kernel record 972), **established** selection, **inferred** arithmetic: always
+  added for the fragment light (`ody_program.s`, source line 928), twenty-three records. Inputs: the
+  normal products (passed through code 8 into R19, records 1072 to 1082), the light and viewer
+  vectors of R17 and R26 (each lane negated by code 0xc), light words 13 and 14 (cutoff, exponent)
+  and the constants 2.828, 1.414, -1.414, 0.354 and -1.0. It computes two reciprocal square roots
+  and one code-2 result, loads K = 0.354 (d2 0x80 at 1090) and fires products of R16, R20 and R19.
+  Its outputs are registers, not words: R18 to R22 receive the normal, light and viewer terms
+  of the fragment light, and code 0x23 at 1077 hands one product to the output stage.
+- **`1136`** (routine; kernel record 1037), **established** selection, **inferred** arithmetic: the
+  last fragment-lighting routine when either two-sided flag is set (`ody_program.s`, source line 942:
+  GL two-sided lighting or the fragment model's two-sided byte). Inputs: R23, 1071's terms and the
+  colour slots. It outputs the vertex: x, y and z
+  through code 8 as words 15, 16 (field 0) and 14 with d2 0x44, 0x24 and 0x26, word 13 through 0x25,
+  and the colour unit's copies of the slot values (0x1f14, 0x1f16, 0x1f96) as words 6, 7, 8, 11 and
+  12, under a header for sixteen words. Four code-0xd, two code-5 and one code-0xe operation compute
+  from 1071's terms the fragment-light values sent with them.
+- **`1106`** (routine; kernel record 1007), **established** selection, **inferred** arithmetic: the
+  one-sided last routine when the fragment light is not attenuated (`ody_program.s`, source line
+  942). Inputs: R20 and R23 and the colour slots. It latches R20, computes two code-0xd, one code-5, one code-3 and one code-8 operation, and
+  outputs a thirteen-word packet: a header, x, y and z as words 11, 12 and 10
+  (0x44, 0x24, 0x26), word 9 through 0x25, and colour words 6, 7 and 8 (0x1f96, 0x1f16, 0x1f14).
+- **`1119`** (routine; kernel record 1020), **established** selection, **inferred** arithmetic: the
+  one-sided last routine when the fragment light is local and attenuated (`ody_program.s`, source
+  line 942), after 1094, and takes 1106's inputs plus 1094's registers. Its output packet is 1106's (words 6 to 12, header for thirteen words); the
+  difference is that it computes one more code-0xe multiply on the way to the colour words.
 
 #### Routines no host code selects
 
