@@ -25,7 +25,9 @@ The share of understood rows that an independent audit found real when it re-der
 | Table | Audited real | Sample | Date |
 |---|---:|---:|---|
 | functions | 0.0% | 20 | 2026-10-29 |
-| tokens | 100.0% | 15 | 2026-10-29 |
+| mmio | 91.7% | 12 | 2026-10-29 |
+| tokens | 85.0% | 20 | 2026-10-29 |
+| ioctls | 73.3% | 15 | 2026-10-29 |
 | ucode | 100.0% | 15 | 2026-10-29 |
 
 Register access sites: 71371 found, 71315 resolved to an offset and 56 (0.1%) unresolved, where the base is a known register window but the offset could not be traced. Unresolved by window: board 56.
