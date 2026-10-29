@@ -5,7 +5,7 @@ functions (distinct names)	18949	0	0	0	5	7724	11220	0	0.0	0.0	40.8	0.0
 mmio	67	58	58	0	2	0	0	7	86.6	100.0	100.0	97.0	56
 tokens	255	23	23	0	12	220	0	0	9.0	13.7	100.0	9.0	
 ioctls	91	1	1	0	0	81	9	0	1.1	1.1	90.1	1.1	
-ucode	247	235	187	0	0	12	0	0	95.1	95.1	100.0	95.1	
+ucode	247	237	188	0	10	0	0	0	96.0	100.0	100.0	96.0	
 spec-registers	0	0	0	0	0	0	0	0	0.0	0.0	0.0	0.0	
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	0	0	0	0	4	0	0	0.0	0.0	100.0	0.0	
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	0	0	0	0	18	0	0	0.0	0.0	100.0	0.0	

@@ -20,7 +20,7 @@ buzz_xform.bin	host entry	159		end_mark=209 records=51 beyond_ram=no	understood	
 buzz_xform.bin	follows end mark	214		end_mark=238 records=25 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_xform.bin	follows end mark	243		end_mark=255 records=13 beyond_ram=no	understood	ucode/buzz_routines.md#table-program-routines	Table program routines
 buzz_xform.bin	follows end mark	260		end_mark=273 records=14 beyond_ram=no	understood	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_xform.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
 buzz_xform.bin	follows end mark	303		end_mark=319 records=17 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_xform.bin	follows end mark	324		end_mark=355 records=32 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_xform.bin	follows end mark	360		end_mark=405 records=46 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
@@ -32,11 +32,11 @@ buzz_xform.bin	follows end mark	479		end_mark=485 records=7 beyond_ram=no	unders
 buzz_xform.bin	follows end mark	490		end_mark=510 records=21 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_xform.bin	host entry	515		end_mark=515 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#set-up-routines	Set-up routines
 buzz_xform.bin	follows end mark	520		end_mark=520 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
-buzz_xform.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_xform.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_xform.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_xform.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_xform.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_xform.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_xform.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_xform.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_xform.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	understood	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
 buzz_xform.bin	host entry	606		end_mark=606 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#set-up-routines	Set-up routines
 buzz_xform.bin	host entry	611		end_mark=621 records=11 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-routines	Lighting routines
 buzz_xform.bin	host entry	626		end_mark=636 records=11 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-routines	Lighting routines
@@ -148,7 +148,7 @@ buzz_ucode_ip30.bin	host entry	159		end_mark=209 records=51 beyond_ram=no	unders
 buzz_ucode_ip30.bin	follows end mark	214		end_mark=238 records=25 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_ucode_ip30.bin	follows end mark	243		end_mark=255 records=13 beyond_ram=no	understood	ucode/buzz_routines.md#table-program-routines	Table program routines
 buzz_ucode_ip30.bin	follows end mark	260		end_mark=273 records=14 beyond_ram=no	understood	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
 buzz_ucode_ip30.bin	follows end mark	303		end_mark=319 records=17 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_ucode_ip30.bin	follows end mark	324		end_mark=355 records=32 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_ucode_ip30.bin	follows end mark	360		end_mark=405 records=46 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
@@ -160,11 +160,11 @@ buzz_ucode_ip30.bin	follows end mark	479		end_mark=485 records=7 beyond_ram=no	u
 buzz_ucode_ip30.bin	follows end mark	490		end_mark=510 records=21 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_ucode_ip30.bin	host entry	515		end_mark=515 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#set-up-routines	Set-up routines
 buzz_ucode_ip30.bin	follows end mark	520		end_mark=520 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
-buzz_ucode_ip30.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_ucode_ip30.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_ucode_ip30.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_ucode_ip30.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_ucode_ip30.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_ucode_ip30.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_ucode_ip30.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_ucode_ip30.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	located	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
+buzz_ucode_ip30.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	understood	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
 buzz_ucode_ip30.bin	host entry	606		end_mark=606 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#set-up-routines	Set-up routines
 buzz_ucode_ip30.bin	host entry	611		end_mark=621 records=11 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-routines	Lighting routines
 buzz_ucode_ip30.bin	host entry	626		end_mark=636 records=11 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-routines	Lighting routines

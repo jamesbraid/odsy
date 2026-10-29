@@ -63520,7 +63520,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeccede8	176	gl_glx_findwindow	
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeccee98	176	gl_g_gconfig	dynsym+mdebug	dfdf05da17e1	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeccef48	2640	FindGLScreen	mdebug	97b2175ba0b3	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeccefd0	2504	gl_g_gl_glx_getconfig	dynsym+mdebug	46acb43ecdfa	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeccf998	60	extract	mdebug	e35ed1012c14	named-only	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeccf998	60	extract	mdebug	e35ed1012c14	named-only	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeccf9d4	2524	BadAuxWindow	mdebug	625947c606cc	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeccfcc8	1056	gl_g_gl_glx_link	dynsym+mdebug	782dfd7a510b	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecd00e8	252	gl_g_gl_glx_unlink	dynsym+mdebug	2ee43b087e87	undocumented		
@@ -67331,7 +67331,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeccd2e0	200	gl_glx_findwindo
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeccd3b0	164	gl_g_gconfig	dwarf+dynsym	333f61ff5d95	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xeccd460	96	FindGLScreen	dwarf+funcnames	e865ea1e293b	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeccd4c0	2028	gl_g_gl_glx_getconfig	dwarf+dynsym	b15babc70974	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xeccdcb0	64	extract	dwarf+funcnames	ccc3abf62c5f	named-only	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xeccdcb0	64	extract	dwarf+funcnames	ccc3abf62c5f	named-only	ucode/buzz_routines.md#routines-no-host-code-selects	Routines no host code selects
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xeccdcf0	700	BadAuxWindow	dwarf+funcnames	e1c38377edc3	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeccdfb0	1148	gl_g_gl_glx_link	dwarf+dynsym	8e593a61e898	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecce430	340	gl_g_gl_glx_unlink	dwarf+dynsym	2b03392f69c9	undocumented		

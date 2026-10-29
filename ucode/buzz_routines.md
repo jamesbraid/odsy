@@ -606,6 +606,37 @@ routine (611 to 656) and a normal transform (694 or 668); otherwise 768 or 920.
 - **`1119`** (routine; kernel record 1020), **established**: the one-sided last routine when the
   fragment light is local and attenuated (`ody_program.s`, source line 942).
 
+#### Routines no host code selects
+
+Searched for each number below, in every N32 `usr/gfx/arch/IP30ODSY/libGLcore.so` from IRIX
+6.5.8 to 6.5.29 and on the Octane2 VPro Patches disc (extracted with `instigator extract`), and
+in the 6.5.30m X module and kernel objects: as an `li` or `ori` immediate, as a sequencer word of
+registers 0x20 to 0x3f, and in the program table of each release. None names them. All six sit
+at the same record numbers in every shipped image from 6.5.8 on, so no release's numbering hides
+them. Routine 303, the copy routine, is the only entry in this stretch any host code selects.
+
+- **`605`** (routine; file offset 0x1c5c of `buzz_xform.bin`), **established**: a single idle record, the
+  fifth slot after end mark 600, that runs straight into entry 606 (sequencer list entry named by
+  `AddProgram`). **inferred:** it is the alignment gap before 606, not a routine of its own;
+  entering at 605 would cost one idle cycle and then run 606.
+- **`278`** (routine; file offset 0xd08 of `buzz_xform.bin`), **located**: 21 records that read
+  sixteen data-table words from 0x140 up, then the two words from 0x1f5, alternating between two
+  lanes, and close with end mark 2 at 298. No host code in any release searched writes those data
+  indices, so what the routine computes is unknown.
+- **`525`** (routine; file offset 0x189c of `buzz_xform.bin`), **located**: thirteen records with
+  no data-table read. Its first five records step the register fields through the same order
+  routine 0 uses at its records 4 to 8, then come four idle records and end mark 2 at 537.
+  Its use is unknown.
+- **`542`** (routine; file offset 0x1968 of `buzz_xform.bin`), **located**: 525's five-record
+  opening followed by a record reading attribute slot 3 (`r3` 3) and three more stepping the
+  register fields 5, 6, 7, ending with mark 2 at 558. Purpose unknown.
+- **`563`** (routine; file offset 0x1a64 of `buzz_xform.bin`), **located**: the same 17-record body
+  as 542 except the sequencer field of record 569 and the register numbers in its tail records
+  from 574 on; what it is for is unknown.
+- **`584`** (routine; file offset 0x1b60 of `buzz_xform.bin`), **located**: 563's body with record
+  591 carrying the `e` group 1, f, 2, 2 and attribute slot 5, as record 1198 does, end mark 2 at 600.
+  Its role is unknown.
+
 ## Routines
 
 | Entry | End mark | Records | Kernel record | In list | Idle | Data addresses | Lanes | Value-3 marks | Same shape as |
