@@ -267,33 +267,7 @@ Two kinds of BUZZ register exist: PIO registers the host loads and stores direct
 
 **established** by a base-register scan of every IP30 kernel object (loads of the PIO base from board record +824, followed through constant offsets; the IP35 scan gives the same offsets and access types). The scan misses accesses through bases passed in as arguments, so the list is complete for constant offsets only. Offsets 0x220000 and up belong to PB&J (`PBJ.h`).
 
-| Offset | Access | Users | What is known | Where |
-|---|---|---|---|---|
-| 0x0004 | load | `odsyGatherInfo` | bits 31:28 BUZZ revision type | `docs/board.md` |
-| 0x000c, 0x0014, 0x001c, 0x0044 | load (0x44 also store 0) | `odsyXtErrorInterrupt` | crossbar error status, high error, low address, header | `BUZZ.h` section 5 |
-| 0x0024 | load, store | `odsyFindBoardAddr`, `odsyReset`, `odsyLLPReset` | widget id in the low nibble; written id \| 0x4200 at reset | `docs/kernel.md` |
-| 0x0034, 0x003c, 0x005c | store | interrupt set-up | error interrupt vector, target and address; 0x5c unknown | section 6 |
-| 0x1004 | store | `odsyReset` | SDRAM configuration | `docs/board.md` |
-| 0x100c | store | `odsyLowLevelReset` | reset control, 0x200 or 0x16d then 0 | `docs/kernel.md` |
-| 0x1014 | load, store | flags handler, `gfP_OdsyDIAGdma` | flags | `BUZZ.h` |
-| 0x101c, 0x1034, 0x103c | store (0x1034 also load) | flags, flow, timing load | flag clear, interrupt enable, disable | `BUZZ.h` |
-| 0x1044, 0x104c, 0x1054, 0x105c | store | interrupt set-up | sources 1-4 target, address, vectors | section 6 |
-| 0x1064 | load | `odsyHiwaterInterrupt`, `odsyPrintRegs` | status0 | `BUZZ.h` |
-| 0x106c | load | 15 functions | FIFO levels (15:0), strap (31:24) | `BUZZ.h`, `docs/board.md` |
-| 0x1074, 0x107c | store | 15 and 18 functions | flow configuration, flow off | `BUZZ.h` |
-| 0x1084 | store | `odsyReset`, `odsy_tpinit`, `gf_OdsyInitialize` | command FIFO reset pulse | `BUZZ.h` |
-| 0x108c, 0x109c, 0x10a4, 0x10ac | store 0 | `odsyReset` only | unknown; zeroed at reset | |
-| 0x10b4, 0x10bc, 0x10c4, 0x10cc, 0x10d4 | store (0x10d4 load) | retrace and swap code | per-slot buffer select and swap bitmaps | section 6 |
-| 0x4004, 0x400c | store | `gf_OdsyPcxSwap` | context save address | section 4 |
-| 0x4014, 0x4044 | store | `odsyReset` | master id fields plus fixed bits | `docs/kernel.md` |
-| 0x401c, 0x4024 | store | `odsyReset`, `odsyInitPfRgn`, `odsyDestroyPfRgn` | written when a performance region is set up and torn down | |
-| 0x402c | store | `odsyReset`, `gfP_OdsyPerfStat` | performance statistics control | |
-| 0x4034, 0x403c | store | `odsyReset`, `gf_OdsyStart` | written at start | |
-| 0x404c, 0x4054, 0x405c | store 0 | `odsyReset` only | unknown | |
-| 0x110000 | 32- and 64-bit store | 13 functions | command FIFO port | `BUZZ.h` |
-| 0x118000 | 64-bit store | `gf_OdsyPcxSwap` | context save request | section 4 |
-| 0x201594 | load | `odsyInitCfifo` | must read 0x003d0046 before the microcode load | `BUZZ.h` |
-| 0x400000 | 64-bit store | 27 functions | display FIFO port | `PBJ.h` |
+Each offset has its own entry, with the function that reaches it and its derivation, in `docs/registers.md`; the display-side addresses are in `docs/pbj.md`.
 
 - **inferred.** The 0x4000 group holds the context-save engine (0x4004/0x400c) and the performance and diagnostic regions: `odsyInitPfRgn`/`odsyDestroyPfRgn` and `gfP_OdsyPerfStat` are its only users outside reset, and the status0 bits `PERF_STATS_PUSH_ACTV` and `DIAG_HIST_PUSH_ACTV` name such engines. The field layouts were not read.
 - **established.** `gf_OdsyMapGfx` hands clients windows at board +0x000000 (2 pages, so these PIO registers up to 0x7fff), +0x100000, +0x110000 (the command FIFO), +0x118000, +0x120000, +0x200000, +0x220000 (8 pages, the PB&J read-back) and +0x400000 (the display FIFO) (`BUZZ.h` section 5). What +0x100000, +0x120000 and +0x200000 hold beyond the one read at +0x201594: **unknown**.

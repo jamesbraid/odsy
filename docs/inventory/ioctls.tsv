@@ -83,7 +83,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1868824619	0x6f64002b	private	gfP_OdsyPbufDeassoc	constant,sent,table	odsyDeallocatePbuffer	2	usr/lib/X11/dyDDX/odyssey.so:odsyDeallocatePbuffer	named-only	docs/kernel-functions.md#functions	Functions
 1868824620	0x6f64002c	private	gfP_OdsyInvalidIoctl	table		1		named-only	docs/kernel-functions.md#functions	Functions
 1868824621	0x6f64002d	private	gfP_OdsyInvalidIoctl	table		1		named-only	docs/kernel-functions.md#functions	Functions
-1868824622	0x6f64002e	private	gfP_OdsyDIAGdma	table		1		named-only	docs/buzz.md#pio-registers	PIO registers
+1868824622	0x6f64002e	private	gfP_OdsyDIAGdma	table		1		named-only	docs/buzz.md#interrupts-ip35-comparison-and-the-flags-no-code-tests	Interrupts: IP35 comparison and the flags no code tests
 1868824623	0x6f64002f	private	gfP_OdsyDIAGallocScanbuf	table		1		named-only	docs/kernel-functions.md#functions	Functions
 1868824624	0x6f640030	private	gfP_OdsyDIAGfreeScanbuf	table		1		named-only	docs/kernel-functions.md#functions	Functions
 1868824625	0x6f640031	private	gfP_OdsyDIAGgetShadowPtrs	table		1		named-only	docs/kernel-functions.md#functions	Functions

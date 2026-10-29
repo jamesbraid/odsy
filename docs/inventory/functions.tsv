@@ -134,7 +134,7 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x558	880	generatePageTable	dwarf+symtab	a19fffd9f786	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8c8	28	odsy_dma_poll_timer	dwarf+symtab	b3f68a7faf91	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8e4	80	DmaFinishedPollDelay	dwarf+symtab	9d7fecdbc0c7	named-only	docs/kernel-functions.md#functions	Functions
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x934	512	gfP_OdsyDIAGdma	dwarf+symtab	88356a200140	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x934	512	gfP_OdsyDIAGdma	dwarf+symtab	88356a200140	named-only	docs/buzz.md#interrupts-ip35-comparison-and-the-flags-no-code-tests	Interrupts: IP35 comparison and the flags no code tests
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0xb34	4136	odsyDMAOps	dwarf+symtab	5033f1b6dd10	named-only	docs/coverage.md#buzz	BUZZ
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x1b5c	2056	odsyDMAOp	dwarf+symtab	3e2533c89b49	named-only	docs/buzz.md#pass-5-completion-word-saved-record-and-the-libglcore-side	Pass 5: completion word, saved record and the libGLcore side
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x2364	268	odsy_dmawait_timeout	dwarf+symtab	20e764074dc3	named-only	docs/kernel-functions.md#functions	Functions
@@ -212,16 +212,16 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3d0	340	odsy_set_gfx_mfg_nic_name	dwarf+symtab	c3248973b911	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x524	360	odsy_attach	dwarf+symtab	529b1fd7860c	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x68c	436	odsyInitIntr	dwarf+symtab	115d09958283	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x840	196	odsyFindBoardAddr	dwarf+symtab	b81b37cc9049	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x840	196	odsyFindBoardAddr	dwarf+symtab	b81b37cc9049	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x904	640	odsyInitBoardGfx	dwarf+symtab	dc92dde39bd7	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xb84	1440	odsyGatherInfo	dwarf+symtab	6505c26f14b8	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1124	56	odsy_init_ddrncount_timeout	dwarf+symtab	d3d9a605771b	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x115c	28	odsy_earlyinit_timeout	dwarf+symtab	a86de4a9d7a4	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1178	268	odsyZeroOut	dwarf+symtab	5d6a31a1d71a	named-only	docs/kernel-functions.md#functions	Functions
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1284	1196	gf_OdsyInitialize	dwarf+symtab	bb05869bcf4e	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1730	144	gf_OdsyStart	dwarf+symtab	3e446d8d6eb0	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x17c0	112	odsyLLPReset	dwarf+symtab	61ca2d9794d6	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1830	980	odsyLowLevelReset	dwarf+symtab	71bb401dd8a6	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1284	1196	gf_OdsyInitialize	dwarf+symtab	bb05869bcf4e	named-only	docs/coverage.md#kernel-driver	Kernel driver
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1730	144	gf_OdsyStart	dwarf+symtab	3e446d8d6eb0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x17c0	112	odsyLLPReset	dwarf+symtab	61ca2d9794d6	named-only	docs/kernel-functions.md#functions	Functions
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1830	980	odsyLowLevelReset	dwarf+symtab	71bb401dd8a6	named-only	docs/coverage.md#kernel-driver	Kernel driver
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c04	1800	odsyReset	dwarf+symtab	a45ec492700d	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x230c	860	odsyInitCfifo	dwarf+symtab	8e3b6cb0c60e	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2668	244	odsyInitDMA	dwarf+symtab	62931389ff01	named-only	docs/coverage.md#kernel-driver	Kernel driver
@@ -231,7 +231,7 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2c5c	4248	odsyInitDBE	dwarf+symtab	356e9a4dabd6	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3cf4	296	odsyInitHwWrRgn	dwarf+symtab	fa001362cf07	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3e1c	240	odsy_teardown	dwarf+symtab	d671b738cee1	named-only	docs/coverage.md#kernel-driver	Kernel driver
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3f0c	84	odsyPrintRegs	dwarf+symtab	47fec7ddcef8	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3f0c	84	odsyPrintRegs	dwarf+symtab	47fec7ddcef8	named-only	docs/kernel-functions.md#functions	Functions
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x0	428	odsyXtErrorInterrupt	dwarf+symtab	32e16a2c3618	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x1ac	916	odsyFlagInterrupt	dwarf+symtab	55573131b07f	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x540	56	odsyDmaInterrupt	dwarf+symtab	e1c721079335	located	docs/buzz.md#odsydmainterrupt-and-odsyssyncinterrupt	`odsyDmaInterrupt` and `odsySsyncInterrupt`
@@ -18013,7 +18013,7 @@ builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kerne
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x430	1076	generatePageTable	dwarf+symtab	69fe2b735929	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x864	28	odsy_dma_poll_timer	dwarf+symtab	c9b0d2045673	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x880	80	DmaFinishedPollDelay	dwarf+symtab	c0fcad2c36a1	named-only	docs/kernel-functions.md#functions	Functions
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8d0	548	gfP_OdsyDIAGdma	dwarf+symtab	48ff982ba8ad	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8d0	548	gfP_OdsyDIAGdma	dwarf+symtab	48ff982ba8ad	named-only	docs/buzz.md#interrupts-ip35-comparison-and-the-flags-no-code-tests	Interrupts: IP35 comparison and the flags no code tests
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0xaf4	3240	odsyDMAOps	dwarf+symtab	b1ef758b8ce1	named-only	docs/coverage.md#buzz	BUZZ
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x179c	1692	odsyDMAOp	dwarf+symtab	0d4e15b4da68	named-only	docs/buzz.md#pass-5-completion-word-saved-record-and-the-libglcore-side	Pass 5: completion word, saved record and the libGLcore side
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x1e38	56	odsy_dmawait_timeout	dwarf+symtab	13355a453d28	named-only	docs/kernel-functions.md#functions	Functions
@@ -18059,16 +18059,16 @@ builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kern
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2dc	44	odsy_init	dwarf+symtab	247207e1ef12	named-only	docs/buzz.md#what-was-compared	What was compared
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x308	288	odsy_attach	dwarf+symtab	f3d699ff322c	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x428	428	odsyInitIntr	dwarf+symtab	53162e65342c	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5d4	208	odsyFindBoardAddr	dwarf+symtab	8cab5abf7e7c	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5d4	208	odsyFindBoardAddr	dwarf+symtab	8cab5abf7e7c	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x6a4	536	odsyInitBoardGfx	dwarf+symtab	94ce0af9deb9	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x8bc	1448	odsyGatherInfo	dwarf+symtab	39b245bdb495	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xe64	56	odsy_init_ddrncount_timeout	dwarf+symtab	bd9b4349add5	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xe9c	28	odsy_earlyinit_timeout	dwarf+symtab	60b48822a231	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xeb8	196	odsyZeroOut	dwarf+symtab	14e6453defaa	named-only	docs/kernel-functions.md#functions	Functions
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xf7c	1184	gf_OdsyInitialize	dwarf+symtab	269e3454d8e8	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x141c	128	gf_OdsyStart	dwarf+symtab	47c1102a60f8	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x149c	128	odsyLLPReset	dwarf+symtab	698c62fa1047	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x151c	740	odsyLowLevelReset	dwarf+symtab	974c9383f32a	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xf7c	1184	gf_OdsyInitialize	dwarf+symtab	269e3454d8e8	named-only	docs/coverage.md#kernel-driver	Kernel driver
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x141c	128	gf_OdsyStart	dwarf+symtab	47c1102a60f8	named-only	docs/coverage.md#kernel-driver	Kernel driver
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x149c	128	odsyLLPReset	dwarf+symtab	698c62fa1047	named-only	docs/kernel-functions.md#functions	Functions
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x151c	740	odsyLowLevelReset	dwarf+symtab	974c9383f32a	named-only	docs/coverage.md#kernel-driver	Kernel driver
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1800	1092	odsyReset	dwarf+symtab	a87c2e5cd78f	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c44	764	odsyInitCfifo	dwarf+symtab	7809ef662245	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1f40	240	odsyInitDMA	dwarf+symtab	aa9625de9f64	named-only	docs/coverage.md#kernel-driver	Kernel driver
@@ -18078,7 +18078,7 @@ builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kern
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x23f8	3960	odsyInitDBE	dwarf+symtab	69a8ceb8d20f	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3370	296	odsyInitHwWrRgn	dwarf+symtab	b3c57ad9cb63	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3498	160	odsy_teardown	dwarf+symtab	888d56790d4f	named-only	docs/coverage.md#kernel-driver	Kernel driver
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3538	84	odsyPrintRegs	dwarf+symtab	a0431e1e65e8	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3538	84	odsyPrintRegs	dwarf+symtab	a0431e1e65e8	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x0	284	odsyXtErrorInterrupt	dwarf+symtab	cd80cd89739c	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x11c	1048	odsyFlagInterrupt	dwarf+symtab	7e7c061db205	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x534	64	odsyDmaInterrupt	dwarf+symtab	8b290ebd5a61	located	docs/buzz.md#odsydmainterrupt-and-odsyssyncinterrupt	`odsyDmaInterrupt` and `odsySsyncInterrupt`
@@ -35589,7 +35589,7 @@ builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kerne
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x430	1076	generatePageTable	dwarf+symtab	69fe2b735929	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x864	28	odsy_dma_poll_timer	dwarf+symtab	c9b0d2045673	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x880	80	DmaFinishedPollDelay	dwarf+symtab	c0fcad2c36a1	named-only	docs/kernel-functions.md#functions	Functions
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8d0	548	gfP_OdsyDIAGdma	dwarf+symtab	48ff982ba8ad	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8d0	548	gfP_OdsyDIAGdma	dwarf+symtab	48ff982ba8ad	named-only	docs/buzz.md#interrupts-ip35-comparison-and-the-flags-no-code-tests	Interrupts: IP35 comparison and the flags no code tests
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0xaf4	3240	odsyDMAOps	dwarf+symtab	b1ef758b8ce1	named-only	docs/coverage.md#buzz	BUZZ
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x179c	1692	odsyDMAOp	dwarf+symtab	0d4e15b4da68	named-only	docs/buzz.md#pass-5-completion-word-saved-record-and-the-libglcore-side	Pass 5: completion word, saved record and the libGLcore side
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x1e38	56	odsy_dmawait_timeout	dwarf+symtab	13355a453d28	named-only	docs/kernel-functions.md#functions	Functions
@@ -35635,16 +35635,16 @@ builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kern
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2dc	44	odsy_init	dwarf+symtab	247207e1ef12	named-only	docs/buzz.md#what-was-compared	What was compared
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x308	288	odsy_attach	dwarf+symtab	f3d699ff322c	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x428	428	odsyInitIntr	dwarf+symtab	53162e65342c	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5d4	208	odsyFindBoardAddr	dwarf+symtab	8cab5abf7e7c	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5d4	208	odsyFindBoardAddr	dwarf+symtab	8cab5abf7e7c	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x6a4	536	odsyInitBoardGfx	dwarf+symtab	94ce0af9deb9	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x8bc	1448	odsyGatherInfo	dwarf+symtab	39b245bdb495	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xe64	56	odsy_init_ddrncount_timeout	dwarf+symtab	bd9b4349add5	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xe9c	28	odsy_earlyinit_timeout	dwarf+symtab	60b48822a231	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xeb8	196	odsyZeroOut	dwarf+symtab	14e6453defaa	named-only	docs/kernel-functions.md#functions	Functions
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xf7c	1184	gf_OdsyInitialize	dwarf+symtab	269e3454d8e8	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x141c	128	gf_OdsyStart	dwarf+symtab	47c1102a60f8	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x149c	128	odsyLLPReset	dwarf+symtab	698c62fa1047	named-only	docs/buzz.md#pio-registers	PIO registers
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x151c	740	odsyLowLevelReset	dwarf+symtab	974c9383f32a	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xf7c	1184	gf_OdsyInitialize	dwarf+symtab	269e3454d8e8	named-only	docs/coverage.md#kernel-driver	Kernel driver
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x141c	128	gf_OdsyStart	dwarf+symtab	47c1102a60f8	named-only	docs/coverage.md#kernel-driver	Kernel driver
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x149c	128	odsyLLPReset	dwarf+symtab	698c62fa1047	named-only	docs/kernel-functions.md#functions	Functions
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x151c	740	odsyLowLevelReset	dwarf+symtab	974c9383f32a	named-only	docs/coverage.md#kernel-driver	Kernel driver
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1800	1092	odsyReset	dwarf+symtab	a87c2e5cd78f	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c44	764	odsyInitCfifo	dwarf+symtab	7809ef662245	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1f40	240	odsyInitDMA	dwarf+symtab	aa9625de9f64	named-only	docs/coverage.md#kernel-driver	Kernel driver
@@ -35654,7 +35654,7 @@ builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kern
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x23f8	3960	odsyInitDBE	dwarf+symtab	69a8ceb8d20f	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3370	296	odsyInitHwWrRgn	dwarf+symtab	b3c57ad9cb63	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3498	160	odsy_teardown	dwarf+symtab	888d56790d4f	named-only	docs/coverage.md#kernel-driver	Kernel driver
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3538	84	odsyPrintRegs	dwarf+symtab	a0431e1e65e8	named-only	docs/buzz.md#pio-registers	PIO registers
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3538	84	odsyPrintRegs	dwarf+symtab	a0431e1e65e8	named-only	docs/kernel-functions.md#functions	Functions
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x0	284	odsyXtErrorInterrupt	dwarf+symtab	cd80cd89739c	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x11c	1048	odsyFlagInterrupt	dwarf+symtab	7e7c061db205	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x534	64	odsyDmaInterrupt	dwarf+symtab	8b290ebd5a61	located	docs/buzz.md#odsydmainterrupt-and-odsyssyncinterrupt	`odsyDmaInterrupt` and `odsySsyncInterrupt`
@@ -53646,7 +53646,7 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x508	44	gfx_
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x534	8	gfx_flow_detach_requires_credit_flow_disable	dwarf+symtab	a7e7ca11a6b8	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x53c	220	gfx_flow_attach_me	dwarf+symtab	8ff79436e17b	named-only	docs/opengl.md#kernel-side-gfp_odsymakecurrent	Kernel side (`gfP_OdsyMakeCurrent`)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x618	8	gfx_flow_attach_me_finish	dwarf+symtab	78aa5094d5ec	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x620	180	gfx_flow_detach_me	dwarf+symtab	7dea8aa3f472	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x620	180	gfx_flow_detach_me	dwarf+symtab	7dea8aa3f472	named-only	docs/registers.md#system-block-0x1000-to-0x10d4	System block (0x1000 to 0x10d4)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6d4	20	gfx_flow_am_i_attached	dwarf+symtab	921a653eec05	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6e8	12	gfx_flow_flush_my_wg	dwarf+symtab	7fe8cb51a490	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6f4	8	gfx_flow_disable_heart_fc	dwarf+symtab	78aa5094d5ec	undocumented		
@@ -54628,7 +54628,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4ec	76	gfx_
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x538	8	gfx_flow_detach_requires_credit_flow_disable	dwarf+symtab	a7e7ca11a6b8	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x540	292	gfx_flow_attach_me	dwarf+symtab	92fcc6921e0e	named-only	docs/opengl.md#kernel-side-gfp_odsymakecurrent	Kernel side (`gfP_OdsyMakeCurrent`)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x664	80	gfx_flow_attach_me_finish	dwarf+symtab	81ea70c51894	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6b4	220	gfx_flow_detach_me	dwarf+symtab	292840b8cab1	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6b4	220	gfx_flow_detach_me	dwarf+symtab	292840b8cab1	named-only	docs/registers.md#system-block-0x1000-to-0x10d4	System block (0x1000 to 0x10d4)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x790	68	gfx_flow_am_i_attached	dwarf+symtab	b3c75dfcd2ed	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x7d4	24	gfx_flow_flush_my_wg	dwarf+symtab	b92f73cb29a4	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x0	816	find_gfxpipe	dwarf+symtab	9f3a28ee75f4	undocumented		
@@ -56169,7 +56169,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x40c	332	o
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x558	880	generatePageTable	dwarf+symtab	259851102e9a	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8c8	28	odsy_dma_poll_timer	dwarf+symtab	b3f68a7faf91	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x8e4	80	DmaFinishedPollDelay	dwarf+symtab	9d7fecdbc0c7	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x934	512	gfP_OdsyDIAGdma	dwarf+symtab	88356a200140	named-only	docs/buzz.md#pio-registers	PIO registers
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x934	512	gfP_OdsyDIAGdma	dwarf+symtab	88356a200140	named-only	docs/buzz.md#interrupts-ip35-comparison-and-the-flags-no-code-tests	Interrupts: IP35 comparison and the flags no code tests
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0xb34	4072	odsyDMAOps	dwarf+symtab	e7170285019c	named-only	docs/coverage.md#buzz	BUZZ
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x1b1c	2012	odsyDMAOp	dwarf+symtab	71a60ce75959	named-only	docs/buzz.md#pass-5-completion-word-saved-record-and-the-libglcore-side	Pass 5: completion word, saved record and the libGLcore side
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	board-kernel	n64	.text	0x22f8	268	odsy_dmawait_timeout	dwarf+symtab	20e764074dc3	named-only	docs/kernel-functions.md#functions	Functions
@@ -56260,18 +56260,18 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x468	348	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5c4	344	odsy_set_gfx_mfg_nic_name	dwarf+symtab	7f4dcd4379b6	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x71c	628	odsy_attach	dwarf+symtab	24c78e1142a8	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x990	436	odsyInitIntr	dwarf+symtab	115d09958283	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xb44	280	odsyFindBoardAddr	dwarf+symtab	d8aaaf3ed86f	named-only	docs/buzz.md#pio-registers	PIO registers
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xb44	280	odsyFindBoardAddr	dwarf+symtab	d8aaaf3ed86f	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xc5c	640	odsyInitBoardGfx	dwarf+symtab	436b43f2f097	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xedc	1440	odsyGatherInfo	dwarf+symtab	34757b370c71	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x147c	56	odsy_init_ddrncount_timeout	dwarf+symtab	fbbf3e650b97	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x14b4	28	odsy_earlyinit_timeout	dwarf+symtab	a86de4a9d7a4	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x14d0	268	odsyZeroOut	dwarf+symtab	5d6a31a1d71a	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x15dc	1644	gf_OdsyInitialize	dwarf+symtab	94ad83763bce	named-only	docs/buzz.md#pio-registers	PIO registers
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c48	144	gf_OdsyStart	dwarf+symtab	3e446d8d6eb0	named-only	docs/buzz.md#pio-registers	PIO registers
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1cd8	184	odsyLLPReset	dwarf+symtab	90ab0f246f40	named-only	docs/buzz.md#pio-registers	PIO registers
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x15dc	1644	gf_OdsyInitialize	dwarf+symtab	94ad83763bce	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c48	144	gf_OdsyStart	dwarf+symtab	3e446d8d6eb0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1cd8	184	odsyLLPReset	dwarf+symtab	90ab0f246f40	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1d90	520	odsy_fc_attach	dwarf+symtab	280b6a58b21d	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1f98	188	odsy_fc_detach	dwarf+symtab	769f0b5d5843	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2054	908	odsyLowLevelReset	dwarf+symtab	147911f9432a	named-only	docs/buzz.md#pio-registers	PIO registers
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2054	908	odsyLowLevelReset	dwarf+symtab	147911f9432a	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x23e0	2024	odsyReset	dwarf+symtab	0c908521784e	named-only	docs/board.md#board-memory-and-board-configuration	Board memory and board configuration
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2bc8	1092	odsyInitCfifo	dwarf+symtab	84da5919df9f	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x300c	244	odsyInitDMA	dwarf+symtab	62931389ff01	named-only	docs/coverage.md#kernel-driver	Kernel driver
@@ -56281,7 +56281,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3588	120
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x3600	4248	odsyInitDBE	dwarf+symtab	204ac673ffff	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x4698	424	odsyInitHwWrRgn	dwarf+symtab	27547f51bb6e	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x4840	240	odsy_teardown	dwarf+symtab	9761c6ffa74d	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x4930	84	odsyPrintRegs	dwarf+symtab	bfb7da50600a	named-only	docs/buzz.md#pio-registers	PIO registers
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x4930	84	odsyPrintRegs	dwarf+symtab	bfb7da50600a	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x0	428	odsyXtErrorInterrupt	dwarf+symtab	b5017432a0f5	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x1ac	916	odsyFlagInterrupt	dwarf+symtab	ad8a64f45887	named-only	docs/buzz.md#five-interrupt-sources	Five interrupt sources
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	board-kernel	n64	.text	0x540	56	odsyDmaInterrupt	dwarf+symtab	96e042e6d5d3	located	docs/buzz.md#odsydmainterrupt-and-odsyssyncinterrupt	`odsyDmaInterrupt` and `odsySsyncInterrupt`
