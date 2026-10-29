@@ -12,6 +12,8 @@
  *   libGLcore_n32.so  usr/gfx/arch/IP30ODSY32/libGLcore.so (N32, DWARF
  *                     names and line numbers only; no types)
  *   odyssey.a         usr/cpu/sysgen/IP30boot/odyssey.a (kernel objects)
+
+
  * Addresses are the N32 libGLcore virtual addresses printed in the
  * libglcore/asm/ODYSSEY/*.s headers.
  */

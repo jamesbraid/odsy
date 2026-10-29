@@ -79,6 +79,63 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 
 - **unknown.** The field layout of the blocks marked unknown. The kernel replay routine only copies their operands from the shadow record to the FIFO and never decodes them.
 
+## Raster state blocks and their fields
+
+Release IRIX 6.5.30m, N32 libGLcore (`libglcore/asm/ODYSSEY/ody_attrib.s` and
+`ody_context.s`, with source line numbers) and the kernel textport's start-up stream
+(`buzz_init` in `odsy_tport.o`, read in `ucode/buzz_routines.md`, routine 214). Field
+
+Each setter keeps a shadow word in the context, rewrites its field, and sends the block
+after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context flag asks for it.
+
+- **Block 0x01e**, word `0x0001041e`, **established**: the alpha test. Bits 14:12 hold the
+  comparison as the GL enum minus 0x200 (GL_NEVER 0 to GL_ALWAYS 7), and bits 11:0 the
+  reference value clamped to 0 to 1 and scaled by 4096, with 1.0 sent as 4095.
+  Sender `__glOdyim_AlphaFunc` (`ody_attrib.s`, source lines 1682 to 1692), shadow at
+  context +31784; the other bits of the word are kept.
+- **Block 0x020**, word `0x00010420`, **established**: the depth test. Bits 2:0 hold the
+  comparison as the GL enum minus 0x200; `__glOdyim_DepthFunc` (`ody_attrib.s`, line 1922)
+  rewrites only those bits of the shadow at context +31792 and sends the whole word.
+- **Block 0x022**, word `0x00010422`, **established**: the logic operation. Bits 3:0 hold
+  the GL enum minus 0x1500 (GL_CLEAR 0 to GL_SET 15), from `__glOdyim_LogicOp`
+  (`ody_attrib.s`, line 2315). The kernel textport sends 3, GL_COPY.
+- **Block 0x015**, word `0x00010415`, **established**: the polygon mode. Bits 3:2 hold the
+  front-face mode and bits 1:0 the back-face mode, each as the GL enum minus 0x1b00
+  (GL_POINT 0, GL_LINE 1, GL_FILL 2), from `__glOdyim_PolygonMode` (`ody_attrib.s`, line 2721).
+  The kernel textport sends 10 (binary 1010) (fill for both faces by the enum minus 0x1b00 rule above).
+- **Block 0x048**, word `0x00010c48`, **established**: the line stipple, three operands.
+  Operands 0 and 1 carry the 16-bit pattern in bits 15:0, and operand 2 carries the repeat
+  factor minus one in bits 7:0, the factor clamped to 1 to 256
+  (`__glOdyim_LineStipple`, `ody_attrib.s`, source lines 2268 to 2276).
+- **Block 0x058**, word `0x00010458`, **established**: the polygon offset. Bits 24:0 hold a
+  signed depth offset in units of the depth buffer, clamped to plus or minus 2^24,
+  and bits 31:25 are kept. `__glOdyim_PolygonOffsetEXT` (`ody_attrib.s`, line 3445)
+  builds it from the factor and bias, scaled by the depth range and the projection.
+- **Block 0x01d**, word `0x0001081d`, **established**: the scissor box, two operands, each
+  with a 12-bit field in bits 23:12 and one in bits 11:0. `__glOdysseyValidateScissor`
+  (`ody_context.s`, source line 2120) also hands the four fields to ioctl 0x6f64000d
+  as minimum x, minimum y, maximum x and maximum y, so operand 0 is the x range and
+  operand 1 the y range, low limit in the upper field.
+- **Block 0x04e**, word `0x00013c4e`, **established**: rows 31 down to 16 of the 32 by 32
+  polygon stipple, one 32-bit row per operand. `__glOdysseyConvertStipple` (`ody_attrib.s`,
+  line 2790) reverses the row order of the GL pattern before it sends the two blocks,
+  so the board's first stipple row is the top row of the GL pattern.
+- **Block 0x04f**, word `0x00013c4f`, **established**: rows 15 down to 0 of the polygon
+  stipple, sent right after block 0x04e by `__glOdysseyConvertStipple` (`ody_attrib.s`).
+- **Block 0x03f**, word `0x0001043f`, **established**: the stipple mode word, sent before
+  the two pattern blocks from context +31736 (`__glOdysseyConvertStipple`, `ody_attrib.s`).
+  **inferred:** it carries the binaries read here; the kernel
+  routines' other callers would settle the fields.
+- **Block 0x04b**, word `0x0001204b`, **inferred**: the screen mask, four rectangles as
+  eight operands, a minimum and a maximum word each, with x in bits 23:12 and y in bits 11:0.
+  The kernel textport sends 0x4ff3ff as the first maximum, 1279 by 1023 for its 1280 by 1024
+  screen, and 0xffffff as the other three (`buzz_init`, `odsy_tport.o`).
+
+- **Block 0x04a**, word `0x0001084a`, **inferred**: the line width and point size, one
+  operand each. The kernel textport sends 0x80 for both (`buzz_init`, `odsy_tport.o`)
+  which would read as 1.0 in fixed point with seven
+  fraction bits.
+
 ## Block 0x045, 0x250 and the level descriptors
 
 - **established.** The X module sends block 0x045 (`0x00010845`, two operands) in two places. `odsyGammaFit` (`odyssey.so`) sends the word, then an operand equal to a floating-point result truncated and clamped to 255, then the constant 30463 (0x76ff). `odsyInitDefaultHW` sends it with two words from the screen record at +56 and +60. **inferred**, from the first sender's name, that block 0x045 holds gamma-ramp fitting parameters; the field split is **unknown**.
