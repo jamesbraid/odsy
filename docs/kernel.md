@@ -24,6 +24,26 @@ Companion to `odsy_kernel/include/odsy_kern.h`. Labels: **established** (read fr
 - **inferred.** 0x4004 to 0x405c is a bank of per-engine address and control registers (the context save target 0x4004/0x400c is its first pair); the zeroing in step 5 returns every engine to idle. The registers' names: **unknown**.
 - **unknown.** The meaning of 0x100c's bits, of 0x4014 and 0x4044's fixed bits, of widget word +0x24's 0x4200 pattern, and what `odsyInitDBE` writes (4000 lines, not read).
 
+## Initialise and start (`gf_OdsyInitialize`, `gf_OdsyStart`, `odsyInitDMA`)
+
+**established** (`odsy_init.o`, IP30). Offsets are board record bytes unless "board +" is named; the record word at "-31292" is the record base plus 0x10000 minus 31292.
+
+`gf_OdsyInitialize`:
+
+1. Clears a word at -19352 ("initialising"), and when render nodes are still open (record +28480 nonzero) logs "rnodes still open" and retries up to 11 times, sleeping 500 ticks each time; failure returns -1.
+2. Takes the board semaphore (+56) as owner (+72), waits for the busy word (+104) to clear, increments the busy count (+80), unregisters the early textport (`htp_register_board` with zero arguments, **inferred** from the null arguments: the early console driver gives way to this one).
+3. When bits 1:0 of the graphics-context word at gfx+4 are set it clears them under `splhi`, and if the flow-control object (+808) is attached detaches it, marking -31288 = 1 and writing 1 to board +0x107c (the flow-off register, `BUZZ.h`). It then frees the flow object.
+4. Up to six attempts of: `odsyReset` (above), `gfx_flow_alloc` with the constants 2048 and 10000 (their meaning: **unknown**, the flow object is host-kernel code), wait until bits 15:7 of board +0x106c (the FIFO level) read zero (5 microsecond polls), pulse board +0x1084 as 0, 1, 0, build the flow configuration word `(interrupt target << 17) | 0x800000 | (credit transaction number << 12) | 0xc8` (target from `xtalk_intr_target_get`, number from `gfx_flow_credit_tnum_get`), keep it at -31292 and store it to board +0x1074, then `odsyInitCfifo(board, 1)`. A nonzero result frees the flow object, waits 10 ms and retries; six failures return -1.
+5. After success: allocates two 32 KB slots from the board's slot mask (+29952), the second becoming the host-visible sync page (index at -19380, address at -19376, first halfword zeroed), then `odsyInitMM`, `odsyInitDMA`, `odsyInitRetrace`, `odsyInitInterrupts`; sets bit 1 of gfx+4, attaches the flow object and rewrites the flow configuration word with the attached credit number into 0x1074 (clearing -31288 and writing 0 to 0x107c); calls `odsyZeroOut`; clears bit 1; drops the busy count.
+
+`gf_OdsyStart` zeroes the record's mode words (+8, +16, +104, +120, +84, +816), sets +794 = 1 and +820 = 127, calls `odsyInitDrawables`, converts the host buffer at +880 (a zeroed 128 KB host buffer allocated by `odsyInitHwWrRgn` and cut into 16 KB pieces recorded at +29880 and +29888; its allocation error calls it the "sw sync wr/hw shadow cache") with `kvtophys`, keeps the halves at -31248 (upper 16 bits) and -31244 (lower 32), and stores them to board +0x4034 and +0x403c. **inferred** by pairing with the context-save target (+0x4004/+0x400c, `docs/buzz.md` section 4) that these are the high and low halves of the shadow region's physical address; the register names and what the board writes there: **unknown, needs a hardware capture** (a trace of host-memory writes into the region after a draw).
+
+`odsyInitDMA` sets up the DMA mutex (+5800) and sync variable (+5816), zeroes four words at the board's hw-write record (+888), allocates a 32 KB slot whose host address becomes the tag page (+5824, index +5840, first halfword 0xffff, which is also the initial tag at +5836) and a second slot (+6896, index +6904, first halfword 0xffff), and zeroes the counters (+6880/+6888 retired/issued, +5844/+5848 tag and retire indices, +28448 interrupt list head). **established.**
+
+## IP35 differences in `odsyReset`
+
+**established** by comparing store offsets and calls of `odsyReset` in `odsy_kernel_ip35/` against IP30: every board register store (the list in step 5 and the 0x1004 sequence) is identical in value and order, `odsyGatherInfo` stores the same record offsets, and the reset order is the same. IP35 adds host-hub calls: before the first board access `xwidget_info_get`, `xwidget_info_master_get`, `master_node_get` then `hub_widget_flags_set(node, widget, 1)`; after the register zeroing a `hub_widget_flags_set(..., 2, 16384, chimera type)` call; and `hub_set_piomode(..., 2)` at the end and in the retry path. **inferred** that these set host-hub widget flags and the PIO ordering mode for the board's widget (the names are the host kernel's; their register effects belong to the host chip and are **unknown**). `odsyLowLevelReset` and `odsyLLPReset` differ in their store sequences too and were not compared line by line: **unknown**.
+
 ## Host DMA: regions, diagnostic transfers, op ring, wait and finish
 
 Release IRIX 6.5.30m, IP30 `odsy_dma.o` and `odsy_init.o` (disassembly in `odsy_kernel/disasm/`; message strings from `readelf -p .rodata`). Offsets are bytes into the record named. IP35 was not diffed: **unknown**.
