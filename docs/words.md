@@ -813,3 +813,18 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x2bc` (level descriptor 60, `libGLcore.so`): **established.**
   Word 0x00010ebc is block 0x280 + 60 with three operands, which `DownsampleTextureThruHW` fills and sends to render into
   a texture level; word 0 is the level's board address and word 1 its pitch in tiles (inferred, `docs/buzz.md`).
+- `0x007` (block, `libGLcore.so`): **established.**
+  Word 0x00010407 carries it with one operand, and `odsyRestoreRaster` rebuilds eight operands for it in registers rather than
+  from a shadow offset (`docs/buzz.md`, replay table); `__glOdysseyValidateContext` sends the word with a zero operand. Effect unknown.
+- `0x024` (block, `odsy_tport.o`): **established.**
+  Word 0x00010424, one operand: `ODSY_SET_GC` and `odsyPushBufferSelect` store it, and `odsyRestoreRaster` replays it from
+  hardware-shadow offset 0x2b68, which `odsyPushBufferSelect` also updates when the draw buffer changes.
+
+## Attribute-form words that carry other state
+
+- `0xcf80a92f` (slot 15, ten operands, opcode 0x12f, `odsy_ctxsw.o`): **established.**
+  A ten-operand state word: `odsyCopyRectBody` sends four floats from context +6988 to +7000, then the source rectangle
+  corners as floats and two zeros, ahead of a Vertex2 word, when the copy needs the transform engine; `odsyRestartContext` and `odsyDMAOps` send the same word in the kernel. What the ten floats set on the board is unknown.
+- `0xcf809014` (slot 15, four operands, opcode 0x14, `odsy_init.o`): **established.**
+  Built only by `odsyZeroOut`, which stores it once at the start of its fill loop together with the constants 1856 and 448
+  and then writes zero words in runs of up to 16 through the command FIFO port. **inferred** from the zero fill that the loop clears a memory; what register the word addresses is unknown.
