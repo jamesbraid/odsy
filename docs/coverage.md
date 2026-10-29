@@ -85,7 +85,7 @@ Userspace drivers: libGLcore command emission and the X server module (odyssey.s
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Command and FIFO formats | none | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface |  |
+| Command and FIFO formats | partial | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface | Pass 6 (`docs/opengl.md`): X module 2D paths. Solid rectangle fill (quads of Vertex2 words), rectangle copy (blocks 0x058/0x053 and the 8-operand class-0 id 0x031 write), terminal-emulator text (stipple blocks 0x04e/0x04f plus quads), window descriptor block 0x04b, colour index versus RGB forms and the 0x22/0x23 sequencer pair. Missing: image, mono-image and ImageGlyphBlt paths, begin operands of the fill, fields of blocks 0x022/0x017/0x04b, libGLcore sender catalogue |
 | Context save and restore | partial | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/buzz.md` section 4 | direct XIO interface | Pass 5: hardware-shadow ioctl and the glGet read-back through block 0x5a. Missing: make-current and lose-current, the 20-byte shadow descriptors |
 | Texture formats and filtering (incl. precision) | partial | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface | Written: texture object shadow layout and context mirrors. Missing: level records, texture memory allocation |
 | Display and scanout | none | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface |  |
