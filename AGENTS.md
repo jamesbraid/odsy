@@ -147,13 +147,18 @@ the owning chip header or chapter and delete the entry.
 ## 7. When work is finished
 
 A coverage row is done when every inventory entry in its area
-(`docs/inventory/`) is documented and every remaining unknown is labelled
+(`docs/inventory/`) is `understood` or `no-software-dependency`. `understood`
+means the entry for that item carries a label (established or inferred), a role
+and hardware effect, and a derivation citation (release, binary or path,
+offset, callee or source path) in the same entry. Naming an item, or listing it
+with others, is not enough. `no-software-dependency` is the section 6 label
 "unknown: no shipped software or published source depends on it", with the
-routes tried. Anything less is partial. The repository is finished when every
-inventory table reaches that state, not when the rows look full.
+routes tried. `located` (identity, address or size, and callers or sites cited,
+behaviour labelled unknown) and `named-only` are partial. The repository is
+finished when every inventory table reaches done, not when the rows look full.
 
-When you finish a task, regenerate the inventory, then pick the next
-undocumented entries and carry on. Hand off only when your assigned area meets
+When you finish a task, regenerate the inventory, then pick the next entries
+below `understood` and carry on. Hand off only when your assigned area meets
 the definition above, or when the session ends. In that case, say in
 `docs/open-questions.md` where you stopped and what comes next.
 
@@ -165,9 +170,9 @@ Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the
 
 Roles:
 
-- **Opus readers** take the Priority list in `docs/coverage.md`, in order, and read the `undocumented` rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item.
-- **Sonnet readers** pick `undocumented` rows from the inventory, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`, then `named-only` rows that need their meaning written. Backfill `docs/coverage.md` area rows the same way.
-- Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have documented must show `documented` in the regenerated file; if it does not, the text is too thin or does not name the thing (`docs/inventory/README.md` gives the rule). If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
+- **Opus readers** take the Priority list in `docs/coverage.md`, in order, and take the rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item to `understood`, whatever their status now.
+- **Sonnet readers** pick rows below `understood` from the inventory, `undocumented` first, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written, not another mention. Backfill `docs/coverage.md` area rows the same way.
+- Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have understood must show `understood` in the regenerated file; if it does not, the entry lacks a label, a derivation citation or a role, names more than three items on a line, or does not name the thing (`docs/inventory/README.md` gives the rule). If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
 
