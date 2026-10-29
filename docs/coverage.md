@@ -61,10 +61,10 @@ Display channels, colour formats, cursor and scanout (single and dual channel).
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `DISPLAY.h`, `docs/display.md` | display, colour and cursor |  |
+| Registers and fields | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | Display-mode table address and colour-map entry format written |
 | Command and FIFO formats | none | `DISPLAY.h`, `docs/display.md` | display, colour and cursor |  |
 | Interrupts | none | `DISPLAY.h`, `docs/display.md` | display, colour and cursor |  |
-| Display and scanout | none | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | display-mode word with visual-format bits reported by prior work; narrow 12/15-bit reading unconfirmed |
+| Display and scanout | partial | `DISPLAY.h`, `docs/display.md` | display, colour and cursor | display-mode word with visual-format bits reported by prior work. Written: display FIFO word, mode table constants from odyssey.so, field split, X pixel encoding for 12/15-bit TrueColor; narrow reading confirmed as inferred (top N bits widened before the shared gamma map). Missing: id-to-depth binding, widening rule, bits 23:12 and 3:0 |
 
 ### Kernel driver
 
