@@ -268,11 +268,60 @@
  * SetDetailEntry (0x0d9d84c0).
  * Transport: sixteen class-1 words 0x00013e40 + j (j = 0..15), each
  * followed by 16 entries, i.e. register ids 0x240-0x24f with COUNT 15,
- * sent when context dirty bit 0x00100000 is set. A second 256-word table
- * goes the same way through ids 0x230-0x23f (dirty bit 0x00080000);
- * which table it is: unknown. established: __glOdysseyValidateHardware
- * (loops at VA 0x0d9686e0 and 0x0d968780). */
+ * sent when context dirty bit 0x00100000 is set. established:
+ * __glOdysseyValidateHardware (loops at VA 0x0d9686e0 and 0x0d968780).
+ * The detail table's context copy is the 256 words at context offset
+ * 0x87e4, filled from texture object offset 0xfc by
+ * __glOdysseyTextureActivate (ody_texture.c, the copy loop that ends with
+ * the dirty-word merge). established. */
 #define BUZZ_REG_DETAIL(j)         (0x240 + (j)) /* established, j < 16 */
+
+/* --- Table uploads 0x200-0x24f (pass 3) -------------------------------
+ * __glOdysseyValidateHardware sends five 256-word tables, each as sixteen
+ * class-1 words with COUNT 15 followed by 16 operands, taken from the
+ * context in memory order. N32 context offsets, dirty bit that gates the
+ * upload (the dirty word is context offset 0x16960):
+ *
+ *   ids          class-1 words   context offset  dirty bit   written by
+ *   0x200-0x20f  0x00013e00+i    0x8d7c          0x400000    image paths
+ *   0x210-0x21f  0x00013e10+i    0x917c          0x400000    (see below)
+ *   0x220-0x22f  0x00013e20+i    0x7fe4          0x040000    not traced
+ *   0x230-0x23f  0x00013e30+i    0x83e4          0x080000    nothing found
+ *   0x240-0x24f  0x00013e40+i    0x87e4          0x100000    detail table
+ *
+ * The first two are sent together: for each i the 16 words of 0x200+i are
+ * followed by the 16 words of 0x210+i (the code emits 0x00013e00 | i and
+ * 0x00013e10 | i), then a settle group with a wait count of 0 (not 250).
+ * The three tables from 0x220 up are adjacent in the context: 0x7fe4,
+ * 0x83e4, 0x87e4 are 0x400 bytes apart. established: the loop bodies and
+ * displacements in ody_context.s at labels .L0d968618, .L0d9686b8,
+ * .L0d968758, .L0d968bfc; the dirty-bit tests are dsll32 tests of the
+ * dirty word (t1 shifted left by 32 + n tests bit 31 - n).
+ *
+ * The 0x230-0x23f table: the 0x00080000 bit is not set by any immediate
+ * OR into the dirty word in the decompiled N32 libGLcore, the context
+ * region 0x83e4-0x87e3 has no store at any displacement the loop uses (a
+ * search of every N32 asm file for the displacements -31772..-30749 off
+ * the context-plus-0x10000 base finds only the loop itself), and the
+ * 64-bit libGLcore carries the same three loops (0x3e20, 0x3e30, 0x3e40
+ * at VA 0x31fc95c, 0x31fc9fc, 0x31fca98) with no store at the matching
+ * displacement. So libGLcore never sends this table with data of its
+ * own. established as a negative search over those binaries only. What
+ * the hardware does with ids 0x230-0x23f: unknown. The dirty bit exists
+ * and the table sits between the 0x7fe4 table and the detail table, so it
+ * may be an unused sibling of the detail table: inferred, weak.
+ *
+ * The 0x200-0x21f pair are written by the image-processing code
+ * (ody_image_api.c copies into context 0x8d7c; ody_image_chain.c at
+ * line 2056 builds the same address). What they hold (a lookup table
+ * of the image pipeline is the reading): inferred, not read further.
+ * Per-id word order is memory order: the loop loads the word at
+ * displacement d, then the one at d + 4, and stores them to the FIFO in
+ * that order. established. */
+#define BUZZ_REG_TABLE_200(i)      (0x200 + (i)) /* established, i < 16 */
+#define BUZZ_REG_TABLE_210(i)      (0x210 + (i))
+#define BUZZ_REG_TABLE_220(i)      (0x220 + (i))
+#define BUZZ_REG_TABLE_230(i)      (0x230 + (i))
 #define BUZZ_DETAIL_ENTRIES        256
 #define BUZZ_DETAIL_LOD_STEP_DEN   32 /* entry i <-> LOD -i/32 */
 #define BUZZ_DETAIL_WEIGHT_SHIFT   12
