@@ -274,21 +274,55 @@ position w (record +76) is nonzero and attenuated when it is local and its const
 quadratic factors (+104, +108, +112) are not 1, 0 and 0. A spot cutoff (+100) other than 180
 sets a bit in the program key and adds no routine.
 
-- **`611`** (routine; kernel record 611), **inferred**: lighting for the first enabled light when
-  it is local and GL_LIGHT_MODEL_LOCAL_VIEWER is on (`ody_program.s`, line 865;
-  context byte +1412, set by `__glim_LightModelfv` in `so_attrib.s`).
-- **`626`** (routine; kernel record 626), **inferred**: lighting for the first enabled light when
-  it is local and the viewer is at infinity (`ody_program.s`, line 865). It has the same length
-  and data range as routine 611.
-- **`641`** (routine; kernel record 641), **inferred**: lighting for the first enabled light when
-  it is directional and the viewer is local (`ody_program.s`, line 865); lane 7 only.
-- **`656`** (routine; kernel record 656), **inferred**: lighting for the first enabled light when
-  it is directional and the viewer is at infinity (`ody_program.s`, line 865), the shortest of the four.
-- **`694`** (routine; kernel record 694), **inferred**: the normal transform, added with the first
-  light (`ody_program.s`, line 871) when GL_NORMALIZE is off; it reads data words 0x1e0 to
-  0x20d in lanes 4 to 7.
-- **`668`** (routine; kernel record 668), **inferred**: the same normal transform with
-  GL_NORMALIZE on (`ody_program.s`, line 871): one record longer than routine 694.
+- **`611`** (routine; kernel record 611), **inferred**: the first-light set-up for a local light and
+  a local viewer (`ody_program.s`, line 865; context byte +1412, set by `__glim_LightModelfv` in
+  `so_attrib.s`), the case that needs the most per-vertex work. Its inputs are the position, the
+  normal, light words 0x200 to 0x202 and 0x209, the constants -1.0 and 0.0 and the material slots 6,
+  9, 10 and 13. It computes the eye position (R12, R9, R10, R11 at 611 to 614), the eye normal into
+  R16 (615 to 617), two dot products of the working registers R19 and R18 against the latch (620,
+  621) and, through scalar code 4, the per-vertex viewer vector in R26 (623 to 625); it stores
+  parameter word 0x1f4 at 620 like 626. Outputs: R16 holds the eye normal and R26 the viewer vector
+  for the lighting core 668 or 694.
+- **`626`** (routine; kernel record 626), **inferred**: the first-light set-up for a local light
+  with the viewer at infinity (`ody_program.s`, line 865), the same length and data range as 611.
+  Inputs: the position, the normal, the light record and the material slots. A local light needs the
+  eye position, so it dots the position with R12, R9, R10 and R11 (626 to 629) as 641 does, but with
+  the viewer at infinity it fills R26 with the constants 0.0, 0.0 and 1.0 (reads at 636 to 638) as
+  656 does. It also transforms the normal into R16 (630 to 632), reads light words 0x200 to 0x202
+  and 0x209, the position scaled by 1/w, and stores one per-vertex result at parameter word 0x1f4
+  (record 635).
+- **`641`** (routine; kernel record 641), **inferred**: the first-light set-up for a directional
+  light with GL_LIGHT_MODEL_LOCAL_VIEWER on (`ody_program.s`, line 865). Its inputs are 656's plus
+  the full eye position: where 656 loads a constant viewer direction, this one needs the vertex, so
+  it computes the eye position from the modelview rows R12, R9, R10 and R11 (records 641 to 644),
+  and R26 receives scalar-unit results (code 4 at 649 to 651, written at 653 to 655) instead of (0,
+  0, 1). The normal transform into R16 (645 to 647), the light words 0x200 to 0x202 and 0x209 and
+  the material slots copied into the colour unit are as in 656.
+- **`656`** (routine; kernel record 656), **inferred**: lighting set-up for the first enabled light
+  when it is directional and the viewer is at infinity (`ody_program.s`, line 865), the shortest of
+  the four. Inputs: the position slot (only its eye w, modelview row R12, record 656), the normal
+  slot 1, words 0, 1, 2 and 9 of the light record (parameter 0x200 to 0x202 and 0x209: the unit
+  direction and the quadratic attenuation `ValidateLight` stores) and the material slots 9, 6, 13
+  and 10, which it copies into the colour unit (codes 0x1f20 and 0x1828, records 658 to 662). It
+  transforms the normal by the normal-matrix rows R13 to R15 into R16 (657 to 659, results at 664 to
+  666) and loads the infinite viewer direction (0, 0, 1) into R26 from the constants 0.0, 0.0 and
+  1.0 (0x1e3, 0x1e3, 0x1e0). Its delay slots start the next vertex transform rows (clip w on the
+  position, texture q and s on slot 3).
+- **`694`** (routine; kernel record 694), **inferred**: the lighting core added after the first
+  light when GL_NORMALIZE is off (`ody_program.s`, line 871). It is not the normal transform, which
+  the first-light routines already do. Its inputs are R16, R17 and R26 from the routines before it,
+  the texture slot 3, the position and the colour slot 5. It computes the dot product of R26, the
+  viewer vector, with R17 (694) and R17's squared length (698), feeds that length to scalar code 1
+  and scales the three lanes of R26 and R17 with code 0xe (results back at 710 to 716), so it
+  normalises both vectors; then it dots R26 with the eye normal R16 (714). In the same records it
+  finishes the vertex: the texture rows t and r on slot 3 and the clip z, x, y and z rows on the
+  position (695 to 701), the outputs q (0x2c) as word 6 and s, t, r as words 3 to 5, and the colour
+  slot 5 through the colour unit (0x1f22) twice, as words 1, 2 and 9, 10.
+- **`668`** (routine; kernel record 668), **inferred**: 694's lighting core for GL_NORMALIZE on
+  (`ody_program.s`, line 871), one record longer. Its inputs are 694's; the extra work is a dot
+  product of the eye normal R16 with R17 (record 676), and it computes the same normalisation of R26
+  and R17 and produces the same texture, position and colour output words at the same offsets from
+  its entry as 694.
 - **`719`** (routine; kernel record 719), **inferred**: closes each light's lighting when it has no
   distance attenuation (`ody_program.s`, line 874).
 - **`734`** (routine; kernel record 734), **inferred**: closes each light's lighting when it is
