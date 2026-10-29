@@ -850,20 +850,35 @@
 /* --- Context save and switch (odsy_ctxsw.o), pass 4 -------------------
  * established: gf_OdsyPcxSwap, gfP_OdsySaveHwShadow (IP30; IP35 not
  * diffed). A context is saved by one doubleword store to board +
- * 0x118000: (7 << 40) | (slot << 16) | 1, slot 7 bits, 127 meaning none
- * (the constant 0x00000700_007f0001). The driver zeroes the word at +2300
- * of the outgoing context's record first and waits up to 1500 ticks for
- * it to become nonzero; the writer is inferred to be the board. The save
- * area's physical address is announced at board + 0x4004 (bits 47:32)
- * and + 0x400c (bits 31:0) before the swap. Switching a context in sends
- * class-1 block 0x050 with operands ((slot << 12) & 0x7f000) | x | 0xf
- * and 0, then 0x00014400 (operand 0) and 0x00014001. Details and the
- * restore routines: docs/buzz.md section 4. */
+ * 0x118000: (7 << 40) | (slot << 16) | 1, slot 7 bits, where slot is
+ * the incoming context's (pass 5) and 127 means none (the constant
+ * 0x00000700_007f0001, a save without a switch). The driver zeroes the
+ * word at +2300 of the outgoing context's record first and waits up to
+ * 1500 ticks for it to become nonzero; no driver code writes it, so the
+ * writer is inferred to be the board. The incoming context's record
+ * address is announced at board + 0x4004 (bits 47:32) and + 0x400c
+ * (bits 31:0) after the save, so inferred the board saves into the
+ * record announced when the context was switched in. Switching a context
+ * in sends class-1 block 0x050 with operands ((slot << 12) & 0x7f000) |
+ * x | 0xf and 0, then 0x00014400 (operand 0), 0x00014001 and two class-0
+ * writes (id 0x340 = 0x1ed, id 0x341 = 0). Details, the saved record's
+ * vertex ring and the restore routines: docs/buzz.md section 4. */
 #define BUZZ_CTX_SAVE_OFFSET       0x118000u /* established */
 #define BUZZ_CTX_SAVE_WORD(slot)   ((7ull << 40) | ((uint64_t)(slot) << 16) | 1)
 #define BUZZ_CTX_SLOT_NONE         127       /* established */
 #define BUZZ_CTX_SAVE_ADDR_HI      0x4004u   /* established, 16 bits */
 #define BUZZ_CTX_SAVE_ADDR_LO      0x400cu   /* established, 32 bits */
 #define BUZZ_REG_CTX_SELECT        0x050     /* established, 2 words */
+
+/* Class-0 words: bits 31:16 zero, COUNT in 13:10, id in 9:0, followed by
+ * COUNT operands, like class 1 without bit 16. established as values:
+ * 0x740 + 0x1ed and 0x741 + 0 (gf_OdsyPcxSwap), 0x4c0 + n with one
+ * operand (__glOdyGetFromHardware, n < 4). The field split is inferred
+ * from the operand counts matching COUNT = 1. */
+#define BUZZ_CMD0(reg, count)      (((count) << 10) | (reg))
+/* Block 0x5a: two operands, a host location and a 16-bit tag. inferred:
+ * the board writes the tag to that location (libGLcore polls a mapped
+ * halfword for it; docs/buzz.md section 4). */
+#define BUZZ_REG_TAG_WRITEBACK     0x05a
 
 #endif /* BUZZ_H */

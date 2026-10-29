@@ -97,14 +97,14 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 
 ### Switch-out: ask the board to save
 
-- **established.** `gf_OdsyPcxSwap` and `gfP_OdsySaveHwShadow` store one doubleword at board PIO base + 0x118000 (the FIFO port is at + 0x110000). For a switch-out of context slot c the value is `(7 << 40) | (c << 16) | 1`. When there is no outgoing context the value is the constant `0x00000700_007f0001` (slot 127, from `.lit8[8]` of `odsy_ctxsw.o`, relocation confirmed). Slot numbers are 7 bits wide: the code uses 127 as "none" and masks with 0x7f.
+- **established.** `gf_OdsyPcxSwap` and `gfP_OdsySaveHwShadow` store one doubleword at board PIO base + 0x118000 (the FIFO port is at + 0x110000). In `gf_OdsyPcxSwap(board, outgoing, incoming)` the value is `(7 << 40) | (s << 16) | 1`, where `s` is the slot of the *incoming* context (word 0 of its hardware state) or 127 when there is none; the store is made only when there is an outgoing context. `gfP_OdsySaveHwShadow`, which saves without switching, sends the constant `0x00000700_007f0001` (slot 127, from `.lit8[8]` of `odsy_ctxsw.o`, relocation confirmed). Slot numbers are 7 bits wide: the code uses 127 as "none" and masks with 0x7f. (Pass 5 corrects an earlier reading that the slot was the outgoing one.)
 - **established.** Before the store the driver zeroes the word at offset 2300 of the outgoing context's record (the record pointed to at offset 192 of the context's hardware state) and afterwards arms a 1500-tick timeout (`odsy_ctxsw_timeout`, which tears the board down) and polls that word, in `gfP_OdsySaveHwShadow` with a 1-microsecond delay loop. A nonzero word cancels the timeout (`untimeout_wait`). Who writes the word: **inferred** the board (a DMA write into the record), because the driver only clears and reads it.
 - **established.** The context's save area is announced to the board before this: the driver sets `kvtophys(record)` and stores its upper 16 bits (masked with 0xffff) at board + 0x4004 and the lower 32 at board + 0x400c (`gf_OdsyPcxSwap`, stores of offsets 16388 and 16396), and keeps both in the board record (-31284 and -31280 from the record base plus 0x10000). **inferred** that these name the DMA target for the save.
 - **established.** The caller first detaches other graphics processes from flow control (`gfx_flow_clean_up_other_gfxp`) and checks flow-control attachment; a failed save returns -1.
 
 ### Switch-in: select and replay
 
-- **established.** After `odsyMMvalidatePcxSwap` and `gf_OdsyValidateClip` the driver sends class-1 block 0x050 with two operands: `((slot << 12) & 0x7f000) | (some mask & value) | 0xf` and 0, then 0x00014400 (primitive begin) with operand 0, 0x00014001 (primitive end), and four raw words 0x740, 0x1ed, 0x741, 0 (the last four are not class-1 words: **unknown**). The choice of slot (`s3`), and the mask from `.lit8[0x10]` = 0xfffffffffff80fff, show that bits 18:12 of the first operand select the context slot and its low nibble is 0xf. What the block does: **inferred** to activate the saved context on the board.
+- **established.** After `odsyMMvalidatePcxSwap` and `gf_OdsyValidateClip` the driver sends class-1 block 0x050 with two operands: `((slot << 12) & 0x7f000) | (some mask & value) | 0xf` and 0, then 0x00014400 (primitive begin) with operand 0, 0x00014001 (primitive end), and four words 0x740, 0x1ed, 0x741, 0, which read as two class-0 writes (bit 16 clear, COUNT 1): id 0x340 = 0x1ed and id 0x341 = 0 (pass 5, below). The choice of slot (`s3`), and the mask from `.lit8[0x10]` = 0xfffffffffff80fff, show that bits 18:12 of the first operand select the context slot and its low nibble is 0xf. What the block does: **inferred** to activate the saved context on the board.
 - **established.** When the save fails or the microcode may be lost, the swap path calls `odsyDownloadUcode` and then replays state with `odsyRestoreXform`, `odsyRestoreRaster`, `odsyRestoreGfe` and `odsyRestartContext` (all in `odsy_ctxsw.o`, called from `gf_OdsyPcxSwap` in that order). The condition that selects this path: **inferred** a board reset after a timeout; the branch was not traced.
 - **established.** The replay routines write the kernel's shadow back into the FIFO. Class-1 words with visible `lui 1; ori` immediates:
   - `odsyRestoreRaster`, as id/count (ids from bits 9:0, counts from bits 13:10): 018/0 019/0 004/1 005/1 006/1 007/1 015/1 01e/1 01f/1 020/1 022/1 024/1 03f/1 043/1 04c/1 051/1 052/1 056/1 057/1 058/1 258/1 01d/2 03d/2 040/2 041/2 042/2 04a/2 01c/3 021/3 03e/3 048/3 280/3 (the level descriptors, `0x280 + i`) 013/4 017/4 023/4 03a/4 01b/5 053/5 000/6 01a/6 047/6 016/7 030/8 031/8 032/8 033/8 03b/8 04b/8 028/15 029/15 02a/15 02b/15 038/15 04d/15 04e/15 04f/15 200/15 210/15 220/15 230/15 240/15 (the 256-word tables, `BUZZ.h`).
@@ -112,6 +112,38 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
   - `odsyRestartContext`: 019/0 046/0 000/1 043/1 044/1 258/1 050/2 017/4.
   The list is the set of immediates visible in the disassembly; blocks built with other instructions are not in it. Several coincide with ids in `BUZZ.h` (texture block 0x016, 0x013, 0x01b; settle words 0x043, 0x046, 0x019). Their per-field meaning stays as written there; for the others: **unknown**.
 - **established.** `odsyRestoreXform` (about 690 lines), `odsyRestoreVB` (about 1125 lines) and `odsyRestoreVertex` with the `restore*` primitive walkers (`restorePoints`, `restoreLines`, `restoreTriangles`, `restoreTriStrip`, `restoreTriFan`, `restoreQuads`, `restoreQuadStrip`, `restorePolygon`, `restoreRect`) replay transform state and the vertices of an interrupted primitive. Their word formats were not read: **unknown**. `odsyResetHwShadow` clears the kernel's shadow of hardware state (not read in detail).
+
+### Pass 5: completion word, saved record and the libGLcore side
+
+**Who writes the completion word.**
+
+- **established.** Offset 2300 of a context record is written by the kernel only as zero, before the save request, and read in the poll loops (`gfP_OdsySaveHwShadow`, `gf_OdsyPcxSwap`; no other store to `2300(` in any IP30 kernel object). No interrupt handler touches it.
+- **established.** The record whose physical address goes to +0x4004/+0x400c is the *incoming* context's record (`kvtophys` of the record at offset 192 of the incoming hardware state, `gf_OdsyPcxSwap`), sent after the save completes. The record polled at the next switch-out is that same context's record, now outgoing.
+- **inferred.** The board saves into the record last announced through +0x4004/+0x400c, so each context's record receives its own state, and the board writes the nonzero completion word itself, as the last write of the save. Reason: the driver announces exactly that address, never writes the word, and the same board has a host write-back of a 16-bit tag (block 0x5a, below). Not confirmed by hardware.
+
+**Block 0x5a, host tag write-back.**
+
+- **established.** `__glOdyGetFromHardware` (`ody_get.s`, N32 libGLcore 0x0d985aa0) sends a class-0 word `0x4c0 + n` (n = 0..3 by its argument, COUNT 1) with a sequence number, then `0x00010a5a` with two operands: a halfword index and a 16-bit tag (the incremented counter at context `0x10000 - 22860`). It then polls the halfword at that index in a page the kernel mapped for it (context offsets 27800 and 27964, set from an ioctl in `ody_pmobj.s`) until it equals the tag, or a word at offset 124 of another shared buffer until it equals the sequence number.
+- **inferred.** Block 0x5a writes its second operand to host memory at the place its first operand names; `odsyDMAOp`'s use (first operand ORed with 0x8000, tag `0x5a00 | n`) is the same block with a kernel target. The 0x8000 bit's meaning: **unknown**.
+
+**Saved record layout, as the restore code reads it.** **established** as offsets (`odsyRestoreVertex`, `odsyRestoreVB`, the `restore*` walkers in `odsy_ctxsw.o`); the record is the one at offset 192 of the hardware state:
+
+| Offset | Content |
+|---|---|
+| 140 + 8v | a descriptor word for vertex v (v = 0..3); 2-bit fields at bits 17:16, 15:14 and below select, per attribute, which of four stored entries belongs to the vertex |
+| 256 + 4v | the position command word of vertex v (an attribute word, `BUZZ.h` section 1), COUNT in bits 13:10 |
+| 768 + 16v + 4j | its operands, j < COUNT |
+| 384 + 4k, 1280 + 16k + 4j | first attribute slot: four stored command words (k from descriptor bits 17:16) and their operands |
+| 400 + 4k, 1344 + 16k + 4j | second attribute slot (k from bits 15:14) |
+| 2300 | completion word |
+
+`odsyRestoreVertex` replays the vertex's position word and operands into the FIFO; a word with COUNT 0 must be `0x2f00c02e` or `0x3000c02e` (with bits 22:16 masked) or the kernel logs an error. Before that it calls `odsyRestoreVB` for the attribute slots and, when word 10972 of the structure at hardware-state offset 176 is set, `odsySetProgram` with the program number at 11040 + 4v of that structure. The walkers pick the vertices to replay: `restorePoints` replays none, `restoreLines` one, and `restoreTriStrip` the count n it is given, starting at `(p - n + 4) & 3` for its fourth argument p and stepping modulo 4. **inferred:** the board keeps the last four vertices of the primitive in flight as a ring, and its save writes them with their command words, so that the kernel can resend the vertices a strip or fan still needs. The other slots read by `odsyRestoreVB` after the two above, and `odsyRestoreXform`'s words (it uses sequencer registers 0x20, 0x28, 0x29, 0x31, 0x32, 0x34 and the words `0x8e80xxxx`, `0x9080xxxx`, `ucode/buzz_isa.md`), were not decoded.
+
+**libGLcore side.**
+
+- **established.** `__glOdysseyGetHardwareShadow` (`ody_unixcontext.s`) issues ioctl `0x6f64000c` on the device descriptor. **inferred** from the name that the kernel side is `gfP_OdsySaveHwShadow`; the ioctl switch was not traced.
+- **established.** `__glOdyGetFromShadow` calls `__glOdyGetFromHardware` (above) and then `__glOdyDecodeShadowFormat` on a table of 20-byte descriptors (index times 20 from a context pointer at `0x16d24`), which is how glGet reads state that exists only on the board. The descriptor layout: **unknown**.
+- **unknown.** What libGLcore does at make-current and lose-current with respect to the board's saved state (`MakeCurrent`, `LoseCurrent`, `__glOdysseyDriverMakeCurrent` not read), and the IP35 diff of `odsy_ctxsw`.
 
 ### What is not done
 
