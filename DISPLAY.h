@@ -187,4 +187,39 @@
  * (readback, blending and logic ops would see them): unknown.
  */
 
+/* ===================================================================
+ * 4. Video timing generator addresses (display FIFO type 3)
+ * ===================================================================
+ * established: odsyLoadTimingTable (odsy_brdmgr.o) writes these as
+ * type-3 display FIFO words from the 320-byte timing structure; the
+ * structure offset feeding each is in docs/display.md. What each
+ * register does on the board: unknown unless stated.
+ */
+#define VTG_LINE_TABLE         0x2000 /* up to 2048 16-bit entries, two
+                                         per word, even entry low */
+#define VTG_FRAME_TABLE        0x2400 /* up to 256 entries: pairs of
+                                         (line-table word index, count) */
+#define VTG_CTRL0              0x2481 /* struct word 28 | 0x42; also 1 */
+#define VTG_CTRL1              0x2482 /* struct word 32 */
+#define VTG_CTRL2              0x2483 /* struct word 36 */
+#define VTG_REG_2580           0x2580 /* type 3 and type 7 both used */
+#define VTG_REG_2581           0x2581 /* driver state bits */
+#define VTG_REG_2600           0x2600 /* struct word 164 */
+#define VTG_REG_2680           0x2680 /* struct word 168 */
+#define VTG_REG_26C0           0x26c0 /* struct word 160 */
+#define VTG_MODE               0x2700 /* read-modify-write of board
+                                         +0x233804: bits 14:12 and 17:15
+                                         from struct words 212, 216; bit
+                                         18 set once the clock settles */
+#define VTG_REG_27C0(i)        (0x27c0 + (i)) /* i < 12: struct words
+                                         40..84 */
+#define VTG_REG_27CC           0x27cc /* struct word 88; 0 while the
+                                         clock is reprogrammed */
+#define VTG_ACTIVE_PIXELS      0x2802 /* struct word 176 (inferred name:
+                                         1280 in the 1280x1024 timings) */
+#define VTG_ACTIVE_LINES       0x2803 /* struct word 180 (inferred name) */
+#define VTG_REG_2804           0x2804 /* struct word 200 bits 1:0 */
+#define VTG_REG_2806           0x2806 /* struct word 200 bit 5 */
+#define VTG_REG_2B00           0x2b00 /* struct word 208 bits 2:0 */
+
 #endif /* DISPLAY_H */

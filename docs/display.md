@@ -17,20 +17,59 @@ This is a first pass over the pieces that carry timing. It names what exists and
 
 ### The 320-byte timing structure
 
-Two examples were laid side by side (`odsy_timings.o`, words are big-endian 32-bit, offsets in bytes; the first is the 1280x1024 72 Hz default, the second `odsy_default_timing1`):
+`odsyLoadTimingTable` (`odsy_brdmgr.o`, IP30 6.5.30m, disassembly from line 4223 of `odsy_brdmgr.text.s`) is the consumer. It writes most fields to the display FIFO as type-3 words (header `(3 << 28) | (address << 14) | 1`, data in the low word; `DISPLAY.h` section 1). The headers are `.lit8` constants of `odsy_brdmgr.o`; their offsets were tied to the code by the `R_MIPS_GPREL16 .lit8` relocations and the object's GP0 of 0x7800. Offsets are decimal bytes; "word" means a 32-bit big-endian word.
 
-| Offset | 72 Hz default | `timing1` | Reading |
-|---|---|---|---|
-| 0x08, 0x14, 0x18, 0x1c | 0x18, 0x30, 0x116, 0x1f0 | 0x16, 0x3d0, 0x10e, 0x1b0 | **unknown.** Differ between the two; 0x04 and 0x14 of `timing1` look like offsets into the table block (0x3a0, 0x3d0) |
-| 0x24 | 0x3fffff | 0x3fffff | **unknown** (a 22-bit all-ones mask) |
-| 0xb0 | 0x500 (1280) | 0x500 | **inferred** active pixels per line: it equals the format name |
-| 0xb4 | 0x400 (1024) | 0x400 | **inferred** active lines per frame |
-| 0xb8 | 0x48 (72) | 0x3c (60) | **inferred** frame rate in Hz: the first structure is named `default_1280x1024_72_timing` and holds 72; the second's object name carries no rate, so its 60 is a value only |
-| 0xa0, 0xa4, 0xa8 | 6, 0x306, 0x10120000 | same | **unknown**, equal in both |
-| 0x118, 0x120 | 0x280, 0x40 | 0x280, 0x40 | **unknown**; 0x280 is half of 1280 |
-| 0x68, 0x78, 0xc4, 0x10c to 0x114, 0x128 | differ | differ | **unknown** (porch and sync candidates: they change with the refresh rate) |
+| Offset | Use in the loader | Label |
+|---|---|---|
+| 0 (8 bytes), 8 | pointer to the frame table and its length in 16-bit entries | **established** (`odsy_copyin_frame_line_tables` copies `length * 2` bytes from the pointer; the built-in timings carry `R_MIPS_64 .data` relocations here) |
+| 16 (8 bytes), 24 | pointer to the line table and its length in 16-bit entries | **established**, as above |
+| 28 | ORed with 0x42, written to display address 0x2481 | **established** |
+| 32 | written to 0x2482 | **established** |
+| 36 | bit 5 replaced by the driver's own bit 5, written to 0x2483 | **established** |
+| 40 to 84 | twelve words written in order to 0x27c0 to 0x27cb | **established** |
+| 88 | written to 0x27cc, after bit 31 of the board register at +0x1034 (the flags enable register, `BUZZ.h`) is set | **established** |
+| 96 to 124 | eight clock-part register bytes, written over I2C as registers 5, 4, 2, 3, 0, 1, 7, 6 | **established**; used when board-record word 292 is zero or negative, with 0x26 stored in the I2C device record first |
+| 128 to 156 | eight clock-part register bytes, written as registers 0 to 7 | **established**; used when word 292 is positive, with 0x58 stored in the device record |
+| 160, 164, 168 | written to 0x26c0, 0x2600, 0x2680; bit 6 of word 164 also sets its bit 7 | **established** |
+| 176, 180 | written to 0x2802, 0x2803 | **established**; the built-in timings hold 1280 and 1024 here, so **inferred** active pixels and active lines |
+| 200 | bits 1:0 to 0x2804; bit 5 to 0x2806 and to 0x2929; bit 4 selects a branch | **established** |
+| 208 | bits 2:0 to 0x2b00 | **established** |
+| 212, 216 | bits 2:0 of each placed in bits 14:12 and 17:15 of the word read from board + 0x233804, then written to 0x2700 twice: with bit 18 clear before the clock is programmed and with bit 18 set after a 100 ms delay; 0x2481 = 1 follows | **established** |
+| 220, 224 | 220 = -2 selects a path; 224 is kept in the board record | **established** (the paths were not traced) |
+| 236 to 248 | low bytes rewritten to clock registers 1, 2, 5, 6 on one later path; with 132, 136, 148 and 152 also kept in the board record | **established** |
+| 264 to 280 | read on another path | **established** as read; destination not traced |
+| 92, 172, 184 to 196, 204, 228, 232, 252 to 260, 284 to 316 | not read in the parts traced | **unknown** |
 
-The loader reads offsets 128 to 156 and 208 to 216 of the structure (`odsyLoadTimingTable`, disassembly lines near `odsy_brdmgr.text.s` 4223 and following), the first of which holds small integers in both examples; their meaning is **unknown**. Do not use the table above as a field map.
+The built-in values, for reference: `default_1280x1024_72_timing` has clock bytes (128-156) 0x30, 0, 0, 5, 2, 0x10, 0, 0; `odsy_default_timing1` has 1, 0, 1, 9, 0, 0, 0, 0. Word 184 holds 72 or 60, the refresh rate, and is not read in the parts traced.
+
+Clock part identity: **unknown**. **inferred:** the bytes 0x58 and 0x26 the driver stores in its I2C device record are bus addresses, so two board variants carry different clock parts with different register orders.
+
+### Frame and line tables
+
+**established** from `odsyLoadTimingTable` and the two built-in timings:
+
+- The loader first clears both tables: header `0x39000080` (type 3, address 0x2400, count 128) followed by 128 zero words, then `0x38000400` (address 0x2000, count 1024) and 1024 zero words. It then sends the frame table with header `0x39000000 | ceil(n/2)` and the line table with `0x38000000 | ceil(n/2)`. So the frame table lives at display address 0x2400 (up to 256 entries) and the line table at 0x2000 (up to 2048 entries). The header's low 14 bits count the 32-bit data words that follow.
+- Entries are 16 bits, packed two per word with the even entry in the low half (`word = e[2k] | e[2k+1] << 16`); the header itself occupies the first pair, so the stream is a run of halfwords.
+- **Frame table:** pairs (line-table position in 32-bit words, repeat count), ending with (0, 0). `odsy_default_timing1`: (0,1) (9,1) (20,1) (29,1) (38,1) (47,35) (58,1) (69,1023) (96,1) (124,1); the counts sum to 1066. `default_1280x1024_72_timing`: eleven pairs whose counts sum to 1065, with one of 1024. These sums equal the TotalLinesPerFrame values in `1280x1024_60.vfo` (1066) and `1280x1024_72.vfo` (1065).
+- **Line table:** each line type is a run of 16-bit entries whose last has bit 15 set. In `odsy_default_timing1`, for the first five line types, bits 14:8 of the entries sum to exactly 1688 (TotalPixelsPerLine of `1280x1024_60.vfo`) when entries with bits 14:12 = 100 (0x4xxx) are left out; that rule does not hold for the later types, so which entries carry time and what bits 7:0 drive (sync, blank, DMA starts) is **unknown**. **inferred:** bits 14:8 are a duration in pixel clocks for timed entries and bits 7:0 the output states for that span.
+
+### The `.vfo` values
+
+**established** by reading four files (`1024x768_60`, `1280x1024_60`, `1280x1024_72`, `1600x1200_60`), all of which put these values at the same offsets; the meanings are **inferred** by matching the public VESA timings for 1024x768 at 60 Hz (65 MHz, 1344 x 806, horizontal 24/136/160, vertical 3/6/29) and 1280x1024 at 60 Hz (108 MHz, 1688 x 1066, 48/112/248, 1/3/38):
+
+| Offset | Type | 1024x768_60 | 1280x1024_60 | 1280x1024_72 | Reading |
+|---|---|---|---|---|---|
+| 0x98, 0x9c | word | 768, 1024 | 1024, 1280 | 1024, 1280 | active lines, active pixels |
+| 0x114, 0x1d4, 0x280 | double | 59.963 | 60.0 | 72.239 | frame rate, Hz |
+| 0x1cc, 0x1d0 | word | 806, 1344 | 1066, 1688 | 1065, 1680 | total lines, total pixels |
+| 0x240, 0x278 | double | 64.956 | 107.964 | 129.25 | achieved pixel clock, MHz |
+| 0x248 | double | 64.957 | 108.0 | 129.25 | requested pixel clock, MHz |
+| 0x2a4, 0x3a0 | word | 6 | 3 | 3 | vertical sync, lines |
+| 0x2a8, 0x2ac, 0x2b0 | word | 24, 136, 160 | 48, 112, 248 | 30, 140, 230 | horizontal front porch, sync, back porch |
+| 0x2b4 | word | 1344 | 1688 | 1680 | total pixels again |
+| 0x3a4 | word | 29 | 38 | 35 | vertical back porch |
+
+The vertical front porch is not at a fixed offset found here; it is the remainder (806 - 768 - 6 - 29 = 3). The `1600x1200_60` file has 2060 x 1250 with 64/192/204, which is not the VESA timing; the rows above hold for it at the same offsets. Offsets differ in files with other layouts (stereo, two-channel) and were not checked. How the X module turns these into the 320-byte structure is **unknown** (`odsyReadVideoFormat` in `odyssey.so` not read).
 
 ### The `.vfo` container
 
@@ -42,6 +81,6 @@ The loader reads offsets 128 to 156 and 208 to 216 of the structure (`odsyLoadTi
 
 ### Next steps for a reader of this
 
-1. Decode the `.vfo` value block: write a parser over three files of the same size class (`1280x1024_60.vfo` and `_60_safe.vfo` are both 8440 bytes and should differ in few bytes) and diff to find which words carry porches and clock values; match against the known timing of the named mode.
-2. Read `odsyLoadTimingTable` (`odsy_brdmgr.text.s` from line 4223, about 2000 lines) for the register offsets it writes and tie the structure offsets to them.
-3. Read `odsyRetraceHandler` and `odsyGenlockInterrupt`.
+1. Decode the line-table entry bits: compare line types of one timing that differ only in sync or blanking, and the two built-in timings line by line.
+2. Read `odsyReadVideoFormat` and `odsyLoadTimingTable` in `odyssey.so` for the `.vfo` to structure conversion.
+3. Trace the branches of `odsyLoadTimingTable` for words 220, 224 and 264 to 280, and read `odsyRetraceHandler` and `odsyGenlockInterrupt`.
