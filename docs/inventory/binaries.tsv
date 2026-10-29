@@ -269,7 +269,7 @@ usr/gfx/ucode/vfc/rules/VPro_Board.def	video-formats	board-data	data	-	53633	9ce
 usr/gfx/ucode/vfc/rules/VPro_Chip.def	video-formats	board-data	data	-	189	f684d1d6158e6725		0	0	0	undocumented		
 usr/gfx/ucode/vfc/rules/VPro_DCD.def	video-formats	board-data	data	-	4354	94bc141a51462379		0	0	0	undocumented		
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	b797d7447743a1db		981	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/lib/X11/dyDDX/odyssey.so	x-module	board-x-module	shared-object	n32	2303564	0fb2a1debd2b3145		1000	0	0	documented	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
+usr/lib/X11/dyDDX/odyssey.so	x-module	board-x-module	shared-object	n32	2303564	0fb2a1debd2b3145		1000	0	0	documented	docs/display.md#pieces	Pieces
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	0	0	undocumented		
 var/sysgen/master.d/odyssey	kernel-config	shared-data	data	-	127	1043ee5f3104c120		0	0	0	undocumented		

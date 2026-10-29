@@ -1,7 +1,7 @@
 table	rows	documented	no_software_dependency	named_only	undocumented	pct_documented	pct_done	unresolved_sites
 binaries	276	157	0	8	111	56.9	56.9	
-functions	106592	90244	0	7	16341	84.7	84.7	
-functions (distinct names)	18949	7724	0	4	11221	40.8	40.8	
+functions	106592	2366	0	87885	16341	2.2	2.2	
+functions (distinct names)	18949	360	0	7368	11221	1.9	1.9	
 mmio	67	65	0	0	2	97.0	97.0	56
 tokens	255	255	0	0	0	100.0	100.0	
 ioctls	91	81	0	1	9	89.0	89.0	
