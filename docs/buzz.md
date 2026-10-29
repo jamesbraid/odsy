@@ -142,7 +142,7 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 **libGLcore side.**
 
 - **established.** `__glOdysseyGetHardwareShadow` (`ody_unixcontext.s`) issues ioctl `0x6f64000c` on the device descriptor. **inferred** from the name that the kernel side is `gfP_OdsySaveHwShadow`; the ioctl switch was not traced.
-- **established.** `__glOdyGetFromShadow` calls `__glOdyGetFromHardware` (above) and then `__glOdyDecodeShadowFormat` on a table of 20-byte descriptors (index times 20 from a context pointer at `0x16d24`), which is how glGet reads state that exists only on the board. The descriptor layout: **unknown**.
+- **established.** `__glOdyGetFromShadow` calls `__glOdyGetFromHardware` (above) and then `__glOdyDecodeShadowFormat` on a table of 20-byte descriptors (index times 20 from a context pointer at `0x16d24`), which is how glGet reads state that exists only on the board. The descriptor layout is **established** in `docs/opengl.md` ("The 20-byte shadow descriptors").
 - **unknown.** What libGLcore does at make-current and lose-current with respect to the board's saved state (`MakeCurrent`, `LoseCurrent`, `__glOdysseyDriverMakeCurrent` not read), and the IP35 diff of `odsy_ctxsw`.
 
 ### Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
@@ -194,7 +194,7 @@ See `docs/display.md`.
 
 ## 6. Interrupt sources, routing and the handlers not covered earlier
 
-Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_dma.o`, `odsy_retrace.o`). IP35 was not diffed: **unknown**. Handler order was read from the `.rel.srdata` relocations of `odsy_init.o` (`readelf -r`), the board offsets from the disassembly in `odsy_kernel/disasm/`.
+Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_dma.o`, `odsy_retrace.o`). IP35 was compared in pass 8 (below). Handler order was read from the `.rel.srdata` relocations of `odsy_init.o` (`readelf -r`), the board offsets from the disassembly in `odsy_kernel/disasm/`.
 
 ### Five interrupt sources
 
