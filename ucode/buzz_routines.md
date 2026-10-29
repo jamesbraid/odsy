@@ -704,20 +704,43 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
   read the constant 0.0 (data word 0x1e3) three times and write it into the w lane of R13, R14 and
   R15, the normal-matrix rows, so the normal transform that follows ignores any fourth normal
   component.
-- **`1226`** (routine; kernel record 1127), **established**: the set-up routine of the ten table records
-  whose first light is directional, 3, 6, 7 and 9 to 15 (second list at record +52 in `libGLcore.so`, first at 0x0dae478c). It reads the data
-  table from index 1 up to 0x1e3 in lanes 4 to 7. **inferred:** it loads per-light constants.
-- **`1265`** (routine; kernel record 1166), **established**: the second set-up routine, after 1226, of
-  the two-colour table records 7, 13 and 15 (+56 at 0x0dae48b0 for record 7, `libGLcore.so`); it reads data words 0x1 to 0xf9 in lanes 4 to 7.
-- **`1286`** (routine; kernel record 1187), **established**: the second set-up routine, after 1226, of
-  table record 12 (+56 at 0x0dae4a18 in `libGLcore.so`), the one that mixes vertex lights with a directional fragment light; data words
-  0x80 to 0x1e5.
-- **`1295`** (routine; kernel record 1196), **established**: the set-up routine of the local-light
-  table records 16 to 19 and 23 (+52 at 0x0dae4b34 for record 16, `libGLcore.so`). It reads constants 0x1e0 to 0x1e3 in lane 7.
-- **`1304`** (routine; kernel record 1205), **established**: the set-up routine of the four
-  fragment-lighting table records with GL_LIGHTING off, 2, 4, 5 and 8
-  (+52 at 0x0dae4744 for record 2, `libGLcore.so`); it reads data words 0x80
-  to 0x85 in lane 7. **inferred:** 0x80 is where the fragment light's constants sit.
+- **`1226`** (routine; kernel record 1127), **established** selection, **inferred** arithmetic: the
+  set-up routine of the ten table records whose first light is directional, 3, 6, 7 and 9 to 15
+  (second list at record +52 in `libGLcore.so`, first at 0x0dae478c). It runs once per program
+  selection, so it computes what is constant over the vertices. Inputs: words 0 to 5 of the first
+  four light records (parameter words 0x000 to 0x035: each light's direction and negated half
+  vector), shininess words 0x0f0, 0x0f7, 0x0f8 and 0x0f9, and colour addresses 24, 0, 3, 6 and 9.
+  Outputs: the four light directions in R17, R19, R21 and R23 (lanes x to z); each light's half
+  vector multiplied by word 0x0f0, one component per record through K and code 0xd (twelve times,
+  records 1249 to 1260), in R18, R20, R22 and R24; word 0x0f8 in their w lanes; 0.0 in the w lanes of
+  the normal-matrix rows R13 to R15; and in colour address 25 the sum of the light-model ambient
+  (address 24) and the four lights' ambient colours (addresses 0, 3, 6 and 9; 0x1830, 0x0038 to
+  0x0938, stored by 0x9908). Directional lights have no attenuation, so that ambient sum is
+  the same for every vertex.
+- **`1265`** (routine; kernel record 1166), **established** selection, **inferred** arithmetic: the
+  second set-up routine, after 1226, of the two-colour table records 7, 13 and 15 (+56 at 0x0dae48b0
+  for record 7, `libGLcore.so`). Inputs: words 0 to 5 of the first two light records and shininess
+  words 0x0f7 and 0x0f9. It negates the two light directions with code 0xc into R21 and R23 and
+  multiplies the half-vector components by word 0x0f7 through K and code 0xd into R22 and R24, with
+  word 0x0f9 in their w lanes. Output: the back-face copies of the vectors 1226 prepared, which a
+  two-sided program needs because the back face sees the negated normal.
+- **`1286`** (routine; kernel record 1187), **established** selection, **inferred** arithmetic: the
+  second set-up routine, after 1226, of table record 12 (+56 at 0x0dae4a18 in `libGLcore.so`), the
+  one that mixes vertex lights with a directional fragment light. It takes parameter words 0x080 to
+  0x085, the fragment light's words, and the constant 3.0 as inputs and does no arithmetic on them:
+  its outputs are R24 = (words 0x080 to 0x082, 3.0) and words 0x083 to 0x085 in the w lanes of R13
+  to R15, where the vertex program finds the fragment light.
+- **`1295`** (routine; kernel record 1196), **established** selection, **inferred** arithmetic: the
+  set-up routine of the local-light table records 16 to 19 and 23 (+52 at 0x0dae4b34 for record 16,
+  `libGLcore.so`). Inputs: the constants 0.0 and 1.0 and colour addresses 24 and 0. Outputs: 0.0 in
+  the w lanes of R17 and of the normal-matrix rows R13 to R15, 1.0 in R16.w, and in colour address
+  25 the light-model ambient plus light 0's ambient colour (0x1830, 0x0038, stored by 0x9908). A local
+  light's direction and attenuation change per vertex, so unlike 1226 it computes nothing else ahead.
+- **`1304`** (routine; kernel record 1205), **established** selection, **inferred** arithmetic: the
+  set-up routine of the four fragment-lighting table records with GL_LIGHTING off, 2, 4, 5 and 8
+  (+52 at 0x0dae4744 for record 2, `libGLcore.so`). Its inputs are parameter words 0x080 to 0x086,
+  the fragment light; its outputs are R18 = words 0x080 to 0x082 and 0x086 and words 0x083 to 0x085
+  in the w lanes of R13 to R15. It moves values and does no arithmetic.
 
 #### Lighting finish routines
 
@@ -778,7 +801,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 - **`758`** (routine; kernel record 758), **established** selection, **inferred** arithmetic: added
   between 768 and the separate-specular finish only while building program 1, the program
   `__glOdysseyValidateProgram` adds when software clip planes are on (`ody_program.s`, source lines
-  956 and 1328). Its inputs are the specular slots; it computes nothing in the vector or scalar
+  956 and 1328). Its inputs are the specular slots; it does no arithmetic in the vector or scalar
   units: it copies the specular slots 12
   and 8 into the colour unit (0x1f20), reads working addresses 28 and 25 and stores to 30 and 27, so
   its output is the specular material placed where the separate-specular finish reads it.
