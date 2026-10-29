@@ -49,7 +49,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1868824585	0x6f640009	private	gfP_OdsySetDrawBuffer	constant,table	__glOdysseySetDrawbuf	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseySetDrawbuf	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824586	0x6f64000a	private	gfP_OdsyMMdebug	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824587	0x6f64000b	private	gfP_OdsyMMwaitXfr	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
-1868824588	0x6f64000c	private	gfP_OdsySaveHwShadow	constant,table	__glOdysseyGetHardwareShadow	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyGetHardwareShadow	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+1868824588	0x6f64000c	private	gfP_OdsySaveHwShadow	constant,table	__glOdysseyGetHardwareShadow	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyGetHardwareShadow	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 1868824589	0x6f64000d	private	gfP_OdsySetClipMask	constant,table	__glOdyim_Clear;__glOdyim_HardAccum24;__glOdyim_PolygonOffsetEXT;__glOdysseyAccumClose;+4 more	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdyim_Clear	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824590	0x6f64000e	private	gfP_OdsyClearBuffer	constant,table	__glOdysseyClear	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyClear	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824591	0x6f64000f	private	gfP_OdsyGetDrawableGeometry	constant,table	__glOdysseyFindWindowSize	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyFindWindowSize	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
@@ -76,7 +76,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1868824612	0x6f640024	private	gfP_OdsyLoadCompositorTiming	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824613	0x6f640025	private	gfP_OdsyCompositorRegAccess	constant,sent,table	odsyCmpIoctl;ody_comp_reg_access	3	usr/diags/compositor/bin/sting:ody_comp_reg_access	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824614	0x6f640026	private	gfP_OdsyI2CPassthrough	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
-1868824615	0x6f640027	private	gfP_OdsySetNicinfo	constant,sent,table	odsySetupCompositorInfo	2	usr/lib/X11/dyDDX/odyssey.so:odsySetupCompositorInfo	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+1868824615	0x6f640027	private	gfP_OdsySetNicinfo	constant,sent,table	odsySetupCompositorInfo	2	usr/lib/X11/dyDDX/odyssey.so:odsySetupCompositorInfo	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 1868824616	0x6f640028	private	gfP_OdsyInvalidIoctl	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824617	0x6f640029	private	gfP_OdsyInvalidIoctl	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824618	0x6f64002a	private	gfP_OdsyPbufAssoc	constant,sent,table	odsyAllocatePbuffer	2	usr/lib/X11/dyDDX/odyssey.so:odsyAllocatePbuffer	understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
@@ -88,5 +88,5 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1868824624	0x6f640030	private	gfP_OdsyDIAGfreeScanbuf	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824625	0x6f640031	private	gfP_OdsyDIAGgetShadowPtrs	table		1		located	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824626	0x6f640032	private	gfP_OdsyDIAGreleaseShadowPtrs	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
-1868824627	0x6f640033	private	gfP_OdsyPerfStat	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
-1868824628	0x6f640034	private	gfP_OdsyDIAGreset	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+1868824627	0x6f640033	private	gfP_OdsyPerfStat	table		1		understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+1868824628	0x6f640034	private	gfP_OdsyDIAGreset	table		1		understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
