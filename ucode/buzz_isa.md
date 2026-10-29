@@ -2,7 +2,7 @@
 
 Labels: **established** (read from a binary, with where), **inferred** (a reasoned reading, with the reasoning), **unknown**. Release IRIX 6.5.30m. "Image" means `ucode/ODSY/buzz_xform.bin` unless the kernel's copy (`buzz_ucode`, see `buzz_ucode.md`) is named. Record numbers are 0-based indices of 12-byte records in the image.
 
-The listing is `ucode/disasm/buzz_xform.lst` (and `buzz_ucode_kernel.lst` for the kernel copy), made by `scripts/buzz_ucode_disasm.py`. It prints each record's six halfwords and the provisional field groups below. It does not name operations: no opcode in this program has been tied to a behaviour.
+The listing is `ucode/disasm/buzz_xform.lst` (and `buzz_ucode_kernel.lst` for the kernel copy), made by `scripts/buzz_ucode_disasm.py`. It prints each record's six halfwords and the field groups below. "The instruction set (pass 12)" gives each field its role: register file, vector dot-product unit, two write ports, parameter memory, scalar unit, output stage and colour unit.
 
 ## Summary
 
@@ -10,6 +10,7 @@ The listing is `ucode/disasm/buzz_xform.lst` (and `buzz_ucode_kernel.lst` for th
 - The host writes the RAM through the command FIFO: a "set address" word, then six data words per instruction, least significant halfword first. **established.**
 - There is no in-program branch address field. Routines are entered through addresses the host writes into sequencer registers, and end with a two-bit end mark that takes effect five instructions later. **established** for the end mark's position; the rest **inferred**.
 - The program is longer than the RAM. Instructions past record 2047 are paged into a 200-word window at RAM addresses 1848 to 2047. **established.**
+- A record drives several units at once: a four-lane dot-product unit over a 32-register file whose first 17 registers are the host's matrices, a parameter memory, a one-lane scalar unit, an output stage that divides by w and numbers the vertex words, and a colour unit. **inferred**, pass 12; the sequencer register numbering is **established** from the shadow stride (below), their roles **inferred**.
 - Nothing in the image or its loaders shows rendering precision (sub-texel bits, filter weights, LOD, colour iterators). This program is the transform and lighting stage; see "Precision".
 
 The routine map, one row per routine with its end mark, length and operand fields, is `ucode/buzz_routines.md`.
@@ -38,17 +39,30 @@ The routine map, one row per routine with its end mark, length and operand field
 
 The words `(r << 24) | 0x8000 | enc(v)` with `r` from 0x20 to 0x35 write a register the host never reads back. **established** as values. libGLcore keeps a 32-bit shadow of each one at a fixed stride, so their numbering is contiguous: register `r` lives at context offset `0x10000 - 24108 + 4 * (r - 0x20)` (`__glOdysseyInitDefaultValues` in `ody_context.s` writes 0x22-0x25, 0x29, 0x2a, 0x2c, 0x2e, 0x34, 0x35 from those offsets; `ody_lighting.s` writes 0x20, 0x21, 0x29, 0x32 and 0x31; `__glOdysseySetProgram` 0x29, 0x2a, 0x2c, 0x33).
 
-| Reg | Who writes it, with what | Reading |
+The numbering is **established** from the shadow stride above and the host uses: 0x27 is the address the loaders write, 0x28 the list slot, and 0x29, 0x2a and 0x2c the three per-program words `AddProgram` relocates. The roles of the other registers below are **inferred** from how the host writes them. The kernel's start-up words `0x2e008380` and `0x2600807f` write 896 to register 0x2e and 127 to register 0x26; what those two limit is **unknown** from the binaries (values established). A read of the microcode routines that consume sequencer registers 0x26 and 0x2e would settle it.
+
+| Reg | Role | Who writes it, with what |
 |---|---|---|
-| 0x22-0x25 | context default: 0, 2, 10, 14; kernel textport 0x22 = 1, 0x23 = 3; X module (`odyssey.so`) 0x22 = 1, 0x23 = 3 before colour-index drawing and 0x22 = 0, 0x23 = 2 before RGB drawing (`docs/opengl.md`) | 0x22 and 0x23: **inferred** a colour-mode pair (index against RGB), because every site that sends the index colour word (`0xc580c406`) uses 1 and 3 and every site that sends an RGB colour word uses 0 and 2, in the X module's fill and glyph paths and in the kernel textport against the GL default. Which routine reads them and what 0x24 and 0x25 do: **unknown** |
-| 0x26 | kernel init: 127 | **inferred** a routine address: 127 is an entry named by AddProgram |
-| 0x27 | write address for loading | **established** (above) |
-| 0x29, 0x2a, 0x2c | per-program record words; lighting sets 0x29 = 410 around a data load and then restores it | **inferred** routine addresses: AddProgram relocates these three exactly as it relocates its entry list when they fall in the overlay range |
-| 0x2e | 896 from both the kernel init and the GL context default | **unknown**; not a routine address (it does not move with the 99-record insertion) |
-| 0x32 | lighting: 24 before a data load, 0 after | **inferred** a data-memory address for the following data words |
-| 0x33 | `__glOdysseySetProgram`: program number + 1, then a per-program value | **unknown** |
-| 0x20, 0x21, 0x31, 0x34, 0x35 | lighting, texgen, context default (0 for 0x34, 0x35) | **unknown** |
-| 0x2f, 0x30 | `0x2f00c02e` / `0x3000c02e` before each clipped-vertex send (`RGBSendFc*`, `ody_vertex.s`; 26 sites); bits 15:14 = 11, unlike the others | **unknown** |
+| 0x20 | size of one light record in the colour unit's memory | `ody_lighting.s` |
+| 0x21 | size of one light record in parameter memory | `ody_lighting.s` |
+| 0x22-0x25 | four colour-unit format words | context default 0, 2, 10, 14; kernel textport and the X module write 0x22 = 1, 0x23 = 3 before colour-index drawing and 0, 2 before RGB drawing (`docs/opengl.md`) |
+| 0x26 | role unknown (a limit on w is a guess from the value) | 127 at kernel start-up |
+| 0x27 | instruction write address | the loaders (above) |
+| 0x28 | slot index into the routine list | `__glOdysseyValidateProgram`, `odsyRestoreXform` (pass 10) |
+| 0x29 | vertex routine start address | `AddProgram` records, data loads |
+| 0x2a | vertex loop address | `AddProgram` records |
+| 0x2b | vertex copy count | no `lui` of 0x2b00 in libGLcore, the X module or the kernel objects |
+| 0x2c | alternate (exit) loop address | `AddProgram` records |
+| 0x2d | DMA count | no `lui` of 0x2d00 in the same code |
+| 0x2e | role unknown | 0x380 (896) from the kernel and the GL context default |
+| 0x2f, 0x30 | set and reset of the edge flag | `0x2f00c02e` / `0x3000c02e` before each clipped-vertex send (`RGBSendFc*`, `ody_vertex.s`) |
+| 0x31 | parameter-memory light base: the word index that relative parameter addresses (bit 9 set) and the 0x1a2/0x1bb stores add to | lighting, texture generation, clip planes, constants |
+| 0x32 | colour-unit light base: the address the colour unit's data loads write at | 24 around a lighting data load, then 0 |
+| 0x33 | base of the routine list | `__glOdysseySetProgram` |
+| 0x34 | register-file base: the word index the 0x1c8/0x1df stores write at | the matrix validators (`ody_xform.s`) |
+| 0x35 | colour-material copy enable | context default 0; `ValidateColorMaterial` (`ody_attrib.s`, 0x0d9565c0) |
+
+This corrects two readings of earlier passes: 0x26 is not a routine address (127 is the exponent limit), and 0x2e is the FIFO mark, which is why it did not move with the 99-record insertion.
 
 ## Programs, entries and dispatch
 
@@ -64,7 +78,7 @@ The words `(r << 24) | 0x8000 | enc(v)` with `r` from 0x20 to 0x35 write a regis
 
 ## Instruction fields (provisional)
 
-Bit 95 is the top bit of h0, bit 0 the bottom bit of h5. The split below is the one the listing prints. Each boundary rests on the pattern named; a field's meaning is **unknown** unless stated.
+Bit 95 is the top bit of h0, bit 0 the bottom bit of h5. The split below is the one the listing prints; "The instruction set (pass 12)" below gives the roles, and two boundaries differ there: bits 63:59 are one register number and bit 58 a store flag, not `mc`. Each boundary rests on the pattern named; a field's meaning is **unknown** unless stated.
 
 | Bits | Listing | Evidence for the boundary |
 |---|---|---|
@@ -93,6 +107,51 @@ The record with only bit 19 set (h4 = 0x0008, rest zero; 150 times) appears in l
 - **inferred.** Both are "end of routine" marks with four delay slots: the instruction carrying the mark and the four after it execute, then the sequencer starts the next routine. What separates 1 from 2 is **unknown** (2 occurs where a routine is only the mark plus its delay slots).
 - **unknown.** Value 3 (43 times) comes in pairs 15 to 40 records apart (219/250, 1491/1504, 1984/2019, ...). A loop start and loop end would look like this, but nothing holds a count or target.
 - **inferred** (pass 11). In the kernel's built-in program a value-3 mark ends a part that a sequencer value names: the start-up stream of `odsy_tport.o` sets sequencer 0x2a to 224 and 0x2c to 234, five records after the marks at 219 and 229 (`ucode/buzz_routines.md`, routine 214).
+
+## The instruction set (pass 12)
+
+Release 6.5.30m; records of `ucode/ODSY/buzz_xform.bin`; host code N32 libGLcore. This pass gives each field of the "Instruction fields" table a role. It rests on routines whose inputs the host fixes (the register and parameter stores 418, 443, 456 and 479, the clip-plane routine 0, texture generation 51 and the unlit vertex routines 214 and 525), and the counts below check each rule against the whole image. `ucode/buzz_routines.md` uses these names.
+
+### Register file and the matrix table
+
+- **established** (host side): the 0x1c8 and 0x1df stores write the 68-word matrix table at the word index in sequencer 0x34 (`ucode/buzz_routines.md`). `__glOdysseyValidateMatrixComb` (`ody_xform.s`, source lines 405 to 525) builds the combined matrix at index 0 as four rows: row 0 is the product's x row scaled by the viewport's x scale plus its w row times the viewport's x centre, row 1 the same for y, row 2 the z row mapped through the depth range, row 3 the product's w row unchanged; index 16 holds the clip-space z row before the depth-range mapping (stores at context +0x10000 - 27192 to - 27180).
+- **inferred**: the register file holds 32 registers of four lanes (x, y, z, w), numbered by five-bit fields, and the matrix table is its first 17 registers, four words to a register: R0 to R3 the combined rows (window x, window y, window z, clip w), R4 the clip-space z row, R5 to R8 the texture matrix rows s, t, r, q, R9 to R12 the modelview rows, R13 to R15 the normal matrix rows. R16 receives the normal matrix's fourth row but routines overwrite it per vertex, and R17 to R31 are working registers. The evidence: the five dot products R3, R0, R1, R4, R2, in five consecutive records that start by loading the position slot, occur 50 times in the image (a scan of every record that loads slot 0 and issues on R3), once in every vertex routine and table program; the texture rows R8, R5, R6, R7 follow on the texture-coordinate slot whenever the program textures (243, 542, 563, 584); the clip-plane routine uses R9 to R12, and the sphere-map routines dot R13 to R15 with the normal slot.
+
+### Inputs: field r3 (bits 81:77)
+
+- **established**: values 16 to 31 read operand 0 to 15 of the command word that dispatched the routine (`ucode/buzz_routines.md`, "How a command word reaches a routine").
+- **inferred**: values below 16 read an attribute slot of `BUZZ.h` section 1: 0 position, 1 normal, 3 texture coordinate, 5 colour, 6 to 13 the material parameters `ApplyParameter` sends, 14 the four floats of the data-load word `0x8e809015`, 15 the last four operands of a slot 15 command. The position, texture and normal readings follow from the matrix rows they meet (above).
+
+### The vector unit: fields d0 (47:44), r1 (91:87), r2 (86:82) and a (93:92)
+
+- **inferred**: d0 is three controls and a pipeline mark. Bit 47 issues a four-lane dot product of R[r1] with the operand latch B. Bit 46 loads B: from the r3 input when bit 45 is clear, from register R[r2] when it is set; bit 45 never occurs without bit 46 (0 of 2644 non-idle records). With bit 47 clear, a load passes B on as the result: routine 456 issues d0 = 4 with r3 = operand 0 to 15 and the sixteen words land unchanged in R0 to R3 seven records later, which is how the host's matrices reach the table. Bit 44 is set on the record after 999 of the 1128 issues and carries no operand.
+- **inferred**, timing: an issued operation reads A in its own record and B two records later; a slot load reaches B two records after its own record, a register load in its own record. This is the only order under which every one of these computes what its host state requires: routine 243 issues the clip z and window z rows (246, 247) before it loads the texture coordinate (248) and must dot them with the position; the clip routine dots plane A at record 9 and loads the eye coordinates at 11, and its planes are eye-space planes (`__glOdysseyValidateClipPlanes`, `ody_context.s`, source lines 1761 to 1790, sends context +1748, the eye planes); the sphere-map routine 145 dots R25 with itself at 155, its own register load.
+- **inferred**, field a = 1 (lane mode): with r1 bit 4 set, a register load merges only the lanes in r1 bits 3:0 into B. Routines 77 to 107 do this with r1 = 0x11, 0x12, 0x14, 0x18 and 0x13, exactly the S, T, R and Q bits (1, 2, 4, 8) `AddProgram` tests before selecting each one (`ody_program.s`, source lines 1104 to 1121). With r1 bit 4 clear, r1 bits 1:0 pick one lane of R[r2]: that lane goes to the scalar unit (stores 418 and 443 read R16 lane 0 and lane 1 in turn).
+- Values a = 2 and 3 occur in 75 records; their effect is **unknown**.
+
+### Write ports
+
+- **inferred**, port V (fields bits 63:59 and bx 66:64): a vector result is written seven records after its issue to lane bx bits 1:0 of register R[bits 63:59] when bx bit 2 is set. Check: 494 of the 525 records with bx bit 2 set have an issue seven records earlier; the other 31 sit within seven records of a routine entry, where the issue belongs to the routine before in the list.
+- **inferred**, port P (fields rb 71:67, ln 74:72, b 76:75): the record writes lane ln bits 1:0 of R[rb] when ln bit 2 is set, from a source b selects. With b = 0 the data is the parameter-memory word read two records before: 515 of the 543 such records have a nonzero read address two back and the other 28 read address 0, the first light record's first word; none has a parameter store there. With b = 2 the data is the scalar unit's result: 237 of the 299 such records have a scalar operation (d1 nonzero) four records before, against at most 163 at any other distance.
+
+### Parameter memory: bits 58 and 57:48
+
+- **inferred**: bits 57:48 are a word address in parameter memory, the table the 0x1a2 and 0x1bb stores fill (`ucode/buzz_routines.md`). Bit 9 of the address adds sequencer 0x31: routines name the light record as 0x200 + k, and the per-light routines run once per light against a base the sequencer moves by the record size in 0x21. Bit 58 clear is a read, bit 58 set a store. In the stores 418 and 443 every store address 0x200 + k follows by one record a lane-mode read of R16 whose lane matches k's low bit, and R16 received operand k seven records after the operand read.
+- **established** (host side, `ody_context.s` source lines 2727 to 2808; the value at 483 and 495 is register f20, cleared by `mtc1 $zero` at the start of `__glOdysseyInitDefaultValues`): the constants at 0x1e0 to 0x1ef are 1.0, 0.5, -1.0, 0.0, 2.828427 (2 times the square root of 2), 3.0, 1.414214, 0.353553, -2.0, -1.414214, -0.707107, -0.5, 131072.0, -32.0, 0.03125 and 0.0. Routines load 0.0 (0x1e3) into the w lane of a register before a three-lane dot product of it, and 1.0 (0x1e0) where a lane must pass through.
+- **established** (host side, `ValidateLight` in `ody_lighting.s`, source lines 268 to 356): the sixteen words of light `i`, stored at parameter index `16 * i`, are: 0 to 2 the light position scaled by 1/w for a local light, or the unit direction for a directional one; 3 to 5 the negated unit half-vector toward an infinite viewer (zero for a local light); 6 a scalar the host builds from those two; 7 to 9 the constant, linear and quadratic attenuation; 10 to 12 the negated unit spot direction; 13 and 14 the spot terms (1.0 and 0.0 without a spot); 15 the constant 4194304.0 (2 to the 22nd).
+
+### The scalar unit: field d1 (43:40)
+
+- **inferred**: d1 names a one-lane operation whose result reaches port P (b = 2) four records later and the output stage seven records later. Its operand is the lane a lane-mode read selects in the same record, or with no such read the vector result that arrives in that record. Code 8 passes the lane unchanged: the stores 418 and 443 write operands through it into parameter memory, and routine 278 sends sixteen parameter words through it to the output words 0 to 15. Codes 1, 0xd and 0xe follow a dot product of a register with itself (sphere map 155 to 168, routine 668 at 672 to 692) and are the normalisation steps; which code is the reciprocal square root and which the multiply is **unknown**.
+
+### The output stage: fields d2 (39:32) and bits 15:2
+
+- **inferred**, the packet: a vertex leaves as a header and numbered words. The header record has listing value `s1` 0x110 to 0x116 or 0x210 to 0x216, and its `s0` is the number of words minus one; each word record has bit 9 of the low halfword set and `s0` its index, from 1; the last word carries bit 10 (`s1` 0x180). Every self-contained vertex routine fits this: headers 6, 9, 4, 7, 8 and 10 over 7, 10, 5, 8, 9 and 11 words (routines 214, 243, 525, 542, 563, 584), and the rectangle routine 303 sends two headers of 6, one per corner, over words 1 to 14. Words that come from the colour unit set bit 2 (`s1` 0x081) and come in pairs, one colour to two words.
+- **inferred**, d2: a nonzero d2 takes one vector result that the register file did not keep, applies its operation, and the word field of the same record outputs the value. In the self-contained vertex routines (214, 525, 542, 563, 584) the d2 records take the dot results in issue order, so each code meets a known row: the w row gets 0x2b, x gets 0x46, y and window z get 0x26, the clip-space z gets 0x08 and is never output, and the texture rows get 0x08 for q and 0x26 for s, t and r. Because the host folds the viewport into the rows (above), x/w is the window coordinate; so 0x2b forms 1/w (the packet carries it), 0x26 and 0x46 multiply by 1/w, and 0x08 consumes a value without output. Under the perspective-texture flag (routines 563, 584, 1211) the codes are 0x33, 0x44 and 0x24 for w, x and y and 0x2c for q, whose result is output as a word. Across routine boundaries the pairing is not by issue order (routine 26's 0x08 cannot take routine 0's w): which result a code takes there, and what the 0x33, 0x44, 0x24 and 0x2c variants change, are **unknown**.
+
+### The colour unit: bits 31:16
+
+- **inferred**: bit 19 set means the unit idles (the idle record is that bit alone). Code 0x1f20 copies the four lanes of the r3 slot into the colour unit: routine 410 does it with slot 14, which is how the kernel and libGLcore load four floats into the colour unit's memory at sequencer 0x32 (`odsyRestoreXform`, `ody_lighting.s`); the unlit vertex routines do it with the colour slot 5. Code 0x1f22 copies a slot and sends it to the output as the two colour words (1198, 584, 303, 324). The lighting codes (0x9a08 to 0x9f58, 0x1928, 0x1932, 0x1c30 and others) are **unknown**.
 
 ## Precision
 

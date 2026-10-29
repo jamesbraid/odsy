@@ -15,7 +15,9 @@
 
 
 
- *                     sequencer words 0x29, 0x2a and 0x2c)
+
+
+
  * Addresses are the N32 libGLcore virtual addresses printed in the
  * libglcore/asm/ODYSSEY/*.s headers.
  */
