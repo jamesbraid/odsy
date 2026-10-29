@@ -86,7 +86,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1868824622	0x6f64002e	private	gfP_OdsyDIAGdma	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824623	0x6f64002f	private	gfP_OdsyDIAGallocScanbuf	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824624	0x6f640030	private	gfP_OdsyDIAGfreeScanbuf	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
-1868824625	0x6f640031	private	gfP_OdsyDIAGgetShadowPtrs	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+1868824625	0x6f640031	private	gfP_OdsyDIAGgetShadowPtrs	table		1		located	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824626	0x6f640032	private	gfP_OdsyDIAGreleaseShadowPtrs	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824627	0x6f640033	private	gfP_OdsyPerfStat	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 1868824628	0x6f640034	private	gfP_OdsyDIAGreset	table		1		understood	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
