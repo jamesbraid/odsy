@@ -48,6 +48,218 @@ Slot 0 is the first value sent in each group of six, slot 5 the last.
 - **established.** The data is a table of 96-bit microcode instructions, six 16-bit fields each: `odsyDownloadUcode` loads the same format, one instruction per address, and `buzz_xform.bin` is a newer build of the same program. Instruction format and sequencing: `ucode/buzz_isa.md`.
 - **inferred.** The only text-visible kernel consumer is the loop above; the kernel does not interpret the contents.
 
+## Routines of the kernel copy from record 792
+
+**established.** The kernel copy is an earlier shipped image, not a separate build. Its first
+2266 records are byte-identical to records 0 to 2265 of `usr/gfx/ucode/ODSY/buzz_xform.bin` in
+IRIX 6.5.9 to 6.5.27 (6.5.9 to 6.5.12 ship exactly 2266 records; 6.5.13 to 6.5.27 append 429 more),
+and differ from 6.5.8's image only in records 1702, 1703, 1730, 1731, 1757 and 1758. In 6.5.28 the
+image gained the 99 records at 792 that the table in `ucode/buzz_routines.md` counts, and the
+libGLcore of that release renumbered its routines with it. Every library from 6.5.8 to 6.5.27
+uses the kernel copy's numbering: the N32 `libGLcore.so` of 6.5.27 holds the program table at
+.rodata address 0x0daeee90 (file offset 0x1eee90) with the record numbers below, and its program
+builder loads the other entries as immediates in the text from 0x0d9dae7c to 0x0d9dbe64. The
+kernel itself selects only routines 127 and 410 (`odsyInitCfifo`, `odsyRestartContext`); after a
+context switch it restores whatever the client last wrote. Each entry below gives the routine's
+place in `odsy_init.o` (array element `12 * record` from .data +0x7d0), what the 6.5.27 library
+uses it for, and the 6.5.30m image routine with the same records, whose entry in
+`ucode/buzz_routines.md` carries the reading. Extraction: `instigator extract` of each release's
+Installation Tools and Overlays disc 1, compared record by record.
+
+- **`803`** (routine; kernel copy, `odsy_init.o` .data +0x2d74), **established**: picks the second colour
+  when GL two-sided lighting is on; the 6.5.27 library loads 803 as an immediate at 0x0d9db2bc. Same
+  records as image routine 902.
+- **`812`** (routine; kernel copy, `odsy_init.o` .data +0x2de0), **established**: the one-colour lighting
+  step added whenever GL_LIGHTING is on (immediate at 0x0d9db2c8 in the 6.5.27 library). Same
+  records as image routine 911.
+- **`821`** (routine; kernel copy, `odsy_init.o` .data +0x2e4c), **inferred** (selection **established**):
+  lights each further local light in RGBA mode, forty records reading data words 0x1e0 to 0x20e;
+  immediate at 0x0d9daec8 in 6.5.27. Same records as image routine 920.
+- **`832`** (routine; kernel copy, `odsy_init.o` .data +0x2ed0), **inferred** (selection **established**):
+  the colour-index second part of a further local light, entered 11 records into 821's body
+  (immediate at 0x0d9dae98, 6.5.27). Same records as image routine 931.
+- **`865`** (routine; kernel copy, `odsy_init.o` .data +0x305c), **inferred** (selection **established**):
+  the colour-index first part of a further local light, seven records that read data word 0x20e;
+  6.5.27 names it at 0x0d9dae7c. Same records as image routine 964.
+- **`876`** (routine; kernel copy, `odsy_init.o` .data +0x30e0), **established**: closes the light loop in
+  RGBA mode with no attenuation or spot flag, one colour and no perspective texture (6.5.27
+  immediate at 0x0d9db470). Same records as image routine 975.
+- **`887`** (routine; kernel copy, `odsy_init.o` .data +0x3164), **established**: the perspective-texture
+  variant of 876's finish, named at 0x0d9db45c in the 6.5.27 library. Same records as image routine
+  986.
+- **`898`** (routine; kernel copy, `odsy_init.o` .data +0x31e8), **established**: twelve records finishing
+  two colour outputs, writing lanes 4 and 6; 6.5.27 picks it at 0x0d9db474. Same records as image
+  routine 997.
+- **`914`** (routine; kernel copy, `odsy_init.o` .data +0x32a8), **established**: the finish when attenuation
+  or a spot cone is in play with one colour, and also the colour-index finish (6.5.27, 0x0d9db384).
+  Same records as image routine 1013.
+- **`924`** (routine; kernel copy, `odsy_init.o` .data +0x3320), **established**: adds the separate specular
+  colour to a one-colour finish; 6.5.27 selects it at 0x0d9db3d4. Same records as image routine
+  1023.
+- **`936`** (routine; kernel copy, `odsy_init.o` .data +0x33b0), **established**: the attenuated or spot-lit
+  finish once the perspective-texture flag is set (6.5.27 immediate 0x0d9db428). Same records as
+  image routine 1035.
+- **`946`** (routine; kernel copy, `odsy_init.o` .data +0x3428), **established**: two-colour counterpart of
+  914 in both the RGBA and colour-index paths, chosen at 0x0d9db388 in 6.5.27. Same records as image
+  routine 1045.
+- **`958`** (routine; kernel copy, `odsy_init.o` .data +0x34b8), **established**: finishes separate specular
+  with two colour outputs; immediate at 0x0d9db3d8 of the 6.5.27 library. Same records as image
+  routine 1057.
+- **`972`** (routine; kernel copy, `odsy_init.o` .data +0x3560), **established**: evaluates the fragment
+  light's per-vertex terms, reading data words 0x1e4 to 0x20e in four lanes; 6.5.27 loads it at
+  0x0d9db2d8. Same records as image routine 1071.
+- **`995`** (routine; kernel copy, `odsy_init.o` .data +0x3674), **established**: only for a local,
+  attenuated fragment light, reading data word 0x207 in lanes 4 to 6 (6.5.27 immediate 0x0d9db2dc).
+  Same records as image routine 1094.
+- **`1007`** (routine; kernel copy, `odsy_init.o` .data +0x3704), **established**: ends one-sided fragment
+  lighting when the fragment light has no attenuation; 6.5.27 names it at 0x0d9db33c. Same records
+  as image routine 1106.
+- **`1020`** (routine; kernel copy, `odsy_init.o` .data +0x37a0), **established**: ends one-sided fragment
+  lighting for a local attenuated fragment light (0x0d9db344 in 6.5.27). Same records as image
+  routine 1119.
+- **`1037`** (routine; kernel copy, `odsy_init.o` .data +0x386c), **established**: the fragment-lighting
+  ending used when either two-sided flag is set, picked at 0x0d9db318 in the 6.5.27 library. Same
+  records as image routine 1136.
+- **`1054`** (routine; kernel copy, `odsy_init.o` .data +0x3938), **established**: closes table records 0 and
+  3, the programs without texture or clip planes; a one-record routine: its first record carries end
+  mark 2 and the next four are idle. Same records as image routine 1153.
+- **`1059`** (routine; kernel copy, `odsy_init.o` .data +0x3974), **established**: the second of the run of
+  bit-identical null closers; neither the 6.5.27 table nor its immediates name it. Same records as
+  image routine 1158.
+- **`1064`** (routine; kernel copy, `odsy_init.o` .data +0x39b0), **established**: is the +28 closer of table
+  record 2 only, the untextured one-sided fragment-lighting program. Same records as image routine
+  1163.
+- **`1069`** (routine; kernel copy, `odsy_init.o` .data +0x39ec), **established**: serves as table record 5's
+  closing routine, the two-sided form of record 2. Same records as image routine 1168.
+- **`1074`** (routine; kernel copy, `odsy_init.o` .data +0x3a28), **established**: is appended to close any
+  program once the perspective-texture flag is set; 6.5.27 loads it at 0x0d9dbddc. Same records as
+  image routine 1173.
+- **`1079`** (routine; kernel copy, `odsy_init.o` .data +0x3a64), **established**: is the commonest closer,
+  one colour with neither separate specular nor fragment lighting, carried by ten table records and
+  chosen at 0x0d9dbe5c. Same records as image routine 1178.
+- **`1084`** (routine; kernel copy, `odsy_init.o` .data +0x3aa0), **established**: ends two-colour programs,
+  the closing word of table records 7 and 13 and the immediate at 0x0d9dbe64. Same records as image
+  routine 1183.
+- **`1089`** (routine; kernel copy, `odsy_init.o` .data +0x3adc), **established**: ends one-sided programs
+  with separate specular or fragment lighting, in records 4, 12, 14, 20 and 21 and at 0x0d9dbe44.
+  Same records as image routine 1188.
+- **`1099`** (routine; kernel copy, `odsy_init.o` .data +0x3b54), **established**: carries the vertex colour
+  through with lighting off, nine records reading attribute slot 5; 6.5.27 adds it at 0x0d9db4a0.
+  Same records as image routine 1198.
+- **`1101`** (routine; kernel copy, `odsy_init.o` .data +0x3b6c), **established**: a tail of 1099 two records
+  in, put before 1112 for a table program with perspective texture (0x0d9dbdcc in 6.5.27). Same
+  records as image routine 1200.
+- **`1112`** (routine; kernel copy, `odsy_init.o` .data +0x3bf0), **established**: one record finishing the
+  colour with perspective texture, selected at 0x0d9db540 in 6.5.27. Same records as image routine
+  1211.
+- **`1117`** (routine; kernel copy, `odsy_init.o` .data +0x3c2c), **established**: the single-record colour
+  finish without perspective texture; 6.5.27 names it at 0x0d9db54c. Same records as image routine
+  1216.
+- **`1122`** (routine; kernel copy, `odsy_init.o` .data +0x3c68), **established**: the null routine the
+  6.5.27 builder writes into sequencers 0x2a and 0x2c and uses to end both lists (immediates from
+  0x0d9dbb58). Same records as image routine 1221.
+- **`1127`** (routine; kernel copy, `odsy_init.o` .data +0x3ca4), **established**: the set-up pass of the
+  directional-light table records, 35 records reading the data table from index 1 to 0x1e3. Same
+  records as image routine 1226.
+- **`1166`** (routine; kernel copy, `odsy_init.o` .data +0x3e78), **established**: the second set-up routine
+  of the two-colour records 7, 13 and 15, after 1127 in their +52 lists. Same records as image
+  routine 1265.
+- **`1187`** (routine; kernel copy, `odsy_init.o` .data +0x3f74), **established**: only table record 12's +52
+  list carries this second set-up routine, after 1127; it reads data words 0x80 to 0x1e5. Same
+  records as image routine 1286.
+- **`1196`** (routine; kernel copy, `odsy_init.o` .data +0x3fe0), **established**: set-up for the local-light
+  records 16 to 19 and 23, five records reading constants 0x1e0 to 0x1e3. Same records as image
+  routine 1295.
+- **`1205`** (routine; kernel copy, `odsy_init.o` .data +0x404c), **established**: sets up the four
+  fragment-lighting records 2, 4, 5 and 8 that run with GL_LIGHTING off. Same records as image
+  routine 1304.
+- **`1214`** (routine; kernel copy, `odsy_init.o` .data +0x40b8), **established**: is the complete 31-record
+  per-vertex program of table record 2: one directional fragment light, lighting off, no texture.
+  Same records as image routine 1313.
+- **`1249`** (routine; kernel copy, `odsy_init.o` .data +0x425c), **established**: starts table record 4, the
+  textured or clipped variant of record 2; the record patches its mark 1259 with end mark 1264. Same
+  records as image routine 1348.
+- **`1269`** (routine; kernel copy, `odsy_init.o` .data +0x434c), **established**: is record 4's second
+  routine, eighteen records holding the record's +16 entry 1280. Same records as image routine 1368.
+- **`1291`** (routine; kernel copy, `odsy_init.o` .data +0x4454), **established**: is table record 5 entire,
+  39 records with two value-3 marks: record 2 with the fragment model two-sided. Same records as
+  image routine 1390.
+- **`1334`** (routine; kernel copy, `odsy_init.o` .data +0x4658), **established**: opens table record 8, the
+  two-sided version of record 4, patched at 1348 with 1353. Same records as image routine 1433.
+- **`1358`** (routine; kernel copy, `odsy_init.o` .data +0x4778), **established**: runs as the second part of
+  record 8, holding its +16 entry 1373 and reading data words 0x1e1 to 0x1eb. Same records as image
+  routine 1457.
+- **`1384`** (routine; kernel copy, `odsy_init.o` .data +0x48b0), **established**: is the whole of table
+  record 3, one directional light with an infinite viewer, untextured, carrying no patch. Same
+  records as image routine 1483.
+- **`1421`** (routine; kernel copy, `odsy_init.o` .data +0x4a6c), **established**: opens table record 9, one
+  directional light with GL_NORMALIZE and texture allowed, patched at 1436. Same records as image
+  routine 1520.
+- **`1446`** (routine; kernel copy, `odsy_init.o` .data +0x4b98), **established**: second half of record 9,
+  31 records holding the +16 entry 1462. Same records as image routine 1545.
+- **`1481`** (routine; kernel copy, `odsy_init.o` .data +0x4d3c), **established**: starts table record 6, two
+  directional lights with texture generation or clip planes and no texture. Same records as image
+  routine 1580.
+- **`1502`** (routine; kernel copy, `odsy_init.o` .data +0x4e38), **established**: completes record 6's
+  two-light program, 18 records with no data-table read, holding the +16 entry 1514. Same records as
+  image routine 1601.
+- **`1524`** (routine; kernel copy, `odsy_init.o` .data +0x4f40), **established**: heads table record 10, two
+  directional lights with normalize on, patched at 1541 with 1546. Same records as image routine
+  1623.
+- **`1551`** (routine; kernel copy, `odsy_init.o` .data +0x5084), **established**: 35 records forming record
+  10's second routine, where its +16 entry 1569 lies. Same records as image routine 1650.
+- **`1590`** (routine; kernel copy, `odsy_init.o` .data +0x5258), **established**: begins table record 11, up
+  to four directional lights with texture and normalize off. Same records as image routine 1689.
+- **`1621`** (routine; kernel copy, `odsy_init.o` .data +0x53cc), **established**: is the second half of the
+  four-light record 11, containing its +16 entry 1643. Same records as image routine 1720.
+- **`1653`** (routine; kernel copy, `odsy_init.o` .data +0x554c), **established**: enters table record 7, one
+  directional light with two colour outputs, patched at 1666. Same records as image routine 1752.
+- **`1676`** (routine; kernel copy, `odsy_init.o` .data +0x5660), **established**: closes record 7's
+  two-colour program and holds the +16 entry 1690. Same records as image routine 1775.
+- **`1699`** (routine; kernel copy, `odsy_init.o` .data +0x5774), **established**: opens record 13, two
+  directional lights, two colours and texture, patched at 1719 with 1724. Same records as image
+  routine 1798.
+- **`1729`** (routine; kernel copy, `odsy_init.o` .data +0x58dc), **established**: the 30-record two-sided
+  half of record 13, with its +16 entry 1752. Same records as image routine 1828.
+- **`1763`** (routine; kernel copy, `odsy_init.o` .data +0x5a74), **established**: begins record 16, one
+  local light without attenuation or spot, the first table routine that reads the light record from
+  data index 0. Same records as image routine 1862.
+- **`1801`** (routine; kernel copy, `odsy_init.o` .data +0x5c3c), **established**: the 51-record second
+  routine of record 16, holding the +16 entry 1830. Same records as image routine 1900.
+- **`1856`** (routine; kernel copy, `odsy_init.o` .data +0x5ed0), **established**: enters record 17, one
+  local light accepting either normalize setting, patched at 1885. Same records as image routine
+  1955. The start-up load leaves it at RAM 1856, inside the top 200 records.
+- **`1895`** (routine; kernel copy, `odsy_init.o` .data +0x60a4), **established**: is record 17's 52-record
+  second half reading the light table up to the constants, with the +16 entry 1925. Same records as
+  image routine 1994. The start-up load leaves it at RAM 1895, inside the top 200 records.
+- **`1951`** (routine; kernel copy, `odsy_init.o` .data +0x6344), **established**: starts record 18, one
+  local light with a local viewer and GL_NORMALIZE on. Same records as image routine 2050. The
+  start-up load leaves it at RAM 1951, inside the top 200 records.
+- **`1990`** (routine; kernel copy, `odsy_init.o` .data +0x6518), **established**: second routine of record
+  18, holding the +16 entry 2020. Same records as image routine 2089. The start-up load leaves it at
+  RAM 1990, inside the top 200 records.
+- **`2046`** (routine; kernel copy, `odsy_init.o` .data +0x67b8), **established**: is the per-vertex start of
+  record 19, local light and local viewer with normalize off, patched at 2075. Same records as image
+  routine 2145. The start-up load leaves it at RAM 2046, inside the top 200 records.
+- **`2085`** (routine; kernel copy, `odsy_init.o` .data +0x698c), **established**: record 19's second routine
+  with the +16 entry 2115. Same records as image routine 2184. It lies in the 218-record tail that
+  `odsyInitCfifo` never sends, so the kernel never puts it in RAM.
+- **`2141`** (routine; kernel copy, `odsy_init.o` .data +0x6c2c), **established**: the only +32 list entry of
+  record 14, one directional light with separate specular; its sequencer words are all 1122. Same
+  records as image routine 2240. It lies in the 218-record tail that `odsyInitCfifo` never sends, so
+  the kernel never puts it in RAM.
+- **`2169`** (routine; kernel copy, `odsy_init.o` .data +0x6d7c), **established**: heads the +32 list of
+  record 15, record 14's two-colour form. Same records as image routine 2268. It lies in the
+  218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it in RAM.
+- **`2201`** (routine; kernel copy, `odsy_init.o` .data +0x6efc), **established**: begins table record 12,
+  directional lights mixed with a directional fragment light and texture, patched at 2223. Same
+  records as image routine 2300. It lies in the 218-record tail that `odsyInitCfifo` never sends, so
+  the kernel never puts it in RAM.
+- **`2233`** (routine; kernel copy, `odsy_init.o` .data +0x707c), **established**: is record 12's second
+  routine, reading data word 0x1e1 and holding the +16 entry 2256. Same records as image routine
+  2332. It lies in the 218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it
+  in RAM.
+
 ## Instruction set
 
 The instruction format, loading words, sequencer registers, routine entries and overlays are in `ucode/buzz_isa.md`; the listing of this copy is `ucode/disasm/buzz_ucode_kernel.lst`. The post-data doubleword `0x7f0 = 10^9` is still not read.

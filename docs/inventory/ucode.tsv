@@ -178,71 +178,71 @@ buzz_ucode_ip30.bin	host entry	758		end_mark=763 records=6 beyond_ram=no	underst
 buzz_ucode_ip30.bin	host entry	768		end_mark=787 records=20 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-routines	Lighting routines
 buzz_ucode_ip30.bin	host entry	779		end_mark=787 records=9 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-routines	Lighting routines
 buzz_ucode_ip30.bin	host entry	792		end_mark=798 records=7 beyond_ram=no	understood	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	803		end_mark=807 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	host entry	812		end_mark=816 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	host entry	821		end_mark=860 records=40 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-routines	Lighting routines
-buzz_ucode_ip30.bin	host entry	832		end_mark=860 records=29 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-routines	Lighting routines
-buzz_ucode_ip30.bin	host entry	865		end_mark=871 records=7 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-routines	Lighting routines
-buzz_ucode_ip30.bin	host entry	876		end_mark=882 records=7 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	887		end_mark=893 records=7 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	898		end_mark=909 records=12 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	914		end_mark=919 records=6 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	924		end_mark=931 records=8 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	936		end_mark=941 records=6 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	946		end_mark=953 records=8 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	958		end_mark=967 records=10 beyond_ram=no	named-only	ucode/buzz_routines.md#lighting-finish-routines	Lighting finish routines
-buzz_ucode_ip30.bin	host entry	972		end_mark=990 records=19 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	host entry	995		end_mark=1002 records=8 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	follows end mark	1007		end_mark=1015 records=9 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	follows end mark	1020		end_mark=1032 records=13 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	host entry	1037		end_mark=1049 records=13 beyond_ram=no	named-only	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	follows end mark	1054		end_mark=1054 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	follows end mark	1059		end_mark=1059 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	follows end mark	1064		end_mark=1064 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	follows end mark	1069		end_mark=1069 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	host entry	1074		end_mark=1074 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	follows end mark	1079		end_mark=1079 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	follows end mark	1084		end_mark=1084 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
-buzz_ucode_ip30.bin	follows end mark	1089		end_mark=1089 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#closing-routines	Closing routines
+buzz_ucode_ip30.bin	host entry	803		end_mark=807 records=5 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	812		end_mark=816 records=5 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	821		end_mark=860 records=40 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	832		end_mark=860 records=29 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	865		end_mark=871 records=7 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	876		end_mark=882 records=7 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	887		end_mark=893 records=7 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	898		end_mark=909 records=12 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	914		end_mark=919 records=6 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	924		end_mark=931 records=8 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	936		end_mark=941 records=6 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	946		end_mark=953 records=8 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	958		end_mark=967 records=10 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	972		end_mark=990 records=19 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	995		end_mark=1002 records=8 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1007		end_mark=1015 records=9 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1020		end_mark=1032 records=13 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	1037		end_mark=1049 records=13 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1054		end_mark=1054 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1059		end_mark=1059 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1064		end_mark=1064 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1069		end_mark=1069 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	1074		end_mark=1074 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1079		end_mark=1079 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1084		end_mark=1084 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1089		end_mark=1089 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
 buzz_ucode_ip30.bin	follows end mark	1094		end_mark=1094 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#fragment-lighting-routines	Fragment lighting routines
-buzz_ucode_ip30.bin	host entry	1099		end_mark=1107 records=9 beyond_ram=no	named-only	ucode/buzz_routines.md#unlit-colour-routines	Unlit colour routines
-buzz_ucode_ip30.bin	host entry	1101		end_mark=1107 records=7 beyond_ram=no	named-only	ucode/buzz_routines.md#unlit-colour-routines	Unlit colour routines
-buzz_ucode_ip30.bin	host entry	1112		end_mark=1112 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#unlit-colour-routines	Unlit colour routines
-buzz_ucode_ip30.bin	host entry	1117		end_mark=1117 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#unlit-colour-routines	Unlit colour routines
-buzz_ucode_ip30.bin	follows end mark	1122		end_mark=1122 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#routines-read	Routines read
-buzz_ucode_ip30.bin	follows end mark	1127		end_mark=1161 records=35 beyond_ram=no	named-only	ucode/buzz_routines.md#set-up-routines	Set-up routines
-buzz_ucode_ip30.bin	follows end mark	1166		end_mark=1182 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#set-up-routines	Set-up routines
-buzz_ucode_ip30.bin	follows end mark	1187		end_mark=1191 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#set-up-routines	Set-up routines
-buzz_ucode_ip30.bin	follows end mark	1196		end_mark=1200 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#set-up-routines	Set-up routines
-buzz_ucode_ip30.bin	follows end mark	1205		end_mark=1209 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#set-up-routines	Set-up routines
-buzz_ucode_ip30.bin	follows end mark	1214		end_mark=1244 records=31 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1249		end_mark=1264 records=16 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1269		end_mark=1286 records=18 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1291		end_mark=1329 records=39 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1334		end_mark=1353 records=20 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1358		end_mark=1379 records=22 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1384		end_mark=1416 records=33 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1421		end_mark=1441 records=21 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1446		end_mark=1476 records=31 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1481		end_mark=1497 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1502		end_mark=1519 records=18 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1524		end_mark=1546 records=23 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1551		end_mark=1585 records=35 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1590		end_mark=1616 records=27 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1621		end_mark=1648 records=28 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1653		end_mark=1671 records=19 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1676		end_mark=1694 records=19 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1699		end_mark=1724 records=26 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1729		end_mark=1758 records=30 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1763		end_mark=1796 records=34 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1801		end_mark=1851 records=51 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1856		end_mark=1890 records=35 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1895		end_mark=1946 records=52 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1951		end_mark=1985 records=35 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	1990		end_mark=2041 records=52 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	2046		end_mark=2080 records=35 beyond_ram=no	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	2085		end_mark=2136 records=52 beyond_ram=yes	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	2141		end_mark=2164 records=24 beyond_ram=yes	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	2169		end_mark=2196 records=28 beyond_ram=yes	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	2201		end_mark=2228 records=28 beyond_ram=yes	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
-buzz_ucode_ip30.bin	follows end mark	2233		end_mark=2261 records=29 beyond_ram=yes	named-only	ucode/buzz_routines.md#table-program-routines	Table program routines
+buzz_ucode_ip30.bin	host entry	1099		end_mark=1107 records=9 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	1101		end_mark=1107 records=7 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	1112		end_mark=1112 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	host entry	1117		end_mark=1117 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1122		end_mark=1122 records=1 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1127		end_mark=1161 records=35 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1166		end_mark=1182 records=17 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1187		end_mark=1191 records=5 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1196		end_mark=1200 records=5 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1205		end_mark=1209 records=5 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1214		end_mark=1244 records=31 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1249		end_mark=1264 records=16 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1269		end_mark=1286 records=18 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1291		end_mark=1329 records=39 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1334		end_mark=1353 records=20 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1358		end_mark=1379 records=22 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1384		end_mark=1416 records=33 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1421		end_mark=1441 records=21 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1446		end_mark=1476 records=31 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1481		end_mark=1497 records=17 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1502		end_mark=1519 records=18 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1524		end_mark=1546 records=23 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1551		end_mark=1585 records=35 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1590		end_mark=1616 records=27 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1621		end_mark=1648 records=28 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1653		end_mark=1671 records=19 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1676		end_mark=1694 records=19 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1699		end_mark=1724 records=26 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1729		end_mark=1758 records=30 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1763		end_mark=1796 records=34 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1801		end_mark=1851 records=51 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1856		end_mark=1890 records=35 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1895		end_mark=1946 records=52 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1951		end_mark=1985 records=35 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	1990		end_mark=2041 records=52 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	2046		end_mark=2080 records=35 beyond_ram=no	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	2085		end_mark=2136 records=52 beyond_ram=yes	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	2141		end_mark=2164 records=24 beyond_ram=yes	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	2169		end_mark=2196 records=28 beyond_ram=yes	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	2201		end_mark=2228 records=28 beyond_ram=yes	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792
+buzz_ucode_ip30.bin	follows end mark	2233		end_mark=2261 records=29 beyond_ram=yes	understood	ucode/buzz_ucode.md#routines-of-the-kernel-copy-from-record-792	Routines of the kernel copy from record 792

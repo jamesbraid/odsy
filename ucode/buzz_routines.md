@@ -7,7 +7,7 @@ A routine is the run of records from its entry to the next record whose bits 1:0
 Columns:
 
 - **Entry**, **End mark**, **Records**: the entry record, the record carrying the mark, and the routine's length including that record.
-- **Kernel record**: the same routine's record number in the kernel's older copy (`buzz_ucode`, `ucode/buzz_ucode.md`). Records from 891 on sit 99 lower there; routines 792 to 890 are the 99 records the kernel copy lacks (`none`).
+- **Kernel record**: the same routine's record number in the kernel's older copy (`buzz_ucode`, `ucode/buzz_ucode.md`). Records from 891 on sit 99 lower there; routines 792 to 890 are the 99 records the kernel copy lacks (`none`). The kernel numbering is the one the libraries of 6.5.8 to 6.5.27 use (`ucode/buzz_ucode.md`, "Routines of the kernel copy from record 792").
 - **In list**: whether the entry is in libGLcore's per-program list, so the host can select it.
 - **Idle**: records equal to the idle word.
 - **Data addresses**: lowest and highest nonzero value of the provisional data-memory address field `ma` over the routine.
