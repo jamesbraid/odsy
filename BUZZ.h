@@ -668,8 +668,10 @@
  * Anything of phys >> 24 above 24 bits is dropped, so the board takes a
  * 48-bit physical address. The id is 0xe03 when the caller's flag 4 is
  * set (odsy_DmaRegion_DoTransfer) or when a per-transfer flag word is
- * nonzero (odsyDMAOp), else 0xe01; what bit 1 of the id selects: unknown
- * (inferred a direction or kind, not read). The id 0xe01 is above the
+ * nonzero (odsyDMAOp), else 0xe01. established (docs/kernel.md, MMxfr):
+ * every driver transfer, read or write, uses 0xe01; the direction is bit
+ * 24 of entry word 7, set by gfP_OdsyMMxfr for reads. Only the diagnostic
+ * ioctl reaches 0xe03; what it selects on the board: unknown. The id 0xe01 is above the
  * class-1 REG field (10 bits), so the doubleword form has a wider
  * register space than the class-1 words, which also carries 0x6b0-0x6b3
  * and 0x7b5. established: arithmetic of both routines.
