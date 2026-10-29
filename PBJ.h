@@ -229,7 +229,9 @@
  *      (section 3); probe the monitor (DDC), compositor, "Rainier" and
  *      "Denali" parts over I2C;
  *   4. odsyConfigFb with 1280 x 1024 at 8 (arguments 0x500, 0x400, 8);
- *   5. when the caller asks for it, write 0x2802 = 0 and 0x2803 = 0.
+ *   5. with the caller's quick flag set (odsyReset does), write 0x2802 = 0
+ *      and 0x2803 = 0; otherwise write 0x2802 = 1280, 0x2803 = 1024 and
+ *      call odsyLoadTimingTable (docs/kernel.md, odsyInitDBE).
  * The default timing is then loaded by odsyLoadTimingTable (DISPLAY.h).
  *
  * odsyConfigFb (odsy_brdmgr.o) lays out the frame buffer in 16 x 16
