@@ -335,3 +335,88 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
   The drawable origin: `gf_OdsyValidateClip` fills the low 13 bits of its two operands from the draw
   drawable's x and y, and `odsyClipPush` stores the word; `__glOdysseyImageMovePixelsCopy` and
   `__glOdysseyFinish` send it in libGLcore.
+
+## Sequencer register words stored to the FIFO
+
+A sequencer word is `(reg << 24) | 0x8000 | enc(value)`, where `enc(v)` is the low ten bits of v with higher bits moved up
+to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host never reads these registers back.
+
+- `0x22008000` (register 0x22, value 0, `odsy_tport.o`): **inferred.**
+  `ODSY_SET_GC` stores it twice in the textport's state set-up, and the X module sends 0 here before RGB drawing
+  (`docs/opengl.md`); every site that sends an RGB colour word pairs it with this register at 0 and with 0x23 at
+  2, so register 0x22 reads as half of a colour-handling mode pair.
+- `0x22008001` (register 0x22, value 1, `odsy_tport.o`): **inferred.**
+  `odsy_color` stores it before it sets a colour index: the pair with `0xc580c406` at every sender makes value 1 the
+  index-colour setting of the mode register that RGB drawing holds at 0.
+- `0x23008002` (register 0x23, value 2, `libGLcore.so`): **inferred.**
+  The RGB-side value of the second mode register: the X module sends 2 here before RGB drawing and the GL
+  context default for this register, stored by `__glOdysseyInitDefaultValues`, is 2 (`ucode/buzz_isa.md`). No routine in the scanned kernel objects builds this
+  word, so the entry rests on `odyssey.so` and libGLcore sites.
+- `0x23008003` (register 0x23, value 3, `odsy_tport.o`): **inferred.**
+  Stored by `odsy_color` beside 0x22008001; with it the index-colour pair is (1, 3) at every sender of the index
+  colour word.
+- `0x2600807f` (register 0x26, value 127, `odsy_init.o`): **inferred.**
+  Stored by `odsyInitCfifo` before the microcode load. 127 is one of the entry numbers that libGLcore's
+  `AddProgram` places in its lists, so the register reads as a routine address.
+- `0x27008000` (register 0x27, value 0, `odsy_init.o`): **established.**
+  Sets the instruction write address to 0. `odsyInitCfifo` stores it before the first of 2048 six-word records of the
+  transform microcode, and `odsyDownloadUcode` (`odsy_ucode.o`) stores the same register with its own start for
+  later partial loads.
+- `0x278083ff` (register 0x27, value 2047, `odsy_ctxsw.o`): **established.**
+  `odsyRestartContext` stores it among its last register writes, parking the instruction write address at the last
+  slot of the instruction RAM, which the loaders never write. The reason the restart does this is unknown.
+- `0x28008000` (register 0x28, value 0, `odsy_ctxsw.o`): **inferred.**
+  `odsyRestoreXform` stores it twice while it replays the transform state; register 0x28 reads as the list
+  slot pointer of the program list, here at its first slot.
+- `0x280080ff` (register 0x28, value 255, `odsy_ctxsw.o`): **inferred.**
+  The list slot pointer parked at 255, sent by `odsyRestartContext` beside the 2047 write-address word; whether 255 is the last slot or a null
+  marker is unknown. The scan finds no sender in the scanned routine names, only the constant's sites.
+- `0x2900812f` (register 0x29, value 303, `odyssey.so`): **established.**
+  A routine entry: `__glOdysseyImageMovePixelsCopy` stores the constant 303 to a context word and then sends this
+  word, so record 303 of `buzz_xform.bin` starts a 17-record routine (`ucode/buzz_routines.md`).
+- `0x2900819a` (register 0x29, value 410, `odsy_ctxsw.o`): **established.**
+  Sent by `odsyRestoreXform` around a data load: lighting sets register 0x32 to 24, sends `0x8e809015` with four floats
+  and runs entry 410 so that records 410 to 417 store them at data address 24; the kernel's restore sends the same
+  entry.
+- `0x29808062` (register 0x29, value 1122, `libGLcore.so`): **inferred.**
+  The 4103 patch's libGLcore sends it from `__glOdysseySetProgram`; the older kernel copy of the program has records
+  from 891 on 99 lower, and 1221 minus 99 is 1122, so this is the same one-record routine as 1221.
+- `0x298080c5` (register 0x29, value 1221, `libGLcore.so`): **established.**
+  Routine 1221 of `buzz_xform.bin`, a single-record routine, sent by `__glOdysseyValidateProgram` and
+  `__glOdysseySetProgram` (`ody_program.s`) as the program-entry word.
+- `0x2e008380` (register 0x2e, value 896, `odsy_init.o`): **established.**
+  Stored by `odsyInitCfifo` before the microcode load and by the GL context default
+  (`__glOdysseyInitDefaultValues`) with the same value 896. It is not a routine address, since it does not move
+  with the 99-record insertion; the register's effect is unknown.
+- `0x3000c02e` (register 0x30, value 46, `odsy_ctxsw.o`): **established.**
+  Bits 15:14 are 11, unlike the others. `odsyResetHwShadow`, `odsyRestoreGfe` (four sites), `odsyRestoreVB`
+  (seventeen sites) and `odsyRestoreVertex` use it as the count-0 word that must end a replayed vertex; libGLcore sends
+  its twin `0x2f00c02e` at 26 clipped-vertex sites.
+- `0x31008000` (register 0x31, index 0, `odsy_ctxsw.o`): **established.**
+  The first group start of the 512-word table behind register 0x31 in the full-replay loop of `odsyRestoreXform`, which sends
+  the 16-word block `0x9080bda2` after each index; no scanned routine name builds this exact word.
+- `0x310080f0` (register 0x31, index 240, `libGLcore.so`): **established.**
+  `__glOdysseyInitLighting` stores it as the table index before a four-word block `0x908091bb` of zero floats.
+- `0x310080f4` (register 0x31, index 244, `libGLcore.so`): **established.**
+  The same four-word block of zeros at the next group of four, from `__glOdysseyInitLighting`.
+- `0x31008140` (register 0x31, index 320, `odsy_clip.o`): **established.**
+  `odsyClipPush` stores it; 320 is one of the two group starts, with 480, that the kernel's 30-group save loop skips.
+- `0x310081e0` (register 0x31, index 480, `libGLcore.so`): **established.**
+  `__glOdysseyValidateContext` stores it; 480 is the second skipped start of the kernel's save loop, so the host
+  writes the group the kernel does not save.
+- `0x32008018` (register 0x32, value 24, `odsy_ctxsw.o`): **inferred.**
+  Sent by `odsyRestoreXform` and by libGLcore's lighting code before a data load; 24 is the data-memory
+  address the following words fill, and lighting resets the register to 0 afterwards.
+- `0x34008000` (register 0x34, index 0, `odsy_ctxsw.o`): **established.**
+  Opens the 68-word table replay: `odsyRestoreXform` and `odsyRestartContext` store index 0 and then block
+  `0x9080bdc8` with 16 words from the hardware shadow.
+- `0x34008010` (register 0x34, index 16, `odsy_ctxsw.o`): **established.**
+  Index 16 of the 68-word table, stored by `odsyRestoreXform` before block `0x908091df` with 4 words, the second block of the table.
+- `0x34008014` (register 0x34, index 20, `odsy_ctxsw.o`): **established.**
+  Index 20, the fifth block of the full replay in `odsyRestoreXform`.
+- `0x34008024` (register 0x34, index 36, `odsy_ctxsw.o`): **established.**
+  Index 36, the third block of the full replay, which carries 16 words in `odsyRestoreXform`.
+- `0x34008034` (register 0x34, index 52, `odsy_ctxsw.o`): **established.**
+  Index 52, the fourth block of the full replay in `odsyRestoreXform`.
+- `0x35008000` (register 0x35, value 0, `libGLcore.so`): **established.**
+  The context default that `__glOdysseyValidateContext` stores for register 0x35 (`ucode/buzz_isa.md`); its meaning is unknown.
