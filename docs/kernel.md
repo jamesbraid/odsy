@@ -149,3 +149,40 @@ After issue the owner context stores the op number at +256 or +248 depending on 
 - `RRM_WaitForRetrace`: fault check, `rrmInvalidateRN(rn, 16)` (clears the retrace bit), then calls slot +152 of the driver's operation table (**inferred** to be the retrace-event scheduler, `gf_OdsySchedRetraceEvent`, because that is the function queueing RN events for `rrmValidateRetrace`; the table was not resolved against its relocations) and unmaps the graphics pages.
 - `RRM_WaitVideoSync` / `rrmWaitVideoSync(count, phase)`: requires 0 <= phase < count (else 22), queues the waiter on the board list (head at record +136, next at waiter +160) with the count at +144 and phase at +148, and sleeps interruptibly (priority 30); returns -1 when interrupted. `RRM_SetVideoSync` stores a value at record +128 and `RRM_GetVideoSync` returns it.
 - `rrmValidateVideoSync(board)`: for each queued waiter, picks the counter at record +128 (when bit 3 of the waiter's RN flags is set) or +124 (otherwise), and when `counter mod count == phase` stores the counter in the waiter (+152), unlinks it and signals. A second list (head +168, linked through +168 of each waiter, retrace counter at record +164) holds buffer-swap waiters: `RRM_SwapBuf` puts a window's swap on it through `rrmSwapWait` when the swap interval (+24 of the window's swap record) is nonzero and `counter + 1` is below the swap target at +28, and `rrmValidateBuffer` sets that target to interval + counter when swap-interval mode (record +160) is on. `rrmValidateVideoSync` releases every entry whose target is at or below `counter + 1`. **established** from `RRM_SwapBuf`, `rrmValidateBuffer`, `rrmValidateVideoSync`. **inferred** that +124 counts vertical retraces and +128 counts a video-sync (genlock-relative) counter, by pairing with the handler's two increments; confirming which board event raises each needs a hardware capture of the retrace interrupt against the display timing.
+
+## Pass 10: what the kernel sends and which registers it reaches
+
+IRIX 6.5.30m, IP30 kernel objects (`odsy_kernel/disasm/`). Each item carries its label.
+
+### Register access through arguments
+
+**established.** The register scan of `docs/buzz.md` section 8 follows constants from the board record's PIO base (+824) and misses accesses through a base passed to a callee. A search of every IP30 `odsy*.o` for a call made right after `ld a0,824(...)` finds the base handed to only these callees: `odsy_poll_dfifo_level` (its only board access is the load at +0x106c, already listed), `odsyMMvalidatePcxSwap` and `odsyLLPReset` (neither has an access at an offset of 0x1000 or more), `odsyInitDBE` and `odsy_i2cPLLRegWrite` (the display FIFO and the I2C engine, covered in `docs/pbj.md`), and the flow-control routines (`gfx_flow_*`, covered by the flow registers in `BUZZ.h`). So the list of PIO offsets in `docs/buzz.md` section 8 is complete for the IP30 driver for constant offsets, and the 0x4000 group is read in `docs/buzz.md` section 9.
+
+The board record itself is driver state, not hardware. Its offsets are defined in `odsy_kernel/include/odsy_kern.h` where a routine documented in these notes uses them, and each routine's section here names the fields it reads and writes. A complete census of all record fields would need the record's type, which the install does not carry (the DWARF holds no structure entries, `AGENTS.md` section 2); any further field is recovered from the routine that uses it when a reader needs it, and none is hardware-visible.
+
+### Command words the kernel emits
+
+**established** for constant forms: every `lui`/`ori` pair that builds a class-1 word (`BUZZ.h` section 1) or a per-vertex or state word, found in every IP30 `odsy*.o` function. Words built any other way (loaded from shadow memory, as the replay routines do for their operands) are not in the list; the operands the replay routines load are in `docs/buzz.md` sections 4 and 8. Count-0 words are followed by no operands.
+
+| Routine | Words |
+|---|---|
+| `ODSY_SET_GC` (textport state) | 0x10019, 0x10404, 0x10422, 0x10424, 0x10c21, 0x11017, 0x11023, colour words 0xc580c406, 0xc580cc08, 0xce80cc08 |
+| `odsy_sboxfi`, `odsy_pnt2i` | 0x10019, 0x10046, 0x10443, 0x14001, 0x14400 (pnt2i), 0x8080c800 (pnt2i) |
+| `odsy_drawbitmap` | 0x10019, 0x10046, 0x1043f, 0x10443, 0x13c4e, 0x13c4f, 0x14001, 0x14400, 0x8080c800 |
+| `odsy_color` | 0xc580c406 |
+| `odsy_mm_obj_xfr_bs` | 0x10018, 0x10019, 0x10046, 0x10443 |
+| `gfP_OdsyClearBuffer` | 0x10019, 0x10046, 0x10443, 0x14001, 0x8f80a92f |
+| `gf_OdsyPcxSwap` | 0x10443, 0x10444, 0x10850, 0x14001, 0x14400 |
+| `odsyDMAOp` | 0x10019, 0x10443, 0x10658, 0x10a5a, 0x14001 |
+| `odsyDMAOps` | 0x10443, 0x10444, 0x10658, 0x10a5a, 0x14400, 0x8080c800, 0xcf80a92f |
+| `odsyClipPush` | 0x10019, 0x10443, 0x10840, 0x10841, 0x1204b, 0x9000bda2 |
+| `odsyRestartContext` | 0x10019, 0x10400, 0x10443, 0x10658, 0x10850, 0x11017, 0x8080c800, 0xcf80a92f |
+| `odsyPushBufferSelect` | 0x10019, 0x10046, 0x10424 |
+| `odsyInitCfifo` | 0x10046 (plus the microcode load words of `BUZZ.h` section 5) |
+| `odsyResetHwShadow` | the default attribute words of `docs/buzz.md` section 8 |
+| `odsyRestoreGfe` | 0x14001, 0x14400 |
+| `odsyRestoreXform`, `odsyRestoreVB`, `odsySetProgram` | 0x9080bdc8, 0x908091df; 0x908091ea; 0x90808800 |
+| `odsyZeroOut` | 0xcf809014 |
+| `odsyRestoreRaster` | every block id in the replay table of `docs/buzz.md` section 8, with 0x10018, 0x10019, 0x10404-0x10407, 0x10415, 0x1041e-0x10420, 0x10422, 0x10424, 0x1043f, 0x10443, 0x1044c, 0x10451, 0x10452, 0x10456-0x10458, 0x10658 |
+
+Observations (**established** as values): the settle words 0x10019, 0x10046 and 0x10443 are the three group openers of `BUZZ.h` section 5; 0x14001 and 0x14400 are the primitive end and begin words; 0x10850 and 0x10443/0x10444 appear only around context save and DMA. The only count-8 words sent by the kernel are 0x12030-0x12033 and 0x1204b (`docs/buzz.md` section 9). What blocks 0x018, 0x019, 0x043, 0x044, 0x046, 0x050 and 0x258 do on the board: **unknown, needs a hardware capture** (the board's state read through 0x1014 and 0x1064 before and after each, named for 0x054 in `docs/buzz.md`). The kernel's operand values for each block are the shadow words listed in `docs/buzz.md` section 8.

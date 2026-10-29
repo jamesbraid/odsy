@@ -73,6 +73,32 @@
                                          0x1074. established:
                                          odsyInitCfifo */
 
+/* Swap-scheduling state in the board record (pass 10). All established:
+ * gf_OdsySchedSwapBuf, odsyRetraceHandler, odsySwapBuffer. Offsets are
+ * plain bytes from the record base; the swap path is in docs/display.md. */
+#define BI_RETRACE_CV          28520  /* condition variable woken by the
+                                         retrace handler */
+#define BI_SWAP_LIST_HEAD      28536  /* swap group at the head of the
+                                         swap list */
+#define BI_SWAP_PENDING_REG    28544  /* last mask written to board
+                                         +0x10bc */
+#define BI_SWAP_DEFERRED       28548  /* ids whose swap waits for retrace */
+#define BI_SWAP_PENDING_ID     28568  /* one bit per id with a swap in
+                                         flight */
+#define BI_SWAP_BUFSEL         28572  /* front/back bit per id */
+#define BI_SWAP_DRAW_BUFSEL    28576  /* second per-id bitmap, from the
+                                         drawable's word at +580 */
+#define BI_SWAP_ID_REC         28584  /* 40-byte record per id (< 32):
+                                         +0 drawable, +8 halfword, +12
+                                         retrace target, +16 group mask,
+                                         +24 group, +36 repeat counter */
+#define BI_SWAP_ID_REC_SIZE    40
+#define BI_BUSY_COUNT          80     /* requests in flight: raised and
+                                         lowered around make-current and
+                                         RRM_SwapBuf */
+#define BI_RETRACE_COUNT       128    /* retrace counter used as the
+                                         swap-interval base */
+
 /* Probe results kept in the record by odsyGatherInfo (docs/board.md).
  * All established; meanings of the sources are inferred there. */
 #define BI_SDRAM_MB            252    /* int: 32, 64, 128 (33 = size code 3
