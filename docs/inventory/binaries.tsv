@@ -95,7 +95,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-libr
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	94f61adbfa12bb44		650	0	0	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	e23071c866ed246d		5076	4231	0	named-only	docs/libglcore-functions.md#libglcore-functions-by-source-file-and-role	libGLcore functions by source file and role
 sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	undocumented		
+usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/sysgen/IP30boot/gfx.o	kernel-shared	shared-kernel	object	n64	53712	73041c9bcd3351fc		62	0	0	understood	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
@@ -142,15 +142,15 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	3
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	6	0	understood	docs/kernel-functions.md#functions-read-in-full	Functions read in full
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	understood	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
 usr/cpu/sysgen/IP35boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23668	312f6d991747e24c		22	0	0	named-only	docs/kernel-functions.md#kernel-driver-functions-by-object-and-role	Kernel driver functions by object and role
-usr/diags/compositor/bin/sting	diagnostics	board-diagnostic	executable	n32	368640	8781b667660f08c5		323	0	0	undocumented		
+usr/diags/compositor/bin/sting	diagnostics	board-diagnostic	executable	n32	368640	8781b667660f08c5		323	0	0	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
 usr/diags/compositor/data/1280_1024_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	a081259ae69eea74	usr/gfx/ucode/STINGRAY/cmb/1280_1024_60_no_tiles.cmb	0	0	0	undocumented		
 usr/diags/compositor/data/1280_1024_72_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6a2908b2502c5451	usr/gfx/ucode/STINGRAY/cmb/1280_1024_72_no_tiles.cmb	0	0	0	undocumented		
 usr/diags/compositor/data/1280_1024_75_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	ebca441093bc6ee7	usr/gfx/ucode/STINGRAY/cmb/1280_1024_75_no_tiles.cmb	0	0	0	undocumented		
 usr/diags/compositor/data/1600_1200_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6b6ded0efdcabbb9	usr/gfx/ucode/STINGRAY/cmb/1600_1200_60_no_tiles.cmb	0	0	0	undocumented		
 usr/diags/compositor/data/1920_1200_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1208	2117ae6edbdca2c6	usr/gfx/ucode/STINGRAY/cmb/1920_1200_60_no_tiles.cmb	0	0	0	undocumented		
-usr/gfx/STINGRAY/bin/cmp_flash	diagnostics	board-diagnostic	executable	n32	39704	28344b9030f8d2c5		26	0	0	undocumented		
-usr/gfx/STINGRAY/bin/cmp_flash_all	diagnostics	board-diagnostic	data	-	242	02bd021d4564daeb		0	0	0	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	d407a52144d94f17		2936	0	0	undocumented		
+usr/gfx/STINGRAY/bin/cmp_flash	diagnostics	board-diagnostic	executable	n32	39704	28344b9030f8d2c5		26	0	0	named-only	docs/diagnostics-and-libgl-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater (`usr/gfx/STINGRAY/bin/cmp_flash`)
+usr/gfx/STINGRAY/bin/cmp_flash_all	diagnostics	board-diagnostic	data	-	242	02bd021d4564daeb		0	0	0	named-only	IRIX_FILES.md#6-wider-scope-every-6530-file-that-touches-vpro	6. Wider scope: every 6.5.30 file that touches VPro
+usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	d407a52144d94f17		2936	0	0	named-only	docs/display.md#overlay-planes	Overlay planes
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	a4292f9008f1d637		671	0	0	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
@@ -165,14 +165,14 @@ usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	51650
 usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	5132	0	named-only	docs/libglcore-functions.md#libglcore-functions-by-source-file-and-role	libGLcore functions by source file and role
 usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	0	0	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
 usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	5051	0	named-only	docs/libglcore-functions.md#libglcore-functions-by-source-file-and-role	libGLcore functions by source file and role
-usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	undocumented		
-usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	0	0	undocumented		
-usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	0	0	undocumented		
-usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	undocumented		
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	undocumented		
-usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	undocumented		
-usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	undocumented		
-usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	undocumented		
+usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
+usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	0	0	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0	0	0	named-only	ucode/buzz_ucode.md#location-and-size	Location and size
 usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0	0	0	understood	ucode/buzz_routines.md#routines-read	Routines read
 usr/gfx/ucode/ODSY/vof/1024x768_60.vfo	microcode	board-microcode	data	-	8424	6348519cb39c2b89		0	0	0	undocumented		
@@ -271,7 +271,7 @@ usr/gfx/ucode/vfc/rules/VPro_DCD.def	video-formats	board-data	data	-	4354	94bc14
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	b797d7447743a1db		981	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/lib/X11/dyDDX/odyssey.so	x-module	board-x-module	shared-object	n32	2303564	0fb2a1debd2b3145		1000	0	0	understood	docs/display.md#overlay-planes	Overlay planes
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	0	0	undocumented		
-var/sysgen/master.d/odyssey	kernel-config	shared-data	data	-	127	1043ee5f3104c120		0	0	0	undocumented		
-var/sysgen/master.d/odysseystubs	kernel-config	shared-data	data	-	130	ac2d943e5dc3168b		0	0	0	undocumented		
-var/sysgen/mtune/odyssey	kernel-config	shared-data	data	-	1357	95f16be7f55bdd91		0	0	0	undocumented		
+usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	0	0	named-only	docs/diagnostics-and-libgl-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
+var/sysgen/master.d/odyssey	kernel-config	shared-data	data	-	127	1043ee5f3104c120		0	0	0	named-only	docs/display.md#cursor-and-overlay-planes-pass-6	Cursor and overlay planes (pass 6)
+var/sysgen/master.d/odysseystubs	kernel-config	shared-data	data	-	130	ac2d943e5dc3168b		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+var/sysgen/mtune/odyssey	kernel-config	shared-data	data	-	1357	95f16be7f55bdd91		0	0	0	named-only	docs/display.md#cursor-and-overlay-planes-pass-6	Cursor and overlay planes (pass 6)
