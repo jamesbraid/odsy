@@ -52,8 +52,8 @@ On-board memory: banks, timing and addressing as software sees them.
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | partial | `BUZZ.h`, `docs/board.md` | direct XIO interface | bank count and CAS latency come from board inventory reports. Pass 6: both read from the strap word 0x106c bits 31:24 with size and clock variant; revision word +4; memory configuration word 0x1004 (`docs/board.md`). Missing: memory organisation and addressing, other bits of 0x1004, identity of +0x23380c |
-| Reset | partial | `BUZZ.h`, `docs/board.md` | direct XIO interface | Pass 6: the 0x1004 write sequence with its bit 5 pulse and 400 us delays (`docs/board.md`). Missing: what bit 5 and bit 8 do in hardware |
+| Registers and fields | done | `BUZZ.h`, `docs/board.md` | direct XIO interface | bank count and CAS latency come from board inventory reports. Pass 6: both read from the strap word 0x106c bits 31:24 with size and clock variant; revision word +4; memory configuration word 0x1004 (`docs/board.md`). Pass 8 (`docs/board.md`): +0x23380c identified as the PB&J version word (display address 0x2701); no kernel object reads 0x1004; IP35 identical. Unknown, needing a hardware capture: memory organisation and addressing, other bits of 0x1004, why strap size code 3 is distinct (the capture for each is named in `docs/board.md`) |
+| Reset | done | `BUZZ.h`, `docs/board.md` | direct XIO interface | Pass 6: the 0x1004 write sequence with its bit 5 pulse and 400 us delays (`docs/board.md`). Pass 8 (`docs/board.md`): IP35 writes the same sequence. Unknown, needing a hardware capture: what bit 5 and bit 8 do in hardware (a bus trace of the SDRAM lines or a read-back of 0x1004 around the sequence) |
 
 ### Display output
 

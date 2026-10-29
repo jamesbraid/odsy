@@ -28,7 +28,7 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
 | 0, 4 to 8 | error "Invalid buzz rev type %d" | |
 
 - **established.** After a valid type it reads the word at +0x23380c, keeps bits 2:0 in record +268, and returns.
-- **inferred.** Bit 31 (record +280) is a variant flag, the low three bits the BUZZ revision. The 0x23380c register's identity: **unknown**; `+0x233804` is the clock-programming word read by `odsyLoadTimingTable` (`docs/display.md`), so this is the same block.
+- **inferred.** Bit 31 (record +280) is a variant flag, the low three bits the BUZZ revision. **established** (`docs/pbj.md`, items 3 and 4): +0x23380c is display address 0x2701, the register whose bits 2:0 `gfxinit` prints as "PB&J version"; `odsyGatherInfo` stores them in record +268. `+0x233804` is the clock-programming word read by `odsyLoadTimingTable` (`docs/display.md`), a neighbour in the same block. The meaning of bits 31:3 of 0x2701: **unknown**, `odsyInitDBE` tests bit 10 (`PBJ.h` section 2); a read-back of the whole word on a real board with known revisions would settle the rest.
 
 ## Memory configuration word at board +0x1004
 
@@ -40,3 +40,11 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
   - Then bit 5 is cleared, set, written, cleared again (three stores, 400 us apart) and bit 8 is set last.
 - **inferred.** +0x1004 configures the board's SDRAM controller (banks, CAS latency, size) and bit 5 pulses an SDRAM initialisation; bit 8 enables it. Reason: the field values are exactly the three probed properties and the pulse is the driver's standard reset shape. Not confirmed by hardware.
 - **unknown.** Organisation and addressing of the memory, timing beyond CAS latency, and the width of any other field of 0x1004.
+
+## What stays unknown, and what would settle it
+
+Pass 8. IP35 `odsyGatherInfo` stores to the same record offsets as IP30 and IP35 `odsyReset` writes the same 0x1004 sequence (`docs/kernel.md`), so the findings above hold for both hosts. **established:** no kernel object reads 0x1004 (every access with displacement 4100 in the disassembly of `odsy_kernel/` and `odsy_kernel_ip35/` is a store in `odsyReset`; the user-space libraries were not scanned: **unknown** whether they map the register), so nothing in the software says how the word's other bits behave.
+
+- **unknown: needs a hardware capture.** Memory organisation (chip count, data width, address map). The software only sees size, banks and CAS latency from the strap word. A capture that settles it: a read of the SDRAM controller's own configuration after reset on a known board, or a board photograph naming the memory parts with their datasheets.
+- **unknown: needs a hardware capture.** What bit 5 (the pulse) and bit 8 (the last set) do in hardware, and bits 0, 7:6 and 21:9 of 0x1004. A capture that settles it: a bus-level trace of the SDRAM command lines during the 400 us after each store, or a read-back of 0x1004 before and after `odsyReset` (it is not known whether the register reads back: **unknown**).
+- **unknown: needs a hardware capture.** Why size code 3 is distinct from code 2 (the driver records 33 and then writes the 128 MB code). A capture that settles it: the strap word's size code on a board with a known memory population.
