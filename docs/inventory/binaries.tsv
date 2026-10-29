@@ -174,7 +174,7 @@ usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	undocumented		
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	undocumented		
 usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0	0	0	named-only	ucode/buzz_ucode.md#location-and-size	Location and size
-usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0	0	0	understood	ucode/buzz_ucode.md#shape-of-the-data-from---stats-groups-in-sending-order	Shape of the data (from `--stats`, groups in sending order)
+usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0	0	0	understood	ucode/buzz_routines.md#routines-read	Routines read
 usr/gfx/ucode/ODSY/vof/1024x768_60.vfo	microcode	board-microcode	data	-	8424	6348519cb39c2b89		0	0	0	undocumented		
 usr/gfx/ucode/ODSY/vof/1024x768_75.vfo	microcode	board-microcode	data	-	8308	4a09147bf64ad526		0	0	0	undocumented		
 usr/gfx/ucode/ODSY/vof/1024x768_96s.vfo	microcode	board-microcode	data	-	9636	61e3736848dee489		0	0	0	undocumented		
