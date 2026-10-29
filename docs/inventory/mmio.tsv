@@ -1,5 +1,5 @@
 window	offset	name	access	sites	binaries	functions	evidence	example	status	doc	section
-board	0x4		r4	2	2	odsyGatherInfo	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyGatherInfo	located	docs/tokens.md#blocks-only-the-hardware-validator-sends	Blocks only the hardware validator sends
+board	0x4		r4	2	2	odsyGatherInfo	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyGatherInfo	understood	docs/tokens.md#blocks-only-the-hardware-validator-sends	Blocks only the hardware validator sends
 board	0xc		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	named-only	docs/buzz.md#pio-registers	PIO registers
 board	0x14		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	named-only	docs/buzz.md#pio-registers	PIO registers
 board	0x1c		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	understood	docs/tokens.md#blocks-only-the-hardware-validator-sends	Blocks only the hardware validator sends
