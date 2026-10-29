@@ -39,13 +39,37 @@ below was copied from that install.
 /usr/cpu/sysgen/IP35boot/gfxs.a
 /usr/cpu/sysgen/IP35boot/gfxstubs.a
 /usr/cpu/sysgen/IP35boot/rrm.o
+/usr/cpu/sysgen/IP30boot/tport.a
+/usr/cpu/sysgen/IP35boot/tport.a
+/usr/cpu/firmware/ip35prom.img
+/sbin/stand/ide.IP30
 /usr/gfx/gfxinit
+/usr/gfx/gfxinfo
+/usr/gfx/setmon
+/usr/gfx/dmconf
+/usr/gfx/sgcombine
+/usr/gfx/gfxtopology
+/usr/gfx/startgfx
+/usr/gfx/stopgfx
+/usr/bin/X11/xsetmon
 /usr/gfx/arch/GENERIC/Xsgi
 /usr/gfx/arch/IP30ODSY
 /usr/gfx/arch/IP30ODSY32
 /usr/gfx/arch/IP30ODSY64
+/usr/gfx/arch/IP35ODSY
+/usr/gfx/arch/IP35ODSY32
+/usr/gfx/arch/IP35ODSY64
+/usr/gfx/arch/IGLOO/libgl.so
 /usr/gfx/arch/IGLOO32/libgl.so
 /usr/gfx/ucode/ODSY
+/usr/gfx/ucode/vfc/rules
+/usr/gfx/ucode/STINGRAY
+/usr/gfx/STINGRAY/bin
+/usr/diags/compositor
+/usr/sbin/Confidence/dualchannel
+/var/sysgen/master.d/odyssey
+/var/sysgen/master.d/odysseystubs
+/var/sysgen/mtune/odyssey
 /usr/lib32/libfm.so
 /usr/lib/X11/dyDDX/odyssey.so
 /usr/lib/X11/dyDDX/glx.so
@@ -71,6 +95,8 @@ The Odyssey kernel driver on an IP30 install is `odyssey.a` under `IP30boot/`
 Verify the install on your own system with `ls /usr/gfx/arch`, `ls
 /usr/lib/X11/dyDDX` and `ls /usr/cpu/sysgen/IP30boot`. Missing paths are
 normal: layouts differ by release and graphics option.
+
+The second half of this list is the wider scope of section 6. The reference install holds none of the `IP35*` paths, `ip35prom.img` or the media-only builds: take them from the 6.5.30 discs as section 6 says. `scripts/inventory.py` reads whatever of them `root/` holds.
 
 ## 2. Copying the files
 
@@ -142,3 +168,33 @@ the IP35 (Origin 350) `odyssey.a` and `libGLcore.so` in 6.5.14. 6.5.0 to 6.5.7 h
 
 Types have to come from headers, the ucode and the RE notes. 6.5.30 is the latest build;
 6.5.8 is the earliest VPro build and is only useful for diffing.
+
+## 6. Wider scope: every 6.5.30 file that touches VPro
+
+Found by reading the file lists (`instigator extract --manifest-only`) of the four 6.5.30 discs (Installation Tools and Overlays 1 of 3, Overlays 2 of 3 and 3 of 3, and the Octane2 VPro Patches disc), then unpacking every disc whole (`instigator extract --unpack`) and checking each file for VPro symbols and strings (`odsy`, `Odsy`, `ODYSSEY`, `VPro`, `BUZZ`, `PB&J`). Machine tags in the file lists (`GFXBOARD=ODYSSEY`, `CPUBOARD=IP30` or `IP35`) agree with the string search. Everything below is in `root/`, under the install path, and is read by `scripts/inventory.py` (group names in `scripts/inventory.json`).
+
+| Group | Files | Disc |
+|---|---|---|
+| Kernel, IP30 | `IP30boot/` `odyssey.a`, `odysseystubs.a`, `gfx.o`, `gfxs.a`, `gfxstubs.a`, `rrm.o`, `kernel.o`, `tport.a` (the text-port set-up that calls `odsy_earlyinit`) | Tools and Overlays 1 |
+| Kernel, IP35 | the same set from `IP35boot/` | Tools and Overlays 1 |
+| Kernel stubs | `odysseystubs.a` also in `IP27boot/` and `IP32boot/` (no VPro code, listed for completeness, not read) | Tools and Overlays 1 |
+| Kernel config | `/var/sysgen/master.d/odyssey`, `odysseystubs`, `/var/sysgen/mtune/odyssey` | Tools and Overlays 1 |
+| libGLcore and libGL | `IP30ODSY`, `IP30ODSY32`, `IP30ODSY64` and `IP35ODSY`, `IP35ODSY32`, `IP35ODSY64`: `libGLcore.so` and `libGL.so` in each, so six libGLcore builds and six libGL builds per release | Tools and Overlays 1 |
+| Earlier IP30 builds | the same IP30 `libGLcore.so`, `libGL.so` and `odyssey.a` as shipped on the base disc (`root/builds/6.5.30-media/`) and in patches 4103 and 4104 of the VPro Patches disc (`root/builds/vpro-patch-4103/`, `vpro-patch-4104/`); the reference install carries a newer build of the libraries still | Tools and Overlays 1, VPro Patches |
+| IrisGL | `/usr/gfx/arch/IGLOO/libgl.so`, `IGLOO32/libgl.so` (both name the Odyssey board among the supported ones), `/usr/lib32/libfm.so` | Tools and Overlays 1 |
+| X | `odyssey.so`, `glx.so`, `Xsgi` | Tools and Overlays 1 |
+| Graphics tools | `gfxinit` (loads the transform microcode), `gfxinfo`, `setmon`, `dmconf`, `sgcombine`, `gfxtopology`, `startgfx`, `stopgfx`, `/usr/bin/X11/xsetmon` | Tools and Overlays 1 |
+| Diagnostics | `/sbin/stand/ide.IP30` (also installed as `/usr/stand/ide`; the IP30 IDE holds the textport part of the driver plus the timing-table and display-clock routines the PROM also carries), `usr/diags/compositor/bin/sting`, `usr/sbin/Confidence/dualchannel` (I2C tests), `usr/gfx/STINGRAY/bin/cmp_flash` and `cmp_flash_all` (compositor flash tools) | Tools and Overlays 1 |
+| Microcode and timing data | `ODSY/buzz_xform.bin`; `ODSY/vof/*.vfo` (video formats); `vfc/rules/VPro_*.def`; `STINGRAY/cmb`, `vfo`, `xlx` and `usr/diags/compositor/data/*.cmb` (compositor tables for the Odyssey dual-channel option); the kernel's own copy, `ODSY-kernel/buzz_ucode_ip30.bin` and `_ip35.bin`, made by `scripts/extract_buzz_ucode.py` | Tools and Overlays 1 |
+| PROM | `IP30prom.bin` carries graphics code: the Odyssey timing-table loader, the DCD2 register loader, the I2C reset and ID routines (about eleven `odsy` routine names appear as strings). `ip35prom.img` holds the string "odsy" once; its code is not readable as an ELF. Neither is disassembled here, only listed in the function inventory by name | Tools and Overlays 1 |
+
+Checked and left out. Reason in each case: the file has no VPro code.
+
+- Files with only the text `ODYSSEY` in a renderer-name table (`/usr/sbin/scope`, `hist`, `vhist`, `slide`, `colorbars`, `gamcal`, `ical`, `vis`, `movie`, `mousemon`): the name appears in a list of boards with no VPro-specific code behind it.
+- `/usr/sbin/ov` (a desktop class named `DeskVProp`) and `/usr/sbin/flash`, `flashio` (the text "ODSYS" in a SysAD message): name collisions, not VPro.
+- `libpf`, `libfxplugutils`, `libXm`, `fglrx_*`, `libblas*`, `hinv` and the IP27/IP30/IP35 kernel objects that merely mention `odsy_xt` (a bus-widget name used by `pcibr.o`, `xbridge.o`, `ioc3.o`, `ioc4.o`, `kernel.o` and others): at most a table of cost numbers, a model string or a widget name.
+- The installed `IP35VOYAGER`, `STINGRAY` hardware names beyond the compositor data above, and every `KONA`, `MGRAS`, `VENICE`, `GR5` file: other boards.
+- The video and sync tools on disc (`videoout`, `videopanel`, `vidtomem`, `ksync*`): they carry no VPro string and `ksync*` are kernel mutex tools, not video sync. No VPro genlock tool exists apart from the genlock paths of the kernel driver and `setmon`.
+- Manual pages, release notes and Insight books that mention VPro: prose, not binaries; not read.
+
+Copy a file from a disc with `instigator extract --unpack --path <install path> <iso> <outdir>`; for several builds of one path, extract each disc to its own directory (the patch disc replaces files the base disc has).
