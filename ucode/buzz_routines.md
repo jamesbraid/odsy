@@ -173,6 +173,23 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
 - **Routine 123** (kernel record 123), **inferred**: the same output for a perspective
   projection (`ody_program.s`, line 1129); it is routine 119 without its first four records.
 
+### Clipping routines
+
+`AddProgram` (`ody_program.s`, source lines 1137 to 1139) adds two list entries when
+`__glOdysseyGetNumHWClipPlanes` returns a nonzero count: record 0 and one of three
+routines chosen by the texture state it worked out at source line 677 (the texture
+dimension from the 1D, 2D and 3D enables) and line 753 (texture generation on).
+
+- **Routine 0** (kernel record 0), **inferred**: the clip-plane routine of a program with
+  hardware clip planes enabled (`ody_program.s`, line 1137, which stores 0 into the list).
+  It reads data words 0x120 to 0x12b in lanes 4 to 7, a plane-sized group per four records.
+- **Routine 12** (kernel record 12), **inferred**: the clip-plane follow-up when texturing is
+  off (`ody_program.s`, line 1139); it carries no texture coordinates through the clip.
+- **Routine 26** (kernel record 26), **inferred**: the clip-plane follow-up when texturing is
+  on without texture generation (`ody_program.s`, line 1139).
+- **Routine 40** (kernel record 40), **inferred**: the clip-plane follow-up when texturing and
+  texture generation are both on (`ody_program.s`, line 1139).
+
 ### Lighting routines
 
 `AddProgram` (`ody_program.s`, source lines 838 to 876) walks the enabled lights (mask at

@@ -1,7 +1,7 @@
 program	kind	address	name	detail	status	doc	section
-buzz_xform.bin	image start	0		end_mark=7 records=8 beyond_ram=no	located	docs/buzz.md#pass-9-odsyrestorexform-and-odsyrestorevb	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
-buzz_xform.bin	host entry	12		end_mark=21 records=10 beyond_ram=no	named-only	docs/coverage.md#buzz	BUZZ
-buzz_xform.bin	host entry	26		end_mark=35 records=10 beyond_ram=no	named-only	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
+buzz_xform.bin	image start	0		end_mark=7 records=8 beyond_ram=no	understood	ucode/buzz_routines.md#clipping-routines	Clipping routines
+buzz_xform.bin	host entry	12		end_mark=21 records=10 beyond_ram=no	understood	ucode/buzz_routines.md#clipping-routines	Clipping routines
+buzz_xform.bin	host entry	26		end_mark=35 records=10 beyond_ram=no	understood	ucode/buzz_routines.md#clipping-routines	Clipping routines
 buzz_xform.bin	host entry	40		end_mark=46 records=7 beyond_ram=no	understood	docs/opengl.md#drawable-binding-odsybinddrawable-odsyunbinddrawable	Drawable binding (`odsyBindDrawable`, `odsyUnbindDrawable`)
 buzz_xform.bin	host entry	51		end_mark=72 records=22 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_xform.bin	host entry	77		end_mark=77 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
@@ -83,7 +83,7 @@ buzz_xform.bin	host entry	1200		end_mark=1206 records=7 beyond_ram=no	named-only
 buzz_xform.bin	host entry	1211		end_mark=1211 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	1216		end_mark=1216 records=1 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	1221		end_mark=1221 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
-buzz_xform.bin	follows end mark	1226		end_mark=1260 records=35 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1226		end_mark=1260 records=35 beyond_ram=no	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 buzz_xform.bin	follows end mark	1265		end_mark=1281 records=17 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	1286		end_mark=1290 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	1295		end_mark=1299 records=5 beyond_ram=no	named-only	ucode/buzz_routines.md#routines	Routines
@@ -127,9 +127,9 @@ buzz_xform.bin	follows end mark	2590		end_mark=2625 records=36 beyond_ram=yes	na
 buzz_xform.bin	follows end mark	2630		end_mark=2686 records=57 beyond_ram=yes	named-only	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	2691		end_mark=2727 records=37 beyond_ram=yes	named-only	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	2732		end_mark=2789 records=58 beyond_ram=yes	named-only	ucode/buzz_routines.md#routines	Routines
-buzz_ucode_ip30.bin	image start	0		end_mark=7 records=8 beyond_ram=no	located	docs/buzz.md#pass-9-odsyrestorexform-and-odsyrestorevb	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
-buzz_ucode_ip30.bin	host entry	12		end_mark=21 records=10 beyond_ram=no	named-only	docs/coverage.md#buzz	BUZZ
-buzz_ucode_ip30.bin	host entry	26		end_mark=35 records=10 beyond_ram=no	named-only	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
+buzz_ucode_ip30.bin	image start	0		end_mark=7 records=8 beyond_ram=no	understood	ucode/buzz_routines.md#clipping-routines	Clipping routines
+buzz_ucode_ip30.bin	host entry	12		end_mark=21 records=10 beyond_ram=no	understood	ucode/buzz_routines.md#clipping-routines	Clipping routines
+buzz_ucode_ip30.bin	host entry	26		end_mark=35 records=10 beyond_ram=no	understood	ucode/buzz_routines.md#clipping-routines	Clipping routines
 buzz_ucode_ip30.bin	host entry	40		end_mark=46 records=7 beyond_ram=no	understood	docs/opengl.md#drawable-binding-odsybinddrawable-odsyunbinddrawable	Drawable binding (`odsyBindDrawable`, `odsyUnbindDrawable`)
 buzz_ucode_ip30.bin	host entry	51		end_mark=72 records=22 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read
 buzz_ucode_ip30.bin	host entry	77		end_mark=77 records=1 beyond_ram=no	understood	ucode/buzz_routines.md#routines-read	Routines read

@@ -46,8 +46,10 @@ An entry that exhausts all five is relabelled "unknown: no shipped software or p
 
 ## Microcode
 
-- **Operation meanings, end marks 1 and 2, opcode dispatch** (`ucode/buzz_isa.md`). Tried: both images, every host-side sender and the entry lists. Next: route 4 (which data-memory words the driver reads back after a routine), then 5.
+- **Operation meanings and end marks 1 and 2** (`ucode/buzz_isa.md`). Opcode dispatch is answered in `ucode/buzz_routines.md` (opcodes of 0x100 or more are entry records). Tried: both images, every host-side sender and the entry lists. Next: the routines not yet read, from `AddProgram`'s table lookup at `__glim_Color3f` + 18048 (72-byte records keyed by the program bits, `ody_program.s` source lines 1041 to 1079), then route 4.
 
 ## Where this pass stopped
 
 The libGLcore context row, the DMA direction, the timing-structure map, the cursor table, the allocation and transfer arguments and the fill operand were answered statically and moved into the owning files. The next static work is the "Image path words" entry above, then route 1 for the BUZZ and display entries.
+
+Microcode and token pass (6.5.30m libGLcore, kernel and X module): 44 routine entries and the twelve raster-state blocks are read (`ucode/buzz_routines.md`, `docs/tokens.md`). Next for the microcode: the program table behind `AddProgram`'s lookup (the 1153 to 1193 family, 997 to 1057, 1173 to 1216, 758), the fragment-lighting branch (source lines 885 to 942: 902, 911, 1071, 1094, 1136) and the overlay routines from 1226 on. Next for the tokens: the blocks libGLcore sends only from `__glOdysseyValidateHardware` (0x004, 0x005, 0x006, 0x013, 0x01a, 0x01c, 0x047, 0x051, 0x052), read setter by setter as above.
