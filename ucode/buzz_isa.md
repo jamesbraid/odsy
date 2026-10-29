@@ -38,7 +38,7 @@ The words `(r << 24) | 0x8000 | enc(v)` with `r` from 0x20 to 0x35 write a regis
 
 | Reg | Who writes it, with what | Reading |
 |---|---|---|
-| 0x22-0x25 | context default: 0, 2, 10, 14; kernel textport 0x22 = 1, 0x23 = 3 | **unknown** |
+| 0x22-0x25 | context default: 0, 2, 10, 14; kernel textport 0x22 = 1, 0x23 = 3; X module (`odyssey.so`) 0x22 = 1, 0x23 = 3 before colour-index drawing and 0x22 = 0, 0x23 = 2 before RGB drawing (`docs/opengl.md`) | 0x22 and 0x23: **inferred** a colour-mode pair (index against RGB), because every site that sends the index colour word (`0xc580c406`) uses 1 and 3 and every site that sends an RGB colour word uses 0 and 2, in the X module's fill and glyph paths and in the kernel textport against the GL default. Which routine reads them and what 0x24 and 0x25 do: **unknown** |
 | 0x26 | kernel init: 127 | **inferred** a routine address: 127 is an entry named by AddProgram |
 | 0x27 | write address for loading | **established** (above) |
 | 0x29, 0x2a, 0x2c | per-program record words; lighting sets 0x29 = 410 around a data load and then restores it | **inferred** routine addresses: AddProgram relocates these three exactly as it relocates its entry list when they fall in the overlay range |
@@ -95,6 +95,10 @@ The record with only bit 19 set (h4 = 0x0008, rest zero; 150 times) appears in l
 
 - **established.** The host sends geometry, colours and texture coordinates as IEEE single-precision floats or as integers that the board converts (`BUZZ.h` section 1, attribute opcodes); lighting constants go to data memory as floats after a 0x32 address (`ody_lighting.s`). No instruction field is wide enough for a 32-bit immediate, so constants live in data memory.
 - **unknown.** The arithmetic width of the units this program drives, and anything about sub-texel position, filter weights, LOD calculation or colour iteration. The routines that AddProgram selects are named by GL state (transform, lighting, texgen, clipping), not by rasterisation, so this program is not where texture filtering precision would be found. Those questions belong to the rasteriser and texture registers in `BUZZ.h`.
+
+## Operation names (pass 6)
+
+No instruction field or routine is named an operation in this pass. The only reading a host-side use supports is the pair above (registers 0x22 and 0x23 select index or RGB colour handling); routines are still known only by their entry numbers and the GL state that selects them. The attempt that failed: the lighting loader at entry 410 (host loads four floats after register 0x32 = 24 and word `0x8e809015`) is a 5-record routine whose records are all idle except the first and the last, and the 16-record counting run at 418 to 441 steps `r3` from 16 to 31 beside data addresses 0x200 to 0x20f, which matches the 0x200-0x20f table ids of `BUZZ.h` only by count. Neither says whether a record reads or writes data memory, so no operation is named: **unknown**.
 
 ## Next steps
 
