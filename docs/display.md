@@ -156,3 +156,69 @@ IRIX 6.5.30m, IP30. Sources named per item. The chip-level registers are in `PBJ
 - **established.** The X module (`odyssey.so`) drives scanout only through the kernel's private ioctls (number `0x6f640000 + n`, `docs/opengl.md`): `odsyLdFmtByName` and `odsySetFBConfig` send 27 (configure frame buffer), `odsyLoadTimingTable` sends 31, 32 and 33 (load timing table, VTG control, I2C), `odsyInitDefaultHW` 32, `odsyDisplayInit` 29 (display mode), `odsyBlankScreen` 30, `odsyLoadCmap` and `odsyLoadGamma0` 26 (colour maps, the multi-word type-7 path of `PBJ.h` section 2), and the cursor routines 28. It never stores to the display FIFO itself. **established** by the `lui 0x6f64` / `ori` pairs in each function of `ddx/asm/odyssey/odsy/odsy.s`.
 - **established.** libGLcore's `__glOdysseySwapBuffers` (`ody_unixcontext.s`) sends, through the command FIFO: the settle sequence; block 0x5a with the context's write-back location ORed with 0x8000 and an incremented tag; the drawable descriptor block 0x017 three times (as held, with the third word 0, and with bit 23 ORed into the third word), with the reset sequence for blocks 0x041/0x04b/0x040 or the word `0x90008116` in front by bit 27 of the third word, as in make-current; then ioctl 1005 with a context word and two zeros. A failing ioctl takes an error path. **inferred:** the three 0x017 writes retarget drawing at the other buffer, and ioctl 1005 asks the kernel to schedule the display swap for the window (the kernel handler for 1005 was not traced; `gf_OdsySchedSwapBuf` is the candidate, by name).
 - **unknown.** Which kernel entry handles ioctl 1005; the meaning of bit 23 of block 0x017's third word; how a WID is assigned to a GL window.
+
+## Pass 10: the swap request in the kernel, window ids, cursor bitmaps and the IP35 digital output
+
+Release IRIX 6.5.30m. Kernel objects `rrm.o`, `odsy_retrace.o`, `odsy_dvi.o` (IP35), and `odyssey.so`. Each item carries its label.
+
+### The generic resource-manager ioctls (1000 to 1025)
+
+**established.** `gfxioctl` (`gfx.o`) sends any command from 1000 up to 9999 that the driver does not take itself to `RRM_Dispatch` (`rrm.o`), which accepts 1000 to 1099 and calls a handler from a table of 24-byte entries in `rrm.o` `.data` (handler pointer, argument size and a flag word, name pointer; read from the `.rel.data` relocations and the data words). The numbers in use, with the handler:
+
+| n | Handler | n | Handler |
+|---|---|---|---|
+| 1000 | `RRM_OpenRN` | 1013 | `RRM_SwapGroup` |
+| 1001 | `RRM_CloseRN` | 1014 | `RRM_SwapUnGroup` |
+| 1002 | `RRM_BindProcToRN` | 1015 | `RRM_ValidateMessage` |
+| 1003 | `RRM_BindRNToClip` | 1016 | `RRM_GetDisplayModes` |
+| 1004 | `RRM_UnbindRNFromClip` | 1017 | `RRM_LoadDisplayMode` |
+| 1005 | `RRM_SwapBuf` | 1018 | `RRM_CushionBuffer` |
+| 1006 | `RRM_SetSwapInterval` | 1019 | `RRM_SwapReady` |
+| 1007 | `RRM_WaitForRetrace` | 1020 | `RRM_MGR_SwapBuf` |
+| 1008 | `RRM_SetDisplayMode` | 1021 to 1023 | `RRM_SetVideoSync`, `RRM_GetVideoSync`, `RRM_WaitVideoSync` |
+| 1009 | `RRM_Message` | 1024 | `RRM_BindRNToReadAndClip` |
+| 1010 | `RRM_InvalidateRN` | 1025 | `RRM_MapClipToSwapbufID` |
+| 1011, 1012 | `RRM_ValidateClip`, `RRM_ValidateSwapBuf` | | |
+
+### Ioctl 1005, the kernel side of a buffer swap
+
+**established** (`RRM_SwapBuf` in `rrm.o`, `gf_OdsySchedSwapBuf` in `odsy_retrace.o`; IP30). This answers the open question of which entry handles the call that libGLcore sends at the end of its swap sequence: ioctl 1005 with a 12-byte argument (the three words libGLcore sends, a context word and two zeros).
+
+- `RRM_SwapBuf` marks the caller's resource node as having swapped (resource-mask bit 8), waits through `rrmSwapWait` when swap-interval mode is on and the retrace target has not been reached, checks the caller, then copies the node's swap record: its word at +20 becomes the node's swap-buffer id (`+28`, low byte; 255 means none). When the display is the caller's, it toggles the record's front/back halfword (+18) and copies it into bit 2 of the argument's third word. That word goes into the record (+32) and, for an id below the board's table size, into the board's per-id table. It increments the board's pending-swap counter (+80), invalidates the window's pane, and calls the board driver's swap entry (slot 136 of the operation table in `odsy.o`, which is `gf_OdsySchedSwapBuf`), passing the node, the argument's second word and the id.
+- `gf_OdsySchedSwapBuf(board, node, id)` rejects an id of 32 or more. It first makes the caller flow-control attached (`odsy_flow_am_i_attached`, with the attach bit in the process record's flags) and pushes the buffer select (`odsyPushBufferSelect`). Under the board's swap mutex it waits (`sv_wait`) while a swap for the same id is still pending (pending mask at record +28568, bit per id). It then sets the pending bit, builds the mask of ids that swap together with this one (the swap group's members, linked from the group at node+160/+168, each member's id at +20), and writes that mask to board +0x10bc (and record +28544) when the swap list is empty or its head is this group. It fills a 40-byte per-id record at +28584 + 40 x id: the drawable, the group, a halfword read from the drawable state, the group mask, a retrace target (the group's two counter words added, bounded below by the retrace counter plus the swap interval) and a zeroed repeat counter. It updates two 32-bit bitmaps (+28572 from the group's front/back halfword, +28576 from the drawable's word at +580, both shifted by the id), compares a per-drawable halfword of a table at +880 with the record's halfword, and then either calls `odsySwapBuffer(board, id)` at once (equal) or defers by setting the id's bit in +28548 (the retrace handler later calls `odsySwapBuffer`, `docs/buzz.md` section 6).
+- **inferred.** The id the swap request names is the window id the retrace handler's per-id registers (0x10b4 to 0x10d4) use; the per-id record and bitmaps are the driver's shadow of what those registers hold.
+
+### Window ids
+
+**established.** The window id (the "swap-buffer id") of a pane is not chosen by the kernel. `RRM_ValidateSwapBuf` (ioctl 1012) takes a clip id and an id from the caller's argument and `validate_pane_swapbuf` stores the id into the clip's pane (+20) and marks it valid; `RRM_MapClipToSwapbufID` (1025) returns that id for a clip, or -1 when there is no pane. The X module sends 1012 from `odsyValidateSwapbuf`. Panes live in an array of 184-byte records whose length is a driver constant. **inferred** that the X server hands out ids below 32 (the bound `gf_OdsySchedSwapBuf` and `odsySwapBuffer` test); the allocation policy inside the X server (which window gets which id) was not read: **unknown**, a trace of the 1012 calls of an X session with several windows would show it.
+
+### Bit 23 of block 0x017's third word
+
+**unknown, needs a hardware capture.** `__glOdysseySwapBuffers` sends block 0x017 three times and ORs bit 23 into the third word of the last. No kernel code decodes that word, and the saved record only copies it. A capture that settles it: the command stream of a double-buffered swap together with the board's swap bit (the read-back through +0x10d4) after each of the three block writes.
+
+### Cursor bitmaps (`odsyRealizeCursor`, `odyssey.so`)
+
+**established** by reading the routine in full (disassembly `ddx/asm/odyssey/odsy/odsy.s`, 13454): it works on a 32-row cursor, clamping width and height to 32, and fills the 768-byte buffer in two parts per row.
+
+- Part one, 16 bytes per row (32 rows, 512 bytes): the cursor's source row word masked by a left-aligned width mask is cut into eight nibbles; each nibble indexes a 16-entry table of 32-bit constants in the module's read-only data, and the eight results are packed two per word (the entry from the lower nibble in the low half) into four words. So each source pixel becomes four bits through a table lookup. The table's contents were not extracted: **unknown**.
+- Part two, 8 bytes per row (256 bytes, written at offset 512 onward): each pixel gets two bits built from a source bit and a mask bit by conditional moves in a fixed pattern, two words per row. Which of the four codes means transparent or inverted: **unknown, needs a hardware capture** (the displayed result of each of the sixteen code pairs on a known background).
+
+### Digital output on IP35 (`odsy_dvi.o`, IP35 only)
+
+**established** (IP35 `odsy_dvi.o`, 580 lines of text, read in full): the IP35 driver programs a digital video output through I2C with three groups of routines. (1) An FPGA at I2C address 58 (0x3a) that has a single readable and writable byte: `odsy_dviFPGARegRead` and `odsy_dviFPGARegWrite` address it and move one byte; `odsy_setDVIFPGA(dev, mask, value)` does a read-modify-write of that byte (clear the mask bits, OR in the value); `odsy_loadDVIFPGA` polls the expander bits read through `elsc_ody_expander_get` (the value shifted right by 3, bit 0 tested) to see that the FPGA has loaded, with up to two tries 500000 us apart, and fails with an error message when bit 0 stays clear. (2) A transmitter at I2C addresses 56 and 57 (0x38 and 0x39: two instances), set up by `odsy_write_XmitRegs`, which writes register 8 = 49, 9 = 25, 10 = 112 (240 when the address is 56), 12 = 137, 13 = 128 and 51 = 0 through the clock-part register-write routine (`odsy_i2cPLLRegWrite`). `odsy_read_XmitRegs` reads registers 8, 9, 10, 12, 13 and 51 back with 10 ms between reads. (3) `odsy_setDVIRegs` ties them together: load the FPGA, clear bits 1:0 of its byte (`odsy_setDVIFPGA` with mask 3, value 0), then write the transmitter registers for address 56 and for 57. Nothing in the IP30 install calls any of it. The chips' identities and the registers' meanings: **unknown, needs a hardware capture or the parts' own documents** (an I2C trace of a mode set on an IP35 board with a digital monitor).
+
+### The 320-byte structure builder in the X module
+
+**established** (partly). `odsyLoadTimingTable` in `odyssey.so` (disassembly `ddx/asm/odyssey/odsy/odsy.s`, 137839) clears a 320-byte local structure and fills it by calling `SDBgetSymbolValueScalar(file, name, &field)` once per `.vfo` field name (36 calls), then hands it to the kernel with the timing-table ioctl. Names that decode cleanly from the module's read-only strings include `FormatInfo_H_Active`, `ODY_AMI_PLL_0x0`, `ODY_AMI_PLL_0x4`, `ODY_PLL_OutputEnables`, `ODY_VTG_Control`, `ODY_VTG_InitState`, `ODY_VTG_ChanEn`, `TTL_Sync`, `LineSeqTab`, `FrameTab`, `FormatInfo_DualHead`, `ODY_I2CClockSpeed`, `DPAControl`, `DPAOffset` and `ODY_GEN_hPSD`. Two words come from the caller's format record instead: structure word 184 (the refresh rate, truncated from a floating-point value at record offset 272) and word 172 (record offset 300). **inferred** that each word of the structure table above is one of those names. The name-to-offset map is not recovered: the routine addresses the module's strings relative to a symbol whose address the disassembly does not show, and about half the string offsets do not land on a string start with the base that decodes the others, so a pairing from this text would be a guess. **unknown, needs a capture:** a trace of the calls to `SDBgetSymbolValueScalar` from a running X server (name and destination per call), which gives the whole map in one run.
+
+### What the display rows still lack
+
+Everything left in the display rows is a property of the hardware that no software reads back, so each needs the capture named:
+
+- **Registers, bit fields of the display registers and the colour-map top:** the read-backs in `docs/pbj.md` (last bullet).
+- **Interrupts, what raises the retrace and genlock sources:** the flags register read at each event (`docs/buzz.md`, interrupts comparison; `docs/pbj.md`).
+- **Line-table low-byte bits, event entries, bit 13 and the entry duration rule:** a logic-analyser capture of the video output signals (sync, blank, pixel data) with a known timing loaded, changing one table entry bit at a time and recording which output line moves.
+- **Display-mode word bits 23:12 and 3:0 (`DISPLAY.h` section 2) and the repeat-versus-scale reading of the mode field:** the display-FIFO mode word for each id read back through +0x220000 (`docs/pbj.md`), with the displayed width of a known test image at each id.
+- **Narrow-visual scanout and overlays:** a screenshot of a known 12-bit and 15-bit image through the real output (compare with the widened values in the tables above), and a run of the X server that lists overlay visuals with its call trace of the overlay capability registration.
+- **Structure words 220, 224, 264 to 280 and the words listed as unread in the structure table:** the kernel loader's branches on them were not traced. A capture that settles each: the display-FIFO and I2C writes of a mode load, repeated with that one word changed; the writes that change name the word's use.
+- **Which pixels move from BUZZ memory to PB&J:** the bus trace named in `docs/pbj.md`.
