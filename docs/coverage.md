@@ -72,10 +72,10 @@ The IP30 kernel graphics driver and resource manager: attach, ioctls, context an
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface |  |
+| Registers and fields | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Board record offsets used by the flow, display-mode and textport paths written |
 | Command and FIFO formats | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Kernel textport and flow-control paths written in `BUZZ.h` section 5 |
 | DMA | none | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface |  |
-| Interrupts | none | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface |  |
+| Interrupts | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | High- and low-water handlers written; other handlers in odsy_intr.o not read |
 | Reset | none | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface |  |
 | Context save and restore | none | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface |  |
 
