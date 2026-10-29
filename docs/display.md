@@ -132,13 +132,13 @@ Release IRIX 6.5.30m, IP30. Sources: `gfP_OdsyBRDMGRcursor` and `gf_OdsyPosition
 
 ### Overlay planes
 
-Pass 7. No overlay plane exists in what the drivers program. The evidence, all **established** unless marked:
+Pass 7, corrected. This pass first concluded that the drivers model no overlay planes. That conclusion is withdrawn: a run of the X server under an emulator listed visual 0x23 in `SERVER_OVERLAY_VISUALS` with transparent pixel 0 in layer 1, and drew menus there, from a build of `odyssey.so` other than the one read here. An observation of the running server outweighs this negative search. What remains is a set of search results about the file read, all **established** as searches:
 
 - The X server advertises overlay visuals through `nfbInitServerOverlayVisualsProperty` (`ddx/asm/odyssey/nfb/nfb.s`), which builds `SERVER_OVERLAY_VISUALS` from per-visual capabilities: for each visual it calls `nmbxLookupCapability` with the atoms `TRANSPARENT_PIXEL` and `FRAME_BUFFER_LAYER` and adds an entry only when one of them is present. The odsy code (`ddx/asm/odyssey/odsy/odsy.s`) registers capabilities only through the accumulation-buffer names (`nmbxAccRedSizeString` and its siblings, `nmbxAccumulationBufferString`); it never references `nmbxTransparentPixelString` and no odsy code names either atom. So no odsy visual carries a transparent pixel or a layer number, and the property lists none.
 - The 53 entries of `odsyVisuals` (VA 0x017345f8) are PseudoColor 8 (256 entries) and 12 (4096 entries), StaticColor 8, TrueColor 12, 15, 24 and 30, and DirectColor 24 (class, bits per channel, colormap size and depth read from each 36-byte record). None is a 2- or 4-bit visual, the usual overlay depths on SGI hardware.
 - The display-mode table (`DISPLAY.h` section 2) and the PB&J address list (`PBJ.h` section 3) hold no overlay or popup entry, and no display FIFO header in any kernel object targets an address outside that list.
 - `ddxOverlayFlag` and `ddxNoOverlaysFlag` (from `Xsgi`) are read in the visual-building loop of `odsyInit`: with `ddxOverlayFlag` set the loop stores a register value (the one the loop also uses as the constant 1) into offset 56 of the record being built at `sp + 1344`, and with `ddxNoOverlaysFlag` set the loop skips a visual when the word at `.sdata` offset 0x35ec from its base register is zero (whether that base steps per visual was not settled). What those fields mean: **unknown**.
-- **inferred.** 8-bit PseudoColor windows play the role overlays play on other SGI boards, as ordinary windows with their own display-mode id; the cursor is the only plane drawn over every window (`docs/display.md`, cursor section). Not confirmed on hardware.
+- **unknown.** Where the server registers the overlay capability, and how overlay pixels are stored and shown.
 
 ## Scanout path: what BUZZ and the host drivers do (pass 7)
 
