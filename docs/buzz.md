@@ -118,3 +118,6 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 - Where the user context's shadow sits and how libGLcore keeps it (the `libGLcore` side of save and restore, `__glOdysseyMakeCurrent` and the dirty-bit words in the context): not read. **unknown.**
 - The per-field layout of the 4165-word textport image replayed by `odsy_tpinit` (`odsy_kern.h`) is not related to this path and was not examined.
 
+## 5. Display timing
+
+See `docs/display.md`.
