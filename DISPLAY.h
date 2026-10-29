@@ -202,8 +202,16 @@
 #define VTG_CTRL0              0x2481 /* struct word 28 | 0x42; also 1 */
 #define VTG_CTRL1              0x2482 /* struct word 32 */
 #define VTG_CTRL2              0x2483 /* struct word 36 */
-#define VTG_REG_2580           0x2580 /* type 3 and type 7 both used */
-#define VTG_REG_2581           0x2581 /* driver state bits */
+/* Not video timing: 0x2580 is the cursor position word and 0x2581 the
+ * control word the cursor request rewrites (docs/display.md, cursor
+ * section, pass 6; gf_OdsyPositionCursor, gfP_OdsyBRDMGRcursor).
+ * established as the writers; the board meaning of 0x2581's bits is
+ * unknown. Position data: (x - x0) << 16 | (y - y0) & 0xffff. */
+#define CURSOR_POS             0x2580 /* type 3 or 7 by control bit 2 */
+#define CURSOR_CTRL            0x2581 /* type 7, driver record -19664 */
+#define CURSOR_IMAGE_A         0x2500 /* 128 words, established */
+#define CURSOR_COLORS          0x2590 /* 15 words, established */
+#define CURSOR_IMAGE_B         0x25c0 /* 64 words, established */
 #define VTG_REG_2600           0x2600 /* struct word 164 */
 #define VTG_REG_2680           0x2680 /* struct word 168 */
 #define VTG_REG_26C0           0x26c0 /* struct word 160 */

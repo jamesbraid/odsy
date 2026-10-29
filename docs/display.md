@@ -95,3 +95,33 @@ The vertical front porch is not at a fixed offset found here; it is the remainde
 1. Decode the line-table entry bits: compare line types of one timing that differ only in sync or blanking, and the two built-in timings line by line.
 2. Read `odsyReadVideoFormat` and `odsyLoadTimingTable` in `odyssey.so` for the `.vfo` to structure conversion.
 3. Trace the branches of `odsyLoadTimingTable` for words 220, 224 and 264 to 280, and read `odsyRetraceHandler` and `odsyGenlockInterrupt`.
+
+## Cursor and overlay planes (pass 6)
+
+Release IRIX 6.5.30m, IP30. Sources: `gfP_OdsyBRDMGRcursor` and `gf_OdsyPositionCursor` (`odsy_brdmgr.o`, disassembly `odsy_kernel/disasm/odsy_brdmgr/`), and in `ddx/odyssey.so` `odsyRealizeCursor`, `odsySetCursorColor` (disassembly `ddx/asm/odyssey/odsy/odsy.s`). Header words are `.lit8` constants and `lui`/`ori` immediates; the display-FIFO header layout is in `DISPLAY.h` section 1.
+
+### Kernel cursor request
+
+- **established.** `gfP_OdsyBRDMGRcursor(dev, ..., arg, ...)` copies 40 bytes from the caller and acts on a flag word at offset 0, each flag in the order tested:
+
+| Flag | Argument | Effect |
+|---|---|---|
+| 0x01 | words 1: hi16 and lo16 | stored in the board record at -19668 and -19666 (hotspot offsets, subtracted from the position) |
+| 0x02 | word 2: hi16 = x, lo16 = y | `gf_OdsyPositionCursor`: stores x and y in the record (-19672, -19670) and writes the display-FIFO word `0x39600001` (or `0x79600001`) with data `((x - x0) << 16) | ((y - y0) & 0xffff)`, header address 0x2580, type 3 when record bit 2 of the control word (-19664) is 0, type 7 otherwise |
+| 0x04 | word 3 | replaces the control word at record -19664 and writes it with header `0x79604001` (type 7, address 0x2581) |
+| 0x08 | pointer in word 4 | copies 60 bytes in, writes them as 15 words with header `0x3964000f` (type 3, address 0x2590, count 15) |
+| 0x10 | pointer in word 6 | copies 512 bytes in, writes 128 words with header `0x39400080` (type 3, address 0x2500) |
+| 0x20 | pointer in word 8 | copies 256 bytes in, writes 64 words with header `0x39700040` (type 3, address 0x25c0) |
+
+  (Pointer words are 64-bit and sit at offsets 16, 24 and 32 of the argument.) Before each write the driver waits for the display FIFO level to fall to 15 (7 before the colour block); a copyin failure returns 14, a FIFO timeout 5. An absent flag leaves that item untouched.
+- **established.** `DISPLAY.h`'s `VTG_REG_2580` and `VTG_REG_2581` are these two words: 0x2580 is the cursor position, 0x2581 the control word the cursor request rewrites. Other display-FIFO writers in the driver wrap their stores with the same word (read the record's control word, compare its bit 5 against a record halfword, store `0x79604001 | word`, toggle bit 5, store again, then flush a queued pending doubleword at record -31416): **established** as a code pattern in `odsyGatherInfo`, `odsyGenlockInterrupt` and `gfP_OdsyBRDMGRcursor`; what bits 0, 1 and 5 do on the board: **unknown**.
+- **inferred.** 0x2500 to 0x257f (128 words) and 0x25c0 to 0x25ff (64 words) hold the cursor image: 1024 pixels of a 32 x 32 cursor at 4 bits and 2 bits per pixel are exactly 512 and 256 bytes. The 15 words at 0x2590 are then the colours for pixel values 1 to 15 (value 0 transparent). Reason: sizes and the X module's 32-pixel clamp, below. Not confirmed on hardware; the first block's meaning versus the second's is **unknown**.
+
+### X module
+
+- **established.** `odsyRealizeCursor` allocates a 768-byte buffer (512 + 256, the two kernel copyin sizes), clamps the X cursor's width and height to 32, and fills it from the source and mask bitmaps by shifting 2-bit and 4-bit fields into 32-bit words (rows of 16 bytes for the first part, 8 bytes for the second, each starting at offset 512 of the buffer in the second case). The pixel-value mapping from source and mask bits: not traced, **unknown**.
+- **established.** `odsySetCursorColor` takes 16-bit X colour components, shifts them right by 4 to a 12-bit value, indexes a 12-bit-in 16-bit-out table (the screen's gamma table, pointer at screen record +12) and packs the three results into one word with R in bits 29:20, G in 19:10, B in 9:0: the colour-map entry format (`DISPLAY.h` `CMAP_*`). It builds a foreground and a background word, and a third when the cursor has a second colour record. **established** for the packing; that these words are what the kernel's 15-word block holds is **inferred**.
+
+### Overlay planes
+
+- **unknown.** No overlay or popup plane write was found. The kernel's display-mode table (`DISPLAY.h` section 2) holds the only per-window plane choices (colour-index and TrueColor modes by id); the X module's `ddxOverlayFlag` and `ddxNoOverlaysFlag` (imported from `Xsgi`) are read in `odsyInit`, and its common X layer builds a `SERVER_OVERLAY_VISUALS` property (`nfbInitServerOverlayVisualsProperty`), but whether any odsy visual is an overlay was not traced. This is a dead end for this pass; a reader should start from `odsyInit`'s use of the two flags and the `odsyVisuals` table (53 entries in `odyssey.so`, VA 0x017345f8).
