@@ -374,3 +374,47 @@ Pass 8. The reset row's open items were block 0x054, register 0x7f0 with the ID 
 - **Block 0x054 operands (0, 0x0fffffff): unknown, needs a hardware capture.** Compare the board's state (flags 0x1014, status 0x1064, FIFO level) after the reset sequence with and without that block; a bus trace of the board's response to it would name its function.
 - **ID word 0x003d0046 at +0x201594: unknown, needs a hardware capture.** Read the register on boards of each member of the family (V6, V8, V10, V12) and on both hosts; if it varies, the field split follows from which parts vary. **inferred** only that it is an identification or ready word, from the skipped microcode load when it differs.
 - **Register 0x7f0 = 0x3b9aca00: unknown, needs a hardware capture.** The value is 10^9, which suggests a timeout or counter reload, but nothing in the binaries supports a unit. Settle by changing it through the FIFO port and timing the behaviour it controls (the first thing to try: the interval of a stalled-FIFO timeout).
+
+## 9. Pass 10: closing the register and command rows
+
+Release IRIX 6.5.30m, IP30 kernel objects and the N32 libGLcore unless named. Each item is **established**, **inferred** or **unknown** with the capture that would settle it.
+
+### The 0x4000 register group (`odsy_diag.o`)
+
+**established** by reading `odsyInitPfRgn`, `odsyDestroyPfRgn` and `gfP_OdsyPerfStat` (private ioctl 51) in full.
+
+- **Statistics region address, 0x401c and 0x4024.** `odsyInitPfRgn(board, size)` returns at once when a region already exists. Otherwise it allocates a zeroed 16384-byte kernel buffer, keeps `min(size, 16384)` as the region size, pins and maps it for the client, converts the buffer to a physical address and writes bits 47:32 of it to board +0x401c and bits 31:0 to +0x4024, each followed by `sync`. `odsyDestroyPfRgn` frees the buffer and writes zero to both. This is the same high-half and low-half split the shadow region uses at +0x4034 and +0x403c (`docs/kernel.md`). **inferred** that both pairs are the physical address of a host-memory region the board writes into, from the split and from the pin-and-map step; what the board writes there: **unknown, needs a hardware capture** (the contents of the region after a draw, taken together with the stream that drew).
+- **Statistics control, 0x402c.** The ioctl copies in a 24-byte argument. Word 0 is a request mask: bit 0 create the region, bit 1 write the control register, bit 2 destroy it; a mask with bits 0 and 2 both set is refused with error 22. Creation takes a size from byte 16 of the argument as `(2 << n) * 32` bytes for `n` = that byte (the region is capped at 16384 by `odsyInitPfRgn`), destroys any existing region first, and returns the client's mapping address of the region at offset 8 of the argument. The control word written to +0x402c is built from the same argument bytes: bits 3:0 = byte 16 (low nibble), bit 4 = byte 17 bit 0, bit 5 = byte 18 bit 0, bit 6 = byte 19 bit 0, bit 7 cleared, bits 10:8 = byte 21 (low three bits), plus the fixed bits 31 and 27 (0x88000000). **established** as bit positions. What each field selects on the board: **unknown, needs a hardware capture** (a read of the status0 `PERF_STATS_PUSH_ACTV` bit and of the region's contents while each control bit is set alone).
+- Everything else the group holds (0x4004/0x400c context save, 0x4014/0x4044 master ids, 0x4034/0x403c, 0x404c-0x405c) is covered in section 4 and `docs/kernel.md`. The group's remaining bit fields are **unknown, needs a hardware capture**: a read-back of each register after reset.
+
+### COUNT 8 to 14 in command words
+
+**established.** A scan of every `lui 1` / `ori` pair that forms a class-1 command word across libGLcore (all ABIs' decompiled sources), the X module and both kernel sets finds COUNT 8 words only for ids 0x30-0x33, 0x3b and 0x4b, and in each of them the kernel's replay routines send exactly eight operands (`odsyRestoreRaster`, `odsyClipPush`), so COUNT 8 means 8 operands. The pairs with COUNT 9 to 14 in that scan are address offsets used with `addu` or as a load or store displacement (for example `0x201c` in the accumulation code and `0x3420` before a call to `__glOdysseyValidateTexGen`), not words stored to the FIFO. So no software sends COUNT 9 to 14 as a class-1 word. **unknown** whether the board accepts them: needs the chip's own description; no capture of existing software can show it.
+
+### Attribute ids not sent as constants
+
+**established** that no `lui`/`ori` attribute word in libGLcore, the X module or the kernel has opcode 0x1a, 0x1b, 0x1d or 0x27 to 0x2e. Opcodes 0x1c, 0x26, 0x33, 0x34, 0x39 and 0x3a appear only as the defaults in section 8. **unknown, needs a hardware capture:** whether the board defines the other opcodes, and what slots 2, 4 and 16 carry. A capture that settles it: the FIFO stream of an application that sets a secondary colour and a fog coordinate, next to a stream that does not.
+
+### The 0x220 and 0x230 tables
+
+**established** that no libGLcore store targets context offset 0x7fe4 or 0x83e4 by constant displacement. The only stores at displacements near 0x7fe4 are the level-descriptor writes below, which end at context offset 32740 (the descriptors cover 31968 to 32735). The 0x220 table is therefore a second table with no writer in libGLcore, like the 0x230 table (`BUZZ.h` section 2). **unknown, needs a hardware capture:** the content of both tables on a running board (a dump of the saved record after a save, `BUZZ.h` +0x118000) while a texture-heavy scene runs, to see whether either ever differs from zero.
+
+### Level descriptor words (blocks 0x280 + i)
+
+**established** by reading `__glOdysseyTextureActivate` (`ody_texture.s`, source lines 1976-2005), which writes three 32-bit words per level into the context at 12-byte stride (`GC_HW_TEXLEVEL`, `glcore_odsy.h`), ending at context offset 32736:
+
+| Word | Fields written |
+|---|---|
+| 0 | bits 28:0 from a per-level value of the texture object (object offset 1300 + 4 x level); bits 31:29 kept |
+| 1 | bits 11:0 from the level's width in 16-texel units, `(w + 15) >> 4`, rounded up to even (when that value is 4096 the field is cleared and bit 0 is set instead); bits 25:20 from a per-level field at offset 1364 of the texture object's 68-byte per-level record; bits 31:30 from the field at offset 1368 of the same record; other bits kept |
+| 2 | not written by this routine |
+
+The rounding to an even tile count and the 16-texel unit are **established** as arithmetic; that word 0 is a board-memory address of the level (the object's per-level value comes from a memory-object reference opened just before) and that word 1 holds a pitch in tiles are **inferred**. The record fields behind bits 25:20 and 31:30, and word 2, are **unknown, needs a hardware capture** (the block 0x280 + i operands of a command stream for a known mipmapped texture, to be matched with the texture's size and format).
+
+### The windows at board +0x100000, +0x120000 and +0x200000
+
+**unknown, needs a hardware capture.** The mapping table is in `BUZZ.h` section 5. The only established access is the kernel's read at +0x201594. A capture that settles each window: a bus trace of a libGLcore client's accesses into its mapping, or a read of the first words of each window on a quiescent board.
+
+### What stays unknown in the register and command rows
+
+Field layouts of the replayed blocks with no entry in the "Known from" column of section 8, the meanings of blocks 0x019, 0x043 and 0x046, the 0x8e and 0x90 state words, and the water marks are all values the code only stores. The software never reads the board back for them, so a capture is the only source: the first needs the operands of each block taken from a stream whose GL state is known, one state at a time; the others are named in the reset section above.
