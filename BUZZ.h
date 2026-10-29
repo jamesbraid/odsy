@@ -346,9 +346,11 @@
  * nibble: c12 = c8 << 4 | c8 >> 4, and alpha 0xfff. established:
  * ODSY_SET_GC (odsy_tport.o), the operands of block 0x21 (0x00010c21).
  */
-#define BUZZ_REG_FILLCOLOR         0x021 /* 3 words: unknown (512 from the
-                                            textport), RG12, BA12;
-                                            established as used */
+/* Block 0x021, three words: a control word (512 from the textport, the
+ * blend factors when GL writes it: inferred from GL's blend paths), then
+ * a constant colour as RG12 and BA12. The textport and the X server's
+ * fills use the colour as the drawing colour. established as used. */
+#define BUZZ_REG_CONSTCOLOR        0x021
 
 /* ===================================================================
  * 5. FIFO ports, flow control and the textport stream
