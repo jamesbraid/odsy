@@ -31,7 +31,7 @@ Graphics ASIC named in the board inventory: command intake, rasterisation, textu
 | Interrupts | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
 | Reset | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | initialisation sequence reported by prior work |
 | Context save and restore | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
-| Texture formats and filtering (incl. precision) | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | checked partial-window draw behaviour reported by prior work |
+| Texture formats and filtering (incl. precision) | partial | `BUZZ.h`, `docs/buzz.md` | direct XIO interface | checked partial-window draw behaviour reported by prior work. Written: texture register blocks 0x16/0x13/0x30/0x1b/0x280+i, filter and wrap codes, LOD fields (S5.8), 12-bit border/env colour, S3.12 scale/bias, detail table (LOD -i/32, 0.12 weights), texel format table. Missing: sub-texel and filter-weight widths (not visible in the driver), level descriptor words, register carrying the detail table |
 | Display and scanout | none | `BUZZ.h`, `docs/buzz.md` | direct XIO interface |  |
 
 ### PB&J
@@ -87,7 +87,7 @@ Userspace drivers: libGLcore command emission and the X server module (odyssey.s
 |---|---|---|---|---|
 | Command and FIFO formats | none | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface |  |
 | Context save and restore | none | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface |  |
-| Texture formats and filtering (incl. precision) | none | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface |  |
+| Texture formats and filtering (incl. precision) | partial | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface | Written: texture object shadow layout and context mirrors. Missing: level records, texture memory allocation |
 | Display and scanout | none | `libglcore/include/glcore_odsy.h, ddx/include/odsy_ddx.h`, `docs/opengl.md` | direct XIO interface |  |
 
 ## Microcode (lower priority)
