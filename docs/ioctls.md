@@ -46,8 +46,8 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   A 16-byte argument converted with `copyin_xlate`, the same layout size as the attach request;
   `ng1_setmon` sends it.
 - 0x71 `GFX_SET_DIAG_FLAG` (ioctl 113, `gfx.o`): **established.**
-  The case calls `drv_priv` first, so only a privileged caller reaches the flag change; the compositor
-  diagnostic and `saXSGIvcQueryChannelGammaMap` send it.
+  The case calls `drv_priv` first and, for a privileged caller, sets bit 2 of the board record's flag word at
+  +4 without copying any argument; the compositor diagnostic and `saXSGIvcQueryChannelGammaMap` send it.
 
 ## Resource-manager requests (1000 to 1025)
 
@@ -78,7 +78,7 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   shipped binaries other than libGLcore's swap sequence.
 - `RRM_SetSwapInterval` (ioctl 1006, `rrm.o`): **established.**
   Calls nothing: it refuses a negative interval from argument word 1 with error 22 and otherwise stores
-  the value in the node at +32 and in the node's second record at +24, where `rrmSwapWait` reads it back;
+  the value in the node at +32 and in the node's second record at +24, which `RRM_SwapBuf` tests for nonzero before it calls `rrmSwapWait` (that routine itself reads the same record's +28 target count);
   `glXSwapIntervalSGI` in libGL sends it.
 - `RRM_WaitForRetrace` (ioctl 1007, `rrm.o`): **established.**
   Checks the caller (`RRM_CheckValidFault`), invalidates the node (`rrmInvalidateRN`) and unmaps the
@@ -117,21 +117,29 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   each) goes to the caller's buffer, or error 22 when the caller's length in argument word 4 is too small;
   the table's layout is in `docs/display.md`.
 - `RRM_LoadDisplayMode` (ioctl 1017, `rrm.o`): **established.**
-  Finds the pane (`clip2pane`), invalidates the node (`rrmInvalidateRN`) and unmaps the graphics windows
-  (`rrmUnMapGfx`) so that a mode load is seen by every client; `odsyValidateMode` and `odsyChangeDIDCmap`
-  in the X module send it.
+  Finds the pane for argument word 1 (`clip2pane`) and refuses with error 22 when the pane has flag bit 3 set
+  or the mode index in word 2 is negative or not below the node's mode count at +88. It then calls the board
+  driver's `gf_OdsySetDisplayMode` through slot 160 of its operation table (`odsy.o` data, offset 0xa0) with the
+  mode index and word 3, records word 4 in the pane (+32) and in the node's per-mode table (+96), and only when
+  the call returns 1 does it invalidate the node (`rrmInvalidateRN`) and, when that returns 0, call slot 152
+  (`gf_OdsySchedRetraceEvent`) and unmap the graphics windows (`rrmUnMapGfx`); `odsyValidateMode` and
+  `odsyChangeDIDCmap` in the X module send it.
 - `RRM_CushionBuffer` (ioctl 1018, `rrm.o`): **established.**
   Finds the pane (`clip2pane`) and sets or clears its byte at +177 from argument word 2, refusing a repeat
   set or clear and a pane that belongs to another node; the scan finds no sender, so what the board does
   with the flag is not exercised.
 - `RRM_SwapReady` (ioctl 1019, `rrm.o`): **established.**
-  Checks the id in argument word 2 against the node's table bound at +176, finds the pane (`clip2pane`)
-  and claims that id's slot in the node's per-id table at +184 for the pane, refusing a slot another pane
-  holds; the GLX swap barrier code (`glxBindSwapBarrierSGIX`) sends it.
+  Checks the id in argument word 1 against the node's table bound at +176 (error 37 when it is not below),
+  finds the pane for word 0 (`clip2pane`) and then follows word 2: nonzero claims that id's slot in the node's
+  per-id table at +184 with the pane's word at +160 (error 17 when that pane already holds it, 16 when another
+  does; errors 2, 6 and 15 for a missing pane, a pane of another node and a pane with no +160 word),
+  zero releases the slot if that pane holds it (error 9 otherwise); the GLX swap barrier code
+  (`glxBindSwapBarrierSGIX`) sends it.
 - `RRM_MGR_SwapBuf` (ioctl 1020, `rrm.o`): **established.**
   After the caller check it stores argument word 4 into the node's per-id table at +96 for the id in word
-  2, then calls the board driver's swap entry through slot 168 of its operation table with the argument
-  words and looks the pane up with `clip2pane`; `odsyInitiateBufferSwap` in the X module sends it.
+  1 (when the id is below the table bound at +88), then calls the board driver's swap entry through slot 168
+  of its operation table (`gf_OdsySchedMGRSwapBuf`) with words 1, 2, 3 and 4 and looks the pane up with `clip2pane` for word 2;
+  `odsyInitiateBufferSwap` in the X module sends it.
 - `RRM_SetVideoSync` (ioctl 1021, `rrm.o`): **established.**
   Calls nothing and copies nothing: it stores argument word 1 in the process record at +128 and returns
   zero; `RRM_GetVideoSync` returns that same word. The scan finds no sender.

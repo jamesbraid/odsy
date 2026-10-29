@@ -283,18 +283,22 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
   registers 0x22 and 0x23 that choose colour-index or RGB handling (`docs/words.md`, sequencer section).
 - `0x00011017` (block 0x017, four operands, `odsy_tport.o`): **established.**
   The window descriptor sent when the graphics context or clip changes: four operands copied from context
-  +6948 onwards by `__glOdysseyValidateHardware`, stored once by `ODSY_SET_GC` and by `odsyRestartContext`.
+  +0x969c to +0x96a8 by `__glOdysseyValidateHardware` in libGLcore (the X module's routines copy the same four words from
+  their own context at +6948 to +6960), stored once by `ODSY_SET_GC` and by `odsyRestartContext`.
   `__glOdysseySwapBuffers` ORs bit 23 into the third operand of the last of its three sends.
 - `0x00010424` (block 0x024, one operand, `odsy_tport.o`): **established.**
-  Stored by `ODSY_SET_GC`, `odsyPushBufferSelect` (`odsy_drawable.o`) and replayed by `odsyRestoreRaster`; its use by the buffer-select push suggests, inferred, that it carries the drawable's draw-buffer choice.
+  Stored by `ODSY_SET_GC`, `odsyPushBufferSelect` (`odsy_drawable.o`) and replayed by `odsyRestoreRaster`. `odsyPushBufferSelect` builds the operand as a 4-bit mask copied from bits 0 to 3 of the board record word at +568, except that when the related record's word at +32 has any bit of 0x3c00 set the operand is 12 if any of those four flags is set and 0 otherwise; it sends the word after a settle sequence and also copies the four window-descriptor words (block 0x017) from +6948. The operand is a draw-buffer select (**inferred**, because no code names the field).
 
 ## Framing and synchronisation words stored to the FIFO
 
 - `0x00010019` (block 0x019, no operand, `libGLcore.so`): **inferred.**
-  The pipeline flush of the settle sequence (`BUZZ.h`): built in `__glOdysseyFlush` and `__glOdysseyFinish`, in the
-  pipe-memory object opens, and in the kernel's `odsyPushBufferSelect`, `odsyDMAOp` and textport. The reading
-  rests on that sender set: it appears at buffer swaps, make-current and pixel copies, never in
-  ordinary primitive streams.
+  Sits between the settle groups: it follows a 250 wait with two fillers and is followed by a 150 wait (0x00010443) with
+  four fillers (0x00010046), a store of zero to the context's settle-needed word at +0x10000 - 26576, and a
+  closing 250 wait with two fillers. Built in ten libGLcore routines
+  (`__glOdysseyFlush`, `Finish`, `SwapBuffers`, `SetDrawbuf`, `ValidateContext`, `ValidateHardware`, the pipe-memory object opens and reads, the
+  convolution-filter program) and in the kernel's `odsyPushBufferSelect`, `odsyDMAOp`, `odsyRestoreRaster`, `odsyRestartContext`
+  and textport. A flush is **inferred** only from where the senders sit (swaps, make-current, pixel and
+  memory-object paths); what the board does with the word is unknown.
 - `0x00010046` (block 0x046, no operand, `libGLcore.so`): **inferred.**
   The filler of the settle sequence: two or four copies follow each wait word, sent in about forty libGLcore routines
   and in `odsyInitCfifo` (`odsy_init.o`) just before the microcode download, where the routine waits 2000 us.
@@ -705,15 +709,17 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   Seven operands TEXMODE0 to TEXMODE6 sent as word 0x00011c16 when the texture dirty bit 0x200 is set;
   the kernel replays the same seven words from hardware-shadow offset 0x14c.
 - `0x017` (window descriptor block): **established.**
-  Four operands copied from context +6948 to +6960 by `__glOdysseyValidateHardware` as word 0x00011017; the kernel's
+  Four operands copied from context +0x969c to +0x96a8 by `__glOdysseyValidateHardware` as word 0x00011017 (the X module
+  copies them from +6948 to +6960 of its own context); the kernel's
   `odsyRestartContext` sends it too and replays it from hardware-shadow offset 0x1b24.
 - `0x018` (block with no operand, `odsy_ctxsw.o`): **established.**
   Word 0x00010018 is built in `odsyRestoreRaster` and `odsy_mm_obj_xfr_bs`; the replay table lists the block with zero
   operands and no shadow offset. The block's effect is unknown.
 - `0x019` (flush block, `libGLcore.so`): **inferred.**
-  Word 0x00010019, no operand, opens the flush step of the settle sequence in `__glOdysseyFlush` and the kernel's
-  `odsyPushBufferSelect`, `odsyDMAOp` and textport; only buffer swaps, make-current, finish and pixel copies send
-  it, which is the basis for reading it as a pipeline flush.
+  Word 0x00010019, no operand, the middle word of the settle sequence (between the 250 and 150 waits, the settle-needed word
+  cleared before the last group) in ten libGLcore routines and in the kernel's `odsyPushBufferSelect`, `odsyDMAOp`,
+  `odsyRestoreRaster`, `odsyRestartContext` and textport; reading it as a pipeline flush rests only on those
+  senders (swaps, make-current, pixel and memory-object paths), and what the board does with it is unknown.
 - `0x01b` (texture environment block): **established.**
   Five operands as word 0x0001141b when dirty bit 0x100 is set; the first operand's bits 2:0 are the environment
   mode from `__glOdysseyTextureSetOp`. Replayed from hardware-shadow offset 0x138.
@@ -817,8 +823,10 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   Word 0x00010407 carries it with one operand, and `odsyRestoreRaster` rebuilds eight operands for it in registers rather than
   from a shadow offset (`docs/buzz.md`, replay table); `__glOdysseyValidateContext` sends the word with a zero operand. Effect unknown.
 - `0x024` (block, `odsy_tport.o`): **established.**
-  Word 0x00010424, one operand: `ODSY_SET_GC` and `odsyPushBufferSelect` store it, and `odsyRestoreRaster` replays it from
-  hardware-shadow offset 0x2b68, which `odsyPushBufferSelect` also updates when the draw buffer changes.
+  Word 0x00010424, one operand: `ODSY_SET_GC` writes and reads hardware-shadow offset 0x2b68, and `odsyRestoreRaster` replays
+  that offset; `odsyPushBufferSelect` instead builds a 4-bit buffer mask from the board record's flags at +568
+  (12 or 0 when the related record's +32 word has a bit of 0x3c00 set) and sends it after a settle sequence. The operand
+  reads as the draw-buffer select (**inferred**).
 
 ## Attribute-form words that carry other state
 

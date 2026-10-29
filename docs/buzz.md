@@ -225,11 +225,11 @@ Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_d
 | 0x1044 | bits 28:25 = the target number (bits 19:16 of the 0x34 word), bit 29 set, bits 24:22, 19 and 18:16 set, bits 15:0 = bits 47:32 of the source 1 address |
 | 0x104c | bits 31:0 of the source 1 address |
 | 0x1054 | bits 7:0 vector of source 1, 15:8 source 2, 23:16 source 3, 31:24 source 4 |
-| 0x105c | a word that carries the target number in three places (bits 9:6, 19:16, 29:26) plus constant bit runs; not decoded further |
+| 0x105c | interrupt packet header word: three ten-bit groups (bits 9:0, 19:10, 29:20), each a barrier bit (bit 0 of the group, set), a 3-bit destination id (bits 5:3 of the group, 7) and the 4-bit target number (bits 9:6 of the group); the kernel fills the three groups identically (`docs/registers.md`, 0x105c) |
 
 - **established.** `odsyDisableInterrupts` clears bit 21 of the 0x34 word, clears bits 18:16 of the 0x1044 word, then writes 0xffffffff to 0x1034's neighbour 0x103c. (It stores to record offset 4156 = 0x103c.)
 - **inferred.** 0x34/0x3c is the error-widget interrupt (vector, target, address of the crossbar error source) and bit 21 of 0x34 its enable; 0x1054 carries the four other sources' vector numbers. 0x103c is a write-one-to-clear counterpart of 0x1034, because `odsyDisableInterrupts` writes all ones to it and `odsyLowaterInterrupt` writes 0x200 to it. Not confirmed by hardware.
-- **unknown.** The meaning of 0x5c, of the bit runs in 0x1044 and 0x105c, and which register fields the target number selects.
+- **unknown.** The meaning of 0x5c and of the bit runs in 0x1044, and which register fields the target number selects in those two.
 
 ### `odsyDmaInterrupt` and `odsySsyncInterrupt`
 
@@ -338,7 +338,7 @@ Pass 8. **established** by comparing the IP30 and IP35 (`odsy_kernel_ip35/`) dis
 
 **established.** The flags register's bit 12 (named CTXSW_DONE in the driver's own bit table) and bit 26 (unnamed in the table) are never tested by `odsyFlagInterrupt`, are outside the teardown mask, and the other flags readers (`gfP_OdsyDIAGdma` tests bit 11 only, `odsy_flow.o` writes the register without testing named bits) do not test them either. Context-switch completion in software is the host-memory word at record +2300 (section 4), not this bit. So no code in the install gives either bit a use, and nothing says whether the board ever raises them: **unknown** (`docs/open-questions.md`) of the flags register (0x1014) read immediately after a context switch (bit 12) and across a workload (bit 26).
 
-**unknown** (`docs/open-questions.md`). The bit meanings of routing registers 0x34, 0x3c, 0x5c, 0x1044 to 0x105c: the code only builds and stores them, and the fields' names appear nowhere in the binaries. On a board it would show in: a read-back of those registers on a running board (not known to be readable) or a bus trace of the stores combined with a change of the interrupt target's node number to see which field moves.
+**unknown** (`docs/open-questions.md`). The bit meanings of routing registers 0x34, 0x3c, 0x5c and 0x1044: the code only builds and stores them, and the fields' names appear nowhere in the binaries. On a board it would show in: a read-back of those registers on a running board (not known to be readable) or a bus trace of the stores combined with a change of the interrupt target's node number to see which field moves.
 
 ## Reset: the fields the binaries cannot settle
 
