@@ -23,3 +23,55 @@ Companion to `odsy_kernel/include/odsy_kern.h`. Labels: **established** (read fr
 
 - **inferred.** 0x4004 to 0x405c is a bank of per-engine address and control registers (the context save target 0x4004/0x400c is its first pair); the zeroing in step 5 returns every engine to idle. The registers' names: **unknown**.
 - **unknown.** The meaning of 0x100c's bits, of 0x4014 and 0x4044's fixed bits, of widget word +0x24's 0x4200 pattern, and what `odsyInitDBE` writes (4000 lines, not read).
+
+## Host DMA: regions, diagnostic transfers, op ring, wait and finish
+
+Release IRIX 6.5.30m, IP30 `odsy_dma.o` and `odsy_init.o` (disassembly in `odsy_kernel/disasm/`; message strings from `readelf -p .rodata`). Offsets are bytes into the record named. IP35 was not diffed: **unknown**.
+
+### DMA region record (`odsy_NewDmaRegion`, 88 bytes)
+
+**established** from `odsy_NewDmaRegion`, `odsy_DeleteDmaRegion`, `odsy_DmaRegion_Pin/UnPin`, `odsy_DmaRegion_BuildXlatTbl`. The record is zero-allocated; the debug build poisons freed bytes (0x81, 0x83, 0x85, 0x87 on the table and record), which is why the loops walk it byte by byte.
+
+| Offset | Field |
+|---|---|
+| +0 | pointer to the page list (`generatePageTable` output, `BUZZ.h` pass 3) |
+| +8 | page list size in bytes: `((len + 16383) >> 14) * 8 + 40` |
+| +16, +24 | the first two creation arguments (opaque to this module; stored, never read here: **unknown** use) |
+| +32 | user virtual address of the buffer |
+| +40 | length in bytes |
+| +48 | creation flag (nonzero: pin at creation) |
+| +52 | pinned flag (1 after `useracc(addr, len, 272)` succeeded and the page list was built) |
+| +56 to +87 | 32-byte header copied from the caller; copied again to the start of the page list (its contents: **unknown**, the diagnostic ioctl hands it through from user space) |
+
+`odsy_DmaRegion_Pin` repeats the `useracc` and rebuild when the pinned flag is clear; `UnPin` calls `unuseracc`, frees the list and clears +0, +8, +52. Error returns from `odsy_NewDmaRegion` are 12 (out of memory) or the `useracc` / page list error; `generatePageTable` also has a "too many scanlines in dma parameter block" error, whose limit test was not located: **unknown**.
+
+### Diagnostic transfer (`gfP_OdsyDIAGdma`)
+
+**established.** Reads a 48-byte argument block from user space with `copyin` (failure: "bad ptr to dma arg", error 14): +0 user address (8 bytes), +8 length (4 bytes), +12 to +43 the 32-byte region header, +44 the flags word whose bit 2 selects id 0xe03 over 0xe01 in `odsy_DmaRegion_DoTransfer`. The steps: take the board semaphore (record +56, owner at +72), wait with 2 microsecond delays while the word at +104 is nonzero, bump the busy count at +80, build a region, clear bit 11 (DMA_DONE) of the flags register 0x1014 with a read-modify-write (not the clear register 0x101c), kick through `odsy_DmaRegion_DoTransfer`, then poll up to 40 times, 25 ticks apart (`DmaFinishedPollDelay` = `timeout` plus a semaphore), for flags bit 11. On exhaustion it logs "diag dma timeout" and calls `odsy_teardown`. Afterwards it deletes the region and drops the busy count.
+**inferred** that this is a loop-back test of the DMA engine reachable only through the diagnostic ioctl: the code has no other reader of the transferred data, and no mode but flags bit 2 differs. **unknown:** what the board does with the data (needs a hardware capture of the kick with the engine's destination, see the BUZZ DMA row).
+
+### Op ring and sequence numbers (`odsyDMAOp`, `odsyDMADone`)
+
+**established.** Per-board fields: `+28440` an 8-bit op-slot counter into 256 op records of 80 bytes starting at +7960; `+6888` issued count and `+6880` retired count (64-bit, wrap at 2^61, compared as modular differences); `+5844` the 7-bit tag counter; `+5848` the retire index; `+5856` the 128-entry ring of op pointers. Per `odsyDMAOp`: take the next op record (zeroed with `bzero`), set +8 = 1 (pending; bit 1 is added when the op is queued on the interrupt completion list at record +28448, and `odsyDMAWakeup` / `odsyDMAIrptWakeup` clear it; where bit 0 is cleared was not located), optionally create a per-op sync variable at +32 (9th argument bit 1), record the owner context at +40, and for an owner with a lock request allocate a context-set id (+48, -1 when none) and keep the user range (+56 address, +64 length). The page list goes to +16 with its size at +24. Space check: if issued minus retired plus 2 does not fit in 128 minus the entry count the routine drops the mutex, calls `odsyDMAWait(board, 0, 0, 0)` to drain and retries. The op's number (+72) is the issued count before the increment; the tag sent with block 0x5a is `0x5a00 | (old +5844 & 0xff)`. The flags clear register 0x101c gets 0x800 once per op before the kick (`BUZZ.h`).
+After issue the owner context stores the op number at +256 or +248 depending on a flag word `odsyDMAOp` zeroes on entry: nonzero would select id 0xe03 and slot +256. **established:** no store in `odsy_dma.o` sets that flag nonzero (it is cleared at entry and only read later), so every op the driver issues itself uses id 0xe01 and slot +248; only the diagnostic path reaches 0xe03. **inferred:** 0xe01 and 0xe03 are two transfer kinds (the driver keeps one "last op" slot for each and `odsyDMAFinish` waits on both), but which is host-to-board and which board-to-host is **unknown: needs a hardware capture** of a read-back (e.g. glReadPixels) against a write (glDrawPixels).
+`odsyDMADone(op)` frees the page list (poison 0x91), clears +16 and +24; with no owner (+40 = 0) it broadcasts and destroys the sync variable, with an owner and a held range (+64 nonzero) it only broadcasts, with an owner and no range it does nothing.
+
+### `odsyDMAWait`, `odsyDMAFinish`, `gfP_OdsyMMwaitXfr`
+
+**established.** `odsyDMAWait(board, ctx, mode, &opnr)`: returns 9 while the board is torn down (+816 nonzero). Mode 0 waits for any ring progress: it arms a 3-tick `timeout` (`odsy_dmawait_harmless_timeout`, only broadcasts the retire sync variable at +5816) and sleeps interruptibly on it; interrupted returns 22. Mode 1 waits for op number *opnr (-1 = none, returns 0): if the number lies outside [retired, issued] it is already done; else it must lie within 128 of the retired count and match the ring entry's +72 ("too many outstanding sync dmas", "low sync opnr != readp opnr", "dma op nr != requested op nr", return 22), then it arms a 1500-tick fatal `timeout` (`odsy_dmawait_timeout`, which prints the issued and retired counts, the last sync write value (+5832), the tag read back from the host page (+5824) and the shadow (+5836) and calls `odsy_teardown`) and sleeps on the op's sync variable (+32) while its pending word (+8) is nonzero. On return *opnr = -1. With a context, it then frees every completed op in the context's set (page list, `unuseracc`, set id). A word at record +0x10000-19328 holds the active wait kind (3 harmless, 1 fatal) so `odsy_teardown` can report it.
+`odsyDMAFinish(board, ctx)` sets the word at record +0x10000-19324 to 1, waits for both stored op numbers (ctx +248 then +256), clears it, then under the mutex frees and destroys the context's remaining set (poison 0x97; warns when the board is not torn down but an op was still pending). `gfP_OdsyMMwaitXfr` copies in an 8-byte op number and calls `odsyDMAWait` in mode 1 with the caller's context (error 1 with no context, 14 on a bad pointer); **inferred** from its argument that it is the ioctl user code uses to wait for one transfer (the caller was not read).
+`odsyDMAOps` (the multi-op pixel-transfer path built on these ops: it converts user floats, clips against a drawable and issues one `odsyDMAOp` per chunk) is tracked in the BUZZ DMA row of `docs/coverage.md`; this section does not describe it.
+
+## `odsy_teardown`
+
+**established** (`odsy_init.o`). Takes the board semaphore (record +28488), increments the torn-down count at +816; only the 0 to 1 transition acts: it logs "Graphics error", logs `dmawait_timeout` and `dmawait_finish` (the two words above) when nonzero, prints the flags register (0x1014) and status0 (0x1064) through `odsyPrintRegs`, and runs `gthread_scan` with signal 9 over every thread using this board (a `GTHREAD` callback taking the board as argument; the callback's action is **inferred** to be a kill from the signal number alone). After that every entry point that tests +816 refuses work (return 9 for the wait). Recovery: **unknown**, no path in the driver clears +816 other than `odsyReset`.
+
+## RRM retrace and video-sync callbacks
+
+**established** (`rrm.o`, IP30). These are the rendering resource manager's wake-ups that `odsyRetraceHandler` calls (`docs/buzz.md` section 6). Rendering node (RN) record: +4 halfword of wanted flags, +6 halfword of valid flags, +48 sync variable, +104 spinlock.
+
+- `rrmValidateRetrace(rn)`: under the lock sets bit 4 of the valid flags (+6) and signals the RN's sync variable. It is the per-event retrace callback.
+- `rrmValidateMyRetrace(gfxproc, rn)`: under the lock, when bit 4 is wanted and not yet valid, sleeps on the RN's sync variable (priority 25) until `rrmValidateRetrace` sets it; else returns.
+- `RRM_WaitForRetrace`: fault check, `rrmInvalidateRN(rn, 16)` (clears the retrace bit), then calls slot +152 of the driver's operation table (**inferred** to be the retrace-event scheduler, `gf_OdsySchedRetraceEvent`, because that is the function queueing RN events for `rrmValidateRetrace`; the table was not resolved against its relocations) and unmaps the graphics pages.
+- `RRM_WaitVideoSync` / `rrmWaitVideoSync(count, phase)`: requires 0 <= phase < count (else 22), queues the waiter on the board list (head at record +136, next at waiter +160) with the count at +144 and phase at +148, and sleeps interruptibly (priority 30); returns -1 when interrupted. `RRM_SetVideoSync` stores a value at record +128 and `RRM_GetVideoSync` returns it.
+- `rrmValidateVideoSync(board)`: for each queued waiter, picks the counter at record +128 (when bit 3 of the waiter's RN flags is set) or +124 (otherwise), and when `counter mod count == phase` stores the counter in the waiter (+152), unlinks it and signals. A second list (head +168, linked through +168 of each waiter, retrace counter at record +164) holds buffer-swap waiters: `RRM_SwapBuf` puts a window's swap on it through `rrmSwapWait` when the swap interval (+24 of the window's swap record) is nonzero and `counter + 1` is below the swap target at +28, and `rrmValidateBuffer` sets that target to interval + counter when swap-interval mode (record +160) is on. `rrmValidateVideoSync` releases every entry whose target is at or below `counter + 1`. **established** from `RRM_SwapBuf`, `rrmValidateBuffer`, `rrmValidateVideoSync`. **inferred** that +124 counts vertical retraces and +128 counts a video-sync (genlock-relative) counter, by pairing with the handler's two increments; confirming which board event raises each needs a hardware capture of the retrace interrupt against the display timing.
