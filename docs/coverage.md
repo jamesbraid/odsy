@@ -52,8 +52,8 @@ On-board memory: banks, timing and addressing as software sees them.
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `BUZZ.h`, `docs/board.md` | direct XIO interface | bank count and CAS latency come from board inventory reports |
-| Reset | none | `BUZZ.h`, `docs/board.md` | direct XIO interface |  |
+| Registers and fields | partial | `BUZZ.h`, `docs/board.md` | direct XIO interface | bank count and CAS latency come from board inventory reports. Pass 6: both read from the strap word 0x106c bits 31:24 with size and clock variant; revision word +4; memory configuration word 0x1004 (`docs/board.md`). Missing: memory organisation and addressing, other bits of 0x1004, identity of +0x23380c |
+| Reset | partial | `BUZZ.h`, `docs/board.md` | direct XIO interface | Pass 6: the 0x1004 write sequence with its bit 5 pulse and 400 us delays (`docs/board.md`). Missing: what bit 5 and bit 8 do in hardware |
 
 ### Display output
 
@@ -76,7 +76,7 @@ The IP30 kernel graphics driver and resource manager: attach, ioctls, context an
 | Command and FIFO formats | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Kernel textport and flow-control paths written in `BUZZ.h` section 5 |
 | DMA | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Kernel DMA kick and page list written in `BUZZ.h` (pass 3). Missing: region record layout, odsyDMAWait/Done/Finish, diagnostic DMA (gfP_OdsyDIAGdma) |
 | Interrupts | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | High- and low-water handlers written. Pass 3: odsyFlagInterrupt, odsyXtErrorInterrupt and the start-up enable mask written in `BUZZ.h`. Pass 6: odsyDmaInterrupt, odsySsyncInterrupt, odsyDMAWakeup, odsyDMAIrptWakeup and odsyRetraceHandler bodies written (`docs/buzz.md` section 6). Missing: odsyGenlockInterrupt PLL values, odsy_teardown, rrm retrace callbacks |
-| Reset | none | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface |  |
+| Reset | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Pass 6: attach and probe (`docs/kernel.md`), odsyReset order of operations including the register zeroing list and the 0x1004 and 0x100c writes. Missing: bit meanings of 0x100c, 0x4014, 0x4044, host-chip widget words, odsyInitDBE, gf_OdsyInitialize/Start, IP35 diff |
 | Context save and restore | partial | `odsy_kernel/include/odsy_kern.h`, `docs/kernel.md` | direct XIO interface | Save and switch protocol written in `BUZZ.h` and `docs/buzz.md` section 4 (pass 4). Pass 5: walker vertex selection and the record offsets they read. Missing: full record layout, `odsyRestoreXform` |
 
 ### OpenGL core and X module

@@ -881,4 +881,15 @@
  * halfword for it; docs/buzz.md section 4). */
 #define BUZZ_REG_TAG_WRITEBACK     0x05a
 
+/* --- Reset, memory and strap registers (pass 6) ----------------------
+ * docs/kernel.md, docs/board.md. established as stores and loads in
+ * odsyReset and odsyGatherInfo; names inferred. */
+#define ODSY_REG_MEMCFG            0x1004 /* banks bit 2, CAS latency bit 1,
+                                           * size bits 4:3, master id bits
+                                           * 22:19, bit 5 init pulse, bit 8 */
+#define ODSY_REG_RESET             0x100c /* 0x200 or 0x16d, then 0 */
+#define ODSY_REG_STRAP             0x106c /* bits 31:24 board config strap
+                                           * (same register as FIFO_LEVELS) */
+#define ODSY_REG_REVISION          0x0004 /* bits 31:28 BUZZ revision type */
+
 #endif /* BUZZ_H */

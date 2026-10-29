@@ -1,0 +1,25 @@
+# Kernel driver notes
+
+Companion to `odsy_kernel/include/odsy_kern.h`. Labels: **established** (read from a binary, with where), **inferred** (reasoned, with the reasoning), **unknown**. IRIX 6.5.30m, IP30 objects (`odsy_init.o` unless named). IP35 was not diffed for anything here: **unknown**.
+
+## Attach and probe
+
+- **established.** `odsy_init` registers the driver with `xwidget_driver_register(0xc013, 35, "odsy", 0)`. **inferred** that 0xc013 and 35 are the crossbar-widget part and manufacturer numbers the board answers to (the call's argument order is not read from a header; the values are what the code passes).
+- **established.** `odsy_attach` maps the board with `xtalk_piotrans_addr(dev, 0, 0, 0x401000, 0)` and stores the result as the PIO base (record +824): the board's register window is 0x401000 bytes. It stores the widget id (`xwidget_info_id_get`) at record byte 793 and the master id (`xwidget_info_masterid_get`) at byte 792, reads the word at board +4 and, when its bits 31:28 are below 2, reads the board's NIC (serial-number part) with `odsy_set_gfx_mfg_nic_name`; a NULL NIC logs an error.
+- **established.** `odsyFindBoardAddr` (the early path) obtains the same base with `xtalk_early_piotrans_addr(0xc013, 35, <board>, 0, 0x401000)`, reads the word at widget +0x24 (`lw 36(base)`), and keeps its low nibble in record byte 793.
+- **established.** `odsy_earlyinit` (before attach, for the textport) checks the `kopt` string for the console graphics setting (first byte 'd' or 'D'), calls `odsyFindBoardAddr(0)` and `odsyReset(0)`, then registers the textport with `htp_register_board(base, width, height, ...)`; a second `odsy_earlyinit` before the first finished logs "re-entered" and waits.
+
+## odsyReset order of operations
+
+**established** from `odsyReset`, `odsyLowLevelReset`, `odsyLLPReset`, `odsyGatherInfo` (IP30). Offsets are board PIO offsets unless a "widget" word is named. All board registers in the 0x1000 and 0x4000 groups sit at 8-byte spacing with data in the odd word (offsets end in 4 or c); `sync` follows every store.
+
+1. Stop the FIFO timer (`odsyFifoTimer`), mark the record "in reset" (record +816 = 1, +794 = 0), clear the record's name, set the default screen size 1280 x 1024 (record +232, +234) and the default refresh (record +236 = 588 is a record word the code initialises; its use is unknown).
+2. `odsyLowLevelReset`: reset the link to the board. If the host's own chip id register (the global at gp-30696) reports a certain revision class (top nibble > 4, host-side, unnamed) it writes board 0x100c = 0x200, waits 1 s (`odsy_usdelay(1000000)`) and clears it; otherwise writes 0x100c = 0x16d, waits 200000 us, clears it and calls `odsyLLPReset`, which resets the widget through `xwidget_reset` or, when there is none, writes 0 to a host-chip word at 308 + (widget id << 6) after saving word 268, waits 10 ms and restores 268. **inferred** that 0x100c is a board reset control with the high-numbered form for newer hosts; no bit names are known. It also toggles mask bits in the host chip's per-widget words (offsets 268, 276, 316 of the 64-byte-stride widget array) around the reset and restores them afterwards, retrying up to three times (`cmn_err` "retry") when the widget does not come back; their meaning belongs to the host chip, not the board: **unknown**.
+3. Write widget +0x24 = (widget id) | 0x4200 and wait 100 ms (`odsy_usdelay(100000)`). Write board 0x1004 = (master id & 0xf) << 19.
+4. `odsyGatherInfo(board, 0)` then `odsyMMinit`, `odsyInitDBE` (the I2C ports `odsyInitDBE` names "main" and "opt"), then `odsyGatherInfo(board, 1)`: see `docs/board.md` for what they read.
+5. Zero the interrupt and DMA-engine registers, in this order (offsets): 0x103c = 0xffffffff, 0x101c = 0xffffffff, then 0x0 to 0x1044, 0x104c, 0x1054, 0x105c, 0x1074, 0x107c, 0x108c, 0x109c, 0x10a4, 0x10ac, 0x401c, 0x4024, 0x402c, 0x4034, 0x403c; then 0x4044 and 0x4014 are written with a master-id field (bits 7:4 of 0x4044, bits 23:20 of 0x4014) and fixed bits (0x4044 also gets bits 16, 15:14 and 3:2; 0x4014 gets 0x12, bit 18 and bit 24); then 0x404c, 0x4054, 0x405c = 0; 0x10bc = 0, 0x10cc = 0xffffffff.
+6. Write the memory-configuration word 0x1004 from the probed bank, CAS-latency and size values and pulse it (`docs/board.md`).
+7. Zero 0x34, 0x1044, set 0x103c to 0xffffffff, zero 0x1074, pulse 0x1084 (0, 1, 0, the command FIFO reset in `BUZZ.h`), write 0x101c = 0xffffffff, zero 0x5c, invalidate the hpipe state (`odsy_hpipe_invalidate`), and clear the "in reset" flag. `odsyInitCfifo`, `odsyInitInterrupts` and the DMA set-up follow in `gf_OdsyInitialize`/`gf_OdsyStart` (not read in this pass).
+
+- **inferred.** 0x4004 to 0x405c is a bank of per-engine address and control registers (the context save target 0x4004/0x400c is its first pair); the zeroing in step 5 returns every engine to idle. The registers' names: **unknown**.
+- **unknown.** The meaning of 0x100c's bits, of 0x4014 and 0x4044's fixed bits, of widget word +0x24's 0x4200 pattern, and what `odsyInitDBE` writes (4000 lines, not read).

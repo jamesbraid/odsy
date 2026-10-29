@@ -73,6 +73,19 @@
                                          0x1074. established:
                                          odsyInitCfifo */
 
+/* Probe results kept in the record by odsyGatherInfo (docs/board.md).
+ * All established; meanings of the sources are inferred there. */
+#define BI_SDRAM_MB            252    /* int: 32, 64, 128 (33 = size code 3
+                                         before odsyReset rewrites it) */
+#define BI_SDRAM_CASL          256    /* int: 2 or 3 */
+#define BI_SDRAM_BANKS         260    /* int: 2 or 4 */
+#define BI_BUZZ_REV            264    /* int: 1 to 7 */
+#define BI_REG_233_380C        268    /* bits 2:0 of board +0x23380c */
+#define BI_BUZZ_REV_FLAG       280    /* 1 when strap value was 9 to 15 */
+#define BI_CLOCK_VARIANT       292    /* bits 27:24 of board +0x106c */
+#define BI_MASTER_ID           792    /* byte, xwidget master id */
+#define BI_WIDGET_ID           793    /* byte, xwidget id */
+
 /* Default 1500-tick timeout before a parked FIFO writer gives up and
  * the board is torn down ("CFIFO timeout"). established: odsyFifoTimer,
  * odsyFifoTimeout. */
