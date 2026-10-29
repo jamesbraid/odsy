@@ -68,58 +68,58 @@ Installation Tools and Overlays disc 1, compared record by record.
 
 - **`803`** (routine; kernel copy, `odsy_init.o` .data +0x2d74), **established**: picks the second colour
   when GL two-sided lighting is on; the 6.5.27 library loads 803 as an immediate at 0x0d9db2bc. Same
-  records as image routine 902.
+  records as image routine 902. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: with two-sided lighting it takes the constant 3.0 and the viewer register R26, computes one product of R26, and outputs the colour unit's front result as words 9 and 10 and the back one as words 1 and 2.
 - **`812`** (routine; kernel copy, `odsy_init.o` .data +0x2de0), **established**: the one-colour lighting
   step added whenever GL_LIGHTING is on (immediate at 0x0d9db2c8 in the 6.5.27 library). Same
-  records as image routine 911.
+  records as image routine 911. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the constant 3.0, R26 and colour working address 27; it computes one R26 product and outputs the same colour pair twice, as words 1 and 2 and as words 9 and 10.
 - **`821`** (routine; kernel copy, `odsy_init.o` .data +0x2e4c), **inferred** (selection **established**):
   lights each further local light in RGBA mode, forty records reading data words 0x1e0 to 0x20e;
-  immediate at 0x0d9daec8 in 6.5.27. Same records as image routine 920.
+  immediate at 0x0d9daec8 in 6.5.27. Same records as image routine 920. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes the position slot, the modelview rows and the next light's position, attenuation and spot words, recomputes the eye position, scales the products it fires with one reciprocal square root and seven code-0xe multiplies, and outputs two colour words after the light-relative diffuse, specular and ambient products.
 - **`832`** (routine; kernel copy, `odsy_init.o` .data +0x2ed0), **inferred** (selection **established**):
   the colour-index second part of a further local light, entered 11 records into 821's body
-  (immediate at 0x0d9dae98, 6.5.27). Same records as image routine 931.
+  (immediate at 0x0d9dae98, 6.5.27). Same records as image routine 931. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: entered past 821's colour products, it takes the next light's words and the constant 2.828, computes one reciprocal square root and seven code-0xe scalings, and outputs two colour words.
 - **`865`** (routine; kernel copy, `odsy_init.o` .data +0x305c), **inferred** (selection **established**):
   the colour-index first part of a further local light, seven records that read data word 0x20e;
-  6.5.27 names it at 0x0d9dae7c. Same records as image routine 964.
+  6.5.27 names it at 0x0d9dae7c. Same records as image routine 964. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: inputs are the position slot, rows R9 to R11, -1.0, 0.0, light word 14 and word 0x1f4; it computes the eye position again and the light-relative specular and diffuse products, and outputs no vertex word.
 - **`876`** (routine; kernel copy, `odsy_init.o` .data +0x30e0), **established**: closes the light loop in
   RGBA mode with no attenuation or spot flag, one colour and no perspective texture (6.5.27
-  immediate at 0x0d9db470). Same records as image routine 975.
+  immediate at 0x0d9db470). Same records as image routine 975. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes the window-coordinate products held in R23 and the last per-light code-4 result, passes R23's lanes through code 8 so that x, y and z go out as words 8, 9 and 7 (d2 0x44, 0x24, 0x26), outputs the code-4 result as word 6, and adds the ambient product before sending the lit colour as words 1 and 2.
 - **`887`** (routine; kernel copy, `odsy_init.o` .data +0x3164), **established**: the perspective-texture
   variant of 876's finish, named at 0x0d9db45c in the 6.5.27 library. Same records as image routine
-  986.
+  986. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes 876's inputs and computes the same code-8 passes and colour sum; its outputs sit one word higher under an eleven-word header: x 9, y 10, z 8 and the code-4 result 7.
 - **`898`** (routine; kernel copy, `odsy_init.o` .data +0x31e8), **established**: twelve records finishing
   two colour outputs, writing lanes 4 and 6; 6.5.27 picks it at 0x0d9db474. Same records as image
-  routine 997.
+  routine 997. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: beyond 876's inputs it takes the back material slots 10 to 12, computes the back colour from the light-relative colours, and outputs the front colour as words 1 and 2, the back as 6 and 7 and the coordinates as words 9 to 11.
 - **`914`** (routine; kernel copy, `odsy_init.o` .data +0x32a8), **established**: the finish when attenuation
   or a spot cone is in play with one colour, and also the colour-index finish (6.5.27, 0x0d9db384).
-  Same records as image routine 1013.
+  Same records as image routine 1013. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are R23 and colour working addresses 25 and 26; it combines the stored sums and outputs them as words 1 and 2, with x, y and z through code 8 as words 8, 9 and 7 under a ten-word header.
 - **`924`** (routine; kernel copy, `odsy_init.o` .data +0x3320), **established**: adds the separate specular
   colour to a one-colour finish; 6.5.27 selects it at 0x0d9db3d4. Same records as image routine
-  1023.
+  1023. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes R23 and working addresses 25 to 27, selects the coordinates through code 8 and outputs them with the primary colour as words 1 and 2 and the separate specular colour as words 6 to 8, under a thirteen-word header.
 - **`936`** (routine; kernel copy, `odsy_init.o` .data +0x33b0), **established**: the attenuated or spot-lit
   finish once the perspective-texture flag is set (6.5.27 immediate 0x0d9db428). Same records as
-  image routine 1035.
+  image routine 1035. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: with 914's inputs it computes the same sums and outputs them one word higher (x 9, y 10, z 8) under an eleven-word header.
 - **`946`** (routine; kernel copy, `odsy_init.o` .data +0x3428), **established**: two-colour counterpart of
   914 in both the RGBA and colour-index paths, chosen at 0x0d9db388 in 6.5.27. Same records as image
-  routine 1045.
+  routine 1045. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes 914's inputs plus working addresses 28 to 30, combines the back colour from them and outputs it as words 6 and 7 beside 914's words.
 - **`958`** (routine; kernel copy, `odsy_init.o` .data +0x34b8), **established**: finishes separate specular
   with two colour outputs; immediate at 0x0d9db3d8 of the 6.5.27 library. Same records as image
-  routine 1057.
+  routine 1057. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: inputs are R23, the last code-4 result and working addresses 26 to 30; it selects R23's lanes through code 8 and outputs front and back primary and specular colours as words 1, 2 and 6 to 12 under a sixteen-word header.
 - **`972`** (routine; kernel copy, `odsy_init.o` .data +0x3560), **established**: evaluates the fragment
   light's per-vertex terms, reading data words 0x1e4 to 0x20e in four lanes; 6.5.27 loads it at
-  0x0d9db2d8. Same records as image routine 1071.
+  0x0d9db2d8. Same records as image routine 1071. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes the normal products, the light and viewer vectors (negating each lane with code 0xc) and light words 13 and 14, computes two reciprocal square roots and a code-2 result, and outputs the fragment light's terms into R18 to R22.
 - **`995`** (routine; kernel copy, `odsy_init.o` .data +0x3674), **established**: only for a local,
   attenuated fragment light, reading data word 0x207 in lanes 4 to 6 (6.5.27 immediate 0x0d9db2dc).
-  Same records as image routine 1094.
+  Same records as image routine 1094. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's constant attenuation (word 7), 3.0 and the registers before it; it multiplies two values by K and outputs no word, leaving its results in R21 and R22.
 - **`1007`** (routine; kernel copy, `odsy_init.o` .data +0x3704), **established**: ends one-sided fragment
   lighting when the fragment light has no attenuation; 6.5.27 names it at 0x0d9db33c. Same records
-  as image routine 1106.
+  as image routine 1106. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes R20, R23 and the colour slots, computes two code-0xd, one code-5 and one code-3 result, and outputs a thirteen-word packet: the coordinates as words 10 to 12, word 9 through d2 0x25 and colour words 6 to 8.
 - **`1020`** (routine; kernel copy, `odsy_init.o` .data +0x37a0), **established**: ends one-sided fragment
   lighting for a local attenuated fragment light (0x0d9db344 in 6.5.27). Same records as image
-  routine 1119.
+  routine 1119. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: with 1007's inputs and 995's registers it computes one more code-0xe multiply and outputs 1007's packet.
 - **`1037`** (routine; kernel copy, `odsy_init.o` .data +0x386c), **established**: the fragment-lighting
   ending used when either two-sided flag is set, picked at 0x0d9db318 in the 6.5.27 library. Same
-  records as image routine 1136.
+  records as image routine 1136. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes R23, the fragment terms of 972 and the colour slots, computes four code-0xd, two code-5 and one code-0xe operation, and outputs a sixteen-word packet with the colour copies as words 6, 7, 8, 11 and 12.
 - **`1054`** (routine; kernel copy, `odsy_init.o` .data +0x3938), **established**: closes table records 0 and
   3, the programs without texture or clip planes; a one-record routine: its first record carries end
   mark 2 and the next four are idle. Same records as image routine 1153.
@@ -160,19 +160,19 @@ Installation Tools and Overlays disc 1, compared record by record.
   0x0d9dbb58). Same records as image routine 1221.
 - **`1127`** (routine; kernel copy, `odsy_init.o` .data +0x3ca4), **established**: the set-up pass of the
   directional-light table records, 35 records reading the data table from index 1 to 0x1e3. Same
-  records as image routine 1226.
+  records as image routine 1226. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: run once per program, it takes words 0 to 5 of four light records and shininess words 0x0f0 and 0x0f7 to 0x0f9, outputs the light directions to R17, R19, R21 and R23, computes each half vector times word 0x0f0 into R18, R20, R22 and R24, and sums the light-model and four light ambient colours into colour address 25.
 - **`1166`** (routine; kernel copy, `odsy_init.o` .data +0x3e78), **established**: the second set-up routine
   of the two-colour records 7, 13 and 15, after 1127 in their +52 lists. Same records as image
-  routine 1265.
+  routine 1265. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes the first two lights' words 0 to 5 and shininess words 0x0f7 and 0x0f9, negates the directions with code 0xc and multiplies the half vectors by word 0x0f7, and outputs the back-face copies to R21 to R24.
 - **`1187`** (routine; kernel copy, `odsy_init.o` .data +0x3f74), **established**: only table record 12's +52
   list carries this second set-up routine, after 1127; it reads data words 0x80 to 0x1e5. Same
-  records as image routine 1286.
+  records as image routine 1286. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's words 0x080 to 0x085 and 3.0; it does no arithmetic and outputs them to R24 and the w lanes of R13 to R15.
 - **`1196`** (routine; kernel copy, `odsy_init.o` .data +0x3fe0), **established**: set-up for the local-light
   records 16 to 19 and 23, five records reading constants 0x1e0 to 0x1e3. Same records as image
-  routine 1295.
+  routine 1295. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes 0.0, 1.0 and colour addresses 24 and 0, outputs 0.0 and 1.0 to the w lanes of R13 to R17, and computes the light-model plus light 0 ambient sum into colour address 25.
 - **`1205`** (routine; kernel copy, `odsy_init.o` .data +0x404c), **established**: sets up the four
   fragment-lighting records 2, 4, 5 and 8 that run with GL_LIGHTING off. Same records as image
-  routine 1304.
+  routine 1304. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's words 0x080 to 0x086; it does no arithmetic and outputs them to R18 and the w lanes of R13 to R15.
 - **`1214`** (routine; kernel copy, `odsy_init.o` .data +0x40b8), **established**: is the complete 31-record
   per-vertex program of table record 2: one directional fragment light, lighting off, no texture.
   Same records as image routine 1313.
