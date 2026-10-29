@@ -3,12 +3,12 @@ buzz_xform.bin	image start	0		end_mark=7 records=8 beyond_ram=no	documented	docs
 buzz_xform.bin	host entry	12		end_mark=21 records=10 beyond_ram=no	documented	docs/display.md#line-table-structure-pass-6	Line-table structure (pass 6)
 buzz_xform.bin	host entry	26		end_mark=35 records=10 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	40		end_mark=46 records=7 beyond_ram=no	documented	docs/display.md#ioctl-1005-the-kernel-side-of-a-buffer-swap	Ioctl 1005, the kernel side of a buffer swap
-buzz_xform.bin	host entry	51		end_mark=72 records=22 beyond_ram=no	undocumented		
-buzz_xform.bin	host entry	77		end_mark=77 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	host entry	82		end_mark=82 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	host entry	87		end_mark=87 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	host entry	92		end_mark=92 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	host entry	97		end_mark=97 records=1 beyond_ram=no	undocumented		
+buzz_xform.bin	host entry	51		end_mark=72 records=22 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	host entry	77		end_mark=77 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	host entry	82		end_mark=82 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	host entry	87		end_mark=87 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	host entry	92		end_mark=92 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	host entry	97		end_mark=97 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
 buzz_xform.bin	host entry	102		end_mark=102 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	107		end_mark=114 records=8 beyond_ram=no	documented	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 buzz_xform.bin	host entry	108		end_mark=114 records=7 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
@@ -17,32 +17,32 @@ buzz_xform.bin	host entry	123		end_mark=140 records=18 beyond_ram=no	documented	
 buzz_xform.bin	host entry	127		end_mark=140 records=14 beyond_ram=no	documented	docs/display.md#line-table-structure-pass-6	Line-table structure (pass 6)
 buzz_xform.bin	host entry	145		end_mark=209 records=65 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	159		end_mark=209 records=51 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_xform.bin	follows end mark	214		end_mark=238 records=25 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	243		end_mark=255 records=13 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	260		end_mark=273 records=14 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	303		end_mark=319 records=17 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	324		end_mark=355 records=32 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	360		end_mark=405 records=46 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	214		end_mark=238 records=25 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	243		end_mark=255 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	260		end_mark=273 records=14 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	303		end_mark=319 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	follows end mark	324		end_mark=355 records=32 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_xform.bin	follows end mark	360		end_mark=405 records=46 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	410		end_mark=413 records=4 beyond_ram=no	documented	docs/buzz.md#pass-9-odsyrestorexform-and-odsyrestorevb	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
 buzz_xform.bin	follows end mark	418		end_mark=438 records=21 beyond_ram=no	documented	ucode/buzz_isa.md#instruction-fields-provisional	Instruction fields (provisional)
-buzz_xform.bin	follows end mark	443		end_mark=451 records=9 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	456		end_mark=474 records=19 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	479		end_mark=485 records=7 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	490		end_mark=510 records=21 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	443		end_mark=451 records=9 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	456		end_mark=474 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	479		end_mark=485 records=7 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	490		end_mark=510 records=21 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	515		end_mark=515 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	follows end mark	520		end_mark=520 records=1 beyond_ram=no	documented	docs/opengl.md#kernel-side-gfp_odsymakecurrent	Kernel side (`gfP_OdsyMakeCurrent`)
-buzz_xform.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	606		end_mark=606 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	611		end_mark=621 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	626		end_mark=636 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	641		end_mark=651 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	656		end_mark=663 records=8 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_xform.bin	follows end mark	668		end_mark=689 records=22 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	668		end_mark=689 records=22 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	694		end_mark=714 records=21 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	719		end_mark=729 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	734		end_mark=753 records=20 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
@@ -66,77 +66,77 @@ buzz_xform.bin	host entry	1045		end_mark=1052 records=8 beyond_ram=no	documented
 buzz_xform.bin	host entry	1057		end_mark=1066 records=10 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	1071		end_mark=1089 records=19 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	1094		end_mark=1101 records=8 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_xform.bin	follows end mark	1106		end_mark=1114 records=9 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1119		end_mark=1131 records=13 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	1106		end_mark=1114 records=9 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1119		end_mark=1131 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	1136		end_mark=1148 records=13 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	follows end mark	1153		end_mark=1153 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_xform.bin	follows end mark	1158		end_mark=1158 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1163		end_mark=1163 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1168		end_mark=1168 records=1 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	1158		end_mark=1158 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1163		end_mark=1163 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1168		end_mark=1168 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	host entry	1173		end_mark=1173 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_xform.bin	follows end mark	1178		end_mark=1178 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1183		end_mark=1183 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1188		end_mark=1188 records=1 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	1178		end_mark=1178 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1183		end_mark=1183 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1188		end_mark=1188 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	1193		end_mark=1193 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	1198		end_mark=1206 records=9 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	1200		end_mark=1206 records=7 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	1211		end_mark=1211 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_xform.bin	host entry	1216		end_mark=1216 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_xform.bin	follows end mark	1221		end_mark=1221 records=1 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1226		end_mark=1260 records=35 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1265		end_mark=1281 records=17 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1286		end_mark=1290 records=5 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1295		end_mark=1299 records=5 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1304		end_mark=1308 records=5 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1313		end_mark=1343 records=31 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1348		end_mark=1363 records=16 beyond_ram=no	undocumented		
+buzz_xform.bin	follows end mark	1221		end_mark=1221 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1226		end_mark=1260 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1265		end_mark=1281 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1286		end_mark=1290 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1295		end_mark=1299 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1304		end_mark=1308 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1313		end_mark=1343 records=31 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1348		end_mark=1363 records=16 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	1368		end_mark=1385 records=18 beyond_ram=no	documented	docs/buzz.md#level-descriptor-words-blocks-0x280--i	Level descriptor words (blocks 0x280 + i)
-buzz_xform.bin	follows end mark	1390		end_mark=1428 records=39 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1433		end_mark=1452 records=20 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1457		end_mark=1478 records=22 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1483		end_mark=1515 records=33 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1520		end_mark=1540 records=21 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1545		end_mark=1575 records=31 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1580		end_mark=1596 records=17 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1601		end_mark=1618 records=18 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1623		end_mark=1645 records=23 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1650		end_mark=1684 records=35 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1689		end_mark=1715 records=27 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1720		end_mark=1747 records=28 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1752		end_mark=1770 records=19 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1775		end_mark=1793 records=19 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1798		end_mark=1823 records=26 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1828		end_mark=1857 records=30 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1862		end_mark=1895 records=34 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1900		end_mark=1950 records=51 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1955		end_mark=1989 records=35 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	1994		end_mark=2045 records=52 beyond_ram=no	undocumented		
-buzz_xform.bin	follows end mark	2050		end_mark=2084 records=35 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2089		end_mark=2140 records=52 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2145		end_mark=2179 records=35 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2184		end_mark=2235 records=52 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2240		end_mark=2263 records=24 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2268		end_mark=2295 records=28 beyond_ram=yes	undocumented		
+buzz_xform.bin	follows end mark	1390		end_mark=1428 records=39 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1433		end_mark=1452 records=20 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1457		end_mark=1478 records=22 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1483		end_mark=1515 records=33 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1520		end_mark=1540 records=21 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1545		end_mark=1575 records=31 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1580		end_mark=1596 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1601		end_mark=1618 records=18 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1623		end_mark=1645 records=23 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1650		end_mark=1684 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1689		end_mark=1715 records=27 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1720		end_mark=1747 records=28 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1752		end_mark=1770 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1775		end_mark=1793 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1798		end_mark=1823 records=26 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1828		end_mark=1857 records=30 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1862		end_mark=1895 records=34 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1900		end_mark=1950 records=51 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1955		end_mark=1989 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	1994		end_mark=2045 records=52 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2050		end_mark=2084 records=35 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2089		end_mark=2140 records=52 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2145		end_mark=2179 records=35 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2184		end_mark=2235 records=52 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2240		end_mark=2263 records=24 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2268		end_mark=2295 records=28 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
 buzz_xform.bin	follows end mark	2300		end_mark=2327 records=28 beyond_ram=yes	documented	docs/buzz.md#switch-out-ask-the-board-to-save	Switch-out: ask the board to save
-buzz_xform.bin	follows end mark	2332		end_mark=2360 records=29 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2365		end_mark=2403 records=39 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2408		end_mark=2471 records=64 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2476		end_mark=2515 records=40 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2520		end_mark=2585 records=66 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2590		end_mark=2625 records=36 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2630		end_mark=2686 records=57 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2691		end_mark=2727 records=37 beyond_ram=yes	undocumented		
-buzz_xform.bin	follows end mark	2732		end_mark=2789 records=58 beyond_ram=yes	undocumented		
+buzz_xform.bin	follows end mark	2332		end_mark=2360 records=29 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2365		end_mark=2403 records=39 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2408		end_mark=2471 records=64 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2476		end_mark=2515 records=40 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2520		end_mark=2585 records=66 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2590		end_mark=2625 records=36 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2630		end_mark=2686 records=57 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2691		end_mark=2727 records=37 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_xform.bin	follows end mark	2732		end_mark=2789 records=58 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	image start	0		end_mark=7 records=8 beyond_ram=no	documented	docs/buzz.md#pass-9-odsyrestorexform-and-odsyrestorevb	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
 buzz_ucode_ip30.bin	host entry	12		end_mark=21 records=10 beyond_ram=no	documented	docs/display.md#line-table-structure-pass-6	Line-table structure (pass 6)
 buzz_ucode_ip30.bin	host entry	26		end_mark=35 records=10 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	40		end_mark=46 records=7 beyond_ram=no	documented	docs/display.md#ioctl-1005-the-kernel-side-of-a-buffer-swap	Ioctl 1005, the kernel side of a buffer swap
-buzz_ucode_ip30.bin	host entry	51		end_mark=72 records=22 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	77		end_mark=77 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	82		end_mark=82 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	87		end_mark=87 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	92		end_mark=92 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	97		end_mark=97 records=1 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	host entry	51		end_mark=72 records=22 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	host entry	77		end_mark=77 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	host entry	82		end_mark=82 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	host entry	87		end_mark=87 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	host entry	92		end_mark=92 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	host entry	97		end_mark=97 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
 buzz_ucode_ip30.bin	host entry	102		end_mark=102 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	107		end_mark=114 records=8 beyond_ram=no	documented	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 buzz_ucode_ip30.bin	host entry	108		end_mark=114 records=7 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
@@ -145,32 +145,32 @@ buzz_ucode_ip30.bin	host entry	123		end_mark=140 records=18 beyond_ram=no	docume
 buzz_ucode_ip30.bin	host entry	127		end_mark=140 records=14 beyond_ram=no	documented	docs/display.md#line-table-structure-pass-6	Line-table structure (pass 6)
 buzz_ucode_ip30.bin	host entry	145		end_mark=209 records=65 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	159		end_mark=209 records=51 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_ucode_ip30.bin	follows end mark	214		end_mark=238 records=25 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	243		end_mark=255 records=13 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	260		end_mark=273 records=14 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	303		end_mark=319 records=17 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	324		end_mark=355 records=32 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	360		end_mark=405 records=46 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	follows end mark	214		end_mark=238 records=25 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	243		end_mark=255 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	260		end_mark=273 records=14 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	278		end_mark=298 records=21 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	303		end_mark=319 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	follows end mark	324		end_mark=355 records=32 beyond_ram=no	documented	ucode/buzz_routines.md#buzz-microcode-routine-map	BUZZ microcode: routine map
+buzz_ucode_ip30.bin	follows end mark	360		end_mark=405 records=46 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	host entry	410		end_mark=413 records=4 beyond_ram=no	documented	docs/buzz.md#pass-9-odsyrestorexform-and-odsyrestorevb	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
 buzz_ucode_ip30.bin	follows end mark	418		end_mark=438 records=21 beyond_ram=no	documented	ucode/buzz_isa.md#instruction-fields-provisional	Instruction fields (provisional)
-buzz_ucode_ip30.bin	follows end mark	443		end_mark=451 records=9 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	456		end_mark=474 records=19 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	479		end_mark=485 records=7 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	490		end_mark=510 records=21 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	follows end mark	443		end_mark=451 records=9 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	456		end_mark=474 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	479		end_mark=485 records=7 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	490		end_mark=510 records=21 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	host entry	515		end_mark=515 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	follows end mark	520		end_mark=520 records=1 beyond_ram=no	documented	docs/opengl.md#kernel-side-gfp_odsymakecurrent	Kernel side (`gfP_OdsyMakeCurrent`)
-buzz_ucode_ip30.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	follows end mark	525		end_mark=537 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	542		end_mark=558 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	563		end_mark=579 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	584		end_mark=600 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	605		end_mark=606 records=2 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	host entry	606		end_mark=606 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	611		end_mark=621 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	626		end_mark=636 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	641		end_mark=651 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	656		end_mark=663 records=8 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
-buzz_ucode_ip30.bin	follows end mark	668		end_mark=689 records=22 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	follows end mark	668		end_mark=689 records=22 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	host entry	694		end_mark=714 records=21 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	719		end_mark=729 records=11 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	734		end_mark=753 records=20 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
@@ -178,71 +178,71 @@ buzz_ucode_ip30.bin	host entry	758		end_mark=763 records=6 beyond_ram=no	documen
 buzz_ucode_ip30.bin	host entry	768		end_mark=787 records=20 beyond_ram=no	documented	docs/buzz.md#flow-control	Flow control
 buzz_ucode_ip30.bin	host entry	779		end_mark=787 records=9 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	792		end_mark=798 records=7 beyond_ram=no	documented	docs/kernel.md#attach-and-probe	Attach and probe
-buzz_ucode_ip30.bin	host entry	803		end_mark=807 records=5 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	812		end_mark=816 records=5 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	821		end_mark=860 records=40 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	832		end_mark=860 records=29 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	865		end_mark=871 records=7 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	876		end_mark=882 records=7 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	887		end_mark=893 records=7 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	898		end_mark=909 records=12 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	914		end_mark=919 records=6 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	924		end_mark=931 records=8 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	936		end_mark=941 records=6 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	946		end_mark=953 records=8 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	958		end_mark=967 records=10 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	972		end_mark=990 records=19 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	995		end_mark=1002 records=8 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1007		end_mark=1015 records=9 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1020		end_mark=1032 records=13 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	1037		end_mark=1049 records=13 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1054		end_mark=1054 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1059		end_mark=1059 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1064		end_mark=1064 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1069		end_mark=1069 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	1074		end_mark=1074 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1079		end_mark=1079 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1084		end_mark=1084 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1089		end_mark=1089 records=1 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	host entry	803		end_mark=807 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	812		end_mark=816 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	821		end_mark=860 records=40 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	832		end_mark=860 records=29 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	865		end_mark=871 records=7 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	876		end_mark=882 records=7 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	887		end_mark=893 records=7 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	898		end_mark=909 records=12 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	914		end_mark=919 records=6 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	924		end_mark=931 records=8 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	936		end_mark=941 records=6 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	946		end_mark=953 records=8 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	958		end_mark=967 records=10 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	972		end_mark=990 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	995		end_mark=1002 records=8 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1007		end_mark=1015 records=9 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1020		end_mark=1032 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	1037		end_mark=1049 records=13 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1054		end_mark=1054 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1059		end_mark=1059 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1064		end_mark=1064 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1069		end_mark=1069 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	1074		end_mark=1074 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1079		end_mark=1079 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1084		end_mark=1084 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1089		end_mark=1089 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	follows end mark	1094		end_mark=1094 records=1 beyond_ram=no	documented	ucode/buzz_isa.md#programs-entries-and-dispatch	Programs, entries and dispatch
 buzz_ucode_ip30.bin	host entry	1099		end_mark=1107 records=9 beyond_ram=no	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
-buzz_ucode_ip30.bin	host entry	1101		end_mark=1107 records=7 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	1112		end_mark=1112 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	host entry	1117		end_mark=1117 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1122		end_mark=1122 records=1 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1127		end_mark=1161 records=35 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1166		end_mark=1182 records=17 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1187		end_mark=1191 records=5 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1196		end_mark=1200 records=5 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1205		end_mark=1209 records=5 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1214		end_mark=1244 records=31 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1249		end_mark=1264 records=16 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1269		end_mark=1286 records=18 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1291		end_mark=1329 records=39 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1334		end_mark=1353 records=20 beyond_ram=no	undocumented		
+buzz_ucode_ip30.bin	host entry	1101		end_mark=1107 records=7 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	1112		end_mark=1112 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	host entry	1117		end_mark=1117 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1122		end_mark=1122 records=1 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1127		end_mark=1161 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1166		end_mark=1182 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1187		end_mark=1191 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1196		end_mark=1200 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1205		end_mark=1209 records=5 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1214		end_mark=1244 records=31 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1249		end_mark=1264 records=16 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1269		end_mark=1286 records=18 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1291		end_mark=1329 records=39 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1334		end_mark=1353 records=20 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
 buzz_ucode_ip30.bin	follows end mark	1358		end_mark=1379 records=22 beyond_ram=no	documented	ucode/buzz_isa.md#pass-10-the-lists-path-to-the-board-the-value-3-marks-and-what-no-software-can-settle	Pass 10: the list's path to the board, the value-3 marks and what no software can settle
-buzz_ucode_ip30.bin	follows end mark	1384		end_mark=1416 records=33 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1421		end_mark=1441 records=21 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1446		end_mark=1476 records=31 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1481		end_mark=1497 records=17 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1502		end_mark=1519 records=18 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1524		end_mark=1546 records=23 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1551		end_mark=1585 records=35 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1590		end_mark=1616 records=27 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1621		end_mark=1648 records=28 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1653		end_mark=1671 records=19 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1676		end_mark=1694 records=19 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1699		end_mark=1724 records=26 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1729		end_mark=1758 records=30 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1763		end_mark=1796 records=34 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1801		end_mark=1851 records=51 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1856		end_mark=1890 records=35 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1895		end_mark=1946 records=52 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1951		end_mark=1985 records=35 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	1990		end_mark=2041 records=52 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	2046		end_mark=2080 records=35 beyond_ram=no	undocumented		
-buzz_ucode_ip30.bin	follows end mark	2085		end_mark=2136 records=52 beyond_ram=yes	undocumented		
-buzz_ucode_ip30.bin	follows end mark	2141		end_mark=2164 records=24 beyond_ram=yes	undocumented		
-buzz_ucode_ip30.bin	follows end mark	2169		end_mark=2196 records=28 beyond_ram=yes	undocumented		
-buzz_ucode_ip30.bin	follows end mark	2201		end_mark=2228 records=28 beyond_ram=yes	undocumented		
-buzz_ucode_ip30.bin	follows end mark	2233		end_mark=2261 records=29 beyond_ram=yes	undocumented		
+buzz_ucode_ip30.bin	follows end mark	1384		end_mark=1416 records=33 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1421		end_mark=1441 records=21 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1446		end_mark=1476 records=31 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1481		end_mark=1497 records=17 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1502		end_mark=1519 records=18 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1524		end_mark=1546 records=23 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1551		end_mark=1585 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1590		end_mark=1616 records=27 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1621		end_mark=1648 records=28 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1653		end_mark=1671 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1676		end_mark=1694 records=19 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1699		end_mark=1724 records=26 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1729		end_mark=1758 records=30 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1763		end_mark=1796 records=34 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1801		end_mark=1851 records=51 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1856		end_mark=1890 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1895		end_mark=1946 records=52 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1951		end_mark=1985 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	1990		end_mark=2041 records=52 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	2046		end_mark=2080 records=35 beyond_ram=no	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	2085		end_mark=2136 records=52 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	2141		end_mark=2164 records=24 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	2169		end_mark=2196 records=28 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	2201		end_mark=2228 records=28 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines
+buzz_ucode_ip30.bin	follows end mark	2233		end_mark=2261 records=29 beyond_ram=yes	documented	ucode/buzz_routines.md#routines	Routines

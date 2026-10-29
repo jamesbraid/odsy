@@ -12,6 +12,8 @@ The listing is `ucode/disasm/buzz_xform.lst` (and `buzz_ucode_kernel.lst` for th
 - The program is longer than the RAM. Instructions past record 2047 are paged into a 200-word window at RAM addresses 1848 to 2047. **established.**
 - Nothing in the image or its loaders shows rendering precision (sub-texel bits, filter weights, LOD, colour iterators). This program is the transform and lighting stage; see "Precision".
 
+The routine map, one row per routine with its end mark, length and operand fields, is `ucode/buzz_routines.md`.
+
 ## Two copies of the program
 
 - **established.** The image has 2794 records. The kernel's `buzz_ucode` array has 2266 records plus 4 bytes (`ffffffff`). Record by record, the kernel copy equals image records 0 to 791 and 891 to 2364: the image has 99 records inserted at 792 and 429 appended after the kernel copy's end (`difflib` over records, `scripts/buzz_ucode_disasm.py --kernel` applies the shift to entry labels). Both 792 and 891 are routine entries named by libGLcore (below), so the insertion is one whole routine.
