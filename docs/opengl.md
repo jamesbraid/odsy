@@ -24,7 +24,7 @@ The X module draws 2D by sending the same class-1 command words as the GL driver
 
 ### Rectangle copy (`odsyCopyRectBody`)
 
-- **established.** `odsyCopyRectBody(ctx, srcrect, desc, ...)` takes a seven- or eight-word descriptor (a copy of the caller's block at argument +0 to +28) and a source and destination rectangle (four 16-bit values each). After sync it sends block 0x058 (`0x10658`) with operand 0x00120000, block 0x053 (`0x11453`) with five operands from context +6964 to +6980, and then one of two paths chosen by bit 27 of descriptor word 7:
+- **established.** `odsyCopyRectBody(ctx, srcrect, desc, ...)` takes a seven- or eight-word descriptor (a copy of the caller's block at argument +0 to +28) and a source and destination rectangle (four 16-bit values each). After sync it sends block 0x258 (`0x10658`; the id field of that word is 0x258, an earlier pass wrote 0x058) with operand 0x00120000, block 0x053 (`0x11453`) with five operands from context +6964 to +6980, and then one of two paths chosen by bit 27 of descriptor word 7:
   - bit 27 set: `0x00014400` with operand 10, a ten-operand state word `0xcf80a92f` (ten floats: four from context +6988 to +7000, then the source rectangle corners converted to float, two zeros, with the corners swapped in x or y by bits 31 and 30 of descriptor word 7 for a flipped copy), a Vertex2 word `0x8080c800` with operands 0, 0, then a class-0 write `0x00002031` (id 0x031, COUNT 8) with eight operands, then `0x00014001`;
   - bit 27 clear: only the class-0 write `0x00002031` with the eight operands.
   The eight operands are the descriptor's eight words, with word 1 merged with the source point (x low 16 bits, y high 16), word 3 with the width (low 16) and height (high 16), and word 6 with the destination point.
