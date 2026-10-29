@@ -453,17 +453,65 @@
  * fence; the syncs in ODSY_SET_GC are the driver's choice, not a
  * protocol requirement (the other textport routines omit them). */
 
-/* --- 64-bit stores to the command FIFO ------------------------------
- * odsyInitCfifo stores five doublewords whose high word is below 0x10000:
- *   0x000006b0_00000000, 0x000006b1_00000100, 0x000006b3_00005e50,
- *   0x000006b2_00007dc0, 0x000007b5_00000001
- * established (.lit8 0x30-0x48 of odsy_init.o and the li 107 << 36).
- * inferred: a doubleword store is a direct register write, high word
- * the register address and low word the value. Registers 0x6b0-0x6b3
- * written once at FIFO set-up with 0, 256, 32192 and 24144 are the best
- * candidates for the command FIFO's high- and low-water marks
- * (inferred, from the values' order and that no other driver path sets
- * a mark); unit and which is which: unknown. IP35 kernel not read. */
+/* --- Command FIFO initialisation: odsyInitCfifo (odsy_init.o) ---------
+ * established, in the order the stores reach the FIFO port (board PIO
+ * base + 0x110000):
+ *   1. 0x00010854, 0, 0x0fffffff   class-1 block 0x054, COUNT 2. What the
+ *                                  two operands mean: unknown.
+ *   2. five doubleword stores (high word first is inferred, big-endian):
+ *        0x000006b0_00000000  0x000006b1_00000100  0x000006b3_00005e50
+ *        0x000006b2_00007dc0  0x000007b5_00000001
+ *      (.lit8 offsets 0x30-0x48 of odsy_init.o, and 107 << 36 for the
+ *      first). These are the only stores to those register ids in any
+ *      kernel object: every .lit8, .data and .rodata of odyssey.a, gfx.o
+ *      and rrm.o was searched for the pairs, and the disassembly for
+ *      immediate loads of 0x6b0-0x6b3 and 0x7b5. The 0x6b8 pair found in
+ *      odsy_init.o .data lies inside the buzz_ucode array, not a store.
+ *   3. 0x00010046                  pad word, then a 2000 us delay.
+ *   4. A read of board + 0x201594 must return 0x003d0046. established as
+ *      the comparison; what the register is: unknown. inferred: an
+ *      identification or ready word of the board, because the microcode
+ *      load below is skipped when it differs (the routine then drops
+ *      flow control and returns 1, an error).
+ *   5. Microcode load, only when step 4 matched: header words 0x2e008380,
+ *      0x2600807f, 0x27008000, then 12288 words. Each word takes one
+ *      16-bit value h from the buzz_ucode array (odsy_init.o .data offset
+ *      0x7d0, 27196 bytes; the loop reads the first 24576) and emits
+ *      0x40008000 | (h & 0x3ff) | ((h >> 10) << 23). The values are
+ *      taken in groups of six in reverse order (h[5] first, h[0] last,
+ *      then h[11]..h[6], and so on, 2048 groups). established. The
+ *      array is not buzz_xform.bin: that image goes through
+ *      odsyDownloadUcode (odsy_ucode.o), a separate path. What this
+ *      program is and the meaning of the header words: unknown.
+ *   6. 0x000007f0_3b9aca00         one more doubleword (value 10^9), the
+ *                                  last FIFO store of the routine.
+ *      Register 0x7f0 and the value: unknown.
+ * After that flow control is attached (HEART credit tnum written into
+ * the flow configuration register, flow-off register written 0).
+ *
+ * Water marks. inferred: 0x6b0-0x6b3 hold two pairs of thresholds for the
+ * command FIFO. Evidence for: they are written once, at FIFO set-up,
+ * beside the high- and low-water interrupt enable (the flag word
+ * CFIFO_LW_FLAG and the CFIFO_HW_FLAG name exist in the board's flag
+ * table), and 24144 < 32192 as a lower and upper mark would be. Evidence
+ * against or missing: the kernel never reads them back; nothing ties a
+ * value to a flag; the units (words, bytes, entries) are unknown. Which
+ * of 0x6b2/0x6b3 is the high mark: unknown. 0x6b0 = 0 and 0x6b1 = 256 may
+ * be a second pair (a floor and a small threshold): unknown.
+ *
+ * The host side has its own, fixed threshold. odsyHiwaterInterrupt
+ * compares the HEART credit count for this board against
+ * gfx_flow_credit_bias_get, and the IP30 kernel returns the constant
+ * 552 (/unix, the function is `li v0,552`). The count is the HEART
+ * per-widget credit register shifted left by 3 (gfx_flow_credit_count_get
+ * reads the doubleword at 0xaff00060 + 8 * tnum and shifts it left by 3;
+ * gfx_flow_credit_total_get is the table word at +24, also shifted
+ * left by 3). So the 552 and the board marks are different quantities;
+ * 552 is not derived from them in any code read. established.
+ *
+ * The IP35 kernel's flow-control code and any different board marks: the
+ * IP35 objects are not in this workspace's root, so unknown. A fact
+ * about the IP35 board records must come from reading that kernel. */
 
 /* --- The settle sequence ----------------------------------------------
  * After every textport primitive and at the start of a hardware
