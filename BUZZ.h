@@ -95,8 +95,8 @@
  *   0x16    7    TEXMODE0..TEXMODE6 (below)          0x0200
  *   0x13    4    LOD bias S, LOD bias T, min LOD,     0x4000
  *                max LOD
- *   0x30    8    post-filter scale/bias, per channel  (path at line 1911)
- *   0x3e    3    texture offset words                 unknown
+ *   0x3b    8    post-filter scale/bias, per channel  0x10000 (see below)
+ *   0x3e    3    texture offset words                 0x8000
  *   0x1b    5    texture environment                  0x0100
  *   0x280+i 3    level descriptor i, i = 0..63        0x0400
  *
@@ -107,7 +107,11 @@
 #define BUZZ_REG_TEXMODE           0x016 /* established, 7 words */
 #define BUZZ_REG_TEXLOD            0x013 /* established, 4 words */
 #define BUZZ_REG_TEXENV            0x01b /* established, 5 words */
-#define BUZZ_REG_POSTFILTER        0x030 /* established, 8 words */
+#define BUZZ_REG_POSTFILTER        0x03b /* established, 8 words, pass 3
+                                            corrects the id from 0x030 */
+#define BUZZ_REG_POSTFILTER_ONE    0x03d /* established, 2 words */
+#define BUZZ_REG_POSTFILTER_4SET(k) (0x030 + (k)) /* established, 8 words
+                                            each, k < 4, other path */
 #define BUZZ_REG_TEXOFFSET         0x03e /* established, 3 words */
 #define BUZZ_REG_TEXLEVEL(i)       (0x280 + (i)) /* established, 3 words, i<64 */
 
@@ -154,6 +158,14 @@
  * zeroes the three TEXOFFSET words. established: SetTexOffsetValues
  * (0x0d9d2660). Meaning of the flag: unknown. */
 #define TEXMODE4_NO_OFFSET         0x10000000u
+/* Pass 3: the flag tested is object offset 0x57c, which TexImage setup
+ * stores from its sixth size argument (level record at 0x554 + 0x44 per
+ * level, width at 0x570, height at 0x574, depth at 0x578, 0x57c next).
+ * The size code computes width - 2 * [0x57c] and height - 2 * [0x57c]
+ * (the per-level size loop in ody_texture.c near line 1740), so 0x57c is
+ * the level's border width. inferred (from those formulas, not from a
+ * name). So bit 28 is set when level 0 has no border and TEXMODE6 bit 24
+ * when it has one. */
 /* Bits 25:23: 3-bit value from the current-texture lookup at
  * activation. established: __glOdysseyTextureActivate (0x0d9d1f90)
  * line 1941. Meaning unknown. */
@@ -216,6 +228,18 @@
  * SetTexOffsetValues. */
 #define TEXMODE6_HAS_OFFSET        0x01000000u
 
+/* --- TEXOFFSET block (0x3e, class-1 word 0x00010c3e) ---------------------
+ * Three words from context offsets 0x8d6c, 0x8d70, 0x8d74, sent when
+ * dirty bit 0x8000 is set; they are copies of texture object offsets
+ * 0xd0, 0xd4, 0xd8, made by __glOdysseyTextureActivate. The only writer
+ * of those object words is SetTexOffsetValues, which zeroes them for any
+ * border value, and the default-state routine zeroes the context words.
+ * So the driver always sends 0, 0, 0. established (a search of the
+ * decompiled N32 texture code for stores to 0xd0-0xd8 finds only that
+ * routine; the matches in ody_fft.c are another object). The fields'
+ * meaning, and what the hardware does with the TEXMODE4/6 border flag
+ * when they are zero: unknown. */
+
 /* --- TEXLOD block (0x13) --------------------------------------------- */
 /* All four words are signed fixed point with 8 fraction bits in 14 bits
  * (two's complement, mask 0x3fff): trunc(x * 256) & 0x3fff.
@@ -233,8 +257,35 @@
 #define BUZZ_LOD_FRAC_BITS         8
 #define BUZZ_LOD_MASK              0x3fffu
 
-/* --- POSTFILTER block (0x30) ----------------------------------------- */
-/* GL_POST_TEXTURE_FILTER_SCALE_SGIX / _BIAS_SGIX, interleaved per
+/* --- POSTFILTER block (pass 3 correction: 0x3b, not 0x30) ---------------
+ * The eight words live in the context at 0x8cec-0x8d08 (scale R, bias R,
+ * scale G, ... as below). Which register block they are sent to depends on a mode word
+ * at context offset 0x8ce8, tested in __glOdysseyValidateHardware when
+ * dirty bit 0x00010000 is set (asm at VA 0x0d968820, compares with 1, 2, 3):
+ *   mode 1  four sets of eight words, 0x8cec, 0x8d0c, 0x8d2c, 0x8d4c, to
+ *           blocks 0x00012030..0x00012033
+ *   mode 2  one set of eight words from 0x8cec to block 0x0001203b
+ *   mode 3  two words (0x8cec, 0x8cf0) to block 0x0001083d
+ * Mode 2 is what __glOdysseyTextureActivate writes after copying the
+ * texture object's words in (the accumulation code also sets it); so the
+ * texture post-filter scale and bias go to block 0x3b. Mode 3 is written
+ * by the context's default-state routine (ody_context.c, the routine that
+ * also zeroes the offset words) together with 0x8cec = 0x1000 and
+ * 0x8cf0 = 0: a single scale of 1.0 and bias 0, the identity. Mode 1
+ * takes its words from the image-processing state (ody_image_utils.c
+ * copies state offsets 0xa0-0xbc and the mode from 0xc0), not from a
+ * texture object. established for all three. Why the hardware has three
+ * layouts, and whether 0x30-0x33 are four colour channels or four
+ * stages: unknown. The texture object's words come from
+ * glTexParameter GL_POST_TEXTURE_FILTER_BIAS_SGIX (0x8179) and
+ * _SCALE_SGIX (0x817a): four floats each, converted by floatToS312_Clamp,
+ * scale R, G, B, A into object offsets 0xdc, 0xe4, 0xec, 0xf4 and bias
+ * into 0xe0, 0xe8, 0xf0, 0xf8, which is the interleaved order below, and
+ * the setter ORs 0x10000 into the object dirty word. established:
+ * __glOdyim_TexParameterfv, the 0x817a and 0x8179 branches.
+ *
+ */
+/* Word format. GL_POST_TEXTURE_FILTER_SCALE_SGIX / _BIAS_SGIX, interleaved per
  * channel: scale R, bias R, scale G, bias G, scale B, bias B, scale A,
  * bias A. Each is signed 3.12 in 16 bits: clamp to [-8, 7.999755859375],
  * trunc(x * 4096) & 0xffff. Default scale 4096 (1.0), bias 0.
