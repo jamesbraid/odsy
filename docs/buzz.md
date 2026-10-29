@@ -111,7 +111,7 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
   - `odsyRestoreGfe`: 0x00014400 and 0x00014001 (primitive begin and end).
   - `odsyRestartContext`: 019/0 046/0 000/1 043/1 044/1 258/1 050/2 017/4.
   The list is the set of immediates visible in the disassembly; blocks built with other instructions are not in it. Several coincide with ids in `BUZZ.h` (texture block 0x016, 0x013, 0x01b; settle words 0x043, 0x046, 0x019). Their per-field meaning stays as written there; for the others: **unknown**.
-- **established.** `odsyRestoreXform` (about 690 lines), `odsyRestoreVB` (about 1125 lines) and `odsyRestoreVertex` with the `restore*` primitive walkers (`restorePoints`, `restoreLines`, `restoreTriangles`, `restoreTriStrip`, `restoreTriFan`, `restoreQuads`, `restoreQuadStrip`, `restorePolygon`, `restoreRect`) replay transform state and the vertices of an interrupted primitive. Their word formats were not read: **unknown**. `odsyResetHwShadow` clears the kernel's shadow of hardware state (not read in detail).
+- **established.** `odsyRestoreXform` (about 690 lines), `odsyRestoreVB` (about 1125 lines) and `odsyRestoreVertex` with the `restore*` primitive walkers (`restorePoints`, `restoreLines`, `restoreTriangles`, `restoreTriStrip`, `restoreTriFan`, `restoreQuads`, `restoreQuadStrip`, `restorePolygon`, `restoreRect`) replay transform state and the vertices of an interrupted primitive. Their word formats are in pass 9 below. `odsyResetHwShadow` clears the kernel's shadow of hardware state (not read in detail).
 
 ### Pass 5: completion word, saved record and the libGLcore side
 
@@ -144,6 +144,44 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 - **established.** `__glOdysseyGetHardwareShadow` (`ody_unixcontext.s`) issues ioctl `0x6f64000c` on the device descriptor. **inferred** from the name that the kernel side is `gfP_OdsySaveHwShadow`; the ioctl switch was not traced.
 - **established.** `__glOdyGetFromShadow` calls `__glOdyGetFromHardware` (above) and then `__glOdyDecodeShadowFormat` on a table of 20-byte descriptors (index times 20 from a context pointer at `0x16d24`), which is how glGet reads state that exists only on the board. The descriptor layout: **unknown**.
 - **unknown.** What libGLcore does at make-current and lose-current with respect to the board's saved state (`MakeCurrent`, `LoseCurrent`, `__glOdysseyDriverMakeCurrent` not read), and the IP35 diff of `odsy_ctxsw`.
+
+### Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
+
+IRIX 6.5.30m, IP30 `odsy_ctxsw.o`. **established** by reading both routines in full; the store sequences were extracted mechanically from the disassembly (constants folded, loads kept as shadow offsets) and checked by hand. `H` is the context's hardware-state structure (offset 176 of the context passed in), `R` its saved record (offset 192 of the structure). `enc(v)` is `(v & 0x3ff) | ((v >> 10) << 23)`, the way the driver spreads a value over a command word (the same form as the sequencer-register words in `ucode/buzz_isa.md`). Every store goes to the command FIFO port with a `sync`.
+
+**`odsyRestoreXform`** writes the transform engine's state in this order. The "full" steps run only when the incoming context's slot (word 0 of the structure) is nonzero and differs from the board's current slot (record +820); otherwise only the steps marked "always" run.
+
+1. *Full.* Register 0x31 is a table index and block id 0x3a2 its 16-word data port: for each group start `i` = 0, 16, ..., 496 except 320 and 480 (so 30 groups, 480 words): `0x31008000 | enc(i)`, then `0x9080bda2` (the group at i = 160 sends `0x9000bda2` instead; **established** as values, the data words are the same count), then 16 words from `H + 7356 + 4*i`, then `0x31008000 | enc(H[9888])` (re-selecting the register's saved index). **inferred** that the 512-word table is one 2048-byte block of the saved state and that groups 320-335 and 480-495 are not saved because the board does not hold them.
+2. *Full.* Register 0x29 = 410 (`0x2900819a`), register 0x32 = 24 (`0x32008018`), then `0x8e809015` and four words from `H + 9788`: data memory entry 24. Then for entry n = 0..23: `0x32008000 | enc(n)`, `0x8e809015` and four words from `H + 9404 + 16*n`. `ucode/buzz_isa.md` reads the same sequence in libGLcore as a data-memory load; this confirms register 0x32 is the data address and 410 the load routine's entry.
+3. Always: `0x28008000` (register 0x28 = 0), then the program entry list: when the count at `H + 10972` is below 255 the words `0x60008000 | enc(H[9948 + 4*j])` for j < count (a count of 255 or more logs an error and sends SIGKILL to the current process). **inferred** that 0x60 words are the AddProgram routine entry list (`ucode/buzz_isa.md`).
+4. Always: `H[9900]` is cleared and used as the saved index of register 0x34 (`0x34008000 | enc(H[9900])`); register 0x34 is a 68-word table: index 0 and block `0x9080bdc8` with 16 words from `H + 6672`; index 16 and `0x908091df` with 4 words from `H + 6736`. *Full only:* index 36, 16 words from `H + 6752`; index 52, 16 words from `H + 6816`; index 20, 16 words from `H + 6880`. Each block is followed by a reselect of index 0. So `H + 6672 + 4*a` is table word `a` (a = 0..67, contiguous).
+5. Always: the sequencer registers 0x20 + r for r = 0..21 as `((0x20 + r) << 24) | 0x8000 | enc(H[9820 + 4*r])`, skipping r = 6, 11, 13 and 15, and for r = 14 sending `0x2e008380` when the shadow word is zero (the same header word `odsyInitCfifo` opens the microcode load with, `BUZZ.h`).
+
+**`odsyRestoreVB`** (arguments: board, hardware state, a vertex descriptor, one unused word, a count) replays attribute slots from the saved record `R`. A slot is a four-entry array of command words at `R + c` (COUNT in bits 13:10) with, for entry k, its operands at `R + d + 16*k`. The vertex descriptor word 0 (and word 1 for the last two slots) holds a 2-bit entry selector per slot; the routine sends the selected entry's command word and then COUNT operands:
+
+| Descriptor field | Command words `R +` | Operands `R +` |
+|---|---|---|
+| word 0 bits 17:16 | 384 | 1280 |
+| word 0 bits 15:14 | 400 | 1344 |
+| word 0 bits 13:12 | 416 | 1408 |
+| word 0 bits 11:10 | 432 | 1472 |
+| word 0 bits 9:8 | 448 | 1536 |
+| word 0 bits 5:4 | 480 | 1664 |
+| word 0 bits 3:2 | 496 | 1728 |
+| word 0 bits 1:0 | 512 | 1792 |
+| word 1 bits 31:30 | 528 | 1856 |
+| word 1 bits 29:28 | 544 | 1920 |
+| word 0 bits 27:26 | 304 | 960 |
+| word 0 bits 25:24 | 320 | 1024 |
+| word 0 bits 23:22 | 336 | 1088 |
+| word 0 bits 21:20 | 352 | 1152 |
+| word 0 bits 19:18 | 368 | 1216 |
+| word 0 bits 31:30 | 272 | 832 |
+| word 0 bits 29:28 | 288 | 896 |
+
+Bits 7:6 of word 0 select nothing (no slot 464 is read anywhere). The full replay runs when the context's slot is nonzero and either differs from the board's current slot (record +820) or the count argument is positive; its order is the first twelve rows (bits 17:16 down to 11:10, then 5:4, 3:2, 1:0, word 1 bits 31:30, then 27:26 to 21:20), then the 448 and 544 slots, then the last three rows. Otherwise (slot zero, or already resident with a count of zero or less) only the last three rows (word 0 bits 31:30, 29:28 and 19:18) are replayed. The 448 and 544 slots are also read through a second path that loads one word each (`R + 1536 + 16*k`, `R + 1920 + 16*k`); the condition that selects it was not traced: **unknown**, readable from the code by a further pass, not a hardware question.
+
+- **unknown: needs a hardware capture.** What the 512-word table behind register 0x31, the 68-word table behind 0x34, data memory entries 0-24 and the seventeen attribute slots hold on the board. A capture that settles it: a dump of the saved record after a save request (`BUZZ.h`, +0x118000) taken together with the command stream that built the state, so that each shadow word can be matched to the stream word that wrote it.
 
 ### What is not done
 
