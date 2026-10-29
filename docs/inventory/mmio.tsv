@@ -1,0 +1,56 @@
+space	offset	access	functions	function_names	binary_ids	status	doc	section
+board	0x1	w64	1	odsy_i2cProbe2b	b01,b05	documented	BUZZ.h	1. Command-FIFO word framing
+board	0xc	r32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x14	r32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x1c	r32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x24	r32,w32	2	odsyLLPReset,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x34	w32	3	odsyDisableInterrupts,odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Attribute ids not sent as constants
+board	0x3c	w32	1	odsyInitInterrupts	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
+board	0x44	r32,w32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	2. Texture state
+board	0x5c	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
+board	0x1004	w32	1	odsyReset	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x100c	w32	1	odsyLowLevelReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x1014	r32,w32	2	gfP_OdsyDIAGdma,odsyFlagInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x101c	w32	3	odsyFlagInterrupt,odsyHiwaterInterrupt,odsyReset	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x1034	r32,w32	4	odsyFlagInterrupt,odsyHiwaterInterrupt,odsyInitInterrupts,odsyLoadTimingTable	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x103c	w32	3	odsyDisableInterrupts,odsyLowaterInterrupt,odsyReset	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x1044	w32	3	odsyDisableInterrupts,odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
+board	0x104c	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x1054	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x105c	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
+board	0x1064	r32	1	odsyHiwaterInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x106c	r32	16	gfP_OdsyClearBuffer,gfP_OdsyMakeCurrent,gfP_OdsySaveHwShadow,gfP_OdsySetDrawBuffer,gf_OdsyDestroyDDRN,gf_OdsyDownload,gf_OdsyInitialize,gf_OdsyPcxSwap,gf_OdsyReleaseGfxSema,gf_OdsySchedSwapBuf,gf_Odsy	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x1074	w32	17	gfP_OdsyClearBuffer,gfP_OdsyMakeCurrent,gfP_OdsySaveHwShadow,gfP_OdsySetDrawBuffer,gf_OdsyDestroyDDRN,gf_OdsyDownload,gf_OdsyInitialize,gf_OdsyMapGfx,gf_OdsyPcxSwap,gf_OdsyResume,gf_OdsySchedSwapBuf,g	b01,b05	documented	docs/buzz.md	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
+board	0x107c	r32,w32	21	gfP_OdsyClearBuffer,gfP_OdsyMakeCurrent,gfP_OdsySaveHwShadow,gfP_OdsySetDrawBuffer,gf_OdsyDestroyDDRN,gf_OdsyDownload,gf_OdsyInitialize,gf_OdsyMapGfx,gf_OdsyPcxSwap,gf_OdsyReleaseGfxSema,gf_OdsyResume	b01,b05	documented	docs/buzz.md	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
+board	0x1084	w32	4	gf_OdsyInitialize,odsyReset,odsy_flow_await_returned_credits,odsy_tpinit	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x108c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x109c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x10a4	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x10ac	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x10b4	w32	1	odsyRetraceHandler	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x10bc	w32	6	gf_OdsySchedMGRSwapBuf,gf_OdsySchedSwapBuf,gf_OdsyUnSchedSwapBuf,odsyReset,odsyRetraceHandler,odsySwapBuffer	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x10cc	w32	1	odsyReset	b01,b05	documented	DISPLAY.h	1. Display FIFO words
+board	0x10d4	r32	1	odsyRetraceHandler	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x4004	w32	1	gf_OdsyPcxSwap	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x400c	w32	1	gf_OdsyPcxSwap	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x4014	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x401c	w32	3	odsyDestroyPfRgn,odsyInitPfRgn,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x4024	w32	3	odsyDestroyPfRgn,odsyInitPfRgn,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x402c	w32	2	gfP_OdsyPerfStat,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x4034	w32	2	gf_OdsyStart,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x403c	w32	2	gf_OdsyStart,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x4044	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
+board	0x404c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	The 0x4000 register group (`odsy_diag.o`)
+board	0x4054	w32	1	odsyReset	b01,b05	documented	docs/kernel.md	odsyReset order of operations
+board	0x405c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	The 0x4000 register group (`odsy_diag.o`)
+board	0x8530	w64	1	odsy_i2c_sendbyte	b01,b05	documented	docs/kernel.md	odsyInitDBE (`odsy_init.o`, IP30)
+board	0x110000	w32,w64	9	gfP_OdsyGLGet,gf_OdsyPcxSwap,odsyClipPush,odsyDownloadUcode,odsyInitCfifo,odsyRestoreVB,odsySetProgram,odsyZeroOut,odsy_mm_obj_xfr_bs	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x118000	w64	1	gf_OdsyPcxSwap	b01	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x201594	r32	1	odsyInitCfifo	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+board	0x400000	w64	27	gfP_OdsyBRDMGRVTGcontrol,gfP_OdsyBRDMGRcursor,gfP_OdsyBRDMGRsetColors,gf_OdsySetDisplayMode,odsyBlankScreen,odsyConfigFb,odsyGatherInfo,odsyGenlockInterrupt,odsyInitDBE,odsyLoadTimingTable,odsySetDACG	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+display	0x2482	r32 read-back+4	1	odsyInitDBE	b01,b05	documented	PBJ.h	2. Address space, writes and read-back
+display	0x2483	r32 read-back+4	1	odsyInitDBE	b01,b05	documented	PBJ.h	2. Address space, writes and read-back
+display	0x2700	r32 read-back+4	4	odsyLoadTimingTable,odsy_i2cProbe2b,odsy_i2c_read_denali,odsy_i2c_write_denali	b01,b05	documented	DISPLAY.h	4. Video timing generator addresses (display FIFO type 3)
+display	0x2701	r32 read-back+4	1	odsyInitDBE	b01,b05	documented	PBJ.h	1. What PB&J is
+display	0x27cc	r32 read-back+4	1	odsyGenlockInterrupt	b01,b05	documented	DISPLAY.h	4. Video timing generator addresses (display FIFO type 3)
+display	0x27cd	r32 read-back+4	1	odsyGenlockInterrupt	b01,b05	documented	PBJ.h	3. Address map as the kernel uses it

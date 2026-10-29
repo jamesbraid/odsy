@@ -1,0 +1,8 @@
+inventory	rows	documented	named_only	undocumented	pct_documented	pct_named_or_better
+functions (board binaries)	7324	232	12	7080	3.2	3.3
+functions (shared binaries)	11415	53	21	11341	0.5	0.6
+functions (all)	18739	285	33	18421	1.5	1.7
+mmio	55	55	0	0	100.0	100.0
+tokens	224	136	13	75	60.7	66.5
+ioctls	79	26	53	0	32.9	100.0
+ucode	247	87	0	160	35.2	35.2

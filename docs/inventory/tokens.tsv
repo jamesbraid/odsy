@@ -1,0 +1,225 @@
+kind	value	family	fields	sites	top_functions	binary_ids	status	doc	section
+word	0x00010000	class1	count=0 id=0x000	25	__glOdysseyValidateContext,miLineArc..PBB,__glOdysseyImageMovePixelsCopy	b19,b20,b21,b22,b23,b24,b25,b28,b31,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x00010001	class1	count=0 id=0x001	6	__glsplc_Begin	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x00010018	class1	count=0 id=0x018	23	__glOdysseyValidateHardware,odsyRestoreRaster,odsy_mm_obj_xfr_bs	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010019	class1	count=0 id=0x019	380	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseyValidateHardware	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010046	class1	count=0 id=0x046	9838	__glOdysseyValidateHardware,__glOdysseyImageChainAddOpAcceptSignedDataFromHost,__glOdysseyImageMovePixelsCopy	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00010400	class1	count=1 id=0x000	7	__glsplc_Begin,odsyRestartContext	b05,b25,b26,b27,b28,b29,b30	named-only	docs/kernel.md	Command words the kernel emits
+word	0x00010404	class1	count=1 id=0x004	415	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00010405	class1	count=1 id=0x005	38	__glOdysseyValidateHardware,__glOdyim_PolygonOffsetEXT,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b26,b27,b29,b30,b31,b32,b33,b52	undocumented		
+word	0x00010406	class1	count=1 id=0x006	16	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	undocumented		
+word	0x00010407	class1	count=1 id=0x007	36	__glOdysseyValidateContext,__glOdysseyValidateFragment,__glOdyim_LightModeli	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010415	class1	count=1 id=0x015	71	__glOdysseyClear,__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x0001041e	class1	count=1 id=0x01e	16	__glOdyssey_CopyContext,odsyRestoreRaster,__glOdyim_AlphaFunc	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x0001041f	class1	count=1 id=0x01f	41	__glOdysseyClear,__glOdysseyValidateHardware,odsyWideDash	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b26,b27,b29,b30,b31,b32,b33,b52	undocumented		
+word	0x00010420	class1	count=1 id=0x020	49	__glOdysseyClear,__glOdyssey_CopyContext,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010422	class1	count=1 id=0x022	76	__glOdyssey_CopyContext,__glOdysseyImageChainAddOpAcceptSignedDataFromHost,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b25,b26,b27,b28,b29,b30,b31,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010424	class1	count=1 id=0x024	53	ODSY_SET_GC,odsyRestoreRaster,odsyPushBufferSelect	b01,b02,b03,b05,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x0001043f	class1	count=1 id=0x03f	56	__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext,odsyRestoreRaster	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00010443	class1	count=1 id=0x043	4290	__glOdysseyValidateHardware,__glOdysseyImageChainAddOpAcceptSignedDataFromHost,__glOdyim_PolygonOffsetEXT	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010444	class1	count=1 id=0x044	25	__glOdysseyVertexWARClip,odsyDMAOps,gf_OdsyPcxSwap	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32	documented	docs/kernel.md	Command words the kernel emits
+word	0x0001044c	class1	count=1 id=0x04c	15	__glOdysseyValidateContext,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010451	class1	count=1 id=0x051	13	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b25,b26,b27,b28,b29,b30,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010452	class1	count=1 id=0x052	19	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010456	class1	count=1 id=0x056	30	__glOdyim_PolygonOffsetEXT,__glOdysseyValidateContext,__glOdysseyFindWindowSize	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010457	class1	count=1 id=0x057	14	__glOdysseyValidateContext,odsyRestoreRaster	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0x00010458	class1	count=1 id=0x058	22	__glOdyssey_CopyContext,__glOdyim_PolygonOffsetEXT,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b26,b27,b29,b30,b31,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010658	class1	count=1 id=0x258	110	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyReadFromPMObj,__glOdysseyOpenPMObjReference	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+word	0x0001081d	class1	count=2 id=0x01d	79	__glOdysseyValidateHardware,__glOdyim_PolygonOffsetEXT,__glOdyim_Clear	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x0001083d	class1	count=2 id=0x03d	9	__glOdysseyValidateHardware,odsyRestoreRaster	b02,b03,b20,b23,b26,b27,b29,b30,b32	documented	BUZZ.h	2. Texture state
+word	0x00010840	class1	count=2 id=0x040	98	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseySetDrawbuf	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010841	class1	count=2 id=0x041	108	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseySetDrawbuf	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010842	class1	count=2 id=0x042	49	__glOdysseyImageChainAddOpAcceptSignedDataFromHost,__glOdysseyImageChainFree,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x00010845	class1	count=2 id=0x045	2	odsyInitDefaultHW..N,odsyGammaFit	b52	undocumented		
+word	0x0001084a	class1	count=2 id=0x04a	15	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b22,b26,b27,b29,b30,b31,b52	undocumented		
+word	0x00010850	class1	count=2 id=0x050	12	gf_OdsyPcxSwap,odsyRestartContext	b01,b02,b03,b05	documented	docs/kernel.md	Command words the kernel emits
+word	0x00010854	class1	count=2 id=0x054	4	odsyInitCfifo	b01,b02,b03,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00010a5a	class1	count=2 id=0x25a	58	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseyClosePMObjWriteReference	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00010c1c	class1	count=3 id=0x01c	18	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	undocumented		
+word	0x00010c21	class1	count=3 id=0x021	129	__glOdysseyValidateHardware,odsyDrawMonoPixels,odsySegmentSD	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32,b52	documented	BUZZ.h	4. Colour precision
+word	0x00010c3e	class1	count=3 id=0x03e	24	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	BUZZ.h	2. Texture state
+word	0x00010c48	class1	count=3 id=0x048	29	__glOdyssey_CopyContext,odsyRestoreRaster,__glOdyim_LineStipple	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	undocumented		
+word	0x00010ebc	class1	count=3 id=0x2bc	54	__glOdysseyImageMovePixelsTexture,__glOdysseyGetCurrentTexture	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/opengl.md	Which libGLcore file sends which block
+word	0x00011013	class1	count=4 id=0x013	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b25,b26,b27,b28,b29,b30,b31,b33	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x00011017	class1	count=4 id=0x017	332	__glOdysseyFinish,__glOdysseySetDrawbuf,ODSY_SET_GC	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00011023	class1	count=4 id=0x023	391	odsyPolyArc,odsyWideDash,odsyZeroPolyArc	b01,b02,b03,b05,b20,b21,b23,b24,b27,b30,b32,b33,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x0001103a	class1	count=4 id=0x03a	12	__glOdysseyValidateHardware,odsyRestoreRaster	b02,b03,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/buzz.md	Command-stream register blocks
+word	0x0001141b	class1	count=5 id=0x01b	22	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32,b52	named-only	BUZZ.h	1. Command-FIFO word framing
+word	0x00011453	class1	count=5 id=0x053	85	__glOdysseyImageMovePixelsCopy,__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyValidateContext	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	docs/opengl.md	Rectangle copy (`odsyCopyRectBody`)
+word	0x0001181a	class1	count=6 id=0x01a	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32	undocumented		
+word	0x00011847	class1	count=6 id=0x047	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b25,b26,b27,b28,b29,b30,b31,b33	undocumented		
+word	0x00011a50	class1	count=6 id=0x250	30	__glOdysseyValidateContext,__glOdysseyValidateFragment	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x00011c16	class1	count=7 id=0x016	19	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x00012030	class1	count=8 id=0x030	15	__glOdysseyValidateHardware,odsyRestoreRaster	b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+word	0x00012031	class1	count=8 id=0x031	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x00012032	class1	count=8 id=0x032	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x00012033	class1	count=8 id=0x033	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	documented	docs/kernel.md	Command words the kernel emits
+word	0x0001203b	class1	count=8 id=0x03b	10	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b02,b03,b20,b23,b26,b27,b29,b30,b32,b52	documented	BUZZ.h	2. Texture state
+word	0x0001204b	class1	count=8 id=0x04b	129	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseySetDrawbuf	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	docs/kernel.md	Command words the kernel emits
+word	0x00013c28	class1	count=15 id=0x028	13	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b21,b24,b26,b27,b29,b30,b33	documented	docs/buzz.md	Command-stream register blocks
+word	0x00013c29	class1	count=15 id=0x029	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x00013c2a	class1	count=15 id=0x02a	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x00013c2b	class1	count=15 id=0x02b	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	documented	docs/buzz.md	Command-stream register blocks
+word	0x00013c38	class1	count=15 id=0x038	8	__glOdysseyValidateHardware,odsyInitDefaultHW..N	b20,b23,b26,b27,b29,b30,b32,b52	documented	docs/buzz.md	Command-stream register blocks
+word	0x00013c4d	class1	count=15 id=0x04d	26	__glOdyim_FragmentLightModeliSGIX,odsyRestoreRaster,__glOdyim_Materialf	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0x00013c4e	class1	count=15 id=0x04e	75	__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext,__glOdysseyConvertStipple	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00013c4f	class1	count=15 id=0x04f	80	__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext,__glOdysseyConvertStipple	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x00014001	class1	count=0 id=0x001 prim	297	__glOdysseyImageMovePixelsDMAtoGfx,__glOdyim_PolygonOffsetEXT,__glOdysseyClear	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x00014400	class1	count=1 id=0x000 prim	261	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyClear,__glOdysseyProgramGenericConvolutionFilter	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x22008000	sequencer	reg=0x22	188	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b02,b03,b52	documented	docs/opengl.md	State sent before any draw
+word	0x22008001	sequencer	reg=0x22	195	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b01,b02,b03,b05,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x23008002	sequencer	reg=0x23	186	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b52	documented	docs/opengl.md	State sent before any draw
+word	0x23008003	sequencer	reg=0x23	192	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b01,b02,b03,b05,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x2600807f	sequencer	reg=0x26	4	odsyInitCfifo	b01,b02,b03,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x27008000	sequencer	reg=0x27	4	odsyInitCfifo	b01,b02,b03,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x278083ff	sequencer	reg=0x27	4	odsyRestartContext	b01,b02,b03,b05	undocumented		
+word	0x28008000	sequencer	reg=0x28	3	odsyRestoreXform	b02,b03,b05	documented	docs/buzz.md	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
+word	0x280080ff	sequencer	reg=0x28	4	odsyRestartContext	b01,b02,b03,b05	undocumented		
+word	0x2900812f	sequencer	reg=0x29	18	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyImageMovePixelsCopy	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x2900819a	sequencer	reg=0x29	9	__glOdyim_LightModeli,odsyRestoreXform	b02,b03,b05,b25,b26,b27,b28,b29,b30	documented	docs/buzz.md	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
+word	0x29808062	sequencer	reg=0x29	12	__glOdysseyValidateProgram,__glOdysseySetProgram	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x298080c5	sequencer	reg=0x29	18	__glOdysseyValidateProgram,__glOdysseySetProgram	b19,b20,b21,b22,b23,b24,b31,b32,b33	undocumented		
+word	0x2e008380	sequencer	reg=0x2e	10	__glOdysseyValidateContext,odsyInitCfifo	b01,b02,b03,b05,b25,b26,b27,b28,b29,b30	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+word	0x3000c02e	sequencer	reg=0x30	4	odsyResetHwShadow	b01,b02,b03,b05	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0x310080f0	sequencer	reg=0x31	6	__glOdysseyInitLighting	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x310080f4	sequencer	reg=0x31	6	__glOdysseyInitLighting	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x31008140	sequencer	reg=0x31	4	odsyClipPush	b01,b02,b03,b05	documented	docs/kernel.md	Command words the kernel emits
+word	0x310081e0	sequencer	reg=0x31	6	__glOdysseyValidateContext	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x32008018	sequencer	reg=0x32	4	odsyRestoreXform	b01,b02,b03,b05	documented	docs/buzz.md	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
+word	0x34008000	sequencer	reg=0x34	40	odsyRestoreXform,__glOdysseyValidateMatrixComb,__glOdysseyValidateContext	b01,b02,b03,b05,b25,b26,b27,b28,b29,b30	documented	docs/buzz.md	Pass 9: `odsyRestoreXform` and `odsyRestoreVB`
+word	0x34008010	sequencer	reg=0x34	8	__glOdysseyValidateMatrixComb,odsyRestoreXform	b02,b03,b25,b26,b27,b28,b29,b30	undocumented		
+word	0x34008014	sequencer	reg=0x34	8	__glOdysseyValidateMatrixTex,odsyRestoreXform	b02,b03,b25,b26,b27,b28,b29,b30	undocumented		
+word	0x34008024	sequencer	reg=0x34	8	__glOdysseyValidateMatrixMV,odsyRestoreXform	b02,b03,b25,b26,b27,b28,b29,b30	undocumented		
+word	0x34008034	sequencer	reg=0x34	2	odsyRestoreXform	b02,b03	undocumented		
+word	0x35008000	sequencer	reg=0x35	6	__glOdysseyValidateContext	b25,b26,b27,b28,b29,b30	undocumented		
+word	0x8080c800	attribute	slot=0 count=2 op=0x00	554	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyProgramGenericConvolutionFilter,__glOdylc_Vertex2i	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0x8080c801	attribute	slot=0 count=2 op=0x01	360	__glOdylc_Vertex2d,__glOdylc_Vertex2dv,__glOdylc_Vertex2f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Layout
+word	0x8080cc02	attribute	slot=0 count=3 op=0x02	360	__glOdylc_Vertex3i,__glOdylc_Vertex3iv,__glOdylc_Vertex3s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x8080cc03	attribute	slot=0 count=3 op=0x03	360	__glOdylc_Vertex3d,__glOdylc_Vertex3dv,__glOdylc_Vertex3f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Layout
+word	0x8080d004	attribute	slot=0 count=4 op=0x04	360	__glOdylc_Vertex4i,__glOdylc_Vertex4iv,__glOdylc_Vertex4s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0x8080d005	attribute	slot=0 count=4 op=0x05	705	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdylc_Vertex4d	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	BUZZ.h	1. Command-FIFO word framing
+word	0xc18093ff	attribute	slot=1 count=4 op=0x3ff	15	__glOdysseyInitLighting	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc180cc16	attribute	slot=1 count=3 op=0x16	50	__glOdylc_Normal3b,__glOdylc_Normal3bv,__glOdyim_Normal3b	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc180cc17	attribute	slot=1 count=3 op=0x17	50	__glOdylc_Normal3s,__glOdylc_Normal3sv,__glOdyim_Normal3s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc180cc18	attribute	slot=1 count=3 op=0x18	54	__glOdylc_Normal3i,__glOdylc_Normal3iv,__glOdyim_Normal3i	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xc180cc19	attribute	slot=1 count=3 op=0x19	373	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	BUZZ.h	1. Command-FIFO word framing
+word	0xc280cc1c	attribute	slot=2 count=3 op=0x1c	4	odsyResetHwShadow	b01,b02,b03,b05	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xc380c41e	attribute	slot=3 count=1 op=0x1e	108	__glOdylc_TexCoord1i,__glOdylc_TexCoord1iv,__glOdylc_TexCoord1s	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	BUZZ.h	1. Command-FIFO word framing
+word	0xc380c41f	attribute	slot=3 count=1 op=0x1f	100	__glOdylc_TexCoord1d,__glOdylc_TexCoord1dv,__glOdylc_TexCoord1f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc380c820	attribute	slot=3 count=2 op=0x20	100	__glOdylc_TexCoord2i,__glOdylc_TexCoord2iv,__glOdylc_TexCoord2s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	BUZZ.h	1. Command-FIFO word framing
+word	0xc380c821	attribute	slot=3 count=2 op=0x21	100	__glOdylc_TexCoord2d,__glOdylc_TexCoord2dv,__glOdylc_TexCoord2f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc380cc22	attribute	slot=3 count=3 op=0x22	100	__glOdylc_TexCoord3i,__glOdylc_TexCoord3iv,__glOdylc_TexCoord3s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc380cc23	attribute	slot=3 count=3 op=0x23	110	__glOdylc_TexCoord3d,__glOdylc_TexCoord3dv,__glOdylc_TexCoord3f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc380d024	attribute	slot=3 count=4 op=0x24	100	__glOdylc_TexCoord4i,__glOdylc_TexCoord4iv,__glOdylc_TexCoord4s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc380d025	attribute	slot=3 count=4 op=0x25	254	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdylc_TexCoord4d	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc480c426	attribute	slot=4 count=1 op=0x26	8	odsyResetHwShadow	b01,b02,b03,b05	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xc580c406	attribute	slot=5 count=1 op=0x06	346	__glOdylc_Indexi,__glOdylc_Indexiv,__glOdylc_Indexs	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0xc580c407	attribute	slot=5 count=1 op=0x07	110	__glOdylc_Indexd,__glOdylc_Indexdv,__glOdylc_Indexf	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580cc08	attribute	slot=5 count=3 op=0x08	166	__glOdylc_Color3ub,__glOdylc_Color3ubv,__glOdyim_Color3ub	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	DISPLAY.h	3. Narrow TrueColor visuals: how pixels are stored and shown
+word	0xc580cc09	attribute	slot=5 count=3 op=0x09	124	__glOdylc_Color3us,__glOdylc_Color3usv,__glOdyim_Color3us	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/opengl.md	State sent before any draw
+word	0xc580cc0a	attribute	slot=5 count=3 op=0x0a	50	__glOdylc_Color3ui,__glOdylc_Color3uiv,__glOdyim_Color3ui	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580cc0b	attribute	slot=5 count=3 op=0x0b	50	__glOdylc_Color3b,__glOdylc_Color3bv,__glOdyim_Color3b	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580cc0c	attribute	slot=5 count=3 op=0x0c	50	__glOdylc_Color3s,__glOdylc_Color3sv,__glOdyim_Color3s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580cc0d	attribute	slot=5 count=3 op=0x0d	58	__glOdylc_Color3i,__glOdylc_Color3iv,__glOdyim_Color3i	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xc580cc0e	attribute	slot=5 count=3 op=0x0e	110	__glOdylc_Color3d,__glOdylc_Color3dv,__glOdylc_Color3f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580d00f	attribute	slot=5 count=4 op=0x0f	50	__glOdylc_Color4ub,__glOdylc_Color4ubv,__glOdyim_Color4ub	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Opcodes (established as values, in the functions named)
+word	0xc580d010	attribute	slot=5 count=4 op=0x10	50	__glOdylc_Color4us,__glOdylc_Color4usv,__glOdyim_Color4us	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580d011	attribute	slot=5 count=4 op=0x11	50	__glOdylc_Color4ui,__glOdylc_Color4uiv,__glOdyim_Color4ui	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580d012	attribute	slot=5 count=4 op=0x12	50	__glOdylc_Color4b,__glOdylc_Color4bv,__glOdyim_Color4b	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580d013	attribute	slot=5 count=4 op=0x13	50	__glOdylc_Color4s,__glOdylc_Color4sv,__glOdyim_Color4s	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580d014	attribute	slot=5 count=4 op=0x14	50	__glOdylc_Color4i,__glOdylc_Color4iv,__glOdyim_Color4i	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc580d015	attribute	slot=5 count=4 op=0x15	169	__glOdysseyClipCheck,__glOdylc_Color4d,__glOdylc_Color4dv	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc680d02f	attribute	slot=6 count=4 op=0x2f	309	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xc780d030	attribute	slot=7 count=4 op=0x30	363	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc880d031	attribute	slot=8 count=4 op=0x31	363	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xc980d032	attribute	slot=9 count=4 op=0x32	363	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xca80d035	attribute	slot=10 count=4 op=0x35	195	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xcb80d036	attribute	slot=11 count=4 op=0x36	218	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xcc80d037	attribute	slot=12 count=4 op=0x37	218	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xcd80d038	attribute	slot=13 count=4 op=0x38	218	__glOdysseyClipCheck,__glOdysseySoftClipRenderTriangleFast,__glOdysseyInitLighting	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xce80c406	attribute	slot=14 count=1 op=0x06	68	__glOdyim_ScratchIndexi,__glOdyim_ScratchIndexiv,__glOdyim_ScratchIndexs	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	named-only	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xce80c407	attribute	slot=14 count=1 op=0x07	40	__glOdyim_ScratchIndexd,__glOdyim_ScratchIndexdv,__glOdyim_ScratchIndexf	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80cc08	attribute	slot=14 count=3 op=0x08	211	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+word	0xce80cc09	attribute	slot=14 count=3 op=0x09	20	__glOdyim_ScratchColor3us,__glOdyim_ScratchColor3usv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80cc0a	attribute	slot=14 count=3 op=0x0a	20	__glOdyim_ScratchColor3ui,__glOdyim_ScratchColor3uiv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80cc0b	attribute	slot=14 count=3 op=0x0b	20	__glOdyim_ScratchColor3b,__glOdyim_ScratchColor3bv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80cc0c	attribute	slot=14 count=3 op=0x0c	20	__glOdyim_ScratchColor3s,__glOdyim_ScratchColor3sv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80cc0d	attribute	slot=14 count=3 op=0x0d	20	__glOdyim_ScratchColor3i,__glOdyim_ScratchColor3iv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80cc0e	attribute	slot=14 count=3 op=0x0e	50	__glOdyim_ScratchColor3d,__glOdyim_ScratchColor3dv,__glOdyim_ScratchColor3f	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xce80d00f	attribute	slot=14 count=4 op=0x0f	20	__glOdyim_ScratchColor4ub,__glOdyim_ScratchColor4ubv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80d010	attribute	slot=14 count=4 op=0x10	20	__glOdyim_ScratchColor4us,__glOdyim_ScratchColor4usv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80d011	attribute	slot=14 count=4 op=0x11	20	__glOdyim_ScratchColor4ui,__glOdyim_ScratchColor4uiv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80d012	attribute	slot=14 count=4 op=0x12	20	__glOdyim_ScratchColor4b,__glOdyim_ScratchColor4bv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80d013	attribute	slot=14 count=4 op=0x13	20	__glOdyim_ScratchColor4s,__glOdyim_ScratchColor4sv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80d014	attribute	slot=14 count=4 op=0x14	20	__glOdyim_ScratchColor4i,__glOdyim_ScratchColor4iv	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	undocumented		
+word	0xce80d015	attribute	slot=14 count=4 op=0x15	50	__glOdyim_ScratchColor4dv,__glOdyim_ScratchColor4f,__glOdyim_ScratchColor4d	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+word	0xcf80a92f	attribute	slot=15 count=10 op=0x12f	68	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyProgramGenericConvolutionFilter,odsyCopySDRAM..AB	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Opcodes (established as values, in the functions named)
+word	0xd080c433	attribute	slot=16 count=1 op=0x33	4	odsyResetHwShadow	b01,b02,b03,b05	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xd080c439	attribute	slot=16 count=1 op=0x39	4	odsyResetHwShadow	b01,b02,b03,b05	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xd080cc34	attribute	slot=16 count=3 op=0x34	4	odsyResetHwShadow	b01,b02,b03,b05	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xd080cc3a	attribute	slot=16 count=3 op=0x3a	4	odsyResetHwShadow	b01,b02,b03,b05	documented	docs/buzz.md	Attribute word defaults (`odsyResetHwShadow`)
+word	0xdeadbeef	attribute	slot=30 count=15 op=0x2ef	160	__glOdysseyGetCurrentTexture	b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/buzz.md	Opcodes (established as values, in the functions named)
+block	0x000	class1	words=3	293	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyClear,__glsplc_Begin	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+block	0x001	class1	words=2	303	__glOdysseyImageMovePixelsDMAtoGfx,__glOdyim_PolygonOffsetEXT,__glOdysseyClear	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	odsyLowLevelReset on IP35
+block	0x004	class1	words=1	415	odsyZeroPolyArc,odsyPolyArc,odsyWideDash	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+block	0x005	class1	words=1	38	__glOdysseyValidateHardware,__glOdyim_PolygonOffsetEXT,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b26,b27,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x006	class1	words=1	16	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	documented	docs/pbj.md	Genlock clock values
+block	0x007	class1	words=1	36	__glOdysseyValidateContext,__glOdysseyValidateFragment,__glOdyim_LightModeli	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Command-stream register blocks
+block	0x013	class1	words=1	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b25,b26,b27,b28,b29,b30,b31,b33	documented	docs/buzz.md	Switch-in: select and replay
+block	0x015	class1	words=1	71	__glOdysseyClear,__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x016	class1	words=1	19	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	BUZZ.h	1. Command-FIFO word framing
+block	0x017	class1	words=1	332	__glOdysseyFinish,__glOdysseySetDrawbuf,ODSY_SET_GC	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	1. Command-FIFO word framing
+block	0x018	class1	words=1	23	__glOdysseyValidateHardware,odsyRestoreRaster,odsy_mm_obj_xfr_bs	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/kernel.md	Command words the kernel emits
+block	0x019	class1	words=1	380	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseyValidateHardware	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x01a	class1	words=1	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32	documented	DISPLAY.h	2. Display-mode words
+block	0x01b	class1	words=1	22	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32,b52	documented	BUZZ.h	1. Command-FIFO word framing
+block	0x01c	class1	words=1	18	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	documented	docs/buzz.md	Attribute ids not sent as constants
+block	0x01d	class1	words=1	79	__glOdysseyValidateHardware,__glOdyim_PolygonOffsetEXT,__glOdyim_Clear	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Attribute ids not sent as constants
+block	0x01e	class1	words=1	16	__glOdyssey_CopyContext,odsyRestoreRaster,__glOdyim_AlphaFunc	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	named-only	docs/buzz.md	Command-stream register blocks
+block	0x01f	class1	words=1	41	__glOdysseyClear,__glOdysseyValidateHardware,odsyWideDash	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b26,b27,b29,b30,b31,b32,b33,b52	documented	docs/kernel.md	odsyInitDBE (`odsy_init.o`, IP30)
+block	0x020	class1	words=1	49	__glOdysseyClear,__glOdyssey_CopyContext,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Pass 5: completion word, saved record and the libGLcore side
+block	0x021	class1	words=1	129	__glOdysseyValidateHardware,odsyDrawMonoPixels,odsySegmentSD	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32,b52	documented	BUZZ.h	4. Colour precision
+block	0x022	class1	words=1	76	__glOdyssey_CopyContext,__glOdysseyImageChainAddOpAcceptSignedDataFromHost,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b25,b26,b27,b28,b29,b30,b31,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x023	class1	words=1	391	odsyPolyArc,odsyWideDash,odsyZeroPolyArc	b01,b02,b03,b05,b20,b21,b23,b24,b27,b30,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x024	class1	words=1	53	ODSY_SET_GC,odsyRestoreRaster,odsyPushBufferSelect	b01,b02,b03,b05,b52	documented	docs/buzz.md	PIO registers
+block	0x028	class1	words=1	13	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b21,b24,b26,b27,b29,b30,b33	documented	docs/buzz.md	Command-stream register blocks
+block	0x029	class1	words=1	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Pass 5: completion word, saved record and the libGLcore side
+block	0x02a	class1	words=1	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	ucode/buzz_isa.md	Overlays
+block	0x02b	class1	words=1	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	documented	docs/buzz.md	Command-stream register blocks
+block	0x030	class1	words=1	15	__glOdysseyValidateHardware,odsyRestoreRaster	b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	BUZZ.h	2. Texture state
+block	0x031	class1	words=1	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Pass 5: completion word, saved record and the libGLcore side
+block	0x032	class1	words=1	27	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	docs/buzz.md	Pass 5: completion word, saved record and the libGLcore side
+block	0x033	class1	words=1	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31	documented	docs/buzz.md	Attribute ids not sent as constants
+block	0x038	class1	words=1	8	__glOdysseyValidateHardware,odsyInitDefaultHW..N	b20,b23,b26,b27,b29,b30,b32,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x03a	class1	words=1	12	__glOdysseyValidateHardware,odsyRestoreRaster	b02,b03,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/buzz.md	Attribute ids not sent as constants
+block	0x03b	class1	words=1	10	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b02,b03,b20,b23,b26,b27,b29,b30,b32,b52	documented	BUZZ.h	2. Texture state
+block	0x03d	class1	words=1	9	__glOdysseyValidateHardware,odsyRestoreRaster	b02,b03,b20,b23,b26,b27,b29,b30,b32	documented	docs/buzz.md	Command-stream register blocks
+block	0x03e	class1	words=1	24	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	documented	BUZZ.h	2. Texture state
+block	0x03f	class1	words=1	56	__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext,odsyRestoreRaster	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x040	class1	words=1	98	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseySetDrawbuf	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x041	class1	words=1	108	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseySetDrawbuf	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/display.md	Host software
+block	0x042	class1	words=1	49	__glOdysseyImageChainAddOpAcceptSignedDataFromHost,__glOdysseyImageChainFree,odsyRestoreRaster	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	named-only	docs/buzz.md	Command-stream register blocks
+block	0x043	class1	words=1	4290	__glOdysseyValidateHardware,__glOdysseyImageChainAddOpAcceptSignedDataFromHost,__glOdyim_PolygonOffsetEXT	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+block	0x044	class1	words=1	25	__glOdysseyVertexWARClip,odsyDMAOps,gf_OdsyPcxSwap	b01,b02,b03,b05,b19,b20,b22,b23,b25,b26,b27,b28,b29,b30,b31,b32	documented	docs/buzz.md	PIO registers
+block	0x045	class1	words=1	2	odsyInitDefaultHW..N,odsyGammaFit	b52	undocumented		
+block	0x046	class1	words=1	9838	__glOdysseyValidateHardware,__glOdysseyImageChainAddOpAcceptSignedDataFromHost,__glOdysseyImageMovePixelsCopy	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+block	0x047	class1	words=1	21	__glOdysseyValidateHardware,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b25,b26,b27,b28,b29,b30,b31,b33	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x048	class1	words=1	29	__glOdyssey_CopyContext,odsyRestoreRaster,__glOdyim_LineStipple	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
+block	0x04a	class1	words=1	15	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b22,b26,b27,b29,b30,b31,b52	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x04b	class1	words=1	129	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseySetDrawbuf	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	docs/buzz.md	COUNT 8 to 14 in command words
+block	0x04c	class1	words=1	15	__glOdysseyValidateContext,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x04d	class1	words=1	26	__glOdyim_FragmentLightModeliSGIX,odsyRestoreRaster,__glOdyim_Materialf	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/buzz.md	Command-stream register blocks
+block	0x04e	class1	words=1	75	__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext,__glOdysseyConvertStipple	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x04f	class1	words=1	80	__glOdyim_PolygonOffsetEXT,__glOdyssey_CopyContext,__glOdysseyConvertStipple	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x050	class1	words=1	12	gf_OdsyPcxSwap,odsyRestartContext	b01,b02,b03,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+block	0x051	class1	words=1	13	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b25,b26,b27,b28,b29,b30,b52	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x052	class1	words=1	19	__glOdysseyValidateHardware,odsyRestoreRaster,odsyInitDefaultHW..N	b01,b02,b03,b05,b19,b22,b25,b26,b27,b28,b29,b30,b31,b52	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x053	class1	words=1	85	__glOdysseyImageMovePixelsCopy,__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyValidateContext	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33,b52	documented	docs/opengl.md	Rectangle copy (`odsyCopyRectBody`)
+block	0x054	class1	words=1	4	odsyInitCfifo	b01,b02,b03,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
+block	0x056	class1	words=1	30	__glOdyim_PolygonOffsetEXT,__glOdysseyValidateContext,__glOdysseyFindWindowSize	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/buzz.md	Command-stream register blocks
+block	0x057	class1	words=1	14	__glOdysseyValidateContext,odsyRestoreRaster	b01,b02,b03,b05,b20,b21,b23,b24,b26,b27,b29,b30,b32,b33	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x058	class1	words=1	22	__glOdyssey_CopyContext,__glOdyim_PolygonOffsetEXT,odsyRestoreRaster	b01,b02,b03,b05,b19,b21,b22,b24,b26,b27,b29,b30,b31,b33	documented	PBJ.h	5. Genlock (odsyGenlockInterrupt, odsy_intr.o)
+block	0x250	class1	words=1	30	__glOdysseyValidateContext,__glOdysseyValidateFragment	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		
+block	0x258	class1	words=1	110	__glOdysseyImageMovePixelsDMAtoGfx,__glOdysseyReadFromPMObj,__glOdysseyOpenPMObjReference	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/buzz.md	Command-stream register blocks
+block	0x25a	class1	words=1	58	__glOdysseySwapBuffers,__glOdysseyFinish,__glOdysseyClosePMObjWriteReference	b01,b02,b03,b05,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33,b52	documented	docs/opengl.md	Which libGLcore file sends which block
+block	0x2bc	class1	words=1	54	__glOdysseyImageMovePixelsTexture,__glOdysseyGetCurrentTexture	b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,b33	undocumented		

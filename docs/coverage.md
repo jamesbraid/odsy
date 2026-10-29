@@ -1,10 +1,34 @@
 # odsy coverage map
 
-Map of what the VPro (Odyssey, `odsy`) workspace has covered. It is the index later readers fill: each row is one area of one block. Block names follow `AGENTS.md`; a block's facts are labelled established, inferred or unknown in its header and docs, and this file says how far each area has got.
+Two views of what the VPro (Odyssey, `odsy`) workspace has covered. The first is measured from the binaries: `scripts/inventory.py` lists every function, board offset, command word, ioctl and microcode routine in the in-scope files and greps the repository's docs and headers for each. The second, below it, is the areas view: one row per area of one block, kept by hand. Block names follow `AGENTS.md`; a block's facts are labelled established, inferred or unknown in its header and docs.
+
+## Measured coverage
+
+<!-- inventory:begin -->
+
+Measured from the binaries by `scripts/inventory.py` (rows in `docs/inventory/`). 73 distinct files in scope, 18739 function symbols (103567 name-in-binary occurrences). A row is documented when the repository writes about it, named-only when it only lists it, undocumented when it never mentions it.
+
+| Inventory | Rows | Documented | Named only | Undocumented | % documented | % documented or named |
+|---|---|---|---|---|---|---|
+| functions (board binaries) | 7324 | 232 | 12 | 7080 | 3.2 | 3.3 |
+| functions (shared binaries) | 11415 | 53 | 21 | 11341 | 0.5 | 0.6 |
+| functions (all) | 18739 | 285 | 33 | 18421 | 1.5 | 1.7 |
+| mmio | 55 | 55 | 0 | 0 | 100.0 | 100.0 |
+| tokens | 224 | 136 | 13 | 75 | 60.7 | 66.5 |
+| ioctls | 79 | 26 | 53 | 0 | 32.9 | 100.0 |
+| ucode | 247 | 87 | 0 | 160 | 35.2 | 35.2 |
+
+<!-- inventory:end -->
+
+Area rows marked `done` below were set before the inventory existed and are being re-checked against it; the measured table is the stricter test.
+
+How to read it: `documented` means the row's name or value sits on a line that explains it (docs or header comment), `named-only` means it is only listed, `undocumented` means the repository never mentions it. That measures mention, not correctness or completeness: a documented row can still carry unknown fields. Each inventory's method and blind spots are in [docs/inventory/README.md](inventory/README.md). Pick work from the `undocumented` rows of `docs/inventory/*.tsv`.
+
+## Areas view
 
 ## Status key
 
-`none`: nothing derived yet. `partial`: some facts written with their derivation, gaps remain. `done`: every fact in the area is written and labelled, with nothing known to be missing. A reader who changes a row updates it in the same commit as the doc or header that backs it.
+`none`: nothing derived yet. `partial`: some facts written with their derivation, gaps remain. `done`: every inventory entry in the area is documented and each remaining unknown is labelled with the routes tried (`AGENTS.md` section 7). A reader who changes a row updates it in the same commit as the doc or header that backs it.
 
 "Owner" is the header or doc that holds the facts (a planned name until the file exists). "Datasheet topic" is the kind of hardware specification the area feeds. "Seed" records what prior work already reports so a reader can aim at it: it is a lead to verify against the binaries, not a finding of this repository.
 

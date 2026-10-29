@@ -1,0 +1,74 @@
+id	group	role	arch	builds	bytes	sha256_16	functions	scanned_for	note	paths
+b01	kernel-ip30	board	IP30	6.5.30-media,installed	713492	16a46ad763bd9be0	355	mmio,tokens		root/usr/cpu/sysgen/IP30boot/odyssey.a root/builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a
+b02	kernel-ip30	board	IP30	vpro-patch-4103	571892	2f24526d60a704fc	292	mmio,tokens		root/builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a
+b03	kernel-ip30	board	IP30	vpro-patch-4104	572612	fded893ee2e37535	292	mmio,tokens		root/builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a
+b04	kernel-ip30	board	IP30	installed	23876	726285b192db8784	22	mmio,tokens		root/usr/cpu/sysgen/IP30boot/tport.a
+b05	kernel-ip35	board	IP35	installed	742884	a3b7eaac03a08a83	370	mmio,tokens		root/usr/cpu/sysgen/IP35boot/odyssey.a
+b06	kernel-ip35	board	IP35	installed	23956	07c568ec0aa1940b	22	mmio,tokens		root/usr/cpu/sysgen/IP35boot/tport.a
+b07	kernel-shared-ip30	shared	IP30	installed	53712	73041c9bcd3351fc	62	-		root/usr/cpu/sysgen/IP30boot/gfx.o
+b08	kernel-shared-ip30	shared	IP30	installed	73652	d0bdecd2cae8708c	84	-		root/usr/cpu/sysgen/IP30boot/gfxs.a
+b09	kernel-shared-ip30	shared	IP30	installed	9092	2fa1e512bc94c777	18	-		root/usr/cpu/sysgen/IP30boot/gfxstubs.a
+b10	kernel-shared-ip30	shared	IP30	installed	63904	ad36cdbdba058c54	72	-		root/usr/cpu/sysgen/IP30boot/rrm.o
+b11	kernel-shared-ip30	shared	IP30	installed	577112	32d900592e14a557	675	-		root/usr/cpu/sysgen/IP30boot/kernel.o
+b12	kernel-shared-ip30	shared	IP30	installed	3748	124bfdca629e9e96	1	-		root/usr/cpu/sysgen/IP30boot/odysseystubs.a
+b13	kernel-shared-ip35	shared	IP35	installed	53720	a42762015aa4c9ed	62	-		root/usr/cpu/sysgen/IP35boot/gfx.o
+b14	kernel-shared-ip35	shared	IP35	installed	83540	e2053f3d4861066a	83	-		root/usr/cpu/sysgen/IP35boot/gfxs.a
+b15	kernel-shared-ip35	shared	IP35	installed	7860	253f40c9fc22dde3	18	-		root/usr/cpu/sysgen/IP35boot/gfxstubs.a
+b16	kernel-shared-ip35	shared	IP35	installed	63896	99d3964176b0218c	72	-		root/usr/cpu/sysgen/IP35boot/rrm.o
+b17	kernel-shared-ip35	shared	IP35	installed	1288752	2e847fdcadfdb958	1177	-		root/usr/cpu/sysgen/IP35boot/kernel.o
+b18	kernel-shared-ip35	shared	IP35	installed	3748	10fe650766e943e1	1	-		root/usr/cpu/sysgen/IP35boot/odysseystubs.a
+b19	libglcore-ip30	board	IP30	installed	3553860	de0a3a3704607c34	5215	ioctl,tokens		root/usr/gfx/arch/IP30ODSY/libGLcore.so
+b20	libglcore-ip30	board	IP30	installed	3812732	7cdc1b3426125b92	5215	ioctl,tokens		root/usr/gfx/arch/IP30ODSY32/libGLcore.so
+b21	libglcore-ip30	board	IP30	installed	4138224	81edba0fb8e2731d	4588	ioctl,tokens		root/usr/gfx/arch/IP30ODSY64/libGLcore.so
+b22	libglcore-ip30	board	IP30	6.5.30-media	3553860	bd4b77fe6bd4a187	5215	ioctl,tokens		root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so
+b23	libglcore-ip30	board	IP30	6.5.30-media	3812732	9abe5557d67810d2	5215	ioctl,tokens		root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so
+b24	libglcore-ip30	board	IP30	6.5.30-media	4138224	30dc6c8e51d7b67b	4588	ioctl,tokens		root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so
+b25	libglcore-ip30	board	IP30	vpro-patch-4103	3436908	70d13a747bd4b32d	5149	ioctl,tokens		root/builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so
+b26	libglcore-ip30	board	IP30	vpro-patch-4103	3446300	559ab3bd2c902d15	5155	ioctl,tokens		root/builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so
+b27	libglcore-ip30	board	IP30	vpro-patch-4103	3760880	fe20e3ac37ec80d2	4538	ioctl,tokens		root/builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so
+b28	libglcore-ip30	board	IP30	vpro-patch-4104	3436908	e24e46db85ec5243	5149	ioctl,tokens		root/builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so
+b29	libglcore-ip30	board	IP30	vpro-patch-4104	3446300	f032755d989b7faa	5155	ioctl,tokens		root/builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so
+b30	libglcore-ip30	board	IP30	vpro-patch-4104	3760880	e23071c866ed246d	4538	ioctl,tokens		root/builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so
+b31	libglcore-ip35	board	IP35	installed	3553860	917be72af65958b2	5215	ioctl,tokens		root/usr/gfx/arch/IP35ODSY/libGLcore.so
+b32	libglcore-ip35	board	IP35	installed	3812732	cf494ff4bb85a1e2	5215	ioctl,tokens		root/usr/gfx/arch/IP35ODSY32/libGLcore.so
+b33	libglcore-ip35	board	IP35	installed	4138224	4e78f11a45b36184	4588	ioctl,tokens		root/usr/gfx/arch/IP35ODSY64/libGLcore.so
+b34	libgl-ip30	board	IP30	installed	486700	a4292f9008f1d637	671	-		root/usr/gfx/arch/IP30ODSY/libGL.so
+b35	libgl-ip30	board	IP30	installed	516508	e08d1158b175fd0e	671	-		root/usr/gfx/arch/IP30ODSY32/libGL.so
+b36	libgl-ip30	board	IP30	installed	567424	9cc0e57ebdcaaa1f	614	-		root/usr/gfx/arch/IP30ODSY64/libGL.so
+b37	libgl-ip30	board	IP30	6.5.30-media	486700	0e4dcd6286cc5c7a	671	-		root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so
+b38	libgl-ip30	board	IP30	6.5.30-media	516508	aa9005aa43d3b8e2	671	-		root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so
+b39	libgl-ip30	board	IP30	6.5.30-media	567424	dfe753e69d105ba4	614	-		root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so
+b40	libgl-ip30	board	IP30	vpro-patch-4103	451872	3c68b371202c7fa2	650	-		root/builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so
+b41	libgl-ip30	board	IP30	vpro-patch-4103	464860	3d5ff7d7e05ba6ae	650	-		root/builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so
+b42	libgl-ip30	board	IP30	vpro-patch-4103	513624	2f5f62fe1554e93e	593	-		root/builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so
+b43	libgl-ip30	board	IP30	vpro-patch-4104	451872	1cecb6f857a1c3fb	650	-		root/builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGL.so
+b44	libgl-ip30	board	IP30	vpro-patch-4104	464860	17413369cbedc085	650	-		root/builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so
+b45	libgl-ip30	board	IP30	vpro-patch-4104	513624	94f61adbfa12bb44	593	-		root/builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so
+b46	libgl-ip35	board	IP35	installed	486700	984ac9208f2c2ca8	671	-		root/usr/gfx/arch/IP35ODSY/libGL.so
+b47	libgl-ip35	board	IP35	installed	516508	3c495b596716001b	671	-		root/usr/gfx/arch/IP35ODSY32/libGL.so
+b48	libgl-ip35	board	IP35	installed	567424	9e524e5dbfdb05bb	614	-		root/usr/gfx/arch/IP35ODSY64/libGL.so
+b49	irisgl	shared	IP30,IP35	installed	1747724	f3beaf381b734f1d	3811	-		root/usr/gfx/arch/IGLOO/libgl.so
+b50	irisgl	shared	IP30,IP35	installed	1833076	dff2b0d82deac998	3810	-		root/usr/gfx/arch/IGLOO32/libgl.so
+b51	irisgl	shared	IP30,IP35	installed	683872	8f1aadd018eaa6a3	790	-		root/usr/lib32/libfm.so
+b52	x-module	board	IP30,IP35	installed	2303564	0fb2a1debd2b3145	1000	ioctl,tokens		root/usr/lib/X11/dyDDX/odyssey.so
+b53	x-shared	shared	IP30,IP35	installed	646360	b797d7447743a1db	981	-		root/usr/lib/X11/dyDDX/glx.so
+b54	x-shared	shared	IP30,IP35	installed	3120928	d407a52144d94f17	2936	-		root/usr/gfx/arch/GENERIC/Xsgi
+b55	gfx-tools	shared	IP30,IP35	installed	177132	bf6082958ccb9440	227	ioctl		root/usr/gfx/gfxinit
+b56	gfx-tools	shared	IP30,IP35	installed	177132	add7430a5ae4cc7f	227	ioctl		root/usr/gfx/gfxinfo
+b57	gfx-tools	shared	IP30,IP35	installed	289580	a59868a509468f55	249	ioctl		root/usr/gfx/setmon
+b58	gfx-tools	shared	IP30,IP35	installed	162976	c575ec8d95fcd01d	192	ioctl		root/usr/gfx/dmconf
+b59	gfx-tools	shared	IP30,IP35	installed	230584	77d0273d5f4e91ec	402	ioctl		root/usr/gfx/sgcombine
+b60	gfx-tools	shared	IP30,IP35	installed	6294	3ece1eb9e90ac3e6	0	ioctl	raw image	root/usr/gfx/gfxtopology
+b61	gfx-tools	shared	IP30,IP35	installed	361984	b76d2f209cf80345	501	ioctl		root/usr/bin/X11/xsetmon
+b62	diag	shared	IP30	installed	368640	8781b667660f08c5	323	-		root/usr/diags/compositor/bin/sting
+b63	diag	shared	IP30	installed	39704	28344b9030f8d2c5	26	-		root/usr/gfx/STINGRAY/bin/cmp_flash
+b64	diag	shared	IP30	installed	242	02bd021d4564daeb	0	-	raw image	root/usr/gfx/STINGRAY/bin/cmp_flash_all
+b65	firmware	shared	IP30,IP35	installed	879312	ee4722ca6f9b821f	11	-		root/usr/cpu/firmware/IP30prom.bin
+b66	firmware	shared	IP30,IP35	installed	1480360	d74b4b7ef9c11c66	0	-	no symbols (stripped)	root/usr/cpu/firmware/ip35prom.img
+b67	ucode-data	board	IP30,IP35	installed	33528	a0201d88cf23752c	0	-	raw image	root/usr/gfx/ucode/ODSY/buzz_xform.bin
+b68	ucode-data	board	IP30,IP35	installed	27196	9955bc1bad614a4d	0	-	raw image	root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin
+b69	ucode-data	board	IP30,IP35	installed	4692	826a1c157cf5846f	0	-	raw image	root/usr/gfx/ucode/vfc/rules/VPro_BlockSync.def
+b70	ucode-data	board	IP30,IP35	installed	53633	9ce581572ee4109c	0	-	raw image	root/usr/gfx/ucode/vfc/rules/VPro_Board.def
+b71	ucode-data	board	IP30,IP35	installed	189	f684d1d6158e6725	0	-	raw image	root/usr/gfx/ucode/vfc/rules/VPro_Chip.def
+b72	ucode-data	board	IP30,IP35	installed	4354	94bc141a51462379	0	-	raw image	root/usr/gfx/ucode/vfc/rules/VPro_DCD.def
+b73	ide	board	IP30	installed	1594880	19d7a194cb417330	11	-		root/sbin/stand/ide.IP30
