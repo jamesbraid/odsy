@@ -1,56 +1,68 @@
-space	offset	access	functions	function_names	binary_ids	status	doc	section
-board	0x1	w64	1	odsy_i2cProbe2b	b01,b05	documented	BUZZ.h	1. Command-FIFO word framing
-board	0xc	r32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x14	r32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x1c	r32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x24	r32,w32	2	odsyLLPReset,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x34	w32	3	odsyDisableInterrupts,odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Attribute ids not sent as constants
-board	0x3c	w32	1	odsyInitInterrupts	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
-board	0x44	r32,w32	1	odsyXtErrorInterrupt	b01,b05	documented	BUZZ.h	2. Texture state
-board	0x5c	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
-board	0x1004	w32	1	odsyReset	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x100c	w32	1	odsyLowLevelReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x1014	r32,w32	2	gfP_OdsyDIAGdma,odsyFlagInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x101c	w32	3	odsyFlagInterrupt,odsyHiwaterInterrupt,odsyReset	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x1034	r32,w32	4	odsyFlagInterrupt,odsyHiwaterInterrupt,odsyInitInterrupts,odsyLoadTimingTable	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x103c	w32	3	odsyDisableInterrupts,odsyLowaterInterrupt,odsyReset	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x1044	w32	3	odsyDisableInterrupts,odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
-board	0x104c	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x1054	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x105c	w32	2	odsyInitInterrupts,odsyReset	b01,b05	documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
-board	0x1064	r32	1	odsyHiwaterInterrupt	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x106c	r32	16	gfP_OdsyClearBuffer,gfP_OdsyMakeCurrent,gfP_OdsySaveHwShadow,gfP_OdsySetDrawBuffer,gf_OdsyDestroyDDRN,gf_OdsyDownload,gf_OdsyInitialize,gf_OdsyPcxSwap,gf_OdsyReleaseGfxSema,gf_OdsySchedSwapBuf,gf_Odsy	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x1074	w32	17	gfP_OdsyClearBuffer,gfP_OdsyMakeCurrent,gfP_OdsySaveHwShadow,gfP_OdsySetDrawBuffer,gf_OdsyDestroyDDRN,gf_OdsyDownload,gf_OdsyInitialize,gf_OdsyMapGfx,gf_OdsyPcxSwap,gf_OdsyResume,gf_OdsySchedSwapBuf,g	b01,b05	documented	docs/buzz.md	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
-board	0x107c	r32,w32	21	gfP_OdsyClearBuffer,gfP_OdsyMakeCurrent,gfP_OdsySaveHwShadow,gfP_OdsySetDrawBuffer,gf_OdsyDestroyDDRN,gf_OdsyDownload,gf_OdsyInitialize,gf_OdsyMapGfx,gf_OdsyPcxSwap,gf_OdsyReleaseGfxSema,gf_OdsyResume	b01,b05	documented	docs/buzz.md	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
-board	0x1084	w32	4	gf_OdsyInitialize,odsyReset,odsy_flow_await_returned_credits,odsy_tpinit	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x108c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x109c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x10a4	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x10ac	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x10b4	w32	1	odsyRetraceHandler	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x10bc	w32	6	gf_OdsySchedMGRSwapBuf,gf_OdsySchedSwapBuf,gf_OdsyUnSchedSwapBuf,odsyReset,odsyRetraceHandler,odsySwapBuffer	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x10cc	w32	1	odsyReset	b01,b05	documented	DISPLAY.h	1. Display FIFO words
-board	0x10d4	r32	1	odsyRetraceHandler	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x4004	w32	1	gf_OdsyPcxSwap	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x400c	w32	1	gf_OdsyPcxSwap	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x4014	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x401c	w32	3	odsyDestroyPfRgn,odsyInitPfRgn,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x4024	w32	3	odsyDestroyPfRgn,odsyInitPfRgn,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x402c	w32	2	gfP_OdsyPerfStat,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x4034	w32	2	gf_OdsyStart,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x403c	w32	2	gf_OdsyStart,odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x4044	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	PIO registers
-board	0x404c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	The 0x4000 register group (`odsy_diag.o`)
-board	0x4054	w32	1	odsyReset	b01,b05	documented	docs/kernel.md	odsyReset order of operations
-board	0x405c	w32	1	odsyReset	b01,b05	documented	docs/buzz.md	The 0x4000 register group (`odsy_diag.o`)
-board	0x8530	w64	1	odsy_i2c_sendbyte	b01,b05	documented	docs/kernel.md	odsyInitDBE (`odsy_init.o`, IP30)
-board	0x110000	w32,w64	9	gfP_OdsyGLGet,gf_OdsyPcxSwap,odsyClipPush,odsyDownloadUcode,odsyInitCfifo,odsyRestoreVB,odsySetProgram,odsyZeroOut,odsy_mm_obj_xfr_bs	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x118000	w64	1	gf_OdsyPcxSwap	b01	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x201594	r32	1	odsyInitCfifo	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-board	0x400000	w64	27	gfP_OdsyBRDMGRVTGcontrol,gfP_OdsyBRDMGRcursor,gfP_OdsyBRDMGRsetColors,gf_OdsySetDisplayMode,odsyBlankScreen,odsyConfigFb,odsyGatherInfo,odsyGenlockInterrupt,odsyInitDBE,odsyLoadTimingTable,odsySetDACG	b01,b05	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-display	0x2482	r32 read-back+4	1	odsyInitDBE	b01,b05	documented	PBJ.h	2. Address space, writes and read-back
-display	0x2483	r32 read-back+4	1	odsyInitDBE	b01,b05	documented	PBJ.h	2. Address space, writes and read-back
-display	0x2700	r32 read-back+4	4	odsyLoadTimingTable,odsy_i2cProbe2b,odsy_i2c_read_denali,odsy_i2c_write_denali	b01,b05	documented	DISPLAY.h	4. Video timing generator addresses (display FIFO type 3)
-display	0x2701	r32 read-back+4	1	odsyInitDBE	b01,b05	documented	PBJ.h	1. What PB&J is
-display	0x27cc	r32 read-back+4	1	odsyGenlockInterrupt	b01,b05	documented	DISPLAY.h	4. Video timing generator addresses (display FIFO type 3)
-display	0x27cd	r32 read-back+4	1	odsyGenlockInterrupt	b01,b05	documented	PBJ.h	3. Address map as the kernel uses it
+window	offset	name	access	sites	binaries	functions	evidence	example	status	doc	section
+board	0x4		r4	2	2	odsyGatherInfo	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyGatherInfo	documented	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+board	0xc		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x14		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x1c		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x24		r4,w4	31	2	odsyLLPReset;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyLLPReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x34		w4	6	2	odsyDisableInterrupts;odsyInitInterrupts;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyDisableInterrupts	documented	docs/buzz.md#pass-5-completion-word-saved-record-and-the-libglcore-side	Pass 5: completion word, saved record and the libGLcore side
+board	0x3c		w4	2	2	odsyInitInterrupts	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitInterrupts	documented	docs/buzz.md#routing-registers-odsyinitinterrupts-odsydisableinterrupts	Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+board	0x44		r4,w4	8	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x5c		w4	4	2	odsyInitInterrupts;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitInterrupts	documented	docs/buzz.md#routing-registers-odsyinitinterrupts-odsydisableinterrupts	Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+board	0x1004		w4	12	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/board.md#memory-configuration-word-at-board-0x1004	Memory configuration word at board +0x1004
+board	0x100c		w4	4	2	odsyLowLevelReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyLowLevelReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x1014		r4,w4	12	8	gfP_OdsyDIAGdma;odsyFlagInterrupt;odsyHiwaterInterrupt;odsyPrintRegs	board record +824;caller argument	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o):gfP_OdsyDIAGdma	documented	docs/buzz.md#flow-control	Flow control
+board	0x101c		w4	10	8	odsyDMAOp;odsyFlagInterrupt;odsyHiwaterInterrupt;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o):odsyDMAOp	documented	docs/buzz.md#flow-control	Flow control
+board	0x1034		r4,w4	10	8	odsyFlagInterrupt;odsyHiwaterInterrupt;odsyInitInterrupts;odsyLoadTimingTable	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyLoadTimingTable	documented	docs/buzz.md#flow-control	Flow control
+board	0x103c		w4	8	4	odsyDisableInterrupts;odsyLowaterInterrupt;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o):odsyLowaterInterrupt	documented	docs/buzz.md#flow-control	Flow control
+board	0x1044		w4	8	2	odsyDisableInterrupts;odsyInitInterrupts;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyDisableInterrupts	documented	docs/buzz.md#routing-registers-odsyinitinterrupts-odsydisableinterrupts	Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+board	0x104c		w4	4	2	odsyInitInterrupts;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitInterrupts	documented	docs/buzz.md#routing-registers-odsyinitinterrupts-odsydisableinterrupts	Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+board	0x1054		w4	4	2	odsyInitInterrupts;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitInterrupts	documented	docs/buzz.md#routing-registers-odsyinitinterrupts-odsydisableinterrupts	Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+board	0x105c		w4	4	2	odsyInitInterrupts;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitInterrupts	documented	docs/buzz.md#routing-registers-odsyinitinterrupts-odsydisableinterrupts	Routing registers (`odsyInitInterrupts`, `odsyDisableInterrupts`)
+board	0x1064		r4	4	4	odsyHiwaterInterrupt;odsyPrintRegs	board record +824;caller argument	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o):odsyHiwaterInterrupt	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x106c		r4	25	13	gfP_OdsyClearBuffer;gfP_OdsyMakeCurrent;gfP_OdsySaveHwShadow;gfP_OdsySetDrawBuffer;gf_OdsyDestroyDDRN;gf_OdsyDownload;+11 more	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o):gfP_OdsyClearBuffer	documented	docs/board.md#the-strap-word-at-board-0x106c	The strap word at board +0x106c
+board	0x1074		w4	36	21	gfP_OdsyClearBuffer;gfP_OdsyMakeCurrent;gfP_OdsySaveHwShadow;gfP_OdsySetDrawBuffer;gf_OdsyDestroyDDRN;gf_OdsyDownload;+11 more	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o):gfP_OdsyClearBuffer	documented	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
+board	0x107c		r4,w4	90	21	gfP_OdsyClearBuffer;gfP_OdsyMakeCurrent;gfP_OdsySaveHwShadow;gfP_OdsySetDrawBuffer;gf_OdsyDestroyDDRN;gf_OdsyDownload;+15 more	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o):gfP_OdsyClearBuffer	documented	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
+board	0x1084		w4	21	5	gf_OdsyInitialize;odsyReset;odsy_flow_await_returned_credits;odsy_tpinit	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):gf_OdsyInitialize	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x108c		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x109c		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x10a4		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x10ac		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x10b4		w4	4	2	odsyRetraceHandler;odsySwapBuffer	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o):odsyRetraceHandler	documented	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
+board	0x10bc		w4	16	4	gf_OdsySchedMGRSwapBuf;gf_OdsySchedSwapBuf;gf_OdsyUnSchedSwapBuf;odsyReset;odsyRetraceHandler;odsySwapBuffer	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
+board	0x10c4		w4	4	2	gf_OdsySetDisplayMode;odsySwapBuffer	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o):gf_OdsySetDisplayMode	documented	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
+board	0x10cc		w4	6	4	gf_OdsySetDisplayMode;odsyReset;odsySwapBuffer	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
+board	0x10d4		r4	2	2	odsyRetraceHandler	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o):odsyRetraceHandler	documented	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
+board	0x4004		w4	2	2	gf_OdsyPcxSwap	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o):gf_OdsyPcxSwap	documented	docs/buzz.md#switch-out-ask-the-board-to-save	Switch-out: ask the board to save
+board	0x400c		w4	2	2	gf_OdsyPcxSwap	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o):gf_OdsyPcxSwap	documented	docs/buzz.md#switch-out-ask-the-board-to-save	Switch-out: ask the board to save
+board	0x4014		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x401c		w4	6	4	odsyDestroyPfRgn;odsyInitPfRgn;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o):odsyDestroyPfRgn	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x4024		w4	6	4	odsyDestroyPfRgn;odsyInitPfRgn;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o):odsyDestroyPfRgn	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x402c		w4	4	4	gfP_OdsyPerfStat;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o):gfP_OdsyPerfStat	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x4034		w4	4	2	gf_OdsyStart;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):gf_OdsyStart	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x403c		w4	4	2	gf_OdsyStart;odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):gf_OdsyStart	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x4044		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x404c		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x4054		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x405c		w4	2	2	odsyReset	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyReset	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x110000		w4,w8	44504	18	__glOdyGetFromHardware;__glOdyim_AlphaFunc;__glOdyim_Begin;__glOdyim_Clear;__glOdyim_Color3b;__glOdyim_Color3bv;+318 more	board record +824;caller argument;user mapping +0x10000	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o):gfP_OdsyClearBuffer	documented	docs/buzz.md#switch-out-ask-the-board-to-save	Switch-out: ask the board to save
+board	0x118000		w8	4	2	gfP_OdsySaveHwShadow;gf_OdsyPcxSwap	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o):gfP_OdsySaveHwShadow	documented	docs/buzz.md#switch-out-ask-the-board-to-save	Switch-out: ask the board to save
+board	0x120000		w4,w8	25126	6	__glOdyGetFromHardware;__glOdyim_AlphaFunc;__glOdyim_Begin;__glOdyim_Clear;__glOdyim_Color3b;__glOdyim_Color3bv;+297 more	user mapping +0x4000	builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdyGetFromHardware	documented	docs/buzz.md#pio-registers	PIO registers
+board	0x201594		r4	2	2	odsyInitCfifo	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitCfifo	documented	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
+board	0x400000		w8	1236	12	gfP_OdsyBRDMGRVTGcontrol;gfP_OdsyBRDMGRcursor;gfP_OdsyBRDMGRsetColors;gf_OdsyPositionCursor;gf_OdsySetDisplayMode;odsyBlankScreen;+26 more	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):gfP_OdsyBRDMGRVTGcontrol	documented	docs/buzz.md#pio-registers	PIO registers
+display	0x2481		w8 display FIFO header	2	2	odsyLoadTimingTable	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyLoadTimingTable	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x2482		r4 read-back +4	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/pbj.md#open-questions	Open questions
+display	0x2483		r4 read-back +4	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x2581		w8 display FIFO header	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/display.md#kernel-cursor-request	Kernel cursor request
+display	0x2600		r4 read-back +4	2	1	odsyBlankScreen	board record +824	usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o):odsyBlankScreen	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x26c0		r4 read-back +4	6	2	odsyBlankScreen;odsySetDACGain	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyBlankScreen	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x2700		r4 read-back +4,w8 display FIFO header	10	8	odsyInitDBE;odsyLoadTimingTable;odsy_i2cProbe2b;odsy_i2c_read_denali;odsy_i2c_write_denali	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyLoadTimingTable	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x2701		r4 read-back +4	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/pbj.md#how-the-chip-was-identified	How the chip was identified
+display	0x27cc		r4 read-back +4,w8 display FIFO header	4	4	odsyGenlockInterrupt;odsyLoadTimingTable	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyLoadTimingTable	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x27cd		r4 read-back +4	2	2	odsyGenlockInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyGenlockInterrupt	documented	docs/pbj.md#what-the-binaries-cannot-settle-pass-8	What the binaries cannot settle (pass 8)
+display	0x2802		w8 display FIFO header	4	4	odsyConfigFb;odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyConfigFb	documented	docs/display.md#the-320-byte-structure-builder-in-the-x-module	The 320-byte structure builder in the X module
+display	0x2803		w8 display FIFO header	4	4	odsyConfigFb;odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o):odsyConfigFb	documented	docs/display.md#the-320-byte-structure-builder-in-the-x-module	The 320-byte structure builder in the X module
+display	0x2929		w8 display FIFO header	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure
+display	0x292a		w8 display FIFO header	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	undocumented		
+display	0x292b		w8 display FIFO header	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	undocumented		
+display	0x292c		w8 display FIFO header	2	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/pbj.md#method-for-the-address-list	Method for the address list
+display	0x2b00		w8 display FIFO header	4	2	odsyInitDBE	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyInitDBE	documented	docs/display.md#the-320-byte-timing-structure	The 320-byte timing structure

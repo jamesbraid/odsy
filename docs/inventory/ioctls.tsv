@@ -1,80 +1,92 @@
-table	number	handler	arch	user_functions	status	doc	section
-private	0x6f640000	gfP_OdsyMMattach	IP30,IP35		documented	BUZZ.h	2. Texture state
-private	0x6f640001	gfP_OdsyMMalloc	IP30,IP35	__glOdysseyCreatePMObj,odsyAllocatePbuffer	documented	docs/opengl.md	Drawable binding (`odsyBindDrawable`, `odsyUnbindDrawable`)
-private	0x6f640002	gfP_OdsyMMdealloc	IP30,IP35	__glOdysseyDestroyPMObjGroup,__glOdysseyDestroyPMObj,odsyAllocatePbuffer	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640003	gfP_OdsyMMmakeResident	IP30,IP35	__glOdysseyReadFromPMObj,odsyAllocatePbuffer	documented	docs/opengl.md	Texture level records and memory
-private	0x6f640004	gfP_OdsyMMquery	IP30,IP35	__glOdysseyClosePMObjReference,odsyAllocatePbuffer	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640005	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f640006	gfP_OdsyMMxfr	IP30,IP35	__glOdysseyAssignToPMObj,__glOdysseyReadFromPMObj,odsyReadImage	documented	BUZZ.h	5. FIFO ports, flow control and the textport stream
-private	0x6f640007	gfP_OdsyGLGet	IP30,IP35		documented	ucode/buzz_isa.md	Who loads the image, and why no operation is named yet (pass 7)
-private	0x6f640008	gfP_OdsyMakeCurrent	IP30,IP35	__glOdysseyDriverMakeCurrent	documented	docs/opengl.md	Kernel side (`gfP_OdsyMakeCurrent`)
-private	0x6f640009	gfP_OdsySetDrawBuffer	IP30,IP35	__glOdysseySetDrawbuf	documented	docs/opengl.md	Make-current and lose-current
-private	0x6f64000a	gfP_OdsyMMdebug	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f64000b	gfP_OdsyMMwaitXfr	IP30,IP35		documented	docs/kernel.md	`odsyDMAWait`, `odsyDMAFinish`, `gfP_OdsyMMwaitXfr`
-private	0x6f64000c	gfP_OdsySaveHwShadow	IP30,IP35	__glOdysseyGetHardwareShadow	documented	docs/buzz.md	Pass 5: completion word, saved record and the libGLcore side
-private	0x6f64000d	gfP_OdsySetClipMask	IP30,IP35	__glOdysseyAccumClose,__glOdyim_PolygonOffsetEXT,__glOdyim_Clear	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f64000e	gfP_OdsyClearBuffer	IP30,IP35	__glOdysseyClear	named-only	docs/kernel.md	Command words the kernel emits
-private	0x6f64000f	gfP_OdsyGetDrawableGeometry	IP30,IP35	__glOdysseyFindWindowSize	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640010	gfP_OdsyHPgetTopology	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640011	gfP_OdsyHPgetConfig	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640012	gfP_OdsyHPconfig	IP30,IP35	odsyHyperpipeConfig	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640013	gfP_OdsyHPdestroyConfig	IP30,IP35	odsyDestroyHyperpipeConfig	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640014	gfP_OdsyHPbind	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640015	gfP_OdsyHPunbind	IP30,IP35	__glOdysseyUnbindHyperpipe	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640016	gfP_OdsyHPqueryAttrib	IP30,IP35	__glOdysseyQueryHyperpipeBestRect,__glOdysseyQueryHyperpipeRect,__glOdysseyQueryHyperpipeStereo	documented	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640017	gfP_OdsyHPqueryBestAttrib	IP30,IP35		documented	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640018	gfP_OdsyHPsetAttrib	IP30,IP35	__glOdysseyQueryHyperpipeLimit,__glOdysseyHyperpipeRect,__glOdysseyHyperpipeStereo	documented	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640019	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f64001a	gfP_OdsyBRDMGRsetColors	IP30,IP35		documented	PBJ.h	2. Address space, writes and read-back
-private	0x6f64001b	gfP_OdsyBRDMGRconfigFb	IP30,IP35	odsySetFBConfig..KD,odsyKernInit..O,odsyLdFmtByName..OC	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f64001c	gfP_OdsyBRDMGRcursor	IP30,IP35	odsyDisplayCursor,odsyCursorInit,odsyInstallCursor	documented	docs/display.md	Cursor and overlay planes (pass 6)
-private	0x6f64001d	gfP_OdsyBRDMGRsetDpyMode	IP30,IP35	odsyValidateReservedMode,odsyDisplayInit	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f64001e	gfP_OdsyBRDMGRsetBlanking	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f64001f	gfP_OdsyBRDMGRloadTimingTable	IP30,IP35		documented	docs/display.md	Pieces
-private	0x6f640020	gfP_OdsyBRDMGRVTGcontrol	IP30,IP35	odsyInitDefaultHW..N,odsySetPltParam,odsyLdCombination..AD	documented	docs/display.md	Pieces
-private	0x6f640021	gfP_OdsyBRDMGRi2ccmd	IP30,IP35	odsyQryPltParam,odsySetPltParam,odsyInitMonitorProtocol..CD	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640022	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f640023	gfP_OdsyBRDMGRSetDACGain	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640024	gfP_OdsyLoadCompositorTiming	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f640025	gfP_OdsyCompositorRegAccess	IP30,IP35	odsyCmpIoctl	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640026	gfP_OdsyI2CPassthrough	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640027	gfP_OdsySetNicinfo	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640028	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f640029	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f64002a	gfP_OdsyPbufAssoc	IP30,IP35	odsyAllocatePbuffer	documented	docs/opengl.md	Drawable binding (`odsyBindDrawable`, `odsyUnbindDrawable`)
-private	0x6f64002b	gfP_OdsyPbufDeassoc	IP30,IP35	odsyDeallocatePbuffer	named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f64002c	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f64002d	gfP_OdsyInvalidIoctl	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f64002e	gfP_OdsyDIAGdma	IP30,IP35		documented	docs/buzz.md	Interrupts: IP35 comparison and the flags no code tests
-private	0x6f64002f	gfP_OdsyDIAGallocScanbuf	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640030	gfP_OdsyDIAGfreeScanbuf	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640031	gfP_OdsyDIAGgetShadowPtrs	IP30,IP35		named-only	docs/opengl.md	Private ioctl argument sizes
-private	0x6f640032	gfP_OdsyDIAGreleaseShadowPtrs	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-private	0x6f640033	gfP_OdsyPerfStat	IP30,IP35		documented	docs/buzz.md	PIO registers
-private	0x6f640034	gfP_OdsyDIAGreset	IP30,IP35		named-only	docs/opengl.md	Private ioctl numbers
-resource-manager	1000	RRM_OpenRN	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1001	RRM_CloseRN	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1002	RRM_BindProcToRN	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1003	RRM_BindRNToClip	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1004	RRM_UnbindRNFromClip	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1005	RRM_SwapBuf	IP30,IP35		documented	docs/display.md	Ioctl 1005, the kernel side of a buffer swap
-resource-manager	1006	RRM_SetSwapInterval	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1007	RRM_WaitForRetrace	IP30,IP35		documented	docs/kernel.md	RRM retrace and video-sync callbacks
-resource-manager	1008	RRM_SetDisplayMode	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1009	RRM_Message	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1010	RRM_InvalidateRN	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1011	RRM_ValidateClip	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1012	RRM_ValidateSwapBuf	IP30,IP35		documented	docs/display.md	Window ids
-resource-manager	1013	RRM_SwapGroup	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1014	RRM_SwapUnGroup	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1015	RRM_ValidateMessage	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1016	RRM_GetDisplayModes	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1017	RRM_LoadDisplayMode	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1018	RRM_CushionBuffer	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1019	RRM_SwapReady	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1020	RRM_MGR_SwapBuf	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1021	RRM_SetVideoSync	IP30,IP35		documented	docs/kernel.md	RRM retrace and video-sync callbacks
-resource-manager	1022	RRM_GetVideoSync	IP30,IP35		documented	docs/kernel.md	RRM retrace and video-sync callbacks
-resource-manager	1023	RRM_WaitVideoSync	IP30,IP35		documented	docs/kernel.md	RRM retrace and video-sync callbacks
-resource-manager	1024	RRM_BindRNToReadAndClip	IP30,IP35		named-only	docs/display.md	The generic resource-manager ioctls (1000 to 1025)
-resource-manager	1025	RRM_MapClipToSwapbufID	IP30,IP35		documented	docs/display.md	Window ids
+number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
+101	0x65	graphics init		sent	__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType;ddxFindAvailableBoards..CGC;+9 more	24	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so:__glXOpenGraphicsDevice	undocumented		
+102	0x66	graphics init		sent	__glXInit;__glx_GetString;__iglooGetGraphicsType;agp_comp_reg_access;+17 more	22	builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so:__glx_GetString	undocumented		
+103	0x67	graphics init		sent	crm_setmon;diag_discover_boards;gr2ev_info;irixKernInit;+5 more	6	usr/diags/compositor/bin/sting:diag_discover_boards	undocumented		
+104	0x68	graphics init		sent	diag_discover_boards;gr2ev_info;main;ng1_setmon;+1 more	4	usr/diags/compositor/bin/sting:diag_discover_boards	documented	odsy_kernel/include/odsy_kern.h:25	
+105	0x69	graphics init		sent	diag_discover_boards	1	usr/diags/compositor/bin/sting:diag_discover_boards	undocumented		
+106	0x6a	graphics init		sent	main;mgras_init	2	usr/gfx/gfxinfo:main	undocumented		
+107	0x6b	graphics init		sent	main	2	usr/gfx/gfxinfo:main	undocumented		
+108	0x6c	graphics init		sent	gr2_init;loadfile;mgras_init;odsy_init	2	usr/gfx/gfxinfo:gr2_init	documented	libglcore/include/glcore_odsy.h:41	
+110	0x6e	graphics init		sent	diag_discover_boards;gr2ev_info;main;ng1_setmon;+3 more	4	usr/diags/compositor/bin/sting:diag_discover_boards	undocumented		
+111	0x6f	graphics init		sent	irixKernInit	1	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	undocumented		
+112	0x70	graphics init		sent	ng1_setmon	1	usr/gfx/setmon:ng1_setmon	named-only	libglcore/include/glcore_odsy.h:42	
+113	0x71	graphics init		sent	diag_discover_boards;gr2ev_info;main;saXSGIvcQueryChannelGammaMap;+1 more	4	usr/diags/compositor/bin/sting:diag_discover_boards	undocumented		
+1000	0x3e8	resource-manager	RRM_OpenRN	sent,table	irixKernInit;xgsetmon	4	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1001	0x3e9	resource-manager	RRM_CloseRN	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1002	0x3ea	resource-manager	RRM_BindProcToRN	sent,table	irixKernInit;xgsetmon	4	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1003	0x3eb	resource-manager	RRM_BindRNToClip	sent,table	xgsetmon	3	usr/gfx/setmon:xgsetmon	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1004	0x3ec	resource-manager	RRM_UnbindRNFromClip	sent,table	rrmDisposeClip	3	usr/lib/X11/dyDDX/odyssey.so:rrmDisposeClip	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1005	0x3ed	resource-manager	RRM_SwapBuf	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1006	0x3ee	resource-manager	RRM_SetSwapInterval	sent,table	glXSwapIntervalSGI	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so:glXSwapIntervalSGI	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1007	0x3ef	resource-manager	RRM_WaitForRetrace	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1008	0x3f0	resource-manager	RRM_SetDisplayMode	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1009	0x3f1	resource-manager	RRM_Message	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1010	0x3f2	resource-manager	RRM_InvalidateRN	sent,table	SGICapGLCapture..HAE;rrmInvalidate	4	usr/gfx/arch/GENERIC/Xsgi:SGICapGLCapture..HAE	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1011	0x3f3	resource-manager	RRM_ValidateClip	sent,table	odsyValidateClip	3	usr/lib/X11/dyDDX/odyssey.so:odsyValidateClip	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1012	0x3f4	resource-manager	RRM_ValidateSwapBuf	sent,table	odsyValidateSwapbuf	3	usr/lib/X11/dyDDX/odyssey.so:odsyValidateSwapbuf	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1013	0x3f5	resource-manager	RRM_SwapGroup	sent,table	glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	3	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1014	0x3f6	resource-manager	RRM_SwapUnGroup	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1015	0x3f7	resource-manager	RRM_ValidateMessage	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1016	0x3f8	resource-manager	RRM_GetDisplayModes	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1017	0x3f9	resource-manager	RRM_LoadDisplayMode	sent,table	odsyChangeDIDCmap;odsyValidateMode	3	usr/lib/X11/dyDDX/odyssey.so:odsyChangeDIDCmap	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1018	0x3fa	resource-manager	RRM_CushionBuffer	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1019	0x3fb	resource-manager	RRM_SwapReady	sent,table	glxBindSwapBarrierSGIX	3	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1020	0x3fc	resource-manager	RRM_MGR_SwapBuf	sent,table	odsyInitiateBufferSwap	3	usr/lib/X11/dyDDX/odyssey.so:odsyInitiateBufferSwap	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1021	0x3fd	resource-manager	RRM_SetVideoSync	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1022	0x3fe	resource-manager	RRM_GetVideoSync	sent,table	glXGetVideoSyncSGI	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so:glXGetVideoSyncSGI	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1023	0x3ff	resource-manager	RRM_WaitVideoSync	sent,table	glXWaitVideoSyncSGI	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so:glXWaitVideoSyncSGI	documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1024	0x400	resource-manager	RRM_BindRNToReadAndClip	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1025	0x401	resource-manager	RRM_MapClipToSwapbufID	table		2		documented	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
+1868824576	0x6f640000	private	gfP_OdsyMMattach	constant,sent,table	__glOdyim_Clear;__glOdyim_HardAccum24;__glOdyim_PolygonOffsetEXT;__glOdysseyAccumClose;+60 more	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdyim_Clear	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824577	0x6f640001	private	gfP_OdsyMMalloc	constant,sent,table	__glOdysseyCreatePMObj;odsyAllocatePbuffer	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyCreatePMObj	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824578	0x6f640002	private	gfP_OdsyMMdealloc	constant,sent,table	__glOdysseyDestroyPMObj;__glOdysseyDestroyPMObjGroup;odsyAllocatePbuffer;odsyDeallocatePbuffer	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyDestroyPMObj	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824579	0x6f640003	private	gfP_OdsyMMmakeResident	constant,sent,table	__glOdysseyReadFromPMObj;odsyAllocatePbuffer	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyReadFromPMObj	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824580	0x6f640004	private	gfP_OdsyMMquery	constant,sent,table	__glOdysseyClosePMObjReference;odsyAllocatePbuffer	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyClosePMObjReference	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824581	0x6f640005	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824582	0x6f640006	private	gfP_OdsyMMxfr	constant,sent,table	__glOdysseyAssignToPMObj;__glOdysseyReadFromPMObj;odsyDrawImageDMA..H;odsyReadDeepImage..GE;+1 more	17	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyAssignToPMObj	documented	docs/kernel.md#op-ring-and-sequence-numbers-odsydmaop-odsydmadone	Op ring and sequence numbers (`odsyDMAOp`, `odsyDMADone`)
+1868824583	0x6f640007	private	gfP_OdsyGLGet	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824584	0x6f640008	private	gfP_OdsyMakeCurrent	constant,table	__glOdysseyDriverMakeCurrent	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyDriverMakeCurrent	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824585	0x6f640009	private	gfP_OdsySetDrawBuffer	constant,table	__glOdysseySetDrawbuf	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseySetDrawbuf	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824586	0x6f64000a	private	gfP_OdsyMMdebug	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824587	0x6f64000b	private	gfP_OdsyMMwaitXfr	table		1		documented	docs/kernel.md#odsydmawait-odsydmafinish-gfp_odsymmwaitxfr	`odsyDMAWait`, `odsyDMAFinish`, `gfP_OdsyMMwaitXfr`
+1868824588	0x6f64000c	private	gfP_OdsySaveHwShadow	constant,table	__glOdysseyGetHardwareShadow	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyGetHardwareShadow	documented	docs/buzz.md#switch-out-ask-the-board-to-save	Switch-out: ask the board to save
+1868824589	0x6f64000d	private	gfP_OdsySetClipMask	constant,table	__glOdyim_Clear;__glOdyim_HardAccum24;__glOdyim_PolygonOffsetEXT;__glOdysseyAccumClose;+4 more	16	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdyim_Clear	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824590	0x6f64000e	private	gfP_OdsyClearBuffer	constant,table	__glOdysseyClear	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyClear	documented	docs/kernel.md#command-words-the-kernel-emits	Command words the kernel emits
+1868824591	0x6f64000f	private	gfP_OdsyGetDrawableGeometry	constant,table	__glOdysseyFindWindowSize	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyFindWindowSize	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824592	0x6f640010	private	gfP_OdsyHPgetTopology	constant,sent,table	odsyQueryHyperpipeNetwork	2	usr/lib/X11/dyDDX/odyssey.so:odsyQueryHyperpipeNetwork	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824593	0x6f640011	private	gfP_OdsyHPgetConfig	constant,sent,table	odsyQueryHyperpipeConfig	2	usr/lib/X11/dyDDX/odyssey.so:odsyQueryHyperpipeConfig	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824594	0x6f640012	private	gfP_OdsyHPconfig	constant,sent,table	odsyHyperpipeConfig	2	usr/lib/X11/dyDDX/odyssey.so:odsyHyperpipeConfig	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824595	0x6f640013	private	gfP_OdsyHPdestroyConfig	constant,sent,table	odsyDestroyHyperpipeConfig	2	usr/lib/X11/dyDDX/odyssey.so:odsyDestroyHyperpipeConfig	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824596	0x6f640014	private	gfP_OdsyHPbind	constant,table	__glOdysseyBindHyperpipe	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyBindHyperpipe	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824597	0x6f640015	private	gfP_OdsyHPunbind	constant,table	__glOdysseyUnbindHyperpipe	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyUnbindHyperpipe	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824598	0x6f640016	private	gfP_OdsyHPqueryAttrib	constant,table	__glOdysseyQueryHyperpipeBestRect;__glOdysseyQueryHyperpipePixelAverage;__glOdysseyQueryHyperpipeRect;__glOdysseyQueryHyperpipeStereo	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyQueryHyperpipeBestRect	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824599	0x6f640017	private	gfP_OdsyHPqueryBestAttrib	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824600	0x6f640018	private	gfP_OdsyHPsetAttrib	constant,table	__glOdysseyHyperpipePixelAverage;__glOdysseyHyperpipeRect;__glOdysseyHyperpipeStereo;__glOdysseyQueryHyperpipeLimit	10	builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so:__glOdysseyHyperpipePixelAverage	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824601	0x6f640019	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824602	0x6f64001a	private	gfP_OdsyBRDMGRsetColors	constant,sent,table	odsyLoadCmap;odsyLoadGamma0	2	usr/lib/X11/dyDDX/odyssey.so:odsyLoadCmap	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824603	0x6f64001b	private	gfP_OdsyBRDMGRconfigFb	constant,sent,table	odsyKernInit..O;odsyLdFmtByName..OC;odsySetFBConfig..KD	2	usr/lib/X11/dyDDX/odyssey.so:odsyKernInit..O	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824604	0x6f64001c	private	gfP_OdsyBRDMGRcursor	constant,sent,table	odsyCursorInit;odsyCursorOn;odsyDisplayCursor;odsyInstallCursor;+1 more	2	usr/lib/X11/dyDDX/odyssey.so:odsyCursorInit	documented	docs/display.md#cursor-and-overlay-planes-pass-6	Cursor and overlay planes (pass 6)
+1868824605	0x6f64001d	private	gfP_OdsyBRDMGRsetDpyMode	constant,sent,table	odsyDisplayInit;odsyValidateReservedMode	2	usr/lib/X11/dyDDX/odyssey.so:odsyDisplayInit	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824606	0x6f64001e	private	gfP_OdsyBRDMGRsetBlanking	constant,sent,table	odsyBlankScreen	2	usr/lib/X11/dyDDX/odyssey.so:odsyBlankScreen	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824607	0x6f64001f	private	gfP_OdsyBRDMGRloadTimingTable	constant,sent,table	odsyLoadTimingTable..CC	2	usr/lib/X11/dyDDX/odyssey.so:odsyLoadTimingTable..CC	documented	docs/display.md#pieces	Pieces
+1868824608	0x6f640020	private	gfP_OdsyBRDMGRVTGcontrol	constant,sent,table	odsyInitDefaultHW..N;odsyLdCombination..AD;odsyLoadTimingTable..CC;odsySetPltParam	2	usr/lib/X11/dyDDX/odyssey.so:odsyInitDefaultHW..N	documented	docs/display.md#pieces	Pieces
+1868824609	0x6f640021	private	gfP_OdsyBRDMGRi2ccmd	constant,sent,table	odsyInitMonitorProtocol..CD;odsyLoadDenali..NC;odsyLoadTimingTable..CC;odsyMonitorCommand..BD;+10 more	3	usr/lib/X11/dyDDX/odyssey.so:odsyInitMonitorProtocol..CD	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824610	0x6f640022	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824611	0x6f640023	private	gfP_OdsyBRDMGRSetDACGain	constant,sent,table	odsySetCntrl..ID	2	usr/lib/X11/dyDDX/odyssey.so:odsySetCntrl..ID	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824612	0x6f640024	private	gfP_OdsyLoadCompositorTiming	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824613	0x6f640025	private	gfP_OdsyCompositorRegAccess	constant,sent,table	odsyCmpIoctl;ody_comp_reg_access	3	usr/diags/compositor/bin/sting:ody_comp_reg_access	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824614	0x6f640026	private	gfP_OdsyI2CPassthrough	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824615	0x6f640027	private	gfP_OdsySetNicinfo	constant,sent,table	odsySetupCompositorInfo	2	usr/lib/X11/dyDDX/odyssey.so:odsySetupCompositorInfo	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824616	0x6f640028	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824617	0x6f640029	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824618	0x6f64002a	private	gfP_OdsyPbufAssoc	constant,sent,table	odsyAllocatePbuffer	2	usr/lib/X11/dyDDX/odyssey.so:odsyAllocatePbuffer	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824619	0x6f64002b	private	gfP_OdsyPbufDeassoc	constant,sent,table	odsyDeallocatePbuffer	2	usr/lib/X11/dyDDX/odyssey.so:odsyDeallocatePbuffer	documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824620	0x6f64002c	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824621	0x6f64002d	private	gfP_OdsyInvalidIoctl	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824622	0x6f64002e	private	gfP_OdsyDIAGdma	table		1		documented	docs/buzz.md#pio-registers	PIO registers
+1868824623	0x6f64002f	private	gfP_OdsyDIAGallocScanbuf	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824624	0x6f640030	private	gfP_OdsyDIAGfreeScanbuf	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824625	0x6f640031	private	gfP_OdsyDIAGgetShadowPtrs	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824626	0x6f640032	private	gfP_OdsyDIAGreleaseShadowPtrs	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers
+1868824627	0x6f640033	private	gfP_OdsyPerfStat	table		1		documented	docs/buzz.md#pio-registers	PIO registers
+1868824628	0x6f640034	private	gfP_OdsyDIAGreset	table		1		documented	docs/opengl.md#private-ioctl-numbers	Private ioctl numbers

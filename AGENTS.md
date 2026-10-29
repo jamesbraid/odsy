@@ -93,7 +93,7 @@ Scripts (`scripts/`, run from the repository root):
 - `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
 - `extract_libglcore_odsy.py`: extract compilation units, types and functions from `libGLcore.so` into `libglcore/asm/` and `manifest.json`, and write `libglcore/decompile_libglcore.sh`. A binary without DWARF falls back to its symbol table.
 - `extract_odsy_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `ddx/groups.json`.
-- `inventory.py` (config `inventory.json`): measure coverage from the binaries. It lists every function, board offset, command word, ioctl and microcode routine in the in-scope files and marks each `documented`, `named-only` or `undocumented` by grepping the docs and headers. Output is `docs/inventory/*.tsv` (see `docs/inventory/README.md`).
+- `inventory.py` (config `inventory-config.json`): measure coverage from the binaries. It lists every binary, function, board offset, command word, ioctl and microcode routine in the in-scope files and marks each `documented`, `no-software-dependency`, `named-only` or `undocumented` by searching the docs and headers. Output is `docs/inventory/*.tsv` (see `docs/inventory/README.md`).
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
 
 The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
@@ -166,8 +166,8 @@ Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the
 Roles:
 
 - **Opus readers** take the Priority list in `docs/coverage.md`, in order, and read the `undocumented` rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item.
-- **Sonnet readers** pick `undocumented` rows from the inventory, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the board-role functions in `functions.tsv`, then `named-only` rows that need their meaning written. Backfill `docs/coverage.md` area rows the same way.
-- Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have documented must show `documented` in the regenerated file; if it does not, the text is too thin or does not name the thing.
+- **Sonnet readers** pick `undocumented` rows from the inventory, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`, then `named-only` rows that need their meaning written. Backfill `docs/coverage.md` area rows the same way.
+- Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have documented must show `documented` in the regenerated file; if it does not, the text is too thin or does not name the thing (`docs/inventory/README.md` gives the rule). If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
 

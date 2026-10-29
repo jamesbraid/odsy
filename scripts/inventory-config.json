@@ -1,0 +1,595 @@
+{
+  "family": "VPro (Odyssey)",
+  "docs": {
+    "prose": [
+      "docs/*.md",
+      "ucode/*.md",
+      "README.md"
+    ],
+    "headers": [
+      "*.h",
+      "*/include/*.h"
+    ],
+    "tables": [],
+    "index": [
+      "AGENTS.md",
+      "README.md",
+      "IRIX_FILES.md",
+      "docs/coverage.md",
+      "docs/open-questions.md"
+    ],
+    "dumps": [],
+    "skip": [
+      "docs/inventory/*"
+    ],
+    "context": {
+      "ucode": [
+        "entry",
+        "entries",
+        "routine",
+        "record",
+        "end mark",
+        "overlay"
+      ]
+    }
+  },
+  "prepare": [],
+  "binaries": [
+    {
+      "group": "kernel",
+      "role": "board-kernel",
+      "paths": [
+        "usr/cpu/sysgen/IP30boot/odyssey.a",
+        "builds/*/usr/cpu/sysgen/IP30boot/odyssey.a",
+        "usr/cpu/sysgen/IP35boot/odyssey.a",
+        "builds/*/usr/cpu/sysgen/IP35boot/odyssey.a",
+        "usr/cpu/sysgen/IP30boot/tport.a",
+        "usr/cpu/sysgen/IP35boot/tport.a"
+      ]
+    },
+    {
+      "group": "kernel-shared",
+      "role": "shared-kernel",
+      "paths": [
+        "usr/cpu/sysgen/IP30boot/gfx.o",
+        "usr/cpu/sysgen/IP30boot/gfxs.a",
+        "usr/cpu/sysgen/IP30boot/gfxstubs.a",
+        "usr/cpu/sysgen/IP30boot/rrm.o",
+        "usr/cpu/sysgen/IP30boot/kernel.o",
+        "usr/cpu/sysgen/IP30boot/odysseystubs.a",
+        "usr/cpu/sysgen/IP35boot/gfx.o",
+        "usr/cpu/sysgen/IP35boot/gfxs.a",
+        "usr/cpu/sysgen/IP35boot/gfxstubs.a",
+        "usr/cpu/sysgen/IP35boot/rrm.o",
+        "usr/cpu/sysgen/IP35boot/kernel.o",
+        "usr/cpu/sysgen/IP35boot/odysseystubs.a",
+        "builds/*/usr/cpu/sysgen/*/*"
+      ]
+    },
+    {
+      "group": "kernel-config",
+      "role": "shared-data",
+      "paths": [
+        "var/sysgen/master.d/odyssey",
+        "var/sysgen/master.d/odysseystubs",
+        "var/sysgen/mtune/odyssey"
+      ]
+    },
+    {
+      "group": "libraries",
+      "role": "board-library",
+      "paths": [
+        "usr/gfx/arch/IP30ODSY",
+        "usr/gfx/arch/IP30ODSY32",
+        "usr/gfx/arch/IP30ODSY64",
+        "usr/gfx/arch/IP35ODSY",
+        "usr/gfx/arch/IP35ODSY32",
+        "usr/gfx/arch/IP35ODSY64",
+        "builds/*/usr/gfx/arch"
+      ]
+    },
+    {
+      "group": "x-module",
+      "role": "board-x-module",
+      "paths": [
+        "usr/lib/X11/dyDDX/odyssey.so"
+      ]
+    },
+    {
+      "group": "x-shared",
+      "role": "shared-x-server",
+      "paths": [
+        "usr/lib/X11/dyDDX/glx.so",
+        "usr/gfx/arch/GENERIC/Xsgi"
+      ]
+    },
+    {
+      "group": "tools",
+      "role": "shared-tool",
+      "paths": [
+        "usr/gfx/gfxinit",
+        "usr/gfx/gfxinfo",
+        "usr/gfx/setmon",
+        "usr/gfx/dmconf",
+        "usr/gfx/sgcombine",
+        "usr/gfx/gfxtopology",
+        "usr/gfx/startgfx",
+        "usr/gfx/stopgfx",
+        "usr/bin/X11/xsetmon"
+      ]
+    },
+    {
+      "group": "shared-libraries",
+      "role": "shared-library",
+      "paths": [
+        "usr/gfx/arch/IGLOO/libgl.so",
+        "usr/gfx/arch/IGLOO32/libgl.so",
+        "usr/lib32/libfm.so"
+      ]
+    },
+    {
+      "group": "diagnostics",
+      "role": "board-diagnostic",
+      "paths": [
+        "usr/diags/compositor",
+        "usr/gfx/STINGRAY/bin",
+        "usr/sbin/Confidence/dualchannel"
+      ]
+    },
+    {
+      "group": "ide",
+      "role": "board-diagnostic",
+      "paths": [
+        "sbin/stand/ide.IP30"
+      ],
+      "string_names": "\\bodsy\\w{3,}|\\bOdsy\\w{3,}"
+    },
+    {
+      "group": "firmware",
+      "role": "board-firmware",
+      "paths": [
+        "usr/cpu/firmware/IP30prom.bin",
+        "usr/cpu/firmware/ip35prom.img"
+      ],
+      "string_names": "\\bodsy\\w{3,}|\\bOdsy\\w{3,}"
+    },
+    {
+      "group": "microcode",
+      "role": "board-microcode",
+      "paths": [
+        "usr/gfx/ucode/ODSY",
+        "usr/gfx/ucode/ODSY-kernel",
+        "usr/gfx/ucode/STINGRAY"
+      ]
+    },
+    {
+      "group": "video-formats",
+      "role": "board-data",
+      "paths": [
+        "usr/gfx/ucode/vfc/rules"
+      ]
+    }
+  ],
+  "exclude": [],
+  "windows": [
+    {
+      "name": "board",
+      "size": "0x401000"
+    },
+    {
+      "name": "display",
+      "size": "0x4000",
+      "docs": [
+        "DISPLAY.h",
+        "PBJ.h",
+        "docs/display.md",
+        "docs/pbj.md"
+      ]
+    }
+  ],
+  "bases": [
+    {
+      "type": "field",
+      "disp": 824,
+      "loads": [
+        "ld",
+        "lw"
+      ],
+      "window": "board",
+      "label": "board record +824",
+      "binaries": [
+        "usr/cpu/sysgen/*/odyssey.a*",
+        "builds/*/usr/cpu/sysgen/*/odyssey.a*"
+      ],
+      "why": "odsy_attach stores the board's PIO base at board record +824 (docs/kernel.md)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x4000",
+      "hi": "0x8000",
+      "window": "board",
+      "offset": "0x120000",
+      "label": "user mapping +0x4000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x120000 at client offset 0x4000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x8000",
+      "hi": "0x10000",
+      "window": "board",
+      "offset": "0x0",
+      "label": "user mapping +0x8000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x0 at client offset 0x8000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x10000",
+      "hi": "0x14000",
+      "window": "board",
+      "offset": "0x110000",
+      "label": "user mapping +0x10000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x110000 at client offset 0x10000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x14000",
+      "hi": "0x18000",
+      "window": "board",
+      "offset": "0x118000",
+      "label": "user mapping +0x14000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x118000 at client offset 0x14000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x18000",
+      "hi": "0x1c000",
+      "window": "board",
+      "offset": "0x200000",
+      "label": "user mapping +0x18000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x200000 at client offset 0x18000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x1c000",
+      "hi": "0x3c000",
+      "window": "board",
+      "offset": "0x220000",
+      "label": "user mapping +0x1c000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x220000 at client offset 0x1c000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    },
+    {
+      "type": "constant",
+      "lo": "0x3c000",
+      "hi": "0x40000",
+      "window": "board",
+      "offset": "0x400000",
+      "label": "user mapping +0x3c000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*"
+      ],
+      "why": "gf_OdsyMapGfx maps board+0x400000 at client offset 0x3c000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+    }
+  ],
+  "accessors": [],
+  "aliases": [],
+  "decoders": [
+    {
+      "type": "port-field",
+      "window": "board",
+      "offset": "0x400000",
+      "when": [
+        {
+          "shift": 28,
+          "mask": "0xf",
+          "in": [
+            3,
+            7
+          ]
+        }
+      ],
+      "field": {
+        "shift": 14,
+        "mask": "0x3fff"
+      },
+      "to_window": "display",
+      "label": "display FIFO header",
+      "why": "a display FIFO header word of type 3 or 7 carries a display address in bits 27:14 (DISPLAY.h)"
+    },
+    {
+      "type": "stride",
+      "window": "board",
+      "lo": "0x220000",
+      "hi": "0x240000",
+      "stride": 8,
+      "to_window": "display",
+      "why": "the read-back window returns one display address per 8 bytes (DISPLAY.h)",
+      "label": "read-back"
+    }
+  ],
+  "tokens": {
+    "widths": {
+      "word": 8,
+      "block": 3
+    },
+    "value_match": [
+      "word",
+      "block"
+    ],
+    "context": {
+      "block": [
+        "block",
+        "reg ",
+        "register",
+        " id",
+        "ids",
+        "reg_"
+      ]
+    },
+    "families": [
+      {
+        "name": "class1",
+        "when": [
+          {
+            "shift": 16,
+            "mask": "0xffff",
+            "eq": 1
+          }
+        ],
+        "fields": [
+          {
+            "name": "count",
+            "shift": 10,
+            "mask": "0xf"
+          },
+          {
+            "name": "id",
+            "mask": "0x3ff"
+          },
+          {
+            "name": "prim",
+            "shift": 14,
+            "mask": "1"
+          }
+        ]
+      },
+      {
+        "name": "attribute",
+        "when": [
+          {
+            "mask": "0x00808000",
+            "eq": "0x00808000"
+          },
+          {
+            "shift": 24,
+            "mask": "0xff",
+            "eq": "0x80"
+          }
+        ],
+        "fields": [
+          {
+            "name": "count",
+            "shift": 10,
+            "mask": "0xf"
+          },
+          {
+            "name": "op",
+            "mask": "0x3ff"
+          }
+        ]
+      },
+      {
+        "name": "attribute",
+        "when": [
+          {
+            "mask": "0x00808000",
+            "eq": "0x00808000"
+          },
+          {
+            "shift": 24,
+            "mask": "0xff",
+            "range": [
+              "0xc0",
+              "0xdf"
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "name": "slot",
+            "shift": 24,
+            "mask": "0x3f"
+          },
+          {
+            "name": "count",
+            "shift": 10,
+            "mask": "0xf"
+          },
+          {
+            "name": "op",
+            "mask": "0x3ff"
+          }
+        ]
+      },
+      {
+        "name": "sequencer",
+        "when": [
+          {
+            "shift": 24,
+            "mask": "0xff",
+            "range": [
+              "0x20",
+              "0x35"
+            ]
+          },
+          {
+            "mask": "0x8000",
+            "eq": "0x8000"
+          }
+        ],
+        "fields": [
+          {
+            "name": "reg",
+            "shift": 24,
+            "mask": "0xff"
+          }
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "family": "class1",
+        "kind": "block",
+        "mask": "0x3ff"
+      }
+    ],
+    "sources": [
+      {
+        "type": "stores",
+        "label": "code",
+        "kind": "word",
+        "any_store": true,
+        "families": true,
+        "binaries": [
+          "usr/cpu/sysgen/*/odyssey.a*",
+          "builds/*/usr/cpu/sysgen/*/odyssey.a*",
+          "usr/gfx/arch/IP*ODSY*/*",
+          "builds/*/usr/gfx/arch/IP*ODSY*/*",
+          "usr/lib/X11/dyDDX/odyssey.so"
+        ]
+      }
+    ]
+  },
+  "ioctls": {
+    "send_functions": [
+      "ioctl"
+    ],
+    "ranges": [
+      [
+        "100",
+        "199"
+      ],
+      [
+        "1000",
+        "1999"
+      ],
+      [
+        "0x6f640000",
+        "0x6f64ffff"
+      ]
+    ],
+    "constants": {
+      "mask": "0xffff0000",
+      "value": "0x6f640000",
+      "binaries": [
+        "usr/gfx/arch/IP*ODSY*/*",
+        "builds/*/usr/gfx/arch/IP*ODSY*/*",
+        "usr/lib/X11/dyDDX/odyssey.so",
+        "usr/gfx/*",
+        "usr/bin/X11/xsetmon"
+      ]
+    },
+    "min_decimal": 1000,
+    "dispatchers": [
+      {
+        "type": "pointer-table",
+        "name": "private",
+        "member": "odsy.o",
+        "binaries": [
+          "usr/cpu/sysgen/*/odyssey.a*"
+        ],
+        "section": ".data",
+        "start": "0xe0",
+        "stride": 8,
+        "count": 53,
+        "base": "0x6f640000",
+        "strip": "gfP_Odsy"
+      },
+      {
+        "type": "pointer-table",
+        "name": "resource-manager",
+        "binaries": [
+          "usr/cpu/sysgen/*/rrm.o"
+        ],
+        "section": ".data",
+        "prefix": "RRM_",
+        "base": 1000,
+        "start": "auto",
+        "stride": 24,
+        "count": 100
+      }
+    ],
+    "classes": [
+      {
+        "lo": 100,
+        "hi": 199,
+        "name": "graphics init"
+      },
+      {
+        "lo": 1000,
+        "hi": 1999,
+        "name": "resource-manager"
+      },
+      {
+        "lo": "0x6f640000",
+        "hi": "0x6f64ffff",
+        "name": "private"
+      }
+    ]
+  },
+  "ucode": [
+    {
+      "type": "records",
+      "module": "buzz_ucode_disasm",
+      "record_bytes": 12,
+      "end_mask": "3",
+      "end_values": [
+        1,
+        2
+      ],
+      "start_after_end": 5,
+      "entries": "module.ENTRIES",
+      "insert_at": "module.INSERT_AT",
+      "insert_len": "module.INSERT_LEN",
+      "ram_records": "module.RAM_WORDS",
+      "images": [
+        {
+          "path": "root/usr/gfx/ucode/ODSY/buzz_xform.bin"
+        },
+        {
+          "path": "root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin",
+          "kernel_copy": true
+        },
+        {
+          "path": "root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin",
+          "kernel_copy": true
+        }
+      ]
+    }
+  ],
+  "spec_registers": []
+}

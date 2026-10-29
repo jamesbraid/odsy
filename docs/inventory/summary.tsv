@@ -1,8 +1,9 @@
-inventory	rows	documented	named_only	undocumented	pct_documented	pct_named_or_better
-functions (board binaries)	7324	232	12	7080	3.2	3.3
-functions (shared binaries)	11415	53	21	11341	0.5	0.6
-functions (all)	18739	285	33	18421	1.5	1.7
-mmio	55	55	0	0	100.0	100.0
-tokens	224	136	13	75	60.7	66.5
-ioctls	79	26	53	0	32.9	100.0
-ucode	247	87	0	160	35.2	35.2
+table	rows	documented	no_software_dependency	named_only	undocumented	pct_documented	pct_done	unresolved_sites
+binaries	276	125	0	40	111	45.3	45.3	
+functions	106592	1679	0	48	104865	1.6	1.6	
+functions (distinct names)	18949	299	0	8	18642	1.6	1.6	
+mmio	67	65	0	0	2	97.0	97.0	56
+tokens	255	158	0	4	93	62.0	62.0	
+ioctls	91	81	0	1	9	89.0	89.0	
+ucode	247	85	0	0	162	34.4	34.4	
+spec-registers	0	0	0	0	0	0.0	0.0	
