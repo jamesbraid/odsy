@@ -220,3 +220,83 @@ Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_d
 - **Flow-control credits differ.** IP35 `odsy_ctxsw.o` calls `gfx_flow_credit_count_get` and `gfx_flow_credit_bias_get` before each of six save or switch points and, when the count is below the bias, pins the thread (`rt_pin_thread`), releases the interrupt level, calls `odsy_flow_await_returned_credits(board)`, re-raises the level and unpins. IP30 has none of these calls. After attaching to flow control, IP35 also calls `gfx_flow_attach_me_finish`, and takes the credit target number from a board-record word (record `-19376` from the base plus 0x10000) where IP30 calls `gfx_flow_credit_tnum_get`; the register write is the same (0x1074 with the number in bits 16:12, then 0x107c = 0). **established** as call lists and the code of the attach path. **inferred** that IP35 makes the save wait for credits the board has not returned, because its credit counters are the host-side registers of section 1 and the board could otherwise be switched while a flow-control credit is in flight; IP30's credit state is held in a host chip that the driver does not poll here.
 - **Other.** The stack frame of `gf_OdsyPcxSwap` grows from 112 to 144 bytes, which accounts for the local copies of the pinned-thread state. Everything else in the 8 extra lines of the file is addressing differences.
 - **Not compared.** The bodies of `odsyRestoreXform`, `odsyRestoreVB` and the other replay routines were diffed only by length (the files differ by 8 lines in 6800) and by the `.lit8` constants above; they are **unknown** to differ beyond what the target lists show.
+
+## 8. Register map (pass 7)
+
+Two kinds of BUZZ register exist: PIO registers the host loads and stores directly in the board window, and command-stream register blocks reached only through the command FIFO. Release IRIX 6.5.30m, IP30 kernel objects unless IP35 is named.
+
+### PIO registers
+
+**established** by a base-register scan of every IP30 kernel object (loads of the PIO base from board record +824, followed through constant offsets; the IP35 scan gives the same offsets and access types). The scan misses accesses through bases passed in as arguments, so the list is complete for constant offsets only. Offsets 0x220000 and up belong to PB&J (`PBJ.h`).
+
+| Offset | Access | Users | What is known | Where |
+|---|---|---|---|---|
+| 0x0004 | load | `odsyGatherInfo` | bits 31:28 BUZZ revision type | `docs/board.md` |
+| 0x000c, 0x0014, 0x001c, 0x0044 | load (0x44 also store 0) | `odsyXtErrorInterrupt` | crossbar error status, high error, low address, header | `BUZZ.h` section 5 |
+| 0x0024 | load, store | `odsyFindBoardAddr`, `odsyReset`, `odsyLLPReset` | widget id in the low nibble; written id \| 0x4200 at reset | `docs/kernel.md` |
+| 0x0034, 0x003c, 0x005c | store | interrupt set-up | error interrupt vector, target and address; 0x5c unknown | section 6 |
+| 0x1004 | store | `odsyReset` | SDRAM configuration | `docs/board.md` |
+| 0x100c | store | `odsyLowLevelReset` | reset control, 0x200 or 0x16d then 0 | `docs/kernel.md` |
+| 0x1014 | load, store | flags handler, `gfP_OdsyDIAGdma` | flags | `BUZZ.h` |
+| 0x101c, 0x1034, 0x103c | store (0x1034 also load) | flags, flow, timing load | flag clear, interrupt enable, disable | `BUZZ.h` |
+| 0x1044, 0x104c, 0x1054, 0x105c | store | interrupt set-up | sources 1-4 target, address, vectors | section 6 |
+| 0x1064 | load | `odsyHiwaterInterrupt`, `odsyPrintRegs` | status0 | `BUZZ.h` |
+| 0x106c | load | 15 functions | FIFO levels (15:0), strap (31:24) | `BUZZ.h`, `docs/board.md` |
+| 0x1074, 0x107c | store | 15 and 18 functions | flow configuration, flow off | `BUZZ.h` |
+| 0x1084 | store | `odsyReset`, `odsy_tpinit`, `gf_OdsyInitialize` | command FIFO reset pulse | `BUZZ.h` |
+| 0x108c, 0x109c, 0x10a4, 0x10ac | store 0 | `odsyReset` only | unknown; zeroed at reset | |
+| 0x10b4, 0x10bc, 0x10c4, 0x10cc, 0x10d4 | store (0x10d4 load) | retrace and swap code | per-slot buffer select and swap bitmaps | section 6 |
+| 0x4004, 0x400c | store | `gf_OdsyPcxSwap` | context save address | section 4 |
+| 0x4014, 0x4044 | store | `odsyReset` | master id fields plus fixed bits | `docs/kernel.md` |
+| 0x401c, 0x4024 | store | `odsyReset`, `odsyInitPfRgn`, `odsyDestroyPfRgn` | written when a performance region is set up and torn down | |
+| 0x402c | store | `odsyReset`, `gfP_OdsyPerfStat` | performance statistics control | |
+| 0x4034, 0x403c | store | `odsyReset`, `gf_OdsyStart` | written at start | |
+| 0x404c, 0x4054, 0x405c | store 0 | `odsyReset` only | unknown | |
+| 0x110000 | 32- and 64-bit store | 13 functions | command FIFO port | `BUZZ.h` |
+| 0x118000 | 64-bit store | `gf_OdsyPcxSwap` | context save request | section 4 |
+| 0x201594 | load | `odsyInitCfifo` | must read 0x003d0046 before the microcode load | `BUZZ.h` |
+| 0x400000 | 64-bit store | 27 functions | display FIFO port | `PBJ.h` |
+
+- **inferred.** The 0x4000 group holds the context-save engine (0x4004/0x400c) and the performance and diagnostic regions: `odsyInitPfRgn`/`odsyDestroyPfRgn` and `gfP_OdsyPerfStat` are its only users outside reset, and the status0 bits `PERF_STATS_PUSH_ACTV` and `DIAG_HIST_PUSH_ACTV` name such engines. The field layouts were not read.
+- **established.** `gf_OdsyMapGfx` hands clients windows at board +0x000000 (2 pages, so these PIO registers up to 0x7fff), +0x100000, +0x110000 (the command FIFO), +0x118000, +0x120000, +0x200000, +0x220000 (8 pages, the PB&J read-back) and +0x400000 (the display FIFO) (`BUZZ.h` section 5). What +0x100000, +0x120000 and +0x200000 hold beyond the one read at +0x201594: **unknown**.
+
+### Command-stream register blocks
+
+The full set of blocks the board holds as context state is what the kernel replays after a lost context (`odsyRestoreRaster`, `odsy_ctxsw.o`, decompiled with m2c from `odsy_kernel/disasm/odsy_ctxsw/`). **established**: each row is a class-1 word the routine sends, its operand count, and the offset in the hardware-shadow record (the structure at offset 0xb0 of the routine's second argument) it reads the operands from, in send order. Settle groups (0x043, 0x046, 0x019) between them are left out.
+
+| Block | Words | Shadow offset | Known from |
+|---|---|---|---|
+| 0x017 | 4 | 0x1b24 | |
+| 0x023 | 4 | 0xe8 | X module and textport send it with the 0x022 sequencer pair (`docs/opengl.md`) |
+| 0x052 | 1 | 0xe4 | |
+| 0x01d | 2 | 0xa8 | |
+| 0x053 | 5 | 0x1b34 | rectangle copy (`docs/opengl.md`) |
+| 0x004, 0x005, 0x022, 0x015, 0x056 | 1 each | 0x84, 0x88, 0xc8, 0x8c, 0x1cb0 | 0x004 raster mode (textport) |
+| 0x048 | 3 | 0xcc | |
+| 0x03f | 1 | 0x80 | glyph set-up (textport sends 6) |
+| 0x04e, 0x04f | 16 each | 0x00, 0x40 | 32 x 32 stipple or glyph bitmap (`BUZZ.h` section 5) |
+| 0x04a | 2 | 0xdc | |
+| 0x01b | 5 | 0x138 | texture environment |
+| 0x016 | 7 | 0x14c | texture modes |
+| 0x051, 0x04c | 1 each | 0x1b20, 0x1cac | |
+| 0x021 | 3 | 0xbc | constant colour |
+| 0x030-0x033, 0x03d or 0x03b | 4 x 8, 2 or 8 | 0x1174 | post-filter scale and bias, by the mode word at shadow 0x1170 (1 or other: 0x030-0x033; 3: 0x03d; 2: 0x03b) |
+| 0x028-0x02b, 0x03a or 0x038 | 4 x 16, 4 or 16 | 0x1070 | a second three-layout set chosen by the word at 0x106c (1 or other: 0x028-0x02b; 3: 0x03a; 2: 0x038) |
+| 0x01e, 0x01f, 0x020, 0x058 | 1 each | 0xb0, 0xb4, 0xb8, 0xd8 | |
+| 0x01a | 6 | 0x90 | |
+| 0x047 | 6 | 0x1b94 | |
+| 0x013 | 4 | 0x1bac | texture LOD |
+| 0x03e and the tables | 3, then 0x200-0x24f and 0x280+i | 0x11f4 | texture offset, five tables, level descriptors (`BUZZ.h` section 2) |
+| 0x006 | 1 | 0x468 | |
+| 0x018 | 0 | | |
+| 0x01c | 3 | 0x1a04 | |
+| 0x057 | 1 | 0x1cb4 | |
+| 0x04d | 16 | 0xf8 | a third 16-word bitmap beside 0x04e/0x04f |
+| 0x042 | 2 | 0x1ca4 | |
+| 0x007 | 8 operands built in registers | | |
+| 0x04b | 8 | 0x2b40 | window descriptor (`docs/opengl.md`) |
+| 0x041, 0x024, 0x040 | 2, 1, 2 | 0x2b60, 0x2b68, 0x2b6c | 0x040/0x041 also sent by `odsyClipPush` |
+
+- **established.** The 0x028-0x02b / 0x03a / 0x038 choice is a new instance of the three-layout pattern of the post-filter blocks: one shadow region (0x1070-0x116f, 64 words) goes out as four 16-word blocks, one 16-word block or one 4-word block. libGLcore sends 0x00013c28-0x00013c2b, 0x0001103a and 0x00013c38 only from `ody_context.s` (`__glOdysseyValidateHardware`). What these blocks hold: **unknown**; their size (a 4 x 4 matrix per block, or four 16-entry sets) is the only clue.
+- **established.** Every block id the kernel replays is below 0x060 apart from the tables (0x200-0x24f), the level descriptors (0x280+) and 0x258 (`0x00010658` with one operand, the last word of the routine). A scan of `lui 1` / `ori` command words in libGLcore, the X module and the kernel finds no class-1 id between 0x060 and 0x1ff that is stored to the FIFO; the libGLcore hits in that range are context offsets, not command words (checked by their use as load and store displacements). So the raster state the board holds as context is the set above. **inferred**, because the scan relies on the immediate form.
+- **unknown.** Field layouts of the blocks with no "Known from" entry, and the meaning of the shadow record outside these offsets.
