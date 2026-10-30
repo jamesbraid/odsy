@@ -234,8 +234,8 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Linear search of a colour-set container with a caller-supplied predicate. It walks every chunk on the
   list at +0 and every slot of each chunk (2 to the power of the shift at +40 slots; a shift of 0 makes it
   return 0 at once), skips empty slots, and calls the predicate with the
-  element and the caller's key. It returns the first element for which the predicate returns non-zero, or
-  0 when none matches.
+  element and the caller's key. The predicate follows the comparison convention: the first element for which it returns 0 is returned, and
+  0 is returned when no slot gives that result.
 - `NewChunkNode` (`odsy_adt.o`, offset 0x3e0, 76 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
   Allocates one chunk node for a colour-set container: a 32-byte block from `kmem_alloc` with flags 0,
@@ -322,3 +322,223 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Initialises the transport-port lock state. It sets the global `odsy_tport_mute` to 1, clears
   `odsy_tport_inuse` in the delay slot of a `wbflush` call, and then calls `spinlock_init` on
   `odsy_tport_lock` with the name "odsy_tport_lock".
+- `odsy_rainier_read_rcx_reg` (`odsy_rainier.o`, offset 0x18, 24 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
+  Reads one 32-bit register of the Rainier window. It takes the mapped base pointer stored at board record
+  +16, adds the byte offset in its second argument rounded down to a multiple of 4 (shift right 2, shift
+  left 2) and returns the word loaded from there.
+- `odsy_rainier_write_rcx_reg` (`odsy_rainier.o`, offset 0x0, 24 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
+  Writes one 32-bit register of the Rainier window: the store goes to the base pointer at board record +16
+  plus the offset in the second argument rounded down to a multiple of 4, and the value is the third
+  argument. It has no return value and no barrier.
+- `odsy_rainier_read_board_id` (`odsy_rainier.o`, offset 0x30, 28 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
+  Reads the board identification register of the Rainier window by calling `odsy_rainier_read_rcx_reg`
+  with the offset 816 (0x330) and returning its result unchanged.
+- `odsy_RainierRegWrite` (`odsy_rainier.o`, offset 0x7c, 32 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
+  Register-write entry used by the callback table. It ignores its own first argument and calls
+  `odsy_rainier_write_rcx_reg` on the board record held in a global in the small zero-initialised data,
+  passing the offset and value through, and returns 0.
+- `odsy_RainierRegRead` (`odsy_rainier.o`, offset 0x4c, 48 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
+  Register-read entry used by the callback table. It calls `odsy_rainier_read_rcx_reg` on the board record
+  held in a global in the small zero-initialised data with its offset argument, stores the word read
+  through the pointer in its third argument and returns 0.
+- `odsy_dma_poll_timer` (`odsy_dma.o`, offset 0x8c8, 28 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Timer callback of `DmaFinishedPollDelay`: it does nothing but call `vsema` on the semaphore in the zero-
+  initialised data, releasing the thread that is blocked in `psema`.
+- `odsy_dmawait_harmless_timeout` (`odsy_dma.o`, offset 0x2470, 56 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Timeout handler for a DMA wait that was not a real hang. It logs the message "this is not a dma timeout"
+  at severity 7 through `cmn_err` and then wakes every waiter with `sv_broadcast` on the synchronisation
+  variable at board record +5816. It touches no board register.
+- `DmaFinishedPollDelay` (`odsy_dma.o`, offset 0x8e4, 80 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Sleeps for about 25 clock ticks. It initialises the semaphore in the zero-initialised data with
+  `init_sema`, arms `timeout` for 25 ticks with `odsy_dma_poll_timer` as the callback and its own argument
+  as the callback argument, and then blocks in `psema` at priority 25 until the timer posts the semaphore.
+- `odsy_earlyinit_timeout` (`odsy_init.o`, offset 0x115c, 28 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Timer callback used during early board initialisation: it calls `vsema` on the semaphore passed in its
+  argument so that the initialisation thread blocked on it resumes.
+- `odsy_init` (`odsy_init.o`, offset 0x398, 56 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Driver start-up entry. It calls `odsyCheckBoardPointers` to make sure the board pointer table exists,
+  clears the global `OdsyBoardEnum`, and registers the driver with the crossbar through
+  `xwidget_driver_register` for part number 0xc013 and manufacturer 35 under the name prefix "odsy_", with
+  flags 0.
+- `odsy_init_ddrncount_timeout` (`odsy_init.o`, offset 0x1124, 56 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Timeout handler for the DDRN count wait during initialisation. It logs "odsy-kern: ddrncount timeout" at
+  severity 4 through `cmn_err` and then calls `vsema` on the semaphore in its argument to release the
+  thread waiting for the count.
+- `odsyCheckBoardPointers` (`odsy_init.o`, offset 0xe4, 64 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Allocates the table of board records on first use. When the global `OdsyBoardspp` is null it calls
+  `kern_malloc` for `GfxBoardLimit` pointers of 8 bytes each, stores the result in `OdsyBoardspp` and
+  clears the block with `bzero`; otherwise it returns at once.
+- `odsyPipeNrFromBase` (`odsy_init.o`, offset 0x94, 80 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Finds the pipe number of a board from its PIO base address. It scans the `OdsyBoardspp` table from index
+  0 up to `GfxBoardLimit`, compares the base address argument with the doubleword at +824 of each non-null
+  board record and returns the index of the first match. It returns -1 when no record matches or the table
+  does not exist.
+- `odsyDestroyDrawable` (`odsy_drawable.o`, offset 0x118, 32 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Frees a drawable record: it calls `kmem_free` on its second argument with the size 40 and returns.
+- `odsyCreateDrawable` (`odsy_drawable.o`, offset 0xdc, 60 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Allocates a drawable record of 40 bytes with `kmem_alloc`. On success it clears the word at +32, stores
+  its second argument at +16 and returns the record; when the allocation fails it returns 0.
+- `odsy_hpipe_sema_init` (`odsy_hpipe.o`, offset 0x0, 32 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Initialises the lock of the display-pipe state with `spinlock_init`, giving it the global
+  `odsy_hpipe_state_lock` and the name "HpipeStateLock".
+- `odsy_hpipe_invalidate` (`odsy_hpipe.o`, offset 0x20, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Forgets the cached display-pipe state of a board. It zeroes the two doublewords at board record +46216
+  and +46224, then takes `odsy_hpipe_state_lock` with `mutex_spinlock`, clears the first word of the
+  structure at `OdsyHpipeState` when that pointer is set, and releases the lock with `mutex_spinunlock`.
+- `odsy_usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Placeholder for a tile-update operation that the kernel build does not carry. It calls `cmn_err` at
+  severity 4 with "usb_comp_update_tiles not in kernel!" and returns -1, with no board access. Other code
+  in `odsy_hpipe.o` reaches it under the second symbol `usb_comp_update_tiles` at the same address.
+- `usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Second symbol for the 40-byte code at offset 0x7f4 that `odsy_usb_comp_update_tiles` also names.
+  `odsy_hpipe.o` calls this name through its relocations, and the code logs "usb_comp_update_tiles not in
+  kernel!" at severity 4 with `cmn_err` and returns -1.
+- `odsy_usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Placeholder for the register read-write operation of the USB compositor, which is not in this kernel. It
+  calls `cmn_err` at severity 4 with "usb_comp_readwrite_register not in kernel" and returns -1 without
+  touching a register.
+- `usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Second symbol for the 40-byte code at offset 0x81c that `odsy_usb_comp_readwrite_register` also names.
+  The relocations of `odsy_hpipe.o` call it by this name; the code logs "usb_comp_readwrite_register not
+  in kernel" at severity 4 with `cmn_err` and returns -1.
+- `odsyUnmapPages` (`odsy_map.o`, offset 0x9b8, 40 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Drops one user mapping. It loads the mapping handle stored at the address in its argument, zeroes that
+  field, calls `gfxdd_munmap` with the handle, and returns 0.
+- `odsyUnpinAndUnmapPfStatRegions` (`odsy_map.o`, offset 0x8a0, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Releases the performance-statistics mapping of a board. When the doubleword at board record +0x8568 is
+  non-zero it calls `odsyUnmapPages` on the handle field at +0x8578 and returns that call's result;
+  otherwise it returns 0.
+- `odsyUnmap` (`odsy_map.o`, offset 0x64c, 96 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Unmaps one range from the current process. It calls `as_lookup_current` to get the address space, builds
+  a request block on the stack with the address argument at +32 and zeroed words at +16 and +40, and
+  invokes the unmap method at +64 of the address space's operation table with that block and a final
+  argument of 0. It returns the method's result.
+- `odsyUnpinAndUnmapASRegions` (`odsy_map.o`, offset 0x7d4, 96 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Unmaps the two address-space regions of a record. When the handle at +40 is non-zero it calls
+  `odsyUnmapPages` on the field at +40, and when the one at +56 is non-zero it does the same for +56. It
+  returns the first result, or the two results ORed together when both calls are made.
+- `odsy_flow_am_i_attached` (`odsy_flow.o`, offset 0x8c, 64 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Asks the flow-control layer whether the caller is attached to the board's flow control. It raises the
+  interrupt level with `splhi`, calls `gfx_flow_am_i_attached` with the board record, restores the level
+  with `splx` and returns the answer.
+- `odsyFifoTimeout` (`odsy_flow.o`, offset 0x394, 100 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Handler for a command-FIFO timeout. It calls `odsy_teardown`, clears the word at board record +104,
+  calls `odsyDisableInterrupts`, decrements the word at +80 of the structure that +40 of the pointer at
+  +72 points to, logs "odsy: board %d - CFIFO timeout" at severity 4 with the halfword at +790, and
+  finally zeroes the word at board record +0xb444.
+- `odsy_ctxsw_timeout` (`odsy_ctxsw.o`, offset 0x0, 92 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Watchdog for a context switch that did not finish. It logs "odsy board %d: CTXSW timeout" at severity 1
+  with the halfword at board record +790. When the global `odsy_actually_timeout` is non-zero it calls
+  `odsy_teardown`; otherwise it re-arms itself through `timeout` for 1500 ticks.
+- `odsy_glget_timeout` (`odsy_ctxsw.o`, offset 0x5c, 92 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Watchdog for a state read-back that did not finish. It logs "odsy board %d: GLGET timeout" at severity 1
+  with the halfword at board record +790. When the global `odsy_actually_timeout` is non-zero it calls
+  `odsy_teardown`; otherwise it re-arms itself through `timeout` for 1500 ticks.
+- `odsy_mm_B_okay` (`odsy_pmm.o`, offset 0x3e24, 8 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Clears the word at +4924 of the memory-manager record in its argument and returns; it is the one-store
+  counterpart of `odsy_mm_B_warn1`.
+- `odsy_mm_B_warn1` (`odsy_pmm.o`, offset 0x3da0, 12 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Sets the word at +4924 of the memory-manager record in its argument to 1 and returns, with no other
+  effect.
+- `odsy_mm_ctxsw_timeout` (`odsy_pmm.o`, offset 0x2634, 56 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Timeout handler of the memory manager's context-switch wait. It logs "odsy pmm: CTXSW timeout" at
+  severity 1 through `cmn_err` and then calls `odsy_teardown` on its argument.
+- `odsy_mm_mkres_timeout` (`odsy_pmm.o`, offset 0x16b8, 56 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Timeout handler of the memory manager's resource-creation wait. It logs "odsy pmm: MKRES timeout" at
+  severity 1 through `cmn_err` and then calls `odsy_teardown` on its argument.
+- `odsy_mm_cores_obj_in` (`odsy_pmm.o`, offset 0x1bd4, 60 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Membership test for a co-residency group. It scans the 16 pointer slots that start 16 bytes into the
+  array pointed to by +8 of its second argument and returns 1 when a slot equals its first argument, 0
+  when none does.
+- `CoresidRangeFinder` (`odsy_pmm.o`, offset 0x1ad0, 64 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Comparison predicate for a search of co-residency ranges. It compares the word at +8 of its second
+  argument with the first word of the object behind +8 of the first argument, then its +0 with the first
+  argument's +4 and its +4 with the first argument's +0. It returns 0 only when all three comparisons are
+  equal and 1 on any difference.
+- `CoresidSubRangeFinder` (`odsy_pmm.o`, offset 0x1b10, 72 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Overlap predicate for co-residency ranges. It first requires the word at +8 of its second argument to
+  equal the first word behind +8 of the first argument, otherwise it returns 1. It then returns 0 when the
+  first argument's +4 is at least the second's +0 and the second's +4 is at least the first's +0, and 1
+  when either bound lies outside.
+- `odsy_mm_sg_remove_grp` (`odsy_pmm.o`, offset 0x2f88, 64 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Releases the colour-set identifier of a surface group. When the word at +0 of the group is not -1 it
+  calls `OdsyDeallocCSetId` on the container at +72 of the memory-manager record with that identifier and
+  then stores -1 in the group's word.
+- `mm_get_cond_list_cursor` (`odsy_pmm.o`, offset 0x0, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Looks up a saved list cursor in a table of 65 slots per class. It takes the class shift from the global
+  integer array indexed by its second argument, shifts the third argument right by it and, if the result
+  is 64 or less, returns the doubleword at +1680 plus 8 times (65 times the shift plus the result) in the
+  record. Larger results return the address record +1640.
+- `mm_set_cond_list_cursor` (`odsy_pmm.o`, offset 0x44, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Stores a list cursor in the same table that `mm_get_cond_list_cursor` reads: slot index equals the third
+  argument shifted right by the class shift plus 65 times the shift, base +1680 in the memory-manager
+  record. A slot index above 64 is ignored; otherwise it stores the fourth argument there and sets the
+  word at +4800 to 1.
+- `odsy_mm_sg_remove_image_texture_group_from_list` (`odsy_pmm.o`, offset 0x4f58, 100 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Unlinks a group from the image-texture list of the memory-manager record. The group's previous and next
+  pointers sit at +232 and +240. The record's walk pointer at +192 steps to the next group when it pointed
+  at the removed one. If the group was the tail the pointers at +176 and +192 take its predecessor, and if
+  it was the only member +176 is cleared.
+- `odsy_mm_sg_remove_detail_texture_group_from_list` (`odsy_pmm.o`, offset 0x4fbc, 100 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Unlinks a group from the detail-texture list. It uses the same +232 and +240 neighbour pointers as the
+  other group lists, advances the walk pointer at +200 when it pointed at the group, sets the tail pointer
+  at +184 and the walk pointer to the predecessor when the group was last, and clears +184 when it was
+  alone.
+- `odsy_mm_remove_pbuffer_group_from_list` (`odsy_pmm.o`, offset 0x5250, 76 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Unlinks a group from the pixel-buffer list. Neighbours are the +232 and +240 pointers of the group; the
+  tail pointer at +4816 of the memory-manager record is set to the predecessor when the group was last and
+  cleared when it was the only member. There is no walk pointer to adjust.
+- `MapKernelRegionIntoUserSpace` (`odsy_pmm.o`, offset 0x1a78, 88 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Maps a kernel region described by its first argument into a process. It builds a 32-byte request on the
+  stack holding 1 at +16, the second argument at +24 and the doubleword at +24 of the region at +8, then
+  calls `odsyMapPages` with the pointer at +16 of the region, the doubleword at +8, the word at +28 and
+  the request, and returns its result.
+- `odsy_mm_decommit` (`odsy_pmm.o`, offset 0x579c, 100 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Takes a resource out of the committed state. When the pointer at +128 is set it calls
+  `mm_release_extent` with it and 0; it then stores -1 at +56 and into the slot of the per-resource table
+  (pointer at +152 of the record behind +8) indexed by the halfword at +0, and clears bit 3 of the flag
+  word at +64. It returns 0.
