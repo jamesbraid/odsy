@@ -2968,7 +2968,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4e808	20640	Resize	mdebug	40234cc4b92b	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4e9e4	228	__glInitDepth24	dynsym+mdebug	e17355421d26		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4eac8	224	__glInitDepth32	dynsym+mdebug	8f16d2f5f6f0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4eba8	192	__glInitDepth	dynsym+mdebug	3b4129eef031		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4eba8	192	__glInitDepth	dynsym+mdebug	3b4129eef031		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ec70	200	__glGenericFreeDlist	dynsym+mdebug	898bee475d1e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ed38	60	__glGenericExecuteDlist	dynsym+mdebug	c8e1f1a77a5a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ed74	212	__glGenericAllocDlist	dynsym+mdebug	8372a180c425		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8805,7 +8805,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda383f0	72	Resize	dwarf+funcnames	00176489f170	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda385e0	232	__glInitDepth24	dwarf+dynsym	3a7216cf302c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda386d0	228	__glInitDepth32	dwarf+dynsym	7a52d8d7c2ac		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda387c0	172	__glInitDepth	dwarf+dynsym	8af2529e4454		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda387c0	172	__glInitDepth	dwarf+dynsym	8af2529e4454		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda38870	192	__glGenericFreeDlist	dwarf+dynsym	d6dca6e84350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda38930	52	__glGenericExecuteDlist	dwarf+dynsym	0fe98b75e31e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda38970	208	__glGenericAllocDlist	dwarf+dynsym	812ef7ad7fc4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14699,7 +14699,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227d740	72	Resize	dwarf	5db1b8f17120	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227d930	232	__glInitDepth24	dwarf+dynsym	2bf2af74525e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227da20	228	__glInitDepth32	dwarf+dynsym	4dff69df0914		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227db10	172	__glInitDepth	dwarf+dynsym	2e2e1c993771		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227db10	172	__glInitDepth	dwarf+dynsym	2e2e1c993771		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227dbc0	192	__glGenericFreeDlist	dwarf+dynsym	6bdbd565b6f5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227dc80	52	__glGenericExecuteDlist	dwarf+dynsym	fc57b279794a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227dcc0	212	__glGenericAllocDlist	dwarf+dynsym	12d206f55370		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20732,7 +20732,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.tex
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1e048	20672	Resize	mdebug	cef04c01f4b9	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e224	228	__glInitDepth24	dynsym+mdebug	5e9c04163a98		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e308	224	__glInitDepth32	dynsym+mdebug	adee37accca9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e3e8	192	__glInitDepth	dynsym+mdebug	d938ec87b849		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e3e8	192	__glInitDepth	dynsym+mdebug	d938ec87b849		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e4b0	200	__glGenericFreeDlist	dynsym+mdebug	2833706550dd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e578	60	__glGenericExecuteDlist	dynsym+mdebug	6e4a80461d7d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e5b4	212	__glGenericAllocDlist	dynsym+mdebug	96e02cc2e0c2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26621,7 +26621,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb14360	188	__glCheckMap3Params	dynsym	c5d899db9d3c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb158c0	228	__glInitDepth24	dynsym	531e18d60f0d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb159b0	224	__glInitDepth32	dynsym	a68d29a9f97c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15a90	180	__glInitDepth	dynsym	c4a40cb7b5a9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15a90	180	__glInitDepth	dynsym	c4a40cb7b5a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15b50	208	__glGenericFreeDlist	dynsym	eedfa52d6f34		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15c20	52	__glGenericExecuteDlist	dynsym	bda32a0d54ce		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15c60	188	__glGenericAllocDlist	dynsym	850d56847fce		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32295,7 +32295,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.t
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fbcf0	68	Resize	dwarf	c10048d1fb18	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fbed0	228	__glInitDepth24	dwarf+dynsym	0e2330a27616		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fbfc0	224	__glInitDepth32	dwarf+dynsym	6689488ccbf6		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fc0a0	180	__glInitDepth	dwarf+dynsym	2a82804cdb42		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fc0a0	180	__glInitDepth	dwarf+dynsym	2a82804cdb42		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fc160	208	__glGenericFreeDlist	dwarf+dynsym	a148cd574554		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fc230	52	__glGenericExecuteDlist	dwarf+dynsym	0e563069a105		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fc270	200	__glGenericAllocDlist	dwarf+dynsym	30ce383e908d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38308,7 +38308,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.tex
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1e048	20672	Resize	mdebug	cef04c01f4b9	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e224	228	__glInitDepth24	dynsym+mdebug	5e9c04163a98		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e308	224	__glInitDepth32	dynsym+mdebug	adee37accca9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e3e8	192	__glInitDepth	dynsym+mdebug	d938ec87b849		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e3e8	192	__glInitDepth	dynsym+mdebug	d938ec87b849		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e4b0	200	__glGenericFreeDlist	dynsym+mdebug	2833706550dd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e578	60	__glGenericExecuteDlist	dynsym+mdebug	6e4a80461d7d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1e5b4	212	__glGenericAllocDlist	dynsym+mdebug	96e02cc2e0c2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -44197,7 +44197,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb14360	188	__glCheckMap3Params	dynsym	c5d899db9d3c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb158c0	228	__glInitDepth24	dynsym	531e18d60f0d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb159b0	224	__glInitDepth32	dynsym	a68d29a9f97c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15a90	180	__glInitDepth	dynsym	c4a40cb7b5a9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15a90	180	__glInitDepth	dynsym	c4a40cb7b5a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15b50	208	__glGenericFreeDlist	dynsym	eedfa52d6f34		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15c20	52	__glGenericExecuteDlist	dynsym	bda32a0d54ce		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb15c60	188	__glGenericAllocDlist	dynsym	850d56847fce		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49871,7 +49871,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.t
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1bcf0	68	Resize	dwarf	c10048d1fb18	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1bed0	228	__glInitDepth24	dwarf+dynsym	0e2330a27616		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1bfc0	224	__glInitDepth32	dwarf+dynsym	6689488ccbf6		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1c0a0	180	__glInitDepth	dwarf+dynsym	2a82804cdb42		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1c0a0	180	__glInitDepth	dwarf+dynsym	2a82804cdb42		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1c160	208	__glGenericFreeDlist	dwarf+dynsym	a148cd574554		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1c230	52	__glGenericExecuteDlist	dwarf+dynsym	0e563069a105		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1c270	200	__glGenericAllocDlist	dwarf+dynsym	30ce383e908d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -70019,7 +70019,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4e5f0	536	Fix_zbu
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4e808	20640	Resize	mdebug	40234cc4b92b	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4e9e4	228	__glInitDepth24	dynsym+mdebug	e17355421d26		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4eac8	224	__glInitDepth32	dynsym+mdebug	8f16d2f5f6f0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4eba8	192	__glInitDepth	dynsym+mdebug	3b4129eef031		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4eba8	192	__glInitDepth	dynsym+mdebug	3b4129eef031		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ec70	200	__glGenericFreeDlist	dynsym+mdebug	898bee475d1e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ed38	60	__glGenericExecuteDlist	dynsym+mdebug	c8e1f1a77a5a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ed74	212	__glGenericAllocDlist	dynsym+mdebug	8372a180c425		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75856,7 +75856,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda38230	400	Fix_z
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda383f0	72	Resize	dwarf+funcnames	00176489f170	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda385e0	232	__glInitDepth24	dwarf+dynsym	3a7216cf302c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda386d0	228	__glInitDepth32	dwarf+dynsym	7a52d8d7c2ac		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda387c0	172	__glInitDepth	dwarf+dynsym	8af2529e4454		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda387c0	172	__glInitDepth	dwarf+dynsym	8af2529e4454		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda38870	192	__glGenericFreeDlist	dwarf+dynsym	d6dca6e84350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda38930	52	__glGenericExecuteDlist	dwarf+dynsym	0fe98b75e31e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda38970	208	__glGenericAllocDlist	dwarf+dynsym	812ef7ad7fc4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81750,7 +81750,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cd570	416	Fix_z
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cd740	72	Resize	dwarf	5db1b8f17120	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cd930	232	__glInitDepth24	dwarf+dynsym	2bf2af74525e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cda20	228	__glInitDepth32	dwarf+dynsym	4dff69df0914		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cdb10	172	__glInitDepth	dwarf+dynsym	2e2e1c993771		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cdb10	172	__glInitDepth	dwarf+dynsym	2e2e1c993771		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cdbc0	192	__glGenericFreeDlist	dwarf+dynsym	6bdbd565b6f5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cdc80	52	__glGenericExecuteDlist	dwarf+dynsym	fc57b279794a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cdcc0	212	__glGenericAllocDlist	dwarf+dynsym	12d206f55370		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87558,7 +87558,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4e5f0	536	Fix_zbu
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4e808	20640	Resize	mdebug	40234cc4b92b	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4e9e4	228	__glInitDepth24	dynsym+mdebug	e17355421d26		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4eac8	224	__glInitDepth32	dynsym+mdebug	8f16d2f5f6f0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4eba8	192	__glInitDepth	dynsym+mdebug	3b4129eef031		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4eba8	192	__glInitDepth	dynsym+mdebug	3b4129eef031		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4ec70	200	__glGenericFreeDlist	dynsym+mdebug	898bee475d1e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4ed38	60	__glGenericExecuteDlist	dynsym+mdebug	c8e1f1a77a5a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4ed74	212	__glGenericAllocDlist	dynsym+mdebug	8372a180c425		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93395,7 +93395,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda38230	400	Fix_z
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda383f0	72	Resize	dwarf+funcnames	00176489f170	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda385e0	232	__glInitDepth24	dwarf+dynsym	3a7216cf302c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda386d0	228	__glInitDepth32	dwarf+dynsym	7a52d8d7c2ac		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda387c0	172	__glInitDepth	dwarf+dynsym	8af2529e4454		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda387c0	172	__glInitDepth	dwarf+dynsym	8af2529e4454		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda38870	192	__glGenericFreeDlist	dwarf+dynsym	d6dca6e84350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda38930	52	__glGenericExecuteDlist	dwarf+dynsym	0fe98b75e31e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda38970	208	__glGenericAllocDlist	dwarf+dynsym	812ef7ad7fc4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99289,7 +99289,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227d570	416	Fix_z
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227d740	72	Resize	dwarf	5db1b8f17120	multi-unit	in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227d930	232	__glInitDepth24	dwarf+dynsym	2bf2af74525e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227da20	228	__glInitDepth32	dwarf+dynsym	4dff69df0914		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227db10	172	__glInitDepth	dwarf+dynsym	2e2e1c993771		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227db10	172	__glInitDepth	dwarf+dynsym	2e2e1c993771		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227dbc0	192	__glGenericFreeDlist	dwarf+dynsym	6bdbd565b6f5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227dc80	52	__glGenericExecuteDlist	dwarf+dynsym	fc57b279794a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227dcc0	212	__glGenericAllocDlist	dwarf+dynsym	12d206f55370		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
