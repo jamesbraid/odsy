@@ -57455,7 +57455,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c97b0	332	XkbInitCompatStruc
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c9900	92	ddxMCCursorOn..FEC	dynsym	dc29d671b61a		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c9960	292	ProcSyncChangeCounter..PHE	dynsym	abac2b04fcf6		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c9a90	1300	ProcXineramaChangeGC	dynsym	d06534e5a8b6		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c9fb0	180	RegisterBlockAndWakeupHandlers	dynsym	1a7da758132d		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c9fb0	180	RegisterBlockAndWakeupHandlers	dynsym	1a7da758132d		named-only	docs/odyssey-so-reads.md#start-up-state-routine	Start-up state routine
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100ca070	720	StepBezierRecurse..GNB	dynsym	07d6596cb69d		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100ca340	1020	FontFileMatchBitmapSource	dynsym	48b8ff6eca21		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100ca740	2204	XETSwCreateWindow	dynsym	364b71f5c34a		undocumented		
@@ -105061,7 +105061,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c48e0	1664	miBSValidateGC..
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c4f60	5384	cfb32ClippedLineGeneral	dynsym	ffe0ece2dd4f		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c6470	120	rrmCreateWindow	dynsym	c8afe707044d		named-only	docs/odyssey-so-functions.md#resource-manager-client-rrm	Resource-manager client (`rrm`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c64f0	276	odsyValidateSwapbuf	dynsym	ca585ab46f26		understood	docs/x-module-functions.md#x-module-functions-one-entry-each	X module functions, one entry each
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c6610	5432	odsyInitDefaultHW..N	dynsym	aad70fdc81b8		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c6610	5432	odsyInitDefaultHW..N	dynsym	aad70fdc81b8		understood	docs/odyssey-so-reads.md#start-up-state-routine	Start-up state routine
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c7b50	1436	cfb32Tile32FSGeneral	dynsym	d36551aad9ac		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c80f0	4204	cfb16FillPoly1RectCopy	dynsym	8368b07886ae		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15c9160	304	miRegionCreate	dynsym	4faa8b2ec655		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
