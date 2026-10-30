@@ -73,7 +73,7 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 
 ## Where this pass stopped
 
-Depth, offset and specular pass: the depth-at-the-edges entry is closed. Which windows carry the 16-bit depth word is established (`docs/raster.md`, "Which windows carry the 16-bit word"); polygon offset is read as added to the encoded word and the specular table as the patent's exponent table (`docs/raster.md`, "Polygon offset"; `ucode/buzz_isa.md`, pass 20), both inferred; the exact far-plane cut and the table's value below 8 and from 16 are labelled no software dependency, with the routes tried. The Internal Support Tools 2.7 OpenGL suite was opened and holds no expected values.
+Depth, offset and specular pass: the depth-at-the-edges entry is closed. Which windows carry the 16-bit depth word is established (`docs/raster.md`, "Which windows carry the 16-bit word"); polygon offset is read as added to the encoded word and the specular table as the patent's exponent table (`docs/raster.md`, "Polygon offset"; `ucode/buzz_isa.md`, pass 20), both inferred; the exact far-plane cut is labelled no software dependency, and the table's value below 8 and from 16 stays unknown (rendered colour depends on it, nothing reads it back), each with the routes tried. The Internal Support Tools 2.7 OpenGL suite was opened and holds no expected values.
 
 The libGLcore context row, the DMA direction, the timing-structure map, the cursor table, the allocation and transfer arguments and the fill operand were answered statically and moved into the owning files. The next static work is the "Image path words" entry above, then route 1 for the BUZZ and display entries.
 

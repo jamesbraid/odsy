@@ -1022,9 +1022,10 @@
  * counts steps of the word's mantissa, not a fixed eye distance. The
  * field and its limit are exactly a signed 24-bit word difference; one
  * step at f is 2^14, the mantissa step of the top binade, the unit the
- * library scales to; and an encoded offset shrinks with depth like the
- * eye width of a pixel, so the one far-plane constant is right at every
- * distance to within a factor of 2 (docs/raster.md, "Polygon offset"). */
+ * library scales to; and the depth interpolator of US 6,259,460 outputs
+ * a float. An encoded offset shrinks toward the near plane in proportion
+ * to d - n, so the one far-plane constant tracks a pixel's eye width
+ * only where d is well beyond n (docs/raster.md, "Polygon offset"). */
 #define BUZZ_REG_POLYGON_OFFSET    0x058
 #define BUZZ_POLYGON_OFFSET_MASK   0x1ffffffu /* established, bits 24:0 */
 

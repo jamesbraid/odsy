@@ -376,12 +376,17 @@ depth is its own eye distance.
      mantissa step at f, the step of the top binade [2^32, 2^33). It counts in the word's own steps
      where the word is coarsest.
   3. The library computes the slope term once, at f. Added to the encoded word, k steps move a
-     fragment at eye distance d by about k x 2^-19 x 2S (d - n) / (f - n) of value, so its eye
-     offset shrinks in proportion to d - n, the way the eye width of a pixel shrinks with d under
-     perspective; for n much smaller than d the one constant gives tan(L) times the local pixel
-     width at every distance, to within the factor of 2 a binade allows. Added as a fixed eye
-     distance, the far-plane offset would be f / d times too large at distance d: a decal at a
-     hundredth of the far distance would sit a hundred pixel-depths in front of its surface.
+     fragment at eye distance d by about k x 2^-19 x 2S (d - n) / (f - n) of value (between one
+     and two times that, by where the value falls in its binade), so its eye offset shrinks
+     toward the near plane in proportion to d - n. A pixel's eye width under perspective shrinks
+     in proportion to d instead. The two agree only where n is small against d: the encoded
+     offset is (d - n) / d x f / (f - n) of tan(L) times the local pixel width, times 1 to 2,
+     which is between a half and two at d >= 2n when f >> n, and falls to zero as d approaches
+     n. So near the near plane the encoded offset is smaller than the slope term asks. Added as
+     a fixed eye distance instead, the far-plane offset would be f / d times too large at
+     distance d: a decal at a hundredth of the far distance would sit a hundred pixel-depths in
+     front of its surface. This ground favours the encoded word over most of the frustum but
+     not near n; the conclusion rests on grounds 1, 2 and 4.
   4. The depth bilerp of US 6,259,460 takes three floating-point inputs and gives one
      floating-point output, so the offset meets a float, and a float's integer bit pattern is the
      natural place to add a count of steps. OpenGL later defines a floating-point depth buffer's
