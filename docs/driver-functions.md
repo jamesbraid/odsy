@@ -1477,3 +1477,9 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   mode's 36-byte entry in the screen's private record; a negative result calls `ErrorF` with `strerror`.
   In either case it then calls `rrmSetReservedDID` with the screen, the mode number and the entry's words
   at +176 and +180.
+- `odsyDestroyHyperpipeConfig` (`odyssey.so`, offset 0x15f3da0, 100 bytes): **established.**
+  Build: `usr/lib/X11/dyDDX/odyssey.so`.
+  Tears down a display-pipe configuration through the kernel. It finds the device descriptor behind +116
+  of the screen's record in `screenInfo` (descriptor at +100), calls `ioctl` with the request 0x6f640013,
+  handled by `gfP_OdsyHPdestroyConfig`, and a one-word block holding its second argument. It returns 0
+  when the call succeeds and 1 when it fails.

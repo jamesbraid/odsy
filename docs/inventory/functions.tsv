@@ -105119,7 +105119,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15efeb0	4096	miCopyArea	dynsy
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f0eb0	10876	cfb16PolyFillArcSolidGeneral	dynsym	63781019e7eb	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f3930	592	nfbStereoPutImage	dynsym	bb03f54a7c3a	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f3b80	536	cfb16YRotatePixmap	dynsym	56a060813f42	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f3da0	100	odsyDestroyHyperpipeConfig	dynsym	8b3dba769aea	named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f3da0	100	odsyDestroyHyperpipeConfig	dynsym	8b3dba769aea	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f3e10	888	odsyQryPltParam	dynsym	1338656e0ed9	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f4190	108	Unbind..FF	dynsym	0f2114f1a963	named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15f4200	580	cfbGetImage	dynsym	6066c10c1593	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
