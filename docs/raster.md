@@ -117,9 +117,175 @@ Each of these was looked for in every stream that has a stored frame (`points`, 
 
 - Triangle edge ties (a centre exactly on an edge): **not tested**. With positions truncated to 1/256 no pixel centre falls on an edge in `triangle`, `alpha`, `blend` or `checkr3d`: keeping or dropping every edge centre gives the same frames (survey rows "triangle: keep every edge centre" and "drop every edge centre").
 - Whether a line's end pixel is drawn: **not tested** in `lines` (no end on a centre, above).
-- Depth: **not tested**. `blend` sends depth word 0x020 = 1 with bit 16 of block 0x004 clear, `checkr3d` draws its squares with no depth test and lets each overwrite the last, and the points, lines and triangle tests draw at one depth.
+- Depth: **not tested** (see [Depth](#depth) for what the library shows). `blend` sends depth word 0x020 = 1 with bit 16 of block 0x004 clear, `checkr3d` draws its squares with no depth test and lets each overwrite the last, and the points, lines and triangle tests draw at one depth.
 - Dither: **not tested**. Bit 18 of block 0x004 (`GL_DITHER`, `docs/tokens.md`) is clear for every drawn primitive of every stream; only the set-up point primitive drawn under 0x42200 has it, and that primitive has no vertex. The flat-colour frames fit floor(256 c + b) for any b from 0 to 0.2.
 - Perspective-correct colour: inferred from `blend` only (above).
+
+## Depth
+
+No stored frame tests depth (above), so this section rests on the N32 `libGLcore.so` of 6.5.30m
+(addresses from `libglcore/asm/ODYSSEY/*.s`), the porting guide 007-4271-001 and the patents in
+`docs/sources/` ([published-sources.md](published-sources.md)). `odydiags` 6.5.15 names `glDepthFunc`, `glClearDepth` and `glDepthMask` among
+
+
+
+its GL entry points but stores no depth-tested frame.
+
+### The depth word
+
+What the library reads back from, and writes to, the depth part of a pixel. The porting guide says
+depth is stored in eye space in an internal floating-point format, packed with stencil into four
+bytes; a 2002 comp.sys.sgi.graphics post by an SGI engineer says the same of the format. The
+library's conversion routines give its layout:
+
+- **The 24-bit depth word**, **established** as the library's reading of the depth plane
+  (`__glOdySpanEyeZ24ToFloat` and `__glOdySpanFloatToEyeZ24` below): bits 23:18 are an exponent e
+  and bits 17:0 a mantissa m, with an implied leading one and no sign: the value is (1 + m / 2^18) x
+  2^(e - 31). Bits 31:24 of the 32-bit word are not part of it (`__glOdySpanEyeZ16ToEyeZ24` clears
+  them). The smallest non-zero value is 2^-31 and the largest just below 2^33, with 18 mantissa bits
+  at every exponent: a relative step of 2^-18 everywhere. That the board's depth plane holds exactly
+  these bits is **inferred**: the library moves the plane by DMA and converts on the host
+  (`RenderFunc_ReadbackDepth`, 0x0d9a23a0, calls `__glOdysseyImageMovePixelsDMAtoHost` and then
+  `__glOdysseyImageConvertHostImage`), so the bits are what the board's DMA hands over; whether the
+  board's own pixel formatter changes them on the way is not shown.
+- **What the value means**, **established** from `__glOdyUpdateDepthSpanInfo` (0x0d9a6360) and
+  `__glOdySpanEyeZ24ToWindowZ` (0x0d9a6530): the value is 2S x (d - n) / (f - n), where d is the
+  distance in front of the eye, n and f are the eye distances the context keeps at +0x165c8 and
+  +0x165d0, and 2S = 2^33 - 2^15 = 8589901824 (the constant 0x41fffff800000000). So it is linear in
+  eye distance, 0 at n and 2S at f. 2S is the largest value with mantissa 0x3fffe at e = 63, one
+  step below the top of the format.
+- **A 16-bit depth word**, **established** as the library's reading (`__glOdySpanEyeZ16ToWindowZ`
+  and `__glOdySpanEyeZ16ToEyeZ24` below): bits 15:10 the same exponent, bits 9:0 the top ten
+  mantissa bits. Which drawables carry it is **unknown**: the conversion routines take it when the
+  board-side image's type is `GL_UNSIGNED_SHORT` (`__glOdysseyImageConvertHostImage`, source line
+  around 3507), and the code that picks that type was not read.
+- **The fog scale shares the format**: block 0x01a operand 2 is an IEEE single with 96 taken from
+  its exponent and shifted right five places ([tokens.md](tokens.md), block 0x01a), the same packing
+  as `__glOdySpanFloatToEyeZ24`. **inferred**: fog is evaluated against the same eye-linear depth.
+
+The conversion routines, all in `ody_image_convert.c` of the N32 library:
+
+- **`__glOdySpanFloatToEyeZ24`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6d80, 352 bytes), **established**, read in full: encodes a span of floats in [0, 1] as
+  depth words for a draw. It multiplies by 2S in double, rounds to single, and keeps the single's
+  exponent minus 96 and its top 18 mantissa bits (shift right 5, so the low five bits are truncated,
+  not rounded). An exponent below 96 gives 0; an exponent of 160 or more gives 0x0fffffff, all 24
+  depth bits set and bits 27:24 as well. The sign bit is ignored. Its caller picks it for an
+  orthographic draw, where window depth is already linear in eye distance.
+- **`__glOdySpanEyeZ24ToFloat`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6960, 572 bytes), **established**, read in full: the inverse for a readback: rebuilds the
+  single from e + 96 and m, fills the low five mantissa bits with the top five of m, multiplies by
+  1/2S (1.1641576591783873e-10) and limits the result to [0, 1].
+- **`__glOdySpanEyeZ24ToFloat2`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6ba0, 468 bytes), **established**, read in full: the same rebuild, adding 0x30000000 (96 <<
+  23) to the exponent field instead of building it from bytes, used for depth copies between board
+  images.
+- **`__glOdySpanEyeZ24ToWindowZ`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6530, 348 bytes), **established**, read in full: a perspective readback. It turns the
+  decoded value back into eye distance, d = n + v (f - n) / 2S (eye z = -d), and applies the
+  projection's depth rows kept at +0x165f8 to +0x16610: window z = 0.5 + 0.5 (a z + b) / (c z + d),
+  limited to [0, 1], or 1.0 where the w term is zero. The requested depth range does not enter this
+  routine.
+- **`__glOdySpanWindowZToEyeZ24`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a7120, 348 bytes), **established**, read in full: the inverse for a perspective draw, window
+  z to eye z through the same rows, then the encoding of `__glOdySpanFloatToEyeZ24`; window values
+  at or past the depth-range ends take the precomputed end values.
+- **`__glOdySpanOrthoZToEyeZ24`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6ee0, 568 bytes), **established**, read in full: the orthographic draw with a depth range:
+  scales by 2S / (f - n) after the range offset, limits to [0, 2S] and encodes; with the flag at
+  span-info +0x210 set (a degenerate range) every pixel takes the one value at +0x208.
+- **`__glOdySpanEyeZ16ToEyeZ24`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a67f0, 360 bytes), **established**, read in full: widens 16-bit depth words to 24-bit ones,
+  the exponent unchanged and the eight new low mantissa bits copied from the top eight.
+- **`__glOdySpanEyeZ16ToWindowZ`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6690, 352 bytes), **established**, read in full: the perspective readback of a 16-bit depth
+  word, widening the ten mantissa bits to 23 by repetition before the steps of the 24-bit routine.
+- **`__glOdyUpdateDepthSpanInfo`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9a6360, 464 bytes), **established**, read in full: fills the span record the routines above
+  read: the eye-distance pair, -d/c from the projection, the scale 2S / (n - f) (stored as a double
+  at +0x200; the routines divide by it), and the encoded values of window 0 and 1 at +0x208 and
+  +0x20c, each limited to [0, 2S].
+
+### Depth range
+
+- **The eye-distance pair n, f** at context +0x165c8 and +0x165d0, **established** from
+  `__glOdysseyUpdateTransform` (0x0d9e2980): the projection analysis writes them from the projection
+  alone (falling back to the constants ±2S on some branches); the depth range does not enter. So n
+  and f are the frustum's near and far distances.
+- **`__glOdysseyValidateDepthRange`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9e4b40, 584 bytes), **established** as software behaviour, read in full: it clamps the
+  requested window range to [0, 1], turns each end into a normalized eye depth, (d - n) / (f - n)
+  for the eye distance d whose default window depth is that end
+  (`__glOdysseyWindowToNormalizedEyeZ`, 0x0d9e4890), and hands the pair to the generic
+  `__glim_DepthRange`. When the near end lies strictly inside (0, 1) it puts the eye-space plane (0,
+  0, s, s n) in clip-plane slot 7 (+0x70 of the record at context +1748) and sets bit 7 of the
+  enable word at context +1804; when the far end does, the plane (0, 0, -s, -s f) in slot 6 (+0x60)
+  and bit 6, with s = -1 when n < f and +1 otherwise. These keep n <= d <= f. An end at 0 or 1 adds
+  no plane.
+- **inferred**: the depth row then maps the frustum onto the part of [0, 2S] the normalized ends
+  select (`__glOdysseyValidateMatrixComb` builds it from n, f and the viewport depth terms at
+  context +1736 and +1740; that use was not read in full). With an interior end, geometry beyond the
+  frustum's near or far distance would land inside [0, 2S], so the library removes it with the
+  planes. At the default range nothing beyond the frustum lands inside [0, 2S], and the library adds
+  no plane: the board must drop those fragments itself, by their depth value (below).
+
+Block 0x051 bit 1 is set when the far end is below the near one ([tokens.md](tokens.md), block
+0x051).
+
+### Clipping at the near and far planes
+
+- Published (US 6,259,460, columns on the raster unit): frustum clipping "is effectively performed
+  by the recursive subdivision rasterization" in the raster unit, and user clip planes by the sign
+  bit of interpolated texture coordinates. **inferred** for this board: there is no geometric
+  far-plane clip; fragments beyond the frustum are dropped per pixel. The microcode agrees: every
+  vertex routine computes the clip-space z row and passes it on with output code 0x08
+  (`ucode/buzz_routines.md`, routine 214), and no routine compares it; the hardware clip-plane
+  routine 0 sends plane distances to the output stage like texture coordinates.
+- The library replays vertices through its own clipper when w changes sign or falls below a
+  threshold ([opengl.md](opengl.md) and the vertex workaround routines), so the near side at w = 0
+  is not left to the rasteriser.
+- **inferred**, from the depth-range planes above: at the default depth range the board itself
+  removes fragments whose depth lies outside [0, 2S], since the library clips n and f explicitly
+  only when the depth range moves them inside that interval. Where exactly it drops them (a test
+  against 0 and 2S, against the top of the format, or against clip z = w before the depth division)
+  is **unknown**; no shipped software depends on the edge, since the library keeps every value it
+  writes inside [0, 2S]. Routes tried: the patents, the porting guide, the vertex routines, the
+Next: a readback of a
+  primitive drawn across the far plane.
+
+### Interpolation
+
+Published (US 6,104,415 and 6,259,460): the raster unit generates perspective-corrected barycentric
+coordinates and the shader bilinearly interpolates depth with them. **inferred** for this board:
+depth, being linear in eye distance, is interpolated with perspective correction, so each pixel's
+depth is its own eye distance.
+
+### Polygon offset
+
+- **`__glOdyim_PolygonOffsetEXT`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d95f340, 536 bytes), **established**, read in full: builds block 0x058 from the factor and
+  bias once, with no per-polygon slope. It finds the eye-space width of the view at the far distance
+  f by unprojecting the clip x = +1 and x = -1 points at f's projected depth through the inverse of
+  the projection (`__glInvertTransposeMatrix`), divides it by the window width (context +3700) times
+  2^-23 times (f - n), and multiplies by tan(L) (context +0x21ef4). The offset is factor x that / 16
+  + bias x 2 / 2^-23, limited to [-2^24, 2^24 - 1], truncated, and stored in bits 24:0 of block
+  0x058 with bits 31:25 kept. `__glOdysseyUpdateTransform` (0x0d9e2980) calls it again whenever the
+  projection changes and either term is non-zero.
+- **`__glOdyim_PolygonOffset`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d95f2e0, 96 bytes), **established**, read in full: the core entry: passes the factor and units
+  x 2^-23 (context +0x1fc, set by `SWInit`) to the routine above, so units count as 2 offset steps
+  each.
+- **The limit angle L**, **established** from `SWInit` (0x0d96a950): 70 degrees, or the value of the
+  environment variable `GL_POLYGON_OFFSET_LIMIT_ANGLE` when it parses as a number in [0, 90). The
+  library thus replaces OpenGL's per-polygon maximum depth slope by the slope of a surface tilted L
+  from the view direction, one pixel wide at the far distance.
+- **inferred**: one offset step is (f - n) / 2^19 of eye distance, 2^14 in the units of the depth
+  word (2S is about 2^19 steps), which is one mantissa step of the format's top binade. The factor
+  term above is the depth change across one far-plane pixel at slope tan(L) in exactly those steps.
+  So the board adds a constant eye-linear amount, the same at every distance. Whether it adds it to
+  the eye-linear value before encoding (as the scaling suggests) or to the encoded word (which would
+  make the offset relative to depth) is **unknown**. Next: a readback of one offset polygon at two
+  eye distances.
 
 ## Remaining frames
 

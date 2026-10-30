@@ -963,4 +963,44 @@
                                            * (same register as FIFO_LEVELS) */
 #define ODSY_REG_REVISION          0x0004 /* bits 31:28 BUZZ revision type */
 
+/* ===================================================================
+ * 6. Depth word and polygon offset
+ * ===================================================================
+ * The depth part of a pixel as libGLcore reads and writes it
+ * (docs/raster.md, "Depth"). established from the N32 libGLcore
+ * conversion routines __glOdySpanFloatToEyeZ24 (0x0d9a6d80) and
+ * __glOdySpanEyeZ24ToFloat (0x0d9a6960): an unsigned float with a
+ * 6-bit exponent in bits 23:18, an 18-bit mantissa in bits 17:0 and an
+ * implied leading one, value (1 + m / 2^18) * 2^(e - 31). That the
+ * board's depth plane holds these bits unchanged is inferred: the
+ * library takes the plane by DMA and converts on the host.
+ * The value is linear in eye distance d: 2S * (d - n) / (f - n), with
+ * n and f the frustum's near and far distances (established,
+ * __glOdyUpdateDepthSpanInfo 0x0d9a6360). The host encodes by rounding
+ * the IEEE single to these fields with truncation; an exponent below 96
+ * gives 0 and one of 160 or more gives 0x0fffffff (established, same
+ * routine). A 16-bit form keeps the exponent in bits 15:10 and the top
+ * ten mantissa bits in 9:0 (established, __glOdySpanEyeZ16ToEyeZ24
+ * 0x0d9a67f0); which drawables use it: unknown. */
+#define BUZZ_DEPTH_EXP_SHIFT       18        /* established */
+#define BUZZ_DEPTH_EXP_MASK        0x3fu     /* established, 6 bits */
+#define BUZZ_DEPTH_MANT_MASK       0x3ffffu  /* established, 18 bits */
+#define BUZZ_DEPTH_EXP_BIAS_IEEE   96        /* established: IEEE exponent minus this */
+#define BUZZ_DEPTH_FAR             8589901824.0 /* 2S = 2^33 - 2^15, value at f: established */
+#define BUZZ_DEPTH_SATURATE        0x0fffffffu /* established, host encoding above range */
+#define BUZZ_DEPTH16_EXP_SHIFT     10        /* established */
+#define BUZZ_DEPTH16_MANT_MASK     0x3ffu    /* established */
+
+/* Block 0x058, one word: polygon offset in bits 24:0, signed, limited to
+ * -2^24 .. 2^24 - 1; bits 31:25 are kept from the previous value.
+ * established: __glOdyim_PolygonOffsetEXT (0x0d95f340) computes it once
+ * from the factor and bias, not per polygon: factor * tan(L) * (eye
+ * width of one pixel at f) * 2^19 / (f - n) / 16 + units * 2, where L is
+ * 70 degrees or GL_POLYGON_OFFSET_LIMIT_ANGLE (SWInit 0x0d96a950).
+ * inferred: one step is 2^14 in the depth word's value, (f - n) / 2^19
+ * of eye distance, so the board adds a constant eye-linear amount.
+ * Whether it adds it before encoding or to the encoded word: unknown. */
+#define BUZZ_REG_POLYGON_OFFSET    0x058
+#define BUZZ_POLYGON_OFFSET_MASK   0x1ffffffu /* established, bits 24:0 */
+
 #endif /* BUZZ_H */

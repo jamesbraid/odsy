@@ -111,6 +111,8 @@ after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context fl
   signed depth offset in units of the depth buffer, clamped to plus or minus 2^24,
   and bits 31:25 are kept. `__glOdyim_PolygonOffsetEXT` (`ody_attrib.s`, line 3445)
   builds it from the factor and bias, scaled by the depth range and the projection.
+  The scaling, the 70-degree limit angle that stands in for the per-polygon slope, and the
+  step size are in [raster.md](raster.md#polygon-offset).
 - **0x01d**, word `0x0001081d`, **established**: the scissor box, two operands, each
   with a 12-bit field in bits 23:12 and one in bits 11:0. `__glOdysseyValidateScissor`
   (`ody_context.s`, source line 2120) also hands the four fields to ioctl 0x6f64000d
