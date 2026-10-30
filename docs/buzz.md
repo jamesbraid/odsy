@@ -14,7 +14,7 @@ IP35 `odyssey.a` members, `kernel.o`, `gfx.o`, `rrm.o`, `gfxs.a` and `gfxstubs.a
 - **established.** These are the only stores to those ids in either set of objects: an eight-byte scan of every non-debug section of every `.o` in `odsy_kernel/` and `odsy_kernel_ip35/` finds the five pairs only in `odsy_init.o` `.lit8`, and the IP35 disassembly has no immediate load of 0x6b0 to 0x6b3 or 0x7b5.
 - **established.** The rest of the init sequence is the same: block 0x054 with two operands, 2000 microsecond delay, read of board+0x201594 against `0x003d0046`, header words `0x2e008380`, `0x2600807f`, `0x27008000`, then 2048 groups of six from `buzz_ucode`. The array itself is byte-identical on both hosts (`ucode/buzz_ucode.md`).
 - **established.** One difference in that routine: the argument passed with the delay call. IP30 loads the address 0xaff00080 (HEART space, also read by IP30's `gfx_flow_flush_my_wg`); IP35 loads a gp-relative value that is not resolved in the object. The effect on timing: **unknown**.
-- **conclusion.** The water-mark values do not depend on the host. Their meaning stays **inferred** as in `BUZZ.h` (two threshold pairs for the command FIFO); the IP35 kernel adds no read-back and no name for them, so the units, which of 0x6b2 and 0x6b3 is the high mark, and whether 0x6b0/0x6b1 are a second pair remain **unknown**.
+- **conclusion.** The values written to blocks 0x6b0 to 0x6b3 and 0x7b5 do not depend on the host. What those blocks configure is **unknown** from the binaries read here (`BUZZ.h` section 5); a read of the flags handler's tests of the FIFO fill status bits would settle the 0x6b2 and 0x6b3 pair.
 
 ### Flow control
 
@@ -229,7 +229,7 @@ Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_d
 
 - **established.** `odsyDisableInterrupts` clears bit 21 of the 0x34 word, clears bits 18:16 of the 0x1044 word, then writes 0xffffffff to 0x1034's neighbour 0x103c. (It stores to record offset 4156 = 0x103c.)
 - **inferred.** 0x34/0x3c is the error-widget interrupt (vector, target, address of the crossbar error source) and bit 21 of 0x34 its enable; 0x1054 carries the four other sources' vector numbers. 0x103c is a write-one-to-clear counterpart of 0x1034, because `odsyDisableInterrupts` writes all ones to it and `odsyLowaterInterrupt` writes 0x200 to it. Not confirmed by hardware.
-- **unknown.** The meaning of 0x5c and of the bit runs in 0x1044, and which register fields the target number selects in those two.
+- **Answered in pass 12** (section 10): 0x5c is the widget interrupt configuration, 0x1044 and 0x105c the interrupt control and header words, with their fields inferred from the 6.5.30 store values.
 
 ### `odsyDmaInterrupt` and `odsySsyncInterrupt`
 
@@ -269,7 +269,7 @@ Two kinds of BUZZ register exist: PIO registers the host loads and stores direct
 
 Each offset has its own entry, with the function that reaches it and its derivation, in `docs/registers.md`; the display-side addresses are in `docs/pbj.md`.
 
-- **inferred.** The 0x4000 group holds the context-save engine (0x4004/0x400c) and the performance and diagnostic regions: `odsyInitPfRgn`/`odsyDestroyPfRgn` and `gfP_OdsyPerfStat` are its only users outside reset, and the status0 bits `PERF_STATS_PUSH_ACTV` and `DIAG_HIST_PUSH_ACTV` name such engines. The field layouts were not read.
+- **inferred.** The 0x4000 group holds the context-save engine (0x4004/0x400c) and the performance and diagnostic regions: `odsyInitPfRgn`/`odsyDestroyPfRgn` and `gfP_OdsyPerfStat` are its only users outside reset, and the status0 bits `PERF_STATS_PUSH_ACTV` and `DIAG_HIST_PUSH_ACTV` name such engines. The registers are named, and 0x4044/0x4014 decoded, in section 10.
 - **established.** `gf_OdsyMapGfx` hands clients windows at board +0x000000 (2 pages, so these PIO registers up to 0x7fff), +0x100000, +0x110000 (the command FIFO), +0x118000, +0x120000, +0x200000, +0x220000 (8 pages, the PB&J read-back) and +0x400000 (the display FIFO) (`BUZZ.h` section 5). What +0x100000, +0x120000 and +0x200000 hold beyond the one read at +0x201594: **unknown**.
 
 ### Command-stream register blocks
@@ -338,16 +338,16 @@ Pass 8. **established** by comparing the IP30 and IP35 (`odsy_kernel_ip35/`) dis
 
 **established.** The flags register's bit 12 (named CTXSW_DONE in the driver's own bit table) and bit 26 (unnamed in the table) are never tested by `odsyFlagInterrupt`, are outside the teardown mask, and the other flags readers (`gfP_OdsyDIAGdma` tests bit 11 only, `odsy_flow.o` writes the register without testing named bits) do not test them either. Context-switch completion in software is the host-memory word at record +2300 (section 4), not this bit. So no code in the install gives either bit a use, and nothing says whether the board ever raises them: **unknown** (`docs/open-questions.md`) of the flags register (0x1014) read immediately after a context switch (bit 12) and across a workload (bit 26).
 
-**unknown** (`docs/open-questions.md`). The bit meanings of routing registers 0x34, 0x3c, 0x5c and 0x1044: the code only builds and stores them, and the fields' names appear nowhere in the binaries. On a board it would show in: a read-back of those registers on a running board (not known to be readable) or a bus trace of the stores combined with a change of the interrupt target's node number to see which field moves.
+The bit meanings of routing registers 0x34, 0x3c, 0x5c, 0x1044 to 0x105c are inferred in section 10 from the 6.5.30 store values.
 
 ## Reset: the fields the binaries cannot settle
 
 Pass 8. The reset row's open items were block 0x054, register 0x7f0 with the ID word, and the water-mark units. **established:** each is written or compared exactly once, by `odsyInitCfifo` on IP30 and IP35 alike (`BUZZ.h` section 5; IP35 comparison in section 1 above). No kernel object reads any of them back, and none of the values (0x003d0046, 0x3b9aca00, 0x5e50, 0x7dc0) occurs as a 32-bit word in `buzz_xform.bin` or in either kernel microcode array (byte search, pass 8), so they do not come from the transform program. The software says nothing more, so each stays **unknown** with its open question in `docs/open-questions.md`:
 
-- **Water marks 0x6b0-0x6b3, units and which is high: unknown (`docs/open-questions.md`).** On a board it would show by filling the command FIFO with a known number of words with the board's consumer stalled, reading 0x1064 (CFIFO_LW, CFIFO_HW) and the level field of 0x106c after each store, and record the level at which each bit changes; repeat after changing one of the four values through the FIFO port. The level where HW asserts gives the unit and the value that sets it.
-- **Block 0x054 operands (0, 0x0fffffff): unknown (`docs/open-questions.md`).** On a board it would show by comparing the board's state (flags 0x1014, status 0x1064, FIFO level) after the reset sequence with and without that block; a bus trace of the board's response to it would name its function.
-- **ID word 0x003d0046 at +0x201594: unknown (`docs/open-questions.md`).** Published `gfxinfo` output, or on a board a read of the register on boards of each member of the family (V6, V8, V10, V12) and on both hosts; if it varies, the field split follows from which parts vary. **inferred** only that it is an identification or ready word, from the skipped microcode load when it differs.
-- **Register 0x7f0 = 0x3b9aca00: unknown (`docs/open-questions.md`).** The value is 10^9, which suggests a timeout or counter reload, but nothing in the binaries supports a unit. On a board it would show by changing it through the FIFO port and timing the behaviour it controls (the first thing to try: the interval of a stalled-FIFO timeout).
+- **Water marks 0x6b0-0x6b3: unknown.** The values are stored once (above and `BUZZ.h` section 5) and never read back; what the blocks configure is not shown by the binaries. A read of the flags handler's tests of the FIFO fill status bits would settle it.
+- **Block 0x054 operands (0, 0x0fffffff): unknown.** 6.5.30 sends 0 and 0x0fffffff (`BUZZ.h` section 5), **established** as values. The two operands look like the bounds of a range; that block 0x054 is a memory-protection command is **unknown** from the binaries read here. A read of the microcode routine that block 0x054 reaches (`ucode/buzz_routines.md`) would settle it.
+- **Register 0x7f0 = 0x3b9aca00: unknown.** The value is 10^9, **established** as a value. Its role (a hardware-sync timeout in BUZZ clocks, the unit and what expiry raises) is **unknown** from the binaries read here; a read of the name of flags bit 1 in the 6.5.30 print table and of the board-side consumer would settle it.
+- **ID word 0x003d0046 at +0x201594: unknown** (`docs/open-questions.md`). Tried: both 6.5.30 kernels (one comparison, no other reader); `buzz_xform.bin` and both microcode arrays (no occurrence). **inferred** only that it is an identification or ready word, because the microcode load is skipped when it differs. Next: published `gfxinfo` output and earlier releases' `odsyInitCfifo` binaries (route 1), to date when the check appeared.
 
 ## 9. Pass 10: closing the register and command rows
 
@@ -359,7 +359,7 @@ Release IRIX 6.5.30m, IP30 kernel objects and the N32 libGLcore unless named. Ea
 
 - **Statistics region address, 0x401c and 0x4024.** `odsyInitPfRgn(board, size)` returns at once when a region already exists. Otherwise it allocates a zeroed 16384-byte kernel buffer, keeps `min(size, 16384)` as the region size, pins and maps it for the client, converts the buffer to a physical address and writes bits 47:32 of it to board +0x401c and bits 31:0 to +0x4024, each followed by `sync`. `odsyDestroyPfRgn` frees the buffer and writes zero to both. This is the same high-half and low-half split the shadow region uses at +0x4034 and +0x403c (`docs/kernel.md`). **inferred** that both pairs are the physical address of a host-memory region the board writes into, from the split and from the pin-and-map step; what the board writes there: **unknown** (`docs/open-questions.md`) (the contents of the region after a draw, taken together with the stream that drew).
 - **Statistics control, 0x402c.** The ioctl copies in a 24-byte argument. Word 0 is a request mask: bit 0 create the region, bit 1 write the control register, bit 2 destroy it; a mask with bits 0 and 2 both set is refused with error 22. Creation takes a size from byte 16 of the argument as `(2 << n) * 32` bytes for `n` = that byte (the region is capped at 16384 by `odsyInitPfRgn`), destroys any existing region first, and returns the client's mapping address of the region at offset 8 of the argument. The control word written to +0x402c is built from the same argument bytes: bits 3:0 = byte 16 (low nibble), bit 4 = byte 17 bit 0, bit 5 = byte 18 bit 0, bit 6 = byte 19 bit 0, bit 7 cleared, bits 10:8 = byte 21 (low three bits), plus the fixed bits 31 and 27 (0x88000000). **established** as bit positions. What each field selects on the board: **unknown** (`docs/open-questions.md`) (a read of the status0 `PERF_STATS_PUSH_ACTV` bit and of the region's contents while each control bit is set alone).
-- Everything else the group holds (0x4004/0x400c context save, 0x4014/0x4044 master ids, 0x4034/0x403c, 0x404c-0x405c) is covered in section 4 and `docs/kernel.md`. The group's remaining bit fields are **unknown** (`docs/open-questions.md`): a read-back of each register after reset.
+- Everything else the group holds (0x4004/0x400c context save, 0x4014/0x4044 master ids, 0x4034/0x403c, 0x404c-0x405c) is covered in section 4 and `docs/kernel.md`. Section 10 names every register of the group and decodes 0x4014 and 0x4044; the performance and diagnostic mode words' fields remain **unknown** (`docs/open-questions.md`).
 
 ### COUNT 8 to 14 in command words
 
@@ -392,3 +392,52 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 ### What stays unknown in the register and command rows
 
 Field layouts of the replayed blocks with no entry in the "Known from" column of section 8, the meanings of blocks 0x019, 0x043 and 0x046, the 0x8e and 0x90 state words, and the water marks are all values the code only stores. The software never reads the board back for them, so each is an open question (`docs/open-questions.md`): the first needs the operands of each block taken from a stream whose GL state is known, one state at a time; the others are named in the reset section above.
+
+## 10. Pass 12: the reset store sequence
+
+The roles below are read from the order and values of the stores in `odsyReset` and `odsyInitInterrupts` (`docs/kernel.md`) in the 6.5.30 builds and from how the flags and interrupt handlers use each register. A role is **established** where a handler tests or the print table names it, and **inferred** where only the order and value of a store support it.
+
+### The reset store sequence
+
+`odsyReset` in both 6.5.30 builds zeroes the same registers in the same order:
+
+| Offset | Register | Evidence |
+|---|---|---|
+| 0x1014 / 0x101c | flags, "set privileged" and "clear privileged" forms | 6.5.30 writes 0x101c = 0xffffffff; the set and clear naming of the pair is inferred from that |
+| 0x1034 / 0x103c | flag interrupt enable, set and clear forms | 6.5.30 writes 0x103c = 0xffffffff |
+| 0x1044, 0x104c | interrupt control, high and low words (the shared target address of sources 1-4 plus enables) | order and the address split |
+| 0x1054 | interrupt vector numbers | order; field order below |
+| 0x105c | interrupt header (per-source destination widget, transaction number, barrier) | order and the three copies of the target |
+| 0x1074, 0x107c | flow-control configuration, flow-control detach | order; `BUZZ.h` already had both |
+| 0x1084 | flow-control clear | order in `odsyReset` |
+| 0x108c, 0x109c, 0x10a4, 0x10ac | scan configuration, scan address high, scan address low, scan go | order (four in both) |
+| 0x401c, 0x4024, 0x402c | performance-statistics region address high and low, and mode | order; matches section 9's reading of 0x401c/0x4024/0x402c |
+| 0x4034, 0x403c | software-sync write-back region address, bits 47:32 and 31:0 | order; `gf_OdsyStart` fills them with the physical address of the host write-back region |
+| 0x4044 | software-sync mode | order and every field value (below) |
+| 0x4014 | glGet write-back offset | order and every field value (below) |
+| 0x404c, 0x4054, 0x405c | diagnostic region address high and low, diagnostic mode | order |
+| 0x10bc | swap on swap-ready or on vertical retrace (0 = on retrace) | order and value |
+| 0x10cc | per-window-id "display buffer B" clear (all ones = every id shows buffer A) | order and value |
+| 0x1004 | board configuration (`docs/board.md`) | the SDRAM fields and the reset pulse |
+| 0x34, 0x3c, 0x5c | crossbar widget registers: interrupt destination upper and lower address, interrupt configuration | order in `odsyReset` |
+
+**established** as stores for every row; the roles are **inferred** (order and value) except 0x1014, 0x1034 and 0x1004, whose uses are described elsewhere in this document. 0x4004/0x400c (context save address, section 4) are not written in the reset of either release.
+
+### Field layouts the values suggest
+
+- **0x4044, software-sync mode** (6.5.30 writes the master id in bits 7:4 and fixed bits 16, 15:14 and 3:2). Read as an extent in bits 3:0 (0xc), a destination widget in bits 7:4, an enable byte in bits 15:8 (0xc0) and a coherent bit 16, the word is plausible, but the field meanings are **unknown** from the binaries read here. A read of how the host allocates the software-sync write-back region (its alignment) would settle the extent field.
+- **0x4014, glGet write-back offset** (6.5.30: 0x12, bit 18, bit 24 and the master id in bits 23:20). Read as a cache-line offset of 18 in the low bits and a destination widget in bits 23:20, the offset of 18 cache lines of 128 bytes is 2304 bytes, which is exactly where libGLcore's glGet descriptor table of `docs/opengl.md` starts (the pointer minus 2304 is the record). **inferred**: that this register makes the board write glGet results there; the board's write itself is not observable in software. The other fields (bits 19:16, bit 24) are **unknown**.
+- **0x1054, vectors.** The 6.5.30 bytes hold sources 4, 3, 2 and 1 from bit 31 down (section 6), and sources 4, 3, 2, 1 are the ssync, retrace, DMA and flag handlers. **established.**
+- **0x1044, interrupt control high.** Reading the 6.5.30 word as bit 29 pending, bits 28:25 destination, bits 24:20 transaction number (0x1c, bits 24:22 set), bit 19 barrier, bits 18:16 three enables (`odsyDisableInterrupts` clears exactly these) and bits 15:0 address bits 47:32 is **inferred**. Which of bits 18:16 is which enable: **unknown**; the three handlers' enable paths in `odsyInitInterrupts` would settle it.
+- **0x105c, interrupt header.** Three destination-widget fields (retrace, DMA, flag) at bits 29:26, 19:16 and 9:6, each with a transaction number and a barrier bit beside it. **inferred** from the three copies of the target in the 6.5.30 word; the exact positions of the transaction-number and barrier fields within each ten-bit group: **unknown**.
+- **0x5c, widget interrupt configuration.** 6.5.30 writes 0xff in bits 7:0, 0x1c in bits 12:8 (matching 0x1044) and bit 13. **inferred**: an interrupt enable mask, a transaction number and a barrier bit; the widths are **unknown**.
+- **0x34, widget interrupt destination upper.** Bits 31:24 vector, bits 23:21 three enables, bits 19:16 target widget, bits 15:0 address bits 47:32: **inferred** from the stored value and the vector bytes of 0x1054. What the three enables are is **unknown**. `odsyDisableInterrupts` clears bit 21 only.
+
+### Flags bits 12 and 26
+
+- **Bit 12 is CONTEXT-SWITCH DONE** in the 6.5.30 print table, and status0 has a matching "context switch active" bit. **inferred**: the board sets it when a save or switch requested through +0x118000 completes; the driver polls the completion word in the record instead (section 4), which is why no code tests the bit.
+- **Bit 26 has no name.** The 6.5.30 print table does not name it, and no code tests it. **unknown: no shipped software or published source depends on it.** Routes tried: every reader of 0x1014 in both 6.5.30 kernels and the 6.5.30 `%R` print table.
+
+### Board reset control 0x100c and the abort register
+
+ 6.5.30's 0x100c sequence on older hosts writes 0x16d (built bit by bit as 0x100, 0x40, 0x20, 0x8, 0x4, 0x1), waits 200 ms and writes 0: six bits set together and cleared together, the same shape as the source's six abort fields. **inferred** that 0x100c is the board at once; which bit is which: **unknown**, nothing in either release tests a single bit. The other form, 0x200 held for one second (newer hosts and all of IP35), is **unknown**. A read of the board-side handling of the 0x100c bits in the microcode or in the host-interface registers (`PBJ.h`) would settle both.

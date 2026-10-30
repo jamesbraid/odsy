@@ -558,13 +558,46 @@
 /* --- Command FIFO initialisation: odsyInitCfifo (odsy_init.o) ---------
  * established, in the order the stores reach the FIFO port (board PIO
  * base + 0x110000):
- *   1. 0x00010854, 0, 0x0fffffff   class-1 block 0x054, COUNT 2. What the
- *                                  two operands mean: unknown.
+ *   1. 0x00010854, 0, 0x0fffffff   class-1 block 0x054, COUNT 2, with two
+
+
+
+
+
+
+
+
+
+
+
+
+ *      binaries read here; the operands look like the bounds of a range
  *   2. five doubleword stores (high word first is inferred, big-endian):
  *        0x000006b0_00000000  0x000006b1_00000100  0x000006b3_00005e50
  *        0x000006b2_00007dc0  0x000007b5_00000001
  *      (.lit8 offsets 0x30-0x48 of odsy_init.o, and 107 << 36 for the
- *      first). These are the only stores to those register ids in any
+ *      first). established as values and order. What the block numbers
+
+
+
+ *      the values exactly:
+
+
+
+
+
+
+ *      the values only: 0x100 = 256, 0x7dc0 = 32192 = 32768 - 576, and
+
+
+
+ *                checked)
+
+ *      configure is unknown from the binaries read here. Arithmetic on
+
+
+
+ *      blocks back. These are the only stores to those register ids in any
  *      kernel object: every .lit8, .data and .rodata of odyssey.a, gfx.o
  *      and rrm.o was searched for the pairs, and the disassembly for
  *      immediate loads of 0x6b0-0x6b3 and 0x7b5. The 0x6b8 pair found in
@@ -589,19 +622,24 @@
  *      format and meaning in ucode/buzz_isa.md.
  *   6. 0x000007f0_3b9aca00         one more doubleword (value 10^9), the
  *                                  last FIFO store of the routine.
- *      Register 0x7f0 and the value: unknown.
+
+ *      unknown from the binaries read here (a hardware-sync timeout is
+
+
+
+
  * After that flow control is attached (HEART credit tnum written into
  * the flow configuration register, flow-off register written 0).
  *
- * Water marks. inferred: 0x6b0-0x6b3 hold two pairs of thresholds for the
- * command FIFO. Evidence for: they are written once, at FIFO set-up,
- * beside the high- and low-water interrupt enable (the flag word
- * CFIFO_LW_FLAG and the CFIFO_HW_FLAG name exist in the board's flag
- * table), and 24144 < 32192 as a lower and upper mark would be. Evidence
- * against or missing: the kernel never reads them back; nothing ties a
- * value to a flag; the units (words, bytes, entries) are unknown. Which
- * of 0x6b2/0x6b3 is the high mark: unknown. 0x6b0 = 0 and 0x6b1 = 256 may
- * be a second pair (a floor and a small threshold): unknown.
+ * Water marks: unknown. Which of 0x6b2 and 0x6b3 is the high mark and
+
+
+ * read here. The CFIFO_HW and CFIFO_LW status bits (0x1064) and flags
+
+
+
+
+ * compare against these registers is inferred from their names only.
  *
  * The host side has its own, fixed threshold. odsyHiwaterInterrupt
  * compares the HEART credit count for this board against

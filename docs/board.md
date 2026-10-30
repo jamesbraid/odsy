@@ -11,7 +11,7 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
 | 31:30 | SDRAM size code | +252 (MB) | 0 -> 32, 1 -> 64, 2 -> 128, 3 -> 33 |
 | 29 | SDRAM banks | +260 | 0 -> 2, 1 -> 4 |
 | 28 | CAS latency | +256 | 1 -> 2, 0 -> 3 |
-| 27:24 | clock-part variant | +292 | raw nibble (see `docs/display.md`, words 292) |
+| 27:24 | board revision | +292 | raw nibble; 0 selects the first clock part, 1 or more the second (`docs/display.md`, clock parts) |
 
 - **established.** The decoded values are checked in `odsyReset`: banks other than 2 or 4, latency other than 2 or 3 and size other than 32, 33, 64 or 128 log "invalid sdram banks", "invalid sdram casl" or "invalid sdram size %dMB". The strings in `odsyGatherInfo` name the same fields ("unknown sdram casl setting", "unknown number of sdram banks").
 - **inferred.** The word's top byte is a strap or ID field set by the board (no driver code writes it and the same register's other bits change at run time). The value 3 for size, recorded as 33, selects the same register code as 128 in step below; why the board distinguishes it: **unknown**. "33" is the driver's own marker, not a size in MB.
@@ -40,6 +40,14 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
   - Then bit 5 is cleared, set, written, cleared again (three stores, 400 us apart) and bit 8 is set last.
 - **inferred.** +0x1004 configures the board's SDRAM controller (banks, CAS latency, size) and bit 5 pulses an SDRAM initialisation; bit 8 enables it. Reason: the field values are exactly the three probed properties and the pulse is the driver's standard reset shape. Not confirmed by hardware.
 - **unknown.** Organisation and addressing of the memory, timing beyond CAS latency, and the width of any other field of 0x1004.
+
+## Strap word and configuration register fields (pass 12)
+
+
+- **established.** The top byte of +0x106c holds the board's straps, read once. Size is the top two bits, bank count the next, CAS latency the next, and the low nibble is stored as the board revision (decode above). Whether that low nibble is a board version in the hardware's sense, and the register's own name, are **unknown** from the binaries read here; a read of the remaining readers of +0x106c in `libGLcore` and `odyssey.so` would settle the nibble. The size field has three legal codes (32, 64, 128 MB) in the 6.5.30 kernel and code 3 is handled as above (recorded as 33, programmed as 128 MB). Why: **unknown: no shipped software or published source depends on it** beyond that branch. Routes tried: both 6.5.30 kernels and the strings of both.
+- **inferred.** The board revision selects the pixel-clock part: revision 0 boards use the first part (I2C 0x26), later boards the second (I2C 0x58); the 6.5.30 kernel's choice is the variant word at +292 (`docs/display.md`), and that this is the strap nibble is inferred.
+- **established.** +0x1004 is written by `odsyReset` as listed above: SDRAM bank count, CAS latency, size, an SDRAM reset bit (the bit 5 pulse: written 0, then 1 twice, then 0, 400 us apart) and the host widget id (bits 22:19, the master id). Bit 8, which 6.5.30 sets last, has no known role: **unknown**. Any other field of 0x1004 is **unknown** from the binaries read.
+- Memory organisation: chip count, data width and the address map are **unknown** (`docs/open-questions.md`). Routes tried: both 6.5.30 kernels and libGLcore's memory-manager calls. Not tried: board photographs (route 3).
 
 ## What stays unknown, and what would settle it
 
