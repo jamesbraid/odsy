@@ -823,3 +823,127 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Removes an event from the retrace list. It takes the mutex at board record +28504, walks the list headed
   at +29864 following the links at +40, unlinks the event when found, either at the head or after its
   predecessor, then unlocks and returns 1; it returns 0 when the event was not listed.
+- `odsy_i2c2abReset` (`odsy_ddc.o`, offset 0x1d84, 264 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Sends the reset message to the monitor's ACCESS-style bus agent. It starts a transfer to address 110
+  with `odsy_i2c_start` and sends the bytes 80, 129, 240 and a final 79 with `odsy_i2c_sendbyte`. Each
+  failing step logs its own message ("Failed to send 'Start' sequence" or "Failed to send Host addr" among
+  them) at severity 1 and returns 1; a clean run returns 0.
+- `odsy_i2c2abIDRequest` (`odsy_ddc.o`, offset 0x1f18, 268 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Sends the identification request to the monitor's bus agent: `odsy_i2c_start` to address 110, then the
+  bytes 80, 129 and 241, and a last byte 78 flagged final through `odsy_i2c_sendbyte`. Each step has its
+  own severity 1 message (start sequence, host address, length byte, ID request op-code, checksum) and a
+  failure returns 1; success returns 0.
+- `odsy_i2c2abPresencechk` (`odsy_ddc.o`, offset 0x2024, 268 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Sends the presence check to the monitor's bus agent in the same frame shape as `odsy_i2c2abIDRequest`:
+  `odsy_i2c_start` to address 110, the bytes 80, 129 and 241, and a final byte 72 with the last-byte flag.
+  Five failure messages are possible at severity 1, one per step, and any failure returns 1; success
+  returns 0.
+- `odsy_DmaRegion_UnPin` (`odsy_dma.o`, offset 0x29c, 172 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Releases a DMA region. When the pinned flag at +52 is set it clears it and calls `unuseracc` with the
+  user address at +32, the length at +40 and the flags 272. It then overwrites the translation table at +0
+  (the byte count is the word at +8) with the poison byte 0x85, calls `kmem_free` on it and zeroes both
+  the table pointer and the count.
+- `odsyDMADone` (`odsy_dma.o`, offset 0x2854, 224 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Retires one DMA region record. When the page array at +16 exists it poisons the byte count at +24 with
+  0x91 and frees it with `kmem_free`; with no array it logs "odsyDMADone: null xlat_tbl!" at severity 4.
+  It then zeroes +24 and +16. If the word at +40 is zero it calls `sv_broadcast` and `sv_destroy` on the
+  variable at +32; otherwise it broadcasts only when the word at +64 is non-zero.
+- `odsy_DmaRegion_DoTransfer` (`odsy_dma.o`, offset 0x348, 196 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Starts one host-memory transfer by writing a two-doubleword kick to the command FIFO port at board base
+  plus 0x110000. It converts the buffer's address with `kvtophys`, splits the physical address into a
+  packed high part and a packed low part (the low 17 bits stay, bits 17 to 23 move up by 6, the remaining
+  high bits go to the first doubleword), and stores a doubleword whose upper half is 0xe03 when bit 2 of
+  its third argument is set and 0xe01 otherwise, each followed by a `sync`. It returns 0.
+- `gfP_OdsyMMwaitXfr` (`odsy_dma.o`, offset 0x2e10, 220 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Private-request handler that waits for a memory transfer to finish. It clears the result word and logs
+  "gl get aborted due to abnormal teardown" at severity 4 when the word at board record +816 is non-zero.
+  Without an owner context behind +72 it logs "attempted sharegroup operation from unbound gfxp" and
+  stores 1; it copies 8 bytes in from the user address (a faulting copy logs "bad ptr to arg" and stores
+  14), and otherwise calls `odsyDMAWait` with the first word, the owner and a count of 1, stores the
+  answer in the result word and returns it.
+- `odsy_dmawait_timeout` (`odsy_dma.o`, offset 0x2364, 268 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Watchdog for a DMA wait. It takes the mutex at board record +5800 and compares the issued and completed
+  counters at +6880 and +6888 (a wrap at 2 to the power of 61 is handled); with nothing outstanding it
+  unlocks and returns. Otherwise it unlocks, logs "odsy board %d: DMAWAIT timeout" at severity 1 and the
+  last issued value, the hardware sync value, its shadow and the outstanding count at severity 5, and
+  calls `odsy_teardown`.
+- `odsy_teardown` (`odsy_init.o`, offset 0x3e1c, 240 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Declares a board dead, once. It takes the semaphore at board record +28488 with `psema` and increments
+  the counter at +816; only the increment that reaches 1 does the work. That pass logs the board number
+  (halfword +790) at severity 1, prints the dmawait timeout and finish values at severity 5 when the words at +46208 or +46212 are non-
+  zero, dumps the registers with `odsyPrintRegs` on the PIO base at +824, and calls `gthread_scan` with the callback `GfxKiller` and an argument block holding 9. The semaphore is
+  released with `vsema` on every path.
+- `odsyFindBoardAddr` (`odsy_init.o`, offset 0x840, 196 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Returns the PIO base address of board number N. It calls `odsyCheckBoardPointers`, and when the record
+  for N exists returns the doubleword at +824. Otherwise it asks `xtalk_early_piotrans_addr` for part
+  0xc013, manufacturer 35, widget N and a 0x401000-byte window; on success it creates the record with
+  `odsyCheckBoardPointer`, stores the low 4 bits of the word at +36 of the window in the byte at +793, the
+  base at +824 and N in the halfword at +790, and returns the base (0 when the translation fails).
+- `odsyCheckBoardPointer` (`odsy_init.o`, offset 0x124, 164 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Makes sure the record for board number N exists. When the slot in `OdsyBoardspp` is empty it allocates
+  0xb4e0 (46304) zeroed bytes with `kmem_zalloc`, calling `assfail` on line 238 of `odsy_init.c` if that
+  fails, stores the record and puts N in the halfword at +790. In every case it then stores N in the word
+  at +240 and sets the word at +0xb468, the flag that selects the busy-wait delay, to 1.
+- `odsyInitDMA` (`odsy_init.o`, offset 0x2668, 244 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Sets up the DMA state of board number N. It runs `init_mutex` on +5800 and `init_sv` on +5816, zeroes
+  the four doublewords behind the pointer at +888, and takes two slots from the allocator at +29952 with
+  `OdsyAlloc32kSlot`; each slot number (stored at +5840 and +6904) locates a halfword in the area at +880,
+  which is set to 0xffff, and their addresses go to +5824 and +6896. It also sets the halfword +5836 to
+  0xffff, zeroes +5834, and clears the counters at +6880, +6888, +7944 and +7952, the words at +5844,
+  +5848, +6908 and +6912, and the pending list at +28448.
+- `odsyMapPages` (`odsy_map.o`, offset 0x8e4, 212 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Maps kernel memory into a process in 16 KB pages. It calls `gfxdd_mmap_mem_ex` for the length argument
+  and returns 12 if that fails. Otherwise it locks the new mapping with `ddv_lock`, calls `ddv_mappages`
+  for the kernel base in its third argument and (length plus 16383) shifted right by 14 pages, and, when
+  the caller supplied an address pointer and the mapping succeeded, stores `ddv_getaddr` of the mapping
+  through it. It unlocks with `ddv_unlock`; a failed `ddv_mappages` is undone with `gfxdd_munmap` and its
+  result returned, otherwise it returns 0.
+- `odsyPinAndMapGctxSwShadowRgn` (`odsy_map.o`, offset 0x498, 204 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Pins and maps the 11128-byte context-switch shadow area of a client into the kernel. It gets the cache
+  bits with `pte_cachebits`, calls `useracc` with the user address, 11128 and the flags 273 (a non-zero
+  result is logged at severity 4 and stored in the result word), then `maputokv` with the cache bits ORed
+  with 7. If that fails it calls `unuseracc`, logs at severity 4, and stores 22. On success it stores the
+  kernel address at +176 and the user address at +184 of the record and writes 0 to the result word.
+- `odsyUnpinAndUnmapSGRegions` (`odsy_map.o`, offset 0x6ac, 160 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Releases the surface-group mappings of a board. It iterates the colour-set container at record +120 with
+  `OdsyInitCSetCursor` and `OdsyNextCSetElem`; for each element it calls `odsyUnmapPages` when both the
+  buffer pointer at +8 and the field at +16 are set, frees the 16384-byte buffer at +8 and then the
+  32-byte element, each with `kmem_free`. It ends with `OdsyDestroyCSet` and no callback.
+- `odsyUnpinAndUnmapGctxRegions` (`odsy_map.o`, offset 0x564, 232 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Releases the context regions of a client record. It calls `odsyUnmapPages` on the field at +208 when the
+  word at +200 is set; for the shadow mapping at +176 it calls `unmaputokv` and `unuseracc` (11128 bytes,
+  flags 273) on the addresses at +176 and +184 and clears both. It then walks the colour-set container at
+  +312, unmapping each element whose field at +16 is set, freeing its 16384-byte buffer at +8 and the
+  32-byte element, and finishes with `OdsyDestroyCSet`.
+- `gf_OdsySuspend` (`odsy_sched.o`, offset 0x0, 184 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
+  Takes a client off the board. It returns 0 at once unless the board exists, the client is the current
+  owner at +72 and bits 1:0 of its flag word at +4 are non-zero. When the flow handle at +808 is set it
+  then raises the level with `splhi`, and if `gfx_flow_am_i_attached` is true sets the word at +0x85c8 to
+  1, stores 1 to the board register at 0x107c behind a `sync`, reads 0x106c back and calls
+  `gfx_flow_detach_me`; `splx` follows and the result is 0.
+- `gf_OdsyResume` (`odsy_sched.o`, offset 0xb8, 248 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
+  Puts a client back on the board. For the current owner at +72 with bits 1:0 of its flag word at +4 set,
+  under `splhi`, it calls `gfx_flow_attach_me` when the client is not attached, takes
+  `gfx_flow_credit_tnum_get`, forms the flow-control word (the saved word at +34244 masked with a literal-
+  pool constant, the target number shifted left by 12), stores it in the shadow and to the board register
+  at 0x1074, and stores 0 to the shadow at +34248 and to the register at 0x107c, each followed by a
+  `sync`. When its third argument is 0 and the word at +120 is non-zero, it then calls `force_resched` and
+  clears that word. It returns 0.
