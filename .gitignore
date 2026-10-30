@@ -18,3 +18,9 @@ irixhistory
 
 # Proprietary IRIX binaries (see IRIX_FILES.md)
 root/
+# root/ as a symlink to a shared checkout
+/root
+
+# Ghidra module build output and test dumps
+/sleigh/odsy-buzz/data/languages/*.sla
+/.cache/
