@@ -58953,7 +58953,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ebf10	8	MITResetProc..PJE	dy
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ebf20	556	ProcPanoramiXDispatch..CAD	dynsym	94a97234c9a3		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec150	224	LbxProxyConnection	dynsym	739879018ca7		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec230	664	LbxGetModifierMapping	dynsym	ea5389506358		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec4d0	952	rrmInit	dynsym	1bfa8c0dfb43		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec4d0	952	rrmInit	dynsym	1bfa8c0dfb43		named-only	docs/odyssey-so-reads.md#screen-initialisation	Screen initialisation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec890	176	XkbDDXFakePointerMotion	dynsym	09b744a6f227		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec940	1060	XkbVModMaskText	dynsym	d42de9a0a7bf		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ecd70	3912	ProcXineramaFillPoly	dynsym	aaca1141f81b		undocumented		
@@ -104940,7 +104940,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ec80	440	nfbInfFillSpans..
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ee40	200	odsyInitMonitorProtocol..CD	dynsym	cf12916bd422		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ef10	1920	nfbGetImage	dynsym	69f944e001b2		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156f690	500	odsySetChannelInputRectangle..IC	dynsym	f9da7a493d1e		understood	docs/odyssey-so-reads.md#board-control-routines	Board control routines
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156f890	5208	odsyInit	dynsym	3aece1a442c4		named-only	docs/display.md#overlay-planes	Overlay planes
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156f890	5208	odsyInit	dynsym	3aece1a442c4		understood	docs/odyssey-so-reads.md#screen-initialisation	Screen initialisation
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1570cf0	2308	cfb16PolyGlyphBlt8	dynsym	f9e582ee7389		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571600	1192	drawZeroArc..AP	dynsym	2b73a2590f41		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571ab0	504	mergeDIDLists..EG	dynsym	63a1937f81f2		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
