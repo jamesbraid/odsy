@@ -57160,7 +57160,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100949c0	92	SProcDCStubDispatch
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094a20	600	AppendFakeRequest	dynsym	75f44a88eba5		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094c80	572	ProcSGIvcListVideoFormatCombinations	dynsym	a946cdfa0728		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094f20	148	FatalError	dynsym	f363aae2c5ca		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094f20	148	FatalError	dynsym	f363aae2c5ca		in	named-only	docs/odyssey-so-reads.md#generic-glyph-drawing-and-graphics-context-validation	Generic glyph drawing and graphics-context validation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094fd0	68	SClobberNotifyEvent..IAF	dynsym	772cead3cb30		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10095020	212	LbxWriteGetpropReply..PCG	dynsym	b261febd07f4		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10095100	328	SProcStoreColors..EGE	dynsym	68a27b4a3d3e		in	undocumented		
@@ -59135,7 +59135,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10211000	1736	XETSwFillPoly	dyn
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102116d0	272	ProcGetScreenSaver	dynsym	6d836cd2a0c8		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102117e0	1124	ProcXkbGetControls	dynsym	1267f7398bd7		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10211c50	196	sXETrapDispatch	dynsym	207138818021		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10211d20	952	QueryGlyphExtents	dynsym	516177eaf89e		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10211d20	952	QueryGlyphExtents	dynsym	516177eaf89e		in	named-only	docs/odyssey-so-reads.md#generic-glyph-drawing-and-graphics-context-validation	Generic glyph drawing and graphics-context validation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102120e0	1596	ProcXkbSetDeviceInfo	dynsym	1342ccde5e98		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10212720	584	sp_split_curve..GBB	dynsym	857cb704129c		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10212970	408	ProcSGIvcSetScreenInputSyncSource	dynsym	733396828d89		in	undocumented		
@@ -59559,7 +59559,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1025fc50	1356	SyncAwaitTriggerF
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102601a0	1096	glxServerStartUpInit	dynsym	698320cf01a2		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102605f0	196	SProcLbxCopyArea..GAG	dynsym	93e8c5b04f02		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102606c0	1228	sgiResetDefaultFontPath	dynsym	f6e7e1fc67ca		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260b90	72	ChangeGC	dynsym	47918f86a6dd		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260b90	72	ChangeGC	dynsym	47918f86a6dd		in	named-only	docs/odyssey-so-reads.md#generic-glyph-drawing-and-graphics-context-validation	Generic glyph drawing and graphics-context validation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260be0	440	ProcRecordUnregisterClients..PJG	dynsym	c2301dc5a74f		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260da0	332	RecordExtensionInit	dynsym	09ef634797a0		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260ef0	1136	_fs_try_alternates..GGB	dynsym	bdca5dfee90d		in	undocumented		
@@ -61172,7 +61172,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65c98	64	stereobuffer	dynsym
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65cd8	64	__GLminmax	dynsym+mdebug	f27baa55fa2a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65cd8	64	minmax	dynsym	f27baa55fa2a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65d18	136	__GLarc	dynsym+mdebug	240971225d35	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65d18	136	arc	dynsym	240971225d35	shared-address	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65d18	136	arc	dynsym	240971225d35	shared-address	in	named-only	docs/odyssey-so-reads.md#zero-width-arc-points-tiled-fills-and-pixel-read-back-routines	Zero-width arc points, tiled fills and pixel read-back routines
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65da0	136	__GLarcf	dynsym+mdebug	84b440644e3e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65da0	136	arcf	dynsym	84b440644e3e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec65e28	136	__GLgetdrawmode	dynsym+mdebug	0aeab79d0289	shared-address	in	undocumented		
@@ -65300,7 +65300,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6653c	68	stereobuffer	dyns
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66580	68	__GLminmax	dynsym	21bdd6716bb1	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66580	68	minmax	dynsym	21bdd6716bb1	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec665c4	180	__GLarc	dynsym	ed997e41c055	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec665c4	180	arc	dynsym	ed997e41c055	shared-address	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec665c4	180	arc	dynsym	ed997e41c055	shared-address	in	named-only	docs/odyssey-so-reads.md#zero-width-arc-points-tiled-fills-and-pixel-read-back-routines	Zero-width arc points, tiled fills and pixel read-back routines
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66678	180	__GLarcf	dynsym	872240c10707	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66678	180	arcf	dynsym	872240c10707	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6672c	180	__GLgetdrawmode	dynsym	bcf3a3f17996	shared-address	in	undocumented		
@@ -105037,7 +105037,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b0680	8176	odsyFillPolygonS
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b2670	1020	miGetArcPts..GO	dynsym	d0eb8c99d412		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b2a70	1120	cfb32Tile32FSCopy	dynsym	0d7c20e8cf2e		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b2ed0	468	nfbStereoPolyText16	dynsym	152bca382998		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b30b0	3760	odsyReadConvertPixels	dynsym	3b6182e840a9		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b30b0	3760	odsyReadConvertPixels	dynsym	3b6182e840a9		in	understood	docs/odyssey-so-reads.md#zero-width-arc-points-tiled-fills-and-pixel-read-back-routines	Zero-width arc points, tiled fills and pixel read-back routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b3f60	5368	cfb8ClippedLineGeneral	dynsym	0f0c21dc9c6a		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b5460	872	odsyListFormatsInComb..IB	dynsym	dffe19ce34e1		in	understood	docs/odyssey-so-reads.md#compositor-routines	Compositor routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15b57d0	748	computeDashMap..LO	dynsym	67c9ed860292		in	named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
@@ -105091,7 +105091,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15dab10	1588	computeBound..JP
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15db150	312	miBSCheapValidateGC..KCB	dynsym	4cc298cdb405		in	understood	docs/odyssey-so-reads.md#backing-store-wrappers-for-text-glyph-and-stipple-drawing	Backing-store wrappers for text, glyph and stipple drawing
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15db290	100	odsyQueryBestSize	dynsym	a543f88f3d35		in	understood	docs/odyssey-so-reads.md#query-option-and-resource-manager-window-hooks	Query, option and resource-manager window hooks
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15db300	23548	odsyPolyArc	dynsym	1209285fa3cc		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e0f00	4080	odsyImageGlyphBlt	dynsym	d63cc9bab06c		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e0f00	4080	odsyImageGlyphBlt	dynsym	d63cc9bab06c		in	understood	docs/odyssey-so-reads.md#generic-glyph-drawing-and-graphics-context-validation	Generic glyph drawing and graphics-context validation
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e1ef0	1724	miHandleExposures	dynsym	d04097ed98fb		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e25b0	5388	cfb16ClippedLineGeneral	dynsym	0a8b32ae8bb8		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e3ac0	1124	rrmValidateCID	dynsym	b036135b6e07		in	understood	docs/odyssey-so-reads.md#resource-manager-window-binding-validation-and-default-colour-map-routines	Resource-manager window binding, validation and default colour-map routines
@@ -105169,7 +105169,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x160c6c0	2652	nfbStereoCopyWin
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x160d120	8	nfbNoopDDATranslateBackingStore	dynsym	87506497337c		in	understood	docs/odyssey-so-reads.md#empty-and-constant-result-routines-of-the-shared-x-code	Empty and constant-result routines of the shared X code
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x160d130	8036	odsyPolyPnt	dynsym	09508858841b		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x160f0a0	7104	odsySolidSpans	dynsym	4a8a243ad9f1		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1610c60	3784	odsyPolyGlyphBlt	dynsym	9ce968e3d6d1		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1610c60	3784	odsyPolyGlyphBlt	dynsym	9ce968e3d6d1		in	understood	docs/odyssey-so-reads.md#generic-glyph-drawing-and-graphics-context-validation	Generic glyph drawing and graphics-context validation
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1611b30	1436	nfb10RopLoop..KH	dynsym	d1cb8f794588		in	understood	docs/odyssey-so-reads.md#invert-clear-and-set-loops-with-a-mask	Invert, clear and set loops with a mask
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16120d0	484	odsyValidateWindowPriv	dynsym	d71de8171832		in	understood	docs/odyssey-so-reads.md#window-private-set-up-graphics-context-operation-tables-and-small-drawing-entry-points	Window-private set-up, graphics-context operation tables and small drawing entry points
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16122c0	1388	miBSFillVirtualBits..KEB	dynsym	9c4a3c390566		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105228,7 +105228,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d130	464	cfbZeroPolyArcSS8
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d300	416	nfbFreeHWCmapArrays	dynsym	abf4d83f8b63		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d4a0	2428	mfbTileFS	dynsym	7850bb6ef661		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162de20	912	cfb16SolidSpansCopy	dynsym	8a1a5d636793		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162e1b0	1936	odsyZeroArcPts..FE	dynsym	4f2ab0e48e5b		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162e1b0	1936	odsyZeroArcPts..FE	dynsym	4f2ab0e48e5b		in	understood	docs/odyssey-so-reads.md#zero-width-arc-points-tiled-fills-and-pixel-read-back-routines	Zero-width arc points, tiled fills and pixel read-back routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162e940	412	cfb32GetImage	dynsym	3146b638ef99		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162eae0	120	miBSCopyClip..HFB	dynsym	ae8356af47d5		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162eb60	296	NewID..GG	dynsym	067a964b0dd1		in	understood	docs/odyssey-so-reads.md#window-display-identifier-routines	Window display-identifier routines
@@ -105238,7 +105238,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162f0c0	1204	miBSClearBacking
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162f580	184	RecomputeExposures..NG	dynsym	6f8f91b1d20c		in	understood	docs/odyssey-so-reads.md#raster-operation-word-loops-and-small-drawing-helpers	Raster-operation word loops and small drawing helpers
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162f640	3172	nfbMarkOverlappedWindows	dynsym	e17a28cc44bc		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16302b0	228	nfbCopyClip..AK	dynsym	628ff7e2bbc0		in	understood	docs/odyssey-so-reads.md#screen-window-and-context-teardown-and-clip-copy	Screen, window and context teardown and clip copy
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16303a0	4996	odsyValidateWindowGC	dynsym	387b58d050d7		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16303a0	4996	odsyValidateWindowGC	dynsym	387b58d050d7		in	understood	docs/odyssey-so-reads.md#generic-glyph-drawing-and-graphics-context-validation	Generic glyph drawing and graphics-context validation
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1631730	80	odsyInitWindowType	dynsym	23b5792ad9f6		in	understood	docs/odyssey-so-reads.md#stub-and-one-line-routines	Stub and one-line routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1631780	3684	cfb8SegmentSS1RectGeneral	dynsym	d064399e7392		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16325f0	504	miSubtract	dynsym	08e915007d50		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105297,7 +105297,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x164ce40	2836	cfbPolyGlyphRop8
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x164d960	264	nfb2MaskRopLoop..CI	dynsym	090da218ecc3		in	understood	docs/odyssey-so-reads.md#clip-identifier-stealing-buffer-swap-plane-clears-and-pio-image-upload	Clip-identifier stealing, buffer swap, plane clears and PIO image upload
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x164da70	2548	cfb16LineSS1RectCopy	dynsym	9adcb513296c		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x164e470	16100	cfbLineSD	dynsym	3d921f59eaeb		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1652360	4160	odsyValidateVisual	dynsym	60733c47b64c		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1652360	4160	odsyValidateVisual	dynsym	60733c47b64c		in	understood	docs/odyssey-so-reads.md#clip-and-visual-validation-routines	Clip and visual validation routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16533a0	2672	mfbBresS	dynsym	76a58ada03d9		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1653e10	1460	nfb0MaskRopLoop..AI	dynsym	976c5429f6cf		in	understood	docs/odyssey-so-reads.md#invert-clear-and-set-loops-with-a-mask	Invert, clear and set loops with a mask
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16543d0	72	cfb32CopyPlane	dynsym	c6108b515aa2		in	understood	docs/odyssey-so-reads.md#forwarding-routines-audio-library-format-file-finders-symbol-database-calls	Forwarding routines (audio library, format-file finders, symbol-database calls)
@@ -105362,7 +105362,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b090	1100	nfbCreateWindow	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b4e0	432	nfbInfPolyRectangle..NK	dynsym	00469c092393		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b690	768	nfbOpStippledFS	dynsym	c20fbbf43cd5		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b990	448	nfbComputeDidFlag..IG	dynsym	a2350c8c8ca3		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166bb50	2160	odsyValidateClip	dynsym	febcad39a2d2		in	named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166bb50	2160	odsyValidateClip	dynsym	febcad39a2d2		in	understood	docs/odyssey-so-reads.md#clip-and-visual-validation-routines	Clip and visual validation routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c3c0	636	nfbPaintWindowBackground	dynsym	59dac9d90593		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c640	2644	mfbUnnaturalStippleFS	dynsym	1faae6ea443d		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d0a0	740	miFillRectPolyHelper..KBB	dynsym	261277ff4b27		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105422,7 +105422,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16802f0	952	cfb32SolidSpansXo
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16806b0	400	odsyDrawSolidRects	dynsym	86ac2b75adf2		in	understood	docs/odyssey-so-reads.md#window-private-set-up-graphics-context-operation-tables-and-small-drawing-entry-points	Window-private set-up, graphics-context operation tables and small drawing entry points
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1680840	4964	miZeroArcSetup	dynsym	d93014815df4		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1681bb0	240	DelayValidateClip..EF	dynsym	1bacb14f9422		in	understood	docs/odyssey-so-reads.md#screen-window-and-context-teardown-and-clip-copy	Screen, window and context teardown and clip copy
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1681ca0	3044	odsyTileRects	dynsym	cd14f5fceaaf		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1681ca0	3044	odsyTileRects	dynsym	cd14f5fceaaf		in	understood	docs/odyssey-so-reads.md#zero-width-arc-points-tiled-fills-and-pixel-read-back-routines	Zero-width arc points, tiled fills and pixel read-back routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1682890	3820	mfbPolyGlyphBltBlack	dynsym	1499938bf242		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1683780	356	miPointInRegion	dynsym	bb47eaa32ff9		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16838f0	2748	cfb32SegmentSS1RectXor	dynsym	3aede632aed6		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
