@@ -96,7 +96,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	e23071c866ed246d		5076	4231	0	undocumented		
 sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	0	0	named-only	docs/display.md#kernel-cursor-request	Kernel cursor request
 usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/sysgen/IP30boot/gfx.o	kernel-shared	shared-kernel	object	n64	53712	73041c9bcd3351fc		62	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	16516	c637564e7dc7a6d8		22	0	0	undocumented		

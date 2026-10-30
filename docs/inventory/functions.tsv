@@ -53639,7 +53639,7 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x378	12	gfx_
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x384	284	gfx_flow_dealloc	dwarf+symtab	cd9f1ed97f8e	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4a0	36	gfx_flow_wg_info_get	dwarf+symtab	0d9afb200893	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4c4	12	gfx_flow_credit_tnum_get	dwarf+symtab	f7143c1efa6c	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d0	12	gfx_flow_credit_total_get	dwarf+symtab	6c27d0b6a88e	named-only	BUZZ.h:612	Command FIFO initialisation: odsyInitCfifo (odsy_init.o)
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d0	12	gfx_flow_credit_total_get	dwarf+symtab	6c27d0b6a88e	named-only	BUZZ.h:650	Command FIFO initialisation: odsyInitCfifo (odsy_init.o)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4dc	8	gfx_flow_credit_bias_get	dwarf+symtab	215645c4ae1c	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4e4	36	gfx_flow_credit_count_get	dwarf+symtab	95a6633c531e	named-only	docs/buzz.md#flow-control	Flow control
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x508	44	gfx_flow_credit_count_set	dwarf+symtab	6a4079d34702	undocumented		
@@ -54622,7 +54622,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x454	12	gfx_
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x460	72	gfx_flow_dealloc	dwarf+symtab	71edc1433038	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4a8	36	gfx_flow_wg_info_get	dwarf+symtab	781c4da5064b	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4cc	8	gfx_flow_credit_tnum_get	dwarf+symtab	32025f51793a	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d4	12	gfx_flow_credit_total_get	dwarf+symtab	925a41cf4339	named-only	BUZZ.h:612	Command FIFO initialisation: odsyInitCfifo (odsy_init.o)
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d4	12	gfx_flow_credit_total_get	dwarf+symtab	925a41cf4339	named-only	BUZZ.h:650	Command FIFO initialisation: odsyInitCfifo (odsy_init.o)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4e0	12	gfx_flow_credit_bias_get	dwarf+symtab	6c27d0b6a88e	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4ec	76	gfx_flow_credit_count_get	dwarf+symtab	eefea50d942a	named-only	docs/buzz.md#flow-control	Flow control
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x538	8	gfx_flow_detach_requires_credit_flow_disable	dwarf+symtab	a7e7ca11a6b8	undocumented		
@@ -61202,7 +61202,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66400	136	popviewport	dynsym
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66488	136	__GLpopattributes	dynsym+mdebug	16048842245a	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66488	136	popattributes	dynsym	16048842245a	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66510	136	__GLarcs	dynsym+mdebug	c88304b56a4b	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66510	136	arcs	dynsym	c88304b56a4b	named-only	docs/open-questions.md#microcode	Microcode
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66510	136	arcs	dynsym	c88304b56a4b	named-only	docs/board.md#strap-word-and-configuration-register-fields-pass-12	Strap word and configuration register fields (pass 12)
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66598	64	__GLgl_glx_getconfig	dynsym+mdebug	65d593601a36	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66598	64	gl_glx_getconfig	dynsym	65d593601a36	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec665d8	64	__GLendsurface	dynsym+mdebug	7c23185cc06b	undocumented		
@@ -65014,7 +65014,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66ee8	180	popviewport	dyns
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66f9c	180	__GLpopattributes	dwarf+dynsym	553c83ae1e66	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66f9c	180	popattributes	dynsym	553c83ae1e66	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67050	180	__GLarcs	dwarf+dynsym	40c4011f273d	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67050	180	arcs	dynsym	40c4011f273d	named-only	docs/open-questions.md#microcode	Microcode
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67050	180	arcs	dynsym	40c4011f273d	named-only	docs/board.md#strap-word-and-configuration-register-fields-pass-12	Strap word and configuration register fields (pass 12)
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67104	68	__GLgl_glx_getconfig	dwarf+dynsym	3c9d6c0ea711	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67104	68	gl_glx_getconfig	dynsym	3c9d6c0ea711	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67148	68	__GLendsurface	dwarf+dynsym	c39a1b115809	undocumented		
@@ -104931,7 +104931,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15675e0	1848	odsyPostInit	dyn
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1567d20	804	miIntersect	dynsym	f9854ac29153	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1568050	272	cfbAllocatePrivates	dynsym	b9a76afb9552	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1568160	200	nfb13RopLoop..NH	dynsym	78016412a9b5	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1568230	24920	odsyDrawMonoPixels	dynsym	baeba37f9872	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1568230	24920	odsyDrawMonoPixels	dynsym	baeba37f9872	named-only	docs/coverage.md#opengl-core-and-x-module	OpenGL core and X module
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156e390	468	nfbStereoImageText16	dynsym	7ae6d0fb4cd3	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156e570	288	odsyCloseScreen	dynsym	1132b88eb1d9	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156e690	1040	mfbBlackSolidFS	dynsym	04f271dce52b	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -104951,7 +104951,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15733f0	2024	cfbFillSpanTile3
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1573be0	156	cfb32CopyArea	dynsym	b4d40575f942	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1573c80	9364	cfb32PolyFillArcSolidGeneral	dynsym	4a6bb4221066	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1576120	328	miInitializeBackingStore	dynsym	8b5684680c6c	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1576270	8536	odsyPolyFillRectSolid	dynsym	abadafc62ec9	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1576270	8536	odsyPolyFillRectSolid	dynsym	abadafc62ec9	named-only	docs/coverage.md#opengl-core-and-x-module	OpenGL core and X module
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15783d0	1876	tailX..LN	dynsym	88dc637949d9	named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1578b30	3820	cfb32FillPoly1RectGeneral	dynsym	e1396df02795	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1579a20	4804	cfb8ClippedLineCopy	dynsym	3d5bbfdcfc5d	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
