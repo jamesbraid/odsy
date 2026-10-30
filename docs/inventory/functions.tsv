@@ -3036,9 +3036,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54dc0	1496	__glFeedbackTriangle	dynsym+mdebug	e26616ecf59a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda553a0	104	__glim_Finish	dynsym+mdebug	29849d1134df		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55408	104	__glim_Flush	dynsym+mdebug	3ec5569be9c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55470	240	__glFogSpan	dynsym+mdebug	c5da41cc58cd		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55470	240	__glFogSpan	dynsym+mdebug	c5da41cc58cd		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55560	296	__glFogStippledSpan	dynsym+mdebug	8f08b5c82d18		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55688	516	__glFogSpanSlow	dynsym+mdebug	f4e6258512ed		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55688	516	__glFogSpanSlow	dynsym+mdebug	f4e6258512ed		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5588c	620	__glFogStippledSpanSlow	dynsym+mdebug	315a3d8d6986		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragmentSlow	dynsym+mdebug	12366edd8cca		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -8873,11 +8873,11 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e160	1204	__glFeedbackTriangle	dwarf+dynsym	3f282372b8f0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e620	88	__glim_Finish	dwarf+dynsym	57100e3b1047		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e680	88	__glim_Flush	dwarf+dynsym	d6b5562641e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e6e0	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e6e0	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e7a0	568	__glFogStippledSpan	dwarf+dynsym	03bc4e0adc5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e9e0	472	__glFogSpanSlow	dwarf+dynsym	3c33b89738c2		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e9e0	472	__glFogSpanSlow	dwarf+dynsym	3c33b89738c2		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ebc0	612	__glFogStippledSpanSlow	dwarf+dynsym	dbb8abcfb7b9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ee30	356	__glFogFragmentSlow	dwarf+dynsym	4140e0a6fb4b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ee30	356	__glFogFragmentSlow	dwarf+dynsym	4140e0a6fb4b		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3efa0	260	__glFogVertex	dwarf+dynsym	fbb424ea9c7a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f0b0	76	__glFogVertexLinear	dwarf+dynsym	88ca7d011e63		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f100	104	__glFogColorSlow	dwarf+dynsym	27bdda3e67cc		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -14767,9 +14767,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283550	1248	__glFeedbackTriangle	dwarf+dynsym	ce6ee390e55d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283a30	88	__glim_Finish	dwarf+dynsym	696febabdf11		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283a90	88	__glim_Flush	dwarf+dynsym	a12bed267cd1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283af0	196	__glFogSpan	dwarf+dynsym	55978decd629		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283af0	196	__glFogSpan	dwarf+dynsym	55978decd629		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283bc0	584	__glFogStippledSpan	dwarf+dynsym	c453f315a10a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283e10	492	__glFogSpanSlow	dwarf+dynsym	ac89bc55f2d7		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2283e10	492	__glFogSpanSlow	dwarf+dynsym	ac89bc55f2d7		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2284000	628	__glFogStippledSpanSlow	dwarf+dynsym	7a0d677070a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2284280	356	__glFogFragmentSlow	dwarf+dynsym	2c0c983a7575		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22843f0	260	__glFogVertex	dwarf+dynsym	67c99eaef3e5		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -61862,7 +61862,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fd18	64	lmcolor	dynsym	f216
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fd58	136	__GLrectf	dynsym+mdebug	bc1e6f50cbdd	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fd58	136	rectf	dynsym	bc1e6f50cbdd	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fde0	64	__GLcolor	dynsym+mdebug	ca5a44b6b4d7	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fde0	64	color	dynsym	ca5a44b6b4d7	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fde0	64	color	dynsym	ca5a44b6b4d7	shared-address	in	named-only	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fe20	64	__GLrdrs	dynsym+mdebug	1c723d685a22	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fe20	64	rdrs	dynsym	1c723d685a22	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fe60	64	__GLtlutbind	dynsym+mdebug	7a9d977c0ec8	shared-address	in	undocumented		
@@ -65990,7 +65990,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73460	68	lmcolor	dynsym	9e
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec734a4	180	__GLrectf	dynsym	51df3d9b378c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec734a4	180	rectf	dynsym	51df3d9b378c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73558	68	__GLcolor	dynsym	fbca61eebe3d	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73558	68	color	dynsym	fbca61eebe3d	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73558	68	color	dynsym	fbca61eebe3d	shared-address	in	named-only	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7359c	68	__GLrdrs	dynsym	47f96c036137	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7359c	68	rdrs	dynsym	47f96c036137	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec735e0	68	__GLtlutbind	dynsym	eeca45f2d67c	shared-address	in	undocumented		
@@ -70087,9 +70087,9 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54cdc	228	__glFeedback
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54dc0	1496	__glFeedbackTriangle	dynsym+mdebug	e26616ecf59a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda553a0	104	__glim_Finish	dynsym+mdebug	29849d1134df		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55408	104	__glim_Flush	dynsym+mdebug	3ec5569be9c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55470	240	__glFogSpan	dynsym+mdebug	c5da41cc58cd		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55470	240	__glFogSpan	dynsym+mdebug	c5da41cc58cd		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55560	296	__glFogStippledSpan	dynsym+mdebug	8f08b5c82d18		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55688	516	__glFogSpanSlow	dynsym+mdebug	f4e6258512ed		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55688	516	__glFogSpanSlow	dynsym+mdebug	f4e6258512ed		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5588c	620	__glFogStippledSpanSlow	dynsym+mdebug	315a3d8d6986		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragmentSlow	dynsym+mdebug	12366edd8cca		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -75924,11 +75924,11 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e080	212	__glFeedba
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e160	1204	__glFeedbackTriangle	dwarf+dynsym	3f282372b8f0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e620	88	__glim_Finish	dwarf+dynsym	57100e3b1047		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e680	88	__glim_Flush	dwarf+dynsym	d6b5562641e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e6e0	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e6e0	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e7a0	568	__glFogStippledSpan	dwarf+dynsym	03bc4e0adc5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e9e0	472	__glFogSpanSlow	dwarf+dynsym	3c33b89738c2		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3e9e0	472	__glFogSpanSlow	dwarf+dynsym	3c33b89738c2		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ebc0	612	__glFogStippledSpanSlow	dwarf+dynsym	dbb8abcfb7b9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ee30	356	__glFogFragmentSlow	dwarf+dynsym	4140e0a6fb4b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ee30	356	__glFogFragmentSlow	dwarf+dynsym	4140e0a6fb4b		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3efa0	260	__glFogVertex	dwarf+dynsym	fbb424ea9c7a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f0b0	76	__glFogVertexLinear	dwarf+dynsym	88ca7d011e63		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f100	104	__glFogColorSlow	dwarf+dynsym	27bdda3e67cc		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -81818,9 +81818,9 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3470	224	__glFeedba
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3550	1248	__glFeedbackTriangle	dwarf+dynsym	ce6ee390e55d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3a30	88	__glim_Finish	dwarf+dynsym	696febabdf11		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3a90	88	__glim_Flush	dwarf+dynsym	a12bed267cd1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3af0	196	__glFogSpan	dwarf+dynsym	55978decd629		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3af0	196	__glFogSpan	dwarf+dynsym	55978decd629		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3bc0	584	__glFogStippledSpan	dwarf+dynsym	c453f315a10a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3e10	492	__glFogSpanSlow	dwarf+dynsym	ac89bc55f2d7		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d3e10	492	__glFogSpanSlow	dwarf+dynsym	ac89bc55f2d7		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4000	628	__glFogStippledSpanSlow	dwarf+dynsym	7a0d677070a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4280	356	__glFogFragmentSlow	dwarf+dynsym	2c0c983a7575		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d43f0	260	__glFogVertex	dwarf+dynsym	67c99eaef3e5		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -87626,9 +87626,9 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda54cdc	228	__glFeedback
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda54dc0	1496	__glFeedbackTriangle	dynsym+mdebug	e26616ecf59a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda553a0	104	__glim_Finish	dynsym+mdebug	29849d1134df		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55408	104	__glim_Flush	dynsym+mdebug	3ec5569be9c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55470	240	__glFogSpan	dynsym+mdebug	c5da41cc58cd		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55470	240	__glFogSpan	dynsym+mdebug	c5da41cc58cd		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55560	296	__glFogStippledSpan	dynsym+mdebug	8f08b5c82d18		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55688	516	__glFogSpanSlow	dynsym+mdebug	f4e6258512ed		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55688	516	__glFogSpanSlow	dynsym+mdebug	f4e6258512ed		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5588c	620	__glFogStippledSpanSlow	dynsym+mdebug	315a3d8d6986		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragmentSlow	dynsym+mdebug	12366edd8cca		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -93463,11 +93463,11 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e080	212	__glFeedba
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e160	1204	__glFeedbackTriangle	dwarf+dynsym	3f282372b8f0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e620	88	__glim_Finish	dwarf+dynsym	57100e3b1047		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e680	88	__glim_Flush	dwarf+dynsym	d6b5562641e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e6e0	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e6e0	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e7a0	568	__glFogStippledSpan	dwarf+dynsym	03bc4e0adc5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e9e0	472	__glFogSpanSlow	dwarf+dynsym	3c33b89738c2		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3e9e0	472	__glFogSpanSlow	dwarf+dynsym	3c33b89738c2		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3ebc0	612	__glFogStippledSpanSlow	dwarf+dynsym	dbb8abcfb7b9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3ee30	356	__glFogFragmentSlow	dwarf+dynsym	4140e0a6fb4b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3ee30	356	__glFogFragmentSlow	dwarf+dynsym	4140e0a6fb4b		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3efa0	260	__glFogVertex	dwarf+dynsym	fbb424ea9c7a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f0b0	76	__glFogVertexLinear	dwarf+dynsym	88ca7d011e63		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f100	104	__glFogColorSlow	dwarf+dynsym	27bdda3e67cc		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -99357,9 +99357,9 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283470	224	__glFeedba
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283550	1248	__glFeedbackTriangle	dwarf+dynsym	ce6ee390e55d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283a30	88	__glim_Finish	dwarf+dynsym	696febabdf11		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283a90	88	__glim_Flush	dwarf+dynsym	a12bed267cd1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283af0	196	__glFogSpan	dwarf+dynsym	55978decd629		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283af0	196	__glFogSpan	dwarf+dynsym	55978decd629		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283bc0	584	__glFogStippledSpan	dwarf+dynsym	c453f315a10a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283e10	492	__glFogSpanSlow	dwarf+dynsym	ac89bc55f2d7		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2283e10	492	__glFogSpanSlow	dwarf+dynsym	ac89bc55f2d7		in	understood	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284000	628	__glFogStippledSpanSlow	dwarf+dynsym	7a0d677070a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284280	356	__glFogFragmentSlow	dwarf+dynsym	2c0c983a7575		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22843f0	260	__glFogVertex	dwarf+dynsym	67c99eaef3e5		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
