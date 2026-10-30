@@ -127,34 +127,33 @@ Installation Tools and Overlays disc 1, compared record by record.
   bit, so the vertex closes before the command ends.
 - **`1059`** (routine; kernel copy, `odsy_init.o` .data +0x3974), **established**: the second of the run of
   five-record closers, differing from the others only in its header and last-word fields; neither the
-  6.5.27 table nor its immediates name it. Same records as image routine 1158. **inferred**: it reads no input, computes nothing and produces a nine-word header and last word 9.
+  6.5.27 table nor its immediates name it. Same records as image routine 1158. **inferred**: it sends a packet's header and last word: a nine-word header and last word 9.
 - **`1064`** (routine; kernel copy, `odsy_init.o` .data +0x39b0), **established**: is the +28 closer of table
   record 2 only, the untextured one-sided fragment-lighting program. Same records as image routine 1163.
-  **inferred**: it computes nothing from no input; its output is the ten-word header and word 10
+  **inferred**: it sends a packet's header and last word: the ten-word header and word 10
   that end routine 1214's packet.
 - **`1069`** (routine; kernel copy, `odsy_init.o` .data +0x39ec), **established**: serves as table record 5's
-  closing routine, the two-sided form of record 2. Same records as image routine 1168. **inferred**: it
-  takes nothing, computes nothing and outputs the fourteen-word header and last word 14 of routine
+  closing routine, the two-sided form of record 2. Same records as image routine 1168. **inferred**: it sends a packet's header and last word: the fourteen-word header and last word 14 of routine
   1291's packet.
 - **`1074`** (routine; kernel copy, `odsy_init.o` .data +0x3a28), **established**: is appended to close any
   program once the perspective-texture flag is set; 6.5.27 loads it at 0x0d9dbddc. Same records as
-  image routine 1173. **inferred**: it takes no operand and computes nothing; the output is an eleven-word header and
+  image routine 1173. **inferred**: it sends a packet's header and last word: an eleven-word header and
   word 11, the packet that the perspective finish 1112 announces.
 - **`1079`** (routine; kernel copy, `odsy_init.o` .data +0x3a64), **established**: is the commonest closer,
   one colour with neither separate specular nor fragment lighting, carried by ten table records and
-  chosen at 0x0d9dbe5c. Same records as image routine 1178. **inferred**: it computes nothing from no input and outputs a ten-word header and word 10, the length of 1117's finish and of the one- and
+  chosen at 0x0d9dbe5c. Same records as image routine 1178. **inferred**: it sends a packet's header and last word: a ten-word header and word 10, the length of 1117's finish and of the one- and
   two-light table programs.
 - **`1084`** (routine; kernel copy, `odsy_init.o` .data +0x3aa0), **established**: ends two-colour programs,
   the closing word of table records 7 and 13 and the immediate at 0x0d9dbe64. Same records as image
-  routine 1183. **inferred**: it reads nothing and outputs a twelve-word header and word 12, the
-  two-colour packet of 1653 and 1699; it computes no value from its input, which is empty.
+  routine 1183. **inferred**: it sends a packet's header and last word: a twelve-word header and word 12, the
+  two-colour packet of 1653 and 1699.
 - **`1089`** (routine; kernel copy, `odsy_init.o` .data +0x3adc), **established**: ends one-sided programs
   with separate specular or fragment lighting, in records 4, 12, 14, 20 and 21 and at 0x0d9dbe44.
-  Same records as image routine 1188. **inferred**: it takes no input and computes nothing; it produces the
+  Same records as image routine 1188. **inferred**: it sends a packet's header and last word: the
   thirteen-word header and last word 13 that close the packets of 1249, 2141 and 2201.
 - **`1099`** (routine; kernel copy, `odsy_init.o` .data +0x3b54), **established**: carries the vertex colour
   through with lighting off, nine records reading attribute slot 5; 6.5.27 adds it at 0x0d9db4a0.
-  Same records as image routine 1198. **inferred** under the pass-13 rules: its input is the colour slot 5, which the colour unit sends unchanged as words 1 and 2 (operation 0x1f22, no arithmetic); it then transforms the position slot by R3, R0, R1, R4 and R2 in the records it shares with 1101, and those five products are its other result, output by the finish after it.
+  Same records as image routine 1198. **inferred** under the pass-13 rules: its input is the colour slot 5, which the colour unit sends unchanged as words 1 and 2 (operation 0x1f22, a copy); it then transforms the position slot by R3, R0, R1, R4 and R2 in the records it shares with 1101, and those five products are its other result, output by the finish after it.
 - **`1101`** (routine; kernel copy, `odsy_init.o` .data +0x3b6c), **established**: a tail of 1099 two records
   in, put before 1112 for a table program with perspective texture (0x0d9dbdcc in 6.5.27). Same
   records as image routine 1200. **inferred**: its input is the position slot; it transforms it by R3, R0, R1, R4 and R2 and leaves the five products (clip w, window x and y, clip z, window z) as results for 1112 or 1117 to output.
@@ -166,7 +165,7 @@ Installation Tools and Overlays disc 1, compared record by record.
   **inferred**: it takes 1101's five products and divides by w for output: 1/w (0x2b) as word 6, x/w (0x46) as 8 and y/w and z/w (0x26) as 9 and 7, with the clip z consumed and a header for ten words.
 - **`1122`** (routine; kernel copy, `odsy_init.o` .data +0x3c68), **established**: the null routine the
   6.5.27 builder writes into sequencers 0x2a and 0x2c and uses to end both lists (immediates from
-  0x0d9dbb58). Same records as image routine 1221. **inferred**: one end mark 2 and four idle records: it takes no operand, computes nothing and outputs nothing, and its mark ends the command (`ucode/buzz_isa.md`, pass 14), which is why the builder uses it as the loop entries' and the lists' last word.
+  0x0d9dbb58). Same records as image routine 1221. **inferred**: one end mark 2 and four idle records: a null routine whose one effect is that its mark ends the command (`ucode/buzz_isa.md`, pass 14), which is why the builder uses it as the loop entries' and the lists' last word.
 - **`1127`** (routine; kernel copy, `odsy_init.o` .data +0x3ca4), **established**: the set-up pass of the
   directional-light table records, 35 records reading the data table from index 1 to 0x1e3. Same
   records as image routine 1226. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: run once per program, it takes words 0 to 5 of four light records and shininess words 0x0f0 and 0x0f7 to 0x0f9, outputs the light directions to R17, R19, R21 and R23, computes each half vector times word 0x0f0 into R18, R20, R22 and R24, and sums the light-model and four light ambient colours into colour address 25.

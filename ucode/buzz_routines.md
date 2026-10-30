@@ -95,17 +95,17 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   (`updateTexGenCoord` in `ody_texgen.s`, `__glOdysseyValidateClipPlanes` in `ody_context.s`,
   `__glOdysseyInitLighting` in `ody_lighting.s`). Its four operands (443 to 446) pass through R16
   lanes x and y as in 418, and the outputs are parameter words 0x200 to 0x203 relative to sequencer
-  0x31 (452 to 455). It computes nothing, passing each operand through scalar code 8.
+  0x31 (452 to 455). It is a parameter store: each operand passes through scalar code 8 unchanged into its word.
 - **`456`** (routine; kernel record 456), **inferred**: the sixteen-word register store of opcode
   0x1c8, through which libGLcore sends every matrix (`ody_xform.s`, the four validators). Inputs:
   operands 0 to 15, one per record (456 to 471), passed unchanged by the vector unit (d0 = 4).
   Outputs: the operands seven records later in lanes x, y, z and w of registers 0 to 3 (463 to 478),
   counted from the register-file base the host puts in sequencer 0x34 (0, 20, 36 or 52 words), so
-  one row of the matrix fills one register. It computes nothing: d0 = 4 selects the operand as the result unchanged.
+  one row of the matrix fills one register. It is a register load: d0 = 4 passes each operand to port V unchanged.
 - **`479`** (routine; kernel record 479), **inferred**: the four-word register store of opcode
   0x1df. Its four operands (479 to 482) become the four lanes of the register at the sequencer 0x34
   base (486 to 489); libGLcore uses it for the clip-space z row at word 16, register R4
-  (`ody_xform.s`). Inputs: four operands; output: one register, unchanged, since the vector unit only selects each operand into a lane and computes nothing.
+  (`ody_xform.s`). Inputs: four operands; output: one register, a lane merge that puts each operand, unchanged, in its own lane.
 - **`490`** (routine; kernel record 490), **established**: the handler of opcode 0x1ea, sent only by
   the kernel's context restore with operand 0 of two attribute slots and each with bit 31 flipped
   (`odsyRestoreVB`, `odsy_ctxsw.o`). **inferred:** it computes ten parameter words from them: it
@@ -140,16 +140,16 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   with four floats (`odsyRestoreXform`, `odsy_ctxsw.o`); libGLcore's lighting does the same
   (`ody_lighting.s`). Its input is slot 14, the four floats that word carries, and its first record
   copies them into the colour unit with code 0x1f20, the same code the vertex routines use for the
-  colour slot; sequencer 0x32 names the colour-unit memory as the destination. It computes nothing:
+  colour slot; sequencer 0x32 names the colour-unit memory as the destination. It is a colour-memory load:
   three idle records follow up to the end mark at 413, so it moves one four-float vector per word. Its output is that vector at the colour-unit address in sequencer 0x32.
 - **`1221`** (routine; kernel record 1122), **established**: the null routine. Its only record is
   the end mark with every other field at the idle value, followed by four idle records.
   `AddProgram` (`ody_program.s`, source lines 1172 to 1192) puts it in sequencers 0x2a and 0x2c
   and at the end of every program list, and the 4103 patch's libGLcore uses 1122 for the same
-  purpose against its older program. It takes no operand, computes nothing and outputs no word, and its end mark 2 ends the command (`ucode/buzz_isa.md`, pass 14), which is why it closes every list.
+  purpose against its older program. It is the null routine: its one effect is its end mark 2, which ends the command (`ucode/buzz_isa.md`, pass 14), which is why it closes every list.
 - **`520`** (routine; kernel record 520), **established**: a second copy of the null routine,
   bit for bit the same as record 1221 and its four delay slots in the listing
-  `ucode/disasm/buzz_xform.lst`. No table record or `AddProgram` immediate names it. It takes no input, computes nothing and outputs nothing; its end mark 2 ends the command (`ucode/buzz_isa.md`, pass 14).
+  `ucode/disasm/buzz_xform.lst`. No table record or `AddProgram` immediate names it. It is a null routine: its one effect is its end mark 2, which ends the command (`ucode/buzz_isa.md`, pass 14).
 - **`214`** (routine; kernel record 214), **inferred**: the unlit, untextured vertex program, first
   vertex. The kernel textport (`odsy_tpinit` in `odsy_tport.o`, start-up stream `buzz_init`) and
   libGLcore's table record 0 (0x0dae4680) set sequencers 0x29, 0x2a and 0x2c to 214, 224 and 234.
@@ -181,17 +181,17 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   stay. Input: lane x of R26, the generated s. Output: the operand latch with that lane replaced, which the texture transform after it reads; the mask selects the lane and nothing is computed.
 - **`82`** (routine; kernel record 82), **inferred**: S for the sphere map (`ody_program.s`, source
   line 1109). Same merge as 77 but its source register is R29 (`r2` 0x1d), where routine 159 leaves
-  the sphere-map s, so that value becomes the latch's x lane. It takes R29's lane x as its input and selects it into the latch's x lane; the result, with s replaced and no arithmetic, feeds the texture transform.
+  the sphere-map s, so that value becomes the latch's x lane. It takes R29's lane x as its input and selects it into the latch's x lane; the result, a lane merge that replaces s, feeds the texture transform.
 - **`87`** (routine; kernel record 87), **inferred**: T for a linear mode (`ody_program.s`, source
-  line 1112). Mask 2 (`r1` 0x12) copies lane y of R26, the plane-T product, into the latch. With lane y of R26 as input it selects that one lane into the latch and computes nothing; its output is the latch carrying the generated t.
+  line 1112). Mask 2 (`r1` 0x12) copies lane y of R26, the plane-T product, into the latch. With lane y of R26 as input it merges that one lane into the latch; its output is the latch carrying the generated t.
 - **`92`** (routine; kernel record 92), **inferred**: T for the sphere map (`ody_program.s`, source
-  line 1115); with mask 2 it takes lane y of R29, the sphere-map t. Its single input, lane y of R29, is selected into the latch, and the result goes on to the texture transform with t replaced; no value is computed.
+  line 1115); with mask 2 it takes lane y of R29, the sphere-map t. Its single input, lane y of R29, is selected into the latch, and the result goes on to the texture transform with t replaced: a lane merge.
 - **`97`** (routine; kernel record 97), **inferred**: R for a linear mode (`ody_program.s`, source
   line 1118); the sphere map is not allowed for R. The mask is 4 (`r1` 20 is 16 plus the R bit), so
   only lane z of R26 enters the latch. It takes lane z of R26 and selects it into the latch; the output is the latch holding the generated r, computed by routine 51, not here.
 - **`102`** (routine; kernel record 102), **inferred**: Q for a linear mode (`ody_program.s`, source
   line 1121), where the sphere map is not allowed either. Mask 8 (`r1` 24) moves the generated q,
-  lane w of R26, into the latch. Input lane w of R26 is selected into the latch, so the result carries the generated q; the routine computes nothing itself.
+  lane w of R26, into the latch. Input lane w of R26 is selected into the latch, so the result carries the generated q: a lane merge.
 - **`108`** (routine; kernel record 108), **inferred**: the texture matrix after generation, added
   after the per-coordinate routines in every texgen program (`ody_program.s`, line 1126). Its input
   is the latch, the incoming texture coordinate with the generated lanes merged in; it computes the
@@ -799,42 +799,41 @@ to tell them apart by address.
 
 - **`1153`** (routine; kernel record 1054), **established**: the closing entry of table records 0 and
   3 (+28 at 0x0dae469c and 0x0dae4774 in `libGLcore.so`), the two programs with neither texture nor
-  clip planes. **inferred:** it takes no operand and computes nothing; its output is the header of a
+  clip planes. **inferred:** it sends a packet's header and last word: the header of a
   seven-word packet (record 1154, `s0` 6, format bits 0x14) and word 7 with the last-word bit (1155),
   the length routine 214 and program 1483 produce.
 - **`1158`** (routine; kernel record 1059), **established**: a closer that no table record and
-  no immediate in the 6.5.30m N32 libGLcore `ody_program.s` names. **inferred:** it takes no input and computes nothing; its delay slots produce as output a nine-word header (1159, `s0` 8, format 0x58) and the last
+  no immediate in the 6.5.30m N32 libGLcore `ody_program.s` names. **inferred:** it sends a packet's header and last word: its delay slots send a nine-word header (1159, `s0` 8, format 0x58) and the last
   word 9 (1160); no program's header has that count with that format (563's nine-word header has
   format 0x4c).
 - **`1163`** (routine; kernel record 1064), **established**: the closing entry of table record 2 only
   (+28 at 0x0dae472c in `libGLcore.so`), the one-sided, untextured fragment-lighting program.
-  **inferred:** it takes nothing and outputs the header of a ten-word packet (1164, `s0` 9, format
-  0x18) and word 10 (1165), the length of program 1313's packet; it computes nothing.
+  **inferred:** it sends a packet's header and last word: the header of a ten-word packet (1164, `s0` 9, format
+  0x18) and word 10 (1165), the length of program 1313's packet.
 - **`1168`** (routine; kernel record 1069), **established**: the closing entry of table record 5 only
-  (+28 at 0x0dae4804 in `libGLcore.so`), the two-sided form of record 2. **inferred:** no operand is read and it computes no value; the output is a fourteen-word header (1169, `s0` 13, format 0x1c) and
+  (+28 at 0x0dae4804 in `libGLcore.so`), the two-sided form of record 2. **inferred:** it sends a packet's header and last word: a fourteen-word header (1169, `s0` 13, format 0x1c) and
   word 14 (1170), matching program 1390's packet.
 - **`1173`** (routine; kernel record 1074), **established**: the closing entry whenever the
   perspective-texture flag is set: `AddProgram` (`ody_program.s`) adds it at source line 1159 for a
   generic program and at line 1150 for a table program, where it also puts routines 1200 and 1211 in
-  front of it. **inferred:** it takes no input and does no arithmetic; its outputs are an
+  front of it. **inferred:** it sends a packet's header and last word: an
   eleven-word header (1174, `s0` 10, format 0x4e) and word 11 (1175), the length 1211 announces.
 - **`1178`** (routine; kernel record 1079), **established**: the generic closing entry for one colour
   without separate specular or fragment lighting (`ody_program.s`, source line 1159, chosen when the
-  two-colour flag is clear), and the +28 word of eleven table records. **inferred:** it computes nothing from no input and outputs a ten-word header (1179, `s0` 9, format 0x16) and word 10 (1180),
+  two-colour flag is clear), and the +28 word of eleven table records. **inferred:** it sends a packet's header and last word: a ten-word header (1179, `s0` 9, format 0x16) and word 10 (1180),
   the packet of 243, 1216 and the one- and two-light table programs.
 - **`1183`** (routine; kernel record 1084), **established**: the same closing entry for two colour
-  outputs (`ody_program.s`, source line 1159); table records 7 and 13 carry it. **inferred:** it
-  takes nothing and computes nothing; it outputs a twelve-word header (1184, `s0` 11, format 0x5a)
+  outputs (`ody_program.s`, source line 1159); table records 7 and 13 carry it. **inferred:** it sends a packet's header and last word: a twelve-word header (1184, `s0` 11, format 0x5a)
   and word 12 (1185), the length of the two-colour programs 1752 and 1798.
 - **`1188`** (routine; kernel record 1089), **established**: the closing entry when separate specular
-  or fragment lighting is on, one-sided (`ody_program.s`, source line 1159). **inferred:** it takes no input, computes nothing and outputs a thirteen-word header (1189, `s0` 12, format 0x1a) and word 13
+  or fragment lighting is on, one-sided (`ody_program.s`, source line 1159). **inferred:** it sends a packet's header and last word: a thirteen-word header (1189, `s0` 12, format 0x1a) and word 13
   (1190), the packet of 1348, 2240 and 2300.
 - **`1193`** (routine; kernel record 1094), **established**: the two-sided form of 1188, picked when
   the two-colour flag or the fragment model's two-sided byte (context +0x10000 + 26021) is set.
-  **inferred:** it takes no operand and outputs a header (1194, `s0` 15, format 0x1e), equal to the
+  **inferred:** it sends a packet's header and last word: a header (1194, `s0` 15, format 0x1e), equal to the
   header of 1433 (1448) and 2268 (2291), and a last word (1195) whose word field is 1 where the
   rule "last word = `s0` + 1" gives 16, which a four-bit field holds as 0; 1433 ends its packet the
-  same way (1464); why is unknown. It computes nothing, and its last-word record also carries
+  same way (1464); why is unknown. Its last-word record also carries
   colour operation 0x0009.
 
 #### Unlit colour routines
@@ -842,7 +841,7 @@ to tell them apart by address.
 - **`1198`** (routine; kernel record 1099), **established**: added with lighting off and no light
   (`ody_program.s`, source line 991). **inferred:** its first record takes the colour slot 5 into
   the colour unit and out as words 1 and 2 (code 0x1f22), so the unlit colour passes through
-  unchanged; it then runs into 1200, which supplies the position products. Its input is that slot and its outputs are the two colour words; it computes nothing on the colour itself.
+  unchanged; it then runs into 1200, which supplies the position products. Its input is that slot and its outputs are the two colour words; the colour unit copies the colour through unchanged.
 - **`1200`** (routine; kernel record 1101), **established**: the tail of 1198 two records in, added
   by `AddProgram` (`ody_program.s`) before 1211 when a table program meets the perspective-texture
   flag (source line 1148). **inferred:** its inputs are the position slot and R0 to R4, and it
@@ -864,12 +863,12 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 - **`515`** (routine; kernel record 515), **established**: the head of every program's set-up list,
   stored by `ody_program.s` at source lines 1179 and 1209. Its own record is an end mark.
   **inferred:** the work is in its four delay slots, which read data words 0x1e3 and 0x1e0 and
-  produce 0.0 in R17's w lane and 1.0 in R16's, so each program starts with those two lanes set. It takes no operand and computes nothing; those two lane writes are its output.
+  produce 0.0 in R17's w lane and 1.0 in R16's, so each program starts with those two lanes set. It is a register set-up: those two lane writes are all it does.
 - **`606`** (routine; kernel record 606), **established**: the set-up routine of every program built
   without the table (`ody_program.s`, source line 1180). **inferred:** its record and delay slots
   read the constant 0.0 (data word 0x1e3) three times and write it into the w lane of R13, R14 and
   R15, the normal-matrix rows, so the normal transform that follows ignores any fourth normal
-  component. Its input is that constant and its output those three lanes; it computes nothing.
+  component. Its input is that constant and its output those three lanes: a register set-up.
 - **`1226`** (routine; kernel record 1127), **established** selection, **inferred** arithmetic: the
   set-up routine of the ten table records whose first light is directional, 3, 6, 7 and 9 to 15
   (second list at record +52 in `libGLcore.so`, first at 0x0dae478c). It runs once per program
@@ -901,7 +900,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
   `libGLcore.so`). Inputs: the constants 0.0 and 1.0 and colour addresses 24 and 0. Outputs: 0.0 in
   the w lanes of R17 and of the normal-matrix rows R13 to R15, 1.0 in R16.w, and in colour address
   25 the light-model ambient plus light 0's ambient colour (0x1830, 0x0038, stored by 0x9908). A local
-  light's direction and attenuation change per vertex, so unlike 1226 it computes nothing else ahead.
+  light's direction and attenuation change per vertex, so unlike 1226 it prepares nothing else ahead.
 - **`1304`** (routine; kernel record 1205), **established** selection, **inferred** arithmetic: the
   set-up routine of the four fragment-lighting table records with GL_LIGHTING off, 2, 4, 5 and 8
   (+52 at 0x0dae4744 for record 2, `libGLcore.so`). Its inputs are parameter words 0x080 to 0x086,
@@ -967,8 +966,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 - **`758`** (routine; kernel record 758), **established** selection, **inferred** arithmetic: added
   between 768 and the separate-specular finish only while building program 1, the program
   `__glOdysseyValidateProgram` adds when software clip planes are on (`ody_program.s`, source lines
-  956 and 1328). Its inputs are the specular slots; it does no arithmetic in the vector or scalar
-  units: it copies the specular slots 12
+  956 and 1328). Its inputs are the specular slots; it is a colour-unit copy: it copies the specular slots 12
   and 8 into the colour unit (0x1f20), reads working addresses 28 and 25 and stores to 30 and 27, so
   its output is the specular material placed where the separate-specular finish reads it.
 - **`792`** (routine; no kernel record), **established**: the attenuation-or-spot routine used when the
@@ -1039,13 +1037,13 @@ them. Routine 303, the copy routine, is the only entry in this stretch any host 
 - **`605`** (routine; file offset 0x1c5c of `buzz_xform.bin`), **established**: a single idle record, the
   fifth slot after end mark 600, that runs straight into entry 606 (sequencer list entry named by
   `AddProgram`). **inferred:** it is the alignment gap before 606, not a routine of its own;
-  entering at 605 would cost one idle cycle and then run 606. It takes no input, computes nothing and produces no output word.
+  entering at 605 would cost one idle cycle and then run 606. It is an idle record: a null step that only delays 606 by one cycle.
 - **`278`** (routine; file offset 0xd08 of `buzz_xform.bin`), **inferred**: a parameter-memory dump
   that no host code in any release searched selects. It reads parameter words 0x140 to 0x14f and
   then 0x1f5 and 0x1f6, puts each into lane x or y of R16 two records later, reads it back in lane
   mode through scalar code 8, which passes a value unchanged, and outputs the first sixteen as words
   0 to 15 (records 286 to 301) with no packet header, closing with word 0 at 302. It computes no
-  arithmetic, and no host code writes parameter words 0x140 to 0x14f. It takes no operand from the command word; its outputs are the sixteen words and it computes nothing.
+  arithmetic, and no host code writes parameter words 0x140 to 0x14f. It is a parameter dump: it reads no operand from the command word and sends the sixteen words unchanged.
 - **`525`** (routine; file offset 0x189c of `buzz_xform.bin`), **inferred**: a complete
   single-vertex program for position only, which no host code selects (search above). Its inputs are
   the position slot and R0 to R4. It computes the five products of routine 214 (525 to 529), writes
