@@ -2883,3 +2883,47 @@ Lays out
   +2136, and then every object of every group of every share group in the set at +2368, each as a 68-byte record
   through `SpewObjectToUser`; running out of capacity logs and returns 11. The number of records is copied to the
   user pointer at +16.
+- `OdsyAllocSpecificCSetId` (`odsy_adt.o`, offset 0x42c, 472 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Stores an element at a caller-chosen id in a chunked set (chunks of 1 << the size shift at set +40 pointers each,
+  chain of chunk nodes in a ring from set +0, chunk count +24, element count +28, hint node +16). A set whose shift
+  is 0 returns -1. The chunk number is the id shifted right by the shift; when it is not yet below the chunk
+  count, the routine creates every missing node with `NewChunkNode` (each takes the next 1-based number at node +12,
+  zero elements, and joins the ring at the tail) and fails with -1 if one cannot be had. It walks the ring to the node
+  (the short way round), allocates and clears the node's pointer array when the node holds no elements, stores the
+  element at the low bits of the id, adds one to the node's count (+8) and the set's, makes the node the hint and returns the
+  id. It does not check that the id is free.
+- `OdsyAllocCSetId` (`odsy_adt.o`, offset 0x604, 608 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Gives an element the lowest free id the search finds in a chunked set. A shift of 0 returns -1. When the set's
+  element count is below its capacity (chunks times chunk size) it starts at the hint node (+16) and goes round the ring:
+  a full node is skipped, an empty node first gets a cleared pointer array, and the first null slot takes the element
+  and the id is the node's first id (its 1-based number minus one, shifted) plus the slot; the node's count and the
+  set's count are incremented and the node becomes the hint. Otherwise, or when no free slot is found, it builds a
+  new node with its array (a failed array allocation poisons the node with 210 and frees it, returning -1), gives it
+  the next 1-based number, one element, takes as its id the set's element count before the increment, links it into the ring tail and stores the element in slot 0.
+  source's plain scan from the head (`odsy_adt.c`).
+- `OdsyDeallocCSetId` (`odsy_adt.o`, offset 0x864, 352 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Frees an id in a chunked set. It walks the ring to the id's chunk in whichever direction is shorter, stores 0 in the
+  slot, counts the node and the set down and, when the node is empty, overwrites its pointer array with 211 and
+  frees it, clearing the node's pointer. It then moves the hint (+16) back to this node when the node's number is
+  smaller than the hint's, so later allocations refill the earliest chunk.
+- `OdsyLookupCSetId` (`odsy_adt.o`, offset 0x9c4, 224 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Returns the element at an id of a chunked set, or 0. A set with shift 0, an id whose chunk number is not below the
+  chunk count and a chunk with no pointer array all return 0. Otherwise it walks the ring from the head to the chunk,
+  forwards or backwards by whichever is shorter, and returns the slot at the low bits of the id.
+- `OdsyAlloc32kSlot` (`odsy_adt.o`, offset 0xadc, 348 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Takes the lowest free 32 KB slot from a bitmap of 512 doublewords (lock at +0, first doubleword with a free bit at +8,
+  words from +16). With a lock it takes `psema` at priority 25; a first-free index outside 0 to 511 releases the lock and
+  returns -1. It finds the lowest clear bit of that doubleword, sets it and returns 64 times the index plus the bit. When
+  that doubleword becomes all ones the first-free index advances past every full doubleword (up to 512); the lock is
+  released with `vsema`.
+- `OdsyFree32kSlot` (`odsy_adt.o`, offset 0xc38, 204 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Returns a 32 KB slot to the bitmap of `OdsyAlloc32kSlot`. A null bitmap or a slot at or above 512 x 64 logs a
+  severity 4 message and returns. Otherwise it takes the lock, clears the bit with a 64-bit mask, lowers the first-free
+  index to this doubleword when it was higher and releases the lock.
+  so slots from 32 up within a word clear correctly.
