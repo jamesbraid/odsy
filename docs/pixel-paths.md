@@ -122,6 +122,76 @@ All three builders fill eight words; word 0 is lowest in memory.
   code, 12:10 the storage code, 15:13 the description's +0x28, bit 19 for pixel classes 16 and
   17, bit 27 when description byte 0 or byte 10 is set.
 
+## Telling a depth or stencil read from a colour read
+
+Two class and code pairs in the board-to-host table are shared: class 0 code 0 (a stencil byte, and
+colour index bytes on one kind of window) and class 2 code 2 (a 32-bit depth word and `BGRA`/
+`UI_8_8_8_8_REV`). What separates them in the header the library sends is **established** by running
+the shipped routines under `scripts/read_header_sweep.py` (the description routine, the read-parameter
+routine and the field-offset routine, on a mode record filled for each window kind), and by reading
+the read builder's call to the field-offset routine:
+
+- **Word 4 bits 27:20, the two field codes, differ.** The read builder (0x0d9bb8a0) calls
+  `ImageCalcDmaFieldOffsets` (0x0d9beb40; the listing labels the call with a wrong name, the target
+  address is that routine's) with a fourth argument that is 1 exactly when the requested format is
+  `GL_DEPTH_COMPONENT` (0x1902) or `GL_STENCIL_INDEX` (0x1901). The routine's table gives colour and
+  depth-or-stencil different pairs at every storage and layout code where a window allows a depth or
+  stencil read and a class 2 colour read: storage 2 layout 2 gives (2,2) for colour and (0,0) for depth
+  or stencil; storage 3 layout 2 gives (6,2) and (4,0). Swept over every storage and layout code (left
+  buffer, `scripts/read_header_sweep.py` run on the field routine): colour and depth-or-stencil differ
+  at storage 1 layouts 2 and 3, storage 2 layouts 2, 3 and 4, and storage 3 layouts 2 and 4, which
+  include every pair a window can have that allows a class 2 depth read or a stencil read. A `BGRA`
+  read therefore never carries the depth read's field codes on the same window.
+- **The code differs for colour index on a normal index window.** The read-parameter routine gives a
+  colour index read class 0 code 1 when the description's storage code is non-zero and code 0 only
+  when it is zero. The description routine gives an 8-bit index visual storage 2 layout 4, so code 1
+  with fields (3,2), unless the mode record's word at +84 equals 1: then it gives storage 0 layout 1,
+  code 0, fields (0,0). A stencil read on a storage-0 description is refused (the stencil branch
+  accepts storage 2 and 3 only). So a stencil read and a colour index read never carry the same header
+  on one window. What the word at +84 of the mode record is: **unknown** (the description routine
+  compares it with 1; the context-bind routine tests it for greater than 0 and then stores a 2
+  in the bind request).
+- **No other word differs.** Word 0 (the sentinel), word 1 (box corner), word 2 (the window word the
+  kernel returned at bind), word 3, the class field in bits 15:13 (1 for class 2, 0 for class 0),
+  bit 12, bits 19:16, bit 28, bit 31, words 5 and 6 and word 7 come from the window, the box and the
+  host bytes per pixel; none depends on colour against depth. Word 7 bits 18:16 are 1 for both
+  4-byte reads and 5 for both 1-byte reads.
+- **No command surrounds the read differently.** `__glOdyim_ReadPixels`, `ImageXfer`, the chain
+  builder and the move routine store nothing to the command window (`scripts/fifo_words.py`: 0 window
+  stores in each range) and the raster-state save and load routines store only to the context. The one
+  request goes through `ReadFromPMObj` to the kernel's transfer ioctl, whose flag word does not depend
+  on the format, and the kernel copies header word 4 into each entry unchanged (`kernel.md`, the
+  entries section). No plane-select or buffer-select register is written for a depth or stencil read
+  that is not written for a colour read.
+
+Word 4 with bits 31, 28 and 19:16 removed (they come from the window and the read buffer), by window
+and read; each row is printed by the sweep script:
+
+| Window (class, storage, layout) | Read | Class, code | Fields | Word 4 less 31, 28, 19:16 |
+|---|---|---|---|---|
+| RGBA8, double-buffered with depth (10, 3, 2) | depth `UI` | 2, 2 | (4,0) | 0x00403012 |
+| the same | stencil `UB` | 0, 0 | (4,0) | 0x00401000 |
+| the same | `BGRA`/`UI_8_8_8_8_REV` | 2, 2 | (6,2) | 0x02603012 |
+| RGBA8, single-buffered (10, 2, 2) | depth `UI` | 2, 2 | (0,0) | 0x00003012 |
+| the same | stencil `UB` | 0, 0 | (0,0) | 0x00001000 |
+| the same | `BGRA`/`UI_8_8_8_8_REV` | 2, 2 | (2,2) | 0x02203012 |
+| RGBA8, double-buffered, no depth (10, 2, 1) | depth, stencil | refused | | |
+| the same | `BGRA`/`UI_8_8_8_8_REV` | 2, 2 | (2,0) | 0x00203012 |
+| index 8, normal (16, 2, 4) | stencil `UB` | 0, 0 | (0,0) | 0x00001000 |
+| the same | colour index `UB` | 0, 1 | (3,2) | 0x02301008 |
+| index 8, word at +84 equal to 1 (16, 0, 1) | colour index `UB` | 0, 0 | (0,0) | 0x00001000 |
+| the same | stencil, depth | refused | | |
+| index 12 (17, 2, 3) | colour index `US` | 1, 14 | (3,2) | 0x02301071 |
+
+Two windows can send the same word, for example 0x00001000 for a stencil read on a normal index window
+and for a colour index read on the +84 window; word 2 differs between windows. The `RGBA`/`UB` read on
+RGBA8 is class 2 code 8 and shares nothing. A single-buffered RGBA8 window allows a depth read whatever
+its depth flag (the description routine ignores the mode record's depth byte there). The sweep covers
+window reads only: a texture object's description is built elsewhere and was not swept. What the
+board does with the field codes is still unknown. **Inferred:** the board takes the two codes as the
+offsets of the colour fields or of the depth and stencil fields within the stored pixel, so a depth
+word and a colour word with the same class and code come from different parts of it.
+
 ## Host-to-board table
 
 - **`__glOdysseyImageCalcXferWriteParams`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d9bd800, 4924 bytes), **established**, read in
