@@ -3242,3 +3242,99 @@ Lays out
   characters) and splits it with `strtok_r` on a delimiter string, comparing each token with a key string until one matches, and
   takes the token after it as the name (an empty default string when none matches). The name is copied with `strncpy` to
   board +0xb4b8, and the terminating zero is stored one byte after the end of the copied text. It returns 0.
+- `gfP_OdsyDIAGallocScanbuf` (`odsy_diag.o`, offset 0x0, 536 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Private request 53: allocates a diagnostic scan buffer and maps it to the client. It copies in 24 bytes (the size is the word
+  at +0; failure 14), takes the mutex at +0xb338 (level 25) and returns 16 when a scan buffer already belongs to
+  a client (word at -19608 from +0x10000). It allocates the buffer with `kmem_alloc` (failure 12), maps it with
+  `odsyMapPages` (failure frees it and returns 11), records its size (-19616), owner (-19608) and mapping, and
+  releases the mutex. The reply carries the size, the mapped address (`ddv_getaddr`) at +8 and the buffer's physical
+  address (`kvtophys`) at +16 (failure 14). The routine prints the address, zeroes the buffer through the mapping, stores the word 23 at offset 92 and, for a
+  buffer above 16 KB, 16408 at offset 16480, and writes the data cache back with `dki_dcache_wb`.
+- `gfP_OdsyDIAGgetShadowPtrs` (`odsy_diag.o`, offset 0x2b8, 728 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Private request 54: maps the driver's shadow memory into a diagnostic client. It copies in 80 bytes (failure 14), takes the
+  mutex at +0xb370 and returns 16 when a client already holds the mapping (word at -19584). It maps 64 KB of the buffer pointed to by
+  board +880 and the four 16 KB buffers whose pointers sit at +29888 with `odsyMapPages` (a failure unmaps what succeeded and returns 11; the 64 KB
+  failure returns 12), records the owner and replies with the four buffers' physical addresses (the pointer masked to 40
+  bits) at +0 to +24, their mapped addresses at +32 to +56, the 64 KB block's physical address at +64 and its mapped
+  address at +72 (from `ddv_getaddr`). It returns 0.
+- `odsy_NewDmaRegion` (`odsy_dma.o`, offset 0x0, 332 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Creates a DMA region record for one buffer. It allocates 88 zeroed bytes (failure: log, status 12, null) and fills the
+  owner (+16), board (+24), address (+32), length (+40) and a user-buffer flag (+48), and copies the 32-byte transfer header to
+  +56. For a user buffer it checks `useracc` over the range with flag 272 (failure: log, delete the region, null) and marks the
+  record (+52 = 1) before `odsy_DmaRegion_BuildXlatTbl` builds the page table (an error is logged, the region deleted and null returned);
+  a kernel buffer gets +52 = 0. The status word is 0 on success.
+- `odsy_DeleteDmaRegion` (`odsy_dma.o`, offset 0x14c, 240 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Frees a DMA region record. For a locked user buffer it calls `unuseracc` with flag 272 on the range, then overwrites the page
+  table (at +0, size at +8) with the byte 129 and frees it, overwrites the 88-byte record with 131 and frees that.
+- `odsy_DmaRegion_BuildXlatTbl` (`odsy_dma.o`, offset 0x40c, 332 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Builds the region's page table. An existing table is overwritten with 135 and freed. The new table is 40 bytes plus 8 bytes for
+  every 16 KB of the buffer, allocated zeroed (failure: severity 1 log, return 12). The 32-byte transfer header is copied to its
+  start, and `generatePageTable` fills the entries after it from the header, the address and the length; its result is
+  returned.
+- `gfP_OdsyDIAGdma` (`odsy_dma.o`, offset 0x934, 512 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Private request 55: runs one diagnostic DMA transfer and waits for it. When its second argument is nonzero it calls
+  `RRM_CheckValidFault` first. It copies in 48 bytes (user address at +0, length at +8, the 32-byte header at +12 and a mode word at +44;
+  failure 14), takes the manager's busy count, builds a region with `odsy_NewDmaRegion`, clears bit 11 of the board
+  word at +4116 and starts the transfer with `odsy_DmaRegion_DoTransfer`. It then polls up to 40 times with
+  `DmaFinishedPollDelay` for bit 11 of +4116; failing that it logs and tears the board down with `odsy_teardown`. It
+  deletes the region, drops the busy count and returns 0.
+- `odsyDMAWait` (`odsy_dma.o`, offset 0x24a8, 940 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Waits for DMA operations to finish and reaps their records (arguments: board, owner context, mode, pointer to an operation
+  number). A torn-down board returns 9. Under the mutex at +5800 mode 0 arms a timeout, sets the flag at -19328 to 3 and sleeps
+  on the all-operations sync variable at +5816 (`ddi_sv_wait_sig`, non-fatal signals held); a signal or teardown returns 22. Otherwise the
+  operation number (-1 means none and returns 0) must lie within 128 of the completed counter at +6880 and match the issue count
+  stored in the ring entry at +5856 (else a log and 22); the routine then arms the timeout with the flag at 1 and, when the entry's state
+  (+8) is nonzero, sleeps on the entry's own sync variable (+32). A failed wait stores -1 and returns 22. With an owner it
+  then walks the owner's operation set at +416 and, for each finished record (+8 zero), unlocks its user pages (`unuseracc`, flag 272) when it has a range, releases its set id and destroys
+  its sync variable. The operation number is set to -1 and it returns 0.
+- `ConstructTftchWarList` (`odsy_dma.o`, offset 0x2eec, 688 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Splits an image transfer into pieces of at most 0x24000 bytes (arguments: output list, the 32-byte header, an output size, the
+  buffer address and its length). A transfer that fits is one piece: count 1, x and y from header word 4, width and height
+  from word 12, address and length, and an output size of 128. A longer one needs a row (header word 24's 20 bits plus
+  the stride at word 20) of at most 0x24000 bytes, otherwise it logs severity 4 and returns 1. Each piece then holds as many whole rows as fit; the piece records beyond the first are allocated
+  together (`kmem_alloc` of 48 bytes each, failure returns 1) and chained through +8. A record holds x at +24, y at +28, width at +16,
+  rows at +20, address at +32 and bytes at +40. The y of a piece counts up from the header's, or down from its bottom
+  edge when bit 30 of the header's top byte (word 28) is set; the last piece takes the remaining rows and drops the
+  stride after its last row. The output size is 128 times the piece count. It returns 0.
+- `gf_OdsyExit` (`odsy_sched.o`, offset 0x1b0, 580 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
+  Runs when the manager closes the board for one graphics object. When bit 2 of the object's flag word (+4) is set it first
+  calls `odsyDiagExit`. It takes the manager's semaphore (`psema` at +56, 537), becomes owner, waits in 2 us steps for the
+  word at +104 to clear and counts the busy word at +80 up. For the object's own current client (if any) and then for every client
+  in the global client table (176-byte entries, count in a global) that belongs to this object, it takes the client's
+  lock (`psema`, 25) and, when its context is not yet torn down (+408 zero), calls `odsyDMAFinish`,
+  `odsyMMdetach` and `odsyUnpinAndUnmapGctxRegions` and sets +408 to 1. It drops the busy count, raises the interrupt level
+  and calls the callback at +192 of the object's operations table when there is one, clears the owner, releases the
+  semaphore with `vsema`, restores the level and returns 0.
+- `odsy_sboxfi` (`odsy_tport.o`, offset 0xb90, 600 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Text-port filled box (arguments: board base, x1, y1, x2, y2). It returns at once when the mute word is set. Otherwise it
+  counts the port in use with a write-buffer flush, takes the text-port spin lock, and orders the corners (minimum and maximum x and y).
+  It sends to the command FIFO port at +0x110000 a primitive begin (`0x14400`, type 7), four 2D vertices (`0x8080c800` with
+  x and y) at (xmin, H - ymax + 1), (xmax + 1, H - ymax + 1), (xmax + 1, H - ymin + 2) and (xmin, H - ymin + 2), where H is
+  the port height at +16 of its static object, and the primitive end `0x14001`. A word at +7036 of the hardware-state
+  object adds an extra settle group (`0x10443` with 250 and two `0x10046`) in front of the settle sequence of `BUZZ.h`
+  section 5 that closes every text-port drawing routine. The use count goes down and the lock is released.
+- `odsy_pnt2i` (`odsy_tport.o`, offset 0xde8, 404 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Text-port point (arguments: board base, x, y). With the mute word clear it takes the in-use count and the text-port spin lock,
+  sends `0x14400` with type 0 (points), the vertex `0x8080c800` with x and H - y + 1 (H from the static port object at +16)
+  and `0x14001`, then the same closing settle sequence as `odsy_sboxfi`, and releases the lock.
+- `odsy_tpinit` (`odsy_tport.o`, offset 0x1658, 492 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+
+  Prepares the board for text-port output (argument: board base). It finds the board with `odsyPipeNrFromBase`, sets the mute word and
+  waits in 5 us steps for the command FIFO level (bits 15:7 of the word at +4204) to reach zero. Up to six times it writes 0, 1, 0 to
+  +4228, 0 to +4212 and 1 to +4220 and runs `odsyInitCfifo`; a failure runs `odsyReset` first on the next pass and a sixth failure logs
+  severity 1 and leaves the port muted. It then calls `odsyInitDBE` twice with two stored timing structures, stores the board's width and height
+  (halfwords at +232 and +234) in the static port object, copies three board words (+1360, +1496 and +1336 divided by 16) into the stored
+  state, clears 11128 bytes of the hardware-state object, writes 4165 stored words to the FIFO port at +0x110000,
+  calls `ODSY_SET_GC`, and clears the mute word.
