@@ -2807,7 +2807,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda43
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44078	132	__glDoBlend_SA_MSA	dynsym+mdebug	0920c3db6f3f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda440fc	132	__glDoBlend_MSA_SA	dynsym+mdebug	113e99629bf6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44180	1408	__glGenericPickBlendProcs	dynsym+mdebug	1467f6ba3325		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44700	184	__glBlendSpan	dynsym+mdebug	70d2d6b125c4		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44700	184	__glBlendSpan	dynsym+mdebug	70d2d6b125c4		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda447b8	188	__glBlendSpan_SA_MSA	dynsym+mdebug	9ea16861216e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44874	180	__glBlendSpan_MSA_SA	dynsym+mdebug	d6de98fb2b9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44928	112	__glBlendSpan_SA_ZERO	dynsym+mdebug	ccdf9da5f312		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -8644,7 +8644,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d5a0	100	__glDoBlend_SA_MSA	dwarf+dynsym	91138efe72f6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d610	100	__glDoBlend_MSA_SA	dwarf+dynsym	21d162b44ece		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d680	1416	__glGenericPickBlendProcs	dwarf+dynsym	e43d557b9b2e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dc10	192	__glBlendSpan	dwarf+dynsym	15383be3c56c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dc10	192	__glBlendSpan	dwarf+dynsym	15383be3c56c		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dcd0	360	__glBlendSpan_SA_MSA	dwarf+dynsym	49e50e9b0e70		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2de40	368	__glBlendSpan_MSA_SA	dwarf+dynsym	42e0ade7e458		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dfb0	340	__glBlendSpan_SA_ZERO	dwarf+dynsym	3ee73660ef0c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -14534,7 +14534,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272660	108	__glDoBlend_SA_MSA	dwarf+dynsym	3424a4407210		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22726d0	108	__glDoBlend_MSA_SA	dwarf+dynsym	53fd805c1b8b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272740	1416	__glGenericPickBlendProcs	dwarf+dynsym	e2b2335c8084		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272cd0	192	__glBlendSpan	dwarf+dynsym	ffcd01d34682		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272cd0	192	__glBlendSpan	dwarf+dynsym	ffcd01d34682		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272d90	360	__glBlendSpan_SA_MSA	dwarf+dynsym	c29379de0be3		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272f00	368	__glBlendSpan_MSA_SA	dwarf+dynsym	06aa554acdb1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2273070	356	__glBlendSpan_SA_ZERO	dwarf+dynsym	0dd904306e5e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -69858,7 +69858,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda43fac	204	__glDoBlend_
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44078	132	__glDoBlend_SA_MSA	dynsym+mdebug	0920c3db6f3f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda440fc	132	__glDoBlend_MSA_SA	dynsym+mdebug	113e99629bf6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44180	1408	__glGenericPickBlendProcs	dynsym+mdebug	1467f6ba3325		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44700	184	__glBlendSpan	dynsym+mdebug	70d2d6b125c4		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44700	184	__glBlendSpan	dynsym+mdebug	70d2d6b125c4		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda447b8	188	__glBlendSpan_SA_MSA	dynsym+mdebug	9ea16861216e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44874	180	__glBlendSpan_MSA_SA	dynsym+mdebug	d6de98fb2b9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda44928	112	__glBlendSpan_SA_ZERO	dynsym+mdebug	ccdf9da5f312		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -75695,7 +75695,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d520	124	__glDoBlen
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d5a0	100	__glDoBlend_SA_MSA	dwarf+dynsym	91138efe72f6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d610	100	__glDoBlend_MSA_SA	dwarf+dynsym	21d162b44ece		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d680	1416	__glGenericPickBlendProcs	dwarf+dynsym	e43d557b9b2e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dc10	192	__glBlendSpan	dwarf+dynsym	15383be3c56c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dc10	192	__glBlendSpan	dwarf+dynsym	15383be3c56c		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dcd0	360	__glBlendSpan_SA_MSA	dwarf+dynsym	49e50e9b0e70		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2de40	368	__glBlendSpan_MSA_SA	dwarf+dynsym	42e0ade7e458		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2dfb0	340	__glBlendSpan_SA_ZERO	dwarf+dynsym	3ee73660ef0c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -81585,7 +81585,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c25d0	132	__glDoBlen
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2660	108	__glDoBlend_SA_MSA	dwarf+dynsym	3424a4407210		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c26d0	108	__glDoBlend_MSA_SA	dwarf+dynsym	53fd805c1b8b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2740	1416	__glGenericPickBlendProcs	dwarf+dynsym	e2b2335c8084		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2cd0	192	__glBlendSpan	dwarf+dynsym	ffcd01d34682		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2cd0	192	__glBlendSpan	dwarf+dynsym	ffcd01d34682		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2d90	360	__glBlendSpan_SA_MSA	dwarf+dynsym	c29379de0be3		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2f00	368	__glBlendSpan_MSA_SA	dwarf+dynsym	06aa554acdb1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c3070	356	__glBlendSpan_SA_ZERO	dwarf+dynsym	0dd904306e5e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -87397,7 +87397,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda43fac	204	__glDoBlend_
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda44078	132	__glDoBlend_SA_MSA	dynsym+mdebug	0920c3db6f3f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda440fc	132	__glDoBlend_MSA_SA	dynsym+mdebug	113e99629bf6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda44180	1408	__glGenericPickBlendProcs	dynsym+mdebug	1467f6ba3325		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda44700	184	__glBlendSpan	dynsym+mdebug	70d2d6b125c4		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda44700	184	__glBlendSpan	dynsym+mdebug	70d2d6b125c4		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda447b8	188	__glBlendSpan_SA_MSA	dynsym+mdebug	9ea16861216e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda44874	180	__glBlendSpan_MSA_SA	dynsym+mdebug	d6de98fb2b9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda44928	112	__glBlendSpan_SA_ZERO	dynsym+mdebug	ccdf9da5f312		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -93234,7 +93234,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d520	124	__glDoBlen
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d5a0	100	__glDoBlend_SA_MSA	dwarf+dynsym	91138efe72f6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d610	100	__glDoBlend_MSA_SA	dwarf+dynsym	21d162b44ece		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d680	1416	__glGenericPickBlendProcs	dwarf+dynsym	e43d557b9b2e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2dc10	192	__glBlendSpan	dwarf+dynsym	15383be3c56c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2dc10	192	__glBlendSpan	dwarf+dynsym	15383be3c56c		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2dcd0	360	__glBlendSpan_SA_MSA	dwarf+dynsym	49e50e9b0e70		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2de40	368	__glBlendSpan_MSA_SA	dwarf+dynsym	42e0ade7e458		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2dfb0	340	__glBlendSpan_SA_ZERO	dwarf+dynsym	3ee73660ef0c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
@@ -99124,7 +99124,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22725d0	132	__glDoBlen
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272660	108	__glDoBlend_SA_MSA	dwarf+dynsym	3424a4407210		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22726d0	108	__glDoBlend_MSA_SA	dwarf+dynsym	53fd805c1b8b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272740	1416	__glGenericPickBlendProcs	dwarf+dynsym	e2b2335c8084		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272cd0	192	__glBlendSpan	dwarf+dynsym	ffcd01d34682		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272cd0	192	__glBlendSpan	dwarf+dynsym	ffcd01d34682		in	understood	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272d90	360	__glBlendSpan_SA_MSA	dwarf+dynsym	c29379de0be3		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272f00	368	__glBlendSpan_MSA_SA	dwarf+dynsym	06aa554acdb1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2273070	356	__glBlendSpan_SA_ZERO	dwarf+dynsym	0dd904306e5e		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
