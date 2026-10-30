@@ -3548,3 +3548,84 @@ Lays out
   same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), the processor number is read from -15320
   in the private area (IP30: -15456) and the lock it takes is at +0xb488 (IP30: +0xb470); the clock-part register
   sequence, the shadow updates and the cursor replay are unchanged.
+- `odsy_mm_B_okay` (`odsy_pmm.o`, offset 0x3f70, 8 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  The patch 4103 build of the pressure-clear routine is a bare return: its two instructions are a jump back and a
+  no-op, so unlike the IP30 media build it never clears the word at +4924 of the memory-manager record. The pressure
+  level that `odsy_mm_B_warn1` raises is therefore not lowered by `odsy_mm_obj_free_bs` in this build.
+- `OdsyInitCSetCursor` (`odsy_adt.o`, offset 0x130, 20 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  The patch 4103 build of the set-cursor reset uses the older set layout: it zeroes the slot index at +24 and the
+  end flag at +28 (the IP30 media build uses +32 and +36) and copies the chunk-list head at +0 into the current-
+  chunk pointer at +8. The whole 4103 set code, for example `OdsyInitCSet` (chunk-size shift at +32, counters at +16
+  and +20) and `OdsyLookupCSetId` (shift read from +32), uses a 40-byte layout without the hint pointer that the IP30 media build adds.
+
+- `odsySsyncInterrupt` (`odsy_intr.o`, offset 0x574, 72 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)`.
+  The patch 4103 build of the sync interrupt handler makes the same single call to `odsyDMAWakeup` as the IP30 entry
+  and touches no board register; only the stack frame is 32 bytes where the IP30 build uses 16.
+- `odsy_mm_ctxsw_timeout` (`odsy_pmm.o`, offset 0x2614, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  The patch 4103 build of the context-switch timeout handler logs the same severity 1 message and calls
+  `odsy_teardown` as the IP30 entry; only the stack frame (32 bytes against 16) and the order of the return-address
+  save differ.
+- `odsy_mm_cores_obj_in` (`odsy_pmm.o`, offset 0x1a08, 60 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  The patch 4103 build of the co-residency membership test scans the same 16 pointer slots, starting 16 bytes into
+  the array at +8 of its second argument, and returns 1 for a match and 0 otherwise as the IP30 entry describes;
+  only the instruction order and register choice of the loop differ.
+- `odsy_EdidCksum` (`odsy_ddc.o`, offset 0x1abc, 44 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  The patch 4103 build of the EDID checksum adds the 128 bytes at its argument modulo 256 and returns the sum like
+  the IP30 entry; its loop is not unrolled (one byte per pass, 11 instructions in 44 bytes).
+- `odsyCreateDrawable` (`odsy_drawable.o`, offset 0xc8, 68 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  The patch 4103 build of the drawable allocator does the same as the IP30 entry (a 40-byte `kmem_alloc`, the word
+  at +32 cleared, the second argument stored at +16, null on failure); only the stack frame (32 bytes against 16)
+  and the register used for the new record differ.
+- `odsyUnmap` (`odsy_map.o`, offset 0x65c, 96 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  The patch 4103 build of the range unmap does the same as the IP30 entry (`as_lookup_current`, a request block with
+  the address at +32 and zeros at +16 and +40, the unmap method at +64 of the address space's operations); only the
+  stack frame (96 bytes against 80) and the register save order differ.
+- `OdsyInitCSet` (`odsy_adt.o`, offset 0x0, 40 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  The patch 4103 build of the set initialiser stores its second argument (the chunk-size shift) at +32, zeroes the
+  two counts at +16 and +20 and the chunk-list head at +0, and calls `OdsyInitCSetCursor`. The IP30 media build
+  keeps the shift at +40, the counts at +24 and +28 and also clears a hint pointer at +16; patch 4103 has a
+  40-byte layout without that pointer.
+- `sgiEdid` (`odsy_ddc.o`, offset 0x1b84, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  The patch 4103 build of the vendor-monitor test returns 1 for the same two byte-9 values, 0xf8 and 0xe9, as the
+  IP30 entry (the tests are issued in a different order after loading byte 9 first) and 0 otherwise.
+- `odsy_init` (`odsy_init.o`, offset 0x2dc, 44 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  The patch 4103 build of the driver start-up entry only registers the driver with `xwidget_driver_register` (part
+  number 0xc013, manufacturer 35, the "odsy_" prefix, flags 0). Unlike the IP30 media build it does not call
+  `odsyCheckBoardPointers` and does not clear the board-enumeration global first.
+- `odsy_mm_sg_remove_grp` (`odsy_pmm.o`, offset 0x2f4c, 64 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  The patch 4103 build releases the colour-set identifier of a surface group in the same way as the IP30 entry
+  (calls `OdsyDeallocCSetId` unless the group's word at +0 is -1, then stores -1 there) but on the container at +64
+  of the memory-manager record, where the IP30 media build uses +72.
+- `DmaFinishedPollDelay` (`odsy_dma.o`, offset 0x880, 80 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  The patch 4103 build of the poll delay performs the same steps as the IP30 entry (`init_sema`, a 25-tick `timeout`
+  with `odsy_dma_poll_timer`, `psema` at priority 25); only the instruction order and the 32-byte stack frame
+  differ.
+- `odsy_i2cFixupAfterErr` (`odsy_ddc.o`, offset 0x0, 76 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  The patch 4103 build of the two-wire error recovery does the same as the IP30 entry (a delay of the larger of two
+  small-data constants, `odsy_i2cReset`, then a delay of a third constant, all on the board pointer at port record
+  +16); the two constants are loaded into swapped registers and the maximum is taken with the opposite compare and
+  conditional move, giving the same result.
+- `restoreLines` (`odsy_ctxsw.o`, offset 0x4724, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  The patch 4103 build of the line-segment restore hook computes the fourth argument plus 3 modulo 4 with sign
+  correction and passes it as the sixth argument to `odsyRestoreVertex` like the IP30 entry; it keeps the return
+  address in a 64-byte frame and calls rather than tail-calling.
+- `restoreLineStrip` (`odsy_ctxsw.o`, offset 0x47d8, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  The patch 4103 build of the line-strip restore hook has the same instruction sequence as `restoreLines` in this
+  build: the fourth argument plus 3 modulo 4 with sign correction, passed as the sixth argument to
+  `odsyRestoreVertex`, in a 64-byte frame.

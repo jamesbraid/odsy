@@ -39,7 +39,7 @@ builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	boar
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7284	76fc65b5256c1eb3		3	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	49076	cacbeba17d7db99e		19	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	10916	2be13ab21f19b73d		6	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	45364	558979c3fed87c30		26	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	45364	558979c3fed87c30		26	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	40484	161e9ab046ac2daa		24	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10068	62bbd249dba6ebbd		3	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	12996	348432b23817ebaa		8	0	0	undocumented		
@@ -49,11 +49,11 @@ builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	boa
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	40756	c3c408cabce62008		12	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	2804	ee7113ac7daefb11		0	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	74804	997967663a3ae559		26	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16132	b90410e96a3552bf		5	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16132	b90410e96a3552bf		5	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15156	696add11f872186d		13	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19140	b7d5acea538a5d44		13	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9284	59dd9c4b306c5b5e		5	0	0	undocumented		
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69124	f01f16980ddaaef5		57	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69124	f01f16980ddaaef5		57	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	2836	f2ea13a335c373b4		0	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	7044	9fc8662738573c1e		0	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	34804	93cb0abade6d9383		11	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
