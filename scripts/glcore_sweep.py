@@ -2,7 +2,7 @@
 """Sweep one argument of an IRIX N32 libGLcore routine and print what each value does.
 
 Usage: glcore_sweep.py BINARY ADDRESS --values V[,V|LO-HI ...] [--arg N] [--args A,B,...]
-                       [--set OFFSET:SIZE:VALUE ...] [--poke ADDRESS:WORD,WORD ...] [--inventory FILE]
+                       [--set OFFSET:SIZE:VALUE ...] [--poke ADDRESS:WORD,WORD ...] [--dump ADDRESS:COUNT ...] [--inventory FILE]
 
 Runs the routine once per value of argument N (default 0) with the other integer
 arguments from --args, on a zeroed context in which the --set fields are written first
@@ -11,7 +11,8 @@ For every run it prints the context words that changed (each as offset = final v
 command-window words written, then every call to a library routine with its first four arguments (the
 calls are skipped and return 0). --poke writes 32-bit words (a number with a decimal
 point is stored as a float) at an address of the emulated memory; the context occupies
-0x30000000 to 0x30040000 and 0x30100000 to 0x301fffff is free for argument data and the faults. Instructions the emulator lacks are replaced by `mips_shim.install` over the routine's
+0x30000000 to 0x30040000 and 0x30100000 to 0x301fffff is free for argument data. --dump prints COUNT words (hex and as a
+float) at an address after each run and the faults. Instructions the emulator lacks are replaced by `mips_shim.install` over the routine's
 extent (read from the inventory). The context's function-pointer entries
 and dispatch table are stubbed as in attrib_roundtrip.py. It shows the decision tree of a
 routine that compares an enumerant against many constants, one value at a time, as the
@@ -57,6 +58,7 @@ def main():
     ap.add_argument('--args', default='')
     ap.add_argument('--set', action='append', default=[])
     ap.add_argument('--poke', action='append', default=[])
+    ap.add_argument('--dump', action='append', default=[])
     ap.add_argument('--inventory', default=os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                                          '..', 'docs', 'inventory', 'functions.tsv'))
     a = ap.parse_args()
@@ -98,6 +100,10 @@ def main():
             print('  command words:', ' '.join('0x%x' % w for w in fifo))
         for n, r in calls:
             print('  call %s(%s)' % (n, ', '.join('0x%x' % x for x in r)))
+        for d in a.dump:
+            addr, count = (int(x, 0) for x in d.split(':'))
+            words = struct.unpack('>%dI' % count, mu.mem_read(addr, 4 * count))
+            print('  words at 0x%x: %s' % (addr, ' '.join('0x%x(%g)' % (w, struct.unpack('>f', struct.pack('>I', w))[0]) for w in words)))
         if err:
             print('  stopped:', err)
 
