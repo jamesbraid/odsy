@@ -57159,7 +57159,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094860	352	AccessWarpPointer	
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100949c0	92	SProcDCStubDispatch	dynsym	1b1740811b73	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094a20	600	AppendFakeRequest	dynsym	75f44a88eba5	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094c80	572	ProcSGIvcListVideoFormatCombinations	dynsym	a946cdfa0728	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094f20	148	FatalError	dynsym	f363aae2c5ca	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094fd0	68	SClobberNotifyEvent..IAF	dynsym	772cead3cb30	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10095020	212	LbxWriteGetpropReply..PCG	dynsym	b261febd07f4	undocumented		
@@ -58190,7 +58190,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015c970	320	ProcDbeDeallocateB
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015cab0	228	DbeSetupBackgroundPainter..EJC	dynsym	a27c5b008f54	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015cba0	572	AccessInitClientSocketAttrs	dynsym	f0999838b70e	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015cde0	108	FreeAtom	dynsym	ec70d27ec441	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015ce50	84	rrmSetReservedDID	dynsym	4dadf872f3f8	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015ce50	84	rrmSetReservedDID	dynsym	4dadf872f3f8	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015ceb0	924	ProcESAStubStart	dynsym	61fc4d681232	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015d250	368	FontFileDirectoryChanged	dynsym	245abae5f4c5	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015d3c0	440	AccessLookupColor	dynsym	48b4556d4b7f	undocumented		
@@ -103136,7 +103136,7 @@ usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50	named-o
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad	named-only	docs/diagnostics-and-libgl-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater (`usr/gfx/STINGRAY/bin/cmp_flash`)
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6	named-only	docs/diagnostics-and-libgl-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater (`usr/gfx/STINGRAY/bin/cmp_flash`)
-usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	3545cab228e9	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0	undocumented		
@@ -105138,7 +105138,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fdc10	1484	odsyFastZeroCirc
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe1e0	184	nfb1RopLoop..BH	dynsym	2cbd728e948a	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe2a0	1012	miClipSpans	dynsym	6a393777fba3	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe6a0	220	miBSFree..MEB	dynsym	6f3ff85b5ad2	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe780	252	odsyDeallocatePbuffer	dynsym	60e0cb187df3	named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe780	252	odsyDeallocatePbuffer	dynsym	60e0cb187df3	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe880	96	miBSCheapDestroyClip..ADB	dynsym	87f6d98f8c61	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15fe8e0	3180	cfb16SegmentSS1RectXor	dynsym	ccdf74672925	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ff550	92	odsyGenlockHandler..FD	dynsym	531546665859	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
@@ -105187,7 +105187,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1617bd0	1992	miFillPolygon	dy
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16183a0	892	tailSpan..OP	dynsym	6b327cc33c2c	named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1618720	700	nfbStereoValidateSwapbuf..FJ	dynsym	83fa40a29963	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16189e0	468	cfb16ZeroPolyArcSSXor	dynsym	26b17f16a4a9	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1618bc0	256	odsyCursorInit	dynsym	c5b229d3f5c7	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1618bc0	256	odsyCursorInit	dynsym	c5b229d3f5c7	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1618cc0	3904	cfb32ValidateGC	dynsym	facd359e9647	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1619c00	348	arcSpan0..NP	dynsym	35b3cb0f7649	named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1619d60	716	nfbStereoFillPolygon	dynsym	af422629d033	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105438,7 +105438,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168ae50	208	nfbUnrealizeCurso
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168af20	156	miBSCreateGC..ICB	dynsym	2c3db65edb54	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168afc0	2368	odsyDisplayCursor	dynsym	22333d1d21ac	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168b900	904	rrmInvalidate	dynsym	cb807cf2f9ad	named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bc90	252	odsyValidateReservedMode	dynsym	42244df788cd	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bc90	252	odsyValidateReservedMode	dynsym	42244df788cd	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bd90	532	miPolyText16	dynsym	c26382dc2280	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bfb0	520	odsyEnumDir..FB	dynsym	6078f87a89cd	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c1c0	424	newFinalSpan..CAB	dynsym	8bf7ca9dcd93	named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
@@ -105492,7 +105492,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a1e30	2660	cfb16FillSpanTil
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a28a0	2208	mfbCopyArea	dynsym	5c426b882703	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a3140	736	miBSSaveDoomedAreas..OEB	dynsym	dd1b06d7c94a	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a3420	1276	cfbPolyPoint	dynsym	5357fefdb42f	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a3920	240	odsyCursorOn	dynsym	c83ef648cbb9	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a3920	240	odsyCursorOn	dynsym	c83ef648cbb9	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a3a10	2644	cfbFillSpanTileOddCopy	dynsym	b3ae4339b2c5	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a4470	3780	cfbPolyFillRect	dynsym	81dcb47fe182	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a5340	904	miFillWideEllipse	dynsym	b51f2e896e91	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)

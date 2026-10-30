@@ -1448,3 +1448,32 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   container at +1544 of the structure behind +8 with the identifier at +0, calls
   `odsyUnpinAndUnmapASRegions`, overwrites the 64-byte record with the poison byte 5 and releases it with
   `kmem_free`.
+- `odsyCursorOn` (`odyssey.so`, offset 0x16a3920, 240 bytes): **established.**
+  Build: `usr/lib/X11/dyDDX/odyssey.so`.
+  Turns the hardware cursor on or off for one screen. Using the device descriptor behind the screen's +116
+  (descriptor at +100), it sets bit 0 of the cursor flag word at +68 of the screen's private record when
+  switching on, or clears bit 1 when switching off. It then sends the cursor request 0x6f64001c, handled
+  by `gfP_OdsyBRDMGRcursor` in the kernel, by calls `ioctl` with a 4-word block whose first word is 4 and
+  whose word at +12 is the flags; a failure calls `ErrorF` with the errno. For the on case it finally
+  clears bit 0 and sets bit 1 of the flag word.
+- `odsyCursorInit` (`odyssey.so`, offset 0x1618bc0, 256 bytes): **established.**
+  Build: `usr/lib/X11/dyDDX/odyssey.so`.
+  Initialises the hardware cursor of a screen. It calls `ioctl` with the cursor request 0x6f64001c,
+  handled by `gfP_OdsyBRDMGRcursor`, on the device descriptor behind the screen's +116, passing the flag
+  word from +68 of the private record with bit 1 cleared; a failure calls `ErrorF` with the errno. When
+  the halfword at +62 of the structure behind +92 equals 1 it stores the flags with bit 4 set and bits 5
+  and 1 cleared and sends the same request a second time.
+- `odsyDeallocatePbuffer` (`odyssey.so`, offset 0x15fe780, 252 bytes): **established.**
+  Build: `usr/lib/X11/dyDDX/odyssey.so`.
+  Frees a pixel buffer on the board. It calls `ioctl` with the request 0x6f640002 (kernel
+  `gfP_OdsyMMdealloc`) and a block holding -1 at +4 and the buffer's handle from +4 of its argument at +0,
+  then, when that call wrote a handle other than -1 at +4, calls `ioctl` again with the request 0x6f64002b
+  (kernel `gfP_OdsyPbufDeassoc`) and that handle at +12 and 0 at +60. A failing call calls `ErrorF` with
+  `strerror` of the errno, and a handle of -1 logs a message instead of the second request.
+- `odsyValidateReservedMode` (`odyssey.so`, offset 0x168bc90, 252 bytes): **established.**
+  Build: `usr/lib/X11/dyDDX/odyssey.so`.
+  Validates one reserved video mode of a screen. It calls `ioctl` with the request 0x6f64001d on the
+  device descriptor behind +116 and a two-word block holding the mode number and the word at +180 of that
+  mode's 36-byte entry in the screen's private record; a negative result calls `ErrorF` with `strerror`.
+  In either case it then calls `rrmSetReservedDID` with the screen, the mode number and the entry's words
+  at +176 and +180.
