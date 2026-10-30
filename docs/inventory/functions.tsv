@@ -56955,7 +56955,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100726c0	512	_morecore..OL	dyns
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100728c0	2300	_XkbFilterDeviceBtn..DHF	dynsym	eeaced5c1ab8		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100731c0	148	SProcOpenFont	dynsym	80627edb2ffe		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10073260	248	fs_send_list_fonts..HFB	dynsym	45c21515ebcf		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10073360	24	FindWindowWithOptional	dynsym	7493b5167e80		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10073360	24	FindWindowWithOptional	dynsym	7493b5167e80		named-only	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10073380	120	lazyCIDGetInfoScalable..PO	dynsym	3dfe95f30c95		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10073400	144	SrvXkbAllocControls	dynsym	f8a75877b5af		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10073490	68	SyncCheckTriggerPositiveComparison..IGE	dynsym	8d32710ffe1a		undocumented		
@@ -104944,7 +104944,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156f890	5208	odsyInit	dynsym	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1570cf0	2308	cfb16PolyGlyphBlt8	dynsym	f9e582ee7389		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571600	1192	drawZeroArc..AP	dynsym	2b73a2590f41		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571ab0	504	mergeDIDLists..EG	dynsym	63a1937f81f2		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571cb0	1120	odsyReadImage	dynsym	fb3ddbf80110		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571cb0	1120	odsyReadImage	dynsym	fb3ddbf80110		understood	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1572110	4544	cfb16DoBitbltXor	dynsym	da5f560363fe		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15732d0	280	odsyBuildFmtList..NB	dynsym	b2b6806a064d		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15733f0	2024	cfbFillSpanTile32sCopy	dynsym	38eb84539a06		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
@@ -105027,7 +105027,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15a5e40	13880	cfb32SegmentSD	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15a9480	21672	odsyZeroPolyArc	dynsym	101db21ca387		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ae930	292	odsyQueryGammaColors	dynsym	737efc8bffb2		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aea60	628	odsyValidateReducedGC	dynsym	2150b03d0653		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aece0	400	odsyDrawImage	dynsym	898cd8038539		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aece0	400	odsyDrawImage	dynsym	898cd8038539		understood	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aee70	292	miBSPutImage..FDB	dynsym	c1ab1458859f		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aefa0	76	nfbInfPolyText16..DL	dynsym	f90bceb6c0b3		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aeff0	936	miSubtractO..MAB	dynsym	1fb249a7f446		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105112,7 +105112,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e84d0	4560	cfb16DoBitbltOr	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e96a0	308	AssignID..FG	dynsym	c5a2960f95dd		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e97e0	9104	cfb32LineSS	dynsym	352e8fa6ff62		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ebb70	10844	cfbPolyFillArcSolidGeneral	dynsym	e0366a6b05a2		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ee5d0	312	odsyDrawImageSingleBuffer..J	dynsym	c0316b79cdcd		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ee5d0	312	odsyDrawImageSingleBuffer..J	dynsym	c0316b79cdcd		understood	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ee710	5732	cfb16PolyFillArcSolidCopy	dynsym	753ef2964c30		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15efd80	304	miBSPushPixels..HEB	dynsym	4d44d60f0540		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15efeb0	4096	miCopyArea	dynsym	e82eef5f64be		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105503,7 +105503,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a6900	780	nfbStereoValidate
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a6c10	172	miDestroyGC	dynsym	e4dcd6f4c97c		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a6cc0	5692	odsyClearPlanes	dynsym	bed5d329e227		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a8300	468	cfb32ZeroPolyArcSSGeneral	dynsym	edc6c12f26cf		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a84e0	8412	odsyDrawImageDMA..H	dynsym	103b71e9f565		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16a84e0	8412	odsyDrawImageDMA..H	dynsym	103b71e9f565		understood	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aa5c0	4620	cfbCopyPlane1to8	dynsym	cfd9dfe34180		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ab7d0	528	miBSPolyRectangle..MDB	dynsym	7d96c9fa3ffe		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ab9e0	240	miBSImageText8..DEB	dynsym	deb8cb67862a		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105553,7 +105553,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bada0	16200	odsyCopyRectSin
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16becf0	292	nfbRestoreAreas	dynsym	cb1b9b96beed		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bee20	936	nfbStippledFillRects	dynsym	a149fc675a9a		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bf1d0	464	fillSpans..AAB	dynsym	e1a8b9950ff3		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bf3a0	1152	odsyReadDeepImage..GE	dynsym	7164a939cfe4		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bf3a0	1152	odsyReadDeepImage..GE	dynsym	7164a939cfe4		understood	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bf820	1468	cfb16SolidSpansGeneral	dynsym	f65b33ad6cff		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16bfde0	1072	odsyBell	dynsym	5d17e9667497		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16c0210	512	odsyDrawOpaqueMonoImage	dynsym	1cacda7047dc		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
