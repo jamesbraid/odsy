@@ -73,6 +73,8 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 
 ## Where this pass stopped
 
+Depth, offset and specular pass: the depth-at-the-edges entry is closed. Which windows carry the 16-bit depth word is established (`docs/raster.md`, "Which windows carry the 16-bit word"); polygon offset is read as added to the encoded word and the specular table as the patent's exponent table (`docs/raster.md`, "Polygon offset"; `ucode/buzz_isa.md`, pass 20), both inferred; the exact far-plane cut and the table's value below 8 and from 16 are labelled no software dependency, with the routes tried. The Internal Support Tools 2.7 OpenGL suite was opened and holds no expected values.
+
 The libGLcore context row, the DMA direction, the timing-structure map, the cursor table, the allocation and transfer arguments and the fill operand were answered statically and moved into the owning files. The next static work is the "Image path words" entry above, then route 1 for the BUZZ and display entries.
 
 Program-table pass (6.5.30m libGLcore, patches 4103 and 4104): `AddProgram`'s 24-record program table, its key bits, every routine it or the generic path selects, the fragment-lighting branch and the overlay routines from 1226 on are read (`ucode/buzz_routines.md`); the fog and fragment light model blocks of `__glOdysseyValidateHardware` are read and its other seven blocks located (`docs/tokens.md`). Stopped at the seven located blocks: next is the writers of context words +31740, +31744, +31836 and +32736, then the texture-object words behind block 0x013, then the open microcode entries above.
