@@ -1,7 +1,7 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address
 binaries	276	0	0	0	0	0	105	171	0	0.0	0.0	38.0	0.0							0		
-functions	106592	1852	10	877	1080	14476	74022	16242	0	1.7	15.3	84.8	1.7			88.6	35	2026-10-29		15	482	3798
-functions (distinct names)	18949	538	5	538	72	887	6350	11174	0	2.8	7.5	41.0	2.8							1		
+functions	106592	1860	10	878	1080	14468	74022	16242	0	1.7	15.3	84.8	1.7			88.6	35	2026-10-29		0	482	3798
+functions (distinct names)	18949	539	5	539	72	886	6350	11174	0	2.8	7.5	41.0	2.8							0		
 mmio	67	58	0	58	0	2	0	0	7	86.6	100.0	100.0	97.0	56		91.7	12	2026-10-29		0		
 tokens	255	239	36	239	0	16	0	0	0	93.7	100.0	100.0	93.7			85.0	20	2026-10-29		0		
 ioctls	91	91	0	85	0	0	0	0	0	100.0	100.0	100.0	100.0			73.3	15	2026-10-29		0		
@@ -33,11 +33,11 @@ functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	6
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	11	0	11	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	2	0	2	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so	671	0	0	0	0	0	671	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	5169	14	0	14	72	978	4177	0	0	0.3	19.2	100.0	0.3							1	37	72
+functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	5169	14	0	14	72	978	4177	0	0	0.3	19.2	100.0	0.3							0	37	72
 functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so	673	0	0	0	0	0	673	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	5216	134	0	134	72	858	4224	0	0	2.6	19.0	100.0	2.6							1	37	72
+functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	5216	135	0	135	72	857	4224	0	0	2.6	19.0	100.0	2.6							0	37	72
 functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so	673	0	0	0	0	0	673	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	5137	12	0	12	72	980	4145	0	0	0.2	19.3	100.0	0.2							1	37	72
+functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	5137	13	0	13	72	979	4145	0	0	0.3	19.3	100.0	0.3							0	37	72
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	4	1	4	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	3	0	3	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
@@ -60,11 +60,11 @@ functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	11	0	11	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	2	0	2	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so	650	0	0	0	0	0	650	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	5103	13	0	13	72	979	4111	0	0	0.3	19.4	100.0	0.3							1	37	108
+functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	5103	13	0	13	72	979	4111	0	0	0.3	19.4	100.0	0.3							0	37	108
 functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	650	0	0	0	0	0	650	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	5155	20	0	20	72	1000	4135	0	0	0.4	19.8	100.0	0.4							1	0	108
+functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	5155	20	0	20	72	1000	4135	0	0	0.4	19.8	100.0	0.4							0	0	108
 functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so	650	0	0	0	0	0	650	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	5076	10	0	10	72	982	4084	0	0	0.2	19.5	100.0	0.2							1	37	108
+functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	5076	11	0	11	72	981	4084	0	0	0.2	19.5	100.0	0.2							0	37	108
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	3	1	3	0	1	0	0	0	75.0	100.0	100.0	75.0							0	0	0
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	17	0	17	0	1	0	0	0	94.4	100.0	100.0	94.4							0	0	0
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7							0	0	0
@@ -87,11 +87,11 @@ functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	10	0	10	0	1	0	0	0	90.9	100.0	100.0	90.9							0	0	0
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	1	0	1	0	1	0	0	0	50.0	100.0	100.0	50.0							0	0	0
 functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGL.so	650	0	0	0	0	0	650	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	5103	13	0	13	72	979	4111	0	0	0.3	19.4	100.0	0.3							1	37	108
+functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	5103	13	0	13	72	979	4111	0	0	0.3	19.4	100.0	0.3							0	37	108
 functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	650	0	0	0	0	0	650	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	5155	20	0	20	72	1000	4135	0	0	0.4	19.8	100.0	0.4							1	0	108
+functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	5155	20	0	20	72	1000	4135	0	0	0.4	19.8	100.0	0.4							0	0	108
 functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	650	0	0	0	0	0	650	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	5076	10	0	10	72	982	4084	0	0	0.2	19.5	100.0	0.2							1	37	108
+functions in builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	5076	11	0	11	72	981	4084	0	0	0.2	19.5	100.0	0.2							0	37	108
 functions in sbin/stand/ide.IP30	11	0	0	0	0	11	0	0	0	0.0	100.0	100.0	0.0							0	0	0
 functions in usr/bin/X11/xsetmon	501	0	0	0	0	0	9	492	0	0.0	0.0	1.8	0.0							0	0	0
 functions in usr/cpu/firmware/IP30prom.bin	11	0	0	0	0	11	0	0	0	0.0	100.0	100.0	0.0							0	0	0
@@ -143,17 +143,17 @@ functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	0	0	0	0	9	2927	0	0.0	0.0	0.3	0.0		
 functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	0	0	0	0	7	3804	0	0.0	0.0	0.2	0.0							0	0	1124
 functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	0	0	8	3803	0	0.0	0.0	0.2	0.0							0	0	1124
 functions in usr/gfx/arch/IP30ODSY/libGL.so	671	0	0	0	0	0	671	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in usr/gfx/arch/IP30ODSY/libGLcore.so	5169	14	0	14	72	978	4177	0	0	0.3	19.2	100.0	0.3							1	37	72
+functions in usr/gfx/arch/IP30ODSY/libGLcore.so	5169	14	0	14	72	978	4177	0	0	0.3	19.2	100.0	0.3							0	37	72
 functions in usr/gfx/arch/IP30ODSY32/libGL.so	673	0	0	0	0	0	673	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in usr/gfx/arch/IP30ODSY32/libGLcore.so	5216	134	0	134	72	858	4224	0	0	2.6	19.0	100.0	2.6							1	37	72
+functions in usr/gfx/arch/IP30ODSY32/libGLcore.so	5216	135	0	135	72	857	4224	0	0	2.6	19.0	100.0	2.6							0	37	72
 functions in usr/gfx/arch/IP30ODSY64/libGL.so	673	0	0	0	0	0	673	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in usr/gfx/arch/IP30ODSY64/libGLcore.so	5137	12	0	12	72	980	4145	0	0	0.2	19.3	100.0	0.2							1	37	72
+functions in usr/gfx/arch/IP30ODSY64/libGLcore.so	5137	13	0	13	72	979	4145	0	0	0.3	19.3	100.0	0.3							0	37	72
 functions in usr/gfx/arch/IP35ODSY/libGL.so	671	0	0	0	0	0	671	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in usr/gfx/arch/IP35ODSY/libGLcore.so	5169	14	0	14	72	978	4177	0	0	0.3	19.2	100.0	0.3							1	37	72
+functions in usr/gfx/arch/IP35ODSY/libGLcore.so	5169	14	0	14	72	978	4177	0	0	0.3	19.2	100.0	0.3							0	37	72
 functions in usr/gfx/arch/IP35ODSY32/libGL.so	673	0	0	0	0	0	673	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in usr/gfx/arch/IP35ODSY32/libGLcore.so	5216	134	0	134	72	858	4224	0	0	2.6	19.0	100.0	2.6							1	37	72
+functions in usr/gfx/arch/IP35ODSY32/libGLcore.so	5216	135	0	135	72	857	4224	0	0	2.6	19.0	100.0	2.6							0	37	72
 functions in usr/gfx/arch/IP35ODSY64/libGL.so	673	0	0	0	0	0	673	0	0	0.0	0.0	100.0	0.0							0	0	0
-functions in usr/gfx/arch/IP35ODSY64/libGLcore.so	5137	12	0	12	72	980	4145	0	0	0.2	19.3	100.0	0.2							1	37	72
+functions in usr/gfx/arch/IP35ODSY64/libGLcore.so	5137	13	0	13	72	979	4145	0	0	0.3	19.3	100.0	0.3							0	37	72
 functions in usr/gfx/dmconf	192	0	0	0	0	0	48	144	0	0.0	0.0	25.0	0.0							0	0	0
 functions in usr/gfx/gfxinfo	227	0	0	0	0	1	4	222	0	0.0	0.4	2.2	0.0							0	0	0
 functions in usr/gfx/gfxinit	227	0	0	0	0	1	4	222	0	0.0	0.4	2.2	0.0							0	0	0
