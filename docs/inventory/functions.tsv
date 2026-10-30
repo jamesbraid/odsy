@@ -104995,12 +104995,12 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158f310	1148	nfbPolyFillRect	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158f790	48	cfb32DoBitblt	dynsym	70219b90416a		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158f7c0	292	miPostChangeSaveUnder	dynsym	a64586883ae0		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158f8f0	8	odsyWakeupHandler..M	dynsym	78aa5094d5ec		understood	docs/odyssey-so-reads.md#stub-and-one-line-routines	Stub and one-line routines
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158f900	872	odsyStoreGamma16	dynsym	be5c788413ad		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158f900	872	odsyStoreGamma16	dynsym	be5c788413ad		understood	docs/odyssey-so-reads.md#gamma-ramp-routines	Gamma ramp routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158fc70	7732	odsySegmentSS	dynsym	0f11f2b9489b		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1591ab0	2944	cfb32SegmentSS1RectGeneral	dynsym	ed9cc38e965c		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1592630	916	nfbInstallHWColormap	dynsym	2d6e4c7fc584		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15929d0	432	nfbInfPolyArc..OK	dynsym	ca7045ace303		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1592b80	1396	odsyInitGammaMap..ED	dynsym	7cfb19240a27		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1592b80	1396	odsyInitGammaMap..ED	dynsym	7cfb19240a27		understood	docs/odyssey-so-reads.md#gamma-ramp-routines	Gamma ramp routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1593100	96	miBSCheapChangeClip..OCB	dynsym	c66e3530e720		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1593160	120	miBSDestroyClip..IFB	dynsym	5ff3e8314140		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15931e0	36	odsyScanAudioInventory..K	dynsym	e9497bc3076a		understood	docs/odyssey-so-reads.md#stub-and-one-line-routines	Stub and one-line routines
@@ -105025,7 +105025,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15a5670	1400	miFillPolyHelper
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15a5bf0	584	nfbStereoPolyFillArc	dynsym	bf8748ffd6ee		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15a5e40	13880	cfb32SegmentSD	dynsym	9415fb036955		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15a9480	21672	odsyZeroPolyArc	dynsym	101db21ca387		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ae930	292	odsyQueryGammaColors	dynsym	737efc8bffb2		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ae930	292	odsyQueryGammaColors	dynsym	737efc8bffb2		understood	docs/odyssey-so-reads.md#gamma-ramp-routines	Gamma ramp routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aea60	628	odsyValidateReducedGC	dynsym	2150b03d0653		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aece0	400	odsyDrawImage	dynsym	898cd8038539		understood	docs/odyssey-so-reads.md#image-transfer-routines	Image transfer routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15aee70	292	miBSPutImage..FDB	dynsym	c1ab1458859f		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105403,7 +105403,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1678780	2924	cfbFillBoxTileOd
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16792f0	280	miCreateScreenResources	dynsym	2e5325e84eb4		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1679410	200	nfbHWColormapScreenInit	dynsym	882c0f475319		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16794e0	3764	cfb16PolyFillRect	dynsym	b0712fa3effd		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x167a3a0	724	odsyStoreCompGamma	dynsym	8ee883967778		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x167a3a0	724	odsyStoreCompGamma	dynsym	8ee883967778		understood	docs/odyssey-so-reads.md#gamma-ramp-routines	Gamma ramp routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x167a680	1684	miBSGetImage..FCB	dynsym	97371121c59c		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x167ad20	3976	drawArc..EAB	dynsym	1c5420ea76ec		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x167bcb0	868	nfbSetDidFlags	dynsym	32d9e9a23136		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105518,7 +105518,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ad200	1200	odsySetComposito
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ad6b0	4648	nfbComputeClipsSL..HJ	dynsym	f0f6b94590c6		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ae8e0	284	miDsin..DO	dynsym	747c3c826dc5		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aea00	136	SwapInitiated..NF	dynsym	e33b0d87c816		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aea90	872	odsyStoreGamma8	dynsym	efc5fe265dd4		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aea90	872	odsyStoreGamma8	dynsym	efc5fe265dd4		understood	docs/odyssey-so-reads.md#gamma-ramp-routines	Gamma ramp routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aee00	3512	mfbStippleWhiteArea	dynsym	b80a9a07c32d		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16afbc0	8	nfbPositionWindow	dynsym	a7e7ca11a6b8		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16afbd0	4528	cfbDoBitbltXor	dynsym	16aba09a0429		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
@@ -105662,7 +105662,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f5ea0	8	nfbNoopDDACreateScr
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f5eb0	1808	cfbFillSpanTile32sGeneral	dynsym	03aa97342fd6		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f65c0	76	nfbInfPushPixels..IL	dynsym	9eec11f87b64		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f6610	284	odsyQueryBestChannelRectangle..HC	dynsym	eb387ad2731e		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f6730	536	odsyGammaFit	dynsym	ee5194add84d		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f6730	536	odsyGammaFit	dynsym	ee5194add84d		understood	docs/odyssey-so-reads.md#gamma-ramp-routines	Gamma ramp routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f6950	256	nfbDestroyGC..OJ	dynsym	705f48d54bb4		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f6a50	660	nfbCreateStereoGC	dynsym	4742f23546c5		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f6cf0	2732	miComputeEllipseSpans..KN	dynsym	6081f7577c52		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
