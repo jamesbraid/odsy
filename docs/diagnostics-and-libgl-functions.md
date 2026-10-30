@@ -156,7 +156,7 @@ other.
 
 ### Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
 
-Names show I2C access through both the Odyssey and the CRIME-style bus routines, DRAM and data-path tests and X display set-up. Roles **inferred** from names.
+Names show I2C access through both the Odyssey and the CRIME-style bus routines, DRAM and data-path tests and X display set-up. Roles **inferred** from names; every function of the binary is read in full in [vpro-tool-functions.md](vpro-tool-functions.md), one entry each.
 
 I2C (odsy_i2c_*, crime_i2c_*).
 
