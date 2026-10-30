@@ -2712,12 +2712,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b42c	616	__glim_Fogfv	dynsym+mdebug	043f8ca37108		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b694	128	__glim_Fogf	dynsym+mdebug	3e7317a2be79		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b904	128	__glim_Fogi	dynsym+mdebug	33f42b89249c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b984	156	__glim_FrontFace	dynsym+mdebug	71c51f2d0223		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ba20	404	__glim_Hint	dynsym+mdebug	696298d4f053		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bbb4	120	__glim_IndexMask	dynsym+mdebug	e316981aa5a7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bc2c	320	__glTransformLightDirection	dynsym+mdebug	79dcce47b105		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bc2c	320	__glTransformLightDirection	dynsym+mdebug	79dcce47b105		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bd6c	732	__glim_Lightfv	dynsym+mdebug	6ffa1ef77d42		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3c048	128	__glim_Lightf	dynsym+mdebug	96711e6ebb05		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3c0c8	752	__glim_Lightiv	dynsym+mdebug	23a837eb2bd8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -8549,12 +8549,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ec0	492	__glim_Fogfv	dwarf+dynsym	223df0f24945		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda240b0	120	__glim_Fogf	dwarf+dynsym	d5cacaecc8e2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24330	116	__glim_Fogi	dwarf+dynsym	534f8de58713		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda243b0	148	__glim_FrontFace	dwarf+dynsym	5dcf1a263a72		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24450	440	__glim_Hint	dwarf+dynsym	e6bae87d0357		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24610	116	__glim_IndexMask	dwarf+dynsym	9eb8f91b5897		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24690	308	__glTransformLightDirection	dwarf+dynsym	4e5322a7e99f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24690	308	__glTransformLightDirection	dwarf+dynsym	4e5322a7e99f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda247d0	636	__glim_Lightfv	dwarf+dynsym	89600e802772		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24a50	132	__glim_Lightf	dwarf+dynsym	3acb38c10705		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24ae0	668	__glim_Lightiv	dwarf+dynsym	dc43cf12c6ca		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -8569,9 +8569,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25250	212	__glim_LineWidth	dwarf+dynsym	0ed5468a33b2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25330	156	__glim_LogicOp	dwarf+dynsym	ccc6d1d2fb3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25560	220	__glErrorCheckMaterial	dwarf+dynsym	5ae8a622c52a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25640	388	__glim_Materialfv	dwarf+dynsym	6b40f7e5b710		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25640	388	__glim_Materialfv	dwarf+dynsym	6b40f7e5b710		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda257d0	84	__glim_Materialf	dwarf+dynsym	60f3d2ce3784		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25b40	392	__glim_Materialiv	dwarf+dynsym	6c7d9f45a3b3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25b40	392	__glim_Materialiv	dwarf+dynsym	6c7d9f45a3b3		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25cd0	84	__glim_Materiali	dwarf+dynsym	30048374309c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d30	44	RoundSize	dwarf+funcnames	5ed2359b62bb		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d60	80	ClampSize	dwarf+funcnames	94eea4954023		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -8591,7 +8591,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ac60	184	__glim_BlendColorEXT	dwarf+dynsym	409461fea08b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ad20	112	__glim_PolygonOffsetEXT	dwarf+dynsym	48966a0db379		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ad90	120	__glim_PolygonOffset	dwarf+dynsym	916fe29036cf		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAttributeState	dwarf+dynsym	f7c61da55149		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAttributeState	dwarf+dynsym	f7c61da55149		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2af80	532	__glim_EnableClientState	dwarf+dynsym	982dc759cbc0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b1a0	584	__glim_DisableClientState	dwarf+dynsym	26d1964b6b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b3f0	692	__glim_PushClientAttrib	dwarf+dynsym	82c15154aaa2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -14439,13 +14439,13 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269100	492	__glim_Fogfv	dwarf+dynsym	102a3ed19003		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22692f0	120	__glim_Fogf	dwarf+dynsym	fc119e6a1d20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269570	116	__glim_Fogi	dwarf+dynsym	ae2d1bd6c8c8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22695f0	148	__glim_FrontFace	dwarf+dynsym	d6b3c8074012		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269690	440	__glim_Hint	dwarf+dynsym	88b7b2194446		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269850	124	__glim_IndexMask	dwarf+dynsym	e7368cb79624		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22698d0	320	__glTransformLightDirection	dwarf+dynsym	65a5972f6740		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269a10	652	__glim_Lightfv	dwarf+dynsym	7d17a72c1e8a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22698d0	320	__glTransformLightDirection	dwarf+dynsym	65a5972f6740		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269a10	652	__glim_Lightfv	dwarf+dynsym	7d17a72c1e8a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269ca0	132	__glim_Lightf	dwarf+dynsym	bcd03cde58a7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269d30	684	__glim_Lightiv	dwarf+dynsym	778afab1e8a6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269fe0	120	__glim_Lighti	dwarf+dynsym	2c0cb2695107		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -14459,9 +14459,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a570	156	__glim_LogicOp	dwarf+dynsym	c5ab155b0aac		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a7a0	220	__glErrorCheckMaterial	dwarf+dynsym	96a46229fd5e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226aa10	84	__glim_Materialf	dwarf+dynsym	cea6324a6634		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226ad80	400	__glim_Materialiv	dwarf+dynsym	479aa7e72a5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226ad80	400	__glim_Materialiv	dwarf+dynsym	479aa7e72a5a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226af10	84	__glim_Materiali	dwarf+dynsym	b76669053a0b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226af70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226afa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -14482,8 +14482,8 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fdf0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	ef7ab78eb48a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -69763,12 +69763,12 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_Depth
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b42c	616	__glim_Fogfv	dynsym+mdebug	043f8ca37108		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b694	128	__glim_Fogf	dynsym+mdebug	3e7317a2be79		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b904	128	__glim_Fogi	dynsym+mdebug	33f42b89249c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b984	156	__glim_FrontFace	dynsym+mdebug	71c51f2d0223		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ba20	404	__glim_Hint	dynsym+mdebug	696298d4f053		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bbb4	120	__glim_IndexMask	dynsym+mdebug	e316981aa5a7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bc2c	320	__glTransformLightDirection	dynsym+mdebug	79dcce47b105		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bc2c	320	__glTransformLightDirection	dynsym+mdebug	79dcce47b105		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3bd6c	732	__glim_Lightfv	dynsym+mdebug	6ffa1ef77d42		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3c048	128	__glim_Lightf	dynsym+mdebug	96711e6ebb05		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3c0c8	752	__glim_Lightiv	dynsym+mdebug	23a837eb2bd8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -75600,12 +75600,12 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_Dep
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ec0	492	__glim_Fogfv	dwarf+dynsym	223df0f24945		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda240b0	120	__glim_Fogf	dwarf+dynsym	d5cacaecc8e2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24330	116	__glim_Fogi	dwarf+dynsym	534f8de58713		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda243b0	148	__glim_FrontFace	dwarf+dynsym	5dcf1a263a72		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24450	440	__glim_Hint	dwarf+dynsym	e6bae87d0357		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24610	116	__glim_IndexMask	dwarf+dynsym	9eb8f91b5897		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24690	308	__glTransformLightDirection	dwarf+dynsym	4e5322a7e99f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24690	308	__glTransformLightDirection	dwarf+dynsym	4e5322a7e99f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda247d0	636	__glim_Lightfv	dwarf+dynsym	89600e802772		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24a50	132	__glim_Lightf	dwarf+dynsym	3acb38c10705		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24ae0	668	__glim_Lightiv	dwarf+dynsym	dc43cf12c6ca		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -75620,9 +75620,9 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25200	80	ClampW
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25250	212	__glim_LineWidth	dwarf+dynsym	0ed5468a33b2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25330	156	__glim_LogicOp	dwarf+dynsym	ccc6d1d2fb3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25560	220	__glErrorCheckMaterial	dwarf+dynsym	5ae8a622c52a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25640	388	__glim_Materialfv	dwarf+dynsym	6b40f7e5b710		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25640	388	__glim_Materialfv	dwarf+dynsym	6b40f7e5b710		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda257d0	84	__glim_Materialf	dwarf+dynsym	60f3d2ce3784		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25b40	392	__glim_Materialiv	dwarf+dynsym	6c7d9f45a3b3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25b40	392	__glim_Materialiv	dwarf+dynsym	6c7d9f45a3b3		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25cd0	84	__glim_Materiali	dwarf+dynsym	30048374309c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d30	44	RoundSize	dwarf+funcnames	5ed2359b62bb		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d60	80	ClampSize	dwarf+funcnames	94eea4954023		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -75642,7 +75642,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2a390	2252	__glim_Is
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ac60	184	__glim_BlendColorEXT	dwarf+dynsym	409461fea08b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ad20	112	__glim_PolygonOffsetEXT	dwarf+dynsym	48966a0db379		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ad90	120	__glim_PolygonOffset	dwarf+dynsym	916fe29036cf		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAttributeState	dwarf+dynsym	f7c61da55149		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAttributeState	dwarf+dynsym	f7c61da55149		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2af80	532	__glim_EnableClientState	dwarf+dynsym	982dc759cbc0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b1a0	584	__glim_DisableClientState	dwarf+dynsym	26d1964b6b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b3f0	692	__glim_PushClientAttrib	dwarf+dynsym	82c15154aaa2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81490,13 +81490,13 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8e50	204	__glim_Dep
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9100	492	__glim_Fogfv	dwarf+dynsym	102a3ed19003		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b92f0	120	__glim_Fogf	dwarf+dynsym	fc119e6a1d20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9570	116	__glim_Fogi	dwarf+dynsym	ae2d1bd6c8c8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b95f0	148	__glim_FrontFace	dwarf+dynsym	d6b3c8074012		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9690	440	__glim_Hint	dwarf+dynsym	88b7b2194446		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9850	124	__glim_IndexMask	dwarf+dynsym	e7368cb79624		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b98d0	320	__glTransformLightDirection	dwarf+dynsym	65a5972f6740		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9a10	652	__glim_Lightfv	dwarf+dynsym	7d17a72c1e8a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b98d0	320	__glTransformLightDirection	dwarf+dynsym	65a5972f6740		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9a10	652	__glim_Lightfv	dwarf+dynsym	7d17a72c1e8a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9ca0	132	__glim_Lightf	dwarf+dynsym	bcd03cde58a7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9d30	684	__glim_Lightiv	dwarf+dynsym	778afab1e8a6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9fe0	120	__glim_Lighti	dwarf+dynsym	2c0cb2695107		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81510,9 +81510,9 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ba450	80	ClampW
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba570	156	__glim_LogicOp	dwarf+dynsym	c5ab155b0aac		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba7a0	220	__glErrorCheckMaterial	dwarf+dynsym	96a46229fd5e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baa10	84	__glim_Materialf	dwarf+dynsym	cea6324a6634		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bad80	400	__glim_Materialiv	dwarf+dynsym	479aa7e72a5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bad80	400	__glim_Materialiv	dwarf+dynsym	479aa7e72a5a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baf10	84	__glim_Materiali	dwarf+dynsym	b76669053a0b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32baf70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32bafa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81533,8 +81533,8 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfd30	184	__glim_Ble
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfdf0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	ef7ab78eb48a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c04c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87302,12 +87302,12 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_Depth
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b42c	616	__glim_Fogfv	dynsym+mdebug	043f8ca37108		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b694	128	__glim_Fogf	dynsym+mdebug	3e7317a2be79		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b904	128	__glim_Fogi	dynsym+mdebug	33f42b89249c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b984	156	__glim_FrontFace	dynsym+mdebug	71c51f2d0223		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3ba20	404	__glim_Hint	dynsym+mdebug	696298d4f053		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3bbb4	120	__glim_IndexMask	dynsym+mdebug	e316981aa5a7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3bc2c	320	__glTransformLightDirection	dynsym+mdebug	79dcce47b105		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3bc2c	320	__glTransformLightDirection	dynsym+mdebug	79dcce47b105		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3bd6c	732	__glim_Lightfv	dynsym+mdebug	6ffa1ef77d42		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3c048	128	__glim_Lightf	dynsym+mdebug	96711e6ebb05		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3c0c8	752	__glim_Lightiv	dynsym+mdebug	23a837eb2bd8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -93139,12 +93139,12 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_Dep
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23ec0	492	__glim_Fogfv	dwarf+dynsym	223df0f24945		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda240b0	120	__glim_Fogf	dwarf+dynsym	d5cacaecc8e2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24330	116	__glim_Fogi	dwarf+dynsym	534f8de58713		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda243b0	148	__glim_FrontFace	dwarf+dynsym	5dcf1a263a72		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24450	440	__glim_Hint	dwarf+dynsym	e6bae87d0357		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24610	116	__glim_IndexMask	dwarf+dynsym	9eb8f91b5897		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24690	308	__glTransformLightDirection	dwarf+dynsym	4e5322a7e99f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24690	308	__glTransformLightDirection	dwarf+dynsym	4e5322a7e99f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda247d0	636	__glim_Lightfv	dwarf+dynsym	89600e802772		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24a50	132	__glim_Lightf	dwarf+dynsym	3acb38c10705		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24ae0	668	__glim_Lightiv	dwarf+dynsym	dc43cf12c6ca		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -93159,9 +93159,9 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda25200	80	ClampW
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25250	212	__glim_LineWidth	dwarf+dynsym	0ed5468a33b2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25330	156	__glim_LogicOp	dwarf+dynsym	ccc6d1d2fb3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25560	220	__glErrorCheckMaterial	dwarf+dynsym	5ae8a622c52a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25640	388	__glim_Materialfv	dwarf+dynsym	6b40f7e5b710		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25640	388	__glim_Materialfv	dwarf+dynsym	6b40f7e5b710		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda257d0	84	__glim_Materialf	dwarf+dynsym	60f3d2ce3784		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25b40	392	__glim_Materialiv	dwarf+dynsym	6c7d9f45a3b3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25b40	392	__glim_Materialiv	dwarf+dynsym	6c7d9f45a3b3		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25cd0	84	__glim_Materiali	dwarf+dynsym	30048374309c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda25d30	44	RoundSize	dwarf+funcnames	5ed2359b62bb		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda25d60	80	ClampSize	dwarf+funcnames	94eea4954023		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -93181,7 +93181,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2a390	2252	__glim_Is
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ac60	184	__glim_BlendColorEXT	dwarf+dynsym	409461fea08b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ad20	112	__glim_PolygonOffsetEXT	dwarf+dynsym	48966a0db379		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ad90	120	__glim_PolygonOffset	dwarf+dynsym	916fe29036cf		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAttributeState	dwarf+dynsym	f7c61da55149		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAttributeState	dwarf+dynsym	f7c61da55149		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2af80	532	__glim_EnableClientState	dwarf+dynsym	982dc759cbc0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b1a0	584	__glim_DisableClientState	dwarf+dynsym	26d1964b6b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b3f0	692	__glim_PushClientAttrib	dwarf+dynsym	82c15154aaa2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99029,13 +99029,13 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268e50	204	__glim_Dep
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269100	492	__glim_Fogfv	dwarf+dynsym	102a3ed19003		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22692f0	120	__glim_Fogf	dwarf+dynsym	fc119e6a1d20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269570	116	__glim_Fogi	dwarf+dynsym	ae2d1bd6c8c8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22695f0	148	__glim_FrontFace	dwarf+dynsym	d6b3c8074012		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269690	440	__glim_Hint	dwarf+dynsym	88b7b2194446		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269850	124	__glim_IndexMask	dwarf+dynsym	e7368cb79624		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22698d0	320	__glTransformLightDirection	dwarf+dynsym	65a5972f6740		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269a10	652	__glim_Lightfv	dwarf+dynsym	7d17a72c1e8a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22698d0	320	__glTransformLightDirection	dwarf+dynsym	65a5972f6740		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269a10	652	__glim_Lightfv	dwarf+dynsym	7d17a72c1e8a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269ca0	132	__glim_Lightf	dwarf+dynsym	bcd03cde58a7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269d30	684	__glim_Lightiv	dwarf+dynsym	778afab1e8a6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269fe0	120	__glim_Lighti	dwarf+dynsym	2c0cb2695107		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99049,9 +99049,9 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226a450	80	ClampW
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a570	156	__glim_LogicOp	dwarf+dynsym	c5ab155b0aac		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a7a0	220	__glErrorCheckMaterial	dwarf+dynsym	96a46229fd5e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226aa10	84	__glim_Materialf	dwarf+dynsym	cea6324a6634		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226ad80	400	__glim_Materialiv	dwarf+dynsym	479aa7e72a5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226ad80	400	__glim_Materialiv	dwarf+dynsym	479aa7e72a5a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226af10	84	__glim_Materiali	dwarf+dynsym	b76669053a0b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226af70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226afa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99072,8 +99072,8 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fd30	184	__glim_Ble
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fdf0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	ef7ab78eb48a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
