@@ -39,7 +39,8 @@ All three builders fill eight words; word 0 is lowest in memory.
   match for the destination image's format and type, so the bytes the board writes are always in
   the format and type that routine names. Word 4 bit 31 is clear for a read buffer of
   `GL_BACK` (0x405), `GL_BACK_LEFT` (0x402) or `GL_BACK_RIGHT` (0x403) and set for every other
-  read buffer and for any source that is not the read drawable. The left/right flag handed to
+  read buffer; for any source that is not the bound read drawable (description byte 9 clear,
+  for example a texture object) it is forced to 1 whatever the read buffer. The left/right flag handed to
   `ImageCalcDmaFieldOffsets` is clear for `GL_RIGHT`, `GL_FRONT_RIGHT` and `GL_BACK_RIGHT`. The
   row stride is rounded up to the pack alignment (context +0x488) for client memory (image
   byte 0 clear).
@@ -49,7 +50,11 @@ All three builders fill eight words; word 0 is lowest in memory.
   decompiler's flow there overlaps instructions). Word 7 bit 10 is set when the context byte at
   +0x4a4 is set and the source is client memory; that the byte is the unpack swap-bytes mode is
   **inferred** from its place beside the unpack alignment at +0x4b4, which the routine uses to
-  round the row stride. Bit 27 marks the transfer branch. On that branch it saves the raster
+  round the row stride. Bit 27 is set exactly when the caller's fourth argument is nonzero (the
+  stores at 0x0d9ba264 to 0x0d9ba274); the same argument selects the transfer branch, and what
+  each caller passes is unknown. When bit 12 of context +0xa6d8 is set, every x and y and the
+  scissor words lose 0x2000 minus that word before masking to 12 bits; what the word holds is
+  unknown. On that branch it saves the raster
   state, writes the pixel-mode fields with `__glOdysseyImageCalcPixelModeFields`, sends
   sequencer register 0x12f as 0x2900812f and fills the ten-word block at context +0x96c4 with
   the destination box. It
@@ -57,7 +62,8 @@ All three builders fill eight words; word 0 is lowest in memory.
 - **`ImageToDmaHostPixelSize`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d9bf1e0, 24 bytes), **established**: a lookup of the host
   bytes per pixel in a word table; the result goes to word 7 bits 18:16 of both directions. The
   kernel's bytes-per-pixel table (2, 4, 8, 16, 12, 1, 6, 3 for codes 0 to 7, `docs/kernel.md`)
-  is **inferred** to be its inverse; the word table itself was not dumped.
+  is its exact inverse: the table at 0x0daec810, indexed by host bytes, gives 1→5, 2→0, 3→7,
+  4→1, 6→6, 8→2, 12→4, 16→3 (**established**, dumped).
 
 ## Board-to-host table
 
@@ -137,8 +143,12 @@ All three builders fill eight words; word 0 is lowest in memory.
     classes 0 and 3 and `COLOR_INDEX` take byte, short and int types only.
   - Expand flag: set for `LUMINANCE`, `LUMINANCE_ALPHA` and `INTENSITY` into destination classes
     7, 8, 10, 11, 12 and 13.
-  - Write field: 0 for one- and two-byte sources, 1 for four-byte sources and depth, 2 for
-    sources wider than four bytes; `STENCIL_INDEX` 0.
+  - Write field: the read size field of the pixel class the routine gives the source on the
+    board (after expansion to the destination layout), not of the source size: 0 for classes 1
+    to 8, 16 and 17 (and stencil), 1 for classes 9 to 11 and depth, 2 for class 12. So
+    LUMINANCE/UB into class 10 gives 1, US_4_4_4_4 into class 10 gives 0, RGBA/US gives 2, and
+    LUMINANCE_ALPHA/UB into colour index gives 0. **established** as the routine's output for
+    every format, type and destination; that it names the expanded pixel size is **inferred**.
   - Signed types (BYTE, SHORT, INT) are accepted for a direct transfer only when bit 7 of context
     +0x7b70 is set; otherwise the chain converts them on the host
     (`__glOdysseyImageChainAddOpAcceptSignedDataFromHost`).
@@ -193,7 +203,7 @@ All three builders fill eight words; word 0 is lowest in memory.
   and the source +0x1c in bits 11:0, with destination front in bit 31; word 3 width and height;
   word 4 the read header's word 4; word 5 the destination base (0x30000010 for the draw
   drawable); word 6 destination x and y; word 7 the write header's word 7 with bits 29:28 set
-  when context +0x16a68 is zero, bit 27 for the transfer path, bit 30 when the destination y lies
+  when context +0x16a68 is zero, bit 27 exactly when the caller's fourth argument is nonzero (0x0d9b7aa8 to 0x0d9b7ab4), bit 30 when the destination y lies
   in the source's y range and bit 31 when the destination x lies in the source's x range.
 - **`ImageCopyPixelBody`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d9b73c0, 1120 bytes), **established**, read in full in the
   assembly: fills the per-piece corners and sends 0x2031 and the eight words to the FIFO; with
