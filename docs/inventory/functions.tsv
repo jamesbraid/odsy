@@ -61370,7 +61370,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68c20	136	getdisplaymode	dyn
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68ca8	136	__GLarcfs	dynsym+mdebug	044ad75a7f40	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68ca8	136	arcfs	dynsym	044ad75a7f40	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68d30	136	__GLpatch	dynsym+mdebug	5916b1f201df	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68d30	136	patch	dynsym	5916b1f201df	shared-address	in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68d30	136	patch	dynsym	5916b1f201df	shared-address	in	named-only	docs/libraries.md#patch-4103-buildsvpro-patch-4103	Patch 4103 (`builds/vpro-patch-4103`)
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68db8	64	__GLgl_glx_unlink	dynsym+mdebug	7d479ff53a6c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68db8	64	gl_glx_unlink	dynsym	7d479ff53a6c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68df8	136	__GLnurbssurface	dynsym+mdebug	b8045a59e622	shared-address	in	undocumented		
@@ -65498,7 +65498,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a2f8	180	getdisplaymode	d
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a3ac	180	__GLarcfs	dynsym	91ceac257576	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a3ac	180	arcfs	dynsym	91ceac257576	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a460	180	__GLpatch	dynsym	ad07b75894ba	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a460	180	patch	dynsym	ad07b75894ba	shared-address	in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a460	180	patch	dynsym	ad07b75894ba	shared-address	in	named-only	docs/libraries.md#patch-4103-buildsvpro-patch-4103	Patch 4103 (`builds/vpro-patch-4103`)
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a514	68	__GLgl_glx_unlink	dynsym	e7b79ac75763	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a514	68	gl_glx_unlink	dynsym	e7b79ac75763	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a558	180	__GLnurbssurface	dynsym	ca2bd6e93e53	shared-address	in	undocumented		
