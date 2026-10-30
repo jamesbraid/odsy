@@ -26,3 +26,9 @@
 [submodule "irisgldocs"]
 	path = sgi-docs
 	url = https://github.com/sgi-demos/sgi-docs.git
+[submodule "openbsd"]
+	path = openbsd
+	url = https://github.com/openbsd/src.git
+[submodule "linux"]
+	path = linux
+	url = https://github.com/torvalds/linux.git

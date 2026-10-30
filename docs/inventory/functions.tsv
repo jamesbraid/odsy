@@ -106343,7 +106343,7 @@ usr/lib32/libfm.so	shared-library	n32	.text	0xee4398c	220	SearchXofY	dwarf+funcn
 usr/lib32/libfm.so	shared-library	n32	.text	0xee43a68	364	ImpliedHorizontalLine	dwarf+funcnames	f6bbaf6d6739	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee43bd4	704	FixSubPaths	dwarf+funcnames	47e1028e1e2f	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee43e94	360	DumpSubPaths	dwarf+funcnames	bbdf80186e8a	undocumented		
-usr/lib32/libfm.so	shared-library	n32	.text	0xee43ffc	40	before	dwarf+funcnames	1ed2c2d986f2	named-only	docs/coverage.md#display-output	Display output
+usr/lib32/libfm.so	shared-library	n32	.text	0xee43ffc	40	before	dwarf+funcnames	1ed2c2d986f2	named-only	docs/buzz.md#what-odysseyc-programs-with-the-existing-entry-it-is-checked-against	What `odyssey.c` programs, with the existing entry it is checked against
 usr/lib32/libfm.so	shared-library	n32	.text	0xee44024	68	writeXofY	dwarf+funcnames	ece2f8ec8d09	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee44068	832	CollapseWhiteRun	dwarf+funcnames	21498306b8b7	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee443a8	1652	t1_ApplyContinuity	dwarf+dynsym	313f580b12bd	undocumented		

@@ -45,6 +45,11 @@ The 6.5.30m DWARF in the kernel objects and the N32 libGLcore holds only compile
 
 DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30); fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
 
+Other public sources in this repository:
+
+- `openbsd/`: the OpenBSD sgi port, pinned to the last commit before it was retired from the tree (7011342f6a72, May 2021). The VPro driver is `sys/arch/sgi/xbow/odyssey.c` with `odysseyreg.h` and `odysseyvar.h`, the manual page is `share/man/man4/man4.sgi/odyssey.4`, and the raster-op values are in `sys/arch/sgi/dev/gl.h`. It is a small text-console driver (fill, copy, glyphs, gamma ramp), so it covers the command FIFO, the display FIFO and the start-up sequence only. `docs/buzz.md` section 11 records what each part programs against the binaries.
+- `linux/`: for the Octane (IP30), only crossbar enumeration, not a VPro driver: `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets, widget identity table with the Odyssey entry), `arch/mips/sgi-ip30/ip30-xtalk.c` (widget numbers, window addresses, link-alive probe) and `arch/mips/pci/pci-xtalk-bridge.c`. Fetch it shallow: `git submodule update --init --depth 1 linux`.
+
 ---
 
 ## 3. Deliverables: The Hardware Headers
