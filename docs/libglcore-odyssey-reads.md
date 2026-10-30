@@ -634,36 +634,67 @@ The library's generated entry points for the current-value calls (colour, normal
 
 ## Display-list parameters and execution thunks
 
-- `__glOdyim_ListParameterfvSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974c20, 236 bytes): **established.**
+- `__glOdyim_ListParameterfvSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd973450, 236 bytes): **established.**
   glListParameterfvSGIX (arguments: list name, parameter, a float array). Inside glBegin and glEnd it raises 0x502; a parameter other than GL_LIST_PRIORITY_SGIX (0x8182) raises 0x500; list name 0 raises 0x501. Otherwise it locks the list's record in the name table at +0x1340 with `__glNamesLockData`, stores the first float clamped to 0.0 to 1.0 at +0x2c of the record, and unlocks it; an unknown list name changes nothing.
-- `__glOdyim_ListParameterfSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974d10, 56 bytes): **established.**
+- `__glOdyim_ListParameterfSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd973540, 56 bytes): **established.**
   Puts its float argument in a stack slot and calls `__glOdyim_ListParameterfvSGIX` with the slot's address.
-- `__glOdyim_ListParameterivSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974d50, 68 bytes): **established.**
+- `__glOdyim_ListParameterivSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd973580, 68 bytes): **established.**
   Converts the first integer of the array to a float and calls `__glOdyim_ListParameterfvSGIX` with a pointer to it.
-- `__glOdyim_ListParameteriSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974da0, 64 bytes): **established.**
+- `__glOdyim_ListParameteriSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9735d0, 64 bytes): **established.**
   Converts its integer argument to a float and calls `__glOdyim_ListParameterfvSGIX` with a pointer to it.
-- `__glOdyim_GetListParameterfvSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974de0, 204 bytes): **established.**
+- `__glOdyim_GetListParameterfvSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd973610, 204 bytes): **established.**
   glGetListParameterfvSGIX (arguments: list name, parameter, a float array). The same 0x502, 0x500 and 0x501 checks as the setter; for a list found in the name table at +0x1340 it copies the float at +0x2c of the record into the array and unlocks the record.
-- `__glOdyim_GetListParameterivSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974eb0, 92 bytes): **established.**
+- `__glOdyim_GetListParameterivSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9736e0, 92 bytes): **established.**
   Calls the float getter with a stack slot and stores the slot's value, converted to an integer, in the integer array.
-- `__glOdysseyDlistOptimizer` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974f10, 8 bytes): **established.**
+- `__glOdysseyDlistOptimizer` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd973740, 8 bytes): **established.**
   The list optimiser entry the board's context installs at +0x134c: a return with no instructions before it, so lists are not rewritten after compilation.
-- `Bogus` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9759d0, 8 bytes): **established.**
+- `Bogus` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974980, 8 bytes): **established.**
   A list-execution entry that does nothing and returns its argument (the pointer to its own record) unchanged, so a placeholder opcode advances nowhere.
-- `callSetError` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd975a20, 68 bytes): **established.**
+- `callSetError` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974c20, 68 bytes): **established.**
   Replays a recorded error when a list runs (argument: the record). It calls `__glSetError` with the word at +0 of the record and returns the address 4 bytes on.
-- `__glOdyle_Begin` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd975920, 68 bytes): **established.**
+- `__glOdyle_Begin` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9748f0, 68 bytes): **established.**
   Replays a recorded glBegin when a list runs (argument: the record). It calls the routine whose address is in the process word 0x106c with the primitive mode stored at +0 of the record and returns the address 4 bytes on.
-- `__glOdyle_End` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd975970, 64 bytes): **established.**
+- `__glOdyle_End` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974940, 64 bytes): **established.**
   Replays a recorded glEnd: it calls the routine in the process word 0x107c and returns the record's own address, because the record has no operands.
-- `__glsplc_AddSentinel` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd976000, 156 bytes): **established.**
+- `__glsplc_AddSentinel` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd976070, 156 bytes): **established.**
   Ends a list that is being compiled. When the compile buffer (write pointer at the process word 0x1030, pending word count at 0x1034) holds pending words it writes their count in front of them and adds them with `__glsplc_AddIlist` using the push entry in +0x13b8; otherwise it backs the write pointer up 16 bytes and credits one word of space in 0x1028. It then adds `__glsple_Sentinel` as the closing instruction.
-- `__glOdylc_Error` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd975a70, 364 bytes): **established.**
+- `__glOdylc_Error` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd974c70, 364 bytes): **established.**
   Compiles a glGetError-style raised error into the list being built (argument: the error code). It flushes any pending words as `__glsplc_AddIlist` does, reserves two words with `__glSPDlistSpace` when the free count at 0x1028 is empty, adds an instruction whose executor is `callSetError` and stores the code in its record.
 
-The forty `__glOdysplc_` routines of the compile path each take 68 bytes and do the same two things: they clear the byte at +0x169dc of the current context (the process word 0x1010) and call the generic compile routine of the same name with `__glsplc_` in place of `__glOdysplc_`. The table below lists them with the callee each one calls.
+Thirty-three routines of the compile path (the `__glOdysplc_` thunks and `__glOdyim_ArrayElementEXT`) are the same 17 instructions in 68 bytes (checked by comparing the listings with the callee and the numbers masked): they clear the byte at +0x169dc of the current context (the process word 0x1010) and then call the generic routine named in the last column. The table was produced by a script from the listings of `libglcore/asm/ODYSSEY/ody_dlist.s` and is **inferred** from that comparison, not from a separate reading of each body.
 
 | Routine | Address | Size | Calls |
 |---|---|---|---|
 | `__glOdysplc_CallList` | 0xd975620 | 68 | `__glsplc_CallList` |
+| `__glOdysplc_CallLists` | 0xd975670 | 68 | `__glsplc_CallLists` |
+| `__glOdysplc_PopAttrib` | 0xd9756c0 | 68 | `__glsplc_PopAttrib` |
+| `__glOdysplc_EvalCoord1d` | 0xd975710 | 68 | `__glsplc_EvalCoord1d` |
+| `__glOdysplc_EvalCoord1dv` | 0xd975760 | 68 | `__glsplc_EvalCoord1dv` |
+| `__glOdysplc_EvalCoord1f` | 0xd9757b0 | 68 | `__glsplc_EvalCoord1f` |
+| `__glOdysplc_EvalCoord1fv` | 0xd975800 | 68 | `__glsplc_EvalCoord1fv` |
+| `__glOdysplc_EvalCoord2d` | 0xd975850 | 68 | `__glsplc_EvalCoord2d` |
+| `__glOdysplc_EvalCoord2dv` | 0xd9758a0 | 68 | `__glsplc_EvalCoord2dv` |
+| `__glOdysplc_EvalCoord2f` | 0xd9758f0 | 68 | `__glsplc_EvalCoord2f` |
+| `__glOdysplc_EvalCoord2fv` | 0xd975940 | 68 | `__glsplc_EvalCoord2fv` |
+| `__glOdysplc_EvalMesh1` | 0xd975990 | 68 | `__glsplc_EvalMesh1` |
+| `__glOdysplc_EvalMesh2` | 0xd9759e0 | 68 | `__glsplc_EvalMesh2` |
+| `__glOdysplc_EvalPoint1` | 0xd975a30 | 68 | `__glsplc_EvalPoint1` |
+| `__glOdysplc_EvalPoint2` | 0xd975a80 | 68 | `__glsplc_EvalPoint2` |
+| `__glOdysplc_Frustum` | 0xd975ad0 | 68 | `__glsplc_Frustum` |
+| `__glOdysplc_Ortho` | 0xd975b20 | 68 | `__glsplc_Ortho` |
+| `__glOdysplc_LoadIdentity` | 0xd975b70 | 68 | `__glsplc_LoadIdentity` |
+| `__glOdysplc_LoadMatrixf` | 0xd975bc0 | 68 | `__glsplc_LoadMatrixf` |
+| `__glOdysplc_LoadMatrixd` | 0xd975c10 | 68 | `__glsplc_LoadMatrixd` |
+| `__glOdysplc_MultMatrixf` | 0xd975c60 | 68 | `__glsplc_MultMatrixf` |
+| `__glOdysplc_MultMatrixd` | 0xd975cb0 | 68 | `__glsplc_MultMatrixd` |
+| `__glOdysplc_PopMatrix` | 0xd975d00 | 68 | `__glsplc_PopMatrix` |
+| `__glOdysplc_Rotated` | 0xd975d50 | 68 | `__glsplc_Rotated` |
+| `__glOdysplc_Rotatef` | 0xd975da0 | 68 | `__glsplc_Rotatef` |
+| `__glOdysplc_Scaled` | 0xd975df0 | 68 | `__glsplc_Scaled` |
+| `__glOdysplc_Scalef` | 0xd975e40 | 68 | `__glsplc_Scalef` |
+| `__glOdysplc_Translated` | 0xd975e90 | 68 | `__glsplc_Translated` |
+| `__glOdysplc_Translatef` | 0xd975ee0 | 68 | `__glsplc_Translatef` |
 | `__glOdysplc_Viewport` | 0xd975f30 | 68 | `__glsplc_Viewport` |
+| `__glOdysplc_DrawElements` | 0xd975f80 | 68 | `__glsplc_DrawElements` |
+| `__glOdysplc_DrawArraysEXT` | 0xd975fd0 | 68 | `__glsplc_DrawArraysEXT` |
+| `__glOdyim_ArrayElementEXT` | 0xd976020 | 68 | `__glim_ArrayElementEXT` |
