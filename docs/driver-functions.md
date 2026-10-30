@@ -2561,3 +2561,45 @@ Lays out
   It stores 68 at offset 784 plus 40n of the literal-pool block, then updates the flow word in the board
   record: the word at +34244 masked by an object constant has 0x11000 ORed in, is stored back and to the
   board register at 0x1074, and 0 goes to the shadow at +34248 and to the register at 0x107c.
+- `odsy_init` (`odsy_init.o`, offset 0x468, 348 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Driver start-up on the Origin 350 build, which discovers its boards here instead of waiting for an attach
+  per widget. It calls `odsyCheckBoardPointers`, takes the board-init semaphore with `psema` and, for each board
+  number below the global count, calls `find_odsypipe`; a zero answer skips the number and a negative one ends
+  the scan. For a pipe it creates the record with `odsyCheckBoardPointer`, stores 1 at +788, the pipe's byte at
+  +793 and at -19392 from +0x10000, -1 at -19394, the pipe's halfword at -19396 and the number at +790, and
+  builds the base address at +824 from 0x9200000000000000 plus the halfword shifted left by 33 plus the byte
+  shifted left by 24. It calls `odsyReset` unless the number equals the global in small data, then
+  `odsyInitBoardGfx`. It stores the number reached as the board count, releases the semaphore with `vsema`
+  and registers the driver with `xwidget_driver_register` for part 0xc013, manufacturer 35, prefix "odsy_".
+- `odsy_attach` (`odsy_init.o`, offset 0x71c, 628 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Crossbar attach entry for one board on the Origin 350 build. Under the board-init semaphore it reads the widget
+  id, master and master node from the vertex (`xwidget_info_get`, `xwidget_info_id_get`,
+  `xwidget_info_master_get`, `master_node_get`) and scans the records `odsy_init` made for the one whose byte at
+  -19392 from +0x10000 equals the widget id and whose halfword at -19396, or the peer that `get_xbow_peer`
+  stores at -19394, equals the node's entry in a table. For that record it stores 2 at +788 and the vertex at
+  -19400, maps the 0x401000-byte window with `xtalk_piomap_alloc` and `xtalk_piomap_addr` (piomap at -19384, base
+  at +824), stores `kvtophys` of the base at +832 and the base plus 0x110000 at +864, adds the hwgraph edge with
+  `GfxAddHwgraphEdge` and stores the widget id at +793 and the master id at +792. When bits 31:28 of the
+  window's word at +4 are 2 or more it records the NIC information (`eeprom_vertex_info_set`, or
+  `nic_vertex_info_set` when `get_chimera_type` is 0 on a system whose class word is not 0x4000) and runs
+  `odsy_set_gfx_mfg_nic_name`, logging a severity 1 message if that fails. It calls `odsyReset` unless the
+  number equals the small-data global, then `odsyInitIntr`, releases the semaphore with `vsema` and
+  returns 0.
+- `odsy_earlyinit` (`odsy_init.o`, offset 0x264, 516 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Early console-time initialisation on the Origin 350 build, read as a difference from the IP30 build. The
+  console option test and the re-entry guard are the same. The single board-0 lookup and the wait for the
+  initialisation word at +28480 are gone: it calls `odsyCheckBoardPointers`, scans the board numbers with
+  `find_odsypipe` as `odsy_init` does (record fields +788, +793, +790, -19392, -19394, -19396 and the base at +824),
+  stores 1 at -19328 from +0x10000, and only for the board whose number equals the global in small data (the
+  console board) calls `odsyReset`, `odsy_tport_lock_init` and `htp_register_board`. It sets the global count to
+  the number of boards scanned and returns 1 when it registered the console board, 0 otherwise.
+- `odsyInitHwWrRgn` (`odsy_init.o`, offset 0x4698, 424 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Allocates the software sync-write area on the Origin 350 build, read as a difference from the IP30 build. The 0x20000
+  bytes come from `kvpalloc_node_hint` for the node of the board's halfword at -19396 (through a table) instead
+  of `kmem_zalloc`, and the routine zeroes the 16384 doublewords itself. Clearing the four-entry arrays at
+  +29888 and +29920, aligning to a 64 KB boundary and filling the four 16 KB blocks are as in the IP30 build; only the
+  failure message differs in position.
