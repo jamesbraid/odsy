@@ -1,0 +1,744 @@
+<HTML>
+
+<TITLE>Silicon Graphics Fuel: Overview and Architecture...</TITLE>
+
+<BODY BGCOLOR="#ffffff" TEXT="#000000">
+
+<CENTER><B>
+
+[<A HREF = "future.html">Future Technology Research Index</A>]
+[<A HREF = "sgi.html"><I>SGI Tech/Advice Index</I></A>]
+[<A HREF = "n64.html">Nintendo64 Tech Info Index</A>]
+
+</B><P>
+
+<HR>
+
+<FONT SIZE=2><B>
+
+[<A HREF = "whatsnew.html">WhatsNew</A>]
+[<A HREF = "pi/">P.I.</A>]
+[<A HREF = "indigo/">Indigo</A>]
+[<A HREF = "indy/">Indy</A>]
+[<A HREF = "o2/">O2</A>]
+[<A HREF = "indigo2/">Indigo2</A>]
+[<A HREF = "crimson/">Crimson</A>]
+[<A HREF = "challenge/">Challenge</A>]
+[<A HREF = "onyx/">Onyx</A>]
+[<A HREF = "octane/">Octane</A>]
+[<A HREF = "origin/">Origin</A>]
+[<A HREF = "onyx2/">Onyx2</A>]
+
+</B></FONT>
+
+<HR>
+
+<H3><A HREF = "http://www.sgidepot.co.uk/sgidepot/">Ian's SGI Depot: FOR SALE! SGI Systems,
+Parts, Spares and Upgrades</A></H3>
+
+<B><A HREF = "http://uk.ebid.net/perl/main.cgi?words=mapesdhs&mo=search&type=user">(check my current auctions!)</A></B>
+
+<HR>
+
+</CENTER>
+
+<CENTER>
+
+<H1>Silicon graphics Fuel</H1>
+
+<H2>Overview and Architecture</H2>
+
+<H4>Last Change: 30/Jan/2026, 2006hrs.</H4>
+
+<H3>By Ian Mapleson</H3>
+
+</CENTER>
+
+<IMG ALT = "Fuel Image" WIDTH = 169 HEIGHT = 211 ALIGN = RIGHT
+SRC = "fuel/fuel_index.jpg">
+
+<B>Introduction</B><P>
+
+After releasing the Origin3000 series in July 2000, it was expected
+that at some point SGI would produce a workstation based on the O3K
+architecture. Sure enough, in January 2002 the Fuel workstation was
+<A HREF = "http://web.archive.org/web/20020202024614/www.sgi.com/newsroom/press_releases/2002/january/fuel.html">announced</A>,
+offering 500MHz and 600MHz CPU options <A HREF = "http://web.archive.org/web/20020223152350/www.sgi.com/workstations/fuel/">at launch</A>.<P>
+
+Fuel is a effectively a single-CPU Origin3000 with VPro graphics -
+the same graphics technology used in Octane2, though Fuel's faster
+architecture can get more out of the graphics subsystem just as the
+later multi-CPU O3K-based Tezro workstation can. For background
+information on how Fuel works, see my <A HREF =
+"origin3k.html">Origin3000</A> guide.<P>
+
+When Fuel launched, some assumed it was to be regarded as a new
+low-end desktop to replace O2, but that was not what SGI had in mind
+at all (SGI never released a new low-end desktop after O2). Instead,
+I was told, many customers wanted a performance desktop solution that
+did not require them to pay for the expense of having multi-CPU
+support which they didn't need. Fuel plugged this gap and was thus
+35% cheaper than Octane at launch.<P>
+
+Alas, SGI did make some mistakes, some of which can be debated but
+others are certain. Fuel's maximum RAM is 4GB, which is not really
+high enough for some tasks. Customers who would have been happy with
+a single-CPU system nevertheless often needed a lot of RAM, eg.
+processing with ANSYS, or as an entry Flame/Smoke system. Fuel should
+have supported 8GB or preferably 16GB. Likewise, the lack of built-in
+Gbit ethernet and audio was an odd decision.<P>
+
+However, Fuel did sell quite well; today it is one of the most
+popular hobbyist choices due to it's more expansive support of DVD,
+USB and Firewire devices compared to O2 or Octane, the fact that it's
+a much faster system in many ways (all the speed advantages over
+Octane described here also apply to Tezro of course) and its lower
+cost compared to an Octane with the nearest equivalent CPU/gfx
+options. Fuel has 4X faster SCSI than Octane (U160 instead of UW,
+with U320 optional via LSI PCI cards), 2X faster 66MHz PCI (4 slots
+on 2 buses built-in as standard!), 2X faster RAM, 2X faster
+system/RAM bandwidth, better RAM latency (ie. faster access time) and
+produces less noise.<P><BR>
+
+<B>CPUs</B><P>
+
+Here are the available CPU options for Fuel:<P>
+
+<UL>
+
+<LI>R16000 900MHz (8MB L2), 450MHz cache speed
+<LI>R16000 800MHz (4MB L2), 400MHz cache speed
+<LI>R16000 700MHz (4MB L2), 350MHz cache speed
+<LI>R14000 600MHz (4MB L2), 300MHz cache speed
+<LI>R14000 500MHz (2MB L2), 250MHz cache speed
+
+</UL>
+
+Most 2nd-hand Fuels have an R14K/500 or R14K/600. 700MHz and 800MHz
+units are not excessively hard to find (dealers will have them) but
+are a lot more expensive due to much higher demand from commercial
+buyers. The best possible CPU is R16K/900MHz with 8MB L2, but this is
+extremely rare (I managed to <A HREF =
+"misc/fuel900v12_winters7.jpg">get one</A> by swapping two complete
+700/V12 systems for a 900/V10 and an Onyx2).<P>
+
+A slight claim to fame btw - it was my moaning to the admin of
+sgi.com and his help in nagging SGI PR that in May 2006 led to the
+SGI marketing department finally allowing the web site to mention both
+the 1GHz CPU for Tezro and the 900MHz CPU for Fuel, though some of
+the PDFs have still not been updated. For reasons unknown, SGI never
+publicised these CPU options. My thanks to David Kascht at SGI for
+his assistance.<P><BR>
+
+<B>RAM</B><P>
+
+Fuel has four DIMM slots (2 banks of 2 slots each), minimum 512MB,
+maximum 4GB, using the same DIMMs found in Tezro and Origin300/3000.
+Most Fuels on the 2nd-hand market have 1GB RAM using one bank. There
+is a price premium for 2GB kits, but it's usually not too bad.<P><BR>
+
+<B>Audio</B><P>
+
+Audio is not included as standard in Fuel. An M-Audio Revolution 7.1
+PCI card is the best audio board to look for, though this card is
+expensive even 2nd-hand. A cheaper alternative is the SoundBlaster
+Audigy2 ZS; the quality is not as good, but it does the job.<P>
+
+Unlike Octane, Fuel supports Firewire and USB to some extent, so one
+can use a USB device (Griffin imic or Telex USB audio device) to
+provide audio if the PCI options are not available. A more recent
+version of IRIX is essential though for using USB devices (I
+recommend 6.5.28 or later; 6.5.17 was the first IRIX version for
+Fuel, but that is far too old to properly support USB/Firewire
+devices).<P>
+
+For professional audio, one can use the RAD Audio PCI card which
+provides eight ADAT optical audio channels, but it <I>must</I> be the
+3.3V version of the card (SGI PN 030-1441-001 or 030-1649-001), as
+opposed to the 5V version for Octane which is PN 030-0950-002 (make
+sure you find the right model).<P><BR>
+
+<IMG ALT = "Fuel Image" WIDTH = 100 HEIGHT = 174 ALIGN = RIGHT SRC = "fuel/fuel_fclft.jpg">
+
+<B>Internal Storage/Media Expansion</B><P>
+
+DVD devices work better with Fuel than Octane. Fuel has two internal
+5.25" bays included, with a DVDROM typically already installed in
+most systems (usually a Toshiba SD-M1401, though the SD-M1711 is
+better if you can find one), but not always. A CDRW or CDROM is also
+possible, or a DAT drive (Sony SDT11000 DDS4 works very nicely,
+though older models will work fine aswell). Here is a speed
+comparison of the 1401 vs the 1711, copying a single 1GB file to disk
+from a DVDR, and copying a CD with 667MB of data (1207 files) to disk:<P>
+
+<PRE>
+
+                     DVDR Copy     CD Copy
+                      m:ss.ss      m:ss.ss
+
+Toshiba SD-M1711:     4:49.23      3:07.02
+Toshiba SD-M1401:     6:25.09      3:15.17
+</PRE><P>
+
+Various models of IDE DVDRW drives also work ok when connected via a
+Yamaha SCSI/IDE adapter (full details at the excellent <A HREF =
+"http://forums.nekochan.net/viewtopic.php?t=9046">Fuel Hardware
+Aggregator</A> on <A HREF =
+"http://forums.nekochan.net/">Nekochan</A>), but again this does
+require a recent version of IRIX and up-to-date Nekoware apps for
+best usage. The system has space for three internal 3.5" disks,
+though one could always employ the 5.25" bays aswell if required.<P>
+
+Fuel can also use various FibreChannel (FC) and certain SAS/SATA PCI
+cards, so one could use FC, SAS or SATA drives aswell, though the PCI
+cards are not visible to the PROM during power-on so such devices
+could not be used as a system disk. However, a setup such as a 147GB
+15K system disk plus a 1TB SATA option disk is perfectly possible.<P>
+
+Here is an example diskperf result on a 36GB 15K disk in a 600MHz
+Fuel:<P>
+
+<PRE>
+# req_size  fwd_wt  fwd_rd  bwd_wt  bwd_rd  rnd_wt  rnd_rd
+#  (bytes)  (MB/s)  (MB/s)  (MB/s)  (MB/s)  (MB/s)  (MB/s)
+#---------------------------------------------------------
+     16384   52.24   59.79   44.27   22.78    7.83    4.33
+     32768   71.53   83.55   63.22   29.89   15.99    8.23
+     65536   85.37   97.17   72.86   33.94   25.94   14.63
+    131072   90.45   97.41   76.38   39.27   36.07   24.34
+    262144   93.92   97.67   73.13   53.03   49.27   38.13
+    524288   93.84   52.34   81.29   53.06   60.66   52.60
+   1048576   93.99   66.18   84.41   68.87   69.63   64.74
+   2097152   94.12   78.18   79.26   78.20   77.12   74.34
+   4194304   94.33   85.46   86.43   85.77   85.41   83.87
+</PRE><P>
+
+Easily 3X faster than the typical speeds possible with Octane's
+internal UW bus. Octane <I>can</I> have faster speeds, via the
+use of a suitable SCSI option card in a PCI cage or XTalk, but
+this can be expensive to setup.<P>
+
+Even a 10K drive runs faster in Fuel compared to Octane though, eg.
+here is a diskperf test on a 36GB 10K:<P>
+
+<PRE>
+# req_size  fwd_wt  fwd_rd  bwd_wt  bwd_rd  rnd_wt  rnd_rd
+#  (bytes)  (MB/s)  (MB/s)  (MB/s)  (MB/s)  (MB/s)  (MB/s)
+#---------------------------------------------------------
+     16384   53.74   53.95   13.43    2.87    5.62    3.12
+     32768   54.51   54.27   19.85    6.06   10.37    5.71
+     65536   54.52   54.27   27.68   13.49   16.69   10.29
+    131072   54.11   54.02   36.31   27.07   24.59   17.19
+    262144   54.45   54.30   41.11   36.48   33.27   25.76
+    524288   54.26   54.02   40.06   36.57   38.50   34.58
+   1048576   54.23   54.27   46.33   41.72   43.23   39.56
+   2097152   54.09   54.35   47.77   46.30   48.43   44.55
+   4194304   54.07   53.77   52.20   49.66   51.13   48.35
+</PRE><P>
+
+Where Fuel really shines is access time, benefiting greatly from the
+15K rpm disk speed. Octane does benefit aswell from a 15K drive, but
+not as much as Fuel can. For example, I tested how fast a 500MHz Fuel
+is able to search all of /usr/share for a deliberately non-existent
+file, thus forcing the search to examine the whole of /usr/share,
+some 715MB of data (more than 54000 files):<P>
+
+<DL><DT><DD><PRE>
+           Search Time
+            (seconds)
+
+36GB 15K:     11.08
+36GB 10K:     18.32
+</PRE></DL><P>
+
+ie. about 40% faster. I find these shorter search times especially
+useful as I often have to hunt for something in my email archive.<P>
+
+Note that I do have various 15K drives available, discount for Neko
+members! <A HREF = "contact.html">Email</A> for details.<P><BR>
+
+<B>PCI Options</B><P>
+
+Fuel has four PCI64 slots: two at 66MHz and two at 33MHz (the faster
+slots are nearer the base of the system). PCI with Octane requires
+either the expensive PCI cage or an XTalk adapter, so Fuel has a
+major advantage here. <A HREF =
+"http://forums.nekochan.net/viewtopic.php?f=14&t=16719759">My own
+Fuel</A> has an LSI U320 dual-channel card, QLA12160/66 card, SGI
+Gbit card and a Revolution 7.1 audio card. Octane does have one small
+advantage in that in theory it can hold up to six PCI cards (five for
+systems with VPro gfx), but Octane loses on speed since Fuel can
+drive two of its PCI slots at 66MHz, vs. 33MHz for all possible
+Octane PCI configurations.<P>
+
+Fuel supports a wide range of PCI option cards, including QLOGIC and
+LSI U160/U320 cards, an LSI SAS/SATA card, various FC cards, Gbit
+Ethernet, audio, serial, USB and firewire options. Here is a list,
+courtesy of the the <A HREF =
+"http://forums.nekochan.net/viewtopic.php?t=9046">Nekochan hardware
+summary</A> and my own information. Each line has an identifier name
+to denote the type of card. Any item that is suspected to work but
+not yet confirmed is shown in italics.<P>
+
+<PRE>
+NETWORK:    SGI Copper Gbit 10/100/100 PCIX Ethernet, SGI PN 9470434
+NETWORK:    SGI Copper Gbit 10/100/100 PCIX Ethernet, SGI PN 9210289 (3Com 3C996B-T board, chipset)
+NETWORK:    SGI Optical Gbit 1000-Base-SX PCIX Ethernet, SGI PN 9210129
+NETWORK:    3Com 3C996 10/100/1000 PCIX Server Adapter, <A HREF = "http://forums.nekochan.net/viewtopic.php?t=1672&highlight=nonsgi">Hacking Instructions</A>
+NETWORK:    Alteon ACEnic 10/100/1000 PCIX Server Adapter, <A HREF = "http://forums.nekochan.net/viewtopic.php?t=1672&highlight=nonsgi">Hacking Instructions</A>
+NETWORK:    Compaq NC7770 Gigabit Server Adapter, <A HREF = "http://forums.nekochan.net/viewtopic.php?t=1672&highlight=nonsgi">Hacking Instructions</A>
+SCSI:       QLOGIC QLA12160/33 Dual-Channel U160 33MHz PCI64 SCSI LVD/SE, two external VHDCI connectors
+SCSI:       QLOGIC QLA12160/66 Dual-Channel U160 66MHz PCI64 SCSI LVD/SE, two external VHDCI connectors
+SCSI:       QLOGIC QLA10160/33 Single-Channel U160 33MHz PCI64 SCSI LVD/SE, one external HD68 connector
+SCSI:       QLOGIC QLA1280 Dual-Channel U2W 33MHz PCI64 SCSI LVD/SE (PN QLA1280), two external VHDCI connectors
+SCSI:       QLOGIC QLA1080 Single-Channel U2W 33MHz PCI64 SCSI LVD/SE (PN QLA1080), one <A HREF = "sgidepot/pics/qlogic1080u2wscsi_connector.jpg">external VHDCI connector</A>, <A HREF = "sgidepot/pics/qlogic1080u2wscsi.jpg">image</A></A>
+SCSI:       QLOGIC QLA1040B Single-Channel UW 33MHz PCI64 SCSI SE, one external HD68 connector
+SCSI:       QLOGIC QLA1040B Single-Channel UW 33MHz PCI64 SCSI HVD, SGI PN <A HREF = "sgidepot/pics/qlogic1040b.jpg">9980984</A>
+SCSI:       SGI Dual-Channel U320 PCIX SCSI LVD/SE, PN PCIX-SCSI-U4-2P
+SCSI:       LSI 21320-IS U320 PCIX SCSI LVD/SE, one external HD68 port (OEM version of the above SGI card)
+SCSI:       LSI 22320-IS U320 PCIX SCSI LVD/SE, two external VHDCI connectors
+SAS/SATA:   LSI SAS3041XL-S Internal 4-port SAS/SATA 133MHz PCIX [<A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/sas_hbas/">ref</A>]
+SAS/SATA:   LSI SAS3041X-R 133MHz PCIX, 4 ports; all internal via individual SATA connectors [<A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/sas_hbas/">ref</A>]
+SAS/SATA:   LSI SAS3442X(-R) 133MHz PCIX, 8 ports; 4 external via one 4x multilane SFF8470; 4 internal via one 4x multilane SFF8484 [<A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/sas_hbas/">ref</A>]
+SAS/SATA:   <I>LSI SAS3080X-R 133MHz PCIX, 8 ports; all internal via two 4x multilane SFF8484</I> [<A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/sas_hbas/">ref</A>]
+SAS/SATA:   <I>LSI SAS3800X 133MHz PCIX, 8 ports; all external via two 4x multilane SFF8470</I> (<A HREF = "http://vb.net/products/LSILOGIC/LSSAS3800Xds.pdf">PDF</A>) [<A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/sas_hbas/">ref</A>]
+SAS/SATA:   <I>LSI SAS3801X 133MHz PCIX, 8 ports; all external via two 4x multilane SFF8088</I> [<A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/sas_hbas/">ref</A>]
+SAS/SATA:   HP 8 Internal port SAS HBA with RAID (PN 347786-B21) 133MHz PCIX; 8 internal SAS/SATA ports (based on the LSI 1068), OEM version of the LSI SAS3080X-R
+FWIRE:      Adaptec 4300 (Red PCB) Firewire PCI32, PN AFW-4300B
+FWIRE:      Belkin F5U503Vea1 Firewire PCI (Blue PCB)
+USB/FWIRE:  Adaptec UAU 3020 rev B Firewire/USB Combo card (blue PCB). See this <A HREF = "http://forums.nekochan.net/viewtopic.php?f=3&t=16719324">Neko thread</A> for details.
+USB:        Belkin N10117 4-port USB 2.0 PCI32 (Blue PCB), PN F5U220
+FIBRECH:    QLOGIC QLA2200 66MHz PCI64 Single-port Copper 1Gbit FibreChannel, SGI PN 9210190
+FIBRECH:    QLOGIC QLA2200F 66MHz PCI64 Single-port Optical 1Gbit FibreChannel, PN FC0310406-15
+FIBRECH:    QLOGIC QLA2310 66MHz PCIX Single-port Copper 2Gbit FibreChannel. Needs IRIX 6.5.18 or later.
+FIBRECH:    QLOGIC QLA2310F 66MHz PCIX Single-port Optical 2Gbit FibreChannel. Needs IRIX 6.5.18 or later.
+FIBRECH:    QLOGIC QLA2340 133MHz PCIX Single-port Optical 2Gbit FibreChannel. Needs IRIX 6.5.18 or later.
+FIBRECH:    QLOGIC QLA2342 133MHz PCIX Dual-port Optical 2Gbit FibreChannel. Needs IRIX 6.5.18 or later.
+FIBRECH:    <I>QLOGIC QLA2344 133MHz PCIX Quad-port Optical 2Gbit FibreChannel. Needs IRIX 6.5.18 or later.</I>
+FIBRECH:    LSI LSI7104XP-LC 133MHz PCIX Single-port 4Gbit FibreChannel. Needs IRIX 6.5.28 or later. <A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/fibre_channel_hbas/lsi7104xplc/">Tech Info</A>.
+FIBRECH:    LSI LSI7204XP-LC 133MHz PCIX Dual-port 4GBit FibreChannel. Needs IRIX 6.5.28 or later. <A HREF = "http://www.lsi.com/storage_home/products_home/host_bus_adapters/fibre_channel_hbas/lsi7204xplc/">Tech Info</A>.
+AUDIO:      RAD Digital Audio PCI card, 3.3V version only (SGI PN 030-1441-001 or 030-1649-001)
+AUDIO:      M-Audio Revolution 7.1 PCI card
+AUDIO:      Creative Soundblaster Audigy2 ZS
+MISC:       CAD Duo PCI card (extra keyboard/mouse/<A HREF = "sgidepot/pics/cadduocard2.jpg">Ethernet</A> ports), PN <A HREF = "sgidepot/pics/cadduocard1.jpg">030-1155-002</A>
+MISC:       Dual-port Serial I/O PCI (UFC), SGI PN 030-1657-003
+
+Notes: LSI SAS/SATA cards that should or do work are those based on the LSI SAS1064/1068 chipsets.
+
+IDE/SATA Adapters known to work:
+
+  RXD639 (SATALink SPIF223A chipset), needs a right-angled SATA cable.
+</PRE>
+
+Here's a picture of <A HREF = "misc/fuel900v12_winters5.jpg">my
+system's PCI slots</A>, fitted with (from top to bottom) an M-Audio
+Revoluion 7.1, SGI Copper Gbit Ethernet, QLA12160/66 and LSI 22320
+U320.<P>
+
+Fuel does not support any XIO options.<P><BR>
+
+<B>Graphics</B><P>
+
+The only available options are V10 and V12 - the same VPro technology
+as used in Octane2, but they use a physically different form factor.
+The connector is DVI, as opposed to 13W3 on Octane. One can use a
+DVI/VGA adapter or cable to connect to a monitor or flat panel. For
+connection to an older monitor with a 13W3 socket, DVI/13W3 cables do
+exist but they are hard to find - it's easier to use a VGA/13W3
+adapter and then either a VGA/DVI cable or VGA cable + VGA/DVI adapter.<P>
+
+V10 has 32MB combined RAM, V12 has 128MB. I've often seen it said
+that V10 allows up to 8MB for textures while V12 can have up to 108MB
+for textures, but this is not true. If one uses 1280x1024 with 8
+bytes per pixel, then V10 provides 20MB for textures and V12 offers
+120MB. Both options are the same speed, but V12 supports a much wider
+range of <A HREF =
+"http://www.sgi.com/products/remarketed/fuel/display_resolutions.html">display
+resolutions</A> (hobbyists have created numerous extra video format
+files to support LCD/TFT displays, eg. 1680x1050 @ 60Hz).<P>
+
+One can use a dual-channel display card to drive two monitors or
+LCD/displays.<P><BR>
+
+<B>Video</B><P>
+
+The <A HREF = "fuel/3344.pdf">DMediaPro DM6</A> supports uncompressed
+standard definition serial digital video in both PAL and NTSC formats.
+Sadly this PCI-based option board is hard to find.<P><BR>
+
+<B>Environmental Factors</B><P>
+
+Fuel makes less noise than Octane, which is good, but even so there
+are those who replace the fans with modern low-noise versions to
+reduce the noise level even further.<P>
+
+Under load, a typical Fuel uses about 200, with a higher spec model
+draining around 230W. My Fuel, which is utterly maxed-out, uses 281W
+under load, 259W idle.<P>
+
+One issue with Fuel that has plagued some people is dealing with
+earlier revisions of the motherboard which have bad environmental
+monitoring ICs. Turning the monitoring off is one solution, but see
+the <A HREF =
+"http://forums.nekochan.net/viewtopic.php?f=3&t=16206">Nekochan
+thread</A> for full details on this issue and how to replace the ICs
+if required. In general, later models of Fuel will not suffer from
+this problem.<P><BR>
+
+<A HREF = "http://www.sgidepot.co.uk/sgidepot/pics/jonasfuel1.jpg"><IMG
+ALT = "Fuel Front View" WIDTH = 213 HEIGHT = 300 ALIGN = RIGHT
+SRC = "http://www.sgidepot.co.uk/sgidepot/pics/jonasfuel1s.jpg"></A>
+
+<B>Build Style and Appearance</B><P>
+
+Fuel resembles a PC-style tower unit, with a removeable side panel
+for <A HREF = "misc/fuel900v12_winters4.jpg">access to all internal
+components</A>. A <A HREF = "misc/fuel900v12_winters2.jpg">front flap
+opens</A> to reveal the two internal 5.25" bays, power button and
+recessed reset button (these pics are of my own system, showing a
+Yamaha 16/10/40 CDRW and Toshiba SD-M1711 DVDROM). As with any
+PC-type tower unit, the <A HREF = "fuel/fuel4s.jpg">rear of the
+unit</A> presents the keyboard/mouse ports, serial ports, parallel,
+ethernet, USB, monitor output and PCI slots. Here is a <A HREF =
+"misc/fuel900v12_winters3.jpg">close-up of the PCI slots</A> of my
+own system, taken at a point before my scanner was connected to the
+remaining U160 SCSI port.<P>
+
+The cage for holding two internal disks rotates outwards (<A HREF =
+"misc/fuel900v12_winters6.jpg">this image</A> shows my system's 147GB
+15K system disk and 300GB 10K data disk), while the large blue cover
+over the motherboard/fan lifts up easily to give access to the RAM
+slots. The front panal is removed by gently lifting the tabs on the
+left side of the panel while pulling the panel away from the
+chassis.  Internal 5.25" devices are attached to rail guides,
+allowing them to slide out for removal. A bracing bar across the
+system adds strength, but is easily removed by extracting a single
+screw (swapping out the motherboard is not particularly
+difficult).<P>
+
+Fuel was SGI's first desktop system with any significant degree of
+internal cabling, quite unlike Octane which has almost no cables
+inside at all. As a result, some hobbyists are not that keen on
+Fuel's design, but they forget that this deliberately lower-cost
+build is partly why Fuel was so much cheaper than Octane when first
+launched. Besides, the flat top of the unit is definitely useful for
+positioning external devices, and I personally do like the fact that
+removing the side panel is much less likely to cause any accidental
+damage to internal parts - contrast this with Octane, where removing
+the motherboard or gfx assembly can all too easily lead to problems
+with dust getting on the XIO connector, etc.  Swapping the
+motherboard in Octane is certainly easy, but risky if not done
+correctly. Likewise, a Fuel graphics board has an edge connector that
+is more like a PCI card and so is far less likely to come to harm
+during handling.<P><BR>
+
+<B>General Performance</B><P>
+
+For raw speed, a 500MHz Fuel can be 40% faster than a 400MHz Octane2
+with a good disk, ie. a better speed increase than is implied merely
+by the 25% higher clock speed, eg. application startup times for
+Firefox, OpenOffice, etc. are much better. Fuel can take good
+advantage of a 15K rpm drive since it has U160 SCSI, eg. 98MB/sec is
+possible with a nice 15K, more if using XLV stripes, etc.<P>
+
+Although the graphics option can only be a single V10 or V12 VPro,
+Fuel can get more out of them compared to the same options in Octane,
+though one would probably only notice this if working with more
+dynamic datasets or other complex models. Overall, for any basic
+single-CPU/gfx combination, Fuel is better value for money than
+Octane2; in other words (for example), a 600MHz Fuel V10 is cheaper
+than a 600MHz Octane2 V10. Lower-spec Octanes are cheaper, eg.
+400/V6, but V6/V8 have resolution restrictions which are absent on
+V10/V12. I used a 550MHz Octane2 as my main desktop for a long time,
+but finally switched to Fuel because of the extra responsiveness for
+heavy applications like Firefox, and the ability to do things like
+search my email archive at much greater speeds than is possible with
+Octane.<P>
+
+If you can make good use of dual-CPUs, then Octane2 may be a better
+though more expensive choice, eg. for use with Blender, Maya, Alias,
+SoftImage, or other professional applications, but Fuel quickly
+displays an advantage as the task becomes more complex, eg. <A HREF =
+"perfcomp.html">my tests</A> show that, for rendering complex scenes
+in Alias, a 600MHz Fuel is only a little slower than a dual-400
+Octane, though it depends on the scene complexity. For a simple Maya
+scene rendered via mentalray, a dual-CPU Octane scales perfectly,
+ie.  no real gain from the faster O3K architecture in Fuel (thus, a
+dual-R10K/250 Octane is a good low-cost solution). Likewise, a
+dual-600 Origin300 is about the same as a dual-600 Octane for simple
+scenes, but is significantly faster for complex scenes. Given Fuel's
+low cost though, animation rendering under IRIX is probably best
+served via multiple 500MHz or 600MHz Fuels or Origin300s instead of
+expensive dual-CPU Octanes, the exception being dual-250 Octanes for
+strictly simple scenes. For interactive work, Fuel's faster SCSI
+means better loading and saving times for large files aswell. See my
+<A HREF = "diskdata.html">disks benchmarks page</A> for example
+performance comparisons between a range of SCSI, SATA, SAS and FC
+drives.<P>
+
+Thus, if single-threaded speed is more important (ie. running
+applications such as OpenOffice or Firefox), then a 500MHz or 600MHz
+Fuel with a 15K disk is a good system (I recommend the Maxtor Atlas
+15K II), though it's wise to get a system with audio if possible
+since Fuel does not have built-in audio.<P>
+
+I was once asked about what the best choice was for a performance
+IRIX solution for animation modelling and rendering. Due to the high
+cost of good dual-CPU options for Octane, and the similar high cost
+of 700MHz or higher CPUs for Fuel, I recommended a combination of a
+Fuel for modelling and an Origin300 for rendering; this would be
+cheaper, faster and more flexible than a dual-600 Octane2 V12.<P>
+
+The faster SCSI subsystem has one other useful consequence, namely
+better network transfer speeds when using Gbit connections. My Fuel
+is able to sustain more than 75MB/sec when transfering files via ftp
+to/from another Gbit-equipped system such as Tezro or my PC. By
+contrast, unless a better SCSI system is added via a PCI cage or
+XTalk adapter, Octane cannot sustain more than about 37MB/sec across
+a Gbit link because of the limit of the UW SCSI bus. Octane can of
+course use FC cards, including a dual-port copper XIO FC card, but
+FC is somewhat more complex to deal with than SCSI, and Fuel has an
+advantage here anyway since Fuel's faster PCI means it can properly
+exploit higher bandwidth FC options such as the QLA2342.<P><BR>
+
+<CENTER><H2>General Information Sources</H2></CENTER>
+
+<UL>
+
+<LI><A HREF = "fuel/3215.pdf">Silicon Graphics Fuel Workstation (358K
+PDF)</A>.<P>
+
+Does not mention the 900MHz CPU. Here is the <A HREF =
+"fuel/3215o.pdf">original version</A> from Jan 2002 which only
+mentions the initial 500MHz and 600MHz CPU options.<P>
+
+<LI><A HREF = "fuel/3344.pdf">DMediaPro DM6 Datasheet</A><P>
+
+<LI><A HREF = "remfuelgfx.html">How to remove the graphics card from a
+Fuel</A><P>
+
+</UL>
+
+<BR>
+
+<CENTER><H2>Technical Notes</H2></CENTER>
+
+<B>How to turn off environmental monitoring</B><P>
+
+From a runing IRIX:<P>
+
+<PRE>
+   l1cmd --scdev /hw/module/001c01/L1/controller env off
+</PRE><P>
+
+From the l1 prompt:<P>
+
+<PRE>
+   env off
+</PRE><P><BR>
+
+<B>How to re-enable a disabled RAM bank in the PROM</B><P>
+
+Courtesy of Reinhard Wolf, just enter the following in the PROM
+Command Monitor:<P>
+
+<PRE>
+   enableall
+   update
+   init
+</PRE><P>
+
+According to Reinhard, a disabled 2nd bank should always allow for
+booting provided the first bank is populated. If a node exception
+occurs though, then the PIMM is probably bad.<P><BR>
+
+<B>DIMM Slot Organisation</B><P>
+
+<CENTER><IMG ALT = "Fuel RAM Slots" WIDTH = 867 HEIGHT = 599 SRC =
+"fuel/fuelramlayout.jpg"></CENTER><P><BR>
+
+<B>Fuel fan replacement information, by Schleusel (from the Nekochan Fuel page)</B><P>
+
+<PRE>
+<I>Original:</I>                                                                size(mm)      RPM       CFM    m^3/h   dBA
+
+EXHAUST    Delta        AFB1212LE         DC12V 0.30A     3pin Molex    120x120x38     2000     84.76    144     34
+DISK       Delta        AFB0612M          DC12V 0.12A     3pin Molex     60x60x25      3600     19.78    33.6    31
+PCI        Delta        AFB0812L          DC12V 0.12A                    80x80x25      2400     27.9     47.4    25
+XIO        Delta        AFB0612M          DC12V 0.12A                    60x60x25      3600     19.78    33.6    31
+PSU        Minebea      3110Kl-04W-B60    DC12V 0.34A     2pin Molex     80x80x25      3400     42       71.35   35
+
+
+<I>Replacement:</I>                                                             size(mm)      RPM       CFM    m^3/h   dBA
+
+EXHAUST    Titan        TFD-12025M12B      DC12V 0.28A    3pin Molex    120x120x25     2000     79.14    134.5   36
+DISK       YS-TECH      FD126025LB-N(2A5)  DC12V 0.12A    3pin Molex     60x60x25      2600     17.1      29     25.5
+PCI        YS-TECH      FD1281253B-2A      DC12V 0.10A    3pin Molex     80x80x25      2000     30.0      51     23
+XIO        YS-TECH      FD126025MB         DC12V 0.12A    3pin Molex     60x60x25      3700     20.0      34     28
+PSU        PAPST        8412 N/2GME        DC12V 0.10A    3pin Molex     80x80x25      2600     34.12     58     26
+</PRE><P>
+
+Schleusel's comments on the fan replacements:<P>
+
+<DL><DT><DD>
+"I mostly went with YS-TECH as those are relatively cheap and very
+quiet for the amount of air they move - i'm pretty happy with that
+choice so far. Especially replacing the two small XIO fans was really
+worth it.<P>
+
+Initially I had no intention to replace the large Exhaust fan as it
+was barely running at half speed most of the time - but as soon as I
+had replaced the rest I realised the very annoying clatter it
+produced. If your's is quiet - don't replace it.<P>
+
+The Titan fan I now have in there isn't really optimal as it is only
+a 25mm thick model. It needs a higher rpm to move the same amount of
+air (currently its running at ~1500 rpm compared to the ~1200 rpm the
+original was mostly running at) but its still a lot more pleasent
+than the old one. It seems to be pretty hard to find 120x120x38mm
+fans these days.. well, apart from some 30 EUR+ PAPST models.<P>
+
+A note on the PSU fan:<P>
+
+I have the first generation 430W PSU so I can't comment on the newer
+480W ones. The PSU fan was by far the noisiest part in the system.
+Noname thing running at 3400rpm and no rpm sensor (two pin only). The
+L1 controller does somehow manage to "guess" its rpm but it isn't
+really controlled. A few minutes after the machine is powered on it
+just keeps running at peak rpm. Initially I replaced it with a
+YS-TECH at 3000 rpm that actually moved more air than the original
+one - and was almost as annoying As the PSU is hardly running at 50%
+load and barely got hot I decided to try the PAPST I currently have
+in there. 19% less throughput at 2600 rpm - a lot better. Some Silent
+PC junkie would probably still run away but I don't really dare to go
+even lower.<P>
+
+It needed a little software hack though: When initially powered on,
+the PAPST is running below the warning rpm of the L1 environmental
+monitoring. So with the monitoring running the L1 would just switch
+off the machine 60 seconds after power on. To work arount that I
+wrote an init script that switches off the env monitoring during
+system shutdown and switches it on again 5 minutes after the system
+is booted. At that time the PAPST is already running at full rpm and
+the L1 is happy - very ugly but works.<P>
+
+Anyway, a newer PSU is still quite high on my wishlist. Several l1cmd
+env outputs of machines with 480W PSU show the stock fan running way
+slower than my original one.. and hopefully with proper rpm sensor as
+the rest of the fans too."
+</DL><P><BR>
+
+<B>SGI Fuel Part/Assembly Numbers List (non-SGI cards not included)</B><P>
+
+Nowhere near a complete list yet - I will add more entries as and when I can.<P>
+
+<DL><DT><DD><PRE>
+<B>SGI Part Number(s)              Item Description               Notes</B>
+
+030-2023-001                    R16000 900MHz (8MB L2) CPU     Cache speed = 450MHz
+030-1932-001                    R16000 800MHz (4MB L2) CPU     Cache speed = 400MHz
+030-1891-001                    R16000 700MHz (4MB L2) CPU     Cache speed = 350MHz
+030-1730-002                    R14000 600MHz (4MB L2) CPU     Cache speed = 300MHz
+030-1730-001                    R14000 600MHz (4MB L2) CPU     Cache speed = 300MHz
+030-1708-003                    R14000 500MHz (2MB L2) CPU     Cache speed = 250MHz
+030-1060-004 or HU-F-MEM2GB     1GB DIMM                       Two of these form a 2GB kit
+030-1060-003 or HU-F-MEM2GB     1GB DIMM                       Two of these form a 2GB kit
+030-1060-002 or HU-F-MEM2GB     1GB DIMM                       Two of these form a 2GB kit
+030-1044-001 or HU-F-MEM1GB     512MB DIMM                     Two of these form a 1GB kit
+030-1042-003 or HU-F-MEM1GB     512MB DIMM                     Two of these form a 1GB kit
+030-1746-001                    512MB DIMM                     Two of these form a 1GB kit
+030-1746-002                    256MB DIMM                     Two of these form a 512MB kit
+030-1746-003                    256MB DIMM                     Two of these form a 512MB kit
+060-0210-001                    PSU 460W
+060-0140-007                    PSU 460W
+060-0140-006                    PSU 460W
+060-0140-005                    PSU 430W
+060-0140-004                    PSU 430W
+030-1707-005                    IP35 Motherboard
+030-1707-004                    IP35 Motherboard
+030-1707-003                    IP35 Motherboard
+013-4160-001                    V12 Graphics Board with DCD fitted (unknown 030 PNs atm)
+013-3416-007                    V12 Graphics Board with DCD fitted (most likely consists of 030-1726-006 V12 and 030-1731-002 DCD, not sure yet)
+013-3416-006                    V12 Graphics Board with DCD fitted (confirmed combination of 030-1726-005 V12 and 030-1731-001 DCD)
+013-3416-005                    V12 Graphics Board with DCD fitted (unknown 030 PNs atm)
+013-3416-004                    V12 Graphics Board with DCD fitted (unknown 030 PNs atm)
+013-3416-003                    V12 Graphics Board with DCD fitted (unknown 030 PNs atm)
+030-1726-006                    V12 Graphics Board
+030-1726-005                    V12 Graphics Board
+030-1726-004                    V12 Graphics Board
+030-1726-003                    V12 Graphics Board
+013-3513-002                    V10 Graphics Board
+030-1826-003                    V10 Graphics Board
+030-1826-002                    V10 Graphics Board
+030-1826-001                    V10 Graphics Board
+030-1725-001                    V10 Graphics Board
+</PRE></DL><P><BR>
+
+<B>Recommended CRT Monitor List</B><P>
+
+Not directly related to Fuel, but I thought I would include here the
+results of my search for monitors that support up to 2048 x 1536, the same
+max resolution of the SGI GDM5411. My 5411 died, so I replaced it with
+a Dell P1130. I was very pleased with the P1130 and so I then replaced my
+two ageing GDM20E21s with two HP P1130s. The P1130 is an excellent monitor,
+highly recommended.<P>
+
+<DL><DT><DD><PRE>
+Dell P1130 22"
+HP P1130 22"
+HP P1230 22"
+Mitsubishi Diamond Pro 2070SB
+SGI C220-A
+SGI GDM5411
+Compaq P1220 22"
+Sony G550
+VIEWSONIC 22" P220F
+NEC MultiSync FP1375X 22"
+ViewSonic G810
+</PRE></DL><P>
+
+Some of these monitors use exactly the same tube, just with different
+case colours, styles and control button locations.<P><BR>
+
+Feedback on this page is most welcome! :)<P>
+
+<HR>
+
+<CENTER>
+
+<H3><A HREF = "http://www.sgidepot.co.uk/sgidepot/">Ian's SGI Depot: FOR SALE! SGI Systems,
+Parts, Spares and Upgrades</A></H3>
+
+<B><A HREF = "http://uk.ebid.net/perl/main.cgi?words=mapesdhs&mo=search&type=user">(check my current auctions!)</A></B>
+
+<HR>
+
+<FONT SIZE=2><B>
+
+[<A HREF = "whatsnew.html">WhatsNew</A>]
+[<A HREF = "pi/">P.I.</A>]
+[<A HREF = "indigo/">Indigo</A>]
+[<A HREF = "indy/">Indy</A>]
+[<A HREF = "o2/">O2</A>]
+[<A HREF = "indigo2/">Indigo2</A>]
+[<A HREF = "crimson/">Crimson</A>]
+[<A HREF = "challenge/">Challenge</A>]
+[<A HREF = "onyx/">Onyx</A>]
+[<A HREF = "octane/">Octane</A>]
+[<A HREF = "origin/">Origin</A>]
+[<A HREF = "onyx2/">Onyx2</A>]
+
+</B></FONT>
+
+<HR>
+
+<B>
+
+[<A HREF = "future.html">Future Technology Research Index</A>]
+[<A HREF = "sgi.html"><I>SGI Tech/Advice Index</I></A>]
+[<A HREF = "n64.html">Nintendo64 Tech Info Index</A>]
+
+</B></CENTER><P>
+
+</HTML>
+

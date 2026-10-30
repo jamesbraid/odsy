@@ -1,0 +1,45 @@
+<html><head><title>IST CD - Quick Reference Guide</title></head>
+<body bgcolor="#FFFFFF" link="#003366">
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor="#99ccff">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td bgcolor="#99ccff"><font face="Arial,Helvetica">
+        Support Information &gt; Odydiags Quick Reference Guide &gt;
+        Odydiags</font></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><font face="Arial,Helvetica">
+        <OL><LI>Log in as <b>root</b>, and set the console to the terminal that
+		is connected to the first serial port by using one of the
+		following commands: <br><br>
+                <font face="Courier"><tt># chkconfig console d <br>
+                &nbsp &nbsp or <br> # nvram console d</tt></font><p>
+            <LI>Disable the window system using the following command:<p>
+                <font face="Courier"><tt># chkconfig windowsystem 
+		off</tt></font><p>
+            <LI>Reboot the system.  
+            <LI>Change your working directory to <B>/usr/diags/ody</B>.
+            <LI>To run all standard tests, execute the following commands:<p>
+                <font face ="Courier"><tt> # ./run.pl -all<br>
+                # ./run.pl 1 -rts<br>
+		# ./run.pl 1 -ifio</tt></font><P>
+                <dl><dt>Note: Check the following files after executing each
+			command to see test details and results:</dt><p>
+		    <font face="Courier"><tt>
+                    <dd>summary.log<br>
+                        loopsummary.log<br>
+                        details.log
+                    </dd>
+                </dl></tt></font><P>
+            <LI>Get a list of available tests using the following command:<P>
+                 <font face ="Courier"><tt># ./odydiags -help<br>
+                 Select 5 from the list of options.</tt></font><p>
+            <LI>To run specific tests ,use the following command:<p>
+                <font face ="Courier"><tt># odydiags -&lt;testname&gt;
+		-&lt;options&gt;</tt></font><P>
+            <LI>Read the Vpro Odyssey Graphics Diagnostic Reference for a
+		detailed description of the tests and the available option
+		parameters.
+        </ol></td></tr>
+<tr><td colspan=2>&nbsp;</td></tr>
+</table></body></html>
+

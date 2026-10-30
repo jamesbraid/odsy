@@ -140,6 +140,145 @@ Facts (established, published):
 - **The tests.** Register test: walking patterns over seven registers whose names are given (`XT_REQ_TIMEOUT`, `XT_INTR_DST_ADDR_HI`, `XT_INTR_DST_ADDR_LO`, `FLCTL_CONFIG`, `FLAG_USER_EN_SET`, `FLAG_INTR_ENAB_SET`, `FLAG_SET_PRIV`); a reset is needed after the board manager because the manager clears the shadow state. Formatter tests send DMA parameter files (input and output formatters of the "GFE"): transfer mode, host format, host data type, graphics format, byte swap, expansion and image size. Raster, shader and texture tests: points, lines, anti-aliased points, anti-aliased lines, triangles, alpha function, blending logic and the 3D checkerboard (`-rts`, `-raster`, `-shader`, `-texture`), with CRC and pixel read-back that `-noverify` disables. Display tests compare colour-map CRCs to known values.
 - Bearing: these are the tests whose stored frames and CRC lists [docs/raster.md](raster.md) rebuilds. The manual calls the checks "known value" comparisons and does not say where the known values come from; the stored frames are therefore the diagnostic's expected output and are not measurements, which is how raster.md already treats them. The register names of the first bullet are a published list of BUZZ registers the diagnostic writes by name; matching them to [docs/registers.md](registers.md) is not done in this pass.
 
+## Further stored documents
+
+Every document below is stored in full under [docs/sources/](sources/README.md); the table gives the repo path and SHA-256 of each copy. A page of an SGI guide is cited by its printed number, and by PDF page where the guide has none.
+
+| Repo path | Document | Bytes | SHA-256 |
+|---|---|---|---|
+| [manuals/007-2392-003-opengl-on-silicon-graphics-systems.pdf](sources/manuals/007-2392-003-opengl-on-silicon-graphics-systems.pdf) | OpenGL on Silicon Graphics Systems, 007-2392-003 | 4703042 | `6565e36a749d12aa77b48f706430ee7acd30e803f772855ea0d6830421575879` |
+| [manuals/007-3897-007-irix-6.5.8-update-guide.pdf](sources/manuals/007-3897-007-irix-6.5.8-update-guide.pdf) | IRIX 6.5.8 Update Guide, 007-3897-007 | 135309 | `884452a0fc12b46fbb96c83482fbaa5fc6ca35c5fe57e97baf6f9a12fe8febcf` |
+| [manuals/007-3897-008-irix-6.5.9-update-guide.pdf](sources/manuals/007-3897-008-irix-6.5.9-update-guide.pdf) | IRIX 6.5.9 Update Guide, 007-3897-008 | 149056 | `41c251a71058841e00dca86ddbc8a98f30bf3f83eb40cc7af563d06ca5070cd7` |
+| [manuals/007-3897-009-irix-6.5.10-update-guide.pdf](sources/manuals/007-3897-009-irix-6.5.10-update-guide.pdf) | IRIX 6.5.10 Update Guide, 007-3897-009 | 161731 | `fde6a3137d159a6596d96e456b9ccc29eef428a52bf1c7f68fca6959ec7b337a` |
+| [manuals/007-3897-012-irix-6.5.13-update-guide.pdf](sources/manuals/007-3897-012-irix-6.5.13-update-guide.pdf) | IRIX 6.5.13 Update Guide, 007-3897-012 | 248096 | `eee998460fb1ae6cc532994bb95a27708c9d6f558eca34c8254c6356501acc72` |
+| [manuals/007-3897-015-irix-6.5.15-update-guide.pdf](sources/manuals/007-3897-015-irix-6.5.15-update-guide.pdf) | IRIX 6.5.15 Update Guide, 007-3897-015 | 308212 | `a9fe188370e9b9ed83180e4434eb6515ff970dc123abff80f165c9e366fe6848` |
+| [manuals/007-4207-001-octane2-owners-guide.pdf](sources/manuals/007-4207-001-octane2-owners-guide.pdf) | Octane2 Workstation Owner's Guide, 007-4207-001 | 5082303 | `1f236d3f2992b65c19f69e19774320f28022ee28138039e6294ed60006ee9ab4` |
+| [manuals/007-4207-002-octane2-owners-guide.pdf](sources/manuals/007-4207-002-octane2-owners-guide.pdf) | Octane2 Workstation Owner's Guide, 007-4207-002 | 6255596 | `03ffca17d27722d67e0c5257459e5e5535b07a6a1e800eba6925b77150de2323` |
+| [manuals/007-4208-001-octane-vpro-power-supply-upgrade.pdf](sources/manuals/007-4208-001-octane-vpro-power-supply-upgrade.pdf) | Octane VPro Graphics Power Supply Upgrade Instructions, 007-4208-001 | 518919 | `2647dc0df5da990578727bbf77edfea82b98a9805fca7006ce8bd96deab8383b` |
+| [manuals/007-4209-001-octane2-display-option-board-owners-guide.pdf](sources/manuals/007-4209-001-octane2-display-option-board-owners-guide.pdf) | Octane2 Display Option Board Owner's Guide, 007-4209-001 | 2022881 | `30c03cc0c6e8158956aa6184d684f7473926face6cb521b2b82860ec65a98098` |
+| [manuals/007-4209-002-octane2-dual-channel-display-installation-guide.pdf](sources/manuals/007-4209-002-octane2-dual-channel-display-installation-guide.pdf) | Octane2 Dual Channel Display Installation Guide, 007-4209-002 | 5782540 | `442b85225481e9d3009d5870a015773894ac72d7968509c614888c55aafd8db1` |
+| [manuals/007-4209-003-dual-channel-display-guide-octane2-fuel.pdf](sources/manuals/007-4209-003-dual-channel-display-guide-octane2-fuel.pdf) | Dual Channel Display Guide for Octane2 and Fuel, 007-4209-003 | 5907837 | `883ee4d05e31731078f37f89d23c40e7f7bcb70d74743020b44529a6ddabc0bf` |
+| [manuals/007-4210-001-octane-vpro-upgrade-kit-installation-guide.pdf](sources/manuals/007-4210-001-octane-vpro-upgrade-kit-installation-guide.pdf) | Octane VPro Graphics Upgrade Kit Installation Guide, 007-4210-001 | 735805 | `830d16a097dfe09d74ab960b7d89e973c725f2de34bae1deaee0d5e6a3c56d4d` |
+| [manuals/007-4210-002-octane-octane2-vpro-upgrade-kit-installation-guide.pdf](sources/manuals/007-4210-002-octane-octane2-vpro-upgrade-kit-installation-guide.pdf) | Octane and Octane2 VPro Graphics Upgrade Kit Installation Guide, 007-4210-002 | 938312 | `fdd01feb66f139b05ce4cd3984277529bff1685bf152a372b4e9c54e72e00583` |
+| [manuals/007-4210-003-octane-octane2-vpro-upgrade-kit-installation-guide.pdf](sources/manuals/007-4210-003-octane-octane2-vpro-upgrade-kit-installation-guide.pdf) | Octane/Octane2 VPro Graphics Upgrade Kit Installation Guide, 007-4210-003 | 834332 | `42ef1c88ff18c772f184e1af82c7cdae95ebd902fbae21b37a5986e1b16b5768` |
+| [manuals/007-4239-004-opengl-multipipe-sdk-users-guide.pdf](sources/manuals/007-4239-004-opengl-multipipe-sdk-users-guide.pdf) | OpenGL Multipipe SDK User's Guide, 007-4239-004 | 3034454 | `25ff61ecf86e146244c30451bf79fd1660f75d784b1d525eb5964acf1530f1ff` |
+| [manuals/007-4527-003-opengl-multipipe-sdk-programmers-guide.pdf](sources/manuals/007-4527-003-opengl-multipipe-sdk-programmers-guide.pdf) | OpenGL Multipipe SDK Programmer's Guide, 007-4527-003 | 2051591 | `0f1e01b7cb105195cd2bbb492e80b8fd05e0b3dd666e5daa64db2aa24f3d477a` |
+| [manuals/007-4264-002-onyx-3000-graphics-system-hardware-owners-guide.pdf](sources/manuals/007-4264-002-onyx-3000-graphics-system-hardware-owners-guide.pdf) | Onyx 3000 Series Graphics System Hardware Owner's Guide, 007-4264-002 | 13692152 | `f80ffeb747fb935018f62cf80114a76e7d32d5967a26633b9dff25ea8ff5ef23` |
+| [manuals/007-4331-001-octane2-welcome-letter.pdf](sources/manuals/007-4331-001-octane2-welcome-letter.pdf) | Octane2 welcome letter (patch notes for V6 and V8), 007-4331-001 | 18226 | `a8141b9295de654a84fad438c80850c94c62644af6f9a8d9c4369094d1a9794f` |
+| [manuals/007-4480-001-fuel-hardware-users-guide.pdf](sources/manuals/007-4480-001-fuel-hardware-users-guide.pdf) | Fuel Visual Workstation Hardware User's Guide, 007-4480-001 | 12412253 | `7bde9ffe3a65b0db075ff4a49ee79243b488d02b4500685cb760f527f5fe0b43` |
+| [manuals/007-4489-001-infiniteperformance-scalable-graphics-compositor-users-guide.pdf](sources/manuals/007-4489-001-infiniteperformance-scalable-graphics-compositor-users-guide.pdf) | InfinitePerformance Scalable Graphics Compositor User's Guide, 007-4489-001 | 1545514 | `4e214d0cda2da6bff50cc7314d80d62b564c781bbc364c002c210e6723ae2d34` |
+| [manuals/007-4602-001-scalable-graphics-compositor-rev-b-users-guide.pdf](sources/manuals/007-4602-001-scalable-graphics-compositor-rev-b-users-guide.pdf) | Scalable Graphics Compositor rev. B User's Guide, 007-4602-001 | 1923549 | `56c165808227c75f4436bb7e950aa4ac00fca39f4395f56c37c4edc68b98e0ae` |
+| [manuals/007-4602-002-scalable-graphics-compositor-users-guide.pdf](sources/manuals/007-4602-002-scalable-graphics-compositor-users-guide.pdf) | Scalable Graphics Compositor User's Guide, 007-4602-002 | 2534020 | `4f47fb7bbd71120bd39f7a9e55905193cd4553f6f66bb44bba437c70121dbcf5` |
+| [manuals/007-4602-003-scalable-graphics-compositor-users-guide.pdf](sources/manuals/007-4602-003-scalable-graphics-compositor-users-guide.pdf) | Scalable Graphics Compositor User's Guide, 007-4602-003 | 2464460 | `1ae05a05a07399cfa5d55186147d992d08e5bb31c147ba6eceed0bb09f15f389` |
+| [manuals/007-4493-001-octane2-dual-head-installation-guide.pdf](sources/manuals/007-4493-001-octane2-dual-head-installation-guide.pdf) | Octane2 Dual Head Installation Guide, 007-4493-001 | 1432191 | `b65945a0a2c29308cce3cc711527cfc11577561558be8e8099725c8cbeca8b84` |
+| [manuals/007-4506-001-octane2-duo-installation-guide.pdf](sources/manuals/007-4506-001-octane2-duo-installation-guide.pdf) | Octane2 Duo Installation Guide, 007-4506-001 | 543044 | `dd82bd5f2bd44cd52707f09ba02c643bf7e03b1f1a307cd3bfef411532212f56` |
+| [manuals/007-4515-001-dmediapro-dm5-graphics-to-video-out-users-guide.pdf](sources/manuals/007-4515-001-dmediapro-dm5-graphics-to-video-out-users-guide.pdf) | DMediaPro DM5 Graphics-to-Video-Out User's Guide, 007-4515-001 | 440493 | `e6000f9a5531aeabbf1e04424aa3b9a241f45396626a3dbbfa289f20c54b267b` |
+| [manuals/007-4572-001-cx-brick-addendum.pdf](sources/manuals/007-4572-001-cx-brick-addendum.pdf) | Cx-brick Addendum, 007-4572-001 | 4041438 | `7c75a31959ce530f00c5e000816a4a26b00c052a58c94125c019b771e99f1e41` |
+| [manuals/007-4632-001-onyx-350-visualization-system-users-guide.pdf](sources/manuals/007-4632-001-onyx-350-visualization-system-users-guide.pdf) | Onyx 350 Visualization System User's Guide, 007-4632-001 | 19510663 | `4adc0c159a99ba8696edb5513bc5992d5badca33820a6cb10f0702520a6d4ada` |
+| [manuals/007-4643-001-tezro-rackmount-hardware-users-guide.pdf](sources/manuals/007-4643-001-tezro-rackmount-hardware-users-guide.pdf) | Tezro (rackmount) Hardware User's Guide, 007-4643-001 | 16914795 | `cc0606674d9b0f5b0ea7d59a00585ae686204584072172cb69de454dc583d82e` |
+| [manuals/007-4643-002-tezro-rackmount-hardware-users-guide.pdf](sources/manuals/007-4643-002-tezro-rackmount-hardware-users-guide.pdf) | Tezro Hardware User's Guide, Rackmount Configuration, 007-4643-002 | 17855897 | `8a8bb5098bd28d91c964617c0ecf857bf979bce788300cc9ec84b871eff07283` |
+| [manuals/007-4643-003-tezro-rackmount-hardware-users-guide.pdf](sources/manuals/007-4643-003-tezro-rackmount-hardware-users-guide.pdf) | Tezro Hardware User's Guide, Rackmount Configuration, 007-4643-003 | 17742804 | `42273465e9199d45c2738023003798066b628cff5b9c9a6fd2355fac03030e4c` |
+| [manuals/108-0314-003-vpro-odyssey-diagnostic-reference.pdf](sources/manuals/108-0314-003-vpro-odyssey-diagnostic-reference.pdf) | VPro Odyssey Graphics Diagnostic Reference, 108-0314-003 (revision 003, April 2002) | 651245 | `8f92dddb46bf80d6a2fb0c0f4170a5c66daff443d76ed84d713b599fdaa897b0` |
+| [manuals/108-0350-001-fuel-diagnostic-reference.pdf](sources/manuals/108-0350-001-fuel-diagnostic-reference.pdf) | Fuel Visual Workstation Diagnostic Reference, 108-0350-001 | 2416409 | `7e328ff924d30797923eda0d6d63dd8376704109986a71fb49d59e5d21ea6eca` |
+| [manuals/108-0350-002-fuel-diagnostic-reference.pdf](sources/manuals/108-0350-002-fuel-diagnostic-reference.pdf) | Fuel Visual Workstation Diagnostic Reference, 108-0350-002 | 2722174 | `7a49520f25363fcb8a9278c013dc327809ddf5e947dcf1c937eac24f36e058e1` |
+| [manuals/108-0263-004-scan-tools-origin-300-and-3000-family.pdf](sources/manuals/108-0263-004-scan-tools-origin-300-and-3000-family.pdf) | Scan Tools (Origin 300 and 3000 family), 108-0263-004 | 1749508 | `c313d3229f2720a39c9d33f5135715acf032552eaf2dda80307bc4f77dd7404a` |
+| [manuals/hardware-developer-handbook-2.0.pdf](sources/manuals/hardware-developer-handbook-2.0.pdf) | Hardware Developer Handbook, release 2.0 (May 1997) | 5942934 | `3da04c67414ac5794a1f04cb4a207e68919db25d10f518c9b599adb7a3805d8d` |
+| [manuals/autodesk-effects-editing-2007-tezro-octane2-setup.pdf](sources/manuals/autodesk-effects-editing-2007-tezro-octane2-setup.pdf) | Autodesk Effects and Editing 2007 hardware setup for SGI Tezro and Octane2 | 1243019 | `65b2e472deef1a93842c6f5e3eb64dde73e44c098d1346586c53426acc2f74b5` |
+| [specs/octane2-datasheet-vpro.pdf](sources/specs/octane2-datasheet-vpro.pdf) | Octane2 Visual Workstation with Advanced VPro Graphics, datasheet | 300238 | `2b50fcd5737881cd63550eba5b7bb899ef707d72c7a6edc3faa58e8a808cfb33` |
+| [specs/fuel-datasheet-3215.pdf](sources/specs/fuel-datasheet-3215.pdf) | Silicon Graphics Fuel Visual Workstation, datasheet 3215 | 358874 | `58023593cc26ffa0a0499e54162873f141b5a711a0c6550cbd72ec8083bb2d66` |
+| [specs/onyx-family-datasheet.pdf](sources/specs/onyx-family-datasheet.pdf) | SGI Onyx family datasheet (InfiniteReality and InfinitePerformance) | 437064 | `df3fe2684067cea6617631bee604e8b38708e9e501b00e06ea0de68867e31656` |
+| [specs/octane2-vpro-brochure-german.pdf](sources/specs/octane2-vpro-brochure-german.pdf) | Octane2 with advanced VPro graphics, German brochure (scanned) | 2436444 | `ddcc18b40187fa3362ea6fc60b2a2aa9f7d1aa190fe19247497c5faa76d005c5` |
+| [reports/sgi-periodic-table-2001-06.pdf](sources/reports/sgi-periodic-table-2001-06.pdf) | SGI Desktop Periodic Table, O2, Octane, Octane2 (May 2001, rev 1.5.1) | 134566 | `d38aa3f47e94ae2e766af04d3d124134fdf13996b6f65f8c57598a3b42eddd15` |
+| [reports/sgistuff-odyssey-page.html](sources/reports/sgistuff-odyssey-page.html) | sgistuff.net page on the Odyssey (VPro) boards | 11849 | `04a0776d2669a5e9093f91afdf95e052b86ca631c18f93c1ca4c1fe798975003` |
+| [reports/fxguide-sgi-2003-tezro-hardware.html](sources/reports/fxguide-sgi-2003-tezro-hardware.html) | fxguide 2003 article on Tezro hardware | 202546 | `a5bf2d0e91974caf0956f78e62ef20826335dbffffbf129635e62386e7905e10` |
+| [reports/sgidepot-fuel-overview.html](sources/reports/sgidepot-fuel-overview.html) | sgidepot.co.uk Fuel overview with VPro board part numbers | 36084 | `c79f4a366612dffe0dbdbde05b3c1b6d122acaf14ca05d4fe6d1784b8c2d61ba` |
+| [reports/irixnet-vpro-odyssey-diagnostic-thread-1573.html](sources/reports/irixnet-vpro-odyssey-diagnostic-thread-1573.html) | IRIX Network forum thread 1573, a failing V12 and the odydiags CD | 76727 | `efb1c360dfdddba8abf6326c93acb03cff893de8a1e6f60bd4919a548a5f6916` |
+| [reports/ist-2.7-info_qrg_odydiags.html](sources/reports/ist-2.7-info_qrg_odydiags.html) | Internal Support Tools 2.7 odydiags quick reference (frame page) | 993 | `28c663c4fc34264251856ba91e7af6450c70424055119eb36f1056315ef3fde6` |
+| [reports/ist-2.7-info_qrg_odydiags_side.html](sources/reports/ist-2.7-info_qrg_odydiags_side.html) | Internal Support Tools 2.7 odydiags quick reference (side page) | 1526 | `3d39b0cee55d3151846d5d5f59b252acd9603ab03ddd05e49fdd9fb60c0b8a28` |
+| [reports/ist-2.7-instructions_odydiags.html](sources/reports/ist-2.7-instructions_odydiags.html) | Internal Support Tools 2.7 odydiags quick reference (instructions) | 2232 | `11084951a50b38c1dd5f1690a429611f07872c175a3645f0a5b4d52e334d919d` |
+
+Documents that were read and carry nothing about VPro are stored anyway when they sit in the same family or were named in the search: the 1997 hardware developer handbook predates the board (it covers Octane-era interfaces and never names VPro, Odyssey or BUZZ), and the Origin 350 datasheet found in the same search was left out for the same reason. Two guides were found and are **not yet stored** because each is over 20 MB: the Tezro tower guide 007-4564-001 (21,348,927 bytes) and the Origin 350 server guide 007-4566-001 (23,281,187 bytes, which places a V12 slot on the back of the PCI riser). Nothing in this repository cites either one.
+
+Two other documents named "VPro" are a different product: the Visual Workstation 330 and Visual Workstation Environment guides (007-4278-001, 007-4203-003) use the word for an Intel-platform graphics option that runs Linux with a third-party OpenGL, not for the Odyssey boards.
+
+## 8. VPro Odyssey Graphics Diagnostic Reference, revision 003 (108-0314-003)
+
+- Identity: SGI Internal Support Tools 2.7 document 108-0314-003, April 2002, 53 pages. Revision 001 (February 2001) is source 7; revision 002 (November 2001) added the V12 in a V-brick of the 3000 family and the colour-map pattern test; revision 003 added the Fuel (p. iii).
+- Stored copy: [docs/sources/manuals/108-0314-003-vpro-odyssey-diagnostic-reference.pdf](sources/manuals/108-0314-003-vpro-odyssey-diagnostic-reference.pdf), SHA-256 `8f92dddb46bf80d6a2fb0c0f4170a5c66daff443d76ed84d713b599fdaa897b0`.
+- Covers: the `odydiags` program for the Octane2, the Fuel and a V-brick V12. Match: exact.
+
+Facts (established, published unless marked):
+
+- **PB&J is the "pixel blaster and jammer"** chip, the display back end of the board (introduction p. 1, glossary p. Glossary-2). The text calls it one ASIC. This answers the open entry "what PB&J stands for" in [docs/pbj.md](pbj.md).
+- **The BUZZ to PB&J control path is the display control bus (DCB),** an 8-bit wide bidirectional bus (glossary p. Glossary-1; the test sends walking one and zero patterns across it by writing a PB&J register, p. 18). That agrees with the DCB clock-speed field the timing table sends to display address 0x2b00 ([docs/pbj.md](pbj.md)). It does not say how pixels travel: source 7 says a "dedicated bus" joins the chips.
+- **Host link.** "16-bit, 400-MHz peer-to-peer XIO interface" (p. 1). Source 7 says 710 MB/s for the same link and source 6 says 800 MB/s. A 16-bit link at 400 MHz moving a byte pair per cycle is 800 MB/s, which matches source 6 and the 800 MB/s port rate of the V-brick (source 12); 710 MB/s stays unexplained ([docs/open-questions.md](open-questions.md)).
+- **Colour map.** At most 8192 entries (the pattern test increments the red, green and blue index from 0 to 8191, p. 19); the XMAP block turns frame-buffer pixels into colour-map addresses and has a pixel override that the tests use to force index values; the map's output is checked by a CRC against stored values; the analog test reads three comparator bits of the DAC control register for the three PB&J analog outputs (pp. 18-19).
+- **Board identity sample.** On a V12 in an IP35 system running IRIX 6.5.10m, `-getinfo` printed "buzz revision is 10", SDRAM 128 MB, 4 banks, CAS latency 3, board version 1 and PB&J version 1 (p. 23). The same fields are decoded by `odsyGatherInfo` ([docs/board.md](board.md)); raw type 10 is 2 with the variant flag, which `gfxinit` prints as BUZZ B.1 (inferred from that decode).
+- **Register windows.** The register read tool accepts the display-chip range 0x220000 to 0x23ffff and says to enter 0x222580 for display register 0x2580, so the tool takes the display address as the offset from 0x220000; its write tool starts at 0x400000 and, for a zero written at 0x400000, prints the 64-bit word 0x3000000100000000 (p. 22). Both agree with the display FIFO and read window of [PBJ.h](../PBJ.h); the printed word is a type-3 header for address 0 with count 1 followed by a zero data word.
+- **Memory.** Board memory is addressed in tiles that are 16 pixels wide, with a stride counted in tiles (Table 7, p. 31). The address-unique test needs "more than 65,000" DMA operations for 32 MB because it works per tile (p. 16): 32 MB / 65,536 tiles is 512 bytes, which is 16 x 16 pixels at 2 bytes, matching the 16 x 16-pixel tile of [docs/board.md](board.md) (inferred arithmetic). A 4-byte pixel is split over two memory chips, the upper 16 bits (components 2 and 3) in one and the lower 16 bits in the other (pp. 31 and 35); chips are named by bank and letter ("SDRAM Bank 2_A", "Bank 2_B") and numbered 0 to 15 for software.
+- **Error reporting.** Correctable and uncorrectable memory errors in the command FIFO are reported (pp. 27 and 33), matching the three ECC flags of the flags register in [BUZZ.h](../BUZZ.h).
+- **Microcode.** The loader refuses a microcode image that is not a whole number of 12-byte (96-bit) lines (error 000021, p. 28), the record size of the kernel's microcode shadow ([ucode/buzz_ucode.md](../ucode/buzz_ucode.md)).
+- **Formats.** The DMA parameter files name the host-side pixel types, including a 12-12-12-12 six-byte type, and the memory-side formats of 1, 2, 4, 6, 8, 16 and 32 bytes per pixel, with output conversions to and from RGBA12 and RGBA16 (pp. 13-15). Names only; none is mapped to a field of [docs/buzz.md](buzz.md).
+- **Software.** `run.pl` in `/usr/diags/ody` runs the suite; on IRIX 6.5.9 and 6.5.10 the window system must be off and the console on a serial line, from 6.5.11 on the tests run with the graphics console enabled (pp. 2-6); the diagnostic harness first runs `gfxinit` and downloads a timing table, and the register test panics the system after it unless the board is reset (p. 12).
+
+## 9. Octane and Octane2 VPro guides (007-4207, 007-4208, 007-4209, 007-4210, 007-4331, 007-4493, 007-4506)
+
+- Identity: SGI owner, upgrade and option guides, 2000 to 2002; stored copies and hashes are in the table above (three revisions of the upgrade guide, 007-4210-001 to -003, and of the dual channel guide, 007-4209-001 to -003).
+- Covers: V6, V8, V10 and V12 in the Octane and Octane2. Match: exact for the revision.
+
+Facts (established, published):
+
+- **Host requirements.** V10 and V12 need a Crossbow ("xbow") of revision 1.4 or later; V6 and V8 do not (007-4210-003 p. 2). An Octane without VPro needs power supply part 060-0035-00x (x 1 or higher), IRIX 6.5 or later and a miniroot install (p. 4). The graphics board needs IRIX 6.5.10 or later; V6 and V8 need PROM 4.0 or later, V10 and V12 need PROM 4.5 or later; V10 and V12 on 6.5.10 need a patch that 6.5.11 does not (pp. 6-7).
+- **Packaging.** The board is the first slot of an XIO tri-module (slots A and B, where B is a daughterboard slot on the far side of the board); option boards go in slots B, C or D and every slot must be filled for cooling (007-4207-002 ch. 5, 007-4210-003 p. 27).
+- **Ports.** Monitor, genlock, StereoView and swap-ready connectors. The StereoView port supplies 12 V and carries a left/right eye signal (1 for left); the genlock port is one signal pin and a return, 3.3 V TTL or video; swap-ready is an open-collector gang sync pin and a return (007-4210-003 pp. 30-31). The 13W3 monitor connector carries analog RGB, sync lines and four monitor-ID bits; the DDC form replaces the ID bits with clock and data (pp. 32-33). V10 and V12 support more scan rates than V6 and V8 (p. 32).
+- **Scan rates.** At 1280 x 1024 the Octane2 guide allows only the 96 Hz Sony G1 monitors; the table lists 640 x 480 through 1920 x 1200, including 1600 x 1024 at 82.98 Hz and a 1280 x 1024 stereo mode at 50 Hz per eye (007-4207-002 pp. 237-239).
+- **Dual Channel Display (DCD).** A daughterboard that seats under the VPro board and adds two monitors; the system then sees one logical screen across both (for example 2560 x 1024); dual channel settings in the format list carry a "2@" prefix and take effect at the next login unless marked (007-4209-003 pp. 105-110).
+- **Dual head.** The primary graphics head is the upper one and the secondary head the lower one, each with its own DCD option (007-4209-003 contents, 007-4506-001, 007-4493-001).
+- **Patches.** The 2000 welcome letter lists patches 4017 and 4018 for 6.5.9 on V6 and V8 (007-4331-001), consistent with the 6.5.8 start of VPro support in source 14.
+
+## 10. Fuel documents (007-4480-001, 108-0350-001 and -002, datasheet 3215, sgidepot page)
+
+- Identity: Silicon Graphics Fuel Hardware User's Guide, the Fuel diagnostic reference (two revisions), the Fuel datasheet and a retailer overview; hashes in the table above.
+- Covers: V10 and V12 in the Fuel (IP35 system board, called "Asterix" in the scan tools). Match: exact.
+
+Facts (established, published):
+
+- V10 has 32 MB and V12 128 MB of SDRAM; the board has one DVI-I port carrying analog RGB and digital video, plus swap-ready, StereoView and genlock; the swap-ready feature "is not functional at this time" (007-4480-001 p. 35); the optional DCD daughterboard adds two DVI-I ports (p. 35).
+- The diagnostic reference lists the field-replaceable boards: VPro V10 as part 013-3513-00x (32 MB), VPro V12 as 013-3416-00x (128 MB) and an "X2-brick dual channel" board 030-1713-00x, tested by `odydiags` and by the scan chain that includes the graphics card (108-0350-002, the hardware inventory and scan sections); the scan tools can include or skip the "Odyssey" slot (108-0263-004 pp. 24-25).
+- The datasheet lists V10 (32 MB, up to 8 MB of it for textures) and V12 (128 MB, up to 104 MB for textures; 80 MB when the DCD is used), 12 bits per component and alpha double-buffered, a 10-bit DAC interface, 8-bit window ids, a 96-bit hardware accumulation buffer and, for the 48-bit RGBA visual, double buffering and a 16-bit Z buffer on V12 only. It also states a 24-bit eye-space Z buffer with 8-bit stencil for the 32-bit visuals (specs/fuel-datasheet-3215.pdf). The 80 MB figure under the DCD suggests the second channel's output memory comes out of the texture share; **inferred**.
+
+## 11. Tezro documents (007-4643-001 to -003, Autodesk setup guide, fxguide article)
+
+Facts (established, published unless marked):
+
+- The Tezro rackmount guides describe one VPro board (128 MB of SDRAM) on the back of the PCI riser, analog RGB and digital video on one DVI-I port, swap-ready, StereoView and genlock ports, and the same optional DCD daughterboard (007-4643-003 p. 32). Revisions -001 to -003 agree on these points.
+- The fxguide article (secondary) says the Tezro V12 has a better connection to the crossbar than the Octane2 and moves images into graphics 15 to 25 percent faster; that is a magazine claim, not an SGI figure, and the manuals give no rate (**unknown**).
+
+## 12. Onyx 3000 and Onyx 350 documents (007-4264-002, 007-4632-001, compositor guides, Cx-brick addendum, Onyx family datasheet)
+
+Facts (established, published):
+
+- **V-brick.** A V-brick holds one or two InfinitePerformance pipes; each pipe is one V12 board occupying two of four slots. The midplane carries an Xbridge ASIC that connects the brick's two ports (A and B, 800 MB/s each, shown as XIO 10 and XIO 11) to the V12 boards. With one pipe installed, the second port may go to another compute brick for more bandwidth (007-4264-002 pp. 52-56).
+- **V12 board connectors in a V-brick.** Two DVI-I connectors, a 13W3 analog connector that is blocked, genlock, swap-ready and stereo (pp. 56-57). The swap-ready lines synchronise buffer swaps across up to four V-bricks and four V12 boards (p. 56).
+- **Onyx 350.** An Onyx 350 "IP graphics and compute module" puts one InfinitePerformance pipe in a compute module; the compositor can direct two or more such pipes to one display (p. 73); it offers the DCD option and no redundant fan or DM3 option because of where the board sits (007-4632-001 pp. 5 and 73-79).
+- The compositor guides (007-4489-001, 007-4602-001 to -003) call each input an InfinitePerformance pipe and a V12 board in a V-brick, and expose a "VPro video format" setting; the Cx-brick addendum mentions pipes of two V12 boards each (007-4572-001).
+
+## 13. Datasheets, brochure and product tables (Octane2 datasheet, German brochure, SGI Periodic Table, sgistuff page)
+
+Facts (established, published):
+
+- The Octane2 datasheet and the May 2001 desktop table agree with source 5: V6 and V10 have 32 MB with 8 MB for textures; V8 and V12 have 128 MB with 104 MB for textures; all are 48-bit RGBA; the table marks V8 and V12 double buffered; the descriptor "OpenGL on a chip" is SGI's. The table, last updated 21 May 2001, already lists V10.
+- The German brochure repeats 128 MB, 104 MB of textures, a 96-bit accumulation buffer and OpenGL on a Chip for the Octane2 V12 (scanned; read from its archive text).
+- The sgistuff page (secondary) lists the Octane2, Fuel, Tezro and Onyx 350 as hosts and says the Octane2 and Tezro or Fuel boards are not interchangeable; no manual in this set says why beyond form factor.
+
+## 14. IRIX release guides, OpenGL on Silicon Graphics Systems, Multipipe SDK (007-3897-*, 007-2392-003, 007-4239-004, 007-4527-003)
+
+Facts (established, published):
+
+- VPro support begins in IRIX 6.5.8 (the 6.5.8 update guide, 007-3897-007, "support initiated for VPro graphics, the next generation graphics for Octane"); later guides record performance work for VPro on Octane: 25 percent better X window speed by x11perf and a faster `glCopyPixels` (6.5.13, 007-3897-012). Source 5 dates the board to 2000.
+- OpenGL on Silicon Graphics Systems lists OpenGL 1.2 and GLX 1.3 for Fuel, Tezro and InfinitePerformance systems using VPro graphics, with many EXT and SGI extensions (007-2392-003, appendix C, table C-1). The per-extension table survived text extraction without its columns and is not used.
+- The Multipipe SDK guides name VPro in a few pixel-format notes, for example the default read type for colour is unsigned integer on VPro and float elsewhere (007-4239-004).
+
 ## What these sources settle, by open question
 
 - **Colour interpolation arithmetic.** Candidates only: a 12-bit bilerp of vertex colours from reciprocal-area-scaled edge distances, perspective-corrected by an interpolated 1/w, evaluated through a 4K x 4K recursive subdivision (sources 1, 3 and 6, inferred). A numeric test of the candidate against the 1090 residual pixels is the next route.
@@ -147,3 +286,6 @@ Facts (established, published):
 - **Texture arithmetic.** Source 4 gives the quad level-of-detail rule; no source gives weight or sub-texel widths.
 - **Raster tie rule.** Source 3 says shared edges have exactly one owner; the side stays unknown.
 - **Board facts.** The clock, memory clock, on-chip memory and link figures of source 7 are new to the board chapter.
+- **What PB&J is and how it joins BUZZ.** The revision-003 diagnostic reference expands the name and gives an 8-bit bidirectional control bus (source 8); [docs/pbj.md](pbj.md) records it. Pixel transfer to the chip is still unpublished.
+- **Colour-map size.** 8192 entries (source 8).
+- **Host link rate.** Sources 6, 7, 8 and 12 give 800 MB/s, 710 MB/s, 16-bit at 400 MHz and 800 MB/s per V-brick port; [docs/open-questions.md](open-questions.md) holds the disagreement.
