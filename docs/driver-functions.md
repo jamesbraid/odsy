@@ -2074,8 +2074,8 @@ Lays out
   the ring or an inconsistent counter logs a severity 4 message and ends the pass.
 - `odsyDMAOp` (`odsy_dma.o`, offset 0x1b5c, 2056 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
-  Issues one DMA operation. Arguments: owner context (may be 0), board record, a value passed to the page-table
-  builder, the user address and byte count of this piece, a queue-selector word it zeroes on entry, the 32-byte
+  Issues one DMA operation. Arguments: owner context (may be 0), board record, an address list for the
+  page-table builder (0 makes it build one from the address that follows), the user address and byte count of this piece, a queue-selector word it zeroes on entry, the 32-byte
   transfer header, a result pointer and, on the stack, a flags word (bit 0, bit 1), the buffer's user address and
   length for the lock record, and the number of pieces still to come. Under the mutex at record +5800 it takes the
   next of 256 operation records of 80 bytes at record +7960 (counter at +28440, wrapping at 255), zeroes it and
@@ -2283,3 +2283,194 @@ Lays out
   (+11104, +11108), 0x024 (+11112) and 0x040 (+11116, +11120) with settle groups between them. Every path ends with
   a settle group and block 0x258 with operand 0x00120000. Without the full replay only the
   blocks before the mode groups and the two mode groups are sent. `docs/buzz.md` section 8 lists the same block ids.
+- `odsy_mm_obj_alloc_bs` (`odsy_pmm.o`, offset 0x41f8, 608 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Gives a memory object its host backing store. The size is the product of the words at +40 and +72; the
+  memory-manager record is three links up (+8 of the object, of its group and of its share group). A size of
+  16 KB or more is rounded up to whole 16 KB pages. The routine adds the size to the in-use total at +4880 and,
+  when that passes the limit at +4872 while the flag at +4920 is set, clears the flag and calls
+  `odsy_mm_jettison_freerun_bs` before adding again. When the total still passes the limit at +4864 it calls
+  `odsy_mm_B_warn1`; if it also passes the sum of +4888 and +4896 it calls `odsy_mm_B_warn2` and returns 12.
+  A small object takes one `kmem_alloc`; a large one builds an address list with `alenlist_create` and fills it
+  with one `kvpalloc` page (256 flag, 16 KB) per step through `alenlist_append`, and on a failed page frees
+  those already taken with `kvpfree` and `alenlist_destroy` and returns 12. On success the buffer or list goes to
+  +80, the rounded size to +88 and the new total to +4880; it returns 0.
+- `odsy_mm_obj_free_bs` (`odsy_pmm.o`, offset 0x4458, 380 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Releases a memory object's backing store. It subtracts the size at +88 from the in-use total at +4880 of
+  the memory-manager record (three links up) and, when the flag at +4920 is clear and the total is no larger than
+  the limit at +4872, sets the flag. A small buffer is overwritten with the byte 238 and freed with `kmem_free`;
+  a large one has every page of its address list handed to `kvpfree` (walking it with `alenlist_cursor_init` and
+  `alenlist_get`) and the list destroyed. It then clears +88, +80 and +76 and, when the total is no larger
+  than the limit at +4864, calls `odsy_mm_B_okay`.
+- `odsy_mm_jettison_freerun_bs` (`odsy_pmm.o`, offset 0x3c60, 320 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Frees backing stores until a request of a given size (second argument) fits. It walks the share groups in the
+  set at memory-manager record +1496 with `OdsyInitCSetCursor` and `OdsyNextCSetElem`, and for each the set at
+  group +72 of 16-slot object tables (slots at +16, eight bytes apiece). An object whose flag word at +64 has
+  bit 0 set and whose backing store size at +88 is nonzero is waited for with `odsyDMAWait` in mode 1 on the op
+  number at +96, then released with `odsy_mm_obj_free_bs`. After each release it returns as soon as the in-use total
+  at +4880 plus the request no longer exceeds the limit at +4872.
+- `odsy_mm_check_for_mutations` (`odsy_pmm.o`, offset 0x3b50, 272 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Saves every eligible object to its backing store. It walks the share groups and object tables the same way as
+  `odsy_mm_jettison_freerun_bs`; for each object with bit 0 of the flag word at +64 set and a nonzero size at +88
+  it calls `odsy_mm_obj_xfr_bs` with a zero flag word and the board-to-host direction, and returns the OR of the
+  results (0 when none failed).
+- `SetupDMAParams` (`odsy_pmm.o`, offset 0x3934, 540 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Builds the 32-byte DMA transfer header for a memory object. It zeroes the header, then sets word 0 to the
+  board address at object +56 (29 bits), word 1 to +20 and +24 (low and high halves), word 2 to +44 (12 bits),
+  word 3 to +32 and +36, word 6 (20 bits) to the row length (+32 times the bytes per pixel at +17), word 4 from
+  a pixel-size code (bit 12 set, the code in bits 15:13 and 18:16 and a 1, 2 or 4 from a three-entry table in
+  `.data` in its low bits) and word 7 to the direction in bit 24 (the third argument) with 0x32 in the top byte
+  and the code in its low bits. The code is 0 for 2 bytes a pixel, 1 for 4 and 2 for 8; 16 logs a severity 4
+  message ("difficulty for 16Bpp") and uses 2; any other value, including 1, leaves the code as an
+  uninitialised stack word.
+- `odsy_mm_obj_xfr_bs` (`odsy_pmm.o`, offset 0x3e2c, 972 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Copies a memory object between the board and its backing store. Arguments: object, a queue-selector word for
+  `odsyDMAOp`, and the direction (nonzero is board to host). With no backing store (+88 zero) it returns 22 for
+  host-to-board and otherwise calls `odsy_mm_obj_alloc_bs` (12 on failure). It builds the header with
+  `SetupDMAParams` and, when the pixel-size byte at +17 is above 8, logs a severity 4 message. Board to host sets
+  the flag word at +76 to 1. Then for each of the object's rows (count at +40) it sends the three settle
+  groups, computes the row's board address ((row + the word at +28) times the row bytes times the pixel size,
+  divided by 16, plus +56) into header word 0 and calls `odsyDMAOp` with flags 3 on the backing store (the
+  address list at +80 for stores of 16 KB or more, the buffer plus the row offset otherwise); a failure logs
+  "DMA1 backing store transfer failed" or "DMA+ backing store transfer failed" and returns 22. After the rows it waits with
+  `odsyDMAWait` in mode 1 on the op number at +96, sends two settle groups with block 0x018, and returns
+  0. For host-to-board it also counts the transfer in +104, clears +76 and, when the flag at record +4920 is
+  clear, frees the store with `odsy_mm_obj_free_bs`.
+- `odsy_mm_reserve` (`odsy_pmm.o`, offset 0x45d4, 500 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Books a memory object's size against the board's budget. The size is the product of +40 and +72, rounded up
+  to 16 KB when it is 16 KB or more. It counts the reservation in the word at +4860 of the memory-manager record
+  (three links up; the first one runs `mm_init_freespace`), adds the size to the reserved total at +4912 and
+  returns 12 when that passes +4904. By the type byte at +16 it calls `odsy_mm_reserve_pbuffer` (3),
+  `odsy_mm_reserve_texture` (4 and 20) or `odsy_mm_reserve_scratch` (6); a failure or any other type returns 12.
+  On success it stores the new total, sets bit 2 of the object's flag word at +64 and clears the committed state of
+  every range in the group's set at +160: the halfwords at +0 and +2 of each range's record at +40 and its flag
+  word at +64.
+- `odsy_mm_release` (`odsy_pmm.o`, offset 0x47c8, 252 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Undoes `odsy_mm_reserve` for one object. It recomputes the rounded size and, by the type byte at +16,
+  calls `odsy_mm_release_pbuffer` (3), `odsy_mm_release_texture` (4 and 20) or `odsy_mm_release_scratch` (6);
+  any other type returns without changing anything. It then clears bit 2 of the flag word at +64, counts the
+  reservation down at +4860 and subtracts the size from the total at +4912 of the memory-manager record.
+- `odsy_mm_reserve_texture` (`odsy_pmm.o`, offset 0x48c4, 508 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Books a texture against the share group's budget. It returns 1 at once when the pressure level at +4924 of the
+  memory-manager record is nonzero, and logs "unknown tex type" and returns 1 for a type byte other than
+  4 (image) or 20 (detail). The group's new total is its word at +216 plus the object's +60. A budget check
+  adds four terms and requires the sum to stay within +4856: the larger of the scratch figure (share group +208)
+  and the word at +4852, the larger of +4840 and the image figure (+168), the larger of +4824 and +4828, and
+  the detail figure (+172) raised to the new total (for a detail texture; the image case swaps the image
+  and detail terms and compares +4844). A failed check returns 1. Otherwise the share group's figure (+168 for image, +172
+  for detail) and the manager's maximum (+4832 or +4836) are raised to the new total when it is larger, the
+  group's +216 is set to it, the group is moved in the sorted list by `odsy_mm_sg_remove_image_texture_group_from_list`
+  or its detail twin followed by the matching insert routine, and 0 is returned.
+- `odsy_mm_release_texture` (`odsy_pmm.o`, offset 0x4ac0, 456 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Takes a texture's size out of its group's total (+216 less the object's +60), re-sorts the group in the image
+  list (type 4) or the detail list (type 20) and resets the share group's figure (+168 or +172) to the
+  head of that list, or to 0 when the list is empty. If the figure that went away equalled the manager's
+  maximum (+4832 or +4836), it clears the maximum and recomputes it as the largest head figure over every share group
+  in the set at +1496. Other types change nothing.
+- `odsy_mm_sg_insert_image_texture_group_into_list` (`odsy_pmm.o`, offset 0x4c88, 360 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Links a group record into its share group's list of image-texture reservations, which is kept in descending
+  order of the size at +216 (head at +176 of the share group, links at +232 toward smaller and +240 toward
+  larger). An empty list makes the group the head; a group no smaller than the head becomes the head; otherwise the
+  routine starts from the last insertion point at +192 and walks in the direction that suits the size, stores
+  the insertion point back and links the record in.
+- `odsy_mm_sg_insert_detail_texture_group_into_list` (`odsy_pmm.o`, offset 0x4df0, 360 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  The same sorted insertion as its image-texture twin, on the detail-texture list: head at +184 of the share
+  group, last insertion point at +200, links at +232 and +240.
+- `odsy_mm_reserve_pbuffer` (`odsy_pmm.o`, offset 0x5020, 396 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Books a pixel-buffer object. The group's new total is its +216 plus the object's +60. It copies the sizes of the first
+  two records on the pixel-buffer list at +4816 of the memory-manager record, substitutes the new total for the first
+  one it exceeds, and, when it displaced one, requires the sum of that pair, the larger of +4848 and
+  +4852, the larger of +4832 and +4840 and the larger of +4836 and +4844 to stay within +4856, returning 1
+  otherwise. It stores the pair's sum at +4824 on success, sets the group's +216, and re-sorts the group with
+  `odsy_mm_remove_pbuffer_group_from_list` and `odsy_mm_insert_pbuffer_group_into_list`. It returns 0.
+- `odsy_mm_insert_pbuffer_group_into_list` (`odsy_pmm.o`, offset 0x529c, 220 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Links a group record into the pixel-buffer list whose head is at +4816 of the memory-manager record, in
+  descending order of the size at +216, with links at +232 (toward smaller) and +240. It walks from the head, with no
+  cached insertion point.
+- `odsy_mm_reserve_scratch` (`odsy_pmm.o`, offset 0x5378, 276 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Books scratch memory for a group. The new figure is the object's +60 plus the usage word at +584 of the group's
+  scratch record (at +224). When it does not pass the share group's figure at +208 the routine only stores it.
+  Otherwise it requires the sum of that figure, the larger of +4824 and +4828, the larger of +4840 and the
+  share group's +168, and the larger of +4844 and its +172 to stay within +4856 (returning 1 if not) and
+  stores the figure at +208, and at +4848 as well when it passes that maximum. It returns 0.
+- `odsy_mm_release_scratch` (`odsy_pmm.o`, offset 0x548c, 276 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Subtracts the object's +60 from the group's scratch usage at +584. When the old usage was the share group's
+  figure at +208 it recomputes that as the largest usage over the set at share group +24, and when the old
+  usage was also the manager's maximum at +4848 it recomputes that as the largest +208 over the set at +1496.
+- `odsy_mm_commit` (`odsy_pmm.o`, offset 0x55a0, 508 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Places a range of a group's objects in board memory. The range record holds the low and high slot at +0 and +4
+  and a flag word at +64; a set flag returns 0 at once. First it walks the group's 16 object slots and, for each
+  object with bit 1 of its flag word set and bit 0 clear, calls `mm_get_extent` (a failure returns 12), sets
+  bit 0 and, when the object has a stored copy (+76), restores it with `odsy_mm_obj_xfr_bs`. Then for every
+  slot from the low to the high index it does the same for objects without bit 0 and, for each, sets +56 to
+  the extent's start times 32, calls `odsy_mm_obj_xfr_bs` when bit 3 was already set and a copy exists,
+  clears the extent's word at +32, stores the address into the per-resource table (+152 of the record
+  behind +8) at the object's halfword +0 and sets bit 3. It ends by setting the range's flag word to 1 and the
+  halfword at +0 of its record at +40 to 1 and returning 0.
+- `mm_check_enode` (`odsy_pmm.o`, offset 0x6248, 456 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Tests whether one free extent node could hold a block, without changing anything. Arguments: memory manager,
+  node, pixel size and size in 32-byte units. The node must be at least that big. Its start is rounded up to the
+  alignment for the pixel size (a power of two taken from a `.data` table, 2, 4, 8, 16 or 32 units), and the block
+  must still fit after the rounding. If the previous node's object has a different pixel size and ends in
+  the same 32-unit block as the aligned start, the start moves to the next 32-unit boundary and the fit is checked again;
+  if the next node's object has a different pixel size and starts in the same 32-unit block as the last unit of
+  the block, the node is rejected. It returns 1 or 0.
+- `mm_release_extent` (`odsy_pmm.o`, offset 0x5e2c, 1052 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Frees the board memory of an object (extent node, flag). A null node or one with no owner logs "bogosity in
+  ReleaseExtent" and returns 0. For every range in the owner's group that covers the object's slot it clears the
+  range's committed state (records +0 and +2, flag word +64), marks the group's objects in a committed range with bit 1
+  and sets the node's word at +32 from the range's record. With the flag set it calls
+  `odsy_mm_obj_xfr_bs` to save the object to its backing store first. It clears the object's extent pointer (+128)
+  and bit 0 of its flags, empties the node and merges it with a free previous node and then a free next
+  node (poisoning the freed 40-byte nodes with 183 and 185 before `kmem_free`), updating the record's cached free pointer at +4808
+  and, with the flag set, `mm_check_cond_list_cursor`; with nothing merged it resets every cursor with
+  `mm_set_all_cond_list_cursor`. It returns the surviving node.
+- `mm_get_extent` (`odsy_pmm.o`, offset 0x5800, 1580 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Finds board memory for an object. Arguments: memory manager, request range, object; the size is the object's
+  +60 in 32-byte units and the pixel size its byte +17. An object with bit 1 set whose range record has a
+  nonzero halfword at +6 is placed at its recorded address (+56 divided by 32): it clears bit 1, calls `mm_shake` in
+  its fixed-address mode, and splits the node it returns with a new 40-byte node (`kmem_alloc`) when the node
+  starts before that address. Every other object goes through a first-fit search of the free-extent list
+  chosen by `mm_get_cond_list_cursor` for the pixel size and size: a free node at least as large, whose start
+  rounded up to the pixel-size alignment still leaves room, and which passes the neighbour test of
+  `mm_check_enode` (a neighbouring object of a different pixel size may not share the 32-unit block at either
+  end). A node starting before the aligned address is split into a leading free node and the chosen one, and
+  a chosen node larger than the size is split again at the tail. The cursor cache is updated with
+  `mm_set_cond_list_cursor`. When nothing fits it calls `mm_shake` up to three times (passes 0, 1 and 2) and
+  rewinds the cursors after a split that follows a shake; after the third failure it logs "failed attempt to get
+  %d free 2Bpp tiles" (and flushes the console buffer and enters the debugger when the kernel's debug flag is
+  set) and returns 0. A failed `kmem_alloc` of a node logs "cannot alloc new extent node" and returns 0. The
+  chosen node's owner (+8) is set to the object, its size (+4) to the request, and the object's +128 to the node.
+- `mm_shake` (`odsy_pmm.o`, offset 0x6410, 1696 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Makes a free extent by evicting objects. Arguments: pass (-1, 0, 1 or 2), size in 32-byte units, request
+  range, a fixed address (pass -1) and the pixel size. It returns a free node that `mm_check_enode` accepts, or 0.
+  Pass -1 walks the node list at +1664 of the memory-manager record to the node containing the address and
+  releases owners with `mm_release_extent` (saving each to its backing store) until the node covers the block, also
+  releasing a neighbour of another pixel size that shares a 32-unit block with either end; with no node it logs
+  "algo bogosity #1 in Shake" and returns 0. Pass 2 releases every object that has an extent and is not a
+  pixel buffer (type 3) in the share groups other than the requester's, rewinding the cursor with
+  `mm_rewind_cond_list_cursor` and testing the freed node after each. Passes 0 and 1 sweep the extent list from the
+  cached position at +4808 (once from the head after that): a free node is tested directly; an owner other than a pixel
+  buffer is released only when its group has no active range (the OR of the halfword at +6 of every range's record
+  is zero), over all ranges for pass 0 and only over the ranges of the requester's id (`OdsyLookupCSetId` on the
+  group's set at +160 with the request's +240) for pass 1.
