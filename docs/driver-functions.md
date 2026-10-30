@@ -1381,3 +1381,55 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   calls (among them the values 9, 8, 41, 4, 255, 5, 236 and 65 with command codes 0 to 3) and finishes by
   writing the index of each of 256 entries three times, with `setDACreg` command 1, which loads an
   identity ramp. It returns 0.
+- `gf_OdsySetNullClip` (`odsy_clip.o`, offset 0x8a0, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Fills a clip record with the empty state, using only stores to the record in its argument. It zeroes the
+  words at +8, +12, +16, +20, +24, +48 and +60, writes all ones to +40, writes 1 to +44 and +52, and
+  returns 0. No board register is touched.
+- `odsyHashInsert` (`odsy_adt.o`, offset 0xcb0, 48 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Adds a node at the front of one bucket. The bucket sentinel is at table +8 plus 24 times the bucket
+  index; the node's next link at +0 takes the old first node, its previous link at +8 takes the sentinel,
+  and the old first node's previous link and the sentinel's next link are both pointed at the new node.
+- `odsy_dma_poll_timer` (`odsy_dma.o`, offset 0x864, 28 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Timer callback of `DmaFinishedPollDelay`: it does nothing but call `vsema` on the semaphore in the zero-
+  initialised data, releasing the thread that is blocked in `psema`.
+- `odsy_earlyinit_timeout` (`odsy_init.o`, offset 0xe9c, 28 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Timer callback used during early board initialisation: it calls `vsema` on the semaphore passed in its
+  argument so that the initialisation thread blocked on it resumes.
+- `odsyDestroyDrawable` (`odsy_drawable.o`, offset 0x10c, 32 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Frees a drawable record: it calls `kmem_free` on its second argument with the size 40 and returns.
+- `odsyUnmapPages` (`odsy_map.o`, offset 0x9bc, 40 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Drops one user mapping. It loads the mapping handle stored at the address in its argument, zeroes that
+  field, calls `gfxdd_munmap` with the handle, and returns 0.
+- `odsy_flow_am_i_attached` (`odsy_flow.o`, offset 0x9c, 64 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Asks the flow-control layer whether the caller is attached to the board's flow control. It raises the
+  interrupt level with `splhi`, calls `gfx_flow_am_i_attached` with the board record, restores the level
+  with `splx` and returns the answer.
+- `odsy_getdesc` (`odsy_tport.o`, offset 0x1018, 28 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Reports whether a descriptor request is supported: it returns 1 when its second argument equals 1 and 0
+  for any other value, and reads nothing from memory.
+- `odsy_tport_lock_init` (`odsy_tport.o`, offset 0x0, 48 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Initialises the transport-port lock state. It sets the global `odsy_tport_mute` to 1, clears
+  `odsy_tport_inuse` in the delay slot of a `wbflush` call, and then calls `spinlock_init` on
+  `odsy_tport_lock` with the name "odsy_tport_lock".
+- `OdsyInit32kSlotMask` (`odsy_adt.o`, offset 0x968, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Prepares a 4112-byte slot-mask structure: `bzero` over the whole block, the word at +8 set to 0 and the
+  doubleword at +0 set to its second argument.
+- `gfP_OdsyInvalidIoctl` (`odsy.o`, offset 0x5c, 36 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)`.
+  Fallback handler for private requests that have no implementation. It makes one `cmn_err` call at
+  severity 5 with the fixed message "odsy: Unknown ioctl", touches no board register and no board record,
+  and returns 22.
+- `odsy_validate_ddc_data` (`odsy_ddc.o`, offset 0x1a90, 44 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Thin wrapper over `odsy_i2cValidEdid`: it passes its argument through and returns 1 when that routine
+  returns non-zero, 0 otherwise. It reads no board register itself.
