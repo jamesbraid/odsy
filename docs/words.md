@@ -359,9 +359,11 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
 - `0x23008003` (register 0x23, value 3, `odsy_tport.o`): **inferred.**
   Stored by `odsy_color` beside 0x22008001; with it the index-colour pair is (1, 3) at every sender of the index
   colour word.
-- `0x2600807f` (register 0x26, value 127, `odsy_init.o`): **inferred.**
-  Stored by `odsyInitCfifo` before the microcode load. 127 is one of the entry numbers that libGLcore's
-  `AddProgram` places in its lists, so the register reads as a routine address.
+- `0x2600807f` (register 0x26, value 127, `odsy_init.o`): **established.**
+  Stored by `odsyInitCfifo` before the microcode load. What register 0x26 limits is **unknown**
+  standalone driver loads the register it names `s3MaxWExp`
+  (`ucode/buzz_isa.md`, "Sequencer registers"). It is not a routine
+  address; 127 only coincides with an entry number in `AddProgram`'s lists.
 - `0x27008000` (register 0x27, value 0, `odsy_init.o`): **established.**
   Sets the instruction write address to 0. `odsyInitCfifo` stores it before the first of 2048 six-word records of the
   transform microcode, and `odsyDownloadUcode` (`odsy_ucode.o`) stores the same register with its own start for
@@ -390,8 +392,9 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
   `__glOdysseySetProgram` (`ody_program.s`) as the program-entry word.
 - `0x2e008380` (register 0x2e, value 896, `odsy_init.o`): **established.**
   Stored by `odsyInitCfifo` before the microcode load and by the GL context default
-  (`__glOdysseyInitDefaultValues`) with the same value 896. It is not a routine address, since it does not move
-  with the 99-record insertion; the register's effect is unknown.
+  (`__glOdysseyInitDefaultValues`) with the same value 896. What register 0x2e holds is **unknown**
+
+  why it does not move with the 99-record insertion.
 - `0x3000c02e` (register 0x30, value 46, `odsy_ctxsw.o`): **established.**
   Bits 15:14 are 11, unlike the others. `odsyResetHwShadow`, `odsyRestoreGfe` (four sites), `odsyRestoreVB`
   (seventeen sites) and `odsyRestoreVertex` use it as the count-0 word that must end a replayed vertex; libGLcore sends

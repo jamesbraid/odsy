@@ -131,7 +131,7 @@ Release 6.5.30m; records of `ucode/ODSY/buzz_xform.bin`; host code N32 libGLcore
 
 ### Write ports
 
-- **inferred**, port V (fields bits 63:59 and bx 66:64): a vector result is written seven records after its issue to lane bx bits 1:0 of register R[bits 63:59] when bx bit 2 is set. Check: 494 of the 525 records with bx bit 2 set have an issue seven records earlier; the other 31 sit within seven records of a routine entry, where the issue belongs to the routine before in the list.
+- **inferred**, port V (fields bits 63:59 and bx 66:64): a vector result is written seven records after its issue to lane bx bits 1:0 of register R[bits 63:59] when bx bit 2 is set. Check: 494 of the 525 records with bx bit 2 set have a bit 47 issue or bit 46 load seven records earlier (352 an issue, the rest loads that pass B on); the other 31 sit within seven records of a routine entry, where the issue belongs to the routine before in the list.
 - **inferred**, port P (fields rb 71:67, ln 74:72, b 76:75): the record writes lane ln bits 1:0 of R[rb] when ln bit 2 is set, from a source b selects. With b = 0 the data is the parameter-memory word read two records before: 515 of the 543 such records have a nonzero read address two back and the other 28 read address 0, the first light record's first word; none has a parameter store there. With b = 2 the data is the scalar unit's result: 237 of the 299 such records have a scalar operation (d1 nonzero) four records before, against at most 163 at any other distance.
 
 ### Parameter memory: bits 58 and 57:48

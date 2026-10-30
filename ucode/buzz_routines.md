@@ -312,17 +312,23 @@ sets a bit in the program key and adds no routine.
   light when GL_NORMALIZE is off (`ody_program.s`, line 871). It is not the normal transform, which
   the first-light routines already do. Its inputs are R16, R17 and R26 from the routines before it,
   the texture slot 3, the position and the colour slot 5. It computes the dot product of R26, the
-  viewer vector, with R17 (694) and R17's squared length (698), feeds that length to scalar code 1
-  and scales the three lanes of R26 and R17 with code 0xe (results back at 710 to 716), so it
-  normalises both vectors; then it dots R26 with the eye normal R16 (714). In the same records it
+  viewer vector, with R17 (694) and R17's squared length (698), takes the reciprocal square root of
+  each product (code 1 at 701 and 705) and scales the three lanes of R26 by the first and of R17 by
+  the second with code 0xe (results back at 710 to 712 and 714 to 716). R17 is thereby divided by
+  its own length, and R26 by the root of its product with R17. Whether R26 comes out normalised is
+  unknown: it is so only when that product equals its own squared length. The operand of a third
+  code 1 at 709 is unknown, since no product arrives there under the pass-13 timing. It then dots
+  R26 with the eye normal R16
+  (714). In the same records it
   finishes the vertex: the texture rows t and r on slot 3 and the clip z, x, y and z rows on the
   position (695 to 701), the outputs q (0x2c) as word 6 and s, t, r as words 3 to 5, and the colour
   slot 5 through the colour unit (0x1f22) twice, as words 1, 2 and 9, 10.
 - **`668`** (routine; kernel record 668), **inferred**: 694's lighting core for GL_NORMALIZE on
   (`ody_program.s`, line 871), one record longer. Its inputs are 694's; the extra work is a dot
-  product of the eye normal R16 with R17 (record 676), and it computes the same normalisation of R26
-  and R17 and produces the same texture, position and colour output words at the same offsets from
-  its entry as 694.
+  product of the eye normal R16 with R17 (record 676), and it computes the same scaling of R26 and
+  R17 as 694 and produces the same texture and position output words (words 6, 3, 4 and 5, nine,
+  ten, twelve and thirteen records in) as 694. Its colour words 1, 2, 9 and 10 leave one record
+  later than 694's, sixteen to nineteen records in against fifteen to eighteen.
 - **`719`** (routine; kernel record 719), **inferred**: closes each light's lighting when it has no
   distance attenuation (`ody_program.s`, line 874), fifteen records with no vertex output. Its inputs
   are what 694 or 668 left behind: the eye normal in R16, the light vector in R17, the viewer vector
@@ -338,10 +344,11 @@ sets a bit in the program key and adds no routine.
   the read of R23.x at 733 that starts the finish's coordinate output.
 - **`734`** (routine; kernel record 734), **inferred**: the attenuated form of 719 for a local
   light (`ody_program.s`, line 874), twenty-four records against fifteen. Inputs: 719's registers
-  and shininess words, plus light words 7 and 8. Its first nine records
-  are the addition: they read light word 7 (constant attenuation) into R21.x and word 8 (linear),
-  scaled by K through code 0xd, into R22, put 1.0 in R22.x, read R22.w and R22.y back through codes 8
-  and 0xd, and latch R21 with the attenuation terms for the products that follow. From record
+  and shininess words, plus light word 7 and R22.y, which the lighting core 694 or 668 filled with
+  word 8 (676 or 702 read it at 675 or 700). Its first nine records are the addition: they read
+  light word 7 (constant attenuation) into R21.x (735 to 737), put 1.0 in R22.x (736 to 738), pass
+  the R23.x read of 733 through code 8 (734), scale R22.w and R22.y by K through code 0xd (735 and
+  736, results into R22 lanes z and y at 739 and 740), and latch R21 for the products that follow. From record
   742 the routine repeats 719's work in a different schedule: two reciprocal square roots, the spot
   exponent negated by code 0xc, K from words 0x0f4 and 0x0f5, four code-5 and two code-4 results,
   and the colour products 0x4020, 0x4220 and 0x4120 with the diffuse and specular slots. Its last
@@ -539,8 +546,9 @@ from the routine map below.
   fragment light with GL_LIGHTING off and no texture; 0x2a entry 1325 follows its value-3 mark at
   1320 and 0x2c entry 1337 sits near its end. Inputs: the normal and position slots, the colour slot,
   R0 to R4 and R13 to R15, and data word 0x1e1 (0.5). Each pass transforms the normal (R13 to R15)
-  and the position, latches R21 (the fragment light that set-up 1304 placed) against the normal and
-  runs six code-5 and two code-2 operations. Outputs, under a header for ten words: 1/w, x/w, y/w and
+  and the position, dots the transformed normal (R21, written at 1320 to 1322 from R13 to R15) against
+  the fragment light that set-up 1304 left in R18 (latched at 1323), and runs six code-5 and two
+  code-2 operations. Outputs, under a header for ten words: 1/w, x/w, y/w and
   z/w (0x2b, 0x46, 0x26) as words 6, 8, 9 and 7, the colour slot as words 1 and 2 (0x1f20, 0x1932)
   and colour-unit copies of the per-vertex fragment terms as words 3, 4 and 5 (0x1f36, 0x1f16, 0x1f14).
 - **`1348`** (routine; kernel record 1249), **established** selection, **inferred** arithmetic: the
@@ -796,7 +804,8 @@ to tell them apart by address.
   the length routine 214 and program 1483 produce.
 - **`1158`** (routine; kernel record 1059), **established**: a closer that no table record and
   no immediate in the 6.5.30m N32 libGLcore `ody_program.s` names. **inferred:** it takes no input and computes nothing; its delay slots produce as output a nine-word header (1159, `s0` 8, format 0x58) and the last
-  word 9 (1160), a packet length no current program has.
+  word 9 (1160); no program's header has that count with that format (563's nine-word header has
+  format 0x4c).
 - **`1163`** (routine; kernel record 1064), **established**: the closing entry of table record 2 only
   (+28 at 0x0dae472c in `libGLcore.so`), the one-sided, untextured fragment-lighting program.
   **inferred:** it takes nothing and outputs the header of a ten-word packet (1164, `s0` 9, format
@@ -822,9 +831,11 @@ to tell them apart by address.
   (1190), the packet of 1348, 2240 and 2300.
 - **`1193`** (routine; kernel record 1094), **established**: the two-sided form of 1188, picked when
   the two-colour flag or the fragment model's two-sided byte (context +0x10000 + 26021) is set.
-  **inferred:** it takes no operand and outputs a sixteen-word header (1194, `s0` 15, format 0x1e)
-  and the last word (1195, word field 1, the four-bit count wrapping past 15), the length of 1433
-  and 2268; it computes nothing, and its last-word record also carries colour operation 0x0009.
+  **inferred:** it takes no operand and outputs a header (1194, `s0` 15, format 0x1e), equal to the
+  header of 1433 (1448) and 2268 (2291), and a last word (1195) whose word field is 1 where the
+  rule "last word = `s0` + 1" gives 16, which a four-bit field holds as 0; 1433 ends its packet the
+  same way (1464); why is unknown. It computes nothing, and its last-word record also carries
+  colour operation 0x0009.
 
 #### Unlit colour routines
 

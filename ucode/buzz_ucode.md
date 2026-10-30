@@ -20,7 +20,7 @@ Facts are labelled established (read from a binary, with where), inferred (a rea
 ## Header written before the data
 
 - **established.** Before the data words the driver writes three FIFO words: `0x2e008380`, `0x2600807f`, `0x27008000`. After the data, one doubleword `0x000007f0_3b9aca00` goes out (see `BUZZ.h`, section on odsyInitCfifo). The board ID word at board+0x201594 must read `0x003d0046` first, else the load is skipped.
-- **established.** `0x27008000` sets the instruction write address to 0 (`odsyDownloadUcode` builds the same word from its address argument). `0x2e008380` and `0x2600807f` write sequencer registers 0x2e = 896 and 0x26 = 127 (`ucode/buzz_isa.md`, "Sequencer registers"); their meaning is **unknown**, with 127 **inferred** to be a routine address.
+- **established.** `0x27008000` sets the instruction write address to 0 (`odsyDownloadUcode` builds the same word from its address argument). `0x2e008380` and `0x2600807f` write sequencer registers 0x2e = 896 and 0x26 = 127 (`ucode/buzz_isa.md`, "Sequencer registers"); what those two registers limit is **unknown** (`ucode/buzz_isa.md`, "Sequencer registers"). 127 is not a routine address.
 
 ## Shape of the data (from `--stats`, groups in sending order)
 
