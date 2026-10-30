@@ -11,6 +11,17 @@ Questions the binaries and published sources have not yet answered. One entry ea
 
 An entry that exhausts all five is relabelled "unknown: no shipped software or published source depends on it" in its owning file, with the routes listed, and removed here.
 
+## Published sources, route tried (2026-10-29)
+
+Patents, SGI manuals and white papers were searched for every open entry below; [published-sources.md](published-sources.md) holds the identity and facts of each. Result by entry, so no later reader repeats the route. Every patent fact is inferred, because no patent names the chip.
+
+- **Colour interpolation arithmetic** (Raster rules): the patents describe perspective-corrected barycentrics from reciprocal-area-scaled edge distances, an interpolated 1/w correction, 12-bit bilerp modules and a recursive 4K x 4K subdivision. None gives widths or rounding. The next route is a numeric rebuild of the first `blend.SUM` panel under that model, compared with the 1090 residual pixels.
+- **Texture arithmetic**: the quad level of detail is the base-2 logarithm of the larger diagonal difference of s and t (inferred). Filter-weight and sub-texel widths are in no published source.
+- **Remaining operation codes**: the patents' scalar stage has an inverse square root, a negate, an exponent and an arc-sine; three of those match codes already read. Which table function codes 3 and 0xb are stays open: the exponent or the arc-sine.
+- **Value-3 marks and the loop entries**: the patents say the transform engine has no run-time branch and runs fragments chosen from a program table. A mark deciding between two entries is more likely a table-building step. Not established.
+- **Raster tie rule on a shared edge**: a patent says each shared subpixel has exactly one owner, decided by consulting the neighbouring pixels of the quad; which side is not stated.
+- **3D checkerboard frame, DMA engine, display bit fields, board memory organisation, ID word, user windows**: no published source reaches them. The diagnostic reference lists seven register names the register test walks and gives the chip's clock (266 MHz), SDRAM clock (133 MHz) and on-chip memory (1.5 million bits); neither moves an entry.
+
 ## BUZZ
 
 - **Command blocks the software only stores.** What blocks 0x018, 0x019, 0x043, 0x044, 0x046, 0x050, 0x170, 0x022 and 0x258 (operand 0x00120000) do, the 0x8e and 0x90 state words, and the field layouts of the replayed blocks with no known use (`docs/buzz.md` sections 8 and 9, `docs/kernel.md`). Block 0x054 is answered (`BUZZ.h` section 5). Tried: every sender in libGLcore, the X module and both kernels; the restore walkers.
