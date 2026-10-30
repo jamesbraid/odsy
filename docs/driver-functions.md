@@ -3429,69 +3429,63 @@ Lays out
   buffer-select shadow at +28528; when they differ it toggles the shadow bit and writes the id's single-bit mask to board
   register 0x10c4 (bit 30 set) or 0x10cc (clear). If the id's bit is set in the pending-swap mask at +28560 it clears it and calls
   `odsyValidateBuffer`. The mutex is released and it returns 0; the semaphore release replays a pending cursor command as in the other display requests.
-- `gfP_OdsyHPconfig` (`odsy_hpipe.o`, offset 0xc58, 712 bytes): **inferred.**
+- `gfP_OdsyHPconfig` (`odsy_hpipe.o`, offset 0xc58, 712 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the display-pipe configure request, read as a difference from the IP30 entry: 195
+  The Origin 350 build of the display-pipe configure request, compared with the IP30 listing instruction by instruction, every instruction of the body: 195
   instructions in the same order. Every board-record field it reads or writes at a negative offset from +0x10000
   sits 24 bytes higher: the member-list pointer is at -19288 (IP30: -19312) and the four layout words are at -19264,
   -19260, -19256 and -19252 (IP30: -19288 to -19276). The slot search, the strip arithmetic,
   `odsy_program_compositor_tiling` and the copy-out are unchanged.
-- `gfP_OdsyHPdestroyConfig` (`odsy_hpipe.o`, offset 0xf20, 472 bytes): **inferred.**
+- `gfP_OdsyHPdestroyConfig` (`odsy_hpipe.o`, offset 0xf20, 472 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the display-pipe destroy request, read as a difference from the IP30 entry: 127
+  The Origin 350 build of the display-pipe destroy request, compared with the IP30 listing instruction by instruction, every instruction of the body: 127
   instructions in the same order. Only the board-record layout words move, to -19264, -19260, -19256 and -19252 from
   +0x10000 (IP30: -19288 to -19276), the same 24-byte shift as in `gfP_OdsyHPconfig`. The slot checks, the restore
   of the first board's full-screen layout, the clearing of the others and the slot reset are unchanged.
-- `gfP_OdsyHPunbind` (`odsy_hpipe.o`, offset 0x1260, 392 bytes): **inferred.**
+- `gfP_OdsyHPunbind` (`odsy_hpipe.o`, offset 0x1260, 392 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the display-pipe unbind request, read as a difference from the IP30 entry: 110
+  The Origin 350 build of the display-pipe unbind request, compared with the IP30 listing instruction by instruction, every instruction of the body: 110
   instructions in the same order. The board's current pipe number and pipe-use word are at -19280 and -19276 from
   +0x10000 (IP30: -19304 and -19300); the slot lock, the use-count decrement and the client context's halfword at
   +588 are unchanged.
-- `gfP_OdsyHPqueryAttrib` (`odsy_hpipe.o`, offset 0x13e8, 708 bytes): **inferred.**
+- `gfP_OdsyHPqueryAttrib` (`odsy_hpipe.o`, offset 0x13e8, 708 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the display-pipe attribute query, read as a difference from the IP30 entry: 194
+  The Origin 350 build of the display-pipe attribute query, compared with the IP30 listing instruction by instruction, every instruction of the body: 194
   instructions in the same order. The member-list pointer is at -19288 and the four layout words it copies into each
   112-byte entry are at -19264, -19260, -19256 and -19252 from +0x10000 (IP30: -19312 and -19288 to -19276). The
   attribute dispatch, the name copy, the size check and the copy-out are unchanged.
-- `gfP_OdsyHPsetAttrib` (`odsy_hpipe.o`, offset 0x17f4, 740 bytes): **inferred.**
+- `gfP_OdsyHPsetAttrib` (`odsy_hpipe.o`, offset 0x17f4, 740 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the display-pipe attribute set request, read as a difference from the IP30 entry: 200
+  The Origin 350 build of the display-pipe attribute set request, compared with the IP30 listing instruction by instruction, every instruction of the body: 200
   instructions in the same order. The four board layout words it stores from each entry are at -19264, -19260,
   -19256 and -19252 from +0x10000 (IP30: -19288 to -19276); the attribute dispatch, the compositor register 170
   writes and the tiling call are unchanged.
-- `odsy_hpipe_discover` (`odsy_hpipe.o`, offset 0x64, 1460 bytes): **inferred.**
+- `odsy_hpipe_discover` (`odsy_hpipe.o`, offset 0x64, 1460 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the display-pipe discovery, read as a difference from the IP30 entry: 408 instructions in
+  The Origin 350 build of the display-pipe discovery, compared with the IP30 listing instruction by instruction, every instruction of the body: 408 instructions in
   the same order. The board's pointer to its pipe entry is at -19288 from +0x10000 (IP30: -19312); the two passes,
   the identifier registers 90 and 91 and the final 12-byte records are unchanged.
-- `gf_OdsySetDisplayMode` (`odsy_retrace.o`, offset 0xc7c, 1192 bytes): **inferred.**
+- `gf_OdsySetDisplayMode` (`odsy_retrace.o`, offset 0xc7c, 1192 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)`.
-  The Origin 350 build of the per-window display-mode write, read as a difference from the IP30 entry: 309
+  The Origin 350 build of the per-window display-mode write, compared with the IP30 listing instruction by instruction, every instruction of the body: 309
   instructions in the same order. The start-up word that bypasses the display-FIFO semaphore is at -19328 from
   +0x10000 (IP30: -19352) and the global that holds the cursor command header is read through a different small-data
   slot; the FIFO header, the buffer-select shadow update and the writes to 0x10c4 and 0x10cc are unchanged.
-- `odsyDMAWait` (`odsy_dma.o`, offset 0x243c, 940 bytes): **inferred.**
+- `odsyDMAWait` (`odsy_dma.o`, offset 0x243c, 940 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)`.
-  The Origin 350 build of the DMA wait, read as a difference from the IP30 entry: 262 instructions in the same
+  The Origin 350 build of the DMA wait, compared with the IP30 listing instruction by instruction, every instruction of the body: 262 instructions in the same
   order. The wait flag it sets while sleeping is at -19304 from +0x10000 (IP30: -19328), and the two range
   comparisons of the operation number are scheduled in a different order; the all-operations and per-operation
   waits, the ring check and the record reaping are unchanged.
-- `gfP_OdsyPbufAssoc` (`odsy_drawable.o`, offset 0xe44, 452 bytes): **inferred.**
+- `gfP_OdsyPbufAssoc` (`odsy_drawable.o`, offset 0xe44, 452 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`.
-  The Origin 350 build of the pixel-buffer association request, read as a difference from the IP30 entry: 121
-  instructions with the same logic. Only the placement of the message-pointer loads differs; the argument copy, the
-  share-group-0 and group lookups, the hash check, the `odsyCreateDrawable` call and the insertion are unchanged.
-- `gfP_OdsyPbufDeassoc` (`odsy_drawable.o`, offset 0x1008, 392 bytes): **inferred.**
+  Private request 36 on the Origin 350 build: makes a pixel-buffer group addressable by a drawable id; the whole body was read and matches the IP30 routine except for the placement of the message-pointer loads. It copies in 8 bytes (drawable id, group id; a copy failure logs and returns 14, a group id of -1 logs and returns 22 into the status cell). `OdsyLookupCSetId` finds share group 0 in the set at board +2368 (missing: log, 22) and then the group by id in that share group's set at +72 (missing: log, 22). The drawable id folded modulo 13 selects the reader lock at board +0x8660 (`mraccessf`) and the hash at board +0x10000 - 31144; a drawable already in the hash unlocks and returns 11. Otherwise `odsyCreateDrawable` makes it (failure: unlock, 12), its user count at +32 becomes 1, its type word at +36 becomes 2, its object pointer at +24 the group; the lock is promoted with `mrtrypromote` (failure: unlock, 13), the drawable is inserted with `odsyHashInsert` and the lock released. It returns 0 and copies nothing back.
+- `gfP_OdsyPbufDeassoc` (`odsy_drawable.o`, offset 0x1008, 392 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`.
-  The Origin 350 build of the pixel-buffer deassociation request, read as a difference from the IP30 entry: 106
-  instructions with the same logic. Only the placement of one message-pointer load differs; the hash lookup, the
-  removal, the type reset and the copy-out are unchanged.
-- `odsy_tpinit` (`odsy_tport.o`, offset 0x15e4, 496 bytes): **inferred.**
+  Private request 37 on the Origin 350 build: removes the association made by `gfP_OdsyPbufAssoc`; the whole body was read and matches the IP30 routine except that one message-pointer load moved a few instructions. It copies in 8 bytes (failure: log and 14), takes the board from owner +40, folds the drawable id (the two halves of the first word ORed together) modulo 13 and takes the reader lock at board +0x8660 with `mraccessf`. The drawable is looked up in the hash at board +0x8658 (missing: unlock, 22). A drawable whose object pointer at +24 is null logs at severity 4 and returns 0 with the lock still held. Otherwise it stores the group's id (its first word) in the second word of the message, promotes the lock with `mrtrypromote` (failure: unlock, 13), removes the drawable with `odsyHashRemove`, sets its type word at +36 to 1 and, when its user count at +32 is zero, destroys it with `odsyDestroyDrawable`. It then unlocks and copies the 8 bytes back out (failure: log and 14), and returns 0.
+- `odsy_tpinit` (`odsy_tport.o`, offset 0x15e4, 496 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
-  The Origin 350 build of the text-port set-up, read as a difference from the IP30 entry: 125 instructions against
-  124, the same reset retry loop, `odsyInitDBE` calls, 4165-word replay and `ODSY_SET_GC` call, with one argument
-  move scheduled differently.
+  Prepares the board for text-port output on the Origin 350 build (argument: board base); the whole body was read and it matches the IP30 routine apart from where one argument move sits. `odsyPipeNrFromBase` gives the pipe, whose board record is found through the per-pipe table; the mute word in small data is set to 1 (with a `wbflush`) and the routine waits in 5 microsecond steps until the field in bits 15:7 of the register at +4204 reads zero. It then tries up to six times: it writes 0, 1, 0 to register +4228, 0 to +4212 and 1 to +4220, and runs `odsyInitCfifo` for the pipe stored in the record's halfword at +790; a failure runs `odsyReset` for that pipe and tries again, and the sixth failure logs severity 1 and leaves the port muted. On success it calls `odsyInitDBE` twice with two stored timing structures, copies the board's width and height (+232, +234) into the static port object, copies the board word at +1360 into two words of the stored state (+16676, +16700) and the word at +1496 into +16724, clears 11128 bytes of the hardware-state object, stores the word at +1336 divided by 16 into it at +6952, replays 4165 stored words to the FIFO port at +0x110000, calls `ODSY_SET_GC` and clears the mute word.
 - `odsyClipMask` (`odsy_clip.o`, offset 0x5bc, 520 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)`.
   The Origin 350 build of the clip-mask routine, compared instruction by instruction with the IP30 build: the 136
@@ -3504,51 +3498,51 @@ Lays out
   268 instructions are identical, so it creates the 592-byte context record, takes a 32 KB slot, allocates, maps and
   resets the 16 KB saved-state record and sets the read-back word exactly as the IP30 entry describes.
 
-- `gfP_OdsyBRDMGRsetColors` (`odsy_brdmgr.o`, offset 0x0, 1680 bytes): **inferred.**
+- `gfP_OdsyBRDMGRsetColors` (`odsy_brdmgr.o`, offset 0x0, 1680 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
-  The Origin 350 build of the colour-map request, read as a difference from the IP30 entry: 449 instructions in the
+  The Origin 350 build of the colour-map request, compared with the IP30 listing instruction by instruction, every instruction of the body: 449 instructions in the
   same order. The only change is the start-up word that bypasses the display-FIFO semaphore, at -19328 from board
   record +0x10000 (IP30: -19352), in its three tests; the run splitting, header words, FIFO waits and semaphore
   release are unchanged.
-- `gfP_OdsyBRDMGRcursor` (`odsy_brdmgr.o`, offset 0x13d0, 3396 bytes): **inferred.**
+- `gfP_OdsyBRDMGRcursor` (`odsy_brdmgr.o`, offset 0x13d0, 3396 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
-  The Origin 350 build of the cursor request, read as a difference from the IP30 entry: 902 instructions in the same
+  The Origin 350 build of the cursor request, compared with the IP30 listing instruction by instruction, every instruction of the body: 902 instructions in the same
   order. Only the start-up word that bypasses the display-FIFO semaphore moves, to -19328 from +0x10000 (IP30:
   -19352), in its seven tests; the flag handling, the 60-, 512- and 256-byte blocks, the header words and the
   pending-cursor replay are unchanged.
-- `odsy_LoadDCD2Regs` (`odsy_brdmgr.o`, offset 0x38ac, 1060 bytes): **inferred.**
+- `odsy_LoadDCD2Regs` (`odsy_brdmgr.o`, offset 0x38ac, 1060 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
-  The Origin 350 build of the DCD2 clock and logic loader, read as a difference from the IP30 entry: 286
+  The Origin 350 build of the DCD2 clock and logic loader, compared with the IP30 listing instruction by instruction, every instruction of the body: 286
   instructions in the same order. Only the placement of the eight message-pointer loads on the failure paths
   differs; the device bytes 92, 31 and 23, the register values, the 600000 us wait and the write of 7 to register 50
   are unchanged.
-- `gfP_OdsyBRDMGRVTGcontrol` (`odsy_brdmgr.o`, offset 0x5f54, 1200 bytes): **inferred.**
+- `gfP_OdsyBRDMGRVTGcontrol` (`odsy_brdmgr.o`, offset 0x5f54, 1200 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
-  The Origin 350 build of the timing-generator control request, read as a difference from the IP30 entry: 312
+  The Origin 350 build of the timing-generator control request, compared with the IP30 listing instruction by instruction, every instruction of the body: 312
   instructions in the same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), the header constant
   for the update-enable word comes from the next small-data slot (-30624 instead of -30632) and the copy-failure
   message is at a different offset; the flag handling and the two control-word writes are unchanged.
-- `odsy_program_compositor_tiling` (`odsy_hpipe.o`, offset 0x844, 1044 bytes): **inferred.**
+- `odsy_program_compositor_tiling` (`odsy_hpipe.o`, offset 0x844, 1044 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The Origin 350 build of the compositor tile programming, read as a difference from the IP30 entry: 278
+  The Origin 350 build of the compositor tile programming, compared with the IP30 listing instruction by instruction, every instruction of the body: 278
   instructions in the same order. The board's layout words are at -19264, -19260, -19256 and -19252 from +0x10000
   (IP30: -19288 to -19276); the range arithmetic, the USB compositor branch and the registers 35 to 42 are
   unchanged.
-- `odsy_i2cProbe2b` (`odsy_ddc.o`, offset 0x410, 6172 bytes): **inferred.**
+- `odsy_i2cProbe2b` (`odsy_ddc.o`, offset 0x410, 6172 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)`.
-  The Origin 350 build of the monitor-bus probe, read as a difference from the IP30 entry: 1584 instructions in the
+  The Origin 350 build of the monitor-bus probe, compared with the IP30 listing instruction by instruction, every instruction of the body: 1584 instructions in the
   same order. Only the start-up word that bypasses the display-FIFO semaphore moves, to -19328 from +0x10000 (IP30:
-  -19352), in its sixteen tests; every transfer, delay and result is unchanged.
-- `odsyGatherInfo` (`odsy_init.o`, offset 0xedc, 1440 bytes): **inferred.**
+  -19352), in its fifteen tests; every transfer, delay and result is unchanged.
+- `odsyGatherInfo` (`odsy_init.o`, offset 0xedc, 1440 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-  The Origin 350 build of the board identity reader, read as a difference from the IP30 entry: 394 instructions in
-  the same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), a lock it takes sits at +464 where
-  the IP30 build uses +568, the same global table is reached through the next small-data slot (-30704 instead of
+  The Origin 350 build of the board identity reader, compared with the IP30 listing instruction by instruction, every instruction of the body: 394 instructions in
+  the same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), the revision-type jump table is at +464 of the
+  read-only data where the IP30 build has it at +568, the same global table is reached through the next small-data slot (-30704 instead of
   -30720), and the three message strings are 104 bytes earlier; the revision-type jump table, the display-chip word
   and the SDRAM decoding are unchanged.
-- `odsyGenlockInterrupt` (`odsy_intr.o`, offset 0x5c0, 4064 bytes): **inferred.**
+- `odsyGenlockInterrupt` (`odsy_intr.o`, offset 0x5c0, 4064 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
-  The Origin 350 build of the genlock interrupt, read as a difference from the IP30 entry: 1094 instructions in the
+  The Origin 350 build of the genlock interrupt, compared with the IP30 listing instruction by instruction, every instruction of the body: 1094 instructions in the
   same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), the processor number is read from -15320
   in the private area (IP30: -15456) and the lock it takes is at +0xb488 (IP30: +0xb470); the clock-part register
   sequence, the shadow updates and the cursor replay are unchanged.
@@ -3705,11 +3699,9 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)`.
   The rectangle-vertex replay of the Origin 350 build, compared with the IP30 entry by constants, offsets and calls: the ring at saved +256 and +768, the (n + 2) and (n - 1) or (n + 3) modulo 4 selection and
   the 0x3000c02e or 0x2f00c02e exception are all present with the same values. The only code difference is the store target, the pointer at board record +864 reloaded for each word without a `sync`.
-- `gfP_OdsyGLGet` (`odsy_ctxsw.o`, offset 0x6204, 536 bytes): **inferred.**
+- `gfP_OdsyGLGet` (`odsy_ctxsw.o`, offset 0x6204, 536 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)`.
-  Private request 7 on the Origin 350 build, compared with the IP30 entry. The selector range 0 to 3, the doubleword (0x4c0 plus selector) over 1, the read-back word at +124 of the context's 128-byte
-  slot (slot number from the low 16 bits of the board word at +0x8608), the 1500-tick `odsy_glget_timeout` and the teardown-flag poll carry the same constants. The doubleword goes to the pointer at board record +864 rather than
-  base + 0x110000, and no instruction differs in effect.
+  Private request 7 on the Origin 350 build (arguments: manager object, board, user pointer, result word); the whole body was read. The result word is zeroed first. A set teardown word at board +816 logs a severity 4 message with the board number and the routine goes on. The client behind +72 then +112 must exist (else log and result 1). It copies in 4 bytes (a fault logs and gives 14), `RRM_CheckValidFault` must not be negative (else 14), and the client's busy count at +80 goes up. The slot is the low 16 bits of the board word at +0x8608 times 128, added to the table behind pointer +192 of the saved record; the word at +124 of that slot is cleared. The selector (the copied word) picks a command number: 0, 1, 2 and 3 give 1216, 1217, 1218 and 1219 (0x4c0 to 0x4c3); any other value takes the second stack word, which the 4-byte copy leaves unset. The routine stores the doubleword (command number in the upper half, 1 in the low bit) through the pointer at board +864 (the IP30 routine addresses base + 0x110000), arms the small-data watchdog with `timeout` for 1500 ticks and polls the slot's word at +124 in 1 microsecond steps until it is nonzero or the teardown word becomes set. It then calls `untimeout_wait`, sets the result to 14 if the board was torn down, lowers the busy count and returns the result word.
 - `odsyRestoreGfe` (`odsy_ctxsw.o`, offset 0x4208, 1448 bytes): **inferred.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)`.
   The geometry-engine replay on the Origin 350 build. Its constant and offset stream is that of the IP30 entry (fixed words 0x14400, 0x14001, 1856, 491, 3905, 17776 and 1200, saved words at +172 and +184, the four packet headers
@@ -3744,18 +3736,16 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)`.
   Private request 12 on the Origin 350 build: the caller check, the timeout, the save request doubleword at 0x118000 and the wait on the completion word are as in the IP30 entry. What changed is the attach and detach around them, which use the
   owner pointer at +72, the word at +104, `gfx_flow_credit_count_get` against `gfx_flow_credit_bias_get`, `odsy_flow_await_returned_credits` and `gfx_flow_attach_me_finish` instead of the IP30 build's 0x106c read and `gfx_flow_credit_tnum_get`.
-- `gfP_OdsySetDrawBuffer` (`odsy_drawable.o`, offset 0x53c, 676 bytes): **inferred.**
+- `gfP_OdsySetDrawBuffer` (`odsy_drawable.o`, offset 0x53c, 676 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`.
-  Private request 9 on the Origin 350 build. The 4-byte copy-in, the mask store at context +568, `RRM_CheckValidFault` and the `odsyPushBufferSelect` call are the same as in the IP30 entry. A process not yet on flow control is attached
-  with the Origin 350 sequence (level raised, thread pinned, flow word from the word at -19376, credits awaited, attach completed) and detached through the word at +0x85c8 and the store of 1 to 0x107c.
+  Private request 9 on the Origin 350 build (arguments: manager object, board, user pointer, result word): sets the draw buffer; the whole body was read. The result word is zeroed. A missing current client (the pointer behind +72 then +112) logs at severity 4 and gives result 1. It copies in 4 bytes (a fault logs and gives 14), stores that word at +568 of the client's record, and `RRM_CheckValidFault` must not be negative (else 14). A process already attached to flow control (`odsy_flow_am_i_attached`) just runs `odsyPushBufferSelect` with the record and the register base and returns 0. Otherwise it raises the level with `splhi`, sets bit 1 of the client's flag word at +4, and, when the flow handle exists and the process is not attached, pins the thread (`rt_pin_thread`), attaches with `gfx_flow_attach_me`, stores the credit target word at -31292 from +0x10000 (its old value under a small-data mask, ORed with the word at -19376 shifted left 12) there and in register 0x1074, clears the word at -31288 and register 0x107c, restores the level, waits in `odsy_flow_await_returned_credits`, raises the level, completes the attach with `gfx_flow_attach_me_finish` and unpins. It then runs `odsyPushBufferSelect` and, still holding the temporary attachment, detaches again: with the board word at +104 clear it first waits for returned credits as in `gf_OdsyDestroyDDRN` when the credit count is below the bias, then stores 1 at +0x85c8 and in register 0x107c and calls `gfx_flow_detach_me` with the register's value; finally it clears bit 1 of the flag word, restores the level and returns 0.
 - `gfP_OdsyMakeCurrent` (`odsy_drawable.o`, offset 0xab0, 916 bytes): **inferred.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`.
   Private request 8 on the Origin 350 build. The 80-byte copy-in and copy-out, the class 1 and class 2 unbind and bind calls, the words copied from context +472 and +520 and the `odsyClipPush` call are unchanged from the IP30 entry; only the flow-control attach
   and detach differ, using the pin-the-thread, await-credits and finish-attach calls found in `gf_OdsyResume`.
-- `gf_OdsyDestroyDDRN` (`odsy_ddrn.o`, offset 0x438, 752 bytes): **inferred.**
+- `gf_OdsyDestroyDDRN` (`odsy_ddrn.o`, offset 0x438, 752 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)`.
-  Destroys a context record on the Origin 350 build. The node, started-halfword, DMA, memory and slot steps of the IP30 entry are all present. Three things differ: the IP30 build's read of the fixed uncached address 0xaff00080 is a doubleword
-  load through a pointer in a global, the board word at +0x8608 is addressed with a separate `li`, and the last-context detach from flow control waits for returned credits (`gfx_flow_credit_count_get` against the bias, `rt_pin_thread`) before storing 1 to 0x107c.
+  Destroys a client's context record on the Origin 350 build (arguments: board record, the manager's object, the resource node); the whole body was read. When the node is the manager's first node it runs `gfx_flow_clean_up_other_gfxp` and, on a live board (teardown word +816 clear), either zeroes the started halfword at +794 when the context's read-back word is nonzero (slot found from the board word at +0x8608, low 16 bits times 128, in the table behind +192 of the saved record, word +124) or calls the manager's callback at +120 of the object's operations table with the node (a nonzero result logs at severity 4 and the routine returns 1). A global pointer is also read once up front where the IP30 routine loads from the fixed uncached address 0xaff00080. The record's id is cleared from the board's current-context word (+820) when it matches, a pending swap is unscheduled with `gf_OdsyUnSchedSwapBuf` (when the node's +28 is not negative) and any retrace event with `gf_OdsyUnSchedRetraceEvent`. When the record's flag at +408 is zero it runs `odsyDMAFinish`, `odsyMMdetach` and `odsyUnpinAndUnmapGctxRegions` and sets the flag. Then come `odsy_hpipe_cleanup`, clearing of +224 and of the node's +112, release of the 16 KB saved record (+192) and the 32 KB slot (`OdsyFree32kSlot` on the number at +244). For the last context (count at +28480 equal to 1), under `splhi`, a client attached to flow control is detached: with the board word at +104 clear it first compares `gfx_flow_credit_count_get` with `gfx_flow_credit_bias_get` and, when the count is lower, pins the thread (`rt_pin_thread`), restores the interrupt level, waits in `odsy_flow_await_returned_credits`, raises the level and unpins; it then stores 1 at -31288 from +0x10000 and to register 0x107c and calls `gfx_flow_detach_me` with the register's value. The flow handle is released with `gfx_flow_dealloc` and the words at -31292 and register 0x1074 are cleared. The record's id becomes -1 and the context count goes down by one.
 - `gf_OdsySchedSwapBuf` (`odsy_retrace.o`, offset 0x380, 1276 bytes): **inferred.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)`.
   Schedules a buffer swap on the Origin 350 build. The id limit of 32, the wait on the swap condition, the group mask written to 0x10bc and the 40-byte per-id record at +28584 + 40 x id are as in the IP30 entry. The caller's attach uses the Origin 350 flow-control
@@ -3772,11 +3762,9 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)`.
   Private request 14 on the Origin 350 build. The 44-byte request, the single-rectangle form selected by bit 27 of +6956, the clip-list arrays at +44, +60, +76 and +92, the float conversion (exponent 127 plus bit position) and the
   0x14400 / 10 / 0x8f80a92f / 0x14001 packet with its settle group match the IP30 entry. The FIFO port is read from the board record rather than formed from base + 0x110000; the attach and detach use the pin-the-thread, await-credits and finish-attach calls.
-- `gf_OdsyMapGfx` (`odsy_map.o`, offset 0x0, 796 bytes): **inferred.**
+- `gf_OdsyMapGfx` (`odsy_map.o`, offset 0x0, 796 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)`.
-  Maps the board windows into a client on the Origin 350 build. The `v_mapkvsegment` windows (+0x100000, +0x120000 and, for flag bit 5, +0x0, +0x110000, +0x118000, +0x200000, +0x220000 and +0x400000), the flag-bit-0 store and the return rule
-  are as in the IP30 entry. The owner record differs: this build clears eight doublewords at +104 in a loop and uses the processor number from the halfword at -15320 (IP30: -15456) shifted right by 6 to pick the slot it fills, and
-  the attach is the Origin 350 sequence under `splhi`.
+  Maps the board's windows into a client's address space on the Origin 350 build (arguments: manager object, user address); the whole body was read and the window table is the IP30 one. The address is cut to a 16 KB boundary, `gfx_flow_clean_up_other_gfxp` runs and `ddv_getaddr` gives the base. `v_mapkvsegment` maps +0x100000 at user offset 0 (1 page, cache argument 0) and +0x120000 at 0x4000 (1 page, 2); only when bit 5 of the client's flag word (+4) is set does it map the register page from +0 at 0x8000 (2 pages, 2), +0x110000 at 0x10000 (1, 0), +0x118000 at 0x14000 (1, 2), +0x200000 at 0x18000 (1, 2), +0x220000 at 0x1c000 (8, 2) and +0x400000 at 0x3c000 (1, 2). Under `splhi` it sets bit 0 of the flag word. A process not yet attached to flow control is attached (`rt_pin_thread`, `gfx_flow_attach_me`, the credit word at -31292 from +0x10000 rebuilt from the board word at -19376 shifted left 12 and written there and to register 0x1074, the word at -31288 and register 0x107c cleared, level restored, `odsy_flow_await_returned_credits`, level raised, `gfx_flow_attach_me_finish`, `rt_unpin_thread`). It clears the eight doublewords at +104 and sets in them the bit of the current processor (number from the halfword at -15320, doubleword index its value divided by 64). It returns 0 when a mapping reported the client's address as mapped and -1 when none did.
 - `odsyInitCfifo` (`odsy_init.o`, offset 0x2bc8, 1092 bytes): **inferred.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
   Sets up the command FIFO and microcode on the Origin 350 build. The block 0x054, the 2000 us wait, the 0x003d0046 check at 0x201594, the sequencer words 0x2e008380 and 0x2600807f, the write-address word 0x27008000 and the 2048 six-word records are present. The five water-mark and enable
@@ -3790,10 +3778,9 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
   Brings a board to idle on the Origin 350 build. The sequence of the IP30 entry (`odsyLowLevelReset`, `odsyGatherInfo`, `odsyMMinit`, `odsyInitDBE`, the register zeroing, the SDRAM pulse and `odsy_hpipe_invalidate`) is kept. It first resolves the crossbar vertex with
   `xwidget_info_get`, `xwidget_info_master_get` and `master_node_get`, calls `hub_widget_flags_set` before and after the reset, adds `get_chimera_type` and two `hub_set_piomode` calls around the final mutex, and addresses the board record's identity fields at -19400, -19396, -19394 and -19392.
-- `generatePageTable` (`odsy_dma.o`, offset 0x558, 880 bytes): **inferred.**
+- `generatePageTable` (`odsy_dma.o`, offset 0x558, 880 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)`.
-  The chunk-table builder on the Origin 350 build, compared with the full reading of the IP30 entry: the row count (bits 31:16 of +12, 65536 when zero), the 20-bit row length at +24, the gap at +20, the 16384-byte pieces, the 8-byte entries and
-  the zeroed terminator are unchanged. The one different constant is the user-address limit, a shift of 12 here (addresses below 2^44 go to `uvaddr_to_alenlist`) where the IP30 build shifts by 8 (2^40).
+  Builds a DMA translation table on the Origin 350 build (arguments: region descriptor, buffer address, length, table pointer, optional address list); the whole body was read, and it matches the IP30 routine instruction for instruction except for one constant. With no list given it creates one with `alenlist_create` (a failure logs "Out of Memory creating alenlist" and returns 12) and fills it with `uvaddr_to_alenlist` for an address below 2 to the 44th (the shift constant is 12 here, 8 on IP30) or `kvaddr_to_alenlist` above it; a null result logs "Invalid host dma region" and returns 14. The descriptor gives the row count (bits 31:16 of +12, 0x10000 when zero), the row length (low 20 bits of +24) and the stride at +20. The list is read in pieces of at most 16 KB; row bytes are taken from each piece and one two-word entry (address bits 47:16, then the low 16 address bits over the byte count) is written when a piece or the last row ends, followed by a zero word and a cleared low half of the next word. A mismatch of rows against bytes logs "too many scanlines" and returns 0, an `alenlist_get` failure logs and returns its code, and a list built here is destroyed on exit.
 - `odsyDMAOp` (`odsy_dma.o`, offset 0x1b1c, 2012 bytes): **inferred.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)`.
   One host-memory transfer on the Origin 350 build. The page-list and work-list calls, the 0x800 store to 0x101c, the two-doubleword physical-address kick, the 0x14001 end word with the settle group and the 0x10a5a completion tag follow
@@ -3806,14 +3793,12 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)`.
   Copies a memory object to or from its backing store on the Origin 350 build. Its constants, offsets and calls are those of the IP30 entry (22 for host-to-board with no store, 12 when `odsy_mm_obj_alloc_bs` fails, `SetupDMAParams`, the flag word at +76,
   the per-row `odsyDMAOp` call with flags 3, the settle groups and block 0x10018); the differences are in instruction scheduling and register use only.
-- `odsyInitDBE` (`odsy_init.o`, offset 0x3600, 4248 bytes): **inferred.**
+- `odsyInitDBE` (`odsy_init.o`, offset 0x3600, 4248 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-  Display back-end set-up on the Origin 350 build. The 475 constant, offset and call events match the IP30 entry in kind and value: the clock writes at display addresses 0x2b00 and 0x2700, the 0x2483 and 0x2482 reads, the two-wire port set-up, the part probes
-  and their presence words. The start-up word is at -19328 (16 uses), literal-pool displacements differ (928 and 880 where the IP30 build has 1032 and 984) and the semaphore offset reads 0xb488 (0xb470 on IP30).
-- `odsy_set_gfx_mfg_nic_name` (`odsy_init.o`, offset 0x5c4, 344 bytes): **inferred.**
+It quiets the clock registers (display address 0x2b00 five times and 0x2700), reads the output-enable words at 0x2483 and 0x2482 into the record, sets up the main and option two-wire ports with `odsy_i2c_init_port_handle`, reads the option card's identity at address 0x1f, fills the part-presence words at +700, +704, +708 and +712 through `odsy_ProbeCompositor`, `odsy_ProbeRainier`, `odsy_ProbeDenali` and `odsy_ReadCompositorNic` (and `odsy_i2cProbe2b` on the main port with no option card), waits for `odsy_DCDResetDone` and writes the card's PLL register 0 with 16, 32 or 48 when an option card is present, calls `odsyConfigFb` for 1280 by 1024 at depth 8 and, for the full start only, writes the scan-out size (0x2802, 0x2803) and calls `odsyLoadTimingTable`. It then writes the 32-entry main mode table at 0x2900 to 0x291f and the 8-entry overlay table at 0x2920 to 0x2927, clears entries 0x29 to 0x2c, resets the cursor control mirror, initialises the display semaphore to 1 and ends with `odsyBlankScreen` (blanking off). A failed FIFO wait abandons the routine. The differences from IP30 are: the start-up word that bypasses the display-FIFO semaphore is at -19328 from +0x10000 (16 uses; IP30 -19352); the semaphore initialised at the end is at +0xb488 (IP30 +0xb470); the stored display constants are read through small-data slots 24 bytes higher (-30600 to -30528 for the mode-table words; IP30 -30624 to -30552) and the tables 16 bytes higher (-30704; IP30 -30720); the message strings are 104 bytes earlier; and the semaphore wait count of 25 and two loads of the option-card byte are scheduled at different points. The jump `bnez` around the Rainier probe goes to the neighbouring label with the same effect.
+- `odsy_set_gfx_mfg_nic_name` (`odsy_init.o`, offset 0x5c4, 344 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-  Copies the manufacturing name out of the identification text on the Origin 350 build. The control flow of the IP30 entry (clear the first byte when there is no vertex handle, `nic_vertex_info_get`, the 1023-character copy, the `strtok_r` split against a key
-  and the `strncpy` of the following token) is present. The record fields moved up by 24 bytes: the first-byte clear and terminator at -19248 and -19247 (IP30: -19272, -19271), the name buffer at +0xb4d0 (IP30: +0xb4b8), and the literal-pool strings at 104 to 160 bytes instead of 200 to 256.
+  Copies the manufacturing name out of the board's identification text on the Origin 350 build (argument: board record); the whole body was read. The vertex handle is at record +0x10000 - 19400. With no handle it clears the first byte of the name buffer (record +0xb4d0, reached as -19248 from +0x10000) and returns 1. `nic_vertex_info_get` on the handle returning null logs "odsy_set_gfx_mfg_nic_name fail: NULL nic_info" at severity 1, clears the same byte and returns 1. Otherwise the text is copied with `strncpy` (at most 1023 characters, terminated) into a 1088-byte stack frame and split with `strtok_r` on the separators ":;" . Each token is compared with "Name"; on a match the next token becomes the name, and the scan carries on so a later "Name" would replace it; when the scan ends the name pointer starts as an empty string and is the last token taken. The name is copied with `strncpy` to record +0xb4d0 and a zero byte is stored one past its end (at -19247 plus the length from +0x10000). It returns 0. The IP30 routine does the same scan in a different order and with its name buffer at +0xb4b8.
 - `odsyBlankScreen` (`odsy_brdmgr.o`, offset 0x21f8, 4708 bytes): **inferred.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
   Blanks or restores the picture on the Origin 350 build. Modes 0, 1 and 2, the shadows of display registers 0x2482 and 0x2483 (at -19492 and -19496), the read-back of register 0x26c0 and the FIFO levels 10, 11 and 14 are those of the IP30 entry. Two additions are
@@ -3826,17 +3811,16 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`.
   Sends the draw-buffer mask on the Origin 350 build. The words stored at -19760 and -23924 to -23912, the settle groups, block 0x024 and the doublewords for registers 0x608 and 0x609 from context +140 and +144 (bit 31 rule) match the IP30 entry. The 4-bit select is formed by
   testing mask bits 1, 2, 4 and 8 separately where the IP30 build tests 1 and 8 and exchanges bit pairs, so the pair exchange of the IP30 entry is not present as such here. Stores use the pointer at record +864.
-- `odsy_sboxfi` (`odsy_tport.o`, offset 0xb64, 572 bytes): **inferred.**
+- `odsy_sboxfi` (`odsy_tport.o`, offset 0xb64, 572 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
-  Text-port filled box on the Origin 350 build. The corner ordering, the 0x14400 type 7, the four 0x8080c800 vertices at (xmin, H - ymax + 1) to (xmin, H - ymin + 2), 0x14001, the extra 0x10443 group for the word at +7036 and the closing settle group are the same words as the IP30 entry.
-  The text-port lock is taken with `mutex_spinlock` and the in-use flag is a plain store of 1 where the IP30 build counts uses with write-buffer flushes; the port is at base + 0x110000 and no `sync` follows.
-- `odsy_pnt2i` (`odsy_tport.o`, offset 0xda0, 380 bytes): **inferred.**
+  Text-port filled rectangle on the Origin 350 build (arguments: board base, x0, y0, x1, y1); the whole body was read. It returns at once when the port's in-use word in small data is set; otherwise it takes the spin lock beside that word and stores 1 (the IP30 routine uses a counter and write-buffer flushes). The corners are put in order: the smaller x becomes the left edge, the larger x the right edge, and the same for y, so that the first y value is the one the arguments order as lower. To base +0x110000 it sends 0x14400 with operand 7 (the primitive type the routine selects, here a quad), then four vertices each made of the word 0x8080c800, x and a y measured from the port height (the word at +16 of the port object): left x at height minus the first y plus 1, right x plus 1 at the same y, right x plus 1 at height minus the second y plus 2, and left x at that y. 0x14001 closes the primitive and the same settle groups as `odsy_pnt2i` follow (a short group first when the word at +7036 of the stored state is nonzero, then a short group, block 0x019, a 150-wait group and a last short group). The lock is released and the in-use word cleared.
+- `odsy_pnt2i` (`odsy_tport.o`, offset 0xda0, 380 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
-  Text-port point on the Origin 350 build. It sends 0x14400 with type 0, one 0x8080c800 vertex at x and H - y + 1, 0x14001 and the closing settle group to base + 0x110000, as in the IP30 entry, under the spin lock alone with a stored in-use flag in place of the counter and write-buffer flushes.
-- `odsy_drawbitmap` (`odsy_tport.o`, offset 0xf2c, 1696 bytes): **inferred.**
+  Text-port point on the Origin 350 build (arguments: board base, x, y); the whole body was read. It returns at once when the port's in-use word in small data is set. Otherwise it takes the spin lock beside that word, stores 1 in the word (the IP30 build keeps a counter and flushes the write buffer around it; this one stores 1 and later 0) and sends to base +0x110000: 0x14400 with operand 0, the vertex word 0x8080c800, x, the port height (the word at +16 of the port object) minus y plus 1, and 0x14001. When the word at +7036 of the stored hardware state is nonzero it first sends a short settle group (0x10443 with 250, two 0x10046). It then sends a short group, block 0x019, a 150-wait group (0x10443 with 150, four 0x10046) and a last short group (0x10443 with 250, two 0x10046), and releases the lock, clearing the in-use word.
+- `odsy_drawbitmap` (`odsy_tport.o`, offset 0xf2c, 1696 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
   Text-port glyph draw on the Origin 350 build. The band and cell walk (64 rows, 16 columns), the stipple copy, block 0x03f with 6, the 0x04e and 0x04f pattern blocks, the four-vertex quad with the one-row offset and the two `ODSY_SET_GC` calls (enable set, then clear) are as in the IP30
-  entry; the words and the cursor update are identical. The lock is a bare `mutex_spinlock` with an in-use flag stored as 1, and no counter, write-buffer flush or `sync` is used.
+  entry; the words and the cursor update are identical. The lock is a bare `mutex_spinlock` with an in-use flag stored as 1, and no counter, write-buffer flush or `sync` is used. The whole IP35 body was compared with the IP30 listing instruction by instruction: only register numbering, the lock handling and the release (the IP30 build also keeps a use counter and flushes) differ.
 - `odsyGctxFromRnid` (`odsy.o`, offset 0xfc, 92 bytes): **established.**
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)`.
   Maps a rendering-resource number to its context pointer in patch 4103. A number that is not positive or exceeds the global resource limit logs a severity 4 message through the format at the literal-pool offset 56 and yields null; a valid number is multiplied by 176 (built from shifts and subtractions) to index the global resource array, and the doubleword at +112 of that element is returned. The checks and the stride match the IP30 entry; only the literal-pool displacement of the message differs.
@@ -4433,7 +4417,7 @@ Lays out
     Crossbar error interrupt in patch 4103 (argument: board record). It counts the event in the per-cpu `gfxinfo` word at +16, loads the widget status word (+12) and the header word at +68, and tests, in this order, bits 8, 7 and 6: a set bit 8 logs a severity 4 message (string offset 0) and marks a failure, bit 7 logs a message with the status words at +28 and +68 and marks a failure, bit 6 logs a message and marks a failure, and none of them logs a message of its own with no failure. A failure then logs a second message (severity 0) with the header word saved from +68, and the routine always ends by clearing +68. Unlike the IP30 routine it neither prints the diagnostic registers nor calls the teardown routine.
 - `gf_OdsyMapGfx` (`odsy_map.o`, offset 0x0,  bytes): **established.**
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
-    Maps the board's windows into a client's address space in patch 4103 (arguments: manager object, client, user address). The address is cut to a 16 KB boundary; a zero address fails. `gfx_flow_clean_up_other_gfxp` runs, `ddv_getaddr` gives the base, and `v_mapkvsegment` maps the windows at 16 KB spacing in the user address range, in this order (user offset, board offset from the register base, pages, protection flag): 0x0 from +0x100000 (1, 0), 0x4000 from +0x120000 (1, 2), the page 0x8000 from +0 only when bit 5 of the client's flag word (+48) is set (2, 2), 0x10000 from +0x110000 (1, 2), 0x14000 from +0x118000 (1, 0), 0x18000 from +0x200000 (1, 2), 0x1c000 from +0x220000 (8, 2) and 0x3c000 from +0x400000 (1, 2). Under `splhi` it sets bit 0 of the client's flag word, attaches to flow control when the caller is not attached (the flow word at +10404 with its credit number and register 0x1074, +10408 and register 0x107c cleared), clears +56 and then stores in it one bit selected by the cpu index. It returns 0, or -1 when any mapping failed or the address was zero.
+    Maps the board's windows into a client's address space in patch 4103 (arguments: manager object, client, user address). The address is cut to a 16 KB boundary; a zero address fails. `gfx_flow_clean_up_other_gfxp` runs, `ddv_getaddr` gives the base, and `v_mapkvsegment` maps the windows at 16 KB spacing in the user address range, in this order (user offset, board offset from the register base, pages, cache-algorithm argument): 0x0 from +0x100000 (1, 0), 0x4000 from +0x120000 (1, 2), and, only when bit 5 of the client's flag word (+48) is set, the page 0x8000 from +0 (2, 2), 0x10000 from +0x110000 (1, 2), 0x14000 from +0x118000 (1, 0), 0x18000 from +0x200000 (1, 2), 0x1c000 from +0x220000 (8, 2) and 0x3c000 from +0x400000 (1, 2). Under `splhi` it sets bit 0 of the client's flag word, attaches to flow control when the caller is not attached (the flow word at +10404 with its credit number and register 0x1074, +10408 and register 0x107c cleared), clears +56 and then stores in it one bit selected by the cpu index. It returns 0 when a `v_mapkvsegment` call reported the client's own address as mapped (or the address was zero) and -1 when none did.
 - `gf_OdsyUnMapGfx` (`odsy_map.o`, offset 0x28c, 380 bytes): **established.**
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
     Removes a client's windows in patch 4103 (argument: client). When the board's owner at +72 is the client and bit 0 of its flag word (+48) is set, it clears that bit under `splhi` and detaches from flow control if attached (word +10408 = 1, register 0x107c = 1, read-back of 0x106c, `gfx_flow_detach_me`). A client with a zero mapping handle (+40) then returns 0. Otherwise it finds the calling thread with `curthreadhandle` and `gthread_find`; a thread with bit 2 of its flag word set that `thread_issproc` accepts returns 0 untouched, while for the others `ddv_invalphys_fal` removes the mapping: a result of 0 clears +56 and calls `gf_OdsyInvalTLB`, 2 returns 0, and anything else logs a severity 4 message. It returns 0.

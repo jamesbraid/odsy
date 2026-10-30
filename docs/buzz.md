@@ -391,20 +391,20 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 
 ### Where `gf_OdsyMapGfx` places each window in a client's mapping
 
-**established** by reading the 6.5.30m routine (IP30 build) and the patch 4103 routine in full. Both cut the client's address down to a 16 KB boundary and map the windows one call at a time with `v_mapkvsegment`, 16 KB pages, at the offsets below from that address. The patch 4103 layout (user offset, board offset from the register base, pages, protection argument 0 or 2):
+**established** by reading the routine in full in the 6.5.30m IP30 build, the Origin 350 build and patch 4103. All three cut the client's address down to a 16 KB boundary and map the windows one call at a time with `v_mapkvsegment`, 16 KB pages, at the offsets below from that address (user offset, board offset from the register base, pages, cache-algorithm argument 0 or 2; the last argument of every call is the client's own address, the faulting address of the request):
 
-| User offset | Board offset | Pages | Protection |
-|---|---|---|---|
-| +0x0000 | +0x100000 | 1 | 0 |
-| +0x4000 | +0x120000 | 1 | 2 |
-| +0x8000 | +0x000000 (PIO registers up to 0x7fff) | 2 | 2, only for a client whose flag word has bit 5 set |
-| +0x10000 | +0x110000 (command FIFO) | 1 | 2 |
-| +0x14000 | +0x118000 | 1 | 0 |
-| +0x18000 | +0x200000 | 1 | 2 |
-| +0x1c000 | +0x220000 (PB&J read-back) | 8 | 2 |
-| +0x3c000 | +0x400000 (display FIFO) | 1 | 2 |
+| User offset | Board offset | Pages | Cache algorithm, 6.5.30m and Origin 350 | Cache algorithm, patch 4103 |
+|---|---|---|---|---|
+| +0x0000 | +0x100000 | 1 | 0 | 0 |
+| +0x4000 | +0x120000 | 1 | 2 | 2 |
+| +0x8000 | +0x000000 (PIO registers up to 0x7fff) | 2 | 2 | 2 |
+| +0x10000 | +0x110000 (command FIFO) | 1 | 0 | 2 |
+| +0x14000 | +0x118000 | 1 | 2 | 0 |
+| +0x18000 | +0x200000 | 1 | 2 | 2 |
+| +0x1c000 | +0x220000 (PB&J read-back) | 8 | 2 | 2 |
+| +0x3c000 | +0x400000 (display FIFO) | 1 | 2 | 2 |
 
-The windows end at +0x40000 of the client's mapping and the +0x1c000 window's eight pages reach exactly to the display FIFO's page. The 6.5.30m routine maps +0x100000 and +0x120000 for every client and the other windows only for clients with flag bit 5 set; patch 4103 maps all but the PIO page unconditionally. What the protection argument selects is **unknown** (`docs/open-questions.md`); the two windows that take 0 are +0x100000 and +0x118000 (the context-switch request page, section 4).
+Every build maps the first two windows for every client and the other six only for a client whose flag word has bit 5 set. The windows end at +0x40000 of the client's mapping, and the +0x1c000 window's eight pages reach exactly to the display FIFO's page. The 6.5.5 kernel's `v_mapkvsegment` maps the pages with `ddv_mappages` and ignores the cache argument; it returns 1 when the faulting address lies inside the range just mapped, and `gf_OdsyMapGfx` returns 0 when any call did that and -1 when none did (an aligned address of zero counts as success). Which cache attribute 0 and 2 request on the board's windows is **unknown** (`docs/open-questions.md`); it is the one field in which patch 4103 differs from the later builds, with the values swapped between the command-FIFO window and the +0x118000 window (the context-switch request page, section 4).
 
 The performance mode word at +0x402c is built identically in the patch 4103 `gfP_OdsyPerfStat` (private ioctl 51): the same 24-byte argument, bits 3:0 from byte 16, bits 4, 5 and 6 from bit 0 of bytes 17, 18 and 19, bits 10:8 from the low three bits of byte 21, and the constant 0x88000000; the word is also kept in the board record (+10444 there) before the register store. The statistics buffer is `(2 << n) * 32` bytes for `n` = byte 16, as in the 6.5.30m routine, and a mask with bits 0 and 2 both set is refused with 22 (**established**, the field positions in the section above).
 
