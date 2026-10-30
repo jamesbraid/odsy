@@ -59248,7 +59248,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10227bb0	132	AccessChangePointe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10227c40	204	simpleSetPointer	dynsym	940237fd3ba4		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10227d10	496	XkmReadFileSection	dynsym	559523e69b7e		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10227f00	836	ProcAccessSetTPState..JHD	dynsym	0c0f3d52b08c		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10228250	212	calloc	dynsym	f4ff3b1f69db		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10228250	212	calloc	dynsym	f4ff3b1f69db		named-only	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10228330	804	fs_send_load_glyphs..FFB	dynsym	c6459bb2e44b		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10228660	4516	FixExtensionEvents	dynsym	285772d40470		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10229810	164	ProcSyncCreateCounter..NHE	dynsym	ad161c5bc38a		undocumented		
@@ -105691,7 +105691,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1708840	2916	nfbDoBitBltSP	dy
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x17093b0	728	nfbDoBitBltSS	dynsym	cfc201bdb78e		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1709690	160	cfb16CopyArea	dynsym	11e664fed931		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1709730	4276	mfbPolyGlyphBltInvert	dynsym	9a0eb9e167e0		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x170a7f0	5308	odsyLoadTimingTable..CC	dynsym	0ac800a0649b		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x170a7f0	5308	odsyLoadTimingTable..CC	dynsym	0ac800a0649b		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x170bcb0	812	miSetShape	dynsym	5f0a17aceea1		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x170bfe0	2140	cfbFillRectTile32Copy	dynsym	a763eb49df61		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x170c840	2956	cfbFillRectSolidXor	dynsym	fa7e073f7db1		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
