@@ -174,7 +174,10 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   last vertex the same way and issue nothing. The results are window coordinates because the host
   folded the viewport into R0 and R1 and the depth range into R2 (`ody_xform.s`, source lines 405 to
   525); the textport sends w 1 and z 0,
-  so its 1/w is 1.
+  so its 1/w is 1. **established** against an expected value for words 5 and 6 and for the last
+  vertex leaving through 234: the field diagnostics' points test, run through 214, 224 and 234 of
+  `diagxform.bin` (records equal to these), reproduces the C simulator's stored frames pixel for
+  pixel (`ucode/buzz_isa.md`, pass 18; `scripts/odydiags_frame_check.py`).
 - **`51`** (routine; kernel record 51), **inferred**: texture generation from planes, added when any
   of S, T, R or Q uses an eye-linear or object-linear mode (`ody_program.s`, source line 1097).
   Inputs: the position slot and the four planes at parameter words 0x100 to 0x10f

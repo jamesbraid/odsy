@@ -32,8 +32,12 @@ every such record and why.
 With --numeric, SCENARIO is a JSON file of input numbers: "slots" (slot number
 to four floats), "operands" (entry record to a list of operands), "pm" (word
 address such as "0x080" to a float; the constants at 0x1e0 to 0x1ef are built
-in), "regs" (register number to four floats) and "B" (the operand latch at
-the start of the run, for a replay that starts after the record loading it).
+in), "regs" (register number to four floats), "B" (the operand latch at
+the start of the run, for a replay that starts after the record loading it)
+and "passes" (a list of slot maps, the k-th applying while the k-th ENTRY
+runs, so that a program's loop sees a new vertex each pass; slots a pass
+leaves out come from "slots"). Every output word is also logged with the
+ENTRY that sent it (scripts/odydiags_frame_check.py reads that log).
 Every other value starts as NaN, so a NaN in the output marks an input the
 scenario did not give.
 --code C=FN picks a function for a scalar code the ISA leaves open, from
@@ -159,7 +163,7 @@ class Symbols:
     def reg(self, r, l):
         return f'in:R{r}{LANES[l]}'
 
-    def slot(self, v, l, entry):
+    def slot(self, v, l, entry, k=0):
         return f'{slot_name(v)}.{LANES[l]}'
 
     def pm(self, a):
@@ -195,12 +199,19 @@ class Numbers:
         self.invw = math.nan
         self.defs = []
         self.words = {}
+        self.emits = []
 
     def reg(self, r, l):
         v = self.scen.get('regs', {}).get(str(r))
         return float(v[l]) if v else math.nan
 
-    def slot(self, v, l, entry):
+    def slot(self, v, l, entry, k=0):
+        # A "passes" list gives the slots of each ENTRY of the run in turn,
+        # one vertex per sequencer pass; a slot it leaves out comes from
+        # "slots".
+        passes = self.scen.get('passes', [])
+        if v < 16 and k < len(passes) and str(v) in passes[k]:
+            return float(passes[k][str(v)][l])
         if v >= 16:
             ops = self.scen.get('operands', {}).get(str(entry), [])
             return float(ops[v - 16]) if v - 16 < len(ops) else math.nan
@@ -281,9 +292,9 @@ def parse_entry(recs, e):
 
 def run(recs, entries, dom):
     seq = []
-    for e in entries:
+    for k, e in enumerate(entries):
         rng = parse_entry(recs, e)
-        seq += [(i, rng[0]) for i in rng]
+        seq += [(i, rng[0], k) for i in rng]
     reg = {(r, l): dom.reg(r, l) for r in range(32) for l in range(4)}
     B = [dom.none()] * 4
     if dom.numeric and 'B' in dom.scen:
@@ -296,7 +307,7 @@ def run(recs, entries, dom):
     fhist = []
     out = []
     sh = dom.show
-    for c, (i, entry) in enumerate(seq):
+    for c, (i, entry, k) in enumerate(seq):
         r = recs[i]
         d0 = r['d0']
         ev = []
@@ -330,7 +341,7 @@ def run(recs, entries, dom):
                     nextB = src
                     ev.append(f"B <- R{lr}")
             else:
-                nextB = [dom.slot(r['r3'], l, entry) for l in range(4)]
+                nextB = [dom.slot(r['r3'], l, entry, k) for l in range(4)]
                 ev.append(f"B <- {slot_name(r['r3'])}")
             # A load with no issue reaches port V and the scalar unit seven
             # records on as its w lane (pass 15).
@@ -423,6 +434,7 @@ def run(recs, entries, dom):
                 t += f" -> word {r['s0']}"
                 if dom.numeric:
                     dom.words[r['s0']] = v
+                    dom.emits.append((k, i, r['s0'], v))
             ev.append(t)
         elif r['s1'] & 0x80 and not r['s1'] & 1:
             ev.append(f"word {r['s0']}")

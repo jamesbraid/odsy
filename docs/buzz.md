@@ -387,7 +387,7 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 
 ### The windows at board +0x100000, +0x120000 and +0x200000
 
-**unknown** (`docs/open-questions.md`). The mapping table is in `BUZZ.h` section 5. The only established access is the kernel's read at +0x201594. On a board it would show in: a bus trace of a libGLcore client's accesses into its mapping, or a read of the first words of each window on a quiescent board.
+**inferred** for +0x100000: it takes command words like the FIFO port at +0x110000. The command streams that the field diagnostics recorded from the board's C simulator (`odydiags` 6.5.15, `__clog_pts` and its siblings) send 3114 of their writes there and 2748 to the FIFO port, the same sequencer words, matrix stores and primitives to both, through `_odsy_diag_wr_hw` and `remap_ody`, which map board +0x100000 to offset 0 and +0x110000 to offset 0x10000 of the diagnostic mapping (`ucode/buzz_isa.md`, pass 18). That the simulator log reflects how a board accepts them is the inference. +0x120000 and +0x200000: **unknown** (`docs/open-questions.md`). The mapping table is in `BUZZ.h` section 5. The only established access is the kernel's read at +0x201594. On a board it would show in: a bus trace of a libGLcore client's accesses into its mapping, or a read of the first words of each window on a quiescent board.
 
 ### What stays unknown in the register and command rows
 
