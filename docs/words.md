@@ -839,3 +839,44 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0xcf809014` (slot 15, four operands, opcode 0x14, `odsy_init.o`): **established.**
   Built only by `odsyZeroOut`, which stores it once at the start of its fill loop together with the constants 1856 and 448
   and then writes zero words in runs of up to 16 through the command FIFO port. **inferred** from the zero fill that the loop clears a memory; what register the word addresses is unknown.
+
+## Constant words and operands the kernel builds that match no word family
+
+The inventory's second store scan lists every constant the kernel and library store through the FIFO port, not only words of a known family. These twelve kernel entries are from 6.5.30 disassembly of `odyssey.a`; the address after each name is the instruction that completes the constant.
+
+- `0x0007f00f` (operand of block 0x050, `odsy_ctxsw.o`): **established.**
+  `gf_OdsyPcxSwap` completes it with `ori a3,a3,0xf00f` at 0x7c4 and again into `s6` at 0x81c, and stores it directly after `0x00010850` with a zero operand following.
+  It is the context-select operand for slot 127, the value used when no context is incoming: 127 shifted to bits 18:12, ORed with 0xf (`docs/driver-functions.md`, the context switch).
+- `0x00ffffff` (second operand of the reset form of block 0x04b, `odsy_clip.o`): **established.**
+  `odsyClipPush` builds it with `lui 0xff` and `ori 0xffff` at 0xa78 and stores it between a zero operand (0xa70) and six more zeros (0xa84 to 0xaa4), so the eight operands read 0, 0xffffff and six zeros.
+  What the board does with the value is unknown.
+- `0x0fffffff` (second operand of block 0x054, `odsy_init.o`): **inferred.**
+  `odsyInitCfifo` builds it with `lui 0xfff` and `ori 0xffff` at 0x23c0 and stores it at 0x23c4 straight after a zero operand, behind the word `0x00010854`.
+  Inferred from the pair (0, 0x0fffffff) that these are the bottom and top byte addresses of the memory range unprivileged writes may reach (`docs/buzz.md`, block 0x054); the code shows the values and their order only.
+- `0x8e809015` (data-load word, `odsy_ctxsw.o`): **established.**
+  `odsyRestoreXform` loads its high half with `lui 0x8e80` at 0x2790 and pushes it with four floats after the lighting data address in register 0x32, once for entry 24 and then for entries 0 to 23.
+  The bit-23 and count-field decoding makes it a four-operand word; the data memory it fills is described in `docs/buzz.md` (replay pass 2).
+- `0x9080bda2` (16-operand block word, `odsy_ctxsw.o`): **established.**
+  `odsyRestoreXform` completes it with `ori t9,t9,0xbda2` at 0x27e8 and stores it at 0x2810 inside the register 0x31 replay loop, ahead of each run of sixteen words.
+  The word's field layout is unknown; `docs/words.md` above ties it to the 512-word table behind register 0x31.
+- `0x9080bdc8` (16-operand block word, `odsy_ctxsw.o`): **established.**
+  Built in `odsyRestoreXform` by `lui t2,0x9080` at 0x2af8 and `ori` at 0x2b04, and sent once register 0x34 is set to index 0, followed by sixteen words from the saved hardware state.
+  Register 0x34 is a 68-word table; this block is its first sixteen words (`docs/buzz.md`, replay pass 4).
+- `0x908091df` (four-operand block word, `odsy_ctxsw.o`): **established.**
+  `odsyRestoreXform` completes it with `ori` at 0x2c00 after `lui a2,0x9080` at 0x2bf4 and sends it at register 0x34 index 16 with four words from the saved state.
+  These are table words 16 to 19 of the 68-word table of register 0x34.
+- `0x908091ea` (four-operand block word, `odsy_ctxsw.o`): **established.**
+  `odsyRestoreVB` builds it at 0x39b8 and 0x39c0 and stores it at 0x39c4, then two saved words each followed by a copy with bit 31 flipped (`xor` with 0x80000000 at 0x39d4 and 0x39e8).
+  That is the front and back (t, -t) pairs the library sends as shininess operands (`ucode/buzz_isa.md`, routine 490).
+- `0x90808800` (program-switch word, `odsy_ctxsw.o`): **established.**
+  `odsySetProgram` builds it with `lui at,0x9080` at 0x4a68 and `ori` at 0x4a74, stores it at 0x4a7c and follows it with two zero operands, the two its count field (bits 13:10) names.
+  The library's program switch sends the same word before it loads registers 0x33, 0x29, 0x2a and 0x2c (`ucode/buzz_routines.md`); the other fields are unknown.
+- `0x90008116` (state word, `odsy_clip.o`): **established.**
+  `odsyClipPush` sets the high half with `lui t9,0x9000` at 0x72c, completes it with `ori t9,t9,0x8116` at 0x824, and sends it when bit 27 of hardware-state word 6956 is clear (`docs/opengl.md`, the clip push).
+  The other branch sends blocks 0x041, 0x04b and 0x040 instead. Field layout unknown.
+- `0x9000bda2` (state word, `odsy_clip.o`): **established.**
+  `odsyClipPush` completes it with `ori a0,a0,0xbda2` at 0x800 and stores it at 0x808, directly after `0x31008140` and before `0x00010841`.
+  It is the clip push's only block word of this form; its fields are unknown.
+- `0x8f80a92f` (ten-operand state word, `odsy_clip.o`): **inferred.**
+  `gfP_OdsyClearBuffer` builds it at 0xe2c; its count field (bits 13:10) is ten, the same as the pixel-copy word `0xcf80a92f` in `docs/opengl.md`.
+  The clear sends it with primitive type 0xa (`docs/raster.md`); what the ten operands are in this form was not traced.

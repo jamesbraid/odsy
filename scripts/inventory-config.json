@@ -468,6 +468,38 @@
             "mask": "0xff"
           }
         ]
+      },
+      {
+        "name": "state",
+        "when": [
+          {
+            "shift": 28,
+            "mask": "0xf",
+            "in": [
+              8,
+              9
+            ]
+          },
+          {
+            "shift": 14,
+            "mask": "0x3",
+            "eq": 2
+          }
+        ],
+        "fields": []
+      },
+      {
+        "name": "operand",
+        "when": [
+          {
+            "in": [
+              "0x7f00f",
+              "0xffffff",
+              "0xfffffff"
+            ]
+          }
+        ],
+        "fields": []
       }
     ],
     "groups": [
