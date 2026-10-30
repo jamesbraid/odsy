@@ -2927,3 +2927,81 @@ Lays out
   severity 4 message and returns. Otherwise it takes the lock, clears the bit with a 64-bit mask, lowers the first-free
   index to this doubleword when it was higher and releases the lock.
   so slots from 32 up within a word clear correctly.
+- `gfP_OdsyBRDMGRsetColors` (`odsy_brdmgr.o`, offset 0x0, 1680 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private request 26: loads colour-map entries. It copies in 16 bytes: a halfword count at +0 (0 returns 0) and
+  the pointer to an array of 8-byte entries (index word, packed colour word) at +8. It allocates and copies the
+  array (failures: 12 and 14), takes the display-FIFO semaphore (`psema` at 25 on +0x8530, or nothing when the start-up word at
+  -19352 from +0x10000 is set, in which case the spin lock at +0x8540 brackets the release), and splits the array into
+  runs of consecutive indices. Each run is sent as a display-FIFO packet at board +0x400000: a header word
+  0x70000000 OR the first index shifted left 14 OR the run length in the low 14 bits, then the colour words, two
+  to a doubleword (first word high). The FIFO is waited to empty with `odsy_poll_dfifo_level` at level 0 at the start of
+  each run and every 32 words; an odd total gets a final header with index and length 0 as padding after a wait for level 15.
+  A failed wait releases everything and returns 5. The inlined semaphore release first replays a pending cursor
+  command left by `gf_OdsyPositionCursor` (the word at -31416, after a wait for level 12, rewriting the cursor control
+  word at -19664 when the head flag at -31408 differs from its bit 5), then calls `vsema`.
+- `gfP_OdsyBRDMGRcursor` (`odsy_brdmgr.o`, offset 0x13d0, 3396 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private request 28: sets the hardware cursor. It copies in 40 bytes (failure 14) and acts on the flag word at +0
+  in this order. Bit 0 stores the two halfwords of word +4 as the hot spot (-19668 and -19666 from board record +0x10000);
+  bit 1 calls `gf_OdsyPositionCursor` with the halfwords of word +8; bit 2 stores word +12 as the cursor control word
+  (-19664) and sends it as display register 0x2581 after a wait for FIFO level 15; bit 3 copies 60 bytes from the
+  pointer at +16 and sends 15 colour words with header 0x3964000f after a wait for level 7; bit 4 copies 512 bytes
+  from +24 and sends 128 glyph words with header 0x39400080; bit 5 copies 256 bytes from +32 and sends 64 alpha words
+  with header 0x39700040. The bulk blocks wait for FIFO level 0 every 32 words, and a trailing odd word count is padded
+  with a zero-length header. A failed copy returns 14 and a failed FIFO wait 5. The display-FIFO semaphore (taken after
+  the first two bits) and its inlined release, which replays a pending cursor command, are the same as in
+  `gfP_OdsyBRDMGRsetColors`. The register meanings are in `docs/display.md`, "Kernel cursor request".
+- `gfP_OdsyBRDMGRVTGcontrol` (`odsy_brdmgr.o`, offset 0x5e3c, 1200 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private request 32: starts the video timing generator or flips one of its control bits. It copies in 8 bytes (flags at
+  +0, value at +4; failure 14), takes the display-FIFO semaphore and waits for FIFO level 13 (a failed wait returns 5).
+  Bit 0 of the flags clears bit 0 of the control word kept at -19500 from +0x10000 (its role as the
+  timing generator's reset bit is inferred from the request's purpose) and sends the word, then sets bit 17 of the word at -19496
+  (its role is unknown from the binary alone) and sends that word. When bit 0 is clear and bit 1 is set, bit 6 of the control
+  word at -19500 is set to bit 0 of the value and the word is sent. Both sends are display-FIFO doublewords at board
+  +0x400000 whose header halves are constants held by the object. The release replays the pending cursor command as
+  in the other display requests.
+
+- `odsy_LoadDCD2Regs` (`odsy_brdmgr.o`, offset 0x3828, 1060 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Programs the DCD2 option board's clock part and programmable logic from the timing structure (first argument) over
+  the two-wire port record (second). It first runs `odsy_initDCD2DAC` (failure: severity 1 log, return 1). With the
+  port's device byte set to 92 it writes clock registers 0 to 7 from the low bytes of the structure words at +284 to +312
+  (the `ODY_2CHANNEL_PLL_reg*` values of `docs/display.md`) with `odsy_i2cPLLRegWrite`, waits 600000 us with
+  `odsy_usdelay`, then with device byte 31 writes registers 5 and 6 from the bytes at +259 and +263 and runs
+  `odsy_reconfigDCD2FPLD` (failure: severity 4 log, return 1). With device byte 23 it writes registers 0 to 4 from the
+  bytes at +267, +271, +275, +279 and +283 and register 5 from bits 15:8 of the word at +280. When bit 4 of the word at
+  +200 is clear it finally writes 7 to register 50. Every failed write logs severity 1 with the board number and the
+  register index and returns 1; success returns 0.
+- `gf_OdsyValidateClip` (`odsy_clip.o`, offset 0x0, 1312 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Rebuilds a graphics context's clip record R (the record at context +112) from its draw drawable (the object at
+  context +120; the read drawable at +128 gives the second origin) and pushes it to the board. Under the manager's busy
+  count it copies the drawable's x and y (+104, +108) into the low 13 bits of R +108 and R +112 and into the
+  hardware-state words 11104 and 11108 behind R +176; copies the last entry's width and height of the drawable's rectangle
+  list (count at +120, 16-byte entries at the pointer at +128) to R +116 and R +120; packs x and y of the draw and
+  read drawables into R +148 and R +152. It resets the four rectangles at R +8 to the empty (1, 1)-(0, 0) form. When the
+  drawable's word at +144 is nonzero it sets bit 16 of R +4, merges either 0xf800 or 0x700 into it by whether bits
+  13:10 of word +152 are clear, with the low byte of word +136 (shifted left 3 when they are clear), and makes rectangle 0 the drawable extent clamped to
+  zero and to the screen size at +32 and +36 of the board's object at +2136; otherwise it clears bit 16 and builds
+  the rectangles from the list, or from the single unclamped extent when the list has one entry and word +140 is
+  zero (the layout is in `docs/opengl.md`, "The clip push"). A caller not attached to flow control is attached for the
+  duration (`gfx_flow_attach_me`, credit target number stored in the word at -31292) and detached afterwards
+  as in the other validators. It calls `odsyClipMask` and `odsyClipPush`, drops the busy count and returns 0.
+- `odsyClipMask` (`odsy_clip.o`, offset 0x520, 520 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Turns the clip record's four rectangles into the visible rectangles in drawable coordinates. The scissor box
+  at R +124 to R +136 is moved by the draw drawable's origin (+104, +108 of the object at context +120). For each of
+  the four packed rectangles (x0 and y0 in the first word, x1 and y1 in the second, 12 bits each) an empty one
+  (1, 1)-(0, 0) is skipped; the others are intersected with the box (maximum of the starts, minimum of the ends)
+  and rewritten in place. A rectangle that stays non-empty adds its start (-origin), and its end plus one (-origin), to
+  the arrays at R +44, +60, +76 and +92 (x0, y0, x1, y1) and counts it at R +40.
+- `odsyClipPush` (`odsy_clip.o`, offset 0x728, 948 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Sends the clip record to the board through the command FIFO port at +0x110000. The word order is in
+  `docs/opengl.md`, "The clip push": the settle sequence, `0x31008140`, `0x9000bda2` and `0x00010019`, block 0x041
+  with R +108 and R +112, block 0x040 with the board's word at +1496 over R +4, block 0x04b with four rectangle
+  doublewords from R +8, one sequencer word `0x31008000` with the fields of hardware-state word 9888 (halves
+  split at bit 10), either `0x90008116` or the reset form of blocks 0x041, 0x04b and 0x040 chosen by bit 27 of hardware-state
+  word 6956, the settle tail, and eight register doublewords for 0x608 to 0x60f from R +140 to R +168.
