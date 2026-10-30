@@ -118,7 +118,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	162
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	191	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	16	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	16	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14260	9a2e70adc6f1562c		8	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	42820	f4287f15bdf94e9a		25	47	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10932	3eba17fd2b1dbff0		3	3	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -136,7 +136,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	155
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)	kernel	board-kernel	object	n64	8228	9f002f8b9dfe9f23		6	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	20516	28a082ad65786639		13	27	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	10148	6a5adafc75fbc5e8		5	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78340	c1cd2b8bfc7d9141		67	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78340	c1cd2b8bfc7d9141		67	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	44e07342c9eb7399		0	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	37668	0b93c811ad9c1436		11	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
