@@ -126,11 +126,11 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)	kernel	board-kernel	object	n64	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13316	eaa00f3516f88664		8	5	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	35716	f331b8ce559f5893		22	6	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17892	b720e459433313a1		11	8	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	14676	53413c6a99a7dc6d		9	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	12324	c4c87485c608dea4		9	13	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	14676	53413c6a99a7dc6d		9	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	12324	c4c87485c608dea4		9	13	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)	kernel	board-kernel	object	n64	26324	e0b44ca930a6855e		19	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	74276	a2e274202900aba6		20	311	28	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	89076	ff0614b46114a3a1		32	169	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	89076	ff0614b46114a3a1		32	169	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	20596	5b2ae25836595905		5	38	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15572	c0d00cfc3c703194		13	4	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)	kernel	board-kernel	object	n64	8228	9f002f8b9dfe9f23		6	0	0	undocumented		

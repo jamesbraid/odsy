@@ -1153,3 +1153,93 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   calls (among them the values 9, 8, 41, 4, 255, 5, 236 and 65 with command codes 0 to 3) and finishes by
   writing the index of each of 256 entries three times, with `setDACreg` command 1, which loads an
   identity ramp. It returns 0.
+- `odsy_dviFPGARegWrite` (`odsy_dvi.o`, offset 0x0, 140 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Writes one byte to the DVI FPGA over the two-wire bus. It starts a write transfer to the device address
+  held at port record +32, shifted left by 1, with `odsy_i2c_start`, and sends the value with
+  `odsy_i2c_sendbyte` flagged as the final byte. A failed step logs a severity 1 message ("Failed to send
+  'Start' sequence" or "Failed to execute first 'SendByte' sequence"), calls `odsy_i2cReset` and returns
+  1; success returns 0.
+- `odsy_dviFPGARegRead` (`odsy_dvi.o`, offset 0x448, 148 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Reads one byte from the DVI FPGA over the two-wire bus. It starts a transfer to the address at port
+  record +32 shifted left by 1 with the low bit set, then receives a single byte into the caller's buffer
+  with `odsy_i2c_recv_1byte`. A failed step logs a severity 1 message, calls `odsy_i2cReset` and returns
+  1; success returns 0.
+- `odsy_setDVIFPGA` (`odsy_dvi.o`, offset 0x198, 156 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Read-modify-write of the DVI FPGA register. It stores the device address 58 at port record +32, reads
+  the byte with `odsy_dviFPGARegRead`, clears the bits in its second argument, ORs in its third argument
+  and writes the result back with `odsy_dviFPGARegWrite`. A failed read or write logs "Failed to read FPGA
+  register" or "Failed to set FPGA register" at severity 1 and returns 1; success returns 0.
+- `odsy_readDVIRegs` (`odsy_dvi.o`, offset 0x750, 164 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Reads the whole DVI output state of a port. It calls `odsy_read_XmitRegs` for the transmitter at device
+  address 56 (logged as the master) and again for 57 (the slave), then stores 58 at port record +32 and
+  reads the FPGA byte with `odsy_dviFPGARegRead`. Each failing step logs its own severity 1 message and
+  the function returns 1; success returns 0.
+- `odsy_setDVIRegs` (`odsy_dvi.o`, offset 0x37c, 204 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Programs the DVI output of a port. It runs `odsy_loadDVIFPGA`, then `odsy_setDVIFPGA` with mask 3 and
+  value 0, then `odsy_write_XmitRegs` for device address 56 (master) and 57 (slave). A failure of any of
+  the four logs a severity 1 message and sets the result to 1 but the later steps still run; the result is
+  0 when all succeed.
+- `odsy_write_XmitRegs` (`odsy_dvi.o`, offset 0x234, 328 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Writes the configuration of one DVI transmitter. It stores the device address from its second argument
+  at port record +32 and calls `odsy_i2cPLLRegWrite` for register 8 with 49, register 9 with 25, register
+  10 with 240 when the device address is 56 and 112 otherwise, register 12 with 137, register 13 with 128
+  and register 51 with 0. The first failure logs at severity 1 and returns 1; success returns 0.
+- `odsy_read_XmitRegs` (`odsy_dvi.o`, offset 0x5d8, 376 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Reads back the same six transmitter registers that `odsy_write_XmitRegs` sets. After storing the device
+  address from its second argument at port record +32 it calls `odsy_i2cXmitRegRead` for registers 8, 9,
+  10, 12, 13 and 51 in that order, waiting 10000 microseconds with `odsy_usdelay` after each. A failed
+  read logs a severity 1 message and returns 1; success returns 0.
+- `odsy_i2cXmitRegRead` (`odsy_dvi.o`, offset 0x4dc, 252 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Reads one transmitter register over the two-wire bus: a write transfer to the address at port record +32
+  shifted left by 1 that sends the register number, a restart with the low address bit set, and one byte
+  received into the caller's buffer with `odsy_i2c_recv_1byte`. Failure logs at severity 1, calls
+  `odsy_i2cReset` and returns 1; success returns 0.
+- `odsy_loadDVIFPGA` (`odsy_dvi.o`, offset 0x8c, 268 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)`.
+  Waits for the DVI FPGA to finish loading. It finds the node's module with `cnodemodule_lookup` from the
+  board's node number at +0xb43c of the board behind port record +16, then up to twice waits 500000
+  microseconds with `odsy_usdelay` and reads the expander word with `elsc_ody_expander_get`; it stops when
+  bit 3 of that word is set. A failed read logs a severity 1 message and returns 1; otherwise it returns
+  0.
+- `gfx_flow_pipe_head` (`odsy_flow.o`, offset 0x0, 32 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Returns bit 0 of the byte at +1320 in the per-processor structure of the current CPU. The CPU number
+  comes from the halfword at the fixed kernel address 0xffffffffffffc428, which indexes the `pdaindr`
+  table at 16 bytes per entry.
+- `gfx_flow_clean_up_other_gfxp` (`odsy_flow.o`, offset 0x20, 156 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Evicts the thread's other graphics contexts from flow control. It finds the current thread's list with
+  `gthread_find_gfxp`, walks it through the link at +24, and for every entry that is not its argument and
+  has bit 0 of the word at +4 set, calls the method at +104 of the operation table at +32 under `splhi`
+  and `splx`.
+- `find_odsypipe` (`odsy_init.o`, offset 0x1c8, 156 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Looks up a pipe in the hardware graph. It calls `find_gfxpipe`, returns 0 when nothing is found or when
+  the byte at +5 of the result is not 84, and otherwise calls `find_first_component` with 10. When that
+  finds a component it stores the halfword at +34 through the second argument and the byte at +32 through
+  the third (each only when the pointer is non-null) and returns 1.
+- `odsy_fc_detach` (`odsy_init.o`, offset 0x1f98, 188 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Detaches the calling processor's pipe from flow control on the new host. With n set to bit 0 of the per-
+  processor byte at +1320, as `gfx_flow_pipe_head` computes it, it stores a literal-pool doubleword at
+  offset 768 plus 40n of a literal-pool base, syncs, sets the word at +0x85c8 of the board to 1, stores 1
+  to the board register at 0x107c, reads 0x106c back, and stores the doubleword 64 at offset 776 plus 40n
+  of the same base behind another `sync`.
+- `odsy_flow_await_returned_credits` (`odsy_flow.o`, offset 0xbc, 484 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Waits until the board has returned its flow-control credits. If the teardown counter at +816 is non-zero
+  it returns at once. It compares `gfx_flow_credit_count_get` with `gfx_flow_credit_bias_get` and polls
+  with `us_delay` of 1 up to 25000 times while the count is below the bias, then checks the count against
+  `gfx_flow_credit_total_get`. A shortfall logs "gfx credits below bias" or an over-maximum message at
+  severity 6, after which it detaches with `gfx_flow_detach_me` behind a 0x107c store of 1, calls
+  `odsy_teardown`, waits in 5 microsecond steps for the command FIFO count in bits 15:7 of register 0x106c
+  to reach 0, stores 0, 1 and 0 to register 0x1084, and calls `gfx_flow_reset`, `gfx_flow_attach_me`, the
+  0x1074 and 0x107c stores and `gfx_flow_attach_me_finish`.

@@ -195,7 +195,7 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x5dc0	3796	odsy_i2c_sendbyte	dwarf+symtab	de0668c9ce0c	named-only	docs/diagnostics-and-libgl-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x6c94	76	odsy_i2c_short_recvbyte	dwarf+symtab	3db3e04c6750	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x6ce0	2568	odsy_i2c_long_recvbyte	dwarf+symtab	555d68ec15d1	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x76e8	3132	odsy_i2c_recv_1byte	dwarf+symtab	830339982c42	named-only	docs/kernel-functions.md#functions	Functions
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x76e8	3132	odsy_i2c_recv_1byte	dwarf+symtab	830339982c42	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x8324	2612	odsy_i2c_becomeSlaveRecv	dwarf+symtab	5176e8300eac	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x8d58	2572	odsy_i2c_slave_recvbyte	dwarf+symtab	aba6fc0db66d	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x9764	1256	odsy_i2c_xfer_done_loop	dwarf+symtab	d8d473257acb	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -53584,7 +53584,7 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x6f8	84	gthread_detach_li
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x74c	92	gthread_attach_group	dwarf+symtab	1978541b1f58	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x7a8	88	gthread_detach_group	dwarf+symtab	e1e068c3d039	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360	undocumented		
@@ -53631,15 +53631,15 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x34cc	120	irix5_to_gfx_ge
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3544	160	irix5_to_gfx_download_args	dwarf+symtab	dcc8940310eb	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x35e4	112	irix5_to_gfx_attach_board_args	dwarf+symtab	b61b041fbfff	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x0	136	gfx_flow_delayed_hiwater_intr_prehandler	dwarf+symtab	e473dc6f790d	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x88	8	gfx_flow_pipe_head	dwarf+symtab	ee203e2bd9f8	named-only	docs/buzz.md#flow-control	Flow control
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x88	8	gfx_flow_pipe_head	dwarf+symtab	ee203e2bd9f8	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x90	64	gfx_flow_init	dwarf+symtab	3eea04e64287	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0xd0	168	gfx_flow_pipe_head_init	dwarf+symtab	60f4da3eb57a	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x178	512	gfx_flow_alloc	dwarf+symtab	ad88e0a92989	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x378	12	gfx_flow_reset	dwarf+symtab	0f2f165b22fa	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x378	12	gfx_flow_reset	dwarf+symtab	0f2f165b22fa	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x384	284	gfx_flow_dealloc	dwarf+symtab	cd9f1ed97f8e	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4a0	36	gfx_flow_wg_info_get	dwarf+symtab	0d9afb200893	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4c4	12	gfx_flow_credit_tnum_get	dwarf+symtab	f7143c1efa6c	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d0	12	gfx_flow_credit_total_get	dwarf+symtab	6c27d0b6a88e	named-only	BUZZ.h:650	Command FIFO initialisation: odsyInitCfifo (odsy_init.o)
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d0	12	gfx_flow_credit_total_get	dwarf+symtab	6c27d0b6a88e	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4dc	8	gfx_flow_credit_bias_get	dwarf+symtab	215645c4ae1c	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4e4	36	gfx_flow_credit_count_get	dwarf+symtab	95a6633c531e	named-only	docs/buzz.md#flow-control	Flow control
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x508	44	gfx_flow_credit_count_set	dwarf+symtab	6a4079d34702	undocumented		
@@ -53651,7 +53651,7 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6d4	20	gfx_
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6e8	12	gfx_flow_flush_my_wg	dwarf+symtab	7fe8cb51a490	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6f4	8	gfx_flow_disable_heart_fc	dwarf+symtab	78aa5094d5ec	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6fc	8	gfx_flow_enable_heart_fc	dwarf+symtab	78aa5094d5ec	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x704	128	gfx_flow_clean_up_other_gfxp	dwarf+symtab	69bb3379adb2	named-only	docs/buzz.md#flow-control	Flow control
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x704	128	gfx_flow_clean_up_other_gfxp	dwarf+symtab	69bb3379adb2	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x0	68	gfxtable_readerlock	dwarf+symtab	250a38fb5e03	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	e9a8d85b7392	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	c4824acddc51	undocumented		
@@ -53668,7 +53668,7 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x6f8	84	gthread_d
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x74c	92	gthread_attach_group	dwarf+symtab	1978541b1f58	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x7a8	88	gthread_detach_group	dwarf+symtab	e1e068c3d039	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360	undocumented		
@@ -54569,7 +54569,7 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x6f8	84	gthread_detach_li
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x74c	92	gthread_attach_group	dwarf+symtab	1978541b1f58	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x7a8	88	gthread_detach_group	dwarf+symtab	e1e068c3d039	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360	undocumented		
@@ -54618,11 +54618,11 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3630	112	irix5_to_gfx_at
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x0	148	gfx_flow_delayed_hiwater_intr_prehandler	dwarf+symtab	130debb0e7ea	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x94	368	gfx_flow_init	dwarf+symtab	846034b1a770	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x204	592	gfx_flow_alloc	dwarf+symtab	05908644f140	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x454	12	gfx_flow_reset	dwarf+symtab	edc75ebbd907	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x454	12	gfx_flow_reset	dwarf+symtab	edc75ebbd907	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x460	72	gfx_flow_dealloc	dwarf+symtab	71edc1433038	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4a8	36	gfx_flow_wg_info_get	dwarf+symtab	781c4da5064b	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4cc	8	gfx_flow_credit_tnum_get	dwarf+symtab	32025f51793a	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d4	12	gfx_flow_credit_total_get	dwarf+symtab	925a41cf4339	named-only	BUZZ.h:650	Command FIFO initialisation: odsyInitCfifo (odsy_init.o)
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d4	12	gfx_flow_credit_total_get	dwarf+symtab	925a41cf4339	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4e0	12	gfx_flow_credit_bias_get	dwarf+symtab	6c27d0b6a88e	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4ec	76	gfx_flow_credit_count_get	dwarf+symtab	eefea50d942a	named-only	docs/buzz.md#flow-control	Flow control
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x538	8	gfx_flow_detach_requires_credit_flow_disable	dwarf+symtab	a7e7ca11a6b8	undocumented		
@@ -54631,7 +54631,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x664	80	gfx_
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6b4	220	gfx_flow_detach_me	dwarf+symtab	292840b8cab1	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x790	68	gfx_flow_am_i_attached	dwarf+symtab	b3c75dfcd2ed	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x7d4	24	gfx_flow_flush_my_wg	dwarf+symtab	b92f73cb29a4	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x0	816	find_gfxpipe	dwarf+symtab	9f3a28ee75f4	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x0	816	find_gfxpipe	dwarf+symtab	9f3a28ee75f4	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x330	56	prom_has_vga_support	dwarf+symtab	bf59c58176cd	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x368	800	find_vga_pipe	dwarf+symtab	d38b4ab9093c	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x688	1140	find_vga_noprom_pipe	dwarf+symtab	5db590d8bbfd	undocumented		
@@ -54652,7 +54652,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x6f8	84	gthread_d
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x74c	92	gthread_attach_group	dwarf+symtab	1978541b1f58	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x7a8	88	gthread_detach_group	dwarf+symtab	e1e068c3d039	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360	undocumented		
@@ -54813,7 +54813,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x41f0	100	find_lboard	
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4254	108	find_lboard_class	dwarf+symtab	818af0d59444	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x42c0	120	find_lboard_slot_class	dwarf+symtab	3eefb13db501	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4338	328	find_component	dwarf+symtab	210c5cae7c12	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4480	32	find_first_component	dwarf+symtab	8386bbe28323	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4480	32	find_first_component	dwarf+symtab	8386bbe28323	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x44a0	124	find_lboard_modslot	dwarf+symtab	049110a0a765	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x451c	104	find_lboard_module	dwarf+symtab	eef758bfb48e	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4584	132	find_lboard_module_class	dwarf+symtab	450484c16a35	undocumented		
@@ -55483,7 +55483,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x249f8	124	encode_str_
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24a74	124	decode_str_serial	symtab	f4b3980510ff	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24af0	72	module_lookup	symtab	8b8fa4a9ab74	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24b38	108	cmoduleid_lookup	symtab	2d1c505b161c	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24ba4	108	cnodemodule_lookup	symtab	355e567dc9b2	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24ba4	108	cnodemodule_lookup	symtab	355e567dc9b2	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24c10	336	module_add_node	symtab	101e76853110	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24d60	508	module_probe_snum	symtab	741906d63036	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24f5c	356	module_init	symtab	36b717a77088	undocumented		
@@ -56193,18 +56193,18 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	board-kernel	n64	.text	0x7e0	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	board-kernel	n64	.text	0xab0	916	gfP_OdsyMakeCurrent	dwarf+symtab	b3a56230badc	located	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	board-kernel	n64	.text	0xe44	452	gfP_OdsyPbufAssoc	dwarf+symtab	d192f8f5134b	located	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	board-kernel	n64	.text	0x1008	392	gfP_OdsyPbufDeassoc	dwarf+symtab	dfa7525a6e25	located	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x0	140	odsy_dviFPGARegWrite	dwarf+symtab	fb8b422201d4	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x8c	268	odsy_loadDVIFPGA	dwarf+symtab	ae575e95f373	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x198	156	odsy_setDVIFPGA	dwarf+symtab	60f1d3cb14c2	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x234	328	odsy_write_XmitRegs	dwarf+symtab	3eb3c74ce52e	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x37c	204	odsy_setDVIRegs	dwarf+symtab	46ba6adcbf01	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x448	148	odsy_dviFPGARegRead	dwarf+symtab	5215e04aac07	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x4dc	252	odsy_i2cXmitRegRead	dwarf+symtab	38c9dd585318	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x5d8	376	odsy_read_XmitRegs	dwarf+symtab	9ecd42c92481	named-only	docs/display.md#digital-output-on-ip35-odsy_dvio-ip35-only	Digital output on IP35 (`odsy_dvi.o`, IP35 only)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x750	164	odsy_readDVIRegs	dwarf+symtab	bf6c894ef852	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x0	32	gfx_flow_pipe_head	dwarf+symtab	8fb43714145d	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x20	156	gfx_flow_clean_up_other_gfxp	dwarf+symtab	90a25af2d015	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0xbc	484	odsy_flow_await_returned_credits	dwarf+symtab	25a2c55e9496	named-only	docs/buzz.md#flow-control	Flow control
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x0	140	odsy_dviFPGARegWrite	dwarf+symtab	fb8b422201d4	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x8c	268	odsy_loadDVIFPGA	dwarf+symtab	ae575e95f373	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x198	156	odsy_setDVIFPGA	dwarf+symtab	60f1d3cb14c2	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x234	328	odsy_write_XmitRegs	dwarf+symtab	3eb3c74ce52e	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x37c	204	odsy_setDVIRegs	dwarf+symtab	46ba6adcbf01	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x448	148	odsy_dviFPGARegRead	dwarf+symtab	5215e04aac07	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x4dc	252	odsy_i2cXmitRegRead	dwarf+symtab	38c9dd585318	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x5d8	376	odsy_read_XmitRegs	dwarf+symtab	9ecd42c92481	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	board-kernel	n64	.text	0x750	164	odsy_readDVIRegs	dwarf+symtab	bf6c894ef852	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x0	32	gfx_flow_pipe_head	dwarf+symtab	8fb43714145d	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x20	156	gfx_flow_clean_up_other_gfxp	dwarf+symtab	90a25af2d015	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0xbc	484	odsy_flow_await_returned_credits	dwarf+symtab	25a2c55e9496	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x2a0	144	odsy_poll_dfifo_level	dwarf+symtab	b994a9639fe8	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x330	64	odsy_flow_am_i_attached	dwarf+symtab	4e89ff65fa97	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	board-kernel	n64	.text	0x370	532	odsyHiwaterInterrupt	dwarf+symtab	d20275ea25a1	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56242,7 +56242,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x53f8	2504
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x5dc0	3796	odsy_i2c_sendbyte	dwarf+symtab	242b0cdcf162	named-only	docs/diagnostics-and-libgl-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x6c94	76	odsy_i2c_short_recvbyte	dwarf+symtab	3db3e04c6750	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x6ce0	2568	odsy_i2c_long_recvbyte	dwarf+symtab	2202795bdf1c	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x76e8	3132	odsy_i2c_recv_1byte	dwarf+symtab	8d6f4f1b5940	named-only	docs/kernel-functions.md#functions	Functions
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x76e8	3132	odsy_i2c_recv_1byte	dwarf+symtab	8d6f4f1b5940	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x8324	2612	odsy_i2c_becomeSlaveRecv	dwarf+symtab	79d6a146e605	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x8d58	2572	odsy_i2c_slave_recvbyte	dwarf+symtab	c6cbadb80aab	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	board-kernel	n64	.text	0x9764	1256	odsy_i2c_xfer_done_loop	dwarf+symtab	2d9e8e08a2bd	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56254,7 +56254,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x0	148	od
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x94	80	odsyPipeNrFromBase	dwarf+symtab	83ab87904555	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xe4	64	odsyCheckBoardPointers	dwarf+symtab	49fe458ecd91	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x124	164	odsyCheckBoardPointer	dwarf+symtab	9b500110a83a	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c8	156	find_odsypipe	dwarf+symtab	124540735651	named-only	docs/kernel-functions.md#functions	Functions
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c8	156	find_odsypipe	dwarf+symtab	124540735651	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x264	516	odsy_earlyinit	dwarf+symtab	63b828359a23	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x468	348	odsy_init	dwarf+symtab	a34c09a26047	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5c4	344	odsy_set_gfx_mfg_nic_name	dwarf+symtab	7f4dcd4379b6	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56270,7 +56270,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x15dc	164
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c48	144	gf_OdsyStart	dwarf+symtab	3e446d8d6eb0	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1cd8	184	odsyLLPReset	dwarf+symtab	90ab0f246f40	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1d90	520	odsy_fc_attach	dwarf+symtab	280b6a58b21d	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1f98	188	odsy_fc_detach	dwarf+symtab	769f0b5d5843	named-only	docs/kernel-functions.md#functions	Functions
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1f98	188	odsy_fc_detach	dwarf+symtab	769f0b5d5843	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2054	908	odsyLowLevelReset	dwarf+symtab	147911f9432a	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x23e0	2024	odsyReset	dwarf+symtab	0c908521784e	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2bc8	1092	odsyInitCfifo	dwarf+symtab	84da5919df9f	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
