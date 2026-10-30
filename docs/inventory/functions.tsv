@@ -59031,7 +59031,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fc4b0	72	LbxBitmapCompOpt..I
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fc500	324	SProcCreateGlyphCursor	dynsym	aba0d81a4127		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fc650	692	CIDCloseFont	dynsym	6f597c6b3770		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fc910	172	sgiCapDestroyClip..KBE	dynsym	6f01247d6f88		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fc9c0	168	Xfree	dynsym	cc5e0ea1635c		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fc9c0	168	Xfree	dynsym	cc5e0ea1635c		named-only	docs/odyssey-so-reads.md#cursor-record-routines	Cursor record routines
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fca70	200	MitCheckCookie	dynsym	a6b77c14814c		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fcb40	1936	CreateConnectionBlock	dynsym	f5b0bce26867		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101fd2d0	124	SSelectionClearEvent	dynsym	825cbe7dc613		undocumented		
@@ -104971,7 +104971,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x157fab0	304	rrmDestroyDrawabl
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x157fbe0	264	nfb13MaskRopLoop..NI	dynsym	c5ce8b505d0c		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x157fcf0	4272	miWideSegment..ACB	dynsym	7d13c60d596f		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1580da0	7072	odsyDrawSolidRectsSingleBuffer..HE	dynsym	f9412638fc0e		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1582940	1212	odsyRealizeCursor	dynsym	a2d8e05f727f		named-only	docs/display.md#cursor-and-overlay-planes-pass-6	Cursor and overlay planes (pass 6)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1582940	1212	odsyRealizeCursor	dynsym	a2d8e05f727f		understood	docs/odyssey-so-reads.md#cursor-record-routines	Cursor record routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1582e00	1460	nfb15MaskRopLoop..PI	dynsym	73512eb657fe		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15833c0	432	nfbInfPolySegment..MK	dynsym	f494ca22ef74		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1583570	13024	mfbPolyFillArcSolid	dynsym	2586310e3617		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105223,7 +105223,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16280b0	16028	cfb16LineSD	dyn
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162bf50	2792	cfb16FillRectSolidXor	dynsym	46f592b72745		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162ca40	8	mfbRealizeFont	dynsym	a7e7ca11a6b8		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162ca50	1688	nfbGetSpans	dynsym	bc5904b5fec2		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d0f0	56	nfbRecolorCursor	dynsym	323595b06a44		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d0f0	56	nfbRecolorCursor	dynsym	323595b06a44		understood	docs/odyssey-so-reads.md#cursor-record-routines	Cursor record routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d130	464	cfbZeroPolyArcSS8Xor	dynsym	b6272f032d2f		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d300	416	nfbFreeHWCmapArrays	dynsym	abf4d83f8b63		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d4a0	2428	mfbTileFS	dynsym	7850bb6ef661		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105434,7 +105434,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1685d30	11480	odsyStippledFS	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1688a10	80	nfbSaveAreas	dynsym	6f0e5e944cf8		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1688a60	392	mfbReduceRop	dynsym	dd8d8e8e3062		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1688bf0	8800	cfbSegmentSS	dynsym	35f38a75df90		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168ae50	208	nfbUnrealizeCursor	dynsym	7649b5c5d1f1		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168ae50	208	nfbUnrealizeCursor	dynsym	7649b5c5d1f1		understood	docs/odyssey-so-reads.md#cursor-record-routines	Cursor record routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168af20	156	miBSCreateGC..ICB	dynsym	2c3db65edb54		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168afc0	2368	odsyDisplayCursor	dynsym	22333d1d21ac		understood	docs/odyssey-so-reads.md#cursor-and-gamma-routines	Cursor and gamma routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168b900	904	rrmInvalidate	dynsym	cb807cf2f9ad		named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
@@ -105538,7 +105538,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b6300	212	nfbDestroyWindow	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b63e0	880	miWindowExposures	dynsym	657e26bdbb97		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b6750	2484	mfbTEGlyphBltBlack	dynsym	b4d7f9b2e805		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b7110	4172	cfbFillPoly1RectCopy	dynsym	75c8b2019662		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b8160	84	nfbCursorLimits	dynsym	3d4b2388700e		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b8160	84	nfbCursorLimits	dynsym	3d4b2388700e		understood	docs/odyssey-so-reads.md#cursor-record-routines	Cursor record routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b81c0	556	miIntersectO..JAB	dynsym	108135ada4ef		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b83f0	5224	cfb32ClippedLineXor	dynsym	0a4a9b148f61		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b9860	1640	cfb32SetSpans	dynsym	bea2b7f4c094		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
