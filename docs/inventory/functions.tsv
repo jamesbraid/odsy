@@ -53272,7 +53272,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x1002bd50	656	updateMemoUsageOdsy__19Stati
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002bfe0	100	__ct__23AboutXsetmonFormClassUIGPCcP10_WidgetRec	dynsym	358cb7b63817		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002c050	624	saveData__21MasterTabbedDeckClassGPCc	dynsym	7912321f09a7		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002c2c0	848	doDragRegion__19GammaMapEditorClassGP10_WidgetRecP7_XEvent	dynsym	4a9510091836		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x1002c610	76	usage__7xsetmonGv	dynsym	0e9f91d1da19		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x1002c610	76	usage__7xsetmonGv	dynsym	0e9f91d1da19		in	named-only	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002c660	108	__dt__7xsetmonGv	dynsym	09c323819e46		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002c6d0	152	__dt__28CombinationContentsListClassGv	dynsym	11814a94910a		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002c770	128	CreateFormatCombinationListsClass__27FormatCombinationListsClassSGPCcP10_WidgetRec	dynsym	d51353fc8704		in	undocumented		
@@ -53607,7 +53607,7 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1bd8	28	GfxMessage	dwarf
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1bf4	28	GfxIntrMessage	dwarf+symtab	12a18864d05c		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1c10	124	GfxRqService	dwarf+symtab	9b915656cc8a		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1c8c	244	GfxDetach	dwarf+symtab	d3c4ea8f0bb4		in	named-only	docs/ioctls.md#generic-graphics-requests-101-to-113	Generic graphics requests (101 to 113)
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1fb8	1148	gfxopen	dwarf+symtab	46a1a5103e44		in	undocumented		
@@ -53691,7 +53691,7 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1bd8	28	GfxMessa
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1bf4	28	GfxIntrMessage	dwarf+symtab	12a18864d05c		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1c10	124	GfxRqService	dwarf+symtab	9b915656cc8a		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1c8c	244	GfxDetach	dwarf+symtab	d3c4ea8f0bb4		in	named-only	docs/ioctls.md#generic-graphics-requests-101-to-113	Generic graphics requests (101 to 113)
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1fb8	1148	gfxopen	dwarf+symtab	46a1a5103e44		in	undocumented		
@@ -54592,7 +54592,7 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1bd8	28	GfxMessage	dwarf
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1bf4	28	GfxIntrMessage	dwarf+symtab	12a18864d05c		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1c10	124	GfxRqService	dwarf+symtab	9b915656cc8a		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1c8c	244	GfxDetach	dwarf+symtab	d3c4ea8f0bb4		in	named-only	docs/ioctls.md#generic-graphics-requests-101-to-113	Generic graphics requests (101 to 113)
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1fb8	1200	gfxopen	dwarf+symtab	7d704bfba4e2		in	undocumented		
@@ -54675,7 +54675,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1bd8	28	GfxMessa
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1bf4	28	GfxIntrMessage	dwarf+symtab	12a18864d05c		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1c10	124	GfxRqService	dwarf+symtab	9b915656cc8a		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1c8c	244	GfxDetach	dwarf+symtab	d3c4ea8f0bb4		in	named-only	docs/ioctls.md#generic-graphics-requests-101-to-113	Generic graphics requests (101 to 113)
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1fb8	1200	gfxopen	dwarf+symtab	7d704bfba4e2		in	undocumented		
@@ -102601,7 +102601,7 @@ usr/gfx/dmconf	shared-tool	n32		0x100104b0	236	vfcModifyOdyCombination	dynsym	b5
 usr/gfx/dmconf	shared-tool	n32		0x100105a0	136	vfcQueryXSGIvc	dynsym	97c7b6afa056		in	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10010630	4128	vfcFillDmxFormatInformation	dynsym	a9d504889645		in	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10011650	36	vfcQueryOdysseyTarget	dynsym	d06fec29af99		in	undocumented		
-usr/gfx/dmconf	shared-tool	n32		0x10011680	808	vfmtIsCmpCombinationValidForTarget	dynsym	5092a134dc34		in	undocumented		
+usr/gfx/dmconf	shared-tool	n32		0x10011680	808	vfmtIsCmpCombinationValidForTarget	dynsym	5092a134dc34		in	named-only	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/dmconf	shared-tool	n32		0x100119b0	500	vfmtIsCombinationValidForDmxTarget	dynsym	7831799c2c57		in	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10013740	536	vfmtReadCmp1Format	dynsym	82874d4cc92d		in	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
 usr/gfx/dmconf	shared-tool	n32		0x10013960	308	vfmtReadCmp1OdyFormat	dynsym	386959ff3ffd		in	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
@@ -103414,7 +103414,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x10011f90	396	loadOdyFormat__23StcombineMain
 usr/gfx/sgcombine	shared-tool	n32		0x10012120	244	loadSyncFormat__23StcombineMainFrameClassGPCc	dynsym	4f586cc7fd1e		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x10012220	8	okToQuit__23StcombineMainFrameClassGv	dynsym	a7e7ca11a6b8		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x10012230	292	doCmpFmtBrowseButton__23StcombineMainFrameClassGP10_WidgetRecPv	dynsym	3811a3c4cc91		in	undocumented		
-usr/gfx/sgcombine	shared-tool	n32		0x10012360	668	doDownloadButton__23StcombineMainFrameClassGP10_WidgetRecPv	dynsym	837260489472		in	undocumented		
+usr/gfx/sgcombine	shared-tool	n32		0x10012360	668	doDownloadButton__23StcombineMainFrameClassGP10_WidgetRecPv	dynsym	837260489472		in	named-only	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/sgcombine	shared-tool	n32		0x10012600	292	doExternalBrowseButton__23StcombineMainFrameClassGP10_WidgetRecPv	dynsym	1ef0188716f1		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x10012730	388	doOdsyBrowseButton__23StcombineMainFrameClassGP10_WidgetRecPv	dynsym	06e569f45ebd		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x100128c0	76	doSyncSrcExternalButton__23StcombineMainFrameClassGP10_WidgetRecPv	dynsym	eeb75c2d3c7b		in	undocumented		
@@ -103706,7 +103706,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x1001f110	228	vfcDoCommandLine	dynsym	a0a91a
 usr/gfx/sgcombine	shared-tool	n32		0x1001f200	124	vfcQueryXSGIvc	dynsym	faddce359dbd		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1001f280	136	vfcQueryGLXHyper	dynsym	744eeaa0c4f7		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1001f310	636	vfcQueryOdysseyTarget	dynsym	2d06c0382564		in	undocumented		
-usr/gfx/sgcombine	shared-tool	n32		0x1001f590	808	vfmtIsCmpCombinationValidForTarget	dynsym	4319773b9144		in	undocumented		
+usr/gfx/sgcombine	shared-tool	n32		0x1001f590	808	vfmtIsCmpCombinationValidForTarget	dynsym	4319773b9144		in	named-only	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/sgcombine	shared-tool	n32		0x1001f8c0	500	vfmtIsCombinationValidForDmxTarget	dynsym	41ae7cef9403		in	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x10021650	536	vfmtReadCmp1Format	dynsym	e3451176e694		in	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
 usr/gfx/sgcombine	shared-tool	n32		0x10021870	308	vfmtReadCmp1OdyFormat	dynsym	6fc18113f056		in	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)

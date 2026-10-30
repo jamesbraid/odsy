@@ -95,7 +95,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-libr
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	94f61adbfa12bb44		650	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	e23071c866ed246d		5076	dynsym+dwarf	4231	0	undocumented		
 sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	strings	0	0	named-only	docs/open-questions.md#microcode	Microcode
-usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	strings	0	0	named-only	docs/display.md#kernel-cursor-request	Kernel cursor request
 usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	strings	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/sysgen/IP30boot/gfx.o	kernel-shared	shared-kernel	object	n64	53712	73041c9bcd3351fc		62	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
@@ -165,14 +165,14 @@ usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	51650
 usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	dynsym+dwarf	5153	0	undocumented		
 usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
 usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	dynsym+dwarf	5153	0	undocumented		
-usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	named-only	docs/display-files.md#display-table-files-of-the-vpro-install	Display-table files of the VPro install
-usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	dynsym	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
-usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	dynsym	0	0	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
-usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	named-only	docs/display-files.md#display-table-files-of-the-vpro-install	Display-table files of the VPro install
-usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	named-only	docs/display-files.md#display-table-files-of-the-vpro-install	Display-table files of the VPro install
-usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
+usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0		0	0	named-only	ucode/buzz_ucode.md#location-and-size	Location and size
 usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0		0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
 usr/gfx/ucode/ODSY/vof/1024x768_60.vfo	microcode	board-microcode	data	-	8424	6348519cb39c2b89		0		0	0	understood	docs/display-files.md#video-formats-of-the-vpro-board	Video formats of the VPro board
@@ -271,7 +271,7 @@ usr/gfx/ucode/vfc/rules/VPro_DCD.def	video-formats	board-data	data	-	4354	94bc14
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	b797d7447743a1db		981	dynsym	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
 usr/lib/X11/dyDDX/odyssey.so	x-module	board-x-module	shared-object	n32	2303564	0fb2a1debd2b3145		1000	dynsym	0	0	named-only	docs/display-files.md#display-table-files-of-the-vpro-install	Display-table files of the VPro install
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	dynsym	0	0	named-only	docs/diagnostics-and-libgl-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
+usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 var/sysgen/master.d/odyssey	kernel-config	shared-data	data	-	127	1043ee5f3104c120		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 var/sysgen/master.d/odysseystubs	kernel-config	shared-data	data	-	130	ac2d943e5dc3168b		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 var/sysgen/mtune/odyssey	kernel-config	shared-data	data	-	1357	95f16be7f55bdd91		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
