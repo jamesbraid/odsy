@@ -3837,3 +3837,63 @@ Lays out
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
   Text-port glyph draw on the Origin 350 build. The band and cell walk (64 rows, 16 columns), the stipple copy, block 0x03f with 6, the 0x04e and 0x04f pattern blocks, the four-vertex quad with the one-row offset and the two `ODSY_SET_GC` calls (enable set, then clear) are as in the IP30
   entry; the words and the cursor update are identical. The lock is a bare `mutex_spinlock` with an in-use flag stored as 1, and no counter, write-buffer flush or `sync` is used.
+- `odsyGctxFromRnid` (`odsy.o`, offset 0xfc, 92 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)`.
+  Maps a rendering-resource number to its context pointer in patch 4103. A number that is not positive or exceeds the global resource limit logs a severity 4 message through the format at the literal-pool offset 56 and yields null; a valid number is multiplied by 176 (built from shifts and subtractions) to index the global resource array, and the doubleword at +112 of that element is returned. The checks and the stride match the IP30 entry; only the literal-pool displacement of the message differs.
+- `OdsyFree32kSlot` (`odsy_adt.o`, offset 0xad8, 240 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Frees one 32 KB slot in patch 4103. The slot number is shifted right by 6 for the doubleword index and must be below 512, otherwise a severity 4 message is logged; a null bitmap logs a second message. When the bitmap's lock pointer at +0 is set the routine takes it with `psema` at priority 25, clears bit (slot mod 64) of the doubleword at +16 + 8 x index using a 64-bit variable shift, pulls the first-free index at +8 down to this index when it was higher, and releases the lock with `vsema`. The IP30 entry has the same steps.
+- `odsyHashLookup` (`odsy_adt.o`, offset 0xc64, 76 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Bucket search in patch 4103: the sentinel is at table +8 plus 24 times the bucket number, nodes are followed through the link at +0 until the sentinel recurs, and the first node whose 32-bit key at +16 equals the third argument is returned (zero if none). The code is the IP30 routine with different register assignment.
+- `restoreLineLoop` (`odsy_ctxsw.o`, offset 0x475c, 124 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Line-loop restore hook in patch 4103. It saves its arguments in a 96-byte frame, calls `odsyRestoreVertex` with slot 0, and for a count of 2 or more calls it again with the slot given by the fourth argument plus 1 taken modulo 3 (an explicit divide with a divide-by-zero trap) plus 1.
+- `restoreTriFan` (`odsy_ctxsw.o`, offset 0x49b8, 124 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Triangle-fan restore hook in patch 4103, with the same 96-byte frame and instruction sequence as `restoreLineLoop` in this build: vertex slot 0 first, then for a count of 2 or more slot ((fourth argument + 1) mod 3) + 1, the remainder coming from a signed divide.
+- `odsy_i2cPLLRegWrite` (`odsy_ddc.o`, offset 0x4c, 140 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Clock-part register write in patch 4103. It begins a transfer to the port's device byte (at record +32) shifted left by one, then sends the register number and the value with `odsy_i2c_sendbyte`, flagging the last as final; any step that fails calls `odsy_i2cReset` and the routine returns 1, otherwise 0. The sequence is the IP30 one.
+- `odsy_i2cPLLRegRead` (`odsy_ddc.o`, offset 0xd8, 176 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Clock-part register read in patch 4103. A write start addressed to the device byte at +32 shifted left by one, the register number, a second start with the low address bit set and one `odsy_i2c_long_recvbyte` into the buffer argument; a failure of any of the four steps resets the port with `odsy_i2cReset` and returns 1, success returns 0.
+- `odsy_i2cDDCRegRead` (`odsy_ddc.o`, offset 0x188, 144 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Display-data register read in patch 4103. Unlike the clock-part read it opens the transfer directly in read mode (device byte shifted left, low bit set), sends the register number and receives one byte; one reset-and-return-1 path covers all three steps.
+- `CoresidRangeFinder` (`odsy_pmm.o`, offset 0x18f4, 72 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Equality test on co-residency ranges in patch 4103: the second argument's word at +8 is compared with the first word of the object behind +8 of the first argument, then its words at +0 and +4 with the first argument's +4 and +0; it returns 0 only when all three match, else 1.
+- `CoresidSubRangeFinder` (`odsy_pmm.o`, offset 0x193c, 80 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Overlap test on co-residency ranges in patch 4103: the owner words must match as in `CoresidRangeFinder`, then the routine returns 1 when the first range ends below the second's start or the second ends below the first's start, and 0 when the ranges meet or overlap.
+- `odsy_mm_mkres_timeout` (`odsy_pmm.o`, offset 0x14cc, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Resource-creation timeout handler in patch 4103: a severity 1 log message followed by `odsy_teardown` on the board argument, with no other effect.
+- `restorePolygon` (`odsy_ctxsw.o`, offset 0x4bdc, 220 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Polygon restore hook in patch 4103. It keeps all five arguments in saved registers (128-byte frame), calls `odsyRestoreVertex` with slot 0 unconditionally, computes the next slot as ((fourth argument - count + 3) mod 3) + 1 with a signed divide, and then calls it count - 1 more times, each time passing the current slot and advancing it to (slot mod 3) + 1. A count of 1 or less makes only the first call.
+- `restoreTriStrip` (`odsy_ctxsw.o`, offset 0x48e4, 212 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Triangle-strip restore hook in patch 4103. The first slot is (fourth argument - count + 4) taken modulo 4 by masking the magnitude with 3 and restoring the sign, which is the truncating remainder; `odsyRestoreVertex` is then called count times with that slot, and after every call the slot becomes (slot + 1) reduced the same way. A count that is not positive makes no call. The frame is 112 bytes.
+- `restoreTriangles` (`odsy_ctxsw.o`, offset 0x4810, 212 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Independent-triangle restore hook in patch 4103; its 55 instructions are the same as `restoreTriStrip` in this build, so it replays count vertices from the same starting slot and steps the slot with the same masked-remainder arithmetic.
+- `restoreQuads` (`odsy_ctxsw.o`, offset 0x4a34, 212 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Independent-quad restore hook in patch 4103, with an instruction sequence matching `restoreTriStrip` apart from register naming: a modulo-4 starting slot, then one `odsyRestoreVertex` call per vertex of the count and a modulo-4 increment between calls.
+- `restoreQuadStrip` (`odsy_ctxsw.o`, offset 0x4b08, 212 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Quad-strip restore hook in patch 4103. The 55-instruction body, 112-byte frame and the (fourth argument - count + 4) mod 4 starting slot are those of the other strip and list hooks of this build, so it too makes count calls with an incrementing modulo-4 slot.
+- `odsy_poll_dfifo_level` (`odsy_flow.o`, offset 0x0, 156 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Display-FIFO level wait in patch 4103. It reads the board word at +4204 (register 0x106c), masks the low 7 bits and compares them with the level argument; while the fill is higher it waits 5 us with `us_delay` and polls again, at most 10000 times. A reached level returns 0, and an exhausted poll logs a severity 4 message and returns 1. The loop is that of the IP30 entry with a 64-byte frame and the fill test hoisted into a saved register.
+- `odsy_DmaRegion_Pin` (`odsy_dma.o`, offset 0x1e8, 104 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Pins a DMA region's buffer in patch 4103 when it is not pinned yet (the flag at +52 is zero). It locks the user pages with `useracc` for the address at +32 and the length at +40, with access mode 272 and no extra flag; a failure returns its code, while success sets the flag to 1, calls `odsy_DmaRegion_BuildXlatTbl` to rebuild the page list and returns 0. An already pinned region returns 0 at once.
+- `odsy_mm_decommit` (`odsy_pmm.o`, offset 0x51b8, 104 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Takes a resource out of the committed state in patch 4103. A nonzero extent pointer at +128 is released through `mm_release_extent` with a zero flag; the routine then stores -1 at +56, stores -1 into the per-resource table entry indexed by the halfword at +0 (table pointer at +152 of the record behind +8), clears bit 3 of the flag word at +64 and returns 0.
+- `odsyUnpinAndUnmapASRegions` (`odsy_map.o`, offset 0x7e0, 104 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Releases the two address-space regions of a request in patch 4103. The region record at +40 and the one at +56 are each passed to `odsyUnmapPages` when their pointer words are nonzero; the return value is the OR of the two results, zero when neither region was mapped.
