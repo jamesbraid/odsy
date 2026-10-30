@@ -339,3 +339,212 @@ The resource-manager client keeps one record per screen (the screen-private slot
   Turns a display identifier into a reserved one and re-homes the windows that were on it (arguments: screen, identifier; no result). It first takes every window off the entry's list: the loop at 0x171976c saves the list head in a stack array, calls the screen record's procedure at +0x20 with (window, 0, 0) when the window record's flag byte at +6 has bit 3 set (halfword bit 11), unlinks it from its present entry with the common sequence and sets its identifier word to -1. Then the entry's two mode words (+0xa0, +0xa4) are replaced by the words at +0xb0 and +0xb4 of the same entry, the screen record's procedure at +0x2c is called with (screen, identifier) (its job is **unknown**: it is called through a table slot the module does not name here), and the entry's flags get bit 1 set. Each saved window is then given a new identifier by what is `FindFreeID`'s logic written inline: a class-1 window on a screen whose flag word has bit 0 set takes the identifier equal to the identifier count; a window that has no identifier, or whose entry has flag bit 2, takes the first entry of its class with bit 0 clear and no windows (`AssignID..FG`), or else a reserved unused entry that it clears (only when the record's word +0x30 is nonzero), or else `StealID` (0x17198e4 and 0x1719af0). If the entry's old flags had bit 4 set (0x10) that bit is ORed into the flags of the window's new entry and the procedure at +0x20 is called with (window, 8, 1) (0x17198ec to 0x1719930).
 - `FindFreeCID` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15b8810, 2624 bytes): **established** (whole listing 0x15b8810 to 0x15b9244 and its tail blocks; the three assignment blocks differ only in which entry they use).
   Gives a window a clip identifier, the analogue of `FindFreeID` for the screen record's second table (argument: window; no result). The clip-identifier table is at +0x94 of the screen record (0x1c-byte entries: list head, list tail, flag halfword at +8, class halfword at +0xa, window count at +0xc), the count is at +4 and a round-robin cursor at +0x88; the window record keeps its clip identifier at +0x18, its list links at +0x3c (previous) and +0x40 (next) and its on-list flag as bit 6 (0x40) of its first halfword. A screen procedure at +0x5c is called with the window; when it returns 0 the window takes the identifier equal to the count (word at +4) and the routine returns (0x15b886c, 0x15b904c). Otherwise a window that already has an identifier whose entry has flag bit 2 clear keeps it. Else it scans the entries other than the window's own for one of the window's class (or, for a class-1 window, any entry when the screen flag word has bit 1 set) with flag bit 0 clear: the first one with no windows is taken at once (the old entry is left by the unlink, which keeps bit 0, adds 4 for a reserved entry, sets 2 when the list is not empty and 4 when its head and tail differ), the window is appended to the entry's list, its on-list flag is set, the count is raised and 2 ORed into the flags (6 when the count reaches 2). An entry in use is remembered as a victim when the byte at +4 of its head window's record differs from the byte at +6. Without a free entry, the last victim (or, with no victim, the entry that the round-robin cursor reaches after it is incremented and wrapped to 1 when it passes the count) is cleared: its head window gets the screen procedure at +0x20 with (window, 2, 0), is unlinked and put on entry 0's list with clip identifier 0, and the requesting window is unlinked from its own entry and appended to the victim's (0x15b8958 to 0x15b9244). That the head-window bytes at +4 and +6 are a pending-versus-current state is **inferred**.
+
+## Empty and constant-result routines of the shared X code
+
+Each of these is a whole routine of two instructions, `jr ra` and the delay slot, read in full; none touches memory except where it says so.
+
+- `ZBuffer..LF` (`usr/lib/X11/dyDDX/odyssey.so`, 0x158f300, 8 bytes): **established.**
+  A void routine that does nothing: `jr ra` at 0x158f300 and a no-op at 0x158f304, so its arguments are never read and no result register is set.
+- `nfb5RopLoop..FH` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16562e0, 8 bytes): **established.**
+  Another empty body, the return at 0x16562e0 with a no-op after it; this is the placeholder behind the five-operand raster-op loop slot of the frame-buffer layer, and it leaves every register as it found it.
+- `nfb5MaskRopLoop..FI` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1718210, 8 bytes): **established.**
+  The masked sibling of the previous routine is just as empty: `jr ra` at 0x1718210, no-op at 0x1718214, nothing read or written.
+- `miChangeGC` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15fd090, 8 bytes): **established.**
+  The machine-independent graphics-context change hook is a bare return at 0x15fd090 (no-op delay slot): a change to the context's fields is not acted on by this routine.
+- `miCopyGC` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16c0410, 8 bytes): **established.**
+  The context-copy hook likewise only returns (0x16c0410, no-op at 0x16c0414), so copying one context to another has no side effect here.
+- `nfbChangeGC..LJ` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1620dc0, 8 bytes): **established.**
+  The frame-buffer layer's context-change entry is an immediate return at 0x1620dc0 and does nothing with the context it is given.
+- `nfbCopyGC..BK` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1669fb0, 8 bytes): **established.**
+  The frame-buffer layer's context-copy entry is also an immediate return (0x1669fb0, no-op delay slot).
+- `mfbUnrealizeFont` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15bfe30, 8 bytes): **established.**
+  Reports success without touching the font: `jr ra` at 0x15bfe30 with `li v0,1` in the delay slot at 0x15bfe34.
+- `mfbRealizeFont` (`usr/lib/X11/dyDDX/odyssey.so`, 0x162ca40, 8 bytes): **established.**
+  Also answers 1 and nothing else (`li v0,1` at 0x162ca44 behind the return at 0x162ca40); the monochrome layer keeps no realised-font data here.
+- `nfbPositionWindow` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16afbc0, 8 bytes): **established.**
+  Window repositioning always succeeds without work: the result is the constant 1 loaded at 0x16afbc4, and neither the window nor the screen is read.
+- `nfbUnrealizeWindow` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16fd920, 8 bytes): **established.**
+  The unmap hook returns 1 (0x16fd924) and does nothing else.
+- `nfbNoopDDACreateScreenResources` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16f5ea0, 8 bytes): **established.**
+  The device-dependent screen-resource creation step of the frame-buffer layer is a stub that returns 1 (`li v0,1` at 0x16f5ea4), so no resources are allocated through this slot.
+- `nfbNoopDDATranslateBackingStore` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160d120, 8 bytes): **established.**
+  Returns 0 (the delay slot at 0x160d124 is `or v0,zero,zero`) and reads nothing: no backing-store translation is offered.
+- `nfbNoopDDAClearBackingStore` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171dbd0, 8 bytes): **established.**
+  Returns 0 (0x171dbd4) with no other action, the same shape as the translate stub above.
+- `miRegionExtents` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15e5ab0, 8 bytes): **established.**
+  Hands back its first argument unchanged (`or v0,a0,zero` at 0x15e5ab4); that is the address of the bounding box because the box is the first member of a region record.
+- `miGetLayerWindow` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16e39f0, 8 bytes): **established.**
+  Returns the word at +0x24 of the window record (`lw v0,0x24(a0)` at 0x16e39f4), which is the window's parent pointer in the X server's `WindowRec`, so the layer window of a window is its parent here.
+
+## Forwarding routines (audio library, format-file finders, symbol-database calls)
+
+The audio-library and symbol-database routines are statically linked library code inside the module (`libaudio` and a symbol-table package); the entries give what the code at the address does. Where a routine forwards, its arguments reach the target unchanged unless the entry says otherwise; the target is a static routine without a dynamic symbol, named by address.
+
+- `ALnewconfig` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550410, 52 bytes): **established.**
+  Old-style audio-library name for creating a configuration object; the body builds `gp`, then `bgezall` at 0x155042c transfers to `alNewConfig` at 0x1551960 with the argument registers untouched and returns its result.
+- `ALfreeconfig` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550450, 52 bytes): **established.**
+  Forwards to `alFreeConfig` at 0x1551a10 through the same `bgezall` jump (0x155046c); no argument is changed.
+- `ALsetconfig` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550490, 52 bytes): **established.**
+  Jumps (0x15504ac) to `alSetConfig` at 0x1552450 with its two arguments as received.
+- `ALgetconfig` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15504d0, 52 bytes): **established.**
+  Jumps (0x15504ec) to `alGetConfig` at 0x1552740 and returns what it returns.
+- `ALsetwidth` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550510, 52 bytes): **established.**
+  A real call rather than a jump: `jalr` at 0x155052c to `alSetWidth` (0x1561cb0) from a frame that saves `gp` and `ra`, then returns the callee's result.
+- `ALgetwidth` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550550, 52 bytes): **established.**
+  Calls `alGetWidth` at 0x15624c0 (`jalr` at 0x155056c) and passes the result back.
+- `ALsetsampfmt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550590, 52 bytes): **established.**
+  Jumps (0x15505ac) to `alSetSampFmt` at 0x1552860.
+- `ALgetsampfmt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15505d0, 52 bytes): **established.**
+  Jumps (0x15505ec) to `alGetSampFmt` at 0x15529e0.
+- `ALsetchannels` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550610, 52 bytes): **established.**
+  Jumps (0x155062c) to `alSetChannels` at 0x15520b0.
+- `ALgetchannels` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550650, 52 bytes): **established.**
+  Jumps (0x155066c) to `alGetChannels` at 0x15521f0.
+- `ALsetfloatmax` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550690, 52 bytes): **established.**
+  Calls `alSetFloatMax` at 0x1562320 (`jalr` at 0x15506ac) and returns its result; the argument is a floating-point maximum, passed through in the argument registers.
+- `ALgetfloatmax` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15506d0, 52 bytes): **established.**
+  Calls `alGetFloatMax` at 0x1562420 (`jalr` at 0x15506ec).
+- `ALcloseport` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550710, 52 bytes): **established.**
+  Jumps (0x155072c) to `alClosePort` at 0x1551ac0.
+- `ALopenport` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550750, 52 bytes): **established.**
+  Jumps (0x155076c) to `alOpenPort` at 0x1552e80 with the port name, direction and configuration it was given.
+- `ALgetfd` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550790, 52 bytes): **established.**
+  Jumps (0x15507ac) to `alGetFD` at 0x1552290, which yields the port's file descriptor.
+- `ALgetframenumber` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15507d0, 52 bytes): **established.**
+  Jumps (0x15507ec) to `alGetFrameNumber` at 0x15516e0.
+- `ALgetframetime` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550810, 52 bytes): **established.**
+  Jumps (0x155082c) to `alGetFrameTime` at 0x1552330.
+- `ALseterrorhandler` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15516a0, 52 bytes): **established.**
+  Jumps (0x15516bc) to `alSetErrorHandler` at 0x15518e0, the routine below that installs the handler.
+- `alSetErrorHandler` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15518e0, 64 bytes): **established.**
+  Replaces the library's error-handler pointer, a global word (0x1742360). It loads the old pointer and compares it with the library's built-in default at 0x1551860; if the old value is that default, the value returned is 1 instead of the pointer. The new value is stored unless the argument is 1, in which case the default is put back. So 1 stands for "default handler" in both directions.
+- `alGetErrorString` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1551920, 52 bytes): **established.**
+  Maps an error number to its text: for a number from 0 to 26 (the signed compares at 0x1551920 and 0x1551934) it returns the pointer stored at that index of the 27-entry table at 0x1732558; any other number returns 0.
+- `ALgetfilled` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550250, 76 bytes): **established.**
+  Number of samples waiting in a port's ring buffer. It reads two pointers from the port record (+0x10 and +0x14), takes the difference of the words they point to, adds the ring size at +8 when that is negative, then scales by shifting right by the word at +0x80 and left by the word at +0x7c (bytes to sample units).
+- `ALgetfillable` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15501f0, 84 bytes): **established.**
+  The free space in the same ring: it takes the word behind the +0x10 pointer minus the word behind the +0x14 pointer (the opposite order to `ALgetfilled`), subtracts a reserve held at +0x58, wrapped by the ring size at +8 when negative and scaled by the same two shift words at +0x80 and +0x7c.
+- `alGetParams` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1562af0, 60 bytes): **established.**
+  Calls the shared parameter reader `__alParams` at 0x1562560 with three constants added after the caller's arguments: 1 in the fourth register and -1 and 1 in the fifth and sixth; it is the "get" flavour of that reader.
+- `_AL2WriteNToN_ADAT` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15559c0, 60 bytes): **established.**
+  Copies sample frames between buffers unchanged: `bcopy` (0x15559e4) with the byte count equal to the frame count shifted left by the converter record's word at +0x80 plus 2 (four bytes a channel scaled by the record's shift).
+- `_AL2WriteNToN_AES` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1555970, 72 bytes): **established.**
+  Same straight copy for the 3-byte-per-sample AES format: the byte count is frames times three (`sll`+`addu` forms 3n at 0x155598c to 0x155599c), shifted by the record's word at +0x80 plus 2, then `bcopy`.
+- `_AL2WriteNToN_AESv` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15599e0, 60 bytes): **established.**
+  Triples the fourth argument (`sll`/`addu` at 0x15599f8 to 0x1559a04) and jumps to `_AL2WriteNToN_24v` at 0x1559a20: the voiced AES writer is the 24-bit one with the channel count scaled to bytes.
+- `_AL2ReadNFromN_ADAT` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1556f00, 72 bytes): **established.**
+  The reverse copy: swaps the first two arguments (0x1556f18 to 0x1556f24) so source and destination trade places, then `bcopy`s frames shifted left by the record's +0x80 plus 2.
+- `_AL2ReadNFromN_AES` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1556ea0, 84 bytes): **established.**
+  The 3-byte-sample reader, the mirror of `_AL2WriteNToN_AES`: the source and destination arguments are swapped into the `bcopy` call (0x1556eb4, 0x1556ec0, 0x1556ecc) and the byte count is three times the frame count, shifted left by the converter record's word at +0x80 plus 2.
+- `_AL2ReadNFromN_AESv` (`usr/lib/X11/dyDDX/odyssey.so`, 0x155d2c0, 60 bytes): **established.**
+  Multiplies the fourth argument by three (0x155d2d8 to 0x155d2e4) and jumps to `_AL2ReadNFromN_24v` at 0x155d300; the voiced AES reader is the 24-bit reader with a byte-sized stride.
+- `_AL2Read4ChanFromStereo_16` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1558cc0, 84 bytes): **established.**
+  Expands a stereo stream of 32-bit words into four-channel 16-bit frames. For each of the count (third argument) input pairs it stores the left word shifted right by 8 at +0 of the output frame, the right word shifted right by 8 at +2, and zero at +4 and +6 (the loop at 0x1558ce0 to 0x1558d08); the output advances by 8 bytes a frame.
+- `_AL2Read4ChanFromStereo_8` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1558d20, 84 bytes): **established.**
+  The 8-bit form of the same expansion: input words shifted right by 16 become bytes 0 and 1 of a 4-byte output frame, bytes 2 and 3 are zero (loop 0x1558d40 to 0x1558d68).
+- `_AL2recalcscalefactors` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1552e30, 80 bytes): **established.**
+  Recomputes six cached conversion factors from the sample rate stored as a double at +0x48 of the converter record. With r the rate: doubles at +0x98 and +0xa0 get r times 2^-23 and r times 2^-24 (the constants 1.1920929e-07 and 5.9604645e-08 at 0x173f740 and 0x173f748), the double at +0xa8 gets 2^23 divided by r (8388608.0), and floats at +0x88, +0x8c and +0x90 hold the narrowed copies of the same three.
+- `nfbInfPolyText8..CL` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16cd920, 76 bytes): **established.**
+  Dispatches the 8-bit text request to the context's own operation table. The context (second argument) holds its device-private array at +0x4c; the entry selected by `nfbGCPrivateIndex` is a record whose pointer at +0x20 leads to a table, and the routine calls that table's entry at +0x34 with its arguments unchanged (0x16cd938 to 0x16cd954).
+- `nfbInfPolyText16..DL` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15aefa0, 76 bytes): **established.**
+  Same indirection for 16-bit text, calling the table entry at +0x38 (the load at 0x15aefd0).
+- `nfbInfImageText8..EL` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15ba450, 76 bytes): **established.**
+  Fills in background and glyphs of 8-bit text through the table entry at +0x3c (0x15ba480), reached from the context's private record in the same way.
+- `nfbInfImageText16..FL` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1717260, 76 bytes): **established.**
+  Same dispatch for 16-bit image text, through the entry at +0x40 (0x1717290).
+- `nfbInfPushPixels..IL` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16f65c0, 76 bytes): **established.**
+  Here the context is the first argument (0x16f65dc reads its private array), and the table entry at +0x4c is called (0x16f65f0).
+- `nfbInfCopyArea..IK` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1640300, 84 bytes): **established.**
+  The context is the third argument; the call goes to table entry +0xc (0x1640338). The seventh argument sits on the caller's stack and is re-stored at the new frame's first stack slot (0x1640310 to 0x1640318) so the callee sees it.
+- `nfbInfCopyPlane..JK` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160c350, 92 bytes): **established.**
+  As the copy-area dispatcher, through table entry +0x10 (0x160c388), with two stack arguments re-stored (0x160c35c to 0x160c374).
+- `miBSCheapDestroyGC..NCB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1701c20, 76 bytes): **established.**
+  Undoes the backing-store wrapper on a context. It fetches the wrapper's private record through a module-private index (0x1701c38) from the context's device-private array, stores that record's pointer into the context at +0x44 (its operation-table slot, restoring the saved original table) and calls the original destroy entry at +0xc of it.
+- `cfb32CopyPlane` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16543d0, 72 bytes): **established.**
+  Not a copy at all: it jumps through the function-pointer variable `cfbPuntCopyPlane` (0x1742364, loaded at 0x16543f4), re-storing the two stack arguments at 0x16543d8 and 0x16543e4 for the callee; the 32-bit colour layer hands plane copies to whatever routine the variable names.
+- `cfb16CopyPlane` (`usr/lib/X11/dyDDX/odyssey.so`, 0x165e960, 72 bytes): **established.**
+  Identical in effect for the 16-bit layer: calls the routine in `cfbPuntCopyPlane` (0x165e984 to 0x165e990) after re-storing two stack arguments.
+- `cfb32DoBitblt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x158f790, 48 bytes): **established.**
+  Chooses between two block-transfer routines by the plane mask (eighth argument): when the mask is all ones (`xor` with -1 at 0x158f7a4 gives zero) it takes the copy-only routine `cfb32DoBitbltCopy` (0x1722230), otherwise `cfb32DoBitbltGeneral` (0x16c1ff0), through `movz` at 0x158f7ac, and jumps there with an extra argument 3 in the third slot.
+- `cfbDoBitblt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16abad0, 52 bytes): **established.**
+  Eight-bit-layer version: the test is the low byte of the plane mask against 0xff (0x16abae0 to 0x16abae8); a full mask selects `cfbDoBitbltCopy` (0x157d2f0), anything else `cfbDoBitbltGeneral` (0x166de60).
+- `cfb16DoBitblt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171b400, 52 bytes): **established.**
+  Sixteen-bit version: low halfword of the mask against 0xffff (0x171b410 to 0x171b418), full mask goes to `cfb16DoBitbltCopy` (global at 0x1738e... slot 987), else `cfb16DoBitbltGeneral` (slot 836).
+- `nfbSaveAreas` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1688a10, 80 bytes): **established.**
+  Backing-store save is a block copy: it rearranges its arguments (0x1688a2c to 0x1688a40) and calls `nfbDoBitBltSP` (0x1708840) with a raster-op of 3 (copy) and a trailing -1 (all planes).
+- `nfbSaveScreen` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1669300, 64 bytes): **established.**
+  Screen-saver hook: calls the screen's entry at +0xc0 of the screen record held at +0x74 of the first argument with (is-the-mode-zero, screen) (`sltiu a0,a1,1` at 0x1669320), so mode 0 ("on") passes 1 and every other mode passes 0.
+- `nfbDestroyHWColormap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1718220, 68 bytes): **established.**
+  Frees the hardware colour-map's data block: `Xfree` of the pointer at +0x44 (0x1718244) and then clears that field (0x1718254).
+- `nfbGetBestVisualForPEX` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1586c60, 24 bytes): **established.**
+  Answers the 3-D extension's visual query from fixed screen words: it copies the word at +0xcc of the record at +0x74 of its first argument to the second output pointer and the word at +0xd0 to the third (0x1586c60 to 0x1586c74); it makes no choice itself.
+- `nfbAbort` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15e5a70, 36 bytes): **established.**
+  Terminates the server on an impossible state: it builds a 16-byte frame saving `gp` and `ra` (0x15e5a74 to 0x15e5a7c) and calls C library `abort` through the call at 0x15e5a8c, with no argument and no code after the call that depends on a result.
+- `miCloseScreen` (`usr/lib/X11/dyDDX/odyssey.so`, 0x166f6b0, 52 bytes): **established.**
+  Calls the screen's destroy-colour-map entry at +0xf0 of the screen record (second argument) with the word at +0x74 of that record as its argument (0x166f6c4, 0x166f6cc) and returns whatever it returns.
+- `miRegionNotEmpty` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1710230, 40 bytes): **established.**
+  Reports whether a region contains rectangles: with no data block at +8 it answers 1 (the box alone is a rectangle); with a block it answers 0 when the block's rectangle count at +4 is zero, else 1 (0x1710234 to 0x1710250).
+- `miRegionEmpty` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1685cc0, 100 bytes): **established.**
+  Turns a region into the empty region. It frees the rectangle block at +8 when there is one with a nonzero size word (0x1685cdc to 0x1685cf4), points +8 at the module's shared empty block (`gp`+0x4d50, 0x1685cfc to 0x1685d04), and collapses the bounding box to a point by copying its first corner (x at +0, y at +2) over its second corner (+4 and +6, 0x1685d0c to 0x1685d20).
+- `miRegionReset` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1586a50, 116 bytes): **established.**
+  Makes a region a single rectangle: the four halfwords of the box passed as second argument are copied over the region's bounding box (0x1586a64 to 0x1586a88), a rectangle block at +8 with a nonzero size word is passed to `Xfree` (0x1586aa0), and +8 is zeroed (0x1586ac0), which is the one-rectangle form.
+- `miRegionDestroy` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163c1f0, 88 bytes): **established.**
+  Frees a region: the rectangle block at +8, when it exists and its size word is nonzero (0x163c20c to 0x163c224), then the region record itself with a second `Xfree` (0x163c230).
+- `miRegionUninit` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1665db0, 72 bytes): **established.**
+  Frees only the rectangle block of a region when it exists and has a nonzero size word (0x1665dc8 to 0x1665de4); the region record itself is left alone, which is the difference from `miRegionDestroy`.
+- `cfbDestroyPixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16cd8c0, 88 bytes): **established.**
+  Drops one reference: the count at +0x18 is decremented and stored (0x16cd8cc to 0x16cd8dc); only when it reaches zero is the pixmap passed to `Xfree` (0x16cd8f4 to 0x16cd8fc). The result is always 1.
+- `miModifyPixmapHeader` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16e3a00, 104 bytes): **established.**
+  Rewrites a pixmap's header in place (result 0 for a null pixmap). Depth goes to the byte at +2 and bits per pixel to +3, the id (+4) and the origin (+8, +0xa) are zeroed, width and height go to +0xc and +0xe, the pitch to +0x1c and the data pointer to +0x20, and the reference count at +0x18 becomes 1. The serial number at +0x14 takes the next value of a module counter (increment, wrap to 1 once it passes 0x1000000, 0x16e3a48 to 0x16e3a64).
+- `miZeroDashLine` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16780f0, 72 bytes): **established.**
+  Draws thin dashed lines by calling the wide-dash routine `miWideDash` (0x1704240) with the context's halfword at +6 set to 1 for the call and restored to 0 afterwards (0x16780fc and 0x1678128), so the wide-line code runs in its zero-width mode.
+
+## Symbol-database package and format-file finders
+
+The module links a small symbol-database package (`SDB*` and its `xdr_SDB*` encoders). Its symbol table is an array of 0x2c-byte entries held through the database record (array pointer at +0xac, entry count at +0x78): +0 data type, +4 element count, +8 file offset, +0xc a 32-byte name. A static lookup at 0x154f08c copies the name, runs `bsearch` over the array with `compareSTEName` and, on a hit, calls the database's file-access entry (+0x14 of its method table) with the entry's offset; on a miss it sets `errno` to 6 and returns 0.
+
+- `compareSTEName` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f774, 56 bytes): **established.**
+  The comparison function for that search: `strcmp` of the two names at +0xc of each entry (both pointers advanced by 12 at 0x154f78c and 0x154f798).
+- `SDBgetSymbolDatatype` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f1f4, 88 bytes): **established.**
+  Looks the name up through the static search and returns the entry's first word (data type); 0 when the name is not in the table.
+- `SDBgetSymbolElementCount` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f24c, 92 bytes): **established.**
+  Returns the entry's element count at +4; for a name that is not in the table it returns the stack word at the frame's first slot (a3 loaded at 0x154f274 and moved to the result at 0x154f298), which is whatever the caller left there.
+- `SDBgetSymbolDataAddress` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f18c, 104 bytes): **established.**
+  Looks the name up and, when found, calls the database method at +0x10 of its method table and returns its result (the data address in the backing store); returns 0 when the name is absent (0x154f1b4 to 0x154f1dc).
+- `SDBgetSymbolValueScalar` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f2e0, 56 bytes): **established.**
+  Forwards to the static typed-value reader at 0x154f12c with a fourth argument of 0 (0x154f304); that reader searches the name and decodes the value through the `xdr_typedData` routine with the entry's type.
+- `SDBgetSymbolValueArray` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f2a8, 56 bytes): **established.**
+  Forwards to the same reader at 0x154f12c unchanged, so an array symbol is read with the caller's own count argument.
+- `SDBaddNewScalarSymbol` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154ec24, 64 bytes): **established.**
+  Adds a one-value symbol by calling the static add routine at 0x154e92c, shifting the value argument up and passing element count 0 (0x154ec44 to 0x154ec50). That routine allocates an entry, copies the 32-byte name, stores the type and count, asks the database method at +0x10 for a file offset and writes the value with `xdr_typedData`.
+- `SDBaddNewArraySymbol` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154ebec, 56 bytes): **established.**
+  Calls the same add routine at 0x154e92c with the caller's arguments unchanged (0x154ec0c), the count argument now carrying the array length.
+- `SDBsetupMemoryInterface` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154febc, 36 bytes): **established.**
+  Stores its four arguments into a four-word global table (offsets 0, 4, 8 and 0xc, 0x154fec8 to 0x154fedc), the package's installable memory and file hooks; nothing is called.
+- `SDBinitializeSymbolTableEntries` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f9b8, 52 bytes): **established.**
+  Clears the first three words and the name's first byte of each of the count entries (second argument) of a 0x2c-byte table, walking 0x2c bytes a step (0x154f9c4 to 0x154f9e0); an empty table returns at once.
+- `SDBsetHeader` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154ef5c, 120 bytes): **established.**
+  Fills the database header held at +8 of the record: the two halfwords of the version argument go to +8 and +0xa (zeroed when the argument is null), and the description string (an empty default at `gp`+0x4e7c when null) is copied with `strncpy` of 100 bytes to +0xc (0x154ef94 to 0x154efbc).
+- `xdr_SDBelementIndex` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154f9ec, 52 bytes): **established.**
+  An encoder that forwards to `xdr_u_long` (global-table slot at 0x154fa00) with its own arguments: an element index is one unsigned long on the wire.
+- `xdr_SDBfileOffset` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154fa20, 52 bytes): **established.**
+  Also a one-call forward to `xdr_u_long` (0x154fa34): file offsets are unsigned longs.
+- `xdr_SDBdataType` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154fce8, 52 bytes): **established.**
+  Forwards to the enumeration encoder through a global slot (0x154fcfc), so a data type travels as an XDR enumeration.
+- `xdr_SDBversionNumber` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154fe54, 100 bytes): **established.**
+  Encodes the version as two unsigned shorts, the first at the pointer and the second at pointer+2 (`xdr_u_short` calls at 0x154fe74 and 0x154fe90), failing with 0 if either fails and returning 1 otherwise.
+- `xdr_SDBsymbolName` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154fd1c, 112 bytes): **established.**
+  Encodes a symbol name as an XDR string with a limit of 31 characters (`xdr_string` with 0x1f at 0x154fd44) and then writes a terminating zero at index 31 (0x154fd60); a null pointer, or a name pointer holding null, returns 0.
+- `vfmtFindKonaFormatFile` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154b5e0, 76 bytes): **established.**
+  Looks a format file up in the directory `/usr/gfx/ucode/KONA/dg4/vfo` (the string behind the small-data pointer at 0x154b608) by passing the caller's two arguments and that path to the shared finder `vfmtFindFormatFile` (0x154b390).
+- `vfmtFindOdyFormatFile` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154b6d0, 76 bytes): **established.**
+  The VPro form of the same call: the directory argument is `/usr/gfx/ucode/ODSY/vof` (the pointer loaded at 0x154b6f8) and the lookup is `vfmtFindFormatFile`.
+- `vfmtFindSG2FormatFile` (`usr/lib/X11/dyDDX/odyssey.so`, 0x154b720, 76 bytes): **established.**
+  The same wrapper for the older board whose formats live in `/var/X11/Xvc/SG2_formats` (pointer loaded at 0x154b748).
+- `GenlockNotify..OF` (`usr/lib/X11/dyDDX/odyssey.so`, 0x17034d0, 60 bytes): **established.**
+  Tells the video-control extension that the lock state changed: it loads the word at +0 of the record at +0x10 of its first argument and calls `XvcSendScreenLockChangeEvent` with that and its third argument (0x17034e8 to 0x17034f4).
+- `sgiReleaseCapabilityUnsupported` (`usr/lib/X11/dyDDX/odyssey.so`, 0x167db90, 28 bytes): **established.**
+  Refuses to release an optional capability: it returns the value of `nmbxErrorBase` plus one (0x167db9c to 0x167dba8), the extension's error code for "not supported", and reads nothing else.
+- `sgiEnableCapabilityUnsupported` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ffbc0, 28 bytes): **established.**
+  The enable counterpart, with the same body: `nmbxErrorBase` plus one is returned (0x16ffbcc to 0x16ffbd8).
