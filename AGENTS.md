@@ -102,6 +102,7 @@ Scripts (`scripts/`, run from the repository root):
 - `inventory.py` (config `inventory-config.json`): measure coverage from the binaries. It lists every binary, function, board offset, command word, ioctl and microcode routine in the in-scope files and marks each `documented`, `no-software-dependency`, `named-only` or `undocumented` by searching the docs and headers. Output is `docs/inventory/*.tsv` (see `docs/inventory/README.md`).
 - `ghidra/`: the Ghidra tooling, including a processor module and import script for the BUZZ transform microcode with its acceptance tests (`ghidra/processors/odsy-buzz/`); [ghidra/README.md](ghidra/README.md) indexes it and [docs/tooling.md](docs/tooling.md) says how to build and use the BUZZ module.
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
+- `ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [ghidra/scripts/README.md](ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
 
 The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
 
