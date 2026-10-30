@@ -1,277 +1,277 @@
-binary	group	role	kind	abi	bytes	sha256	copies	functions	access_sites	unresolved_sites	status	doc	section
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13588	0ed05985a3cc7b81	usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16004	d6346dc0f54a1287	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7620	08d45543f8dc353f	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	60580	72373a9173c6ede8	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	21	187	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	15844	7dde76b945c93030	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	8	97	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49476	ef6293d41342364d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	1009	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14292	d02595bb463fc6ab	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)	8	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	42852	f3121efbc77e0634	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	25	47	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10372	e77a019f939b2e5b	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	3	3	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_denali.o)	kernel	board-kernel	object	n64	8084	2cc83c1b99481e65	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_denali.o)	2	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13348	703816000a8e8108	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	8	5	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	36020	4f17430bb0f90d67	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	22	87	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17028	6c7064bdd3bb54da	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	11	37	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	1220	a1f4b5c2b48a5960	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dvi.o)	0	0	0	undocumented		
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	9556	eb6715ae894da81c	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	6	5	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)	kernel	board-kernel	object	n64	26356	b3b966ce401f8ca4	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)	19	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	74308	24e95c84974c272d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	20	311	28	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	1236	67dd60f94fc96a2f	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o);usr/cpu/sysgen/IP35boot/odyssey.a(odsy_idbg.o)	0	0	0	undocumented		
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	81796	3a57d1f9c48c2b32	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	29	166	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	20628	d0b9363bb76221e6	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	5	38	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	14756	96b854b83451467a	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	13	4	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)	kernel	board-kernel	object	n64	8228	5f980b3d068f89c7	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)	6	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19908	c908d2d7825b563d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	13	27	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9364	c817011216ea1524	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	5	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78372	d1ddab50d97ce38e	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	67	24	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	1252	3518a0619ab3b875	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o);usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sim.o)	0	0	0	undocumented		
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	8eab2abf92dac337	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	0	0	0	undocumented		
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	38052	fd3d260c2bf86400	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8452	66967437c5aab8d9	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	0e4dcd6286cc5c7a		671	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	bd4b77fe6bd4a187		5169	4227	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	aa9005aa43d3b8e2		673	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	9abe5557d67810d2		5216	5132	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	dfe753e69d105ba4		673	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	30dc6c8e51d7b67b		5137	5051	0	undocumented		
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	12660	17d6b78a3a02bbf4		4	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	15444	f0f03bd7c7436e1c		18	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7284	76fc65b5256c1eb3		3	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	49076	cacbeba17d7db99e		19	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	10916	2be13ab21f19b73d		6	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	45364	558979c3fed87c30		26	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	40484	161e9ab046ac2daa		24	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10068	62bbd249dba6ebbd		3	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	12996	348432b23817ebaa		8	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	32532	a280c3efdba20666		20	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	16900	60ed2787555c6d87		11	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	9460	fbd43aac0a2c8e22		6	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	40756	c3c408cabce62008		12	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	2804	ee7113ac7daefb11		0	0	0	undocumented		
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	74804	997967663a3ae559		26	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16132	b90410e96a3552bf		5	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15156	696add11f872186d		13	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19140	b7d5acea538a5d44		13	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9284	59dd9c4b306c5b5e		5	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69124	f01f16980ddaaef5		57	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	2836	f2ea13a335c373b4		0	0	0	undocumented		
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	7044	9fc8662738573c1e		0	0	0	undocumented		
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	34804	93cb0abade6d9383		11	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8468	b8e9a527be877b29		2	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	451872	3c68b371202c7fa2		650	0	0	undocumented		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3436908	70d13a747bd4b32d		5103	4101	0	undocumented		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	464860	3d5ff7d7e05ba6ae		650	0	0	undocumented		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3446300	559ab3bd2c902d15		5155	4231	0	undocumented		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	2f5f62fe1554e93e		650	0	0	undocumented		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	fe20e3ac37ec80d2		5076	4231	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	12692	bdd940e71a7c1485		4	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	15476	c3cf6568d940ff96		18	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7316	826fe390ae6a2ced		3	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	49108	f55e32f1872ae294		19	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	10932	bd15d88f316ed7a4		6	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	45396	f69fc439425cf980		26	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	40516	79b50608b02bbfe7		24	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10100	ea93c85109c16f0b		3	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13028	6aa4b5b90014db73		8	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	32564	bf297e32f31ef00c		20	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	16916	149403ef609e55ed		11	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	9492	0e115592fda2161d		6	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	40772	3ea888c7135626d5		12	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	2836	fdde1a7baa559fe5		0	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	74820	d3172ec38e7b0b58		26	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16164	896eff8228356fde		5	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15172	2e38e0c0b9693cae		13	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19172	958b9dc00cbe8e6b		13	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9316	80aa972288f40eed		5	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69156	dee3312a172f9e2c		57	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	2900	dc398513ba9bdf08		0	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	7076	2d00e2a66673bb41		0	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	34836	cd7ebefe832fbecc		11	0	0	undocumented		
-builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8500	2e5e0b105486c468		2	0	0	undocumented		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	451872	1cecb6f857a1c3fb		650	0	0	undocumented		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3436908	e24e46db85ec5243		5103	4101	0	undocumented		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	464860	17413369cbedc085		650	0	0	undocumented		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3446300	f032755d989b7faa		5155	4231	0	undocumented		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	94f61adbfa12bb44		650	0	0	undocumented		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	e23071c866ed246d		5076	4231	0	undocumented		
-sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	0	0	named-only	docs/open-questions.md#microcode	Microcode
-usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	0	0	named-only	docs/display.md#kernel-cursor-request	Kernel cursor request
-usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP30boot/gfx.o	kernel-shared	shared-kernel	object	n64	53712	73041c9bcd3351fc		62	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	16516	c637564e7dc7a6d8		22	0	0	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53716	2a9821583c887b17		62	0	0	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	0	0	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8532	ffa00ad7d65e7713		18	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP30boot/kernel.o	kernel-shared	shared-kernel	object	n64	577112	32d900592e14a557		726	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP30boot/odysseystubs.a(odysseystubs.o)	kernel-shared	shared-kernel	object	n64	3476	8e6cf21717743f03	usr/cpu/sysgen/IP35boot/odysseystubs.a(odysseystubs.o)	1	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/cpu/sysgen/IP30boot/rrm.o	kernel-shared	shared-kernel	object	n64	63904	ad36cdbdba058c54		72	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP30boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23588	12a1e64b81279ccb		22	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP35boot/kernel.o	kernel-shared	shared-kernel	object	n64	1288752	2e847fdcadfdb958		1318	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13620	c1e5a85bee26f8b1		4	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16228	fa079f9475f5fefa		18	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	191	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	16	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14260	9a2e70adc6f1562c		8	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	42820	f4287f15bdf94e9a		25	47	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10932	3eba17fd2b1dbff0		3	3	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)	kernel	board-kernel	object	n64	8052	529f62f5d023adc6		2	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13316	eaa00f3516f88664		8	5	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	35716	f331b8ce559f5893		22	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17892	b720e459433313a1		11	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	14676	53413c6a99a7dc6d		9	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	12324	c4c87485c608dea4		9	13	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)	kernel	board-kernel	object	n64	26324	e0b44ca930a6855e		19	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	74276	a2e274202900aba6		20	311	28	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	89076	ff0614b46114a3a1		32	169	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	20596	5b2ae25836595905		5	38	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15572	c0d00cfc3c703194		13	4	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)	kernel	board-kernel	object	n64	8228	9f002f8b9dfe9f23		6	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	20516	28a082ad65786639		13	27	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	10148	6a5adafc75fbc5e8		5	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78340	c1cd2b8bfc7d9141		67	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	44e07342c9eb7399		0	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	37668	0b93c811ad9c1436		11	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/cpu/sysgen/IP35boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23668	312f6d991747e24c		22	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/diags/compositor/bin/sting	diagnostics	board-diagnostic	executable	n32	368640	8781b667660f08c5		323	0	0	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
-usr/diags/compositor/data/1280_1024_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	a081259ae69eea74	usr/gfx/ucode/STINGRAY/cmb/1280_1024_60_no_tiles.cmb	0	0	0	undocumented		
-usr/diags/compositor/data/1280_1024_72_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6a2908b2502c5451	usr/gfx/ucode/STINGRAY/cmb/1280_1024_72_no_tiles.cmb	0	0	0	undocumented		
-usr/diags/compositor/data/1280_1024_75_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	ebca441093bc6ee7	usr/gfx/ucode/STINGRAY/cmb/1280_1024_75_no_tiles.cmb	0	0	0	undocumented		
-usr/diags/compositor/data/1600_1200_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6b6ded0efdcabbb9	usr/gfx/ucode/STINGRAY/cmb/1600_1200_60_no_tiles.cmb	0	0	0	undocumented		
-usr/diags/compositor/data/1920_1200_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1208	2117ae6edbdca2c6	usr/gfx/ucode/STINGRAY/cmb/1920_1200_60_no_tiles.cmb	0	0	0	undocumented		
-usr/gfx/STINGRAY/bin/cmp_flash	diagnostics	board-diagnostic	executable	n32	39704	28344b9030f8d2c5		26	0	0	named-only	docs/diagnostics-and-libgl-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater (`usr/gfx/STINGRAY/bin/cmp_flash`)
-usr/gfx/STINGRAY/bin/cmp_flash_all	diagnostics	board-diagnostic	data	-	242	02bd021d4564daeb		0	0	0	named-only	IRIX_FILES.md#6-wider-scope-every-6530-file-that-touches-vpro	6. Wider scope: every 6.5.30 file that touches VPro
-usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	d407a52144d94f17		2936	0	0	named-only	docs/display.md#overlay-planes	Overlay planes
-usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	a4292f9008f1d637		671	0	0	undocumented		
-usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	de0a3a3704607c34		5169	4227	0	undocumented		
-usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	e08d1158b175fd0e		673	0	0	undocumented		
-usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	7cdc1b3426125b92		5216	5132	0	undocumented		
-usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9cc0e57ebdcaaa1f		673	0	0	undocumented		
-usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	81edba0fb8e2731d		5137	5051	0	undocumented		
-usr/gfx/arch/IP35ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	984ac9208f2c2ca8		671	0	0	undocumented		
-usr/gfx/arch/IP35ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	917be72af65958b2		5169	4227	0	undocumented		
-usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	3c495b596716001b		673	0	0	undocumented		
-usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	5132	0	undocumented		
-usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	0	0	undocumented		
-usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	5051	0	undocumented		
-usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
-usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	0	0	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
-usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0	0	0	named-only	ucode/buzz_ucode.md#location-and-size	Location and size
-usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
-usr/gfx/ucode/ODSY/vof/1024x768_60.vfo	microcode	board-microcode	data	-	8424	6348519cb39c2b89		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1024x768_75.vfo	microcode	board-microcode	data	-	8308	4a09147bf64ad526		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1024x768_96s.vfo	microcode	board-microcode	data	-	9636	61e3736848dee489		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_100s.vfo	microcode	board-microcode	data	-	9804	9616fb783e76ac4f		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_100s_ds.vfo	microcode	board-microcode	data	-	10028	50980e9ff9ac8c70		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_25f.vfo	microcode	board-microcode	data	-	9024	fd14ca3f2a7a1a36		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_30f.vfo	microcode	board-microcode	data	-	9128	99998ee8ce140ff3		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_59.vfo	microcode	board-microcode	data	-	8504	e93ec9c2a4bbd333		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_60.vfo	microcode	board-microcode	data	-	8440	e25c0ee0218b7fe2		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_60_safe.vfo	microcode	board-microcode	data	-	8440	02357fbf83ae7bf4		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_72.vfo	microcode	board-microcode	data	-	8472	d032b186f934f3ff		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_75.vfo	microcode	board-microcode	data	-	8488	753525f647136698		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_85.vfo	microcode	board-microcode	data	-	8488	530018b96f966edd		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_96.vfo	microcode	board-microcode	data	-	8468	ca7627b7e51dc7cf		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x1024_96s.vfo	microcode	board-microcode	data	-	9756	aa920f2dec0790b6		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x492_114s.vfo	microcode	board-microcode	data	-	9572	8f879d9bd6d46515		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x492_120s.vfo	microcode	board-microcode	data	-	9704	38a6310552c343c7		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x720_60.vfo	microcode	board-microcode	data	-	8468	891d4b62b905282f		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x720_72.vfo	microcode	board-microcode	data	-	8388	efed624fa0c314a3		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1280x960_30i.vfo	microcode	board-microcode	data	-	10828	406a66f64d12fbd7		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1024_60.vfo	microcode	board-microcode	data	-	8688	2b9de99de7e42940		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1024_60_ds.vfo	microcode	board-microcode	data	-	8536	aabba691cbe5ec6c		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1024_72.vfo	microcode	board-microcode	data	-	8584	fd3ad8bb198fc5de		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1024_83.vfo	microcode	board-microcode	data	-	8620	0fe7d57cc01673a5		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1200_60.vfo	microcode	board-microcode	data	-	8592	39ec9e5b5aac3f0c		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1200_72.vfo	microcode	board-microcode	data	-	8480	b2cef9a0a0652b23		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1600x1200_75.vfo	microcode	board-microcode	data	-	8616	7cd1bbd09d81d9cf		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1035_30i.vfo	microcode	board-microcode	data	-	10936	a6840bb64d14fb08		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1080_30i.vfo	microcode	board-microcode	data	-	11444	2c60a501567c7292		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1080_72.vfo	microcode	board-microcode	data	-	8744	8942192dda610e50		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_2398r2.vfo	microcode	board-microcode	data	-	9356	ff4b976f21f76127		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_24r2.vfo	microcode	board-microcode	data	-	9356	82b33a828a9aa57e		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_25f.vfo	microcode	board-microcode	data	-	9356	5af9a8b028dad4dd		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_25r2.vfo	microcode	board-microcode	data	-	9356	058c2262999daa32		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_2997f.vfo	microcode	board-microcode	data	-	9356	3a37b3b226695516		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_2997r2.vfo	microcode	board-microcode	data	-	9356	384dd6d835d4cddf		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_30f.vfo	microcode	board-microcode	data	-	9356	79ce5076bdf5c995		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_30r2.vfo	microcode	board-microcode	data	-	9356	320504494c22ed54		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_50.vfo	microcode	board-microcode	data	-	8668	00a2eeeb6d49e1fa		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_5994.vfo	microcode	board-microcode	data	-	8672	094937a69a5bc0de		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1154_60.vfo	microcode	board-microcode	data	-	8668	757a46cb3199011f		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1200_25f.vfo	microcode	board-microcode	data	-	9704	cb7ef64e35664677		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1200_30f.vfo	microcode	board-microcode	data	-	9704	ea141ee4a30355f2		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1200_60.vfo	microcode	board-microcode	data	-	8764	ee285c9cddef7455		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/1920x1200_60p.vfo	microcode	board-microcode	data	-	8616	e55d36229760a144		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1024x768_60.vfo	microcode	board-microcode	data	-	9368	9f9e20878dc0cd65		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1024x768_75.vfo	microcode	board-microcode	data	-	9288	d2595a015d54e2fc		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1280x1024_60.vfo	microcode	board-microcode	data	-	9472	7d83fd36c9ef164d		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1280x1024_66_ds.vfo	microcode	board-microcode	data	-	9540	c32bf4809c97b737		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1280x1024_72.vfo	microcode	board-microcode	data	-	9568	301d3fa926f881c4		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1280x1024_85.vfo	microcode	board-microcode	data	-	9584	b53ef7460908c6d3		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1280x720_60.vfo	microcode	board-microcode	data	-	9456	98d94b2ebd718f96		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1280x720_72.vfo	microcode	board-microcode	data	-	9448	178fdba33fe7b729		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1024_60_ds.vfo	microcode	board-microcode	data	-	9736	aa5c999d5319518b		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1024_60p.vfo	microcode	board-microcode	data	-	9948	b1704fddcb614e10		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1024_60p_ds.vfo	microcode	board-microcode	data	-	9948	b22d3e5b0432e054		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1024_72.vfo	microcode	board-microcode	data	-	9776	a00347cf4b5addf8		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1024_83_ds.vfo	microcode	board-microcode	data	-	9960	60f531c7ef265c76		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1200_60_ds.vfo	microcode	board-microcode	data	-	9736	dcd2012c1589c1ca		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1200_72_ds.vfo	microcode	board-microcode	data	-	9736	7e86ca381816c463		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1600x1200_75_ds.vfo	microcode	board-microcode	data	-	9736	a46e6e2f33d7cd1c		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1920x1080_60_ds.vfo	microcode	board-microcode	data	-	10128	c5e9a1b8f2194e9e		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1920x1080_72_ds.vfo	microcode	board-microcode	data	-	10128	79a30ab7b3f6b18f		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1920x1200_50p.vfo	microcode	board-microcode	data	-	9800	e70e881c4474e07a		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1920x1200_60_ds.vfo	microcode	board-microcode	data	-	10152	8079af75ae2862f0		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1920x1200_60p.vfo	microcode	board-microcode	data	-	9792	f6285ab5be89a27b		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/2@1920x1200_72_ds.vfo	microcode	board-microcode	data	-	10104	db0ee06d815e0f09		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/640x480_60.vfo	microcode	board-microcode	data	-	8128	b732f3a1e2814af0		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/640x486_30i.vfo	microcode	board-microcode	data	-	10096	3dd036d6bb2d4fa0		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/768x576_25i.vfo	microcode	board-microcode	data	-	10232	56c75056eac116df		0	0	0	undocumented		
-usr/gfx/ucode/ODSY/vof/800x600_60.vfo	microcode	board-microcode	data	-	8320	09adb965cac05cbe		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/cmb/1280_1024_60_4_tiles.cmb	microcode	board-microcode	data	-	1204	2c8ce382ced14e99		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/cmb/1280_1024_72_4_tiles.cmb	microcode	board-microcode	data	-	1204	4641c88d5145c83d		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/cmb/1280_1024_75_4_tiles.cmb	microcode	board-microcode	data	-	1204	831e5a9ff31e213b		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/cmb/1280_1024_96s.cmb	microcode	board-microcode	data	-	2160	37b8720059686fd9	usr/gfx/ucode/STINGRAY/cmb/1280_1024_96s_4_tiles.cmb	0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/cmb/1600_1200_60_4_tiles.cmb	microcode	board-microcode	data	-	1204	82575f8e91d4c8ef		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/cmb/1920_1200_60_4_tiles.cmb	microcode	board-microcode	data	-	1208	d495385e855f2e79		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	10824	28ee2193138e0153		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1280x1024_72.vfo	microcode	board-microcode	data	-	10956	93ce32b40c296002		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1280x1024_75.vfo	microcode	board-microcode	data	-	10956	1ecac8c89c629492		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1280x1024_96.vfo	microcode	board-microcode	data	-	10824	b96cfc05611836d0		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1280x1024_96s.vfo	microcode	board-microcode	data	-	10200	b193a32b1f05cf60		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1280x1024_96s_serrated.vfo	microcode	board-microcode	data	-	11160	790b6b01344902d5		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1600x1200_60.vfo	microcode	board-microcode	data	-	10956	ddddde8ceebc9fa7		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/1920x1200_60.vfo	microcode	board-microcode	data	-	10944	c82812b4fba6b5d0		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/vfo/README	microcode	board-microcode	data	-	9266	df33df21fb69f7e1		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/xlx/VERSION	microcode	board-microcode	data	-	54	90e3e02d18ed3e78		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/xlx/ccx.mcs	microcode	board-microcode	data	-	2316159	f37b2931912e58a9		0	0	0	undocumented		
-usr/gfx/ucode/STINGRAY/xlx/ctx1.mcs	microcode	board-microcode	data	-	221558	47a9b071f681b974		0	0	0	undocumented		
-usr/gfx/ucode/vfc/rules/VPro_BlockSync.def	video-formats	board-data	data	-	4692	826a1c157cf5846f		0	0	0	undocumented		
-usr/gfx/ucode/vfc/rules/VPro_Board.def	video-formats	board-data	data	-	53633	9ce581572ee4109c		0	0	0	undocumented		
-usr/gfx/ucode/vfc/rules/VPro_Chip.def	video-formats	board-data	data	-	189	f684d1d6158e6725		0	0	0	undocumented		
-usr/gfx/ucode/vfc/rules/VPro_DCD.def	video-formats	board-data	data	-	4354	94bc141a51462379		0	0	0	undocumented		
-usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	b797d7447743a1db		981	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/lib/X11/dyDDX/odyssey.so	x-module	board-x-module	shared-object	n32	2303564	0fb2a1debd2b3145		1000	0	0	named-only	docs/display.md#the-vfo-values	The `.vfo` values
-usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	0	0	named-only	docs/diagnostics-and-libgl-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
-var/sysgen/master.d/odyssey	kernel-config	shared-data	data	-	127	1043ee5f3104c120		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-var/sysgen/master.d/odysseystubs	kernel-config	shared-data	data	-	130	ac2d943e5dc3168b		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-var/sysgen/mtune/odyssey	kernel-config	shared-data	data	-	1357	95f16be7f55bdd91		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+binary	group	role	kind	abi	bytes	sha256	copies	functions	address_source	access_sites	unresolved_sites	status	doc	section
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13588	0ed05985a3cc7b81	usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16004	d6346dc0f54a1287	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7620	08d45543f8dc353f	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	60580	72373a9173c6ede8	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	21	symtab	187	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	15844	7dde76b945c93030	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	8	symtab	97	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49476	ef6293d41342364d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	symtab	1009	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14292	d02595bb463fc6ab	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)	8	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	42852	f3121efbc77e0634	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	25	symtab	47	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10372	e77a019f939b2e5b	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	3	symtab	3	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_denali.o)	kernel	board-kernel	object	n64	8084	2cc83c1b99481e65	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_denali.o)	2	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13348	703816000a8e8108	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	8	symtab	5	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	36020	4f17430bb0f90d67	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	22	symtab	87	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17028	6c7064bdd3bb54da	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	11	symtab	37	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	1220	a1f4b5c2b48a5960	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dvi.o)	0	none	0	0	undocumented		
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	9556	eb6715ae894da81c	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	6	symtab	5	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)	kernel	board-kernel	object	n64	26356	b3b966ce401f8ca4	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)	19	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	74308	24e95c84974c272d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	20	symtab	311	28	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	1236	67dd60f94fc96a2f	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o);usr/cpu/sysgen/IP35boot/odyssey.a(odsy_idbg.o)	0	none	0	0	undocumented		
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	81796	3a57d1f9c48c2b32	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	29	symtab	166	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	20628	d0b9363bb76221e6	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	5	symtab	38	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	14756	96b854b83451467a	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	13	symtab	4	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)	kernel	board-kernel	object	n64	8228	5f980b3d068f89c7	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)	6	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19908	c908d2d7825b563d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	13	symtab	27	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9364	c817011216ea1524	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	5	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78372	d1ddab50d97ce38e	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	67	symtab	24	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	1252	3518a0619ab3b875	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o);usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sim.o)	0	none	0	0	undocumented		
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	8eab2abf92dac337	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	0	none	0	0	undocumented		
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	38052	fd3d260c2bf86400	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8452	66967437c5aab8d9	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	symtab	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	0e4dcd6286cc5c7a		671	dynsym+mdebug	0	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	bd4b77fe6bd4a187		5169	dynsym+mdebug	4227	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	aa9005aa43d3b8e2		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	9abe5557d67810d2		5216	dynsym+dwarf	5132	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	dfe753e69d105ba4		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	30dc6c8e51d7b67b		5137	dynsym+dwarf	5051	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	12660	17d6b78a3a02bbf4		4	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	15444	f0f03bd7c7436e1c		18	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7284	76fc65b5256c1eb3		3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	49076	cacbeba17d7db99e		19	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	10916	2be13ab21f19b73d		6	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	45364	558979c3fed87c30		26	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	40484	161e9ab046ac2daa		24	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10068	62bbd249dba6ebbd		3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	12996	348432b23817ebaa		8	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	32532	a280c3efdba20666		20	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	16900	60ed2787555c6d87		11	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	9460	fbd43aac0a2c8e22		6	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	40756	c3c408cabce62008		12	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	2804	ee7113ac7daefb11		0	none	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	74804	997967663a3ae559		26	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16132	b90410e96a3552bf		5	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15156	696add11f872186d		13	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19140	b7d5acea538a5d44		13	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9284	59dd9c4b306c5b5e		5	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69124	f01f16980ddaaef5		57	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	2836	f2ea13a335c373b4		0	none	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	7044	9fc8662738573c1e		0	none	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	34804	93cb0abade6d9383		11	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8468	b8e9a527be877b29		2	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	451872	3c68b371202c7fa2		650	dynsym+mdebug	0	0	undocumented		
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3436908	70d13a747bd4b32d		5103	dynsym+mdebug	4101	0	undocumented		
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	464860	3d5ff7d7e05ba6ae		650	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3446300	559ab3bd2c902d15		5155	dynsym (dwarf addresses stale, dropped)	4231	0	undocumented		
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	2f5f62fe1554e93e		650	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	fe20e3ac37ec80d2		5076	dynsym+dwarf	4231	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	12692	bdd940e71a7c1485		4	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	15476	c3cf6568d940ff96		18	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7316	826fe390ae6a2ced		3	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	49108	f55e32f1872ae294		19	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	10932	bd15d88f316ed7a4		6	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	45396	f69fc439425cf980		26	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	40516	79b50608b02bbfe7		24	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10100	ea93c85109c16f0b		3	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13028	6aa4b5b90014db73		8	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	32564	bf297e32f31ef00c		20	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	16916	149403ef609e55ed		11	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	9492	0e115592fda2161d		6	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	40772	3ea888c7135626d5		12	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_idbg.o)	kernel	board-kernel	object	n64	2836	fdde1a7baa559fe5		0	none	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	74820	d3172ec38e7b0b58		26	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16164	896eff8228356fde		5	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15172	2e38e0c0b9693cae		13	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19172	958b9dc00cbe8e6b		13	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9316	80aa972288f40eed		5	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69156	dee3312a172f9e2c		57	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	2900	dc398513ba9bdf08		0	none	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	7076	2d00e2a66673bb41		0	none	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	34836	cd7ebefe832fbecc		11	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8500	2e5e0b105486c468		2	symtab	0	0	undocumented		
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	451872	1cecb6f857a1c3fb		650	dynsym+mdebug	0	0	undocumented		
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3436908	e24e46db85ec5243		5103	dynsym+mdebug	4101	0	undocumented		
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	464860	17413369cbedc085		650	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3446300	f032755d989b7faa		5155	dynsym (dwarf addresses stale, dropped)	4231	0	undocumented		
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	94f61adbfa12bb44		650	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	e23071c866ed246d		5076	dynsym+dwarf	4231	0	undocumented		
+sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	strings	0	0	named-only	docs/open-questions.md#microcode	Microcode
+usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	strings	0	0	named-only	docs/display.md#kernel-cursor-request	Kernel cursor request
+usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	strings	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP30boot/gfx.o	kernel-shared	shared-kernel	object	n64	53712	73041c9bcd3351fc		62	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	16516	c637564e7dc7a6d8		22	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53716	2a9821583c887b17		62	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	none	0	0	undocumented		
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8532	ffa00ad7d65e7713		18	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP30boot/kernel.o	kernel-shared	shared-kernel	object	n64	577112	32d900592e14a557		726	symtab+dwarf	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP30boot/odysseystubs.a(odysseystubs.o)	kernel-shared	shared-kernel	object	n64	3476	8e6cf21717743f03	usr/cpu/sysgen/IP35boot/odysseystubs.a(odysseystubs.o)	1	none	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/cpu/sysgen/IP30boot/rrm.o	kernel-shared	shared-kernel	object	n64	63904	ad36cdbdba058c54		72	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP30boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23588	12a1e64b81279ccb		22	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP35boot/kernel.o	kernel-shared	shared-kernel	object	n64	1288752	2e847fdcadfdb958		1318	symtab+dwarf	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13620	c1e5a85bee26f8b1		4	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16228	fa079f9475f5fefa		18	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	symtab	191	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	symtab	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	symtab	16	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14260	9a2e70adc6f1562c		8	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	42820	f4287f15bdf94e9a		25	symtab	47	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10932	3eba17fd2b1dbff0		3	symtab	3	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)	kernel	board-kernel	object	n64	8052	529f62f5d023adc6		2	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13316	eaa00f3516f88664		8	symtab	5	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	35716	f331b8ce559f5893		22	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17892	b720e459433313a1		11	symtab	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	14676	53413c6a99a7dc6d		9	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	12324	c4c87485c608dea4		9	symtab	13	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)	kernel	board-kernel	object	n64	26324	e0b44ca930a6855e		19	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	kernel	board-kernel	object	n64	74276	a2e274202900aba6		20	symtab	311	28	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	kernel	board-kernel	object	n64	89076	ff0614b46114a3a1		32	symtab	169	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	20596	5b2ae25836595905		5	symtab	38	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15572	c0d00cfc3c703194		13	symtab	4	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)	kernel	board-kernel	object	n64	8228	9f002f8b9dfe9f23		6	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	20516	28a082ad65786639		13	symtab	27	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	10148	6a5adafc75fbc5e8		5	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78340	c1cd2b8bfc7d9141		67	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	44e07342c9eb7399		0	none	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	37668	0b93c811ad9c1436		11	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/sysgen/IP35boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23668	312f6d991747e24c		22	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/diags/compositor/bin/sting	diagnostics	board-diagnostic	executable	n32	368640	8781b667660f08c5		323	dynsym	0	0	named-only	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
+usr/diags/compositor/data/1280_1024_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	a081259ae69eea74	usr/gfx/ucode/STINGRAY/cmb/1280_1024_60_no_tiles.cmb	0		0	0	undocumented		
+usr/diags/compositor/data/1280_1024_72_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6a2908b2502c5451	usr/gfx/ucode/STINGRAY/cmb/1280_1024_72_no_tiles.cmb	0		0	0	undocumented		
+usr/diags/compositor/data/1280_1024_75_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	ebca441093bc6ee7	usr/gfx/ucode/STINGRAY/cmb/1280_1024_75_no_tiles.cmb	0		0	0	undocumented		
+usr/diags/compositor/data/1600_1200_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1204	6b6ded0efdcabbb9	usr/gfx/ucode/STINGRAY/cmb/1600_1200_60_no_tiles.cmb	0		0	0	undocumented		
+usr/diags/compositor/data/1920_1200_60_no_tiles.cmb	diagnostics	board-diagnostic	data	-	1208	2117ae6edbdca2c6	usr/gfx/ucode/STINGRAY/cmb/1920_1200_60_no_tiles.cmb	0		0	0	undocumented		
+usr/gfx/STINGRAY/bin/cmp_flash	diagnostics	board-diagnostic	executable	n32	39704	28344b9030f8d2c5		26	dynsym	0	0	named-only	docs/diagnostics-and-libgl-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater (`usr/gfx/STINGRAY/bin/cmp_flash`)
+usr/gfx/STINGRAY/bin/cmp_flash_all	diagnostics	board-diagnostic	data	-	242	02bd021d4564daeb		0		0	0	named-only	IRIX_FILES.md#6-wider-scope-every-6530-file-that-touches-vpro	6. Wider scope: every 6.5.30 file that touches VPro
+usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	d407a52144d94f17		2936	dynsym	0	0	named-only	docs/display.md#overlay-planes	Overlay planes
+usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	dynsym+mdebug	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	dynsym (dwarf addresses stale, dropped)	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	a4292f9008f1d637		671	dynsym+mdebug	0	0	undocumented		
+usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	de0a3a3704607c34		5169	dynsym+mdebug	4227	0	undocumented		
+usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	e08d1158b175fd0e		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	7cdc1b3426125b92		5216	dynsym+dwarf	5132	0	undocumented		
+usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9cc0e57ebdcaaa1f		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	81edba0fb8e2731d		5137	dynsym+dwarf	5051	0	undocumented		
+usr/gfx/arch/IP35ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	984ac9208f2c2ca8		671	dynsym+mdebug	0	0	undocumented		
+usr/gfx/arch/IP35ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	917be72af65958b2		5169	dynsym+mdebug	4227	0	undocumented		
+usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	3c495b596716001b		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	dynsym+dwarf	5132	0	undocumented		
+usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
+usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	dynsym+dwarf	5051	0	undocumented		
+usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	dynsym	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
+usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	dynsym	0	0	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
+usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0		0	0	named-only	ucode/buzz_ucode.md#location-and-size	Location and size
+usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0		0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
+usr/gfx/ucode/ODSY/vof/1024x768_60.vfo	microcode	board-microcode	data	-	8424	6348519cb39c2b89		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1024x768_75.vfo	microcode	board-microcode	data	-	8308	4a09147bf64ad526		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1024x768_96s.vfo	microcode	board-microcode	data	-	9636	61e3736848dee489		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_100s.vfo	microcode	board-microcode	data	-	9804	9616fb783e76ac4f		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_100s_ds.vfo	microcode	board-microcode	data	-	10028	50980e9ff9ac8c70		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_25f.vfo	microcode	board-microcode	data	-	9024	fd14ca3f2a7a1a36		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_30f.vfo	microcode	board-microcode	data	-	9128	99998ee8ce140ff3		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_59.vfo	microcode	board-microcode	data	-	8504	e93ec9c2a4bbd333		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_60.vfo	microcode	board-microcode	data	-	8440	e25c0ee0218b7fe2		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_60_safe.vfo	microcode	board-microcode	data	-	8440	02357fbf83ae7bf4		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_72.vfo	microcode	board-microcode	data	-	8472	d032b186f934f3ff		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_75.vfo	microcode	board-microcode	data	-	8488	753525f647136698		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_85.vfo	microcode	board-microcode	data	-	8488	530018b96f966edd		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_96.vfo	microcode	board-microcode	data	-	8468	ca7627b7e51dc7cf		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x1024_96s.vfo	microcode	board-microcode	data	-	9756	aa920f2dec0790b6		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x492_114s.vfo	microcode	board-microcode	data	-	9572	8f879d9bd6d46515		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x492_120s.vfo	microcode	board-microcode	data	-	9704	38a6310552c343c7		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x720_60.vfo	microcode	board-microcode	data	-	8468	891d4b62b905282f		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x720_72.vfo	microcode	board-microcode	data	-	8388	efed624fa0c314a3		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1280x960_30i.vfo	microcode	board-microcode	data	-	10828	406a66f64d12fbd7		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1024_60.vfo	microcode	board-microcode	data	-	8688	2b9de99de7e42940		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1024_60_ds.vfo	microcode	board-microcode	data	-	8536	aabba691cbe5ec6c		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1024_72.vfo	microcode	board-microcode	data	-	8584	fd3ad8bb198fc5de		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1024_83.vfo	microcode	board-microcode	data	-	8620	0fe7d57cc01673a5		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1200_60.vfo	microcode	board-microcode	data	-	8592	39ec9e5b5aac3f0c		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1200_72.vfo	microcode	board-microcode	data	-	8480	b2cef9a0a0652b23		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1600x1200_75.vfo	microcode	board-microcode	data	-	8616	7cd1bbd09d81d9cf		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1035_30i.vfo	microcode	board-microcode	data	-	10936	a6840bb64d14fb08		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1080_30i.vfo	microcode	board-microcode	data	-	11444	2c60a501567c7292		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1080_72.vfo	microcode	board-microcode	data	-	8744	8942192dda610e50		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_2398r2.vfo	microcode	board-microcode	data	-	9356	ff4b976f21f76127		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_24r2.vfo	microcode	board-microcode	data	-	9356	82b33a828a9aa57e		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_25f.vfo	microcode	board-microcode	data	-	9356	5af9a8b028dad4dd		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_25r2.vfo	microcode	board-microcode	data	-	9356	058c2262999daa32		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_2997f.vfo	microcode	board-microcode	data	-	9356	3a37b3b226695516		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_2997r2.vfo	microcode	board-microcode	data	-	9356	384dd6d835d4cddf		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_30f.vfo	microcode	board-microcode	data	-	9356	79ce5076bdf5c995		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_30r2.vfo	microcode	board-microcode	data	-	9356	320504494c22ed54		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_50.vfo	microcode	board-microcode	data	-	8668	00a2eeeb6d49e1fa		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_5994.vfo	microcode	board-microcode	data	-	8672	094937a69a5bc0de		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1154_60.vfo	microcode	board-microcode	data	-	8668	757a46cb3199011f		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1200_25f.vfo	microcode	board-microcode	data	-	9704	cb7ef64e35664677		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1200_30f.vfo	microcode	board-microcode	data	-	9704	ea141ee4a30355f2		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1200_60.vfo	microcode	board-microcode	data	-	8764	ee285c9cddef7455		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/1920x1200_60p.vfo	microcode	board-microcode	data	-	8616	e55d36229760a144		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1024x768_60.vfo	microcode	board-microcode	data	-	9368	9f9e20878dc0cd65		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1024x768_75.vfo	microcode	board-microcode	data	-	9288	d2595a015d54e2fc		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1280x1024_60.vfo	microcode	board-microcode	data	-	9472	7d83fd36c9ef164d		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1280x1024_66_ds.vfo	microcode	board-microcode	data	-	9540	c32bf4809c97b737		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1280x1024_72.vfo	microcode	board-microcode	data	-	9568	301d3fa926f881c4		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1280x1024_85.vfo	microcode	board-microcode	data	-	9584	b53ef7460908c6d3		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1280x720_60.vfo	microcode	board-microcode	data	-	9456	98d94b2ebd718f96		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1280x720_72.vfo	microcode	board-microcode	data	-	9448	178fdba33fe7b729		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1024_60_ds.vfo	microcode	board-microcode	data	-	9736	aa5c999d5319518b		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1024_60p.vfo	microcode	board-microcode	data	-	9948	b1704fddcb614e10		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1024_60p_ds.vfo	microcode	board-microcode	data	-	9948	b22d3e5b0432e054		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1024_72.vfo	microcode	board-microcode	data	-	9776	a00347cf4b5addf8		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1024_83_ds.vfo	microcode	board-microcode	data	-	9960	60f531c7ef265c76		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1200_60_ds.vfo	microcode	board-microcode	data	-	9736	dcd2012c1589c1ca		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1200_72_ds.vfo	microcode	board-microcode	data	-	9736	7e86ca381816c463		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1600x1200_75_ds.vfo	microcode	board-microcode	data	-	9736	a46e6e2f33d7cd1c		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1920x1080_60_ds.vfo	microcode	board-microcode	data	-	10128	c5e9a1b8f2194e9e		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1920x1080_72_ds.vfo	microcode	board-microcode	data	-	10128	79a30ab7b3f6b18f		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1920x1200_50p.vfo	microcode	board-microcode	data	-	9800	e70e881c4474e07a		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1920x1200_60_ds.vfo	microcode	board-microcode	data	-	10152	8079af75ae2862f0		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1920x1200_60p.vfo	microcode	board-microcode	data	-	9792	f6285ab5be89a27b		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/2@1920x1200_72_ds.vfo	microcode	board-microcode	data	-	10104	db0ee06d815e0f09		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/640x480_60.vfo	microcode	board-microcode	data	-	8128	b732f3a1e2814af0		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/640x486_30i.vfo	microcode	board-microcode	data	-	10096	3dd036d6bb2d4fa0		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/768x576_25i.vfo	microcode	board-microcode	data	-	10232	56c75056eac116df		0		0	0	undocumented		
+usr/gfx/ucode/ODSY/vof/800x600_60.vfo	microcode	board-microcode	data	-	8320	09adb965cac05cbe		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/cmb/1280_1024_60_4_tiles.cmb	microcode	board-microcode	data	-	1204	2c8ce382ced14e99		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/cmb/1280_1024_72_4_tiles.cmb	microcode	board-microcode	data	-	1204	4641c88d5145c83d		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/cmb/1280_1024_75_4_tiles.cmb	microcode	board-microcode	data	-	1204	831e5a9ff31e213b		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/cmb/1280_1024_96s.cmb	microcode	board-microcode	data	-	2160	37b8720059686fd9	usr/gfx/ucode/STINGRAY/cmb/1280_1024_96s_4_tiles.cmb	0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/cmb/1600_1200_60_4_tiles.cmb	microcode	board-microcode	data	-	1204	82575f8e91d4c8ef		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/cmb/1920_1200_60_4_tiles.cmb	microcode	board-microcode	data	-	1208	d495385e855f2e79		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	10824	28ee2193138e0153		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1280x1024_72.vfo	microcode	board-microcode	data	-	10956	93ce32b40c296002		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1280x1024_75.vfo	microcode	board-microcode	data	-	10956	1ecac8c89c629492		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1280x1024_96.vfo	microcode	board-microcode	data	-	10824	b96cfc05611836d0		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1280x1024_96s.vfo	microcode	board-microcode	data	-	10200	b193a32b1f05cf60		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1280x1024_96s_serrated.vfo	microcode	board-microcode	data	-	11160	790b6b01344902d5		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1600x1200_60.vfo	microcode	board-microcode	data	-	10956	ddddde8ceebc9fa7		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/1920x1200_60.vfo	microcode	board-microcode	data	-	10944	c82812b4fba6b5d0		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/vfo/README	microcode	board-microcode	data	-	9266	df33df21fb69f7e1		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/xlx/VERSION	microcode	board-microcode	data	-	54	90e3e02d18ed3e78		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/xlx/ccx.mcs	microcode	board-microcode	data	-	2316159	f37b2931912e58a9		0		0	0	undocumented		
+usr/gfx/ucode/STINGRAY/xlx/ctx1.mcs	microcode	board-microcode	data	-	221558	47a9b071f681b974		0		0	0	undocumented		
+usr/gfx/ucode/vfc/rules/VPro_BlockSync.def	video-formats	board-data	data	-	4692	826a1c157cf5846f		0		0	0	undocumented		
+usr/gfx/ucode/vfc/rules/VPro_Board.def	video-formats	board-data	data	-	53633	9ce581572ee4109c		0		0	0	undocumented		
+usr/gfx/ucode/vfc/rules/VPro_Chip.def	video-formats	board-data	data	-	189	f684d1d6158e6725		0		0	0	undocumented		
+usr/gfx/ucode/vfc/rules/VPro_DCD.def	video-formats	board-data	data	-	4354	94bc141a51462379		0		0	0	undocumented		
+usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	b797d7447743a1db		981	dynsym	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/lib/X11/dyDDX/odyssey.so	x-module	board-x-module	shared-object	n32	2303564	0fb2a1debd2b3145		1000	dynsym	0	0	named-only	docs/display.md#the-vfo-values	The `.vfo` values
+usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/sbin/Confidence/dualchannel	diagnostics	board-diagnostic	executable	o32	70132	9051ef55a049d983		39	dynsym	0	0	named-only	docs/diagnostics-and-libgl-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test (`usr/sbin/Confidence/dualchannel`)
+var/sysgen/master.d/odyssey	kernel-config	shared-data	data	-	127	1043ee5f3104c120		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+var/sysgen/master.d/odysseystubs	kernel-config	shared-data	data	-	130	ac2d943e5dc3168b		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+var/sysgen/mtune/odyssey	kernel-config	shared-data	data	-	1357	95f16be7f55bdd91		0		0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)

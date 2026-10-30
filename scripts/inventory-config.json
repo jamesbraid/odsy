@@ -1,5 +1,6 @@
 {
   "family": "VPro (Odyssey)",
+  "siblings": {"kona": "../kona", "crime": "../crime"},
   "docs": {
     "prose": [
       "docs/*.md",
