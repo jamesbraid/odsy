@@ -542,3 +542,284 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   `mm_release_extent` with it and 0; it then stores -1 at +56 and into the slot of the per-resource table
   (pointer at +152 of the record behind +8) indexed by the halfword at +0, and clears bit 3 of the flag
   word at +64. It returns 0.
+- `odsyHashAlloc` (`odsy_adt.o`, offset 0xd04, 152 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Allocates a hash table of N buckets, N being its argument: one `kmem_alloc` of 24 bytes per bucket plus
+  an 8-byte header, flags 0. On success it stores N in the header word at +0 and turns each 24-byte bucket
+  into an empty circular list by pointing both link words of the sentinel at +8 of the bucket back at
+  itself. It returns the table, or 0 when the allocation fails or N is not positive.
+- `odsyHashDealloc` (`odsy_adt.o`, offset 0xd9c, 112 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Frees a hash table. It reads the bucket count from the header word at +0, overwrites the 24 bytes per
+  bucket plus 8 header bytes with the poison byte 0xd4 using store-prefetch hints, and then calls
+  `kmem_free` on the table.
+- `odsyHashInsert` (`odsy_adt.o`, offset 0xe50, 48 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Adds a node at the front of one bucket. The bucket sentinel is at table +8 plus 24 times the bucket
+  index; the node's next link at +0 takes the old first node, its previous link at +8 takes the sentinel,
+  and the old first node's previous link and the sentinel's next link are both pointed at the new node.
+- `odsyHashRemove` (`odsy_adt.o`, offset 0xe80, 36 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Unlinks a node from its circular bucket list: the predecessor's next link at +0 takes the node's next,
+  the successor's previous link at +8 takes the node's previous, and both links of the node are then
+  cleared to zero.
+- `odsyHashLookup` (`odsy_adt.o`, offset 0xe0c, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Searches one bucket of a hash table. It starts at the sentinel at table +8 plus 24 times the bucket
+  index, follows the next links at +0 until it is back at the sentinel, and returns the first node whose
+  32-bit key at +16 equals the third argument, or 0 when none does.
+- `OdsyInit32kSlotMask` (`odsy_adt.o`, offset 0xaa4, 56 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Prepares a 4112-byte slot-mask structure: `bzero` over the whole block, the word at +8 set to 0 and the
+  doubleword at +0 set to its second argument.
+- `odsy_i2c_short_recvbyte` (`odsy_i2c.o`, offset 0x6c94, 76 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Receives one byte on the two-wire bus. It calls `odsy_i2c_xfer_done_loop` first and returns that
+  routine's non-zero result as an error. Otherwise it loads the word from the register pointer at +8 of
+  the port record, returns 1 when bit 22 of the word is clear, and when it is set stores the low byte
+  through the pointer in its second argument and returns 0.
+- `odsyInitDDRNs` (`odsy_ddrn.o`, offset 0x0, 80 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)`.
+  Gives a board a zeroed block of 1016 bytes for the display-DDRN counters. When the pointer at board
+  record +28456 is already set it clears the block with `bzero`; otherwise it takes 1016 bytes from
+  `kmem_alloc` with flags 0, stores the pointer at +28456 and clears the new block, doing nothing further
+  when the allocation fails.
+- `odsy_DmaRegion_Pin` (`odsy_dma.o`, offset 0x23c, 96 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Pins the user pages of a DMA region once. It returns 0 at once when the pinned flag at +52 is already
+  set. Otherwise it calls `useracc` with the user address at +32, the length at +40 and the flags 272,
+  returns that call's result when it is non-zero, and on success sets +52 to 1 and calls
+  `odsy_DmaRegion_BuildXlatTbl`, returning 0 whatever that call returns.
+- `odsyInitDrawables` (`odsy_drawable.o`, offset 0x0, 104 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Creates the drawable table of a board. It calls `odsyHashAlloc` for 13 buckets and stores the table at
+  board record +0x8658, logging "odsy: failed to allocate drawable table" at severity 4 when that fails,
+  and in either case initialises the multiple-reader lock at +0x8660 with `mrlock_init` under the name
+  "odsy_drw_lock".
+- `odsyFindDrawable` (`odsy_drawable.o`, offset 0x68, 116 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Looks up a drawable by identifier. It takes the read side of the lock at board record +0x8660 with
+  `mraccessf`, folds the identifier into the sum of its low 16 bits and its upper half, reduces that
+  modulo 13 and calls `odsyHashLookup` on the table at +0x8658 with that bucket and the identifier, then
+  releases the lock with `mrunlock` and returns the node or 0.
+- `odsyFifoTimer` (`odsy_flow.o`, offset 0x32c, 104 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Arms or cancels the command-FIFO watchdog. The timer id lives in the word at board record +0xb444. With
+  a non-zero second argument and no timer pending it calls `timeout` for 1500 ticks with `odsyFifoTimeout`
+  and the board record, saving the id; with a zero second argument and a timer pending it calls
+  `untimeout` and clears the word. Other combinations do nothing.
+- `odsyPinAndMapPfStatRegions` (`odsy_map.o`, offset 0x834, 108 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Maps the performance-statistics buffer of a board into the calling process. It builds a stack request
+  with 1 at +16, 3 at +24 and the length word from board record +0x8560 at +8, and calls `odsyMapPages`
+  with the kernel pointer at +0x8568, that length, the user-address field at +0x8570 and the handle field
+  at +0x8578; it returns the call's result.
+- `odsyPinAndMapASRegions` (`odsy_map.o`, offset 0x74c, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Maps two regions of a board record into a process, clearing the handles at +40 and +56 first. The first
+  call to `odsyMapPages` maps 64 KB from the pointer at +8 of the doubleword behind board record +8, with
+  user address and handle stored at +32 and +40. If that succeeds a second call maps 0xc000 bytes from the
+  next pointer at +16, storing at +48 and +56. It returns the first failure or the second result.
+- `gf_OdsyInvalTLB` (`odsy_map.o`, offset 0x414, 132 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Invalidates the process's translations of a board mapping. It asks `thread_issproc` about the current
+  thread and, for share-group threads, returns 0 without doing anything when bit 2 of the word at +8 of
+  the `gthread_find` result is set. Otherwise it calls `ddv_invaltlb` on the handle at board record +48
+  over the whole range, sets the bit numbered by the halfword loaded from the fixed kernel address
+  0xffffffffffffc3a0 in the word at board record +104, and returns 0.
+- `mm_set_all_cond_list_cursor` (`odsy_pmm.o`, offset 0x22c, 108 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Writes one value into every saved list cursor. When the dirty word at +4800 of the memory-manager record
+  is non-zero it stores its second argument into all 6 classes of 65 slots in the table at +1680 and then
+  clears the dirty word.
+- `odsy_mm_B_warn2` (`odsy_pmm.o`, offset 0x3dac, 120 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Raises the memory-pressure warning to level 2. If the word at +4924 is not yet 2 it logs three severity
+  4 messages through `cmn_err`: backing store oversubscribed, texture corruption likely, and a usage
+  report formed from the doublewords at +4864 and +4880 with its own second argument as the configured
+  maximum. It then stores 2 at +4924.
+- `odsy_mm_cores_exists` (`odsy_pmm.o`, offset 0x1b58, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Tests whether a co-residency range overlaps one already recorded. It looks up the word at +240 of the
+  group in the container at +160 of the structure behind +8 with `OdsyLookupCSetId`, returning 0 when
+  there is none. Otherwise it builds a key from the halfword at +0 of the first argument, twice, and the
+  word behind the structure's +8, and calls `OdsyFindMatchingCSetElem` with `CoresidSubRangeFinder`,
+  returning 1 when an element is found and 0 when not.
+- `gfP_OdsyBRDMGRsetDpyMode` (`odsy_brdmgr.o`, offset 0x2114, 112 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler that sets the display mode. It copies 8 bytes in from the user address in its
+  third argument; a failed copy logs "gfP_OdsyBRDMGRsetDpyMode: bad ptr to arg" at severity 4 and stores
+  14 in the result word. Otherwise it passes both words to `gf_OdsySetDisplayMode`, stores that call's
+  return value in the result word pointed to by its fourth argument, and returns 0.
+- `gfP_OdsyBRDMGRSetDACGain` (`odsy_brdmgr.o`, offset 0x6378, 116 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler for the DAC gain. It copies one 4-byte word in from the user address in its
+  third argument, logging "gfP_OdsyBRDMGRSetDACGain: bad ptr to arg" at severity 4 and storing 14 in the
+  result word when the copy fails, and otherwise calls `odsySetDACGain` on the board pointer at +40 of its
+  first argument, storing the return value in the result word and returning 0.
+- `gfP_OdsyBRDMGRsetBlanking` (`odsy_brdmgr.o`, offset 0x2184, 116 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler for screen blanking. It copies one 4-byte word in from the user address in its
+  third argument, logging "gfP_OdsyBRDMGRsetBlanking: bad ptr to arg" and storing 14 in the result word on
+  failure, and otherwise calls `odsyBlankScreen` on the board pointer at +40 of its first argument with
+  that word, stores the return value in the result word and returns 0.
+- `setDACreg` (`odsy_brdmgr.o`, offset 0x34b0, 164 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Programs the DCD2 DAC over the two-wire bus. It stores the byte 31 at board record +32. When its second
+  argument is non-zero it writes the value (third argument AND 3) OR 0x18 to register 5 with
+  `odsy_i2cPLLRegWrite`; a failure there logs "failed to program DCD2 DAC command" at severity 1 and ends
+  the call. It then writes the low byte of the fourth argument to register 4, logging "failed to program
+  DCD2 DAC value" at severity 1 when that fails.
+- `restoreLineLoop` (`odsy_ctxsw.o`, offset 0x5910, 120 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for line loops. It calls `odsyRestoreVertex` once with the vertex slot 0 and, when
+  the count in its third argument is 2 or more, a second time with the slot ((fourth argument + 1) modulo
+  3) + 1, the other arguments unchanged. A count below 2 ends after the first call.
+- `restoreTriFan` (`odsy_ctxsw.o`, offset 0x5b58, 120 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for triangle fans. It calls `odsyRestoreVertex` first with vertex slot 0 and then,
+  if the count in the third argument is at least 2, once more with slot ((fourth argument + 1) modulo 3) +
+  1; the modulo uses a signed divide by 3. All other arguments pass through unchanged.
+- `restoreTriStrip` (`odsy_ctxsw.o`, offset 0x5a8c, 204 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for triangle strips. It reduces (fourth argument minus count plus 4) modulo 4 with
+  the sign-correcting idiom for the starting slot, then calls `odsyRestoreVertex` once per count with the
+  slot running through 0 to 3 and wrapping, five arguments passed through. A count of 0 or less makes no
+  call.
+- `restoreTriangles` (`odsy_ctxsw.o`, offset 0x59c0, 204 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for independent triangles, written with the same sequence as the strip hooks:
+  starting slot (fourth argument minus count plus 4) modulo 4, then `odsyRestoreVertex` called once for
+  each of the count vertices with the slot incremented modulo 4 after every call.
+- `restoreQuads` (`odsy_ctxsw.o`, offset 0x5bd0, 204 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for independent quadrilaterals. The starting slot is (fourth argument minus count
+  plus 4) modulo 4 and `odsyRestoreVertex` is called count times, the slot stepping through 0 to 3 and
+  wrapping; nothing is called when the count is not positive.
+- `restoreQuadStrip` (`odsy_ctxsw.o`, offset 0x5c9c, 204 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for quadrilateral strips, sharing its instruction sequence with the triangle-strip
+  hook: it calls `odsyRestoreVertex` count times, starting at slot (fourth argument minus count plus 4)
+  modulo 4 and advancing the slot modulo 4 after each call.
+- `restorePolygon` (`odsy_ctxsw.o`, offset 0x5d68, 212 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-restore hook for polygons. It calls `odsyRestoreVertex` with slot 0 first, then, when the count
+  is 2 or more, count minus 1 more times with a slot that starts at ((fourth argument minus count plus 3)
+  modulo 3) + 1 and advances as (slot modulo 3) + 1; the modulo is a signed divide by 3.
+- `odsy_DCDResetDone` (`odsy_init.o`, offset 0x2be4, 120 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Waits for the display-controller reset to complete. It stores the byte 31 at board record +32 and then
+  polls up to 5000 times: `odsy_i2cDDCRegRead` of register 3, `odsy_usdelay` of 1000 microseconds, and a
+  test of bit 1 of the byte read. It returns 1 as soon as the bit is set and 0 when the polls run out.
+- `odsy_ProbeDenali` (`odsy_denali.o`, offset 0x338, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_denali.o)`.
+  Probes the Denali part. It clears the word its second argument points to and calls
+  `odsy_probeDenaliChannel` for channel 0 with the board, that pointer and its third argument. Only when
+  the third argument is non-zero and the halfword at board record +298 equals 3 does it make a second call
+  for channel 1. It returns 0 either way.
+- `bdata_from_pipename` (`odsy_hpipe.o`, offset 0x16ac, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Finds a board by its pipe name. It walks the `OdsyBoardspp` table from 0 to `OdsyBoardEnum`, compares
+  the name string at +216 of each board record with its argument through `strcmp`, and returns the record
+  that matches, or 0 when none does.
+- `odsy_copyin_cmd` (`odsy_ddc.o`, offset 0x2294, 128 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Copies a two-wire command buffer in from user space. The request's length word at +16 must be from 1 to
+  256, otherwise it logs "invalid buffer length" at severity 1 and returns -22. A null user pointer at +24
+  returns 0 with nothing copied; otherwise it calls `copyin` for that length and returns -14 after logging
+  "copyin failed" at severity 1 if the copy faults, 0 on success.
+- `odsy_i2cPLLRegWrite` (`odsy_ddc.o`, offset 0x4c, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Writes one register of the clock part over the two-wire bus. It starts a write transaction with the
+  device address from the byte at board record +32 shifted left by 1, sends the register number and then
+  the value, the last byte flagged as final, through `odsy_i2c_start` and `odsy_i2c_sendbyte`. Any failing
+  step calls `odsy_i2cReset` on the board and returns 1; success returns 0.
+- `odsy_i2cDDCRegRead` (`odsy_ddc.o`, offset 0x180, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Reads one register of the display-data device over the two-wire bus. It calls `odsy_i2c_start` with the
+  device address from the byte at board record +32, shifted left by 1 with the low bit set, sends the
+  register number with `odsy_i2c_sendbyte` and then collects one byte into the caller's buffer with
+  `odsy_i2c_long_recvbyte`. A failing step calls `odsy_i2cReset` and returns 1; success returns 0.
+- `odsy_i2cValidEdid` (`odsy_ddc.o`, offset 0x1ca0, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Checks an EDID block header and checksum. It returns 0 unless byte 0 is 0x00, bytes 1 to 6 are 0xff and
+  byte 7 is 0x00, then calls `odsy_EdidCksum` and returns 1 when the checksum is zero and 0 otherwise.
+- `odsy_i2c2abAttention` (`odsy_ddc.o`, offset 0x1e8c, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Services an attention request from the monitor on the two-wire bus. It clears a 5-byte buffer, calls
+  `odsy_i2c_becomeSlaveRecv` with the slave address 80 and the buffer, and then `odsy_i2c_slave_recvbyte`
+  for a 4-byte transfer into the buffer from +1. Each failure logs its own message ("Failed to become
+  slave and recv byte from Monitor" or "Failed to recv byte from Monitor as slave") at severity 1 and
+  returns 1; success returns 0.
+- `odsyDiagExit` (`odsy_sched.o`, offset 0x480, 128 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
+  Cleans up a diagnostics client. When the owner word at board record +45928 equals its second argument it
+  calls `gfP_OdsyDIAGfreeScanbuf` for that client, and when the word at +45952 equals it, it calls
+  `gfP_OdsyDIAGreleaseShadowPtrs`, each with a local result word. It returns the result word, initially 0.
+- `gf_OdsyReleaseGfxSema` (`odsy_sched.o`, offset 0x3f4, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
+  Gives up the board's graphics flow control for the caller. When the flow handle at board record +808 is
+  set, it raises the level with `splhi` and, if `gfx_flow_am_i_attached` says the caller is attached, it
+  sets the word at +0x85c8 to 1 and stores 1 to the board register at 0x107c (the flow-control off switch)
+  behind a `sync`, reads 0x106c back and calls `gfx_flow_detach_me`; `splx` follows. It returns 0.
+- `odsyDMAIrptWakeup` (`odsy_dma.o`, offset 0x2c08, 132 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Completion wake-up for DMA. It takes the mutex at board record +5800 with `ddi_mutex_lock`, pops the
+  head of the pending list at +28448 and, when bit 1 of that entry's flag word at +8 was set, clears the
+  bit; if the word is then 0 it calls `odsyDMADone` on the entry and `sv_broadcast` on the variable at
+  +5816. It always ends with `mutex_unlock`.
+- `ReleaseTftchWarList` (`odsy_dma.o`, offset 0x319c, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Frees the table of texture-fetch hazard entries. When the count at +0 is 2 or more it overwrites 48
+  bytes per entry beyond the first (count times 48, minus 48) of the array at +8 with the poison byte 155.
+  It then calls `kmem_free` on the array and zeroes both the array pointer and the count.
+- `gfP_OdsyBRDMGRi2ccmd` (`odsy_brdmgr.o`, offset 0x62ec, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler that runs a two-wire command for a client. It copies a 48-byte command block in
+  from the user address in its third argument; a failed copy logs "gfP_OdsyBRDMGRi2ccmd: bad ptr to arg"
+  at severity 4, stores 14 in the result word and returns it. Otherwise it calls `odsy_i2c_cmd` with the
+  board pointer at +40 of its first argument, the block and the user address. A negative result is
+  returned as its negation; a non-negative one is stored in the result word and 0 is returned.
+- `odsyInitRetrace` (`odsy_retrace.o`, offset 0x0, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Initialises the retrace bookkeeping of a board. It clears 1368 bytes at board record +28504 with
+  `bzero`, zeroes the words at +28564, +28572, +28528 and +28544 and the doublewords at +29864 and +28536,
+  runs `init_mutex` on +28504 with the name "odsy retrace lock" and `init_sv` on +28520 with the name
+  "odsy retrace sv", sets the word at +176 to 1, and points the doubleword at +184 at +28536.
+- `odsy_usdelay` (`odsy_init.o`, offset 0x0, 148 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Microsecond delay that picks its method. When the word at board record +0xb468 is non-zero, or
+  `in_panic_mode` says the system is panicking, it calls `us_delay`, a busy wait. Otherwise it splits the
+  microsecond count into seconds (divide by 1,000,000) and nanoseconds (the remainder times 1000) and
+  sleeps through `nano_delay`.
+- `gfP_OdsyGetDrawableGeometry` (`odsy_clip.o`, offset 0xbc4, 156 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Private-request handler that returns the geometry of a drawable. It clears the result word, calls
+  `RRM_CheckValidFault` and stores 14 in the result word when that fails. Otherwise it copies the four
+  words at +108, +112, +116 and +120 of the object behind +112 of its second argument out to the user
+  address in its third argument; a faulting copy logs "ODSY_gfP_OdsyGetDrawableGeometry: bad ptr to arg"
+  at severity 4 and stores 14. It returns the result word.
+- `odsy_hpipe_cleanup` (`odsy_hpipe.o`, offset 0x1ad8, 156 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Releases a client's display-pipe slot. Reading the halfword at +588 of the object behind +112 of its
+  second argument, it does nothing when that is negative and otherwise stores -1 there. It then decrements
+  the board's count at +46236 when positive, locks the slot of `OdsyHpipeState` selected by the word at
+  +46232 (56 bytes per slot) with `mutex_spinlock`, decrements the use word at +48 of the slot when it is
+  non-zero and unlocks with `mutex_spinunlock`. It returns 0.
+- `odsy_poll_dfifo_level` (`odsy_flow.o`, offset 0x0, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Waits for the display FIFO to drain to a given level. It loads the board register at 0x106c, keeps the
+  low 7 bits (display FIFO fill) and compares with its second argument; while the fill is above it, it
+  waits 5 microseconds with `us_delay` and rereads, up to 10000 times. It returns 0 once the level is
+  reached, or logs "odsy dfifo timeout" at severity 4 and returns 1 when the polls run out.
+- `gf_OdsySchedRetraceEvent` (`odsy_retrace.o`, offset 0xa80, 156 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Queues an event for the retrace handler. It takes the mutex at board record +28504 with `mutex_lock`,
+  scans the list headed by the doubleword at +29864 (links at +40 of each event) and, when the event is
+  not already listed, pushes it at the head. It unlocks and returns 1 when it queued the event and 0 when
+  the event was already there.
+- `gf_OdsyUnSchedRetraceEvent` (`odsy_retrace.o`, offset 0xb1c, 184 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Removes an event from the retrace list. It takes the mutex at board record +28504, walks the list headed
+  at +29864 following the links at +40, unlinks the event when found, either at the head or after its
+  predecessor, then unlocks and returns 1; it returns 0 when the event was not listed.
