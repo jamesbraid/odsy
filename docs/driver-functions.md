@@ -1142,7 +1142,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
   Restores the DCD2 programmable logic after a reset. On the port record embedded in the board at +0xb408
   it stores the byte 31 at +32 and polls register 3 with `odsy_i2cDDCRegRead` up to 10 times, waiting
-  200000 microseconds between tries, for bit 1. It then writes the saved values from the board record to
+  250000 microseconds between tries, for bit 1. It then writes the saved values from the board record to
   registers 0 through 5 with `odsy_i2cPLLRegWrite` (the byte 23 at the port's +32 first), and, when the
   halfword at +302 is 0, a value 7 to register 50. Any failed write returns 1; success returns 0.
 - `odsy_initDCD2DAC` (`odsy_brdmgr.o`, offset 0x3554, 488 bytes): **established.**
