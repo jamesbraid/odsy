@@ -2798,3 +2798,88 @@ Lays out
   at +56 with `psema`, becomes the owner, and sleeps in 2 us steps while the word at +104 is nonzero. It counts the
   busy word at +80 up, calls `odsy_mm_sg_remove_gctx`, clears the context's share-group pointer, and drops the group's
   count at +16, destroying the group with `odsy_mm_sg_destroy` when it reaches zero, then counts +80 down.
+- `gfP_OdsyMMattach` (`odsy_pmm.o`, offset 0xb44, 928 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 0: joins the calling graphics context to a share group. It copies in 72 bytes (a failed copy logs and
+  returns 14) and finds the context from the halfword at +10 with `odsyGctxFromRnid` (none: 22). A context whose
+  word at +184 is already set returns 0 at once. Otherwise `odsyPinAndMapGctxSwShadowRgn` pins and maps the
+  software shadow with the word at +16 (its error is returned), the context's fields +584, +232 and +240 are cleared
+  or set to -1, three sets at +264, +312 and +360 are initialised and id 0 of the first is filled with the placeholder 1.
+  The manager's busy word at +80 is held up for the rest of the call under the same owner and `psema` rule as
+  `odsyMMdetach`. A word at +4 of 0 or -1 creates a new share group with `odsy_mm_sg_new` (a null result copies the
+  argument back with +24 zeroed); another value names the context, by its low 16 bits, whose share group is
+  joined: a missing context or share group gives 22 and a failed `OdsyAllocCSetId` on the group's set at +24 gives 12.
+  The context then records the group (+232), its id in that set (+240) and the low bit of the argument's +0 (+580),
+  and the group's count (+16) is incremented. The reply gives back, in the same 72 bytes, the context id at +12, the
+  address-space words at +24, +48 and +56, the context's word at +244 at +32, the pointer 2304 bytes past
+  the context's shadow (+200) at +40 and a word of the manager's record at offset 0x8554 at +64.
+- `gfP_OdsyMMalloc` (`odsy_pmm.o`, offset 0x117c, 804 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 1: creates a memory object. It finds the calling context from the board's current-client pointer
+  (none: status 1; no share group: 14), copies in 72 bytes and requires the slot halfword at +8 to be below 16
+  (else 22; the earlier note that calls it the object type is wrong, it indexes the group's 16 object slots).
+  Under the manager's busy count it uses the group id at +4: -1 creates a group with `odsy_mm_grp_new` (a failure
+  logs and returns 12), any other value is looked up in the share group's set at +72 (a miss stores -1 at +4 and
+  returns 22). If the slot already holds an object, the object's description is compared with the argument's
+  description starting at +12 (type byte, pixel-size byte, and the words +16 to +36 against object +20 to +40); a
+  match keeps the object, a difference destroys it with `odsy_mm_obj_destroy`. A missing object is then built with
+  `odsy_mm_obj_new` from the description at +12; if that fails the status is 12 and a group made by this call and
+  still empty is destroyed and reported as -1. The argument, carrying the group id, is copied back.
+- `gfP_OdsyMMdealloc` (`odsy_pmm.o`, offset 0x14a0, 536 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 2: destroys a memory object or a whole group. It checks the context and share group as `MMalloc`
+  does (1 and 14), copies in 72 bytes and looks up the group id at +4 in the set at +72 (a miss gives 22). With the
+  word at +52 zero it destroys the whole group with `odsy_mm_grp_destroy`; otherwise it destroys the object in the slot
+  named by the halfword at +8 (22 when that is 16 or more) and, if the group then holds no objects, clears +52 and
+  destroys the group as well. The 72 bytes are copied back only when the group was destroyed.
+- `gfP_OdsyMMmakeResident` (`odsy_pmm.o`, offset 0x16f0, 904 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 3: places a range of a group's objects in board memory. It copies in 8 bytes (group id at +0, first
+  and last slot as halfwords at +4 and +6, both below 16 and ordered, else 22), calls `RRM_CheckValidFault` and
+  returns its error if negative, then holds the manager's busy count. It finds the group in the set at +72, the
+  client's range set in the group's set at +160 by the context id (+240) and the range record that matches the slots
+  with `OdsyFindMatchingCSetElem` (each miss is 22). A range whose halfword in the manager's 32 KB slot table (the one at
+  record +32) equals the halfword at +4 of its state record is also refused with 22. Otherwise it clears bit 1 of the flag word of every object in the slot range, arms a
+  1500-tick timeout, calls `odsy_mm_commit` on the range and waits with `untimeout_wait`; a failed commit logs the
+  board number and returns 22.
+- `gfP_OdsyMMquery` (`odsy_pmm.o`, offset 0x1c10, 920 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 4: tells a client where its group's state lives and creates the client's range record on first
+  use. It copies in 40 bytes (group id at +4, first and last slot as halfwords at +8 and +10, both below 16 and
+  ordered, else 22), looks the group up in the set at +72 (miss: 22) and replies with the group's id at +12 and its
+  flag word at +208 as a halfword at +14. It finds or creates the client's set of ranges in the group's set at +160
+  (a 48-byte `kmem_alloc` initialised with element size 2 and filed under the context id; failure is 12), then
+  finds the range record for the slots with `OdsyFindMatchingCSetElem` or creates one with `odsy_mm_cores_new`
+  (failure 12), and replies with the record's 32 KB slot number (+24) at +16 and its range id (+48) at +18. The
+  40 bytes are copied back whatever the status.
+- `gfP_OdsyMMxfr` (`odsy_pmm.o`, offset 0x1fa8, 1676 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 6: moves pixels between the client and a memory object. It copies in 80 bytes; a word at +4 of -1
+  returns 0 at once. It calls `RRM_CheckValidFault`, takes the manager's busy count and resolves the object from
+  the id at +4 and the slot at +8: -2 means the board's own object table (slot in the table at +2136 of the manager), -3 and -4
+  the buffer set of the context's two bindings at context +464 and +512 (a binding with bit 2 set is found through the
+  drawable hash, a bound drawable's table; otherwise the board table), and any other id a group in the share group's
+  set (slot below 16). For a group object it also stores bits 23:16 of word +60 in object byte 18. A group
+  object that is not resident is validated with `odsyMMvalidatePcxSwap` once and refused with 22 if still not. For -3 and -4
+  the 3-bit format fields in the words at +28 and +44 are checked against what each binding allows, and a mismatch
+  logs and returns 22. A zero 29-bit address in word +28 takes the object's board address (+56); the offset at +64 is added and
+  the top three bits kept. Word +24 is the host buffer size, which must cover the rows given by bits 31:16 of +40
+  (0 meaning 65536), with the row stride at +48 and the row length in the low 20 bits of +52. The header word
+  at +56 gets 0x32 in its top byte together with a direction bit (set when bit 0 of +60 is clear) and bits 3 and 6
+  carried from it. `odsyDMAOps` then runs the transfer; with bit 1 of +60 set `odsyDMAWait` waits for it too, and the
+  80 bytes are copied back with the status.
+- `SpewObjectToUser` (`odsy_pmm.o`, offset 0xa4c, 248 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Writes one memory object's description to the user's buffer for the debug request. It builds a 68-byte record:
+  the object's board word (+56), the words at +16 to +51, its size word (+60) over the last of them, then the
+  share-group id, group id and slot arguments, flag bits 0 and 1 and the transfer word at +104. `copyout` writes
+  it at the user pointer (failure logs and returns 14), the record count is incremented and the pointer moves on
+  by 68 bytes.
+- `gfP_OdsyMMdebug` (`odsy_pmm.o`, offset 0x6f0, 860 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Private request 10: lists every memory object. It copies in 24 bytes; command 1 runs and command 2 returns 22
+  (as does any other value, with a log). Command 1 needs the buffer capacity in the word at +8 to be above 16 (else
+  14). Holding the manager's busy count it spews the manager's own record, every committed object of the board table at
+  +2136, and then every object of every group of every share group in the set at +2368, each as a 68-byte record
+  through `SpewObjectToUser`; running out of capacity logs and returns 11. The number of records is copied to the
+  user pointer at +16.
