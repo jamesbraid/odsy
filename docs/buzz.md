@@ -391,9 +391,9 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 
 ### Where `gf_OdsyMapGfx` places each window in a client's mapping
 
-**established** by reading the routine in full in the 6.5.30m IP30 build, the Origin 350 build and patch 4103. All three cut the client's address down to a 16 KB boundary and map the windows one call at a time with `v_mapkvsegment`, 16 KB pages, at the offsets below from that address (user offset, board offset from the register base, pages, cache-algorithm argument 0 or 2; the last argument of every call is the client's own address, the faulting address of the request):
+**established** by reading the routine in full in the 6.5.30m IP30 build, the IP35 build and patch 4103. All three cut the client's address down to a 16 KB boundary and map the windows one call at a time with `v_mapkvsegment`, 16 KB pages, at the offsets below from that address (user offset, board offset from the register base, pages, cache-algorithm argument 0 or 2; the last argument of every call is the client's own address, the faulting address of the request):
 
-| User offset | Board offset | Pages | Cache algorithm, 6.5.30m and Origin 350 | Cache algorithm, patch 4103 |
+| User offset | Board offset | Pages | Cache algorithm, 6.5.30m IP30 and IP35 | Cache algorithm, patch 4103 |
 |---|---|---|---|---|
 | +0x0000 | +0x100000 | 1 | 0 | 0 |
 | +0x4000 | +0x120000 | 1 | 2 | 2 |
