@@ -1735,3 +1735,294 @@ Lays out
   length in bits 13:10 and is followed by that many words from +2048, +2112, +2176 and +2240. A header whose
   high bits are not 0x3000c02e or 0x2f00c02e logs a severity 7 message and skips the payload. The routine
   ends with the markers 15608 to 15611, each followed by 16 zero words, and returns nothing.
+- `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+Lays out
+  the board's SDRAM for a frame buffer size and programs the scan-out registers. When the word at +16 of its
+  argument block is set it only returns `odsyProbeFb`. Otherwise it rounds width and height up to 16-pixel
+  tiles and the tile row up to an even count, takes the depth (32, 16 or 8) to find how many 32-bit tile slots the frame buffer
+  needs, and places the frame buffer at the board record's +1360 start address (sdram address in 512-byte
+  units) rounded up to a four-tile boundary, then the overlay and window-id buffer (2 bytes deep, sixteen times denser) at +1496,
+  the unused coarse-Z slot, up to four 8-bit accumulation buffers (the argument's word +12 chooses none, 2 or 4)
+  at the following boundaries, and the first free address for textures and pixel buffers at +1088. It returns -1
+  when that address passes the SDRAM size held at +252 (in megabytes). The routine writes the start
+  addresses and the five region sizes back into the argument block at +20 to +48, then pushes six scan-out
+  commands (overlay base, pixel base, width, height, stride and depth code 4, 3 or 2) after waiting for display-FIFO
+  level 10 with `odsy_poll_dfifo_level`, stores the width and height as halfwords at +232 and +234 and
+  returns 0.
+  Compared with the IP30 build (offset 0x824 there) the 537 instructions are the same except for their
+  addresses: 3 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsyLowaterInterrupt` (`odsy_flow.o`, offset 0x584, 144 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Runs when the command FIFO drains below its low-water mark. It cancels the FIFO timer, clears bit 9 in
+  the enable shadow, writes 0x200 to 0x103c to stop the interrupt and wakes the thread that the high-water
+  path parked.
+  Compared with the IP30 build (offset 0x29c there) the 36 instructions are the same except for their
+  addresses: 1 instruction carries the constant 0xb458 where the IP30 build has 0xb440, so any board-
+  record offset the description names for it moves by the same amount.
+- `odsy_i2cReset` (`odsy_i2c.o`, offset 0xaab8, 2440 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Forces a two-wire port back to idle.
+  `odsy_i2c_stop` three times: here the routine calls `odsy_i2c_stop` once, zeroes the shadow control word,
+  sets bit 14 (force idle) and pushes it, then every 10 microseconds reads the status register back through
+  the window at board +0x220000 and loops until the state field (bits 13:10) reads 0 or 10. It then clears bit 14 and
+  pushes the word once more.
+  Compared with the IP30 build (offset 0xaab8 there) the 610 instructions are the same except for their
+  addresses: 5 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_becomeSlaveRecv` (`odsy_i2c.o`, offset 0x8324, 2612 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Ends the master transfer and switches a port to slave-receive. It reads the control register back, sets
+  bit 13 (force stop) and bit 17 (slave enable), clears bit 9 (transfer), writes bit 10 from the ack argument
+  (an acknowledge clears it, a refusal sets it), stores the slave address in bits 24:18, pushes the word and waits with
+  `odsy_i2c_xfer_done_loop`. A clock error (status bit 20) or data error (bit 21) returns 1; otherwise it
+  stores the received byte (status bits 7:0) through the pointer argument, clears bit 13 in the shadow and
+  returns 0. A failed FIFO wait returns 3.
+  Compared with the IP30 build (offset 0x8324 there) the 653 instructions are the same except for their
+  addresses: 6 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_busy_high_loop` (`odsy_i2c.o`, offset 0x9c4c, 1256 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Waits for the port's busy flag. Each pass reads the status register back through the window at board
+  +0x220000, tests bit 22 (busy) and returns 0 when it is set, otherwise waits 100 microseconds with
+  `odsy_usdelay`. After 400 passes it returns 2; a FIFO wait that fails returns 3.
+  Compared with the IP30 build (offset 0x9c4c there) the 314 instructions are the same except for their
+  addresses: 3 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_init_port_handle` (`odsy_i2c.o`, offset 0xa63c, 1148 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Fills in a port record for the main (0) or option (1) two-wire port and refuses other numbers with 1.
+  The main port gets display addresses 10112 (control) and 10113 (status) and shadow words at board record
+  +0x8614 and +0x8618; the option port gets 10048 and 10049 with shadows at +0x860c and +0x8610. The
+  routine stores the board record at +16 and the port number at +28, waits for the display FIFO to
+  drain and reads both registers back through the window at board +0x220000 into the shadows, returning 0.
+  Compared with the IP30 build (offset 0xa63c there) the 287 instructions are the same except for their
+  addresses: 3 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_long_recvbyte` (`odsy_i2c.o`, offset 0x6ce0, 2568 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Receives one byte as the bus master and sets the acknowledge and stop bits of the byte. When the requested
+  acknowledge differs from bit 10 of the shadow control word it reads the control register back, clears bit
+  12 (send) and bit 8 (start), writes the new acknowledge into bit 10 (0 acknowledges, 1 refuses), clears the
+  data bits and pushes the word. It then calls `odsy_i2c_short_recvbyte`, sets or clears bit 11 (stop)
+  from its stop argument, pushes the word again, clears the stop bit in the shadow and, when no acknowledge
+  was requested, clears bit 10. It returns the result of `odsy_i2c_short_recvbyte`, or 1 when a FIFO wait fails.
+  Compared with the IP30 build (offset 0x6ce0 there) the 642 instructions are the same except for their
+  addresses: 6 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_read_comp_reg4` (`odsy_i2c.o`, offset 0x0, 2804 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Reads a four-byte register from the compositor on the two-wire bus. It reads the control register back,
+  clears bits 12, 8 and 10 (send, start, refuse-acknowledge) and pushes it, then collects four bytes: after
+  each push it polls up to 133 times at 100 microseconds for status bit 9 (transfer done) and stores the status
+  low byte in order into a word on the stack. The fourth byte is requested with bit 10 set so the device
+  stops sending. The first byte received is the most significant byte of the word stored through the pointer in
+  the second argument. It returns 0, or 1 when a poll or FIFO wait fails.
+  Compared with the IP30 build (offset 0x0 there) the 701 instructions are the same except for their
+  addresses: 7 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_read_denali` (`odsy_i2c.o`, offset 0x1d64, 2300 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Reads one reply message from the Denali device. It calls `odsy_i2c_read_denali_byte` for the first byte,
+  which it treats as the reply length (a length of 5 is replaced by 10, anything over 32 is capped to 32),
+  then calls it again for each following byte and stores every byte as a 32-bit word in the caller's array.
+  A byte equal to 10 or 5 marks the end of a short reply and, for longer replies, makes it read and discard the
+  remaining bytes. A failing byte read stores the code 0x3804 in the status word of the third argument and returns 1;
+  success returns 0. Read from the skeleton of the routine (calls, constants and branches), not every
+  instruction.
+  Compared with the IP30 build (offset 0x1d64 there) the 575 instructions are the same except for their
+  addresses: 8 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_read_denali_byte` (`odsy_i2c.o`, offset 0x1540, 2084 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Reads one byte from the Denali device. It calls `odsy_i2c_start` with the address byte 239 (0xef, a read of
+  7-bit address 0x77, stored at port record +32), waits 20 microseconds with `odsy_usdelay`, reads the
+  control register back, clears bits 12 and 8 and sets bits 10 and 11 (refuse acknowledge, stop), pushes it
+  and polls up to 133 times at 200 microseconds for status bit 9. The status low byte is stored through the
+  pointer argument. It returns 0, or 1 when the start, a poll or a FIFO wait fails.
+  Compared with the IP30 build (offset 0x1540 there) the 521 instructions are the same except for their
+  addresses: 5 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_read_rainier_byte` (`odsy_i2c.o`, offset 0x38c4, 2052 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Reads bytes from the Rainier device with the address already in the port record. It calls `odsy_i2c_start`,
+  waits 20 microseconds with `odsy_usdelay`, reads the control register back, clears bits 12 and 8, sets
+  bits 10 and 11 (refuse acknowledge, stop) and pushes it. It then polls the status read-back at up to 133
+  times at 200 microseconds for bit 9 and stores the low byte through the pointer argument, counting down the
+  length argument. It returns 0, or 1 when the start, a poll or a FIFO wait fails.
+  Compared with the IP30 build (offset 0x38c4 there) the 513 instructions are the same except for their
+  addresses: 5 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_recv_1byte` (`odsy_i2c.o`, offset 0x76e8, 3132 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Receives a single byte in one transfer, used by the DVI and display-data routines. It reads the control
+  register back through the window at board +0x220000, clears bit 12 (send) and bit 8 (start), sets bit 9
+  (transfer) and, according to its two flag arguments, bit 10 (refuse acknowledge) and bit 11 (stop), pushes
+  the word as a display-FIFO command, waits with `odsy_i2c_xfer_done_loop`, reads the status register back
+  and stores its low byte through the pointer argument. A failed FIFO wait returns 3; a timeout of the wait
+  is returned unchanged; success returns 0.
+  Compared with the IP30 build (offset 0x76e8 there) the 783 instructions are the same except for their
+  addresses: 7 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_recv_ack` (`odsy_i2c.o`, offset 0xa134, 1288 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Polls for the acknowledge bit of a finished byte. It compares bit 8 of the shadow status with its argument
+  and returns 0 on a match; otherwise it waits 100 microseconds with `odsy_usdelay`, waits for the display
+  FIFO to drain and rereads the status register through the window at board +0x220000. After 400 polls it
+  returns 2, and a FIFO wait that fails returns 2 as well.
+  Compared with the IP30 build (offset 0xa134 there) the 322 instructions are the same except for their
+  addresses: 3 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_sendbyte` (`odsy_i2c.o`, offset 0x5dc0, 3796 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Sends one data byte as the bus master. It first calls `odsy_i2c_busy_high_loop` and returns a failure
+  of that wait. It then places the byte in bits 7:0 of the shadow control word, sets bit 9 (transfer), sets or
+  clears bit 11 (stop) according to its stop argument, pushes the word into the display FIFO as a
+  control-register command, waits with `odsy_i2c_xfer_done_loop`, clears the stop bit again when it set it, and
+  returns the result of `odsy_i2c_recv_ack` with the inverse of the ack argument. A FIFO wait that fails returns 3.
+  Compared with the IP30 build (offset 0x5dc0 there) the 949 instructions are the same except for their
+  addresses: 9 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_slave_recvbyte` (`odsy_i2c.o`, offset 0x8d58, 2572 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Collects bytes while another device drives the clock. While the shadow status shows busy (bit 22) it
+  waits with `odsy_i2c_xfer_done_loop`, returns 1 on a clock or data error (bits 20 and 21), returns 3 and
+  flips the acknowledge bit when the count passes the buffer length, and otherwise reads the status
+  register back through the window at board +0x220000 and appends its low byte to the caller's buffer.
+  It also writes the requested acknowledge into the shadow control word first when it differs.
+  Compared with the IP30 build (offset 0x8d58 there) the 643 instructions are the same except for their
+  addresses: 6 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_start` (`odsy_i2c.o`, offset 0x40c8, 4912 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
+  Sends a start condition and the slave address on one two-wire port. Every control-register write of the
+  port is a 64-bit command pushed into the display FIFO at board +0x400000: the high word is 0x30000001
+  OR the register's display address shifted left 14 (the address is the halfword at +24 of the port record),
+  the low word is the shadow control word at +0 of the record. Before each push it takes the display-FIFO
+  semaphore (a semaphore at board record +0x8530, or the spin lock at +0x8540 when the flag at +46184 is
+  set) and calls `odsy_poll_dfifo_level` with level 14 or 15; a FIFO wait that fails returns 3. The
+  sequence sets bit 14 (force idle) for 20 microseconds with `odsy_usdelay`, clears it for another 20, then
+  reads the control word back through the window at board +0x220000 (display address times 8), loads the
+  address byte into bits 7:0 (a copy also goes to port record +32) with bit 8 (start), bit 9 (transfer) and bit 12
+  (send) set and bit 11 (stop) cleared, pushes it, clears bit 8 in the shadow, and waits with
+  `odsy_i2c_xfer_done_loop`. A timeout is returned as is; otherwise it returns the result of
+  `odsy_i2c_recv_ack` called with the inverse of the ack argument. The semaphore release also replays a pending
+  cursor-position command stored at board record +34120 when one is waiting.
+  Compared with the IP30 build (offset 0x40c8 there) the 1228 instructions are the same except for their
+  addresses: 12 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_stop` (`odsy_i2c.o`, offset 0x53f8, 2504 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Ends a two-wire transfer. It waits for display-FIFO room (level 14 or 15 through `odsy_poll_dfifo_level`),
+  sets bit 13 (force stop) of the shadow control word and clears bits 14, 9, 8 and 11 (idle, transfer, start,
+  stop), pushes the word as a display-FIFO command and waits with `odsy_i2c_xfer_done_loop`. After it
+  completes it zeroes the shadow control word, reads the port's status register back through the window at
+  board +0x220000 and returns 1 when bit 22 (busy) is still set, 0 when the bus released, and 3 or the
+  timeout code of the wait when a step failed.
+  Compared with the IP30 build (offset 0x53f8 there) the 626 instructions are the same except for their
+  addresses: 6 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_write_comp_reg4` (`odsy_i2c.o`, offset 0xaf4, 2636 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Writes a four-byte register of the compositor on the two-wire bus. It stores the word to send in memory
+  and then, four times starting from the most significant byte, clears bits 11 and 13 (stop and force stop),
+  sets bit 9 (transfer), loads the byte into bits 7:0 and pushes the control word, polls up to 133 times at
+  100 microseconds for transfer done (status bit 9) and returns 1 when the acknowledge bit 8 shows a refusal.
+  It returns 0 after the last byte, and 1 when a poll or FIFO wait fails.
+  Compared with the IP30 build (offset 0xaf4 there) the 659 instructions are the same except for their
+  addresses: 7 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_write_denali` (`odsy_i2c.o`, offset 0x30cc, 2040 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Sends one command message to the Denali device. It stores the code 0x3804 in the status word, then calls
+  `odsy_i2c_write_denali_byte` once for each byte of the caller's buffer up to the length in its third
+  argument and returns 1 as soon as a byte write fails; after the last byte it returns 0 with the semaphore
+  released. Read from the skeleton of the routine (calls, constants and branches), not every instruction.
+  Compared with the IP30 build (offset 0x30cc there) the 510 instructions are the same except for their
+  addresses: 6 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_write_denali_byte` (`odsy_i2c.o`, offset 0x2660, 2668 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Writes one byte to the Denali device. It calls `odsy_i2c_start` with the address byte 238 (0xee, a write
+  to 7-bit address 0x77, stored at port record +32), waits 20 microseconds, then sets bits 9 and 11 (transfer, stop),
+  clears bit 13, loads the byte into bits 7:0, pushes the word and polls up to 133 times at 100 microseconds
+  for status bit 9. A refused acknowledge (bit 8) fails. It returns 0, or 1 when any step fails.
+  Compared with the IP30 build (offset 0x2660 there) the 667 instructions are the same except for their
+  addresses: 7 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsy_i2c_xfer_done_loop` (`odsy_i2c.o`, offset 0x9764, 1256 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+  Waits for a two-wire byte transfer to finish. Each pass takes the display-FIFO semaphore, waits for the
+  FIFO to drain to level 0, reads the port's status register back through the window at board +0x220000 into
+  the shadow status and returns 0 when bit 9 (transfer done) is set, otherwise it waits 100 microseconds
+  with `odsy_usdelay`. After 800 passes it returns 2; a FIFO wait that fails returns 3.
+  Compared with the IP30 build (offset 0x9764 there) the 314 instructions are the same except for their
+  addresses: 3 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+- `odsyInitBoardGfx` (`odsy_init.o`, offset 0xc5c, 640 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Builds the software state of a board after attach. It clears the first 200 bytes of the record,
+  initialises the semaphores, mutexes, sync variable and spin lock the driver uses (named "odsy dfifo
+  sema", "odsy mouse pos lock", "scanbuf_lock", "shdwptr_lock" and "pfstat_lock" among them) at their
+  fixed offsets, calls `odsyInitDDRNs` and `odsyInitHwWrRgn`, and allocates 0xc000 zeroed bytes into the
+  pointer at +888, whose offset +32 becomes the microcode buffer pointer at +34136. It adds hardware-
+  inventory entries built from the memory-size word at +252 and the flag words at +280 and +296, sets +176
+  to 1, +88 to 40 and +20 to 1, and registers the board with `GfxRegisterBoard`.
+  Compared with the IP30 build (offset 0x904 there) the 160 instructions are the same except for their
+  addresses: 1 instruction address board-record displacement 216 where the IP30 build uses 320; 1
+  instruction address board-record displacement 232 where the IP30 build uses 336; 1 instruction address
+  board-record displacement 256 where the IP30 build uses 360; 1 instruction address board-record
+  displacement 272 where the IP30 build uses 376; 1 instruction address board-record displacement 288
+  where the IP30 build uses 392.
+- `odsyInitInterrupts` (`odsy_init.o`, offset 0x3100, 1032 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Programs the five interrupt sources. It builds the error-source destination words at 0x34 and 0x3c, the
+  flag-source words at 0x1044 and 0x104c, the packed vector word at 0x1054 and the two control words at
+  0x5c and 0x105c with read-modify-write sequences in the board record, stores each once with a sync, and
+  ends with the start-up enable mask at 0x1034 (clear bit 31, set bits 30 to 27, and so on down to bit 1).
+  Compared with the IP30 build (offset 0x275c there) the 258 instructions are the same except for their
+  addresses: 1 instruction load a 64-bit command constant through $gp displacement -30608 where the IP30
+  build uses -30632.
+- `odsyPrintRegs` (`odsy_init.o`, offset 0x4930, 84 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Prints the two diagnostic registers after a fatal error: it loads the flags word at 0x1014 and the
+  status word at 0x1064 and logs them through the `%R` bit-table print using the register bit tables kept
+  in `odsy_init.o` `.data` (offsets 0x0 and 0x460).
+  Compared with the IP30 build (offset 0x3f0c there) the 21 instructions are the same except for their
+  addresses: 2 instructions load a 64-bit command constant through $gp displacement -30584 where the IP30
+  build uses -30592; 1 instruction address board-record displacement 1168 where the IP30 build uses 1272;
+  1 instruction address board-record displacement 1184 where the IP30 build uses 1288.
+- `odsy_teardown` (`odsy_init.o`, offset 0x4840, 240 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Declares a board dead, once. It takes the semaphore at board record +28488 with `psema` and increments
+  the counter at +816; only the increment that reaches 1 does the work. That pass logs the board number
+  (halfword +790) at severity 1, prints the dmawait timeout and finish values at severity 5 when the words at +46208 or +46212 are non-
+  zero, dumps the registers with `odsyPrintRegs` on the PIO base at +824, and calls `gthread_scan` with the callback `GfxKiller` and an argument block holding 9. The semaphore is
+  released with `vsema` on every path.
+  Compared with the IP30 build (offset 0x3e1c there) the 60 instructions are the same except for their
+  addresses: 1 instruction address board-record displacement 1056 where the IP30 build uses 1160; 1
+  instruction address board-record displacement -19304 where the IP30 build uses -19328; 1 instruction
+  address board-record displacement -19300 where the IP30 build uses -19324; 1 instruction load a 64-bit
+  command constant through $gp displacement -30568 where the IP30 build uses -30584; 1 instruction address
+  board-record displacement 1088 where the IP30 build uses 1192; 1 instruction address board-record
+  displacement 1128 where the IP30 build uses 1232.
+- `odsyDmaInterrupt` (`odsy_intr.o`, offset 0x540, 56 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
+  Handles the DMA interrupt, source 2. The 56-byte routine only calls `odsyDMAIrptWakeup` with the board,
+  which wakes the thread waiting on a transfer; it reads no board register itself.
+  Compared with the IP30 build (offset 0x540 there) the 14 instructions are the same except for their
+  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+- `odsyFlagInterrupt` (`odsy_intr.o`, offset 0x1ac, 916 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
+  Handles the flags interrupt, source 1. It loads the flags word 0x1014 and ANDs it with the enable mask
+  at 0x1034, calls `odsyLowaterInterrupt` for bit 9 and `odsyGenlockInterrupt` for bit 31, logs a message
+  for each other pending error or status bit, and then tears the board down with `odsy_teardown` when the
+  raw flags intersect 0x39f02587; otherwise it writes the pending bits to the clear register 0x101c.
+  Compared with the IP30 build (offset 0x1ac there) the 229 instructions are the same except for their
+  addresses: 2 instructions address board-record displacement -19360 where the IP30 build uses -19384; 1
+  instruction address board-record displacement -15320 where the IP30 build uses -15456.
+- `odsySsyncInterrupt` (`odsy_intr.o`, offset 0x578, 72 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
+  Handles the sync interrupt, source 4. The 72-byte routine wakes the DMA waiter through `odsyDMAWakeup`
+  and returns; it touches no board register itself.
+  Compared with the IP30 build (offset 0x578 there) the 18 instructions are the same except for their
+  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+- `odsyXtErrorInterrupt` (`odsy_intr.o`, offset 0x0, 428 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
+  Handles the crossbar error interrupt, source 0. It counts the event in the host's per-cpu table, loads
+  the widget status word (0xc), and tests bit 8 (response time-out), bit 7 (address error) and bit 6
+  (packet format error) in that order, printing the matching message with the header from 0x44 and the
+  address words 0x1c and 0x14; only the address-error case also calls `odsyPrintRegs` and `odsy_teardown`.
+  It always ends by storing 0 to 0x44.
+  Compared with the IP30 build (offset 0x0 there) the 107 instructions are the same except for their
+  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+- `odsyRetraceHandler` (`odsy_retrace.o`, offset 0x131c, 716 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)`.
+  Handles the retrace interrupt, source 3. It takes the retrace mutex, counts the retrace, loads the
+  buffer-select word at 0x10d4 and XORs it with the record shadow at +28528 to find windows whose buffer
+  changed, then for each of the 32 ids with a pending swap it validates, swaps with `odsySwapBuffer` or
+  writes the id to 0x10b4 after a repeat count, forcing a swap that has waited 300 retraces.
+  Compared with the IP30 build (offset 0x1274 there) the 179 instructions are the same except for their
+  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
