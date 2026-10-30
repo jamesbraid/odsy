@@ -2,7 +2,7 @@ binary	group	role	kind	abi	bytes	sha256	copies	functions	address_source	access_s
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13588	0ed05985a3cc7b81	usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16004	d6346dc0f54a1287	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7620	08d45543f8dc353f	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	60580	72373a9173c6ede8	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	21	symtab	187	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	60580	72373a9173c6ede8	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	21	symtab	189	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	15844	7dde76b945c93030	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	8	symtab	97	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49476	ef6293d41342364d	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	symtab	1009	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14292	d02595bb463fc6ab	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)	8	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -29,11 +29,11 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	boa
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	38052	fd3d260c2bf86400	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	symtab	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8452	66967437c5aab8d9	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	symtab	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	0e4dcd6286cc5c7a		671	dynsym+mdebug	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	bd4b77fe6bd4a187		5169	dynsym+mdebug	4227	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	bd4b77fe6bd4a187		5169	dynsym+mdebug	4924	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	aa9005aa43d3b8e2		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	9abe5557d67810d2		5216	dynsym+dwarf	5132	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	9abe5557d67810d2		5216	dynsym+dwarf	5153	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	dfe753e69d105ba4		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	30dc6c8e51d7b67b		5137	dynsym+dwarf	5051	0	undocumented		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	30dc6c8e51d7b67b		5137	dynsym+dwarf	5153	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	12660	17d6b78a3a02bbf4		4	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	15444	f0f03bd7c7436e1c		18	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7284	76fc65b5256c1eb3		3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -116,7 +116,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	kernel-shared	shared-kernel	object	n64	1288752	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13620	c1e5a85bee26f8b1		4	symtab	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16228	fa079f9475f5fefa		18	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	symtab	191	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	symtab	193	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	symtab	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	symtab	16	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14260	9a2e70adc6f1562c		8	symtab	0	0	undocumented		
@@ -154,17 +154,17 @@ usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	d407a5
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	dynsym+mdebug	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	dynsym (dwarf addresses stale, dropped)	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	a4292f9008f1d637		671	dynsym+mdebug	0	0	undocumented		
-usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	de0a3a3704607c34		5169	dynsym+mdebug	4227	0	undocumented		
+usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	de0a3a3704607c34		5169	dynsym+mdebug	4924	0	undocumented		
 usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	e08d1158b175fd0e		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	7cdc1b3426125b92		5216	dynsym+dwarf	5132	0	undocumented		
+usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	7cdc1b3426125b92		5216	dynsym+dwarf	5153	0	undocumented		
 usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9cc0e57ebdcaaa1f		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	81edba0fb8e2731d		5137	dynsym+dwarf	5051	0	undocumented		
+usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	81edba0fb8e2731d		5137	dynsym+dwarf	5153	0	undocumented		
 usr/gfx/arch/IP35ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	984ac9208f2c2ca8		671	dynsym+mdebug	0	0	undocumented		
-usr/gfx/arch/IP35ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	917be72af65958b2		5169	dynsym+mdebug	4227	0	undocumented		
+usr/gfx/arch/IP35ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	917be72af65958b2		5169	dynsym+mdebug	4924	0	undocumented		
 usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	3c495b596716001b		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	dynsym+dwarf	5132	0	undocumented		
+usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	dynsym+dwarf	5153	0	undocumented		
 usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	dynsym+dwarf	5051	0	undocumented		
+usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	dynsym+dwarf	5153	0	undocumented		
 usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	dynsym	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
 usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	dynsym	0	0	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
