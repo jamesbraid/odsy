@@ -3,10 +3,10 @@
 raster rules, and compare the frame it predicts with the test's stored frame
 and checksum.
 
-Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle|alpha]
+Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle|alpha|blend]
                                        [--round f32|tN] [--small]
                                        [--image IMAGE] [--program A,B,C] [--dump]
-       scripts/odydiags_frame_check.py --survey
+       scripts/odydiags_frame_check.py --survey | --logic
 
 The VPro field diagnostics (odydiags, Internal Support Tools 2.7, 6.5.15
 build) carry each drawing test as a function __clog_<test> that replays a
@@ -16,8 +16,9 @@ reads the frame back and compares a CRC-32 of it with usr/diags/ody/checksum/
 csumlist (csumlist.sml for the 128 x 64 screen); <test>.SUM and <test>.sml
 hold the frames themselves (ucode/buzz_isa.md, "Pass 18").
 
-This script handles the points, lines, triangle and alpha tests (__clog_pts,
-__clog_lines, __clog_tri, __clog_alpha and their _small forms): it extracts the writes,
+This script handles the points, lines, triangle, alpha and blend tests
+(__clog_pts, __clog_lines, __clog_tri, __clog_alpha, __clog_blend and their
+_small forms; blend does not yet match, docs/raster.md): it extracts the writes,
 tracks the sequencer registers, the matrix table and the primitives, runs
 each primitive's vertices through scripts/buzz_ucode_dataflow.py (first
 part, loop once per further vertex, closing part, the slot-0 values changing
@@ -33,10 +34,12 @@ diagxform.bin, the image odydiags loads). --round is passed to the dataflow
 run. --program replaces the start, loop and closing entries the stream
 sets in sequencer 0x29, 0x2a and 0x2c (the 128 x 64 stream names a program
 layout no held image has). --dump prints the decoded command stream instead.
+--logic checks the logic operations against the blend frame's own panels.
 --survey builds all eight frames under each rule variant in VARIANTS, one rule
 changed at a time, and prints the number of pixels each frame then differs
 by (docs/raster.md cites this table for what each frame rules out).
 """
+import itertools
 import math
 import os
 import struct
@@ -204,7 +207,7 @@ def primitives(cmds, loads, types=(POINTS,)):
     """Yield each primitive of one of TYPES with the state it is drawn
     under. LOADS are the opcodes of the two matrix-table stores."""
     seq, table, scissor, prim = {}, [math.nan] * 68, None, None
-    colour, alpha = [math.nan] * 4, 0
+    colour, alpha, enables, logic = [math.nan] * 4, 0, 0, 3
     for idx, w, ops in cmds:
         top = w >> 24
         if w & 0xc000 == 0x8000 and 0x20 <= top <= 0x3f:
@@ -219,10 +222,15 @@ def primitives(cmds, loads, types=(POINTS,)):
             colour = [fl(o) for o in ops]
         elif w == 0x0001041e:
             alpha = ops[0]
+        elif w == 0x00010404:
+            enables = ops[0]
+        elif w == 0x00010422:
+            logic = ops[0]
         elif w == 0x00014400:
             prim = dict(type=ops[0], verts=[], idx=idx, seq=dict(seq),
                         regs={str(r): table[4 * r:4 * r + 4] for r in range(17)},
-                        scissor=scissor, colour=list(colour), alpha=alpha)
+                        scissor=scissor, colour=list(colour), alpha=alpha,
+                        enables=enables, logic=logic, cols=[])
         elif w == 0x00014001:
             if prim and prim['type'] in types and prim['verts']:
                 yield prim
@@ -231,9 +239,8 @@ def primitives(cmds, loads, types=(POINTS,)):
             v = [fl(o) for o in ops]
             v += [0.0, 1.0][len(v) - 2:]
             prim['verts'].append(v)
-            # Every colour these streams send is the same for all of a
-            # primitive's vertices, so one colour per primitive suffices.
             prim['colour'] = list(colour)
+            prim['cols'].append(list(colour))
 
 
 def snap(v, grid=256, mode='nearest'):
@@ -326,6 +333,27 @@ def quad_pixels(v, rule):
 RASTER = {POINTS: point_pixels, LINES: line_pixels, TRIANGLES: triangle_pixels, QUADS: quad_pixels}
 
 
+def smooth(v, q, cols, px, py):
+    """The colour at the centre of pixel (PX, PY) inside triangle V (window
+    positions), interpolated with perspective correction from the vertex
+    colours COLS and the 1/w words Q (output word 3)."""
+    (x0, y0), (x1, y1), (x2, y2) = v
+    d = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0)
+    x, y = px + 0.5, py + 0.5
+    l1 = ((x - x0) * (y2 - y0) - (x2 - x0) * (y - y0)) / d
+    l2 = ((x1 - x0) * (y - y0) - (x - x0) * (y1 - y0)) / d
+    w = [(1 - l1 - l2) * q[0], l1 * q[1], l2 * q[2]]
+    return [sum(w[m] * cols[m][c] for m in range(3)) / sum(w) for c in range(4)]
+
+
+# The logic operations of block 0x022 (GL_CLEAR to GL_SET), source S and
+# destination D as frame words.
+LOGIC = [lambda s, d: 0, lambda s, d: s & d, lambda s, d: s & ~d, lambda s, d: s,
+         lambda s, d: ~s & d, lambda s, d: d, lambda s, d: s ^ d, lambda s, d: s | d,
+         lambda s, d: ~(s | d), lambda s, d: ~(s ^ d), lambda s, d: ~d, lambda s, d: s | ~d,
+         lambda s, d: ~s, lambda s, d: ~s | d, lambda s, d: ~(s & d), lambda s, d: 0xffffffff]
+
+
 def pack(c, rule):
     """A colour as the frame stores it: red in bits 31:24, then green, blue
     and alpha, each component as floor(256 c) limited to 255
@@ -373,13 +401,17 @@ def crc32(data):
 TESTS = {'points': ('__clog_pts', '__clog_pts_small', 'points', (POINTS,)),
          'lines': ('__clog_lines', '__clog_lines_small', 'lines', (LINES,)),
          'triangle': ('__clog_tri', '__clog_tri_small', 'triangle', (TRIANGLES,)),
-         'alpha': ('__clog_alpha', '__clog_alpha_small', 'alpha', (QUADS,))}
+         'alpha': ('__clog_alpha', '__clog_alpha_small', 'alpha', (QUADS,)),
+         'blend': ('__clog_blend', '__clog_blend_small', 'blend', (QUADS,))}
+# The tests whose frames the rules rebuild with the CRC matching; the
+# survey runs these.
+MATCHED = ('points', 'lines', 'triangle', 'alpha')
 # The program the 128 x 64 streams name sits where no held image has it;
 # --survey substitutes the held one (pass 18).
 HELD_PROGRAM = (214, 224, 234)
 
 
-def build(test, small, image, rnd=None, prog=None, rule=None, log=print):
+def build(test, small, image, rnd=None, prog=None, rule=None, log=print, drawn=None):
     """Replay TEST's stream and return (width, height, frame, stored frame,
     csumlist value)."""
     rule = rule or {}
@@ -419,7 +451,7 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print):
             log(f"; alpha test word {p['alpha']:#06x} rejects alpha {p['colour'][3]!r}")
             continue
         value = pack(p['colour'], rule)
-        win = []
+        win, qs = [], []
         for k, v in enumerate(p['verts']):
             o = got.get(k, {})
             x, y = o.get(5, math.nan), o.get(6, math.nan)
@@ -436,16 +468,37 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print):
                 log(f'vertex {[f"{c:g}" for c in v]}: word 5 = {x!r}, word 6 = {y!r}')
             if rule.get('low'):
                 x, y = f32_low(x), f32_low(y)
+            qs.append(o.get(3, math.nan))
             win.append((snap(x, rule.get('grid', 256), rule.get('snap', 'nearest')),
                         snap(y, rule.get('grid', 256), rule.get('snap', 'nearest'))))
         per = PER[p['type']]
+        # Block 0x004 bit 17 with the stream's blend state applies the
+        # logic operation of block 0x022 (docs/raster.md, "Logic operations").
+        op = LOGIC[p['logic'] & 15] if p['enables'] >> 17 & 1 else None
+        flat = all(c == p['cols'][0] for c in p['cols'])
+        covered = set()
+        if drawn is not None:
+            drawn.append((p, covered))
         for k in range(0, n - per + 1, per):
             vs = win[k:k + per]
             if None in vs:
                 continue
-            for px, py in RASTER[p['type']](*([vs] if per >= 3 else vs), rule):
-                if x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H:
-                    frame[(H - 1 - py) * W + px] = value
+            # Quads interpolate as their two triangles (0, 1, 2), (0, 2, 3).
+            tris = ([(0, 1, 2)] if per == 3 else [(0, 1, 2), (0, 2, 3)]) if per >= 3 else [None]
+            for t in tris:
+                if t is None:
+                    pixels = RASTER[p['type']](*vs, rule)
+                else:
+                    pixels = triangle_pixels([vs[m] for m in t], rule)
+                for px, py in pixels:
+                    if not (x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H):
+                        continue
+                    c = value if flat or t is None else pack(smooth(
+                        [vs[m] for m in t], [qs[k + m] for m in t], [p['cols'][k + m] for m in t],
+                        px, py), rule)
+                    at = (H - 1 - py) * W + px
+                    covered.add((px, py))
+                    frame[at] = c if op is None else op(c, frame[at]) & 0xffffffff
     stored = struct.unpack(f'>{W * H}I', open(os.path.join(ROOT, 'checksum', frame_file), 'rb').read())
     want = dict(l.split() for l in open(os.path.join(ROOT, 'checksum', listfile)) if l.strip())[key]
     return W, H, frame, stored, want, frame_file, listfile
@@ -475,7 +528,7 @@ VARIANTS = [
 
 def survey(image, rnd):
     print('; pixels differing from the stored frame, per rule variant; "=" marks a CRC match')
-    cols = [(t, sm) for t in TESTS for sm in (False, True)]
+    cols = [(t, sm) for t in MATCHED for sm in (False, True)]
     print('; ' + ' | '.join(f"{t}{' 128x64' if sm else ''}" for t, sm in cols))
     for name, rule in VARIANTS:
         cells = []
@@ -486,6 +539,51 @@ def survey(image, rnd):
             ok = f'{crc32(struct.pack(f">{W * H}I", *frame)):08x}' == want
             cells.append(f"{n}{'=' if ok else ''}")
         print(f"{name:45s} " + ' '.join(f'{c:>7s}' for c in cells))
+
+
+def logic_check(image):
+    """Test the logic operations against the blend frame itself. Each panel
+    of __clog_blend draws the same two quads, the second under one logic
+    operation; the panel drawn with GL_COPY holds the source words and the
+    one drawn with GL_NOOP the destination words, both as the simulator
+    interpolated them. Every other panel should then hold op(source,
+    destination) where the second quad covers and the destination
+    elsewhere. Prints the differing pixels per operation, and how many of
+    them a source one step away in some byte explains."""
+    drawn = []
+    W, H, _, stored, _, _, _ = build('blend', False, image, drawn=drawn, log=lambda *a: None)
+    quads = [(p, c) for p, c in drawn if p['type'] == QUADS and c]
+    panels = [(quads[k + 1][0]['logic'], min(quads[k][1])) for k in range(0, len(quads), 2)]
+    # Panel origins: the first quad's lowest covered pixel, relative to the first panel's.
+    first = panels[0][1]
+    origin = {op: (o[0] - first[0], o[1] - first[1]) for op, o in panels[1:]}
+    cover = quads[1][1]
+
+    def at(op, x, y):
+        dx, dy = origin[op]
+        return stored[(H - 1 - (y + dy)) * W + x + dx]
+    xs = range(min(x for x, _ in quads[0][1] | cover), max(x for x, _ in quads[0][1] | cover) + 1)
+    ys = range(min(y for _, y in quads[0][1] | cover), max(y for _, y in quads[0][1] | cover) + 1)
+    print('; panel origins relative to the first:', {op: origin[op] for op in sorted(origin)})
+    for op in sorted(origin):
+        bad = explained = 0
+        for x in xs:
+            for y in ys:
+                s_, d = at(3, x, y), at(5, x, y)
+                want = LOGIC[op](s_, d) & 0xffffffff if (x, y) in cover else d
+                got = at(op, x, y)
+                if want == got:
+                    continue
+                bad += 1
+                bs = [s_ >> b & 255 for b in (24, 16, 8, 0)]
+                for e in itertools.product((-1, 0, 1), repeat=4):
+                    nb = [a + b for a, b in zip(bs, e)]
+                    if all(0 <= a <= 255 for a in nb) and (x, y) in cover and \
+                            LOGIC[op](int.from_bytes(bytes(nb), 'big'), d) & 0xffffffff == got:
+                        explained += 1
+                        break
+        print(f'; logic operation {op}: {len(xs) * len(ys)} pixels, {bad} differ, '
+              f'{explained} of them explained by a source one step off in some byte')
 
 
 def main():
@@ -508,6 +606,9 @@ def main():
             test = args.pop(0)
         elif a == '--survey':
             do_survey = True
+        elif a == '--logic':
+            logic_check(image)
+            return
         else:
             sys.exit(__doc__)
     if do_survey:

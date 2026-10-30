@@ -4,7 +4,7 @@ How BUZZ turns transformed vertices into pixels. No held document gives these ru
 
 Labels. **established** means a rule set containing the rule rebuilds the named frame with its CRC matching, and changing that rule alone makes the frame differ (the count of differing pixels is given). It is established for the state the test draws under, which each entry names. **Not tested** means every alternative tried gives the same frame, so the frames do not choose. **inferred** means partial agreement or reasoning; the pixel-difference count is given. The stored frames are the simulator's output, not a board's; that the simulator matches the board is the premise the diagnostics were built on (`ogltests.htm`), not something these frames show.
 
-Script: `scripts/odydiags_frame_check.py --test points|lines|triangle|alpha [--small --program 214,224,234]` rebuilds one frame; `--survey` rebuilds all eight frames once for each rule variant and prints the differing-pixel counts (`ucode/runs/odydiags-raster-survey.txt`). Match logs: `ucode/runs/odydiags-{points,lines,triangle,alpha}-{1280x1024,128x64}.txt`.
+Script: `scripts/odydiags_frame_check.py --test points|lines|triangle|alpha [--small --program 214,224,234]` rebuilds one frame; `--survey` rebuilds all eight frames once for each rule variant and prints the differing-pixel counts (`ucode/runs/odydiags-raster-survey.txt`). Match logs: `ucode/runs/odydiags-{points,lines,triangle,alpha}-{1280x1024,128x64}.txt`; the unmatched blend runs are `ucode/runs/odydiags-blend-*.txt`.
 
 ## Frames that match
 
@@ -68,6 +68,22 @@ The 128 x 64 streams name a microcode layout no held image has; the runs substit
 - **established**, `alpha.SUM` and `alpha.sml`: block 0x01e's comparison and reference act as `docs/tokens.md` reads them. Under reference 0.5, LEQUAL passes alphas 0.3 and 0.5, EQUAL passes 0.5 only, GEQUAL passes 0.5, 0.7 and 1.0, GREATER 0.7 and 1.0, NOTEQUAL 0.3, 0.7 and 1.0, LESS 0.3, ALWAYS all four and NEVER none; a rejected fragment leaves the frame unchanged. Alpha 0.5 equals reference 0x800.
 - The precision at which alpha meets the reference: **not tested**. Comparing floor(256 a) with the reference's top eight bits and comparing the unconverted alpha with reference / 4096 give the same frames, since no tested alpha lies within 1/256 of 0.5 other than 0.5 itself.
 
+## Fitted without a match
+
+These rules come from the `blend` frames, which the script does not rebuild exactly (`--test blend`: 12757 of 1,310,720 pixels differ in `blend.SUM`, CRC-32 0x318a7eae against 0x3d3662c0; 139 in `blend.sml`). They stay **inferred**, with the counts given.
+
+The stream: nine panels, each two quads in perspective (1/w from 0.0138 to 0.0212) with a colour per vertex, the first in (0, 0, 0, 0), (1, 0, 0, 0.5), (0, 1, 0, 1), (0, 0, 1, 0.5) and the second, drawn about six rows higher, in (0, 0, 0, 0), (0.5, 0.5, 0.5, 0), (0.5, 0.5, 0.5, 1), (1, 1, 1, 1). The first quad of each panel is drawn with block 0x004 = 0x2200; the second with 0x22200 (bit 17 set) and block 0x022 set to 0 to 7 in turn, the first panel drawing both quads plainly. Depth word 0x020 is 1 throughout and bit 16 of block 0x004 is clear, so no depth test applies.
+
+### Colour interpolation
+
+- **inferred**, `blend.SUM` first panel (13934 pixels, no logic operation): colour is interpolated with perspective correction from the vertex colours and 1/w, sampled at pixel centres, each quad as the triangles (0, 1, 2) and (0, 2, 3), then stored as floor(256 c). That model leaves 1090 pixels different, each by one step in one or more bytes. Interpolating linearly in screen space leaves 13927 different; splitting the quads as (0, 1, 3) and (1, 2, 3) leaves 13803; sampling 0.05 pixel off the centre in x or y leaves 1519 to 3276.
+- **inferred**: the residue is the simulator's arithmetic, not a different rule. Wherever they differ, the exact value lies within 0.12 of a step of the stored byte's range. Along any one row of a triangle, the deviation from exact perspective fits a straight line in x, and the line changes from row to row; a single plane per triangle does not fit, nor does a rounding bias (floor(256 c + b) for b from 0 to 0.08, or a 10- to 16-bit intermediate rounded to nearest, all leave 1069 to 2944 pixels). A common relative error of the perspective divide fits 13867 of the 13934 pixels, but it would have to be about 10^-3 and not a function of 1/w alone. The deviation also depends on the screen position: the panels in the top row give some pixels a source one step different from the other panels' (below). Exact interpolation arithmetic: **not established**; the per-row structure points at values set up per span and stepped along x.
+
+### Logic operations
+
+- **inferred**, `blend.SUM` (`--logic`, `ucode/runs/odydiags-blend-logic.txt`): with block 0x004 bit 17 set, the stream's fragments combine with the frame through the logic operation of block 0x022, bit by bit over the whole 32-bit word, alpha byte included. Taking the source words from the panel drawn with GL_COPY and the destination words from the panel drawn with GL_NOOP, the GL_CLEAR, GL_AND, GL_AND_REVERSE and GL_AND_INVERTED panels hold exactly op(source, destination) where the second quad covers and the destination elsewhere (25896 pixels each, none different). GL_XOR and GL_OR differ in 70 and 58 pixels, every one of which a source one step different in some byte explains, as the colour interpolation above produces. It is inferred, not established, because the frame as a whole does not match.
+- The stream sets block 0x004 bit 17, which `docs/tokens.md` reads in the 6.5.30m library as "blending in use", and never bit 20 (`GL_COLOR_LOGIC_OP`). The test's name ("blend logic") and this behaviour fit the older blend-equation form of the logic operation (EXT_blend_logic_op), where blending is enabled and the blend equation selects the logic operation. Which word carries that equation in this stream: **unknown**; block 0x024 is 1 throughout the drawing.
+
 ## What the frames rule out together
 
 One position rounding (nearest on a grid of 1/256 or finer), one point rule (floor), one line rule (centre sampling along the major axis, ties to the lower pixel on the minor axis), one triangle and quad rule (centre sampling), one colour conversion (floor(256 c), limited to 255) and the alpha test of block 0x01e rebuild all eight frames. Each alternative in the survey moves at least one frame. Rules the survey lists as matching every frame are those these tests cannot see.
@@ -75,4 +91,5 @@ One position rounding (nearest on a grid of 1/256 or finer), one point rule (flo
 ## Remaining frames
 
 - `checkr3d.SUM` fails its own checksum (CRC-32 0x1f9ba6f3 against `csumlist` 0x2bb8d20c) while `checkr3d.sml` matches `csumlist.sml` (0x4bb39aca). See `docs/open-questions.md`, "The 3D checkerboard frame".
-- `blend` draws pairs of smooth-shaded quads in perspective under the logic operations of block 0x022 (values 0 to 7 seen so far); `aapts` and `aalines` draw antialiased primitives on a grey background (0x333333ff). They are where colour interpolation, logic operations and coverage would be fitted. Not fitted yet.
+- `blend`: fitted without a match (above).
+- `aapts` and `aalines` draw antialiased primitives on a grey background (0x333333ff). Not fitted.

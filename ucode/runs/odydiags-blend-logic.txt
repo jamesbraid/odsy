@@ -1,0 +1,9 @@
+; panel origins relative to the first: {0: (426, 0), 1: (852, 0), 2: (0, 341), 3: (426, 341), 4: (852, 341), 5: (0, 682), 6: (426, 682), 7: (852, 682)}
+; logic operation 0: 25896 pixels, 0 differ, 0 of them explained by a source one step off in some byte
+; logic operation 1: 25896 pixels, 0 differ, 0 of them explained by a source one step off in some byte
+; logic operation 2: 25896 pixels, 0 differ, 0 of them explained by a source one step off in some byte
+; logic operation 3: 25896 pixels, 0 differ, 0 of them explained by a source one step off in some byte
+; logic operation 4: 25896 pixels, 0 differ, 0 of them explained by a source one step off in some byte
+; logic operation 5: 25896 pixels, 0 differ, 0 of them explained by a source one step off in some byte
+; logic operation 6: 25896 pixels, 70 differ, 70 of them explained by a source one step off in some byte
+; logic operation 7: 25896 pixels, 58 differ, 58 of them explained by a source one step off in some byte
