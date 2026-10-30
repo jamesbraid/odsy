@@ -791,7 +791,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Microsecond delay that picks its method. When the word at board record +0xb468 is non-zero, or
   `in_panic_mode` says the system is panicking, it calls `us_delay`, a busy wait. Otherwise it splits the
   microsecond count into seconds (divide by 1,000,000) and nanoseconds (the remainder times 1000) and
-  sleeps through `nano_delay`.
+  waits through `nano_delay`.
 - `gfP_OdsyGetDrawableGeometry` (`odsy_clip.o`, offset 0xbc4, 156 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
   Private-request handler that returns the geometry of a drawable. It clears the result word, calls
