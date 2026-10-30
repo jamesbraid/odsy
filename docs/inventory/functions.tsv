@@ -1298,8 +1298,8 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd979994	128	__glOdysseyDoEvalCoord1	dynsym+mdebug	35ea57a59951		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979a14	180	ComputeFirstPartials	mdebug	b0307197b75f	multi-unit	in	named-only		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979ac8	164	ComputeNormal2	mdebug	639252aad3b3	multi-unit	in	named-only		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979b6c	7200	DoDomain2	mdebug	5dd35b5ec381	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd97b78c	10020	DoDomain2WithDerivs	mdebug	8e911e18e635	multi-unit	in	named-only	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979b6c	7200	DoDomain2	mdebug	5dd35b5ec381	multi-unit	in	named-only	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd97b78c	10020	DoDomain2WithDerivs	mdebug	8e911e18e635	multi-unit	in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd97deb0	2216	DoEvalCoord2	mdebug	e12e1d167128	multi-unit	in	named-only		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd97e44c	140	__glOdysseyDoEvalCoord2	dynsym+mdebug	ff3ffb57d8de		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd97e4d8	320	__glOdysseyEvalMesh1Line	dynsym+mdebug	baf88bf78966		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -7141,8 +7141,8 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd977bf0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6ca0b9ad5b8a		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d10	100	ComputeNormal2	dwarf+funcnames	673aa399880c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd97c610	1484	DoEvalCoord2	dwarf+funcnames	839edc08cc3c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd97cbe0	140	__glOdysseyDoEvalCoord2	dwarf+dynsym	049983bc4cd0		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd97cc70	292	__glOdysseyEvalMesh1Line	dwarf+dynsym	f402502a867f		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -24696,8 +24696,8 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoCallList	dwarf+funcnames			in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoCallLists	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#dlist-display-lists	`dlist` (display lists)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain1	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2	dwarf+funcnames			in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2WithDerivs	dwarf+funcnames			in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2WithDerivs	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoEvalCoord1	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoEvalCoord2	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoInterpolate	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -42272,8 +42272,8 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoCallList	dwarf+funcnames			in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoCallLists	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#dlist-display-lists	`dlist` (display lists)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain1	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2	dwarf+funcnames			in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2WithDerivs	dwarf+funcnames			in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoDomain2WithDerivs	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoEvalCoord1	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoEvalCoord2	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		DoInterpolate	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -68349,8 +68349,8 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979624	1008	DoEval
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd979994	128	__glOdysseyDoEvalCoord1	dynsym+mdebug	35ea57a59951		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979a14	180	ComputeFirstPartials	mdebug	b0307197b75f	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979ac8	164	ComputeNormal2	mdebug	639252aad3b3	multi-unit	in	named-only		
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979b6c	7200	DoDomain2	mdebug	5dd35b5ec381	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd97b78c	10020	DoDomain2WithDerivs	mdebug	8e911e18e635	multi-unit	in	named-only	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd979b6c	7200	DoDomain2	mdebug	5dd35b5ec381	multi-unit	in	named-only	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd97b78c	10020	DoDomain2WithDerivs	mdebug	8e911e18e635	multi-unit	in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd97deb0	2216	DoEvalCoord2	mdebug	e12e1d167128	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd97e44c	140	__glOdysseyDoEvalCoord2	dynsym+mdebug	ff3ffb57d8de		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd97e4d8	320	__glOdysseyEvalMesh1Line	dynsym+mdebug	baf88bf78966		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -74192,8 +74192,8 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977830	948	DoEva
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd977bf0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6ca0b9ad5b8a		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d10	100	ComputeNormal2	dwarf+funcnames	673aa399880c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd97c610	1484	DoEvalCoord2	dwarf+funcnames	839edc08cc3c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd97cbe0	140	__glOdysseyDoEvalCoord2	dwarf+dynsym	049983bc4cd0		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd97cc70	292	__glOdysseyEvalMesh1Line	dwarf+dynsym	f402502a867f		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -85888,8 +85888,8 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd979624	1008	DoEval
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd979994	128	__glOdysseyDoEvalCoord1	dynsym+mdebug	35ea57a59951		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd979a14	180	ComputeFirstPartials	mdebug	b0307197b75f	multi-unit	in	named-only		
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd979ac8	164	ComputeNormal2	mdebug	639252aad3b3	multi-unit	in	named-only		
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd979b6c	7200	DoDomain2	mdebug	5dd35b5ec381	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd97b78c	10020	DoDomain2WithDerivs	mdebug	8e911e18e635	multi-unit	in	named-only	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd979b6c	7200	DoDomain2	mdebug	5dd35b5ec381	multi-unit	in	named-only	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd97b78c	10020	DoDomain2WithDerivs	mdebug	8e911e18e635	multi-unit	in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd97deb0	2216	DoEvalCoord2	mdebug	e12e1d167128	multi-unit	in	named-only		
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd97e44c	140	__glOdysseyDoEvalCoord2	dynsym+mdebug	ff3ffb57d8de		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd97e4d8	320	__glOdysseyEvalMesh1Line	dynsym+mdebug	baf88bf78966		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -91731,8 +91731,8 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977830	948	DoEva
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xd977bf0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6ca0b9ad5b8a		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977d10	100	ComputeNormal2	dwarf+funcnames	673aa399880c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd97c610	1484	DoEvalCoord2	dwarf+funcnames	839edc08cc3c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xd97cbe0	140	__glOdysseyDoEvalCoord2	dwarf+dynsym	049983bc4cd0		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xd97cc70	292	__glOdysseyEvalMesh1Line	dwarf+dynsym	f402502a867f		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
