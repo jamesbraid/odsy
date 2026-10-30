@@ -18,6 +18,11 @@
 
 
 
+
+
+
+ * Diagnostics: odydiags, Internal Support Tools 2.7, its microcode image
+ *   usr/diags/ody/ucode/diagxform.bin (ucode/disasm/diagxform.lst)
  * Addresses are the N32 libGLcore virtual addresses printed in the
  * libglcore/asm/ODYSSEY/*.s headers.
  */

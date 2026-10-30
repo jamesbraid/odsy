@@ -9,10 +9,12 @@ IMAGE is ucode/ODSY/buzz_xform.bin or ucode/buzz_ucode_ip30.bin. Each ENTRY
 runs from its record to the next end mark (bits 1:0 equal to 1 or 2) plus the
 four records after it, then the next ENTRY starts, which is how the sequencer
 walks a program list. ENTRY:LAST runs ENTRY to LAST inclusive instead, which
-replays part of a routine, such as a table program's loop body for a second
-vertex. The rules are those of ucode/buzz_isa.md, "Pass 13" and "Pass 15";
-every one of them is inferred, so the output is a reading, not a trace of a
-board.
+replays part of a routine. ENTRY.. runs to the next mark of any value,
+including a value-3 mark, plus the four records after it: one part of a table
+program, so the list 1520.. 1541.. 1541.. 1561 runs table record 9's first
+part, its loop twice and its closing part (ucode/buzz_isa.md, "Pass 17"). The
+rules are those of ucode/buzz_isa.md, "Pass 13" to "Pass 17"; every one of
+them is inferred, so the output is a reading, not a trace of a board.
 
 Without --numeric, values are symbols. Slots are named after BUZZ.h section 1
 (P position, N normal, T texture coordinate, C colour, Mamb/Mdif/Mspe/Memi the
@@ -46,7 +48,10 @@ which hides every rounding trick the program plays.
 five after an end mark), skips each run's first twelve records, lists the
 records whose port write, scalar operand, factor load, store or output-stage
 read has no source, drops those a second pass of the same routine resolves,
-and groups the rest by cause (ucode/buzz_isa.md, "Pass 16").
+and, for buzz_xform.bin, those the loop run of their table program resolves
+(first part, the loop twice, the closing part; only the second loop pass and
+the closing part are counted), and groups the rest by cause
+(ucode/buzz_isa.md, "Pass 16" and "Pass 17").
 """
 import json
 import math
@@ -93,6 +98,20 @@ SCALAR_CHOICES = {
     'pow8t32': lambda x, k, f: (8.0 / (math.floor(x * 32) / 32)) ** 8 if x >= 1 / 32 else math.nan,
     'mulF': lambda x, k, f: f * x,
 }
+
+
+# Table programs of the 6.5.30m libGLcore (ucode/buzz_routines.md, "Table
+# records"): sequencer 0x29 (first part), 0x2a (loop) and 0x2c (closing part)
+# as buzz_xform.bin record numbers. Records 14 and 15 point all three at the
+# null routine and are left out.
+PROGRAMS = [(214, 224, 234), (243, 256, 268), (1313, 1325, 1337),
+            (1483, 1496, 1509), (1348, 1364, 1379), (1390, 1406, 1422),
+            (1580, 1597, 1613), (1752, 1771, 1789), (1433, 1453, 1472),
+            (1520, 1541, 1561), (1623, 1646, 1668), (1689, 1716, 1742),
+            (2300, 2328, 2355), (1798, 1824, 1851), (1862, 1896, 1929),
+            (1955, 1990, 2024), (2050, 2085, 2119), (2145, 2180, 2214),
+            (2590, 2626, 2661), (2691, 2728, 2764)]
+XFORM_RECORDS = 2794
 
 
 def rounder(mode):
@@ -243,7 +262,17 @@ def routine(recs, entry):
     return range(entry, i + 5)
 
 
+def part(recs, entry):
+    """From ENTRY to the next mark of any value, plus its four delay slots."""
+    i = entry
+    while not recs[i]['sq']:
+        i += 1
+    return range(entry, i + 5)
+
+
 def parse_entry(recs, e):
+    if e.endswith('..'):
+        return part(recs, int(e[:-2], 0))
     if ':' in e:
         a, b = (int(x, 0) for x in e.split(':'))
         return range(a, b + 1)
@@ -288,8 +317,12 @@ def run(recs, entries, dom):
             if d0 & 2:
                 # Without an issue and with field a bit 0 clear the load
                 # names its register in r1; otherwise in r2 (pass 15).
-                lr = r['r1'] if not d0 & 8 and not r['a'] & 1 else r['r2']
-                src = [snap[(lr, l)] for l in range(4)]
+                # Field a bit 0 clear: lanes x to z come from R[r1] and lane w
+                # from R[r2] (pass 17); set: the whole of R[r2].
+                lr = r['r1'] if not r['a'] & 1 else r['r2']
+                src = [snap[(lr, l)] for l in range(3)] + [snap[(r['r2'], 3)]]
+                if not r['a'] & 1 and r['r2'] != r['r1']:
+                    lr = f"{r['r1']}/{r['r2']}"
                 if r['a'] & 1 and r['r1'] & 16:
                     nextB = [src[l] if r['r1'] >> l & 1 else B[l] for l in range(4)]
                     ev.append(f"B[mask {r['r1'] & 15:x}] <- R{lr}")
@@ -306,10 +339,12 @@ def run(recs, entries, dom):
             lane[c] = snap[(r['r2'], r['r1'] & 3)]
             ev.append(f"read R{r['r2']}.{LANES[r['r1'] & 3]}")
         if d0 & 8:
+            # The same read: x to z from R[r1], w from R[r2] (pass 17).
             ar = r['r2'] if r['a'] & 1 else r['r1']
-            A, Aname = [snap[(ar, l)] for l in range(4)], f'R{ar}'
+            A = [snap[(ar, l)] for l in range(3)] + [snap[(r['r2'], 3)]]
+            Aname = f'R{ar}' if ar == r['r2'] else f"R{ar}/{r['r2']}"
             auto_fire, last_issue = c + 1, c
-            ev.append(f'latch A = R{ar}')
+            ev.append(f'latch A = {Aname}')
         # What reaches port V in this record: a fire's product six records
         # on, else a load seven records on.
         arriving = vready.get(c, loads.get(c))
@@ -440,6 +475,17 @@ def census(recs):
         twice |= first & again
     print(f'{len(alone)} records alone; {len(alone - twice)} resolve when the routine follows itself:',
           ' '.join(f'{r}:{k}' for r, k in sorted(alone - twice)))
+    if len(recs) == XFORM_RECORDS:
+        looped = set()
+        for p29, p2a, p2c in PROGRAMS:
+            lst = [f'{p29}..', f'{p2a}..', f'{p2a}..', str(p2c)]
+            skip = len(part(recs, p29)) + len(part(recs, p2a))
+            seen = {i for i in list(part(recs, p2a)) + list(routine(recs, p2c))}
+            still = unresolved_records(recs, lst, skip)
+            looped |= {(r, k) for r, k in twice if r in seen and (r, k) not in still}
+        twice -= looped
+        print(f'{len(looped)} resolve in the loop run of their table program:',
+              ' '.join(f'{r}:{k}' for r, k in sorted(looped)))
     groups = {}
     for rec, kind in sorted(twice):
         r = recs[rec]

@@ -112,15 +112,17 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   context restore with operand 0 of two attribute slots and each with bit 31 flipped
   (`odsyRestoreVB`, `odsy_ctxsw.o`). **inferred:** it computes ten parameter words from them: it
   combines operands 0 to 3 with the constants 2.828, 0.0 and -0.707 (data words 0x1e4, 0x1e3, 0x1ea)
-  through two dot products (R26 with itself at 501, R27 with R26 at 503) and scalar codes 5 and 0xd,
+  through two dot products (R26 with itself at 501; at 503 R26's x to z lanes with R27's w lane, against
+  the same, `ucode/buzz_isa.md` pass 17) and scalar codes 5 and 0xd,
   and produces parameter words 0xf0 to 0xf9 (stores at 503 to 514); routine 1265, the two-colour
   set-up, reads that range. **inferred**, numeric run (`ucode/runs/shininess-490.json`, code 5 as the
   product with K, `ucode/buzz_isa.md` pass 15): 0x0f0 and 0x0f4 are the front shininess s,
   0x0f1 and 0x0f5 the back shininess s', 0x0f7 is -s', 0x0f8 is 8 + s; 0x0f2, 0x0f3 and 0x0f6
-  (-0.707 t, 0.707 t', -s) are read by no routine; 0x0f9, stored at 514, is the product fired at 506
-  of R26 with R27, whose x to z lanes 490 never writes and no routine before it in any list sets to
-  (2.828, 0, 0), so under the rules its value is 2.828 R27.x - t t' and depends on an unrelated
-  routine's leftovers; the 8 + s' the two-sided programs need there is not produced (`ucode/buzz_isa.md`, pass 16).
+  (-0.707 t, 0.707 t', -s) are read by no routine; 0x0f9, stored at 514, is the refire at 506 of
+  (2.828, 0, 0, -t') against itself, 8 + s' (24 for t' = 4), the back-face constant the two-colour
+  set-up 1265 puts in the w lanes of R22 and R24 (`ucode/buzz_isa.md` pass 17). The diagnostic image
+  (`ucode/disasm/diagxform.lst`) has the same routine at 490 with R17, R18 and R16 for R26, R27 and
+  R25, and gives the same words.
 - **`303`** (routine; kernel record 303), **inferred**: the pixel rectangle of opcode 0x12f, ten
   operands, which every image draw and copy selects (libGLcore's pixel copy and move paths in
   `ody_image_move.s`, the X module's `odsyDrawImagePIO` and `odsyCopySDRAM`, the kernel's
@@ -322,17 +324,17 @@ sets a bit in the program key and adds no routine.
   light when GL_NORMALIZE is off (`ody_program.s`, line 871). It is not the normal transform, which
   the first-light routines already do. Its inputs are R16, R17 and R26 from the routines before it,
   the texture slot 3, the position and the colour slot 5. It computes the dot product of R26, the
-  viewer vector, with R17 (694) and R17's squared length (698), takes the reciprocal square root of
-  each product (code 1 at 701 and 705) and scales the three lanes of R26 by the first and of R17 by
-  the second with code 0xe (results back at 710 to 712 and 714 to 716). R17 holds the light
-  direction that 656 writes at 695 to 697 (the w lanes of the registers 656 loads,
-  `ucode/buzz_isa.md`, pass 15); the product at 695 takes R17 as it stood before those writes, the
-  vector the previous vertex left. R17 is thereby divided by
-  its own length, and R26 by the root of its product with R17. Whether R26 comes out normalised is
-  unknown: it is so only when that product equals its own squared length. The operand of a third
-  code 1 at 709 is unknown, since no product arrives there under the pass-13 timing. It then dots
-  R26 with the eye normal R16
-  (714). In the same records it
+  viewer vector, with itself (latched and loaded at 694 as R26's x to z lanes with R17's w lane, 0,
+  fired at 695) and R17's squared length (698), takes the reciprocal square root of each product
+  (code 1 at 701 and 705) and scales the three lanes of R26 by the first and of R17 by the second
+  with code 0xe (results back at 710 to 712 and 714 to 716), so both come out unit vectors: a
+  numeric run (`ucode/runs/local-viewer-611.json`, `515 606 611 694`) gives |v|² = 4.13 and GL's
+  unit viewer vector (-0.148, 0.098, 0.984) and unit light vector (0.127, 0.399, 0.908)
+  (`ucode/buzz_isa.md` pass 17). R17 holds the light direction that 656 writes at 695 to 697 (the
+  w lanes of the registers 656 loads, `ucode/buzz_isa.md`, pass 15). The operand of a third code 1
+  at 709 is unknown, since no product arrives there under the pass-13 timing. It then latches and
+  loads R26 with w = 1 (714, R16's w lane) and loads R17 with w = 1 (717), so the fires at 715 and
+  718 are 2 and 1 + v.l, half the squared length of the half vector v + l. In the same records it
   finishes the vertex: the texture rows t and r on slot 3 and the clip z, x, y and z rows on the
   position (695 to 701), the outputs q (0x2c) as word 6 and s, t, r as words 3 to 5, and the colour
   slot 5 through the colour unit (0x1f22) twice, as words 1, 2 and 9, 10.
@@ -617,16 +619,23 @@ from the routine map below.
   per-vertex entry of table record 9 (at 0x0dae4908 in `libGLcore.so`), one directional light with
   GL_NORMALIZE on and texturing allowed; patch: mark 1535 takes end mark 1540. Inputs: 1483's plus
   the texture slot, R5 to R8 and the constants 0.0 and 1.0. It computes 1483's colour, with the
-  normal first normalised (code 1 on its squared length, three code-6 operations; under the current
-  fire rules no record forms that squared length, so a numeric run cannot test code 6,
-  `ucode/buzz_isa.md`, pass 16), and transforms the
+  normal normalised: 1530 latches and loads the normal with w = 0 (R16's x to z, R17's w lane) and
+  its fire at 1531 is the squared length, code 1 at 1537 its reciprocal root, and code 6 at 1531 and
+  1542 scales N.L and the specular dot by it; records 1525 to 1527 put the 8 + s term back through
+  (1, 0, 0, 1) against (code-6 result, 0, 0, 8 + s) before code 3. A numeric run with a normal of
+  length 2 (`ucode/runs/normalize-1520.json`, `515 1226 1520.. 1541.. 1541..`, `--code 6=mulF`)
+  gives |n|² = 4, N.L = 0.928 and the code-3 operand 8.80338, the values of the unit normal
+  (`ucode/buzz_isa.md` pass 17). It also transforms the
   texture coordinate; outputs: a ten-word packet with s, t and r as words 3 to 5 and the colour as
   words 1 and 2.
 - **`1545`** (routine; kernel record 1446), **established** selection, **inferred** arithmetic: the
   second routine of table record 9 (its +16 word at 0x0dae4918 in `libGLcore.so`), holding the 0x2c
   entry 1561. It takes 1520's inputs and computes the same normalised lighting and texture transform
   for the following vertices (two code-1, three code-6 and two code-3 operations per pass) and outputs
-  1520's ten-word packet.
+  1520's ten-word packet. 1545 is not where a pass starts: it sits five records after 1540, the end
+  mark the patch copies to 1535, inside the loop that sequencer 0x2a starts at 1541; that loop runs
+  1541 to 1560, with its value-3 mark at 1556, and the runs of pass 17 enter it there
+  (`ucode/buzz_isa.md`).
 - **`1580`** (routine; kernel record 1481), **established** selection, **inferred** arithmetic: the
   per-vertex entry of table record 6 (at 0x0dae4830 in `libGLcore.so`), two directional lights with
   texture generation or clip planes allowed and no texture; patch: mark 1591 takes end mark 1596.
@@ -674,7 +683,8 @@ from the routine map below.
   lighting products (1763 to 1766, and 1782 to 1785 in the loop pass) are the normal against R17,
   R18, R21 and R22: front N.L, the front code-3 operand 8 + s (1 - N.H), back N.L with the normal
   negated, and the back operand 8 + s' (1 + N.H); a numeric run gives GL's four values
-  (`ucode/runs/two-sided-1752.json`, `ucode/buzz_isa.md` pass 15). **inferred**.
+  (`ucode/runs/two-sided-1752.json`, `ucode/buzz_isa.md` passes 15 and 17). **inferred**. The
+  diagnostic image schedules this program differently and computes the same products (pass 17).
 - **`1775`** (routine; kernel record 1676), **established** selection, **inferred** arithmetic: the
   nineteen records closing the one-light, two-colour program of table record 7 (+16 at 0x0dae4888 in
   `libGLcore.so`); mark 1784 sits five before the alternate loop entry 1789. It takes 1752's
@@ -887,7 +897,9 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 - **`515`** (routine; kernel record 515), **established**: the head of every program's set-up list,
   stored by `ody_program.s` at source lines 1179 and 1209. Its own record is an end mark.
   **inferred:** the work is in its four delay slots, which read data words 0x1e3 and 0x1e0 and
-  produce 0.0 in R17's w lane and 1.0 in R16's, so each program starts with those two lanes set. It is a register set-up: those two lane writes are all it does.
+  produce 0.0 in R17's w lane and 1.0 in R16's, so each program starts with those two lanes set. It is a register set-up: those two lane writes are all it does. The two lanes are the constants a
+  register read appends when its r2 field names R16 or R17: the read takes x to z from r1 and w from
+  r2, so a three-component vector is dotted with w = 1 or w = 0 (`ucode/buzz_isa.md` pass 17).
 - **`606`** (routine; kernel record 606), **established**: the set-up routine of every program built
   without the table (`ody_program.s`, source line 1180). **inferred:** its record and delay slots
   read the constant 0.0 (data word 0x1e3) three times and write it into the w lane of R13, R14 and
@@ -913,7 +925,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
   multiplies the half-vector components by word 0x0f7 through K and code 0xd into R22 and R24, with
   word 0x0f9 in their w lanes. Output: the back-face copies of the vectors 1226 prepared, which a
   two-sided program needs because the back face sees the negated normal. **inferred**, numeric run
-  (`ucode/runs/two-sided-1752.json` through `515 1226 1265 1752:1769 1771:1788`,
+  (`ucode/runs/two-sided-1752.json` through `490 515 1226 1265 1752.. 1771.. 1771..`,
   `scripts/buzz_ucode_dataflow.py --numeric`): with word 0x0f7 = -s' from 490, program 1752 dots
   the normal with R21 to give the back N.L and with R22 to give 8 + s' (1 + N.H), the back-face
   specular operand GL needs for the negated normal; both equal the GL values for the run's state
