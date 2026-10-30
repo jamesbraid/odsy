@@ -121,43 +121,52 @@ Installation Tools and Overlays disc 1, compared record by record.
   ending used when either two-sided flag is set, picked at 0x0d9db318 in the 6.5.27 library. Same
   records as image routine 1136. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes R23, the fragment terms of 972 and the colour slots, computes four code-0xd, two code-5 and one code-0xe operation, and outputs a sixteen-word packet with the colour copies as words 6, 7, 8, 11 and 12.
 - **`1054`** (routine; kernel copy, `odsy_init.o` .data +0x3938), **established**: closes table records 0 and
-  3, the programs without texture or clip planes; a one-record routine: its first record carries end
-  mark 2 and the next four are idle. Same records as image routine 1153.
+  3, the programs without texture or clip planes: end mark 2, then a header record, a last-word record
+  and two idle records. Same records as image routine 1153. **inferred**: with no input it computes
+  nothing and outputs the seven-word packet's header (`s0` 6) and its word 7 carrying the last-word
+  bit, so the vertex closes before the command ends.
 - **`1059`** (routine; kernel copy, `odsy_init.o` .data +0x3974), **established**: the second of the run of
-  bit-identical null closers; neither the 6.5.27 table nor its immediates name it. Same records as
-  image routine 1158.
+  five-record closers, differing from the others only in its header and last-word fields; neither the
+  6.5.27 table nor its immediates name it. Same records as image routine 1158. **inferred**: it reads no input, computes nothing and produces a nine-word header and last word 9.
 - **`1064`** (routine; kernel copy, `odsy_init.o` .data +0x39b0), **established**: is the +28 closer of table
-  record 2 only, the untextured one-sided fragment-lighting program. Same records as image routine
-  1163.
+  record 2 only, the untextured one-sided fragment-lighting program. Same records as image routine 1163.
+  **inferred**: it computes nothing from no input; its output is the ten-word header and word 10
+  that end routine 1214's packet.
 - **`1069`** (routine; kernel copy, `odsy_init.o` .data +0x39ec), **established**: serves as table record 5's
-  closing routine, the two-sided form of record 2. Same records as image routine 1168.
+  closing routine, the two-sided form of record 2. Same records as image routine 1168. **inferred**: it
+  takes nothing, computes nothing and outputs the fourteen-word header and last word 14 of routine
+  1291's packet.
 - **`1074`** (routine; kernel copy, `odsy_init.o` .data +0x3a28), **established**: is appended to close any
   program once the perspective-texture flag is set; 6.5.27 loads it at 0x0d9dbddc. Same records as
-  image routine 1173.
+  image routine 1173. **inferred**: it takes no operand and computes nothing; the output is an eleven-word header and
+  word 11, the packet that the perspective finish 1112 announces.
 - **`1079`** (routine; kernel copy, `odsy_init.o` .data +0x3a64), **established**: is the commonest closer,
   one colour with neither separate specular nor fragment lighting, carried by ten table records and
-  chosen at 0x0d9dbe5c. Same records as image routine 1178.
+  chosen at 0x0d9dbe5c. Same records as image routine 1178. **inferred**: it computes nothing from no input and outputs a ten-word header and word 10, the length of 1117's finish and of the one- and
+  two-light table programs.
 - **`1084`** (routine; kernel copy, `odsy_init.o` .data +0x3aa0), **established**: ends two-colour programs,
   the closing word of table records 7 and 13 and the immediate at 0x0d9dbe64. Same records as image
-  routine 1183.
+  routine 1183. **inferred**: it reads nothing and outputs a twelve-word header and word 12, the
+  two-colour packet of 1653 and 1699; it computes no value from its input, which is empty.
 - **`1089`** (routine; kernel copy, `odsy_init.o` .data +0x3adc), **established**: ends one-sided programs
   with separate specular or fragment lighting, in records 4, 12, 14, 20 and 21 and at 0x0d9dbe44.
-  Same records as image routine 1188.
+  Same records as image routine 1188. **inferred**: it takes no input and computes nothing; it produces the
+  thirteen-word header and last word 13 that close the packets of 1249, 2141 and 2201.
 - **`1099`** (routine; kernel copy, `odsy_init.o` .data +0x3b54), **established**: carries the vertex colour
   through with lighting off, nine records reading attribute slot 5; 6.5.27 adds it at 0x0d9db4a0.
-  Same records as image routine 1198.
+  Same records as image routine 1198. **inferred** under the pass-13 rules: its input is the colour slot 5, which the colour unit sends unchanged as words 1 and 2 (operation 0x1f22, no arithmetic); it then transforms the position slot by R3, R0, R1, R4 and R2 in the records it shares with 1101, and those five products are its other result, output by the finish after it.
 - **`1101`** (routine; kernel copy, `odsy_init.o` .data +0x3b6c), **established**: a tail of 1099 two records
   in, put before 1112 for a table program with perspective texture (0x0d9dbdcc in 6.5.27). Same
-  records as image routine 1200.
+  records as image routine 1200. **inferred**: its input is the position slot; it transforms it by R3, R0, R1, R4 and R2 and leaves the five products (clip w, window x and y, clip z, window z) as results for 1112 or 1117 to output.
 - **`1112`** (routine; kernel copy, `odsy_init.o` .data +0x3bf0), **established**: one record finishing the
-  colour with perspective texture, selected at 0x0d9db540 in 6.5.27. Same records as image routine
-  1211.
+  colour with perspective texture, selected at 0x0d9db540 in 6.5.27. Same records as image routine 1211.
+  **inferred**: it takes the five position products 1101 fired and outputs them with the perspective d2 codes: w through 0x33 as word 7, x through 0x44 as word 9, y through 0x24 as word 10 and z through 0x26 as word 8, the clip z consumed by 0x08, under an eleven-word header. It selects the word each product fills.
 - **`1117`** (routine; kernel copy, `odsy_init.o` .data +0x3c2c), **established**: the single-record colour
-  finish without perspective texture; 6.5.27 names it at 0x0d9db54c. Same records as image routine
-  1216.
+  finish without perspective texture; 6.5.27 names it at 0x0d9db54c. Same records as image routine 1216.
+  **inferred**: it takes 1101's five products and divides by w for output: 1/w (0x2b) as word 6, x/w (0x46) as 8 and y/w and z/w (0x26) as 9 and 7, with the clip z consumed and a header for ten words.
 - **`1122`** (routine; kernel copy, `odsy_init.o` .data +0x3c68), **established**: the null routine the
   6.5.27 builder writes into sequencers 0x2a and 0x2c and uses to end both lists (immediates from
-  0x0d9dbb58). Same records as image routine 1221.
+  0x0d9dbb58). Same records as image routine 1221. **inferred**: one end mark 2 and four idle records: it takes no operand, computes nothing and outputs nothing, and its mark ends the command (`ucode/buzz_isa.md`, pass 14), which is why the builder uses it as the loop entries' and the lists' last word.
 - **`1127`** (routine; kernel copy, `odsy_init.o` .data +0x3ca4), **established**: the set-up pass of the
   directional-light table records, 35 records reading the data table from index 1 to 0x1e3. Same
   records as image routine 1226. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: run once per program, it takes words 0 to 5 of four light records and shininess words 0x0f0 and 0x0f7 to 0x0f9, outputs the light directions to R17, R19, R21 and R23, computes each half vector times word 0x0f0 into R18, R20, R22 and R24, and sums the light-model and four light ambient colours into colour address 25.
@@ -166,99 +175,99 @@ Installation Tools and Overlays disc 1, compared record by record.
   routine 1265. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes the first two lights' words 0 to 5 and shininess words 0x0f7 and 0x0f9, negates the directions with code 0xc and multiplies the half vectors by word 0x0f7, and outputs the back-face copies to R21 to R24.
 - **`1187`** (routine; kernel copy, `odsy_init.o` .data +0x3f74), **established**: only table record 12's +52
   list carries this second set-up routine, after 1127; it reads data words 0x80 to 0x1e5. Same
-  records as image routine 1286. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's words 0x080 to 0x085 and 3.0; it does no arithmetic and outputs them to R24 and the w lanes of R13 to R15.
+  records as image routine 1286. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's words 0x080 to 0x085 and 3.0; it packs them, without arithmetic, into R24 and the w lanes of R13 to R15, which are its outputs.
 - **`1196`** (routine; kernel copy, `odsy_init.o` .data +0x3fe0), **established**: set-up for the local-light
   records 16 to 19 and 23, five records reading constants 0x1e0 to 0x1e3. Same records as image
   routine 1295. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: it takes 0.0, 1.0 and colour addresses 24 and 0, outputs 0.0 and 1.0 to the w lanes of R13 to R17, and computes the light-model plus light 0 ambient sum into colour address 25.
 - **`1205`** (routine; kernel copy, `odsy_init.o` .data +0x404c), **established**: sets up the four
   fragment-lighting records 2, 4, 5 and 8 that run with GL_LIGHTING off. Same records as image
-  routine 1304. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's words 0x080 to 0x086; it does no arithmetic and outputs them to R18 and the w lanes of R13 to R15.
+  routine 1304. Arithmetic, **inferred** under the pass-13 rules of `ucode/buzz_isa.md`: its inputs are the fragment light's words 0x080 to 0x086; it packs them, without arithmetic, into R18 and the w lanes of R13 to R15, which are its outputs.
 - **`1214`** (routine; kernel copy, `odsy_init.o` .data +0x40b8), **established**: is the complete 31-record
   per-vertex program of table record 2: one directional fragment light, lighting off, no texture.
-  Same records as image routine 1313.
+  Same records as image routine 1313. Read record by record under the pass-13 rules of `ucode/buzz_isa.md` (**inferred**), each pass takes the normal, position and colour slots, transforms the position by R3, R0, R1, R4 and R2 and the normal by R13 to R15, dots the transformed normal (R21) against the fragment light that set-up 1205 left in R18, and hands three code-5 results and one code-2 result to the colour unit, whose bit 2 packs them into the fragment terms. Outputs per vertex: 1/w as word 6, x/w as 8, y/w and z/w as 9 and 7, the colour slot as words 1 and 2 and the fragment terms as words 3 to 5.
 - **`1249`** (routine; kernel copy, `odsy_init.o` .data +0x425c), **established**: starts table record 4, the
   textured or clipped variant of record 2; the record patches its mark 1259 with end mark 1264. Same
-  records as image routine 1348.
+  records as image routine 1348. Its arithmetic, **inferred** under the pass-13 rules: it takes record 2's inputs plus the texture slot and rows R5 to R8, transforms position, normal and texture coordinate, and passes three normal products through code 5 into the colour unit (bit 2). The output is a thirteen-word vertex: 1/w, x and y as words 9, 11 and 12, z as 10, the fragment terms as 7 and 8 and the colour as word 1.
 - **`1269`** (routine; kernel copy, `odsy_init.o` .data +0x434c), **established**: is record 4's second
-  routine, eighteen records holding the record's +16 entry 1280. Same records as image routine 1368.
+  routine, eighteen records holding the record's +16 entry 1280. Same records as image routine 1368. Run after 1249 (**inferred**), it takes that routine's registers and the texture slot, outputs the previous vertex's s, t and r times 1/w as words 3, 4 and 5 with q consumed by d2 code 0x08, and computes the next vertex's position, texture coordinate and fragment terms with three code-5 and two code-2 operations before sending the thirteen-word packet again.
 - **`1291`** (routine; kernel copy, `odsy_init.o` .data +0x4454), **established**: is table record 5 entire,
   39 records with two value-3 marks: record 2 with the fragment model two-sided. Same records as
-  image routine 1390.
+  image routine 1390. **inferred** arithmetic: it takes the normal and position slots and the constants 0.5, -0.5 and -1.0 as inputs and computes a front and a back set of fragment terms, using the normal as transformed and negated for the back face, with sixteen code-5 and three code-2 operations across its three passes. Each pass outputs a fourteen-word packet: 1/w (0x2b) as word 10, x (0x46) as 12, codes 0x24 and 0xa6 on words 11 and 13, the colour as word 1 and the fragment terms on words 3 to 9.
 - **`1334`** (routine; kernel copy, `odsy_init.o` .data +0x4658), **established**: opens table record 8, the
-  two-sided version of record 4, patched at 1348 with 1353. Same records as image routine 1433.
+  two-sided version of record 4, patched at 1348 with 1353. Same records as image routine 1433. It takes record 5's inputs plus the texture slot and rows R5 to R8 (**inferred**, pass-13 rules), computes the front and back fragment terms with six code-5 operations and one code-2, transforms the texture coordinate, and outputs a sixteen-word packet under header 15: 1/w as word 13, x as 15, s and t as 4 and 5, and colour-unit words for the colour and the fragment terms.
 - **`1358`** (routine; kernel copy, `odsy_init.o` .data +0x4778), **established**: runs as the second part of
   record 8, holding its +16 entry 1373 and reading data words 0x1e1 to 0x1eb. Same records as image
-  routine 1457.
+  routine 1457. Arithmetic (**inferred**): with 1334's registers as input it outputs the previous vertex's texture words (s, t and r as 3 to 5, q consumed) and y as word 14 through code 0x24, then computes the next vertex's two-sided fragment terms with ten code-5 operations and one code-2.
 - **`1384`** (routine; kernel copy, `odsy_init.o` .data +0x48b0), **established**: is the whole of table
   record 3, one directional light with an infinite viewer, untextured, carrying no patch. Same
-  records as image routine 1483.
+  records as image routine 1483. Arithmetic, **inferred** under the pass-13 and pass-14 rules: it takes the normal and position slots, the material slots and what set-up 1127 left (light 0's direction in R17, the half vector times shininess word 0x0f0 in R18 with word 0x0f8 in w), computes N.L and the code-3 specular factor of 8 + s (1 - N.H), and combines emission, ambient, diffuse and specular in the colour unit. Its output is a seven-word vertex: the colour as words 1 and 2, 1/w as 3, x as 5 and y and z as 6 and 4.
 - **`1421`** (routine; kernel copy, `odsy_init.o` .data +0x4a6c), **established**: opens table record 9, one
   directional light with GL_NORMALIZE and texture allowed, patched at 1436. Same records as image
-  routine 1520.
+  routine 1520. **inferred** arithmetic: from 1384's inputs plus the texture slot and the constants 0.0 and 1.0 it normalises the eye normal (code 1 on its squared length, then three code-6 steps), computes the one-light colour with a code-3 specular factor and transforms the texture coordinate by R5 to R8. Output: a ten-word packet with the colour as words 1 and 2, s, t and r as 3 to 5, 1/w as 6, x as 8 and y and z as 9 and 7.
 - **`1446`** (routine; kernel copy, `odsy_init.o` .data +0x4b98), **established**: second half of record 9,
-  31 records holding the +16 entry 1462. Same records as image routine 1545.
+  31 records holding the +16 entry 1462. Same records as image routine 1545. For each further vertex (**inferred**) it takes 1421's inputs, outputs the previous packet and computes the normalised one-light colour again with two code-1, three code-6 and two code-3 operations per run.
 - **`1481`** (routine; kernel copy, `odsy_init.o` .data +0x4d3c), **established**: starts table record 6, two
   directional lights with texture generation or clip planes and no texture. Same records as image
-  routine 1580.
+  routine 1580. **inferred**: it takes the normal and position slots, the material slots and the two light directions and scaled half vectors that set-up 1127 placed in R17 to R20, computes three code-3 specular factors, adds the diffuse colours at addresses 1 and 4 and the specular colours at 2 and 5 times the material slots, and outputs the colour as words 1 and 2 with 1/w, x, y and z as words 6, 8, 9 and 7.
 - **`1502`** (routine; kernel copy, `odsy_init.o` .data +0x4e38), **established**: completes record 6's
   two-light program, 18 records with no data-table read, holding the +16 entry 1514. Same records as
-  image routine 1601.
+  image routine 1601. As the second half of record 6 (**inferred**), it outputs the previous vertex's colour words 1 and 2 and words 3 to 5 while it computes the next two-light colour from 1481's registers with three code-3 factors; its inputs are those registers and the two slots.
 - **`1524`** (routine; kernel copy, `odsy_init.o` .data +0x4f40), **established**: heads table record 10, two
-  directional lights with normalize on, patched at 1541 with 1546. Same records as image routine
-  1623.
+  directional lights with normalize on, patched at 1541 with 1546. Same records as image routine 1623.
+  With GL_NORMALIZE on (**inferred**), it takes 1481's inputs plus 0.0 and 1.0, normalises the eye normal (two code-1 and six code-6 operations), computes two code-3 factors and both lights' colour products, and outputs 1481's packet with words 3 to 5 added.
 - **`1551`** (routine; kernel copy, `odsy_init.o` .data +0x5084), **established**: 35 records forming record
-  10's second routine, where its +16 entry 1569 lies. Same records as image routine 1650.
+  10's second routine, where its +16 entry 1569 lies. Same records as image routine 1650. It computes, for each later vertex, 1524's normalised two-light colour with four code-3, five code-6 and two code-1 operations (**inferred**), taking 1524's inputs and producing the same output packet.
 - **`1590`** (routine; kernel copy, `odsy_init.o` .data +0x5258), **established**: begins table record 11, up
-  to four directional lights with texture and normalize off. Same records as image routine 1689.
+  to four directional lights with texture and normalize off. Same records as image routine 1689. Four directional lights (**inferred**): taking as input the normal, position and texture slots and the four light vectors set-up 1127 placed in R17 to R24, it computes four code-3 factors and adds the diffuse colours at addresses 1, 4, 7 and 10 times slot 7 and the specular colours at 2, 5, 8 and 11 times slot 8. Outputs: s, t and r as words 3 to 5, x, y and z as 8, 9 and 7 and the colour as 1 and 2.
 - **`1621`** (routine; kernel copy, `odsy_init.o` .data +0x53cc), **established**: is the second half of the
-  four-light record 11, containing its +16 entry 1643. Same records as image routine 1720.
+  four-light record 11, containing its +16 entry 1643. Same records as image routine 1720. **inferred**: it takes 1590's inputs, outputs the previous vertex's packet with 1/w as word 6, and computes the next four-light colour with four code-3 factors; no parameter word is read, every light term coming from the registers of set-up 1127.
 - **`1653`** (routine; kernel copy, `odsy_init.o` .data +0x554c), **established**: enters table record 7, one
-  directional light with two colour outputs, patched at 1666. Same records as image routine 1752.
+  directional light with two colour outputs, patched at 1666. Same records as image routine 1752. Two colours (**inferred**): it takes 1384's inputs plus back material slots 10 and 11 and the back-face vectors that set-up 1166 negated, computes front and back colours with four code-3 factors, and outputs a packet in which d2 code 0x21 fills words 3, 4 and 5, 1/w is word 8, x is 10, y and z are 11 and 9, and the two colours leave through operations 0x9f9a and 0x1c3a.
 - **`1676`** (routine; kernel copy, `odsy_init.o` .data +0x5660), **established**: closes record 7's
-  two-colour program and holds the +16 entry 1690. Same records as image routine 1775.
+  two-colour program and holds the +16 entry 1690. Same records as image routine 1775. **inferred**: taking 1653's registers as input, it outputs the previous vertex's front and back colours and coordinates (code 0x21 on words 3 to 5) and computes the next vertex's two-sided colour with two code-3 factors.
 - **`1699`** (routine; kernel copy, `odsy_init.o` .data +0x5774), **established**: opens record 13, two
   directional lights, two colours and texture, patched at 1719 with 1724. Same records as image
-  routine 1798.
+  routine 1798. **inferred**: for two directional lights, two colours and texture it takes the normal, position and texture slots, both material sides and the vectors of set-ups 1127 and 1166, computes six code-3 factors and the front and back products of lights 0 and 1, transforms the texture coordinate, and outputs the colours as words 1, 2, 6 and 7, s, t and r as 3 to 5, and 1/w, x, y and z as 8, 10, 11 and 9.
 - **`1729`** (routine; kernel copy, `odsy_init.o` .data +0x58dc), **established**: the 30-record two-sided
-  half of record 13, with its +16 entry 1752. Same records as image routine 1828.
+  half of record 13, with its +16 entry 1752. Same records as image routine 1828. **inferred**: each later vertex takes 1699's inputs; this routine computes the same two-sided colours with five code-3 factors and produces 1699's packet as its output.
 - **`1763`** (routine; kernel copy, `odsy_init.o` .data +0x5a74), **established**: begins record 16, one
   local light without attenuation or spot, the first table routine that reads the light record from
-  data index 0. Same records as image routine 1862.
+  data index 0. Same records as image routine 1862. One local light (**inferred**): it takes the normal, position and texture slots, light words 1 and 2, shininess words 0x0f4 and 0x0f8 and the constants -1.0, 0.0 and 1.0; it computes the light vector from the eye position, normalises it with two code-1 operations, scales by K through code 0xd and computes one code-3 specular factor. Outputs: colour word 1, s, t and r as words 3 to 5, 1/w as 6, x as 8, y as 9 and z as 7 through code 0x24.
 - **`1801`** (routine; kernel copy, `odsy_init.o` .data +0x5c3c), **established**: the 51-record second
-  routine of record 16, holding the +16 entry 1830. Same records as image routine 1900.
+  routine of record 16, holding the +16 entry 1830. Same records as image routine 1900. **inferred**: the second routine of record 16 takes 1763's inputs and, for each later vertex, computes the light vector, its normalisation (three code-1 operations) and two code-3 factors, producing 1763's packet as output.
 - **`1856`** (routine; kernel copy, `odsy_init.o` .data +0x5ed0), **established**: enters record 17, one
   local light accepting either normalize setting, patched at 1885. Same records as image routine 1955.
-  The start-up load leaves it at RAM 1856, inside the top 200 records.
+  The start-up load leaves it at RAM 1856, inside the top 200 records. **inferred**: for one local light under either normalize setting it takes 1763's inputs and computes the light and viewer vectors with four code-1, three code-4 and two code-6 operations and one code-3 factor; its outputs are colour words 1 and 2, s, t and r as 3 to 5, 1/w as 6 and z as 7.
 - **`1895`** (routine; kernel copy, `odsy_init.o` .data +0x60a4), **established**: is record 17's 52-record
   second half reading the light table up to the constants, with the +16 entry 1925. Same records as
-  image routine 1994. The start-up load leaves it at RAM 1895, inside the top 200 records.
+  image routine 1994. The start-up load leaves it at RAM 1895, inside the top 200 records. **inferred**: per later vertex it takes 1856's registers and computes the same local-light colour (seven code-1, six code-4, three code-6 and two code-3 operations), and its output is x through d2 code 0xc6 as word 8 along with the rest of 1856's packet.
 - **`1951`** (routine; kernel copy, `odsy_init.o` .data +0x6344), **established**: starts record 18, one
   local light with a local viewer and GL_NORMALIZE on. Same records as image routine 2050. The
-  start-up load leaves it at RAM 1951, inside the top 200 records.
+  start-up load leaves it at RAM 1951, inside the top 200 records. Local light, local viewer, normalize on (**inferred**): it takes the normal, position and texture slots, light words 1 and 2 and shininess words 0x0f4 and 0x0f8, computes the light vector and the per-vertex viewer vector (five code-1, three code-4 and three code-6 operations) and a code-3 specular factor, and outputs colour words 1 and 2, s, t and r as 3 to 5 and 1/w as 6.
 - **`1990`** (routine; kernel copy, `odsy_init.o` .data +0x6518), **established**: second routine of record
   18, holding the +16 entry 2020. Same records as image routine 2089. The start-up load leaves it at
-  RAM 1990, inside the top 200 records.
+  RAM 1990, inside the top 200 records. **inferred**: it takes 1951's registers and computes the local-viewer colour of every later vertex with nine code-1, six code-4, four code-6 and two code-3 operations; the output is 1951's packet with x through code 0xc6 as word 8.
 - **`2046`** (routine; kernel copy, `odsy_init.o` .data +0x67b8), **established**: is the per-vertex start of
   record 19, local light and local viewer with normalize off, patched at 2075. Same records as image
-  routine 2145. The start-up load leaves it at RAM 2046, inside the top 200 records.
+  routine 2145. The start-up load leaves it at RAM 2046, inside the top 200 records. Normalize off (**inferred**): it takes 1951's slots as inputs and computes the light and viewer vectors with three code-1, three code-4 and one code-6 operation and the code-3 factor, and outputs the same words as 1951.
 - **`2085`** (routine; kernel copy, `odsy_init.o` .data +0x698c), **established**: record 19's second routine
   with the +16 entry 2115. Same records as image routine 2184. It lies in the 218-record tail that
-  `odsyInitCfifo` never sends, so the kernel never puts it in RAM.
+  `odsyInitCfifo` never sends, so the kernel never puts it in RAM. **inferred**: the later vertices of record 19 take 2046's registers as input; it computes their colour with five code-1, six code-4, one code-6 and two code-3 operations and produces 2046's packet, x going out through code 0xc6.
 - **`2141`** (routine; kernel copy, `odsy_init.o` .data +0x6c2c), **established**: the only +32 list entry of
   record 14, one directional light with separate specular; its sequencer words are all 1122. Same
   records as image routine 2240. It lies in the 218-record tail that `odsyInitCfifo` never sends, so
-  the kernel never puts it in RAM.
+  the kernel never puts it in RAM. Separate specular (**inferred**): it takes the normal, position and texture slots and 1127's light vectors, computes one code-3 factor, adds emission, ambient and diffuse into the primary colour while keeping the specular product apart (0x1f34, 0x1a5a), and outputs a thirteen-word packet: primary colour words 1 and 2, specular words 6 and 7, s, t and r as 3 to 5, 1/w as 9, x as 11 and y and z as 12 and 10.
 - **`2169`** (routine; kernel copy, `odsy_init.o` .data +0x6d7c), **established**: heads the +32 list of
   record 15, record 14's two-colour form. Same records as image routine 2268. It lies in the
-  218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it in RAM.
+  218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it in RAM. **inferred**: 2141's work with two colours: it also takes the back material slots and set-up 1166's vectors, computes two code-3 factors, and outputs a sixteen-word packet with front and back primary and specular colours as words 1, 2 and 6 to 11, s, t and r as 3 to 5, 1/w as 13, x as 15 and z as 14.
 - **`2201`** (routine; kernel copy, `odsy_init.o` .data +0x6efc), **established**: begins table record 12,
   directional lights mixed with a directional fragment light and texture, patched at 2223. Same
   records as image routine 2300. It lies in the 218-record tail that `odsyInitCfifo` never sends, so
-  the kernel never puts it in RAM.
+  the kernel never puts it in RAM. **inferred**: for vertex lights mixed with a directional fragment light and texture it takes the slots and the vectors of set-ups 1127 and 1187, computes three code-3 factors for the vertex lights and three code-5 and one code-2 fragment terms (colour bit 2), and outputs a thirteen-word packet: colour words 1, 2 and 6 to 8, s, t and r as 3 to 5, x as 11, z as 10 and code 0xa6 on word 12.
 - **`2233`** (routine; kernel copy, `odsy_init.o` .data +0x707c), **established**: is record 12's second
   routine, reading data word 0x1e1 and holding the +16 entry 2256. Same records as image routine 2332.
   It lies in the 218-record tail that `odsyInitCfifo` never sends, so the kernel never puts it
-  in RAM.
+  in RAM. **inferred**: it takes 2201's registers and computes the next vertex's lit colour and fragment terms (three code-3, three code-5 and one code-2 operation); its output is 1/w as word 9 with the rest of 2201's packet.
 
 ## Instruction set
 

@@ -779,30 +779,52 @@ from the routine map below.
 
 `AddProgram` ends every per-vertex list with one closing entry (source lines 1147 to 1164).
 For a table program it is the record's +28 word; otherwise it is chosen at source line 1159.
-Every one of these is a bit-for-bit copy of the null routine 1221: an end mark and four idle
-slots. **inferred:** the routine does no work, so what the choice tells the board is the address
-itself; which unit reads it is not shown by any host code (`docs/open-questions.md`).
+**established** (listing `ucode/disasm/buzz_xform.lst`): each is five records, an end mark 2 and
+four delay slots, and they are not copies of the null routine 1221. The first delay slot is a
+packet header (bit 8 of the low field set, `s0` the word count minus one, and format bits 6 to 1
+that differ between closers); the second is a word record whose `s0` is that count and whose bit
+10 marks the packet's last word; the last two are idle. **inferred:** the closer finishes the
+vertex: it announces how many words the packet has and sends its last word, then ends the command.
+Each closer's count is the packet length of the programs that carry it (below), which is why
+`AddProgram` picks the closer by the same state that picks the program; the board does not need
+to tell them apart by address.
 
 - **`1153`** (routine; kernel record 1054), **established**: the closing entry of table records 0 and
-  3 (+28 at 0x0dae469c and 0x0dae4774 in `libGLcore.so`), the two programs with neither texture nor clip planes.
-- **`1158`** (routine; kernel record 1059), **established**: a null routine that no table record and
-  no immediate in the 6.5.30m N32 libGLcore `ody_program.s` names.
-- **`1163`** (routine; kernel record 1064), **established**: the closing entry of table record 2 only (+28 at 0x0dae472c in `libGLcore.so`),
-  the one-sided, untextured fragment-lighting program.
-- **`1168`** (routine; kernel record 1069), **established**: the closing entry of table record 5 only (+28 at 0x0dae4804 in `libGLcore.so`),
-  the two-sided form of record 2.
+  3 (+28 at 0x0dae469c and 0x0dae4774 in `libGLcore.so`), the two programs with neither texture nor
+  clip planes. **inferred:** it takes no operand and computes nothing; its output is the header of a
+  seven-word packet (record 1154, `s0` 6, format bits 0x14) and word 7 with the last-word bit (1155),
+  the length routine 214 and program 1483 produce.
+- **`1158`** (routine; kernel record 1059), **established**: a closer that no table record and
+  no immediate in the 6.5.30m N32 libGLcore `ody_program.s` names. **inferred:** it takes no input and computes nothing; its delay slots produce as output a nine-word header (1159, `s0` 8, format 0x58) and the last
+  word 9 (1160), a packet length no current program has.
+- **`1163`** (routine; kernel record 1064), **established**: the closing entry of table record 2 only
+  (+28 at 0x0dae472c in `libGLcore.so`), the one-sided, untextured fragment-lighting program.
+  **inferred:** it takes nothing and outputs the header of a ten-word packet (1164, `s0` 9, format
+  0x18) and word 10 (1165), the length of program 1313's packet; it computes nothing.
+- **`1168`** (routine; kernel record 1069), **established**: the closing entry of table record 5 only
+  (+28 at 0x0dae4804 in `libGLcore.so`), the two-sided form of record 2. **inferred:** no operand is read and it computes no value; the output is a fourteen-word header (1169, `s0` 13, format 0x1c) and
+  word 14 (1170), matching program 1390's packet.
 - **`1173`** (routine; kernel record 1074), **established**: the closing entry whenever the
-  perspective-texture flag is set: `AddProgram` (`ody_program.s`) adds it at source line 1159 for a generic program and
-  at line 1150 for a table program, where it also puts routines 1200 and 1211 in front of it.
+  perspective-texture flag is set: `AddProgram` (`ody_program.s`) adds it at source line 1159 for a
+  generic program and at line 1150 for a table program, where it also puts routines 1200 and 1211 in
+  front of it. **inferred:** it takes no input and does no arithmetic; its outputs are an
+  eleven-word header (1174, `s0` 10, format 0x4e) and word 11 (1175), the length 1211 announces.
 - **`1178`** (routine; kernel record 1079), **established**: the generic closing entry for one colour
-  without separate specular or fragment lighting (`ody_program.s`, source line 1159, chosen when the two-colour flag
-  is clear), and the +28 word of eleven table records.
+  without separate specular or fragment lighting (`ody_program.s`, source line 1159, chosen when the
+  two-colour flag is clear), and the +28 word of eleven table records. **inferred:** it computes nothing from no input and outputs a ten-word header (1179, `s0` 9, format 0x16) and word 10 (1180),
+  the packet of 243, 1216 and the one- and two-light table programs.
 - **`1183`** (routine; kernel record 1084), **established**: the same closing entry for two colour
-  outputs (`ody_program.s`, source line 1159); table records 7 and 13 carry it.
-- **`1188`** (routine; kernel record 1089), **established**: the closing entry when separate specular or
-  fragment lighting is on, one-sided (`ody_program.s`, source line 1159).
-- **`1193`** (routine; kernel record 1094), **established**: the two-sided form of 1188, picked when the
-  two-colour flag or the fragment model's two-sided byte (context +0x10000 + 26021) is set.
+  outputs (`ody_program.s`, source line 1159); table records 7 and 13 carry it. **inferred:** it
+  takes nothing and computes nothing; it outputs a twelve-word header (1184, `s0` 11, format 0x5a)
+  and word 12 (1185), the length of the two-colour programs 1752 and 1798.
+- **`1188`** (routine; kernel record 1089), **established**: the closing entry when separate specular
+  or fragment lighting is on, one-sided (`ody_program.s`, source line 1159). **inferred:** it takes no input, computes nothing and outputs a thirteen-word header (1189, `s0` 12, format 0x1a) and word 13
+  (1190), the packet of 1348, 2240 and 2300.
+- **`1193`** (routine; kernel record 1094), **established**: the two-sided form of 1188, picked when
+  the two-colour flag or the fragment model's two-sided byte (context +0x10000 + 26021) is set.
+  **inferred:** it takes no operand and outputs a sixteen-word header (1194, `s0` 15, format 0x1e)
+  and the last word (1195, word field 1, the four-bit count wrapping past 15), the length of 1433
+  and 2268; it computes nothing, and its last-word record also carries colour operation 0x0009.
 
 #### Unlit colour routines
 
@@ -860,7 +882,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 - **`1286`** (routine; kernel record 1187), **established** selection, **inferred** arithmetic: the
   second set-up routine, after 1226, of table record 12 (+56 at 0x0dae4a18 in `libGLcore.so`), the
   one that mixes vertex lights with a directional fragment light. It takes parameter words 0x080 to
-  0x085, the fragment light's words, and the constant 3.0 as inputs and does no arithmetic on them:
+  0x085, the fragment light's words, and the constant 3.0 as inputs and packs them without arithmetic:
   its outputs are R24 = (words 0x080 to 0x082, 3.0) and words 0x083 to 0x085 in the w lanes of R13
   to R15, where the vertex program finds the fragment light.
 - **`1295`** (routine; kernel record 1196), **established** selection, **inferred** arithmetic: the
@@ -873,7 +895,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
   set-up routine of the four fragment-lighting table records with GL_LIGHTING off, 2, 4, 5 and 8
   (+52 at 0x0dae4744 for record 2, `libGLcore.so`). Its inputs are parameter words 0x080 to 0x086,
   the fragment light; its outputs are R18 = words 0x080 to 0x082 and 0x086 and words 0x083 to 0x085
-  in the w lanes of R13 to R15. It moves values and does no arithmetic.
+  in the w lanes of R13 to R15. It packs those values into the registers without arithmetic.
 
 #### Lighting finish routines
 
@@ -1030,8 +1052,7 @@ them. Routine 303, the copy routine, is the only entry in this stretch any host 
 - **`584`** (routine; file offset 0x1b60 of `buzz_xform.bin`), **inferred**: the textured, coloured
   form of 563. It takes the colour slot 5 through the colour unit (code 0x1f22 at 591) as words 1
   and 2, so its header (10 at 590) announces eleven words: s, t, r as words 3 to 5, q (0x2c) as word
-  6, w (0x33) as word 7, z as word 8, x (0x44) as word 9, y (0x24) as word 10 and the closing word
-  11.
+  6, w (0x33) as word 7, z as word 8, x (0x44) as word 9, y (0x24) as word 10 and the closing word 11.
 
 ## Routines
 
