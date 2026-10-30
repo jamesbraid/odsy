@@ -2474,3 +2474,90 @@ Lays out
   buffer is released only when its group has no active range (the OR of the halfword at +6 of every range's record
   is zero), over all ranges for pass 0 and only over the ranges of the requester's id (`OdsyLookupCSetId` on the
   group's set at +160 with the request's +240) for pass 1.
+- `odsy_color` (`odsy_tport.o`, offset 0x9b8, 192 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
+  Text-port colour change on the Origin 350 build. Unless the mute word is set it takes the text-port lock with
+  `mutex_spinlock`, marks the port in use by storing 1 (the IP30 build increments a counter behind a write-buffer
+  flush instead), stores the colour at +8 of the static object and writes the same eight words to the command
+  FIFO port at board +0x110000 as the IP30 build (0x22008001, 0x23008003, 0xce80cc08, three zeros, 0xc580c406
+  and the colour), then stores 0 in the in-use word and releases the lock with `mutex_spinunlock`.
+- `odsy_mapcolor` (`odsy_tport.o`, offset 0xa78, 236 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
+  Text-port colour-map write on the Origin 350 build. Unless the mute word is set it takes the text-port lock with
+  `mutex_spinlock`, marks the port in use by storing 1, waits for the display FIFO to empty with
+  `odsy_poll_dfifo_level` at level 0, packs the three component arguments into the three 10-bit fields exactly as
+  the IP30 build does (each value times 4 plus its top 2 bits), pairs the result with 0x30000001 and the index
+  shifted left by 14, stores the pair as one doubleword at board +0x400000 and releases the lock after storing 0 in
+  the in-use word. The IP30 build uses a counter and write-buffer flushes where this one uses the lock alone.
+- `gf_OdsyReleaseGfxSema` (`odsy_sched.o`, offset 0x48c, 248 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)`.
+  Gives up the caller's graphics flow control on the Origin 350 build. When the flow handle at board record
+  +808 is set it raises the level with `splhi` and, if `gfx_flow_am_i_attached` says the caller is attached,
+  first checks the word at +104: when it is zero and `gfx_flow_credit_count_get` is below
+  `gfx_flow_credit_bias_get` it pins the thread with `rt_pin_thread`, lowers the level with `splx`, waits in
+  `odsy_flow_await_returned_credits`, raises the level again and unpins. It then sets the word at +0x85c8 to
+  1, stores 1 to the board register at 0x107c, reads that register back (the IP30 build reads 0x106c) and
+  calls `gfx_flow_detach_me`; `splx` follows. It returns 0.
+- `odsyLLPReset` (`odsy_init.o`, offset 0x1cd8, 184 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Resets the crossbar link to the widget on the Origin 350 build. It reads the widget control word at board
+  +36 and keeps it, and addresses the host chip's per-widget block by the widget number from the byte at
+  +793 (64 bytes a widget) plus the node bits taken from bits 39:33 of the board's base address, not from a fixed
+  table as on IP30. With a device handle (the word at -19400 from +0x10000) it calls `xwidget_reset`
+  and then loads a word from the bottom of its own frame, which that path never stores, and writes it to
+  host-chip word +268. Without a handle it saves word +268, waits 10 ms with `odsy_usdelay`, writes 0 to
+  +308 and restores +268. Both paths end by ORing the widget number and 0x4000 into the saved control word and
+  storing it back at board +36.
+- `OdsyInit32kSlotMask` (`odsy_adt.o`, offset 0xaa4, 132 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)`.
+  Prepares a 4112-byte slot-mask structure on the Origin 350 build. It clears the block with `bzero`, stores
+  its second argument at +0 and 0 at +8 and, when the module's global word is zero, fills the 512
+  doublewords from +16: the first is -4 and the other 511 are -2. A nonzero global leaves them zero.
+- `odsyFindBoardAddr` (`odsy_init.o`, offset 0xb44, 280 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Returns the base address of board number N on the Origin 350 build. It calls `odsyCheckBoardPointers` and, when the
+  record for N exists, returns the doubleword at +824. Otherwise it calls `find_odsypipe`, which returns a
+  halfword and a byte, and builds the address itself: 0x9200000000000000 plus the halfword shifted left by 33 plus
+  the byte shifted left by 24 (when the byte is zero the base comes from a table in the object instead). With
+  a nonzero address it creates the record with `odsyCheckBoardPointer` and stores the low 4 bits of the word at
+  address +36 in the byte at +793, the address at +824, N in the halfword at +790 and the byte and halfword from
+  `find_odsypipe` at -19392 and -19396 from +0x10000. It returns the address, or 0 when it has none.
+- `odsyDownloadUcode` (`odsy_ucode.o`, offset 0x0, 288 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)`.
+  Sends microcode lines to the board on the Origin 350 build, with the same argument limits, the same
+  0x27008000 write-address word and the same 0x40008000 halfword words as the IP30 build, reading the lines from
+  the buffer at +34136 against the line count at +34132. It writes through the pointer held at board record
+  +864 instead of the base plus 0x110000, and its stores are not followed by a `sync`. Invalid arguments log
+  "odsyDownloadUcode: invalid args" at severity 4 and return -1; success returns 0.
+- `gf_OdsySuspend` (`odsy_sched.o`, offset 0x0, 292 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)`.
+  Takes a client off the board on the Origin 350 build, under the same conditions as the IP30 build (board exists,
+  client is the owner at +72, bits 1:0 of its flag word at +4). When the flow handle at +808 is set it raises the
+  level with `splhi` and, for an attached caller whose word at +104 is zero and whose
+  `gfx_flow_credit_count_get` is below `gfx_flow_credit_bias_get`, pins the thread with `rt_pin_thread`, lowers
+  the level, waits in `odsy_flow_await_returned_credits`, raises it again and unpins. It then sets the word at
+  +0x85c8 to 1, stores 1 to the board register at 0x107c, reads that register back (the IP30 build reads
+  0x106c), calls `gfx_flow_detach_me` and `splx`, and returns 0.
+- `gf_OdsyResume` (`odsy_sched.o`, offset 0x124, 292 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)`.
+  Puts a client back on the board on the Origin 350 build. For the owner at +72 with bits 1:0 of its flag word
+  set, under `splhi`, a caller that is not attached to flow control pins the thread with `rt_pin_thread`, calls
+  `gfx_flow_attach_me`, forms the flow word from the shadow at +34244 masked by a constant and the word at
+  -19376 from +0x10000 shifted left by 12 (the IP30 build takes the target number from
+  `gfx_flow_credit_tnum_get`), stores it to the shadow and to the board register at 0x1074, and stores 0 to the shadow
+  at +34248 and to the register at 0x107c. It then lowers the level, waits in `odsy_flow_await_returned_credits`,
+  raises it again, calls `gfx_flow_attach_me_finish` with the owner and unpins. When the third argument is 0 and
+  the word at +120 is nonzero it calls `force_resched` and clears the word. It returns 0.
+- `odsy_fc_attach` (`odsy_init.o`, offset 0x1d90, 520 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Attaches the calling processor's pipe to flow control on the Origin 350 host; the IP30 kernel has no such routine.
+  With n set to bit 0 of the per-processor byte at +1320 (the same bit `odsy_fc_detach` uses), and the board
+  record found through `odsyPipeNrFromBase` on the base address argument, it stores into a literal-pool block
+  at offset 768 plus 40n the doubleword (base + 0x100000) with bit 40 set, then at offset 776 plus 40n the
+  value 256, or 100 when the system word masked with 0xf000 is not 0x4000 and `get_chimera_type` of the node
+  (`get_nasid`) is neither 3 nor 5. It writes a packed word to the host chip's register block for the node
+  (selected by bits 39:33 of the base) at +320: bits 3:0 of base bits 27:24, bit 4 from bit 1 of the
+  per-processor byte, bits 12:5 from the processor's halfword at +1068 and bit 16 from n, and reads it back.
+  It stores 68 at offset 784 plus 40n of the literal-pool block, then updates the flow word in the board
+  record: the word at +34244 masked by an object constant has 0x11000 ORed in, is stored back and to the
+  board register at 0x1074, and 0 goes to the shadow at +34248 and to the register at 0x107c.

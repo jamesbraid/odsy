@@ -54758,14 +54758,14 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1238	32	he_arcs_resta
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1258	32	he_arcs_reboot	dwarf+symtab	a527a043c01a	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1278	36	he_arcs_write	dwarf+symtab	e6e5749f1fac	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x129c	24	hub_widget_id	dwarf+symtab	a37c640b03c6	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12b4	28	get_nasid	dwarf+symtab	a20e8cfc012d	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12b4	28	get_nasid	dwarf+symtab	a20e8cfc012d	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12d0	16	get_slice	dwarf+symtab	3ba7a7d9a57b	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12e0	24	is_fine_dirmode	dwarf+symtab	90234e694ec7	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12f8	28	get_hub_chiprev	dwarf+symtab	915bad9d0150	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1314	160	verify_snchip_rev	dwarf+symtab	fd7015c6c56d	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13b4	28	ni_reset_port	dwarf+symtab	b4c7e14a1552	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13d0	300	set_sn12_type	dwarf+symtab	0b86ccadce81	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14fc	100	get_chimera_type	dwarf+symtab	e83cd0860867	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14fc	100	get_chimera_type	dwarf+symtab	e83cd0860867	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1560	1072	in_cksum_sub	dwarf+symtab	345c882c1b77	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1674	796	in_cksum_pref	symtab	ad10fda21bca	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1990	544	start	dwarf+symtab	141340c889b5	undocumented		
@@ -56048,7 +56048,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0x42c	472	O
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0x604	608	OdsyAllocCSetId	dwarf+symtab	22efc94e0b18	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0x864	352	OdsyDeallocCSetId	dwarf+symtab	ac9b1b3e01d1	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0x9c4	224	OdsyLookupCSetId	dwarf+symtab	36bbb2dc178a	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0xaa4	132	OdsyInit32kSlotMask	dwarf+symtab	412ee7e77b29	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0xaa4	132	OdsyInit32kSlotMask	dwarf+symtab	412ee7e77b29	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0xb28	348	OdsyAlloc32kSlot	dwarf+symtab	bae5adc541b2	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0xc84	204	OdsyFree32kSlot	dwarf+symtab	6cc8ed0b9c71	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	board-kernel	n64	.text	0xd50	152	odsyHashAlloc	dwarf+symtab	660150c9d50f	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56260,7 +56260,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x468	348	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x5c4	344	odsy_set_gfx_mfg_nic_name	dwarf+symtab	7f4dcd4379b6	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x71c	628	odsy_attach	dwarf+symtab	24c78e1142a8	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x990	436	odsyInitIntr	dwarf+symtab	115d09958283	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xb44	280	odsyFindBoardAddr	dwarf+symtab	d8aaaf3ed86f	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xb44	280	odsyFindBoardAddr	dwarf+symtab	d8aaaf3ed86f	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xc5c	640	odsyInitBoardGfx	dwarf+symtab	436b43f2f097	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0xedc	1440	odsyGatherInfo	dwarf+symtab	34757b370c71	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x147c	56	odsy_init_ddrncount_timeout	dwarf+symtab	fbbf3e650b97	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56268,8 +56268,8 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x14b4	28	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x14d0	268	odsyZeroOut	dwarf+symtab	5d6a31a1d71a	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x15dc	1644	gf_OdsyInitialize	dwarf+symtab	94ad83763bce	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1c48	144	gf_OdsyStart	dwarf+symtab	3e446d8d6eb0	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1cd8	184	odsyLLPReset	dwarf+symtab	90ab0f246f40	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1d90	520	odsy_fc_attach	dwarf+symtab	280b6a58b21d	named-only	docs/kernel-functions.md#functions	Functions
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1cd8	184	odsyLLPReset	dwarf+symtab	90ab0f246f40	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1d90	520	odsy_fc_attach	dwarf+symtab	280b6a58b21d	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x1f98	188	odsy_fc_detach	dwarf+symtab	769f0b5d5843	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x2054	908	odsyLowLevelReset	dwarf+symtab	147911f9432a	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	board-kernel	n64	.text	0x23e0	2024	odsyReset	dwarf+symtab	0c908521784e	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56319,10 +56319,10 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	board-kernel	n64	.text	0x1124	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	board-kernel	n64	.text	0x130c	8	gf_OdsyFrsInstall	dwarf+symtab	87506497337c	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	board-kernel	n64	.text	0x1314	8	gf_OdsyFrsUninstall	dwarf+symtab	87506497337c	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	board-kernel	n64	.text	0x131c	716	odsyRetraceHandler	dwarf+symtab	081b20adc079	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x0	292	gf_OdsySuspend	dwarf+symtab	745a32c402a2	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x124	292	gf_OdsyResume	dwarf+symtab	5f60f3619946	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x0	292	gf_OdsySuspend	dwarf+symtab	745a32c402a2	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x124	292	gf_OdsyResume	dwarf+symtab	5f60f3619946	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x248	580	gf_OdsyExit	dwarf+symtab	d984e27b2dde	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x48c	248	gf_OdsyReleaseGfxSema	dwarf+symtab	022f8f21cd95	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x48c	248	gf_OdsyReleaseGfxSema	dwarf+symtab	022f8f21cd95	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	board-kernel	n64	.text	0x584	128	odsyDiagExit	dwarf+symtab	b68b9959d9f7	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	board-kernel	n64	.text	0x0	68	mm_get_cond_list_cursor	dwarf+symtab	a01030aa8d73	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	board-kernel	n64	.text	0x44	68	mm_set_cond_list_cursor	dwarf+symtab	e44c2fd5d951	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56393,8 +56393,8 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	board-kernel	n64	.text	0x6234	456	
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	board-kernel	n64	.text	0x63fc	1696	mm_shake	dwarf+symtab	90d562db05ef	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x0	48	odsy_tport_lock_init	dwarf+symtab	e799e21d1150	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x30	2440	ODSY_SET_GC	dwarf+symtab	1751f1102255	named-only	docs/kernel-functions.md#functions	Functions
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x9b8	192	odsy_color	dwarf+symtab	9bc5e60cb483	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0xa78	236	odsy_mapcolor	dwarf+symtab	6418fe9c6c22	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x9b8	192	odsy_color	dwarf+symtab	9bc5e60cb483	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0xa78	236	odsy_mapcolor	dwarf+symtab	6418fe9c6c22	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0xb64	572	odsy_sboxfi	dwarf+symtab	e8d86a33dfe1	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0xda0	380	odsy_pnt2i	dwarf+symtab	5fb9eaaa7643	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0xf1c	16	odsy_cmov2i	dwarf+symtab	cf754e77dfc8	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56402,7 +56402,7 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0xf2c	169
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x15cc	24	odsy_getdesc	dwarf+symtab	bf6e6d8d8a67	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x15e4	496	odsy_tpinit	dwarf+symtab	344758864bf4	named-only	docs/buzz.md#what-is-not-done	What is not done
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	board-kernel	n64	.text	0x17d4	8	odsy_unblank	dwarf+symtab	78aa5094d5ec	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	board-kernel	n64	.text	0x0	288	odsyDownloadUcode	dwarf+symtab	98ac22225b9c	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	board-kernel	n64	.text	0x0	288	odsyDownloadUcode	dwarf+symtab	98ac22225b9c	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	board-kernel	n64	.text	0x120	1092	gf_OdsyDownload	dwarf+symtab	553632803f6a	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x0	376	pane_gc	dwarf+symtab	4a01e1deaff6	undocumented		
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x178	468	bind_pane	dwarf+symtab	b804a1ae8ad6	named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
