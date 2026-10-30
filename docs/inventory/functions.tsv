@@ -2942,18 +2942,18 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4d
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d730	220	FetchNon32	mdebug	0e9fc5759ce7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d80c	64	Fetch32	mdebug	430f34c2d12e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d84c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d864	112	StoreLESS	mdebug	ca113bbab91c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d864	112	StoreLESS	mdebug	ca113bbab91c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d8d4	112	StoreLESS_s	mdebug	f5e44b567d19		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d944	108	StoreEQUAL	mdebug	c6895fac1b99		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d944	108	StoreEQUAL	mdebug	c6895fac1b99		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d9b0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4da20	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4da20	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4da90	112	StoreGREATER	mdebug	07bd02f4c8e8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4db00	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4db70	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dbdc	112	StoreGEQUAL	mdebug	42828e751eee		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dc4c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dcbc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dd10	88	StoreLESS_W	mdebug	eb774968511e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dcbc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dd10	88	StoreLESS_W	mdebug	eb774968511e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dd68	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4ddc0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4de1c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -8779,18 +8779,18 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37140	188	FetchNon32	dwarf+funcnames	7c5cd6f6027d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37200	64	Fetch32	dwarf+funcnames	555036df7486		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37240	8	StoreNEVER	dwarf+funcnames	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37250	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37250	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda372c0	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37330	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37330	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda373a0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37410	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37410	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37480	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda374f0	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37560	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda375d0	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37640	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda376b0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37710	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda376b0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37710	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37770	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda377d0	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37830	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -14673,18 +14673,18 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c470	188	FetchNon32	dwarf	13ef605e0cbd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c530	64	Fetch32	dwarf	692be8b05107		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c570	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c580	112	StoreLESS	dwarf	add7c8705202		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c580	112	StoreLESS	dwarf	add7c8705202		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c5f0	112	StoreLESS_s	dwarf	7ef5bd4c2d79		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c660	108	StoreEQUAL	dwarf	d5586ac07045		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c660	108	StoreEQUAL	dwarf	d5586ac07045		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c6d0	112	StoreLEQUAL	dwarf	cd212a055b76		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c740	112	StoreLEQUAL_s	dwarf	8e54780373eb		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c740	112	StoreLEQUAL_s	dwarf	8e54780373eb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c7b0	112	StoreGREATER	dwarf	5ea74d1010da		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c820	112	StoreGREATER_s	dwarf	70388a96d3aa		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c890	108	StoreNOTEQUAL	dwarf	b20ae5c757fe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c900	112	StoreGEQUAL	dwarf	323b6002ca64		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c970	112	StoreGEQUAL_s	dwarf	94ceb1b1298a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c9e0	92	StoreALWAYS	dwarf	e23667186bfa		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227ca40	92	StoreLESS_W	dwarf	afcb3f00c113		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227c9e0	92	StoreALWAYS	dwarf	e23667186bfa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227ca40	92	StoreLESS_W	dwarf	afcb3f00c113		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227caa0	92	StoreLESS_W_s	dwarf	c940a218b92e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227cb00	96	StoreEQUAL_W	dwarf	ae6aa70b63a1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x227cb60	96	StoreLEQUAL_W	dwarf	4e75b2c695f8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -20706,18 +20706,18 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1cf70	220	FetchNon32	mdebug	e4bac10b0512		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d04c	64	Fetch32	mdebug	1502c822290e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d08c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d0a4	112	StoreLESS	mdebug	6cf39d3b1abf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d0a4	112	StoreLESS	mdebug	6cf39d3b1abf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d114	112	StoreLESS_s	mdebug	4fe91bfff6ad		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d184	108	StoreEQUAL	mdebug	235a69fa07b4		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d184	108	StoreEQUAL	mdebug	235a69fa07b4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d1f0	112	StoreLEQUAL	mdebug	26822547864f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d260	112	StoreLEQUAL_s	mdebug	73a0878c07c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d260	112	StoreLEQUAL_s	mdebug	73a0878c07c9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d2d0	112	StoreGREATER	mdebug	80440b5328b5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d340	112	StoreGREATER_s	mdebug	0bcccc5b1217		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d3b0	108	StoreNOTEQUAL	mdebug	59b9827f1f5f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d41c	112	StoreGEQUAL	mdebug	360ad8c0ff1c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d48c	112	StoreGEQUAL_s	mdebug	b1e4fb4e2d05		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d4fc	84	StoreALWAYS	mdebug	971cb80a2fcc		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d550	88	StoreLESS_W	mdebug	6d50992a61ba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d4fc	84	StoreALWAYS	mdebug	971cb80a2fcc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d550	88	StoreLESS_W	mdebug	6d50992a61ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d5a8	88	StoreLESS_W_s	mdebug	e8f742191e96		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d600	92	StoreEQUAL_W	mdebug	edf1da8a61d1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d65c	92	StoreLEQUAL_W	mdebug	4237e58771de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -24940,9 +24940,9 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		SoftClipTriangleFanVertex	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		SphereGen	dwarf+funcnames			in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Store	dwarf+funcnames			in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreALWAYS	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreALWAYS	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreALWAYS_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreEQUAL	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreEQUAL	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreEQUAL_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreGEQUAL	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreGEQUAL_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -24955,9 +24955,9 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_W_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_s	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_W	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_W_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreNEVER	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -32269,18 +32269,18 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fa9a0	188	FetchNon32	dwarf	770603db3200		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faa60	64	Fetch32	dwarf	fdd3a14bd0d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faaa0	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faab0	116	StoreLESS	dwarf	f72dc922c4c3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faab0	116	StoreLESS	dwarf	f72dc922c4c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fab30	116	StoreLESS_s	dwarf	132a879bbbfe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fabb0	112	StoreEQUAL	dwarf	650f5c669c87		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fabb0	112	StoreEQUAL	dwarf	650f5c669c87		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fac20	116	StoreLEQUAL	dwarf	ccb8de7ac49f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faca0	116	StoreLEQUAL_s	dwarf	474765fc5838		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faca0	116	StoreLEQUAL_s	dwarf	474765fc5838		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fad20	116	StoreGREATER	dwarf	26a9c6edb43d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fada0	116	StoreGREATER_s	dwarf	c818a7d3c885		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fae20	112	StoreNOTEQUAL	dwarf	77d2f2d4029e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fae90	116	StoreGEQUAL	dwarf	a959ce9e6bf2		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faf10	116	StoreGEQUAL_s	dwarf	1f8b0e860a52		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faf90	92	StoreALWAYS	dwarf	0c0043b6e0b2		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faff0	92	StoreLESS_W	dwarf	71f4690cf452		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faf90	92	StoreALWAYS	dwarf	0c0043b6e0b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3faff0	92	StoreLESS_W	dwarf	71f4690cf452		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fb050	92	StoreLESS_W_s	dwarf	4ba0028748c6		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fb0b0	96	StoreEQUAL_W	dwarf	183350f550a5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3fb110	96	StoreLEQUAL_W	dwarf	59450987ff34		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -38282,18 +38282,18 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1cf70	220	FetchNon32	mdebug	e4bac10b0512		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d04c	64	Fetch32	mdebug	1502c822290e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d08c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d0a4	112	StoreLESS	mdebug	6cf39d3b1abf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d0a4	112	StoreLESS	mdebug	6cf39d3b1abf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d114	112	StoreLESS_s	mdebug	4fe91bfff6ad		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d184	108	StoreEQUAL	mdebug	235a69fa07b4		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d184	108	StoreEQUAL	mdebug	235a69fa07b4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d1f0	112	StoreLEQUAL	mdebug	26822547864f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d260	112	StoreLEQUAL_s	mdebug	73a0878c07c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d260	112	StoreLEQUAL_s	mdebug	73a0878c07c9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d2d0	112	StoreGREATER	mdebug	80440b5328b5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d340	112	StoreGREATER_s	mdebug	0bcccc5b1217		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d3b0	108	StoreNOTEQUAL	mdebug	59b9827f1f5f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d41c	112	StoreGEQUAL	mdebug	360ad8c0ff1c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d48c	112	StoreGEQUAL_s	mdebug	b1e4fb4e2d05		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d4fc	84	StoreALWAYS	mdebug	971cb80a2fcc		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d550	88	StoreLESS_W	mdebug	6d50992a61ba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d4fc	84	StoreALWAYS	mdebug	971cb80a2fcc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d550	88	StoreLESS_W	mdebug	6d50992a61ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d5a8	88	StoreLESS_W_s	mdebug	e8f742191e96		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d600	92	StoreEQUAL_W	mdebug	edf1da8a61d1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1d65c	92	StoreLEQUAL_W	mdebug	4237e58771de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -42516,9 +42516,9 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		SoftClipTriangleFanVertex	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		SphereGen	dwarf+funcnames			in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Store	dwarf+funcnames			in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreALWAYS	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreALWAYS	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreALWAYS_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreEQUAL	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreEQUAL	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreEQUAL_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreGEQUAL	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreGEQUAL_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -42531,9 +42531,9 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_W_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_W	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLEQUAL_s	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_W	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_W_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreLESS_s	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		StoreNEVER	dwarf+funcnames			in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -49845,18 +49845,18 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1a9a0	188	FetchNon32	dwarf	770603db3200		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aa60	64	Fetch32	dwarf	fdd3a14bd0d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aaa0	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aab0	116	StoreLESS	dwarf	f72dc922c4c3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aab0	116	StoreLESS	dwarf	f72dc922c4c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1ab30	116	StoreLESS_s	dwarf	132a879bbbfe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1abb0	112	StoreEQUAL	dwarf	650f5c669c87		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1abb0	112	StoreEQUAL	dwarf	650f5c669c87		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1ac20	116	StoreLEQUAL	dwarf	ccb8de7ac49f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aca0	116	StoreLEQUAL_s	dwarf	474765fc5838		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aca0	116	StoreLEQUAL_s	dwarf	474765fc5838		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1ad20	116	StoreGREATER	dwarf	26a9c6edb43d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1ada0	116	StoreGREATER_s	dwarf	c818a7d3c885		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1ae20	112	StoreNOTEQUAL	dwarf	77d2f2d4029e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1ae90	116	StoreGEQUAL	dwarf	a959ce9e6bf2		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1af10	116	StoreGEQUAL_s	dwarf	1f8b0e860a52		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1af90	92	StoreALWAYS	dwarf	0c0043b6e0b2		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aff0	92	StoreLESS_W	dwarf	71f4690cf452		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1af90	92	StoreALWAYS	dwarf	0c0043b6e0b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1aff0	92	StoreLESS_W	dwarf	71f4690cf452		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1b050	92	StoreLESS_W_s	dwarf	4ba0028748c6		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1b0b0	96	StoreEQUAL_W	dwarf	183350f550a5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe1b110	96	StoreLEQUAL_W	dwarf	59450987ff34		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -69993,18 +69993,18 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4d65c	212	__glCheckMap
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d730	220	FetchNon32	mdebug	0e9fc5759ce7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d80c	64	Fetch32	mdebug	430f34c2d12e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d84c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d864	112	StoreLESS	mdebug	ca113bbab91c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d864	112	StoreLESS	mdebug	ca113bbab91c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d8d4	112	StoreLESS_s	mdebug	f5e44b567d19		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d944	108	StoreEQUAL	mdebug	c6895fac1b99		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d944	108	StoreEQUAL	mdebug	c6895fac1b99		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4d9b0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4da20	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4da20	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4da90	112	StoreGREATER	mdebug	07bd02f4c8e8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4db00	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4db70	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dbdc	112	StoreGEQUAL	mdebug	42828e751eee		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dc4c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dcbc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dd10	88	StoreLESS_W	mdebug	eb774968511e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dcbc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dd10	88	StoreLESS_W	mdebug	eb774968511e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4dd68	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4ddc0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4de1c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -75830,18 +75830,18 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda37070	196	__glCheckM
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37140	188	FetchNon32	dwarf+funcnames	7c5cd6f6027d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37200	64	Fetch32	dwarf+funcnames	555036df7486		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37240	8	StoreNEVER	dwarf+funcnames	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37250	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37250	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda372c0	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37330	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37330	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda373a0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37410	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37410	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37480	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda374f0	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37560	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda375d0	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37640	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda376b0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37710	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda376b0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37710	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37770	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda377d0	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda37830	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -81724,18 +81724,18 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cc3a0	196	__glCheckM
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc470	188	FetchNon32	dwarf	13ef605e0cbd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc530	64	Fetch32	dwarf	692be8b05107		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc570	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc580	112	StoreLESS	dwarf	add7c8705202		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc580	112	StoreLESS	dwarf	add7c8705202		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc5f0	112	StoreLESS_s	dwarf	7ef5bd4c2d79		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc660	108	StoreEQUAL	dwarf	d5586ac07045		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc660	108	StoreEQUAL	dwarf	d5586ac07045		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc6d0	112	StoreLEQUAL	dwarf	cd212a055b76		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc740	112	StoreLEQUAL_s	dwarf	8e54780373eb		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc740	112	StoreLEQUAL_s	dwarf	8e54780373eb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc7b0	112	StoreGREATER	dwarf	5ea74d1010da		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc820	112	StoreGREATER_s	dwarf	70388a96d3aa		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc890	108	StoreNOTEQUAL	dwarf	b20ae5c757fe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc900	112	StoreGEQUAL	dwarf	323b6002ca64		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc970	112	StoreGEQUAL_s	dwarf	94ceb1b1298a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc9e0	92	StoreALWAYS	dwarf	e23667186bfa		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cca40	92	StoreLESS_W	dwarf	afcb3f00c113		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cc9e0	92	StoreALWAYS	dwarf	e23667186bfa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32cca40	92	StoreLESS_W	dwarf	afcb3f00c113		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ccaa0	92	StoreLESS_W_s	dwarf	c940a218b92e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ccb00	96	StoreEQUAL_W	dwarf	ae6aa70b63a1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ccb60	96	StoreLEQUAL_W	dwarf	4e75b2c695f8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -87532,18 +87532,18 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4d65c	212	__glCheckMap
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d730	220	FetchNon32	mdebug	0e9fc5759ce7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d80c	64	Fetch32	mdebug	430f34c2d12e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d84c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d864	112	StoreLESS	mdebug	ca113bbab91c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d864	112	StoreLESS	mdebug	ca113bbab91c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d8d4	112	StoreLESS_s	mdebug	f5e44b567d19		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d944	108	StoreEQUAL	mdebug	c6895fac1b99		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d944	108	StoreEQUAL	mdebug	c6895fac1b99		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4d9b0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4da20	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4da20	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4da90	112	StoreGREATER	mdebug	07bd02f4c8e8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4db00	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4db70	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dbdc	112	StoreGEQUAL	mdebug	42828e751eee		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dc4c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dcbc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dd10	88	StoreLESS_W	mdebug	eb774968511e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dcbc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dd10	88	StoreLESS_W	mdebug	eb774968511e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4dd68	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4ddc0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4de1c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -93369,18 +93369,18 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda37070	196	__glCheckM
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37140	188	FetchNon32	dwarf+funcnames	7c5cd6f6027d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37200	64	Fetch32	dwarf+funcnames	555036df7486		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37240	8	StoreNEVER	dwarf+funcnames	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37250	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37250	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda372c0	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37330	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37330	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda373a0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37410	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37410	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37480	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda374f0	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37560	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda375d0	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37640	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda376b0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37710	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda376b0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37710	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37770	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda377d0	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda37830	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -99263,18 +99263,18 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227c3a0	196	__glCheckM
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c470	188	FetchNon32	dwarf	13ef605e0cbd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c530	64	Fetch32	dwarf	692be8b05107		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c570	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c580	112	StoreLESS	dwarf	add7c8705202		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c580	112	StoreLESS	dwarf	add7c8705202		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c5f0	112	StoreLESS_s	dwarf	7ef5bd4c2d79		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c660	108	StoreEQUAL	dwarf	d5586ac07045		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c660	108	StoreEQUAL	dwarf	d5586ac07045		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c6d0	112	StoreLEQUAL	dwarf	cd212a055b76		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c740	112	StoreLEQUAL_s	dwarf	8e54780373eb		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c740	112	StoreLEQUAL_s	dwarf	8e54780373eb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c7b0	112	StoreGREATER	dwarf	5ea74d1010da		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c820	112	StoreGREATER_s	dwarf	70388a96d3aa		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c890	108	StoreNOTEQUAL	dwarf	b20ae5c757fe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c900	112	StoreGEQUAL	dwarf	323b6002ca64		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c970	112	StoreGEQUAL_s	dwarf	94ceb1b1298a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c9e0	92	StoreALWAYS	dwarf	e23667186bfa		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227ca40	92	StoreLESS_W	dwarf	afcb3f00c113		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227c9e0	92	StoreALWAYS	dwarf	e23667186bfa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227ca40	92	StoreLESS_W	dwarf	afcb3f00c113		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227caa0	92	StoreLESS_W_s	dwarf	c940a218b92e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227cb00	96	StoreEQUAL_W	dwarf	ae6aa70b63a1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x227cb60	96	StoreLEQUAL_W	dwarf	4e75b2c695f8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
