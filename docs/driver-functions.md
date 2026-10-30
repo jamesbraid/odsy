@@ -1433,3 +1433,18 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Thin wrapper over `odsy_i2cValidEdid`: it passes its argument through and returns 1 when that routine
   returns non-zero, 0 otherwise. It reads no board register itself.
+- `odsy_mm_release_pbuffer` (`odsy_pmm.o`, offset 0x51ac, 164 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Gives back one pixel-buffer group's reservation. It subtracts the word at +60 of its argument from the
+  word at +216 of the group's record (behind +8), takes the record off the pixel-buffer list with
+  `odsy_mm_remove_pbuffer_group_from_list` and, when the remaining size at +216 is still non-zero, puts it
+  back with `odsy_mm_insert_pbuffer_group_into_list`. It then adds up the +216 sizes of the first two
+  records on the list at +4816 of the memory-manager structure, following the links at +232, and stores
+  the total at +4824.
+- `mm_as_remove_sg` (`odsy_pmm.o`, offset 0x2924, 164 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Drops one surface group from an address-space record. It decrements the use count at +4 and zeroes the
+  doubleword its second argument points to. When the count reaches 0 it calls `OdsyDeallocCSetId` on the
+  container at +1544 of the structure behind +8 with the identifier at +0, calls
+  `odsyUnpinAndUnmapASRegions`, overwrites the 64-byte record with the poison byte 5 and releases it with
+  `kmem_free`.

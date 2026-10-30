@@ -169,7 +169,7 @@ usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
 usr/gfx/gfxinit	tools	shared-tool	executable	n32	177132	bf6082958ccb9440		227	0	0	named-only	docs/board.md#the-board-revision-word-at-board-0x04	The board revision word at board +0x04
 usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
