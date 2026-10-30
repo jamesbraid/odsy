@@ -57497,7 +57497,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d2960	648	simpleAttachCursor
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d2bf0	212	XkbDDXList	dynsym	e8488283492d		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d2cd0	64	SyncAlarmCounterDestroyed	dynsym	24b0297d1a09		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d2d10	1204	XkbRF_SubstituteVars	dynsym	a4afbb6e2399		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d31d0	32	XSGIvcScreenInit	dynsym	a3e4340b6c51		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d31d0	32	XSGIvcScreenInit	dynsym	a3e4340b6c51		named-only	docs/odyssey-so-reads.md#video-control-attach-and-post-initialisation	Video-control attach and post-initialisation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d31f0	328	XvcClientGone	dynsym	7d80cb4140ab		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d3340	1352	getEncoding..KNB	dynsym	43e974114654		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100d3890	148	SProcChangePointerControl	dynsym	93519b6dc26b		undocumented		
@@ -59099,7 +59099,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102095f0	336	CheckFSFormat	dyns
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209740	192	ReadDisplayRegisterInfo	dynsym	bcc0605a62e7		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209800	1940	SetKeySyms..GDF	dynsym	14fe0e37be4a		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209fb0	3840	LbxQueryFont	dynsym	cd384c7c360a		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1020aeb0	188	Xalloc	dynsym	b48db024f857		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1020aeb0	188	Xalloc	dynsym	b48db024f857		named-only	docs/odyssey-so-reads.md#video-control-attach-and-post-initialisation	Video-control attach and post-initialisation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1020af70	1172	nmbxScreenInit	dynsym	66a770943dbd		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1020b410	2272	ProcSGIvcSetControl	dynsym	0f88d1162feb		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1020bcf0	336	SQColorsExtend	dynsym	bb0f799f499c		undocumented		
@@ -104927,7 +104927,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1565860	2088	cfbBitBlt	dynsym
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1566090	432	nfbInfPolyFillRect..AL	dynsym	e05daa19e4e8		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1566240	1808	cfb16FillSpanTile32sGeneral	dynsym	5aa0f8edba3f		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1566950	3212	nfbCheckSubSaveUnder..MG	dynsym	8ccd570a2170		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15675e0	1848	odsyPostInit	dynsym	2aaece191159		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15675e0	1848	odsyPostInit	dynsym	2aaece191159		understood	docs/odyssey-so-reads.md#video-control-attach-and-post-initialisation	Video-control attach and post-initialisation
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1567d20	804	miIntersect	dynsym	f9854ac29153		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1568050	272	cfbAllocatePrivates	dynsym	b9a76afb9552		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1568160	200	nfb13RopLoop..NH	dynsym	78016412a9b5		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105150,7 +105150,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1603ae0	5592	nfbSlideAndSizeW
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16050c0	3012	mfbSolidInvertArea	dynsym	b36b01d852a2		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1605c90	704	odsyInstallCursor	dynsym	c69364c7a979		understood	docs/odyssey-so-reads.md#cursor-and-gamma-routines	Cursor and gamma routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1605f50	120	miBSCopyGC..EFB	dynsym	daf5efe7d0b4		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1605fd0	4348	odsyAttachXvc	dynsym	28fb773e1dae		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1605fd0	4348	odsyAttachXvc	dynsym	28fb773e1dae		understood	docs/odyssey-so-reads.md#video-control-attach-and-post-initialisation	Video-control attach and post-initialisation
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16070d0	1544	miPushPixels	dynsym	5b9c44bda545		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16076e0	2808	cfb16FillBoxTileOddCopy	dynsym	4c0c521dabe2		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16081e0	832	odsySetFBConfig..KD	dynsym	c9212909bcef		understood	docs/odyssey-so-reads.md#board-control-routines	Board control routines
