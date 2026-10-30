@@ -9309,14 +9309,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6c610	140	findEntry	dwarf+funcnames	a2426a14ab02		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6c6a0	744	__glCreateSpecLUT	dwarf+dynsym	46b89431be22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6c990	80	__glFreeSpecLUT	dwarf+dynsym	d8fbacab1f12		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6ca70	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cac0	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6ca70	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cac0	68	FailOp	dwarf+funcnames	924d2eace67d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb10	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb60	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb60	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cf80	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6d090	144	FreeStencilBuf	dwarf+funcnames	9e915227115f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d120	656	__glValidateStencil	dwarf+dynsym	84312fc0c83a		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d3f0	180	__glInitStencil8	dwarf+dynsym	662aa55b4a9c		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d3f0	180	__glInitStencil8	dwarf+dynsym	662aa55b4a9c		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d4b0	336	__glDoStore_ASD	dwarf+dynsym	0898a20a3563		in	located	docs/sample-implementation.md#so_storec	so_store.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d600	272	__glDoStore_AS	dwarf+dynsym	edb4bb319c9c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d710	208	__glDoStore_AD	dwarf+dynsym	502499a13214		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -76360,14 +76360,14 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6c4d0	316	__glFreeLU
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6c610	140	findEntry	dwarf+funcnames	a2426a14ab02		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6c6a0	744	__glCreateSpecLUT	dwarf+dynsym	46b89431be22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6c990	80	__glFreeSpecLUT	dwarf+dynsym	d8fbacab1f12		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6ca70	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cac0	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6ca70	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cac0	68	FailOp	dwarf+funcnames	924d2eace67d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb10	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb60	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb60	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6cf80	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda6d090	144	FreeStencilBuf	dwarf+funcnames	9e915227115f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d120	656	__glValidateStencil	dwarf+dynsym	84312fc0c83a		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d3f0	180	__glInitStencil8	dwarf+dynsym	662aa55b4a9c		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d3f0	180	__glInitStencil8	dwarf+dynsym	662aa55b4a9c		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d4b0	336	__glDoStore_ASD	dwarf+dynsym	0898a20a3563		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d600	272	__glDoStore_AS	dwarf+dynsym	edb4bb319c9c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6d710	208	__glDoStore_AD	dwarf+dynsym	502499a13214		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93899,14 +93899,14 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6c4d0	316	__glFreeLU
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6c610	140	findEntry	dwarf+funcnames	a2426a14ab02		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6c6a0	744	__glCreateSpecLUT	dwarf+dynsym	46b89431be22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6c990	80	__glFreeSpecLUT	dwarf+dynsym	d8fbacab1f12		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6ca70	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6cac0	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6ca70	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6cac0	68	FailOp	dwarf+funcnames	924d2eace67d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb10	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb60	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6cb60	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6cf80	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda6d090	144	FreeStencilBuf	dwarf+funcnames	9e915227115f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6d120	656	__glValidateStencil	dwarf+dynsym	84312fc0c83a		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6d3f0	180	__glInitStencil8	dwarf+dynsym	662aa55b4a9c		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6d3f0	180	__glInitStencil8	dwarf+dynsym	662aa55b4a9c		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6d4b0	336	__glDoStore_ASD	dwarf+dynsym	0898a20a3563		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6d600	272	__glDoStore_AS	dwarf+dynsym	edb4bb319c9c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6d710	208	__glDoStore_AD	dwarf+dynsym	502499a13214		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
