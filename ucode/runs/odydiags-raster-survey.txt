@@ -1,35 +1,38 @@
 ; pixels differing from the stored frame, per rule variant; "=" marks a CRC match
-; points | points 128x64 | lines | lines 128x64 | triangle | triangle 128x64
-as matched                                         0=      0=      0=      0=      0=      0=
-line: ties to the upper pixel                      0=      0=     491      27      0=      0=
-line: run from the pixel holding the first end      0=      0=       9      10      0=      0=
-line: slope to nearest 1/64                        0=      0=      20      0=      0=      0=
-line: slope to nearest 1/256                       0=      0=      18      0=      0=      0=
-line: slope to nearest 1/1024                      0=      0=      12      0=      0=      0=
-line: slope to nearest 1/4096                      0=      0=      0=      0=      0=      0=
-line: slope to nearest 1/16384                     0=      0=      0=      0=      0=      0=
-line: slope floored to 1/256                       0=      0=      18      0=      0=      0=
-line: slope floored to 1/4096                      0=      0=      0=      0=      0=      0=
-line: slope floored to 1/65536                     0=      0=      0=      0=      0=      0=
-triangle: sample the lower-left corner             0=      0=      0=      0=     220      22
-triangle: keep every edge centre                   0=      0=      0=      0=      0=      0=
-triangle: drop every edge centre                   0=      0=      0=      0=      0=      0=
-positions unrounded                                0=      0=      0=      0=      0=      0=
-positions one single step low, unrounded           28      26      0=      0=      0=      0=
-positions one single step low, to 1/256            0=      0=      0=      0=      0=      0=
-positions one single step low, truncated 1/16      28      26      0=      0=      50      0=
-positions to nearest 1/1                           22      10      0=      16      0=      12
-positions to nearest 1/2                           22      10      0=      0=      0=      10
-positions to nearest 1/4                           22       5      0=      0=      0=      10
-positions to nearest 1/16                          22       5      0=      0=      0=      10
-positions to nearest 1/64                          22       5      0=      0=      0=      10
-positions to nearest 1/128                         22       5      0=      0=      0=      10
-positions to nearest 1/256                         0=      0=      0=      0=      0=      0=
-positions to nearest 1/1024                        0=      0=      0=      0=      0=      0=
-positions truncated to 1/1                         0=      0=     306      28     690      35
-positions truncated to 1/2                         0=      0=      86      22     250      22
-positions truncated to 1/4                         0=      0=      40       8     100      13
-positions truncated to 1/8                         0=      0=      0=      0=     100      0=
-positions truncated to 1/16                        0=      0=      0=      0=      0=      0=
-positions truncated to 1/256                       0=      0=      0=      0=      0=      0=
-positions truncated to 1/65536                     0=      0=      0=      0=      0=      0=
+; points | points 128x64 | lines | lines 128x64 | triangle | triangle 128x64 | alpha | alpha 128x64
+as matched                                         0=      0=      0=      0=      0=      0=      0=      0=
+line: ties to the upper pixel                      0=      0=     491      27      0=      0=      0=      0=
+line: run from the pixel holding the first end      0=      0=       9      10      0=      0=      0=      0=
+line: slope to nearest 1/64                        0=      0=      20      0=      0=      0=      0=      0=
+line: slope to nearest 1/256                       0=      0=      18      0=      0=      0=      0=      0=
+line: slope to nearest 1/1024                      0=      0=      12      0=      0=      0=      0=      0=
+line: slope to nearest 1/4096                      0=      0=      0=      0=      0=      0=      0=      0=
+line: slope to nearest 1/16384                     0=      0=      0=      0=      0=      0=      0=      0=
+line: slope floored to 1/256                       0=      0=      18      0=      0=      0=      0=      0=
+line: slope floored to 1/4096                      0=      0=      0=      0=      0=      0=      0=      0=
+line: slope floored to 1/65536                     0=      0=      0=      0=      0=      0=      0=      0=
+colour: round(255 c)                               0=      0=      0=      0=      0=      0=    7020      60
+colour: floor(255 c)                               0=      0=      0=      0=      0=      0=    4644      36
+alpha test: unconverted alpha against reference / 4096      0=      0=      0=      0=      0=      0=      0=      0=
+triangle: sample the lower-left corner             0=      0=      0=      0=     220      22     702      62
+triangle: keep every edge centre                   0=      0=      0=      0=      0=      0=      0=      0=
+triangle: drop every edge centre                   0=      0=      0=      0=      0=      0=      0=      0=
+positions unrounded                                0=      0=      0=      0=      0=      0=      0=      0=
+positions one single step low, unrounded           28      26      0=      0=      0=      0=      0=      0=
+positions one single step low, to 1/256            0=      0=      0=      0=      0=      0=      0=      0=
+positions one single step low, truncated 1/16      28      26      0=      0=      50      0=      0=      0=
+positions to nearest 1/1                           22      10      0=      16      0=      12      0=      0=
+positions to nearest 1/2                           22      10      0=      0=      0=      10     490      42
+positions to nearest 1/4                           22       5      0=      0=      0=      10     490      42
+positions to nearest 1/16                          22       5      0=      0=      0=      10     324      36
+positions to nearest 1/64                          22       5      0=      0=      0=      10     324      36
+positions to nearest 1/128                         22       5      0=      0=      0=      10     324      36
+positions to nearest 1/256                         0=      0=      0=      0=      0=      0=      0=      0=
+positions to nearest 1/1024                        0=      0=      0=      0=      0=      0=      0=      0=
+positions truncated to 1/1                         0=      0=     306      28     690      35     384      32
+positions truncated to 1/2                         0=      0=      86      22     250      22     172      12
+positions truncated to 1/4                         0=      0=      40       8     100      13     172      12
+positions truncated to 1/8                         0=      0=      0=      0=     100      0=      0=      0=
+positions truncated to 1/16                        0=      0=      0=      0=      0=      0=      0=      0=
+positions truncated to 1/256                       0=      0=      0=      0=      0=      0=      0=      0=
+positions truncated to 1/65536                     0=      0=      0=      0=      0=      0=      0=      0=

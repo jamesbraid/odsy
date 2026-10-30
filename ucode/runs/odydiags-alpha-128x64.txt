@@ -1,0 +1,115 @@
+; __clog_alpha_small: 8606 FIFO words; image diagxform.bin; round None
+; primitive at word 4342: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 1-21
+vertex ['-10', '10', '0', '1']: word 5 = 18.375, word 6 = 10.18359375
+vertex ['0', '10', '0', '1']: word 5 = 21.0, word 6 = 10.18359375
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 11.49609375
+vertex ['-10', '0', '0', '1']: word 5 = 18.375, word 6 = 11.49609375
+; primitive at word 4362: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 1-21
+vertex ['0', '10', '0', '1']: word 5 = 21.0, word 6 = 10.18359375
+vertex ['10', '10', '0', '1']: word 5 = 23.625, word 6 = 10.18359375
+vertex ['10', '0', '0', '1']: word 5 = 23.625, word 6 = 11.49609375
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 11.49609375
+; primitive at word 4382: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 1-21
+; alpha test word 0x3800 rejects alpha 0.699999988079071
+; primitive at word 4402: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 1-21
+; alpha test word 0x3800 rejects alpha 1.0
+; primitive at word 4939: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 1-21
+; alpha test word 0x2800 rejects alpha 0.30000001192092896
+; primitive at word 4959: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 1-21
+vertex ['0', '10', '0', '1']: word 5 = 63.0, word 6 = 10.18359375
+vertex ['10', '10', '0', '1']: word 5 = 65.625, word 6 = 10.18359375
+vertex ['10', '0', '0', '1']: word 5 = 65.625, word 6 = 11.49609375
+vertex ['0', '0', '0', '1']: word 5 = 63.0, word 6 = 11.49609375
+; primitive at word 4979: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 1-21
+; alpha test word 0x2800 rejects alpha 0.699999988079071
+; primitive at word 4999: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 1-21
+; alpha test word 0x2800 rejects alpha 1.0
+; primitive at word 5536: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 1-21
+; alpha test word 0x6800 rejects alpha 0.30000001192092896
+; primitive at word 5556: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 1-21
+vertex ['0', '10', '0', '1']: word 5 = 105.0, word 6 = 10.18359375
+vertex ['10', '10', '0', '1']: word 5 = 107.625, word 6 = 10.18359375
+vertex ['10', '0', '0', '1']: word 5 = 107.625, word 6 = 11.49609375
+vertex ['0', '0', '0', '1']: word 5 = 105.0, word 6 = 11.49609375
+; primitive at word 5576: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 1-21
+vertex ['0', '0', '0', '1']: word 5 = 105.0, word 6 = 11.49609375
+vertex ['10', '0', '0', '1']: word 5 = 107.625, word 6 = 11.49609375
+vertex ['10', '-10', '0', '1']: word 5 = 107.625, word 6 = 12.80859375
+vertex ['0', '-10', '0', '1']: word 5 = 105.0, word 6 = 12.80859375
+; primitive at word 5596: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 1-21
+vertex ['-10', '0', '0', '1']: word 5 = 102.375, word 6 = 11.49609375
+vertex ['0', '0', '0', '1']: word 5 = 105.0, word 6 = 11.49609375
+vertex ['0', '-10', '0', '1']: word 5 = 105.0, word 6 = 12.80859375
+vertex ['-10', '-10', '0', '1']: word 5 = 102.375, word 6 = 12.80859375
+; primitive at word 6133: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 22-42
+; alpha test word 0x4800 rejects alpha 0.30000001192092896
+; primitive at word 6153: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 22-42
+; alpha test word 0x4800 rejects alpha 0.5
+; primitive at word 6173: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 22-42
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 32.49609375
+vertex ['10', '0', '0', '1']: word 5 = 23.625, word 6 = 32.49609375
+vertex ['10', '-10', '0', '1']: word 5 = 23.625, word 6 = 33.80859375
+vertex ['0', '-10', '0', '1']: word 5 = 21.0, word 6 = 33.80859375
+; primitive at word 6193: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 22-42
+vertex ['-10', '0', '0', '1']: word 5 = 18.375, word 6 = 32.49609375
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 32.49609375
+vertex ['0', '-10', '0', '1']: word 5 = 21.0, word 6 = 33.80859375
+vertex ['-10', '-10', '0', '1']: word 5 = 18.375, word 6 = 33.80859375
+; primitive at word 6730: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 22-42
+vertex ['-10', '10', '0', '1']: word 5 = 60.375, word 6 = 31.18359375
+vertex ['0', '10', '0', '1']: word 5 = 63.0, word 6 = 31.18359375
+vertex ['0', '0', '0', '1']: word 5 = 63.0, word 6 = 32.49609375
+vertex ['-10', '0', '0', '1']: word 5 = 60.375, word 6 = 32.49609375
+; primitive at word 6750: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 22-42
+; alpha test word 0x5800 rejects alpha 0.5
+; primitive at word 6770: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 22-42
+vertex ['0', '0', '0', '1']: word 5 = 63.0, word 6 = 32.49609375
+vertex ['10', '0', '0', '1']: word 5 = 65.625, word 6 = 32.49609375
+vertex ['10', '-10', '0', '1']: word 5 = 65.625, word 6 = 33.80859375
+vertex ['0', '-10', '0', '1']: word 5 = 63.0, word 6 = 33.80859375
+; primitive at word 6790: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 22-42
+vertex ['-10', '0', '0', '1']: word 5 = 60.375, word 6 = 32.49609375
+vertex ['0', '0', '0', '1']: word 5 = 63.0, word 6 = 32.49609375
+vertex ['0', '-10', '0', '1']: word 5 = 63.0, word 6 = 33.80859375
+vertex ['-10', '-10', '0', '1']: word 5 = 60.375, word 6 = 33.80859375
+; primitive at word 7327: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 22-42
+vertex ['-10', '10', '0', '1']: word 5 = 102.375, word 6 = 31.18359375
+vertex ['0', '10', '0', '1']: word 5 = 105.0, word 6 = 31.18359375
+vertex ['0', '0', '0', '1']: word 5 = 105.0, word 6 = 32.49609375
+vertex ['-10', '0', '0', '1']: word 5 = 102.375, word 6 = 32.49609375
+; primitive at word 7347: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 22-42
+; alpha test word 0x1800 rejects alpha 0.5
+; primitive at word 7367: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 22-42
+; alpha test word 0x1800 rejects alpha 0.699999988079071
+; primitive at word 7387: entries 214.. 224.. 224.. 224.. 234; scissor x 84-125 y 22-42
+; alpha test word 0x1800 rejects alpha 1.0
+; primitive at word 7924: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 43-63
+vertex ['-10', '10', '0', '1']: word 5 = 18.375, word 6 = 52.18359375
+vertex ['0', '10', '0', '1']: word 5 = 21.0, word 6 = 52.18359375
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 53.49609375
+vertex ['-10', '0', '0', '1']: word 5 = 18.375, word 6 = 53.49609375
+; primitive at word 7944: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 43-63
+vertex ['0', '10', '0', '1']: word 5 = 21.0, word 6 = 52.18359375
+vertex ['10', '10', '0', '1']: word 5 = 23.625, word 6 = 52.18359375
+vertex ['10', '0', '0', '1']: word 5 = 23.625, word 6 = 53.49609375
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 53.49609375
+; primitive at word 7964: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 43-63
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 53.49609375
+vertex ['10', '0', '0', '1']: word 5 = 23.625, word 6 = 53.49609375
+vertex ['10', '-10', '0', '1']: word 5 = 23.625, word 6 = 54.80859375
+vertex ['0', '-10', '0', '1']: word 5 = 21.0, word 6 = 54.80859375
+; primitive at word 7984: entries 214.. 224.. 224.. 224.. 234; scissor x 0-41 y 43-63
+vertex ['-10', '0', '0', '1']: word 5 = 18.375, word 6 = 53.49609375
+vertex ['0', '0', '0', '1']: word 5 = 21.0, word 6 = 53.49609375
+vertex ['0', '-10', '0', '1']: word 5 = 21.0, word 6 = 54.80859375
+vertex ['-10', '-10', '0', '1']: word 5 = 18.375, word 6 = 54.80859375
+; primitive at word 8521: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 43-63
+; alpha test word 0x0800 rejects alpha 0.30000001192092896
+; primitive at word 8541: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 43-63
+; alpha test word 0x0800 rejects alpha 0.5
+; primitive at word 8561: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 43-63
+; alpha test word 0x0800 rejects alpha 0.699999988079071
+; primitive at word 8581: entries 214.. 224.. 224.. 224.. 234; scissor x 42-83 y 43-63
+; alpha test word 0x0800 rejects alpha 1.0
+; CRC-32 of built frame 3d08ff2d; csumlist.sml alpha 3d08ff2d; CRC-32 of alpha.sml 3d08ff2d
+; pixels differing from alpha.sml: 0

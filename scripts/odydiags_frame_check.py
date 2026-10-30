@@ -3,7 +3,7 @@
 raster rules, and compare the frame it predicts with the test's stored frame
 and checksum.
 
-Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle]
+Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle|alpha]
                                        [--round f32|tN] [--small]
                                        [--image IMAGE] [--program A,B,C] [--dump]
        scripts/odydiags_frame_check.py --survey
@@ -16,14 +16,14 @@ reads the frame back and compares a CRC-32 of it with usr/diags/ody/checksum/
 csumlist (csumlist.sml for the 128 x 64 screen); <test>.SUM and <test>.sml
 hold the frames themselves (ucode/buzz_isa.md, "Pass 18").
 
-This script handles the points, lines and triangle tests (__clog_pts,
-__clog_lines, __clog_tri and their _small forms): it extracts the writes,
+This script handles the points, lines, triangle and alpha tests (__clog_pts,
+__clog_lines, __clog_tri, __clog_alpha and their _small forms): it extracts the writes,
 tracks the sequencer registers, the matrix table and the primitives, runs
 each primitive's vertices through scripts/buzz_ucode_dataflow.py (first
 part, loop once per further vertex, closing part, the slot-0 values changing
 per pass), takes output words 5 and 6 as the window position, and draws the
-primitives with the raster rules of docs/raster.md into a black frame, white
-pixels, rows stored top first. It prints, per vertex, the output words, then
+primitives with the raster rules of docs/raster.md into a black frame, rows
+stored top first, colours packed and alpha-tested as docs/raster.md states. It prints, per vertex, the output words, then
 the CRC of the built frame against csumlist and a pixel comparison against the
 stored frame. The transform rules are those of the dataflow script; the
 frame-side rules are stated in buzz_isa.md, pass 18, and docs/raster.md.
@@ -33,7 +33,7 @@ diagxform.bin, the image odydiags loads). --round is passed to the dataflow
 run. --program replaces the start, loop and closing entries the stream
 sets in sequencer 0x29, 0x2a and 0x2c (the 128 x 64 stream names a program
 layout no held image has). --dump prints the decoded command stream instead.
---survey builds all six frames under each rule variant in VARIANTS, one rule
+--survey builds all eight frames under each rule variant in VARIANTS, one rule
 changed at a time, and prints the number of pixels each frame then differs
 by (docs/raster.md cites this table for what each frame rules out).
 """
@@ -196,15 +196,15 @@ def enc_val(w):
 
 VERTEX = {0x8080c801: 2, 0x8080cc03: 3, 0x8080d005: 4}
 # Primitive types of the 0x00014400 word that the streams use (GL numbering).
-POINTS, LINES, TRIANGLES = 0, 1, 4
-PER = {POINTS: 1, LINES: 2, TRIANGLES: 3}
+POINTS, LINES, TRIANGLES, QUADS = 0, 1, 4, 7
+PER = {POINTS: 1, LINES: 2, TRIANGLES: 3, QUADS: 4}
 
 
 def primitives(cmds, loads, types=(POINTS,)):
     """Yield each primitive of one of TYPES with the state it is drawn
     under. LOADS are the opcodes of the two matrix-table stores."""
     seq, table, scissor, prim = {}, [math.nan] * 68, None, None
-    colour = [math.nan] * 4
+    colour, alpha = [math.nan] * 4, 0
     for idx, w, ops in cmds:
         top = w >> 24
         if w & 0xc000 == 0x8000 and 0x20 <= top <= 0x3f:
@@ -217,10 +217,12 @@ def primitives(cmds, loads, types=(POINTS,)):
             scissor = ops
         elif w == 0xc580d015:
             colour = [fl(o) for o in ops]
+        elif w == 0x0001041e:
+            alpha = ops[0]
         elif w == 0x00014400:
             prim = dict(type=ops[0], verts=[], idx=idx, seq=dict(seq),
                         regs={str(r): table[4 * r:4 * r + 4] for r in range(17)},
-                        scissor=scissor, colour=list(colour))
+                        scissor=scissor, colour=list(colour), alpha=alpha)
         elif w == 0x00014001:
             if prim and prim['type'] in types and prim['verts']:
                 yield prim
@@ -229,6 +231,9 @@ def primitives(cmds, loads, types=(POINTS,)):
             v = [fl(o) for o in ops]
             v += [0.0, 1.0][len(v) - 2:]
             prim['verts'].append(v)
+            # Every colour these streams send is the same for all of a
+            # primitive's vertices, so one colour per primitive suffices.
+            prim['colour'] = list(colour)
 
 
 def snap(v, grid=256, mode='nearest'):
@@ -313,7 +318,40 @@ def f32_low(v):
     return struct.unpack('>f', struct.pack('>I', b - 1 if v > 0 else b + 1))[0]
 
 
-RASTER = {POINTS: point_pixels, LINES: line_pixels, TRIANGLES: triangle_pixels}
+def quad_pixels(v, rule):
+    """A quadrilateral as the triangles (0, 1, 2) and (0, 2, 3)."""
+    return triangle_pixels(v[:3], rule) + triangle_pixels([v[0], v[2], v[3]], rule)
+
+
+RASTER = {POINTS: point_pixels, LINES: line_pixels, TRIANGLES: triangle_pixels, QUADS: quad_pixels}
+
+
+def pack(c, rule):
+    """A colour as the frame stores it: red in bits 31:24, then green, blue
+    and alpha, each component as floor(256 c) limited to 255
+    (rule['pack'] = 'round255' or 'floor255' for the usual alternatives)."""
+    how = rule.get('pack', 'floor256')
+    out = 0
+    for x in c:
+        x = min(max(x, 0.0), 1.0)
+        n = (min(255, math.floor(x * 256)) if how == 'floor256' else
+             math.floor(x * 255 + 0.5) if how == 'round255' else math.floor(x * 255))
+        out = out << 8 | n
+    return out
+
+
+def alpha_pass(a, word, rule):
+    """The alpha test of block 0x01e (docs/tokens.md): bits 14:12 the GL
+    comparison (NEVER to ALWAYS), bits 11:0 the reference times 4096.
+    The fragment's alpha is compared as the frame stores it, floor(256 a)
+    against the reference's top eight bits (rule['alpha'] = 'float'
+    compares the unconverted alpha with the reference over 4096)."""
+    func, ref = word >> 12 & 7, word & 0xfff
+    if rule.get('alpha') == 'float':
+        x, r = a, ref / 4096
+    else:
+        x, r = min(255, math.floor(a * 256)), ref >> 4
+    return [False, x < r, x == r, x <= r, x > r, x != r, x >= r, True][func]
 
 
 def crc32(data):
@@ -334,7 +372,8 @@ def crc32(data):
 # test name: (large stream, small stream, frame and checksum-list key)
 TESTS = {'points': ('__clog_pts', '__clog_pts_small', 'points', (POINTS,)),
          'lines': ('__clog_lines', '__clog_lines_small', 'lines', (LINES,)),
-         'triangle': ('__clog_tri', '__clog_tri_small', 'triangle', (TRIANGLES,))}
+         'triangle': ('__clog_tri', '__clog_tri_small', 'triangle', (TRIANGLES,)),
+         'alpha': ('__clog_alpha', '__clog_alpha_small', 'alpha', (QUADS,))}
 # The program the 128 x 64 streams name sits where no held image has it;
 # --survey substitutes the held one (pass 18).
 HELD_PROGRAM = (214, 224, 234)
@@ -376,8 +415,10 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print):
         x0, x1 = p['scissor'][0] >> 12 & 0xfff, p['scissor'][0] & 0xfff
         y0, y1 = p['scissor'][1] >> 12 & 0xfff, p['scissor'][1] & 0xfff
         log(f"; primitive at word {p['idx']}: entries {' '.join(entries)}; scissor x {x0}-{x1} y {y0}-{y1}")
-        if p['colour'] != [1.0] * 4:
-            sys.exit('colour other than white: packing not modelled')
+        if not alpha_pass(p['colour'][3], p['alpha'], rule):
+            log(f"; alpha test word {p['alpha']:#06x} rejects alpha {p['colour'][3]!r}")
+            continue
+        value = pack(p['colour'], rule)
         win = []
         for k, v in enumerate(p['verts']):
             o = got.get(k, {})
@@ -402,9 +443,9 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print):
             vs = win[k:k + per]
             if None in vs:
                 continue
-            for px, py in RASTER[p['type']](*([vs] if per == 3 else vs), rule):
+            for px, py in RASTER[p['type']](*([vs] if per >= 3 else vs), rule):
                 if x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H:
-                    frame[(H - 1 - py) * W + px] = 0xffffffff
+                    frame[(H - 1 - py) * W + px] = value
     stored = struct.unpack(f'>{W * H}I', open(os.path.join(ROOT, 'checksum', frame_file), 'rb').read())
     want = dict(l.split() for l in open(os.path.join(ROOT, 'checksum', listfile)) if l.strip())[key]
     return W, H, frame, stored, want, frame_file, listfile
@@ -418,6 +459,9 @@ VARIANTS = [
     ('line: run from the pixel holding the first end', dict(span='floor')),
 ] + [(f'line: slope to nearest 1/{2 ** n}', dict(slope=n)) for n in (6, 8, 10, 12, 14)] + [
     (f'line: slope floored to 1/{2 ** n}', dict(slope=n, slope_round='floor')) for n in (8, 12, 16)] + [
+    ('colour: round(255 c)', dict(pack='round255')),
+    ('colour: floor(255 c)', dict(pack='floor255')),
+    ('alpha test: unconverted alpha against reference / 4096', dict(alpha='float')),
     ('triangle: sample the lower-left corner', dict(sample='corner')),
     ('triangle: keep every edge centre', dict(edge='all')),
     ('triangle: drop every edge centre', dict(edge='none')),

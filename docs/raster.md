@@ -4,7 +4,7 @@ How BUZZ turns transformed vertices into pixels. No held document gives these ru
 
 Labels. **established** means a rule set containing the rule rebuilds the named frame with its CRC matching, and changing that rule alone makes the frame differ (the count of differing pixels is given). It is established for the state the test draws under, which each entry names. **Not tested** means every alternative tried gives the same frame, so the frames do not choose. **inferred** means partial agreement or reasoning; the pixel-difference count is given. The stored frames are the simulator's output, not a board's; that the simulator matches the board is the premise the diagnostics were built on (`ogltests.htm`), not something these frames show.
 
-Script: `scripts/odydiags_frame_check.py --test points|lines|triangle [--small --program 214,224,234]` rebuilds one frame; `--survey` rebuilds all six frames once for each rule variant and prints the differing-pixel counts (`ucode/runs/odydiags-raster-survey.txt`). Match logs: `ucode/runs/odydiags-{points,lines,triangle}-{1280x1024,128x64}.txt`.
+Script: `scripts/odydiags_frame_check.py --test points|lines|triangle|alpha [--small --program 214,224,234]` rebuilds one frame; `--survey` rebuilds all eight frames once for each rule variant and prints the differing-pixel counts (`ucode/runs/odydiags-raster-survey.txt`). Match logs: `ucode/runs/odydiags-{points,lines,triangle,alpha}-{1280x1024,128x64}.txt`.
 
 ## Frames that match
 
@@ -16,21 +16,24 @@ Script: `scripts/odydiags_frame_check.py --test points|lines|triangle [--small -
 | lines | `__clog_lines_small` 0x10405d00 | `lines.sml` | bad6d581 | bad6d581 | 0 |
 | triangle | `__clog_tri` 0x104bb6f0 | `triangle.SUM` | 5f59f531 | 5f59f531 | 0 |
 | triangle | `__clog_tri_small` 0x104eed60 | `triangle.sml` | 5cb6222e | 5cb6222e | 0 |
+| alpha | `__clog_alpha` 0x100d8630 | `alpha.SUM` | ab42896a | ab42896a | 0 |
+| alpha | `__clog_alpha_small` 0x101283a0 | `alpha.sml` | 3d08ff2d | 3d08ff2d | 0 |
 
 The 128 x 64 streams name a microcode layout no held image has; the runs substitute routines 214, 224 and 234 of `diagxform.bin` (pass 18).
 
 ## The state these tests draw under
 
-- **established** (stream decode, `--dump`): one transform program (214, 224, 234, unlit), flat white colour (1.0 in all four components, word 0xc580d015, sent before the primitives), every vertex at z = 0 with w = 1200 after the matrix, block 0x01d scissor boxes covering one screen quarter each, and the primitive word 0x00014400 with operand 0 (points: 15 vertices in six primitives), 1 (lines: 18 vertices, nine segments) or 4 (triangles: 27 vertices, nine triangles). The lines test sends no line-width word other than those the points test sends too, so its lines are the default width.
+- **established** (stream decode, `--dump`): the points, lines and triangle tests use one transform program (214, 224, 234, unlit), flat white colour (1.0 in all four components, word 0xc580d015, sent before the primitives), every vertex at z = 0 with w = 1200 after the matrix, block 0x01d scissor boxes covering one screen quarter each, and the primitive word 0x00014400 with operand 0 (points: 15 vertices in six primitives), 1 (lines: 18 vertices, nine segments) or 4 (triangles: 27 vertices, nine triangles). The lines test sends no line-width word other than those the points test sends too, so its lines are the default width.
+- The alpha test draws eight groups of four 26.625 x 21.3 pixel quads (primitive type 7), one group per screen ninth, each quad in one flat colour: (1, 0.1, 0.2, 0.3), (1, 0.5, 0.2, 0.5), (0.3, 1, 0.6, 0.7) and (0.1, 0.2, 1, 1), sent by word 0xc580d015 inside the primitive. Before each group it sets block 0x01e (`docs/tokens.md`) to one comparison with reference 0x800 (0.5): LEQUAL, EQUAL, GEQUAL, GREATER, NOTEQUAL, LESS, ALWAYS and NEVER in that order. Its x positions fall on multiples of 1/8 (186.375, 213.0, 239.625) and its y positions on 1/256 (150.18359375, 171.49609375).
 - Window positions: x lands on whole numbers (320, 370, 420, 470, 1010, 1060, 1110 on the large screen; 32 to 47 on the small) and y lands 1/256 below a whole number (135.99609375) or, on the small screen, 1/256 below a half (8.49609375), from the driver's 1/256 bias in the matrix's y offset. Two lines end at y = 173.329427... and 685.329427..., and the small screen's at 10.829427... and 42.829427... .
-- **Not modelled**: the clears (primitive type 0xa, word 0x8f80a92f) are taken to leave zero, which every stored frame's background shows; colour packing beyond white = 0xffffffff; depth (every z is equal).
+- **Not modelled**: the clears (primitive type 0xa, word 0x8f80a92f) are taken to leave zero, which every stored frame's background shows; depth (every z is equal and no primitives overlap); colour reaching the frame other than through the vertex colour word (the reading of program 214 to 234 outputs no colour word, so colour takes a path these runs do not model).
 
 ## Rules
 
 ### Position precision
 
-- **established**, all six frames (survey rows "positions to nearest 1/N"): the rasteriser does not round window positions to the nearest point of a grid of 1/2 to 1/128 pixel. Rounding to nearest 1/128 or coarser moves 22 pixels in `points.SUM` (y = 647.996 becomes 648) and 5 to 10 in `points.sml` and `triangle.sml` (y = 8.496 becomes 8.5, a pixel centre on an edge). Nearest 1/256 or finer matches all six.
-- **established**, same frames (rows "positions truncated to 1/N"): truncation toward minus infinity to a grid of 1/8 or coarser fails `triangle.SUM` (100 pixels) and coarser grids fail every lines and triangle frame; truncation to 1/16 or finer matches all six.
+- **established**, all eight frames (survey rows "positions to nearest 1/N"): the rasteriser does not round window positions to the nearest point of a grid of 1/2 to 1/128 pixel. Rounding to nearest 1/128 or coarser moves 22 pixels in `points.SUM` (y = 647.996 becomes 648) 5 to 10 in `points.sml` and `triangle.sml` (y = 8.496 becomes 8.5, a pixel centre on an edge), and 324 to 490 in `alpha.SUM`. Nearest 1/256 or finer matches all eight.
+- **established**, same frames (rows "positions truncated to 1/N"): truncation toward minus infinity to a grid of 1/8 or coarser fails `triangle.SUM` (100 pixels) and coarser grids fail every lines, triangle and alpha frame; truncation to 1/16 or finer matches all eight.
 - **established**, `points.SUM` and `points.sml` against `lines.SUM` (rows "positions one single step low"): if x arrives one single-precision step below 470.0 (469.99997, as a truncated 1/w would leave it) and is not rounded, the points frames differ by 28 and 26 pixels. Rounded to nearest 1/256 it matches. So x reaches the rasteriser as exactly 470.0, either from an exact 1/w or from a position rounding of 1/256 or finer that absorbs the error; the frames do not choose between those.
 - So: positions are kept on a grid of 1/256 pixel or finer if rounded to nearest, or 1/16 or finer if truncated. The data's own 1/256 offsets fit a 1/256 grid exactly. Which grid the board uses is **not tested** beyond these bounds.
 
@@ -51,14 +54,25 @@ The 128 x 64 streams name a microcode layout no held image has; the runs substit
 
 - **established**, `triangle.SUM` (220 pixels) and `triangle.sml` (22 pixels): a triangle lights every pixel whose centre (i + 0.5, j + 0.5) is inside it. Sampling the pixel's lower-left corner instead fails.
 - The rule for a centre exactly on an edge (top-left or another): **not tested**. With positions on the 1/256 grid no centre falls on an edge in either stream, and keeping or dropping every edge centre gives the same frames. The small stream would test it only under a coarse position grid, which the position rules above exclude.
-- Fill colour: flat white over the whole triangle. Colour interpolation, depth interpolation and their precision: **not tested** (one colour, one depth).
+- **established**, `alpha.SUM` (702 pixels) and `alpha.sml` (62): the same centre rule covers quadrilaterals, drawn as the triangles (0, 1, 2) and (0, 2, 3); sampling the corner fails. The shared diagonal never passes through a centre, so how a quad's diagonal is tied is **not tested**.
+- Fill colour: flat over the whole primitive in every fitted test. Colour interpolation, depth interpolation and their precision: **not tested** (one colour, one depth).
 - Dither: **not tested** (one colour, at full intensity).
+
+### Colour as stored
+
+- **established**, `alpha.SUM` and `alpha.sml`: a frame pixel holds red in bits 31:24, green in 23:16, blue in 15:8 and alpha in 7:0. Each component is floor(256 c), limited to 255. The tested values give 0.1 -> 0x19, 0.2 -> 0x33, 0.3 -> 0x4c, 0.5 -> 0x80, 0.6 -> 0x99, 0.7 -> 0xb3 and 1.0 -> 0xff. Rounding 255 c to nearest instead moves 7020 and 60 pixels (0.1 would give 0x1a); floor(255 c) moves 4644 and 36 (0.5 would give 0x7f). 0.5 lands exactly on a step (256 x 0.5 = 128) and takes it; every other tested value lies at least 0.2 of a step from a boundary (25.6, 51.2, 76.8, 153.6, 179.2). So the frames fit floor(256 c + b) for any bias b from 0 up to 0.2, and values below 0.1 or above 1 are not tested.
+- Flat colour comes from the last colour word before the vertex; every primitive in these tests has one colour, so which vertex supplies a flat primitive's colour is **not tested**.
+
+### Alpha test
+
+- **established**, `alpha.SUM` and `alpha.sml`: block 0x01e's comparison and reference act as `docs/tokens.md` reads them. Under reference 0.5, LEQUAL passes alphas 0.3 and 0.5, EQUAL passes 0.5 only, GEQUAL passes 0.5, 0.7 and 1.0, GREATER 0.7 and 1.0, NOTEQUAL 0.3, 0.7 and 1.0, LESS 0.3, ALWAYS all four and NEVER none; a rejected fragment leaves the frame unchanged. Alpha 0.5 equals reference 0x800.
+- The precision at which alpha meets the reference: **not tested**. Comparing floor(256 a) with the reference's top eight bits and comparing the unconverted alpha with reference / 4096 give the same frames, since no tested alpha lies within 1/256 of 0.5 other than 0.5 itself.
 
 ## What the frames rule out together
 
-One position rounding (nearest on a grid of 1/256 or finer), one point rule (floor), one line rule (centre sampling along the major axis, ties to the lower pixel on the minor axis) and one triangle rule (centre sampling) rebuild all six frames. Each alternative in the survey moves at least one frame. Rules the survey lists as matching every frame are those these tests cannot see.
+One position rounding (nearest on a grid of 1/256 or finer), one point rule (floor), one line rule (centre sampling along the major axis, ties to the lower pixel on the minor axis), one triangle and quad rule (centre sampling), one colour conversion (floor(256 c), limited to 255) and the alpha test of block 0x01e rebuild all eight frames. Each alternative in the survey moves at least one frame. Rules the survey lists as matching every frame are those these tests cannot see.
 
 ## Remaining frames
 
 - `checkr3d.SUM` fails its own checksum (CRC-32 0x1f9ba6f3 against `csumlist` 0x2bb8d20c) while `checkr3d.sml` matches `csumlist.sml` (0x4bb39aca). See `docs/open-questions.md`, "The 3D checkerboard frame".
-- `aapts`, `aalines`, `alpha` and `blend` draw coloured, antialiased or blended primitives on a grey background (0x333333ff); they are where colour packing, coverage and blend arithmetic would be fitted. Not fitted yet.
+- `blend` draws pairs of smooth-shaded quads in perspective under the logic operations of block 0x022 (values 0 to 7 seen so far); `aapts` and `aalines` draw antialiased primitives on a grey background (0x333333ff). They are where colour interpolation, logic operations and coverage would be fitted. Not fitted yet.
