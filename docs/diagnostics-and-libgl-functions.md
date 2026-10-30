@@ -91,7 +91,34 @@ library helpers without a prefix: visual and framebuffer-config scoring and orde
 
 ### Compositor test program (`usr/diags/compositor/bin/sting`)
 
-Test harness plus tests for the compositor. The role of each group is **inferred** from the names; the program was not read in full.
+`usr/diags/compositor/bin/sting` is the shipped diagnostic for the STINGRAY compositor, the board that, **inferred** from the up-to-four-tile combination files it loads and its per-port discovery, joins the outputs of several VPro boards into one display.
+**Established** for the start-up path and the test table (the bodies of `main`, `SelectTests`, `dl_harness` and `TEST_discovery` read in full in the 6.5.30m decompilation, strings resolved through the `$gp` table); **inferred** where the text says so. The program is an N32 executable with entry `__start` at 0x10007af0 and 323 named functions, and it carries a generic test harness (`dl_*`, the diagnostics library) that parses the command line, writes a log and crash log and can run as a protocol server (`dl_server_*`), around 16 compositor tests.
+
+Start-up: `main` (0x100161e0) calls `getuid` and, when the user is not root, prints "You must be root (uid 0) to run the sting!" and exits 1. It then allocates four small argument records named `comp`, `ccx`, `chic` and `ctx` with the help texts "Select all tests that run on the COMPOSITOR board", "... CCX FPGA", "... CHIC FPGA" and "... CTX FPGA", and hands them with the test table to `dl_harness` (0x100221f8). `SelectTests` (0x10016068) maps a group name to bit 0 (comp), 1 (ccx), 2 (chic) or 3 (ctx) of a mask and marks every table record whose flag word at +0x10 has that mask bit and not bit 29 as selected (sets bit 2 of the word at +0x14 and the run word at +0x24).
+
+Test table: `testList` at 0x10050e50 holds 16 records of 40 bytes (name, description, test number, function, flag word); `numTests` at 0x100510d0 is 16. The tests are in the table below; the last column is each record's own description text. Flag bit 29 is **inferred** to mark the tests that run only when named on the command line: `SelectTests` skips records with it, and the description of `LUT_test` says it must be asked for with `-LUT_test`.
+
+| Test | Number | Function (address) | Flags | The table's own description |
+|---|---|---|---|---|
+| `discovery` | 100 | `TEST_discovery` (0x100166ac) | 0x08000030 | GPU and Compositor Discovery |
+| `i2c_test2` | 200 | `TEST_i2ctest2` (0x10007c58) | 0xa0000000 | I2C bus test 2; the body (read in full) does one read or write of 1 or 2 bytes with `readReg_2Bytes`, `writeReg_2Bytes`, `readReg_1Byte` or `writeReg_1Byte`, chosen by the parameter `RW` (R2, W2, R1, W1) and addressed by the `SLAVE` and register parameters |
+| `dummy_test` | 400 | `TEST_dummy` (0x10008038) | 0xa0000000 | dl functions check |
+| `chicregs` | 800 | `TEST_CHIC` (0x10008434) | 0x25 | Test CHIC registers |
+| `PROMread_test` | 825 | `TEST_PROMread` (0x10010d0c) | 0x21 | PROM readback test |
+| `xilinx_config` | 850 | `TEST_xilinxConfig` (0x1000a6f0) | 0x20000021 | Force CCX and/or CTX (re)configuration and check its success |
+| `ccxregs` | 900 | `TEST_CCXregs` (0x10008c6c) | 0x23 | Test CCX registers |
+| `ccx_reset` | 950 | `TEST_ccx_reset` (0x10009488) | 0x21 | Causes CCX soft reset |
+| `LUT_test` | 975 | `TEST_LUT` (0x1000f4bc) | 0x20000021 | Gamma LUT test |
+| `ExtDisc_test` | 980 | `TEST_extDiscover` (0x1000e704) | 0x21 | External discovery test |
+| `ExtDev_test` | 981 | `TEST_extDev` (0x1000c9a8) | 0x21 | External device test |
+| `ctxregs` | 1000 | `TEST_CTXregs` (0x10009fd8) | 0x29 | Test CTX registers |
+| `format_test` | 1200 | `TEST_format` (0x1000c498) | 0xa0000000 | Print the VOF format structure |
+| `video` | 2100 | `TEST_simpleVideo` (0x10012ee4) | 0x20000011 | Video download with CRC captures |
+| `spatialTiling` | 2200 | `TEST_spatialTiling` (0x100157f8) | 0x11 | Spatial tiling with CRC captures |
+| `atpg` | 2300 | `TEST_ATPG` (0x1000b5dc) | 0x2b | ATPG video test |
+
+How it reaches the board: `TEST_discovery` refuses to run without an X server (the message "Sting requires X server to run ..." and `exit(0)`) and keeps the `odyssey` and `voyager` flags that pick the route for every later register access. Boards are counted with ioctl 0x65 and described with ioctl 0x66 on the graphics device (`diag_discover_boards`, 0x10032354; the board name "ODYSSEY" is a VPro board, "SG2" a Voyager-class card on the AGP bus, up to 32 and 64 of them). The device is opened with flags 0x802 at 0x10032154 (the path is `/dev/opengl`, **inferred**). The compositor registers then go by one of four routes, chosen in `readReg` and `writeReg`: platform parameter 6 (write) or 7 (read) sent to the X server with `XSGIvcSetPlatformParameter`; the VPro kernel driver's ioctl 0x6f640025 (`ody_comp_reg_access`); the compositor's own USB device `/hw/compositor/%d` with ioctl 0x636d7004; and ioctl 0x6667000b on an ATI card's driver (`agp_comp_reg_access`). A fifth route drives the compositor chip's own two-wire master by register writes (`i2c_start`, `i2c_sendbyte` and their siblings), which `readReg` and `writeReg` use for the chip address bytes other than the two the first four routes carry. Port discovery reads register 0x57 of the compositor chip at address byte 0xab, once per board channel (0 and 1 for a VPro board, 3 attempts for an AGP card), and accepts the channel as connected to port 0 when the low two bits of the returned word are clear (the test at 0x10016b64); `fillDiscInfo` records the connection, and the program reports "Running on Compositor %s using GPU %d (channel %d)".
+
 
 video-format symbol database, XDR and format-file code (the same code as in odyssey.so).
 
