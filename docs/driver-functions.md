@@ -2072,3 +2072,214 @@ Lays out
   write-back slot behind the pointer at +888 and, when the flags word is then zero, calls `odsyDMADone` and wakes
   the waiters with `sv_broadcast` on the variable at +5816. An empty ring slot, a completion count larger than
   the ring or an inconsistent counter logs a severity 4 message and ends the pass.
+- `odsyDMAOp` (`odsy_dma.o`, offset 0x1b5c, 2056 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Issues one DMA operation. Arguments: owner context (may be 0), board record, a value passed to the page-table
+  builder, the user address and byte count of this piece, a queue-selector word it zeroes on entry, the 32-byte
+  transfer header, a result pointer and, on the stack, a flags word (bit 0, bit 1), the buffer's user address and
+  length for the lock record, and the number of pieces still to come. Under the mutex at record +5800 it takes the
+  next of 256 operation records of 80 bytes at record +7960 (counter at +28440, wrapping at 255), zeroes it and
+  sets state 1. Flag bit 1 also creates a sync variable in it at +32. With an owner and a user range it allocates a
+  context-set id with `OdsyAllocCSetId` and keeps the range at +56 and +64; an allocation failure logs a severity 4
+  message and returns 12. `ConstructTftchWarList` then splits the request; the routine allocates the table
+  (`kmem_alloc`, size from that call), and for each piece copies the 32-byte header into a 128-byte entry,
+  rewrites its x and y (word 4), width and height (word 12) and row length (word 24, from the pixel-size table
+  indexed by header word 28 bits 18:16) and has `generatePageTable` fill the page list. Any failure unlocks the
+  user pages with `unuseracc`, releases the set id, overwrites the table with the byte 139 and the record with 141, frees
+  both and returns the error. Next it takes the mutex again, waits with `odsyDMAWait` (mode 0, mutex dropped) until
+  outstanding operations plus 2 fit within 128 minus the pieces to come, stores the issue count (+6888) in the
+  write-back slot behind +888 and in the record's +72 and the result, advances +6888 modulo 2 to the 61st, puts
+  the record in the 128-entry ring at +5856, advances the 7-bit tag counter at +5844 and writes 0x800 to the
+  flag-clear register 0x101c. Per entry it converts the table address with `kvtophys` and sends two doublewords
+  through the command FIFO window at +0x110000: the first has 0xe01 in its upper half (0xe03 if the selector
+  word were nonzero; nothing here sets it) and physical address bits 47:24, the second bits 23:0, in the packing
+  `BUZZ.h` section 5 gives. When flag bit 1 is set, header word 28 bit 24 is set and the entry is the last, the
+  entry's word 28 gets bit 31 and the operation joins the interrupt completion list at record +28448 with state
+  bit 1. After the last entry it releases the page-list builder state with `ReleaseTftchWarList`, then
+  sends, when header word 28 bit 27 is set, the sequence `0x14001`, `0x10443` (250), `0x10046`, `0x10046`,
+  `0x10019`, `0x10443` (150), four `0x10046`, `0x10443` (250), two `0x10046`. If
+  flag bit 1 is clear it ends with block `0x10658` and operand 0x00120000 (the same pair is also sent before the
+  first kick when flag bit 0 is set and header bit 27 is clear); if flag bit 1 is set it ends with block 0x10a5a, the record word at +5840 ORed with 0x8000
+  and the tag 0x5a00 plus the old tag counter, and stores the tag in the halfword at +5832. With flag bit 1
+  set and an owner it stores the issue count in the owner's +248 (+256 if the selector word were set), and it ends with a
+  doubleword load from the fixed uncached address 0xaff00080, which reads as a flush of the preceding stores
+  (inferred). It returns 0.
+- `odsyDMAOps` (`odsy_dma.o`, offset 0xb34, 4136 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Splits one pixel-transfer request into `odsyDMAOp` calls. It takes the board record, the owner context, the
+  request (user address +16, length +24, header +28 to +59, flags +60, result +72) and a window record. It locks
+  the buffer with `useracc` (flags 272; a refusal returns 12), sends block `0x10658` with operand 0x00120000,
+  and sets the result to -1. Header word 7 (request +56) bit 27 clear: one `odsyDMAOp` for the whole buffer with
+  flag bit 1, and its result is returned. Bit 27 set with flag bit 3 clear and bit 4 clear: the prologue
+  `0xcf80a92f` with ten operands (the first ten words of the context mirror at context +176 plus 6988), then
+  `0x14400` operand 10, the vertex word `0x8080c800` and two zeros, then one `odsyDMAOp`. Bit 27 set with flag
+  bit 4 set, a zero window query (context +224, +120, +144) and a nonzero clip count at context +40: the
+  routine clears bit 27 and intersects the destination with up to four rectangles from context +44, +60, +76
+  and +92 (left, top, right, bottom), one `odsyDMAOp` for each non-empty one, flag bit 1 only on the last,
+  header x, y and height and the length rewritten per piece. Flag bit 3 set: chunks along y that end on a
+  multiple of 64 rows (128 when the board record's word at +280 is 1) after clipping against the window
+  rectangle (window +20, +24, +32, +36) and an origin that is zero or, when header bit 29 is set, taken from the context's window
+  record; per chunk it rebuilds the prologue with four operands converted to floating point by software
+  normalisation, and around the first and last chunk, when the context flag at +7352 is set, it sends settle `0x10443`
+  and block `0x10841` with context words +112 and +108. A failing `odsyDMAOp` logs "dmaops: failed intermediate
+  dma operation", sends `0x10444`, then `0x10a5a` with the tag-page word at record +0xb44c ORed with 0x8000 and
+  the value 0xd0a, calls `odsyDMAWait` in mode 1 on the failed operation, unlocks with `unuseracc` and returns the
+  failure code. Which of the computed words the board uses is unknown (`docs/kernel.md`).
+- `odsyGenlockInterrupt` (`odsy_intr.o`, offset 0x5c0, 4064 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)`.
+  Handles the genlock interrupt. Unless the board record's start-up word (-19352 from +0x10000) is set it
+  takes the display-FIFO semaphore at +0x8530 with `psema` (and, when the record's halfword at +298 is 3, the
+  semaphore at +0xb470 around the whole routine). It calls `odsy_poll_dfifo_level` for level 0, reads the
+  genlock status register 0x27cd through the read-back window at board +0x233e6c, releases the semaphore
+  with the usual pending-cursor replay, counts the event in the host's per-cpu table and, when status bit 0 is
+  clear, logs "Invalid GenState" and returns. A second semaphore section reads the control register 0x27cc
+  (+0x233e64); the routine goes on only when its bit 6 is set. It then takes a mutex inside the record that
+  the word at -19432 points to (+0x8520 when the word at -19420 is nonzero, +0x8510 otherwise) and, when the
+  timing word at -19504 is zero, rewrites the clock part. Status bit 1 set is the "lost" case and clear the
+  "got" case. For the AMI-type part (record word +292 above zero, I2C address 0x58) it writes registers 1, 2, 5
+  and 6 with `odsy_i2cPLLRegWrite`, taking the low byte of four consecutive timing-structure words: the
+  free-running group for "lost" and the genlock group, 16 bytes later, for "got". For the other part (address
+  0x26) it first reads register 7 with `odsy_i2cPLLRegRead`, then writes register 0 (0x01 for "lost", 0x11 for
+  "got") and register 7 (the saved byte with bit 7 set for "lost", cleared for "got"). Every failed write logs a
+  severity 4 message naming the register and the case. It then waits for display-FIFO level 0 again and,
+  if the wait succeeds, clears (lost) or sets (got) bit 1 of the shadow of the display control word at
+  -19500, stores it back and sends it as a display-FIFO command (header word kept in the object's constants,
+  data word the shadow) at board +0x400000, followed by the semaphore release. When the FIFO wait succeeded it
+  unlocks and calls `rrmGenlockNotify` with the record's first word and 0 for "lost" or 1 for "got"; when it
+  failed it only unlocks. A nonzero timing word at -19504 skips the clock rewrite entirely.
+- `odsy_i2c_cmd` (`odsy_ddc.o`, offset 0x2314, 3312 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+
+  
+  Runs one user two-wire command. The request block carries the command number as a halfword at +2, the
+  port number at +8 (0 selects the port handle at record +0xb3e0, 1 the one at +0xb408, anything else
+  returns -22), the device address byte at +4, register at +5, value at +6, a status word at +12, the byte count at +16
+  and +20, the user buffer pointers at +24 and +32 and the acknowledge mode at +40. It takes the mutex inside
+  the record the handle points to (+0x8520 when the handle's word at +28 is nonzero, +0x8510 otherwise),
+  jumps through a 17-entry table, and unlocks on every exit. Command 0 calls `odsy_i2cReset`. Command 1 starts
+  a transfer with `odsy_i2c_start`; on port 1 it first sets or clears bit 5 of the clock part's register 5
+  (address byte 31) by the request halfword at +0 and writes register 0 as 0. Command 2 calls `odsy_i2c_stop`
+  and on port 1 writes register 0 as 0x30. Command 4 sends up to the request's count with `odsy_i2c_sendbyte`
+  and command 3 receives up to 256 bytes with `odsy_i2c_long_recvbyte`, copying them out; both return the
+  count, or -5 when the transfer stopped early. Commands 6 and 7 write and read one register of the device at address
+  byte shifted right by one with `odsy_i2cPLLRegWrite` and `odsy_i2cDDCRegRead`. Command 8 reads an EDID with
+  `odsy_i2cProbe2b` into the record's slots (main port at +308, left DCD channel at +438, right at +568, each
+  a halfword valid flag followed by 128 bytes; port 1 selects the channel by the halfword at +0, writing register 0
+  as 0x10 or 0x20 around the probe and restoring 0x30); command 9 copies a stored slot out, returning -22 when
+  its valid flag is zero. Commands 10 and 12 log the 2AB initialise message and call `odsy_i2cProbe2ab` and
+  `odsy_i2c2abPresencechk`; either failure returns -5. Command 11 runs `odsy_2abCmdWrapper` and copies out its
+  reply. Commands 15 and 16 read and write the DM5 video chip (addresses 0xef and 0xee) with
+  `odsy_i2c_read_denali` and `odsy_i2c_write_denali`, switching the clock part's registers 0 and 5 first;
+  when the record word at +704 is 4 they skip that switch and take the second mutex pair (pointer at -19472 from +0x10000) instead. Commands 5, 13 and
+  14 do nothing (5 returns -22). Each command that fills the status word copies the whole 48-byte block back
+  and logs a severity 4 message on failure.
+- `odsy_i2cProbe2b` (`odsy_ddc.o`, offset 0x410, 6172 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+
+  per-port data slot.
+  Reads a monitor's EDID over a port handle (word at +0 points at the line-control shadow, +16 is the board
+  record, +24 the channel index, +28 selects the mutex pair, +32 the device address byte). It zeroes 128 bytes
+  of the caller's slot and calls `odsy_i2cReset`. Before the transfer
+  it waits for display-FIFO level 13, reads display register 0x2700 through the window at board +0x233804,
+  ORs 0x440 into it (or, when the handle's flag at +28 is clear, ORs 0x800, masks it with an object constant and
+  ORs 0x28180) and sends it as a display-FIFO command. It then sets bit 15 and clears bit 17 of the
+  line-control shadow and sends it as a write to the register addressed by the channel index (command header
+  0x30000001 plus the index shifted by 14). It then gives nine clock pulses to free a stuck slave: bit 16 of
+  the shadow set, sent, a 10 microsecond delay (`odsy_usdelay` or `us_delay`), cleared, sent, delayed; a tenth
+  set follows. Every FIFO write sits in the display-FIFO semaphore and spin-lock bracket, so each is
+  followed by the same replay of a pending cursor command as in `odsy_i2c_start`. Afterwards it writes back the 0x2700 word with bits 11:10
+  cleared and makes up to four attempts: `odsy_i2c_start` to 0x60 (the extended-EDID segment pointer) and a
+  zero byte with `odsy_i2c_sendbyte`, `odsy_i2c_start` to 0xa0, the offset byte 0, `odsy_i2c_start` to 0xa1, then
+  byte 0 with `odsy_i2c_long_recvbyte`, bytes 1 to 126 with `odsy_i2c_short_recvbyte` and byte 127 with a long
+  receive that ends the transfer. A failure in the 0xa0 or 0xa1 phases or the long receives resets the port
+  and tries again; a short-receive failure ends the routine at once. When all 128 bytes arrive it calls
+  `odsy_validate_ddc_data`, and a zero result retries. On success it stores state 2 at record +304, sets the
+  slot's first halfword to 1 and returns 0; every failure stores 255, resets the port, clears the halfword
+  and returns 1. The EDID bytes sit at slot +2.
+- `odsyRestoreXform` (`odsy_ctxsw.o`, offset 0x2784, 2644 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Replays the transform engine's saved state through the command FIFO port at board +0x110000 (every store
+  followed by a sync). Arguments: board record, context; the state is the context's hardware-state structure at
+  context +176. The full replay runs when the context's slot word (word 0) is nonzero and differs from the
+  board's current slot at record +820; otherwise only the steps marked always run. Full: the 512-word table
+  behind register 0x31 in 30 groups of 16 words (the groups at 320 and 480 are skipped), each group opened by the
+  index word `0x31008000` with the index spread over the command word, plus block word `0x9080bda2` (`0x9000bda2`
+  for the group at 160), the 16 words from state +7356, and a reselect of the saved index at +9888; then
+  register 0x29 set to 410, register 0x32 to 24 and block `0x8e809015` with the four words at state +9788, and data-memory entries 0 to 23 (index word `0x32008000`, the same block word, four
+  words each from state +9404 plus 16 times the entry). Always: register 0x28 cleared, then the entry list as `0x60008000`
+  words from state +9948, count at +10972; a count of 255 or more logs a severity 4 message, signals the
+  current process with signal 9 through `psignal` and returns before anything else is sent. Always: the 68-word
+  table behind register 0x34 from state +6672 (index 0, block `0x9080bdc8`, 16 words; index 16, block
+  `0x908091df`, 4 words) and, in the full replay only, index 36 (16 words from +6752), 52 (16 from +6816) and
+  20 (16 from +6880), each followed by a reselect of index 0; the saved index word at +9900 is cleared to 0, the
+  indexes are written through it and the original value is put back in memory afterwards. Always: sequencer
+  registers 0x20 to 0x35 from the words at state +9820, written as `(register << 24) | 0x8000` plus the spread value, skipping registers
+  0x26, 0x2b, 0x2d, 0x2f and 0x30; register 0x2e is sent as the fixed word `0x2e008380` when its saved word is zero. The
+  table layouts are in `docs/buzz.md`, pass 9.
+- `odsyRestoreVB` (`odsy_ctxsw.o`, offset 0x31d8, 4076 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Replays the vertex attribute slots from the context's saved record (state +192) through the command FIFO port.
+  Arguments: board record, context, a vertex descriptor (two words of 2-bit slot selectors), an unused word and a
+  count. Each slot is a four-entry array of command words at record offset c, the selector picking the entry; the
+  routine sends that command word and then the number of operands in its bits 13:10, read from record offset d
+  plus 16 times the selector. The slots and the names the routine prints for them are: 272 index (operands 832),
+  288 color (896), 304 normal (960), 320 tangent (1024), 336 texcoordA (1088), 352 texcoordB (1152), 368 edgeflag
+  (1216), 384 front ambient (1280), 400 front diffuse (1344), 416 front specular (1408), 432 front emission (1472),
+  448 front shininess (1536), 480 back ambient (1664), 496 back diffuse (1728), 512 back specular (1792), 528 back
+  emission (1856) and 544 back shininess (1920). The full replay runs when the context's slot word is nonzero and
+  either differs from the board's slot at record +820 or the count argument is positive. It walks the slots in the
+  order 384, 400, 416, 432, 480, 496, 512, 528, 304, 320, 336, 352, sends the four-operand block `0x908091ea`
+  built from operand 0 of the selected 448 and 544 entries and their bit-31 complements, then sends 448, 544,
+  272, 288 and 368. Otherwise only 272, 288 and 368 are replayed. A selected command word with a zero operand count is
+  sent only when, ignoring bits 22:16, it equals `0x3000c02e` or `0x2f00c02e`; any other such word is not sent and
+  the routine logs a severity 7 message "illegal attr restore cmd" with the slot name and word. The selector
+  fields are in `docs/buzz.md`, pass 9.
+- `odsyRestartContext` (`odsy_ctxsw.o`, offset 0x4c34, 2884 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Restarts an interrupted primitive after the other replays. Arguments: board record, context; state at context +176
+  and the saved record at +192. The saved primitive word at record +128 gives the primitive type in bits 3:0
+  (0 to 10, 15 when out of range), the counts in bits 5:4 and 7:6 and further fields in bits 23:11. First it
+  sends register 0x34 index 0, the 16-word settle sequence (blocks 0x043, 0x046 and 0x019 with their fixed operands),
+  then block 0x017 with the four words at state +6948 to +6960, three more times with the third word
+  as saved, zero, saved with bit 23 set and saved again, with settle groups between them. Types other than 10
+  (rectangle) then go through a loop that clears bits 7:4 of the record word, subtracts the count in bits 5:4
+  from the fields in bits 23:21, 15:14 and 13:12 (modulo 8, 4 and 3), copies bit 14 to bit 11, and decides
+  a flag that is 1 unless the type is line loop, triangle fan or polygon. It sends block 0x000 with the type,
+  block 0x044 with 0 and block 0x050 with two words built from the fields and the context's slot, then (for types 0 to 10)
+  the words 1856, 480, 1857 and the record word, and replays the vertices through the walker for the type
+  (`restorePoints`, `restoreLines` and the others, indexed by type); with a zero count it sends only a
+  `0x8080c800` vertex word with two zeros for the rectangle pass. Type 10 first tests the rectangle mode in
+  state +6964, calls `odsyRestorePIOPixel` when the record's pixel count at +172 is nonzero, then
+  `odsySetProgram` with the number at state +11056, `odsyRestoreVB` (record +132 as descriptor, count 0), sends the
+  ten-operand block `0xcf80a92f` from state +6988 when the mode is nonzero, and joins the loop with the
+  rectangle flag set, which adds the field bits to the block 0x050 word. After the loop it calls `odsyRestoreVB`
+  with the count, and when the program count at state +10972 is nonzero calls `odsySetProgram` and sends
+  registers 0x33, 0x29, 0x2a and 0x2c from state +9896, +9856, +9860 and +9868 followed by `0x278083ff` and
+  `0x280080ff`; with a type outside 0 to 10 it ends that part with block 0x258 and operand 0x00120000. Last it
+  sends the saved partial command words (count at record +188, first words at +176 and +180, the rest from +4)
+  as doublewords, re-selecting register 0x34's index from state +9900 first. The meanings of the record word's fields are inferred from this arithmetic alone.
+- `odsyRestoreRaster` (`odsy_ctxsw.o`, offset 0xa58, 7468 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Replays the context's raster state through the command FIFO port at board +0x110000 from the hardware-state
+  structure at context +176 (offsets below are into it); every word is a store with a sync, and the function
+  has no loop-carried state apart from the table counters. The full replay runs when the context's slot word
+  is nonzero and differs from the board's slot at record +820. It first sends the 16-word settle sequence
+  (blocks 0x043, 0x046 and 0x019 with fixed operands), then in this order, with settle groups after blocks
+  0x017, 0x023, 0x01d and 0x053: block 0x017 (4 words from +6948), 0x023 (4 from +232), 0x052 (+228), 0x01d (+168, +172),
+  0x053 (5 from +6964), 0x004 (+132), 0x005 (+136), 0x022 (+200), 0x015 (+140), 0x056 (+7344), 0x048 (+204 to +212),
+  0x03f (+128), 0x04e (16 words from +0), 0x04f (16 from +64), 0x04a (+220, +224), 0x01b (5 from +312), 0x016 (7 from
+  +332), 0x051 (+6944), 0x04c (+7340) and 0x021 (+188 to +196). The word at +4464 selects the next group: 2 sends
+  block 0x03b (8 words from +4468), 3 sends block 0x03d (2 words), and any other value sends blocks 0x030 to
+  0x033 (8 words each from +4468). The word at +4204 selects the one after: 2 sends block 0x038 (16 words from
+  +4208), 3 sends block 0x03a (4 words), and any other value sends blocks 0x028 to 0x02b (16 words each from +4208).
+  The full replay then continues with blocks 0x01e (+176), 0x01f (+180), 0x020 (+184), 0x058 (+216), 0x01a (6 words
+  from +144), 0x047 (6 from +7060), 0x013 (4 from +7084), 0x03e (3 from +4596), then five 256-word tables, each sent as 16
+  blocks of 16 words: 0x220 to 0x22f from +1132, 0x230 to 0x23f from +2156, 0x240 to 0x24f from +3180, 0x200 to
+  0x20f from +4612 and 0x210 to 0x21f from +5636 (the last two interleaved at a 64-byte step), the 64 level descriptors 0x280 to
+  0x2bf (3 words each from +360 at a 12-byte step), blocks 0x006 (+1128), 0x018, 0x01c (+6660 to +6668), 0x057
+  (+7348), 0x04d (16 from +248), 0x042 (+7332, +7336) and then the eight blocks 0x250 to 0x257 (6 words each from
+  +7132 at a 24-byte step, highest first), each preceded by block 0x007 carrying the index. Finally, for a
+  nonzero slot it calls `odsyPushBufferSelect`; for slot zero it sends blocks 0x04b (8 words from +11072), 0x041
+  (+11104, +11108), 0x024 (+11112) and 0x040 (+11116, +11120) with settle groups between them. Every path ends with
+  a settle group and block 0x258 with operand 0x00120000. Without the full replay only the
+  blocks before the mode groups and the two mode groups are sent. `docs/buzz.md` section 8 lists the same block ids.
