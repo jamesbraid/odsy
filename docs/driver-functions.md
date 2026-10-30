@@ -3918,3 +3918,24 @@ Lays out
 - `gfP_OdsyBRDMGRenableVTG` (`odsy_brdmgr.o`, offset 0x4f84, 1028 bytes): **established.**
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
   Starts the video timing generator in patch 4103; it takes no request structure and has no bit-flipping modes, where the 6.5.30m `gfP_OdsyBRDMGRVTGcontrol` copies in a flags and value pair. Through the board record (behind +32 of the first argument; its base pointer is at +736, the display semaphore at +10256 with a spin lock at +10272 and a pending cursor doubleword at +10280, the start-up word at +22304) it takes the semaphore unless the start-up word is set, waits for display-FIFO level 14 and pushes two doublewords to board +0x400000: the control word kept at +22160 with bit 0 cleared, then the word at +22164 with bit 17 set. A failed wait stores 5 in the status word and returns 5. The release replays a pending cursor command in the same way as `odsy_i2c_start`; success stores 0 and returns 0.
+- `MapKernelRegionIntoUserSpace` (`odsy_pmm.o`, offset 0x1898, 92 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Maps a kernel region into a process in patch 4103. It builds a zeroed 32-byte request on the stack with 1 at +16, the second argument at +24 and the region's doubleword at +24 stored at +8, then calls `odsyMapPages` with six arguments: a zero, the address of the region's +16, its pointer at +8, its word at +28, the request and a 1, and returns that result. The IP30 entry passes four.
+- `NewChunkNode` (`odsy_adt.o`, offset 0x35c, 68 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  Allocates a 32-byte chunk node in patch 4103 with `kmem_alloc` and flag 0, clears it with `bzero` (the IP30 build stores zeros inline) and returns it, or 0 when the allocation fails.
+- `odsy_DCDResetDone` (`odsy_init.o`, offset 0x2380, 120 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Waits for the display-controller reset to finish in patch 4103. It stores 31 at port record +32, then up to 5000 times reads register 3 of the display-data device with `odsy_i2cDDCRegRead` and tests bit 1 of the byte, waiting 500 us between reads with `odsy_usdelay` (the IP30 build waits 1000 us). It returns 1 once the bit is set and 0 when the polls are used up.
+- `odsy_mm_cores_exists` (`odsy_pmm.o`, offset 0x198c, 124 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Co-residency lookup in patch 4103. The set identifier is the word at +160 of the second argument, looked up in the container at +160 of the record behind the first argument's +8 with `OdsyLookupCSetId` (none: return 0); the key holds the first argument's halfword at +0 twice and the word behind the record's +0, and `OdsyFindMatchingCSetElem` is called with the overlap predicate `CoresidSubRangeFinder`; a match returns 1. The IP30 entry keys on the word at +240 of the group instead.
+- `odsy_i2cValidEdid` (`odsy_ddc.o`, offset 0x1ae8, 156 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  EDID header test in patch 4103: byte 0 must be 0, bytes 1 to 6 must each be 255 and byte 7 must be 0, checked one byte at a time with a separate early exit for each, after which `odsy_EdidCksum` decides: a zero checksum returns 1, anything else 0. The sequence matches the IP30 entry.
+- `odsyPinAndMapASRegions` (`odsy_map.o`, offset 0x75c, 132 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Maps the two address-space windows of a board in patch 4103. It zeroes the handles at +40 and +56, maps 64 KB from the pointer at +8 of the structure behind +8 with `odsyMapPages` (user address at +32, handle at +40), and when that returns 0 maps 0xc000 bytes from the structure's pointer at +16 (address at +48, handle at +56). Each call also passes a literal-pool descriptor and the constant 1. The first failure, otherwise the second result, is returned.
+- `odsyUnpinAndUnmapSGRegions` (`odsy_map.o`, offset 0x6bc, 160 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Releases the surface-group mappings in patch 4103. The container is at +104 of the board record (+120 on IP30); each element is unmapped with `odsyUnmapPages` when its buffer pointer at +8 and its field at +16 are both set, then the 16384-byte buffer and the 32-byte element are freed with `kmem_free`, and `OdsyDestroyCSet` closes the container with no callback.
