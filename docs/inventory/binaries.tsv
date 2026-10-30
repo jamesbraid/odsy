@@ -52,12 +52,12 @@ builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	kernel	boa
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	kernel	board-kernel	object	n64	16132	b90410e96a3552bf		5	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	kernel	board-kernel	object	n64	15156	696add11f872186d		13	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64	19140	b7d5acea538a5d44		13	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9284	59dd9c4b306c5b5e		5	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	9284	59dd9c4b306c5b5e		5	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	69124	f01f16980ddaaef5		57	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	2836	f2ea13a335c373b4		0	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	7044	9fc8662738573c1e		0	0	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	34804	93cb0abade6d9383		11	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8468	b8e9a527be877b29		2	0	0	undocumented		
+builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8468	b8e9a527be877b29		2	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	451872	3c68b371202c7fa2		650	0	0	undocumented		
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3436908	70d13a747bd4b32d		5103	4101	0	undocumented		
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	464860	3d5ff7d7e05ba6ae		650	0	0	undocumented		
