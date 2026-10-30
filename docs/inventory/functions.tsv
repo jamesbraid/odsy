@@ -8633,7 +8633,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d0a0	164	__glDoBlendDestMCC	dwarf+dynsym	df75bd5c9098		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d150	64	__glDoBlendSourceMCA	dwarf+dynsym	44354c7a41c8		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d190	112	__glDoBlendDestMCA	dwarf+dynsym	47ce0afbc857		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda2d200	8	Nop	dwarf+funcnames	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda2d200	8	Nop	dwarf+funcnames	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d210	56	__glDoNoFetchBlend	dwarf+dynsym	f0281a925518		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d250	116	__glDoFetchBlend	dwarf+dynsym	95ac867514f7		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d2d0	212	__glDoBlend	dwarf+dynsym	bd5abedc897e		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14523,7 +14523,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272140	164	__glDoBlendDestMCC	dwarf+dynsym	0f6087bdfe7a		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22721f0	64	__glDoBlendSourceMCA	dwarf+dynsym	9fa899ba481c		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272230	112	__glDoBlendDestMCA	dwarf+dynsym	038e3b0c3e64		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x22722a0	8	Nop	dwarf	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x22722a0	8	Nop	dwarf	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22722b0	56	__glDoNoFetchBlend	dwarf+dynsym	258774db624d		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22722f0	116	__glDoFetchBlend	dwarf+dynsym	fc20dd7ddfe2		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2272370	224	__glDoBlend	dwarf+dynsym	ccc8244ee5a4		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32119,7 +32119,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f0470	148	__glDoBlendDestMCC	dwarf+dynsym	4a5bb9aad77b		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f0510	64	__glDoBlendSourceMCA	dwarf+dynsym	d77bec0a22ba		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f0550	112	__glDoBlendDestMCA	dwarf+dynsym	80553a67a110		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3f05c0	8	Nop	dwarf	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3f05c0	8	Nop	dwarf	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f05d0	56	__glDoNoFetchBlend	dwarf+dynsym	03385411dda6		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f0610	116	__glDoFetchBlend	dwarf+dynsym	3228a9e7f0aa		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f0690	224	__glDoBlend	dwarf+dynsym	2cb54313d03d		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49695,7 +49695,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe10470	148	__glDoBlendDestMCC	dwarf+dynsym	4a5bb9aad77b		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe10510	64	__glDoBlendSourceMCA	dwarf+dynsym	d77bec0a22ba		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe10550	112	__glDoBlendDestMCA	dwarf+dynsym	80553a67a110		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe105c0	8	Nop	dwarf	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe105c0	8	Nop	dwarf	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe105d0	56	__glDoNoFetchBlend	dwarf+dynsym	03385411dda6		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe10610	116	__glDoFetchBlend	dwarf+dynsym	3228a9e7f0aa		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe10690	224	__glDoBlend	dwarf+dynsym	2cb54313d03d		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75684,7 +75684,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d030	112	__glDoBlen
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d0a0	164	__glDoBlendDestMCC	dwarf+dynsym	df75bd5c9098		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d150	64	__glDoBlendSourceMCA	dwarf+dynsym	44354c7a41c8		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d190	112	__glDoBlendDestMCA	dwarf+dynsym	47ce0afbc857		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda2d200	8	Nop	dwarf+funcnames	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda2d200	8	Nop	dwarf+funcnames	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d210	56	__glDoNoFetchBlend	dwarf+dynsym	f0281a925518		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d250	116	__glDoFetchBlend	dwarf+dynsym	95ac867514f7		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2d2d0	212	__glDoBlend	dwarf+dynsym	bd5abedc897e		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81574,7 +81574,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c20d0	112	__glDoBlen
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2140	164	__glDoBlendDestMCC	dwarf+dynsym	0f6087bdfe7a		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c21f0	64	__glDoBlendSourceMCA	dwarf+dynsym	9fa899ba481c		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2230	112	__glDoBlendDestMCA	dwarf+dynsym	038e3b0c3e64		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32c22a0	8	Nop	dwarf	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32c22a0	8	Nop	dwarf	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c22b0	56	__glDoNoFetchBlend	dwarf+dynsym	258774db624d		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c22f0	116	__glDoFetchBlend	dwarf+dynsym	fc20dd7ddfe2		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c2370	224	__glDoBlend	dwarf+dynsym	ccc8244ee5a4		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93223,7 +93223,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d030	112	__glDoBlen
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d0a0	164	__glDoBlendDestMCC	dwarf+dynsym	df75bd5c9098		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d150	64	__glDoBlendSourceMCA	dwarf+dynsym	44354c7a41c8		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d190	112	__glDoBlendDestMCA	dwarf+dynsym	47ce0afbc857		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda2d200	8	Nop	dwarf+funcnames	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda2d200	8	Nop	dwarf+funcnames	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d210	56	__glDoNoFetchBlend	dwarf+dynsym	f0281a925518		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d250	116	__glDoFetchBlend	dwarf+dynsym	95ac867514f7		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2d2d0	212	__glDoBlend	dwarf+dynsym	bd5abedc897e		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99113,7 +99113,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22720d0	112	__glDoBlen
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272140	164	__glDoBlendDestMCC	dwarf+dynsym	0f6087bdfe7a		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22721f0	64	__glDoBlendSourceMCA	dwarf+dynsym	9fa899ba481c		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272230	112	__glDoBlendDestMCA	dwarf+dynsym	038e3b0c3e64		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x22722a0	8	Nop	dwarf	78aa5094d5ec		understood	docs/sample-implementation.md#so_blendc	so_blend.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x22722a0	8	Nop	dwarf	78aa5094d5ec		located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22722b0	56	__glDoNoFetchBlend	dwarf+dynsym	258774db624d		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22722f0	116	__glDoFetchBlend	dwarf+dynsym	fc20dd7ddfe2		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2272370	224	__glDoBlend	dwarf+dynsym	ccc8244ee5a4		named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
