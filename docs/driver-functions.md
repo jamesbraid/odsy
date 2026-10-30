@@ -3338,3 +3338,77 @@ Lays out
   (halfwords at +232 and +234) in the static port object, copies three board words (+1360, +1496 and +1336 divided by 16) into the stored
   state, clears 11128 bytes of the hardware-state object, writes 4165 stored words to the FIFO port at +0x110000,
   calls `ODSY_SET_GC`, and clears the mute word.
+- `gfP_OdsyHPconfig` (`odsy_hpipe.o`, offset 0xc58, 712 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private request 40: creates a display-pipe configuration (several boards tiled side by side). It copies in 524 bytes (failure
+  14): the board count at +0, the pipe number at +4 (0 up to the table's limit at +4748, else 22) and, from +0 as 16-byte entries,
+  the board index of each member at entry +24. Under the global spin lock it runs `odsy_hpipe_discover` when the state table is
+  missing or empty (a failed discovery gives 22). A pipe number already held by a configured slot in use returns 16; a free slot is the first of 64
+  56-byte slots with state 0 (none: 16). The slot gets state 1, the member count at +48, a zero use count and the
+  member-board list that the first board keeps at +0xb450 (stored at slot +16). Member i then takes the horizontal
+  strip starting at i times its width divided by the count: the board words at -19288 (x offset), -19284 (y, 0), -19280 (width,
+  its width over the count) and -19276 (height) from +0x10000. `odsy_program_compositor_tiling` programs the compositor, the
+  lock is released and the 524 bytes, with the slot number at +8, are copied back (failure 14).
+- `gfP_OdsyHPdestroyConfig` (`odsy_hpipe.o`, offset 0xf20, 472 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private request 41: removes a display-pipe configuration. It copies in the 4-byte slot number (failure 14) and under the global
+  lock requires it to be 0 to 64 and in use (else 22 with a log). It gives the first member board the whole screen again (offsets 0,
+  width and height from its +232 and +234 halfwords), clears the layout words of the other members, calls
+  `odsy_program_compositor_tiling`, and clears the slot's state, board list and member count and sets its pipe number to -1. A slot with no board list
+  logs and returns 14.
+- `gfP_OdsyHPunbind` (`odsy_hpipe.o`, offset 0x1260, 392 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private request 42: detaches the calling client from a display pipe. It copies in the 4-byte slot number (failure: log, 14),
+  takes the slot's own spin lock (+24) and requires the slot to be in use (else 22). It then stores -1 as the board's current
+  pipe number (-19304 from +0x10000), counts the board's pipe-use word at -19300 down when positive, counts the slot's use word (+56) down
+  when nonzero and sets the client context's halfword at +588 to -1 (a missing context logs). It returns 0.
+- `gfP_OdsyHPqueryAttrib` (`odsy_hpipe.o`, offset 0x13e8, 708 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private request 43: reads an attribute of a display-pipe configuration. It copies in 32 bytes (slot at +0, attribute at +8,
+  buffer size at +12, user pointer at +24; failure 14). Attribute 1 builds up to four 112-byte entries, one per member board: the board's name
+  (`strcpy` from +216) and its x offset, y offset, width and height at entry +80 to +92, repeated at +96 to +108; a buffer
+  smaller than the entries logs and gets only what fits, and `copyout` writes them (failure 14). Attributes 3 and 4 need a buffer
+  of at least 4 bytes (else 14) and return, under the slot lock, bit 0 or bit 1 of the slot's attribute word at +52 as one word. Any other
+  attribute returns 22.
+- `gfP_OdsyHPsetAttrib` (`odsy_hpipe.o`, offset 0x17f4, 740 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private request 44: changes an attribute of a display-pipe configuration. It copies in 32 bytes (slot at +0, value at +4,
+  attribute at +8, buffer size at +12, user pointer at +16; failure 14). Attribute 1 copies in the 112-byte entries (allocation 12, copy
+  failure 14), finds each board with `bdata_from_pipename` and stores its x, y, width and height from entry +80 to +92 in the
+  board words at -19288 to -19276, then calls `odsy_program_compositor_tiling`. Attribute 3 sets the slot's attribute word at +52 to 1
+  and bit 21 of the first board's compositor word at +0xb430 when the value is nonzero (clears both otherwise); attribute 4
+  sets the word to 2 and bits 4:3 of that word to 10 binary when nonzero (clears them otherwise). In both cases
+  `odsyCompositorRegWrite` writes the result to compositor register 170 on the first board with the channel flag from bit 3 of its +700 word.
+  Other attributes return 22.
+- `odsy_program_compositor_tiling` (`odsy_hpipe.o`, offset 0x844, 1044 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Writes the member boards' tile layout to the compositor (argument: the member board list, four pointers from +16). For each board
+  it makes an x-range word, the start in units of 4 pixels in bits 9:0 and the end (offset plus width) in bits 25:16, and a y-range word of the
+  start in bits 11:0 and the end in bits 27:16, from the board words at -19288, -19284, -19280 and -19276; an absent board gives 0. With no first board it returns
+  1. When the first board's compositor word at +700 has type 1 in bits 31:28 and a unit number in bits 15:8, the eight words
+  go to the USB compositor with `usb_comp_update_tiles`, bracketed while the text port is in use by setting and then clearing bit 5 of
+  compositor register 1 (`usb_comp_readwrite_register`, with severity 7 logs when the in-use counter is nonzero). Otherwise `odsyCompositorRegWrite` stores the
+  four x words in compositor registers 35 to 38 and the four y words in 39 to 42 (device 170, channel flag from bit 3 of +700). It returns 0.
+- `odsy_hpipe_discover` (`odsy_hpipe.o`, offset 0x64, 1460 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Builds the global display-pipe table from the boards present. It allocates the 4752-byte state table with
+  `kmem_zalloc` (or clears the existing one), initialises the 64 slot spin locks, sets the table's first word to 1 and
+  then makes two passes over the boards using each board's compositor word at +700 (a word of 0 skips the board).
+  Pass 1 handles boards whose bits 2:1 are zero (the head of a pipe): with type 0 in bits 31:28 it forms a 48-bit identifier from the
+  six bytes at +729 to +734 and writes the first four to compositor register 90 and the last two to register 91 (device 170,
+  `odsyCompositorRegWrite`); with type 1 it reads register 90 of device 171 (`odsyCompositorRegRead`) and merges it into the +700 word.
+  The identifier is stored in the first free one of 16 48-byte pipe entries (at +3592, identifier at +8, entry number at +0, member boards at
+  +16 to +40 indexed by bits 2:1 of the +700 word); the board's pointer at +0xb450 is set to the entry and the pipe count at +4748
+  goes up. Pass 2 takes the other boards: it reads the identifier back from compositor registers 90 and 91 (type 1 boards use register 90 alone),
+  finds the entry holding it and files the board there; an unknown identifier logs severity 4 with its value.
+  Last it stores the board count at +4360 and a 12-byte record per board from +4364 (board index, position, pipe entry number; -1 for a board in no pipe).
+  It returns 0.
+- `gf_OdsySetDisplayMode` (`odsy_retrace.o`, offset 0xbd4, 1192 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Sets the display mode of one window id (arguments: manager object, window id, mode word). Under the display-FIFO semaphore it
+  waits for FIFO level 15 (failure: release, return 5) and sends one display-FIFO doubleword at board +0x400000 whose
+  header is `0x70000001` OR (id + 10496) shifted left 14 (display register 0x2900 plus the id) and whose data is the mode word with bit
+  30 cleared. For ids below 32 it then takes the mutex at +28504 and compares bit 30 of the mode word with the id's bit in the
+  buffer-select shadow at +28528; when they differ it toggles the shadow bit and writes the id's single-bit mask to board
+  register 0x10c4 (bit 30 set) or 0x10cc (clear). If the id's bit is set in the pending-swap mask at +28560 it clears it and calls
+  `odsyValidateBuffer`. The mutex is released and it returns 0; the semaphore release replays a pending cursor command as in the other display requests.
