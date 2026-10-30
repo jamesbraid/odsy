@@ -61410,7 +61410,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec695e8	136	convolve	dynsym	b1
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69670	136	__GLgetscrmask	dynsym+mdebug	7dab77baa9a2	shared-address	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69670	136	getscrmask	dynsym	7dab77baa9a2	shared-address	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	__GLwindow	dynsym+mdebug	b61a60cef129	shared-address	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	window	dynsym	b61a60cef129	shared-address	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	window	dynsym	b61a60cef129	shared-address	named-only	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69780	64	__GListexloaded	dynsym+mdebug	8a40abe69190	shared-address	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69780	64	istexloaded	dynsym	8a40abe69190	shared-address	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec697c0	136	__GLsmoothline	dynsym+mdebug	cadac3da739d	shared-address	undocumented		
@@ -65538,7 +65538,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6afb8	180	convolve	dynsym	
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b06c	180	__GLgetscrmask	dynsym	a3946186432a	shared-address	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b06c	180	getscrmask	dynsym	a3946186432a	shared-address	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	__GLwindow	dynsym	3ef43b7f5f04	shared-address	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	window	dynsym	3ef43b7f5f04	shared-address	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	window	dynsym	3ef43b7f5f04	shared-address	named-only	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b1d4	68	__GListexloaded	dynsym	13d05f18dd9d	shared-address	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b1d4	68	istexloaded	dynsym	13d05f18dd9d	shared-address	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b218	180	__GLsmoothline	dynsym	874eb2b65b92	shared-address	undocumented		
@@ -105243,7 +105243,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1631730	80	odsyInitWindowType
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1631780	3684	cfb8SegmentSS1RectGeneral	dynsym	d064399e7392		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16325f0	504	miSubtract	dynsym	08e915007d50		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16327f0	152	hookEllipseY..KP	dynsym	18fd51ae1bce		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1632890	948	odsyChangeDIDCmap	dynsym	434574aac752		named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1632890	948	odsyChangeDIDCmap	dynsym	434574aac752		understood	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1632c50	224	odsyResetProc	dynsym	d53adb976e3b		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1632d30	704	miBSAllocate..LEB	dynsym	3b1f729c891b		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1632ff0	200	nfb9RopLoop..JH	dynsym	0e0ac842665a		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105443,7 +105443,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bd90	532	miPolyText16	dyns
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bfb0	520	odsyEnumDir..FB	dynsym	6078f87a89cd		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c1c0	424	newFinalSpan..CAB	dynsym	8bf7ca9dcd93		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c370	380	ValidateSwapbuf..GF	dynsym	677f0da55999		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c4f0	916	odsyInstallColormap	dynsym	e1802fedd77f		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c4f0	916	odsyInstallColormap	dynsym	e1802fedd77f		understood	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c890	14224	cfbSegmentSD	dynsym	451bb0d1b9a1		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1690020	2292	cfbPolyGlyphBlt8	dynsym	d80e28941b10		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1690920	264	SetDIDMode	dynsym	992b26841463		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
@@ -105628,7 +105628,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e3a70	1460	cfb8LineSS1RectP
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e4030	872	odsyKeyClick	dynsym	daead4eeda6f		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e43a0	664	rrmBlockHandler..OE	dynsym	087017cc57d3		named-only	docs/odyssey-so-functions.md#resource-manager-client-rrm	Resource-manager client (`rrm`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e4640	4536	cfb32PolyFillArcSolidCopy	dynsym	88d2a686239c		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e5800	1096	odsyStoreColors	dynsym	a0f32b8e883c		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e5800	1096	odsyStoreColors	dynsym	a0f32b8e883c		understood	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e5c50	5224	cfb16ClippedLineXor	dynsym	187e222cb137		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e70c0	240	miBSImageText16..EEB	dynsym	7330e4a639b9		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e71b0	420	miEllipseAngleToSlope	dynsym	c538f12d02f1		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
