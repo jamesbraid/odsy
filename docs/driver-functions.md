@@ -1483,3 +1483,146 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   of the screen's record in `screenInfo` (descriptor at +100), calls `ioctl` with the request 0x6f640013,
   handled by `gfP_OdsyHPdestroyConfig`, and a one-word block holding its second argument. It returns 0
   when the call succeeds and 1 when it fails.
+- `odsy_i2c_start` (`odsy_i2c.o`, offset 0x40c8, 4912 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
+  Sends a start condition and the slave address on one two-wire port. Every control-register write of the
+  port is a 64-bit command pushed into the display FIFO at board +0x400000: the high word is 0x30000001
+  OR the register's display address shifted left 14 (the address is the halfword at +24 of the port record),
+  the low word is the shadow control word at +0 of the record. Before each push it takes the display-FIFO
+  semaphore (a semaphore at board record +0x8530, or the spin lock at +0x8540 when the flag at +46184 is
+  set) and calls `odsy_poll_dfifo_level` with level 14 or 15; a FIFO wait that fails returns 3. The
+  sequence sets bit 14 (force idle) for 20 microseconds with `odsy_usdelay`, clears it for another 20, then
+  reads the control word back through the window at board +0x220000 (display address times 8), loads the
+  address byte into bits 7:0 (a copy also goes to port record +32) with bit 8 (start), bit 9 (transfer) and bit 12
+  (send) set and bit 11 (stop) cleared, pushes it, clears bit 8 in the shadow, and waits with
+  `odsy_i2c_xfer_done_loop`. A timeout is returned as is; otherwise it returns the result of
+  `odsy_i2c_recv_ack` called with the inverse of the ack argument. The semaphore release also replays a pending
+  cursor-position command stored at board record +34120 when one is waiting.
+- `odsy_i2c_stop` (`odsy_i2c.o`, offset 0x53f8, 2504 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Ends a two-wire transfer. It waits for display-FIFO room (level 14 or 15 through `odsy_poll_dfifo_level`),
+  sets bit 13 (force stop) of the shadow control word and clears bits 14, 9, 8 and 11 (idle, transfer, start,
+  stop), pushes the word as a display-FIFO command and waits with `odsy_i2c_xfer_done_loop`. After it
+  completes it zeroes the shadow control word, reads the port's status register back through the window at
+  board +0x220000 and returns 1 when bit 22 (busy) is still set, 0 when the bus released, and 3 or the
+  timeout code of the wait when a step failed.
+- `odsy_i2c_sendbyte` (`odsy_i2c.o`, offset 0x5dc0, 3796 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Sends one data byte as the bus master. It first calls `odsy_i2c_busy_high_loop` and returns a failure
+  of that wait. It then places the byte in bits 7:0 of the shadow control word, sets bit 9 (transfer), sets or
+  clears bit 11 (stop) according to its stop argument, pushes the word into the display FIFO as a
+  control-register command, waits with `odsy_i2c_xfer_done_loop`, clears the stop bit again when it set it, and
+  returns the result of `odsy_i2c_recv_ack` with the inverse of the ack argument. A FIFO wait that fails returns 3.
+- `odsy_i2c_long_recvbyte` (`odsy_i2c.o`, offset 0x6ce0, 2568 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Receives one byte as the bus master and sets the acknowledge and stop bits of the byte. When the requested
+  acknowledge differs from bit 10 of the shadow control word it reads the control register back, clears bit
+  12 (send) and bit 8 (start), writes the new acknowledge into bit 10 (0 acknowledges, 1 refuses), clears the
+  data bits and pushes the word. It then calls `odsy_i2c_short_recvbyte`, sets or clears bit 11 (stop)
+  from its stop argument, pushes the word again, clears the stop bit in the shadow and, when no acknowledge
+  was requested, clears bit 10. It returns the result of `odsy_i2c_short_recvbyte`, or 1 when a FIFO wait fails.
+- `odsy_i2c_recv_1byte` (`odsy_i2c.o`, offset 0x76e8, 3132 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Receives a single byte in one transfer, used by the DVI and display-data routines. It reads the control
+  register back through the window at board +0x220000, clears bit 12 (send) and bit 8 (start), sets bit 9
+  (transfer) and, according to its two flag arguments, bit 10 (refuse acknowledge) and bit 11 (stop), pushes
+  the word as a display-FIFO command, waits with `odsy_i2c_xfer_done_loop`, reads the status register back
+  and stores its low byte through the pointer argument. A failed FIFO wait returns 3; a timeout of the wait
+  is returned unchanged; success returns 0.
+- `odsy_i2c_becomeSlaveRecv` (`odsy_i2c.o`, offset 0x8324, 2612 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Ends the master transfer and switches a port to slave-receive. It reads the control register back, sets
+  bit 13 (force stop) and bit 17 (slave enable), clears bit 9 (transfer), writes bit 10 from the ack argument
+  (an acknowledge clears it, a refusal sets it), stores the slave address in bits 24:18, pushes the word and waits with
+  `odsy_i2c_xfer_done_loop`. A clock error (status bit 20) or data error (bit 21) returns 1; otherwise it
+  stores the received byte (status bits 7:0) through the pointer argument, clears bit 13 in the shadow and
+  returns 0. A failed FIFO wait returns 3.
+- `odsy_i2c_slave_recvbyte` (`odsy_i2c.o`, offset 0x8d58, 2572 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Collects bytes while another device drives the clock. While the shadow status shows busy (bit 22) it
+  waits with `odsy_i2c_xfer_done_loop`, returns 1 on a clock or data error (bits 20 and 21), returns 3 and
+  flips the acknowledge bit when the count passes the buffer length, and otherwise reads the status
+  register back through the window at board +0x220000 and appends its low byte to the caller's buffer.
+  It also writes the requested acknowledge into the shadow control word first when it differs.
+- `odsy_i2c_xfer_done_loop` (`odsy_i2c.o`, offset 0x9764, 1256 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Waits for a two-wire byte transfer to finish. Each pass takes the display-FIFO semaphore, waits for the
+  FIFO to drain to level 0, reads the port's status register back through the window at board +0x220000 into
+  the shadow status and returns 0 when bit 9 (transfer done) is set, otherwise it waits 100 microseconds
+  with `odsy_usdelay`. After 800 passes it returns 2; a FIFO wait that fails returns 3.
+- `odsy_i2c_busy_high_loop` (`odsy_i2c.o`, offset 0x9c4c, 1256 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Waits for the port's busy flag. Each pass reads the status register back through the window at board
+  +0x220000, tests bit 22 (busy) and returns 0 when it is set, otherwise waits 100 microseconds with
+  `odsy_usdelay`. After 400 passes it returns 2; a FIFO wait that fails returns 3.
+- `odsy_i2c_recv_ack` (`odsy_i2c.o`, offset 0xa134, 1288 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Polls for the acknowledge bit of a finished byte. It compares bit 8 of the shadow status with its argument
+  and returns 0 on a match; otherwise it waits 100 microseconds with `odsy_usdelay`, waits for the display
+  FIFO to drain and rereads the status register through the window at board +0x220000. After 400 polls it
+  returns 2, and a FIFO wait that fails returns 2 as well.
+- `odsy_i2c_init_port_handle` (`odsy_i2c.o`, offset 0xa63c, 1148 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Fills in a port record for the main (0) or option (1) two-wire port and refuses other numbers with 1.
+  The main port gets display addresses 10112 (control) and 10113 (status) and shadow words at board record
+  +0x8614 and +0x8618; the option port gets 10048 and 10049 with shadows at +0x860c and +0x8610. The
+  routine stores the board record at +16 and the port number at +28, waits for the display FIFO to
+  drain and reads both registers back through the window at board +0x220000 into the shadows, returning 0.
+- `odsy_i2cReset` (`odsy_i2c.o`, offset 0xaab8, 2440 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Forces a two-wire port back to idle.
+  `odsy_i2c_stop` three times: here the routine calls `odsy_i2c_stop` once, zeroes the shadow control word,
+  sets bit 14 (force idle) and pushes it, then every 10 microseconds reads the status register back through
+  the window at board +0x220000 and loops until the state field (bits 13:10) reads 0 or 10. It then clears bit 14 and
+  pushes the word once more.
+- `odsy_i2c_read_comp_reg4` (`odsy_i2c.o`, offset 0x0, 2804 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`; called from `odsy_compositor.o`.
+  Reads a four-byte register from the compositor on the two-wire bus. It reads the control register back,
+  clears bits 12, 8 and 10 (send, start, refuse-acknowledge) and pushes it, then collects four bytes: after
+  each push it polls up to 133 times at 100 microseconds for status bit 9 (transfer done) and stores the status
+  low byte in order into a word on the stack. The fourth byte is requested with bit 10 set so the device
+  stops sending. The first byte received is the most significant byte of the word stored through the pointer in
+  the second argument. It returns 0, or 1 when a poll or FIFO wait fails.
+- `odsy_i2c_write_comp_reg4` (`odsy_i2c.o`, offset 0xaf4, 2636 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`; called from `odsy_compositor.o`.
+  Writes a four-byte register of the compositor on the two-wire bus. It stores the word to send in memory
+  and then, four times starting from the most significant byte, clears bits 11 and 13 (stop and force stop),
+  sets bit 9 (transfer), loads the byte into bits 7:0 and pushes the control word, polls up to 133 times at
+  100 microseconds for transfer done (status bit 9) and returns 1 when the acknowledge bit 8 shows a refusal.
+  It returns 0 after the last byte, and 1 when a poll or FIFO wait fails.
+- `odsy_i2c_read_denali_byte` (`odsy_i2c.o`, offset 0x1540, 2084 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Reads one byte from the Denali device. It calls `odsy_i2c_start` with the address byte 239 (0xef, a read of
+  7-bit address 0x77, stored at port record +32), waits 20 microseconds with `odsy_usdelay`, reads the
+  control register back, clears bits 12 and 8 and sets bits 10 and 11 (refuse acknowledge, stop), pushes it
+  and polls up to 133 times at 200 microseconds for status bit 9. The status low byte is stored through the
+  pointer argument. It returns 0, or 1 when the start, a poll or a FIFO wait fails.
+- `odsy_i2c_write_denali_byte` (`odsy_i2c.o`, offset 0x2660, 2668 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Writes one byte to the Denali device. It calls `odsy_i2c_start` with the address byte 238 (0xee, a write
+  to 7-bit address 0x77, stored at port record +32), waits 20 microseconds, then sets bits 9 and 11 (transfer, stop),
+  clears bit 13, loads the byte into bits 7:0, pushes the word and polls up to 133 times at 100 microseconds
+  for status bit 9. A refused acknowledge (bit 8) fails. It returns 0, or 1 when any step fails.
+- `odsy_i2c_read_rainier_byte` (`odsy_i2c.o`, offset 0x38c4, 2052 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+  Reads bytes from the Rainier device with the address already in the port record. It calls `odsy_i2c_start`,
+  waits 20 microseconds with `odsy_usdelay`, reads the control register back, clears bits 12 and 8, sets
+  bits 10 and 11 (refuse acknowledge, stop) and pushes it. It then polls the status read-back at up to 133
+  times at 200 microseconds for bit 9 and stores the low byte through the pointer argument, counting down the
+  length argument. It returns 0, or 1 when the start, a poll or a FIFO wait fails.
+- `odsy_i2c_read_denali` (`odsy_i2c.o`, offset 0x1d64, 2300 bytes): **inferred.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`; called from `odsy_denali.o` and `odsy_ddc.o`.
+  Reads one reply message from the Denali device. It calls `odsy_i2c_read_denali_byte` for the first byte,
+  which it treats as the reply length (a length of 5 is replaced by 10, anything over 32 is capped to 32),
+  then calls it again for each following byte and stores every byte as a 32-bit word in the caller's array.
+  A byte equal to 10 or 5 marks the end of a short reply and, for longer replies, makes it read and discard the
+  remaining bytes. A failing byte read stores the code 0x3804 in the status word of the third argument and returns 1;
+  success returns 0. Read from the skeleton of the routine (calls, constants and branches), not every
+  instruction.
+- `odsy_i2c_write_denali` (`odsy_i2c.o`, offset 0x30cc, 2040 bytes): **inferred.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`; called from `odsy_denali.o` and `odsy_ddc.o`.
+  Sends one command message to the Denali device. It stores the code 0x3804 in the status word, then calls
+  `odsy_i2c_write_denali_byte` once for each byte of the caller's buffer up to the length in its third
+  argument and returns 1 as soon as a byte write fails; after the last byte it returns 0 with the semaphore
+  released. Read from the skeleton of the routine (calls, constants and branches), not every instruction.
