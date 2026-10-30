@@ -947,3 +947,60 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   at 0x1074, and stores 0 to the shadow at +34248 and to the register at 0x107c, each followed by a
   `sync`. When its third argument is 0 and the word at +120 is non-zero, it then calls `force_resched` and
   clears that word. It returns 0.
+- `odsy_color` (`odsy_tport.o`, offset 0x9b8, 216 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Text-port colour change. Unless the global `odsy_tport_mute` is set it counts itself in
+  `odsy_tport_inuse`, takes `odsy_tport_lock` and stores the colour argument at +8 of a static object. It
+  then writes eight 32-bit words to the command FIFO port at the board base plus 0x110000, each followed
+  by a `sync`: 0x22008001, 0x23008003, 0xce80cc08, three zeros, 0xc580c406 and finally the colour value.
+  The use count is decremented and the lock released with `mutex_spinunlock`.
+- `odsy_mapcolor` (`odsy_tport.o`, offset 0xa90, 256 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Text-port colour-map write. Unless `odsy_tport_mute` is set it counts itself in `odsy_tport_inuse`,
+  takes `odsy_tport_lock`, and waits for the display FIFO to empty with `odsy_poll_dfifo_level` at level
+  0. It packs the three 8-bit component arguments into 10-bit fields at bits 0, 10 and 20 of the low word
+  (each value times 4 plus its top 2 bits) and puts 0x30000001 with the index shifted left by 14 in the
+  high word. One 64-bit store of that pair goes to the display FIFO window at the board base plus
+  0x400000, followed by a `sync`.
+- `odsy_ProbeCompositor` (`odsy_compositor.o`, offset 0x99c, 192 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)`.
+  Reads the compositor's identification register. It tries one channel, or two when the halfword at board
+  record +298 equals 3, calling `odsyCompositorRegRead` with the register numbers 171 and 87 for each
+  channel in turn and stopping at the first read that succeeds. A success stores a derived word through
+  its second argument (the value read with bits 3 to 1 replaced by its own bits 1:0 shifted up, the
+  channel number in bit 3 and bit 0 forced to 1) and returns 0; if every read fails it stores 0 and
+  returns 1.
+- `gfP_OdsyDIAGfreeScanbuf` (`odsy_diag.o`, offset 0x218, 160 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Releases the diagnostic scan buffer of a client. It takes the mutex at board record +0xb338 with
+  `mutex_lock`. When the owner word at +45928 is the calling client it calls `odsyUnmapPages` on the
+  handle at +0xb358, frees the buffer pointed to at +45896 with the size at +45920 through `kmem_free`,
+  and zeroes the owner, the size and the two pointers. It always unlocks, stores 0 in the result word and
+  returns 0.
+- `gfP_OdsyDIAGreleaseShadowPtrs` (`odsy_diag.o`, offset 0x590, 228 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Releases the diagnostic shadow-pointer mappings of a client. It takes the mutex at board record +0xb370
+  with `mutex_lock`. If the owner word at +45952 is not the caller it unlocks and stores 1 in the result
+  word. Otherwise it calls `odsyUnmapPages` on the handle at +0xb3c8 and on four handles starting at
+  +0xb388, zeroing the four doublewords from +45992 as it goes, clears the owner word, unlocks, stores 0
+  in the result word and returns 0.
+- `odsy_i2cPLLRegRead` (`odsy_ddc.o`, offset 0xd4, 172 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Reads one register of the clock part over the two-wire bus. It starts a write transfer to the device
+  address from the byte at board record +32 shifted left by 1, sends the register number, restarts the
+  transfer with the address shifted left and the low bit set, and collects one byte into the caller's
+  buffer with `odsy_i2c_long_recvbyte`. Any failing step calls `odsy_i2cReset` and returns 1; success
+  returns 0.
+- `odsy_i2cPLLSeqRegWrite` (`odsy_ddc.o`, offset 0x20c, 240 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Writes a run of consecutive registers of the clock part. It starts a write transfer to the address from
+  the byte at board record +32 shifted left by 1, sends the first register number, and then sends the N
+  bytes of its buffer with `odsy_i2c_sendbyte`, only the last one carrying the final-byte flag. A failing
+  step calls `odsy_i2cReset` and returns 1; success returns 0.
+- `odsy_i2cPLLSeqRegRead` (`odsy_ddc.o`, offset 0x2fc, 276 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  Reads a run of consecutive registers of the clock part. It writes the first register number after a
+  start to the address at board record +32 shifted left by 1, restarts with the fixed address byte 77,
+  takes the first byte with `odsy_i2c_long_recvbyte`, the middle bytes with `odsy_i2c_short_recvbyte` and
+  the last byte with another `odsy_i2c_long_recvbyte` that has the final flag set. Any failure calls
+  `odsy_i2cReset` and returns 1; success returns 0.
