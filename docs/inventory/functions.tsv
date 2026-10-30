@@ -56861,7 +56861,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10060940	336	ProcXineramaUnmapS
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10060a90	1320	XkbSendActionMessage	dynsym	d1f48a807677		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10060fc0	4296	ProcPanoramiXShmGetImage..PEE	dynsym	f9d02416c9ab		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10062090	92	sp_begin_sub_char_out	dynsym	aaf72588f971		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100620f0	456	glxScreenInit	dynsym	5c9f32f3763a		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100620f0	456	glxScreenInit	dynsym	5c9f32f3763a		in	named-only	docs/odyssey-so-reads.md#screen-initialisation	Screen initialisation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100622c0	192	AwareModeProcPanoramiXGetScreenCount	dynsym	b09604bf3243		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10062380	572	XkbFindKeycodeByName	dynsym	42fc6671cf73		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100625c0	228	ZlibFlush	dynsym	84640ae9a14e		in	undocumented		
@@ -56910,7 +56910,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100694c0	36	LbxMessageCompOpt..
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100694f0	248	ProcFreeColors	dynsym	1d5826c87475		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100695f0	236	t1_MoreWorkArea	dynsym	f79b85c6e1c1		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100696e0	572	OpenFont	dynsym	594c10024173		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10069920	1220	FakeClientID	dynsym	00d7a27bc92c		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10069920	1220	FakeClientID	dynsym	00d7a27bc92c		in	named-only	docs/odyssey-so-reads.md#screen-initialisation	Screen initialisation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10069df0	668	QueryFont	dynsym	4a0103f8f4e3		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1006a090	1804	XkbSendExtensionDeviceNotify	dynsym	83e127c48625		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1006a7a0	276	ProcXineramaUninstallColormap	dynsym	a398c0720a35		in	undocumented		
@@ -59096,7 +59096,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209160	260	sgiCapRestoreAreas
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209270	572	CreateDefaultTile..EG	dynsym	8064038ed7ba		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102094b0	312	ProcXineramaCopyGC	dynsym	6b66c875466b		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102095f0	336	CheckFSFormat	dynsym	033f79e1a033		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209740	192	ReadDisplayRegisterInfo	dynsym	bcc0605a62e7		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209740	192	ReadDisplayRegisterInfo	dynsym	bcc0605a62e7		in	named-only	docs/odyssey-so-reads.md#screen-initialisation	Screen initialisation
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209800	1940	SetKeySyms..GDF	dynsym	14fe0e37be4a		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10209fb0	3840	LbxQueryFont	dynsym	cd384c7c360a		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1020aeb0	188	Xalloc	dynsym	b48db024f857		in	named-only	docs/odyssey-so-reads.md#video-control-attach-and-post-initialisation	Video-control attach and post-initialisation
@@ -61410,7 +61410,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec695e8	136	convolve	dynsym	b1
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69670	136	__GLgetscrmask	dynsym+mdebug	7dab77baa9a2	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69670	136	getscrmask	dynsym	7dab77baa9a2	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	__GLwindow	dynsym+mdebug	b61a60cef129	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	window	dynsym	b61a60cef129	shared-address	in	named-only	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	window	dynsym	b61a60cef129	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69780	64	__GListexloaded	dynsym+mdebug	8a40abe69190	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69780	64	istexloaded	dynsym	8a40abe69190	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec697c0	136	__GLsmoothline	dynsym+mdebug	cadac3da739d	shared-address	in	undocumented		
@@ -65538,7 +65538,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6afb8	180	convolve	dynsym	
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b06c	180	__GLgetscrmask	dynsym	a3946186432a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b06c	180	getscrmask	dynsym	a3946186432a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	__GLwindow	dynsym	3ef43b7f5f04	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	window	dynsym	3ef43b7f5f04	shared-address	in	named-only	docs/odyssey-so-reads.md#colour-map-update-routines	Colour-map update routines
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	window	dynsym	3ef43b7f5f04	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b1d4	68	__GListexloaded	dynsym	13d05f18dd9d	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b1d4	68	istexloaded	dynsym	13d05f18dd9d	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b218	180	__GLsmoothline	dynsym	874eb2b65b92	shared-address	in	undocumented		
