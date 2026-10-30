@@ -2,7 +2,8 @@
 """Run a list of BUZZ microcode routines record by record and print the dataflow.
 
 Usage: scripts/buzz_ucode_dataflow.py [--numeric SCENARIO.json] [--code C=FN ...]
-                                      IMAGE ENTRY [ENTRY ...]
+                                      [--round MODE] IMAGE ENTRY [ENTRY ...]
+       scripts/buzz_ucode_dataflow.py --unresolved IMAGE
 
 IMAGE is ucode/ODSY/buzz_xform.bin or ucode/buzz_ucode_ip30.bin. Each ENTRY
 runs from its record to the next end mark (bits 1:0 equal to 1 or 2) plus the
@@ -29,14 +30,28 @@ every such record and why.
 With --numeric, SCENARIO is a JSON file of input numbers: "slots" (slot number
 to four floats), "operands" (entry record to a list of operands), "pm" (word
 address such as "0x080" to a float; the constants at 0x1e0 to 0x1ef are built
-in) and "regs" (register number to four floats). Every other value starts as
-NaN, so a NaN in the output marks an input the scenario did not give.
+in), "regs" (register number to four floats) and "B" (the operand latch at
+the start of the run, for a replay that starts after the record loading it).
+Every other value starts as NaN, so a NaN in the output marks an input the
+scenario did not give.
 --code C=FN picks a function for a scalar code the ISA leaves open, from
 SCALAR_CHOICES; codes 8, 1, 0xc, 0xd and 0xe follow buzz_isa.md. Parameter
 stores update the scenario's words, so a later entry reads them back.
+--round MODE rounds every dot product and scalar result as a unit of that
+width would: f32 (IEEE single, to nearest even) or tN (N fraction bits below
+the leading one, toward minus infinity). The default keeps Python doubles,
+which hides every rounding trick the program plays.
+
+--unresolved runs every routine alone (from record 0 and from each record
+five after an end mark), skips each run's first twelve records, lists the
+records whose port write, scalar operand, factor load, store or output-stage
+read has no source, drops those a second pass of the same routine resolves,
+and groups the rest by cause (ucode/buzz_isa.md, "Pass 16").
 """
 import json
 import math
+import re
+import struct
 import os
 import sys
 
@@ -62,18 +77,41 @@ SLOT = {0: 'P', 1: 'N', 3: 'T', 5: 'C', 6: 'Mamb', 7: 'Mdif', 8: 'Mspe',
         9: 'Memi', 10: 'Bamb', 11: 'Bdif', 12: 'Bspe', 13: 'Bemi',
         14: 'load', 15: 'grp15'}
 # Candidate functions for the scalar codes the ISA leaves open; x is the
-# operand and k the factor K.
+# operand, k the factor K and f the factor code 0xe would use.
 SCALAR_CHOICES = {
-    'pass': lambda x, k: x,
-    'square': lambda x, k: x * x,
-    'mulK': lambda x, k: k * x,
-    'neg': lambda x, k: -x,
-    'recip': lambda x, k: 1.0 / x if x else math.inf,
-    'rsqrt': lambda x, k: 1.0 / math.sqrt(x) if x > 0 else math.nan,
-    'log2': lambda x, k: math.log2(x) if x > 0 else math.nan,
-    'exp2': lambda x, k: 2.0 ** x,
-    'pow8': lambda x, k: (8.0 / x) ** 8 if x else math.nan,
+    'pass': lambda x, k, f: x,
+    'square': lambda x, k, f: x * x,
+    'mulK': lambda x, k, f: k * x,
+    'neg': lambda x, k, f: -x,
+    'recip': lambda x, k, f: 1.0 / x if x else math.inf,
+    'rsqrt': lambda x, k, f: 1.0 / math.sqrt(x) if x > 0 else math.nan,
+    'log2': lambda x, k, f: math.log2(x) if x > 0 else math.nan,
+    'exp2': lambda x, k, f: 2.0 ** x,
+    'pow8': lambda x, k, f: (8.0 / x) ** 8 if x else math.nan,
+    # pow8 read from a table whose entries sit 1/32 apart, at the entry at
+    # or below x: a lookup with no interpolation of its own.
+    'pow8t32': lambda x, k, f: (8.0 / (math.floor(x * 32) / 32)) ** 8 if x >= 1 / 32 else math.nan,
+    'mulF': lambda x, k, f: f * x,
 }
+
+
+def rounder(mode):
+    """Return a function that rounds a double as the unit width MODE would."""
+    if mode is None:
+        return lambda v: v
+    if mode == 'f32':
+        return lambda v: v if math.isnan(v) or math.isinf(v) else struct.unpack('>f', struct.pack('>f', v))[0]
+    if mode.startswith('t'):
+        bits = int(mode[1:])
+
+        def trunc(v):
+            if not v or math.isnan(v) or math.isinf(v):
+                return v
+            e = math.floor(math.log2(abs(v)))
+            q = 2.0 ** (e - bits)
+            return math.floor(v / q) * q
+        return trunc
+    sys.exit(f'unknown rounding {mode}; use f32 or tN')
 
 
 def decode(w):
@@ -131,9 +169,10 @@ class Numbers:
     """Values as floats, NaN where the scenario gave no input."""
     numeric = True
 
-    def __init__(self, scen, codes):
+    def __init__(self, scen, codes, rnd=None):
         self.scen = scen
         self.codes = codes
+        self.rnd = rounder(rnd)
         self.invw = math.nan
         self.defs = []
         self.words = {}
@@ -159,7 +198,7 @@ class Numbers:
         return math.nan
 
     def dot(self, name, aname, a, b):
-        v = sum(x * y for x, y in zip(a, b))
+        v = self.rnd(sum(x * y for x, y in zip(a, b)))
         self.defs.append(f'{name} = {aname} . B = {v:.6g}')
         return v
 
@@ -175,9 +214,10 @@ class Numbers:
         elif code == 0xe:
             v = f * x
         elif code in self.codes:
-            v = SCALAR_CHOICES[self.codes[code]](x, k)
+            v = SCALAR_CHOICES[self.codes[code]](x, k, f)
         else:
             v = math.nan
+        v = self.rnd(v)
         self.defs.append(f'{name} = S{code:x}({x:.6g}) = {v:.6g}')
         return v
 
@@ -217,6 +257,8 @@ def run(recs, entries, dom):
         seq += [(i, rng[0]) for i in rng]
     reg = {(r, l): dom.reg(r, l) for r in range(32) for l in range(4)}
     B = [dom.none()] * 4
+    if dom.numeric and 'B' in dom.scen:
+        B = [float(v) for v in dom.scen['B']]
     nextB = None
     A = Aname = None
     auto_fire = last_issue = -9
@@ -285,15 +327,14 @@ def run(recs, entries, dom):
                 nextK = dom.none()
             ev.append(f'K = {sh(nextK)}')
         if r['d1']:
-            # A lane read that this record's store consumes is not the
-            # operand (pass 15); otherwise the read of one record before
-            # comes first, then what arrives.
-            if c - 1 in lane and not r['st']:
-                opnd = lane[c - 1]
+            # Bit 3 of the code picks the operand (pass 16): set, the lane
+            # read of one record before; clear, what arrives in this record.
+            # A record that stores takes what arrives whatever the code,
+            # because its store consumes the read (pass 15).
+            if r['d1'] & 8 and not r['st']:
+                opnd = lane.get(c - 1, dom.none())
             elif arriving is not None:
                 opnd = arriving
-            elif c - 1 in lane:
-                opnd = lane[c - 1]
             else:
                 opnd = dom.none()
             # Code 0xe multiplies by the last code 1 or 0xc result that is at
@@ -365,9 +406,66 @@ def run(recs, entries, dom):
     return out, dom.defs
 
 
+# Events that name an operand with no source under the rules.
+UNRESOLVED = [(re.compile(r'R\d+\.[xyzw] = -$'), 'port'),
+              (re.compile(r's\d+ = S[0-9a-f]\(-\)'), 'scalar'),
+              (re.compile(r'o\d+ = D[0-9a-f]+\(-\)'), 'stage'),
+              (re.compile(r'K = -$'), 'factor'),
+              (re.compile(r'store .*<- -$'), 'store')]
+
+
+def unresolved_records(recs, entries, skip):
+    """Return the (record, kind) pairs a symbolic run leaves without a source."""
+    out, _ = run(recs, entries, Symbols())
+    found = set()
+    for line in out[skip:]:
+        rec = int(line.split()[1])
+        for ev in line.split('  ', 1)[1].split('; '):
+            for pat, kind in UNRESOLVED:
+                if pat.match(ev):
+                    found.add((rec, kind))
+    return found
+
+
+def census(recs):
+    """Run every routine alone, then twice in a row, and list what stays open."""
+    ends = [i for i, r in enumerate(recs) if r['sq'] in (1, 2)]
+    entries = [0] + [i + 5 for i in ends if i + 5 < len(recs)]
+    alone, twice = set(), set()
+    for e in entries:
+        first = unresolved_records(recs, [str(e)], 12)
+        n = len(run(recs, [str(e)], Symbols())[0])
+        again = unresolved_records(recs, [str(e), str(e)], n)
+        alone |= first
+        twice |= first & again
+    print(f'{len(alone)} records alone; {len(alone - twice)} resolve when the routine follows itself:',
+          ' '.join(f'{r}:{k}' for r, k in sorted(alone - twice)))
+    groups = {}
+    for rec, kind in sorted(twice):
+        r = recs[rec]
+        if kind == 'port' and r['ln'] & 4 and r['b'] in (1, 3):
+            why = f"port P source b = {r['b']}"
+        elif kind == 'port' and r['ln'] & 4 and r['b'] == 2:
+            why = 'port P scalar source, no scalar result four records before'
+        elif kind == 'port':
+            why = 'port V, no fire six or load seven records before'
+        elif kind == 'scalar' and r['d1'] & 8:
+            why = 'scalar read code, no lane read one record before'
+        elif kind == 'scalar':
+            why = 'scalar arrival code, nothing arrives'
+        else:
+            why = kind
+        groups.setdefault(why, []).append(rec)
+    for why, recs_ in groups.items():
+        print(f'{len(recs_):3d} {why}:', ' '.join(map(str, recs_)))
+
+
 def main():
     args = sys.argv[1:]
-    scen, codes = None, {}
+    if args[:1] == ['--unresolved'] and len(args) == 2:
+        census([decode(w) for w in records(args[1])[0]])
+        return
+    scen, codes, rnd = None, {}, None
     while args and args[0].startswith('--'):
         opt = args.pop(0)
         if opt == '--numeric':
@@ -377,12 +475,14 @@ def main():
             if fn not in SCALAR_CHOICES:
                 sys.exit(f'unknown function {fn}; choose from {sorted(SCALAR_CHOICES)}')
             codes[int(c, 16)] = fn
+        elif opt == '--round':
+            rnd = args.pop(0)
         else:
             sys.exit(__doc__)
     if len(args) < 2:
         sys.exit(__doc__)
     recs = [decode(w) for w in records(args[0])[0]]
-    dom = Numbers(scen, codes) if scen is not None else Symbols()
+    dom = Numbers(scen, codes, rnd) if scen is not None else Symbols()
     out, defs = run(recs, args[1:], dom)
     print('\n'.join(out))
     print('; definitions')
