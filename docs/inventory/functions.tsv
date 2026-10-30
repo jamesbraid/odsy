@@ -53572,12 +53572,12 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64		0x0		gfxtable_readerlock	dwarf+
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	e9a8d85b7392		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	c4824acddc51		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x108	28	gfxtable_writerunlock	dwarf+symtab	426cbd661eec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x188	184	gfx_group_find	dwarf+symtab	03f39b15d728		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2fc	208	gfx_group_destroy	dwarf+symtab	1be0018a8cee		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x568	244	gthread_destroy	dwarf+symtab	aca209e036df		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x65c	156	gthread_attach_list	dwarf+symtab	a0c31438c82b		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x6f8	84	gthread_detach_list	dwarf+symtab	9bc9e00325b6		in	undocumented		
@@ -53588,11 +53588,11 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x12b0	252	GfxKiller	dwarf+symtab	c9d1a121645a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x13ac	52	gfxcleanup	dwarf+symtab	b0d6021d285a		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x13e0	364	GfxOpen	dwarf+symtab	62e330ebe0e8		in	undocumented		
@@ -53610,9 +53610,9 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1c8c	244	GfxDetach	dwarf
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1fb8	1148	gfxopen	dwarf+symtab	46a1a5103e44		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x1fb8	1148	gfxopen	dwarf+symtab	46a1a5103e44		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2434	104	irisgl_sproc_cleanup	dwarf+symtab	1a886fe7c776		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x249c	1396	gfxclose	dwarf+symtab	5c0f0b4001a7		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x249c	1396	gfxclose	dwarf+symtab	5c0f0b4001a7		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2a10	120	GfxListWriterLock	dwarf+symtab	b771827af38e		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2a88	28	GfxListWriterUnlock	dwarf+symtab	1f40a8ae1dd6		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2aa4	68	GfxListReaderLock	dwarf+symtab	20ce3fa92e81		in	undocumented		
@@ -53622,18 +53622,18 @@ usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2b40	8	gfxwrite	dwarf+sy
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x2b48	2004	gfxioctl	dwarf+symtab	4ad978a5c45c		in	named-only	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x331c	8	gfxmap	dwarf+symtab	9a0f9311b660		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3324	8	gfxunmap	dwarf+symtab	9a0f9311b660		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x332c	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x33ec	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3418	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3424	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x347c	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x34cc	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x332c	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x33ec	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3418	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3424	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x347c	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x34cc	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x3544	160	irix5_to_gfx_download_args	dwarf+symtab	dcc8940310eb		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfx.o	shared-kernel	n64	.text	0x35e4	112	irix5_to_gfx_attach_board_args	dwarf+symtab	b61b041fbfff		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64		0x0		gfx_flow_delayed_hiwater_intr_prehandler	dwarf+symtab			in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x88	8	gfx_flow_pipe_head	dwarf+symtab	ee203e2bd9f8		in	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x90	64	gfx_flow_init	dwarf+symtab	3eea04e64287		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0xd0	168	gfx_flow_pipe_head_init	dwarf+symtab	60f4da3eb57a		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0xd0	168	gfx_flow_pipe_head_init	dwarf+symtab	60f4da3eb57a		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x178	512	gfx_flow_alloc	dwarf+symtab	ad88e0a92989		in	named-only	docs/buzz.md#flow-control	Flow control
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x378	12	gfx_flow_reset	dwarf+symtab	0f2f165b22fa		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x384	284	gfx_flow_dealloc	dwarf+symtab	cd9f1ed97f8e		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -53642,26 +53642,26 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4c4	12	gfx_
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4d0	12	gfx_flow_credit_total_get	dwarf+symtab	6c27d0b6a88e		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4dc	8	gfx_flow_credit_bias_get	dwarf+symtab	215645c4ae1c		in	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x4e4	36	gfx_flow_credit_count_get	dwarf+symtab	95a6633c531e		in	named-only	docs/buzz.md#flow-control	Flow control
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x508	44	gfx_flow_credit_count_set	dwarf+symtab	6a4079d34702		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x508	44	gfx_flow_credit_count_set	dwarf+symtab	6a4079d34702		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x534	8	gfx_flow_detach_requires_credit_flow_disable	dwarf+symtab	a7e7ca11a6b8		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x53c	220	gfx_flow_attach_me	dwarf+symtab	8ff79436e17b		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x618	8	gfx_flow_attach_me_finish	dwarf+symtab	78aa5094d5ec		in	named-only	docs/buzz.md#7-ip35-context-switch-against-ip30-odsy_ctxswo	7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x620	180	gfx_flow_detach_me	dwarf+symtab	7dea8aa3f472		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6d4	20	gfx_flow_am_i_attached	dwarf+symtab	921a653eec05		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6e8	12	gfx_flow_flush_my_wg	dwarf+symtab	7fe8cb51a490		in	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6f4	8	gfx_flow_disable_heart_fc	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6fc	8	gfx_flow_enable_heart_fc	dwarf+symtab	78aa5094d5ec		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6f4	8	gfx_flow_disable_heart_fc	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6fc	8	gfx_flow_enable_heart_fc	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x704	128	gfx_flow_clean_up_other_gfxp	dwarf+symtab	69bb3379adb2		in	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64		0x0		gfxtable_readerlock	dwarf+symtab			in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	e9a8d85b7392		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	c4824acddc51		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x108	28	gfxtable_writerunlock	dwarf+symtab	426cbd661eec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x188	184	gfx_group_find	dwarf+symtab	03f39b15d728		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2fc	208	gfx_group_destroy	dwarf+symtab	1be0018a8cee		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x568	244	gthread_destroy	dwarf+symtab	aca209e036df		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x65c	156	gthread_attach_list	dwarf+symtab	a0c31438c82b		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x6f8	84	gthread_detach_list	dwarf+symtab	9bc9e00325b6		in	undocumented		
@@ -53672,11 +53672,11 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_f
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x12b0	252	GfxKiller	dwarf+symtab	c9d1a121645a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x13ac	52	gfxcleanup	dwarf+symtab	b0d6021d285a		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x13e0	364	GfxOpen	dwarf+symtab	62e330ebe0e8		in	undocumented		
@@ -53694,9 +53694,9 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1c8c	244	GfxDeta
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1fb8	1148	gfxopen	dwarf+symtab	46a1a5103e44		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1fb8	1148	gfxopen	dwarf+symtab	46a1a5103e44		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2434	104	irisgl_sproc_cleanup	dwarf+symtab	1a886fe7c776		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x249c	1396	gfxclose	dwarf+symtab	5c0f0b4001a7		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x249c	1396	gfxclose	dwarf+symtab	5c0f0b4001a7		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2a10	120	GfxListWriterLock	dwarf+symtab	b771827af38e		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2a88	28	GfxListWriterUnlock	dwarf+symtab	1f40a8ae1dd6		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2aa4	68	GfxListReaderLock	dwarf+symtab	20ce3fa92e81		in	undocumented		
@@ -53706,32 +53706,32 @@ usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2b40	8	gfxwrite	
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2b48	2004	gfxioctl	dwarf+symtab	4ad978a5c45c		in	named-only	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x331c	8	gfxmap	dwarf+symtab	9a0f9311b660		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3324	8	gfxunmap	dwarf+symtab	9a0f9311b660		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x332c	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x33ec	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3418	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3424	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x347c	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x34cc	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x332c	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x33ec	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3418	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3424	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x347c	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x34cc	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3544	160	irix5_to_gfx_download_args	dwarf+symtab	dcc8940310eb		in	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x35e4	112	irix5_to_gfx_attach_board_args	dwarf+symtab	b61b041fbfff		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64		0x0		gfx_exit	dwarf+symtab			in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x8	8	gfx_disp	dwarf+symtab	a7e7ca11a6b8		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64		0x0		gfx_exit	dwarf+symtab			in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x8	8	gfx_disp	dwarf+symtab	a7e7ca11a6b8		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x10	8	gfx_earlyinit	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x18	8	tp_init	dwarf+symtab	87506497337c		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x20	8	tp_dogui	dwarf+symtab	87506497337c		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x28	8	tpcons_write	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x30	8	gfx_fault	dwarf+symtab	a7e7ca11a6b8		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x38	8	rrmSuspend	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x40	8	rrmResume	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x48	8	gfx_shcheck	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x50	8	gfx_shdup	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x58	8	gfx_shalloc	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x60	8	gfx_shfree	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x68	8	shmiq_sproc	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x70	8	initkbdtype	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x78	8	gfx_frs_valid_pipenum	dwarf+symtab	87506497337c		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x80	8	gfx_frs_install	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x88	8	gfx_frs_uninstall	dwarf+symtab	78aa5094d5ec		in	undocumented		
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x38	8	rrmSuspend	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x40	8	rrmResume	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x48	8	gfx_shcheck	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x50	8	gfx_shdup	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x58	8	gfx_shalloc	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x60	8	gfx_shfree	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x68	8	shmiq_sproc	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x70	8	initkbdtype	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x78	8	gfx_frs_valid_pipenum	dwarf+symtab	87506497337c		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x80	8	gfx_frs_install	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x88	8	gfx_frs_uninstall	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64		0x0		VEC_int	dwarf+symtab			in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x30	428	tfp_special_int_exit	symtab	f7f5aae10f81		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1dc	80	kpreemption	symtab	686a224a1e79		in	undocumented		
@@ -54007,7 +54007,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7700	32	suhalf	dwarf+
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7720	32	sulong	dwarf+symtab	ed22569adab5		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7740	24	fkiword	dwarf+symtab	06dd2c91525f		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7758	8	uerror	dwarf+symtab	6319e0118090		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7760	32	strlen	dwarf+symtab	488b560fdde5		in	named-only	docs/vpro-tool-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test, `usr/sbin/Confidence/dualchannel`
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7760	32	strlen	dwarf+symtab	488b560fdde5		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7780	36	uload_word	dwarf+symtab	4482b3a61b8d		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x77a4	44	uload_half	dwarf+symtab	705408c0e449		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x77d0	44	uload_uhalf	dwarf+symtab	232f2a7f115a		in	undocumented		
@@ -54491,8 +54491,8 @@ usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1bf0	796	rrmCloseRN	dwar
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1f0c	32	RRM_CloseRN	dwarf+symtab	8066a1f9382a		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1f2c	572	RRM_Exit	dwarf+symtab	6583d922c5a0		in	undocumented		
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2168	8	rrmGetResourceMask	dwarf+symtab	0d94b77e1c7c		in	undocumented		
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2170	936	rrmSuspend	dwarf+symtab	8bb2ec9bea08		in	undocumented		
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2518	1180	rrmResume	dwarf+symtab	ab43414ba21a		in	undocumented		
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2170	936	rrmSuspend	dwarf+symtab	8bb2ec9bea08		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2518	1180	rrmResume	dwarf+symtab	ab43414ba21a		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x29b4	192	rrmSetResourceMask	dwarf+symtab	5f7ec5053113		in	undocumented		
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2a74	72	RRM_ValidateSwapBuf	dwarf+symtab	50f6c750e37e		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2abc	68	rrmValidateBuffer	dwarf+symtab	6f8fa96a6447		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -54503,7 +54503,7 @@ usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2d7c	88	RRM_GetDisplayMo
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2dd4	120	rrmValidateMyRetrace	dwarf+symtab	f46138439360		in	named-only	docs/kernel.md#rrm-retrace-and-video-sync-callbacks	RRM retrace and video-sync callbacks
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2e4c	80	rrmValidateRetrace	dwarf+symtab	7752c3ccc723		in	named-only	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2e9c	376	rrmAllocPcxid	dwarf+symtab	5b4bb2dc0805		in	undocumented		
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3014	596	rrmValidateMyPcx	dwarf+symtab	5925b015de43		in	undocumented		
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3014	596	rrmValidateMyPcx	dwarf+symtab	5925b015de43		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3268	256	RRM_ValidateClip	dwarf+symtab	c65b3e74ba62		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3368	880	RRM_ValidFault	dwarf+symtab	a66b75768ae5		in	undocumented		
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x36d8	96	RRM_CheckValidFault	dwarf+symtab	c2dfc3271d7a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -54557,12 +54557,12 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64		0x0		gfxtable_readerlock	dwarf+
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	e9a8d85b7392		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	c4824acddc51		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x108	28	gfxtable_writerunlock	dwarf+symtab	426cbd661eec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x188	184	gfx_group_find	dwarf+symtab	03f39b15d728		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2fc	208	gfx_group_destroy	dwarf+symtab	1be0018a8cee		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x568	244	gthread_destroy	dwarf+symtab	aca209e036df		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x65c	156	gthread_attach_list	dwarf+symtab	a0c31438c82b		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x6f8	84	gthread_detach_list	dwarf+symtab	9bc9e00325b6		in	undocumented		
@@ -54573,11 +54573,11 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x12b0	252	GfxKiller	dwarf+symtab	c9d1a121645a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x13ac	52	gfxcleanup	dwarf+symtab	b0d6021d285a		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x13e0	364	GfxOpen	dwarf+symtab	62e330ebe0e8		in	undocumented		
@@ -54595,9 +54595,9 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1c8c	244	GfxDetach	dwarf
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1fb8	1200	gfxopen	dwarf+symtab	7d704bfba4e2		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x1fb8	1200	gfxopen	dwarf+symtab	7d704bfba4e2		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2468	104	irisgl_sproc_cleanup	dwarf+symtab	1a886fe7c776		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x24d0	1420	gfxclose	dwarf+symtab	43a93aa09b20		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x24d0	1420	gfxclose	dwarf+symtab	43a93aa09b20		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2a5c	120	GfxListWriterLock	dwarf+symtab	b771827af38e		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2ad4	28	GfxListWriterUnlock	dwarf+symtab	1f40a8ae1dd6		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2af0	68	GfxListReaderLock	dwarf+symtab	20ce3fa92e81		in	undocumented		
@@ -54607,12 +54607,12 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2b8c	8	gfxwrite	dwarf+sy
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x2b94	2004	gfxioctl	dwarf+symtab	384211cd0d57		in	named-only	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3368	8	gfxmap	dwarf+symtab	9a0f9311b660		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3370	8	gfxunmap	dwarf+symtab	9a0f9311b660		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3378	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3438	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3464	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3470	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x34c8	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3518	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3378	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3438	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3464	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3470	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x34c8	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3518	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3590	160	irix5_to_gfx_download_args	dwarf+symtab	dcc8940310eb		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x3630	112	irix5_to_gfx_attach_board_args	dwarf+symtab	b61b041fbfff		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64		0x0		gfx_flow_delayed_hiwater_intr_prehandler	dwarf+symtab			in	undocumented		
@@ -54632,20 +54632,20 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6b4	220	gfx
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x790	68	gfx_flow_am_i_attached	dwarf+symtab	b3c75dfcd2ed		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x7d4	24	gfx_flow_flush_my_wg	dwarf+symtab	b92f73cb29a4		in	named-only	docs/buzz.md#water-mark-registers-0x6b0-to-0x6b3-and-0x7b5	Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64		0x0		find_gfxpipe	dwarf+symtab			in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x330	56	prom_has_vga_support	dwarf+symtab	bf59c58176cd		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x368	800	find_vga_pipe	dwarf+symtab	d38b4ab9093c		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x688	1140	find_vga_noprom_pipe	dwarf+symtab	5db590d8bbfd		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0xafc	84	klcheck_vga	dwarf+symtab	038886cd4b68		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x330	56	prom_has_vga_support	dwarf+symtab	bf59c58176cd		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x368	800	find_vga_pipe	dwarf+symtab	d38b4ab9093c		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x688	1140	find_vga_noprom_pipe	dwarf+symtab	5db590d8bbfd		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0xafc	84	klcheck_vga	dwarf+symtab	038886cd4b68		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64		0x0		gfxtable_readerlock	dwarf+symtab			in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	e9a8d85b7392		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	c4824acddc51		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x108	28	gfxtable_writerunlock	dwarf+symtab	426cbd661eec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x124	100	init_gfx_group_table	dwarf+symtab	923689a91526		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x188	184	gfx_group_find	dwarf+symtab	03f39b15d728		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x240	188	gfx_group_create	dwarf+symtab	5efdf9a71dd5		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2fc	208	gfx_group_destroy	dwarf+symtab	1be0018a8cee		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3cc	160	init_gthread_table	dwarf+symtab	806aa4b1af59		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x46c	252	gthread_create	dwarf+symtab	0ef753b4b610		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x568	244	gthread_destroy	dwarf+symtab	aca209e036df		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x65c	156	gthread_attach_list	dwarf+symtab	a0c31438c82b		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x6f8	84	gthread_detach_list	dwarf+symtab	9bc9e00325b6		in	undocumented		
@@ -54656,11 +54656,11 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_f
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xe34	428	gfx_exit	dwarf+symtab	0610a8c3a27d		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xfe0	596	gfx_shcheck	dwarf+symtab	87bf93d1af63		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1234	124	gfx_shdup	dwarf+symtab	e6782f572a90		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x12b0	252	GfxKiller	dwarf+symtab	c9d1a121645a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x13ac	52	gfxcleanup	dwarf+symtab	b0d6021d285a		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x13e0	364	GfxOpen	dwarf+symtab	62e330ebe0e8		in	undocumented		
@@ -54678,9 +54678,9 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1c8c	244	GfxDeta
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1d80	196	gfxinit	dwarf+symtab	a1d0c22da4d7		in	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1e44	228	gfx_conflict_scan	dwarf+symtab	3dc4f5335b74		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	dwarf+symtab	2121822f2032		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1fb8	1200	gfxopen	dwarf+symtab	7d704bfba4e2		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x1fb8	1200	gfxopen	dwarf+symtab	7d704bfba4e2		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2468	104	irisgl_sproc_cleanup	dwarf+symtab	1a886fe7c776		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x24d0	1420	gfxclose	dwarf+symtab	43a93aa09b20		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x24d0	1420	gfxclose	dwarf+symtab	43a93aa09b20		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2a5c	120	GfxListWriterLock	dwarf+symtab	b771827af38e		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2ad4	28	GfxListWriterUnlock	dwarf+symtab	1f40a8ae1dd6		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2af0	68	GfxListReaderLock	dwarf+symtab	20ce3fa92e81		in	undocumented		
@@ -54690,32 +54690,32 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2b8c	8	gfxwrite	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x2b94	2004	gfxioctl	dwarf+symtab	384211cd0d57		in	named-only	docs/display.md#the-generic-resource-manager-ioctls-1000-to-1025	The generic resource-manager ioctls (1000 to 1025)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3368	8	gfxmap	dwarf+symtab	9a0f9311b660		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3370	8	gfxunmap	dwarf+symtab	9a0f9311b660		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3378	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3438	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3464	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3470	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x34c8	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3518	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3378	192	gfx_shalloc	dwarf+symtab	6dcda7e15061		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3438	44	gfx_shfree	dwarf+symtab	bcd0285ba8c0		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3464	12	gfx_frs_valid_pipenum	dwarf+symtab	0dfe9c172af6		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3470	88	gfx_frs_install	dwarf+symtab	b4849658053f		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x34c8	80	gfx_frs_uninstall	dwarf+symtab	b222a4eb5e70		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3518	120	irix5_to_gfx_getboardinfo_args	dwarf+symtab	6d876a5b9bb8		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3590	160	irix5_to_gfx_download_args	dwarf+symtab	dcc8940310eb		in	undocumented		
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x3630	112	irix5_to_gfx_attach_board_args	dwarf+symtab	b61b041fbfff		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64		0x0		gfx_exit	dwarf+symtab			in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x8	8	gfx_disp	dwarf+symtab	a7e7ca11a6b8		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64		0x0		gfx_exit	dwarf+symtab			in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x8	8	gfx_disp	dwarf+symtab	a7e7ca11a6b8		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x10	8	gfx_earlyinit	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x18	8	tp_init	dwarf+symtab	87506497337c		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x20	8	tp_dogui	dwarf+symtab	87506497337c		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x28	8	tpcons_write	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-functions.md#functions	Functions
 usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x30	8	gfx_fault	dwarf+symtab	a7e7ca11a6b8		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x38	8	rrmSuspend	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x40	8	rrmResume	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x48	8	gfx_shcheck	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x50	8	gfx_shdup	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x58	8	gfx_shalloc	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x60	8	gfx_shfree	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x68	8	shmiq_sproc	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x70	8	initkbdtype	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x78	8	gfx_frs_valid_pipenum	dwarf+symtab	87506497337c		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x80	8	gfx_frs_install	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x88	8	gfx_frs_uninstall	dwarf+symtab	78aa5094d5ec		in	undocumented		
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x38	8	rrmSuspend	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x40	8	rrmResume	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x48	8	gfx_shcheck	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x50	8	gfx_shdup	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x58	8	gfx_shalloc	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x60	8	gfx_shfree	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x68	8	shmiq_sproc	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x70	8	initkbdtype	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x78	8	gfx_frs_valid_pipenum	dwarf+symtab	87506497337c		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x80	8	gfx_frs_install	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	shared-kernel	n64	.text	0x88	8	gfx_frs_uninstall	dwarf+symtab	78aa5094d5ec		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64		0x0		VEC_int	dwarf+symtab			in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x30	428	tfp_special_int_exit	symtab	dd899551a191		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1dc	80	kpreemption	symtab	ca65f6ff0b60		in	undocumented		
@@ -54810,9 +54810,9 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3db0	232	get_routerna
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3e98	516	try_router	dwarf	dec0784d9b64		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x409c	340	klcfg_discover_route	dwarf+symtab	eee84663f668		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x41f0	100	find_lboard	dwarf+symtab	67280654a1a1		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4254	108	find_lboard_class	dwarf+symtab	818af0d59444		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x42c0	120	find_lboard_slot_class	dwarf+symtab	3eefb13db501		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4338	328	find_component	dwarf+symtab	210c5cae7c12		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4254	108	find_lboard_class	dwarf+symtab	818af0d59444		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x42c0	120	find_lboard_slot_class	dwarf+symtab	3eefb13db501		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4338	328	find_component	dwarf+symtab	210c5cae7c12		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4480	32	find_first_component	dwarf+symtab	8386bbe28323		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x44a0	124	find_lboard_modslot	dwarf+symtab	049110a0a765		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x451c	104	find_lboard_module	dwarf+symtab	eef758bfb48e		in	undocumented		
@@ -54846,7 +54846,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5ba0	252	get_ptrs	dwa
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5c9c	176	sort_nic_names	dwarf	5b238d5f597b		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5d4c	416	format_module_id	dwarf+symtab	6a34f6c5d445		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5eec	792	parse_module_id	dwarf+symtab	de9fb0584d0a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x6204	264	chk_for_pebrick	dwarf+symtab	0147c9a40510		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x6204	264	chk_for_pebrick	dwarf+symtab	0147c9a40510		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x630c	768	cpu_node_probe	dwarf+symtab	7f8f6e6f0ee8		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x660c	556	do_cpumask	dwarf+symtab	f6ad4ba98bd7		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x6838	8	slurp_inventory	dwarf+symtab	78aa5094d5ec		in	undocumented		
@@ -54909,7 +54909,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7c74	32	suhalf	dwarf+
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7c94	32	sulong	dwarf+symtab	ed22569adab5		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7cb4	24	fkiword	dwarf+symtab	4b80c63cd9b6		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7ccc	8	uerror	dwarf+symtab	6319e0118090		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7cd4	32	strlen	dwarf+symtab	488b560fdde5		in	named-only	docs/vpro-tool-functions.md#dual-channel-confidence-test-usrsbinconfidencedualchannel	Dual-channel confidence test, `usr/sbin/Confidence/dualchannel`
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7cd4	32	strlen	dwarf+symtab	488b560fdde5		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7cf4	36	uload_word	dwarf+symtab	4482b3a61b8d		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7d18	44	uload_half	dwarf+symtab	705408c0e449		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7d44	44	uload_uhalf	dwarf+symtab	232f2a7f115a		in	undocumented		
@@ -55329,7 +55329,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20988	72	tlbintr	dwar
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x209d0	180	install_tlbintr	dwarf+symtab	38667997fd1b		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20a84	304	protected_broadcast	dwarf+symtab	d378b42f237a		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20bb4	84	chkdebug	dwarf+symtab	cb70855fb2fa		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20c08	108	install_gfxintr	dwarf+symtab	b364e8960641		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20c08	108	install_gfxintr	dwarf+symtab	b364e8960641		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20c74	272	debug_stop_all_cpus	dwarf+symtab	22143b3ce548		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20d84	348	intr_reserve_hardwired	dwarf+symtab	575f20e6ecf8		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20ee0	120	intr_clear_bits	dwarf	10af38853fbc		in	undocumented		
@@ -56436,8 +56436,8 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1bf0	796	rrmCloseRN	dwar
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1f0c	32	RRM_CloseRN	dwarf+symtab	8066a1f9382a		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1f2c	572	RRM_Exit	dwarf+symtab	6583d922c5a0		in	undocumented		
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2168	8	rrmGetResourceMask	dwarf+symtab	0d94b77e1c7c		in	undocumented		
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2170	936	rrmSuspend	dwarf+symtab	8bb2ec9bea08		in	undocumented		
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2518	1196	rrmResume	dwarf+symtab	da17809819b4		in	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2170	936	rrmSuspend	dwarf+symtab	8bb2ec9bea08		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2518	1196	rrmResume	dwarf+symtab	da17809819b4		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x29c4	192	rrmSetResourceMask	dwarf+symtab	5f7ec5053113		in	undocumented		
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2a84	72	RRM_ValidateSwapBuf	dwarf+symtab	50f6c750e37e		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2acc	68	rrmValidateBuffer	dwarf+symtab	6f8fa96a6447		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -56448,7 +56448,7 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2d8c	88	RRM_GetDisplayMo
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2de4	120	rrmValidateMyRetrace	dwarf+symtab	f46138439360		in	named-only	docs/kernel.md#rrm-retrace-and-video-sync-callbacks	RRM retrace and video-sync callbacks
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2e5c	80	rrmValidateRetrace	dwarf+symtab	7752c3ccc723		in	named-only	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	5b4bb2dc0805		in	undocumented		
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3024	596	rrmValidateMyPcx	dwarf+symtab	7fe844ac5142		in	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3024	596	rrmValidateMyPcx	dwarf+symtab	7fe844ac5142		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3278	256	RRM_ValidateClip	dwarf+symtab	c65b3e74ba62		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3378	880	RRM_ValidFault	dwarf+symtab	a66b75768ae5		in	undocumented		
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x36e8	96	RRM_CheckValidFault	dwarf+symtab	c2dfc3271d7a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
