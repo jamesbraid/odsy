@@ -146,8 +146,15 @@ library's conversion routines give its layout:
   at every exponent: a relative step of 2^-18 everywhere. That the board's depth plane holds exactly
   these bits is **inferred**: the library moves the plane by DMA and converts on the host
   (`RenderFunc_ReadbackDepth`, 0x0d9a23a0, calls `__glOdysseyImageMovePixelsDMAtoHost` and then
-  `__glOdysseyImageConvertHostImage`), so the bits are what the board's DMA hands over; whether the
-  board's own pixel formatter changes them on the way is not shown.
+  `__glOdysseyImageConvertHostImage`), so the bits are what the board's DMA hands over. Two
+  further readings support an unconverting DMA, without proving it. The porting guide (sections "Stencil and
+  Depth Buffers" and "Buffer Reads and Writes") says the board converts colour between internal and external pixel formats in hardware,
+  but that depth and stencil, kept in an internal floating-point format, are slower to read and
+  write "due to float conversions", which the library does on the host. Whether the board's DMA
+
+
+  settle it. The library's own depth transfers use pixel-size code 1, four bytes a pixel
+  ([kernel.md](kernel.md), DMA entry layout).
 - **What the value means**, **established** from `__glOdyUpdateDepthSpanInfo` (0x0d9a6360) and
   `__glOdySpanEyeZ24ToWindowZ` (0x0d9a6530): the value is 2S x (d - n) / (f - n), where d is the
   distance in front of the eye, n and f are the eye distances the context keeps at +0x165c8 and
@@ -156,9 +163,9 @@ library's conversion routines give its layout:
   step below the top of the format.
 - **A 16-bit depth word**, **established** as the library's reading (`__glOdySpanEyeZ16ToWindowZ`
   and `__glOdySpanEyeZ16ToEyeZ24` below): bits 15:10 the same exponent, bits 9:0 the top ten
-  mantissa bits. Which drawables carry it is **unknown**: the conversion routines take it when the
-  board-side image's type is `GL_UNSIGNED_SHORT` (`__glOdysseyImageConvertHostImage`, source line
-  around 3507), and the code that picks that type was not read.
+  mantissa bits. The conversion routines take it when the board-side image's type is
+  `GL_UNSIGNED_SHORT` (`__glOdysseyImageConvertHostImage`, source line around 3507); which windows
+  have that type is in [Which windows carry the 16-bit word](#which-windows-carry-the-16-bit-word).
 - **The fog scale shares the format**: block 0x01a operand 2 is an IEEE single with 96 taken from
   its exponent and shifted right five places ([tokens.md](tokens.md), block 0x01a), the same packing
   as `__glOdySpanFloatToEyeZ24`. **inferred**: fog is evaluated against the same eye-linear depth.
@@ -206,6 +213,35 @@ The conversion routines, all in `ody_image_convert.c` of the N32 library:
   at +0x200; the routines divide by it), and the encoded values of window 0 and 1 at +0x208 and
   +0x20c, each limited to [0, 2S].
 
+### Which windows carry the 16-bit word
+
+- **`__glOdysseyImageDescribeWindow`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d989710, 1060 bytes), **established**, read in full: fills a 60-byte description of the
+  window's colour buffer (called with 0, record at context +0x11d98) or of its depth buffer (called
+  with 1, record at +0x11dd4). It classifies the visual from the context's mode record at context
+  +3376: RGBA with component sizes 12/12/12/12 gives code 12, 10/10/10/2 code 11, 8/8/8/8 code 10,
+  5/5/5/1 code 8, 4/4/4/4 code 7, 8-bit luminance-alpha code 6, 12-bit luminance code 5, 12-bit
+  luminance-alpha code 9, 8-bit luminance code 2, and colour index of 8 or 12 bits codes 16 and 17.
+  A jump table (0x0dae8fa0, 18 entries) then sets two small fields, +44 and +48, per code and per
+  the mode record's bytes +6, +7 and +9: code 12 gives (3, 1), or (2, 0) when byte +6 is clear;
+  codes 9 to 11 give (3, 2), (2, 1) when byte +9 is clear, or (2, 2) when byte +6 is clear; codes
+  5 to 8 and 17 give (3, 4), (2, 5) or (2, 3) by bytes +7 and +9; codes 2 and 16 give (2, 4).
+- **`__glOdysseyImageCalcXferReadParams`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
+  (0x0d9bf200, 3324 bytes), **established** for its `GL_DEPTH_COMPONENT` branch (source lines 5413
+  to 5475), read in full: picks the board-side type of a depth readback from those two fields:
+  `GL_UNSIGNED_SHORT` (the 16-bit word) for (1, 2), (1, 3), (2, 0) and (3, 1), `GL_UNSIGNED_INT`
+  (the 24-bit word) for (2, 2), (2, 3), (2, 4), (3, 2) and (3, 4), and no readback for any other
+  pair.
+- So, **established** as the library's reading: a window whose visual is RGBA 12/12/12/12 has the
+  16-bit depth word, and every other visual with depth has the 24-bit one. **inferred**: bytes +6
+  and +9 of the mode record are the double-buffer and depth flags, since a double-buffered 8-bit
+  RGBA visual with byte +9 clear gets no depth readback. Why the 48-bit colour visuals get the
+  shorter word is not shown; the likely reason is room in the pixel, which a
+  driver sizes at 8, 16 or 32 bytes and a
+  2005 comp.sys.sgi.hardware post describes as 8 or 16 bytes holding colour and every auxiliary
+  buffer. The porting guide's "packed into one 4-byte value on reads and writes" ("Stencil and
+  Depth Buffers") is the host-side format, which the library builds from either width.
+
 ### Depth range
 
 - **The eye-distance pair n, f** at context +0x165c8 and +0x165d0, **established** from
@@ -222,9 +258,19 @@ The conversion routines, all in `ody_image_convert.c` of the N32 library:
   enable word at context +1804; when the far end does, the plane (0, 0, -s, -s f) in slot 6 (+0x60)
   and bit 6, with s = -1 when n < f and +1 otherwise. These keep n <= d <= f. An end at 0 or 1 adds
   no plane.
-- **inferred**: the depth row then maps the frustum onto the part of [0, 2S] the normalized ends
-  select (`__glOdysseyValidateMatrixComb` builds it from n, f and the viewport depth terms at
-  context +1736 and +1740; that use was not read in full). With an interior end, geometry beyond the
+- **The window-z row**, **established** for its coefficients from `__glOdysseyValidateMatrixComb`
+  (0x0d9e2f90, source lines 446 to 477, read in full) with `SetDepthRange` (0x0da9be70, the generic
+  depth-range store, read in full) and the context set-up (`ody_context.s` source line 1680): the
+  generic code keeps zScale = D (far - near) and zCenter = D (far + near) at context +1736 and +1740
+  for the normalized ends, with D = 0.5 x 0x1ffff800 = (2^29 - 2^11) / 2, so 16 D = 2S / 2. The
+  Odyssey routine builds the row that leaves as window z (output code 0x26 in routine 214) with
+  slope 16 zScale / ((f - n) / 2) times 0.99999999 and offset 16 zCenter, combining the combined
+  matrix's z and w columns with the projection's depth rows at +0x165f8 to +0x16610 so that the
+  result is in eye distance. **inferred** from those coefficients: the transform program hands the
+  rasteriser the same eye-linear value the library decodes, 2S (d - n) / (f - n) at the default
+  range, with n landing at 2S x 5e-9 and f at 2S x (1 - 5e-9): the factor 0.99999999 pulls both
+  planes just inside [0, 2S]. With an interior end the row maps the frustum onto the part of
+  [0, 2S] the normalized ends select. With an interior end, geometry beyond the
   frustum's near or far distance would land inside [0, 2S], so the library removes it with the
   planes. At the default range nothing beyond the frustum lands inside [0, 2S], and the library adds
   no plane: the board must drop those fragments itself, by their depth value (below).
@@ -244,14 +290,49 @@ Block 0x051 bit 1 is set when the far end is below the near one ([tokens.md](tok
 - The library replays vertices through its own clipper when w changes sign or falls below a
   threshold ([opengl.md](opengl.md) and the vertex workaround routines), so the near side at w = 0
   is not left to the rasteriser.
-- **inferred**, from the depth-range planes above: at the default depth range the board itself
-  removes fragments whose depth lies outside [0, 2S], since the library clips n and f explicitly
-  only when the depth range moves them inside that interval. Where exactly it drops them (a test
-  against 0 and 2S, against the top of the format, or against clip z = w before the depth division)
-  is **unknown**; no shipped software depends on the edge, since the library keeps every value it
-  writes inside [0, 2S]. Routes tried: the patents, the porting guide, the vertex routines, the
-Next: a readback of a
-  primitive drawn across the far plane.
+- Published (US 6,259,460, the raster unit's description of pixels that are computed but not
+  written): "dead pixels" are those not written "due to clipping with the near, the far, or one or
+  more of the user-clipped planes". So the near and far cut is a per-pixel kill in the raster
+  pipeline, the same mechanism as the user planes. **inferred** for this board.
+- **inferred**, from the depth-range planes and the window-z row above: at the default range the
+  board drops a fragment by its interpolated depth value, below 0 for the near side and above the
+  top of the range for the far side. The library places n and f just inside [0, 2S] (the 0.99999999
+  factor) and adds no plane, so it relies on that kill; with an interior end it adds planes because
+  the kill would then come too late. The depth clear agrees: the simulator stream of the
+  `checkr3d` test (`__clog_chk3d`, word 5099 of `scripts/odydiags_frame_check.py --test checkr3d
+  --dump`) clears with the IEEE single 0x4fffffc0, which is
+  2S, so a cleared pixel holds the far plane's value.
+- Where exactly the far kill sits, at 2S, at 2S plus one step (0xffffff, the largest word) or at
+  2^33 (where the 6-bit exponent overflows): **unknown: no shipped software or published source
+  depends on it**. The three candidates differ by at most two steps of the top binade, (f - n) / 2^18
+  of eye distance, and no shipped software reads depth back from that band: the library writes
+  nothing above 2S and clears to 2S. Routes tried: the patents (US 6,104,415, 6,259,460 and
+  6,417,858), the porting guide 007-4271-001, the white paper, the transform routines 214 to 234
+  and the clip-plane routines (output code 0x08 consumes clip z with no compare; routine 0 sends
+  plane distances like texture coordinates), the library's conversion, depth-range, window-z,
+  clear and soft-clip routines above, the same routines in the 6.5.8 library (same constants), every
+
+  `odydiags` stream (all draw at z = 0 except `checkr3d`, which draws with the depth test off and
+  lies inside the frustum), the Internal Support Tools 2.7 OpenGL suite (below), and the
+  comp.sys.sgi archives (a 2000 comp.sys.sgi.graphics report of orthographic programs losing their clipping on a
+  V8 under 6.5.9 names no plane or value, and its one reply blames the factory install).
+
+### The OpenGL test suite on the diagnostics disc
+
+Internal Support Tools 2.7 ships the VPro field diagnostics twice (`octane/odydiags6510` and
+`odydiags6515`, product `field_diags_odyssey`), and both carry `usr/tests/otest/`: the run scripts
+`run_otest`, `odytest` and `odycmdfile`, a command file, the CRC reader `readcrc` (it reads the
+board's Buzz and PB&J colour CRC registers), and five test lists. The lists name the regression
+suite's tests by level: `RAS1` includes `polygon_offset`, `SHD1` `clear_depth`, `sk_DepthFuncEq`,
+`sk_DepthFuncGt`, `sk_DepthFuncLt`, `sm_diff_z`, `sm_same_z` and the fragment-lighting tests, and
+`XFM1` `clip_planes_buzz`, `material`, `normalize`, `one_sided_rgb`, `two_sided_rgb`,
+`vertex_light`, `vertex_lights` and `vertex_spot_lights`. **established**: neither package holds
+the `otest` program, the test sources or any expected checksum. `run_otest` names the golden CRC
+file `fullcrc.ody` and writes it with `-cr`; the package's file list (`field_diags_odyssey.idb`,
+211 entries, the same paths in both builds) has no such file and no test directory, and no other
+package's file list on the disc installs anything under `usr/tests`. The Customer Diagnostics
+disc for the Fuel holds system online tests and `pandora`, whose graphics test writes and compares
+pixels; none draws a lit or depth-tested scene. So the suite gives test names, not expected values, for depth, offset and lighting.
 
 ### Interpolation
 
@@ -279,13 +360,42 @@ depth is its own eye distance.
   environment variable `GL_POLYGON_OFFSET_LIMIT_ANGLE` when it parses as a number in [0, 90). The
   library thus replaces OpenGL's per-polygon maximum depth slope by the slope of a surface tilted L
   from the view direction, one pixel wide at the far distance.
-- **inferred**: one offset step is (f - n) / 2^19 of eye distance, 2^14 in the units of the depth
-  word (2S is about 2^19 steps), which is one mantissa step of the format's top binade. The factor
-  term above is the depth change across one far-plane pixel at slope tan(L) in exactly those steps.
-  So the board adds a constant eye-linear amount, the same at every distance. Whether it adds it to
-  the eye-linear value before encoding (as the scaling suggests) or to the encoded word (which would
-  make the offset relative to depth) is **unknown**. Next: a readback of one offset polygon at two
-  eye distances.
+- In short: offset = factor x tan(L) x (pixel width at f) x 2^23 / (f - n) / 16 + 2 x units, which
+  is factor x tan(L) x (pixel width at f) x 2^19 / (f - n) + 2 x units.
+- **The 6.5.8 build** (`__glOdyim_PolygonOffsetEXT` at 0x0da5fb00 in the N32 library of the 6.5.8
+  Installation Tools and Overlays disc), **established**, read in full: the same arithmetic with the
+  same constants (0.0625, 2.0, -16777216.0 and 16777215.0 at gp -15320 to -15308), the tangent
+  kept at context +0x21c40. The encoding did not change between 6.5.8 and 6.5.30m.
+- **inferred**: the board adds the offset to the encoded 24-bit word, so an offset counts mantissa
+  steps of the depth word, a fixed fraction (2^-19 to 2^-18) of the depth value, and not a fixed
+  eye distance. Four readings point the same way and none the other:
+  1. The field is a signed 25-bit integer limited to [-2^24, 2^24 - 1], exactly the difference of
+     two 24-bit words. Steps of a fixed eye distance would need only [-2^19, 2^19], since 2S is
+     about 2^19 of them.
+  2. The library's unit is 2^14 of the depth value, (f - n) / 2^19 of eye distance: that is one
+     mantissa step at f, the step of the top binade [2^32, 2^33). It counts in the word's own steps
+     where the word is coarsest.
+  3. The library computes the slope term once, at f. Added to the encoded word, k steps move a
+     fragment at eye distance d by about k x 2^-19 x 2S (d - n) / (f - n) of value, so its eye
+     offset shrinks in proportion to d - n, the way the eye width of a pixel shrinks with d under
+     perspective; for n much smaller than d the one constant gives tan(L) times the local pixel
+     width at every distance, to within the factor of 2 a binade allows. Added as a fixed eye
+     distance, the far-plane offset would be f / d times too large at distance d: a decal at a
+     hundredth of the far distance would sit a hundred pixel-depths in front of its surface.
+  4. The depth bilerp of US 6,259,460 takes three floating-point inputs and gives one
+     floating-point output, so the offset meets a float, and a float's integer bit pattern is the
+     natural place to add a count of steps. OpenGL later defines a floating-point depth buffer's
+     offset unit the same way, as 2 to the power of the depth's exponent less the mantissa width.
+  How a fixed offset behaves under an orthographic projection, where pixel width does not change
+  with distance, follows from the same reading (the offset still shrinks toward n) and is not
+  separately shown. Routes tried: the routines above in the 6.5.8 and 6.5.30m N32 libraries, the
+  library's other callers of block 0x058 (`__glOdysseyRenderBitmap` and the stipple path in
+  `ody_bitmap.s` call the same routine), the transform program (no routine reads block 0x058; it
+  reaches the raster unit as a class-1 block), the patents, the porting guide (its "EXT polygon
+  offset" entry restates the extension only), the field diagnostics (every stream sends block
+  0x058 as 0, offset off) and the Internal
+  Support Tools 2.7 OpenGL suite (its `polygon_offset` test ships without a program or checksum,
+  below).
 
 ## Remaining frames
 

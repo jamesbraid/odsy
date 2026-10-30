@@ -21,6 +21,9 @@
 
 
 
+
+
+
  * Diagnostics: odydiags, Internal Support Tools 2.7, its microcode image
  *   usr/diags/ody/ucode/diagxform.bin (ucode/disasm/diagxform.lst)
  * Addresses are the N32 libGLcore virtual addresses printed in the
@@ -981,7 +984,22 @@
  * gives 0 and one of 160 or more gives 0x0fffffff (established, same
  * routine). A 16-bit form keeps the exponent in bits 15:10 and the top
  * ten mantissa bits in 9:0 (established, __glOdySpanEyeZ16ToEyeZ24
- * 0x0d9a67f0); which drawables use it: unknown. */
+ * 0x0d9a67f0). The library reads the 16-bit form back from windows
+ * whose visual is RGBA 12/12/12/12 and the 24-bit form from every other
+ * visual with depth (established, __glOdysseyImageDescribeWindow
+ * 0x0d989710 with __glOdysseyImageCalcXferReadParams 0x0d9bf200;
+ * docs/raster.md, "Which windows carry the 16-bit word").
+ * The transform program delivers depth already on this scale: the
+ * window-z row the library builds has slope 16 * zScale / ((f - n) / 2)
+ * times 0.99999999 and offset 16 * zCenter, with zScale and zCenter
+ * (0x1ffff800 * 0.5) * (far - near) and * (far + near) (established,
+ * __glOdysseyValidateMatrixComb 0x0d9e2f90 source lines 446 to 477,
+ * SetDepthRange 0x0da9be70, the scale stored at ody_context.s line
+ * 1680). inferred from those coefficients: the row maps n to
+ * 2S * 5e-9 and f to 2S * (1 - 5e-9), just inside 0 and 2S. Fragments beyond f, whose value passes 2S,
+ * are dropped by the raster stage per pixel (inferred, US 6,259,460
+ * "dead pixels"); whether the cut is at 2S, at 2S plus one step or at
+ * 2^33: unknown: no shipped software or published source depends on it. */
 #define BUZZ_DEPTH_EXP_SHIFT       18        /* established */
 #define BUZZ_DEPTH_EXP_MASK        0x3fu     /* established, 6 bits */
 #define BUZZ_DEPTH_MANT_MASK       0x3ffffu  /* established, 18 bits */
@@ -995,11 +1013,18 @@
  * -2^24 .. 2^24 - 1; bits 31:25 are kept from the previous value.
  * established: __glOdyim_PolygonOffsetEXT (0x0d95f340) computes it once
  * from the factor and bias, not per polygon: factor * tan(L) * (eye
- * width of one pixel at f) * 2^19 / (f - n) / 16 + units * 2, where L is
- * 70 degrees or GL_POLYGON_OFFSET_LIMIT_ANGLE (SWInit 0x0d96a950).
- * inferred: one step is 2^14 in the depth word's value, (f - n) / 2^19
- * of eye distance, so the board adds a constant eye-linear amount.
- * Whether it adds it before encoding or to the encoded word: unknown. */
+ * width of one pixel at f) * 2^23 / (f - n) / 16 + units * 2, that is
+ * factor * tan(L) * (pixel width at f) * 2^19 / (f - n) + units * 2,
+ * where L is 70 degrees or GL_POLYGON_OFFSET_LIMIT_ANGLE (SWInit
+ * 0x0d96a950). The same constants (1/16, 2.0, -2^24, 2^24 - 1) and the
+ * same arithmetic are in the 6.5.8 library (0x0da5fb00).
+ * inferred: the board adds the offset to the encoded 24-bit word, so it
+ * counts steps of the word's mantissa, not a fixed eye distance. The
+ * field and its limit are exactly a signed 24-bit word difference; one
+ * step at f is 2^14, the mantissa step of the top binade, the unit the
+ * library scales to; and an encoded offset shrinks with depth like the
+ * eye width of a pixel, so the one far-plane constant is right at every
+ * distance to within a factor of 2 (docs/raster.md, "Polygon offset"). */
 #define BUZZ_REG_POLYGON_OFFSET    0x058
 #define BUZZ_POLYGON_OFFSET_MASK   0x1ffffffu /* established, bits 24:0 */
 
