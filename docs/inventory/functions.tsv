@@ -57025,7 +57025,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007f230	368	pcfGetLSB32..PIB	d
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007f3a0	2484	FreeCo..AF	dynsym	8052c244a93f		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007fd60	616	CloseFont	dynsym	ddb52ba81d8a		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007ffd0	172	sgiCapDestroyGC..HBE	dynsym	3f26c499871a		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080080	124	ddxMakeDynamicModulePath	dynsym	f70c93216438		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080080	124	ddxMakeDynamicModulePath	dynsym	f70c93216438		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080100	168	ProcSyncSetPriority..LHE	dynsym	f21952a9ac24		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100801b0	640	t1_PathXform	dynsym	7a2526e9ab65		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080430	172	AccessChangeCloseDownMode	dynsym	33a48694432b		in	undocumented		
@@ -57466,7 +57466,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cb540	252	XETrapDestroyEnv	d
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cb640	228	ProcKillClient	dynsym	60e058adc356		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cb730	1948	STRING..NPB	dynsym	efbe4af42e29		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cbed0	356	SendVisibilityNotify	dynsym	95302136a8a2		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cc040	144	ddxSetLoadType	dynsym	efdf43fc0e66		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cc040	144	ddxSetLoadType	dynsym	efdf43fc0e66		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cc0d0	300	ProcXvSetPortAttribute..FLE	dynsym	be876c730636		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cc200	1088	pcfGetAccel..IJB	dynsym	0f53b8a50e99		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100cc700	2800	bdfPadToTerminal	dynsym	22c33e50f022		in	undocumented		
@@ -58601,7 +58601,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101a97a0	120	LbxCreateColormap.
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101a9820	1592	inflate	dynsym	c5f88e0c6e13		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101a9e60	280	AccessCirculateWindow	dynsym	87858440435c		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101a9f80	28	sXETrapGetStatistics	dynsym	6f4538602894		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101a9fa0	6956	Dispatch	dynsym	bab4e69088e2		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101a9fa0	6956	Dispatch	dynsym	bab4e69088e2		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101abad0	152	initPointerBox..NAD	dynsym	0e8f92933d52		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101abb70	64	LookupIDByClass	dynsym	8842135a5032		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101abbb0	324	AccessFreeColors	dynsym	2c3fa8f6cb9a		in	undocumented		
@@ -61010,7 +61010,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63404	152	attachcursor	dynsy
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6349c	152	__GLwinope	dynsym+mdebug	c20c219f7f91	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6349c	152	winope	dynsym	c20c219f7f91	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63534	152	__GLwinopen	dynsym+mdebug	bf67f4f5a557	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63534	152	winopen	dynsym	bf67f4f5a557	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63534	152	winopen	dynsym	bf67f4f5a557	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec635cc	152	__GLgetvideo	dynsym+mdebug	d53e1275ea00	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec635cc	152	getvideo	dynsym	d53e1275ea00	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63664	116	__GLtextport	dynsym+mdebug	7c465ceed6d7	shared-address	in	undocumented		
@@ -61052,7 +61052,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec64034	152	lampon	dynsym	af7b
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec640cc	152	__GLlampoff	dynsym+mdebug	3ebdb829c06b	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec640cc	152	lampoff	dynsym	3ebdb829c06b	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec64164	116	__GLginit	dynsym+mdebug	cee2e97d32d7	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec64164	116	ginit	dynsym	cee2e97d32d7	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec64164	116	ginit	dynsym	cee2e97d32d7	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec641d8	116	__GLgetlsbackup	dynsym+mdebug	3a98a731c82e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec641d8	116	getlsbackup	dynsym	3a98a731c82e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6424c	116	__GLclearhitcode	dynsym+mdebug	342637269e0d	shared-address	in	undocumented		
@@ -61306,7 +61306,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67d18	136	pushviewport	dynsy
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67da0	136	__GLrectcopy	dynsym+mdebug	974edd8c1eb8	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67da0	136	rectcopy	dynsym	974edd8c1eb8	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67e28	136	__GLgconfig	dynsym+mdebug	9d2c2ec8948b	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67e28	136	gconfig	dynsym	9d2c2ec8948b	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67e28	136	gconfig	dynsym	9d2c2ec8948b	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67eb0	136	__GLgRGBmask	dynsym+mdebug	11916b057e16	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67eb0	136	gRGBmask	dynsym	11916b057e16	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec67f38	136	__GLendpupmode	dynsym+mdebug	b8c7c1054a47	shared-address	in	undocumented		
@@ -61442,7 +61442,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69d48	136	bgntrim	dynsym	ad5
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69dd0	136	__GLgetwritemask	dynsym+mdebug	339f7d5f630c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69dd0	136	getwritemask	dynsym	339f7d5f630c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69e58	136	__GLlrectwrite	dynsym+mdebug	5c6141f727ea	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69e58	136	lrectwrite	dynsym	5c6141f727ea	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69e58	136	lrectwrite	dynsym	5c6141f727ea	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69ee0	136	__GLcircf	dynsym+mdebug	237eab337840	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69ee0	136	circf	dynsym	237eab337840	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69f68	136	__GLcirci	dynsym+mdebug	eefcbd43f4cd	shared-address	in	undocumented		
@@ -61670,7 +61670,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d2d0	64	swaptmesh	dynsym	b2
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d310	64	__GLc4i	dynsym+mdebug	21e610893064	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d310	64	c4i	dynsym	21e610893064	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d350	136	__GLswapbuffers	dynsym+mdebug	3177d9495272	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d350	136	swapbuffers	dynsym	3177d9495272	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d350	136	swapbuffers	dynsym	3177d9495272	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d3d8	136	__GLscrbox	dynsym+mdebug	5ee60572dab9	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d3d8	136	scrbox	dynsym	5ee60572dab9	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d460	136	__GLxfpt4s	dynsym+mdebug	f9e42fa0899e	shared-address	in	undocumented		
@@ -61738,7 +61738,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e0f0	136	xfpt2	dynsym	aae69
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e178	136	__GLtexgen	dynsym+mdebug	7bb767ae577e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e178	136	texgen	dynsym	7bb767ae577e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e200	64	__GLv3f	dynsym+mdebug	fb3c41eae77a	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e200	64	v3f	dynsym	fb3c41eae77a	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e200	64	v3f	dynsym	fb3c41eae77a	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e240	136	__GLmsmask	dynsym+mdebug	d50ebcdfd0b7	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e240	136	msmask	dynsym	d50ebcdfd0b7	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6e2c8	136	__GLxfpt4	dynsym+mdebug	d64640b08fb8	shared-address	in	undocumented		
@@ -61784,7 +61784,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6eb30	64	draws	dynsym	9e0077
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6eb70	136	__GLrmvs	dynsym+mdebug	4da6b9c09376	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6eb70	136	rmvs	dynsym	4da6b9c09376	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6ebf8	136	__GLblendfunction	dynsym+mdebug	ce8597578f95	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6ebf8	136	blendfunction	dynsym	ce8597578f95	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6ebf8	136	blendfunction	dynsym	ce8597578f95	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6ec80	136	__GLbgnpolygon	dynsym+mdebug	c2bd504a3e1a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6ec80	136	bgnpolygon	dynsym	c2bd504a3e1a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6ed08	136	__GLrectfs	dynsym+mdebug	98af374f8466	shared-address	in	undocumented		
@@ -61862,7 +61862,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fd18	64	lmcolor	dynsym	f216
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fd58	136	__GLrectf	dynsym+mdebug	bc1e6f50cbdd	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fd58	136	rectf	dynsym	bc1e6f50cbdd	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fde0	64	__GLcolor	dynsym+mdebug	ca5a44b6b4d7	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fde0	64	color	dynsym	ca5a44b6b4d7	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fde0	64	color	dynsym	ca5a44b6b4d7	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fe20	64	__GLrdrs	dynsym+mdebug	1c723d685a22	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fe20	64	rdrs	dynsym	1c723d685a22	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6fe60	64	__GLtlutbind	dynsym+mdebug	7a9d977c0ec8	shared-address	in	undocumented		
@@ -62792,7 +62792,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeca1bb0	100	dummyFunction
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1bb8	92	getDsoHandle	dynsym+mdebug	5e86bf82b788		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeca1c14	956	loadSymbol	mdebug	a2a6ee2c5093		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1c74	84	__iglooGetNewInterface	dynsym+mdebug	09ee01d14db3		in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1cc8	520	__iglooLoadInterface	dynsym+mdebug	3efeca90536e		in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1cc8	520	__iglooLoadInterface	dynsym+mdebug	3efeca90536e		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1ed0	112	__iglooPickDefaultVertexProcs	dynsym+mdebug	239e99e6e7de		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1f40	112	__iglooPickDefaultTexCoordProcs	dynsym+mdebug	f3bb5a117934		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca1fb0	32	__iglooPickDefaultBeginEndProcs	dynsym+mdebug	b74240a66ae2		in	undocumented		
@@ -62813,7 +62813,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeca231c	148	__iglooNewNor
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeca23b0	88	__iglooMgrCNMode	mdebug	58a2b8749f6f		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeca2408	88	__iglooCrmCNMode	mdebug	76cae5fd3791		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xeca2460	67432	__iglooNewCNMode	mdebug	d8f76366bb84		in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca24ac	488	__iglooInitProcs	dynsym+mdebug	b16be066c630		in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca24ac	488	__iglooInitProcs	dynsym+mdebug	b16be066c630		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca26a0	8	gl_g_readcomponent	dynsym+mdebug	aab9a3b4a314		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca26a8	384	gl_g_glcompat	dynsym+mdebug	5bb97ddfb4e7		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xeca2828	120	gl_dither	dynsym+mdebug	a3b9cb2fce8d		in	undocumented		
@@ -63228,7 +63228,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb6e18	196	__iglooColorMask	d
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb6edc	52	__iglooGetColorMask	dynsym+mdebug	e777110a1a75		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb6f10	92	__iglooShadeModel	dynsym+mdebug	8831cc786da8		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb6f6c	100	__iglooLineWidth	dynsym+mdebug	157e34fe98af		in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb6fd0	400	__iglooInitializeOpenglState	dynsym+mdebug	0648d4e1a43a		in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb6fd0	400	__iglooInitializeOpenglState	dynsym+mdebug	0648d4e1a43a		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb7160	56	__iglooUnInitializeOpenglState	dynsym+mdebug	afff9ed8c4e4		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb7198	932	__iglooCloneOpenglState	dynsym+mdebug	b1f37b0bfd34		in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xecb753c	76	__iglooNewList	dynsym+mdebug	4877e914d7f2		in	undocumented		
@@ -65138,7 +65138,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6300c	200	attachcursor	dyn
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec630d4	200	__GLwinope	dynsym	6b206253aff4	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec630d4	200	winope	dynsym	6b206253aff4	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6319c	200	__GLwinopen	dynsym	d4288ffc8775	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6319c	200	winopen	dynsym	d4288ffc8775	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6319c	200	winopen	dynsym	d4288ffc8775	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec63264	200	__GLgetvideo	dynsym	2eaaacae2c96	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec63264	200	getvideo	dynsym	2eaaacae2c96	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6332c	172	__GLtextport	dynsym	493f1febc4f7	shared-address	in	undocumented		
@@ -65180,7 +65180,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6403c	200	lampon	dynsym	aa
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec64104	200	__GLlampoff	dynsym	3479dc8db44b	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec64104	200	lampoff	dynsym	3479dc8db44b	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec641cc	172	__GLginit	dynsym	951bb9dcfb5b	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec641cc	172	ginit	dynsym	951bb9dcfb5b	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec641cc	172	ginit	dynsym	951bb9dcfb5b	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec64278	172	__GLgetlsbackup	dynsym	5cf7c88880d5	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec64278	172	getlsbackup	dynsym	5cf7c88880d5	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec64324	172	__GLclearhitcode	dynsym	171277dd1fc1	shared-address	in	undocumented		
@@ -65434,7 +65434,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec68f88	180	pushviewport	dyn
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6903c	180	__GLrectcopy	dynsym	83c69ea8c3dd	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6903c	180	rectcopy	dynsym	83c69ea8c3dd	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec690f0	180	__GLgconfig	dynsym	b265ba1e50f9	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec690f0	180	gconfig	dynsym	b265ba1e50f9	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec690f0	180	gconfig	dynsym	b265ba1e50f9	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec691a4	180	__GLgRGBmask	dynsym	452d7cc87989	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec691a4	180	gRGBmask	dynsym	452d7cc87989	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec69258	180	__GLendpupmode	dynsym	1521a4902944	shared-address	in	undocumented		
@@ -65570,7 +65570,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b938	180	bgntrim	dynsym	a
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b9ec	180	__GLgetwritemask	dynsym	938298e7f3cc	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b9ec	180	getwritemask	dynsym	938298e7f3cc	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6baa0	180	__GLlrectwrite	dynsym	76268828e3bf	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6baa0	180	lrectwrite	dynsym	76268828e3bf	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6baa0	180	lrectwrite	dynsym	76268828e3bf	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6bb54	180	__GLcircf	dynsym	4ac85f140e11	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6bb54	180	circf	dynsym	4ac85f140e11	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6bc08	180	__GLcirci	dynsym	5dc4e0f81da2	shared-address	in	undocumented		
@@ -65798,7 +65798,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fe70	68	swaptmesh	dynsym	
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6feb4	68	__GLc4i	dynsym	6279ad5c5a3d	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6feb4	68	c4i	dynsym	6279ad5c5a3d	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fef8	180	__GLswapbuffers	dynsym	41da552fcf9b	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fef8	180	swapbuffers	dynsym	41da552fcf9b	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fef8	180	swapbuffers	dynsym	41da552fcf9b	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6ffac	180	__GLscrbox	dynsym	d2580b752709	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6ffac	180	scrbox	dynsym	d2580b752709	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec70060	180	__GLxfpt4s	dynsym	9d2792109024	shared-address	in	undocumented		
@@ -65866,7 +65866,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71038	180	xfpt2	dynsym	9d5
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec710ec	180	__GLtexgen	dynsym	a2150c1656d9	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec710ec	180	texgen	dynsym	a2150c1656d9	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec711a0	68	__GLv3f	dynsym	3ffd7ee0b185	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec711a0	68	v3f	dynsym	3ffd7ee0b185	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec711a0	68	v3f	dynsym	3ffd7ee0b185	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec711e4	180	__GLmsmask	dynsym	8d3afae96760	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec711e4	180	msmask	dynsym	8d3afae96760	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71298	180	__GLxfpt4	dynsym	3fcc327998a0	shared-address	in	undocumented		
@@ -65912,7 +65912,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71d54	68	draws	dynsym	12c9
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71d98	180	__GLrmvs	dynsym	2a6465d59e54	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71d98	180	rmvs	dynsym	2a6465d59e54	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71e4c	180	__GLblendfunction	dynsym	e512bf1080bf	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71e4c	180	blendfunction	dynsym	e512bf1080bf	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71e4c	180	blendfunction	dynsym	e512bf1080bf	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71f00	180	__GLbgnpolygon	dynsym	eea274b218c1	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71f00	180	bgnpolygon	dynsym	eea274b218c1	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec71fb4	180	__GLrectfs	dynsym	4032c8bee79e	shared-address	in	undocumented		
@@ -65990,7 +65990,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73460	68	lmcolor	dynsym	9e
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec734a4	180	__GLrectf	dynsym	51df3d9b378c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec734a4	180	rectf	dynsym	51df3d9b378c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73558	68	__GLcolor	dynsym	fbca61eebe3d	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73558	68	color	dynsym	fbca61eebe3d	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec73558	68	color	dynsym	fbca61eebe3d	shared-address	in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7359c	68	__GLrdrs	dynsym	47f96c036137	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7359c	68	rdrs	dynsym	47f96c036137	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec735e0	68	__GLtlutbind	dynsym	eeca45f2d67c	shared-address	in	undocumented		
@@ -66733,13 +66733,13 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca3db0	424	gl_g_fullscrn	dy
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca3f60	64	gl_g_endfullscrn	dynsym	102275e937de		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca3fc0	84	getDsoHandle	dynsym	644d074b4950		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca4070	76	__iglooGetNewInterface	dynsym	83152efe453d		in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca40c0	408	__iglooLoadInterface	dynsym	343288a60dc5		in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca40c0	408	__iglooLoadInterface	dynsym	343288a60dc5		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca4260	112	__iglooPickDefaultVertexProcs	dynsym	a300cbd529c8		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca42d0	112	__iglooPickDefaultTexCoordProcs	dynsym	88ebdeb17333		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca4340	32	__iglooPickDefaultBeginEndProcs	dynsym	f405e39456f5		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca4380	60	__iglooNormal3fv	dynsym	1f445f0595b4		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca4440	8	__iglooNullSwapTMesh	dynsym	78aa5094d5ec		in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca47d0	476	__iglooInitProcs	dynsym	d95e56d8fd71		in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca47d0	476	__iglooInitProcs	dynsym	d95e56d8fd71		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca49b0	8	gl_g_readcomponent	dynsym	78aa5094d5ec		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca49c0	656	gl_g_glcompat	dynsym	78253c790321		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xeca4c50	112	gl_dither	dynsym	04f2c89fa006		in	undocumented		
@@ -67146,7 +67146,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7900	208	__iglooColorMask
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb79d0	56	__iglooGetColorMask	dynsym	9d352cfd48c1		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7a10	96	__iglooShadeModel	dynsym	8c2f6ae17e89		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7a70	100	__iglooLineWidth	dynsym	875e43e6f84e		in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7ae0	348	__iglooInitializeOpenglState	dynsym	c8d2d8c60afb		in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7ae0	348	__iglooInitializeOpenglState	dynsym	c8d2d8c60afb		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7c40	52	__iglooUnInitializeOpenglState	dynsym	4235b5eb2862		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7c80	656	__iglooCloneOpenglState	dynsym	a3e61afc5278		in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xecb7f10	72	__iglooNewList	dynsym	d0f878f21c19		in	undocumented		
@@ -103956,7 +103956,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299aa80	716	glxCreateGLXVideoSou
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299ad50	408	__glXDispSwap_TexCoord4dv	dynsym	08675b37f972		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e430	408	__glXDispSwap_LoadMatrixd	dynsym	e8fe8e7609c9		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e5d0	500	__glXDispSwap_CopyColorTableSGI	dynsym	5d6c3c35d022		in	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e7d0	240	__glXDispSwap_LoadMatrixf	dynsym	367292fd18ab		in	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e7d0	240	__glXDispSwap_LoadMatrixf	dynsym	367292fd18ab		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e8c0	64	__glXDispSwap_Color3ubv	dynsym	6435a5f2d2bf		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e900	72	__glXDisp_Rectiv	dynsym	d17527310c48		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x299e950	856	__glXDispSwap_CopyTexSubImage3DEXT	dynsym	e27faa86164c		in	undocumented		
@@ -104056,7 +104056,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a5ba0	1040	glx_rt_DispSwapGetT
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a5fb0	64	tmDeleteVisual	dynsym	5543f8a1eac2		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a5ff0	184	__glXDispSwap_TexCoord2sv	dynsym	2fb1a4ef5e4f		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a60b0	64	__glXDisp_Vertex3iv	dynsym	d9b89f314214		in	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a60f0	1076	__glXExtensionInit	dynsym	88723a409789		in	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a60f0	1076	__glXExtensionInit	dynsym	88723a409789		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a6580	408	__glXDispSwap_TexCoord3dv	dynsym	2b535a3440f1		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a6720	332	PanoramiXGetVisual	dynsym	9e837103a287		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29a6870	128	glx_rt_DispFinish	dynsym	798df8dc11f7		in	undocumented		
@@ -104292,7 +104292,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be410	64	glxGetHistogramParame
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be450	76	__glXDisp_LightModelf	dynsym	456362304395		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be4a0	76	__glXDisp_LightModeli	dynsym	470cf2cd4981		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be4f0	476	glxQueryHyperpipeConfigSGIX	dynsym	74ab15e45a2d		in	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be6d0	264	__glXScreenInit	dynsym	7d24ddf876e6		in	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be6d0	264	__glXScreenInit	dynsym	7d24ddf876e6		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be7e0	148	glxCreateGLXPixmapWithConfigSGIX	dynsym	4a21c51d4b78		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be880	252	glx_rt_DispFeedbackBuffer	dynsym	e753b4033526		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29be980	188	glxDestroyGLXPixmap	dynsym	a9d883c528d8		in	undocumented		
@@ -104338,7 +104338,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c3b60	208	tmVisualIncrementAtt
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c3c30	124	sgiAsyncDispatch	dynsym	3d8f1bd2774e		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c3cb0	424	glxGetConvolutionParameterivEXTSize	dynsym	2820c3902bad		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c3e60	396	__glXDispSwap_LightModelfv	dynsym	380515fb5451		in	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c3ff0	140	glxThreadInit	dynsym	eabe4ced3ba6		in	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c3ff0	140	glxThreadInit	dynsym	eabe4ced3ba6		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c4080	240	__glXDispSwap_TexCoord1fv	dynsym	bdb4089a0794		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c4170	200	glxSwapDestroyGLXPixmap	dynsym	414511355063		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29c4240	448	glx_rt_DispGetPolygonStipple	dynsym	909805764bf2		in	undocumented		
@@ -104648,7 +104648,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e0220	236	__glXDispSwap_PointP
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e0310	148	__glXDispSwap_PointSize	dynsym	b8a1d0e8dea0		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e03b0	324	glx_rt_DispSwapIsTexture	dynsym	af70a135b00b		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e0500	120	__glXDisp_LoadMatrixd	dynsym	4e4599bfca3a		in	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e0580	64	__glXDisp_LoadMatrixf	dynsym	313d65f1f90a		in	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e0580	64	__glXDisp_LoadMatrixf	dynsym	313d65f1f90a		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e05c0	84	__glXDisp_Lightiv	dynsym	fa5dedea744d		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e0670	200	glxSwapGetFBConfigsSGIX	dynsym	75a7d5beecf9		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e09b0	608	glx_rt_DispGetPixelMapuiv	dynsym	96397efd58a1		in	undocumented		
@@ -104658,7 +104658,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e13c0	120	__glXDisp_Color3dv	d
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e1440	220	__glXDisp_PolygonStipple	dynsym	5111fef5ff06		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e1520	84	__glXDisp_ConvolutionParameterfEXT	dynsym	16ada6ec324e		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e1580	64	__glXDisp_Color3bv	dynsym	b5236e05fcb2		in	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e15c0	328	glxInitDispatch	dynsym	c9adb4956cb3		in	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e15c0	328	glxInitDispatch	dynsym	c9adb4956cb3		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e1710	88	glx_rt_DispDeleteTextures	dynsym	88fa9db79629		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e1770	148	__glXDispSwap_DrawBuffer	dynsym	56fa43bc9c6f		in	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0x29e1810	608	glx_rt_DispGetIntegerv	dynsym	6d978a1d35f6		in	undocumented		
@@ -106065,24 +106065,24 @@ usr/lib32/libfm.so	shared-library	n32		0xee2c3f8	532	f_fmfprstr	dwarf+dynsym	cea
 usr/lib32/libfm.so	shared-library	n32	.text	0xee2c60c	364	make_format	dwarf+funcnames	3485626120d4		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2c778	96	fmconcatpagematrix	dwarf+dynsym	6e4427213d41		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2c7d8	96	fmenumerate	dwarf+dynsym	6594862d0efc		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32		0xee2c838	108	fmfindfont	dwarf+dynsym	b7841c8741a5		in	undocumented		
+usr/lib32/libfm.so	shared-library	n32		0xee2c838	108	fmfindfont	dwarf+dynsym	b7841c8741a5		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib32/libfm.so	shared-library	n32		0xee2c8a4	96	fmfreefont	dwarf+dynsym	31415e5c015d		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2c904	116	fmgetchrwidth	dwarf+dynsym	0cf0d8e93841		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2c978	144	fmgetcomment	dwarf+dynsym	4999a58fdaa4		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32		0xee2ca08	116	fmgetfontinfo	dwarf+dynsym	5048a2c4d635		in	undocumented		
+usr/lib32/libfm.so	shared-library	n32		0xee2ca08	116	fmgetfontinfo	dwarf+dynsym	5048a2c4d635		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib32/libfm.so	shared-library	n32		0xee2ca7c	144	fmgetfontname	dwarf+dynsym	9bf2205f2933		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2cb0c	96	fmgetpagematrix	dwarf+dynsym	8fcdb132fcad		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2cb6c	116	fmgetstrwidth	dwarf+dynsym	0ea701753a66		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32		0xee2cbe0	88	fminit	dwarf+dynsym	2c223f373822		in	undocumented		
+usr/lib32/libfm.so	shared-library	n32		0xee2cbe0	88	fminit	dwarf+dynsym	2c223f373822		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib32/libfm.so	shared-library	n32		0xee2cc38	88	fminitpagematrix	dwarf+dynsym	2ab935572529		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2cc90	116	fmmakefont	dwarf+dynsym	36bd4f4078b3		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2cd04	116	fmoutchar	dwarf+dynsym	7ee6e0de2d21		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2cd78	96	fmprintermatch	dwarf+dynsym	76ddecbe9fec		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32		0xee2cdd8	108	fmprstr	dwarf+dynsym	10a43c672558		in	undocumented		
+usr/lib32/libfm.so	shared-library	n32		0xee2cdd8	108	fmprstr	dwarf+dynsym	10a43c672558		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib32/libfm.so	shared-library	n32		0xee2ce44	96	fmrotatepagematrix	dwarf+dynsym	eee25c151a6f		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32		0xee2cea4	132	fmscalefont	dwarf+dynsym	03efee7c3eac		in	undocumented		
+usr/lib32/libfm.so	shared-library	n32		0xee2cea4	132	fmscalefont	dwarf+dynsym	03efee7c3eac		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib32/libfm.so	shared-library	n32		0xee2cf28	96	fmscalepagematrix	dwarf+dynsym	1081bc68b423		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32		0xee2cf88	96	fmsetfont	dwarf+dynsym	6d7fa29e5626		in	undocumented		
+usr/lib32/libfm.so	shared-library	n32		0xee2cf88	96	fmsetfont	dwarf+dynsym	6d7fa29e5626		in	named-only	docs/x-server-and-iris-libraries.md#x-server-glx-module-and-the-iris-gl-libraries	X server, GLX module and the IRIS GL libraries
 usr/lib32/libfm.so	shared-library	n32		0xee2cfe8	96	fmsetpagematrix	dwarf+dynsym	16060b0d478b		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2d048	96	fmsetpath	dwarf+dynsym	e1b44b9b0114		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32		0xee2d0a8	96	fmcachelimit	dwarf+dynsym	fa977cb1e3be		in	undocumented		
