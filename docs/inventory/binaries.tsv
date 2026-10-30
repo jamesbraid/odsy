@@ -27,7 +27,7 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	kernel	board-k
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o)	kernel	board-kernel	object	n64	1252	3518a0619ab3b875	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sim.o);usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sim.o)	0	0	0	undocumented		
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	8eab2abf92dac337	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_timings.o)	0	0	0	undocumented		
 builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	38052	fd3d260c2bf86400	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)	11	6	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8452	66967437c5aab8d9	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	8	0	undocumented		
+builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	8452	66967437c5aab8d9	usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	2	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	0e4dcd6286cc5c7a		671	0	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	bd4b77fe6bd4a187		5169	4227	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	aa9005aa43d3b8e2		673	0	0	undocumented		

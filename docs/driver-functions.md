@@ -1004,3 +1004,83 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   takes the first byte with `odsy_i2c_long_recvbyte`, the middle bytes with `odsy_i2c_short_recvbyte` and
   the last byte with another `odsy_i2c_long_recvbyte` that has the final flag set. Any failure calls
   `odsy_i2cReset` and returns 1; success returns 0.
+- `odsyDownloadUcode` (`odsy_ucode.o`, offset 0x0, 304 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)`.
+  Sends microcode lines to the board through the command FIFO port at the board base plus 0x110000. The
+  hardware line must be below 2047 with line plus count below 2048, and the software line plus count must
+  fit in the line count at board record +34132; otherwise it logs "odsyDownloadUcode: invalid args" at
+  severity 4 and returns -1. It first stores the word 0x27008000 with the hardware line (low 10 bits in
+  place, the rest shifted to bit 23), then, for each line of 6 halfwords held 12 bytes apart in the buffer
+  at +34136, stores the halfwords from the sixth down to the first, each as 0x40008000 with the same split
+  of the halfword. Every store is followed by a `sync`. It returns 0.
+- `gf_OdsyDownload` (`odsy_ucode.o`, offset 0x130, 840 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)`.
+  Private-request handler that loads microcode supplied by a client. The byte length at +0 of the request
+  must give 1 to 4093 whole lines of 12 bytes, otherwise it logs "invalid ucode length" or "invalid ucode
+  alignment" at severity 4 and returns 22. It pins the user buffer with `userdma` (failure logs and
+  returns 14), records the line count at board record +34132, maps the buffer with `maputokv` (a failed
+  map is logged and the copy proceeds anyway), copies it with `bcopy` to the buffer at +34136 and releases
+  the pin and mapping. It then makes the client the board owner, attaches to flow control if needed, and
+  calls `odsyDownloadUcode` for hardware line 0 and at most 2047 lines. It always detaches again, with the
+  0x107c store of 1 and a read of 0x106c, and returns 0 on success or 22 when the download is refused.
+- `odsyInitIntr` (`odsy_init.o`, offset 0x68c, 436 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Connects the board's five crossbar interrupts. It duplicates the device description with
+  `device_desc_dup`, makes five `xtalk_intr_alloc` calls stored at board record +45792 to +45824 and frees
+  the description, reads each source's vector with `xtalk_intr_vector_get` into the halfwords at +45832 to
+  +45840 (the last vector is stored twice), and connects the five sources with `xtalk_intr_connect` to
+  `odsyXtErrorInterrupt`, `odsyFlagInterrupt`, `odsyDmaInterrupt`, `odsyRetraceHandler` and
+  `odsySsyncInterrupt` with the board record as argument. It finally stores the addresses
+  `xtalk_intr_addr_get` gives for the first two sources at +45848 and +45856.
+- `odsy_attach` (`odsy_init.o`, offset 0x524, 360 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Crossbar attach entry for one board. It takes the next board number from `OdsyBoardEnum` under
+  `GfxBoardInitSema`, adds the character device "odsy" with `hwgraph_char_device_add`, maps a
+  0x401000-byte PIO window with `xtalk_piotrans_addr` into the record at +824 and stores the widget id at
+  +793, the master id at +792 and 2 at +788. When bits 31:28 of the word at +4 of the window are 2 or more
+  it also attaches the NIC and runs `odsy_set_gfx_mfg_nic_name`, logging "odsy_set_gfx_mfg_nic_name
+  failed" at severity 1 if that fails. It calls `odsyReset` unless the board number equals a global in
+  small data, then `odsyInitBoardGfx` and `odsyInitIntr`, and returns 0.
+- `odsy_earlyinit` (`odsy_init.o`, offset 0x1c8, 464 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Early console-time initialisation. It sets up `odyssey_xbow_spinlock` and the mutex "odyssey_xbow_lock",
+  calls `odsy_hpipe_sema_init`, and reads the boot option "console": a value starting with 'd' or 'D'
+  returns 0 at once, and a second entry (a global flag already set) logs "odsy_earlyinit re-entered" at
+  severity 4 and returns 0. Otherwise it finds board 0 with `odsyFindBoardAddr`, waits in 200-tick
+  `timeout`/`psema` steps while the word at +28480 of its record is 2 or more (logging "waiting to re-
+  initialize gfx board" at severity 5), calls `odsyReset` for board 0 and `odsy_tport_lock_init`,
+  registers the text port with `htp_register_board` and returns 1.
+- `odsyInitBoardGfx` (`odsy_init.o`, offset 0x904, 640 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Builds the software state of a board after attach. It clears the first 200 bytes of the record,
+  initialises the semaphores, mutexes, sync variable and spin lock the driver uses (named "odsy dfifo
+  sema", "odsy mouse pos lock", "scanbuf_lock", "shdwptr_lock" and "pfstat_lock" among them) at their
+  fixed offsets, calls `odsyInitDDRNs` and `odsyInitHwWrRgn`, and allocates 0xc000 zeroed bytes into the
+  pointer at +888, whose offset +32 becomes the microcode buffer pointer at +34136. It adds hardware-
+  inventory entries built from the memory-size word at +252 and the flag words at +280 and +296, sets +176
+  to 1, +88 to 40 and +20 to 1, and registers the board with `GfxRegisterBoard`.
+- `odsyInitHwWrRgn` (`odsy_init.o`, offset 0x3cf4, 296 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Allocates the software sync-write area of a board. It does nothing when the pointer at +880 is already
+  set. Otherwise it takes 0x20000 zeroed bytes from `kmem_zalloc`, logging "odsy: couldn't allocate the sw
+  sync wr/hw shadow cache" with `printf` if that fails; it clears four doublewords at +29888 and four
+  words at +29920, advances in 16384-byte steps to the first address that is a multiple of 0x10000
+  (recording each skipped step at +29880), stores that address at +880 and fills the four doublewords at
+  +29888 with consecutive 16384-byte blocks above it.
+- `gf_OdsyMapGfx` (`odsy_map.o`, offset 0x0, 660 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Maps the board's register windows into a client with `v_mapkvsegment`, one call per window, starting
+  from the client's mapping address: PIO base + 0x100000 (1 page), + 0x120000 (1 page), and, for clients
+  whose flag word at +4 has bit 5 set, + 0x0 (2 pages), + 0x110000 (the command FIFO, 1 page), + 0x118000,
+  + 0x200000, + 0x220000 (8 pages) and + 0x400000 (the display FIFO). Pages are 16 KB. It then sets bit 0
+  of the flag word, attaches the client to flow control with `gfx_flow_attach_me` and the 0x1074 and
+  0x107c stores when it is not attached, records the current CPU in the word at +104 and returns 0 or -1
+  depending on the combined mapping results.
+- `gf_OdsyUnMapGfx` (`odsy_map.o`, offset 0x294, 384 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Removes a client's window mappings. For the current owner at +72 with flag bit 0 set it clears the bit
+  under `splhi` and detaches from flow control (a 1 stored to the board register at 0x107c, a read of
+  0x106c, `gfx_flow_detach_me`). When the handle at +48 is set it calls `ddv_invalphys_fal` for the whole
+  range, follows with `ddv_invaltlb` when that returns 0, records the current CPU as a bit in the word at
+  +104, and logs "odsy: unmapgfx: Unexpected return value from ddv_invalphys" at severity 4 for any result
+  other than 0 or 2.
