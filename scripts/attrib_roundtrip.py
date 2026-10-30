@@ -3,10 +3,10 @@
 
 Usage: attrib_roundtrip.py BINARY MASK [MASK ...] [--push ADDR] [--pop ADDR] [--inventory FILE]
 
-Runs the library's attribute-save routine (default 0xd957f00, the IP30 build's) on a
-context in which every word from 0x10 to 0x1a000 holds 0xa0000000 | its own offset,
-with the group mask MASK, then runs the restore routine (default 0xd958f60) on a second
-context whose words hold 0xb0000000 | offset, handing it the two records the save made.
+Runs the library's attribute-save routine (default 0xd957f00, the IP30 build's, 3772 bytes) on a
+context in which every word from 0x10 to 0x1a000 holds 0x3f000000 | its own offset,
+with the group mask MASK, then runs the restore routine (default 0xd958f60, 7472 bytes) on a second
+context whose words hold 0x3e000000 | offset, handing it the two records the save made.
 It prints the command words the restore sent and every offset of the second context
 that changed, split into offsets that now hold the first context's word from the same
 offset (a restore that went back where it came from) and the rest.
@@ -14,8 +14,10 @@ offset (a restore that went back where it came from) and the rest.
 Library calls and the context's own function-pointer entries (0x2e00 to 0x3000, the
 allocator at 0, 4, 8 and 0xc, the dispatch table at +0x17f4) are replaced by stubs that
 return 0, except the allocator, which hands out zeroed memory; so a copy the library does
-through memcpy is not performed (the call is listed). The emulator has no `movf`: a routine
-that reaches one stops there without an error. This is software evidence of what the
+through memcpy is not performed (the call is listed). Instructions the emulator lacks are
+replaced by `mips_shim.install`. The emulator keeps 32-bit floating-point registers, so a
+routine that holds a double in an odd-numbered register (the viewport group of the restore)
+stops there without an error. This is software evidence of what the
 shipped code does with those inputs, not of what the board does.
 """
 import argparse
@@ -25,10 +27,11 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from glcore_probe import Probe, CTX, STACK, DONE, ARGREGS  # noqa: E402
+from mips_shim import install  # noqa: E402
 from unicorn import Uc, UcError, UC_ARCH_MIPS, UC_MODE_BIG_ENDIAN, UC_MODE_MIPS64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE  # noqa: E402
 from unicorn.mips_const import (UC_MIPS_REG_0, UC_MIPS_REG_A1, UC_MIPS_REG_A2, UC_MIPS_REG_GP,  # noqa: E402
                                 UC_MIPS_REG_PC, UC_MIPS_REG_RA, UC_MIPS_REG_SP, UC_MIPS_REG_T9,
-                                UC_MIPS_REG_V0, UC_MIPS_REG_FCSR)
+                                UC_MIPS_REG_V0)
 
 ALLOC, STUB, TAB, HEAP = 0x38000000, 0x38001000, 0x39000000, 0x3a000000
 
@@ -83,11 +86,11 @@ class RoundTrip(Probe):
                 self.heap += (n + 15) & ~15
                 mu.reg_write(UC_MIPS_REG_PC, mu.reg_read(UC_MIPS_REG_RA))
             elif a == STUB:
-                calls.append(('entry', [mu.reg_read(r) & 0xffffffff for r in ARGREGS[:4]]))
+                calls.append(('entry', [mu.reg_read(r) & 0xffffffff for r in ARGREGS[:6]]))
                 mu.reg_write(UC_MIPS_REG_V0, 0)
                 mu.reg_write(UC_MIPS_REG_PC, mu.reg_read(UC_MIPS_REG_RA))
             elif a != addr and a in self.names:
-                calls.append((self.names[a], [mu.reg_read(r) & 0xffffffff for r in ARGREGS[:4]]))
+                calls.append((self.names[a], [mu.reg_read(r) & 0xffffffff for r in ARGREGS[:6]]))
                 mu.reg_write(UC_MIPS_REG_V0, 0)
                 mu.reg_write(UC_MIPS_REG_PC, mu.reg_read(UC_MIPS_REG_RA))
 
@@ -101,7 +104,6 @@ class RoundTrip(Probe):
         h2 = mu.hook_add(UC_HOOK_MEM_WRITE, on_w, None, 0x10000, 0x10fff)
         for r in range(1, 32):
             mu.reg_write(UC_MIPS_REG_0 + r, 0)
-        mu.reg_write(UC_MIPS_REG_FCSR, 0)
         for r, v in zip(ARGREGS, args):
             mu.reg_write(r, v)
         mu.reg_write(UC_MIPS_REG_GP, self.gp)
@@ -142,8 +144,10 @@ def main():
         p = RoundTrip(a.binary, a.inventory)
         p.setup()
         ctx_a, ctx_b, slots = CTX, CTX + 0x80000, CTX + 0x1c0000
-        p.fill(ctx_a, 0xa0000000)
-        p.fill(ctx_b, 0xb0000000)
+        install(p.mu, a.push, a.push + 3772)
+        install(p.mu, a.pop, a.pop + 7472)
+        p.fill(ctx_a, 0x3f000000)
+        p.fill(ctx_b, 0x3e000000)
         p.mu.mem_write(slots, b'\0' * 16)
         _, _, e1 = p.call(a.push, [mask, slots, slots + 4], ctx_a)
         rec1, rec2 = struct.unpack('>II', p.mu.mem_read(slots, 8))
@@ -154,7 +158,7 @@ def main():
         for o in range(0x10, 0x1a000, 4):
             b, v = struct.unpack('>I', before[o:o + 4])[0], struct.unpack('>I', after[o:o + 4])[0]
             if v != b:
-                (same if v == (0xa0000000 | o) else other).append((o, v))
+                (same if v == (0x3f000000 | o) else other).append((o, v))
         print('mask 0x%x: push %s, pop %s' % (mask, e1 or 'ok', e2 or 'ok'))
         print('  restored from the same offset:', ranges([o for o, _ in same]))
         print('  other changes:', ', '.join('0x%x=0x%x' % x for x in other))
