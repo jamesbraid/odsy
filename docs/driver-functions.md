@@ -1243,3 +1243,141 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   `odsy_teardown`, waits in 5 microsecond steps for the command FIFO count in bits 15:7 of register 0x106c
   to reach 0, stores 0, 1 and 0 to register 0x1084, and calls `gfx_flow_reset`, `gfx_flow_attach_me`, the
   0x1074 and 0x107c stores and `gfx_flow_attach_me_finish`.
+- `odsy_init_ddrncount_timeout` (`odsy_init.o`, offset 0x147c, 56 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Timeout handler for the DDRN count wait during initialisation. It logs "odsy-kern: ddrncount timeout" at
+  severity 4 through `cmn_err` and then calls `vsema` on the semaphore in its argument to release the
+  thread waiting for the count.
+- `odsy_hpipe_invalidate` (`odsy_hpipe.o`, offset 0x20, 68 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Forgets the cached display-pipe state of a board. It zeroes the two doublewords at board record +46240
+  and +46248, then takes `odsy_hpipe_state_lock` with `mutex_spinlock`, clears the first word of the
+  structure at `OdsyHpipeState` when that pointer is set, and releases the lock with `mutex_spinunlock`.
+- `odsyFifoTimeout` (`odsy_flow.o`, offset 0x67c, 100 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Handler for a command-FIFO timeout. It calls `odsy_teardown`, clears the word at board record +104,
+  calls `odsyDisableInterrupts`, decrements the word at +80 of the structure that +40 of the pointer at
+  +72 points to, logs "odsy: board %d - CFIFO timeout" at severity 4 with the halfword at +790, and
+  finally zeroes the word at board record +0xb45c.
+- `odsyFifoTimer` (`odsy_flow.o`, offset 0x614, 104 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Arms or cancels the command-FIFO watchdog. The timer id lives in the word at board record +0xb45c. With
+  a non-zero second argument and no timer pending it calls `timeout` for 1500 ticks with `odsyFifoTimeout`
+  and the board record, saving the id; with a zero second argument and a timer pending it calls
+  `untimeout` and clears the word. Other combinations do nothing.
+- `gfP_OdsyBRDMGRSetDACGain` (`odsy_brdmgr.o`, offset 0x6490, 116 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler for the DAC gain. It copies one 4-byte word in from the user address in its
+  third argument, logging "gfP_OdsyBRDMGRSetDACGain: bad ptr to arg" at severity 4 and storing 14 in the
+  result word when the copy fails, and otherwise calls `odsySetDACGain` on the board pointer at +40 of its
+  first argument, storing the return value in the result word and returning 0.
+- `gfP_OdsyBRDMGRi2ccmd` (`odsy_brdmgr.o`, offset 0x6404, 140 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler that runs a two-wire command for a client. It copies a 48-byte command block in
+  from the user address in its third argument; a failed copy logs "gfP_OdsyBRDMGRi2ccmd: bad ptr to arg"
+  at severity 4, stores 14 in the result word and returns it. Otherwise it calls `odsy_i2c_cmd` with the
+  board pointer at +40 of its first argument, the block and the user address. A negative result is
+  returned as its negation; a non-negative one is stored in the result word and 0 is returned.
+- `odsy_poll_dfifo_level` (`odsy_flow.o`, offset 0x2a0, 144 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  Waits for the display FIFO to drain to a given level. It loads the board register at 0x106c, keeps the
+  low 7 bits (display FIFO fill) and compares with its second argument; while the fill is above it, it
+  waits 5 microseconds with `us_delay` and rereads, up to 10000 times. It returns 0 once the level is
+  reached, or logs "odsy dfifo timeout" at severity 4 and returns 1 when the polls run out.
+- `gf_OdsyInvalTLB` (`odsy_map.o`, offset 0x528, 144 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)`.
+  Invalidates the process's translations of a board mapping. It asks `thread_issproc` about the current
+  thread and, for share-group threads, returns 0 without doing anything when bit 2 of the word at +8 of
+  the `gthread_find` result is set. Otherwise it calls `ddv_invaltlb` on the handle at board record +48
+  over the whole range, sets the bit numbered by the low 6 bits of the halfword loaded from the fixed
+  kernel address 0xffffffffffffc428 in the doubleword at board record +104 plus 8 times that halfword
+  divided by 64, and returns 0.
+- `odsy_usdelay` (`odsy_init.o`, offset 0x0, 148 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Microsecond delay that picks its method. When the word at board record +0xb480 is non-zero, or
+  `in_panic_mode` says the system is panicking, it calls `us_delay`, a busy wait. Otherwise it splits the
+  microsecond count into seconds (divide by 1,000,000) and nanoseconds (the remainder times 1000) and
+  sleeps through `nano_delay`.
+- `gfP_OdsyGetDrawableGeometry` (`odsy_clip.o`, offset 0xc30, 156 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)`.
+  Private-request handler that returns the geometry of a drawable. It clears the result word, calls
+  `RRM_CheckValidFault` and stores 14 in the result word when that fails. Otherwise it copies the four
+  words at +108, +112, +116 and +120 of the object behind +112 of its second argument out to the user
+  address in its third argument; a faulting copy logs "ODSY_gfP_OdsyGetDrawableGeometry: bad ptr to arg"
+  at severity 4 and stores 14. It returns the result word.
+- `odsy_hpipe_cleanup` (`odsy_hpipe.o`, offset 0x1ad8, 156 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Releases a client's display-pipe slot. Reading the halfword at +588 of the object behind +112 of its
+  second argument, it does nothing when that is negative and otherwise stores -1 there. It then decrements
+  the board's count at +46260 when positive, locks the slot of `OdsyHpipeState` selected by the word at
+  +46256 (56 bytes per slot) with `mutex_spinlock`, decrements the use word at +48 of the slot when it is
+  non-zero and unlocks with `mutex_spinunlock`. It returns 0.
+- `odsyCheckBoardPointer` (`odsy_init.o`, offset 0x124, 164 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  Makes sure the record for board number N exists. When the slot in `OdsyBoardspp` is empty it allocates
+  0xb4f8 (46328) zeroed bytes with `kmem_zalloc`, calling `assfail` on line 238 of `odsy_init.c` if that
+  fails, stores the record and puts N in the halfword at +790. In every case it then stores N in the word
+  at +240 and sets the word at +0xb480, the flag that selects the busy-wait delay, to 1.
+- `gfP_OdsySetClipMask` (`odsy_clip.o`, offset 0xb88, 168 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)`.
+  Private-request handler that sets a client's clip mask. It clears the result word, takes the graphics
+  context behind +112 of the owner at +72, and calls `RRM_CheckValidFault`; a negative answer stores 14 in
+  the result word. Otherwise it copies 16 bytes in from the user address into the context at +124 (a
+  faulting copy logs "odsy: bad ptr to arg in SetClipMask" at severity 4 and stores 14) and calls
+  `gf_OdsyValidateClip` with the second argument and the structure at +96 of the pointer at +120 of that
+  argument. Its return value goes into the result word and is returned.
+- `gfP_OdsyMMwaitXfr` (`odsy_dma.o`, offset 0x2da4, 220 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)`.
+  Private-request handler that waits for a memory transfer to finish. It clears the result word and logs
+  "gl get aborted due to abnormal teardown" at severity 4 when the word at board record +816 is non-zero.
+  Without an owner context behind +72 it logs "attempted sharegroup operation from unbound gfxp" and
+  stores 1; it copies 8 bytes in from the user address (a faulting copy logs "bad ptr to arg" and stores
+  14), and otherwise calls `odsyDMAWait` with the first word, the owner and a count of 1, stores the
+  answer in the result word and returns it.
+- `odsy_reconfigDCD2FPLD` (`odsy_brdmgr.o`, offset 0x37c0, 236 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+  Reprograms the DCD2 programmable logic over the two-wire bus. It stores the byte 31 at port record +32,
+  writes register 3 with 8, registers 1 and 2 with 0 and register 3 again with 1 through
+  `odsy_i2cPLLRegWrite`, each failure logged at severity 1 and returned as 1, and then waits 600000
+  microseconds with `odsy_usdelay` on the board pointer at +16. It returns 0 on success.
+- `odsyUnpinAndUnmapGctxRegions` (`odsy_map.o`, offset 0x684, 236 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)`.
+  Releases the context regions of a client record. It calls `odsyUnmapPages` on the field at +208 when the
+  word at +200 is set; for the shadow mapping at +176 it calls `unmaputokv` and `unuseracc` (11128 bytes,
+  flags 273) on the addresses at +176 and +184 and clears both. It then walks the colour-set container at
+  +312, unmapping each element whose field at +16 is set, freeing its 16384-byte buffer at +8 and the
+  32-byte element, and finishes with `OdsyDestroyCSet`.
+- `gfP_OdsyBRDMGRloadTimingTable` (`odsy_brdmgr.o`, offset 0x5e2c, 296 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler that loads a display timing table. It copies a 320-byte request in from the user
+  address (a fault logs at severity 4 and stores 14), then runs `odsy_copyin_frame_line_tables`, whose
+  error is stored and returned. With the flow handle at board record +808 set and `RRM_CheckValidFault`
+  successful it increments the busy count at +80, calls `odsyLoadTimingTable`, stores its result,
+  decrements the count and frees both tables with `kern_free`; a missing handle or failed validation frees
+  the tables and stores 14.
+- `gfP_OdsyHPgetConfig` (`odsy_hpipe.o`, offset 0x6b0, 324 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Private-request handler that reports the display-pipe configuration. It copies a 524-byte request in
+  from the user address (a faulting copy logs "bad ptr to arg" at severity 4 and stores 14) and stores 22
+  if `OdsyHpipeState` is missing or its first word is 0. For the pipe number in the word at +8, 0 to 63,
+  with the slot state word at +8 equal to 1, it fills up to four 16-byte output entries from the boards in
+  the slot's table, each with the halfword at +790 of the board record in its +24, the words at +46264 and
+  +46268 in its +12 and +20 and 0 in its +16. It copies the 524 bytes back out, logging "bad hyperpipe
+  config arg user-land pointer" and storing 14 if that fails, and returns the result word.
+- `gfP_OdsyHPbind` (`odsy_hpipe.o`, offset 0x10f8, 360 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Private-request handler that binds a client to a display pipe. It copies a 4-byte pipe number in from
+  the user address; a faulting copy logs "gfP_OdsyHPbind: bad ptr to arg" at severity 4 and stores 14.
+  Under the slot's `mutex_spinlock` in `OdsyHpipeState` (56 bytes per slot, number 0 to 64) it stores 22
+  in the result word unless the slot's state word at +8 is 1. For a valid slot it increments the board's
+  count at +46260, stores the pipe number at +46256, increments the slot's use word at +56 and stores the
+  number in the halfword at +588 of the client context behind +112 (logging "rnpp null in hpipe bind" when
+  there is none), and stores 0 as the result.
+- `odsy_initDCD2DAC` (`odsy_brdmgr.o`, offset 0x35d4, 492 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+  Initialises the DCD2 DAC over the two-wire bus. On the port record in its second argument it stores the
+  byte 31 at +32 and writes register 3 of the clock part with 0; a failure logs at severity 1 with the
+  halfword at +790 of the board behind +16 and returns 1. It then makes a fixed series of `setDACreg`
+  calls (among them the values 9, 8, 41, 4, 255, 5, 236 and 65 with command codes 0 to 3) and finishes by
+  writing the index of each of 256 entries three times, with `setDACreg` command 1, which loads an
+  identity ramp. It returns 0.
