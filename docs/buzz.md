@@ -389,6 +389,25 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 
 **inferred** for +0x100000: it takes command words like the FIFO port at +0x110000. The command streams that the field diagnostics recorded from the board's C simulator (`odydiags` 6.5.15, `__clog_pts` and its siblings) send 3114 of their writes there and 2748 to the FIFO port, the same sequencer words, matrix stores and primitives to both, through `_odsy_diag_wr_hw` and `remap_ody`, which map board +0x100000 to offset 0 and +0x110000 to offset 0x10000 of the diagnostic mapping (`ucode/buzz_isa.md`, pass 18). That the simulator log reflects how a board accepts them is the inference. +0x120000 and +0x200000: **unknown** (`docs/open-questions.md`). The mapping table is in `BUZZ.h` section 5. The only established access is the kernel's read at +0x201594. On a board it would show in: a bus trace of a libGLcore client's accesses into its mapping, or a read of the first words of each window on a quiescent board.
 
+### Where `gf_OdsyMapGfx` places each window in a client's mapping
+
+**established** by reading the 6.5.30m routine (IP30 build) and the patch 4103 routine in full. Both cut the client's address down to a 16 KB boundary and map the windows one call at a time with `v_mapkvsegment`, 16 KB pages, at the offsets below from that address. The patch 4103 layout (user offset, board offset from the register base, pages, protection argument 0 or 2):
+
+| User offset | Board offset | Pages | Protection |
+|---|---|---|---|
+| +0x0000 | +0x100000 | 1 | 0 |
+| +0x4000 | +0x120000 | 1 | 2 |
+| +0x8000 | +0x000000 (PIO registers up to 0x7fff) | 2 | 2, only for a client whose flag word has bit 5 set |
+| +0x10000 | +0x110000 (command FIFO) | 1 | 2 |
+| +0x14000 | +0x118000 | 1 | 0 |
+| +0x18000 | +0x200000 | 1 | 2 |
+| +0x1c000 | +0x220000 (PB&J read-back) | 8 | 2 |
+| +0x3c000 | +0x400000 (display FIFO) | 1 | 2 |
+
+The windows end at +0x40000 of the client's mapping and the +0x1c000 window's eight pages reach exactly to the display FIFO's page. The 6.5.30m routine maps +0x100000 and +0x120000 for every client and the other windows only for clients with flag bit 5 set; patch 4103 maps all but the PIO page unconditionally. What the protection argument selects is **unknown** (`docs/open-questions.md`); the two windows that take 0 are +0x100000 and +0x118000 (the context-switch request page, section 4).
+
+The performance mode word at +0x402c is built identically in the patch 4103 `gfP_OdsyPerfStat` (private ioctl 51): the same 24-byte argument, bits 3:0 from byte 16, bits 4, 5 and 6 from bit 0 of bytes 17, 18 and 19, bits 10:8 from the low three bits of byte 21, and the constant 0x88000000; the word is also kept in the board record (+10444 there) before the register store. The statistics buffer is `(2 << n) * 32` bytes for `n` = byte 16, as in the 6.5.30m routine, and a mask with bits 0 and 2 both set is refused with 22 (**established**, the field positions in the section above).
+
 ### What stays unknown in the register and command rows
 
 Field layouts of the replayed blocks with no entry in the "Known from" column of section 8, the meanings of blocks 0x019, 0x043 and 0x046, the 0x8e and 0x90 state words, and the water marks are all values the code only stores. The software never reads the board back for them, so each is an open question (`docs/open-questions.md`): the first needs the operands of each block taken from a stream whose GL state is known, one state at a time; the others are named in the reset section above.
