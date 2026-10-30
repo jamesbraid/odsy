@@ -94,10 +94,10 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3446300	f032755d989b7faa		5155	dynsym (dwarf addresses stale, dropped)	4231	0	undocumented		
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	513624	94f61adbfa12bb44		650	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	3760880	e23071c866ed246d		5076	dynsym+dwarf	4231	0	undocumented		
-sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	strings	0	0	named-only	docs/open-questions.md#microcode	Microcode
+sbin/stand/ide.IP30	ide	board-diagnostic	executable	n64	1594880	19d7a194cb417330		11	strings	0	0	understood	docs/firmware-images.md#firmware-and-standalone-images	Firmware and standalone images
 usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
-usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	strings	0	0	named-only	docs/display.md#kernel-cursor-request	Kernel cursor request
-usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	strings	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
+usr/cpu/firmware/IP30prom.bin	firmware	board-firmware	data	-	879312	ee4722ca6f9b821f		11	strings	0	0	understood	docs/firmware-images.md#firmware-and-standalone-images	Firmware and standalone images
+usr/cpu/firmware/ip35prom.img	firmware	board-firmware	data	-	1480360	d74b4b7ef9c11c66		0	strings	0	0	understood	docs/firmware-images.md#firmware-and-standalone-images	Firmware and standalone images
 usr/cpu/sysgen/IP30boot/gfx.o	kernel-shared	shared-kernel	object	n64	53712	73041c9bcd3351fc		62	symtab	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	16516	c637564e7dc7a6d8		22	symtab	0	0	undocumented		
 usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53716	2a9821583c887b17		62	symtab	0	0	undocumented		
@@ -173,8 +173,8 @@ usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dyn
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
-usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0		0	0	named-only	ucode/buzz_ucode.md#location-and-size	Location and size
-usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0		0	0	named-only	docs/buzz.md#reset-the-fields-the-binaries-cannot-settle	Reset: the fields the binaries cannot settle
+usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin	microcode	board-microcode	data	-	27196	9955bc1bad614a4d	usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip35.bin	0		0	0	understood	docs/firmware-images.md#transform-microcode-images	Transform microcode images
+usr/gfx/ucode/ODSY/buzz_xform.bin	microcode	board-microcode	data	-	33528	a0201d88cf23752c		0		0	0	understood	docs/firmware-images.md#transform-microcode-images	Transform microcode images
 usr/gfx/ucode/ODSY/vof/1024x768_60.vfo	microcode	board-microcode	data	-	8424	6348519cb39c2b89		0		0	0	understood	docs/display-files.md#video-formats-of-the-vpro-board	Video formats of the VPro board
 usr/gfx/ucode/ODSY/vof/1024x768_75.vfo	microcode	board-microcode	data	-	8308	4a09147bf64ad526		0		0	0	understood	docs/display-files.md#video-formats-of-the-vpro-board	Video formats of the VPro board
 usr/gfx/ucode/ODSY/vof/1024x768_96s.vfo	microcode	board-microcode	data	-	9636	61e3736848dee489		0		0	0	understood	docs/display-files.md#video-formats-of-the-vpro-board	Video formats of the VPro board
