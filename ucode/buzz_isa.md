@@ -366,6 +366,22 @@ Binary: `odydiags`, 6.5.15 build of the VPro field diagnostics (Internal Support
 - **established** (stream values): the 128 x 64 streams were recorded under a fourth microcode build that no held image matches: set-up head 495, data loader 607, list entries 786 and 797, program 1180, 1192 and 1204, and entry opcodes 197 above those of the held images (0x12f, 0x1a2, 0x1bb, 0x1c8, 0x1df and 0x1ea arrive as 0x1f4, 0x267, 0x280, 0x28d, 0x2a4 and 0x2af).
 - **inferred**: board +0x100000 takes the same command words as the FIFO port at +0x110000, since the recorded streams send sequencer words, matrix stores and primitives to both (`docs/buzz.md`, "The windows at board +0x100000, +0x120000 and +0x200000"). That the simulator's log reflects how a board accepts them is the inference.
 
+## Pass 19: what the host uploads for codes 3 and 0xb, and normals left unnormalised
+
+Release 6.5.30m, N32 libGLcore; records of `ucode/ODSY/buzz_xform.bin`. Runs use `scripts/buzz_ucode_dataflow.py` with every scalar code set to its pass 15 to 17 reading (`--code 3=pow8 --code 5=mulK --code d=mulK --code 4=neg --code c=neg --code 1=rsqrt --code 6=mulF --code e=mulF`).
+
+### The host uploads no table
+
+- **established**: the ODYSSEY part of the library calls no `pow`, `powf`, `exp`, `expf`, `log` or `logf` outside `ody_fog.s`, `ody_accumop.s` and `ody_image_chain.s` (a search of every `jal` and GOT load in `libglcore/asm/ODYSSEY/*.s`), so no lighting or program code computes a power table.
+- **established**: the shininess reaches the program only as the operands of routine 490 (pass 14: t = the square root of the shininess, raised to that of 2.5 when below it, and -t). The light record carries no table (pass 12's sixteen words); `ValidateLight` (`ody_lighting.s`, 0x0d9c2ae0, source lines 314 to 322) puts -cos(cutoff) in word 13 and the negated spot exponent in word 14 for a spot light, computing the cosine with `cos` of cutoff x pi / 180, and 1.0 and 0.0 for a light with a 180-degree cutoff or a directional light. The constants at 0x1e0 to 0x1ef (pass 12) are fixed. The five 256-word tables of blocks 0x3e00 to 0x3e4f go to the raster stage, not to parameter memory (`docs/tokens.md`).
+- **inferred**: the function behind codes 3 and 0xb is built into the chip, which is what US 6,417,858 describes: a scalar stage with look-up tables for arc-sine, exponent, inverse square root and negate (`docs/published-sources.md`). Its size and contents are therefore not in any shipped file; the 1/32 entry spacing rests on routine 792 alone (pass 16).
+- The shape stays **open**. Two candidates meet every constraint the programs set (value 1 and slope -1 at y = 8, falling above): (8 / y)^8, pass 14's fit, and e^(8 - y), which fits the patent's "exponent" table and approximates (N.H)^s by e^(-s (1 - N.H)). They part at large y: at y = 16, 0.0039 against 0.00034. No stored diagnostic frame is lit (`docs/raster.md`), so no frame chooses.
+
+### Normals with GL_NORMALIZE off
+
+- **inferred**, numeric run `ucode/runs/unnormalized-1752.json` (the two-sided scenario with the normal doubled, through `490 515 1226 1265 1752.. 1771.. 1771..`): the program with GL_NORMALIZE off (table record 7) uses the transformed normal as it arrives. N.L comes out as 1.856 and -1.856 for front and back, twice the unit-normal run's 0.928, and the code-3 operands as 0.606752 and 53.1436 against 8.80338 and 38.5718: 8 + s (1 - n.H) with n.H doubled. GL computes the same unscaled products when normalisation is off. A normal longer than 1 can therefore put the specular operand below 8, below the range pass 14's constraints cover; what code 3 returns there is **unknown**.
+- The GL_NORMALIZE on programs are table records 9 (one directional light, routine 1520), 10 (two directional lights, 1623), 18 (one local light, local viewer), 21 (local fragment light) and 23 (two local lights), by key bit 7 (`ucode/buzz_routines.md`, "Table records"). Record 11 (up to four directional lights) has key bit 8, normalize off.
+
 ## Precision
 
 - **established.** The host sends geometry, colours and texture coordinates as IEEE single-precision floats or as integers that the board converts (`BUZZ.h` section 1, attribute opcodes); lighting constants go to data memory as floats after a 0x32 address (`ody_lighting.s`). No instruction field is wide enough for a 32-bit immediate, so constants live in data memory.
