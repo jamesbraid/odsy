@@ -163,53 +163,53 @@ One row per member with routines. "Shared with media build" counts routines of t
 
 | File | Label | Role | Board access | Bytes | Routines | Shared with media build | Different code | Added | Removed | Largest routine |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)` | established | private request front door | none of its own | 12660 | 4 | 4 | 3 | 0 | 0 | `gf_OdsyPrivate` at 0x80 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)` | established | id sets and slot tables | none, pure bookkeeping | 15444 | 18 | 18 | 16 | 0 | 0 | `OdsyAllocCSetId` at 0x56c |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)` | established | maps board windows to processes | page mapping only | 7284 | 3 | 3 | 2 | 0 | 0 | `gf_OdsyAttach` at 0x60 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)` | established | video timing and cursor manager | registers and display FIFO | 49076 | 19 | 18 | 17 | 1 | 3 | `odsyLoadTimingTable` at 0x3320 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)` | established | clip regions and buffer clears | command FIFO port | 10916 | 6 | 6 | 4 | 0 | 2 | `odsyClipPush` at 0x604 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)` | established | graphics context save and restore | command FIFO port | 45364 | 26 | 26 | 23 | 0 | 0 | `odsyRestoreRaster` at 0xa88 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)` | established | monitor probing over two-wire | two-wire bus port | 40484 | 24 | 24 | 21 | 0 | 1 | `odsy_i2cProbe2b` at 0x41c |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)` | established | per-client context records | none, kernel memory | 10068 | 3 | 3 | 2 | 0 | 0 | `gf_OdsyCreateDDRN` at 0x54 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)` | established | diagnostic and statistics requests | shadow memory mappings | 12996 | 8 | 8 | 7 | 0 | 0 | `gfP_OdsyDIAGgetShadowPtrs` at 0x2a4 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)` | established | host to board DMA engine | registers and page tables | 32532 | 20 | 20 | 19 | 0 | 2 | `odsyDMAOps` at 0xaf4 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)` | established | drawable binding and buffer select | command FIFO port | 16900 | 11 | 11 | 10 | 0 | 0 | `gfP_OdsyMakeCurrent` at 0x9b0 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)` | established | command FIFO flow control | interrupts and flow credits | 9460 | 6 | 6 | 5 | 0 | 0 | `odsyHiwaterInterrupt` at 0xdc |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)` | established | two-wire bus master | control registers in window | 40756 | 12 | 12 | 12 | 0 | 8 | `odsy_i2c_long_recvbyte` at 0x1b14 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)` | established | board reset and start-up | registers and interrupt setup | 74804 | 26 | 26 | 25 | 0 | 3 | `odsyInitDBE` at 0x23f8 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)` | established | interrupt service routines | status registers | 16132 | 5 | 5 | 4 | 0 | 0 | `odsyGenlockInterrupt` at 0x5bc |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` | established | maps board and shadow memory | page tables | 15156 | 13 | 13 | 12 | 0 | 0 | `gf_OdsyUnMapGfx` at 0x28c |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)` | established | private request front door | none of its own | 12660 | 4 | 4 | 4 | 0 | 0 | `gf_OdsyPrivate` at 0x80 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)` | established | id sets and slot tables | none, pure bookkeeping | 15444 | 18 | 18 | 17 | 0 | 0 | `OdsyAllocCSetId` at 0x56c |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)` | established | maps board windows to processes | page mapping only | 7284 | 3 | 3 | 3 | 0 | 0 | `gf_OdsyAttach` at 0x60 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)` | established | video timing and cursor manager | registers and display FIFO | 49076 | 19 | 18 | 18 | 1 | 3 | `odsyLoadTimingTable` at 0x3320 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)` | established | clip regions and buffer clears | command FIFO port | 10916 | 6 | 6 | 5 | 0 | 2 | `gf_OdsyValidateClip` at 0x0 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)` | established | graphics context save and restore | command FIFO port | 45364 | 26 | 26 | 24 | 0 | 0 | `odsyRestoreRaster` at 0xa88 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)` | established | monitor probing over two-wire | two-wire bus port | 40484 | 24 | 24 | 22 | 0 | 1 | `odsy_i2cProbe2b` at 0x41c |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)` | established | per-client context records | none, kernel memory | 10068 | 3 | 3 | 3 | 0 | 0 | `gf_OdsyCreateDDRN` at 0x54 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)` | established | diagnostic and statistics requests | shadow memory mappings | 12996 | 8 | 8 | 8 | 0 | 0 | `gfP_OdsyDIAGgetShadowPtrs` at 0x2a4 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)` | established | host to board DMA engine | registers and page tables | 32532 | 20 | 20 | 20 | 0 | 2 | `odsyDMAOps` at 0xaf4 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)` | established | drawable binding and buffer select | command FIFO port | 16900 | 11 | 11 | 11 | 0 | 0 | `gfP_OdsyMakeCurrent` at 0x9b0 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)` | established | command FIFO flow control | interrupts and flow credits | 9460 | 6 | 6 | 6 | 0 | 0 | `odsyHiwaterInterrupt` at 0xdc |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)` | established | two-wire bus master | control registers in window | 40756 | 12 | 12 | 12 | 0 | 8 | `odsy_i2c_start` at 0x0 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)` | established | board reset and start-up | registers and interrupt setup | 74804 | 26 | 26 | 26 | 0 | 3 | `odsyInitDBE` at 0x23f8 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)` | established | interrupt service routines | status registers | 16132 | 5 | 5 | 5 | 0 | 0 | `odsyGenlockInterrupt` at 0x5bc |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` | established | maps board and shadow memory | page tables | 15156 | 13 | 13 | 13 | 0 | 0 | `gf_OdsyMapGfx` at 0x0 |
 | `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` | established | board memory manager | DMA to backing store | 69124 | 57 | 51 | 51 | 6 | 16 | `gfP_OdsyMMxfr` at 0x1e5c |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 19140 | 13 | 13 | 10 | 0 | 0 | `gf_OdsySetDisplayMode` at 0xb68 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 9284 | 5 | 5 | 4 | 0 | 0 | `gf_OdsyExit` at 0x1b8 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34804 | 11 | 11 | 8 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 8468 | 2 | 2 | 1 | 0 | 0 | `gf_OdsyDownload` at 0x118 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 19140 | 13 | 13 | 11 | 0 | 0 | `gf_OdsySetDisplayMode` at 0xb68 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 9284 | 5 | 5 | 5 | 0 | 0 | `gf_OdsyExit` at 0x1b8 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34804 | 11 | 11 | 9 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 8468 | 2 | 2 | 2 | 0 | 0 | `gf_OdsyDownload` at 0x118 |
 
 ### Patch 4104
 
 | File | Label | Role | Board access | Bytes | Routines | Shared with media build | Different code | Added | Removed | Largest routine |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)` | established | private request front door | none of its own | 12692 | 4 | 4 | 3 | 0 | 0 | `gf_OdsyPrivate` at 0x80 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)` | established | id sets and slot tables | none, pure bookkeeping | 15476 | 18 | 18 | 16 | 0 | 0 | `OdsyAllocCSetId` at 0x56c |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)` | established | maps board windows to processes | page mapping only | 7316 | 3 | 3 | 2 | 0 | 0 | `gf_OdsyAttach` at 0x60 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)` | established | video timing and cursor manager | registers and display FIFO | 49108 | 19 | 18 | 17 | 1 | 3 | `odsyLoadTimingTable` at 0x3320 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)` | established | clip regions and buffer clears | command FIFO port | 10932 | 6 | 6 | 4 | 0 | 2 | `odsyClipPush` at 0x604 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)` | established | graphics context save and restore | command FIFO port | 45396 | 26 | 26 | 23 | 0 | 0 | `odsyRestoreRaster` at 0xa88 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)` | established | monitor probing over two-wire | two-wire bus port | 40516 | 24 | 24 | 21 | 0 | 1 | `odsy_i2cProbe2b` at 0x41c |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)` | established | per-client context records | none, kernel memory | 10100 | 3 | 3 | 2 | 0 | 0 | `gf_OdsyCreateDDRN` at 0x54 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)` | established | diagnostic and statistics requests | shadow memory mappings | 13028 | 8 | 8 | 7 | 0 | 0 | `gfP_OdsyDIAGgetShadowPtrs` at 0x2a4 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)` | established | host to board DMA engine | registers and page tables | 32564 | 20 | 20 | 19 | 0 | 2 | `odsyDMAOps` at 0xaf4 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)` | established | drawable binding and buffer select | command FIFO port | 16916 | 11 | 11 | 10 | 0 | 0 | `gfP_OdsyMakeCurrent` at 0x9b0 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)` | established | command FIFO flow control | interrupts and flow credits | 9492 | 6 | 6 | 5 | 0 | 0 | `odsyHiwaterInterrupt` at 0xdc |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)` | established | two-wire bus master | control registers in window | 40772 | 12 | 12 | 12 | 0 | 8 | `odsy_i2c_long_recvbyte` at 0x1b14 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)` | established | board reset and start-up | registers and interrupt setup | 74820 | 26 | 26 | 25 | 0 | 3 | `odsyInitDBE` at 0x23f8 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)` | established | interrupt service routines | status registers | 16164 | 5 | 5 | 4 | 0 | 0 | `odsyGenlockInterrupt` at 0x5bc |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` | established | maps board and shadow memory | page tables | 15172 | 13 | 13 | 12 | 0 | 0 | `gf_OdsyUnMapGfx` at 0x28c |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)` | established | private request front door | none of its own | 12692 | 4 | 4 | 4 | 0 | 0 | `gf_OdsyPrivate` at 0x80 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)` | established | id sets and slot tables | none, pure bookkeeping | 15476 | 18 | 18 | 17 | 0 | 0 | `OdsyAllocCSetId` at 0x56c |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)` | established | maps board windows to processes | page mapping only | 7316 | 3 | 3 | 3 | 0 | 0 | `gf_OdsyAttach` at 0x60 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)` | established | video timing and cursor manager | registers and display FIFO | 49108 | 19 | 18 | 18 | 1 | 3 | `odsyLoadTimingTable` at 0x3320 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)` | established | clip regions and buffer clears | command FIFO port | 10932 | 6 | 6 | 5 | 0 | 2 | `gf_OdsyValidateClip` at 0x0 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)` | established | graphics context save and restore | command FIFO port | 45396 | 26 | 26 | 24 | 0 | 0 | `odsyRestoreRaster` at 0xa88 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)` | established | monitor probing over two-wire | two-wire bus port | 40516 | 24 | 24 | 22 | 0 | 1 | `odsy_i2cProbe2b` at 0x41c |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)` | established | per-client context records | none, kernel memory | 10100 | 3 | 3 | 3 | 0 | 0 | `gf_OdsyCreateDDRN` at 0x54 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)` | established | diagnostic and statistics requests | shadow memory mappings | 13028 | 8 | 8 | 8 | 0 | 0 | `gfP_OdsyDIAGgetShadowPtrs` at 0x2a4 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)` | established | host to board DMA engine | registers and page tables | 32564 | 20 | 20 | 20 | 0 | 2 | `odsyDMAOps` at 0xaf4 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)` | established | drawable binding and buffer select | command FIFO port | 16916 | 11 | 11 | 11 | 0 | 0 | `gfP_OdsyMakeCurrent` at 0x9b0 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)` | established | command FIFO flow control | interrupts and flow credits | 9492 | 6 | 6 | 6 | 0 | 0 | `odsyHiwaterInterrupt` at 0xdc |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)` | established | two-wire bus master | control registers in window | 40772 | 12 | 12 | 12 | 0 | 8 | `odsy_i2c_start` at 0x0 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)` | established | board reset and start-up | registers and interrupt setup | 74820 | 26 | 26 | 26 | 0 | 3 | `odsyInitDBE` at 0x23f8 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)` | established | interrupt service routines | status registers | 16164 | 5 | 5 | 5 | 0 | 0 | `odsyGenlockInterrupt` at 0x5bc |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` | established | maps board and shadow memory | page tables | 15172 | 13 | 13 | 13 | 0 | 0 | `gf_OdsyMapGfx` at 0x0 |
 | `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` | established | board memory manager | DMA to backing store | 69156 | 57 | 51 | 51 | 6 | 16 | `gfP_OdsyMMxfr` at 0x1e5c |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 19172 | 13 | 13 | 10 | 0 | 0 | `gf_OdsySetDisplayMode` at 0xb68 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 9316 | 5 | 5 | 4 | 0 | 0 | `gf_OdsyExit` at 0x1b8 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34836 | 11 | 11 | 8 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 8500 | 2 | 2 | 1 | 0 | 0 | `gf_OdsyDownload` at 0x118 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 19172 | 13 | 13 | 11 | 0 | 0 | `gf_OdsySetDisplayMode` at 0xb68 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 9316 | 5 | 5 | 5 | 0 | 0 | `gf_OdsyExit` at 0x1b8 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34836 | 11 | 11 | 9 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 8500 | 2 | 2 | 2 | 0 | 0 | `gf_OdsyDownload` at 0x118 |
 
 ### IP35 build
 
@@ -218,29 +218,29 @@ One row per member with routines. "Shared with media build" counts routines of t
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)` | established | private request front door | none of its own | 13620 | 4 | 4 | 0 | 0 | 0 | `gf_OdsyPrivate` at 0x84 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)` | established | id sets and slot tables | none, pure bookkeeping | 16228 | 18 | 18 | 1 | 0 | 0 | `OdsyAllocCSetId` at 0x604 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)` | established | maps board windows to processes | page mapping only | 7748 | 3 | 3 | 1 | 0 | 0 | `gf_OdsyAttach` at 0x68 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)` | established | video timing and cursor manager | registers and display FIFO | 61364 | 21 | 21 | 12 | 0 | 0 | `odsyLoadTimingTable` at 0x3cd0 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)` | established | clip regions and buffer clears | command FIFO port | 16596 | 8 | 8 | 4 | 0 | 0 | `gfP_OdsyClearBuffer` at 0xccc |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)` | established | video timing and cursor manager | registers and display FIFO | 61364 | 21 | 21 | 13 | 0 | 0 | `odsyLoadTimingTable` at 0x3cd0 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)` | established | clip regions and buffer clears | command FIFO port | 16596 | 8 | 8 | 5 | 0 | 0 | `gfP_OdsyClearBuffer` at 0xccc |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)` | established | compositor register access | two-wire bus port | 14260 | 8 | 8 | 0 | 0 | 0 | `odsy_ReadCompositorNic` at 0x45c |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)` | established | graphics context save and restore | command FIFO port | 49732 | 26 | 26 | 11 | 0 | 0 | `odsyRestoreRaster` at 0xc3c |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)` | established | monitor probing over two-wire | two-wire bus port | 42820 | 25 | 25 | 1 | 0 | 0 | `odsy_i2cProbe2b` at 0x410 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)` | established | per-client context records | none, kernel memory | 10932 | 3 | 3 | 1 | 0 | 0 | `gf_OdsyCreateDDRN` at 0x50 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)` | established | Denali part probe | two-wire bus port | 8052 | 2 | 2 | 0 | 0 | 0 | `odsy_ProbeDenali` at 0x338 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)` | established | Denali part probe | two-wire bus port | 8052 | 2 | 2 | 0 | 0 | 0 | `odsy_probeDenaliChannel` at 0x0 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)` | established | diagnostic and statistics requests | shadow memory mappings | 13316 | 8 | 8 | 0 | 0 | 0 | `gfP_OdsyDIAGgetShadowPtrs` at 0x2b8 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)` | established | host to board DMA engine | registers and page tables | 35716 | 22 | 22 | 6 | 0 | 0 | `odsyDMAOps` at 0xb34 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)` | established | drawable binding and buffer select | command FIFO port | 17892 | 11 | 11 | 5 | 0 | 0 | `gfP_OdsyMakeCurrent` at 0xab0 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)` | established | digital video output set-up | two-wire bus and expander | 14676 | 9 | 0 | 0 | 9 | 0 | `odsy_read_XmitRegs` at 0x5d8 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)` | established | command FIFO flow control | interrupts and flow credits | 12324 | 9 | 6 | 5 | 3 | 0 | `odsyHiwaterInterrupt` at 0x370 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` | established | multi-board display pipe tiling | compositor registers | 26324 | 19 | 19 | 11 | 0 | 0 | `odsy_hpipe_discover` at 0x64 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)` | established | two-wire bus master | control registers in window | 74276 | 20 | 20 | 18 | 0 | 0 | `odsy_i2c_start` at 0x40c8 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)` | established | board reset and start-up | registers and interrupt setup | 89076 | 32 | 29 | 19 | 3 | 0 | `odsyInitDBE` at 0x3600 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)` | established | interrupt service routines | status registers | 20596 | 5 | 5 | 4 | 0 | 0 | `odsyGenlockInterrupt` at 0x5c0 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)` | established | maps board and shadow memory | page tables | 15572 | 13 | 13 | 3 | 0 | 0 | `gf_OdsyUnMapGfx` at 0x31c |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)` | established | two-wire bus master | control registers in window | 74276 | 20 | 20 | 19 | 0 | 0 | `odsy_i2c_start` at 0x40c8 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)` | established | board reset and start-up | registers and interrupt setup | 89076 | 32 | 29 | 20 | 3 | 0 | `odsyInitDBE` at 0x3600 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)` | established | interrupt service routines | status registers | 20596 | 5 | 5 | 5 | 0 | 0 | `odsyGenlockInterrupt` at 0x5c0 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)` | established | maps board and shadow memory | page tables | 15572 | 13 | 13 | 4 | 0 | 0 | `gf_OdsyMapGfx` at 0x0 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)` | established | board memory manager | DMA to backing store | 78340 | 67 | 67 | 1 | 0 | 0 | `mm_shake` at 0x63fc |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)` | established | Rainier add-in board access | mapped register window | 8228 | 6 | 6 | 0 | 0 | 0 | `odsy_ProbeRainier` at 0x9c |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 20516 | 13 | 13 | 3 | 0 | 0 | `gf_OdsySchedSwapBuf` at 0x380 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 10148 | 5 | 5 | 2 | 0 | 0 | `gf_OdsyExit` at 0x248 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 10148 | 5 | 5 | 3 | 0 | 0 | `gf_OdsyExit` at 0x248 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 37668 | 11 | 11 | 6 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 9220 | 2 | 2 | 1 | 0 | 0 | `gf_OdsyDownload` at 0x120 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 9220 | 2 | 2 | 2 | 0 | 0 | `gf_OdsyDownload` at 0x120 |
 
 
 ## Members without routines in the other builds
