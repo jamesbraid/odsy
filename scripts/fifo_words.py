@@ -140,7 +140,7 @@ LINE = re.compile(r'^\s*([0-9a-f]+):\s+([0-9a-f]{8})\s+(\S+)\s*(.*)$')
 
 
 def disassemble(binary, lo, hi):
-    out = subprocess.run([toolchain.objdump(), '-d', '-M', 'gpr-names=n32',
+    out = subprocess.run([toolchain.objdump(), '-d', '-z', '-M', 'gpr-names=n32',
                           '--start-address=0x%x' % lo, '--stop-address=0x%x' % hi, binary],
                          check=True, capture_output=True, text=True).stdout
     insns = []
