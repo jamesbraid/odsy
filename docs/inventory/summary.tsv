@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	input
 binaries	276	0	269	3	131	0	0	1	6	0	97.5	97.5	97.8	97.5							0			
-functions	106592	0	2572	45	1448	1305	15925	72065	16030	0	2.4	17.4	85.0	2.4			80.0	30	2026-10-30		922	482	3798	
-functions (distinct names)	18949	0	1090	27	1090	87	908	5890	11061	0	5.8	10.5	41.6	5.8							62			
+functions	106592	0	2628	45	1504	1305	15925	72009	16030	0	2.5	17.4	85.0	2.5			80.0	30	2026-10-30		922	482	3798	
+functions (distinct names)	18949	0	1146	27	1146	87	908	5834	11061	0	6.0	10.8	41.6	6.0							62			
 mmio	67	0	58	0	58	0	2	0	0	7	86.6	100.0	100.0	97.0	56		91.7	12	2026-10-29		0			
 tokens	270	0	250	40	250	0	17	3	0	0	92.6	98.9	100.0	92.6			85.0	20	2026-10-29		0			
 ioctls	91	0	91	0	85	0	0	0	0	0	100.0	100.0	100.0	100.0			73.3	15	2026-10-29		0			
@@ -140,7 +140,7 @@ functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	11	0	10	0	10	0	1	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	2	0	2	0	2	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/rrm.o	72	0	25	0	25	0	1	28	18	0	34.7	36.1	75.0	34.7							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/tport.a(tport.o)	22	0	0	0	0	0	0	22	0	0	0.0	0.0	100.0	0.0							0	0	0	
-functions in usr/diags/compositor/bin/sting	323	0	65	4	65	0	33	225	0	0	20.1	30.3	100.0	20.1							0	0	0	
+functions in usr/diags/compositor/bin/sting	323	0	121	4	121	0	33	169	0	0	37.5	47.7	100.0	37.5							0	0	0	
 functions in usr/gfx/STINGRAY/bin/cmp_flash	26	0	26	0	26	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	2	0	2	0	2	43	2889	0	0.1	0.1	1.6	0.1							0	0	0	
 functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	0	0	0	0	1	21	3789	0	0.0	0.0	0.6	0.0							0	0	1124	
