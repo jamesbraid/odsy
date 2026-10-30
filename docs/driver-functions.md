@@ -1626,3 +1626,112 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   `odsy_i2c_write_denali_byte` once for each byte of the caller's buffer up to the length in its third
   argument and returns 1 as soon as a byte write fails; after the last byte it returns 0 with the semaphore
   released. Read from the skeleton of the routine (calls, constants and branches), not every instruction.
+- `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+Lays out
+  the board's SDRAM for a frame buffer size and programs the scan-out registers. When the word at +16 of its
+  argument block is set it only returns `odsyProbeFb`. Otherwise it rounds width and height up to 16-pixel
+  tiles and the tile row up to an even count, takes the depth (32, 16 or 8) to find how many 32-bit tile slots the frame buffer
+  needs, and places the frame buffer at the board record's +1360 start address (sdram address in 512-byte
+  units) rounded up to a four-tile boundary, then the overlay and window-id buffer (2 bytes deep, sixteen times denser) at +1496,
+  the unused coarse-Z slot, up to four 8-bit accumulation buffers (the argument's word +12 chooses none, 2 or 4)
+  at the following boundaries, and the first free address for textures and pixel buffers at +1088. It returns -1
+  when that address passes the SDRAM size held at +252 (in megabytes). The routine writes the start
+  addresses and the five region sizes back into the argument block at +20 to +48, then pushes six scan-out
+  commands (overlay base, pixel base, width, height, stride and depth code 4, 3 or 2) after waiting for display-FIFO
+  level 10 with `odsy_poll_dfifo_level`, stores the width and height as halfwords at +232 and +234 and
+  returns 0.
+- `odsyLoadTimingTable` (`odsy_brdmgr.o`, offset 0x3c4c, 8392 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Programs a video timing into the board: the pixel-clock generator, the
+  video timing generator tables and the scan-out registers. It takes the lock at record +0x8520, reads the
+  host-interface control register back through the window at board +0x220000 and loads the 3-bit clock
+  fields of the timing block (+208 to the host-interface configuration, +212 and +216 into the two
+  two-wire clock selects) with the soft-reset bit cleared. It picks the clock chip by the variant at record +292:
+  below 1 the classic PLL registers 5, 4, 2, 3, 0, 1, 7 and 6 get the bytes at timing-block +128 to +156,
+  at least 1 the eight registers 0 to 7 of the second clock chip get +96 to +124 (copies of registers 1, 2 and 6
+  are saved at the record). It writes those eight registers on the option port with `odsy_i2cPLLRegWrite`, writes
+  the classic chip's reset register 8 with 90 when it is in use, waits 1 ms then 100 ms with `odsy_usdelay`, raises the
+  interface soft reset, and resets the timing generator. Next it clears two stack buffers of 512 and 4096 bytes
+  with `bzero` and sends them as zero blocks of 256 frame-table and 2048 line-table halfwords, then sends
+  the caller's frame table and line table (lengths at timing-block +8 and +24), each packed four halfwords to a
+  display-FIFO word with a wait for FIFO room every 64 halfwords. It then writes the timing generator
+  control, enable and initial-state words (+160, +164, +168), the twelve generator values at +40 to +84, the
+  width and height (+176, +180), the interlace, dual-head and field-sequential modes from the flags word at +200, a cursor
+  control word, and the DAC, data-path and state-machine words, and finally the generator control word.
+  For an external genlock source it rewrites the input-control and divider registers of the active clock chip.
+  It releases the lock at +0x8520 and returns 0, or -1 when a FIFO wait fails.
+- `odsyInitDBE` (`odsy_init.o`, offset 0x2c5c, 4248 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Brings the display back end to a known state and identifies the
+  attached parts. In order it quiets the clock registers (display addresses 0x2b00 five times and 0x2700),
+  reads the two output-enable words at 0x2483 and 0x2482 into the record, sets up the main and option two-wire
+  ports with `odsy_i2c_init_port_handle` (records +0xb3e0 and +0xb408), reads the option card's identity at address 0x1f
+  once (a low nibble of 3 stores 3 at record +298 and the next register at +300), and fills the
+  part-presence words at +700 (compositor), +704 (Denali), +708 (Rainier) and +712 (compositor serial) through
+  `odsy_ProbeCompositor`, `odsy_ProbeRainier`, `odsy_ProbeDenali` and `odsy_ReadCompositorNic`, and `odsy_i2cProbe2b` on the main port
+  when no option card is present. With an option card present it first waits for `odsy_DCDResetDone` and writes
+  its PLL register 0 with 16, 32 or 48. It then calls `odsyConfigFb` for 1280 by 1024 at depth 8
+  and, for the full start only, writes the scan-out size (0x2802 = 1280, 0x2803 = 1024) and calls
+  `odsyLoadTimingTable`. It writes the 32-entry main mode table at display addresses 0x2900 to 0x291f
+  and the 8-entry overlay table at 0x2920 to 0x2927 (what the stored mode words encode is unknown from the binary alone;
+  the stored constants are in the member's small-data slots), clears entries 0x29 to 0x2c, resets the cursor control mirror, initialises the
+  semaphore at +0xb470 to 1 and finishes with `odsyBlankScreen` with blanking off. Every FIFO wait
+  that fails abandons the routine. Each display write waits for display-FIFO levels 10, 15, 14 or 11 with `odsy_poll_dfifo_level`.
+  The full step list and the unresolved stack words of the mode table are in `docs/kernel.md`.
+- `odsyBlankScreen` (`odsy_brdmgr.o`, offset 0x21f8, 4580 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
+  off or on through the output-enable and DAC-control display registers. Mode 2 blanks: it clears bit 5 of the
+  shadow of display register 0x2482 (record -19492) and bits 0, 1 and 5 of the shadow of 0x2483 (record -19496), reads
+  register 0x26c0 back through the window at board +0x233604, sets its bit 0 and pushes the three words
+  after a wait for display-FIFO level 10. Modes 0 and 1 restore the display: they set bits 0, 1 and 5 (0x23) of the
+  0x2483 shadow and push the words after a wait for level 11 (mode 0) or 14 (mode 1). With the dual-channel
+  option card present (halfword +298 equal to 3) each mode also takes the lock at record +0x8520, reads
+  register 23 of the option port with `odsy_i2cDDCRegRead` and calls `odsy_reconfigDCD2FPLD`, returning 11
+  when either fails. A failed display-FIFO wait returns 5; success returns 0. The display-FIFO
+  semaphore and cursor-replay code is the same inlined helper as in `odsy_i2c_start`.
+- `odsyValidateBuffer` (`odsy_retrace.o`, offset 0x8c, 176 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Revalidates the drawable behind one swap slot. Slot numbers of 32 or more log a severity 4 message and return 22. For a
+  valid slot it reads the slot's 40-byte record at board record +28584 (slot times 40): when the slot's
+  buffer pointer at +28608 is empty it calls `rrmValidateMGRSwapBuf` with the word at +28616, otherwise it
+  calls `rrmValidateBuffer` when the object at +28584 has a drawable handle at +224. It then clears the slot's bit in the
+  pending-swap mask at record +28568 and returns 0.
+- `odsySwap_softsync_intr` (`odsy_retrace.o`, offset 0x7d4, 260 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Runs the pending swaps whose scan-out line has been reached. It takes the swap lock at record +28504, then
+  for each of the 32 slots whose bit is set in both the pending mask (+28568) and the armed mask (+28548)
+  it reads the current video line counter (a halfword table behind the pointer at record +880, indexed by the
+  slot's pipe number at +244 of its object) and compares it with the slot's target line at +28592. When
+  the counter has reached the target, or the target is flagged above 0x8fff while the counter is below 4096, it clears the
+  slot's armed bit and calls `odsySwapBuffer`. The lock is released at the end.
+- `gf_OdsySchedMGRSwapBuf` (`odsy_retrace.o`, offset 0x107c, 488 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Queues a swap of the console-manager buffer in one of 32 slots. A slot number outside 0 to 31 logs a
+  severity 4 message and returns 22. Under the lock at +28504 it disarms the retrace interrupt when it is armed and unused
+  (clears the word at +28544 and board register 0x10bc), waits on the sync variable at +28520 when the slot is already
+  pending (after a severity 5 message), then marks the slot pending in the mask at +28568 and fills the slot
+  record at +28584 plus 40 times the slot: the buffer from the pipe object's +72/+112 pointers, a zero for
+  the second pointer at +28608, the target line from a halfword of the buffer's display structure (+176, +11068),
+  the swap argument at +28616 and the slot's bit at +28600. It copies bit 30 of its argument into the
+  per-slot flag mask at +28572. When the video line counter already equals the target it calls
+  `odsySwapBuffer` immediately, otherwise it sets the slot's armed bit at +28548. It returns 0.
+- `gf_OdsyUnSchedSwapBuf` (`odsy_retrace.o`, offset 0x8d8, 424 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  Cancels a queued swap. A slot number of 32 or more logs a severity 4 message and returns 22. Under the lock at +28504,
+  when the slot is pending it records the slot in the mask at +28564, removes it from the armed mask
+  at +28556 and clears its bit from every slot's 'wait on' word at +28600 before restoring its own bit, then
+  clears the armed bit at +28544 together with board register 0x10bc. While the word at +816 is zero and the slot stays pending it
+  waits on the sync variable at +28520 with `sv_timedwait`, dropping and retaking the lock each time. It
+  returns 0.
+- `odsyRestoreGfe` (`odsy_ctxsw.o`, offset 0x41c4, 1468 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Replays the geometry-engine part of a saved context into the command FIFO at board +0x110000, one word per
+  store with a sync after each. It sends the fixed words 0x14400, 0x14001, 1856, 491 and 3905, the saved word at
+  +172 of the context, two zeros, 17776, the saved word at +184, 1200 and the word at +7052 of the hardware
+  shadow. When the context is not the current one (the id at +0 is nonzero and differs from the board's id at +820)
+  it then sends four saved packets from +576, +592, +608 and +624: each packet header carries its payload
+  length in bits 13:10 and is followed by that many words from +2048, +2112, +2176 and +2240. A header whose
+  high bits are not 0x3000c02e or 0x2f00c02e logs a severity 7 message and skips the payload. The routine
+  ends with the markers 15608 to 15611, each followed by 16 zero words, and returns nothing.
