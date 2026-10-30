@@ -1,6 +1,6 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address
 binaries	276	0	0	0	0	0	105	171	0	0.0	0.0	38.0	0.0							0		
-functions	106592	1603	12	817	1080	14725	74022	16242	0	1.5	15.3	84.8	1.5			88.6	35	2026-10-29		997	482	3798
+functions	106592	1603	13	817	1080	14725	74022	16242	0	1.5	15.3	84.8	1.5			88.6	35	2026-10-29		997	482	3798
 functions (distinct names)	18949	473	5	473	72	952	6350	11174	0	2.5	7.5	41.0	2.5							67		
 mmio	67	58	0	58	0	2	0	0	7	86.6	100.0	100.0	97.0	56		91.7	12	2026-10-29		0		
 tokens	270	250	40	250	0	17	3	0	0	92.6	98.9	100.0	92.6			85.0	20	2026-10-29		0		
@@ -120,7 +120,7 @@ functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)	25	24	0	24	0	1	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7							0	0	0
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)	2	1	0	1	0	1	0	0	0	50.0	100.0	100.0	50.0							0	0	0
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)	8	7	0	7	0	1	0	0	0	87.5	100.0	100.0	87.5							0	0	0
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	22	21	0	21	0	1	0	0	0	95.5	100.0	100.0	95.5							0	0	0
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	22	21	1	21	0	1	0	0	0	95.5	100.0	100.0	95.5							0	0	0
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	11	10	0	10	0	1	0	0	0	90.9	100.0	100.0	90.9							0	0	0
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	9	9	0	9	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	9	9	0	9	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0
