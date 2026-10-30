@@ -1,6 +1,6 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes
-binaries	276	0	0	0	0	0	88	188	0	0.0	0.0	31.9	0.0						
-functions	106592	5416	9	1807	0	6354	78578	16244	0	5.1	11.0	84.8	5.1			0.0	20	2026-10-29	
+binaries	276	0	0	0	0	0	89	187	0	0.0	0.0	32.2	0.0						
+functions	106592	5422	9	1813	0	6348	78578	16244	0	5.1	11.0	84.8	5.1			0.0	20	2026-10-29	
 functions (distinct names)	18949	1019	4	984	0	27	6728	11175	0	5.4	5.5	41.0	5.4						
 mmio	67	58	0	58	0	2	0	0	7	86.6	100.0	100.0	97.0	56		91.7	12	2026-10-29	
 tokens	255	239	36	239	0	16	0	0	0	93.7	100.0	100.0	93.7			85.0	20	2026-10-29	
@@ -111,8 +111,8 @@ functions in usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	18	0	0	0	0	0	5	13	0	
 functions in usr/cpu/sysgen/IP35boot/kernel.o	1318	0	0	0	0	0	18	1300	0	0.0	0.0	1.4	0.0						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	4	4	2	4	0	0	0	0	0	100.0	100.0	100.0	100.0						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	18	12	0	12	0	0	6	0	0	66.7	66.7	100.0	66.7						
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7						
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	21	14	0	14	0	6	1	0	0	66.7	95.2	100.0	66.7						
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	3	3	0	3	0	0	0	0	0	100.0	100.0	100.0	100.0						
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	21	15	0	15	0	5	1	0	0	71.4	95.2	100.0	71.4						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	8	4	0	4	0	1	3	0	0	50.0	62.5	100.0	50.0						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	26	14	0	14	0	8	4	0	0	53.8	84.6	100.0	53.8						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)	8	5	0	5	0	0	3	0	0	62.5	62.5	100.0	62.5						
@@ -120,15 +120,15 @@ functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)	25	19	0	19	0	1	5	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)	3	1	0	1	0	0	2	0	0	33.3	33.3	100.0	33.3						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)	2	1	0	1	0	0	1	0	0	50.0	50.0	100.0	50.0						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)	8	6	0	6	0	2	0	0	0	75.0	100.0	100.0	75.0						
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	22	12	0	12	0	5	5	0	0	54.5	77.3	100.0	54.5						
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	22	13	0	13	0	4	5	0	0	59.1	77.3	100.0	59.1						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	11	4	0	4	0	4	3	0	0	36.4	72.7	100.0	36.4						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	9	9	0	9	0	0	0	0	0	100.0	100.0	100.0	100.0						
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	9	8	0	8	0	1	0	0	0	88.9	100.0	100.0	88.9						
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	9	9	0	9	0	0	0	0	0	100.0	100.0	100.0	100.0						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)	19	12	0	12	0	5	2	0	0	63.2	89.5	100.0	63.2						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	20	20	0	20	0	0	0	0	0	100.0	100.0	100.0	100.0						
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	32	25	0	25	0	6	1	0	0	78.1	96.9	100.0	78.1						
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	32	26	0	26	0	5	1	0	0	81.2	96.9	100.0	81.2						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	5	4	0	4	0	1	0	0	0	80.0	100.0	100.0	80.0						
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	13	11	0	11	0	2	0	0	0	84.6	100.0	100.0	84.6						
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	13	12	0	12	0	1	0	0	0	92.3	100.0	100.0	92.3						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)	6	5	0	5	0	0	1	0	0	83.3	83.3	100.0	83.3						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	13	11	0	11	0	1	1	0	0	84.6	92.3	100.0	84.6						
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	5	4	0	4	0	0	1	0	0	80.0	80.0	100.0	80.0						

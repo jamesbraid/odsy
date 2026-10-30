@@ -2603,3 +2603,48 @@ Lays out
   of `kmem_zalloc`, and the routine zeroes the 16384 doublewords itself. Clearing the four-entry arrays at
   +29888 and +29920, aligning to a 64 KB boundary and filling the four 16 KB blocks are as in the IP30 build; only the
   failure message differs in position.
+- `gf_OdsyAttach` (`odsy_attach.o`, offset 0x68, 392 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)`.
+  The Origin 350 build of the window-mapping routine, read as a difference from the IP30 entry (104 against 102
+  instructions). The argument check, the `gfxdd_recycle` offer with `odsy_regmatch`, the 256-byte extent table,
+  the `gfxdd_mmap` call with `gfx_fault`, the failure message and the final `gf_OdsyUnMapGfx` under `splhi` are
+  the same. It also stores 1 in the word at +20 of each table entry it adjusts, and the closing read of
+  one doubleword comes from the address held in a global pointer rather than from the fixed uncached
+  address 0xaff00080.
+- `odsyDMAFinish` (`odsy_dma.o`, offset 0x2c20, 388 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)`.
+  The Origin 350 build of the DMA drain, read as a difference from the IP30 entry: 101 instructions in the same
+  order, differing only in the flag word it sets while waiting and clears afterwards, which sits at -19300 from
+  record +0x10000 here (-19324 on IP30). It calls `odsyDMAWait` on the two operation queues at +248 and +256, frees the
+  context's buffers and destroys its set exactly as described there.
+- `odsySetDACGain` (`odsy_brdmgr.o`, offset 0x63ec, 1032 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+  The Origin 350 build of the DAC gain switch, read as a difference from the IP30 entry: 262 instructions in
+  the same order, except that the start-up word that bypasses the display-FIFO semaphore is at -19328 from
+  +0x10000 (-19352 on IP30) and one `li` that sets up the spin-lock offset 0x8540 sits later. The display
+  register, the bit and the FIFO level are unchanged.
+- `gf_OdsyUnMapGfx` (`odsy_map.o`, offset 0x31c, 524 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)`.
+  The Origin 350 build of the window unmapping routine, read as a difference from the IP30 entry (134 against 101
+  instructions). Before the detach from flow control it adds the credit wait seen in `gf_OdsySuspend`: with the
+  word at +104 of the record zero and `gfx_flow_credit_count_get` below `gfx_flow_credit_bias_get` it pins the
+  thread, lowers the level, waits in `odsy_flow_await_returned_credits`, raises it again and unpins. The detach reads
+  register 0x107c back (IP30 reads 0x106c) and the owner's flag bit is cleared after it, not before. The word at +104 is no
+  longer a single bit mask: it is an array of eight doublewords from +104, cleared in a loop on one path, and the
+  current processor's bit goes into the doubleword selected by its number divided by 64, with the processor
+  number read from -15320 in the private area (IP30 uses -15456).
+- `odsyHiwaterInterrupt` (`odsy_flow.o`, offset 0x370, 532 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
+  The Origin 350 build of the high-water handler, read as a difference from the IP30 entry (132 against 116
+  instructions). The credit spin, the 0x200 writes to 0x101c and 0x1014, the bit 9 in the enable shadow written
+  to 0x1034 and the 1500-tick `odsyFifoTimer` are unchanged, apart from the timer data at +0xb458 (IP30:
+  +0xb440) and the processor number at -15320. Where the IP30 build calls `heart_flow_control_disable`, this
+  one stores 0 at offset 784 plus 40n of the literal-pool block that `odsy_fc_attach` filled (n is bit 0 of the
+  per-processor byte at +1320) and adds one to a counter held through a global pointer.
+- `odsyLowLevelReset` (`odsy_init.o`, offset 0x2054, 908 bytes): **inferred.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
+  The Origin 350 build of the link reset, read as a difference from the IP30 entry (232 against 252
+  instructions). It reaches the host chip through the per-node block that `odsyLLPReset` computes (a table
+  address plus bits 39:33 of the board base) and reads the chip-id word at +4 and the saved bits at +124
+  of that block, where the IP30 build goes through pointers kept in globals. The two reset sequences, the
+  retry on an unanswered widget and the per-widget words at +268, +276 and +316 follow the IP30 shape.

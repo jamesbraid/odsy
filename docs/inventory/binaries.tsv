@@ -115,7 +115,7 @@ usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	objec
 usr/cpu/sysgen/IP35boot/kernel.o	kernel-shared	shared-kernel	object	n64	1288752	2e847fdcadfdb958		1318	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13620	c1e5a85bee26f8b1		4	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16228	fa079f9475f5fefa		18	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	191	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	8	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	16	0	undocumented		
