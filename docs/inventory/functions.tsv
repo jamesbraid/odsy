@@ -104937,7 +104937,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156e570	288	odsyCloseScreen	d
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156e690	1040	mfbBlackSolidFS	dynsym	04f271dce52b		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156eaa0	480	rrmMapWindow	dynsym	be0a165f297e		named-only	docs/odyssey-so-functions.md#resource-manager-client-rrm	Resource-manager client (`rrm`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ec80	440	nfbInfFillSpans..FK	dynsym	0a2605fe6de3		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ee40	200	odsyInitMonitorProtocol..CD	dynsym	cf12916bd422		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ee40	200	odsyInitMonitorProtocol..CD	dynsym	cf12916bd422		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156ef10	1920	nfbGetImage	dynsym	69f944e001b2		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156f690	500	odsySetChannelInputRectangle..IC	dynsym	f9da7a493d1e		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x156f890	5208	odsyInit	dynsym	3aece1a442c4		named-only	docs/display.md#overlay-planes	Overlay planes
@@ -104946,7 +104946,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571600	1192	drawZeroArc..AP	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571ab0	504	mergeDIDLists..EG	dynsym	63a1937f81f2		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1571cb0	1120	odsyReadImage	dynsym	fb3ddbf80110		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1572110	4544	cfb16DoBitbltXor	dynsym	da5f560363fe		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15732d0	280	odsyBuildFmtList..NB	dynsym	b2b6806a064d		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15732d0	280	odsyBuildFmtList..NB	dynsym	b2b6806a064d		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15733f0	2024	cfbFillSpanTile32sCopy	dynsym	38eb84539a06		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1573be0	156	cfb32CopyArea	dynsym	b4d40575f942		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1573c80	9364	cfb32PolyFillArcSolidGeneral	dynsym	4a6bb4221066		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
@@ -104983,7 +104983,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1586c60	24	nfbGetBestVisualFo
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1586c80	808	rrmUnmapWindow	dynsym	1d631c648f18		named-only	docs/odyssey-so-functions.md#resource-manager-client-rrm	Resource-manager client (`rrm`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1586fb0	1640	cfb16FillRectSolidCopy	dynsym	0d7e4c640b3e		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1587620	792	BindToClip..BF	dynsym	edcc806d5341		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1587940	332	odsyBuildCmbList..OB	dynsym	3b59199b9117		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1587940	332	odsyBuildCmbList..OB	dynsym	3b59199b9117		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1587a90	192	miClearDrawable	dynsym	89acf1e39231		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1587b50	9832	odsySegmentSD	dynsym	2c504d35cd0f		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x158a1c0	364	Fullscreen..KF	dynsym	2347472bad1a		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
@@ -105106,7 +105106,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e6520	4532	mfbDoBitbltXor	d
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e76e0	664	nfbChangeWindowAttributes	dynsym	77b5eeda9cd1		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e7980	992	nfbGetLayerWindow	dynsym	d16f82985730		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e7d60	512	rrmProcessRequestQueue	dynsym	1175c34247b0		named-only	docs/odyssey-so-functions.md#resource-manager-client-rrm	Resource-manager client (`rrm`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e7f60	252	odsyMonitorCommand..BD	dynsym	ba4a2bc069b3		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e7f60	252	odsyMonitorCommand..BD	dynsym	ba4a2bc069b3		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e8060	1136	nfbMoveWindow	dynsym	8f037d1b1f64		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e84d0	4560	cfb16DoBitbltOr	dynsym	c5e82be73afd		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15e96a0	308	AssignID..FG	dynsym	c5a2960f95dd		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
@@ -105303,7 +105303,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1653e10	1460	nfb0MaskRopLoop.
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16543d0	72	cfb32CopyPlane	dynsym	c6108b515aa2		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1654420	2816	cfb16FillSpanTileOddGeneral	dynsym	1d163894ddf0		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1654f20	264	nfb4MaskRopLoop..EI	dynsym	1b507b679756		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1655030	604	odsyBuildFmtInfoArray..HB	dynsym	aef5c26944e7		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1655030	604	odsyBuildFmtInfoArray..HB	dynsym	aef5c26944e7		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1655290	856	cfb32CopyRotatePixmap	dynsym	7f11a4df0334		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16555f0	504	nfbSetStereoBuffer	dynsym	7d375a1a3a23		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16557f0	176	miTileVirtualBS..KFB	dynsym	8e00bc032e98		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105366,7 +105366,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166bb50	2160	odsyValidateClip
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c3c0	636	nfbPaintWindowBackground	dynsym	59dac9d90593		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c640	2644	mfbUnnaturalStippleFS	dynsym	1faae6ea443d		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d0a0	740	miFillRectPolyHelper..KBB	dynsym	261277ff4b27		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d390	120	odsyLstVideoFmtCombs..BC	dynsym	72469646b2a4		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d390	120	odsyLstVideoFmtCombs..BC	dynsym	72469646b2a4		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d410	1244	odsyNewGCOps..E	dynsym	8ea127e8e534		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d8f0	1388	odsyAllocatePbuffer	dynsym	91df5c8eacf2		named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166de60	6216	cfbDoBitbltGeneral	dynsym	8776a578b4a9		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
@@ -105440,7 +105440,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168afc0	2368	odsyDisplayCurso
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168b900	904	rrmInvalidate	dynsym	cb807cf2f9ad		named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bc90	252	odsyValidateReservedMode	dynsym	42244df788cd		understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bd90	532	miPolyText16	dynsym	c26382dc2280		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bfb0	520	odsyEnumDir..FB	dynsym	6078f87a89cd		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168bfb0	520	odsyEnumDir..FB	dynsym	6078f87a89cd		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c1c0	424	newFinalSpan..CAB	dynsym	8bf7ca9dcd93		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c370	380	ValidateSwapbuf..GF	dynsym	677f0da55999		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x168c4f0	916	odsyInstallColormap	dynsym	e1802fedd77f		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
@@ -105522,7 +105522,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aea90	872	odsyStoreGamma8	d
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16aee00	3512	mfbStippleWhiteArea	dynsym	b80a9a07c32d		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16afbc0	8	nfbPositionWindow	dynsym	a7e7ca11a6b8		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16afbd0	4528	cfbDoBitbltXor	dynsym	16aba09a0429		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b0d80	260	odsyMakeFileName..EB	dynsym	ebbc975eddf2		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b0d80	260	odsyMakeFileName..EB	dynsym	ebbc975eddf2		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b0e90	176	DelayValidateClipCallback..DF	dynsym	2b236c88f016		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b0f40	300	cfb32AllocatePrivates	dynsym	067b046eebcf		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b1070	1244	miBSClearBackingStore..IEB	dynsym	e01730e4ca5b		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105531,7 +105531,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b1be0	3912	mfbImageGlyphBlt
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b2b30	152	nfbDestroyClip..NJ	dynsym	b09c741f60b8		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b2bd0	1500	odsyCopyRectBody	dynsym	2c5024127a21		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b31b0	112	nfbListInstalledHWColormaps	dynsym	ac6cfa76a0ee		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b3220	6292	odsyReadVideoFormat..MB	dynsym	17e306464cc8		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b3220	6292	odsyReadVideoFormat..MB	dynsym	17e306464cc8		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b4ac0	3828	cfbPolyGlyphBlt8Clipped..MM	dynsym	0c10b4fa1031		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b59c0	2364	miPolyFillRect	dynsym	d8d4124267cb		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16b6300	212	nfbDestroyWindow	dynsym	2caafbb3cbc0		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105655,7 +105655,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f44f0	1408	mfbBlackStippleF
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f4a70	528	miBSPolyFillRect..PDB	dynsym	ab6da75f2741		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f4c80	448	nfbStereoPolyline	dynsym	577a90dd8765		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f4e40	1452	odsyCopyWindow	dynsym	556e62b150d6		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f53f0	224	odsyLstVideoFmt	dynsym	3277e69fd0f4		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f53f0	224	odsyLstVideoFmt	dynsym	3277e69fd0f4		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f54d0	1020	cfb32FillRectSolidXor	dynsym	0a48cf249513		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f58d0	1488	miOpqStipDrawable	dynsym	9ef8e2272702		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16f5ea0	8	nfbNoopDDACreateScreenResources	dynsym	a7e7ca11a6b8		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
