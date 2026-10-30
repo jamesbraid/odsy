@@ -22,5 +22,5 @@ root/
 /root
 
 # Ghidra module build output and test dumps
-/sleigh/odsy-buzz/data/languages/*.sla
+/ghidra/processors/odsy-buzz/data/languages/*.sla
 /.cache/

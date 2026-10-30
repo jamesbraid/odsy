@@ -1,6 +1,8 @@
 # Tooling: the Ghidra processor module for the BUZZ microcode
 
-The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra's stock MIPS support. The BUZZ transform microcode (`ucode/ODSY/buzz_xform.bin`, the kernel's copy `ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `sleigh/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
+The index of all Ghidra tooling is [ghidra/README.md](../ghidra/README.md).
+
+The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra's stock MIPS support. The BUZZ transform microcode (`ucode/ODSY/buzz_xform.bin`, the kernel's copy `ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -71,18 +73,18 @@ Not modelled: the patching of a program's value-3 mark and the overlay paging (G
 From the repository root, with `root/` populated and Ghidra's `support/` directory (`sleigh`, `analyzeHeadless`) on `PATH`:
 
 ```sh
-sleigh/odsy-buzz/tests/run-ghidra.sh .cache/odsy-buzz     # needs Ghidra
-python3 sleigh/odsy-buzz/tests/check.py .cache/odsy-buzz  # needs Python 3 only
+ghidra/processors/odsy-buzz/tests/run-ghidra.sh .cache/odsy-buzz     # needs Ghidra
+python3 ghidra/processors/odsy-buzz/tests/check.py .cache/odsy-buzz  # needs Python 3 only
 ```
 
 `run-ghidra.sh` installs the module as a user extension in a temporary settings directory, compiles the spec and imports each image. With no local Ghidra, the same commands run in any container that has Ghidra on `PATH` and the workspace mounted as the working directory. A `root/` that is a symlink must resolve inside the container.
 
-To use the module interactively, copy or link `sleigh/odsy-buzz` into Ghidra's `Extensions` directory and run `sleigh` on the spec. Then import an image with the recipe, from the GUI (Raw Binary, language `ODSY-BUZZ:BE:16:default`, then run `BuzzImport.java` from the Script Manager) or headless:
+To use the module interactively, copy or link `ghidra/processors/odsy-buzz` into Ghidra's `Extensions` directory and run `sleigh` on the spec. Then import an image with the recipe, from the GUI (Raw Binary, language `ODSY-BUZZ:BE:16:default`, then run `BuzzImport.java` from the Script Manager) or headless:
 
 ```sh
 analyzeHeadless PROJDIR PROJ -import ucode/ODSY/buzz_xform.bin -loader BinaryLoader \
   -processor ODSY-BUZZ:BE:16:default \
-  -scriptPath sleigh/odsy-buzz/ghidra_scripts -preScript BuzzImport.java
+  -scriptPath ghidra/processors/odsy-buzz/ghidra_scripts -preScript BuzzImport.java
 ```
 
 Run the script before auto-analysis. It replaces the raw block with the code block and the data spaces, sets the context, decodes every record, and creates the labels and functions.

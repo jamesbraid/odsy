@@ -1,17 +1,17 @@
 #!/bin/sh
 # Build the ODSY-BUZZ module and run the Ghidra half of its acceptance tests.
 #
-#   sleigh/odsy-buzz/tests/run-ghidra.sh [OUTDIR]     (default .cache/odsy-buzz)
+#   ghidra/processors/odsy-buzz/tests/run-ghidra.sh [OUTDIR]     (default .cache/odsy-buzz)
 #
 # Run from the repository root with Ghidra's support directory (sleigh,
 # analyzeHeadless) on PATH and root/ populated. It writes, under OUTDIR:
 #   xform.listing, xform.functions, decomp/*.c   ucode/ODSY/buzz_xform.bin
 #   kernel.listing, kernel.functions             ucode/buzz_ucode_ip30.bin
 #   diag.listing, diag.functions                 the field diagnostics' diagxform.bin
-# and sleigh/odsy-buzz/tests/check.py then compares them with
+# and ghidra/processors/odsy-buzz/tests/check.py then compares them with
 # scripts/buzz_ucode_disasm.py and the documents.
 set -eu
-MOD=sleigh/odsy-buzz
+MOD=ghidra/processors/odsy-buzz
 OUT=${1:-.cache/odsy-buzz}
 DIAG=root/builds/odydiags-6.5.15/usr/diags/ody/ucode/diagxform.bin
 mkdir -p "$OUT"
