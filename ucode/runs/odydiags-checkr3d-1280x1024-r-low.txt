@@ -1,0 +1,25 @@
+; polygon at word 5192: entries 243.. 255.. 255.. 255.. 267; (649.398, 471.746) 1/w 0.00865376; (316.000, 355.078) 1/w 0.00716151; (633.414, 269.297) 1/w 0.00606434; (961.273, 350.367) 1/w 0.00710128
+; polygon at word 5227: entries 243.. 255.. 255.. 255.. 267; (648.664, 653.105) 1/w 0.00797899; (337.191, 514.836) 1/w 0.00669309; (633.781, 410.750) 1/w 0.00572506; (940.426, 509.176) 1/w 0.00664045
+; polygon at word 5262: entries 243.. 255.. 255.. 255.. 267; (648.039, 808.223) 1/w 0.00740184; (355.781, 654.980) 1/w 0.00628219; (634.113, 537.211) 1/w 0.00542172; (922.117, 648.633) 1/w 0.00623579
+; CRC-32 of built frame be7b9ecb; csumlist checkr3d 2bb8d20c; CRC-32 of checkr3d.SUM 1f9ba6f3
+; pixels differing from checkr3d.SUM: 43
+;   window (718, 759): stored ffff00ff, built 0000ffff
+;   window (750, 736): stored 0000ffff, built ffff00ff
+;   window (683, 705): stored ffff00ff, built 0000ffff
+;   window (790, 683): stored 0000ffff, built ffff00ff
+;   window (758, 671): stored ffff00ff, built 0000ffff
+;   window (825, 668): stored 0000ffff, built ffff00ff
+;   window (769, 656): stored ffff00ff, built 0000ffff
+;   window (721, 645): stored 0000ffff, built ffff00ff
+;   window (549, 643): stored ffff00ff, built 0000ffff
+;   window (867, 627): stored ffff00ff, built 00000000
+;   window (831, 623): stored ffff00ff, built 0000ffff
+;   window (482, 612): stored ffff00ff, built 0000ffff
+;   window (549, 611): stored ffff00ff, built 0000ffff
+;   window (677, 601): stored ffff00ff, built 0000ffff
+;   window (767, 559): stored 0000ffff, built ffff00ff
+;   window (770, 554): stored 0000ffff, built ffff00ff
+;   window (575, 548): stored 0000ffff, built ffff00ff
+;   window (570, 540): stored ffff00ff, built 0000ffff
+;   window (716, 540): stored 0000ffff, built ffff00ff
+;   window (788, 537): stored 0000ffff, built ffff00ff

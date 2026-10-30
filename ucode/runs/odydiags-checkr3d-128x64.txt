@@ -1,0 +1,10 @@
+; polygon at word 4892: entries 243.. 255.. 255.. 255.. 267; (64.941, 29.480) 1/w 0.00865376; (31.602, 22.188) 1/w 0.00716151; (63.340, 16.828) 1/w 0.00606434; (96.129, 21.895) 1/w 0.00710128
+; polygon at word 4927: entries 243.. 255.. 255.. 255.. 267; (64.867, 40.816) 1/w 0.00797899; (33.719, 32.172) 1/w 0.00669309; (63.379, 25.668) 1/w 0.00572506; (94.043, 31.820) 1/w 0.00664045
+; polygon at word 4962: entries 243.. 255.. 255.. 255.. 267; (64.805, 50.512) 1/w 0.00740184; (35.578, 40.934) 1/w 0.00628219; (63.410, 33.570) 1/w 0.00542172; (92.211, 40.535) 1/w 0.00623579
+; CRC-32 of built frame 603db67e; csumlist.sml checkr3d 4bb39aca; CRC-32 of checkr3d.sml 4bb39aca
+; pixels differing from checkr3d.sml: 5
+;   window (60, 46): stored ffff00ff, built 0000ffff
+;   window (63, 45): stored 0000ffff, built ffff00ff
+;   window (80, 31): stored ffff00ff, built 0000ffff
+;   window (55, 20): stored ffff00ff, built 0000ffff
+;   window (60, 17): stored ffff00ff, built 0000ffff

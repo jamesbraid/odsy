@@ -3,7 +3,8 @@
 raster rules, and compare the frame it predicts with the test's stored frame
 and checksum.
 
-Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle|alpha|blend]
+Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle|alpha|blend|checkr3d]
+                                       [--r-low] [--texel-edge]
                                        [--round f32|tN] [--small]
                                        [--image IMAGE] [--program A,B,C] [--dump]
        scripts/odydiags_frame_check.py --survey | --logic
@@ -16,9 +17,10 @@ reads the frame back and compares a CRC-32 of it with usr/diags/ody/checksum/
 csumlist (csumlist.sml for the 128 x 64 screen); <test>.SUM and <test>.sml
 hold the frames themselves (ucode/buzz_isa.md, "Pass 18").
 
-This script handles the points, lines, triangle, alpha and blend tests
-(__clog_pts, __clog_lines, __clog_tri, __clog_alpha, __clog_blend and their
-_small forms; blend does not yet match, docs/raster.md): it extracts the writes,
+This script handles the points, lines, triangle, alpha, blend and checkr3d
+tests (__clog_pts, __clog_lines, __clog_tri, __clog_alpha, __clog_blend,
+__clog_chk3d and their _small forms; blend and checkr3d do not yet match,
+docs/raster.md): it extracts the writes,
 tracks the sequencer registers, the matrix table and the primitives, runs
 each primitive's vertices through scripts/buzz_ucode_dataflow.py (first
 part, loop once per further vertex, closing part, the slot-0 values changing
@@ -34,6 +36,8 @@ diagxform.bin, the image odydiags loads). --round is passed to the dataflow
 run. --program replaces the start, loop and closing entries the stream
 sets in sequencer 0x29, 0x2a and 0x2c (the 128 x 64 stream names a program
 layout no held image has). --dump prints the decoded command stream instead.
+--r-low holds r below 1.0 and --texel-edge limits a texel index of 32 to 31
+(the checkr3d test only; docs/raster.md, "Texturing").
 --logic checks the logic operations against the blend frame's own panels.
 --survey builds all eight frames under each rule variant in VARIANTS, one rule
 changed at a time, and prints the number of pixels each frame then differs
@@ -199,7 +203,7 @@ def enc_val(w):
 
 VERTEX = {0x8080c801: 2, 0x8080cc03: 3, 0x8080d005: 4}
 # Primitive types of the 0x00014400 word that the streams use (GL numbering).
-POINTS, LINES, TRIANGLES, QUADS = 0, 1, 4, 7
+POINTS, LINES, TRIANGLES, QUADS, POLYGON = 0, 1, 4, 7, 9
 PER = {POINTS: 1, LINES: 2, TRIANGLES: 3, QUADS: 4}
 
 
@@ -207,7 +211,7 @@ def primitives(cmds, loads, types=(POINTS,)):
     """Yield each primitive of one of TYPES with the state it is drawn
     under. LOADS are the opcodes of the two matrix-table stores."""
     seq, table, scissor, prim = {}, [math.nan] * 68, None, None
-    colour, alpha, enables, logic = [math.nan] * 4, 0, 0, 3
+    colour, alpha, enables, logic, tex = [math.nan] * 4, 0, 0, 3, [0.0, 0.0, 0.0]
     for idx, w, ops in cmds:
         top = w >> 24
         if w & 0xc000 == 0x8000 and 0x20 <= top <= 0x3f:
@@ -218,6 +222,8 @@ def primitives(cmds, loads, types=(POINTS,)):
                     table[seq.get(0x34, 0) + k] = fl(o)
         elif w == 0x0001081d:
             scissor = ops
+        elif w == 0xc380cc23:
+            tex = [fl(o) for o in ops]
         elif w == 0xc580d015:
             colour = [fl(o) for o in ops]
         elif w == 0x0001041e:
@@ -230,7 +236,7 @@ def primitives(cmds, loads, types=(POINTS,)):
             prim = dict(type=ops[0], verts=[], idx=idx, seq=dict(seq),
                         regs={str(r): table[4 * r:4 * r + 4] for r in range(17)},
                         scissor=scissor, colour=list(colour), alpha=alpha,
-                        enables=enables, logic=logic, cols=[])
+                        enables=enables, logic=logic, cols=[], texs=[])
         elif w == 0x00014001:
             if prim and prim['type'] in types and prim['verts']:
                 yield prim
@@ -241,6 +247,7 @@ def primitives(cmds, loads, types=(POINTS,)):
             prim['verts'].append(v)
             prim['colour'] = list(colour)
             prim['cols'].append(list(colour))
+            prim['texs'].append(list(tex))
 
 
 def snap(v, grid=256, mode='nearest'):
@@ -402,7 +409,73 @@ TESTS = {'points': ('__clog_pts', '__clog_pts_small', 'points', (POINTS,)),
          'lines': ('__clog_lines', '__clog_lines_small', 'lines', (LINES,)),
          'triangle': ('__clog_tri', '__clog_tri_small', 'triangle', (TRIANGLES,)),
          'alpha': ('__clog_alpha', '__clog_alpha_small', 'alpha', (QUADS,)),
-         'blend': ('__clog_blend', '__clog_blend_small', 'blend', (QUADS,))}
+         'blend': ('__clog_blend', '__clog_blend_small', 'blend', (QUADS,)),
+         'checkr3d': ('__clog_chk3d', '__clog_chk3d_small', 'checkr3d', (POLYGON,))}
+def build_textured(small, image, rule, log):
+    """The 3D checkerboard test: three polygons through the textured
+    program, each pixel taking the nearest texel of the 32 x 32 x 32 image
+    the test sends by DMA (odydiags symbol texbuf), at the perspective-
+    correct (s, t, r) of its centre. The program's output words for this
+    stream: 3 to 5 are s, t and r times 1/w, 7 is depth, 8 and 9 are x
+    and y, and the 1/w of each vertex arrives as word 6 one pass earlier.
+    The stream sets GL_CLAMP on all three axes with the clamp limit at the
+    whole level (32, BUZZ.h TEXMODE1); a coordinate of exactly 1.0 then
+    gives texel 32, which rule['texel'] = 'wrap' (default) takes modulo
+    32 and 'edge' limits to 31."""
+    func, W, H, frame_file, listfile, loads = (
+        ('__clog_chk3d_small', 128, 64, 'checkr3d.sml', 'csumlist.sml', (0x28d, 0x2a4)) if small else
+        ('__clog_chk3d', 1280, 1024, 'checkr3d.SUM', 'csumlist', (0x1c8, 0x1df)))
+    path = os.path.join(ROOT, 'odydiags')
+    d, secs, syms = elf(path)
+    base, size = syms['texbuf']
+    off = next(o + base - a for a, o, sz in secs if a <= base < a + sz)
+    texels = struct.unpack(f'>{size // 4}I', d[off:off + size])
+    cmds = decode(stream(path, func))
+    recs = [df.decode(w) for w in records(image)[0]]
+    frame = [0] * (W * H)
+    for p in primitives(cmds, loads, (POLYGON,)):
+        s = p['seq']
+        entries = (243, 255, 267) if small else (s[0x29], s[0x2a], s[0x2c])
+        n = len(p['verts'])
+        run = [f'{entries[0]}..'] + [f'{entries[1]}..'] * (n - 1) + [str(entries[2])]
+        scen = dict(regs=p['regs'], slots={'5': p['colour']},
+                    passes=[{'0': v, '3': t + [1.0]} for v, t in zip(p['verts'], p['texs'])])
+        dom = df.Numbers(scen, {}, None)
+        df.run(recs, run, dom)
+        got = {}
+        for k, rec, word, v in dom.emits:
+            got.setdefault(k - 1, {})[word] = v
+        vs = [dict(xy=(snap(got[k][8]), snap(got[k][9])), q=got[k - 1][6],
+                   str=[got[k][3], got[k][4], got[k][5]]) for k in range(n)]
+        log(f"; polygon at word {p['idx']}: entries {' '.join(run)}; "
+            + '; '.join(f"({v['xy'][0]:.3f}, {v['xy'][1]:.3f}) 1/w {v['q']:.6g}" for v in vs))
+        x0, x1 = p['scissor'][0] >> 12 & 0xfff, p['scissor'][0] & 0xfff
+        y0, y1 = p['scissor'][1] >> 12 & 0xfff, p['scissor'][1] & 0xfff
+
+        def texel(u):
+            i = math.floor(min(max(u, 0.0), 1.0) * 32)
+            return i % 32 if rule.get('texel', 'wrap') == 'wrap' else min(i, 31)
+        for t in [(0, k, k + 1) for k in range(1, n - 1)]:
+            tri = [vs[m]['xy'] for m in t]
+            for px, py in triangle_pixels(tri, rule):
+                if not (x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H):
+                    continue
+                (ax, ay), (bx, by), (cx, cy) = tri
+                dd = (bx - ax) * (cy - ay) - (cx - ax) * (by - ay)
+                x, y = px + 0.5, py + 0.5
+                l1 = ((x - ax) * (cy - ay) - (cx - ax) * (y - ay)) / dd
+                l2 = ((bx - ax) * (y - ay) - (x - ax) * (by - ay)) / dd
+                lam = (1 - l1 - l2, l1, l2)
+                q = sum(lam[m] * vs[t[m]]['q'] for m in range(3))
+                u = [sum(lam[m] * vs[t[m]]['str'][c] for m in range(3)) / q for c in range(3)]
+                if rule.get('r_low'):
+                    u[2] = min(u[2], 1.0 - 1e-6)
+                frame[(H - 1 - py) * W + px] = texels[texel(u[0]) + 32 * texel(u[1]) + 1024 * texel(u[2])]
+    stored = struct.unpack(f'>{W * H}I', open(os.path.join(ROOT, 'checksum', frame_file), 'rb').read())
+    want = dict(l.split() for l in open(os.path.join(ROOT, 'checksum', listfile)) if l.strip())['checkr3d']
+    return W, H, frame, stored, want, frame_file, listfile
+
+
 # The tests whose frames the rules rebuild with the CRC matching; the
 # survey runs these.
 MATCHED = ('points', 'lines', 'triangle', 'alpha')
@@ -415,6 +488,8 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print, drawn=N
     """Replay TEST's stream and return (width, height, frame, stored frame,
     csumlist value)."""
     rule = rule or {}
+    if test == 'checkr3d':
+        return build_textured(small, image, rule, log)
     func, func_small, key, types = TESTS[test]
     # The matrix-table stores are routine entries 456 and 479 in the
     # images held (buzz_isa.md); the 128 x 64 stream was recorded under a
@@ -589,6 +664,7 @@ def logic_check(image):
 def main():
     args = sys.argv[1:]
     rnd, small, dump, prog, test, do_survey = None, False, False, None, 'points', False
+    rule_cli = {}
     image = os.path.join(ROOT, 'ucode', 'diagxform.bin')
     while args:
         a = args.pop(0)
@@ -602,6 +678,10 @@ def main():
             dump = True
         elif a == '--program':
             prog = [int(x) for x in args.pop(0).split(',')]
+        elif a == '--r-low':
+            rule_cli['r_low'] = True
+        elif a == '--texel-edge':
+            rule_cli['texel'] = 'edge'
         elif a == '--test' and args and args[0] in TESTS:
             test = args.pop(0)
         elif a == '--survey':
@@ -620,7 +700,7 @@ def main():
         for idx, w, ops in decode(words):
             print(f"{idx:5d} {words[idx][0]} {w:08x} {' '.join(f'{o:x}' for o in ops)}")
         return
-    W, H, frame, sw, want, frame_file, listfile = build(test, small, image, rnd, prog)
+    W, H, frame, sw, want, frame_file, listfile = build(test, small, image, rnd, prog, rule_cli)
     data = struct.pack(f'>{W * H}I', *frame)
     stored = struct.pack(f'>{W * H}I', *sw)
     diff = [(k % W, H - 1 - k // W, sw[k], frame[k]) for k in range(W * H) if sw[k] != frame[k]]
