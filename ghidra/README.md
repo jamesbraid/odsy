@@ -33,3 +33,4 @@ installation. The Sleigh compiler output (`*.sla`) is not committed.
 | Path | What it is |
 |---|---|
 | [processors/odsy-buzz/](processors/odsy-buzz/) | the BUZZ transform-microcode processor (`ODSY-BUZZ`) and its import script `BuzzImport.java`; build and use are in [docs/tooling.md](../docs/tooling.md) |
+| [scripts/](scripts/) | the IRIX MIPS scripts: `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); see [scripts/README.md](scripts/README.md) |
