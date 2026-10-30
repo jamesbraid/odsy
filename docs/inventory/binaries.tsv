@@ -31,7 +31,7 @@ builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)	kernel	board
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	0e4dcd6286cc5c7a		671	dynsym+mdebug	0	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	bd4b77fe6bd4a187		5169	dynsym+mdebug	4924	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	aa9005aa43d3b8e2		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	9abe5557d67810d2		5216	dynsym+dwarf	5153	0	named-only	docs/pixel-paths.md#pixel-paths-read-write-and-copy-headers	Pixel paths: read, write and copy headers
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	9abe5557d67810d2		5216	dynsym+dwarf	5153	0	named-only	docs/libglcore-odyssey-reads.md#validation-and-defaults	Validation and defaults
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	dfe753e69d105ba4		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	30dc6c8e51d7b67b		5137	dynsym+dwarf	5153	0	undocumented		
 builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	12660	17d6b78a3a02bbf4		4	symtab	0	0	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
