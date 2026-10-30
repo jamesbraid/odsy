@@ -57616,7 +57616,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100ef150	448	_FontTransSocketIN
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100ef310	1740	XvcExtensionInit	dynsym	dfb30d32bd70		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100ef9e0	1100	LeaveNotifies..PC	dynsym	7da5ae82b171		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100efe30	40	RIGHT_BRACKET..IAC	dynsym	b78d62af488d		undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100efe60	28	ddxGetBoardInfo	dynsym	54d1d19dd53b		undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100efe60	28	ddxGetBoardInfo	dynsym	54d1d19dd53b		named-only	docs/odyssey-so-reads.md#compositor-routines	Compositor routines
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100efe80	324	LbxServerGrab..IBG	dynsym	f9e734ea081a		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100effd0	224	glxRemoveDeepWindow	dynsym	12665e6190d5		undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f00b0	1628	doImageText	dynsym	935e9e7dccf0		undocumented		
@@ -105213,7 +105213,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1621250	1204	mfbInvertSolidFS
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1621710	2760	nfbImageGlyphBlt	dynsym	ddb572bfcc47		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16221e0	440	nfbInfImageGlyphBlt..GL	dynsym	5ff26ed976e3		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16223a0	3696	mfbValidateGC	dynsym	154407fd6a8b		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1623210	2648	odsySetupCompositorInfo	dynsym	56a693ca5abc		named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1623210	2648	odsySetupCompositorInfo	dynsym	56a693ca5abc		understood	docs/odyssey-so-reads.md#compositor-routines	Compositor routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1623c70	8	odsyStoreFakeColors	dynsym	78aa5094d5ec		understood	docs/odyssey-so-reads.md#stub-and-one-line-routines	Stub and one-line routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1623c80	332	cfb32ImageGlyphBlt8	dynsym	4ebcbbf12b5a		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1623dd0	16552	odsySolidFillSpans	dynsym	e677453fe9d1		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
@@ -105617,7 +105617,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16de400	3552	cfb16LineSS1Rect
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df1e0	1092	QuickSortSpans..NAB	dynsym	47b8ee3ba646		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df630	412	ValidateClip..CF	dynsym	084622d57b40		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df7d0	3008	mfbZeroArcSS..FN	dynsym	364132b66143		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e0390	2360	odsyLoadDenali..NC	dynsym	3bf18708cd26		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e0390	2360	odsyLoadDenali..NC	dynsym	3bf18708cd26		understood	docs/odyssey-so-reads.md#compositor-routines	Compositor routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e0cd0	2792	cfbFillBoxTileOddCopy	dynsym	ec24543fcc69		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e17c0	2516	cfb16GetSpans	dynsym	e4b10a31fac8		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e21a0	192	odsyFreeFmtInfoArray..GB	dynsym	45ef19f32185		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
