@@ -2648,3 +2648,153 @@ Lays out
   address plus bits 39:33 of the board base) and reads the chip-id word at +4 and the saved bits at +124
   of that block, where the IP30 build goes through pointers kept in globals. The two reset sequences, the
   retry on an unanswered widget and the per-widget words at +268, +276 and +316 follow the IP30 shape.
+- `mm_rewind_cond_list_cursor` (`odsy_pmm.o`, offset 0x88, 240 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Moves saved free-list cursors back to an earlier free node after a node appears in front of them. Arguments:
+  memory-manager record, a size in 32-byte units and the node. It sets the flag word at +4800 to 1, then for each
+  of the six pixel-size classes whose shifted size is not negative it visits slots 0 to the shifted size of that
+  class's 65-slot row in the table at +1680 (the table `mm_get_cond_list_cursor` reads). An empty slot takes the
+  node. A filled slot is compared by walking the list from the head at +1640 along the links at +24: if the node is
+  met before the slot's current cursor, the slot takes the node; otherwise it is left alone.
+- `mm_check_cond_list_cursor` (`odsy_pmm.o`, offset 0x178, 180 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Repairs the saved free-list cursors when a node is about to disappear. It scans all six classes of 65 slots in
+  the table at +1680 of the memory-manager record and replaces every slot that points at the given node with the
+  node's successor (+16), or with the list head at +1640 when the node has none. It changes nothing else.
+- `odsyMMinit` (`odsy_pmm.o`, offset 0x298, 468 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Builds the board's initial memory-manager record. It finds the board with `odsyPipeNrFromBase` on the first
+  argument and stores that board's pointer, from the global table, at +0 of the record in the second argument.
+  Group fields at +1248 get the identifier -2 and a zero at +1256. It clears the 16 object slots at +1264, points
+  slot 0 at an embedded object at +432 and slot 1 at one at +568, and slots 2 to 5 at four more at +704 plus 136 each
+  (type byte at object +16: 1, 2 and 8 for the four). Every filled slot gets its own index at +0, the group at +8,
+  -1 at +96, zero at +56, +76 and +80, and its flag word at +64 set to bits 0 and 1 with bits 2 and 3 clear. The
+  record itself gets size and counter defaults (+56 = 4096, +60 = 16, +64 = 1, +68 and +72 = 256), 8192 at +216, +488
+  and +624, 255 at +176 and the same flag setting at +88.
+- `odsyInitMM` (`odsy_pmm.o`, offset 0x46c, 160 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Prepares the memory manager inside the board record. It creates the two sets at +2368 and +2416 with
+  `OdsyInitCSet` (element size 4), clears the budget fields at +5688 to +5732 (storing 3200 at +5724 and 8192
+  at +5712), clears the free-list head words at +2512 to +2536, sets +5672 to 1, calls
+  `mm_set_all_cond_list_cursor` on the record at +872 with the list head at +2512, and stores that head at
+  +5680 as the cached free pointer.
+- `mm_init_freespace` (`odsy_pmm.o`, offset 0x50c, 484 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Sets up the free-extent list and the host-memory limits on first use. The board's memory size (+252 of the
+  board at +0, shifted left 20 and right 9) less the reserved start (+216 divided by 32) becomes the budget at
+  +4856. When the four configured figures at +4828, +4840, +4844 and +4852 add up to more than that budget, it logs
+  twice with `cmn_err` and zeroes those figures. It then writes a single free node at +1640 (start, size, no owner or
+  links). The host limits come from `kabi_num_lockable_pages`: a global percentage clamped to 0..100 and raised to at
+  least 25 scales the page count, which is split by the number of boards present (the leading non-null entries of the
+  board table) into 16 KB pages: that is the per-board limit at +4888, with +4896 = 0x700000 and the warning level
+  +4864 = limit - 0x700000. It zeroes the in-use total (+4880) and reserved total (+4912), sets the flag at +4920 to
+  1 and the pressure level at +4924 to 0, stores +4904 = warning level + (budget << 9) - 0x700000 and the jettison
+  limit +4872 = 10% of the lockable pages in 16 KB units.
+- `odsy_mm_sg_new` (`odsy_pmm.o`, offset 0x29c8, 256 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Creates a share-group record, the unit that clients with a common address space share. It allocates 216 bytes
+  with `kmem_alloc`, clears the reference count (+16) and the address-space link (+0), stores the manager at +8
+  and -1 at +20, initialises three sets at +24, +72 and +120 and clears the texture, list and counter fields
+  (+168, +172, +176, +184, +208). `OdsyAllocCSetId` on the manager's set at +1496 gives the group its number
+  (+20); `odsy_mm_find_current_as` supplies the address-space record, whose count at +4 is incremented and which is
+  stored at +0. A failed number or address-space lookup logs through `cmn_err` and ends in `odsy_mm_sg_destroy`
+  and a null result.
+- `odsy_mm_sg_destroy` (`odsy_pmm.o`, offset 0x2ac8, 252 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Tears a share group down. It destroys every group in the set at +72 with `odsy_mm_grp_destroy` (restarting the
+  cursor each time), releases the group's number from the manager's set at +1496, calls
+  `odsyUnpinAndUnmapSGRegions`, removes the group from its address space with `mm_as_remove_sg`, destroys the three
+  sets at +72, +24 and +120, overwrites the 216 bytes with 9 and frees them with `kmem_free`.
+- `odsy_mm_obj_new` (`odsy_pmm.o`, offset 0x2bc4, 712 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Creates a memory object in a group. Arguments: the group's list owner, the group, the slot index and the request
+  record. The bytes per pixel at request +1 must be 2, 4, 8, 16 or 32, and the three extents at +16, +20 and +24
+  must be nonzero (the first at most 65536); otherwise it logs a severity 4 message and returns 0. It allocates
+  136 bytes, clears the low four flag bits at +64, sets +0 to -1, +8 to the group and +128 to 0, and copies the four
+  request bytes (+0 to +3) and the words +4, +8, +12, +16, +20 and +24 into the object (+16 to +19, +20, +24, +28, +32,
+  +36 and +40). The two pitch words at +44 and +48 come from the request's +28 and +32: +44 is the 16-pixel tile
+  count of the width plus offset rounded up to an even number, accepted if the caller gave at least that, and +48 is
+  that count times the tile rows of the height plus offset, again accepted when the caller gave at least that
+  much; a smaller value logs and returns 0. It sets +72 to width times height times the pixel size, +60 to the tile
+  count times the sum of request +12 and +24 shifted left by the per-pixel-size amount in the global shift table,
+  clears +76, +80, +88 and +104, sets +96 to -1 and calls `odsy_mm_reserve`. A failed reservation destroys
+  the object and returns 0; success stores the object in the group's slot table (+16 plus 8 per index), writes the
+  index at +0 and counts it in the group's +144.
+- `odsy_mm_obj_destroy` (`odsy_pmm.o`, offset 0x2e8c, 252 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Destroys a memory object. When bit 3 of the flag word at +64 is set it calls `odsy_mm_decommit`, and when bit 2
+  is set `odsy_mm_release`. It waits for any transfer with `odsyDMAWait` (mode 1, the op number at +96) on the board
+  three links up, frees a backing store of nonzero size (+88) with `odsy_mm_obj_free_bs`, clears its slot in the
+  group's table and decrements the group's count at +144 when its index (+0) is not -1, overwrites the 136 bytes
+  with 17 and frees them.
+- `odsy_mm_grp_new` (`odsy_pmm.o`, offset 0x31a0, 260 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Creates an object group in a share group. It allocates 248 bytes, sets +0 and +212 to -1, clears the 16-slot
+  object table at +16 (128 bytes) and the fields at +144, +216, +232 and +240, initialises the range set at +160
+  with element size 2, and stores the manager at +224 and the share group at +8. The word at +208 becomes 1 when
+  byte +12 of the request is 6. `odsy_mm_sg_add_grp` gives the group its number and user mapping. A number of -1
+  destroys the group and returns 0. When +208 is set, the group also takes a number from the manager's set at +360
+  (stored at +212), and failing to get one destroys the group.
+- `odsy_mm_grp_destroy` (`odsy_pmm.o`, offset 0x32a4, 528 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Destroys a group that has a number. It destroys all 16 objects in its table, then walks the set at +160, whose
+  elements are 48-byte per-client sets of range records: each range is destroyed with `odsy_mm_cores_destroy`,
+  the per-client set is destroyed, its number (the client's id at client +240) is returned to the group's set, and the
+  48 bytes are overwritten with 33 and freed. It then destroys the set at +160, returns the number at +212 to the
+  manager's set at +360 when set, removes the group from the share group with `odsy_mm_sg_remove_grp` and
+  frees the 248 bytes after overwriting them with 35. A group whose number is -1 only gets the overwrite and free.
+- `odsy_mm_sg_add_grp` (`odsy_pmm.o`, offset 0x2fc8, 472 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Registers a group with its share group and maps the group's per-id state to the client. It takes a number from
+  the set at +72, stores it at group +0 and uses number divided by 256 as a page index (below 128, else it logs
+  and fails). If the set at +120 has no page record for the index it allocates a 32-byte record and a 16 KB page,
+  files them with `OdsyAllocSpecificCSetId`, and maps the page into the client with
+  `MapKernelRegionIntoUserSpace`; it then sets bit 1 of the request's flag word at +52, the page index at request
+  +64 and the user address at +56. The group's state pointer (+152) is the page plus 64 times the low byte of the
+  number. A failure at any step logs a severity 4 message, returns the number and stores -1 at +0 of the group.
+- `odsy_mm_cores_new` (`odsy_pmm.o`, offset 0x3584, 944 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Creates a range record (72 bytes) for a client context in a group. The record gets the context (+16), the set
+  that numbers it (+56), the group (+8), the low and high slot arguments (+0 and +4) and three numbers, each -1
+  until taken: one from each of two sets (+48, +52) and a 32 KB slot from the board (`OdsyAlloc32kSlot` at +24). The
+  number at +48 divided by 1024 selects a 16 KB page in the context's set at +312; if the page does not exist (index
+  below 32) the routine allocates its 32-byte record and page, files them with `OdsyAllocSpecificCSetId` and maps
+  them with `MapKernelRegionIntoUserSpace`, filling the first two words with -1 for page 0. On first use of a page
+  it also sets bit 4 of the request's flag word, the page index at request +32 and the user address at +24.
+  Finally +32 points at the halfword for the 32 KB slot in the manager's table (cleared) and +40 at a 16-byte state record
+  at (+48 mod 1024) x 16 in the page, whose four words are cleared and halfword +4 set to 1. Every failure logs
+  severity 4, releases what it took and ends in `odsy_mm_cores_destroy` with a null result.
+- `odsy_mm_cores_destroy` (`odsy_pmm.o`, offset 0x34b4, 208 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Frees a range record. It returns each number that is not -1: +52 to the set at +56, +48 to the client's set at
+  +264 of the context at +16, and +24 as a 32 KB slot to the board's table at +29952 (board from the manager's
+  +0). It overwrites the 72 bytes with 31 and frees them.
+- `odsy_mm_sg_remove_gctx` (`odsy_pmm.o`, offset 0xfbc, 448 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Detaches a client context from its share group. It destroys every group in the context's set at +360 and the set
+  itself, returns the leading elements equal to 1 of the context's set at +264 to that set, destroys the remaining
+  range records with `odsy_mm_cores_destroy`, and for each group of the share group removes the context's id
+  (+240) from the group's set at +160. When the context's word at +292 is nonzero and the kernel debug halfword is
+  set, it flushes the console buffer and enters `debug`. It finally destroys the set at +264, returns the
+  context's id to the share group's set at +24 and stores -1 at context +240.
+- `odsy_mm_find_current_as` (`odsy_pmm.o`, offset 0x2750, 468 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Finds or creates the memory manager's record for the calling process's address space. `as_lookup_current` gives
+  a pair of values, and the routine scans the set at +1544 for a record whose +16 and +24 match them. Otherwise it
+  allocates a 64-byte record, takes a number from that set (stored at +0), stores the pair and the manager (+8),
+  clears +4 and +32, and calls `odsyPinAndMapASRegions`; a failed number or pin logs through `cmn_err`, overwrites and
+  frees the record and returns null.
+- `odsyMMvalidatePcxSwap` (`odsy_pmm.o`, offset 0x266c, 228 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Before a context switch commits the incoming client's pending ranges. It returns 0 at once when the context's
+  word at +0 is zero, it has no share group (+232) or its set at +312 has no page 0. Otherwise it arms a
+  1500-tick timeout, walks the context's range set at +264 (skipping the placeholder 1) and calls `odsy_mm_commit`
+  for each range whose state record at +40 has a nonzero halfword at +6 and whose flag word at +64 is zero, then
+  waits for the timeout with `untimeout_wait` and returns 0.
+- `odsyMMdetach` (`odsy_pmm.o`, offset 0xee4, 216 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
+  Detaches a client context from the memory manager. It does nothing when the context has no share group (+232).
+  When the manager's owner word (+72 of the record at board +40) is not this board it takes the manager's semaphore
+  at +56 with `psema`, becomes the owner, and sleeps in 2 us steps while the word at +104 is nonzero. It counts the
+  busy word at +80 up, calls `odsy_mm_sg_remove_gctx`, clears the context's share-group pointer, and drops the group's
+  count at +16, destroying the group with `odsy_mm_sg_destroy` when it reaches zero, then counts +80 down.
