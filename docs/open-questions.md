@@ -22,6 +22,12 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 - **Raster tie rule on a shared edge**: a patent says each shared subpixel has exactly one owner, decided by consulting the neighbouring pixels of the quad; which side is not stated.
 - **3D checkerboard frame, DMA engine, display bit fields, board memory organisation, ID word, user windows**: no published source reaches them. The diagnostic reference lists seven register names the register test walks and gives the chip's clock (266 MHz), SDRAM clock (133 MHz) and on-chip memory (1.5 million bits); neither moves an entry.
 
+## Pixel paths
+
+- **What the board does with the read and write header fields** ([pixel-paths.md](pixel-paths.md)): the meaning of word 4's two field codes (bits 23:20 and 27:24), of the type codes 0xb and 0xc (a byte or 5/6/5 source into a 12-bit or 8-bit destination), of word 7 bit 27 and bits 29:28 of a copy's word 7, and where the stencil byte sits in a stored pixel. Next: route 1 (the 6.5.8 n32 libGLcore, looking for a changed table row), then route 4.
+- **Front and back of a drawable with no displayed buffer.** The library sets word 4 bit 31 from the GL read buffer alone, for windows and pixel buffers alike, and the kernel's buffer-select push sets bit 31 of registers 0x608 and 0x609 for a drawable whose object halfword +18 is zero. Whether the board then maps logical front to physical buffer 0 is unread. Next: `odsyBindDrawable` and the pixel-buffer object description (what +18 holds for a pixel buffer), then route 4.
+- **Pixel quads and the window origin.** The library's window coordinates carry a fixed 6144 bias and no window origin; the kernel sends the origin in block 0x041. Whether the board forms its 2x2 level-of-detail quads before or after adding the origin is in no software. Next: the published patents' rasteriser passages, then route 4.
+
 ## BUZZ
 
 - **Command blocks the software only stores.** What blocks 0x018, 0x019, 0x043, 0x044, 0x046, 0x050, 0x170, 0x022 and 0x258 (operand 0x00120000) do, the 0x8e and 0x90 state words, and the field layouts of the replayed blocks with no known use (`docs/buzz.md` sections 8 and 9, `docs/kernel.md`). Block 0x054 is answered (`BUZZ.h` section 5). Tried: every sender in libGLcore, the X module and both kernels; the restore walkers.
