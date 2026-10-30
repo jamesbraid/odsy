@@ -37,6 +37,7 @@ Reviewed and set aside, because they do not describe BUZZ: US 6,650,327 and its 
 ## 1. US 6,417,858, processor for geometry transformations and lighting
 
 - Identity: US 6,417,858 B1, "Processor for geometry transformations and lighting calculations", filed 1998-12-23, granted 2002-07-09, assigned to SGI by its inventors. https://patents.google.com/patent/US6417858B1/en
+- Stored copy: [docs/sources/patents/US6417858.pdf](sources/patents/US6417858.pdf), SHA-256 `e1ecef98e53ed1c95da5d6cff0725ed6f344ee698eb6c54ef30e832bdd4de119`.
 - Covers: a single integrated circuit with a graphics front end, transform engine, raster unit, texture unit and shader unit, an SDRAM command FIFO and an SDRAM texture cache; the transform engine and colour unit in detail.
 - Match: high. Facts **inferred**.
 
@@ -52,6 +53,7 @@ Facts:
 ## 2. US 6,104,415, minified texture cache access
 
 - Identity: US 6,104,415, "Method for accelerating minified textured cache access", filed 1998-03-26, granted 2000-08-15, assigned to SGI. https://patents.google.com/patent/US6104415A/en
+- Stored copy: [docs/sources/patents/US6104415.pdf](sources/patents/US6104415.pdf), SHA-256 `410d216357efc33bce3b64d6bcef52e5ddcafadb65c1456e307c659c86f37c45`.
 - Covers: the whole chip as background (system and chip level), then the texture cache and a way to serve minified textures. Related applications named in the text became sources 3 and 4.
 - Match: high. Facts **inferred**.
 
@@ -66,6 +68,7 @@ Facts:
 ## 3. US 6,259,460, texture cache misses by recirculation
 
 - Identity: US 6,259,460 B1, "Method for efficient handling of texture cache misses by recirculation", filed 1998-03-26, granted 2001-07-10, assigned to SGI. https://patents.google.com/patent/US6259460B1/en
+- Stored copy: [docs/sources/patents/US6259460.pdf](sources/patents/US6259460.pdf), SHA-256 `9bb4e23578a1ecd82e8f80d227a692241a2f3ef71ab089113e8119e81a9b8364`.
 - Covers: the raster, shader and texture path in detail, with the recirculation scheme.
 - Match: high. Facts **inferred**.
 
@@ -84,6 +87,7 @@ Bearing on the open entries:
 ## 4. US 6,232,981, diagonal level of detail
 
 - Identity: US 6,232,981 B1, "Method for improving texture locality for pixel quads by diagonal level-of-detail calculation", filed 1998-03-26, granted 2001-05-15, assigned to SGI. https://patents.google.com/patent/US6232981B1/en
+- Stored copy: [docs/sources/patents/US6232981.pdf](sources/patents/US6232981.pdf), SHA-256 `f464ced09e61af6021e865c9fcd8e181c62d32aa23fb09e246624e7a6dfed046`.
 - Covers: how the texture unit picks one level of detail for a 2 x 2 quad. Match: high; facts **inferred**.
 
 Facts:
@@ -95,7 +99,8 @@ Bearing: the diagonal method is the level of detail candidate for the BUZZ textu
 
 ## 5. VPro for Octane Porting Guide (007-4271-001)
 
-- Identity: SGI, "VPro for Silicon Graphics Octane Porting Guide", document 007-4271-001, version 001, April 2000, 56 pages. https://irix7.com/techpubs/007-4271-001.pdf (SHA-256 `21c14bb65e309431a45f53fe1f6331ae5ae4508f8a2ef07e159d6fa5fff8fb86e`); also https://techpubs.jurassic.nl/manuals/hdwr/enduser/VPro_Octane_PG/sgi_html/index.html.
+- Identity: SGI, "VPro for Silicon Graphics Octane Porting Guide", document 007-4271-001, version 001, April 2000, 56 pages. https://irix7.com/techpubs/007-4271-001.pdf (SHA-256 `1c14bb65e309431a45f53fe1f6331ae5ae4508f8a2ef07e159d6fa5fff8fb86e`); also https://techpubs.jurassic.nl/manuals/hdwr/enduser/VPro_Octane_PG/sgi_html/index.html.
+- Stored copy: [docs/sources/manuals/007-4271-001-vpro-octane-porting-guide.pdf](sources/manuals/007-4271-001-vpro-octane-porting-guide.pdf), SHA-256 `1c14bb65e309431a45f53fe1f6331ae5ae4508f8a2ef07e159d6fa5fff8fb86e`.
 - Covers: V6 (32 MB) and V8 (128 MB), and a "Next Generation VPro" with 12-bit RGBA and 16-bit z.
 - Match: exact for those boards.
 
@@ -113,6 +118,7 @@ Facts (established, published):
 ## 6. VPro 12-bit architecture white paper
 
 - Identity: SGI, "Benefits of VPro Graphics Architecture with 12-Bit Component Support", white paper, 2002 (document J13937, 3/02), 8 pages. Copy read: the SGI PDF as archived at https://web.archive.org/web/2003id_/http://sgi.com/newsroom/virt_presskit/nab2002/pdf/vpro_graphics_arch_whitepaper.pdf, SHA-256 `895bce8154ac111297a63fd4bbd23c8b3befcd3aaef615e19be826cc9b72065d`.
+- Stored copy: [docs/sources/reports/vpro-12bit-architecture-whitepaper-j13937.pdf](sources/reports/vpro-12bit-architecture-whitepaper-j13937.pdf), SHA-256 `895bce8154ac111297a63fd4bbd23c8b3befcd3aaef615e19be826cc9b72065d`.
 - Covers: VPro on Octane2, Fuel and the Onyx 3000 with InfinitePerformance. Match: exact (generation after source 5).
 
 Facts (established, published):
@@ -125,6 +131,7 @@ Facts (established, published):
 ## 7. VPro Odyssey Graphics Diagnostic Reference (108-0314-001)
 
 - Identity: SGI, "VPro Odyssey Graphics Diagnostic Reference", document 108-0314-001, 51 pages. https://techpubs.jurassic.nl/manuals/hdwr/service/108-0314-001.pdf (SHA-256 `19033a394f769eed0fea176a5023d90116d8eddd37d650db5bf53507c4779ff6`).
+- Stored copy: [docs/sources/manuals/108-0314-001-vpro-odyssey-diagnostic-reference.pdf](sources/manuals/108-0314-001-vpro-odyssey-diagnostic-reference.pdf), SHA-256 `19033a394f769eed0fea176a5023d90116d8eddd37d650db5bf53507c4779ff6`.
 - Covers: the `odydiags` test program and the Octane2 board. Match: exact.
 
 Facts (established, published):

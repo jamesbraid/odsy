@@ -49,6 +49,7 @@ Other public sources in this repository:
 
 - `openbsd/`: the OpenBSD sgi port, pinned to the last commit before it was retired from the tree (7011342f6a72, May 2021). The VPro driver is `sys/arch/sgi/xbow/odyssey.c` with `odysseyreg.h` and `odysseyvar.h`, the manual page is `share/man/man4/man4.sgi/odyssey.4`, and the raster-op values are in `sys/arch/sgi/dev/gl.h`. It is a small text-console driver (fill, copy, glyphs, gamma ramp), so it covers the command FIFO, the display FIFO and the start-up sequence only. `docs/buzz.md` section 11 records what each part programs against the binaries.
 - `linux/`: for the Octane (IP30), only crossbar enumeration, not a VPro driver: `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets, widget identity table with the Odyssey entry), `arch/mips/sgi-ip30/ip30-xtalk.c` (widget numbers, window addresses, link-alive probe) and `arch/mips/pci/pci-xtalk-bridge.c`. Fetch it shallow: `git submodule update --init --depth 1 linux`.
+- `docs/sources/`: full copies of the published patents, papers, technical reports, manuals and white papers that [docs/published-sources.md](docs/published-sources.md) cites for VPro, one entry each with its SHA-256 in [docs/sources/README.md](docs/sources/README.md). These are published designers' statements (labelled "established (published)" or "inferred" as that file says), not vendor source. Documents already in the `sgi-docs/` submodule are cited there, not copied.
 
 ---
 
