@@ -118,11 +118,15 @@ Each of these was looked for in every stream that has a stored frame (`points`, 
 - Triangle edge ties (a centre exactly on an edge): **not tested**. With positions truncated to 1/256 no pixel centre falls on an edge in `triangle`, `alpha`, `blend` or `checkr3d`: keeping or dropping every edge centre gives the same frames (survey rows "triangle: keep every edge centre" and "drop every edge centre").
 - Whether a line's end pixel is drawn: **not tested** in `lines` (no end on a centre, above).
 - Depth: **not tested**. `blend` sends depth word 0x020 = 1 with bit 16 of block 0x004 clear, `checkr3d` draws its squares with no depth test and lets each overwrite the last, and the points, lines and triangle tests draw at one depth.
-- Dither: **not tested**. The flat-colour frames fit floor(256 c + b) for any b from 0 to 0.2; the blend residue is a fixed offset per value range, not a pattern that repeats with screen position.
+- Dither: **not tested**. Bit 18 of block 0x004 (`GL_DITHER`, `docs/tokens.md`) is clear for every drawn primitive of every stream; only the set-up point primitive drawn under 0x42200 has it, and that primitive has no vertex. The flat-colour frames fit floor(256 c + b) for any b from 0 to 0.2.
 - Perspective-correct colour: inferred from `blend` only (above).
 
 ## Remaining frames
 
 - `checkr3d.SUM`: fitted without a match (above).
 - `blend`: fitted without a match (above).
-- `aapts` and `aalines` draw antialiased primitives on a grey background (0x333333ff). Not fitted.
+- `aapts` and `aalines` draw antialiased primitives on a grey background (0x333333ff). Not fitted. Read so far from `aapts.SUM` (869 pixels differ from the background) and its stream, all **inferred**:
+  - The drawn points carry block 0x004 = 0x23201: bit 0 (`GL_POINT_SMOOTH`), bit 17 (blending) and bits 9, 12 and 13; block 0x04a sends 0x80 for the point size (1.0) in the lower-left quarter and 0x100 (2.0) in the right half.
+  - Blending: in the lower-left quarter every one of the 134 lit pixels around the white points fits result = a src + (1 - a) dst on all four bytes, with src (1, 1, 1, a) and dst the background (0.2, 0.2, 0.2, 1): alpha comes out as a² + (1 - a), so the factors are source alpha and one minus source alpha, alpha included.
+  - Coverage a: about 0.784 (π/4) for a point near a pixel centre (pixel (2, 368), 0xd3d3d3d4, point at (2.559, 368.633)); 0.5 for each of the four pixels around a point on a pixel corner (the centre point at (320, 255.992): pixels (319, 255) 0x999999c0, (320, 255) 0x989898c0, (319, 256) 0x979797c0, (320, 256) 0x969696c0); and still about 0.15 at 0.95 pixel. So a point of size 1 reaches beyond the one-pixel disc. The coverage is not a function of the Euclidean distance from the pixel centre alone, nor of the max + min/2 or max + 3 min/8 approximations of it: 750 to 1191 pairs of pixels order the other way.
+
