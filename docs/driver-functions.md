@@ -274,12 +274,9 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_i2c2abIDReply` (`odsy_ddc.o`, offset 0x2130, 8 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Stub of two instructions that returns 0 without reading its argument or touching the bus.
-- `odsy_monitor_type` (`odsy_ddc.o`, offset 0x1d60, 36 bytes): **inferred.**
-  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
-  Classifies the attached monitor from the display-identification copy kept in the board record. It
-  returns -1 when the halfword at record +308 is 0, otherwise it tests bit 7 of the byte at +330 and
-  returns 1 when set and 0 when clear. If the 128-byte EDID block starts at +310, that byte is EDID byte
-  20 and bit 7 is its digital-input flag.
+- `odsy_monitor_type` (`odsy_ddc.o`, offset 0x1d60, 36 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`; the Origin 350 build (`usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)`, same offset and size) has the same nine instructions.
+  Classifies the attached monitor from the display-identification copy in the board record (argument: board record; result: -1, 0 or 1); the whole body was read. It loads the halfword at record +308 and returns -1 when it is zero; otherwise it tests bit 7 of the byte at +330 and returns 1 when the bit is set and 0 when it is clear. The record slot at +308 is a halfword valid flag followed by the 128-byte identification block that the display-channel read (`odsy_i2cProbe2b`, request command 8) stores there, so +330 is byte 20 of that block. Inferred from the public VESA E-EDID layout, not from the routine: byte 20 is the video-input definition and its bit 7 marks a digital input, which makes a result of 1 mean a digital monitor. `odsyBlankScreen` branches on a result of 1.
 - `odsy_validate_ddc_data` (`odsy_ddc.o`, offset 0x1c2c, 44 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Thin wrapper over `odsy_i2cValidEdid`: it passes its argument through and returns 1 when that routine
@@ -1611,19 +1608,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   bits 10 and 11 (refuse acknowledge, stop) and pushes it. It then polls the status read-back at up to 133
   times at 200 microseconds for bit 9 and stores the low byte through the pointer argument, counting down the
   length argument. It returns 0, or 1 when the start, a poll or a FIFO wait fails.
-- `odsy_i2c_read_denali` (`odsy_i2c.o`, offset 0x1d64, 2300 bytes): **inferred.**
+- `odsy_i2c_read_denali` (`odsy_i2c.o`, offset 0x1d64, 2300 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`; called from `odsy_denali.o` and `odsy_ddc.o`.
-  Reads one reply message from the Denali device (arguments: port record, word array, length out). The Origin 350 body was read in full
-  and this build has the same calls, constants and branches with the start-up word at -19352 instead of -19328; the entry is inferred because this build's own
-  instructions were compared by their skeleton rather than read through. Under the display semaphore it saves display register 0x3804 and pushes it
-  back with bits 14:12 forced to 6, takes the length byte from `odsy_i2c_read_denali_byte` (5 becomes 10, above 32 is capped to 32), stores each following byte
-  as a 32-bit word (a stored 10 or 5 resets the index to 0, and a length above 10 then reads ten more bytes into indices 0 to 9), restores register 0x3804,
-  stores the adjusted length through the third argument and returns 0; a failed byte read returns 1 with the length output zero.
-- `odsy_i2c_write_denali` (`odsy_i2c.o`, offset 0x30cc, 2040 bytes): **inferred.**
+  Reads one reply message from the Denali device (arguments: port record, word array, length out; result 0 or 1); the whole body of this build was read through its decompiled listing and the assembly at the branches. The board record is the pointer at port record +16. Unless the start-up word at record -19352 (from +0x10000) is set it takes the display semaphore at +34096; it waits for display-FIFO level 15, reads display register 0x3804 back through the window at +0x233804 and writes it to the display FIFO (header 0x39c00001) with bits 17:15 set to 6 and bits 14:12 set to 6, then replays a deferred cursor update as `odsy_i2c_start` does.
+  The first byte from `odsy_i2c_read_denali_byte` is the length. A length of 5 becomes 10 and the number of bytes to read is the length capped at 32. Each following byte is stored as a 32-bit word at the next index of the array. A stored byte of 10 or 5 with a length above 10 makes the routine read ten more bytes into indices 0 to 9 and stop; with a length of 10 or less it stops after the length bytes. It then takes the semaphore again, waits for level 15, writes the saved value of 0x3804 back, replays the deferred cursor update, stores the adjusted length (5 changed to 10, no cap) through the third argument and returns 0. A failed byte read, or a failed FIFO wait, takes the same path to restore 0x3804, stores 0 as the length and returns 1.
+- `odsy_i2c_write_denali` (`odsy_i2c.o`, offset 0x30cc, 2040 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`; called from `odsy_denali.o` and `odsy_ddc.o`.
-  Sends one command message to the Denali device (arguments: port record, byte buffer, byte count). The Origin 350 body was read in full and this build has the same calls,
-  constants and branches with the start-up word at -19352 instead of -19328. Under the display semaphore it saves display register 0x3804 and pushes it back with
-  bits 14:12 set to 6, calls `odsy_i2c_write_denali_byte` for each byte, restores the register and returns 1 after a failed byte, else 0.
+  Sends one command message to the Denali device (arguments: port record, byte buffer, byte count; result 0 or 1); the decompiled listing of this build was followed from entry to every return and checked against the assembly. The board record is the pointer at port record +16. Unless the start-up word at record -19352 (from +0x10000) is set it takes the display semaphore at +34096, waits for display-FIFO level 14, reads display register 0x3804 back through the window at +0x233804 and writes it to the display FIFO (header 0x39c00001) with bits 17:15 and bits 14:12 set to 6, and replays a deferred cursor update as `odsy_i2c_start` does.
+  It calls `odsy_i2c_write_denali_byte` for each byte of the buffer in order, stopping at the first failure. It then takes the semaphore again, waits for level 15, writes the saved 0x3804 value back, replays the deferred cursor update and returns 0, or 1 when a byte write or a FIFO wait failed (the restore of 0x3804 is attempted on that path too).
 - `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
 Lays out
