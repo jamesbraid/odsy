@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Replay an odydiags drawing test through the microcode reading and compare
-the frame it predicts with the test's stored frame and checksum.
+"""Replay an odydiags drawing test through the microcode reading and the
+raster rules, and compare the frame it predicts with the test's stored frame
+and checksum.
 
-Usage: scripts/odydiags_frame_check.py [--round f32|tN] [--small]
+Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle]
+                                       [--round f32|tN] [--small]
                                        [--image IMAGE] [--program A,B,C] [--dump]
+       scripts/odydiags_frame_check.py --survey
 
 The VPro field diagnostics (odydiags, Internal Support Tools 2.7, 6.5.15
 build) carry each drawing test as a function __clog_<test> that replays a
@@ -13,23 +16,26 @@ reads the frame back and compares a CRC-32 of it with usr/diags/ody/checksum/
 csumlist (csumlist.sml for the 128 x 64 screen); <test>.SUM and <test>.sml
 hold the frames themselves (ucode/buzz_isa.md, "Pass 18").
 
-This script handles the points test (__clog_pts, __clog_pts_small): it
-extracts the writes, tracks the sequencer registers, the matrix table and the
-point primitives, runs each primitive's vertices through
-scripts/buzz_ucode_dataflow.py (first part, loop once per further vertex,
-closing part, the slot-0 values changing per pass), places a one-pixel point
-at the floor of output words 5 and 6, and builds the frame: black, white
-points, rows stored top first. It prints, per point, the output words and
-the pixel, then the CRC of the built frame against csumlist and a pixel
-comparison against the stored frame. The rules applied are those of the
-dataflow script; the frame-side rules (word 5 is x, word 6 is y, floor, row
-order, Vertex2 filling z = 0 and w = 1) are stated in buzz_isa.md, pass 18.
+This script handles the points, lines and triangle tests (__clog_pts,
+__clog_lines, __clog_tri and their _small forms): it extracts the writes,
+tracks the sequencer registers, the matrix table and the primitives, runs
+each primitive's vertices through scripts/buzz_ucode_dataflow.py (first
+part, loop once per further vertex, closing part, the slot-0 values changing
+per pass), takes output words 5 and 6 as the window position, and draws the
+primitives with the raster rules of docs/raster.md into a black frame, white
+pixels, rows stored top first. It prints, per vertex, the output words, then
+the CRC of the built frame against csumlist and a pixel comparison against the
+stored frame. The transform rules are those of the dataflow script; the
+frame-side rules are stated in buzz_isa.md, pass 18, and docs/raster.md.
 
 --image picks the microcode image (default: the diagnostics' own
 diagxform.bin, the image odydiags loads). --round is passed to the dataflow
 run. --program replaces the start, loop and closing entries the stream
 sets in sequencer 0x29, 0x2a and 0x2c (the 128 x 64 stream names a program
 layout no held image has). --dump prints the decoded command stream instead.
+--survey builds all six frames under each rule variant in VARIANTS, one rule
+changed at a time, and prints the number of pixels each frame then differs
+by (docs/raster.md cites this table for what each frame rules out).
 """
 import math
 import os
@@ -189,11 +195,14 @@ def enc_val(w):
 
 
 VERTEX = {0x8080c801: 2, 0x8080cc03: 3, 0x8080d005: 4}
+# Primitive types of the 0x00014400 word that the streams use (GL numbering).
+POINTS, LINES, TRIANGLES = 0, 1, 4
+PER = {POINTS: 1, LINES: 2, TRIANGLES: 3}
 
 
-def primitives(cmds, loads):
-    """Yield each point primitive with the state it is drawn under. LOADS
-    are the opcodes of the two matrix-table stores."""
+def primitives(cmds, loads, types=(POINTS,)):
+    """Yield each primitive of one of TYPES with the state it is drawn
+    under. LOADS are the opcodes of the two matrix-table stores."""
     seq, table, scissor, prim = {}, [math.nan] * 68, None, None
     colour = [math.nan] * 4
     for idx, w, ops in cmds:
@@ -213,13 +222,98 @@ def primitives(cmds, loads):
                         regs={str(r): table[4 * r:4 * r + 4] for r in range(17)},
                         scissor=scissor, colour=list(colour))
         elif w == 0x00014001:
-            if prim and prim['type'] == 0 and prim['verts']:
+            if prim and prim['type'] in types and prim['verts']:
                 yield prim
             prim = None
         elif w in VERTEX and prim is not None:
             v = [fl(o) for o in ops]
             v += [0.0, 1.0][len(v) - 2:]
             prim['verts'].append(v)
+
+
+def snap(v, grid=256, mode='nearest'):
+    """A window coordinate on the rasteriser's sub-pixel grid."""
+    return (round(v * grid) if mode == 'nearest' else math.floor(v * grid)) / grid
+
+
+def point_pixels(v, rule):
+    """A one-pixel point: the pixel holding the position (points test)."""
+    return [(math.floor(v[0]), math.floor(v[1]))]
+
+
+def line_pixels(a, b, rule):
+    """A one-pixel-wide line by centre sampling along the major axis: every
+    column (x-major) or row (y-major) whose centre lies between the two
+    ends, the other coordinate taken where the line crosses that centre
+    and turned into a pixel by ceil(v) - 1, so a crossing exactly on a
+    pixel edge goes to the lower pixel (rule['tie'] = 'down'), or by
+    floor ('up'). rule['span'] = 'floor' instead runs from the pixel
+    holding the first end to the one before the pixel holding the last."""
+    (x0, y0), (x1, y1) = a, b
+    dx, dy = x1 - x0, y1 - y0
+    xmajor = abs(dx) >= abs(dy)
+    s, e = (x0, x1) if xmajor else (y0, y1)
+    if rule.get('span') == 'floor':
+        step = 1 if e > s else -1
+        major = range(math.floor(s), math.floor(e), step)
+    else:
+        lo, hi = sorted((s, e))
+        major = [i for i in range(math.floor(lo) - 1, math.ceil(hi) + 1) if lo <= i + 0.5 < hi]
+    minor = (lambda v: math.ceil(v) - 1) if rule.get('tie', 'down') == 'down' else math.floor
+    slope = dy / dx if xmajor else dx / dy
+    if 'slope' in rule:             # a slope kept to rule['slope'] fraction bits
+        g = 2 ** rule['slope']
+        slope = (round if rule.get('slope_round', 'nearest') == 'nearest' else math.floor)(slope * g) / g
+    out = []
+    for i in major:
+        c = i + 0.5
+        if xmajor:
+            out.append((i, minor(y0 + (c - x0) * slope)))
+        else:
+            out.append((minor(x0 + (c - y0) * slope), i))
+    return out
+
+
+def triangle_pixels(v, rule):
+    """Every pixel whose centre is inside the triangle (rule['sample'] =
+    'corner' samples the pixel's lower-left corner instead). A centre on
+    an edge is kept under rule['edge'] = 'all', dropped under 'none', and
+    kept on top and left edges only under 'top-left' (the default)."""
+    off = 0.0 if rule.get('sample') == 'corner' else 0.5
+    (x0, y0), (x1, y1), (x2, y2) = v
+
+    def cross(ax, ay, bx, by, px, py):
+        return (bx - ax) * (py - ay) - (by - ay) * (px - ax)
+    area = cross(x0, y0, x1, y1, x2, y2)
+    if area == 0:
+        return []
+    if area < 0:
+        (x1, y1), (x2, y2) = (x2, y2), (x1, y1)
+    edges = [(x0, y0, x1, y1), (x1, y1, x2, y2), (x2, y2, x0, y0)]
+    out = []
+    for j in range(math.floor(min(y0, y1, y2)) - 1, math.ceil(max(y0, y1, y2)) + 1):
+        for i in range(math.floor(min(x0, x1, x2)) - 1, math.ceil(max(x0, x1, x2)) + 1):
+            keep = True
+            for ax, ay, bx, by in edges:
+                c = cross(ax, ay, bx, by, i + off, j + off)
+                if c < 0 or c == 0 and not (
+                        rule.get('edge', 'top-left') == 'all' or
+                        rule.get('edge', 'top-left') == 'top-left' and (by < ay or by == ay and bx < ax)):
+                    keep = False
+                    break
+            if keep:
+                out.append((i, j))
+    return out
+
+
+def f32_low(v):
+    """The single-precision value one step below V rounded to single, as
+    a reciprocal truncated rather than rounded would leave it."""
+    b, = struct.unpack('>I', struct.pack('>f', v))
+    return struct.unpack('>f', struct.pack('>I', b - 1 if v > 0 else b + 1))[0]
+
+
+RASTER = {POINTS: point_pixels, LINES: line_pixels, TRIANGLES: triangle_pixels}
 
 
 def crc32(data):
@@ -237,40 +331,32 @@ def crc32(data):
     return c
 
 
-def main():
-    args = sys.argv[1:]
-    rnd, small, dump, prog = None, False, False, None
-    image = os.path.join(ROOT, 'ucode', 'diagxform.bin')
-    while args:
-        a = args.pop(0)
-        if a == '--round':
-            rnd = args.pop(0)
-        elif a == '--small':
-            small = True
-        elif a == '--image':
-            image = args.pop(0)
-        elif a == '--dump':
-            dump = True
-        elif a == '--program':
-            prog = [int(x) for x in args.pop(0).split(',')]
-        else:
-            sys.exit(__doc__)
+# test name: (large stream, small stream, frame and checksum-list key)
+TESTS = {'points': ('__clog_pts', '__clog_pts_small', 'points', (POINTS,)),
+         'lines': ('__clog_lines', '__clog_lines_small', 'lines', (LINES,)),
+         'triangle': ('__clog_tri', '__clog_tri_small', 'triangle', (TRIANGLES,))}
+# The program the 128 x 64 streams name sits where no held image has it;
+# --survey substitutes the held one (pass 18).
+HELD_PROGRAM = (214, 224, 234)
+
+
+def build(test, small, image, rnd=None, prog=None, rule=None, log=print):
+    """Replay TEST's stream and return (width, height, frame, stored frame,
+    csumlist value)."""
+    rule = rule or {}
+    func, func_small, key, types = TESTS[test]
     # The matrix-table stores are routine entries 456 and 479 in the
     # images held (buzz_isa.md); the 128 x 64 stream was recorded under a
     # build whose every entry opcode sits 197 higher (pass 18).
     func, W, H, frame_file, listfile, loads = (
-        ('__clog_pts_small', 128, 64, 'points.sml', 'csumlist.sml', (0x28d, 0x2a4)) if small else
-        ('__clog_pts', 1280, 1024, 'points.SUM', 'csumlist', (0x1c8, 0x1df)))
+        (func_small, 128, 64, key + '.sml', 'csumlist.sml', (0x28d, 0x2a4)) if small else
+        (func, 1280, 1024, key + '.SUM', 'csumlist', (0x1c8, 0x1df)))
     words = stream(os.path.join(ROOT, 'odydiags'), func)
     cmds = decode(words)
-    if dump:
-        for idx, w, ops in cmds:
-            print(f"{idx:5d} {words[idx][0]} {w:08x} {' '.join(f'{o:x}' for o in ops)}")
-        return
     recs = [df.decode(w) for w in records(image)[0]]
     frame = [0] * (W * H)
-    print(f'; {func}: {len(words)} FIFO words; image {os.path.basename(image)}; round {rnd}')
-    for p in primitives(cmds, loads):
+    log(f'; {func}: {len(words)} FIFO words; image {os.path.basename(image)}; round {rnd}')
+    for p in primitives(cmds, loads, types):
         s = p['seq']
         if prog:
             s = {0x29: prog[0], 0x2a: prog[1], 0x2c: prog[2]}
@@ -289,27 +375,111 @@ def main():
         # boxes this stream sends).
         x0, x1 = p['scissor'][0] >> 12 & 0xfff, p['scissor'][0] & 0xfff
         y0, y1 = p['scissor'][1] >> 12 & 0xfff, p['scissor'][1] & 0xfff
-        print(f"; primitive at word {p['idx']}: entries {' '.join(entries)}; scissor x {x0}-{x1} y {y0}-{y1}")
+        log(f"; primitive at word {p['idx']}: entries {' '.join(entries)}; scissor x {x0}-{x1} y {y0}-{y1}")
+        if p['colour'] != [1.0] * 4:
+            sys.exit('colour other than white: packing not modelled')
+        win = []
         for k, v in enumerate(p['verts']):
             o = got.get(k, {})
             x, y = o.get(5, math.nan), o.get(6, math.nan)
             if math.isnan(x) or math.isnan(y):
-                print(f'vertex {v}: words {o}: no position')
+                log(f'vertex {v}: words {o}: no position')
+                win.append(None)
                 continue
-            px, py = math.floor(x), math.floor(y)
-            inside = x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H
-            print(f'vertex {[f"{c:g}" for c in v]}: word 5 = {x!r}, word 6 = {y!r}, '
-                  f'1/w = {o.get(3, math.nan)!r} -> pixel ({px}, {py}){"" if inside else " clipped"}')
-            if inside:
-                if p['colour'] != [1.0] * 4:
-                    sys.exit('colour other than white: packing not modelled')
-                frame[(H - 1 - py) * W + px] = 0xffffffff
+            if test == 'points':
+                px, py = math.floor(x), math.floor(y)
+                inside = x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H
+                log(f'vertex {[f"{c:g}" for c in v]}: word 5 = {x!r}, word 6 = {y!r}, '
+                    f'1/w = {o.get(3, math.nan)!r} -> pixel ({px}, {py}){"" if inside else " clipped"}')
+            else:
+                log(f'vertex {[f"{c:g}" for c in v]}: word 5 = {x!r}, word 6 = {y!r}')
+            if rule.get('low'):
+                x, y = f32_low(x), f32_low(y)
+            win.append((snap(x, rule.get('grid', 256), rule.get('snap', 'nearest')),
+                        snap(y, rule.get('grid', 256), rule.get('snap', 'nearest'))))
+        per = PER[p['type']]
+        for k in range(0, n - per + 1, per):
+            vs = win[k:k + per]
+            if None in vs:
+                continue
+            for px, py in RASTER[p['type']](*([vs] if per == 3 else vs), rule):
+                if x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H:
+                    frame[(H - 1 - py) * W + px] = 0xffffffff
+    stored = struct.unpack(f'>{W * H}I', open(os.path.join(ROOT, 'checksum', frame_file), 'rb').read())
+    want = dict(l.split() for l in open(os.path.join(ROOT, 'checksum', listfile)) if l.strip())[key]
+    return W, H, frame, stored, want, frame_file, listfile
+
+
+# Alternatives to the rules the matching frames use, each changing one rule
+# (docs/raster.md). The survey prints how many pixels each moves.
+VARIANTS = [
+    ('as matched', {}),
+    ('line: ties to the upper pixel', dict(tie='up')),
+    ('line: run from the pixel holding the first end', dict(span='floor')),
+] + [(f'line: slope to nearest 1/{2 ** n}', dict(slope=n)) for n in (6, 8, 10, 12, 14)] + [
+    (f'line: slope floored to 1/{2 ** n}', dict(slope=n, slope_round='floor')) for n in (8, 12, 16)] + [
+    ('triangle: sample the lower-left corner', dict(sample='corner')),
+    ('triangle: keep every edge centre', dict(edge='all')),
+    ('triangle: drop every edge centre', dict(edge='none')),
+    ('positions unrounded', dict(grid=2 ** 40)),
+    ('positions one single step low, unrounded', dict(grid=2 ** 40, low=True)),
+    ('positions one single step low, to 1/256', dict(low=True)),
+    ('positions one single step low, truncated 1/16', dict(low=True, grid=16, snap='floor')),
+] + [(f'positions to nearest 1/{2 ** n}', dict(grid=2 ** n)) for n in (0, 1, 2, 4, 6, 7, 8, 10)] + [
+    (f'positions truncated to 1/{2 ** n}', dict(grid=2 ** n, snap='floor')) for n in (0, 1, 2, 3, 4, 8, 16)]
+
+
+def survey(image, rnd):
+    print('; pixels differing from the stored frame, per rule variant; "=" marks a CRC match')
+    cols = [(t, sm) for t in TESTS for sm in (False, True)]
+    print('; ' + ' | '.join(f"{t}{' 128x64' if sm else ''}" for t, sm in cols))
+    for name, rule in VARIANTS:
+        cells = []
+        for t, sm in cols:
+            W, H, frame, stored, want, _, _ = build(t, sm, image, rnd, HELD_PROGRAM if sm else None,
+                                                   rule, log=lambda *a: None)
+            n = sum(1 for a, b in zip(frame, stored) if a != b)
+            ok = f'{crc32(struct.pack(f">{W * H}I", *frame)):08x}' == want
+            cells.append(f"{n}{'=' if ok else ''}")
+        print(f"{name:45s} " + ' '.join(f'{c:>7s}' for c in cells))
+
+
+def main():
+    args = sys.argv[1:]
+    rnd, small, dump, prog, test, do_survey = None, False, False, None, 'points', False
+    image = os.path.join(ROOT, 'ucode', 'diagxform.bin')
+    while args:
+        a = args.pop(0)
+        if a == '--round':
+            rnd = args.pop(0)
+        elif a == '--small':
+            small = True
+        elif a == '--image':
+            image = args.pop(0)
+        elif a == '--dump':
+            dump = True
+        elif a == '--program':
+            prog = [int(x) for x in args.pop(0).split(',')]
+        elif a == '--test' and args and args[0] in TESTS:
+            test = args.pop(0)
+        elif a == '--survey':
+            do_survey = True
+        else:
+            sys.exit(__doc__)
+    if do_survey:
+        survey(image, rnd)
+        return
+    if dump:
+        func = TESTS[test][1 if small else 0]
+        words = stream(os.path.join(ROOT, 'odydiags'), func)
+        for idx, w, ops in decode(words):
+            print(f"{idx:5d} {words[idx][0]} {w:08x} {' '.join(f'{o:x}' for o in ops)}")
+        return
+    W, H, frame, sw, want, frame_file, listfile = build(test, small, image, rnd, prog)
     data = struct.pack(f'>{W * H}I', *frame)
-    stored = open(os.path.join(ROOT, 'checksum', frame_file), 'rb').read()
-    want = dict(l.split() for l in open(os.path.join(ROOT, 'checksum', listfile)) if l.strip())['points']
-    sw = struct.unpack(f'>{W * H}I', stored)
+    stored = struct.pack(f'>{W * H}I', *sw)
     diff = [(k % W, H - 1 - k // W, sw[k], frame[k]) for k in range(W * H) if sw[k] != frame[k]]
-    print(f'; CRC-32 of built frame {crc32(data):08x}; {listfile} points {want}; '
+    print(f'; CRC-32 of built frame {crc32(data):08x}; {listfile} {TESTS[test][2]} {want}; '
           f'CRC-32 of {frame_file} {crc32(stored):08x}')
     print(f'; pixels differing from {frame_file}: {len(diff)}')
     for x, y, a, b in diff[:20]:

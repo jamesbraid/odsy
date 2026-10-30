@@ -1,0 +1,27 @@
+; __clog_lines_small: 5478 FIFO words; image diagxform.bin; round None
+; primitive at word 4345: entries 214.. 224.. 224.. 224.. 234; scissor x 0-63 y 0-31
+vertex ['225', '225', '0', '1']: word 5 = 47.0, word 6 = 8.49609375
+vertex ['225', '300', '0', '1']: word 5 = 47.0, word 6 = 5.99609375
+vertex ['150', '225', '0', '1']: word 5 = 42.0, word 6 = 8.49609375
+vertex ['150', '150', '0', '1']: word 5 = 42.0, word 6 = 10.99609375
+; primitive at word 4360: entries 214.. 224.. 224.. 224.. 234; scissor x 0-63 y 0-31
+vertex ['225', '155', '0', '1']: word 5 = 47.0, word 6 = 10.829427083333334
+vertex ['225', '75', '0', '1']: word 5 = 47.0, word 6 = 13.49609375
+vertex ['150', '75', '0', '1']: word 5 = 42.0, word 6 = 13.49609375
+vertex ['150', '155', '0', '1']: word 5 = 42.0, word 6 = 10.829427083333334
+; primitive at word 4379: entries 214.. 224.. 224.. 224.. 234; scissor x 0-63 y 0-31
+vertex ['75', '225', '0', '1']: word 5 = 37.0, word 6 = 8.49609375
+vertex ['0', '150', '0', '1']: word 5 = 32.0, word 6 = 10.99609375
+vertex ['75', '75', '0', '1']: word 5 = 37.0, word 6 = 13.49609375
+vertex ['150', '150', '0', '1']: word 5 = 42.0, word 6 = 10.99609375
+; primitive at word 5440: entries 214.. 224.. 234; scissor x 0-63 y 32-63
+vertex ['225', '225', '0', '1']: word 5 = 47.0, word 6 = 40.49609375
+vertex ['150', '225', '0', '1']: word 5 = 42.0, word 6 = 40.49609375
+; primitive at word 5449: entries 214.. 224.. 234; scissor x 0-63 y 32-63
+vertex ['225', '155', '0', '1']: word 5 = 47.0, word 6 = 42.829427083333336
+vertex ['225', '75', '0', '1']: word 5 = 47.0, word 6 = 45.49609375
+; primitive at word 5460: entries 214.. 224.. 234; scissor x 0-63 y 32-63
+vertex ['75', '225', '0', '1']: word 5 = 37.0, word 6 = 40.49609375
+vertex ['75', '150', '0', '1']: word 5 = 37.0, word 6 = 42.99609375
+; CRC-32 of built frame bad6d581; csumlist.sml lines bad6d581; CRC-32 of lines.sml bad6d581
+; pixels differing from lines.sml: 0

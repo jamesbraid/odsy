@@ -1,0 +1,27 @@
+; __clog_lines: 5973 FIFO words; image diagxform.bin; round None
+; primitive at word 4644: entries 214.. 224.. 224.. 224.. 234; scissor x 0-639 y 0-511
+vertex ['225', '225', '0', '1']: word 5 = 470.00000000000006, word 6 = 135.99609375
+vertex ['225', '300', '0', '1']: word 5 = 470.00000000000006, word 6 = 95.99609375
+vertex ['150', '225', '0', '1']: word 5 = 420.0, word 6 = 135.99609375
+vertex ['150', '150', '0', '1']: word 5 = 420.0, word 6 = 175.99609375
+; primitive at word 4659: entries 214.. 224.. 224.. 224.. 234; scissor x 0-639 y 0-511
+vertex ['225', '155', '0', '1']: word 5 = 470.00000000000006, word 6 = 173.32942708333334
+vertex ['225', '75', '0', '1']: word 5 = 470.00000000000006, word 6 = 215.99609375
+vertex ['150', '75', '0', '1']: word 5 = 420.0, word 6 = 215.99609375
+vertex ['150', '155', '0', '1']: word 5 = 420.0, word 6 = 173.32942708333334
+; primitive at word 4678: entries 214.. 224.. 224.. 224.. 234; scissor x 0-639 y 0-511
+vertex ['75', '225', '0', '1']: word 5 = 370.0, word 6 = 135.99609375
+vertex ['0', '150', '0', '1']: word 5 = 320.0, word 6 = 175.99609375
+vertex ['75', '75', '0', '1']: word 5 = 370.0, word 6 = 215.99609375
+vertex ['150', '150', '0', '1']: word 5 = 420.0, word 6 = 175.99609375
+; primitive at word 5935: entries 214.. 224.. 234; scissor x 0-639 y 512-1023
+vertex ['225', '225', '0', '1']: word 5 = 470.00000000000006, word 6 = 647.99609375
+vertex ['150', '225', '0', '1']: word 5 = 420.0, word 6 = 647.99609375
+; primitive at word 5944: entries 214.. 224.. 234; scissor x 0-639 y 512-1023
+vertex ['225', '155', '0', '1']: word 5 = 470.00000000000006, word 6 = 685.3294270833334
+vertex ['225', '75', '0', '1']: word 5 = 470.00000000000006, word 6 = 727.99609375
+; primitive at word 5955: entries 214.. 224.. 234; scissor x 0-639 y 512-1023
+vertex ['75', '225', '0', '1']: word 5 = 370.0, word 6 = 647.99609375
+vertex ['75', '150', '0', '1']: word 5 = 370.0, word 6 = 687.99609375
+; CRC-32 of built frame 19e3f918; csumlist lines 19e3f918; CRC-32 of lines.SUM 19e3f918
+; pixels differing from lines.SUM: 0
