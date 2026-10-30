@@ -1,6 +1,6 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes
-binaries	276	0	0	0	0	0	101	175	0	0.0	0.0	36.6	0.0						
-functions	106592	8190	10	2763	0	8509	73651	16242	0	7.7	15.7	84.8	7.7			88.6	35	2026-10-29	
+binaries	276	0	0	0	0	0	103	173	0	0.0	0.0	37.3	0.0						
+functions	106592	8254	10	2795	0	8445	73651	16242	0	7.7	15.7	84.8	7.7			88.6	35	2026-10-29	
 functions (distinct names)	18949	1426	5	1389	0	2	6347	11174	0	7.5	7.5	41.0	7.5						
 mmio	67	58	0	58	0	2	0	0	7	86.6	100.0	100.0	97.0	56		91.7	12	2026-10-29	
 tokens	255	239	36	239	0	16	0	0	0	93.7	100.0	100.0	93.7			85.0	20	2026-10-29	
@@ -40,20 +40,20 @@ functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so	673	0	0	0	0	0	
 functions in builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	5137	778	0	754	0	242	4117	0	0	15.1	19.9	100.0	15.1						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	2	1	2	0	2	0	0	0	50.0	100.0	100.0	50.0						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	0	0	0	0	3	0	0	0	0.0	100.0	100.0	0.0						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	19	7	0	7	0	12	0	0	0	36.8	100.0	100.0	36.8						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	6	2	0	2	0	4	0	0	0	33.3	100.0	100.0	33.3						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	11	0	11	0	15	0	0	0	42.3	100.0	100.0	42.3						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	13	0	13	0	13	0	0	0	50.0	100.0	100.0	50.0						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	24	11	0	11	0	13	0	0	0	45.8	100.0	100.0	45.8						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	3	1	0	1	0	2	0	0	0	33.3	100.0	100.0	33.3						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	8	0	0	0	0	8	0	0	0	0.0	100.0	100.0	0.0						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	20	3	0	3	0	17	0	0	0	15.0	100.0	100.0	15.0						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	11	2	0	2	0	9	0	0	0	18.2	100.0	100.0	18.2						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	6	2	0	2	0	4	0	0	0	33.3	100.0	100.0	33.3						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	8	3	0	3	0	5	0	0	0	37.5	100.0	100.0	37.5						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	20	8	0	8	0	12	0	0	0	40.0	100.0	100.0	40.0						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	11	4	0	4	0	7	0	0	0	36.4	100.0	100.0	36.4						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	6	5	0	5	0	1	0	0	0	83.3	100.0	100.0	83.3						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	12	12	0	12	0	0	0	0	0	100.0	100.0	100.0	100.0						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	26	6	0	6	0	20	0	0	0	23.1	100.0	100.0	23.1						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	5	3	0	3	0	2	0	0	0	60.0	100.0	100.0	60.0						
-functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	13	5	0	5	0	8	0	0	0	38.5	100.0	100.0	38.5						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	26	15	0	15	0	11	0	0	0	57.7	100.0	100.0	57.7						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	5	4	0	4	0	1	0	0	0	80.0	100.0	100.0	80.0						
+functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	13	9	0	9	0	4	0	0	0	69.2	100.0	100.0	69.2						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	13	3	0	3	0	10	0	0	0	23.1	100.0	100.0	23.1						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	5	0	0	0	0	5	0	0	0	0.0	100.0	100.0	0.0						
 functions in builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	57	16	0	16	0	41	0	0	0	28.1	100.0	100.0	28.1						
@@ -67,20 +67,20 @@ functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so	650	0	0	0	0
 functions in builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	5076	26	0	26	0	994	4056	0	0	0.5	20.1	100.0	0.5						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	2	1	2	0	2	0	0	0	50.0	100.0	100.0	50.0						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	0	0	0	0	3	0	0	0	0.0	100.0	100.0	0.0						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)	19	7	0	7	0	12	0	0	0	36.8	100.0	100.0	36.8						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)	6	2	0	2	0	4	0	0	0	33.3	100.0	100.0	33.3						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	11	0	11	0	15	0	0	0	42.3	100.0	100.0	42.3						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)	26	13	0	13	0	13	0	0	0	50.0	100.0	100.0	50.0						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)	24	11	0	11	0	13	0	0	0	45.8	100.0	100.0	45.8						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	3	1	0	1	0	2	0	0	0	33.3	100.0	100.0	33.3						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	8	0	0	0	0	8	0	0	0	0.0	100.0	100.0	0.0						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	20	3	0	3	0	17	0	0	0	15.0	100.0	100.0	15.0						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	11	2	0	2	0	9	0	0	0	18.2	100.0	100.0	18.2						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	6	2	0	2	0	4	0	0	0	33.3	100.0	100.0	33.3						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)	3	2	0	2	0	1	0	0	0	66.7	100.0	100.0	66.7						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)	8	3	0	3	0	5	0	0	0	37.5	100.0	100.0	37.5						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)	20	8	0	8	0	12	0	0	0	40.0	100.0	100.0	40.0						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)	11	4	0	4	0	7	0	0	0	36.4	100.0	100.0	36.4						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)	6	5	0	5	0	1	0	0	0	83.3	100.0	100.0	83.3						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)	12	12	0	12	0	0	0	0	0	100.0	100.0	100.0	100.0						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	26	6	0	6	0	20	0	0	0	23.1	100.0	100.0	23.1						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	5	3	0	3	0	2	0	0	0	60.0	100.0	100.0	60.0						
-functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	13	5	0	5	0	8	0	0	0	38.5	100.0	100.0	38.5						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)	26	15	0	15	0	11	0	0	0	57.7	100.0	100.0	57.7						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)	5	4	0	4	0	1	0	0	0	80.0	100.0	100.0	80.0						
+functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)	13	9	0	9	0	4	0	0	0	69.2	100.0	100.0	69.2						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)	13	3	0	3	0	10	0	0	0	23.1	100.0	100.0	23.1						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)	5	0	0	0	0	5	0	0	0	0.0	100.0	100.0	0.0						
 functions in builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)	57	16	0	16	0	41	0	0	0	28.1	100.0	100.0	28.1						

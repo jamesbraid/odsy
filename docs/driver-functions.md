@@ -4068,3 +4068,99 @@ Lays out
 - `odsy_i2c_becomeSlaveRecv` (`odsy_i2c.o`, offset 0x27ec, 2372 bytes): **inferred.**
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
   Switch from master to slave receive in patch 4103. It runs `odsy_i2c_busy_high_loop` first and returns a nonzero result. After a level 15 wait (failure returns 3) it reads the control register back through the window at +0x220000, sets bit 13 (force stop) and bit 17 (slave enable) in the shadow, clears bit 9 (transfer), clears the slave address field in bits 24:18 and puts the argument's low 7 bits there, sets or clears bit 10 from the acknowledge argument (equal to 1 clears it), pushes the word under the display semaphore and handles the result of the transfer wait; the cursor replay follows on release.
+- `odsyPipeNrFromBase` (`odsy_init.o`, offset 0x94, 72 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Pipe number lookup in patch 4103: the board table is a flat array of two 22312-byte records, not a table of pointers. The routine walks indices 0 and 1, compares the register base pointer at +736 of each record with the address argument and returns the first matching index, or -1 when neither matches. The 6.5.30m routine compares a doubleword at +824 of pointers up to the board limit instead.
+- `odsyPrintRegs` (`odsy_init.o`, offset 0x3538, 84 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Diagnostic register print in patch 4103. It reads the flags word at register +4116 (0x1014) and the word at +4196 (0x1064) and logs them in two `cmn_err` calls at severity 7, the first with the first bit-name table of the member's read-only data and the second with the same table base plus 1120 bytes. Each call uses its own format string from the member (offsets 1864 and 1880 of the string area).
+- `odsy_init_ddrncount_timeout` (`odsy_init.o`, offset 0xe64, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Timeout handler for the start-up count wait in patch 4103. It logs one severity 4 message (format at offset 1456 of the member's string area) and then calls `vsema` on the semaphore passed in its argument to wake the waiter. The body is 56 bytes, the same two calls as the 6.5.30m routine.
+- `odsy_usdelay` (`odsy_init.o`, offset 0x0, 148 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Delay by microseconds in patch 4103 (arguments: board record, count). A nonzero start-up word at board +22304, or a true `in_panic_mode`, makes it spin in `us_delay`. Otherwise it divides the count by 1,000,000 for seconds, multiplies the remainder by 1000 for nanoseconds and calls `nano_delay` with that pair on the stack. The only difference from the 6.5.30m routine is the offset of the start-up word.
+- `odsyDisableInterrupts` (`odsy_init.o`, offset 0x2320, 96 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Interrupt shut-off in patch 4103. It clears bit 21 of the register 0x34 shadow at board +10360 and bits 18:16 of the register 0x1044 shadow at +10388, stores both to the register base at +736 (offsets 52 and 4164), then writes all ones to the register at +4156 (0x103c). Nothing else is touched; the routine is 96 bytes.
+- `gf_OdsyStart` (`odsy_init.o`, offset 0x141c, 128 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Start-up completion in patch 4103 (argument: manager object, board record at +32). It sets the context-slot word at +732 to 127, the started halfword at +708 to 1 and clears +728, +84, +120, +104, +16 and the doubleword at +8, calls `odsyInitDrawables`, converts the shadow-buffer pointer at +752 with `kvtophys`, stores the upper 16 bits of the physical address at +10448 and the low word at +10452, writes them to registers 0x4034 and 0x403c (offsets 16436 and 16444 of the register base at +736) and returns 0. These register stores carry no `sync`.
+- `odsyLLPReset` (`odsy_init.o`, offset 0x149c, 128 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Crossbar link reset in patch 4103. When the device handle at board +22256 is nonzero it saves the word at register offset 36, calls `xwidget_reset` and restores the word. Otherwise it forms the host-chip window address from a literal base (0x9000000010000000) plus 64 times the low 3 bits of the widget number at +704, saves the word at +268, writes 0 to +308, waits 10 ms with `odsy_usdelay` and restores +268. The saved word in the handle case belongs to the board's own register file here, not the host chip's.
+- `odsy_teardown` (`odsy_init.o`, offset 0x3498, 160 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  One-shot fatal error handler in patch 4103. It takes the semaphore at board +4648 (`psema`, 25), increments the counter at +728 and, only when it becomes 1, logs one severity 1 message, dumps the registers with `odsyPrintRegs` on the register base at +736 and calls `gthread_scan` with a kill callback and a block that holds the board record and the value 9. The semaphore is released with `vsema` on every path. Unlike the 6.5.30m routine it does not print the board number or the DMA wait counters.
+- `odsyZeroOut` (`odsy_init.o`, offset 0xeb8, 196 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+  Zero fill of board memory in patch 4103, 196 bytes. All words go to the command FIFO window at register base plus 0x110000. It sends 1856 and 448, then walks 576 entries in groups of 16, sending a header with id 0x341 and the group's remaining size before each group and zero words after it, and ends with the constant 0xcf809014 and four zero words. The group arithmetic is that of the IP30 routine.
+- `odsy_dmawait_timeout` (`odsy_dma.o`, offset 0x1e38, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  DMA wait watchdog in patch 4103, much shorter than the 6.5.30m routine: it logs one severity 1 message (format at offset 800 of the member's strings) and calls `odsy_teardown` on its argument, with no mutex, no counter comparison and no follow-up messages. Both the check for outstanding work and the five-value dump of the 6.5.30m routine are absent, so every firing is treated as a hang.
+- `odsy_dmawait_harmless_timeout` (`odsy_dma.o`, offset 0x1e70, 56 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Benign DMA wait timeout in patch 4103. It logs a severity 7 message (string offset 824) and wakes all waiters with `sv_broadcast` on the variable at board +2488; the 6.5.30m routine broadcasts on +5816. No register is touched.
+- `ReleaseTftchWarList` (`odsy_dma.o`, offset 0x2a4c, 80 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Frees the texture-fetch hazard list in patch 4103. A count below 2 at +0 frees nothing and only clears the count and the pointer at +8. A count of 2 or more frees the array with `kmem_free` for 48 times the count minus 48 bytes (the array holds one entry less than the count), with no poison fill, and then clears both fields.
+- `odsy_DeleteDmaRegion` (`odsy_dma.o`, offset 0x190, 88 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  DMA region teardown in patch 4103. If the pinned flag at +52 is set it calls `unuseracc` on the user address at +32 and length at +40 with flags 272. A non-null translation table at +0 is released with `kmem_free` for the size at +8, and the 88-byte record itself is freed. Neither block is overwritten before it is freed, unlike the 6.5.30m routine.
+- `odsy_DmaRegion_UnPin` (`odsy_dma.o`, offset 0x250, 88 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Unpins a DMA region in patch 4103. With the flag at +52 set it calls `unuseracc` on the address at +32 and length at +40 (flags 272) and clears the flag; a non-null translation table at +0 is freed with `kmem_free` for the size at +8, and the size and pointer are zeroed. There is no poison fill of the table.
+- `odsy_ctxsw_timeout` (`odsy_ctxsw.o`, offset 0x0, 92 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  Context-switch watchdog in patch 4103. It logs one severity 1 message (string offset 176, no board number argument) and then tests a word in the member's small data (the flag that says a timeout is real): nonzero calls `odsy_teardown` on its argument, zero re-arms the same handler with `timeout` for 1500 ticks.
+- `odsy_glget_timeout` (`odsy_ctxsw.o`, offset 0x5c, 92 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  State read-back watchdog in patch 4103, the twin of `odsy_ctxsw_timeout`: severity 1 message from string offset 200, then `odsy_teardown` when the member's real-timeout flag is nonzero, otherwise `timeout` again with its own handler for 1500 ticks.
+- `odsyFifoTimeout` (`odsy_flow.o`, offset 0x390, 88 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Command-FIFO timeout handler in patch 4103. In order it calls `odsy_teardown`, clears the word at board +104, calls `odsyDisableInterrupts`, decrements the word at +80 of the structure behind +32 of the pointer at +72, logs one severity 4 message (string offset 80) and clears the timer word at +22264.
+- `odsyFifoTimer` (`odsy_flow.o`, offset 0x32c, 100 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Command-FIFO watchdog control in patch 4103; the timer id is the word at board +22264. A nonzero second argument arms the timer only when the word is zero, calling `timeout` with `odsyFifoTimeout`, the board and 1500 ticks and saving the id. A zero second argument calls `untimeout` on the stored id without first testing it and clears the word.
+- `odsyLowaterInterrupt` (`odsy_flow.o`, offset 0x2ac, 128 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
+  Command-FIFO low-water interrupt in patch 4103. It cancels the FIFO timer, clears bit 9 of the enable shadow at board +10384, writes 0x200 to the clear register at +4156 (0x103c), decrements the word at +80 of the structure behind +32 of the pointer at +72 and zeroes the word at +104 under the spin lock at +22260, and calls `force_resched`.
+- `odsyDmaInterrupt` (`odsy_intr.o`, offset 0x534, 64 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)`.
+  DMA interrupt handler in patch 4103, which this build treats as unexpected: it logs one severity 4 message (string offset 992) and adds one to the word at +16 of this CPU's 32-byte entry in the global per-CPU interrupt table (CPU number read from the kernel's fixed halfword). It reads no board register and wakes nobody.
+- `odsyUnpinAndUnmapPfStatRegions` (`odsy_map.o`, offset 0x8a8, 48 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Releases the performance-statistics mapping in patch 4103. When the doubleword at board +10312 (the kernel buffer pointer) is nonzero it calls `odsyUnmapPages` on the handle field at +10328 and returns its result; otherwise it returns 0. Offsets are 23824 below the 6.5.30m ones.
+- `odsyPinAndMapPfStatRegions` (`odsy_map.o`, offset 0x848, 96 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Maps the performance-statistics buffer in patch 4103. A zeroed stack request gets 1 at +16, 3 at +24 and the length word from board +10304 at +8; `odsyMapPages` is then called with seven arguments: 0, the user-address field at +10320, the kernel pointer at +10312, the length at +10304, the request, 1 and the handle field at +10328. Its result is returned.
+- `odsyMapPages` (`odsy_map.o`, offset 0x8d8, 228 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Kernel-to-user mapping helper in patch 4103, seven arguments (a first value passed through to the mapping call, a user-address pointer, the kernel base, the length, a request block, a flag and a handle pointer). It calls `gfxdd_mmap_mem_ex` and returns 12 when that fails. Otherwise it locks the handle with `ddv_lock`, maps (length + 16383) >> 14 pages from the kernel base with `ddv_mappages`, stores `ddv_getaddr` of the handle through the user-address pointer on success when one was given, unlocks, and on a failed mapping calls `gfxdd_munmap` on the handle and returns that result; success returns 0. The 6.5.30m routine is the same sequence with fewer arguments.
+- `gf_OdsyInvalTLB` (`odsy_map.o`, offset 0x408, 128 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
+  Translation invalidation in patch 4103. It finds the current thread (`curthreadhandle`, `gthread_find`); when bit 2 of the word at +8 of the result is set it asks `thread_issproc` and returns 0 if that answers no. Otherwise it calls `ddv_invaltlb` on the handle at board +40 for the whole range, sets the bit numbered by the CPU halfword from the fixed kernel address in the word at board +56, and returns 0. The IP30 routine uses the handle at +48 and the word at +104.
+- `odsy_regmatch` (`odsy_attach.o`, offset 0x0, 96 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)`.
+  Recycle callback of `gf_OdsyAttach` in patch 4103. With a non-null first argument it calls `gf_OdsyUnMapGfx` on it, clears the field at +72, and destroys the handle at +40 with `ddv_destroy_handle` (clearing +40) when there is one. In every case it then stores its second argument at +40 of its third argument. There is no `splhi` bracket in this build, and the handle sits at +40 where the 6.5.30m routine uses +48.
+- `gf_OdsyDetach` (`odsy_attach.o`, offset 0x1a8, 100 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)`.
+  Detach for one board in patch 4103. When bit 2 of the flag word at +48 is set it calls `odsyDiagExit` with the pointer at +32 and the record; when bit 0 is set it calls `gf_OdsyUnMapGfx`. It then calls `gfxdd_munmap` on the handle at +40, clears that field and returns 0, with no `splhi` or `splx` around the unmap.
+- `odsyInitDDRNs` (`odsy_ddrn.o`, offset 0x0, 84 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)`.
+  Client-context table reset in patch 4103. The table is a static block of 0xee20 (60960) bytes, 127 slots of 480 bytes, which the routine clears with `bzero` and then walks, storing -1 in the id word at +0 of every slot. Nothing is allocated and the board is not touched, where the 6.5.30m routine allocates 1016 bytes per board.
+- `gfP_OdsyDIAGreset` (`odsy_diag.o`, offset 0x938, 72 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Private reset request in patch 4103 (arguments: request, board pointer at +32, an integer, a status pointer). It calls `odsyReset` with the integer argument, then `odsyInitDBE` on the board with `default_timing` and quick-start flag 0, stores 0 through the status pointer and returns 0. This build does not register the board with `htp_register_board`, pause, or reset twice.
+- `odsyDestroyPfRgn` (`odsy_diag.o`, offset 0x6c8, 112 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Releases the statistics region in patch 4103. When the pointer at board +10312 and the length at +10304 are both nonzero it unmaps with `odsyUnpinAndUnmapPfStatRegions`, frees the buffer with `kmem_free` for the length, clears the words at +10440, +10436, +10320, +10312 and +10304, and writes 0 to the board registers at offsets 16412 (0x401c) and 16420 (0x4024) so the board stops writing to host memory.
+- `gfP_OdsyDIAGfreeScanbuf` (`odsy_diag.o`, offset 0x214, 144 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  Frees a client's diagnostic scan buffer in patch 4103. It takes the mutex at board +22008 (`mutex_lock`, 25); when the owner word at +22056 equals its first argument it unmaps the handle at +22040 with `odsyUnmapPages`, frees the buffer at +22024 for the size at +22048 with `kmem_free` and zeroes the owner, size and both pointers. It always unlocks, stores 0 through its status pointer and returns 0.
+- `odsyInitDrawables` (`odsy_drawable.o`, offset 0x0, 92 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Drawable table creation in patch 4103. It allocates a 13-bucket table with `odsyHashAlloc` into board +10520 (a failure logs one severity 4 message) and, whether or not that worked, initialises the multiple-reader lock at +10528 with `mrlock_init`, using a name string from the member and a first argument of 1.
+- `odsyFindDrawable` (`odsy_drawable.o`, offset 0x5c, 108 bytes): **established.**
+  Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  Drawable lookup in patch 4103. It takes the read side of the lock at board +10528 with `mraccessf`, forms the bucket as the identifier's low 16 bits ORed (not added) with its upper half, reduced modulo 13, calls `odsyHashLookup` on the table at +10520 with that bucket and the identifier, unlocks with `mrunlock` and returns the node or 0.
