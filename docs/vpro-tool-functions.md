@@ -311,3 +311,91 @@ Same conventions as above. The program keeps one global access mode (0 through t
   Polls a 32-bit compositor register until one bit has a wanted value (arguments: chip address byte, register, bit number, wanted bit, tries, microseconds between tries). Each try reads the register with `readReg_4Bytes`, extracts the bit with `p_get_bit` (called at 0x100345d8) and sleeps with `usleep` unless it matched; a read error or a miss after the last try returns -1 and a match returns 0, with the number of tries logged at level 2. `ccx_after_config_status` calls it at 0x100346c0 and five more places, and `ctx_after_config_status` at 0x10034840.
 - `command_if_error` (`usr/diags/compositor/bin/sting`, 0x10011890, 132 bytes): **established.**
   Runs a user-supplied shell command on failure: when the parameter `COMM_IF_ERR` is set it prints "Passing "%s" to system" and calls `system` with it. `TEST_simpleVideo` calls it at 0x10013950 and 0x1001398c and `TEST_spatialTiling` at 0x10015c10.
+
+## Compositor test program (`usr/diags/compositor/bin/sting`): register tables and typed register access
+
+Same conventions as above. The three register tables `CCX_regs`, `CTX_regs` and `CHIC_regs` hold one 16-byte record per register: the name pointer at +0, the permission byte at +4, the default value at +8 and the current (shadow) value at +0xc, indexed by register number. The routines below read those records by chip address byte (0xaa or 0xab for CCX, 0xac or 0xad for CTX, 0xd4 or 0xd5 for CHIC) and wrap `readReg` and `writeReg` for 1, 2 and 4 byte values.
+
+- `regName` (`usr/diags/compositor/bin/sting`, 0x1002b2b8, 192 bytes): **established.**
+  Returns the name pointer of a register: the word at +0 of record n of `CCX_regs`, `CTX_regs` or `CHIC_regs` selected by the chip address byte; any other address logs "regName: no slave at address %#x" with code 0xbcc and returns 0. The register tests call it 57 times, the first at 0x10008788 in `TEST_CHIC`.
+- `regPermission` (`usr/diags/compositor/bin/sting`, 0x1002b378, 192 bytes): **established.**
+  Returns the permission byte at +4 of the register's record, chosen by the same address test as `regName`, and logs "regPermission: no slave at address %#x" for another address. Nine call sites use it, among them `TEST_CHIC` at 0x100085ac and `TEST_CCXregs` at 0x10008fe0, to decide whether a register may be written.
+- `regDefaultValue` (`usr/diags/compositor/bin/sting`, 0x1002b438, 192 bytes): **established.**
+  Returns the default value at +8 of the register's record, with the same three tables and the same "no slave at address" error as the other record readers (message prefix `regDefaultValue`). `TEST_CHIC` calls it at 0x10008770 and `TEST_ccx_reset` at 0x10009750 to compare a register after reset with its expected value.
+- `regCurrentValue` (`usr/diags/compositor/bin/sting`, 0x1002b4f8, 192 bytes): **established.**
+  Returns the shadow value at +0xc of the register's record, the one `sw_set_reg_val` last wrote, and errors with the prefix `regCurrentValue` for an address no table covers. It is the most called of the four, with 29 call sites, the first at 0x10008808 in `TEST_CHIC`.
+- `sw_get_reg_val` (`usr/diags/compositor/bin/sting`, 0x1002b208, 176 bytes): **established.**
+  Copies a shadow register value out into a byte buffer (arguments: register table, register number, output bytes, count): a null table logs "sw_get_reg_val: got NULL array argument. Exiting.." and exits with -1. The word at +0xc of the record is shifted out one byte at a time, low byte first into increasing positions when the byte `zero_ms` is 0 and high position first when it is nonzero, mirroring `sw_set_reg_val`. `readReg_no_i2c` calls it three times, the first at 0x1002b820.
+- `readReg_1Byte` (`usr/diags/compositor/bin/sting`, 0x1002ca74, 276 bytes): **established.**
+  Reads one byte of a compositor register: it logs its arguments at level 9 and calls `readReg` with a count of 1, storing the byte through the third argument, then logs the result and the data. It returns the `readReg` result unchanged. `writebit` calls it.
+- `readReg_2Bytes` (`usr/diags/compositor/bin/sting`, 0x1002c8dc, 408 bytes): **established.**
+  Reads two bytes with `readReg` into a local buffer and, when that succeeded, joins them into one 16-bit value with `bytes2Int` (called at 0x1002ca14), least significant byte first, writing it through the third argument; a failed read returns -1 without touching the output.
+- `readReg_4Bytes` (`usr/diags/compositor/bin/sting`, 0x1002c73c, 416 bytes): **established.**
+  Reads four bytes with `readReg`, logs them as four separate data bytes at level 9 and, on success, assembles the 32-bit value with `bytes2Int` (called at 0x1002c87c). It is the call the two-wire status helper at 0x1002d3f4 uses with chip address byte 0xab.
+- `writeReg_1Byte` (`usr/diags/compositor/bin/sting`, 0x1002c624, 280 bytes): **established.**
+  Writes one byte: it copies the low byte of the value into a local one-byte buffer, calls `writeReg` with a count of 1 and returns its result, with the argument and result logged at level 9. `writebit` calls it to write back a modified byte.
+- `writeReg_2Bytes` (`usr/diags/compositor/bin/sting`, 0x1002c49c, 392 bytes): **established.**
+  Splits a 16-bit value into two bytes with `int2Bytes` (called at 0x1002c55c), least significant first, and writes them with `writeReg` and a count of 2. The transform-block registers (chip address byte 0xac) are written with it, as in `TEST_dummy`.
+- `writeReg_4Bytes` (`usr/diags/compositor/bin/sting`, 0x1002c30c, 400 bytes): **established.**
+  Splits a 32-bit value into four bytes with `int2Bytes` (called at 0x1002c3cc) and writes them with `writeReg` and a count of 4. The two-wire control helper at 0x1002d444 calls it with chip address byte 0xaa.
+- `readReg_4Bytes_rep` (`usr/diags/compositor/bin/sting`, 0x1002ab74, 492 bytes): **established.**
+  A 32-bit register read that names its caller in the log, used by the register tests (21 call sites, the first at 0x1000867c in `TEST_CHIC`). It logs "%s: reading register %s" at level 6 with the register's name from `regName`, calls `readReg_4Bytes` and, on success, logs the data at level 5. On failure it logs an error with the caller-supplied code, except when the caller is `read_compare_flash`, whose failures are only logged at level 2.
+- `readReg_2Bytes_rep` (`usr/diags/compositor/bin/sting`, 0x1002ad60, 492 bytes): **established.**
+  The same wrapper around `readReg_2Bytes` for 16-bit registers; only the transform-block routines use it (`TEST_CTXregs` at 0x1000a3a8 and 0x1000a3d4, `hw_crc_poll_ctx` at 0x10024548 and `hw_crc_collect_ctx` at 0x100247f0).
+- `readReg_1Byte_rep` (`usr/diags/compositor/bin/sting`, 0x1002af4c, 492 bytes): **established.**
+  The one-byte member of the read family, calling `readReg_1Byte`. It is complete but unused: no call to it exists in the binary.
+- `writeReg_4Bytes_rep` (`usr/diags/compositor/bin/sting`, 0x1002a634, 448 bytes): **established.**
+  The logging wrapper for 32-bit writes, the most used of the family with 64 call sites (the first at 0x100086d8 in `TEST_CHIC`). It prints a blank debug line, then "%s: writing register %s" and the data at level 5, calls `writeReg_4Bytes` and, on failure, logs "%s: failed to write %s register" as an error, or at level 2 when the caller is `read_compare_flash`.
+- `writeReg_2Bytes_rep` (`usr/diags/compositor/bin/sting`, 0x1002a7f4, 448 bytes): **established.**
+  The 16-bit write wrapper over `writeReg_2Bytes`, called by the transform-block routines `TEST_CTXregs` (0x1000a424), `hw_crc_clear_ctx` (0x100242b0 and 0x100242f4) and `hw_crc_arm_ctx` (0x100243d8 and 0x1002441c).
+- `writeReg_1Byte_rep` (`usr/diags/compositor/bin/sting`, 0x1002a9b4, 448 bytes): **established.**
+  The one-byte write wrapper over `writeReg_1Byte`; like its read counterpart it has no call site in the binary.
+- `i2c_createPacket` (`usr/diags/compositor/bin/sting`, 0x1002cc10, 208 bytes): **established.**
+  Allocates a copy of a byte array as a two-field packet: an 8-byte header whose first byte is the length and whose word at +4 points to a fresh copy of the data (arguments: array, length). A null array fails the assert "arr!=NULL" at line 0x46 of "i2c_api.c"; a failed allocation frees the header and returns 0. Nothing in the binary calls it.
+- `i2c_destroyPacket` (`usr/diags/compositor/bin/sting`, 0x1002cce0, 76 bytes): **established.**
+  Frees a packet made by `i2c_createPacket`: the data at +4 first, then the header. It has no caller.
+- `i2c_printPacket` (`usr/diags/compositor/bin/sting`, 0x1002cd2c, 188 bytes): **established.**
+  Dumps a packet at debug level 7: the banner "**** I2C PACKET DUMP ****", the length byte and then each data byte numbered from 1. It has no caller.
+
+## Compositor test program (`usr/diags/compositor/bin/sting`): the CRC checks
+
+The video tests compare a signature the compositor chips compute in hardware with one the program computes from the frame it drew. The signature is a 16-bit linear feedback register with feedback mask 0xb400 (shift right by one; when the bit shifted out, exclusive-ORed with the next data bit, is 1, the mask is exclusive-ORed in), fed one data bit at a time in index order. The four `crc16...` routines are that register unrolled for a fixed number of data bits per call; **established** by reading all 16 output expressions of each routine and checking that the data-bit columns form one chain under the register step starting from 0xb400 and that the state part equals the register stepped that many times.
+
+- `crc1624` (`usr/diags/compositor/bin/sting`, 0x10025f74, 1604 bytes): **established.**
+  Advances the signature register by 24 data bits in one call (arguments: old register as 16 separate 0/1 words, 24 data bit words, new register as 16 words). Each of the 16 outputs is an exclusive-OR of 5 to 11 terms of the old register and the data; the first 16 data bits enter with the same terms as the register bits, and the last 8 enter alone. Its one caller is `sw_crc_ctx_output` at 0x10024ec4.
+- `crc1648` (`usr/diags/compositor/bin/sting`, 0x10025048, 3884 bytes): **established.**
+  The same register stepped by 48 data bits per call, which is six input bytes. It is called by `sw_crc_ccx_input` at 0x10024a68 only.
+- `crc1696` (`usr/diags/compositor/bin/sting`, 0x100265b8, 7452 bytes): **established.**
+  The same register stepped by 96 data bits per call (twelve bytes), called by `sw_crc_ctx_input` at 0x10024d68 only.
+- `crc16120` (`usr/diags/compositor/bin/sting`, 0x100282d4, 9052 bytes): **established.**
+  The same register stepped by 120 data bits per call (twelve 10-bit values), called by `sw_crc_ccx_output` at 0x10024c0c only.
+- `sw_crc_ccx_input` (`usr/diags/compositor/bin/sting`, 0x10024908, 540 bytes): **established.**
+  Computes the signature the compositor chip CCX should see on its input from a frame buffer (arguments: bytes, byte count). It splits each byte into 8 bits, low bit first, collects 48 bits and calls `crc1648` (0x10024a68), copying the new register back with `array_copy` (0x10024a7c); the result is the 16 register bits packed into one word. When the parameter `use_sw_hack` is set it leaves out the first six bytes of every 0xf00-byte block. The count of RGB components processed is logged at level 3.
+- `sw_crc_ccx_output` (`usr/diags/compositor/bin/sting`, 0x10024b24, 348 bytes): **established.**
+  Computes the expected signature at the chip's output from words of pixel data (arguments: word array, word count). Each word contributes its low 10 bits, low bit first; every 120 bits it calls `crc16120` (0x10024c0c) and copies the register back (0x10024bb0). It returns the register packed into one 16-bit word.
+- `sw_crc_ctx_input` (`usr/diags/compositor/bin/sting`, 0x10024c80, 348 bytes): **established.**
+  Computes the expected input signature for the transform chip: each byte of the data contributes its 8 bits low bit first, and every 96 bits `crc1696` (0x10024d68) steps the register, which `array_copy` copies back at 0x10024d0c. The result is the packed 16-bit register.
+- `sw_crc_ctx_output` (`usr/diags/compositor/bin/sting`, 0x10024ddc, 348 bytes): **established.**
+  Computes the expected output signature of the transform chip with 24 bits per step: the same bit loop over bytes, with `crc1624` called at 0x10024ec4 after every 24 bits and the register copied back by `array_copy` at 0x10024e68. `sw_atpg_crc` calls it at 0x10023dc4.
+- `hw_crc_clear_ccx` (`usr/diags/compositor/bin/sting`, 0x100241ec, 148 bytes): **established.**
+  Clears both CCX signature registers: it writes 0xf to `CCX_CRC_INPUT_CTRL` (register 0x5f) and 1 to `CCX_CRC_OUTPUT_CTRL` (register 0x61) with chip address byte 0xaa, each through `writeReg_4Bytes_rep` with the error code 0xbb9, returning -1 at the first failure. It is called by `ccx_regs_init` at 0x10008be8, `atpg_test_core` at 0x1000acb0, `collect_compareCRC` and `calculateHW_CRC`.
+- `hw_crc_arm_ccx` (`usr/diags/compositor/bin/sting`, 0x10024314, 148 bytes): **established.**
+  Starts the CCX signature capture: 0xf0 into `CCX_CRC_INPUT_CTRL` (register 0x5f) and 2 into `CCX_CRC_OUTPUT_CTRL` (register 0x61), the arm values where the clear used 0xf and 1. Callers are `atpg_test_core` (0x1000add8), `collect_compareCRC` (0x10012908) and `calculateHW_CRC` (0x10014e80).
+- `hw_crc_poll_ccx` (`usr/diags/compositor/bin/sting`, 0x1002443c, 212 bytes): **established.**
+  Reads the CCX capture status into a five-byte record: the four low bits of `CCX_CRC_INPUT_STATUS` (register 0x60) become four separate 0/1 bytes for the four input signatures, and the low byte of `CCX_CRC_OUTPUT_STATUS` (register 0x62) goes to byte 4. A failed read returns -1. `atpg_test_core` polls with it at 0x1000af00.
+- `hw_crc_collect_ccx` (`usr/diags/compositor/bin/sting`, 0x100245cc, 464 bytes): **established.**
+  Reads the CCX signatures the caller selects with a five-bit mask: bits 0 to 3 pick `CCX_CRC_INPUT_0` to `CCX_CRC_INPUT_3` (registers 0x63 to 0x66) and bit 4 `CCX_CRC_OUTPUT` (register 0x67), each read as a 32-bit word into the result array, with 0 for an unselected one. It returns -1 if any read fails. `calculateHW_CRC` calls it at 0x100150b0.
+- `hw_crc_clear_ctx` (`usr/diags/compositor/bin/sting`, 0x10024280, 148 bytes): **established.**
+  The transform-chip clear: it writes 1 to `CTX_CRC_INPUT_CTRL` (register 1) and 1 to `CTX_CRC_OUTPUT_CTRL` (register 3) with chip address byte 0xac, as 16-bit writes with error code 0xbba. `ctx_regs_init` calls it at 0x10009f58.
+- `hw_crc_arm_ctx` (`usr/diags/compositor/bin/sting`, 0x100243a8, 148 bytes): **established.**
+  The transform-chip arm: it writes 2 to registers 1 and 3 (`CTX_CRC_INPUT_CTRL` and `CTX_CRC_OUTPUT_CTRL`) of chip address byte 0xac, which the clear sets to 1. `atpg_test_core` calls it at 0x1000ae68.
+- `hw_crc_poll_ctx` (`usr/diags/compositor/bin/sting`, 0x10024510, 188 bytes): **established.**
+  Reads `CTX_CRC_INPUT_STATUS` (register 2) and `CTX_CRC_OUTPUT_STATUS` (register 4) with 16-bit reads from chip address byte 0xad and stores the low bit of each as the two bytes of the result. A failure returns -1. `atpg_test_core` calls it at 0x1000af90.
+- `hw_crc_collect_ctx` (`usr/diags/compositor/bin/sting`, 0x1002479c, 268 bytes): **established.**
+  Reads the transform chip's signatures selected by mask bits 5 and 6: `CTX_CRC_INPUT` (register 5) for bit 5 and a second register for bit 6, as 16-bit reads from chip address byte 0xad, zero for an unselected one. The second read uses register 0x67, which is the register number of `CCX_CRC_OUTPUT`; the CTX table has no register 0x67 and its output signature is register 6, and the failure text of the first read names `hw_crc_collect_ccx`, so the routine reads like a copy of the CCX one. Its caller `atpg_test_core` calls it at 0x1000b0c0.
+- `crc_ccx_point_name` (`usr/diags/compositor/bin/sting`, 0x100248a8, 48 bytes): **established.**
+  Returns the name of one of the five CCX signature points from the table `crc_ccx_point_names` (`CCX_CRC_INPUT0` to `CCX_CRC_INPUT3` and `CCX_CRC_OUTPUT`), or 0 for an index of 5 or more. `atpg_test_core` calls it 11 times, the first at 0x1000ab48.
+- `crc_ctx_point_name` (`usr/diags/compositor/bin/sting`, 0x100248d8, 48 bytes): **established.**
+  Returns `CTX_CRC_INPUT` for index 0 and `CTX_CRC_OUTPUT` for index 1 from the table `crc_ctx_point_names`, and 0 for any larger index. `atpg_test_core` calls it 11 times, the first at 0x1000abb4.
+- `compare_crc` (`usr/diags/compositor/bin/sting`, 0x10024f38, 272 bytes): **established.**
+  Compares the hardware and software signatures of seven points: for each bit i of the mask in its third argument it compares the two arrays' word i and logs "miscompare %d crc. hw=%#x and sw=%#x" as an error (code 0xbcc) when they differ, then "%d miscompares" and returns -1, or "No crc miscompares" at level 4 and returns 0. Nothing in the binary calls it.
