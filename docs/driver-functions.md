@@ -3629,3 +3629,59 @@ Lays out
   The patch 4103 build of the line-strip restore hook has the same instruction sequence as `restoreLines` in this
   build: the fourth argument plus 3 modulo 4 with sign correction, passed as the sixth argument to
   `odsyRestoreVertex`, in a 64-byte frame.
+- `ODSY_SET_GC` (`odsy_tport.o`, offset 0x30, 2440 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+  Text-port graphics-state set-up, called with nine arguments: board base, a colour (index or 24-bit RGB), the word for block 0x022,
+  a second colour for block 0x023, a mode (0, 1 or 2), the word for block 0x024, an enable flag, a colour-block flag and, on the stack,
+  the colour-block value. `odsy_tpinit` calls it with mode 0 and the five constants 1, 3, -1, 3, 3; `odsy_drawbitmap` calls it with the
+  enable flag set before drawing and clear afterwards. Everything goes to the command FIFO port at +0x110000, each store followed by a
+  `sync`, and the state is kept in the hardware-state object, whose offsets are the shadow offsets of `docs/buzz.md` section 8.
+  In order: the 0x024 operand (+11112) is the fifth argument, or 12 when the mode is 2; one full settle group of `BUZZ.h` section 5 (0x10443 with
+  250, two 0x10046, 0x10019, 0x10443 with 150, four 0x10046, 0x10443 with 250, two 0x10046) is sent, then block 0x024 and the second half
+  of the settle group. The raster-mode word at +132 gets bits 0x18 set when the enable flag is nonzero and bits 0x18 and 0x20000 cleared
+  otherwise. Mode 1 (RGB) sets bit 20 of that word and stores the sequencer pair 0x22008000 and 0x23008002 (cached at +9828 and +9832);
+  modes 0 and 2 (colour index) set bit 19 and store the pair 0x22008001 and 0x23008003. When the colour-block flag and the enable flag are both set,
+  the routine first writes the constant-colour block 0x021 from +188, +192 and +196: 512, then the stack value widened to 12 bits a channel
+  (RGB mode), or 512, the stack value shifted left by 12 and 1 (index mode), and sets bit 17 of the raster-mode word. It sends block 0x004
+  from +132, the sequencer pair, and the colour: RGB mode sends 0xc580cc08 and the three bytes of the first colour, index mode sends 0xce80cc08, three zeros,
+  0xc580c406 and the colour itself. The second colour fills +232 and +236 (RGB: widened per channel; index: shifted left by 12 and 1) and goes out in block
+  0x023 with the words at +240 and +244. A six-word entry of 24 bytes, chosen by the mode from the table at +16664 of the second static object, is packed into
+  the block 0x022 word kept at +6956 of the hardware-state object (bits 15:13, 19, 12:10, 9:7 and 6:4 from entry words 16, 20, 4, 0
+  and 8, bit 29 always set); the entry's word 12 becomes the first of the four operands of block 0x017 at +6948 to +6960. The routine writes block 0x022 from the
+  third argument (+200), then sends block 0x017 four times, each time with a settle group in front or behind: the packed word, then the third operand zero,
+  then the third operand with bit 23 set, then the packed word again; the third word of block 0x017 therefore carries bit 23 only transiently (`docs/open-questions.md`, drawable registers).
+  What the entry words and the enable flag mean on the board stays inferred: what bits 0x18 of the raster word enable is unknown from the binary alone; a read of where `libGLcore` sets the same bits would settle it.
+- `odsy_drawbitmap` (`odsy_tport.o`, offset 0xf8c, 1716 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
+
+  Text-port glyph draw (arguments: board base, bitmap record with the row pointer at +0, width +8, height +10, x and y origin +12 and +14, x and y advance +16
+  and +18, row stride in halfwords +20). It returns when the mute word is set, otherwise counts itself in use, takes the text-port lock and calls
+  `ODSY_SET_GC` with the enable flag set. The bitmap is walked in bands of at most 64 rows and cells of at most 16 columns. For each cell it copies
+  the cell's rows, bottom row first, as halfwords to the start of the hardware-state object (the 16-word stipple pattern), sends block 0x03f with 6, the pattern as
+  blocks 0x04e and 0x04f (16 words each), the primitive begin 0x14400 with 7, four 0x8080c800 vertices (the cell's left and right columns by its bottom and top rows, flipped against the
+  port height at +16 of the static port object, with the glyph origin and a one-row offset applied) and 0x14001. A nonzero word at +7036 puts an extra 0x10443 group in front of the
+  closing settle group. When the bitmap is done it adds the x and y advance to the cursor in the static object, calls `ODSY_SET_GC` again with the enable flag clear, sends one more
+  settle group and releases the lock.
+- `generatePageTable` (`odsy_dma.o`, offset 0x558, 880 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Fills the per-chunk transfer table for a host buffer (arguments: region record, buffer address, length, output table, optional address list). With no list
+  supplied it makes one (`alenlist_create`; failure logs and returns 12) and fills it from the buffer with `uvaddr_to_alenlist` below 2^40 or
+  `kvaddr_to_alenlist` above (failure logs and returns 14). The region record gives the row count (bits 31:16 of +12, 65536 when zero), the row length in bytes
+  (low 20 bits of +24) and the gap to skip after each row (+20). It walks the list in pieces of up to 16384 bytes: row bytes are counted into the current entry; when
+  a row is complete the gap is taken off the piece and the row counter advances (a count past the row total logs and still returns 0); when a piece runs out the next one is fetched,
+  and a gap that spans pieces is taken from the next piece's start. Each entry is two words: the piece's address shifted right 16, then its low 16 bits in the upper half over
+  the byte count in the lower half. The last entry is followed by a zeroed entry. A list built here is destroyed on exit; one passed in is not, and its cursor is
+  reset to the offset argument first. Returns 0, 12, 14 or the failure of `alenlist_get`.
+- `gfP_OdsyClearBuffer` (`odsy_clip.o`, offset 0xc60, 2084 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Private request 14, the clear. It zeroes the status word, checks the caller with `RRM_CheckValidFault` and copies in 44 bytes (failure: log, status 14), then takes the busy count at
+  +80. The request holds four clear-value words at +0 to +12, one more word at +16, a rectangle at +20 to +32 and band height at +36 and a flag word at +40. When bit 27 of the
+  context's block 0x017 third word (+6956) is set, the rectangle is the request's own and the count is 1. Otherwise the rectangles are the context's clip list, a
+  count at +40 and four four-entry arrays at +44, +60, +76 and +92, and the request is refused (status 14) when a drawable field at +48 is set and the request's flag word is zero or when the count is not positive. It attaches the process
+  to flow control when it is not attached (sets bit 1 of the context word at +4, `gfx_flow_attach_me`, builds the 0x1074 word from the credit target number and clears 0x107c) and detaches again at the end
+  when it attached here (stores 1 to 0x107c, reads 0x106c, `gfx_flow_detach_me`). For each clip rectangle it intersects the request rectangle (maximum of the lower bounds, minimum of
+  the upper bounds on each axis), skips empty results, offsets by a word read from the drawable, converts the corner coordinates to IEEE floats with a leading-bit search
+  (exponent 127 plus the bit position, 23-bit mantissa, sign taken from bit 31 of the negated value), and sends one clear packet per band along the first axis: 0x14400 with 10,
+  0x8f80a92f with ten operands (the four clear words, the corner as two floats and the +16 word, the far corner and the +16 word), 0x14001 and a full settle group. The first band
+  ends at the largest multiple of 16 not above its start plus the band height when that lies beyond the start (otherwise at the rectangle's end); later bands advance by the band height
+  and each starts where the last ended.
