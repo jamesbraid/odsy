@@ -324,12 +324,12 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   `odsy_tport_lock` with the name "odsy_tport_lock".
 - `odsy_rainier_read_rcx_reg` (`odsy_rainier.o`, offset 0x18, 24 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
-  Reads one 32-bit register of the Rainier window. It takes the mapped base pointer stored at board record
+  Reads one 32-bit register of the Rainier window. It takes the mapped base pointer stored at record
   +16, adds the byte offset in its second argument rounded down to a multiple of 4 (shift right 2, shift
   left 2) and returns the word loaded from there.
 - `odsy_rainier_write_rcx_reg` (`odsy_rainier.o`, offset 0x0, 24 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_rainier.o)`.
-  Writes one 32-bit register of the Rainier window: the store goes to the base pointer at board record +16
+  Writes one 32-bit register of the Rainier window: the store goes to the base pointer at record +16
   plus the offset in the second argument rounded down to a multiple of 4, and the value is the third
   argument. It has no return value and no barrier.
 - `odsy_rainier_read_board_id` (`odsy_rainier.o`, offset 0x30, 28 bytes): **established.**
@@ -665,7 +665,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   that word, stores the return value in the result word and returns 0.
 - `setDACreg` (`odsy_brdmgr.o`, offset 0x34b0, 164 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
-  Programs the DCD2 DAC over the two-wire bus. It stores the byte 31 at board record +32. When its second
+  Programs the DCD2 DAC over the two-wire bus. It stores the byte 31 at port record +32. When its second
   argument is non-zero it writes the value (third argument AND 3) OR 0x18 to register 5 with
   `odsy_i2cPLLRegWrite`; a failure there logs "failed to program DCD2 DAC command" at severity 1 and ends
   the call. It then writes the low byte of the fourth argument to register 4, logging "failed to program
@@ -708,7 +708,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   modulo 3) + 1 and advances as (slot modulo 3) + 1; the modulo is a signed divide by 3.
 - `odsy_DCDResetDone` (`odsy_init.o`, offset 0x2be4, 120 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
-  Waits for the display-controller reset to complete. It stores the byte 31 at board record +32 and then
+  Waits for the display-controller reset to complete. It stores the byte 31 at port record +32 and then
   polls up to 5000 times: `odsy_i2cDDCRegRead` of register 3, `odsy_usdelay` of 1000 microseconds, and a
   test of bit 1 of the byte read. It returns 1 as soon as the bit is set and 0 when the polls run out.
 - `odsy_ProbeDenali` (`odsy_denali.o`, offset 0x338, 124 bytes): **established.**
@@ -731,13 +731,13 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_i2cPLLRegWrite` (`odsy_ddc.o`, offset 0x4c, 136 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Writes one register of the clock part over the two-wire bus. It starts a write transaction with the
-  device address from the byte at board record +32 shifted left by 1, sends the register number and then
+  device address from the byte at port record +32 shifted left by 1, sends the register number and then
   the value, the last byte flagged as final, through `odsy_i2c_start` and `odsy_i2c_sendbyte`. Any failing
-  step calls `odsy_i2cReset` on the board and returns 1; success returns 0.
+  step calls `odsy_i2cReset` on the port and returns 1; success returns 0.
 - `odsy_i2cDDCRegRead` (`odsy_ddc.o`, offset 0x180, 140 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Reads one register of the display-data device over the two-wire bus. It calls `odsy_i2c_start` with the
-  device address from the byte at board record +32, shifted left by 1 with the low bit set, sends the
+  device address from the byte at port record +32, shifted left by 1 with the low bit set, sends the
   register number with `odsy_i2c_sendbyte` and then collects one byte into the caller's buffer with
   `odsy_i2c_long_recvbyte`. A failing step calls `odsy_i2cReset` and returns 1; success returns 0.
 - `odsy_i2cValidEdid` (`odsy_ddc.o`, offset 0x1ca0, 136 bytes): **established.**
@@ -987,20 +987,20 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_i2cPLLRegRead` (`odsy_ddc.o`, offset 0xd4, 172 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Reads one register of the clock part over the two-wire bus. It starts a write transfer to the device
-  address from the byte at board record +32 shifted left by 1, sends the register number, restarts the
+  address from the byte at port record +32 shifted left by 1, sends the register number, restarts the
   transfer with the address shifted left and the low bit set, and collects one byte into the caller's
   buffer with `odsy_i2c_long_recvbyte`. Any failing step calls `odsy_i2cReset` and returns 1; success
   returns 0.
 - `odsy_i2cPLLSeqRegWrite` (`odsy_ddc.o`, offset 0x20c, 240 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Writes a run of consecutive registers of the clock part. It starts a write transfer to the address from
-  the byte at board record +32 shifted left by 1, sends the first register number, and then sends the N
+  the byte at port record +32 shifted left by 1, sends the first register number, and then sends the N
   bytes of its buffer with `odsy_i2c_sendbyte`, only the last one carrying the final-byte flag. A failing
   step calls `odsy_i2cReset` and returns 1; success returns 0.
 - `odsy_i2cPLLSeqRegRead` (`odsy_ddc.o`, offset 0x2fc, 276 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
   Reads a run of consecutive registers of the clock part. It writes the first register number after a
-  start to the address at board record +32 shifted left by 1, restarts with the fixed address byte 77,
+  start to the address at port record +32 shifted left by 1, restarts with the fixed address byte 77,
   takes the first byte with `odsy_i2c_long_recvbyte`, the middle bytes with `odsy_i2c_short_recvbyte` and
   the last byte with another `odsy_i2c_long_recvbyte` that has the final flag set. Any failure calls
   `odsy_i2cReset` and returns 1; success returns 0.
@@ -1084,3 +1084,72 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   range, follows with `ddv_invaltlb` when that returns 0, records the current CPU as a bit in the word at
   +104, and logs "odsy: unmapgfx: Unexpected return value from ddv_invalphys" at severity 4 for any result
   other than 0 or 2.
+- `gfP_OdsySetClipMask` (`odsy_clip.o`, offset 0xb1c, 168 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
+  Private-request handler that sets a client's clip mask. It clears the result word, takes the graphics
+  context behind +112 of the owner at +72, and calls `RRM_CheckValidFault`; a negative answer stores 14 in
+  the result word. Otherwise it copies 16 bytes in from the user address into the context at +124 (a
+  faulting copy logs "odsy: bad ptr to arg in SetClipMask" at severity 4 and stores 14) and calls
+  `gf_OdsyValidateClip` with the second argument and the structure at +96 of the pointer at +120 of that
+  argument. Its return value goes into the result word and is returned.
+- `gfP_OdsyHPbind` (`odsy_hpipe.o`, offset 0x10f8, 360 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private-request handler that binds a client to a display pipe. It copies a 4-byte pipe number in from
+  the user address; a faulting copy logs "gfP_OdsyHPbind: bad ptr to arg" at severity 4 and stores 14.
+  Under the slot's `mutex_spinlock` in `OdsyHpipeState` (56 bytes per slot, number 0 to 64) it stores 22
+  in the result word unless the slot's state word at +8 is 1. For a valid slot it increments the board's
+  count at +46236, stores the pipe number at +46232, increments the slot's use word at +56 and stores the
+  number in the halfword at +588 of the client context behind +112 (logging "rnpp null in hpipe bind" when
+  there is none), and stores 0 as the result.
+- `gfP_OdsyHPgetConfig` (`odsy_hpipe.o`, offset 0x6b0, 324 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
+  Private-request handler that reports the display-pipe configuration. It copies a 524-byte request in
+  from the user address (a faulting copy logs "bad ptr to arg" at severity 4 and stores 14) and stores 22
+  if `OdsyHpipeState` is missing or its first word is 0. For the pipe number in the word at +8, 0 to 63,
+  with the slot state word at +8 equal to 1, it fills up to four 16-byte output entries from the boards in
+  the slot's table, each with the halfword at +790 of the board record in its +24, the words at +46240 and
+  +46244 in its +12 and +20 and 0 in its +16. It copies the 524 bytes back out, logging "bad hyperpipe
+  config arg user-land pointer" and storing 14 if that fails, and returns the result word.
+- `odsy_copyin_frame_line_tables` (`odsy_brdmgr.o`, offset 0x33dc, 212 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Copies the two timing tables of a request in from user space. It allocates the first table with
+  `kern_calloc` (the count in the word at +8, 2 bytes per entry), copies it in from the user pointer at +0
+  and replaces that pointer by the kernel copy; it does the same for the second table with the count at
+  +24 and the pointer at +16. A failed allocation frees what was taken and returns 12, a faulting copy
+  frees both tables and returns 14, and success returns 0.
+- `odsy_reconfigDCD2FPLD` (`odsy_brdmgr.o`, offset 0x373c, 236 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Reprograms the DCD2 programmable logic over the two-wire bus. It stores the byte 31 at port record +32,
+  writes register 3 with 8, registers 1 and 2 with 0 and register 3 again with 1 through
+  `odsy_i2cPLLRegWrite`, each failure logged at severity 1 and returned as 1, and then waits 600000
+  microseconds with `odsy_usdelay` on the board pointer at +16. It returns 0 on success.
+- `gfP_OdsyBRDMGRconfigFb` (`odsy_brdmgr.o`, offset 0x1088, 260 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler that configures the frame buffer. It copies a 52-byte request in from the user
+  address (a faulting copy logs at severity 4 and stores 14) and rejects it with 22 unless the first two
+  words are below 4096 and the word at +8 is 8, 16 or 32. A valid request goes to `odsyConfigFb` on the
+  board pointer at +40 of the first argument, the 52 bytes are copied back out (a fault stores 14), and
+  `odsyConfigFb`'s result is stored in the result word.
+- `gfP_OdsyBRDMGRloadTimingTable` (`odsy_brdmgr.o`, offset 0x5d14, 296 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Private-request handler that loads a display timing table. It copies a 320-byte request in from the user
+  address (a fault logs at severity 4 and stores 14), then runs `odsy_copyin_frame_line_tables`, whose
+  error is stored and returned. With the flow handle at board record +808 set and `RRM_CheckValidFault`
+  successful it increments the busy count at +80, calls `odsyLoadTimingTable`, stores its result,
+  decrements the count and frees both tables with `kern_free`; a missing handle or failed validation frees
+  the tables and stores 14.
+- `odsy_restoreDCD2FPGA` (`odsy_brdmgr.o`, offset 0x67f4, 384 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Restores the DCD2 programmable logic after a reset. On the port record embedded in the board at +0xb408
+  it stores the byte 31 at +32 and polls register 3 with `odsy_i2cDDCRegRead` up to 10 times, waiting
+  200000 microseconds between tries, for bit 1. It then writes the saved values from the board record to
+  registers 0 through 5 with `odsy_i2cPLLRegWrite` (the byte 23 at the port's +32 first), and, when the
+  halfword at +302 is 0, a value 7 to register 50. Any failed write returns 1; success returns 0.
+- `odsy_initDCD2DAC` (`odsy_brdmgr.o`, offset 0x3554, 488 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Initialises the DCD2 DAC over the two-wire bus. On the port record in its second argument it stores the
+  byte 31 at +32 and writes register 3 of the clock part with 0; a failure logs at severity 1 with the
+  halfword at +790 of the board behind +16 and returns 1. It then makes a fixed series of `setDACreg`
+  calls (among them the values 9, 8, 41, 4, 255, 5, 236 and 65 with command codes 0 to 3) and finishes by
+  writing the index of each of 256 entries three times, with `setDACreg` command 1, which loads an
+  identity ramp. It returns 0.
