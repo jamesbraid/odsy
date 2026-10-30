@@ -105328,7 +105328,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165ebc0	468	cfbZeroPolyArcSS8
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165eda0	248	nfb8MaskRopLoop..II	dynsym	222917d32462		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165eea0	280	miDcos..CO	dynsym	438b741a476e		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165efc0	2092	odsyLdFmtByName..OC	dynsym	01dfa64235d1		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165f7f0	444	odsyQueryHyperpipeConfig	dynsym	676892066b7d		named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165f7f0	444	odsyQueryHyperpipeConfig	dynsym	676892066b7d		understood	docs/odyssey-so-reads.md#pixel-buffer-and-hyperpipe-routines	Pixel-buffer and hyperpipe routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x165f9b0	1896	cfbTile32FSGeneral	dynsym	ff8a08716a2f		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1660120	10472	mfbSegmentSD	dynsym	9a00d0846559		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1662a10	468	nfbStereoImageText8	dynsym	f24a653d66cf		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105336,7 +105336,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1662bf0	564	cfb16UnnaturalTil
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1662e30	640	QuickSortRects..LAB	dynsym	8bc938e959ea		named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16630b0	11512	odsyFillPolygon	dynsym	beeac3146099		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1665db0	72	miRegionUninit	dynsym	223a7926f49f		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1665e00	712	odsyQueryHyperpipeNetwork	dynsym	8356be1881f9		named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1665e00	712	odsyQueryHyperpipeNetwork	dynsym	8356be1881f9		understood	docs/odyssey-so-reads.md#pixel-buffer-and-hyperpipe-routines	Pixel-buffer and hyperpipe routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16660d0	752	rrmCreateDefColormap	dynsym	e6fe92e6c7b0		named-only	docs/odyssey-so-functions.md#resource-manager-client-rrm	Resource-manager client (`rrm`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16663c0	332	cfb32SegmentSS1Rect	dynsym	7d5d0f0bf56d		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1666510	676	nfbStereoPolySegment	dynsym	cba25d349e23		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
@@ -105368,7 +105368,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c640	2644	mfbUnnaturalStip
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d0a0	740	miFillRectPolyHelper..KBB	dynsym	261277ff4b27		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d390	120	odsyLstVideoFmtCombs..BC	dynsym	72469646b2a4		understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d410	1244	odsyNewGCOps..E	dynsym	8ea127e8e534		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d8f0	1388	odsyAllocatePbuffer	dynsym	91df5c8eacf2		named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d8f0	1388	odsyAllocatePbuffer	dynsym	91df5c8eacf2		understood	docs/odyssey-so-reads.md#pixel-buffer-and-hyperpipe-routines	Pixel-buffer and hyperpipe routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166de60	6216	cfbDoBitbltGeneral	dynsym	8776a578b4a9		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166f6b0	52	miCloseScreen	dynsym	7a68618d01ab		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166f6f0	612	miCreateBSPixmap..LFB	dynsym	256e972a3ae1		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
@@ -105377,7 +105377,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16700b0	2156	cfb16FillRectTil
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1670920	256	nfbCreateHWColormap	dynsym	3af47437190c		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1670a20	3756	cfb32PolyFillRect	dynsym	ed21783df5c1		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16718d0	812	nfb10MaskRopLoop..KI	dynsym	d7e9c804d4e9		named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1671c00	616	odsyHyperpipeConfig	dynsym	b638eadda767		named-only	docs/ioctls.md#private-requests-0x6f640000--n	Private requests (0x6f640000 + n)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1671c00	616	odsyHyperpipeConfig	dynsym	b638eadda767		understood	docs/odyssey-so-reads.md#pixel-buffer-and-hyperpipe-routines	Pixel-buffer and hyperpipe routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1671e70	120	miDasin..EO	dynsym	826aa7e5da09		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1671ef0	1056	miBSTranslateBackingStore..AFB	dynsym	4122fbe47271		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1672310	872	cfbCopyRotatePixmap	dynsym	1d9e08bb3303		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
