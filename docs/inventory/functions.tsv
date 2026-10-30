@@ -105074,7 +105074,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15cd620	96	miBSCheapCopyClip.
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15cd680	2116	miBSFillSpans..DDB	dynsym	e8c88b9e4f49		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15cded0	304	odsyQryExtSyncNm..HD	dynsym	12afe43ac800		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ce000	2068	miBSSetSpans..EDB	dynsym	a6168144cb85		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ce820	780	odsyKernInit..O	dynsym	804ea0a24fd3		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ce820	780	odsyKernInit..O	dynsym	804ea0a24fd3		understood	docs/odyssey-so-reads.md#board-control-routines	Board control routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15ceb30	7080	cfbCopyPlane8to1	dynsym	545445fccf8b		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15d06e0	2540	miFillUniqueSpanGroup	dynsym	8ca690a8ccb4		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x15d10d0	6272	drawQuadrant..FAB	dynsym	6bd3d196e967		named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
@@ -105153,7 +105153,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1605f50	120	miBSCopyGC..EFB	d
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1605fd0	4348	odsyAttachXvc	dynsym	28fb773e1dae		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16070d0	1544	miPushPixels	dynsym	5b9c44bda545		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16076e0	2808	cfb16FillBoxTileOddCopy	dynsym	4c0c521dabe2		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16081e0	832	odsySetFBConfig..KD	dynsym	c9212909bcef		named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16081e0	832	odsySetFBConfig..KD	dynsym	c9212909bcef		understood	docs/odyssey-so-reads.md#board-control-routines	Board control routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1608520	4592	mfbDoBitbltCopy	dynsym	3b21c92e8c92		named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1609710	1628	cfbSolidSpansGeneral	dynsym	1365f714200d		named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1609d70	624	odsyLoadGamma0	dynsym	b17ace5dc6cf		named-only	docs/display.md#host-software	Host software
