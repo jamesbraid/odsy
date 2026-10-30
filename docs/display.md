@@ -258,3 +258,14 @@ Everything left in the display rows is a property of the hardware that no softwa
 - **Display-mode word bits 23:12 and 3:0 (`DISPLAY.h` section 2) and the repeat-versus-scale reading of the mode field:** the display-FIFO mode word for each id read back through +0x220000 (`docs/pbj.md`), with the displayed width of a known test image at each id.
 - **Narrow-visual scanout and overlays:** a screenshot of a known 12-bit and 15-bit image through the real output (compare with the widened values in the tables above), and a run of the X server that lists overlay visuals with its call trace of the overlay capability registration.
 - **Which pixels move from BUZZ memory to PB&J:** the bus trace named in `docs/pbj.md`.
+
+## Published display facts (guides and datasheets)
+
+**established (published)** unless marked; sources 8 to 13 of [published-sources.md](published-sources.md), printed pages.
+
+- **Two-channel formats.** A dual channel option presents one logical screen across two monitors, for example 2560 x 1024, and the format list marks those settings with a "2@" prefix (007-4209-003 pp. 105-110). This is the same naming as the `2@...` files of the `.vfo` list above, so the file prefix is the product's own marker. Window sizes then need an application limit because some programs fill the whole logical screen (p. 109).
+- **Scan-rate lists.** The Octane2 guide names 640 x 480, 800 x 600, 1024 x 768 (60 and 75 Hz), 1280 x 720 (60 and 72), 1280 x 1024 at 60 (safe) and 96 Hz, 1600 x 1024 at 82.98, 1600 x 1200 (72 and 75), 1920 x 1080 at 72, 1920 x 1200 at 60 and a 1280 x 1024 stereo mode at 50 Hz per eye (007-4207-002 p. 239); V10 and V12 support more rates than V6 and V8 (007-4210-003 p. 32). The Fuel guide adds interlaced 30 Hz modes at 1280 x 1024, 1280 x 960, 1920 x 1035 and 1920 x 1080, and a 1600 x 1200 row that V10 supports at 8 bits per pixel but not at 16 (007-4480-001 p. 138). Which of these rows correspond to which shipped `.vfo` file is not checked here.
+- **Stereo.** The StereoView pin carries a left/right eye level (1 is left) with a 12 V supply (007-4210-003 p. 30); the swap-ready pin is an open-collector gang line for synchronising buffer swaps (p. 31); genlock is one signal pin and a return at 3.3 V TTL or video levels (p. 30). The genlock register sequence of `PBJ.h` section 5 is the software side.
+- **Timing table state file.** A forum thread names the per-board timing-table file as `/var/X11/Xvc/Odyssey0_TimingTable`, and that clearing it forces the default resolution; the report is from a user and not from SGI (`docs/sources/reports/irixnet-vpro-odyssey-diagnostic-thread-1573.html`). Its format and its relation to the structure the kernel loads ([Pieces](#pieces)) were not checked: **unknown**.
+- **DAC.** The Fuel datasheet gives a 10-bit digital-to-analog display interface and 8-bit window ids (specs/fuel-datasheet-3215.pdf), consistent with the window-id handling under "Window ids" above.
+

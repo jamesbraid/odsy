@@ -40,7 +40,7 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 
 ## PB&J and display
 
-- **Display register bit fields and the colour-map top.** Fields of the registers in `PBJ.h` section 3, of 0x2700 beyond those named, of 0x2b00, and the mode-table words (`docs/pbj.md`, `docs/kernel.md`). Tried: every writer, now named by format field (`docs/display.md`, structure builder). Next: route 1, then 3.
+- **Display register bit fields.** (The colour-map top is answered: 8192 entries, `docs/pbj.md`.) Fields of the registers in `PBJ.h` section 3, of 0x2700 beyond those named, of 0x2b00, and the mode-table words (`docs/pbj.md`, `docs/kernel.md`). Tried: every writer, now named by format field (`docs/display.md`, structure builder). Next: route 1, then 3.
 - **Display FIFO type 7, other type values and the FIFO depth** (`PBJ.h` section 2). Tried: every display-FIFO writer. Next: route 5.
 - **How PB&J fetches pixels from BUZZ memory** (`docs/pbj.md`). Tried: no kernel path moves data to PB&J except by PIO. Next: route 5.
 - **What raises retrace, video sync, genlock and DBE overflow** (`PBJ.h` section 5, `docs/kernel.md`). Tried: every handler. Next: route 5.
@@ -53,9 +53,11 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 - **Display-mode word bits 31:24.** The OpenBSD driver (`odyssey.c:454-461`) writes the mode word `0x905215a6` to every display-mode table entry 0x2900 to 0x291f. Its low 24 bits equal table A id 10 in `DISPLAY.h` section 2 (24-bit TrueColor, gamma group 26). Bits 31 and 28 (0x90) are set, but the mode words listed in `DISPLAY.h` section 2 are 24-bit values (the kernel strips only the software flag, bit 30), and no entry says what bits 31 and 28 do. Tried: the X module's two mode tables, `gf_OdsySetDisplayMode` and the OpenBSD source. Next: search them for the display-mode register and its field names.
 - **Odyssey revision letters.** Linux (`linux/arch/mips/include/asm/xtalk/xwidget.h:149-153`) names widget revision nibble 1 "A" and nibble 2 "B" and nothing else. The shipped kernel (`docs/board.md`, revision word) accepts nibbles 1, 2, 3 and 9 to 15, and `gfxinit` prints the BUZZ letter from the variant flag (`docs/pbj.md` item 2), which is 0 for nibbles 1 to 3. By the binaries nibble 2 would print as A; Linux calls it B. Tried: Linux, the kernel and gfxinit readings. Next: search them for the revision table and for the string that prints the letter, and look for published `gfxinfo` output from a board whose widget revision is known.
 
+- **XIO link rate.** Three published figures disagree: 710 MB/s for a 16-bit link (`docs/sources/manuals/108-0314-001-vpro-odyssey-diagnostic-reference.pdf`, introduction), 800 MB/s bidirectional (the 12-bit white paper) and a 16-bit 400 MHz peer-to-peer link (`108-0314-003`, p. 1), the last of which is 800 MB/s at one byte pair per cycle; the V-brick guide gives each of its two ports as 800 MB/s (`007-4264-002` p. 54). Tried: the six published documents that give a rate (`docs/published-sources.md`, sources 6, 7, 8 and 12); the shipped software states no clock. Next: route 1 (a changed link-width or timeout constant between releases), then route 5.
+
 ## Board memory
 
-- **Memory organisation and bit 8 of 0x1004** (`docs/board.md`). Answered in pass 12: 0x1004 is the board configuration register, bit 5 the SDRAM reset pulse, the strap byte's fields are decoded. Tried: the strap reader and the 0x1004 sequence on both hosts. Next: route 1 for when bit 8 and size code 3 appeared, route 3 (board photographs naming the memory parts).
+- **Memory organisation and bit 8 of 0x1004** (`docs/board.md`). Narrowed by the diagnostic reference (`docs/published-sources.md` source 8): memory chips are numbered 0 to 15, a 4-byte pixel is split over two chips of 16 bits each, and 32 MB is 65,536 tiles of 512 bytes. Answered in pass 12: 0x1004 is the board configuration register, bit 5 the SDRAM reset pulse, the strap byte's fields are decoded. Tried: the strap reader and the 0x1004 sequence on both hosts. Next: route 1 for when bit 8 and size code 3 appeared, route 3 (board photographs naming the memory parts).
 
 ## Microcode
 
