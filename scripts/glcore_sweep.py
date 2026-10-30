@@ -26,6 +26,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from attrib_roundtrip import RoundTrip, CTX, ALLOC, STUB, TAB  # noqa: E402
 from mips_shim import install  # noqa: E402
+import unicorn.mips_const as mc  # noqa: E402
 
 
 def parse_values(text):
@@ -94,6 +95,7 @@ def main():
         writes = ['ctx+0x%x = 0x%x' % (o, struct.unpack('>I', after[o:o + 4])[0])
                   for o in range(0, 0x1a000, 4) if after[o:o + 4] != before[o:o + 4]]
         print('value 0x%x:' % v)
+        print('  returned: 0x%x' % (mu.reg_read(mc.UC_MIPS_REG_V0) & 0xffffffff))
         if writes:
             print('  writes:', '; '.join(writes))
         if fifo:

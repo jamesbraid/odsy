@@ -25,7 +25,9 @@ def decode(w):
         if rs in (0x10,0x11) and (w&0x3f) in (0x11,0x12): return ('movcf',(w>>18)&7)
     if op==0 and (w&0x3f)==1: return ('movci',(w>>18)&7)
     return None
-def patch(mu,start,end):
+def patch(mu,start,end,seen=None):
+    """Fold every condition code onto code 0. `seen` collects, by address, each compare's
+    operands and condition and each conditional move's original code, for the stand-ins."""
     n=0; live=None; conflicts=[]; cmps=0
     last_cmp=None; consumed=True
     for a in range(start,end,4):
@@ -33,6 +35,9 @@ def patch(mu,start,end):
         d=decode(w)
         if not d: continue
         k,cc=d
+        if seen is not None:
+            if k=='cmp': seen[a]=('cmp',(w>>21)&31,(w>>11)&31,(w>>16)&31,w&0xf,cc)
+            elif k in('movcf','movci'): seen[a]=('ccmove',cc)
         if k=='cmp':
             cmps+=1
             if last_cmp is not None and not consumed and last_cmp[1]!=cc: conflicts.append((hex(last_cmp[0]),hex(a)))
@@ -74,6 +79,18 @@ def emu_cop1x(mu,a,hooks):
     else: r=-(prod-T(z))
     mu.reg_write(F(fd), b64(r) if dbl else b32(r))
 
+def compare(cond,x,y):
+    """Result of c.cond.fmt for the 4-bit condition field (IEEE ordered and unordered forms)."""
+    un=bool(np.isnan(x) or np.isnan(y))
+    lt,eq=bool(x<y),bool(x==y)
+    return [False,un,eq,un or eq,lt,un or lt,lt or eq,un or lt or eq,
+            False,un,eq,un or eq,lt,un or lt,lt or eq,un or lt or eq][cond]
+
+def emu_cmp(mu,a,seen,ccs):
+    _,fmt,fs,ft,cond,cc=seen[a]
+    rd=(lambda r: f64(mu.reg_read(F(r)))) if fmt==0x11 else (lambda r: f32(mu.reg_read(F(r))))
+    ccs[cc]=compare(cond,rd(fs),rd(ft))
+
 def R_(n): return getattr(mc,'UC_MIPS_REG_%d'%n) if n else None
 def patch_moves(mu,start,end,hooks):
     n=0
@@ -88,7 +105,7 @@ def patch_moves(mu,start,end,hooks):
             # movf/movt fmt: bit16 tf; funct 0x11 = movcf
             hooks[a]=('mcf',(w>>16)&1,(w>>6)&31,(w>>11)&31,(w>>21)&31); mu.mem_write(a,b'\0\0\0\0'); n+=1
     return n
-def emu_move(mu,a,hooks):
+def emu_move(mu,a,hooks,seen=None,ccs=None):
     h=hooks[a]
     if h[0]=='mz':
         _,fn,rd,rs,rt=h
@@ -97,24 +114,45 @@ def emu_move(mu,a,hooks):
             mu.reg_write(R_(rd), mu.reg_read(R_(rs)) if rs else 0)
     elif h[0]=='mci':
         _,tf,rd,rs,_=h
-        c=mu.reg_read(mc.UC_MIPS_REG_FCC0)&1
+        c=int(ccs[seen[a][1]])      # Unicorn's FCC registers read as 0, so the compare is redone here
         if c==tf: mu.reg_write(R_(rd), mu.reg_read(R_(rs)) if rs else 0)
     elif h[0]=='mcf':
         _,tf,fd,fs,_=h
-        c=mu.reg_read(mc.UC_MIPS_REG_FCC0)&1
+        c=int(ccs[seen[a][1]])
         if c==tf: mu.reg_write(F(fd), mu.reg_read(F(fs)))
 
 
 
 
+def enable_fr1(mu):
+    """Run with 32 independent 64-bit floating-point registers, as the N32 ABI assumes.
+
+    The libraries convert and multiply doubles in odd-numbered registers (`cvt.d.s $f7,$f7`).
+    With Status.FR clear the core treats that as a reserved instruction and stops silently
+    with the program counter at 0. Status.FR is bit 26 and Status.CU1 (floating-point unit
+    enabled) bit 29.
+    """
+    st = mu.reg_read(mc.UC_MIPS_REG_CP0_STATUS)
+    mu.reg_write(mc.UC_MIPS_REG_CP0_STATUS, st | (1 << 26) | (1 << 29))
+
+
 def install(mu, start, end):
     """Make [start, end) of the emulated image runnable; returns the hook table."""
-    hooks = {}
-    n, _, conflicts = patch(mu, start, end)
+    enable_fr1(mu)
+    hooks, seen, ccs = {}, {}, {}
+    n, _, conflicts = patch(mu, start, end, seen)
     if conflicts:
         raise SystemExit('compares overlap, folding condition codes is not safe: %s' % conflicts)
     patch_cop1x(mu, start, end, hooks)
     patch_moves(mu, start, end, hooks)
-    mu.hook_add(UC_HOOK_CODE, lambda mu, a, s, u: (emu_cop1x(mu, a, hooks) if isinstance(hooks[a][0], int)
-                                                   else emu_move(mu, a, hooks)) if a in hooks else None)
+
+    def on_code(mu, a, s, u):
+        if a in hooks:
+            if isinstance(hooks[a][0], int):
+                emu_cop1x(mu, a, hooks)
+            else:
+                emu_move(mu, a, hooks, seen, ccs)
+        elif a in seen and seen[a][0] == 'cmp':
+            emu_cmp(mu, a, seen, ccs)
+    mu.hook_add(UC_HOOK_CODE, on_code)
     return hooks
