@@ -89,16 +89,16 @@ vertex ['-10', '-10', '0', '1']: word 5 = 1049.9614932227994, word 6 = 898.01834
 vertex ['10', '-10', '0', '1']: word 5 = 1186.5500963310687, word 6 = 866.2972820525569
 vertex ['10', '10', '0', '1']: word 5 = 1087.89503705828, word 6 = 801.6250763569723
 vertex ['-10', '10', '0', '1']: word 5 = 935.9235928911411, word 6 = 852.9083797079496
-; CRC-32 of built frame 318a7eae; csumlist blend 3d3662c0; CRC-32 of blend.SUM 3d3662c0
-; pixels differing from blend.SUM: 12757
+; CRC-32 of built frame b415d70e; csumlist blend 3d3662c0; CRC-32 of blend.SUM 3d3662c0
+; pixels differing from blend.SUM: 12598
 ;   window (625, 897): stored 02020200, built 01010100
 ;   window (1051, 897): stored 02020200, built 01010100
 ;   window (620, 896): stored 0a0a0a0a, built 0909090a
-;   window (630, 896): stored 00000000, built 07070700
 ;   window (1046, 896): stored 0a0a0a0a, built 0909090a
-;   window (1056, 896): stored 00000000, built 07070700
-;   window (633, 893): stored 0e0e0e09, built 0e0e0e0a
-;   window (1059, 893): stored 0e0e0e09, built 0e0e0e0a
+;   window (618, 895): stored 10101010, built 0f0f0f10
+;   window (1044, 895): stored 10101010, built 0f0f0f10
+;   window (624, 893): stored 0b0b0b13, built 0a0a0a13
+;   window (1050, 893): stored 0b0b0b13, built 0a0a0a13
 ;   window (613, 892): stored 20202022, built 1f1f1f22
 ;   window (616, 892): stored 1b1b1b1f, built 1a1a1a1f
 ;   window (1039, 892): stored 20202022, built 1f1f1f22

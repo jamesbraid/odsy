@@ -4,10 +4,10 @@ raster rules, and compare the frame it predicts with the test's stored frame
 and checksum.
 
 Usage: scripts/odydiags_frame_check.py [--test points|lines|triangle|alpha|blend|checkr3d]
-                                       [--r-low] [--texel-edge]
+                                       [--r-low] [--texel-edge] [--blend-fit]
                                        [--round f32|tN] [--small]
                                        [--image IMAGE] [--program A,B,C] [--dump]
-       scripts/odydiags_frame_check.py --survey | --logic
+       scripts/odydiags_frame_check.py --survey | --logic | --residue
 
 The VPro field diagnostics (odydiags, Internal Support Tools 2.7, 6.5.15
 build) carry each drawing test as a function __clog_<test> that replays a
@@ -38,6 +38,10 @@ sets in sequencer 0x29, 0x2a and 0x2c (the 128 x 64 stream names a program
 layout no held image has). --dump prints the decoded command stream instead.
 --r-low holds r below 1.0 and --texel-edge limits a texel index of 32 to 31
 (the checkr3d test only; docs/raster.md, "Texturing").
+--blend-fit applies the residue model of the blend frames (docs/raster.md,
+"Colour interpolation"), which is fitted, not established.
+--residue prints the offsets the blend frame's first panel allows against
+exact perspective-correct colour (docs/raster.md, "Colour interpolation").
 --logic checks the logic operations against the blend frame's own panels.
 --survey builds all eight frames under each rule variant in VARIANTS, one rule
 changed at a time, and prints the number of pixels each frame then differs
@@ -250,8 +254,10 @@ def primitives(cmds, loads, types=(POINTS,)):
             prim['texs'].append(list(tex))
 
 
-def snap(v, grid=256, mode='nearest'):
-    """A window coordinate on the rasteriser's sub-pixel grid."""
+def snap(v, grid=256, mode='floor'):
+    """A window coordinate on the rasteriser's sub-pixel grid: truncated
+    toward minus infinity to 1/256 pixel (docs/raster.md, "Position
+    precision"); mode 'nearest' rounds instead."""
     return (round(v * grid) if mode == 'nearest' else math.floor(v * grid)) / grid
 
 
@@ -340,17 +346,24 @@ def quad_pixels(v, rule):
 RASTER = {POINTS: point_pixels, LINES: line_pixels, TRIANGLES: triangle_pixels, QUADS: quad_pixels}
 
 
-def smooth(v, q, cols, px, py):
+def smooth(v, q, cols, px, py, shift=None):
     """The colour at the centre of pixel (PX, PY) inside triangle V (window
     positions), interpolated with perspective correction from the vertex
-    colours COLS and the 1/w words Q (output word 3)."""
+    colours COLS and the 1/w words Q (output word 3). SHIFT = (eps, i, j)
+    moves eps of weight from vertex i to vertex j after the perspective
+    division (the --blend-fit residue model, docs/raster.md)."""
     (x0, y0), (x1, y1), (x2, y2) = v
     d = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0)
     x, y = px + 0.5, py + 0.5
     l1 = ((x - x0) * (y2 - y0) - (x2 - x0) * (y - y0)) / d
     l2 = ((x1 - x0) * (y - y0) - (x - x0) * (y1 - y0)) / d
     w = [(1 - l1 - l2) * q[0], l1 * q[1], l2 * q[2]]
-    return [sum(w[m] * cols[m][c] for m in range(3)) / sum(w) for c in range(4)]
+    b = [wi / sum(w) for wi in w]
+    if shift:
+        eps, i, j = shift
+        b[i] -= eps
+        b[j] += eps
+    return [sum(b[m] * cols[m][c] for m in range(3)) for c in range(4)]
 
 
 # The logic operations of block 0x022 (GL_CLEAR to GL_SET), source S and
@@ -369,6 +382,11 @@ def pack(c, rule):
     out = 0
     for x in c:
         x = min(max(x, 0.0), 1.0)
+        if rule.get('mid'):
+            # The --blend-fit residue model: the value held in steps of
+            # 1/16 of an output step, as an offset from 0.5 truncated
+            # toward zero (docs/raster.md, "Colour interpolation").
+            x = (math.trunc((x * 256 - 128) * 16) / 16 + 128) / 256
         n = (min(255, math.floor(x * 256)) if how == 'floor256' else
              math.floor(x * 255 + 0.5) if how == 'round255' else math.floor(x * 255))
         out = out << 8 | n
@@ -445,7 +463,9 @@ def build_textured(small, image, rule, log):
         got = {}
         for k, rec, word, v in dom.emits:
             got.setdefault(k - 1, {})[word] = v
-        vs = [dict(xy=(snap(got[k][8]), snap(got[k][9])), q=got[k - 1][6],
+        how = rule.get('snap', 'floor')
+        g = rule.get('grid', 256)
+        vs = [dict(xy=(snap(got[k][8], g, how), snap(got[k][9], g, how)), q=got[k - 1][6],
                    str=[got[k][3], got[k][4], got[k][5]]) for k in range(n)]
         log(f"; polygon at word {p['idx']}: entries {' '.join(run)}; "
             + '; '.join(f"({v['xy'][0]:.3f}, {v['xy'][1]:.3f}) 1/w {v['q']:.6g}" for v in vs))
@@ -460,14 +480,22 @@ def build_textured(small, image, rule, log):
             for px, py in triangle_pixels(tri, rule):
                 if not (x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H):
                     continue
+                # Each of s q, t q, r q and q as a plane through the
+                # three vertices, from the first vertex's value and the
+                # x and y gradients, evaluated at the pixel centre and
+                # divided. In this form a coordinate that is the same at
+                # all three vertices (r here) comes out exactly, as
+                # checkr3d.sml requires of r = 0.5 and r = 1.
                 (ax, ay), (bx, by), (cx, cy) = tri
                 dd = (bx - ax) * (cy - ay) - (cx - ax) * (by - ay)
                 x, y = px + 0.5, py + 0.5
-                l1 = ((x - ax) * (cy - ay) - (cx - ax) * (y - ay)) / dd
-                l2 = ((bx - ax) * (y - ay) - (x - ax) * (by - ay)) / dd
-                lam = (1 - l1 - l2, l1, l2)
-                q = sum(lam[m] * vs[t[m]]['q'] for m in range(3))
-                u = [sum(lam[m] * vs[t[m]]['str'][c] for m in range(3)) / q for c in range(3)]
+                val = []
+                for c in range(4):
+                    a0, a1, a2 = (vs[t[m]]['str'][c] if c < 3 else vs[t[m]]['q'] for m in range(3))
+                    gx = ((a1 - a0) * (cy - ay) - (a2 - a0) * (by - ay)) / dd
+                    gy = ((a2 - a0) * (bx - ax) - (a1 - a0) * (cx - ax)) / dd
+                    val.append(a0 + gx * (x - ax) + gy * (y - ay))
+                u = [val[c] / val[3] for c in range(3)]
                 if rule.get('r_low'):
                     u[2] = min(u[2], 1.0 - 1e-6)
                 frame[(H - 1 - py) * W + px] = texels[texel(u[0]) + 32 * texel(u[1]) + 1024 * texel(u[2])]
@@ -544,8 +572,8 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print, drawn=N
             if rule.get('low'):
                 x, y = f32_low(x), f32_low(y)
             qs.append(o.get(3, math.nan))
-            win.append((snap(x, rule.get('grid', 256), rule.get('snap', 'nearest')),
-                        snap(y, rule.get('grid', 256), rule.get('snap', 'nearest'))))
+            win.append((snap(x, rule.get('grid', 256), rule.get('snap', 'floor')),
+                        snap(y, rule.get('grid', 256), rule.get('snap', 'floor'))))
         per = PER[p['type']]
         # Block 0x004 bit 17 with the stream's blend state applies the
         # logic operation of block 0x022 (docs/raster.md, "Logic operations").
@@ -568,9 +596,14 @@ def build(test, small, image, rnd=None, prog=None, rule=None, log=print, drawn=N
                 for px, py in pixels:
                     if not (x0 <= px <= x1 and y0 <= py <= y1 and 0 <= px < W and 0 <= py < H):
                         continue
+                    # --blend-fit: weight moves from the quad's third
+                    # vertex to the other vertex that is not the first.
+                    shift = None
+                    if 'shift' in rule and t is not None:
+                        shift = (rule['shift'], 2, 1) if t == (0, 1, 2) else (rule['shift'], 1, 2)
                     c = value if flat or t is None else pack(smooth(
                         [vs[m] for m in t], [qs[k + m] for m in t], [p['cols'][k + m] for m in t],
-                        px, py), rule)
+                        px, py, shift), rule)
                     at = (H - 1 - py) * W + px
                     covered.add((px, py))
                     frame[at] = c if op is None else op(c, frame[at]) & 0xffffffff
@@ -593,17 +626,19 @@ VARIANTS = [
     ('triangle: sample the lower-left corner', dict(sample='corner')),
     ('triangle: keep every edge centre', dict(edge='all')),
     ('triangle: drop every edge centre', dict(edge='none')),
+    ('texture: index 32 limited to 31', dict(texel='edge')),
     ('positions unrounded', dict(grid=2 ** 40)),
     ('positions one single step low, unrounded', dict(grid=2 ** 40, low=True)),
-    ('positions one single step low, to 1/256', dict(low=True)),
+    ('positions one single step low, to nearest 1/256', dict(low=True, snap='nearest')),
+    ('positions one single step low, truncated 1/256', dict(low=True)),
     ('positions one single step low, truncated 1/16', dict(low=True, grid=16, snap='floor')),
-] + [(f'positions to nearest 1/{2 ** n}', dict(grid=2 ** n)) for n in (0, 1, 2, 4, 6, 7, 8, 10)] + [
-    (f'positions truncated to 1/{2 ** n}', dict(grid=2 ** n, snap='floor')) for n in (0, 1, 2, 3, 4, 8, 16)]
+] + [(f'positions to nearest 1/{2 ** n}', dict(grid=2 ** n, snap='nearest')) for n in (0, 1, 2, 4, 6, 7, 8, 10)] + [
+    (f'positions truncated to 1/{2 ** n}', dict(grid=2 ** n, snap='floor')) for n in (0, 1, 2, 3, 4, 7, 8, 9, 10, 16)]
 
 
 def survey(image, rnd):
     print('; pixels differing from the stored frame, per rule variant; "=" marks a CRC match')
-    cols = [(t, sm) for t in MATCHED for sm in (False, True)]
+    cols = [(t, sm) for t in MATCHED for sm in (False, True)] + [('checkr3d', True)]
     print('; ' + ' | '.join(f"{t}{' 128x64' if sm else ''}" for t, sm in cols))
     for name, rule in VARIANTS:
         cells = []
@@ -661,6 +696,47 @@ def logic_check(image):
               f'{explained} of them explained by a source one step off in some byte')
 
 
+def residue(image):
+    """The blend frame's first panel against exact perspective-correct
+    colour: for each of its four triangles and each component, the range
+    of offsets (in output steps) that every stored byte allows, split at
+    the value 0.5 (docs/raster.md, "Colour interpolation")."""
+    global smooth
+    tris, plain = [], smooth
+
+    def record(v, q, cols, px, py, shift=None):
+        if len(tris) < 4 and (v, q) not in [(a, b) for a, b, _ in tris]:
+            tris.append((v, q, cols))
+        return plain(v, q, cols, px, py, shift)
+    smooth = record
+    try:
+        W, H, _, stored, _, _, _ = build('blend', False, image, log=lambda *a: None)
+    finally:
+        smooth = plain
+    owner = {}
+    for k, (v, q, cols) in enumerate(tris):
+        for pix in triangle_pixels(v, {}):
+            owner[pix] = k
+    print('; blend.SUM first panel: offset range allowed per triangle (quad, split), component and value range')
+    print(f'; {len(owner)} pixels')
+    for k, (v, q, cols) in enumerate(tris):
+        for c in range(4):
+            for lo_half in (True, False):
+                lo, hi, n = -9.0, 9.0, 0
+                for (px, py), kk in owner.items():
+                    if kk != k:
+                        continue
+                    e = plain(v, q, cols, px, py)[c] * 256
+                    byte = stored[(H - 1 - py) * W + px] >> (24 - 8 * c) & 255
+                    if (e < 128) != lo_half or byte == 255:
+                        continue
+                    lo, hi, n = max(lo, byte - e), min(hi, byte + 1 - e), n + 1
+                if n:
+                    print(f"quad {k // 2 + 1} triangle {('(0, 1, 2)', '(0, 2, 3)')[k % 2]} "
+                          f"component {'RGBA'[c]} value {'below' if lo_half else 'from'} 0.5: "
+                          f"{n:5d} pixels, offset in [{lo:+.4f}, {hi:+.4f})" + ('  none fits' if lo > hi else ''))
+
+
 def main():
     args = sys.argv[1:]
     rnd, small, dump, prog, test, do_survey = None, False, False, None, 'points', False
@@ -682,12 +758,17 @@ def main():
             rule_cli['r_low'] = True
         elif a == '--texel-edge':
             rule_cli['texel'] = 'edge'
+        elif a == '--blend-fit':
+            rule_cli.update(mid=True, shift=0.06 / 256)
         elif a == '--test' and args and args[0] in TESTS:
             test = args.pop(0)
         elif a == '--survey':
             do_survey = True
         elif a == '--logic':
             logic_check(image)
+            return
+        elif a == '--residue':
+            residue(image)
             return
         else:
             sys.exit(__doc__)

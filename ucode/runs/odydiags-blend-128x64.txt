@@ -89,25 +89,25 @@ vertex ['-10', '-10', '0', '1']: word 5 = 103.51732875050847, word 6 = 56.237929
 vertex ['10', '-10', '0', '1']: word 5 = 116.98380977663957, word 6 = 54.28443389195348
 vertex ['10', '10', '0', '1']: word 5 = 107.25725460662451, word 6 = 50.30168814423001
 vertex ['-10', '10', '0', '1']: word 5 = 92.2741556907495, word 6 = 53.45989691571358
-; CRC-32 of built frame dbb112fa; csumlist.sml blend 13281f2d; CRC-32 of blend.sml 13281f2d
-; pixels differing from blend.sml: 139
+; CRC-32 of built frame 292b1488; csumlist.sml blend 13281f2d; CRC-32 of blend.sml 13281f2d
+; pixels differing from blend.sml: 83
 ;   window (20, 55): stored 1111001a, built 11110019
-;   window (60, 55): stored 2f28312d, built 2f28312a
+;   window (60, 55): stored 2f28312d, built 2e29302d
 ;   window (62, 55): stored 0b0b1a32, built 0b0b1a31
-;   window (66, 55): stored 34343400, built 34343401
-;   window (102, 55): stored 2f2f3f3f, built 2f2f3f3e
+;   window (102, 55): stored 2f2f3f3f, built 2e2f3e3f
 ;   window (104, 55): stored 1b1b1a3a, built 1b1b1a39
-;   window (108, 55): stored 34343400, built 34343401
 ;   window (16, 54): stored 001f554a, built 001f5549
 ;   window (28, 54): stored b303005d, built b203005d
+;   window (57, 54): stored 7f6d14d9, built 7e6c15d9
 ;   window (58, 54): stored 6f703ac2, built 6f703ac1
-;   window (61, 54): stored 42075122, built 42075123
+;   window (60, 54): stored 5169783b, built 51697838
 ;   window (70, 54): stored d2626146, built d3626146
-;   window (71, 54): stored 67676711, built 67676712
-;   window (72, 54): stored 6d6d6d08, built 6d6d6d09
-;   window (73, 54): stored 00000000, built 73737300
+;   window (99, 54): stored 7f7f7fd9, built 7e7e7fd9
 ;   window (100, 54): stored 6f7f7fca, built 6f7f7fc9
-;   window (103, 54): stored 4247536e, built 4247536f
-;   window (113, 54): stored 67676711, built 67676712
-;   window (114, 54): stored 6d6d6d08, built 6d6d6d09
-;   window (115, 54): stored 00000000, built 73737300
+;   window (102, 54): stored 5179797f, built 5179797d
+;   window (22, 53): stored 1e720082, built 1e720081
+;   window (64, 53): stored 513d4f04, built 513d4f07
+;   window (106, 53): stored 5f7f4f86, built 5f7f4f87
+;   window (16, 52): stored 007161a2, built 007161a1
+;   window (18, 52): stored 00863ba4, built 00873ba4
+;   window (26, 52): stored 5d8000af, built 5d8100af
