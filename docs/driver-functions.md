@@ -2026,3 +2026,49 @@ Lays out
   writes the id to 0x10b4 after a repeat count, forcing a swap that has waited 300 retraces.
   Compared with the IP30 build (offset 0x1274 there) the 179 instructions are the same except for their
   addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+- `gf_OdsyPositionCursor` (`odsy_brdmgr.o`, offset 0x118c, 580 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Moves the hardware cursor. It stores the pointer position in the board record (halfwords at -19672 and
+  -19670 from record +0x10000), subtracts the hot spot (halfwords at -19668 and -19666) and packs the result as
+  a 64-bit display-FIFO command with x in the upper and y in the lower halfword. When the display mode halfword at +804 is 2
+  (dual head) and the x position is at least the left head's width at +800, it subtracts the width and marks the
+  right head, otherwise the left. It then takes the spin lock at +0x8540 and tries the display-FIFO semaphore at
+  +0x8530 with `cpsema`. On success it clears the stored pending command at -31416 and, after a wait for display-FIFO
+  level 12, sends the command (first rewriting the cursor control word at -19664 when the head changed) and releases the semaphore;
+  if the FIFO wait fails the command is stored for the holder to replay. When the semaphore is busy it stores
+  the command at -31416 and the head flag at -31408 for the semaphore holder to send, and returns 0.
+- `odsyProbeFb` (`odsy_brdmgr.o`, offset 0x690, 404 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Checks that a frame buffer request fits in SDRAM without programming anything. It repeats the layout
+  arithmetic of `odsyConfigFb` on the request's width, height, depth (32, 16 or 8) and accumulation-buffer count: it takes the
+  tile counts rounded up to 16-pixel tiles and an even row, starts at the frame buffer address held at record
+  +1360 and rounds each following region start up to a four-tile boundary. It returns 0 when the first free
+  address stays below the SDRAM size at record +252 (in megabytes), and otherwise logs a severity 4 message and
+  returns -1. It writes nothing to the board or the record.
+- `odsySetDACGain` (`odsy_brdmgr.o`, offset 0x63ec, 1032 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  Turns the DAC gain on or off. It waits for display-FIFO level 14 under the semaphore at record +0x8530,
+  reads display register 0x26c0 back through the window at board +0x233604, sets bit 1 when the second argument
+  is nonzero and clears it otherwise, and pushes the word as a display-FIFO command. A failed FIFO wait returns -1;
+  success returns 0. The release of the semaphore also replays a pending cursor command in the same way as
+  `odsy_i2c_start`.
+- `odsyDMAFinish` (`odsy_dma.o`, offset 0x2c8c, 388 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Drains and frees a context's DMA state. It sets the flag word at board record -19324 (from +0x10000) and calls
+  `odsyDMAWait` on the context's two operation queues (at +248 and +256), clears the flag, then takes the lock at
+  record +5800 and walks the context's set of buffers (record +416, with `OdsyInitCSetCursor` and
+  `OdsyNextCSetElem`). For each buffer with a memory block it overwrites the block with the byte 151 and frees it with
+  `kmem_free` (a severity 4 message first when the board's flag at +816 is clear), unpins the user pages with
+  `unuseracc` when a pin is recorded, and releases the buffer's id with `OdsyDeallocCSetId` unless the id field is -1.
+  It ends with `OdsyDestroyCSet` and releases the lock.
+- `odsyDMAWakeup` (`odsy_dma.o`, offset 0x2934, 724 bytes): **established.**
+  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Completes DMA operations the board has finished. Under the lock at record +5800 it takes the difference
+  between the completion counter the board writes back (+6888) and the driver's own count (+6880), both
+  modulo 2 to the 61st, and, using the 128-entry ring of pending operation pointers at +5856 indexed by
+  the word at +5848, finishes that many operations. A write-back byte pair is first adjusted (the marker 0x5a in
+  the upper byte, a 7-bit counter at +5834 and +5836) so the count of pending entries can be recomputed.
+  For each finished operation it clears bit 0 of its flags at +8, stores the operation's value at +72 into the
+  write-back slot behind the pointer at +888 and, when the flags word is then zero, calls `odsyDMADone` and wakes
+  the waiters with `sv_broadcast` on the variable at +5816. An empty ring slot, a completion count larger than
+  the ring or an inconsistent counter logs a severity 4 message and ends the pass.
