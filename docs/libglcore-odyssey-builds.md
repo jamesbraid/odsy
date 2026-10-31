@@ -391,3 +391,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_Materialiv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d0b0 | 496 | aff27d9a0fd4 | Established |
 | `__glOdyim_Materiali` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d2a0 | 84 | 4b729d34eb89 | Established |
 | `__glOdyim_Materiali` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d2a0 | 84 | 4b729d34eb89 | Established |
+| `__glOdysseyConvertStipple` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d580 | 456 | 8e5330818bcf | Established |
+| `__glOdysseyConvertStipple` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d580 | 456 | 8e5330818bcf | Established |
+| `CopyColorIndexCode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd966080 | 1032 | 9c7eebe775ff | Established |
+| `CopyColorIndexCode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd966080 | 1032 | 9c7eebe775ff | Established |
+| `CopyNormalCode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd966490 | 312 | 5e83dacc38a6 | Established |
+| `CopyNormalCode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd966490 | 312 | 5e83dacc38a6 | Established |
+| `CopyTexCoordCode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9665d0 | 840 | 4f14e4d39c6d | Established |
+| `CopyTexCoordCode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9665d0 | 840 | 4f14e4d39c6d | Established |
+| `CopyVertexCode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd966920 | 680 | 88d57901d79b | Established |
+| `CopyVertexCode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd966920 | 680 | 88d57901d79b | Established |
+| `AllocInitFastDispatchCodeBuffers` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd966bd0 | 2124 | 3ef116ee9905 | Established |
+| `AllocInitFastDispatchCodeBuffers` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd966bd0 | 2124 | 3ef116ee9905 | Established |
