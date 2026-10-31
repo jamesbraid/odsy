@@ -1,0 +1,14 @@
+# The compositor probe and the gfxinfo compositor lines
+
+How the driver decides a compositor is fitted, and what `gfxinfo` prints from the result. Release IRIX 6.5.30m, the IP30 and IP35 `odyssey.a` and `usr/gfx/gfxinfo`.
+
+- `gfxinfo` (`_odsy_info`, 0x1000e03c): **established.**
+  The compositor block prints only when the word at offset 500 of the 588-byte reply to ioctl 0x66 is nonzero. The reply is the board record from +200 (`gf_OdsyInfo`, `copyout` of 588 bytes), so the word is board record +700. Bits 2:1 give the port and bit 3 the channel in "port %d attached to channel %d nic 0x%p". Bits 31:28 equal to 1 print "USB Compositor %d" with bits 15:8 minus 1. The `%p` argument is the address 512 bytes into the reply buffer (`addiu a3,s0,512`), an address in the tool, not board data. `nic_report` (0x1000cd5c) runs only when a global verbosity count is positive, and prints "No NIC serial number available" when the record's family byte (+10) is zero or bit 0 of its first word is set.
+- `odsyInitDBE`, compositor word: **established.**
+  Zeroes +700 and +704, probes, and after `odsy_ProbeCompositor` succeeds reads the NIC only when bits 31:28 are 0 and bits 2:1 are 0 (`odsy_ReadCompositorNic` into +712 with bit 3 as the channel flag). A failed NIC read stores 0 in +700 again. The IP35 kernel reaches the same outcomes by a different branch layout.
+- `odsy_ProbeCompositor` and `odsyCompositorRegRead`: **established.**
+  Register 87 (CCX_I2C_PORT_ENUM in the compositor tables) is read with device byte 171: start with 170, the register byte, repeated start with 171, four-byte read. One channel is tried, or two when the halfword at +298 is 3. The first success stores `(v & ~0xe) | ((v << 1) & 6) | (channel << 3) | 1`; if every attempt fails it stores 0 and returns 1. A failed start or register-byte send returns -14 with the result zeroed. A failed four-byte read returns 0 without storing the result (the stack word the caller reads stays as it was). The IP30 and IP35 objects of both routines are identical.
+- `odsy_i2c_recv_ack`: **established.**
+  Compares bit 8 of the port status with its argument and polls 400 times at 100 microseconds, returning 2 on timeout. `odsyCompositorRegRead` passes the argument that expects bit 8 clear, so a refused byte leaves the read failing after 40 ms.
+- What a missing compositor returns: **unknown.**
+  Zero compositor words are what failed transfers or a failed NIC read produce, so a board with no compositor refuses an address byte or the NIC read; whether the bus floats high (bit 8 set) or something else answers is not in the binaries. The dual-channel option is independent: it comes from register 0 of the device at 0x1f on the other port.
