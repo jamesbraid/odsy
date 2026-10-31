@@ -37,8 +37,8 @@ Words compared: the number of instruction words in the routine, in N32 and in th
 | `__glOdysseyValidateMatrixMV` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9e3610 | 368 | 92 of 92 equal | c6a31b6ebbf1 | Established |
 | `__glOdysseyValidateMatrixTex` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9e3a20 | 368 | 92 of 92 equal | d386314661ad | Established |
 | `__glOdysseyValidateMatrixTex` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9e3a20 | 368 | 92 of 92 equal | d386314661ad | Established |
-| `getCurrent` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9704c0 | 1800 | 450 of 450 equal | a876b3b63e4d | Inferred |
-| `getCurrent` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9704c0 | 1800 | 450 of 450 equal | a876b3b63e4d | Inferred |
+| `getCurrent` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9704c0 | 1800 | 450 of 450 equal | a876b3b63e4d | Established |
+| `getCurrent` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9704c0 | 1800 | 450 of 450 equal | a876b3b63e4d | Established |
 | `PreEvaluate` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976a40 | 404 | 101 of 101 equal | b10361ae4235 | Established |
 | `PreEvaluate` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976a40 | 404 | 101 of 101 equal | b10361ae4235 | Established |
 | `PreEvaluateWithDeriv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976be0 | 864 | 216 of 216 equal | 04c47a8dceb5 | Established |
@@ -82,7 +82,7 @@ Words compared: the number of instruction words in the routine, in N32 and in th
 Notes on individual rows:
 
 - `__glOdysseyValidateClipPlanes`: objdump prints `...` in place of two zero words at 0xd967f38 and 0xd967f3c, in the N32 build and in both copies. Those two words are not in the comparison. The 206 words shown match word for word.
-- `getCurrent`, `MakeCurrentRead` and `DoDomain2WithDerivs` are **inferred** because their N32 entries are: the reads chapter says which parts were read in full. Their copies match the N32 words, so they take the N32 label.
+- `MakeCurrentRead` and `DoDomain2WithDerivs` are **inferred** because their N32 entries are: the reads chapter says which parts were read in full. Their copies match the N32 words, so they take the N32 label.
 - The copies under `usr/gfx/arch/IP30ODSY32` and `usr/gfx/arch/IP35ODSY32` (the paths without the `builds/6.5.30-media` prefix) call through their own `.got`. The IP35 copy's `.got` is word for word the N32 build's. The IP30 copy's `.got` differs in 36 words, all for imported symbols (dynamic symbol indexes 4283 to 4319, for example `bcopy` at 4300 and `floor` at 4319). The name at every GOT index from 4281 up is the same in the N32 build and in this copy, so each call through a gp slot reaches the same routine.
 - The words in these rows were compared on the file bytes at each address, as 32-bit big-endian words, which are the words objdump prints. None of the routines has a direct `j` or `jal`, so no call target is an absolute address that could mean something else in another build.
 - The 64-bit copies of `ComputeFirstPartials` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY64` at 0x21bb670, and `usr/gfx/arch/IP30ODSY64` and `usr/gfx/arch/IP35ODSY64` at 0x320b670 and 0x21bb670) have the same 39 words as the N32 routine. Its body has no gp-relative load and no call, so the words are the whole comparison.
