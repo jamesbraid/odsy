@@ -367,3 +367,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_FrontFace` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c020 | 208 | 834f6306207c | Established |
 | `__glOdyim_ShadeModel` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d750 | 212 | 0cf5dbd7f193 | Established |
 | `__glOdyim_ShadeModel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d750 | 212 | 0cf5dbd7f193 | Established |
+| `__glOdyim_PolygonMode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d3f0 | 392 | cbf995a0c65f | Established |
+| `__glOdyim_PolygonMode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d3f0 | 392 | cbf995a0c65f | Established |
+| `__glOdyim_LineStipple` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c190 | 268 | 914e7cebb8ee | Established |
+| `__glOdyim_LineStipple` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c190 | 268 | 914e7cebb8ee | Established |
+| `__glOdyim_LineWidth` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c2a0 | 240 | acb92df53bbf | Established |
+| `__glOdyim_LineWidth` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c2a0 | 240 | acb92df53bbf | Established |
+| `__glOdyim_PointSize` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d300 | 240 | 6b688bd8b387 | Established |
+| `__glOdyim_PointSize` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d300 | 240 | 6b688bd8b387 | Established |
+| `__glOdyim_Hint` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd956ae0 | 220 | 5ecfe1145825 | Established |
+| `__glOdyim_Hint` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd956ae0 | 220 | 5ecfe1145825 | Established |
+| `__glOdyim_ColorMaterial` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b580 | 268 | f70ad42664cf | Established |
+| `__glOdyim_ColorMaterial` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b580 | 268 | f70ad42664cf | Established |
