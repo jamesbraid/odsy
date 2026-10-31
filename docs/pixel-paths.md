@@ -464,6 +464,41 @@ addresses. No vendor source was read for any item here.
 - **inferred.** A colour `glDrawPixels` through the transfer branch is therefore subject to the depth test the application enabled (bit 16), with the raster position's depth, and to the depth write enable. 
 - **established** that `RenderFunc_CopyColor` (0x0d990dd0) calls the copy routine with the transfer flag 0, so `glCopyPixels` of colour is the board's own block 0x031 copy and not a primitive. Whether that copy engine applies the depth test: **unknown**; the library sets no bit for it.
 
+## The raster state an image transfer runs under, the zoom filter, the z of a colour write and stencil shift and offset
+
+Release IRIX 6.5.30m, IP30, N32 `libGLcore.so`. Plain `objdump`, `scripts/fifo_words.py` and `scripts/glcore_probe.py`
+(run on `__glOdysseyImageInit` with a zeroed context). No vendor source was read. **This section corrects two earlier
+statements in this file's last section**: the transfer steps do not run under the application's raster state, and the
+texture move's filter bits are not the application's.
+
+- **established.** `__glOdysseyImageXfer` (0x0d9892d0, the driver of `glDrawPixels`, `glReadPixels` and `glCopyPixels`)
+  calls `__glOdysseyImageSaveUserBuzzRasterState` (0x0d9c1e80) and then `__glOdysseyImageLoadBuzzRasterState` (0x0d9c1ff0) with
+  argument 0, runs the chain, and ends with the loader with argument 1 (0xd989330 to 0xd989340; the end at 0xd98965c, 0xd9896a0). The saver copies the
+  live state words (texture modes 0 to 4 and the rest of block 0x016, block 0x017's words, 0x004, 0x005, 0x021, the tables, 0x052) into a
+  user save at context +0x11bf0; the loader copies a second block of the same layout at +0x11cc4 into the live state when its argument is 0
+  and the user save when it is 1. So every step of a transfer runs under the library's own default block unless a step loads the user save itself.
+- **established**, by running `__glOdysseyImageInit` (0x0d988ae0) on a zeroed context (`glcore_probe.py`): the default block is TEXMODE4 `0x03640000` (bits 25, 24, 22, 21 and 18),
+  block 0x052 `0x01ffffff` (every write enable, depth write included) and block 0x005 `0x2400`; block 0x004 is not written, so it is 0 if the
+  context starts zeroed (**inferred**: no depth test, blend, stencil test or alpha test during a transfer). The only users of the user save inside a step
+  are the loader at 0x0d9bff00, which copies the user's 0x004, 0x021, 0x052 and descriptor word back (the texture move calls it, at 0xd9bc5c4; the write routine calls it at 0xd9bb2f4 on the path entered at 0xd9bb22c when the destination's byte +8 is set and the fifth argument matches), and the write
+  routine's 0x052 replacement at 0xd9ba89c (destination byte +10). `__glOdysseyImageDescribeWindow` sets byte +9 for a window description and byte +8 for the other kind
+  (0xd9899f8 to 0xd989a00) and zeroes byte +10.
+- **established (corrects the zoom filter).** The texture move changes only the texture-mode bits listed above, so its TEXMODE4 is the default block's after
+  the transfer's loader: `0x03640000`, with bits 25:23 then forced to 6 (`0x03000000` as written). Minification bits 7:5 and magnification bits 4:1 are 0 (NEAREST), wrap bits 13:8 are 0 (REPEAT), bit 17 and bit 28 are clear. The zoom
+  samples nearest. The earlier reading of the application's texture state with an object default of `0x82` is wrong.
+  The loader at 0xd9bff00 gives the zoom rectangle the application's block 0x004, 0x021 and 0x052, so its fragment operations are the application's.
+- **inferred (z of a colour write).** The colour burst and the write routine's rectangle carry z in the ten-operand block `0xcf80a92f`: the first four floats are read from the record the context points to at +0xf8
+  (0xd9ba7c0 to 0xd9ba7f4, stored at 0xd9baa94 to 0xd9baaa8), one z for the whole rectangle. The texture move instead computes z with
+  `__glOdysseyImageCalcOdyEyeSpaceRasterPosZ` (0x0d9c21b0) when block 0x004 bit 16 is set: the raster position's clip-space vector at context +0x100 dotted
+  with two rows of a matrix and divided, plus the constant 5e-7 (the double 0x3ea0c6f7a0b5ed8d in `.lit8`). That z is host state set when the raster position is set; the
+  raster colour, index and texture coordinates are refreshed from the board by `__glOdysseyUpdateRasterPos` (called from `__glOdysseyImageXfer` at 0xd989644 under conditions on the enable word +0x700 and, for a depth-format image, two context words; the conditions were not fully traced), z is not. No header carries z.
+  Whether the first four floats are the raster position's window x, y, z, w was not proved.
+- **inferred.** For a window destination (byte +9) the burst runs with block 0x004 = 0, so the library asks for no depth test on a colour `glDrawPixels` and the application's depth test enable
+  does not reach the board. Destination kinds other than windows were not all traced.
+- **established.** Stencil index shift, offset and map are host steps: `__glOdysseyImageConvertHostImage` (0x0d9a9e10) installs `__glOdySpanShiftOffsetIndex` (0x0d9a8250) and `__glOdySpanMapStencil` (0x0d9a88f0) as span stages with the application's values,
+  `RenderFunc_IndexShiftOffset` (0x0d9a62a0) is one call of the converter, and the pack stage at 0x0d9a8d90 reuses the shift routine with 16 and 0 (saving and restoring context +316 and +332). Nothing of the application's shift, offset or map reaches the board; it receives `value << 16`.
+  The `stencil/draw/shift-offset-mask` result therefore depends on the value after the host steps and on the board's handling of bits above 23:16, which is **unknown**.
+
 ## Raster distance
 
 - **`__glOdysseyDoGet`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d986380, 2164 bytes), **established** for enums 0xb04 to 0xb09:
