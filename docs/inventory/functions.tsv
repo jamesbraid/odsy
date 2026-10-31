@@ -61680,7 +61680,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d4e8	136	polf2s	dynsym	4c31
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d570	64	__GLrdr2	dynsym+mdebug	9d3a92a96da2	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d570	64	rdr2	dynsym	9d3a92a96da2	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d5b0	136	__GLstencil	dynsym+mdebug	6961946d366c	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d5b0	136	stencil	dynsym	6961946d366c	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d5b0	136	stencil	dynsym	6961946d366c	shared-address	in	named-only	docs/pixel-paths.md#the-raster-state-an-image-transfer-runs-under-the-zoom-filter-the-z-of-a-colour-write-and-stencil-shift-and-offset	The raster state an image transfer runs under, the zoom filter, the z of a colour write and stencil shift and offset
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d638	136	__GLpatchcurves	dynsym+mdebug	691aae22f367	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d638	136	patchcurves	dynsym	691aae22f367	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d6c0	64	__GLpdr2i	dynsym+mdebug	1217ef1aca1f	shared-address	in	undocumented		
@@ -62002,7 +62002,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71cf0	136	lsbackup	dynsym	ac
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71d78	136	__GLlsrepeat	dynsym+mdebug	7290d6367791	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71d78	136	lsrepeat	dynsym	7290d6367791	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71e00	64	__GLdraw	dynsym+mdebug	ad0b0fb9c48f	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71e00	64	draw	dynsym	ad0b0fb9c48f	shared-address	in	named-only	docs/raster.md#clipping-at-the-near-and-far-planes	Clipping at the near and far planes
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71e00	64	draw	dynsym	ad0b0fb9c48f	shared-address	in	named-only	docs/pixel-paths.md#the-raster-state-an-image-transfer-runs-under-the-zoom-filter-the-z-of-a-colour-write-and-stencil-shift-and-offset	The raster state an image transfer runs under, the zoom filter, the z of a colour write and stencil shift and offset
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71e40	136	__GLzwritemask	dynsym+mdebug	fd35e5904947	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71e40	136	zwritemask	dynsym	fd35e5904947	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71ec8	136	__GLxfpt2i	dynsym+mdebug	e079e2dae10a	shared-address	in	undocumented		
@@ -65808,7 +65808,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec70114	180	polf2s	dynsym	8e
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec701c8	68	__GLrdr2	dynsym	9b01f421de2c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec701c8	68	rdr2	dynsym	9b01f421de2c	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7020c	180	__GLstencil	dynsym	049baef1c564	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7020c	180	stencil	dynsym	049baef1c564	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec7020c	180	stencil	dynsym	049baef1c564	shared-address	in	named-only	docs/pixel-paths.md#the-raster-state-an-image-transfer-runs-under-the-zoom-filter-the-z-of-a-colour-write-and-stencil-shift-and-offset	The raster state an image transfer runs under, the zoom filter, the z of a colour write and stencil shift and offset
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec702c0	180	__GLpatchcurves	dynsym	df037274daea	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec702c0	180	patchcurves	dynsym	df037274daea	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec70374	68	__GLpdr2i	dynsym	7dc2ba52cc41	shared-address	in	undocumented		
@@ -66130,7 +66130,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75d48	180	lsbackup	dynsym	
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75dfc	180	__GLlsrepeat	dynsym	ae0bd9779b8b	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75dfc	180	lsrepeat	dynsym	ae0bd9779b8b	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75eb0	68	__GLdraw	dynsym	2193bc69d127	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75eb0	68	draw	dynsym	2193bc69d127	shared-address	in	named-only	docs/raster.md#clipping-at-the-near-and-far-planes	Clipping at the near and far planes
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75eb0	68	draw	dynsym	2193bc69d127	shared-address	in	named-only	docs/pixel-paths.md#the-raster-state-an-image-transfer-runs-under-the-zoom-filter-the-z-of-a-colour-write-and-stencil-shift-and-offset	The raster state an image transfer runs under, the zoom filter, the z of a colour write and stencil shift and offset
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75ef4	180	__GLzwritemask	dynsym	6fccd223d6bf	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75ef4	180	zwritemask	dynsym	6fccd223d6bf	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec75fa8	180	__GLxfpt2i	dynsym	af304ae3170e	shared-address	in	undocumented		

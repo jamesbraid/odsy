@@ -331,3 +331,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyAccumClose` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950190 | 116 | 592637cdd2b6 | Established |
 | `initScratchBufAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950210 | 776 | a68215b08521 | Established |
 | `initScratchBufAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950210 | 776 | a68215b08521 | Established |
+| `initVisualNumComp` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950520 | 176 | 7eb498ec2b0d | Established |
+| `initVisualNumComp` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950520 | 176 | 7eb498ec2b0d | Established |
+| `initAccumGfxImages` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9505d0 | 240 | 26225165fcb2 | Established |
+| `initAccumGfxImages` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9505d0 | 240 | 26225165fcb2 | Established |
+| `initBuffersForAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9506c0 | 112 | 7accc27009dc | Established |
+| `initBuffersForAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9506c0 | 112 | 7accc27009dc | Established |
+| `initGeomForAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950730 | 144 | 690e5f28100c | Established |
+| `initGeomForAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950730 | 144 | 690e5f28100c | Established |
+| `__glOdyim_BlendFunc` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95afe0 | 780 | 2964a3c2e1ee | Established |
+| `__glOdyim_BlendFunc` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95afe0 | 780 | 2964a3c2e1ee | Established |
+| `__glOdyim_BlendEquationEXT` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b2f0 | 400 | e064ed14c085 | Established |
+| `__glOdyim_BlendEquationEXT` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b2f0 | 400 | e064ed14c085 | Established |
