@@ -127,3 +127,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `ValidateFragmentColorMaterial` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd981fc0 | 468 | b469c1d09bff | Established |
 | `__glOdysseyInitFragmentLighting` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9851c0 | 80 | d3f9dd643482 | Established |
 | `__glOdysseyInitFragmentLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9851c0 | 80 | d3f9dd643482 | Established |
+| `__glOdysseyValidateSoftClipPlanes` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9ee360 | 1724 | 8daefb62c324 | Established |
+| `__glOdysseyValidateSoftClipPlanes` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9ee360 | 1724 | 8daefb62c324 | Established |
+| `__glOdysseySoftClipCalcRGBColor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9f0fa0 | 2220 | 979fa9d13f1d | Established |
+| `__glOdysseySoftClipCalcRGBColor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9f0fa0 | 2220 | 979fa9d13f1d | Established |
+| `__glOdysseySoftClipCalcCIColor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9f1850 | 1564 | 9984c694488e | Established |
+| `__glOdysseySoftClipCalcCIColor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9f1850 | 1564 | 9984c694488e | Established |
+| `__glOdysseySoftClipRenderTriangleFast` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9ea840 | 3852 | bc4716729bc4 | Established |
+| `__glOdysseySoftClipRenderTriangleFast` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9ea840 | 3852 | bc4716729bc4 | Established |
+| `__glOdysseyValidateTexGen` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cf3e0 | 324 | 66ffb169751e | Established |
+| `__glOdysseyValidateTexGen` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cf3e0 | 324 | 66ffb169751e | Established |
+| `updateTexGenCoord` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cf240 | 408 | b8cfe36218cf | Established |
+| `updateTexGenCoord` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cf240 | 408 | b8cfe36218cf | Established |
