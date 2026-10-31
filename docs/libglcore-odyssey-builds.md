@@ -223,3 +223,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyDestroyPMObjGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c69f0 | 344 | edb3b4cd502e | Established |
 | `__glOdysseyDestroyPMObjGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c69f0 | 344 | edb3b4cd502e | Established |
 | `__glOdysseyDestroyPMObj` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6b50 | 324 | edd8925fbbcb | Established |
+| `__glOdysseyDestroyPMObj` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6b50 | 324 | edd8925fbbcb | Established |
+| `__glOdysseyAssignToPMObj` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6d20 | 340 | dac3fb291529 | Established |
+| `__glOdysseyAssignToPMObj` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6d20 | 340 | dac3fb291529 | Established |
+| `__glOdysseyReadFromPMObj` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6e80 | 296 | 44071ce3af76 | Established |
+| `__glOdysseyReadFromPMObj` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6e80 | 296 | 44071ce3af76 | Established |
+| `ChooseSuitableBuzzTexModeBaseFmt` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cfc80 | 320 | d4819d12ff8c | Established |
+| `ChooseSuitableBuzzTexModeBaseFmt` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cfc80 | 320 | d4819d12ff8c | Established |
+| `GetImageFmtEnumFromBuzzTexFormat` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cfbd0 | 172 | b9eb423dfb29 | Established |
+| `GetImageFmtEnumFromBuzzTexFormat` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cfbd0 | 172 | b9eb423dfb29 | Established |
+| `DoMipmapHackHW` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d1b30 | 644 | 101e104467e7 | Established |
+| `DoMipmapHackHW` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d1b30 | 644 | 101e104467e7 | Established |
+| `DoMipmapHack` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d1dc0 | 452 | 0d5ff26fffeb | Established |
