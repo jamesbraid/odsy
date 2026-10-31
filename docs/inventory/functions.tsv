@@ -2709,7 +2709,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3a
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b00c	164	__glim_CullFace	dynsym+mdebug	e5e944e7428c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b0b0	372	__glim_DepthFunc	dynsym+mdebug	a71753ac9807		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_DepthMask	dynsym+mdebug	adbf7842df47		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b42c	616	__glim_Fogfv	dynsym+mdebug	043f8ca37108		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b694	128	__glim_Fogf	dynsym+mdebug	3e7317a2be79		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -2758,7 +2758,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41afc	480	__glim_EnableClientState	dynsym+mdebug	a8f1756e1405		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41cdc	536	__glim_DisableClientState	dynsym+mdebug	3bf6a51f2d8f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41ef4	444	__glim_PushClientAttrib	dynsym+mdebug	ec6cbdf10cd7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda420b0	360	__glim_PopClientAttrib	dynsym+mdebug	7ec118380c60		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda420b0	360	__glim_PopClientAttrib	dynsym+mdebug	7ec118380c60		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda42220	280	__glDrawBitmap	dynsym+mdebug	4debc06070c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda42338	356	__glFastDrawBitmap	dynsym+mdebug	69cb0ad786c7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4249c	932	__glRenderBitmap	dynsym+mdebug	c799bcb334ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8546,7 +8546,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda239d0	156	__glim_CullFace	dwarf+dynsym	cc8bd640c7d3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23a70	408	__glim_DepthFunc	dwarf+dynsym	32c837768ce9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_DepthMask	dwarf+dynsym	6e586692e96b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ec0	492	__glim_Fogfv	dwarf+dynsym	223df0f24945		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda240b0	120	__glim_Fogf	dwarf+dynsym	d5cacaecc8e2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -8595,7 +8595,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2af80	532	__glim_EnableClientState	dwarf+dynsym	982dc759cbc0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b1a0	584	__glim_DisableClientState	dwarf+dynsym	26d1964b6b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b3f0	692	__glim_PushClientAttrib	dwarf+dynsym	82c15154aaa2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b6b0	684	__glim_PopClientAttrib	dwarf+dynsym	fab1bd8d8d7e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b6b0	684	__glim_PopClientAttrib	dwarf+dynsym	fab1bd8d8d7e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b960	268	__glDrawBitmap	dwarf+dynsym	f26c5f0194ae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ba70	336	__glFastDrawBitmap	dwarf+dynsym	ff30b3c654c0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2bbc0	788	__glRenderBitmap	dwarf+dynsym	d5166285a384		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14436,7 +14436,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268bf0	156	__glim_CullFace	dwarf+dynsym	ee2591415fb3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268c90	436	__glim_DepthFunc	dwarf+dynsym	ee7c0050f18a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268e50	204	__glim_DepthMask	dwarf+dynsym	940fcfe53810		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269100	492	__glim_Fogfv	dwarf+dynsym	102a3ed19003		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22692f0	120	__glim_Fogf	dwarf+dynsym	fc119e6a1d20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2269370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -14485,7 +14485,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270a90	336	__glFastDrawBitmap	dwarf+dynsym	39d29b65dd88		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270be0	804	__glRenderBitmap	dwarf+dynsym	21bc59203996		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20473,7 +20473,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a87c	164	__glim_CullFace	dynsym+mdebug	33ab8fe04543		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a920	372	__glim_DepthFunc	dynsym+mdebug	dbf32e32236b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0aa94	196	__glim_DepthMask	dynsym+mdebug	cb5ae58b8682		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ab58	324	__glim_DrawBuffer	dynsym+mdebug	12fa294e26c0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ab58	324	__glim_DrawBuffer	dynsym+mdebug	12fa294e26c0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ac9c	616	__glim_Fogfv	dynsym+mdebug	aa62f1d1e7c9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0af04	128	__glim_Fogf	dynsym+mdebug	c23ed8c8ed5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0af84	496	__glim_Fogiv	dynsym+mdebug	0e5aba0e388b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -20522,7 +20522,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11360	480	__glim_EnableClientState	dynsym+mdebug	c548b3b33c3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11540	536	__glim_DisableClientState	dynsym+mdebug	b5257007d199		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11758	444	__glim_PushClientAttrib	dynsym+mdebug	c841502a1564		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11914	360	__glim_PopClientAttrib	dynsym+mdebug	d475fdac9d93		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11914	360	__glim_PopClientAttrib	dynsym+mdebug	d475fdac9d93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11a80	280	__glDrawBitmap	dynsym+mdebug	677cc609863b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11b98	356	__glFastDrawBitmap	dynsym+mdebug	3812e39c5257		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11cfc	932	__glRenderBitmap	dynsym+mdebug	128554d16892		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26420,7 +26420,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01220	160	__glim_CullFace	dynsym	d1eee6d902fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb012c0	420	__glim_DepthFunc	dynsym	fd1eeab0e41f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01470	196	__glim_DepthMask	dynsym	cd234d768aaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01540	492	__glim_DrawBuffer	dynsym	3c942c36c322		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01540	492	__glim_DrawBuffer	dynsym	3c942c36c322		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01730	548	__glim_Fogfv	dynsym	090fcd70e8fe		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01960	132	__glim_Fogf	dynsym	f913b163976f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb019f0	536	__glim_Fogiv	dynsym	cfeb9a89f1b4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -26465,7 +26465,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb082d0	560	__glim_EnableClientState	dynsym	c371b3faec3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08500	600	__glim_DisableClientState	dynsym	f01bf4d8bbe2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08760	412	__glim_PushClientAttrib	dynsym	32976dd882ba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08900	312	__glim_PopClientAttrib	dynsym	8a194aa4d496		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08900	312	__glim_PopClientAttrib	dynsym	8a194aa4d496		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08a40	284	__glDrawBitmap	dynsym	0b50551ba958		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08b60	368	__glFastDrawBitmap	dynsym	c18cb2e04154		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08cd0	816	__glRenderBitmap	dynsym	b20331ad3aa8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32032,7 +32032,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e73c0	160	__glim_CullFace	dwarf+dynsym	1fde33bcd90d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7460	440	__glim_DepthFunc	dwarf+dynsym	db29a1021b03		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7620	200	__glim_DepthMask	dwarf+dynsym	21206c77f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e76f0	492	__glim_DrawBuffer	dwarf+dynsym	22ca14c48571		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e76f0	492	__glim_DrawBuffer	dwarf+dynsym	22ca14c48571		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e78e0	548	__glim_Fogfv	dwarf+dynsym	9a62fc9ea6d4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7b10	132	__glim_Fogf	dwarf+dynsym	49739a350ab6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7ba0	536	__glim_Fogiv	dwarf+dynsym	b297b29c4c14		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -32081,7 +32081,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3ee500	564	__glim_EnableClientState	dwarf+dynsym	cbe350f21b63		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3ee740	604	__glim_DisableClientState	dwarf+dynsym	e07483bfa842		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3ee9a0	412	__glim_PushClientAttrib	dwarf+dynsym	5a7f391f73d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eeb40	312	__glim_PopClientAttrib	dwarf+dynsym	3c30e161ecc8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eeb40	312	__glim_PopClientAttrib	dwarf+dynsym	3c30e161ecc8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eec80	284	__glDrawBitmap	dwarf+dynsym	f32fc239bb98		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eeda0	368	__glFastDrawBitmap	dwarf+dynsym	8605e2641b22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eef10	816	__glRenderBitmap	dwarf+dynsym	0dffc83cb0d0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38049,7 +38049,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a87c	164	__glim_CullFace	dynsym+mdebug	33ab8fe04543		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a920	372	__glim_DepthFunc	dynsym+mdebug	dbf32e32236b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0aa94	196	__glim_DepthMask	dynsym+mdebug	cb5ae58b8682		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ab58	324	__glim_DrawBuffer	dynsym+mdebug	12fa294e26c0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ab58	324	__glim_DrawBuffer	dynsym+mdebug	12fa294e26c0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ac9c	616	__glim_Fogfv	dynsym+mdebug	aa62f1d1e7c9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0af04	128	__glim_Fogf	dynsym+mdebug	c23ed8c8ed5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0af84	496	__glim_Fogiv	dynsym+mdebug	0e5aba0e388b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -38098,7 +38098,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11360	480	__glim_EnableClientState	dynsym+mdebug	c548b3b33c3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11540	536	__glim_DisableClientState	dynsym+mdebug	b5257007d199		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11758	444	__glim_PushClientAttrib	dynsym+mdebug	c841502a1564		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11914	360	__glim_PopClientAttrib	dynsym+mdebug	d475fdac9d93		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11914	360	__glim_PopClientAttrib	dynsym+mdebug	d475fdac9d93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11a80	280	__glDrawBitmap	dynsym+mdebug	677cc609863b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11b98	356	__glFastDrawBitmap	dynsym+mdebug	3812e39c5257		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb11cfc	932	__glRenderBitmap	dynsym+mdebug	128554d16892		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -43996,7 +43996,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01220	160	__glim_CullFace	dynsym	d1eee6d902fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb012c0	420	__glim_DepthFunc	dynsym	fd1eeab0e41f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01470	196	__glim_DepthMask	dynsym	cd234d768aaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01540	492	__glim_DrawBuffer	dynsym	3c942c36c322		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01540	492	__glim_DrawBuffer	dynsym	3c942c36c322		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01730	548	__glim_Fogfv	dynsym	090fcd70e8fe		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01960	132	__glim_Fogf	dynsym	f913b163976f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb019f0	536	__glim_Fogiv	dynsym	cfeb9a89f1b4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -44041,7 +44041,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb082d0	560	__glim_EnableClientState	dynsym	c371b3faec3b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08500	600	__glim_DisableClientState	dynsym	f01bf4d8bbe2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08760	412	__glim_PushClientAttrib	dynsym	32976dd882ba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08900	312	__glim_PopClientAttrib	dynsym	8a194aa4d496		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08900	312	__glim_PopClientAttrib	dynsym	8a194aa4d496		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08a40	284	__glDrawBitmap	dynsym	0b50551ba958		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08b60	368	__glFastDrawBitmap	dynsym	c18cb2e04154		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb08cd0	816	__glRenderBitmap	dynsym	b20331ad3aa8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49608,7 +49608,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe073c0	160	__glim_CullFace	dwarf+dynsym	1fde33bcd90d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07460	440	__glim_DepthFunc	dwarf+dynsym	db29a1021b03		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07620	200	__glim_DepthMask	dwarf+dynsym	21206c77f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe076f0	492	__glim_DrawBuffer	dwarf+dynsym	22ca14c48571		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe076f0	492	__glim_DrawBuffer	dwarf+dynsym	22ca14c48571		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe078e0	548	__glim_Fogfv	dwarf+dynsym	9a62fc9ea6d4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07b10	132	__glim_Fogf	dwarf+dynsym	49739a350ab6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07ba0	536	__glim_Fogiv	dwarf+dynsym	b297b29c4c14		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -49657,7 +49657,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0e500	564	__glim_EnableClientState	dwarf+dynsym	cbe350f21b63		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0e740	604	__glim_DisableClientState	dwarf+dynsym	e07483bfa842		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0e9a0	412	__glim_PushClientAttrib	dwarf+dynsym	5a7f391f73d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0eb40	312	__glim_PopClientAttrib	dwarf+dynsym	3c30e161ecc8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0eb40	312	__glim_PopClientAttrib	dwarf+dynsym	3c30e161ecc8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0ec80	284	__glDrawBitmap	dwarf+dynsym	f32fc239bb98		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0eda0	368	__glFastDrawBitmap	dwarf+dynsym	8605e2641b22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0ef10	816	__glRenderBitmap	dwarf+dynsym	0dffc83cb0d0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -69760,7 +69760,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_Color
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b00c	164	__glim_CullFace	dynsym+mdebug	e5e944e7428c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b0b0	372	__glim_DepthFunc	dynsym+mdebug	a71753ac9807		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_DepthMask	dynsym+mdebug	adbf7842df47		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b42c	616	__glim_Fogfv	dynsym+mdebug	043f8ca37108		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b694	128	__glim_Fogf	dynsym+mdebug	3e7317a2be79		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -69809,7 +69809,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4196c	400	__glFreeAttr
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41afc	480	__glim_EnableClientState	dynsym+mdebug	a8f1756e1405		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41cdc	536	__glim_DisableClientState	dynsym+mdebug	3bf6a51f2d8f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda41ef4	444	__glim_PushClientAttrib	dynsym+mdebug	ec6cbdf10cd7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda420b0	360	__glim_PopClientAttrib	dynsym+mdebug	7ec118380c60		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda420b0	360	__glim_PopClientAttrib	dynsym+mdebug	7ec118380c60		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda42220	280	__glDrawBitmap	dynsym+mdebug	4debc06070c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda42338	356	__glFastDrawBitmap	dynsym+mdebug	69cb0ad786c7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4249c	932	__glRenderBitmap	dynsym+mdebug	c799bcb334ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75597,7 +75597,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_Col
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda239d0	156	__glim_CullFace	dwarf+dynsym	cc8bd640c7d3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23a70	408	__glim_DepthFunc	dwarf+dynsym	32c837768ce9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_DepthMask	dwarf+dynsym	6e586692e96b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23ec0	492	__glim_Fogfv	dwarf+dynsym	223df0f24945		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda240b0	120	__glim_Fogf	dwarf+dynsym	d5cacaecc8e2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -75646,7 +75646,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAt
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2af80	532	__glim_EnableClientState	dwarf+dynsym	982dc759cbc0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b1a0	584	__glim_DisableClientState	dwarf+dynsym	26d1964b6b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b3f0	692	__glim_PushClientAttrib	dwarf+dynsym	82c15154aaa2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b6b0	684	__glim_PopClientAttrib	dwarf+dynsym	fab1bd8d8d7e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b6b0	684	__glim_PopClientAttrib	dwarf+dynsym	fab1bd8d8d7e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2b960	268	__glDrawBitmap	dwarf+dynsym	f26c5f0194ae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2ba70	336	__glFastDrawBitmap	dwarf+dynsym	ff30b3c654c0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda2bbc0	788	__glRenderBitmap	dwarf+dynsym	d5166285a384		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81487,7 +81487,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8ae0	260	__glim_Col
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8bf0	156	__glim_CullFace	dwarf+dynsym	ee2591415fb3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8c90	436	__glim_DepthFunc	dwarf+dynsym	ee7c0050f18a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8e50	204	__glim_DepthMask	dwarf+dynsym	940fcfe53810		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9100	492	__glim_Fogfv	dwarf+dynsym	102a3ed19003		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b92f0	120	__glim_Fogf	dwarf+dynsym	fc119e6a1d20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b9370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81536,7 +81536,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfee0	356	__glFreeAt
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c04c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0a90	336	__glFastDrawBitmap	dwarf+dynsym	39d29b65dd88		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0be0	804	__glRenderBitmap	dwarf+dynsym	21bc59203996		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87299,7 +87299,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_Color
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b00c	164	__glim_CullFace	dynsym+mdebug	e5e944e7428c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b0b0	372	__glim_DepthFunc	dynsym+mdebug	a71753ac9807		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_DepthMask	dynsym+mdebug	adbf7842df47		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b2e8	324	__glim_DrawBuffer	dynsym+mdebug	8eecb239744d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b42c	616	__glim_Fogfv	dynsym+mdebug	043f8ca37108		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b694	128	__glim_Fogf	dynsym+mdebug	3e7317a2be79		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b714	496	__glim_Fogiv	dynsym+mdebug	c1aae9dcac30		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -87348,7 +87348,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4196c	400	__glFreeAttr
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda41afc	480	__glim_EnableClientState	dynsym+mdebug	a8f1756e1405		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda41cdc	536	__glim_DisableClientState	dynsym+mdebug	3bf6a51f2d8f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda41ef4	444	__glim_PushClientAttrib	dynsym+mdebug	ec6cbdf10cd7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda420b0	360	__glim_PopClientAttrib	dynsym+mdebug	7ec118380c60		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda420b0	360	__glim_PopClientAttrib	dynsym+mdebug	7ec118380c60		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda42220	280	__glDrawBitmap	dynsym+mdebug	4debc06070c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda42338	356	__glFastDrawBitmap	dynsym+mdebug	69cb0ad786c7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4249c	932	__glRenderBitmap	dynsym+mdebug	c799bcb334ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93136,7 +93136,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_Col
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda239d0	156	__glim_CullFace	dwarf+dynsym	cc8bd640c7d3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23a70	408	__glim_DepthFunc	dwarf+dynsym	32c837768ce9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_DepthMask	dwarf+dynsym	6e586692e96b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23ce0	476	__glim_DrawBuffer	dwarf+dynsym	8cc6141bd68c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23ec0	492	__glim_Fogfv	dwarf+dynsym	223df0f24945		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda240b0	120	__glim_Fogf	dwarf+dynsym	d5cacaecc8e2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda24130	500	__glim_Fogiv	dwarf+dynsym	5300eda4afc4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -93185,7 +93185,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ae10	356	__glFreeAt
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2af80	532	__glim_EnableClientState	dwarf+dynsym	982dc759cbc0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b1a0	584	__glim_DisableClientState	dwarf+dynsym	26d1964b6b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b3f0	692	__glim_PushClientAttrib	dwarf+dynsym	82c15154aaa2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b6b0	684	__glim_PopClientAttrib	dwarf+dynsym	fab1bd8d8d7e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b6b0	684	__glim_PopClientAttrib	dwarf+dynsym	fab1bd8d8d7e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2b960	268	__glDrawBitmap	dwarf+dynsym	f26c5f0194ae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2ba70	336	__glFastDrawBitmap	dwarf+dynsym	ff30b3c654c0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda2bbc0	788	__glRenderBitmap	dwarf+dynsym	d5166285a384		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99026,7 +99026,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268ae0	260	__glim_Col
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268bf0	156	__glim_CullFace	dwarf+dynsym	ee2591415fb3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268c90	436	__glim_DepthFunc	dwarf+dynsym	ee7c0050f18a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268e50	204	__glim_DepthMask	dwarf+dynsym	940fcfe53810		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268f20	476	__glim_DrawBuffer	dwarf+dynsym	32b555259b1c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269100	492	__glim_Fogfv	dwarf+dynsym	102a3ed19003		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22692f0	120	__glim_Fogf	dwarf+dynsym	fc119e6a1d20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2269370	500	__glim_Fogiv	dwarf+dynsym	c1589968ab54		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99075,7 +99075,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAt
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270a90	336	__glFastDrawBitmap	dwarf+dynsym	39d29b65dd88		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270be0	804	__glRenderBitmap	dwarf+dynsym	21bc59203996		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
