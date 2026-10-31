@@ -3240,7 +3240,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6b
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6bd60	56	freeLeafData	mdebug	c461243dfde1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6bd98	112	freeLeaf	mdebug	cfca1a912e54		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6be08	680	freeBranch	mdebug	a1bf980fe714		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6be40	376	__glNamesFreeTree	dynsym+mdebug	5c5ae4751590		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6be40	376	__glNamesFreeTree	dynsym+mdebug	5c5ae4751590		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6bfb8	248	__glNamesFreeArray	dynsym+mdebug	ba7f976d3135		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6c0b0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6c13c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -9077,7 +9077,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda57f80	16	freeLeafData	dwarf+funcnames	68688d3c36c3		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda57f90	72	freeLeaf	dwarf+funcnames	e9b7bb20b3b8		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda57fe0	16	freeBranch	dwarf+funcnames	68688d3c36c3		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda57ff0	356	__glNamesFreeTree	dwarf+dynsym	e50bf86b6a02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda57ff0	356	__glNamesFreeTree	dwarf+dynsym	e50bf86b6a02		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda58160	236	__glNamesFreeArray	dwarf+dynsym	de80834c6c8c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda58250	128	findLeaf	dwarf+funcnames	5fb8c184f320		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda582d0	252	copyLeafInfo	dwarf+funcnames	6b6dd3233f9a		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -14980,7 +14980,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229e070	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229e080	72	freeLeaf	dwarf	d561b5616d96		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229e0d0	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x229e0e0	360	__glNamesFreeTree	dwarf+dynsym	8cad21a69087		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x229e0e0	360	__glNamesFreeTree	dwarf+dynsym	8cad21a69087		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x229e250	236	__glNamesFreeArray	dwarf+dynsym	784157ffd1af		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229e340	128	findLeaf	dwarf	5dc3b34fa960		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229e3c0	284	copyLeafInfo	dwarf	56b78ef953cf		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -14997,7 +14997,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229ec90	204	buildParent	dwarf	c1d0a5d0b243		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229ed60	684	insertLeaf	dwarf	ac943cbc987d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f010	584	deleteLeaf	dwarf	493d2efb7fff		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f260	416	resizeLeaf	dwarf	a20ba6647829		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f260	416	resizeLeaf	dwarf	a20ba6647829		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f400	272	prevLeaf	dwarf	1169a69898f0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f510	60	firstLeaf	dwarf	8c1069b2358c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f550	136	nextLeaf	dwarf	aa5e25e758a2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -21003,7 +21003,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b510	56	freeLeafData	mdebug	aca205bcde0e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b548	112	freeLeaf	mdebug	878fc2ec743b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b5b8	680	freeBranch	mdebug	3efb0c3c803c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3b5f0	376	__glNamesFreeTree	dynsym+mdebug	4b10bdc8ac8d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3b5f0	376	__glNamesFreeTree	dynsym+mdebug	4b10bdc8ac8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3b768	248	__glNamesFreeArray	dynsym+mdebug	fe223d6e6a2f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b860	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b8ec	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -26874,7 +26874,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35d00	208	__glArenaAlloc	dynsym	a26586483dbf		in	located	docs/sample-implementation.md#so_memmgrc	so_memmgr.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35dd0	132	__glArenaFreeAll	dynsym	0e7d192a5efb		in	located	docs/sample-implementation.md#so_memmgrc	so_memmgr.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35e60	340	__glNamesNewArray	dynsym	1947092db912		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb36060	392	__glNamesFreeTree	dynsym	4abaf4011273		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb36060	392	__glNamesFreeTree	dynsym	4abaf4011273		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb361f0	252	__glNamesFreeArray	dynsym	d83fe1d94ae1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb37aa0	1448	__glNamesNewData	dynsym	265bb4556469		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38050	152	__glNamesLockData	dynsym	91c3adc91f02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -32575,7 +32575,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41d4b0	32	freeLeafData	dwarf	c82e9fdad375		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41d4d0	88	freeLeaf	dwarf	1dec6f82b31c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41d530	32	freeBranch	dwarf	c82e9fdad375		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41d550	392	__glNamesFreeTree	dwarf+dynsym	e5f1d1cc05f9		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41d550	392	__glNamesFreeTree	dwarf+dynsym	e5f1d1cc05f9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41d6e0	252	__glNamesFreeArray	dwarf+dynsym	15a1ed33bd6d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41d7e0	144	findLeaf	dwarf	7b939b4ea5f8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41d870	228	copyLeafInfo	dwarf	0781dcb47bfe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -38579,7 +38579,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b510	56	freeLeafData	mdebug	aca205bcde0e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b548	112	freeLeaf	mdebug	878fc2ec743b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b5b8	680	freeBranch	mdebug	3efb0c3c803c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3b5f0	376	__glNamesFreeTree	dynsym+mdebug	4b10bdc8ac8d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3b5f0	376	__glNamesFreeTree	dynsym+mdebug	4b10bdc8ac8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3b768	248	__glNamesFreeArray	dynsym+mdebug	fe223d6e6a2f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b860	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3b8ec	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -44450,7 +44450,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35d00	208	__glArenaAlloc	dynsym	a26586483dbf		in	located	docs/sample-implementation.md#so_memmgrc	so_memmgr.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35dd0	132	__glArenaFreeAll	dynsym	0e7d192a5efb		in	located	docs/sample-implementation.md#so_memmgrc	so_memmgr.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35e60	340	__glNamesNewArray	dynsym	1947092db912		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb36060	392	__glNamesFreeTree	dynsym	4abaf4011273		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb36060	392	__glNamesFreeTree	dynsym	4abaf4011273		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb361f0	252	__glNamesFreeArray	dynsym	d83fe1d94ae1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb37aa0	1448	__glNamesNewData	dynsym	265bb4556469		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38050	152	__glNamesLockData	dynsym	91c3adc91f02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -50151,7 +50151,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3d4b0	32	freeLeafData	dwarf	c82e9fdad375		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3d4d0	88	freeLeaf	dwarf	1dec6f82b31c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3d530	32	freeBranch	dwarf	c82e9fdad375		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3d550	392	__glNamesFreeTree	dwarf+dynsym	e5f1d1cc05f9		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3d550	392	__glNamesFreeTree	dwarf+dynsym	e5f1d1cc05f9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3d6e0	252	__glNamesFreeArray	dwarf+dynsym	15a1ed33bd6d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3d7e0	144	findLeaf	dwarf	7b939b4ea5f8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3d870	228	copyLeafInfo	dwarf	0781dcb47bfe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -70291,7 +70291,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6bc10	336	__glNamesNew
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6bd60	56	freeLeafData	mdebug	c461243dfde1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6bd98	112	freeLeaf	mdebug	cfca1a912e54		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6be08	680	freeBranch	mdebug	a1bf980fe714		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6be40	376	__glNamesFreeTree	dynsym+mdebug	5c5ae4751590		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6be40	376	__glNamesFreeTree	dynsym+mdebug	5c5ae4751590		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6bfb8	248	__glNamesFreeArray	dynsym+mdebug	ba7f976d3135		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6c0b0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6c13c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -76128,7 +76128,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda57e20	340	__glNamesN
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda57f80	16	freeLeafData	dwarf+funcnames	68688d3c36c3		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda57f90	72	freeLeaf	dwarf+funcnames	e9b7bb20b3b8		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda57fe0	16	freeBranch	dwarf+funcnames	68688d3c36c3		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda57ff0	356	__glNamesFreeTree	dwarf+dynsym	e50bf86b6a02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda57ff0	356	__glNamesFreeTree	dwarf+dynsym	e50bf86b6a02		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda58160	236	__glNamesFreeArray	dwarf+dynsym	de80834c6c8c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda58250	128	findLeaf	dwarf+funcnames	5fb8c184f320		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda582d0	252	copyLeafInfo	dwarf+funcnames	6b6dd3233f9a		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -82031,7 +82031,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32edf10	340	__glNamesN
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ee070	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ee080	72	freeLeaf	dwarf	d561b5616d96		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ee0d0	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ee0e0	360	__glNamesFreeTree	dwarf+dynsym	8cad21a69087		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ee0e0	360	__glNamesFreeTree	dwarf+dynsym	8cad21a69087		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ee250	236	__glNamesFreeArray	dwarf+dynsym	784157ffd1af		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ee340	128	findLeaf	dwarf	5dc3b34fa960		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ee3c0	284	copyLeafInfo	dwarf	56b78ef953cf		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -82048,7 +82048,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32eead0	436	split
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32eec90	204	buildParent	dwarf	c1d0a5d0b243		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32eed60	684	insertLeaf	dwarf	ac943cbc987d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef010	584	deleteLeaf	dwarf	493d2efb7fff		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef260	416	resizeLeaf	dwarf	a20ba6647829		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef260	416	resizeLeaf	dwarf	a20ba6647829		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef400	272	prevLeaf	dwarf	1169a69898f0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef510	60	firstLeaf	dwarf	8c1069b2358c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef550	136	nextLeaf	dwarf	aa5e25e758a2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -87830,7 +87830,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6bc10	336	__glNamesNew
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6bd60	56	freeLeafData	mdebug	c461243dfde1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6bd98	112	freeLeaf	mdebug	cfca1a912e54		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6be08	680	freeBranch	mdebug	a1bf980fe714		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6be40	376	__glNamesFreeTree	dynsym+mdebug	5c5ae4751590		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6be40	376	__glNamesFreeTree	dynsym+mdebug	5c5ae4751590		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6bfb8	248	__glNamesFreeArray	dynsym+mdebug	ba7f976d3135		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6c0b0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6c13c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -93667,7 +93667,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda57e20	340	__glNamesN
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda57f80	16	freeLeafData	dwarf+funcnames	68688d3c36c3		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda57f90	72	freeLeaf	dwarf+funcnames	e9b7bb20b3b8		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda57fe0	16	freeBranch	dwarf+funcnames	68688d3c36c3		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda57ff0	356	__glNamesFreeTree	dwarf+dynsym	e50bf86b6a02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda57ff0	356	__glNamesFreeTree	dwarf+dynsym	e50bf86b6a02		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda58160	236	__glNamesFreeArray	dwarf+dynsym	de80834c6c8c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda58250	128	findLeaf	dwarf+funcnames	5fb8c184f320		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda582d0	252	copyLeafInfo	dwarf+funcnames	6b6dd3233f9a		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -99570,7 +99570,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x229df10	340	__glNamesN
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229e070	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229e080	72	freeLeaf	dwarf	d561b5616d96		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229e0d0	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x229e0e0	360	__glNamesFreeTree	dwarf+dynsym	8cad21a69087		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x229e0e0	360	__glNamesFreeTree	dwarf+dynsym	8cad21a69087		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x229e250	236	__glNamesFreeArray	dwarf+dynsym	784157ffd1af		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229e340	128	findLeaf	dwarf	5dc3b34fa960		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229e3c0	284	copyLeafInfo	dwarf	56b78ef953cf		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -99587,7 +99587,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229ead0	436	split
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229ec90	204	buildParent	dwarf	c1d0a5d0b243		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229ed60	684	insertLeaf	dwarf	ac943cbc987d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f010	584	deleteLeaf	dwarf	493d2efb7fff		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f260	416	resizeLeaf	dwarf	a20ba6647829		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f260	416	resizeLeaf	dwarf	a20ba6647829		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f400	272	prevLeaf	dwarf	1169a69898f0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f510	60	firstLeaf	dwarf	8c1069b2358c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f550	136	nextLeaf	dwarf	aa5e25e758a2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
