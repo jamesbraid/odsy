@@ -701,7 +701,9 @@ eight floats (a2: source x0, y0, x1, y1 then destination x0, y0, x1, y1) and the
 - **established** (0xd9b7a2c to 0xd9b7a4c, 0xd9b8ac4 to 0xd9b8cd4): when the destination's byte +8 is set (the bound draw
   description; the read description sets byte +9 instead, `DescribeWindow` 0xd989794 and 0xd989a10) the routine sets the transfer
   flag to 1 whatever the caller passed. For an object destination it does the same when the destination's word +4 differs from
-  the source's, or the destination's pixel class (+0x34) differs from a field of the copy-parameter result. So the corner record
+  the source's, when the destination's pixel class (+0x34) differs from a field of the copy-parameter result, or when the
+  destination's byte +10 is set and the context words at +0x11cc0 and +0x11d94 differ (0xd9b8778 to 0xd9b8780); with byte +10
+  clear the flag stays as passed (0xd9b9210). So the corner record
   below is sent for every window destination and for a window-to-object copy.
 - **established** (the copy body 0x0d9b73c0, 0xd9b73e0 to 0xd9b7428 and 0xd9b7500 to 0xd9b75a8): with the transfer flag it sends
   `0x00010443 250 0x10046 0x10046`-style settle words, the four floats at the record the context points to at +0xf8, then
@@ -711,9 +713,10 @@ eight floats (a2: source x0, y0, x1, y1 then destination x0, y0, x1, y1) and the
   The `0x2031` block that follows holds the source and destination smaller corners and an absolute size, so it names no
   direction; header word 7 bits 31 and 30 are `E` and `B`.
 - **established**: `RenderFunc_CopyColor` (0x0d990dd0) calls the routine with destination = chain +72, source = chain +68 and
-  flag 0, so an object source reaches a window destination through it, and through the scale and bias steps (the calls at
-  0xd997200, 0xd9975c4 and others use the context's scratch image at +0x119e4 as the source with flag 1). The scratch image's
-  word +4 is not set by `ImageInit` and its writer was not found: **unknown**.
+  flag 0, so an object source can reach a window destination through it. The scale and bias steps call it with flag 1 and
+  operands taken from the chain operation's own records (the call at 0xd9971cc); which object a pass names was not traced.
+  The image set-up writes a scratch image at context +0x119e4 with byte 0 = 1 and word +4 = 0 (0xd988ec8, 0xd988ecc) and
+  copies it on to +0x11a20 and +0x11a5c; no copy was shown to use it.
 - **established** (non-overlapping, ordinary boxes, so `E` and `B` 0): a window source gives mode 2 for a window or an object
   destination; an object source gives mode 0 for a window destination. The two directions use opposite y order of the corner
   record.
@@ -746,14 +749,16 @@ eight floats (a2: source x0, y0, x1, y1 then destination x0, y0, x1, y1) and the
   and `glGetTexImage`): it saves the user's block, calls `__glOdysseyImageLoadBuzzRasterState` (0xd9c1ff0) with 0, which copies
   the library's default block at context +0x11cc4 over the live words, the mode and the filter words, and sets dirty bit 16
   among others (0xd9c2198), then builds and runs the chain, then reloads the user's block. Running `ImageInit` under
-  `glcore_probe.py` leaves that default block with mode 2 and the eight words scale 0x1000, bias 0 for R, G, B and A.
+  `glcore_probe.py` leaves that default block with mode 2 and the four scale words 0x1000. It never writes the bias words, so bias 0 (the
+  identity) holds only if the context starts zeroed: **inferred**.
   So every one of those transfers starts with a pending identity `0x203b`: unsigned copies too. The copy routine marks dirty
   bit 4 and calls validation before its `0x2031` block (0xd9b8274 to 0xd9b8294), so the pending block goes out first. Not
   observed in a run end to end.
 - **established** (callees of each step by `fifo_words.py`): the helper that writes the eight words (0xd99ca10,
   `trunc(x * 4096) & 0xffff`, scale then bias per channel) is followed by `MovePixelsCopy` with flag 1 in the scale-and-bias
   steps (0xd9967e0, 0xd998010, 0xd999b20), by a host write (`MovePixelsDMAtoGfx`) in the colour download step (0xd9a3db0),
-  and by the texture move in the convolution steps and the colour matrix (which also uses a copy). The texture-filter loader
+  and by the texture move in the convolution steps and the colour matrix (which also uses a copy). The rows beyond the
+  scale-and-bias steps were read from the callee lists and not independently checked. The texture-filter loader
   copies a texture object's words in the same way. A pixel-texture step is added to a window-destination colour chain
   when bit 0x4000 of context +0x704 is set (0xd9905e0).
 - **inferred**: the post-filter applies to the copy it precedes, because the library implements pixel-transfer scale and bias
@@ -764,19 +769,20 @@ eight floats (a2: source x0, y0, x1, y1 then destination x0, y0, x1, y1) and the
 
 - **GL_FOG_INDEX**: `__glOdyim_Fogfv` (0xd9813e0, the branch at 0xd98156c) truncates the value to an integer, masks it with
   `(1 << context +0xcb4) - 1`, stores it as a float at context +0x658, and only when byte +0xc95 is set also puts it in bits
-  23:12 of the word at +0x7c08 and sets dirty bit 8, which validation sends as the six-word block `0x0001181a`
-  (0xd968448). **established**. `glGet` returns the float (so_get 0xda42f70). That byte +0xc95 marks a colour-index context and that
+  23:12 of the word at +0x7c08 and, unconditionally, dirty mask 0x8, which validation sends as the six-word block `0x0001181a`
+  (0xd968448), so a non-index context resends the unchanged block. In RGB mode bits 23:12 of +0x7c08 hold the first fog colour
+  component (0xd9816d8 to 0xd981728). **established**. `glGet` returns the float (so_get 0xda42f70). That byte +0xc95 marks a colour-index context and that
   +0xcb4 is the index bit count is **inferred** from the test answer (7 asked, 0 returned on an RGB visual).
 - **glIndexMask**: `__glOdyim_IndexMask` (0xd95c0f0) ANDs the argument with the word at context +0x7848, stores it at +0x758,
   replaces bits 11:0 of the word at +0x7c5c and sets dirty bit 0x80; validation sends the one-word block `0x00010452`
   (register 0x052, 0xd968aec). **established**. `glGet(INDEX_WRITEMASK)` returns the +0x758 word. No writer of +0x7848 was found
-  in the library; from the test answers (0x1c asked, 0 returned) its low five bits cannot include 0x1c: **inferred**.
+  in the library; from the test answers (0x1c asked, 0 returned) `w & 0x1c` must be 0: **inferred**.
 - **glClearIndex**: the generic routine `__glim_ClearIndex` (0xda23730), no Odyssey routine of its own. It stores
   `(int)(c * 16) & ((context +0x7848 << 4) | 0xf)` over 16 as a float at +0x754 and sends nothing. `__glOdyim_Clear`
   (0xd9644d0) reads it only when byte +0xc94 is zero and uses it as the red clear component, with green, blue and alpha 0
-  (0xd9648d4). **established**. Test answer (11 asked, 1 returned) fits +0x7848 = 1: **inferred**.
+  (0xd9648d4). **established**. Test answer (11 asked, 1 returned) needs `(w & 0xb) == 1` for the +0x7848 word `w`: **inferred**.
 - **GL_PIXEL_TEXTURE_SGIS enable**: `__glOdyim_Enable` sets bit 0x4000 of context +0x704 (0xd9576a4) with no dirty bit and no
   word sent; `glDisable` clears it, `__glOdyim_IsEnabled` returns it (0xd956960). Its only reader is the colour chain builder
   (0xd9905e0, above). **established** for enable, disable and `glIsEnabled`. The generic getter has no case for 0x8353 in any
-  immediate comparison, so `glGetBooleanv` leaves the output alone and raises an error: `GL_INVALID_ENUM` is **inferred** from the
-  same getter's behaviour on the unsupported polygon offset enums, the stub not run.
+  immediate comparison, so `glGetBooleanv` leaves the output alone and raises an error: running the getter on 0x8353 under
+  `glcore_probe.py` calls the error routine with 0x500 (`GL_INVALID_ENUM`). **established**.
