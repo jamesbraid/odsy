@@ -151,3 +151,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyFinish` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9800 | 788 | 4f334426caf0 | Established |
 | `__glOdysseySwapBuffers` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9450 | 840 | 5e1af35a456f | Established |
 | `__glOdysseySwapBuffers` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9450 | 840 | 5e1af35a456f | Established |
+| `__glOdysseySetDrawbuf` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9fb0 | 808 | e78b75db3c9f | Established |
+| `__glOdysseySetDrawbuf` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9fb0 | 808 | e78b75db3c9f | Established |
+| `__glOdysseyClear` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd964aa0 | 1996 | d9dde5ffa225 | Established |
+| `__glOdysseyClear` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd964aa0 | 1996 | d9dde5ffa225 | Established |
+| `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xdadc200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xdadc200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP30ODSY/libGLcore.so` | 0xdae4200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3378200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xdae4200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x2328200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` | 0xdae4200 | 15872 | 4cab2551b407 | Established |
+| `__glOdyssey_FastDispatchEnd` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x2328200 | 15872 | 4cab2551b407 | Established |
