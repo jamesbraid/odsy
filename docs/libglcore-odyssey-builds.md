@@ -463,3 +463,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_GetBooleanv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd986cc0 | 60 | 7cc27a220266 | Established |
 | `__glOdyim_GetBooleanv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd986cc0 | 60 | 7cc27a220266 | Established |
 | `__glOdyim_GetTexEnvfv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987740 | 276 | 62e306317255 | Established |
+| `__glOdyim_GetTexEnvfv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987740 | 276 | 62e306317255 | Established |
+| `__glOdyim_GetTexEnviv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987860 | 260 | d82841c4efd4 | Established |
+| `__glOdyim_GetTexEnviv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987860 | 260 | d82841c4efd4 | Established |
+| `__glOdyim_GetDetailTexFuncSGIS` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987970 | 152 | fca4aa77791b | Established |
+| `__glOdyim_GetDetailTexFuncSGIS` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987970 | 152 | fca4aa77791b | Established |
+| `__glOdyim_GetMaterialfv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987a10 | 184 | 0aa29209e8da | Established |
+| `__glOdyim_GetMaterialfv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987a10 | 184 | 0aa29209e8da | Established |
+| `__glOdyim_GetMaterialiv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987ad0 | 184 | f395ca4a247f | Established |
+| `__glOdyim_GetMaterialiv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987ad0 | 184 | f395ca4a247f | Established |
+| `__glOdyim_GetFogFuncSGIS` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987b90 | 112 | 8fef938f63c5 | Established |
+| `__glOdyim_GetFogFuncSGIS` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987b90 | 112 | 8fef938f63c5 | Established |
+| `__glOdyim_ListParameterfvSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973450 | 236 | c1737b5a69c0 | Established |
