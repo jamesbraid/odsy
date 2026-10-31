@@ -3276,10 +3276,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f3e0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f404	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f430	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f4a8	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f510	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f588	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f5f0	112	__glim_Normal3i	dynsym+mdebug	508d93123d0f		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f4a8	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f510	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f588	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f5f0	112	__glim_Normal3i	dynsym+mdebug	508d93123d0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f660	132	__glim_Normal3iv	dynsym+mdebug	7426faf706bd		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f6f0	1920	__glGenericPickSpanProcs	dynsym+mdebug	1921de8fc1d5		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6fe70	296	__glGenericPickPointProcs	dynsym+mdebug	39845f411263		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -8897,7 +8897,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40aa0	188	__glim_GetPolygonStipple	dwarf+dynsym	f522b863ec5e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40b60	452	__glim_GetLightfv	dwarf+dynsym	3452483ed791		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40d30	548	__glim_GetLightiv	dwarf+dynsym	9ff6dda5f64c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41100	912	__glim_GetMaterialiv	dwarf+dynsym	ba06ec1c3d97		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41490	776	__glim_GetMapfv	dwarf+dynsym	0f91e31742bd		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda417a0	888	__glim_GetMapdv	dwarf+dynsym	ac7eb80a024a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -9113,10 +9113,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4b0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4d0	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b680	92	__glim_Normal3i	dwarf+dynsym	7dfa668d4faa		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b680	92	__glim_Normal3i	dwarf+dynsym	7dfa668d4faa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b6e0	104	__glim_Normal3iv	dwarf+dynsym	3f09e979d071		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b750	1948	__glGenericPickSpanProcs	dwarf+dynsym	9fb172724e91		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5bef0	272	__glGenericPickPointProcs	dwarf+dynsym	2ee21465b12d		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -15018,10 +15018,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1740	20	__glim_Normal3f	dwarf+dynsym	01328752b2f0		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1760	32	__glim_Normal3fv	dwarf+dynsym	91680510a64b		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1780	84	__glim_Normal3b	dwarf+dynsym	4712e7989a33		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a17e0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1840	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a18a0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1900	92	__glim_Normal3i	dwarf+dynsym	ec67b84f2589		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a17e0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1840	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a18a0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1900	92	__glim_Normal3i	dwarf+dynsym	ec67b84f2589		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1960	104	__glim_Normal3iv	dwarf+dynsym	1b6b28f0c2a2		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a19d0	1984	__glGenericPickSpanProcs	dwarf+dynsym	3e82bf3ebe84		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a2190	280	__glGenericPickPointProcs	dwarf+dynsym	2263adead9d6		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -21039,10 +21039,10 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eb90	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ebb4	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ebe0	120	__glim_Normal3b	dynsym+mdebug	3bc6148597ef		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ec58	104	__glim_Normal3bv	dynsym+mdebug	538a44cf4bd9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ecc0	120	__glim_Normal3s	dynsym+mdebug	a91c53a2a1ff		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ed38	104	__glim_Normal3sv	dynsym+mdebug	4b1d89d5bfec		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eda0	112	__glim_Normal3i	dynsym+mdebug	dac1ba082f8d		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ec58	104	__glim_Normal3bv	dynsym+mdebug	538a44cf4bd9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ecc0	120	__glim_Normal3s	dynsym+mdebug	a91c53a2a1ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ed38	104	__glim_Normal3sv	dynsym+mdebug	4b1d89d5bfec		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eda0	112	__glim_Normal3i	dynsym+mdebug	dac1ba082f8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ee10	132	__glim_Normal3iv	dynsym+mdebug	9de691f25534		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eea0	1920	__glGenericPickSpanProcs	dynsym+mdebug	4a9ce0b4c8a3		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3f620	296	__glGenericPickPointProcs	dynsym+mdebug	183da388ccef		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -26889,10 +26889,10 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39900	32	__glim_Normal3d	dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39920	44	__glim_Normal3dv	dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39950	84	__glim_Normal3b	dynsym	0cad523f5ec0		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb399b0	96	__glim_Normal3bv	dynsym	6accd6e1f933		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a10	84	__glim_Normal3s	dynsym	8cebba417cf4		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a70	96	__glim_Normal3sv	dynsym	eac3d22509d5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39ad0	100	__glim_Normal3i	dynsym	8b9c03e7ea05		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb399b0	96	__glim_Normal3bv	dynsym	6accd6e1f933		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a10	84	__glim_Normal3s	dynsym	8cebba417cf4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a70	96	__glim_Normal3sv	dynsym	eac3d22509d5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39ad0	100	__glim_Normal3i	dynsym	8b9c03e7ea05		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39b40	112	__glim_Normal3iv	dynsym	38720627fe1b		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39bb0	2048	__glGenericPickSpanProcs	dynsym	d675559b51ef		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb3a3b0	248	__glGenericPickPointProcs	dynsym	cc05f008832f		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -32613,10 +32613,10 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420f40	20	__glim_Normal3f	dwarf+dynsym	01328752b2f0		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420f60	32	__glim_Normal3fv	dwarf+dynsym	1d541ec89261		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420f80	84	__glim_Normal3b	dwarf+dynsym	c842ad96cc1b		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420fe0	96	__glim_Normal3bv	dwarf+dynsym	a5943e2dbb29		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb421040	84	__glim_Normal3s	dwarf+dynsym	61cc1a3613a0		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4210a0	96	__glim_Normal3sv	dwarf+dynsym	58752a14e032		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb421100	100	__glim_Normal3i	dwarf+dynsym	019cc5eca7d3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420fe0	96	__glim_Normal3bv	dwarf+dynsym	a5943e2dbb29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb421040	84	__glim_Normal3s	dwarf+dynsym	61cc1a3613a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4210a0	96	__glim_Normal3sv	dwarf+dynsym	58752a14e032		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb421100	100	__glim_Normal3i	dwarf+dynsym	019cc5eca7d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb421170	112	__glim_Normal3iv	dwarf+dynsym	7c2fa8c5af08		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4211e0	2084	__glGenericPickSpanProcs	dwarf+dynsym	9c835c5f6ff0		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb421a10	256	__glGenericPickPointProcs	dwarf+dynsym	6e2038137d9c		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -38615,10 +38615,10 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eb90	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ebb4	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ebe0	120	__glim_Normal3b	dynsym+mdebug	3bc6148597ef		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ec58	104	__glim_Normal3bv	dynsym+mdebug	538a44cf4bd9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ecc0	120	__glim_Normal3s	dynsym+mdebug	a91c53a2a1ff		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ed38	104	__glim_Normal3sv	dynsym+mdebug	4b1d89d5bfec		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eda0	112	__glim_Normal3i	dynsym+mdebug	dac1ba082f8d		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ec58	104	__glim_Normal3bv	dynsym+mdebug	538a44cf4bd9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ecc0	120	__glim_Normal3s	dynsym+mdebug	a91c53a2a1ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ed38	104	__glim_Normal3sv	dynsym+mdebug	4b1d89d5bfec		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eda0	112	__glim_Normal3i	dynsym+mdebug	dac1ba082f8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3ee10	132	__glim_Normal3iv	dynsym+mdebug	9de691f25534		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3eea0	1920	__glGenericPickSpanProcs	dynsym+mdebug	4a9ce0b4c8a3		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3f620	296	__glGenericPickPointProcs	dynsym+mdebug	183da388ccef		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -44465,10 +44465,10 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39900	32	__glim_Normal3d	dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39920	44	__glim_Normal3dv	dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39950	84	__glim_Normal3b	dynsym	0cad523f5ec0		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb399b0	96	__glim_Normal3bv	dynsym	6accd6e1f933		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a10	84	__glim_Normal3s	dynsym	8cebba417cf4		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a70	96	__glim_Normal3sv	dynsym	eac3d22509d5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39ad0	100	__glim_Normal3i	dynsym	8b9c03e7ea05		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb399b0	96	__glim_Normal3bv	dynsym	6accd6e1f933		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a10	84	__glim_Normal3s	dynsym	8cebba417cf4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39a70	96	__glim_Normal3sv	dynsym	eac3d22509d5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39ad0	100	__glim_Normal3i	dynsym	8b9c03e7ea05		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39b40	112	__glim_Normal3iv	dynsym	38720627fe1b		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39bb0	2048	__glGenericPickSpanProcs	dynsym	d675559b51ef		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb3a3b0	248	__glGenericPickPointProcs	dynsym	cc05f008832f		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -50189,10 +50189,10 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40f40	20	__glim_Normal3f	dwarf+dynsym	01328752b2f0		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40f60	32	__glim_Normal3fv	dwarf+dynsym	1d541ec89261		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40f80	84	__glim_Normal3b	dwarf+dynsym	c842ad96cc1b		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40fe0	96	__glim_Normal3bv	dwarf+dynsym	a5943e2dbb29		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe41040	84	__glim_Normal3s	dwarf+dynsym	61cc1a3613a0		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe410a0	96	__glim_Normal3sv	dwarf+dynsym	58752a14e032		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe41100	100	__glim_Normal3i	dwarf+dynsym	019cc5eca7d3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40fe0	96	__glim_Normal3bv	dwarf+dynsym	a5943e2dbb29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe41040	84	__glim_Normal3s	dwarf+dynsym	61cc1a3613a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe410a0	96	__glim_Normal3sv	dwarf+dynsym	58752a14e032		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe41100	100	__glim_Normal3i	dwarf+dynsym	019cc5eca7d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe41170	112	__glim_Normal3iv	dwarf+dynsym	7c2fa8c5af08		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe411e0	2084	__glGenericPickSpanProcs	dwarf+dynsym	9c835c5f6ff0		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe41a10	256	__glGenericPickPointProcs	dwarf+dynsym	6e2038137d9c		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -70327,10 +70327,10 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f300	212	__glNamesDel
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f3e0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f404	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f430	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f4a8	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f510	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f588	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f5f0	112	__glim_Normal3i	dynsym+mdebug	508d93123d0f		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f4a8	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f510	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f588	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f5f0	112	__glim_Normal3i	dynsym+mdebug	508d93123d0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f660	132	__glim_Normal3iv	dynsym+mdebug	7426faf706bd		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f6f0	1920	__glGenericPickSpanProcs	dynsym+mdebug	1921de8fc1d5		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6fe70	296	__glGenericPickPointProcs	dynsym+mdebug	39845f411263		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -75948,7 +75948,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40590	1292	__glim_Ge
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40aa0	188	__glim_GetPolygonStipple	dwarf+dynsym	f522b863ec5e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40b60	452	__glim_GetLightfv	dwarf+dynsym	3452483ed791		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40d30	548	__glim_GetLightiv	dwarf+dynsym	9ff6dda5f64c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41100	912	__glim_GetMaterialiv	dwarf+dynsym	ba06ec1c3d97		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41490	776	__glim_GetMapfv	dwarf+dynsym	0f91e31742bd		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda417a0	888	__glim_GetMapdv	dwarf+dynsym	ac7eb80a024a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -76164,10 +76164,10 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b370	320	__glNamesD
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4b0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4d0	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b680	92	__glim_Normal3i	dwarf+dynsym	7dfa668d4faa		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b680	92	__glim_Normal3i	dwarf+dynsym	7dfa668d4faa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b6e0	104	__glim_Normal3iv	dwarf+dynsym	3f09e979d071		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b750	1948	__glGenericPickSpanProcs	dwarf+dynsym	9fb172724e91		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5bef0	272	__glGenericPickPointProcs	dwarf+dynsym	2ee21465b12d		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -82069,10 +82069,10 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1710	44	__glim_Norm
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1740	20	__glim_Normal3f	dwarf+dynsym	01328752b2f0		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1760	32	__glim_Normal3fv	dwarf+dynsym	91680510a64b		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1780	84	__glim_Normal3b	dwarf+dynsym	4712e7989a33		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f17e0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1840	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f18a0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1900	92	__glim_Normal3i	dwarf+dynsym	ec67b84f2589		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f17e0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1840	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f18a0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1900	92	__glim_Normal3i	dwarf+dynsym	ec67b84f2589		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1960	104	__glim_Normal3iv	dwarf+dynsym	1b6b28f0c2a2		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f19d0	1984	__glGenericPickSpanProcs	dwarf+dynsym	3e82bf3ebe84		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f2190	280	__glGenericPickPointProcs	dwarf+dynsym	2263adead9d6		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -87866,10 +87866,10 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f300	212	__glNamesDel
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f3e0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f404	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f430	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f4a8	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f510	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f588	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f5f0	112	__glim_Normal3i	dynsym+mdebug	508d93123d0f		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f4a8	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f510	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f588	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f5f0	112	__glim_Normal3i	dynsym+mdebug	508d93123d0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f660	132	__glim_Normal3iv	dynsym+mdebug	7426faf706bd		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f6f0	1920	__glGenericPickSpanProcs	dynsym+mdebug	1921de8fc1d5		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6fe70	296	__glGenericPickPointProcs	dynsym+mdebug	39845f411263		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -93487,7 +93487,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40590	1292	__glim_Ge
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40aa0	188	__glim_GetPolygonStipple	dwarf+dynsym	f522b863ec5e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40b60	452	__glim_GetLightfv	dwarf+dynsym	3452483ed791		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40d30	548	__glim_GetLightiv	dwarf+dynsym	9ff6dda5f64c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda41100	912	__glim_GetMaterialiv	dwarf+dynsym	ba06ec1c3d97		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda41490	776	__glim_GetMapfv	dwarf+dynsym	0f91e31742bd		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda417a0	888	__glim_GetMapdv	dwarf+dynsym	ac7eb80a024a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93703,10 +93703,10 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b370	320	__glNamesD
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b4b0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b4d0	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b680	92	__glim_Normal3i	dwarf+dynsym	7dfa668d4faa		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b680	92	__glim_Normal3i	dwarf+dynsym	7dfa668d4faa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b6e0	104	__glim_Normal3iv	dwarf+dynsym	3f09e979d071		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b750	1948	__glGenericPickSpanProcs	dwarf+dynsym	9fb172724e91		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5bef0	272	__glGenericPickPointProcs	dwarf+dynsym	2ee21465b12d		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -99608,10 +99608,10 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1710	44	__glim_Norm
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1740	20	__glim_Normal3f	dwarf+dynsym	01328752b2f0		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1760	32	__glim_Normal3fv	dwarf+dynsym	91680510a64b		in	named-only	docs/libglcore-functions.md#odysseyip30n32_m4o-ip30-n32-objects	`ODYSSEY.IP30.N32_M4.O` (IP30 N32 objects)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1780	84	__glim_Normal3b	dwarf+dynsym	4712e7989a33		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a17e0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1840	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a18a0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1900	92	__glim_Normal3i	dwarf+dynsym	ec67b84f2589		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a17e0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1840	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a18a0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1900	92	__glim_Normal3i	dwarf+dynsym	ec67b84f2589		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1960	104	__glim_Normal3iv	dwarf+dynsym	1b6b28f0c2a2		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a19d0	1984	__glGenericPickSpanProcs	dwarf+dynsym	3e82bf3ebe84		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a2190	280	__glGenericPickPointProcs	dwarf+dynsym	2263adead9d6		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
