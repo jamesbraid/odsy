@@ -499,3 +499,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `Bogus` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974980 | 8 | f211f0c174df | Established |
 | `Bogus` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3208390 | 8 | f211f0c174df | Established |
 | `Bogus` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b8390 | 8 | f211f0c174df | Established |
+| `Bogus` | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0xb345040 | 8 | f211f0c174df | Established |
+| `Bogus` | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0xbd65040 | 8 | f211f0c174df | Established |
+| `Bogus` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x21b8390 | 8 | f211f0c174df | Established |
+| `callSetError` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974c20 | 68 | 7584a8bf0634 | Established |
+| `callSetError` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974c20 | 68 | 7584a8bf0634 | Established |
+| `__glOdyle_Begin` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9748f0 | 68 | 2a5538a4bc62 | Established |
+| `__glOdyle_Begin` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9748f0 | 68 | 2a5538a4bc62 | Established |
+| `__glOdyle_End` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974940 | 64 | 9cd02fb90961 | Established |
+| `__glOdyle_End` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974940 | 64 | 9cd02fb90961 | Established |
+| `__glsplc_AddSentinel` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976070 | 156 | c8a561eaafb6 | Established |
+| `__glsplc_AddSentinel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976070 | 156 | c8a561eaafb6 | Established |
+| `__glOdylc_Error` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
