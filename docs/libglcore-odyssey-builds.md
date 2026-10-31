@@ -511,3 +511,4 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glsplc_AddSentinel` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976070 | 156 | c8a561eaafb6 | Established |
 | `__glsplc_AddSentinel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976070 | 156 | c8a561eaafb6 | Established |
 | `__glOdylc_Error` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
+| `__glOdylc_Error` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
