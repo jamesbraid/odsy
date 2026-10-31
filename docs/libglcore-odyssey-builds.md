@@ -259,3 +259,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_PopAttrib` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95ad10 | 160 | d4fb6248b347 | Established |
 | `__glOdyim_PopAttrib` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95ad10 | 160 | d4fb6248b347 | Established |
 | `__glOdysseyFreeAttributeState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95adb0 | 232 | d3314d395234 | Established |
+| `__glOdysseyFreeAttributeState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95adb0 | 232 | d3314d395234 | Established |
+| `TargetIndexToTargetEnum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd958f10 | 76 | 1f8620dc813b | Established |
+| `TargetIndexToTargetEnum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd958f10 | 76 | 1f8620dc813b | Established |
+| `TargetIndexToTargetEnum` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x31ed090 | 76 | 1f8620dc813b | Established |
+| `TargetIndexToTargetEnum` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x219d090 | 76 | 1f8620dc813b | Established |
+| `TargetIndexToTargetEnum` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x219d090 | 76 | 1f8620dc813b | Established |
+| `__glOdyssey_ResolveContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95ac90 | 128 | b84e76c00abf | Established |
+| `__glOdyssey_ResolveContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95ac90 | 128 | b84e76c00abf | Established |
+| `__glOdyim_EvalCoord1d` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976520 | 56 | 0f1f34e37e92 | Established |
+| `__glOdyim_EvalCoord1d` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976520 | 56 | 0f1f34e37e92 | Established |
+| `__glOdyim_EvalCoord1dv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976560 | 60 | 1356ad9c5b3a | Established |
+| `__glOdyim_EvalCoord1dv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976560 | 60 | 1356ad9c5b3a | Established |
