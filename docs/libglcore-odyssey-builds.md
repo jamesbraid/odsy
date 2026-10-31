@@ -60,3 +60,22 @@ Context offsets are the copy's own. Several builds keep the context record with 
 | `__glOdysseyValidateScissor` | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0xbd5d140 | 268 | same bytes as the vpro-patch-4103 64-bit row | 0461bc691e76 | Established | Same code hash as the vpro-patch-4103 64-bit row above, so the same reading applies. |
 | `__glOdysseyValidateScissor` | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` | none | none | none | none | Not located | No symbol of this name in the .dynsym or .symtab of this build, so the routine is not read here. |
 | `__glOdysseyValidateScissor` | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so` | none | none | none | none | Not located | No symbol of this name in this build, as for vpro-patch-4103. |
+
+## Copies with the same code hash
+
+Each row is one routine in one build whose function-table code hash equals the hash of the N32 routine named in the reads chapter ([libglcore-odyssey-reads.md](libglcore-odyssey-reads.md)). The hash is the first 12 hex digits of the hash of the function's bytes, taken over the table size, and every row here has the same table size as its N32 routine. The inventory computed each hash over that build's own bytes, so an equal hash means equal bytes and the copy carries the N32 reading. The label is **Established** on the same terms as the first table. The matching was done by the inventory script; the copy was not disassembled row by row. One spot check was made by hand: `CheckMMXfrArgs`, 128 bytes at 0xd9c6ca0 in the N32 build and at 0x325b220 in the `usr/gfx/arch/IP30ODSY64` build, 32 words, equal in objdump. Copies whose hash differs from the N32 routine are not listed here.
+
+| Routine | Binary | Address | Size | Function-table hash | Label |
+|---|---|---|---|---|---|
+| `__glOdysseyValidateMatrixNorm` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9e3780 | 660 | 59cb431d48d5 | Established |
+| `__glOdysseyValidateMatrixNorm` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9e3780 | 660 | 59cb431d48d5 | Established |
+| `__glOdysseyValidateFog` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd980cd0 | 1800 | c4e480869ca7 | Established |
+| `__glOdysseyValidateFog` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd980cd0 | 1800 | c4e480869ca7 | Established |
+| `__glOdysseyVertexWARClip` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9ef330 | 4452 | e1d6c1a3b302 | Established |
+| `__glOdysseyVertexWARClip` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9ef330 | 4452 | e1d6c1a3b302 | Established |
+| `__glOdysseySendShadowAttributes` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9eea40 | 1904 | 0324de302eed | Established |
+| `__glOdysseySendShadowAttributes` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9eea40 | 1904 | 0324de302eed | Established |
+| `__glOdysseySendShadowVertex` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9ef1b0 | 380 | a9db840c08c6 | Established |
+| `__glOdysseySendShadowVertex` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9ef1b0 | 380 | a9db840c08c6 | Established |
+| `__glOdysseySetProgram` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c9ee0 | 1220 | 29f0eda04415 | Established |
+| `__glOdysseySetProgram` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c9ee0 | 1220 | 29f0eda04415 | Established |
