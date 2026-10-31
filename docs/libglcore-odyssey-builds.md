@@ -670,6 +670,25 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Inferred |
 | `__glOdysseyValidateLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Inferred |
 
+## Copies identical to a read copy
+
+Each row is one routine in one build whose function-table code hash and size equal those of another copy of the same name that is already in this document, at its own address. The inventory computes each hash over that build's own bytes, so an equal hash and size mean equal bytes. The copy carries the reading of the copy it matches: the "Same bytes as" column names that copy's build and address, and the label is that copy's label. The rows were produced by a script that compared the function-table hashes, not by disassembling each copy in full. Two of them were checked by hand: `TargetIndexToTargetEnum` in `usr/gfx/arch/IP35ODSY/libGLcore.so` at 0xd95ac3c (80 bytes) and `__glOdyim_EvalCoord1dv` in `usr/gfx/arch/IP35ODSY64/libGLcore.so` at 0x21b9f60 (60 bytes) each have the same 32-bit instruction words, in objdump, as the matched copy. Routines whose copy differs from every read copy are not listed here.
+
+| Routine | Binary | Address | Size | Function-table hash | Same bytes as | Label |
+|---|---|---|---|---|---|---|
+| `TargetIndexToTargetEnum` | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` | 0xda37f5c | 80 | b9e04ddffbd5 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd95ac3c | Established |
+| `TargetIndexToTargetEnum` | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so` | 0xda37f5c | 80 | b9e04ddffbd5 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd95ac3c | Established |
+| `__glOdyim_ListParameterfSGIX` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3206f50 | 56 | 911d3ade1f5d | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b6f50 | Established |
+| `__glOdyim_ListParameterivSGIX` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3206f90 | 68 | f88598d8e5ae | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b6f90 | Established |
+| `__glOdyim_ListParameteriSGIX` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3206fe0 | 64 | 2eb323788daf | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b6fe0 | Established |
+| `__glOdyle_Begin` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3208300 | 68 | 791e6d9867c8 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b8300 | Established |
+| `__glOdyle_End` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3208350 | 64 | 6dae90437193 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b8350 | Established |
+| `__glOdyim_EvalCoord1dv` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3209f60 | 60 | 4349dd1e59c2 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b9f60 | Established |
+| `__glOdyim_EvalCoord1fv` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3209fe0 | 60 | dc1b6dc8a3a7 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b9fe0 | Established |
+| `__glOdyim_EvalCoord2d` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320a020 | 64 | 23e4560a6156 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba020 | Established |
+| `__glOdyim_EvalCoord2f` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320a0b0 | 60 | 695650bd234d | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba0b0 | Established |
+| `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320a0f0 | 64 | 5cff720d647a | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba0f0 | Established |
+
 ## Copies read in full
 
 Each entry is one routine in the o32 IP30 build (`usr/gfx/arch/IP30ODSY/libGLcore.so`, from `builds/6.5.30-media`), at that build's own address and size. The body was read in full, instruction by instruction, against the N32 routine named in [libglcore-odyssey-reads.md](libglcore-odyssey-reads.md), and each entry states how the two bodies differ. Offsets are the copy's own. **Established** means every difference the body has is stated; **Inferred** means part of the body was not compared.
