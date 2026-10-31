@@ -3013,9 +3013,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda51
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52434	328	__glDoEvalCoord2	dynsym+mdebug	96463d458d2f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5257c	520	__glEvalMesh1Line	dynsym+mdebug	24f09f6c3805		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52784	520	__glEvalMesh1Point	dynsym+mdebug	05845a316f59		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52b90	1052	__glEvalMesh2Fill	dynsym+mdebug	31e9c1d79bbe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52b90	1052	__glEvalMesh2Fill	dynsym+mdebug	31e9c1d79bbe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52fac	688	__glEvalMesh2Point	dynsym+mdebug	c8cc6adbc428		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5325c	1612	__glEvalMesh2Line	dynsym+mdebug	16c9ad957a11		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5325c	1612	__glEvalMesh2Line	dynsym+mdebug	16c9ad957a11		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda538a8	320	NurbsKnots1Common	mdebug	bae83f5f7d2a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda539e8	3316	NurbsKnots2Common	mdebug	1655e5e07c5d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53b4c	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	796b6951e728		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8850,9 +8850,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3bdc0	260	__glDoEvalCoord2	dwarf+dynsym	c5cc96cb1184		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3bed0	456	__glEvalMesh1Line	dwarf+dynsym	6ce076f1f094		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c0a0	456	__glEvalMesh1Point	dwarf+dynsym	c5893c1e5516		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c410	896	__glEvalMesh2Fill	dwarf+dynsym	74561a2f3689		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c410	896	__glEvalMesh2Fill	dwarf+dynsym	74561a2f3689		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c790	632	__glEvalMesh2Point	dwarf+dynsym	7c3f76a1f73a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ca10	1464	__glEvalMesh2Line	dwarf+dynsym	90228ddaa69f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ca10	1464	__glEvalMesh2Line	dwarf+dynsym	90228ddaa69f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda3cfd0	228	NurbsKnots1Common	dwarf+funcnames	3bbd6639285c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda3d0c0	264	NurbsKnots2Common	dwarf+funcnames	7e30419be971		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d1d0	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	259303c2908a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14744,9 +14744,9 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2281160	260	__glDoEvalCoord2	dwarf+dynsym	ad2c4f84cb8a		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2281270	456	__glEvalMesh1Line	dwarf+dynsym	539c02eb64a7		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2281440	456	__glEvalMesh1Point	dwarf+dynsym	cf5a042f7aea		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22817b0	896	__glEvalMesh2Fill	dwarf+dynsym	376d707031af		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22817b0	896	__glEvalMesh2Fill	dwarf+dynsym	376d707031af		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2281b30	632	__glEvalMesh2Point	dwarf+dynsym	2429d9f1b8f9		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2281db0	1464	__glEvalMesh2Line	dwarf+dynsym	c75bacc0a1b5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2281db0	1464	__glEvalMesh2Line	dwarf+dynsym	c75bacc0a1b5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2282370	232	NurbsKnots1Common	dwarf	9d84b91c86e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2282460	284	NurbsKnots2Common	dwarf	601a442edae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282580	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	e0bbdfdf4343		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20777,9 +20777,9 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb21c94	328	__glDoEvalCoord2	dynsym+mdebug	536d29f81815		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb21ddc	520	__glEvalMesh1Line	dynsym+mdebug	2c5902edb01d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb21fe4	520	__glEvalMesh1Point	dynsym+mdebug	8346d18ca5fb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb223f0	1052	__glEvalMesh2Fill	dynsym+mdebug	936e6253cbd5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb223f0	1052	__glEvalMesh2Fill	dynsym+mdebug	936e6253cbd5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb2280c	688	__glEvalMesh2Point	dynsym+mdebug	720befc349ef		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb22abc	1612	__glEvalMesh2Line	dynsym+mdebug	4bf1c4987d45		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb22abc	1612	__glEvalMesh2Line	dynsym+mdebug	4bf1c4987d45		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb23108	320	NurbsKnots1Common	mdebug	9f4e55c417e7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb23248	3316	NurbsKnots2Common	mdebug	f131f2af9d5d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb233ac	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	e5071bf5f278		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26666,9 +26666,9 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19180	236	__glDoEvalCoord2	dynsym	08e660491510		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19270	452	__glEvalMesh1Line	dynsym	59631f1790ff		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19440	452	__glEvalMesh1Point	dynsym	b340669b5903		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb197c0	884	__glEvalMesh2Fill	dynsym	3d0611b9c3b8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb197c0	884	__glEvalMesh2Fill	dynsym	3d0611b9c3b8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19b40	624	__glEvalMesh2Point	dynsym	37d5ff4b9316		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19db0	1476	__glEvalMesh2Line	dynsym	34417dee00bf		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19db0	1476	__glEvalMesh2Line	dynsym	34417dee00bf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1a5c0	260	__glim_NurbsKnots1dSGIX	dynsym	849097612888		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1a6d0	292	__glim_NurbsKnots1fSGIX	dynsym	64d971159dbe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1a800	308	__glim_NurbsKnots1iSGIX	dynsym	36f94cac2f8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32340,9 +32340,9 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3ff940	260	__glDoEvalCoord2	dwarf+dynsym	13d85bbedac1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3ffa50	464	__glEvalMesh1Line	dwarf+dynsym	46ad781ff426		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3ffc20	464	__glEvalMesh1Point	dwarf+dynsym	8656c484e0d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fffb0	912	__glEvalMesh2Fill	dwarf+dynsym	382342ce2ba4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fffb0	912	__glEvalMesh2Fill	dwarf+dynsym	382342ce2ba4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb400340	652	__glEvalMesh2Point	dwarf+dynsym	4eb76aa85fc9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4005d0	1504	__glEvalMesh2Line	dwarf+dynsym	9a23f6d566cd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4005d0	1504	__glEvalMesh2Line	dwarf+dynsym	9a23f6d566cd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb400bb0	256	NurbsKnots1Common	dwarf	9b936a2f6481		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb400cb0	308	NurbsKnots2Common	dwarf	22f54518ec0c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb400df0	260	__glim_NurbsKnots1dSGIX	dwarf+dynsym	aa78a04669fe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38353,9 +38353,9 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb21c94	328	__glDoEvalCoord2	dynsym+mdebug	536d29f81815		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb21ddc	520	__glEvalMesh1Line	dynsym+mdebug	2c5902edb01d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb21fe4	520	__glEvalMesh1Point	dynsym+mdebug	8346d18ca5fb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb223f0	1052	__glEvalMesh2Fill	dynsym+mdebug	936e6253cbd5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb223f0	1052	__glEvalMesh2Fill	dynsym+mdebug	936e6253cbd5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb2280c	688	__glEvalMesh2Point	dynsym+mdebug	720befc349ef		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb22abc	1612	__glEvalMesh2Line	dynsym+mdebug	4bf1c4987d45		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb22abc	1612	__glEvalMesh2Line	dynsym+mdebug	4bf1c4987d45		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb23108	320	NurbsKnots1Common	mdebug	9f4e55c417e7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb23248	3316	NurbsKnots2Common	mdebug	f131f2af9d5d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb233ac	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	e5071bf5f278		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -44242,9 +44242,9 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19180	236	__glDoEvalCoord2	dynsym	08e660491510		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19270	452	__glEvalMesh1Line	dynsym	59631f1790ff		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19440	452	__glEvalMesh1Point	dynsym	b340669b5903		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb197c0	884	__glEvalMesh2Fill	dynsym	3d0611b9c3b8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb197c0	884	__glEvalMesh2Fill	dynsym	3d0611b9c3b8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19b40	624	__glEvalMesh2Point	dynsym	37d5ff4b9316		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19db0	1476	__glEvalMesh2Line	dynsym	34417dee00bf		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb19db0	1476	__glEvalMesh2Line	dynsym	34417dee00bf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1a5c0	260	__glim_NurbsKnots1dSGIX	dynsym	849097612888		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1a6d0	292	__glim_NurbsKnots1fSGIX	dynsym	64d971159dbe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1a800	308	__glim_NurbsKnots1iSGIX	dynsym	36f94cac2f8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49916,9 +49916,9 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1f940	260	__glDoEvalCoord2	dwarf+dynsym	13d85bbedac1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1fa50	464	__glEvalMesh1Line	dwarf+dynsym	46ad781ff426		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1fc20	464	__glEvalMesh1Point	dwarf+dynsym	8656c484e0d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1ffb0	912	__glEvalMesh2Fill	dwarf+dynsym	382342ce2ba4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1ffb0	912	__glEvalMesh2Fill	dwarf+dynsym	382342ce2ba4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe20340	652	__glEvalMesh2Point	dwarf+dynsym	4eb76aa85fc9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe205d0	1504	__glEvalMesh2Line	dwarf+dynsym	9a23f6d566cd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe205d0	1504	__glEvalMesh2Line	dwarf+dynsym	9a23f6d566cd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe20bb0	256	NurbsKnots1Common	dwarf	9b936a2f6481		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe20cb0	308	NurbsKnots2Common	dwarf	22f54518ec0c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe20df0	260	__glim_NurbsKnots1dSGIX	dwarf+dynsym	aa78a04669fe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -70064,9 +70064,9 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5148c	316	__glDoEvalCo
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52434	328	__glDoEvalCoord2	dynsym+mdebug	96463d458d2f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5257c	520	__glEvalMesh1Line	dynsym+mdebug	24f09f6c3805		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52784	520	__glEvalMesh1Point	dynsym+mdebug	05845a316f59		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52b90	1052	__glEvalMesh2Fill	dynsym+mdebug	31e9c1d79bbe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52b90	1052	__glEvalMesh2Fill	dynsym+mdebug	31e9c1d79bbe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda52fac	688	__glEvalMesh2Point	dynsym+mdebug	c8cc6adbc428		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5325c	1612	__glEvalMesh2Line	dynsym+mdebug	16c9ad957a11		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5325c	1612	__glEvalMesh2Line	dynsym+mdebug	16c9ad957a11		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda538a8	320	NurbsKnots1Common	mdebug	bae83f5f7d2a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda539e8	3316	NurbsKnots2Common	mdebug	1655e5e07c5d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53b4c	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	796b6951e728		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75901,9 +75901,9 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ae60	256	__glDoEval
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3bdc0	260	__glDoEvalCoord2	dwarf+dynsym	c5cc96cb1184		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3bed0	456	__glEvalMesh1Line	dwarf+dynsym	6ce076f1f094		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c0a0	456	__glEvalMesh1Point	dwarf+dynsym	c5893c1e5516		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c410	896	__glEvalMesh2Fill	dwarf+dynsym	74561a2f3689		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c410	896	__glEvalMesh2Fill	dwarf+dynsym	74561a2f3689		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3c790	632	__glEvalMesh2Point	dwarf+dynsym	7c3f76a1f73a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ca10	1464	__glEvalMesh2Line	dwarf+dynsym	90228ddaa69f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3ca10	1464	__glEvalMesh2Line	dwarf+dynsym	90228ddaa69f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda3cfd0	228	NurbsKnots1Common	dwarf+funcnames	3bbd6639285c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda3d0c0	264	NurbsKnots2Common	dwarf+funcnames	7e30419be971		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d1d0	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	259303c2908a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81795,9 +81795,9 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d0200	256	__glDoEval
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d1160	260	__glDoEvalCoord2	dwarf+dynsym	ad2c4f84cb8a		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d1270	456	__glEvalMesh1Line	dwarf+dynsym	539c02eb64a7		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d1440	456	__glEvalMesh1Point	dwarf+dynsym	cf5a042f7aea		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d17b0	896	__glEvalMesh2Fill	dwarf+dynsym	376d707031af		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d17b0	896	__glEvalMesh2Fill	dwarf+dynsym	376d707031af		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d1b30	632	__glEvalMesh2Point	dwarf+dynsym	2429d9f1b8f9		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d1db0	1464	__glEvalMesh2Line	dwarf+dynsym	c75bacc0a1b5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d1db0	1464	__glEvalMesh2Line	dwarf+dynsym	c75bacc0a1b5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32d2370	232	NurbsKnots1Common	dwarf	9d84b91c86e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32d2460	284	NurbsKnots2Common	dwarf	601a442edae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2580	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	e0bbdfdf4343		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87603,9 +87603,9 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5148c	316	__glDoEvalCo
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda52434	328	__glDoEvalCoord2	dynsym+mdebug	96463d458d2f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5257c	520	__glEvalMesh1Line	dynsym+mdebug	24f09f6c3805		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda52784	520	__glEvalMesh1Point	dynsym+mdebug	05845a316f59		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda52b90	1052	__glEvalMesh2Fill	dynsym+mdebug	31e9c1d79bbe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda52b90	1052	__glEvalMesh2Fill	dynsym+mdebug	31e9c1d79bbe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda52fac	688	__glEvalMesh2Point	dynsym+mdebug	c8cc6adbc428		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5325c	1612	__glEvalMesh2Line	dynsym+mdebug	16c9ad957a11		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5325c	1612	__glEvalMesh2Line	dynsym+mdebug	16c9ad957a11		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda538a8	320	NurbsKnots1Common	mdebug	bae83f5f7d2a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda539e8	3316	NurbsKnots2Common	mdebug	1655e5e07c5d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda53b4c	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	796b6951e728		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93440,9 +93440,9 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3ae60	256	__glDoEval
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3bdc0	260	__glDoEvalCoord2	dwarf+dynsym	c5cc96cb1184		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3bed0	456	__glEvalMesh1Line	dwarf+dynsym	6ce076f1f094		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3c0a0	456	__glEvalMesh1Point	dwarf+dynsym	c5893c1e5516		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3c410	896	__glEvalMesh2Fill	dwarf+dynsym	74561a2f3689		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3c410	896	__glEvalMesh2Fill	dwarf+dynsym	74561a2f3689		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3c790	632	__glEvalMesh2Point	dwarf+dynsym	7c3f76a1f73a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3ca10	1464	__glEvalMesh2Line	dwarf+dynsym	90228ddaa69f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3ca10	1464	__glEvalMesh2Line	dwarf+dynsym	90228ddaa69f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda3cfd0	228	NurbsKnots1Common	dwarf+funcnames	3bbd6639285c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda3d0c0	264	NurbsKnots2Common	dwarf+funcnames	7e30419be971		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d1d0	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	259303c2908a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99334,9 +99334,9 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2280200	256	__glDoEval
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2281160	260	__glDoEvalCoord2	dwarf+dynsym	ad2c4f84cb8a		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2281270	456	__glEvalMesh1Line	dwarf+dynsym	539c02eb64a7		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2281440	456	__glEvalMesh1Point	dwarf+dynsym	cf5a042f7aea		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22817b0	896	__glEvalMesh2Fill	dwarf+dynsym	376d707031af		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22817b0	896	__glEvalMesh2Fill	dwarf+dynsym	376d707031af		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2281b30	632	__glEvalMesh2Point	dwarf+dynsym	2429d9f1b8f9		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2281db0	1464	__glEvalMesh2Line	dwarf+dynsym	c75bacc0a1b5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2281db0	1464	__glEvalMesh2Line	dwarf+dynsym	c75bacc0a1b5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2282370	232	NurbsKnots1Common	dwarf	9d84b91c86e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2282460	284	NurbsKnots2Common	dwarf	601a442edae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282580	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	e0bbdfdf4343		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
