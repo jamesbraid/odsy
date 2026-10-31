@@ -3050,7 +3050,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56ae0	744	__glim_GetTexLevelParameterfv	dynsym+mdebug	b6c65107f5be		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56dc8	588	__glim_GetTexLevelParameteriv	dynsym+mdebug	af9955edc717		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda57014	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	781681054099		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8886,10 +8886,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f320	332	__glim_GetTexGenfv	dwarf+dynsym	fe4d7fd87161		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f470	364	__glim_GetTexGendv	dwarf+dynsym	c02e576a6752		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f5e0	304	__glim_GetTexGeniv	dwarf+dynsym	bb539398970c		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f710	784	__glim_GetTexParameterfv	dwarf+dynsym	3f0fce9512e3		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fa20	732	__glim_GetTexParameteriv	dwarf+dynsym	7e569724f216		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fd00	820	__glim_GetTexLevelParameterfv	dwarf+dynsym	49ef9656bd8f		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40040	716	__glim_GetTexLevelParameteriv	dwarf+dynsym	24515e8675bf		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f710	784	__glim_GetTexParameterfv	dwarf+dynsym	3f0fce9512e3		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fa20	732	__glim_GetTexParameteriv	dwarf+dynsym	7e569724f216		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fd00	820	__glim_GetTexLevelParameterfv	dwarf+dynsym	49ef9656bd8f		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40040	716	__glim_GetTexLevelParameteriv	dwarf+dynsym	24515e8675bf		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40310	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	0f8ab309a0fd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40400	236	__glim_GetClipPlane	dwarf+dynsym	9e4be3fb1485		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda404f0	148	__glInitImagePack	dwarf+dynsym	c1c0fdf04cb7		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -14781,7 +14781,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22848c0	364	__glim_GetTexGendv	dwarf+dynsym	803b2fdf83d7		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2284a30	304	__glim_GetTexGeniv	dwarf+dynsym	10dbd0d390f4		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2284b60	780	__glim_GetTexParameterfv	dwarf+dynsym	7d7586e32cf3		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2284e70	728	__glim_GetTexParameteriv	dwarf+dynsym	d5d7e3330c54		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2284e70	728	__glim_GetTexParameteriv	dwarf+dynsym	d5d7e3330c54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2285150	812	__glim_GetTexLevelParameterfv	dwarf+dynsym	ad4367a80704		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2285480	708	__glim_GetTexLevelParameteriv	dwarf+dynsym	377d2aec8f72		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2285750	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	bf177d4de8f6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20814,7 +20814,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb25a70	392	__glim_GetTexGendv	dynsym+mdebug	962ae874215b		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb25bf8	364	__glim_GetTexGeniv	dynsym+mdebug	6a94b782cd3e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb25d64	788	__glim_GetTexParameterfv	dynsym+mdebug	5da5f0167268		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26078	712	__glim_GetTexParameteriv	dynsym+mdebug	6a8e83971603		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26078	712	__glim_GetTexParameteriv	dynsym+mdebug	6a8e83971603		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26340	744	__glim_GetTexLevelParameterfv	dynsym+mdebug	aed0788d430e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26628	588	__glim_GetTexLevelParameteriv	dynsym+mdebug	4528a6c61465		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26874	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	4e2d0b4182c4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26700,7 +26700,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1cb20	360	__glim_GetTexGendv	dynsym	20d06532fbd1		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1cc90	328	__glim_GetTexGeniv	dynsym	1f49b7f05c45		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1cde0	820	__glim_GetTexParameterfv	dynsym	779710881cad		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d120	784	__glim_GetTexParameteriv	dynsym	8a6c0806522e		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d120	784	__glim_GetTexParameteriv	dynsym	8a6c0806522e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d430	876	__glim_GetTexLevelParameterfv	dynsym	3e75574892f4		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d7a0	748	__glim_GetTexLevelParameteriv	dynsym	02a63635f157		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1da90	288	__glim_GetTexFilterFuncSGIS	dynsym	231ab8de7754		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32377,7 +32377,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4033f0	360	__glim_GetTexGendv	dwarf+dynsym	74dd66a64ed0		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb403560	328	__glim_GetTexGeniv	dwarf+dynsym	50335431a45e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4036b0	820	__glim_GetTexParameterfv	dwarf+dynsym	4e5d028ecbb2		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4039f0	784	__glim_GetTexParameteriv	dwarf+dynsym	72bd829d8a89		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4039f0	784	__glim_GetTexParameteriv	dwarf+dynsym	72bd829d8a89		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb403d00	864	__glim_GetTexLevelParameterfv	dwarf+dynsym	d0a399096821		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb404060	736	__glim_GetTexLevelParameteriv	dwarf+dynsym	bae87ac0c4c9		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb404340	288	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	d7e0ab1a6cb0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38390,7 +38390,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb25a70	392	__glim_GetTexGendv	dynsym+mdebug	962ae874215b		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb25bf8	364	__glim_GetTexGeniv	dynsym+mdebug	6a94b782cd3e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb25d64	788	__glim_GetTexParameterfv	dynsym+mdebug	5da5f0167268		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26078	712	__glim_GetTexParameteriv	dynsym+mdebug	6a8e83971603		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26078	712	__glim_GetTexParameteriv	dynsym+mdebug	6a8e83971603		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26340	744	__glim_GetTexLevelParameterfv	dynsym+mdebug	aed0788d430e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26628	588	__glim_GetTexLevelParameteriv	dynsym+mdebug	4528a6c61465		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb26874	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	4e2d0b4182c4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -44276,7 +44276,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1cb20	360	__glim_GetTexGendv	dynsym	20d06532fbd1		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1cc90	328	__glim_GetTexGeniv	dynsym	1f49b7f05c45		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1cde0	820	__glim_GetTexParameterfv	dynsym	779710881cad		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d120	784	__glim_GetTexParameteriv	dynsym	8a6c0806522e		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d120	784	__glim_GetTexParameteriv	dynsym	8a6c0806522e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d430	876	__glim_GetTexLevelParameterfv	dynsym	3e75574892f4		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1d7a0	748	__glim_GetTexLevelParameteriv	dynsym	02a63635f157		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb1da90	288	__glim_GetTexFilterFuncSGIS	dynsym	231ab8de7754		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49953,7 +49953,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe233f0	360	__glim_GetTexGendv	dwarf+dynsym	74dd66a64ed0		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe23560	328	__glim_GetTexGeniv	dwarf+dynsym	50335431a45e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe236b0	820	__glim_GetTexParameterfv	dwarf+dynsym	4e5d028ecbb2		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe239f0	784	__glim_GetTexParameteriv	dwarf+dynsym	72bd829d8a89		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe239f0	784	__glim_GetTexParameteriv	dwarf+dynsym	72bd829d8a89		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe23d00	864	__glim_GetTexLevelParameterfv	dwarf+dynsym	d0a399096821		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe24060	736	__glim_GetTexLevelParameteriv	dwarf+dynsym	bae87ac0c4c9		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe24340	288	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	d7e0ab1a6cb0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -70101,7 +70101,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTe
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56ae0	744	__glim_GetTexLevelParameterfv	dynsym+mdebug	b6c65107f5be		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56dc8	588	__glim_GetTexLevelParameteriv	dynsym+mdebug	af9955edc717		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda57014	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	781681054099		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75937,10 +75937,10 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f250	200	__glim_Get
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f320	332	__glim_GetTexGenfv	dwarf+dynsym	fe4d7fd87161		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f470	364	__glim_GetTexGendv	dwarf+dynsym	c02e576a6752		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f5e0	304	__glim_GetTexGeniv	dwarf+dynsym	bb539398970c		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f710	784	__glim_GetTexParameterfv	dwarf+dynsym	3f0fce9512e3		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fa20	732	__glim_GetTexParameteriv	dwarf+dynsym	7e569724f216		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fd00	820	__glim_GetTexLevelParameterfv	dwarf+dynsym	49ef9656bd8f		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40040	716	__glim_GetTexLevelParameteriv	dwarf+dynsym	24515e8675bf		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3f710	784	__glim_GetTexParameterfv	dwarf+dynsym	3f0fce9512e3		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fa20	732	__glim_GetTexParameteriv	dwarf+dynsym	7e569724f216		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3fd00	820	__glim_GetTexLevelParameterfv	dwarf+dynsym	49ef9656bd8f		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40040	716	__glim_GetTexLevelParameteriv	dwarf+dynsym	24515e8675bf		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40310	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	0f8ab309a0fd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40400	236	__glim_GetClipPlane	dwarf+dynsym	9e4be3fb1485		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda404f0	148	__glInitImagePack	dwarf+dynsym	c1c0fdf04cb7		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -81832,7 +81832,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4770	332	__glim_Get
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d48c0	364	__glim_GetTexGendv	dwarf+dynsym	803b2fdf83d7		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4a30	304	__glim_GetTexGeniv	dwarf+dynsym	10dbd0d390f4		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4b60	780	__glim_GetTexParameterfv	dwarf+dynsym	7d7586e32cf3		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4e70	728	__glim_GetTexParameteriv	dwarf+dynsym	d5d7e3330c54		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d4e70	728	__glim_GetTexParameteriv	dwarf+dynsym	d5d7e3330c54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d5150	812	__glim_GetTexLevelParameterfv	dwarf+dynsym	ad4367a80704		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d5480	708	__glim_GetTexLevelParameteriv	dwarf+dynsym	377d2aec8f72		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d5750	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	bf177d4de8f6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87640,7 +87640,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTe
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56ae0	744	__glim_GetTexLevelParameterfv	dynsym+mdebug	b6c65107f5be		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56dc8	588	__glim_GetTexLevelParameteriv	dynsym+mdebug	af9955edc717		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda57014	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	781681054099		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93476,10 +93476,10 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f250	200	__glim_Get
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f320	332	__glim_GetTexGenfv	dwarf+dynsym	fe4d7fd87161		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f470	364	__glim_GetTexGendv	dwarf+dynsym	c02e576a6752		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f5e0	304	__glim_GetTexGeniv	dwarf+dynsym	bb539398970c		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f710	784	__glim_GetTexParameterfv	dwarf+dynsym	3f0fce9512e3		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3fa20	732	__glim_GetTexParameteriv	dwarf+dynsym	7e569724f216		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3fd00	820	__glim_GetTexLevelParameterfv	dwarf+dynsym	49ef9656bd8f		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40040	716	__glim_GetTexLevelParameteriv	dwarf+dynsym	24515e8675bf		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3f710	784	__glim_GetTexParameterfv	dwarf+dynsym	3f0fce9512e3		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3fa20	732	__glim_GetTexParameteriv	dwarf+dynsym	7e569724f216		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3fd00	820	__glim_GetTexLevelParameterfv	dwarf+dynsym	49ef9656bd8f		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40040	716	__glim_GetTexLevelParameteriv	dwarf+dynsym	24515e8675bf		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40310	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	0f8ab309a0fd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40400	236	__glim_GetClipPlane	dwarf+dynsym	9e4be3fb1485		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda404f0	148	__glInitImagePack	dwarf+dynsym	c1c0fdf04cb7		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -99371,7 +99371,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284770	332	__glim_Get
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22848c0	364	__glim_GetTexGendv	dwarf+dynsym	803b2fdf83d7		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284a30	304	__glim_GetTexGeniv	dwarf+dynsym	10dbd0d390f4		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284b60	780	__glim_GetTexParameterfv	dwarf+dynsym	7d7586e32cf3		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284e70	728	__glim_GetTexParameteriv	dwarf+dynsym	d5d7e3330c54		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2284e70	728	__glim_GetTexParameteriv	dwarf+dynsym	d5d7e3330c54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2285150	812	__glim_GetTexLevelParameterfv	dwarf+dynsym	ad4367a80704		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2285480	708	__glim_GetTexLevelParameteriv	dwarf+dynsym	377d2aec8f72		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2285750	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	bf177d4de8f6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
