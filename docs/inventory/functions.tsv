@@ -3024,7 +3024,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53e8c	416	__glim_NurbsKnots2dSGIX	dynsym+mdebug	6259d7eebc85		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5402c	456	__glim_NurbsKnots2fSGIX	dynsym+mdebug	541396471970		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda541f4	792	__glim_NurbsKnots2iSGIX	dynsym+mdebug	5f9c796cd590		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54510	224	__glim_FeedbackBuffer	dynsym+mdebug	6051e08254eb		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54510	224	__glim_FeedbackBuffer	dynsym+mdebug	6051e08254eb		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda545f0	156	__glim_PassThrough	dynsym+mdebug	3126cc20c8d7		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5468c	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda546dc	48732	feedback	mdebug	2b6a04d4603f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8861,7 +8861,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d4a0	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	23fe10cc0ce2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d610	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	6594400f6659		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d7f0	508	__glim_NurbsKnots2iSGIX	dwarf+dynsym	7b1d688a98a6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d9f0	208	__glim_FeedbackBuffer	dwarf+dynsym	a659342f4cc0		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d9f0	208	__glim_FeedbackBuffer	dwarf+dynsym	a659342f4cc0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3dac0	144	__glim_PassThrough	dwarf+dynsym	1a0a051ef985		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3db50	80	__glFeedbackTag	dwarf+dynsym	9aaec617e214		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda3dba0	856	feedback	dwarf+funcnames	f8a6a4ecd122		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14755,7 +14755,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282850	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	e9b67d66a9d4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22829c0	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	a58baf229110		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282ba0	524	__glim_NurbsKnots2iSGIX	dwarf+dynsym	e2a0ce9c2a9a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282db0	208	__glim_FeedbackBuffer	dwarf+dynsym	245a591fcc48		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282db0	208	__glim_FeedbackBuffer	dwarf+dynsym	245a591fcc48		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282e80	144	__glim_PassThrough	dwarf+dynsym	d4411f21b987		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2282f10	80	__glFeedbackTag	dwarf+dynsym	2be3e301378d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2282f60	904	feedback	dwarf	db08bb5d2539		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -70075,7 +70075,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53d00	396	__glim_Nurbs
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53e8c	416	__glim_NurbsKnots2dSGIX	dynsym+mdebug	6259d7eebc85		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5402c	456	__glim_NurbsKnots2fSGIX	dynsym+mdebug	541396471970		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda541f4	792	__glim_NurbsKnots2iSGIX	dynsym+mdebug	5f9c796cd590		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54510	224	__glim_FeedbackBuffer	dynsym+mdebug	6051e08254eb		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54510	224	__glim_FeedbackBuffer	dynsym+mdebug	6051e08254eb		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda545f0	156	__glim_PassThrough	dynsym+mdebug	3126cc20c8d7		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5468c	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda546dc	48732	feedback	mdebug	2b6a04d4603f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75912,7 +75912,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d390	268	__glim_Nur
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d4a0	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	23fe10cc0ce2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d610	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	6594400f6659		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d7f0	508	__glim_NurbsKnots2iSGIX	dwarf+dynsym	7b1d688a98a6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d9f0	208	__glim_FeedbackBuffer	dwarf+dynsym	a659342f4cc0		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3d9f0	208	__glim_FeedbackBuffer	dwarf+dynsym	a659342f4cc0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3dac0	144	__glim_PassThrough	dwarf+dynsym	1a0a051ef985		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda3db50	80	__glFeedbackTag	dwarf+dynsym	9aaec617e214		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda3dba0	856	feedback	dwarf+funcnames	f8a6a4ecd122		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81806,7 +81806,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2740	268	__glim_Nur
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2850	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	e9b67d66a9d4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d29c0	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	a58baf229110		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2ba0	524	__glim_NurbsKnots2iSGIX	dwarf+dynsym	e2a0ce9c2a9a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2db0	208	__glim_FeedbackBuffer	dwarf+dynsym	245a591fcc48		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2db0	208	__glim_FeedbackBuffer	dwarf+dynsym	245a591fcc48		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2e80	144	__glim_PassThrough	dwarf+dynsym	d4411f21b987		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32d2f10	80	__glFeedbackTag	dwarf+dynsym	2be3e301378d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32d2f60	904	feedback	dwarf	db08bb5d2539		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87614,7 +87614,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda53d00	396	__glim_Nurbs
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda53e8c	416	__glim_NurbsKnots2dSGIX	dynsym+mdebug	6259d7eebc85		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5402c	456	__glim_NurbsKnots2fSGIX	dynsym+mdebug	541396471970		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda541f4	792	__glim_NurbsKnots2iSGIX	dynsym+mdebug	5f9c796cd590		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda54510	224	__glim_FeedbackBuffer	dynsym+mdebug	6051e08254eb		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda54510	224	__glim_FeedbackBuffer	dynsym+mdebug	6051e08254eb		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda545f0	156	__glim_PassThrough	dynsym+mdebug	3126cc20c8d7		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda5468c	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda546dc	48732	feedback	mdebug	2b6a04d4603f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93451,7 +93451,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d390	268	__glim_Nur
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d4a0	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	23fe10cc0ce2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d610	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	6594400f6659		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d7f0	508	__glim_NurbsKnots2iSGIX	dwarf+dynsym	7b1d688a98a6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d9f0	208	__glim_FeedbackBuffer	dwarf+dynsym	a659342f4cc0		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3d9f0	208	__glim_FeedbackBuffer	dwarf+dynsym	a659342f4cc0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3dac0	144	__glim_PassThrough	dwarf+dynsym	1a0a051ef985		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda3db50	80	__glFeedbackTag	dwarf+dynsym	9aaec617e214		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda3dba0	856	feedback	dwarf+funcnames	f8a6a4ecd122		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99345,7 +99345,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282740	268	__glim_Nur
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282850	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	e9b67d66a9d4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22829c0	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	a58baf229110		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282ba0	524	__glim_NurbsKnots2iSGIX	dwarf+dynsym	e2a0ce9c2a9a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282db0	208	__glim_FeedbackBuffer	dwarf+dynsym	245a591fcc48		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282db0	208	__glim_FeedbackBuffer	dwarf+dynsym	245a591fcc48		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282e80	144	__glim_PassThrough	dwarf+dynsym	d4411f21b987		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2282f10	80	__glFeedbackTag	dwarf+dynsym	2be3e301378d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2282f60	904	feedback	dwarf	db08bb5d2539		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
