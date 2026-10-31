@@ -3263,12 +3263,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d33c	204	nextLeaf	mdebug	5523dfb9a477		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d408	992	mergeLeaves	mdebug	b58cf8af2201		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d7e8	19720	mergeLeaf	mdebug	b138c1cca15d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6d9cc	1412	__glNamesNewData	dynsym+mdebug	71a3031c7602		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6d9cc	1412	__glNamesNewData	dynsym+mdebug	71a3031c7602		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6df50	144	__glNamesLockData	dynsym+mdebug	1f0f92c49a28		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6dfe0	2484	__glNamesLockDataList	dynsym+mdebug	2b0f2b2ec2dd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6e994	72	__glNamesUnlockData	dynsym+mdebug	616e6554fcb1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6e9dc	140	__glNamesUnlockDataList	dynsym+mdebug	f51ebce64b50		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6ea68	872	__glNamesGenRange	dynsym+mdebug	a74b938a8c37		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6ea68	872	__glNamesGenRange	dynsym+mdebug	a74b938a8c37		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6edd0	1048	__glNamesDeleteRange	dynsym+mdebug	d05d08c5e20b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f1e8	92	__glNamesIsName	dynsym+mdebug	c21ccf811283		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f244	188	__glNamesGenNames	dynsym+mdebug	aeb425043fe6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -9100,12 +9100,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda593b0	152	nextLeaf	dwarf+funcnames	411ee726ed1b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda59450	896	mergeLeaves	dwarf+funcnames	6d32c79eaafe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda597d0	444	mergeLeaf	dwarf+funcnames	2c9b88cd36e6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59990	1272	__glNamesNewData	dwarf+dynsym	7c651279225c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59990	1272	__glNamesNewData	dwarf+dynsym	7c651279225c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59e90	152	__glNamesLockData	dwarf+dynsym	f3549fdc61c8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59f30	2564	__glNamesLockDataList	dwarf+dynsym	6cbf3fd8a92b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5a940	72	__glNamesUnlockData	dwarf+dynsym	2b9d0ee8d3e0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5a990	260	__glNamesUnlockDataList	dwarf+dynsym	8e998bf57bdd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5aaa0	876	__glNamesGenRange	dwarf+dynsym	a234a116fe7c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5aaa0	876	__glNamesGenRange	dwarf+dynsym	a234a116fe7c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5ae10	1068	__glNamesDeleteRange	dwarf+dynsym	a3508c0b8823		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b240	80	__glNamesIsName	dwarf+dynsym	ffbf8e761de0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b290	216	__glNamesGenNames	dwarf+dynsym	bd82ba5dab0d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -15003,12 +15003,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f550	136	nextLeaf	dwarf	aa5e25e758a2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f5e0	960	mergeLeaves	dwarf	04482ed42ed9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x229f9a0	460	mergeLeaf	dwarf	ccd5a823ddfd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x229fb70	1304	__glNamesNewData	dwarf+dynsym	293f3d90334c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x229fb70	1304	__glNamesNewData	dwarf+dynsym	293f3d90334c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a0090	152	__glNamesLockData	dwarf+dynsym	f44049f0c2cc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a0130	2600	__glNamesLockDataList	dwarf+dynsym	ab60d63c5ae2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a0b60	72	__glNamesUnlockData	dwarf+dynsym	2cbc4d24c6fe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a0bb0	260	__glNamesUnlockDataList	dwarf+dynsym	b72111558247		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a0cc0	880	__glNamesGenRange	dwarf+dynsym	53d8b9792c4b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a0cc0	880	__glNamesGenRange	dwarf+dynsym	53d8b9792c4b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1030	1092	__glNamesDeleteRange	dwarf+dynsym	3c1396ad36c7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a1480	80	__glNamesIsName	dwarf+dynsym	55a00a0bf036		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22a14d0	216	__glNamesGenNames	dwarf+dynsym	60f333ce3838		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -21026,12 +21026,12 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.tex
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3caec	204	nextLeaf	mdebug	5523dfb9a477		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3cbb8	992	mergeLeaves	mdebug	5dd906098906		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3cf98	19624	mergeLeaf	mdebug	267fa6489248		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d17c	1412	__glNamesNewData	dynsym+mdebug	b4bdf76d4470		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d17c	1412	__glNamesNewData	dynsym+mdebug	b4bdf76d4470		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d700	144	__glNamesLockData	dynsym+mdebug	527d3e3cd4e6		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d790	2484	__glNamesLockDataList	dynsym+mdebug	9ce7ef2907f6		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e144	72	__glNamesUnlockData	dynsym+mdebug	9f7e182d336d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e18c	140	__glNamesUnlockDataList	dynsym+mdebug	bd70736f97f7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e218	872	__glNamesGenRange	dynsym+mdebug	729717b4a7cc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e218	872	__glNamesGenRange	dynsym+mdebug	729717b4a7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e580	1048	__glNamesDeleteRange	dynsym+mdebug	23837118ff9e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e998	92	__glNamesIsName	dynsym+mdebug	9117dcb5a4d5		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e9f4	188	__glNamesGenNames	dynsym+mdebug	087ce5ed1c1e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26876,12 +26876,12 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35e60	340	__glNamesNewArray	dynsym	1947092db912		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb36060	392	__glNamesFreeTree	dynsym	4abaf4011273		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb361f0	252	__glNamesFreeArray	dynsym	d83fe1d94ae1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb37aa0	1448	__glNamesNewData	dynsym	265bb4556469		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb37aa0	1448	__glNamesNewData	dynsym	265bb4556469		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38050	152	__glNamesLockData	dynsym	91c3adc91f02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb380f0	2936	__glNamesLockDataList	dynsym	d31e85f638b7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38c70	72	__glNamesUnlockData	dynsym	c697b5bd091f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38cc0	256	__glNamesUnlockDataList	dynsym	10e61faccf4d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38dc0	1036	__glNamesGenRange	dynsym	65fd1e6873b8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38dc0	1036	__glNamesGenRange	dynsym	65fd1e6873b8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb391d0	1268	__glNamesDeleteRange	dynsym	73fab440791d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb396d0	92	__glNamesIsName	dynsym	c26538939f9e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39730	244	__glNamesGenNames	dynsym	7e495e1719c8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32598,12 +32598,12 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.t
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41ea50	192	nextLeaf	dwarf	a85b17cc273e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41eb10	864	mergeLeaves	dwarf	191443a08426		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb41ee70	488	mergeLeaf	dwarf	d39878ffa946		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41f060	1436	__glNamesNewData	dwarf+dynsym	044244a02b12		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41f060	1436	__glNamesNewData	dwarf+dynsym	044244a02b12		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41f600	152	__glNamesLockData	dwarf+dynsym	9069d32e6a84		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb41f6a0	3008	__glNamesLockDataList	dwarf+dynsym	46c4c07a773e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420260	72	__glNamesUnlockData	dwarf+dynsym	99ec92e4f33e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4202b0	256	__glNamesUnlockDataList	dwarf+dynsym	4f692cb18265		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4203b0	1036	__glNamesGenRange	dwarf+dynsym	4fefcd3c91bd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4203b0	1036	__glNamesGenRange	dwarf+dynsym	4fefcd3c91bd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4207c0	1252	__glNamesDeleteRange	dwarf+dynsym	bb1c9a83a8d5		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420cb0	92	__glNamesIsName	dwarf+dynsym	d1aff703bb8f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb420d10	244	__glNamesGenNames	dwarf+dynsym	13e6b12b6b7f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38602,12 +38602,12 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.tex
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3caec	204	nextLeaf	mdebug	5523dfb9a477		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3cbb8	992	mergeLeaves	mdebug	5dd906098906		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb3cf98	19624	mergeLeaf	mdebug	267fa6489248		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d17c	1412	__glNamesNewData	dynsym+mdebug	b4bdf76d4470		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d17c	1412	__glNamesNewData	dynsym+mdebug	b4bdf76d4470		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d700	144	__glNamesLockData	dynsym+mdebug	527d3e3cd4e6		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3d790	2484	__glNamesLockDataList	dynsym+mdebug	9ce7ef2907f6		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e144	72	__glNamesUnlockData	dynsym+mdebug	9f7e182d336d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e18c	140	__glNamesUnlockDataList	dynsym+mdebug	bd70736f97f7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e218	872	__glNamesGenRange	dynsym+mdebug	729717b4a7cc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e218	872	__glNamesGenRange	dynsym+mdebug	729717b4a7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e580	1048	__glNamesDeleteRange	dynsym+mdebug	23837118ff9e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e998	92	__glNamesIsName	dynsym+mdebug	9117dcb5a4d5		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb3e9f4	188	__glNamesGenNames	dynsym+mdebug	087ce5ed1c1e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -44452,12 +44452,12 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb35e60	340	__glNamesNewArray	dynsym	1947092db912		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb36060	392	__glNamesFreeTree	dynsym	4abaf4011273		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb361f0	252	__glNamesFreeArray	dynsym	d83fe1d94ae1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb37aa0	1448	__glNamesNewData	dynsym	265bb4556469		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb37aa0	1448	__glNamesNewData	dynsym	265bb4556469		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38050	152	__glNamesLockData	dynsym	91c3adc91f02		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb380f0	2936	__glNamesLockDataList	dynsym	d31e85f638b7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38c70	72	__glNamesUnlockData	dynsym	c697b5bd091f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38cc0	256	__glNamesUnlockDataList	dynsym	10e61faccf4d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38dc0	1036	__glNamesGenRange	dynsym	65fd1e6873b8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb38dc0	1036	__glNamesGenRange	dynsym	65fd1e6873b8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb391d0	1268	__glNamesDeleteRange	dynsym	73fab440791d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb396d0	92	__glNamesIsName	dynsym	c26538939f9e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb39730	244	__glNamesGenNames	dynsym	7e495e1719c8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -50174,12 +50174,12 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.t
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3ea50	192	nextLeaf	dwarf	a85b17cc273e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3eb10	864	mergeLeaves	dwarf	191443a08426		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe3ee70	488	mergeLeaf	dwarf	d39878ffa946		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3f060	1436	__glNamesNewData	dwarf+dynsym	044244a02b12		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3f060	1436	__glNamesNewData	dwarf+dynsym	044244a02b12		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3f600	152	__glNamesLockData	dwarf+dynsym	9069d32e6a84		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe3f6a0	3008	__glNamesLockDataList	dwarf+dynsym	46c4c07a773e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40260	72	__glNamesUnlockData	dwarf+dynsym	99ec92e4f33e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe402b0	256	__glNamesUnlockDataList	dwarf+dynsym	4f692cb18265		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe403b0	1036	__glNamesGenRange	dwarf+dynsym	4fefcd3c91bd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe403b0	1036	__glNamesGenRange	dwarf+dynsym	4fefcd3c91bd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe407c0	1252	__glNamesDeleteRange	dwarf+dynsym	bb1c9a83a8d5		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40cb0	92	__glNamesIsName	dwarf+dynsym	d1aff703bb8f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe40d10	244	__glNamesGenNames	dwarf+dynsym	13e6b12b6b7f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -70314,12 +70314,12 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d2d8	100	firstLe
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d33c	204	nextLeaf	mdebug	5523dfb9a477		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d408	992	mergeLeaves	mdebug	b58cf8af2201		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda6d7e8	19720	mergeLeaf	mdebug	b138c1cca15d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6d9cc	1412	__glNamesNewData	dynsym+mdebug	71a3031c7602		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6d9cc	1412	__glNamesNewData	dynsym+mdebug	71a3031c7602		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6df50	144	__glNamesLockData	dynsym+mdebug	1f0f92c49a28		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6dfe0	2484	__glNamesLockDataList	dynsym+mdebug	2b0f2b2ec2dd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6e994	72	__glNamesUnlockData	dynsym+mdebug	616e6554fcb1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6e9dc	140	__glNamesUnlockDataList	dynsym+mdebug	f51ebce64b50		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6ea68	872	__glNamesGenRange	dynsym+mdebug	a74b938a8c37		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6ea68	872	__glNamesGenRange	dynsym+mdebug	a74b938a8c37		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6edd0	1048	__glNamesDeleteRange	dynsym+mdebug	d05d08c5e20b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f1e8	92	__glNamesIsName	dynsym+mdebug	c21ccf811283		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda6f244	188	__glNamesGenNames	dynsym+mdebug	aeb425043fe6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -76151,12 +76151,12 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda59370	60	firstL
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda593b0	152	nextLeaf	dwarf+funcnames	411ee726ed1b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda59450	896	mergeLeaves	dwarf+funcnames	6d32c79eaafe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda597d0	444	mergeLeaf	dwarf+funcnames	2c9b88cd36e6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59990	1272	__glNamesNewData	dwarf+dynsym	7c651279225c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59990	1272	__glNamesNewData	dwarf+dynsym	7c651279225c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59e90	152	__glNamesLockData	dwarf+dynsym	f3549fdc61c8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda59f30	2564	__glNamesLockDataList	dwarf+dynsym	6cbf3fd8a92b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5a940	72	__glNamesUnlockData	dwarf+dynsym	2b9d0ee8d3e0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5a990	260	__glNamesUnlockDataList	dwarf+dynsym	8e998bf57bdd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5aaa0	876	__glNamesGenRange	dwarf+dynsym	a234a116fe7c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5aaa0	876	__glNamesGenRange	dwarf+dynsym	a234a116fe7c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5ae10	1068	__glNamesDeleteRange	dwarf+dynsym	a3508c0b8823		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b240	80	__glNamesIsName	dwarf+dynsym	ffbf8e761de0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b290	216	__glNamesGenNames	dwarf+dynsym	bd82ba5dab0d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -82054,12 +82054,12 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef510	60	firstL
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef550	136	nextLeaf	dwarf	aa5e25e758a2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef5e0	960	mergeLeaves	dwarf	04482ed42ed9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ef9a0	460	mergeLeaf	dwarf	ccd5a823ddfd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32efb70	1304	__glNamesNewData	dwarf+dynsym	293f3d90334c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32efb70	1304	__glNamesNewData	dwarf+dynsym	293f3d90334c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f0090	152	__glNamesLockData	dwarf+dynsym	f44049f0c2cc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f0130	2600	__glNamesLockDataList	dwarf+dynsym	ab60d63c5ae2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f0b60	72	__glNamesUnlockData	dwarf+dynsym	2cbc4d24c6fe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f0bb0	260	__glNamesUnlockDataList	dwarf+dynsym	b72111558247		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f0cc0	880	__glNamesGenRange	dwarf+dynsym	53d8b9792c4b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f0cc0	880	__glNamesGenRange	dwarf+dynsym	53d8b9792c4b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1030	1092	__glNamesDeleteRange	dwarf+dynsym	3c1396ad36c7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f1480	80	__glNamesIsName	dwarf+dynsym	55a00a0bf036		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32f14d0	216	__glNamesGenNames	dwarf+dynsym	60f333ce3838		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87853,12 +87853,12 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6d2d8	100	firstLe
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6d33c	204	nextLeaf	mdebug	5523dfb9a477		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6d408	992	mergeLeaves	mdebug	b58cf8af2201		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda6d7e8	19720	mergeLeaf	mdebug	b138c1cca15d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6d9cc	1412	__glNamesNewData	dynsym+mdebug	71a3031c7602		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6d9cc	1412	__glNamesNewData	dynsym+mdebug	71a3031c7602		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6df50	144	__glNamesLockData	dynsym+mdebug	1f0f92c49a28		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6dfe0	2484	__glNamesLockDataList	dynsym+mdebug	2b0f2b2ec2dd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6e994	72	__glNamesUnlockData	dynsym+mdebug	616e6554fcb1		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6e9dc	140	__glNamesUnlockDataList	dynsym+mdebug	f51ebce64b50		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6ea68	872	__glNamesGenRange	dynsym+mdebug	a74b938a8c37		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6ea68	872	__glNamesGenRange	dynsym+mdebug	a74b938a8c37		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6edd0	1048	__glNamesDeleteRange	dynsym+mdebug	d05d08c5e20b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f1e8	92	__glNamesIsName	dynsym+mdebug	c21ccf811283		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda6f244	188	__glNamesGenNames	dynsym+mdebug	aeb425043fe6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93690,12 +93690,12 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda59370	60	firstL
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda593b0	152	nextLeaf	dwarf+funcnames	411ee726ed1b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda59450	896	mergeLeaves	dwarf+funcnames	6d32c79eaafe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda597d0	444	mergeLeaf	dwarf+funcnames	2c9b88cd36e6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda59990	1272	__glNamesNewData	dwarf+dynsym	7c651279225c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda59990	1272	__glNamesNewData	dwarf+dynsym	7c651279225c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda59e90	152	__glNamesLockData	dwarf+dynsym	f3549fdc61c8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda59f30	2564	__glNamesLockDataList	dwarf+dynsym	6cbf3fd8a92b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5a940	72	__glNamesUnlockData	dwarf+dynsym	2b9d0ee8d3e0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5a990	260	__glNamesUnlockDataList	dwarf+dynsym	8e998bf57bdd		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5aaa0	876	__glNamesGenRange	dwarf+dynsym	a234a116fe7c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5aaa0	876	__glNamesGenRange	dwarf+dynsym	a234a116fe7c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5ae10	1068	__glNamesDeleteRange	dwarf+dynsym	a3508c0b8823		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b240	80	__glNamesIsName	dwarf+dynsym	ffbf8e761de0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b290	216	__glNamesGenNames	dwarf+dynsym	bd82ba5dab0d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99593,12 +99593,12 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f510	60	firstL
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f550	136	nextLeaf	dwarf	aa5e25e758a2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f5e0	960	mergeLeaves	dwarf	04482ed42ed9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x229f9a0	460	mergeLeaf	dwarf	ccd5a823ddfd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x229fb70	1304	__glNamesNewData	dwarf+dynsym	293f3d90334c		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x229fb70	1304	__glNamesNewData	dwarf+dynsym	293f3d90334c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a0090	152	__glNamesLockData	dwarf+dynsym	f44049f0c2cc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a0130	2600	__glNamesLockDataList	dwarf+dynsym	ab60d63c5ae2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a0b60	72	__glNamesUnlockData	dwarf+dynsym	2cbc4d24c6fe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a0bb0	260	__glNamesUnlockDataList	dwarf+dynsym	b72111558247		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a0cc0	880	__glNamesGenRange	dwarf+dynsym	53d8b9792c4b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a0cc0	880	__glNamesGenRange	dwarf+dynsym	53d8b9792c4b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1030	1092	__glNamesDeleteRange	dwarf+dynsym	3c1396ad36c7		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a1480	80	__glNamesIsName	dwarf+dynsym	55a00a0bf036		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22a14d0	216	__glNamesGenNames	dwarf+dynsym	60f333ce3838		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
