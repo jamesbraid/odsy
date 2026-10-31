@@ -2679,13 +2679,13 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda38
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda38818	380	__glSpanColorMatrixGeneralRGBA	dynsym+mdebug	d0ba1087fe61		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda38994	484	__glSpanPostColorMatrixScaleBiasRGBA	dynsym+mdebug	5400b96eaa37		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38b80	924	Load	mdebug	0203516fb228		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumulate	mdebug	48cd10878eda		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumulate	mdebug	48cd10878eda		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3935c	928	Mult	mdebug	38f35c913221		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only		
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39fb0	352	__glValidateAlphaTest	dynsym+mdebug	29b47945d90d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3a110	204	__glInitAsyncState	dynsym+mdebug	40b1df555ab0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3a1dc	56	__glFreeAsyncState	dynsym+mdebug	a727a4a4a3ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8516,13 +8516,13 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda20f00	456	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	9e0d22dc0563		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda210d0	392	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	5996c86b90f9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda21260	1084	Load	dwarf+funcnames	26efdbde7e56		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda216a0	1304	Accumulate	dwarf+funcnames	81381aedeba0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda216a0	1304	Accumulate	dwarf+funcnames	81381aedeba0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda21bc0	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22010	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22240	396	Return	dwarf+funcnames	cb81ceaf88f5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22010	556	Add	dwarf+funcnames	91ab8b08b462		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22240	396	Return	dwarf+funcnames	cb81ceaf88f5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda223d0	812	Clear	dwarf+funcnames	fa2cf0a35cb9	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22710	280	__glInitAccum64	dwarf+dynsym	909191dca81d		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22830	400	__glim_Accum	dwarf+dynsym	675d7bad60b7		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22710	280	__glInitAccum64	dwarf+dynsym	909191dca81d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22830	400	__glim_Accum	dwarf+dynsym	675d7bad60b7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda229c0	360	__glValidateAlphaTest	dwarf+dynsym	b0d98798c16e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22b30	188	__glInitAsyncState	dwarf+dynsym	a72c46cf51e5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22bf0	52	__glFreeAsyncState	dwarf+dynsym	4f3ad43a0772		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14406,13 +14406,13 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22660c0	472	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	cabde1f45a81		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22662a0	408	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	9b5d3ee1c778		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2266440	1084	Load	dwarf	991ef5edaf82		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2266880	1304	Accumulate	dwarf	f63c4c6ef837		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2266880	1304	Accumulate	dwarf	f63c4c6ef837		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2266da0	1092	Mult	dwarf	85cb7a7a24fc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x22671f0	556	Add	dwarf	92de05de18af		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2267420	432	Return	dwarf	c24e398d6fcc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x22671f0	556	Add	dwarf	92de05de18af		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2267420	432	Return	dwarf	c24e398d6fcc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x22675d0	820	Clear	dwarf	532c2e4bf510	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267920	288	__glInitAccum64	dwarf+dynsym	b34ceefa47ac		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267a40	404	__glim_Accum	dwarf+dynsym	1214bd6e55be		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267920	288	__glInitAccum64	dwarf+dynsym	b34ceefa47ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267a40	404	__glim_Accum	dwarf+dynsym	1214bd6e55be		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267be0	368	__glValidateAlphaTest	dwarf+dynsym	38bf37510d43		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267d50	188	__glInitAsyncState	dwarf+dynsym	510fd457509b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2267e10	52	__glFreeAsyncState	dwarf+dynsym	8a77eef6ceb1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20443,13 +20443,13 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb08088	380	__glSpanColorMatrixGeneralRGBA	dynsym+mdebug	7c23cee9a408		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb08204	484	__glSpanPostColorMatrixScaleBiasRGBA	dynsym+mdebug	68914636aacf		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb083f0	924	Load	mdebug	0804f3b14a58		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0878c	1088	Accumulate	mdebug	798c888e0e69		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0878c	1088	Accumulate	mdebug	798c888e0e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb08bcc	928	Mult	mdebug	c36b12d4d9cd		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb08f6c	584	Add	mdebug	5804d46d0324		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb091b4	392	Return	mdebug	add2624a5f5f		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb08f6c	584	Add	mdebug	5804d46d0324		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb091b4	392	Return	mdebug	add2624a5f5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0933c	11712	Clear	mdebug	d060dc505915	multi-unit	in	named-only		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09550	288	__glInitAccum64	dynsym+mdebug	8f2450c6b4a0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09670	424	__glim_Accum	dynsym+mdebug	08bf68c873e9		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09550	288	__glInitAccum64	dynsym+mdebug	8f2450c6b4a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09670	424	__glim_Accum	dynsym+mdebug	08bf68c873e9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09820	352	__glValidateAlphaTest	dynsym+mdebug	a448c392398e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09980	204	__glInitAsyncState	dynsym+mdebug	a2a739b8f86f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09a4c	56	__glFreeAsyncState	dynsym+mdebug	76d1d9fa333d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -24588,8 +24588,8 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8ce39c	348	__glx_InstrumentsBufferSGIX	dynsym	4f6644a43354		in	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8ce4f8	348	__glx_PollInstrumentsSGIX	dynsym	ad675533176d		in	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8ce654	284	__glx_FlushRasterSGIX	dynsym	9ec7635de048		in	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Accumulate	dwarf+funcnames			in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Add	dwarf+funcnames			in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Accumulate	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Add	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		AddConvolutionBorders	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		AddKnownGroup	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#pipe-memory-object-bookkeeping	Pipe-memory object bookkeeping
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		AddProgram	dwarf+funcnames			in	located	ucode/buzz_routines.md#closing-routines	Closing routines
@@ -24886,7 +24886,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Resize	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ResizeLUTData	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		RestoreCurrentState	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Return	dwarf+funcnames			in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Return	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		RoundSize	dwarf+funcnames			in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		RoundWidth	dwarf+funcnames			in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		SWInit	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#context-set-up-tear-down-and-drawable-binding	Context set-up, tear-down and drawable binding
@@ -26395,8 +26395,8 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdafe430	540	__glSpanColorMatrixSwizzWithDropRGBA	dynsym	d30fca2ade0e		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdafe650	216	__glSpanColorMatrixGeneralRGBA	dynsym	974778638d82		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdafe730	408	__glSpanPostColorMatrixScaleBiasRGBA	dynsym	16e73bca3cb6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaffef0	264	__glInitAccum64	dynsym	495e42f2ed28		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00000	436	__glim_Accum	dynsym	d0b42b9b3dfc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaffef0	264	__glInitAccum64	dynsym	495e42f2ed28		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00000	436	__glim_Accum	dynsym	d0b42b9b3dfc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb001c0	356	__glValidateAlphaTest	dynsym	1614616c8d16		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00330	188	__glInitAsyncState	dynsym	b2fe68bc9a29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb003f0	52	__glFreeAsyncState	dynsym	8d85a7505f0c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32002,13 +32002,13 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e4790	216	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	009e971f3fb7		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e4870	424	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	1331f6cac0be		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e4a20	1144	Load	dwarf	fb3532783e04		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e4ea0	1368	Accumulate	dwarf	ec3ee5323a54		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e4ea0	1368	Accumulate	dwarf	ec3ee5323a54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e5400	1268	Mult	dwarf	7f4d5327329b		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e5900	788	Add	dwarf	3d1a6b3cbf77		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e5c20	428	Return	dwarf	c6dce04f3420		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e5900	788	Add	dwarf	3d1a6b3cbf77		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e5c20	428	Return	dwarf	c6dce04f3420		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e5dd0	680	Clear	dwarf	1a25c6cab076	multi-unit	in	named-only		
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e6090	272	__glInitAccum64	dwarf+dynsym	3e19bb32395c		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e61a0	444	__glim_Accum	dwarf+dynsym	d2be7a4f1ab6		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e6090	272	__glInitAccum64	dwarf+dynsym	3e19bb32395c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e61a0	444	__glim_Accum	dwarf+dynsym	d2be7a4f1ab6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e6360	356	__glValidateAlphaTest	dwarf+dynsym	f928bb790872		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e64d0	188	__glInitAsyncState	dwarf+dynsym	3abbc530ab66		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e6590	52	__glFreeAsyncState	dwarf+dynsym	68ae104e3b34		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38019,13 +38019,13 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb08088	380	__glSpanColorMatrixGeneralRGBA	dynsym+mdebug	7c23cee9a408		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb08204	484	__glSpanPostColorMatrixScaleBiasRGBA	dynsym+mdebug	68914636aacf		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb083f0	924	Load	mdebug	0804f3b14a58		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0878c	1088	Accumulate	mdebug	798c888e0e69		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0878c	1088	Accumulate	mdebug	798c888e0e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb08bcc	928	Mult	mdebug	c36b12d4d9cd		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb08f6c	584	Add	mdebug	5804d46d0324		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb091b4	392	Return	mdebug	add2624a5f5f		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb08f6c	584	Add	mdebug	5804d46d0324		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb091b4	392	Return	mdebug	add2624a5f5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0933c	11712	Clear	mdebug	d060dc505915	multi-unit	in	named-only		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09550	288	__glInitAccum64	dynsym+mdebug	8f2450c6b4a0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09670	424	__glim_Accum	dynsym+mdebug	08bf68c873e9		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09550	288	__glInitAccum64	dynsym+mdebug	8f2450c6b4a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09670	424	__glim_Accum	dynsym+mdebug	08bf68c873e9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09820	352	__glValidateAlphaTest	dynsym+mdebug	a448c392398e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09980	204	__glInitAsyncState	dynsym+mdebug	a2a739b8f86f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb09a4c	56	__glFreeAsyncState	dynsym+mdebug	76d1d9fa333d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -42164,8 +42164,8 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8ce39c	348	__glx_InstrumentsBufferSGIX	dynsym	4f6644a43354		in	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8ce4f8	348	__glx_PollInstrumentsSGIX	dynsym	ad675533176d		in	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so	board-library	n32		0xd8ce654	284	__glx_FlushRasterSGIX	dynsym	9ec7635de048		in	named-only	docs/diagnostics-and-libgl-functions.md#libglso	`libGL.so`
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Accumulate	dwarf+funcnames			in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Add	dwarf+funcnames			in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Accumulate	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Add	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		AddConvolutionBorders	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		AddKnownGroup	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#pipe-memory-object-bookkeeping	Pipe-memory object bookkeeping
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		AddProgram	dwarf+funcnames			in	located	ucode/buzz_routines.md#closing-routines	Closing routines
@@ -42462,7 +42462,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Resize	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#pixmap-pixmap-renderer	`PIXMAP` (pixmap renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ResizeLUTData	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		RestoreCurrentState	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Return	dwarf+funcnames			in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		Return	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		RoundSize	dwarf+funcnames			in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		RoundWidth	dwarf+funcnames			in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		SWInit	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#context-set-up-tear-down-and-drawable-binding	Context set-up, tear-down and drawable binding
@@ -43971,8 +43971,8 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdafe430	540	__glSpanColorMatrixSwizzWithDropRGBA	dynsym	d30fca2ade0e		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdafe650	216	__glSpanColorMatrixGeneralRGBA	dynsym	974778638d82		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdafe730	408	__glSpanPostColorMatrixScaleBiasRGBA	dynsym	16e73bca3cb6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaffef0	264	__glInitAccum64	dynsym	495e42f2ed28		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00000	436	__glim_Accum	dynsym	d0b42b9b3dfc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaffef0	264	__glInitAccum64	dynsym	495e42f2ed28		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00000	436	__glim_Accum	dynsym	d0b42b9b3dfc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb001c0	356	__glValidateAlphaTest	dynsym	1614616c8d16		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00330	188	__glInitAsyncState	dynsym	b2fe68bc9a29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb003f0	52	__glFreeAsyncState	dynsym	8d85a7505f0c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49578,13 +49578,13 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe04790	216	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	009e971f3fb7		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe04870	424	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	1331f6cac0be		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe04a20	1144	Load	dwarf	fb3532783e04		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe04ea0	1368	Accumulate	dwarf	ec3ee5323a54		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe04ea0	1368	Accumulate	dwarf	ec3ee5323a54		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe05400	1268	Mult	dwarf	7f4d5327329b		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe05900	788	Add	dwarf	3d1a6b3cbf77		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe05c20	428	Return	dwarf	c6dce04f3420		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe05900	788	Add	dwarf	3d1a6b3cbf77		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe05c20	428	Return	dwarf	c6dce04f3420		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe05dd0	680	Clear	dwarf	1a25c6cab076	multi-unit	in	named-only		
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe06090	272	__glInitAccum64	dwarf+dynsym	3e19bb32395c		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe061a0	444	__glim_Accum	dwarf+dynsym	d2be7a4f1ab6		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe06090	272	__glInitAccum64	dwarf+dynsym	3e19bb32395c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe061a0	444	__glim_Accum	dwarf+dynsym	d2be7a4f1ab6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe06360	356	__glValidateAlphaTest	dwarf+dynsym	f928bb790872		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe064d0	188	__glInitAsyncState	dwarf+dynsym	3abbc530ab66		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe06590	52	__glFreeAsyncState	dwarf+dynsym	68ae104e3b34		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -69730,13 +69730,13 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda38734	228	__glSpanColo
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda38818	380	__glSpanColorMatrixGeneralRGBA	dynsym+mdebug	d0ba1087fe61		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda38994	484	__glSpanPostColorMatrixScaleBiasRGBA	dynsym+mdebug	5400b96eaa37		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38b80	924	Load	mdebug	0203516fb228		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumulate	mdebug	48cd10878eda		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumulate	mdebug	48cd10878eda		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3935c	928	Mult	mdebug	38f35c913221		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only		
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39fb0	352	__glValidateAlphaTest	dynsym+mdebug	29b47945d90d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3a110	204	__glInitAsyncState	dynsym+mdebug	40b1df555ab0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3a1dc	56	__glFreeAsyncState	dynsym+mdebug	a727a4a4a3ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75567,13 +75567,13 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda20d00	504	__glSpanCo
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda20f00	456	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	9e0d22dc0563		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda210d0	392	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	5996c86b90f9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda21260	1084	Load	dwarf+funcnames	26efdbde7e56		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda216a0	1304	Accumulate	dwarf+funcnames	81381aedeba0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda216a0	1304	Accumulate	dwarf+funcnames	81381aedeba0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda21bc0	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22010	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22240	396	Return	dwarf+funcnames	cb81ceaf88f5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22010	556	Add	dwarf+funcnames	91ab8b08b462		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda22240	396	Return	dwarf+funcnames	cb81ceaf88f5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda223d0	812	Clear	dwarf+funcnames	fa2cf0a35cb9	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22710	280	__glInitAccum64	dwarf+dynsym	909191dca81d		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22830	400	__glim_Accum	dwarf+dynsym	675d7bad60b7		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22710	280	__glInitAccum64	dwarf+dynsym	909191dca81d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22830	400	__glim_Accum	dwarf+dynsym	675d7bad60b7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda229c0	360	__glValidateAlphaTest	dwarf+dynsym	b0d98798c16e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22b30	188	__glInitAsyncState	dwarf+dynsym	a72c46cf51e5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda22bf0	52	__glFreeAsyncState	dwarf+dynsym	4f3ad43a0772		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81457,13 +81457,13 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b5eb0	520	__glSpanCo
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b60c0	472	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	cabde1f45a81		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b62a0	408	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	9b5d3ee1c778		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b6440	1084	Load	dwarf	991ef5edaf82		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b6880	1304	Accumulate	dwarf	f63c4c6ef837		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b6880	1304	Accumulate	dwarf	f63c4c6ef837		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b6da0	1092	Mult	dwarf	85cb7a7a24fc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b71f0	556	Add	dwarf	92de05de18af		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b7420	432	Return	dwarf	c24e398d6fcc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b71f0	556	Add	dwarf	92de05de18af		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b7420	432	Return	dwarf	c24e398d6fcc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32b75d0	820	Clear	dwarf	532c2e4bf510	multi-unit	in	named-only		
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7920	288	__glInitAccum64	dwarf+dynsym	b34ceefa47ac		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7a40	404	__glim_Accum	dwarf+dynsym	1214bd6e55be		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7920	288	__glInitAccum64	dwarf+dynsym	b34ceefa47ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7a40	404	__glim_Accum	dwarf+dynsym	1214bd6e55be		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7be0	368	__glValidateAlphaTest	dwarf+dynsym	38bf37510d43		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7d50	188	__glInitAsyncState	dwarf+dynsym	510fd457509b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b7e10	52	__glFreeAsyncState	dwarf+dynsym	8a77eef6ceb1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87269,13 +87269,13 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda38734	228	__glSpanColo
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda38818	380	__glSpanColorMatrixGeneralRGBA	dynsym+mdebug	d0ba1087fe61		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda38994	484	__glSpanPostColorMatrixScaleBiasRGBA	dynsym+mdebug	5400b96eaa37		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda38b80	924	Load	mdebug	0203516fb228		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumulate	mdebug	48cd10878eda		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumulate	mdebug	48cd10878eda		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda3935c	928	Mult	mdebug	38f35c913221		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only		
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39fb0	352	__glValidateAlphaTest	dynsym+mdebug	29b47945d90d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3a110	204	__glInitAsyncState	dynsym+mdebug	40b1df555ab0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3a1dc	56	__glFreeAsyncState	dynsym+mdebug	a727a4a4a3ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93106,13 +93106,13 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda20d00	504	__glSpanCo
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda20f00	456	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	9e0d22dc0563		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda210d0	392	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	5996c86b90f9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda21260	1084	Load	dwarf+funcnames	26efdbde7e56		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda216a0	1304	Accumulate	dwarf+funcnames	81381aedeba0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda216a0	1304	Accumulate	dwarf+funcnames	81381aedeba0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda21bc0	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda22010	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda22240	396	Return	dwarf+funcnames	cb81ceaf88f5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda22010	556	Add	dwarf+funcnames	91ab8b08b462		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda22240	396	Return	dwarf+funcnames	cb81ceaf88f5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda223d0	812	Clear	dwarf+funcnames	fa2cf0a35cb9	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda22710	280	__glInitAccum64	dwarf+dynsym	909191dca81d		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda22830	400	__glim_Accum	dwarf+dynsym	675d7bad60b7		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda22710	280	__glInitAccum64	dwarf+dynsym	909191dca81d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda22830	400	__glim_Accum	dwarf+dynsym	675d7bad60b7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda229c0	360	__glValidateAlphaTest	dwarf+dynsym	b0d98798c16e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda22b30	188	__glInitAsyncState	dwarf+dynsym	a72c46cf51e5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda22bf0	52	__glFreeAsyncState	dwarf+dynsym	4f3ad43a0772		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -98996,13 +98996,13 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2265eb0	520	__glSpanCo
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22660c0	472	__glSpanColorMatrixGeneralRGBA	dwarf+dynsym	cabde1f45a81		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22662a0	408	__glSpanPostColorMatrixScaleBiasRGBA	dwarf+dynsym	9b5d3ee1c778		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2266440	1084	Load	dwarf	991ef5edaf82		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2266880	1304	Accumulate	dwarf	f63c4c6ef837		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2266880	1304	Accumulate	dwarf	f63c4c6ef837		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2266da0	1092	Mult	dwarf	85cb7a7a24fc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x22671f0	556	Add	dwarf	92de05de18af		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2267420	432	Return	dwarf	c24e398d6fcc		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x22671f0	556	Add	dwarf	92de05de18af		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2267420	432	Return	dwarf	c24e398d6fcc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x22675d0	820	Clear	dwarf	532c2e4bf510	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267920	288	__glInitAccum64	dwarf+dynsym	b34ceefa47ac		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267a40	404	__glim_Accum	dwarf+dynsym	1214bd6e55be		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267920	288	__glInitAccum64	dwarf+dynsym	b34ceefa47ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267a40	404	__glim_Accum	dwarf+dynsym	1214bd6e55be		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267be0	368	__glValidateAlphaTest	dwarf+dynsym	38bf37510d43		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267d50	188	__glInitAsyncState	dwarf+dynsym	510fd457509b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2267e10	52	__glFreeAsyncState	dwarf+dynsym	8a77eef6ceb1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -106525,7 +106525,7 @@ usr/lib32/libfm.so	shared-library	n32	.text	0xee51c30	200	RLineTo	dwarf+funcname
 usr/lib32/libfm.so	shared-library	n32	.text	0xee51cf8	416	RRCurveTo	dwarf+funcnames	f204a29e875b		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee51e98	116	DoClosePath	dwarf+funcnames	e9b4219d11cc		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee51f0c	164	CallSubr	dwarf+funcnames	89277fa70aa5		in	undocumented		
-usr/lib32/libfm.so	shared-library	n32	.text	0xee51fb0	60	Return	dwarf+funcnames	6274ff34d3b3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/lib32/libfm.so	shared-library	n32	.text	0xee51fb0	60	Return	dwarf+funcnames	6274ff34d3b3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/lib32/libfm.so	shared-library	n32	.text	0xee51fec	124	EndChar	dwarf+funcnames	7610aa028498		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee52068	184	RMoveTo	dwarf+funcnames	7f71deec32f1		in	undocumented		
 usr/lib32/libfm.so	shared-library	n32	.text	0xee52120	24	DotSection	dwarf+funcnames	65183f8663e6		in	undocumented		
