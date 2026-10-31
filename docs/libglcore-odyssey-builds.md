@@ -403,3 +403,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `CopyVertexCode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd966920 | 680 | 88d57901d79b | Established |
 | `AllocInitFastDispatchCodeBuffers` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd966bd0 | 2124 | 3ef116ee9905 | Established |
 | `AllocInitFastDispatchCodeBuffers` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd966bd0 | 2124 | 3ef116ee9905 | Established |
+| `FastDispatchInstall` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd967620 | 724 | b94f8b126c6b | Established |
+| `FastDispatchInstall` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd967620 | 724 | b94f8b126c6b | Established |
+| `ConvertFromShadow` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96fce0 | 2008 | 4351d3dfdf0b | Established |
+| `ConvertFromShadow` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96fce0 | 2008 | 4351d3dfdf0b | Established |
+| `BeforeIgloo` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9da480 | 2776 | dd9e341f964e | Established |
+| `BeforeIgloo` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9da480 | 2776 | dd9e341f964e | Established |
+| `GetBoardInfo` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965310 | 1448 | 0ddc1149b2bd | Established |
+| `GetBoardInfo` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965310 | 1448 | 0ddc1149b2bd | Established |
+| `SWInit` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96a950 | 1452 | 1d43fbe1dbe1 | Established |
+| `SWInit` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96a950 | 1452 | 1d43fbe1dbe1 | Established |
+| `HWInit` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96a8a0 | 176 | 8eaa6f0187e5 | Established |
+| `HWInit` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96a8a0 | 176 | 8eaa6f0187e5 | Established |
