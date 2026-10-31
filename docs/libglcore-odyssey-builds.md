@@ -343,3 +343,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_BlendFunc` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95afe0 | 780 | 2964a3c2e1ee | Established |
 | `__glOdyim_BlendEquationEXT` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b2f0 | 400 | e064ed14c085 | Established |
 | `__glOdyim_BlendEquationEXT` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b2f0 | 400 | e064ed14c085 | Established |
+| `__glOdyim_AlphaFunc` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95aea0 | 320 | 0e9ec873355c | Established |
+| `__glOdyim_AlphaFunc` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95aea0 | 320 | 0e9ec873355c | Established |
+| `__glOdyim_DepthFunc` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b780 | 244 | ed959cba68c4 | Established |
+| `__glOdyim_DepthFunc` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b780 | 244 | ed959cba68c4 | Established |
+| `__glOdyim_LogicOp` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c390 | 224 | a26caba94b4d | Established |
+| `__glOdyim_LogicOp` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c390 | 224 | a26caba94b4d | Established |
+| `__glOdyim_StencilFunc` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d830 | 284 | c215f1ee0839 | Established |
+| `__glOdyim_StencilFunc` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d830 | 284 | c215f1ee0839 | Established |
+| `__glOdyim_StencilOp` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95da60 | 524 | 35226f40dd88 | Established |
+| `__glOdyim_StencilOp` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95da60 | 524 | 35226f40dd88 | Established |
+| `__glOdyim_StencilMask` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d950 | 264 | b81da4837006 | Established |
+| `__glOdyim_StencilMask` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d950 | 264 | b81da4837006 | Established |
