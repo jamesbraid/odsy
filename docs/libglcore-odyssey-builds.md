@@ -283,3 +283,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_EvalCoord2f` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9766b0 | 60 | 71339cdde033 | Established |
 | `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9766f0 | 64 | 181adc59842b | Established |
 | `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9766f0 | 64 | 181adc59842b | Established |
+| `__glOdyim_EvalPoint1` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976800 | 112 | 67e798ec2e8f | Established |
+| `__glOdyim_EvalPoint1` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976800 | 112 | 67e798ec2e8f | Established |
+| `__glOdyim_EvalPoint2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976990 | 164 | 5995bf1104c3 | Established |
+| `__glOdyim_EvalPoint2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976990 | 164 | 5995bf1104c3 | Established |
+| `__glOdyim_EvalMesh1` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976730 | 208 | 38e181936658 | Established |
+| `__glOdyim_EvalMesh1` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976730 | 208 | 38e181936658 | Established |
+| `__glOdyim_EvalMesh2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976870 | 280 | b06c1337630a | Established |
+| `__glOdyim_EvalMesh2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976870 | 280 | b06c1337630a | Established |
+| `GetCurrentState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9774f0 | 656 | 343e6a7eea27 | Established |
+| `GetCurrentState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9774f0 | 656 | 343e6a7eea27 | Established |
+| `RestoreCurrentState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd977780 | 172 | a0bc26a7a04d | Established |
+| `RestoreCurrentState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977780 | 172 | a0bc26a7a04d | Established |
