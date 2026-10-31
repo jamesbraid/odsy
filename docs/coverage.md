@@ -31,7 +31,7 @@ The share of understood rows that an independent audit found real when it re-der
 | ioctls | 73.3% | 15 | 2026-10-29 |
 | ucode | 84.0% | 25 | 2026-10-29 |
 
-Cross-workspace role check: compared 1228 entries with the entries of crime and kona for the same function and capped 367 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
+Cross-workspace role check: compared 1234 entries with the entries of crime and kona for the same function and capped 373 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
 
 Inputs (also in [summary.tsv](inventory/summary.tsv)): root manifest 8819d9ce47413650, 181 files; sibling crime a42d4b0650dc; sibling kona 99f969a532ff.
 
