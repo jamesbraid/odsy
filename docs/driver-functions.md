@@ -1690,10 +1690,12 @@ Lays out
   pending-swap mask at record +28568 and returns 0.
 - `odsySwap_softsync_intr` (`odsy_retrace.o`, offset 0x7d4, 260 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
-  Runs the pending swaps whose scan-out line has been reached. It takes the swap lock at record +28504, then
+  Runs the pending swaps whose target count has been reached. It takes the swap lock at record +28504, then
   for each of the 32 slots whose bit is set in both the pending mask (+28568) and the armed mask (+28548)
-  it reads the current video line counter (a halfword table behind the pointer at record +880, indexed by the
-  slot's pipe number at +244 of its object) and compares it with the slot's target line at +28592. When
+  it reads a counter halfword (a table behind the pointer at record +880, indexed by the
+  context slot at +244 of its object) and compares it with the slot's target count at +28592
+  (**inferred**: the table holds the block 0x5a tag write-back counter, see `docs/display.md`, ioctl 1005; the
+  earlier "video line counter" reading is superseded). When
   the counter has reached the target, or the target is flagged above 0x8fff while the counter is below 4096, it clears the
   slot's armed bit and calls `odsySwapBuffer`. The lock is released at the end.
 - `gf_OdsySchedMGRSwapBuf` (`odsy_retrace.o`, offset 0x107c, 488 bytes): **established.**
@@ -1703,9 +1705,9 @@ Lays out
   (clears the word at +28544 and board register 0x10bc), waits on the sync variable at +28520 when the slot is already
   pending (after a severity 5 message), then marks the slot pending in the mask at +28568 and fills the slot
   record at +28584 plus 40 times the slot: the buffer from the pipe object's +72/+112 pointers, a zero for
-  the second pointer at +28608, the target line from a halfword of the buffer's display structure (+176, +11068),
+  the second pointer at +28608, the target count from a halfword of the buffer's display structure (+176, +11068),
   the swap argument at +28616 and the slot's bit at +28600. It copies bit 30 of its argument into the
-  per-slot flag mask at +28572. When the video line counter already equals the target it calls
+  per-slot flag mask at +28572. When the counter halfword already equals the target it calls
   `odsySwapBuffer` immediately, otherwise it sets the slot's armed bit at +28548. It returns 0.
 - `gf_OdsyUnSchedSwapBuf` (`odsy_retrace.o`, offset 0x8d8, 424 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
