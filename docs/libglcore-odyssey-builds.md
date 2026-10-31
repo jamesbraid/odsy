@@ -139,3 +139,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyValidateTexGen` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cf3e0 | 324 | 66ffb169751e | Established |
 | `updateTexGenCoord` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cf240 | 408 | b8cfe36218cf | Established |
 | `updateTexGenCoord` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cf240 | 408 | b8cfe36218cf | Established |
+| `__glOdysseyTextureSetMaxLOD` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d5de0 | 96 | 757294b5c1fd | Established |
+| `__glOdysseyTextureSetMaxLOD` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d5de0 | 96 | 757294b5c1fd | Established |
+| `__glOdysseyTextureSetRWrap` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d5d20 | 192 | 9659e76ab452 | Established |
+| `__glOdysseyTextureSetRWrap` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d5d20 | 192 | 9659e76ab452 | Established |
+| `SetTexOffsetValues` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d2660 | 108 | c999ad13a930 | Established |
+| `SetTexOffsetValues` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d2660 | 108 | c999ad13a930 | Established |
+| `SetDetailEntry` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d84c0 | 196 | 3b9db4a960bf | Established |
+| `SetDetailEntry` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d84c0 | 196 | 3b9db4a960bf | Established |
+| `__glOdysseyFinish` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9800 | 788 | 4f334426caf0 | Established |
+| `__glOdysseyFinish` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9800 | 788 | 4f334426caf0 | Established |
+| `__glOdysseySwapBuffers` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9450 | 840 | 5e1af35a456f | Established |
+| `__glOdysseySwapBuffers` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9450 | 840 | 5e1af35a456f | Established |
