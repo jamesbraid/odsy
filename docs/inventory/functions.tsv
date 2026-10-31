@@ -3592,17 +3592,17 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90d44	72	__glim_TexCoord2iv	dynsym+mdebug	aac3ba097b93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90d8c	72	__glim_TexCoord2sv	dynsym+mdebug	046cfcc9c75f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90dd4	44	__glim_TexCoord3d	dynsym+mdebug	4b6bbb6f6606		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e00	36	__glim_TexCoord3f	dynsym+mdebug	e4f6ca707455		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e24	52	__glim_TexCoord3i	dynsym+mdebug	7fadef351538		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e58	88	__glim_TexCoord3s	dynsym+mdebug	d60e10dcc109		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90eb0	52	__glim_TexCoord3dv	dynsym+mdebug	e40ac9833011		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ee4	40	__glim_TexCoord3fv	dynsym+mdebug	cf6b63b840ac		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f0c	76	__glim_TexCoord3iv	dynsym+mdebug	d500e0dc1b5c		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f58	76	__glim_TexCoord3sv	dynsym+mdebug	58befa812850		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fa4	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fd4	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ffc	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda91034	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e00	36	__glim_TexCoord3f	dynsym+mdebug	e4f6ca707455		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e24	52	__glim_TexCoord3i	dynsym+mdebug	7fadef351538		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e58	88	__glim_TexCoord3s	dynsym+mdebug	d60e10dcc109		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90eb0	52	__glim_TexCoord3dv	dynsym+mdebug	e40ac9833011		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ee4	40	__glim_TexCoord3fv	dynsym+mdebug	cf6b63b840ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f0c	76	__glim_TexCoord3iv	dynsym+mdebug	d500e0dc1b5c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f58	76	__glim_TexCoord3sv	dynsym+mdebug	58befa812850		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fa4	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fd4	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ffc	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda91034	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda9109c	56	__glim_TexCoord4dv	dynsym+mdebug	1c85bb86d289		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda910d4	40	__glim_TexCoord4fv	dynsym+mdebug	bcc9f6388d6a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda910fc	88	__glim_TexCoord4iv	dynsym+mdebug	96f82b498ed2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -9429,17 +9429,17 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aaa0	56	__glim_TexCoord2iv	dwarf+dynsym	9e6fdd224659		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aae0	56	__glim_TexCoord2sv	dwarf+dynsym	b1672a18b4cb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab20	40	__glim_TexCoord3d	dwarf+dynsym	9689aaccc17d		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab50	28	__glim_TexCoord3f	dwarf+dynsym	a5b001f261a0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab70	52	__glim_TexCoord3i	dwarf+dynsym	fa74a505eda4		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abb0	52	__glim_TexCoord3s	dwarf+dynsym	fa74a505eda4		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abf0	52	__glim_TexCoord3dv	dwarf+dynsym	74fd532383eb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac30	40	__glim_TexCoord3fv	dwarf+dynsym	e9a1eef46490		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac60	64	__glim_TexCoord3iv	dwarf+dynsym	b9145b308d51		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aca0	64	__glim_TexCoord3sv	dwarf+dynsym	52a84ee917cd		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ace0	40	__glim_TexCoord4d	dwarf+dynsym	2bc721af3e64		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad10	24	__glim_TexCoord4f	dwarf+dynsym	e736c1aa7ae2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad30	56	__glim_TexCoord4i	dwarf+dynsym	5f5a0e80d8c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad70	56	__glim_TexCoord4s	dwarf+dynsym	5f5a0e80d8c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab50	28	__glim_TexCoord3f	dwarf+dynsym	a5b001f261a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab70	52	__glim_TexCoord3i	dwarf+dynsym	fa74a505eda4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abb0	52	__glim_TexCoord3s	dwarf+dynsym	fa74a505eda4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abf0	52	__glim_TexCoord3dv	dwarf+dynsym	74fd532383eb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac30	40	__glim_TexCoord3fv	dwarf+dynsym	e9a1eef46490		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac60	64	__glim_TexCoord3iv	dwarf+dynsym	b9145b308d51		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aca0	64	__glim_TexCoord3sv	dwarf+dynsym	52a84ee917cd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ace0	40	__glim_TexCoord4d	dwarf+dynsym	2bc721af3e64		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad10	24	__glim_TexCoord4f	dwarf+dynsym	e736c1aa7ae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad30	56	__glim_TexCoord4i	dwarf+dynsym	5f5a0e80d8c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad70	56	__glim_TexCoord4s	dwarf+dynsym	5f5a0e80d8c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7adb0	56	__glim_TexCoord4dv	dwarf+dynsym	1cc3aaaf6b3f		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7adf0	40	__glim_TexCoord4fv	dwarf+dynsym	128706ae4599		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ae20	72	__glim_TexCoord4iv	dwarf+dynsym	9313b2f8c191		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -15353,17 +15353,17 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3ad0	56	__glim_TexCoord2iv	dwarf+dynsym	deeb934897dc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3b10	56	__glim_TexCoord2sv	dwarf+dynsym	c2589d16c7b6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3b50	40	__glim_TexCoord3d	dwarf+dynsym	5f95773631ec		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3b80	28	__glim_TexCoord3f	dwarf+dynsym	90bc457fc8ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3ba0	52	__glim_TexCoord3i	dwarf+dynsym	603b1f3ee5e0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3be0	52	__glim_TexCoord3s	dwarf+dynsym	603b1f3ee5e0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3c20	52	__glim_TexCoord3dv	dwarf+dynsym	9033a39cf1aa		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3c60	40	__glim_TexCoord3fv	dwarf+dynsym	e664220487cf		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3c90	64	__glim_TexCoord3iv	dwarf+dynsym	c63541383057		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3cd0	64	__glim_TexCoord3sv	dwarf+dynsym	45e8dd504b93		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3d10	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3d40	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3d60	56	__glim_TexCoord4i	dwarf+dynsym	55fb33d0ba32		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3da0	56	__glim_TexCoord4s	dwarf+dynsym	55fb33d0ba32		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3b80	28	__glim_TexCoord3f	dwarf+dynsym	90bc457fc8ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3ba0	52	__glim_TexCoord3i	dwarf+dynsym	603b1f3ee5e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3be0	52	__glim_TexCoord3s	dwarf+dynsym	603b1f3ee5e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3c20	52	__glim_TexCoord3dv	dwarf+dynsym	9033a39cf1aa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3c60	40	__glim_TexCoord3fv	dwarf+dynsym	e664220487cf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3c90	64	__glim_TexCoord3iv	dwarf+dynsym	c63541383057		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3cd0	64	__glim_TexCoord3sv	dwarf+dynsym	45e8dd504b93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3d10	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3d40	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3d60	56	__glim_TexCoord4i	dwarf+dynsym	55fb33d0ba32		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3da0	56	__glim_TexCoord4s	dwarf+dynsym	55fb33d0ba32		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3de0	56	__glim_TexCoord4dv	dwarf+dynsym	73031dca5bd1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3e20	40	__glim_TexCoord4fv	dwarf+dynsym	b4d0f2017ba8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22c3e50	72	__glim_TexCoord4iv	dwarf+dynsym	d30e694fded8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -21354,17 +21354,17 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb604b4	72	__glim_TexCoord2iv	dynsym+mdebug	10052a8d810c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb604fc	72	__glim_TexCoord2sv	dynsym+mdebug	74171c666256		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60544	44	__glim_TexCoord3d	dynsym+mdebug	672203d4e3c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60570	36	__glim_TexCoord3f	dynsym+mdebug	21e42b1ceb29		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60594	52	__glim_TexCoord3i	dynsym+mdebug	f593bd71d765		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb605c8	88	__glim_TexCoord3s	dynsym+mdebug	910deaeb7456		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60620	52	__glim_TexCoord3dv	dynsym+mdebug	bbc0c6c100ba		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60654	40	__glim_TexCoord3fv	dynsym+mdebug	be5561e3d99a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6067c	76	__glim_TexCoord3iv	dynsym+mdebug	1044417145fc		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb606c8	76	__glim_TexCoord3sv	dynsym+mdebug	aec041f0a304		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60714	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60744	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6076c	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb607a4	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60570	36	__glim_TexCoord3f	dynsym+mdebug	21e42b1ceb29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60594	52	__glim_TexCoord3i	dynsym+mdebug	f593bd71d765		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb605c8	88	__glim_TexCoord3s	dynsym+mdebug	910deaeb7456		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60620	52	__glim_TexCoord3dv	dynsym+mdebug	bbc0c6c100ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60654	40	__glim_TexCoord3fv	dynsym+mdebug	be5561e3d99a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6067c	76	__glim_TexCoord3iv	dynsym+mdebug	1044417145fc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb606c8	76	__glim_TexCoord3sv	dynsym+mdebug	aec041f0a304		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60714	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60744	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6076c	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb607a4	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6080c	56	__glim_TexCoord4dv	dynsym+mdebug	1c85bb86d289		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60844	40	__glim_TexCoord4fv	dynsym+mdebug	bcc9f6388d6a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6086c	88	__glim_TexCoord4iv	dynsym+mdebug	96f82b498ed2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -27145,17 +27145,17 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59190	68	__glim_TexCoord2iv	dynsym	869ea9f845f2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb591e0	68	__glim_TexCoord2sv	dynsym	149ca1f97765		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59230	40	__glim_TexCoord3d	dynsym	7cc4b2d94cc7		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59260	28	__glim_TexCoord3f	dynsym	95e831ebcb22		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59280	52	__glim_TexCoord3i	dynsym	e36d844713ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb592c0	52	__glim_TexCoord3s	dynsym	e36d844713ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59300	52	__glim_TexCoord3dv	dynsym	fbbdb62f1d18		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59340	40	__glim_TexCoord3fv	dynsym	32f9915c3b49		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59370	64	__glim_TexCoord3iv	dynsym	6be0710f80e9		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593b0	64	__glim_TexCoord3sv	dynsym	adf6434f1191		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593f0	40	__glim_TexCoord4d	dynsym	2bc721af3e64		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59420	24	__glim_TexCoord4f	dynsym	e736c1aa7ae2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59440	56	__glim_TexCoord4i	dynsym	f41fc130206d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59480	56	__glim_TexCoord4s	dynsym	f41fc130206d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59260	28	__glim_TexCoord3f	dynsym	95e831ebcb22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59280	52	__glim_TexCoord3i	dynsym	e36d844713ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb592c0	52	__glim_TexCoord3s	dynsym	e36d844713ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59300	52	__glim_TexCoord3dv	dynsym	fbbdb62f1d18		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59340	40	__glim_TexCoord3fv	dynsym	32f9915c3b49		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59370	64	__glim_TexCoord3iv	dynsym	6be0710f80e9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593b0	64	__glim_TexCoord3sv	dynsym	adf6434f1191		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593f0	40	__glim_TexCoord4d	dynsym	2bc721af3e64		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59420	24	__glim_TexCoord4f	dynsym	e736c1aa7ae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59440	56	__glim_TexCoord4i	dynsym	f41fc130206d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59480	56	__glim_TexCoord4s	dynsym	f41fc130206d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb594c0	56	__glim_TexCoord4dv	dynsym	1cc3aaaf6b3f		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59500	40	__glim_TexCoord4fv	dynsym	128706ae4599		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59530	72	__glim_TexCoord4iv	dynsym	0af96b442b12		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -32947,17 +32947,17 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443460	68	__glim_TexCoord2iv	dwarf+dynsym	a68fd327d4f2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4434b0	68	__glim_TexCoord2sv	dwarf+dynsym	2cee1a548c40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443500	40	__glim_TexCoord3d	dwarf+dynsym	56351f98fa69		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443530	28	__glim_TexCoord3f	dwarf+dynsym	99219938efbb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443550	52	__glim_TexCoord3i	dwarf+dynsym	77083f90b67f		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443590	52	__glim_TexCoord3s	dwarf+dynsym	77083f90b67f		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4435d0	52	__glim_TexCoord3dv	dwarf+dynsym	77c4b1a65d9d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443610	40	__glim_TexCoord3fv	dwarf+dynsym	72a18107119a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443640	64	__glim_TexCoord3iv	dwarf+dynsym	5238ff7e1b9f		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443680	64	__glim_TexCoord3sv	dwarf+dynsym	1c4f2261af0b		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4436c0	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4436f0	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443710	56	__glim_TexCoord4i	dwarf+dynsym	bcbab280424a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443750	56	__glim_TexCoord4s	dwarf+dynsym	bcbab280424a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443530	28	__glim_TexCoord3f	dwarf+dynsym	99219938efbb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443550	52	__glim_TexCoord3i	dwarf+dynsym	77083f90b67f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443590	52	__glim_TexCoord3s	dwarf+dynsym	77083f90b67f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4435d0	52	__glim_TexCoord3dv	dwarf+dynsym	77c4b1a65d9d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443610	40	__glim_TexCoord3fv	dwarf+dynsym	72a18107119a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443640	64	__glim_TexCoord3iv	dwarf+dynsym	5238ff7e1b9f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443680	64	__glim_TexCoord3sv	dwarf+dynsym	1c4f2261af0b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4436c0	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4436f0	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443710	56	__glim_TexCoord4i	dwarf+dynsym	bcbab280424a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443750	56	__glim_TexCoord4s	dwarf+dynsym	bcbab280424a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443790	56	__glim_TexCoord4dv	dwarf+dynsym	73031dca5bd1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4437d0	40	__glim_TexCoord4fv	dwarf+dynsym	b4d0f2017ba8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb443800	72	__glim_TexCoord4iv	dwarf+dynsym	1414b66f5e4d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -38930,17 +38930,17 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb604b4	72	__glim_TexCoord2iv	dynsym+mdebug	10052a8d810c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb604fc	72	__glim_TexCoord2sv	dynsym+mdebug	74171c666256		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60544	44	__glim_TexCoord3d	dynsym+mdebug	672203d4e3c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60570	36	__glim_TexCoord3f	dynsym+mdebug	21e42b1ceb29		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60594	52	__glim_TexCoord3i	dynsym+mdebug	f593bd71d765		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb605c8	88	__glim_TexCoord3s	dynsym+mdebug	910deaeb7456		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60620	52	__glim_TexCoord3dv	dynsym+mdebug	bbc0c6c100ba		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60654	40	__glim_TexCoord3fv	dynsym+mdebug	be5561e3d99a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6067c	76	__glim_TexCoord3iv	dynsym+mdebug	1044417145fc		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb606c8	76	__glim_TexCoord3sv	dynsym+mdebug	aec041f0a304		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60714	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60744	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6076c	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb607a4	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60570	36	__glim_TexCoord3f	dynsym+mdebug	21e42b1ceb29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60594	52	__glim_TexCoord3i	dynsym+mdebug	f593bd71d765		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb605c8	88	__glim_TexCoord3s	dynsym+mdebug	910deaeb7456		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60620	52	__glim_TexCoord3dv	dynsym+mdebug	bbc0c6c100ba		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60654	40	__glim_TexCoord3fv	dynsym+mdebug	be5561e3d99a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6067c	76	__glim_TexCoord3iv	dynsym+mdebug	1044417145fc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb606c8	76	__glim_TexCoord3sv	dynsym+mdebug	aec041f0a304		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60714	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60744	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6076c	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb607a4	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6080c	56	__glim_TexCoord4dv	dynsym+mdebug	1c85bb86d289		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb60844	40	__glim_TexCoord4fv	dynsym+mdebug	bcc9f6388d6a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb6086c	88	__glim_TexCoord4iv	dynsym+mdebug	96f82b498ed2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -44721,17 +44721,17 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59190	68	__glim_TexCoord2iv	dynsym	869ea9f845f2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb591e0	68	__glim_TexCoord2sv	dynsym	149ca1f97765		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59230	40	__glim_TexCoord3d	dynsym	7cc4b2d94cc7		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59260	28	__glim_TexCoord3f	dynsym	95e831ebcb22		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59280	52	__glim_TexCoord3i	dynsym	e36d844713ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb592c0	52	__glim_TexCoord3s	dynsym	e36d844713ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59300	52	__glim_TexCoord3dv	dynsym	fbbdb62f1d18		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59340	40	__glim_TexCoord3fv	dynsym	32f9915c3b49		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59370	64	__glim_TexCoord3iv	dynsym	6be0710f80e9		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593b0	64	__glim_TexCoord3sv	dynsym	adf6434f1191		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593f0	40	__glim_TexCoord4d	dynsym	2bc721af3e64		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59420	24	__glim_TexCoord4f	dynsym	e736c1aa7ae2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59440	56	__glim_TexCoord4i	dynsym	f41fc130206d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59480	56	__glim_TexCoord4s	dynsym	f41fc130206d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59260	28	__glim_TexCoord3f	dynsym	95e831ebcb22		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59280	52	__glim_TexCoord3i	dynsym	e36d844713ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb592c0	52	__glim_TexCoord3s	dynsym	e36d844713ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59300	52	__glim_TexCoord3dv	dynsym	fbbdb62f1d18		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59340	40	__glim_TexCoord3fv	dynsym	32f9915c3b49		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59370	64	__glim_TexCoord3iv	dynsym	6be0710f80e9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593b0	64	__glim_TexCoord3sv	dynsym	adf6434f1191		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb593f0	40	__glim_TexCoord4d	dynsym	2bc721af3e64		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59420	24	__glim_TexCoord4f	dynsym	e736c1aa7ae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59440	56	__glim_TexCoord4i	dynsym	f41fc130206d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59480	56	__glim_TexCoord4s	dynsym	f41fc130206d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb594c0	56	__glim_TexCoord4dv	dynsym	1cc3aaaf6b3f		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59500	40	__glim_TexCoord4fv	dynsym	128706ae4599		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb59530	72	__glim_TexCoord4iv	dynsym	0af96b442b12		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -50523,17 +50523,17 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63460	68	__glim_TexCoord2iv	dwarf+dynsym	a68fd327d4f2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe634b0	68	__glim_TexCoord2sv	dwarf+dynsym	2cee1a548c40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63500	40	__glim_TexCoord3d	dwarf+dynsym	56351f98fa69		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63530	28	__glim_TexCoord3f	dwarf+dynsym	99219938efbb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63550	52	__glim_TexCoord3i	dwarf+dynsym	77083f90b67f		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63590	52	__glim_TexCoord3s	dwarf+dynsym	77083f90b67f		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe635d0	52	__glim_TexCoord3dv	dwarf+dynsym	77c4b1a65d9d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63610	40	__glim_TexCoord3fv	dwarf+dynsym	72a18107119a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63640	64	__glim_TexCoord3iv	dwarf+dynsym	5238ff7e1b9f		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63680	64	__glim_TexCoord3sv	dwarf+dynsym	1c4f2261af0b		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe636c0	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe636f0	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63710	56	__glim_TexCoord4i	dwarf+dynsym	bcbab280424a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63750	56	__glim_TexCoord4s	dwarf+dynsym	bcbab280424a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63530	28	__glim_TexCoord3f	dwarf+dynsym	99219938efbb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63550	52	__glim_TexCoord3i	dwarf+dynsym	77083f90b67f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63590	52	__glim_TexCoord3s	dwarf+dynsym	77083f90b67f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe635d0	52	__glim_TexCoord3dv	dwarf+dynsym	77c4b1a65d9d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63610	40	__glim_TexCoord3fv	dwarf+dynsym	72a18107119a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63640	64	__glim_TexCoord3iv	dwarf+dynsym	5238ff7e1b9f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63680	64	__glim_TexCoord3sv	dwarf+dynsym	1c4f2261af0b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe636c0	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe636f0	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63710	56	__glim_TexCoord4i	dwarf+dynsym	bcbab280424a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63750	56	__glim_TexCoord4s	dwarf+dynsym	bcbab280424a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63790	56	__glim_TexCoord4dv	dwarf+dynsym	73031dca5bd1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe637d0	40	__glim_TexCoord4fv	dwarf+dynsym	b4d0f2017ba8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe63800	72	__glim_TexCoord4iv	dwarf+dynsym	1414b66f5e4d		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -70643,17 +70643,17 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90d08	60	__glim_TexCoo
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90d44	72	__glim_TexCoord2iv	dynsym+mdebug	aac3ba097b93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90d8c	72	__glim_TexCoord2sv	dynsym+mdebug	046cfcc9c75f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90dd4	44	__glim_TexCoord3d	dynsym+mdebug	4b6bbb6f6606		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e00	36	__glim_TexCoord3f	dynsym+mdebug	e4f6ca707455		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e24	52	__glim_TexCoord3i	dynsym+mdebug	7fadef351538		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e58	88	__glim_TexCoord3s	dynsym+mdebug	d60e10dcc109		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90eb0	52	__glim_TexCoord3dv	dynsym+mdebug	e40ac9833011		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ee4	40	__glim_TexCoord3fv	dynsym+mdebug	cf6b63b840ac		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f0c	76	__glim_TexCoord3iv	dynsym+mdebug	d500e0dc1b5c		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f58	76	__glim_TexCoord3sv	dynsym+mdebug	58befa812850		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fa4	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fd4	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ffc	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda91034	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e00	36	__glim_TexCoord3f	dynsym+mdebug	e4f6ca707455		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e24	52	__glim_TexCoord3i	dynsym+mdebug	7fadef351538		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90e58	88	__glim_TexCoord3s	dynsym+mdebug	d60e10dcc109		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90eb0	52	__glim_TexCoord3dv	dynsym+mdebug	e40ac9833011		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ee4	40	__glim_TexCoord3fv	dynsym+mdebug	cf6b63b840ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f0c	76	__glim_TexCoord3iv	dynsym+mdebug	d500e0dc1b5c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90f58	76	__glim_TexCoord3sv	dynsym+mdebug	58befa812850		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fa4	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90fd4	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda90ffc	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda91034	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda9109c	56	__glim_TexCoord4dv	dynsym+mdebug	1c85bb86d289		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda910d4	40	__glim_TexCoord4fv	dynsym+mdebug	bcc9f6388d6a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda910fc	88	__glim_TexCoord4iv	dynsym+mdebug	96f82b498ed2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -76480,17 +76480,17 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aa70	48	__glim_TexC
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aaa0	56	__glim_TexCoord2iv	dwarf+dynsym	9e6fdd224659		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aae0	56	__glim_TexCoord2sv	dwarf+dynsym	b1672a18b4cb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab20	40	__glim_TexCoord3d	dwarf+dynsym	9689aaccc17d		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab50	28	__glim_TexCoord3f	dwarf+dynsym	a5b001f261a0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab70	52	__glim_TexCoord3i	dwarf+dynsym	fa74a505eda4		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abb0	52	__glim_TexCoord3s	dwarf+dynsym	fa74a505eda4		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abf0	52	__glim_TexCoord3dv	dwarf+dynsym	74fd532383eb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac30	40	__glim_TexCoord3fv	dwarf+dynsym	e9a1eef46490		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac60	64	__glim_TexCoord3iv	dwarf+dynsym	b9145b308d51		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aca0	64	__glim_TexCoord3sv	dwarf+dynsym	52a84ee917cd		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ace0	40	__glim_TexCoord4d	dwarf+dynsym	2bc721af3e64		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad10	24	__glim_TexCoord4f	dwarf+dynsym	e736c1aa7ae2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad30	56	__glim_TexCoord4i	dwarf+dynsym	5f5a0e80d8c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad70	56	__glim_TexCoord4s	dwarf+dynsym	5f5a0e80d8c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab50	28	__glim_TexCoord3f	dwarf+dynsym	a5b001f261a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ab70	52	__glim_TexCoord3i	dwarf+dynsym	fa74a505eda4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abb0	52	__glim_TexCoord3s	dwarf+dynsym	fa74a505eda4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7abf0	52	__glim_TexCoord3dv	dwarf+dynsym	74fd532383eb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac30	40	__glim_TexCoord3fv	dwarf+dynsym	e9a1eef46490		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ac60	64	__glim_TexCoord3iv	dwarf+dynsym	b9145b308d51		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7aca0	64	__glim_TexCoord3sv	dwarf+dynsym	52a84ee917cd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ace0	40	__glim_TexCoord4d	dwarf+dynsym	2bc721af3e64		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad10	24	__glim_TexCoord4f	dwarf+dynsym	e736c1aa7ae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad30	56	__glim_TexCoord4i	dwarf+dynsym	5f5a0e80d8c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ad70	56	__glim_TexCoord4s	dwarf+dynsym	5f5a0e80d8c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7adb0	56	__glim_TexCoord4dv	dwarf+dynsym	1cc3aaaf6b3f		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7adf0	40	__glim_TexCoord4fv	dwarf+dynsym	128706ae4599		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda7ae20	72	__glim_TexCoord4iv	dwarf+dynsym	9313b2f8c191		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -82404,17 +82404,17 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313aa0	40	__glim_TexC
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313ad0	56	__glim_TexCoord2iv	dwarf+dynsym	deeb934897dc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313b10	56	__glim_TexCoord2sv	dwarf+dynsym	c2589d16c7b6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313b50	40	__glim_TexCoord3d	dwarf+dynsym	5f95773631ec		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313b80	28	__glim_TexCoord3f	dwarf+dynsym	90bc457fc8ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313ba0	52	__glim_TexCoord3i	dwarf+dynsym	603b1f3ee5e0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313be0	52	__glim_TexCoord3s	dwarf+dynsym	603b1f3ee5e0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313c20	52	__glim_TexCoord3dv	dwarf+dynsym	9033a39cf1aa		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313c60	40	__glim_TexCoord3fv	dwarf+dynsym	e664220487cf		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313c90	64	__glim_TexCoord3iv	dwarf+dynsym	c63541383057		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313cd0	64	__glim_TexCoord3sv	dwarf+dynsym	45e8dd504b93		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313d10	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313d40	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313d60	56	__glim_TexCoord4i	dwarf+dynsym	55fb33d0ba32		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313da0	56	__glim_TexCoord4s	dwarf+dynsym	55fb33d0ba32		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313b80	28	__glim_TexCoord3f	dwarf+dynsym	90bc457fc8ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313ba0	52	__glim_TexCoord3i	dwarf+dynsym	603b1f3ee5e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313be0	52	__glim_TexCoord3s	dwarf+dynsym	603b1f3ee5e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313c20	52	__glim_TexCoord3dv	dwarf+dynsym	9033a39cf1aa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313c60	40	__glim_TexCoord3fv	dwarf+dynsym	e664220487cf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313c90	64	__glim_TexCoord3iv	dwarf+dynsym	c63541383057		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313cd0	64	__glim_TexCoord3sv	dwarf+dynsym	45e8dd504b93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313d10	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313d40	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313d60	56	__glim_TexCoord4i	dwarf+dynsym	55fb33d0ba32		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313da0	56	__glim_TexCoord4s	dwarf+dynsym	55fb33d0ba32		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313de0	56	__glim_TexCoord4dv	dwarf+dynsym	73031dca5bd1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313e20	40	__glim_TexCoord4fv	dwarf+dynsym	b4d0f2017ba8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3313e50	72	__glim_TexCoord4iv	dwarf+dynsym	d30e694fded8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -88182,17 +88182,17 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90d08	60	__glim_TexCoo
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90d44	72	__glim_TexCoord2iv	dynsym+mdebug	aac3ba097b93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90d8c	72	__glim_TexCoord2sv	dynsym+mdebug	046cfcc9c75f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90dd4	44	__glim_TexCoord3d	dynsym+mdebug	4b6bbb6f6606		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90e00	36	__glim_TexCoord3f	dynsym+mdebug	e4f6ca707455		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90e24	52	__glim_TexCoord3i	dynsym+mdebug	7fadef351538		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90e58	88	__glim_TexCoord3s	dynsym+mdebug	d60e10dcc109		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90eb0	52	__glim_TexCoord3dv	dynsym+mdebug	e40ac9833011		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90ee4	40	__glim_TexCoord3fv	dynsym+mdebug	cf6b63b840ac		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90f0c	76	__glim_TexCoord3iv	dynsym+mdebug	d500e0dc1b5c		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90f58	76	__glim_TexCoord3sv	dynsym+mdebug	58befa812850		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90fa4	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90fd4	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90ffc	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda91034	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90e00	36	__glim_TexCoord3f	dynsym+mdebug	e4f6ca707455		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90e24	52	__glim_TexCoord3i	dynsym+mdebug	7fadef351538		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90e58	88	__glim_TexCoord3s	dynsym+mdebug	d60e10dcc109		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90eb0	52	__glim_TexCoord3dv	dynsym+mdebug	e40ac9833011		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90ee4	40	__glim_TexCoord3fv	dynsym+mdebug	cf6b63b840ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90f0c	76	__glim_TexCoord3iv	dynsym+mdebug	d500e0dc1b5c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90f58	76	__glim_TexCoord3sv	dynsym+mdebug	58befa812850		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90fa4	48	__glim_TexCoord4d	dynsym+mdebug	3edaae1986d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90fd4	40	__glim_TexCoord4f	dynsym+mdebug	9fa6da093cf1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda90ffc	56	__glim_TexCoord4i	dynsym+mdebug	679cec512744		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda91034	104	__glim_TexCoord4s	dynsym+mdebug	9e9580c8a1c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda9109c	56	__glim_TexCoord4dv	dynsym+mdebug	1c85bb86d289		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda910d4	40	__glim_TexCoord4fv	dynsym+mdebug	bcc9f6388d6a		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda910fc	88	__glim_TexCoord4iv	dynsym+mdebug	96f82b498ed2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -94019,17 +94019,17 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7aa70	48	__glim_TexC
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7aaa0	56	__glim_TexCoord2iv	dwarf+dynsym	9e6fdd224659		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7aae0	56	__glim_TexCoord2sv	dwarf+dynsym	b1672a18b4cb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ab20	40	__glim_TexCoord3d	dwarf+dynsym	9689aaccc17d		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ab50	28	__glim_TexCoord3f	dwarf+dynsym	a5b001f261a0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ab70	52	__glim_TexCoord3i	dwarf+dynsym	fa74a505eda4		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7abb0	52	__glim_TexCoord3s	dwarf+dynsym	fa74a505eda4		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7abf0	52	__glim_TexCoord3dv	dwarf+dynsym	74fd532383eb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ac30	40	__glim_TexCoord3fv	dwarf+dynsym	e9a1eef46490		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ac60	64	__glim_TexCoord3iv	dwarf+dynsym	b9145b308d51		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7aca0	64	__glim_TexCoord3sv	dwarf+dynsym	52a84ee917cd		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ace0	40	__glim_TexCoord4d	dwarf+dynsym	2bc721af3e64		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ad10	24	__glim_TexCoord4f	dwarf+dynsym	e736c1aa7ae2		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ad30	56	__glim_TexCoord4i	dwarf+dynsym	5f5a0e80d8c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ad70	56	__glim_TexCoord4s	dwarf+dynsym	5f5a0e80d8c3		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ab50	28	__glim_TexCoord3f	dwarf+dynsym	a5b001f261a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ab70	52	__glim_TexCoord3i	dwarf+dynsym	fa74a505eda4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7abb0	52	__glim_TexCoord3s	dwarf+dynsym	fa74a505eda4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7abf0	52	__glim_TexCoord3dv	dwarf+dynsym	74fd532383eb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ac30	40	__glim_TexCoord3fv	dwarf+dynsym	e9a1eef46490		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ac60	64	__glim_TexCoord3iv	dwarf+dynsym	b9145b308d51		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7aca0	64	__glim_TexCoord3sv	dwarf+dynsym	52a84ee917cd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ace0	40	__glim_TexCoord4d	dwarf+dynsym	2bc721af3e64		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ad10	24	__glim_TexCoord4f	dwarf+dynsym	e736c1aa7ae2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ad30	56	__glim_TexCoord4i	dwarf+dynsym	5f5a0e80d8c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ad70	56	__glim_TexCoord4s	dwarf+dynsym	5f5a0e80d8c3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7adb0	56	__glim_TexCoord4dv	dwarf+dynsym	1cc3aaaf6b3f		in	understood	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7adf0	40	__glim_TexCoord4fv	dwarf+dynsym	128706ae4599		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda7ae20	72	__glim_TexCoord4iv	dwarf+dynsym	9313b2f8c191		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
@@ -99943,17 +99943,17 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3aa0	40	__glim_TexC
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3ad0	56	__glim_TexCoord2iv	dwarf+dynsym	deeb934897dc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3b10	56	__glim_TexCoord2sv	dwarf+dynsym	c2589d16c7b6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3b50	40	__glim_TexCoord3d	dwarf+dynsym	5f95773631ec		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3b80	28	__glim_TexCoord3f	dwarf+dynsym	90bc457fc8ff		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3ba0	52	__glim_TexCoord3i	dwarf+dynsym	603b1f3ee5e0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3be0	52	__glim_TexCoord3s	dwarf+dynsym	603b1f3ee5e0		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3c20	52	__glim_TexCoord3dv	dwarf+dynsym	9033a39cf1aa		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3c60	40	__glim_TexCoord3fv	dwarf+dynsym	e664220487cf		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3c90	64	__glim_TexCoord3iv	dwarf+dynsym	c63541383057		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3cd0	64	__glim_TexCoord3sv	dwarf+dynsym	45e8dd504b93		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3d10	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3d40	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3d60	56	__glim_TexCoord4i	dwarf+dynsym	55fb33d0ba32		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3da0	56	__glim_TexCoord4s	dwarf+dynsym	55fb33d0ba32		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3b80	28	__glim_TexCoord3f	dwarf+dynsym	90bc457fc8ff		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3ba0	52	__glim_TexCoord3i	dwarf+dynsym	603b1f3ee5e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3be0	52	__glim_TexCoord3s	dwarf+dynsym	603b1f3ee5e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3c20	52	__glim_TexCoord3dv	dwarf+dynsym	9033a39cf1aa		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3c60	40	__glim_TexCoord3fv	dwarf+dynsym	e664220487cf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3c90	64	__glim_TexCoord3iv	dwarf+dynsym	c63541383057		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3cd0	64	__glim_TexCoord3sv	dwarf+dynsym	45e8dd504b93		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3d10	40	__glim_TexCoord4d	dwarf+dynsym	93fa2bf168fb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3d40	24	__glim_TexCoord4f	dwarf+dynsym	9c7e0a46d321		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3d60	56	__glim_TexCoord4i	dwarf+dynsym	55fb33d0ba32		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3da0	56	__glim_TexCoord4s	dwarf+dynsym	55fb33d0ba32		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3de0	56	__glim_TexCoord4dv	dwarf+dynsym	73031dca5bd1		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3e20	40	__glim_TexCoord4fv	dwarf+dynsym	b4d0f2017ba8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22c3e50	72	__glim_TexCoord4iv	dwarf+dynsym	d30e694fded8		in	located	docs/sample-implementation.md#so_tapic	so_tapi.c
