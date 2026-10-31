@@ -61652,7 +61652,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cee0	136	polf2i	dynsym	7262
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cf68	136	__GLdisplacepolygon	dynsym+mdebug	3219b9c2973e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cf68	136	displacepolygon	dynsym	3219b9c2973e	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cff0	136	__GLmove	dynsym+mdebug	49fed76d4b16	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cff0	136	move	dynsym	49fed76d4b16	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cff0	136	move	dynsym	49fed76d4b16	shared-address	in	named-only	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d078	136	__GLpmv2	dynsym+mdebug	382d06344de9	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d078	136	pmv2	dynsym	382d06344de9	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d100	64	__GLv2f	dynsym+mdebug	9ad29a71b84b	shared-address	in	undocumented		
@@ -65780,7 +65780,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6f96c	180	polf2i	dynsym	9d
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fa20	180	__GLdisplacepolygon	dynsym	55240e71f868	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fa20	180	displacepolygon	dynsym	55240e71f868	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fad4	180	__GLmove	dynsym	6488fd30ee99	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fad4	180	move	dynsym	6488fd30ee99	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fad4	180	move	dynsym	6488fd30ee99	shared-address	in	named-only	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fb88	180	__GLpmv2	dynsym	f135872c2267	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fb88	180	pmv2	dynsym	f135872c2267	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fc3c	68	__GLv2f	dynsym	2da48ef52950	shared-address	in	undocumented		
