@@ -439,3 +439,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyInitIgloo` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96fc70 | 108 | 4b8ca415748f | Established |
 | `__glOdyim_RenderMode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96f780 | 1256 | d3cb9d96673d | Established |
 | `__glOdyim_RenderMode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96f780 | 1256 | d3cb9d96673d | Established |
+| `GetTexDim` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9852e0 | 148 | 9419f3448172 | Established |
+| `GetTexDim` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9852e0 | 148 | 9419f3448172 | Established |
+| `GetTexDim` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3218e10 | 148 | 9419f3448172 | Established |
+| `GetTexDim` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21c8e10 | 148 | 9419f3448172 | Established |
+| `GetTexDim` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x21c8e10 | 148 | 9419f3448172 | Established |
+| `__glOdyim_GetTexLevelParameterfv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd985380 | 848 | a5da2a87d6af | Established |
+| `__glOdyim_GetTexLevelParameterfv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd985380 | 848 | a5da2a87d6af | Established |
+| `__glOdyim_GetTexLevelParameteriv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9856d0 | 732 | ab4a36ae46f7 | Established |
+| `__glOdyim_GetTexLevelParameteriv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9856d0 | 732 | ab4a36ae46f7 | Established |
+| `__glOdyim_GetClipPlane` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9859b0 | 232 | e0fc46ae7d05 | Established |
+| `__glOdyim_GetClipPlane` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9859b0 | 232 | e0fc46ae7d05 | Established |
+| `__glOdyGetFromHardware` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd985aa0 | 240 | 3f7e8d19e3ec | Established |
