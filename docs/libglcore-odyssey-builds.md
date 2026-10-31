@@ -79,3 +79,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseySendShadowVertex` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9ef1b0 | 380 | a9db840c08c6 | Established |
 | `__glOdysseySetProgram` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c9ee0 | 1220 | 29f0eda04415 | Established |
 | `__glOdysseySetProgram` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c9ee0 | 1220 | 29f0eda04415 | Established |
+| `__glOdysseyValidateProgram` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c9d90 | 332 | 3ce321b094d1 | Established |
+| `__glOdysseyValidateProgram` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c9d90 | 332 | 3ce321b094d1 | Established |
+| `__glOdysseyTextureActivate` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d1f90 | 1448 | 442445a773b0 | Established |
+| `__glOdysseyTextureActivate` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d1f90 | 1448 | 442445a773b0 | Established |
+| `__glOdysseyTextureDeactivate` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d2540 | 276 | 5fe5ff15c051 | Established |
+| `__glOdysseyTextureDeactivate` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d2540 | 276 | 5fe5ff15c051 | Established |
+| `__glOdysseyValidateTexture` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d26d0 | 1236 | 24aade9642b7 | Established |
+| `__glOdysseyValidateTexture` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d26d0 | 1236 | 24aade9642b7 | Established |
+| `__glOdysseyValidateTextureState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d2bb0 | 1204 | 9ea9dc36b677 | Established |
+| `__glOdysseyValidateTextureState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d2bb0 | 1204 | 9ea9dc36b677 | Established |
+| `__glOdysseyTextureDriverInit` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cf7a0 | 460 | 719a52ce8cec | Established |
+| `__glOdysseyTextureDriverInit` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cf7a0 | 460 | 719a52ce8cec | Established |
