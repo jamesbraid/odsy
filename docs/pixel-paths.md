@@ -337,7 +337,7 @@ address, not the listing's label. No vendor source was read for these three item
 - **established.** The burst's leading operand (block 0x170, word `0x4570`, then the bare word 0x71) is built in
   `SendPixelsAsUserPIO` (0x0d9b9680) from the write header's word 7: bits 4:0 and 8:5 (format and type), 9, 10 and 11
   copied and bit 12 set; the remaining bits are the pixel count of the group (bits 27:24 in the first operand, bits 23:20 and
-  bit 16 in the per-row operands, stores at 0xd9b9864 to 0xd9b9a34 and 0xd9b9900 to 0xd9b9a1c). It has no size field (word 7's
+  bit 16 in the per-row operands; the first group is built at 0xd9b97b0 to 0xd9b9878, later groups at 0xd9b9900 to 0xd9b9994). It has no size field (word 7's
   bits 15:13 are not copied) and no field codes. A depth write and a stencil write both
   carry format 0, type 4 (word 7 low bits 0x080), so their burst operands differ only in the pixel counts.
 - **established.** The plane is selected by write-enable state sent before the burst, not by the burst. The depth download
