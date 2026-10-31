@@ -475,3 +475,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_GetFogFuncSGIS` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987b90 | 112 | 8fef938f63c5 | Established |
 | `__glOdyim_GetFogFuncSGIS` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd987b90 | 112 | 8fef938f63c5 | Established |
 | `__glOdyim_ListParameterfvSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973450 | 236 | c1737b5a69c0 | Established |
+| `__glOdyim_ListParameterfvSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973450 | 236 | c1737b5a69c0 | Established |
+| `__glOdyim_ListParameterfSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973540 | 56 | 54bb812bf200 | Established |
+| `__glOdyim_ListParameterfSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973540 | 56 | 54bb812bf200 | Established |
+| `__glOdyim_ListParameterivSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973580 | 68 | d6578a3c2e26 | Established |
+| `__glOdyim_ListParameterivSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973580 | 68 | d6578a3c2e26 | Established |
+| `__glOdyim_ListParameteriSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9735d0 | 64 | c4acc27b2e21 | Established |
+| `__glOdyim_ListParameteriSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9735d0 | 64 | c4acc27b2e21 | Established |
+| `__glOdyim_GetListParameterfvSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973610 | 204 | 36b9b2ded175 | Established |
+| `__glOdyim_GetListParameterfvSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973610 | 204 | 36b9b2ded175 | Established |
+| `__glOdyim_GetListParameterivSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9736e0 | 92 | b7ae09681de0 | Established |
+| `__glOdyim_GetListParameterivSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9736e0 | 92 | b7ae09681de0 | Established |
+| `__glOdysseyDlistOptimizer` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973740 | 8 | 78aa5094d5ec | Established |
