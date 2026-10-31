@@ -17,7 +17,7 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32, `$gp` resolved with `
 - `rrmUndoubleBufferWindow` (`usr/lib/X11/dyDDX/odyssey.so`, 0x161bda0, 8 bytes): **established.**
   Returns at once: the routine is `jr ra` at 0x161bda0 followed by a no-op at 0x161bda4 and reads or changes no window or board state.
 - `odsyScanAudioInventory..K` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15931e0, 36 bytes): **established.**
-  Tests one record: when the word at +4 of the first argument is 10 it stores 0 through the second argument and returns 1 (`li v0,1` at 0x15931fc), otherwise it returns 0 at 0x15931f4 and stores nothing.
+  Tests one record: when the word at +4 of the first argument is 10 it stores 0 through the second argument and returns 1 (`li v0,1` at 0x1593200, the delay slot of the `jr ra` at 0x15931fc), otherwise it returns 0 at 0x15931f4 and stores nothing.
 - `odsySetColor` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ffb80, 56 bytes): **established.**
   Guard against a call that must not happen: it prints "odsySetColor: should not be called." with `ErrorF` (the call at 0x16ffba0) and returns; it sets no colour and touches no board register.
 - `odsyInitWindowType` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1631730, 80 bytes): **established.**

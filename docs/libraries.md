@@ -21,7 +21,7 @@ These six entries describe the files of `builds/6.5.30-media`; the files in the 
 - `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so`: **inferred.**
   The 64-bit GLX client library, 567424 bytes, 673 functions and 651 exports. Its addresses are small (`glXMakeCurrent` at 0x55a41cc, 60 bytes; `glXCreateContext` at 0x55b7ac4, 76 bytes; `glXSwapBuffers` at 0x55b88cc, 356 bytes; `glXChooseVisual` at 0x55b9324, 6352 bytes; `__glXInit` at 0x5592b48, 460 bytes) because the 64-bit linker places it low. Its DWARF line addresses are stale, so these come from the dynamic table.
 - `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so`: **inferred.**
-  The 64-bit renderer, 4138224 bytes, 5137 functions and 4667 exports, the fewest of the three. `__glOdysseyCreateContext` is at 0x32007b0 and 10812 bytes long, `__glOdysseyValidateHardware` at 0x31fc4a0 (5028 bytes), `__glOdysseyClear` at 0x31f8e30 (2008 bytes) and `__glOdysseyDlistInterpret` at 0x32060f0 (620 bytes); it carries 403771 bytes of DWARF.
+  The 64-bit renderer, 4138224 bytes, 5137 functions and 4667 exports, the fewest of the three. `__glOdysseyCreateContext` is at 0x21b07b0 and 10812 bytes long, `__glOdysseyValidateHardware` at 0x21ac4a0 (5028 bytes), `__glOdysseyClear` at 0x21a8e30 (2008 bytes) and `__glOdysseyDlistInterpret` at 0x21b60f0 (620 bytes); it carries 403771 bytes of DWARF.
 
 ## Data for the other copies
 
@@ -47,7 +47,7 @@ One row per file. Columns: the file, its label, its role, ABI, size in bytes, by
 | `usr/gfx/arch/IP30ODSY32/libGL.so` | established | GLX client library | above the renderer | no direct access | N32 | 516508 | 215052 | 652 | 0 | 83 | 148 | 673 | - | - | `glXCreateContext` at 0xd832f24 |
 | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | N32 | 3812732 | 1656380 | 4750 | 268 | 0 | 40 | 5216 | - | - | `__glOdysseyCreateContext` at 0xd96c610 |
 | `usr/gfx/arch/IP30ODSY64/libGL.so` | established | GLX client library | above the renderer | no direct access | 64-bit | 567424 | 215116 | 651 | 0 | 83 | 148 | 673 | - | - | `glXCreateContext` at 0x55b7ac4 |
-| `usr/gfx/arch/IP30ODSY64/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | 64-bit | 4138224 | 1671168 | 4667 | 268 | 0 | 40 | 5137 | - | - | `__glOdysseyCreateContext` at 0x32007b0 |
+| `usr/gfx/arch/IP30ODSY64/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | 64-bit | 4138224 | 1671168 | 4667 | 268 | 0 | 40 | 5137 | - | - | `__glOdysseyCreateContext` at 0x21b07b0 |
 
 The installed files differ from the media files of the same name only in bytes of link-time tables: 68 bytes in the o32 `libGL.so` (6 in `.dynamic`, 16 in `.liblist`, 46 in `.got`), 151 in the N32 one, 37 in the o32 `libGLcore.so` and 115 in the N32 one (the library list holds the time stamps and checksums of the libraries each file was linked against), and many more in the two 64-bit files, whose dynamic symbol, relocation, data and debug tables were laid out again (13492 and 74932 differing bytes) while the function code is the same by name.
 
