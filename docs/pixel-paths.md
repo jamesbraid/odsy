@@ -594,13 +594,16 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
   `SendPixelsAsUserPIO` (0x0d9b9680) reads it back (`context +0x9704 & 0x3ff`) as the tag of every burst word it emits
   (`0x14000 | tag | (words - words/16) << 10`).
 - **established**, by running the routine for every format, type and destination pixel class (`scripts/write_burst_sweep.py`):
-  - tag `0x10` for 1-byte index (`0x41`) and 16-bit index (`0x61`) sources into every class, and for luminance and
-    luminance-alpha (`0x42`, `0x48`, `0x62`, `0x68`) into the classes that do not set the expand flag (0 to 6, 9, 14 to 17);
-  - tag `0x11` for `0x42` and `0x48` into the expand classes (7, 8, 10, 11, 12 and 13), and for the byte forms of RED, GREEN,
-    BLUE, ALPHA, INTENSITY, RGB, BGR, RGBA, ABGR and BGRA (`0x43` to `0x4d`, `0x16c`);
-  - tag `0x12` for `0x62` and `0x68` into the expand classes, and for every 16-bit and wider-component form of the colour
-    channels (`0x63` to `0x6d`, `0x80` to `0x8d`, `0x10b`, `0x10c`).
-  The tag therefore follows the expand flag for luminance: byte sources 0x10 or 0x11, 16-bit sources 0x10 or 0x12.
+  - tag `0x10` for 1-byte index (`0x41`) and 16-bit index (`0x61`) sources, accepted only into classes 1, 2 and 4 to 17, and for
+    `0x80` and `0x81` (index, depth and stencil with `UNSIGNED_INT`) into every class that accepts them;
+  - class-dependent, `0x11` into the expand classes (7, 8, 10, 11, 12 and 13) and `0x10` into the others (0 to 6, 9, 14 to 17), for the
+    byte forms `0x42`, `0x43` and `0x48`;
+  - class-dependent, `0x12` into the expand classes and `0x10` into the others, for `0x62`, `0x63`, `0x68`, `0x82`, `0x83` and `0x88`;
+  - tag `0x11` for the other byte forms (`0x44` to `0x47`, `0x49`, `0x4b` to `0x4d`, `0x50`, `0x51`, `0x16c`) and `0x12` for the other
+    wider forms (`0x64` to `0x67`, `0x69`, `0x6b` to `0x6d`, `0x84` to `0x87`, `0x89`, `0x8b` to `0x8d`, `0x10b`, `0x10c`, `0x110`, `0x111`),
+    into every class that accepts them.
+  The sweep runs on a zeroed context. Which classes are RGBA windows is **inferred**; only class 10 is shown to be RGBA8.
+  The tag follows the expand flag for luminance and intensity: byte sources 0x10 or 0x11, wider sources 0x10 or 0x12.
 - **established** (`SendPixelsAsUserPIO`): the sender copies host words as 32-bit loads and stores. The bytes the board
   sees are the host image's bytes in memory order, so on this big-endian host the first of two 16-bit components sits in the
   high half of a word, and a byte pair `L, A` fills two adjacent bytes. A `0x68` pixel is one word; a `0x62` pixel is half a word.
@@ -670,4 +673,6 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
 - **established** (`DMAtoHost`, 0x0d9bbf70): the direct DMA read path does the same `max(..)` stride and then rounds it up to the pack alignment
   for client memory, giving 80. So a direct read and a converted read of the same `RGB`/`SHORT` rectangle leave rows 80 and 78
   bytes apart; both are the library's own arithmetic, independent of the board's reply.
-- **inferred**: that `ConvertHostImage`'s strides are the row steps of its span loops (the loops were not read).
+- **established**: the per-row loop of `ConvertHostImage` (0x0d9aa4d0 to 0x0d9aa55c) advances its two row pointers by exactly those
+  two strides, doubling the step only when byte 28 of the user image is set (zero for a read). The mismatch needs an odd width at
+  pack alignment 4; a 12-pixel row is 72 bytes under both rules.
