@@ -235,3 +235,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `DoMipmapHackHW` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d1b30 | 644 | 101e104467e7 | Established |
 | `DoMipmapHackHW` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d1b30 | 644 | 101e104467e7 | Established |
 | `DoMipmapHack` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d1dc0 | 452 | 0d5ff26fffeb | Established |
+| `DoMipmapHack` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d1dc0 | 452 | 0d5ff26fffeb | Established |
+| `LoadAndSendStippledQuads` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95f560 | 2140 | 4531965207d1 | Established |
+| `LoadAndSendStippledQuads` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95f560 | 2140 | 4531965207d1 | Established |
+| `DrawBitmapUsingPolyStipple` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95fdc0 | 2784 | 9b6275bfd997 | Established |
+| `DrawBitmapUsingPolyStipple` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95fdc0 | 2784 | 9b6275bfd997 | Established |
+| `__glOdysseyRenderBitmap` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9608a0 | 232 | 35281d71b1da | Established |
+| `__glOdysseyRenderBitmap` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9608a0 | 232 | 35281d71b1da | Established |
+| `__glOdyim_Bitmap` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd960990 | 260 | 7af39bfc8084 | Established |
+| `__glOdyim_Bitmap` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd960990 | 260 | 7af39bfc8084 | Established |
+| `__glOdyim_Enable` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd956bc0 | 4920 | 01031b81a93f | Established |
+| `__glOdyim_Enable` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd956bc0 | 4920 | 01031b81a93f | Established |
+| `__glOdyim_Disable` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95dc70 | 5256 | 585317ae28cf | Established |
