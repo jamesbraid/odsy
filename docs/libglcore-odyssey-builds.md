@@ -115,3 +115,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `ValidateLight` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c2ae0 | 776 | 46cfe56f96b8 | Established |
 | `ValidateLightColor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c2df0 | 672 | 8d0eaf35912a | Established |
 | `ValidateLightColor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c2df0 | 672 | 8d0eaf35912a | Established |
+| `ValidateFragmentLightColor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c3090 | 1008 | aa532f58f4a6 | Established |
+| `ValidateFragmentLightColor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c3090 | 1008 | aa532f58f4a6 | Established |
+| `__glOdysseyInitLighting` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c2230 | 856 | 39d2b8e9a6dd | Established |
+| `__glOdysseyInitLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c2230 | 856 | 39d2b8e9a6dd | Established |
+| `__glOdysseyComputeLightState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9f0bc0 | 764 | 0909844f8232 | Established |
+| `__glOdysseyComputeLightState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9f0bc0 | 764 | 0909844f8232 | Established |
+| `__glOdysseyValidateFragment` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9821a0 | 760 | 10736c95818b | Established |
+| `__glOdysseyValidateFragment` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9821a0 | 760 | 10736c95818b | Established |
+| `ValidateFragmentColorMaterial` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd981fc0 | 468 | b469c1d09bff | Established |
+| `ValidateFragmentColorMaterial` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd981fc0 | 468 | b469c1d09bff | Established |
+| `__glOdysseyInitFragmentLighting` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9851c0 | 80 | d3f9dd643482 | Established |
+| `__glOdysseyInitFragmentLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9851c0 | 80 | d3f9dd643482 | Established |
