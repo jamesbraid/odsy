@@ -2705,7 +2705,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3a
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ad48	148	__glim_ClearIndex	dynsym+mdebug	4194909fbe5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3addc	132	__glim_ClearStencil	dynsym+mdebug	997b660fea08		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ae60	152	__glim_ColorMask	dynsym+mdebug	4ce0a8cc308e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_ColorMaterial	dynsym+mdebug	381ce97cf5bb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_ColorMaterial	dynsym+mdebug	381ce97cf5bb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b00c	164	__glim_CullFace	dynsym+mdebug	e5e944e7428c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b0b0	372	__glim_DepthFunc	dynsym+mdebug	a71753ac9807		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_DepthMask	dynsym+mdebug	adbf7842df47		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -2739,12 +2739,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3d514	80	RoundSize	mdebug	305960ab5488		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3d564	26392	ClampSize	mdebug	e2c4a42f64b0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d5e0	228	__glim_PointSize	dynsym+mdebug	73b9d2206955		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d6c4	300	__glim_PolygonMode	dynsym+mdebug	d91ecc18b6be		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d6c4	300	__glim_PolygonMode	dynsym+mdebug	d91ecc18b6be		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d7f0	188	__glim_PolygonStipple	dynsym+mdebug	b59d154c403a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d8ac	152	__glim_ShadeModel	dynsym+mdebug	720661bcc335		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d944	144	__glim_StencilMask	dynsym+mdebug	828b57e535d0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d9d4	216	__glim_StencilFunc	dynsym+mdebug	a6c5a22b78cb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3daac	360	__glim_StencilOp	dynsym+mdebug	f57e705cff1b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3daac	360	__glim_StencilOp	dynsym+mdebug	f57e705cff1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3dc14	2924	__glCopyContext	dynsym+mdebug	274135c4697a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3e780	2124	__glim_PushAttrib	dynsym+mdebug	a5f2cd1695c8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3efcc	3476	__glim_PopAttrib	dynsym+mdebug	a0906d9d3d08		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -8542,7 +8542,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23730	136	__glim_ClearIndex	dwarf+dynsym	b991f2a0ddd1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda237c0	124	__glim_ClearStencil	dwarf+dynsym	70b74c2640d9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23840	120	__glim_ColorMask	dwarf+dynsym	f97e2d70b121		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_ColorMaterial	dwarf+dynsym	e301becc2327		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_ColorMaterial	dwarf+dynsym	e301becc2327		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda239d0	156	__glim_CullFace	dwarf+dynsym	cc8bd640c7d3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23a70	408	__glim_DepthFunc	dwarf+dynsym	32c837768ce9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_DepthMask	dwarf+dynsym	6e586692e96b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -8576,12 +8576,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d30	44	RoundSize	dwarf+funcnames	5ed2359b62bb		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d60	80	ClampSize	dwarf+funcnames	94eea4954023		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25db0	212	__glim_PointSize	dwarf+dynsym	b69aa42f1ed1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25e90	268	__glim_PolygonMode	dwarf+dynsym	5766f0f8b5fd		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25e90	268	__glim_PolygonMode	dwarf+dynsym	5766f0f8b5fd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25fa0	168	__glim_PolygonStipple	dwarf+dynsym	b235e540fe1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26050	152	__glim_ShadeModel	dwarf+dynsym	03e527ce2c69		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda260f0	136	__glim_StencilMask	dwarf+dynsym	39ba16cf177a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26180	208	__glim_StencilFunc	dwarf+dynsym	bc8bcd123e5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26250	340	__glim_StencilOp	dwarf+dynsym	e68216bca1fc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26250	340	__glim_StencilOp	dwarf+dynsym	e68216bca1fc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda263b0	3372	__glCopyContext	dwarf+dynsym	05044c5dea7f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda270e0	2564	__glim_PushAttrib	dwarf+dynsym	220c854394bf		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda27af0	3820	__glim_PopAttrib	dwarf+dynsym	13a83b6f866f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -14432,7 +14432,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268950	144	__glim_ClearIndex	dwarf+dynsym	b281caf6187e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22689e0	124	__glim_ClearStencil	dwarf+dynsym	c987646ab1fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268a60	120	__glim_ColorMask	dwarf+dynsym	5161d2262a66		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268ae0	260	__glim_ColorMaterial	dwarf+dynsym	6e096da2cb37		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268ae0	260	__glim_ColorMaterial	dwarf+dynsym	6e096da2cb37		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268bf0	156	__glim_CullFace	dwarf+dynsym	ee2591415fb3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268c90	436	__glim_DepthFunc	dwarf+dynsym	ee7c0050f18a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268e50	204	__glim_DepthMask	dwarf+dynsym	940fcfe53810		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14466,12 +14466,12 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226af70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226afa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226aff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b1d0	168	__glim_PolygonStipple	dwarf+dynsym	f9072fc4a620		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b280	152	__glim_ShadeModel	dwarf+dynsym	35fa21627e92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b320	136	__glim_StencilMask	dwarf+dynsym	8262838a76e9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b3b0	208	__glim_StencilFunc	dwarf+dynsym	508f515bf57a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b480	340	__glim_StencilOp	dwarf+dynsym	6f9356d51ee8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b480	340	__glim_StencilOp	dwarf+dynsym	6f9356d51ee8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b5e0	3268	__glCopyContext	dwarf+dynsym	82a60860e089		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226c2b0	2432	__glim_PushAttrib	dwarf+dynsym	345ad741f060		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226cc30	3704	__glim_PopAttrib	dwarf+dynsym	dd8bb15297cd		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -20469,7 +20469,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a5b8	148	__glim_ClearIndex	dynsym+mdebug	c7a4d22e2c9e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a64c	132	__glim_ClearStencil	dynsym+mdebug	a9329c4ff5a2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a6d0	152	__glim_ColorMask	dynsym+mdebug	ba8435b5649c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a768	276	__glim_ColorMaterial	dynsym+mdebug	88c0199e8c29		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a768	276	__glim_ColorMaterial	dynsym+mdebug	88c0199e8c29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a87c	164	__glim_CullFace	dynsym+mdebug	33ab8fe04543		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a920	372	__glim_DepthFunc	dynsym+mdebug	dbf32e32236b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0aa94	196	__glim_DepthMask	dynsym+mdebug	cb5ae58b8682		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20503,12 +20503,12 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0cd5c	80	RoundSize	mdebug	03ba7c417558		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0cdac	26416	ClampSize	mdebug	992a9af0f37e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ce28	228	__glim_PointSize	dynsym+mdebug	e26cdc9d95c1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0cf0c	300	__glim_PolygonMode	dynsym+mdebug	95120ffc1893		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0cf0c	300	__glim_PolygonMode	dynsym+mdebug	95120ffc1893		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d038	188	__glim_PolygonStipple	dynsym+mdebug	71a97a950137		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d0f4	152	__glim_ShadeModel	dynsym+mdebug	beb479d85fc8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d18c	144	__glim_StencilMask	dynsym+mdebug	edd2a2961c67		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d21c	216	__glim_StencilFunc	dynsym+mdebug	89b81fade745		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d2f4	360	__glim_StencilOp	dynsym+mdebug	200a2d417e3a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d2f4	360	__glim_StencilOp	dynsym+mdebug	200a2d417e3a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d45c	2940	__glCopyContext	dynsym+mdebug	9ecb8a4339fe		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0dfd8	2140	__glim_PushAttrib	dynsym+mdebug	84a198f78a5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0e834	3496	__glim_PopAttrib	dynsym+mdebug	463e038e5ec3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -26416,7 +26416,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00f60	132	__glim_ClearIndex	dynsym	e5fbb301fe5f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00ff0	120	__glim_ClearStencil	dynsym	2baf2bbc4255		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01070	116	__glim_ColorMask	dynsym	507fc3909711		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb010f0	292	__glim_ColorMaterial	dynsym	539894694700		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb010f0	292	__glim_ColorMaterial	dynsym	539894694700		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01220	160	__glim_CullFace	dynsym	d1eee6d902fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb012c0	420	__glim_DepthFunc	dynsym	fd1eeab0e41f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01470	196	__glim_DepthMask	dynsym	cd234d768aaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26446,12 +26446,12 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb034d0	408	__glim_Materialiv	dynsym	a30b0ffeb0d0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03670	92	__glim_Materiali	dynsym	b659da1a5bb2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03750	232	__glim_PointSize	dynsym	184859a3662c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03840	284	__glim_PolygonMode	dynsym	0eac42d08c73		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03840	284	__glim_PolygonMode	dynsym	0eac42d08c73		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03960	164	__glim_PolygonStipple	dynsym	3638572af31c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03a10	152	__glim_ShadeModel	dynsym	f9750232bfd3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03ab0	132	__glim_StencilMask	dynsym	1da5e597972b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03b40	204	__glim_StencilFunc	dynsym	492a4d102318		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03c10	376	__glim_StencilOp	dynsym	380a355c5a89		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03c10	376	__glim_StencilOp	dynsym	380a355c5a89		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03d90	2680	__glCopyContext	dynsym	5aec57c43880		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb04810	1996	__glim_PushAttrib	dynsym	7f0636199d6e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb04fe0	3164	__glim_PopAttrib	dynsym	4641a972638c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -32028,7 +32028,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7100	140	__glim_ClearIndex	dwarf+dynsym	84afb9c948c1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7190	120	__glim_ClearStencil	dwarf+dynsym	c3d065ef0a92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7210	116	__glim_ColorMask	dwarf+dynsym	dee63cf3a29d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7290	292	__glim_ColorMaterial	dwarf+dynsym	385e14f1cb30		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7290	292	__glim_ColorMaterial	dwarf+dynsym	385e14f1cb30		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e73c0	160	__glim_CullFace	dwarf+dynsym	1fde33bcd90d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7460	440	__glim_DepthFunc	dwarf+dynsym	db29a1021b03		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e7620	200	__glim_DepthMask	dwarf+dynsym	21206c77f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32062,12 +32062,12 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e98b0	44	RoundSize	dwarf	5b3ac9167c7c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3e98e0	80	ClampSize	dwarf	35c72c6aeea9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9930	232	__glim_PointSize	dwarf+dynsym	9e94d9931183		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9a20	284	__glim_PolygonMode	dwarf+dynsym	8eb3d378dad3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9a20	284	__glim_PolygonMode	dwarf+dynsym	8eb3d378dad3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9b40	164	__glim_PolygonStipple	dwarf+dynsym	7d983730f29f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9bf0	152	__glim_ShadeModel	dwarf+dynsym	544948666213		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9c90	132	__glim_StencilMask	dwarf+dynsym	6930ea44cae6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9d20	204	__glim_StencilFunc	dwarf+dynsym	3f13ad4021d7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9df0	376	__glim_StencilOp	dwarf+dynsym	44c53f25d3c1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9df0	376	__glim_StencilOp	dwarf+dynsym	44c53f25d3c1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3e9f70	2704	__glCopyContext	dwarf+dynsym	81f0da3ee3b8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eaa00	2012	__glim_PushAttrib	dwarf+dynsym	11b6e9093923		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3eb1e0	3200	__glim_PopAttrib	dwarf+dynsym	6e1008a6b775		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -38045,7 +38045,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a5b8	148	__glim_ClearIndex	dynsym+mdebug	c7a4d22e2c9e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a64c	132	__glim_ClearStencil	dynsym+mdebug	a9329c4ff5a2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a6d0	152	__glim_ColorMask	dynsym+mdebug	ba8435b5649c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a768	276	__glim_ColorMaterial	dynsym+mdebug	88c0199e8c29		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a768	276	__glim_ColorMaterial	dynsym+mdebug	88c0199e8c29		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a87c	164	__glim_CullFace	dynsym+mdebug	33ab8fe04543		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0a920	372	__glim_DepthFunc	dynsym+mdebug	dbf32e32236b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0aa94	196	__glim_DepthMask	dynsym+mdebug	cb5ae58b8682		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38079,12 +38079,12 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0cd5c	80	RoundSize	mdebug	03ba7c417558		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb0cdac	26416	ClampSize	mdebug	992a9af0f37e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0ce28	228	__glim_PointSize	dynsym+mdebug	e26cdc9d95c1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0cf0c	300	__glim_PolygonMode	dynsym+mdebug	95120ffc1893		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0cf0c	300	__glim_PolygonMode	dynsym+mdebug	95120ffc1893		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d038	188	__glim_PolygonStipple	dynsym+mdebug	71a97a950137		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d0f4	152	__glim_ShadeModel	dynsym+mdebug	beb479d85fc8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d18c	144	__glim_StencilMask	dynsym+mdebug	edd2a2961c67		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d21c	216	__glim_StencilFunc	dynsym+mdebug	89b81fade745		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d2f4	360	__glim_StencilOp	dynsym+mdebug	200a2d417e3a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d2f4	360	__glim_StencilOp	dynsym+mdebug	200a2d417e3a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0d45c	2940	__glCopyContext	dynsym+mdebug	9ecb8a4339fe		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0dfd8	2140	__glim_PushAttrib	dynsym+mdebug	84a198f78a5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb0e834	3496	__glim_PopAttrib	dynsym+mdebug	463e038e5ec3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -43992,7 +43992,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00f60	132	__glim_ClearIndex	dynsym	e5fbb301fe5f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb00ff0	120	__glim_ClearStencil	dynsym	2baf2bbc4255		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01070	116	__glim_ColorMask	dynsym	507fc3909711		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb010f0	292	__glim_ColorMaterial	dynsym	539894694700		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb010f0	292	__glim_ColorMaterial	dynsym	539894694700		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01220	160	__glim_CullFace	dynsym	d1eee6d902fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb012c0	420	__glim_DepthFunc	dynsym	fd1eeab0e41f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb01470	196	__glim_DepthMask	dynsym	cd234d768aaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -44022,12 +44022,12 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb034d0	408	__glim_Materialiv	dynsym	a30b0ffeb0d0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03670	92	__glim_Materiali	dynsym	b659da1a5bb2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03750	232	__glim_PointSize	dynsym	184859a3662c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03840	284	__glim_PolygonMode	dynsym	0eac42d08c73		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03840	284	__glim_PolygonMode	dynsym	0eac42d08c73		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03960	164	__glim_PolygonStipple	dynsym	3638572af31c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03a10	152	__glim_ShadeModel	dynsym	f9750232bfd3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03ab0	132	__glim_StencilMask	dynsym	1da5e597972b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03b40	204	__glim_StencilFunc	dynsym	492a4d102318		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03c10	376	__glim_StencilOp	dynsym	380a355c5a89		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03c10	376	__glim_StencilOp	dynsym	380a355c5a89		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb03d90	2680	__glCopyContext	dynsym	5aec57c43880		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb04810	1996	__glim_PushAttrib	dynsym	7f0636199d6e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb04fe0	3164	__glim_PopAttrib	dynsym	4641a972638c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -49604,7 +49604,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07100	140	__glim_ClearIndex	dwarf+dynsym	84afb9c948c1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07190	120	__glim_ClearStencil	dwarf+dynsym	c3d065ef0a92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07210	116	__glim_ColorMask	dwarf+dynsym	dee63cf3a29d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07290	292	__glim_ColorMaterial	dwarf+dynsym	385e14f1cb30		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07290	292	__glim_ColorMaterial	dwarf+dynsym	385e14f1cb30		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe073c0	160	__glim_CullFace	dwarf+dynsym	1fde33bcd90d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07460	440	__glim_DepthFunc	dwarf+dynsym	db29a1021b03		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe07620	200	__glim_DepthMask	dwarf+dynsym	21206c77f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49638,12 +49638,12 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe098b0	44	RoundSize	dwarf	5b3ac9167c7c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe098e0	80	ClampSize	dwarf	35c72c6aeea9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09930	232	__glim_PointSize	dwarf+dynsym	9e94d9931183		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09a20	284	__glim_PolygonMode	dwarf+dynsym	8eb3d378dad3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09a20	284	__glim_PolygonMode	dwarf+dynsym	8eb3d378dad3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09b40	164	__glim_PolygonStipple	dwarf+dynsym	7d983730f29f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09bf0	152	__glim_ShadeModel	dwarf+dynsym	544948666213		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09c90	132	__glim_StencilMask	dwarf+dynsym	6930ea44cae6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09d20	204	__glim_StencilFunc	dwarf+dynsym	3f13ad4021d7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09df0	376	__glim_StencilOp	dwarf+dynsym	44c53f25d3c1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09df0	376	__glim_StencilOp	dwarf+dynsym	44c53f25d3c1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe09f70	2704	__glCopyContext	dwarf+dynsym	81f0da3ee3b8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0aa00	2012	__glim_PushAttrib	dwarf+dynsym	11b6e9093923		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe0b1e0	3200	__glim_PopAttrib	dwarf+dynsym	6e1008a6b775		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -69756,7 +69756,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ac9c	172	__glim_Clear
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ad48	148	__glim_ClearIndex	dynsym+mdebug	4194909fbe5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3addc	132	__glim_ClearStencil	dynsym+mdebug	997b660fea08		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3ae60	152	__glim_ColorMask	dynsym+mdebug	4ce0a8cc308e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_ColorMaterial	dynsym+mdebug	381ce97cf5bb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_ColorMaterial	dynsym+mdebug	381ce97cf5bb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b00c	164	__glim_CullFace	dynsym+mdebug	e5e944e7428c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b0b0	372	__glim_DepthFunc	dynsym+mdebug	a71753ac9807		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_DepthMask	dynsym+mdebug	adbf7842df47		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -69790,12 +69790,12 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d4b4	96	__glim_Materi
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3d514	80	RoundSize	mdebug	305960ab5488		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3d564	26392	ClampSize	mdebug	e2c4a42f64b0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d5e0	228	__glim_PointSize	dynsym+mdebug	73b9d2206955		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d6c4	300	__glim_PolygonMode	dynsym+mdebug	d91ecc18b6be		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d6c4	300	__glim_PolygonMode	dynsym+mdebug	d91ecc18b6be		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d7f0	188	__glim_PolygonStipple	dynsym+mdebug	b59d154c403a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d8ac	152	__glim_ShadeModel	dynsym+mdebug	720661bcc335		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d944	144	__glim_StencilMask	dynsym+mdebug	828b57e535d0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3d9d4	216	__glim_StencilFunc	dynsym+mdebug	a6c5a22b78cb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3daac	360	__glim_StencilOp	dynsym+mdebug	f57e705cff1b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3daac	360	__glim_StencilOp	dynsym+mdebug	f57e705cff1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3dc14	2924	__glCopyContext	dynsym+mdebug	274135c4697a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3e780	2124	__glim_PushAttrib	dynsym+mdebug	a5f2cd1695c8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda3efcc	3476	__glim_PopAttrib	dynsym+mdebug	a0906d9d3d08		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -75593,7 +75593,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda236a0	132	__glim_Cle
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23730	136	__glim_ClearIndex	dwarf+dynsym	b991f2a0ddd1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda237c0	124	__glim_ClearStencil	dwarf+dynsym	70b74c2640d9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23840	120	__glim_ColorMask	dwarf+dynsym	f97e2d70b121		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_ColorMaterial	dwarf+dynsym	e301becc2327		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_ColorMaterial	dwarf+dynsym	e301becc2327		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda239d0	156	__glim_CullFace	dwarf+dynsym	cc8bd640c7d3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23a70	408	__glim_DepthFunc	dwarf+dynsym	32c837768ce9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_DepthMask	dwarf+dynsym	6e586692e96b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75627,12 +75627,12 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25cd0	84	__glim_Mate
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d30	44	RoundSize	dwarf+funcnames	5ed2359b62bb		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda25d60	80	ClampSize	dwarf+funcnames	94eea4954023		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25db0	212	__glim_PointSize	dwarf+dynsym	b69aa42f1ed1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25e90	268	__glim_PolygonMode	dwarf+dynsym	5766f0f8b5fd		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25e90	268	__glim_PolygonMode	dwarf+dynsym	5766f0f8b5fd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda25fa0	168	__glim_PolygonStipple	dwarf+dynsym	b235e540fe1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26050	152	__glim_ShadeModel	dwarf+dynsym	03e527ce2c69		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda260f0	136	__glim_StencilMask	dwarf+dynsym	39ba16cf177a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26180	208	__glim_StencilFunc	dwarf+dynsym	bc8bcd123e5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26250	340	__glim_StencilOp	dwarf+dynsym	e68216bca1fc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda26250	340	__glim_StencilOp	dwarf+dynsym	e68216bca1fc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda263b0	3372	__glCopyContext	dwarf+dynsym	05044c5dea7f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda270e0	2564	__glim_PushAttrib	dwarf+dynsym	220c854394bf		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda27af0	3820	__glim_PopAttrib	dwarf+dynsym	13a83b6f866f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81483,7 +81483,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b88c0	132	__glim_Cle
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8950	144	__glim_ClearIndex	dwarf+dynsym	b281caf6187e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b89e0	124	__glim_ClearStencil	dwarf+dynsym	c987646ab1fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8a60	120	__glim_ColorMask	dwarf+dynsym	5161d2262a66		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8ae0	260	__glim_ColorMaterial	dwarf+dynsym	6e096da2cb37		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8ae0	260	__glim_ColorMaterial	dwarf+dynsym	6e096da2cb37		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8bf0	156	__glim_CullFace	dwarf+dynsym	ee2591415fb3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8c90	436	__glim_DepthFunc	dwarf+dynsym	ee7c0050f18a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8e50	204	__glim_DepthMask	dwarf+dynsym	940fcfe53810		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81517,12 +81517,12 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baf10	84	__glim_Mate
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32baf70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32bafa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb1d0	168	__glim_PolygonStipple	dwarf+dynsym	f9072fc4a620		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb280	152	__glim_ShadeModel	dwarf+dynsym	35fa21627e92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb320	136	__glim_StencilMask	dwarf+dynsym	8262838a76e9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb3b0	208	__glim_StencilFunc	dwarf+dynsym	508f515bf57a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb480	340	__glim_StencilOp	dwarf+dynsym	6f9356d51ee8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb480	340	__glim_StencilOp	dwarf+dynsym	6f9356d51ee8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb5e0	3268	__glCopyContext	dwarf+dynsym	82a60860e089		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bc2b0	2432	__glim_PushAttrib	dwarf+dynsym	345ad741f060		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bcc30	3704	__glim_PopAttrib	dwarf+dynsym	dd8bb15297cd		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -87295,7 +87295,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3ac9c	172	__glim_Clear
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3ad48	148	__glim_ClearIndex	dynsym+mdebug	4194909fbe5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3addc	132	__glim_ClearStencil	dynsym+mdebug	997b660fea08		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3ae60	152	__glim_ColorMask	dynsym+mdebug	4ce0a8cc308e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_ColorMaterial	dynsym+mdebug	381ce97cf5bb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3aef8	276	__glim_ColorMaterial	dynsym+mdebug	381ce97cf5bb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b00c	164	__glim_CullFace	dynsym+mdebug	e5e944e7428c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b0b0	372	__glim_DepthFunc	dynsym+mdebug	a71753ac9807		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3b224	196	__glim_DepthMask	dynsym+mdebug	adbf7842df47		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87329,12 +87329,12 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d4b4	96	__glim_Materi
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda3d514	80	RoundSize	mdebug	305960ab5488		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda3d564	26392	ClampSize	mdebug	e2c4a42f64b0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d5e0	228	__glim_PointSize	dynsym+mdebug	73b9d2206955		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d6c4	300	__glim_PolygonMode	dynsym+mdebug	d91ecc18b6be		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d6c4	300	__glim_PolygonMode	dynsym+mdebug	d91ecc18b6be		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d7f0	188	__glim_PolygonStipple	dynsym+mdebug	b59d154c403a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d8ac	152	__glim_ShadeModel	dynsym+mdebug	720661bcc335		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d944	144	__glim_StencilMask	dynsym+mdebug	828b57e535d0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3d9d4	216	__glim_StencilFunc	dynsym+mdebug	a6c5a22b78cb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3daac	360	__glim_StencilOp	dynsym+mdebug	f57e705cff1b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3daac	360	__glim_StencilOp	dynsym+mdebug	f57e705cff1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3dc14	2924	__glCopyContext	dynsym+mdebug	274135c4697a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3e780	2124	__glim_PushAttrib	dynsym+mdebug	a5f2cd1695c8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda3efcc	3476	__glim_PopAttrib	dynsym+mdebug	a0906d9d3d08		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -93132,7 +93132,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda236a0	132	__glim_Cle
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23730	136	__glim_ClearIndex	dwarf+dynsym	b991f2a0ddd1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda237c0	124	__glim_ClearStencil	dwarf+dynsym	70b74c2640d9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23840	120	__glim_ColorMask	dwarf+dynsym	f97e2d70b121		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_ColorMaterial	dwarf+dynsym	e301becc2327		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda238c0	260	__glim_ColorMaterial	dwarf+dynsym	e301becc2327		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda239d0	156	__glim_CullFace	dwarf+dynsym	cc8bd640c7d3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23a70	408	__glim_DepthFunc	dwarf+dynsym	32c837768ce9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda23c10	200	__glim_DepthMask	dwarf+dynsym	6e586692e96b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93166,12 +93166,12 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25cd0	84	__glim_Mate
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda25d30	44	RoundSize	dwarf+funcnames	5ed2359b62bb		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda25d60	80	ClampSize	dwarf+funcnames	94eea4954023		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25db0	212	__glim_PointSize	dwarf+dynsym	b69aa42f1ed1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25e90	268	__glim_PolygonMode	dwarf+dynsym	5766f0f8b5fd		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25e90	268	__glim_PolygonMode	dwarf+dynsym	5766f0f8b5fd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda25fa0	168	__glim_PolygonStipple	dwarf+dynsym	b235e540fe1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda26050	152	__glim_ShadeModel	dwarf+dynsym	03e527ce2c69		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda260f0	136	__glim_StencilMask	dwarf+dynsym	39ba16cf177a		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda26180	208	__glim_StencilFunc	dwarf+dynsym	bc8bcd123e5d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda26250	340	__glim_StencilOp	dwarf+dynsym	e68216bca1fc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda26250	340	__glim_StencilOp	dwarf+dynsym	e68216bca1fc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda263b0	3372	__glCopyContext	dwarf+dynsym	05044c5dea7f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda270e0	2564	__glim_PushAttrib	dwarf+dynsym	220c854394bf		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda27af0	3820	__glim_PopAttrib	dwarf+dynsym	13a83b6f866f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99022,7 +99022,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22688c0	132	__glim_Cle
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268950	144	__glim_ClearIndex	dwarf+dynsym	b281caf6187e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22689e0	124	__glim_ClearStencil	dwarf+dynsym	c987646ab1fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268a60	120	__glim_ColorMask	dwarf+dynsym	5161d2262a66		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268ae0	260	__glim_ColorMaterial	dwarf+dynsym	6e096da2cb37		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268ae0	260	__glim_ColorMaterial	dwarf+dynsym	6e096da2cb37		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268bf0	156	__glim_CullFace	dwarf+dynsym	ee2591415fb3		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268c90	436	__glim_DepthFunc	dwarf+dynsym	ee7c0050f18a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268e50	204	__glim_DepthMask	dwarf+dynsym	940fcfe53810		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99056,12 +99056,12 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226af10	84	__glim_Mate
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226af70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226afa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226aff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b1d0	168	__glim_PolygonStipple	dwarf+dynsym	f9072fc4a620		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b280	152	__glim_ShadeModel	dwarf+dynsym	35fa21627e92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b320	136	__glim_StencilMask	dwarf+dynsym	8262838a76e9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b3b0	208	__glim_StencilFunc	dwarf+dynsym	508f515bf57a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b480	340	__glim_StencilOp	dwarf+dynsym	6f9356d51ee8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b480	340	__glim_StencilOp	dwarf+dynsym	6f9356d51ee8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b5e0	3268	__glCopyContext	dwarf+dynsym	82a60860e089		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226c2b0	2432	__glim_PushAttrib	dwarf+dynsym	345ad741f060		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226cc30	3704	__glim_PopAttrib	dwarf+dynsym	dd8bb15297cd		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
