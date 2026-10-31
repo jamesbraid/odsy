@@ -187,3 +187,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `NewChunkNode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c8070 | 240 | 184389f72b86 | Established |
 | `NewChunkNode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c8070 | 240 | 184389f72b86 | Established |
 | `AllocSpecificCSetId` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c8160 | 360 | 996bdd4ddd81 | Established |
+| `AllocSpecificCSetId` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c8160 | 360 | 996bdd4ddd81 | Established |
+| `LookupCSetId` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c8470 | 108 | 024c7f1f971f | Established |
+| `LookupCSetId` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c8470 | 108 | 024c7f1f971f | Established |
+| `DeallocCSetId` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c8400 | 104 | 84d31a2275d9 | Established |
+| `DeallocCSetId` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c8400 | 104 | 84d31a2275d9 | Established |
+| `NextCSetElem` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c82f0 | 272 | 188836a6499a | Established |
+| `NextCSetElem` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c82f0 | 272 | 188836a6499a | Established |
+| `DestroyCSet` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7f20 | 324 | e7a65ddd067d | Established |
+| `DestroyCSet` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7f20 | 324 | e7a65ddd067d | Established |
+| `AddKnownGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7d90 | 68 | 0263b3e44086 | Established |
+| `AddKnownGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7d90 | 68 | 0263b3e44086 | Established |
+| `RemoveKnownGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7de0 | 212 | 60b2048dd90f | Established |
