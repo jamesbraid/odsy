@@ -487,3 +487,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_GetListParameterivSGIX` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9736e0 | 92 | b7ae09681de0 | Established |
 | `__glOdyim_GetListParameterivSGIX` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9736e0 | 92 | b7ae09681de0 | Established |
 | `__glOdysseyDlistOptimizer` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973740 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973740 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3207150 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b7150 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xda5f980 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xda5f980 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0xb343e10 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0xbd63e10 | 8 | 78aa5094d5ec | Established |
+| `__glOdysseyDlistOptimizer` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x21b7150 | 8 | 78aa5094d5ec | Established |
+| `Bogus` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974980 | 8 | f211f0c174df | Established |
+| `Bogus` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974980 | 8 | f211f0c174df | Established |
+| `Bogus` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x3208390 | 8 | f211f0c174df | Established |
+| `Bogus` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b8390 | 8 | f211f0c174df | Established |
