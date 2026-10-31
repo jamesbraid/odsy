@@ -271,3 +271,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_EvalCoord1d` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976520 | 56 | 0f1f34e37e92 | Established |
 | `__glOdyim_EvalCoord1dv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976560 | 60 | 1356ad9c5b3a | Established |
 | `__glOdyim_EvalCoord1dv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976560 | 60 | 1356ad9c5b3a | Established |
+| `__glOdyim_EvalCoord1f` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9765a0 | 56 | 049b16a90477 | Established |
+| `__glOdyim_EvalCoord1f` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9765a0 | 56 | 049b16a90477 | Established |
+| `__glOdyim_EvalCoord1fv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9765e0 | 60 | c7b16d33743e | Established |
+| `__glOdyim_EvalCoord1fv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9765e0 | 60 | c7b16d33743e | Established |
+| `__glOdyim_EvalCoord2d` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976620 | 64 | 64f591554a67 | Established |
+| `__glOdyim_EvalCoord2d` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976620 | 64 | 64f591554a67 | Established |
+| `__glOdyim_EvalCoord2dv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd976660 | 68 | ce0c7a711fde | Established |
+| `__glOdyim_EvalCoord2dv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976660 | 68 | ce0c7a711fde | Established |
+| `__glOdyim_EvalCoord2f` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9766b0 | 60 | 71339cdde033 | Established |
+| `__glOdyim_EvalCoord2f` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9766b0 | 60 | 71339cdde033 | Established |
+| `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9766f0 | 64 | 181adc59842b | Established |
+| `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9766f0 | 64 | 181adc59842b | Established |
