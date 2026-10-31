@@ -60,6 +60,18 @@ Words compared: the number of instruction words in the routine, in N32 and in th
 | `ComputeNormal2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977d10 | 100 | 25 of 25 equal | 673aa399880c | Established |
 | `DoEvalCoord2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97c610 | 1484 | 371 of 371 equal | 839edc08cc3c | Established |
 | `DoEvalCoord2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97c610 | 1484 | 371 of 371 equal | 839edc08cc3c | Established |
+| `sendChange` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97ced0 | 304 | 76 of 76 equal | 0ad41edb63cb | Established |
+| `sendChange` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97ced0 | 304 | 76 of 76 equal | 0ad41edb63cb | Established |
+| `ApplyParameterF` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c470 | 1168 | 292 of 292 equal | 1baf0b861e4b | Established |
+| `ApplyParameterF` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c470 | 1168 | 292 of 292 equal | 1baf0b861e4b | Established |
+| `ApplyParameterI` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95cb50 | 1368 | 342 of 342 equal | e9aa2f3379b2 | Established |
+| `ApplyParameterI` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95cb50 | 1368 | 342 of 342 equal | e9aa2f3379b2 | Established |
+| `MakeCurrentRead` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96af00 | 4500 | 1125 of 1125 equal | d3c6e613ab32 | Inferred |
+| `MakeCurrentRead` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96af00 | 4500 | 1125 of 1125 equal | d3c6e613ab32 | Inferred |
+| `InitBuffers` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd967bc0 | 480 | 120 of 120 equal | 2732fd7816a5 | Established |
+| `InitBuffers` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd967bc0 | 480 | 120 of 120 equal | 2732fd7816a5 | Established |
+| `ApplyViewport` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965ab0 | 616 | 154 of 154 equal | 813125eb34fd | Established |
+| `ApplyViewport` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965ab0 | 616 | 154 of 154 equal | 813125eb34fd | Established |
 
 Notes on individual rows:
 
