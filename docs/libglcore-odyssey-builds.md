@@ -91,3 +91,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyValidateTextureState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d2bb0 | 1204 | 9ea9dc36b677 | Established |
 | `__glOdysseyTextureDriverInit` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9cf7a0 | 460 | 719a52ce8cec | Established |
 | `__glOdysseyTextureDriverInit` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9cf7a0 | 460 | 719a52ce8cec | Established |
+| `__glOdysseyTextureSetMinFilter` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d5e40 | 860 | 57b25e635f18 | Established |
+| `__glOdysseyTextureSetMinFilter` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d5e40 | 860 | 57b25e635f18 | Established |
+| `__glOdysseyTextureSetMagFilter` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d61a0 | 356 | bacc497efeb5 | Established |
+| `__glOdysseyTextureSetMagFilter` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d61a0 | 356 | bacc497efeb5 | Established |
+| `__glOdysseyTextureSetOp` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d7ad0 | 616 | 758cba17c977 | Established |
+| `__glOdysseyTextureSetOp` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d7ad0 | 616 | 758cba17c977 | Established |
+| `__glOdysseyTextureSetDetailTable` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d8590 | 424 | a600f12341e2 | Established |
+| `__glOdysseyTextureSetDetailTable` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d8590 | 424 | a600f12341e2 | Established |
+| `__glOdysseyFindWindowSize` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9658c0 | 496 | e602dad60d9a | Established |
+| `__glOdysseyFindWindowSize` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9658c0 | 496 | e602dad60d9a | Established |
+| `__glOdysseyGetBoardInfoRaw` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9b90 | 444 | 1b30721200f7 | Established |
+| `__glOdysseyGetBoardInfoRaw` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9b90 | 444 | 1b30721200f7 | Established |
