@@ -2987,14 +2987,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4f
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4f910	304	__glim_Map2f	dynsym+mdebug	aacafa523bae		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fa40	68	__glim_EvalCoord1d	dynsym+mdebug	485029245e3b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fa84	76	__glim_EvalCoord1dv	dynsym+mdebug	7d12c4e53925		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fad0	64	__glim_EvalCoord1f	dynsym+mdebug	449be1585ec9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fad0	64	__glim_EvalCoord1f	dynsym+mdebug	449be1585ec9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fb10	68	__glim_EvalCoord1fv	dynsym+mdebug	359f616b80fa		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fb54	76	__glim_EvalCoord2d	dynsym+mdebug	6ebe430afede		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fb54	76	__glim_EvalCoord2d	dynsym+mdebug	6ebe430afede		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fba0	88	__glim_EvalCoord2dv	dynsym+mdebug	0da972d20a39		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fbf8	68	__glim_EvalCoord2f	dynsym+mdebug	24162021674e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc3c	72	__glim_EvalCoord2fv	dynsym+mdebug	28a2843781df		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc84	148	__glim_MapGrid1d	dynsym+mdebug	6db22fa17205		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fd18	136	__glim_MapGrid1f	dynsym+mdebug	54a23ba6f7cc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fbf8	68	__glim_EvalCoord2f	dynsym+mdebug	24162021674e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc3c	72	__glim_EvalCoord2fv	dynsym+mdebug	28a2843781df		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc84	148	__glim_MapGrid1d	dynsym+mdebug	6db22fa17205		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fd18	136	__glim_MapGrid1f	dynsym+mdebug	54a23ba6f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fda0	184	__glim_MapGrid2d	dynsym+mdebug	9792dd4ebc9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fe58	164	__glim_MapGrid2f	dynsym+mdebug	ffe452e352ec		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fefc	244	__glim_EvalMesh1	dynsym+mdebug	fa69179683c0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -8824,14 +8824,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda395f0	280	__glim_Map2f	dwarf+dynsym	7276c61cafbc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39710	56	__glim_EvalCoord1d	dwarf+dynsym	69eaf0f4539d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39750	64	__glim_EvalCoord1dv	dwarf+dynsym	2eae4014c392		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39790	56	__glim_EvalCoord1f	dwarf+dynsym	9e1710c2ac59		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39790	56	__glim_EvalCoord1f	dwarf+dynsym	9e1710c2ac59		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda397d0	60	__glim_EvalCoord1fv	dwarf+dynsym	1fc3dcb84dac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39810	64	__glim_EvalCoord2d	dwarf+dynsym	7ef74c182227		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39810	64	__glim_EvalCoord2d	dwarf+dynsym	7ef74c182227		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39850	72	__glim_EvalCoord2dv	dwarf+dynsym	531700f253e4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398a0	60	__glim_EvalCoord2f	dwarf+dynsym	7be7f418bd0f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398e0	64	__glim_EvalCoord2fv	dwarf+dynsym	c282980319b1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39920	132	__glim_MapGrid1d	dwarf+dynsym	101e70eb0a48		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda399b0	124	__glim_MapGrid1f	dwarf+dynsym	dda322808a2c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398a0	60	__glim_EvalCoord2f	dwarf+dynsym	7be7f418bd0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398e0	64	__glim_EvalCoord2fv	dwarf+dynsym	c282980319b1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39920	132	__glim_MapGrid1d	dwarf+dynsym	101e70eb0a48		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda399b0	124	__glim_MapGrid1f	dwarf+dynsym	dda322808a2c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39a30	164	__glim_MapGrid2d	dwarf+dynsym	a274b0f62821		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39ae0	148	__glim_MapGrid2f	dwarf+dynsym	a9c6bd8eb317		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39b80	208	__glim_EvalMesh1	dwarf+dynsym	2f364f6c4426		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -14718,14 +14718,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227e970	296	__glim_Map2f	dwarf+dynsym	015567f42cac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eaa0	56	__glim_EvalCoord1d	dwarf+dynsym	51a70a105ca6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eae0	64	__glim_EvalCoord1dv	dwarf+dynsym	4d499ddcf01a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eb20	56	__glim_EvalCoord1f	dwarf+dynsym	78acd6640bbc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eb20	56	__glim_EvalCoord1f	dwarf+dynsym	78acd6640bbc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eb60	60	__glim_EvalCoord1fv	dwarf+dynsym	87574ffb52af		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eba0	64	__glim_EvalCoord2d	dwarf+dynsym	77ed92e170ac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227eba0	64	__glim_EvalCoord2d	dwarf+dynsym	77ed92e170ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ebe0	72	__glim_EvalCoord2dv	dwarf+dynsym	cb50b6fc5ce7		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ec30	60	__glim_EvalCoord2f	dwarf+dynsym	9602ad597e72		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ec70	64	__glim_EvalCoord2fv	dwarf+dynsym	b1056211d088		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ecb0	132	__glim_MapGrid1d	dwarf+dynsym	a42e907e83e8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ed40	124	__glim_MapGrid1f	dwarf+dynsym	0494749c979d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ec30	60	__glim_EvalCoord2f	dwarf+dynsym	9602ad597e72		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ec70	64	__glim_EvalCoord2fv	dwarf+dynsym	b1056211d088		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ecb0	132	__glim_MapGrid1d	dwarf+dynsym	a42e907e83e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ed40	124	__glim_MapGrid1f	dwarf+dynsym	0494749c979d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227edc0	164	__glim_MapGrid2d	dwarf+dynsym	3bfdfc6e2a9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ee70	148	__glim_MapGrid2f	dwarf+dynsym	6d9dac1e9058		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227ef10	208	__glim_EvalMesh1	dwarf+dynsym	50cef80b93e0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -20751,14 +20751,14 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f170	304	__glim_Map2f	dynsym+mdebug	cdfe798dcc08		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f2a0	68	__glim_EvalCoord1d	dynsym+mdebug	f7f933a94bc9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f2e4	76	__glim_EvalCoord1dv	dynsym+mdebug	bdfbe6ea9d98		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f330	64	__glim_EvalCoord1f	dynsym+mdebug	c15db934f55b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f330	64	__glim_EvalCoord1f	dynsym+mdebug	c15db934f55b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f370	68	__glim_EvalCoord1fv	dynsym+mdebug	31b340c0eeb9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f3b4	76	__glim_EvalCoord2d	dynsym+mdebug	9331c073d6d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f3b4	76	__glim_EvalCoord2d	dynsym+mdebug	9331c073d6d9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f400	88	__glim_EvalCoord2dv	dynsym+mdebug	f6d7e257caf1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f458	68	__glim_EvalCoord2f	dynsym+mdebug	d702cc958d63		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f49c	72	__glim_EvalCoord2fv	dynsym+mdebug	dd51d839cd2e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f4e4	148	__glim_MapGrid1d	dynsym+mdebug	dd60b6445e7b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f578	136	__glim_MapGrid1f	dynsym+mdebug	7ed852e08068		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f458	68	__glim_EvalCoord2f	dynsym+mdebug	d702cc958d63		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f49c	72	__glim_EvalCoord2fv	dynsym+mdebug	dd51d839cd2e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f4e4	148	__glim_MapGrid1d	dynsym+mdebug	dd60b6445e7b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f578	136	__glim_MapGrid1f	dynsym+mdebug	7ed852e08068		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f600	184	__glim_MapGrid2d	dynsym+mdebug	f47fbb2cbd9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f6b8	164	__glim_MapGrid2f	dynsym+mdebug	f2b57293160d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f75c	244	__glim_EvalMesh1	dynsym+mdebug	4b7ba3364047		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -26640,14 +26640,14 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16900	384	__glim_Map2f	dynsym	45ce187b39ed		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16a80	56	__glim_EvalCoord1d	dynsym	228268f326e8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16ac0	64	__glim_EvalCoord1dv	dynsym	e4909af7d21a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b00	56	__glim_EvalCoord1f	dynsym	fcc18fd30608		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b00	56	__glim_EvalCoord1f	dynsym	fcc18fd30608		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b40	60	__glim_EvalCoord1fv	dynsym	567cf47ef42a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b80	64	__glim_EvalCoord2d	dynsym	afbe9a3b0048		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b80	64	__glim_EvalCoord2d	dynsym	afbe9a3b0048		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16bc0	72	__glim_EvalCoord2dv	dynsym	d51a587b1809		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c10	64	__glim_EvalCoord2f	dynsym	bb2b25850c80		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c50	64	__glim_EvalCoord2fv	dynsym	67f99763d8f9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c90	136	__glim_MapGrid1d	dynsym	33992fe29765		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16d20	128	__glim_MapGrid1f	dynsym	cc532911e106		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c10	64	__glim_EvalCoord2f	dynsym	bb2b25850c80		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c50	64	__glim_EvalCoord2fv	dynsym	67f99763d8f9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c90	136	__glim_MapGrid1d	dynsym	33992fe29765		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16d20	128	__glim_MapGrid1f	dynsym	cc532911e106		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16da0	168	__glim_MapGrid2d	dynsym	1c9814e7db52		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16e50	152	__glim_MapGrid2f	dynsym	ddcdfb8c0e01		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16ef0	232	__glim_EvalMesh1	dynsym	1d244a0d3310		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -32314,14 +32314,14 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fcfb0	404	__glim_Map2f	dwarf+dynsym	30ec9fb65b3c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd150	56	__glim_EvalCoord1d	dwarf+dynsym	fb9537a9c51e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd190	64	__glim_EvalCoord1dv	dwarf+dynsym	2bfcb0e9ab35		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd1d0	56	__glim_EvalCoord1f	dwarf+dynsym	af57e8648056		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd1d0	56	__glim_EvalCoord1f	dwarf+dynsym	af57e8648056		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd210	60	__glim_EvalCoord1fv	dwarf+dynsym	c5eac4661364		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd250	64	__glim_EvalCoord2d	dwarf+dynsym	8a5cf92b89d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd250	64	__glim_EvalCoord2d	dwarf+dynsym	8a5cf92b89d9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd290	72	__glim_EvalCoord2dv	dwarf+dynsym	ed79eff84238		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd2e0	64	__glim_EvalCoord2f	dwarf+dynsym	270ac297d3a0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd320	64	__glim_EvalCoord2fv	dwarf+dynsym	7b620517adc0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd360	136	__glim_MapGrid1d	dwarf+dynsym	f4cd4b2b12dc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd3f0	128	__glim_MapGrid1f	dwarf+dynsym	d52d9adf8631		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd2e0	64	__glim_EvalCoord2f	dwarf+dynsym	270ac297d3a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd320	64	__glim_EvalCoord2fv	dwarf+dynsym	7b620517adc0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd360	136	__glim_MapGrid1d	dwarf+dynsym	f4cd4b2b12dc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd3f0	128	__glim_MapGrid1f	dwarf+dynsym	d52d9adf8631		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd470	168	__glim_MapGrid2d	dwarf+dynsym	32b54bb03138		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd520	152	__glim_MapGrid2f	dwarf+dynsym	e61af8732671		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3fd5c0	232	__glim_EvalMesh1	dwarf+dynsym	914931695684		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -38327,14 +38327,14 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f170	304	__glim_Map2f	dynsym+mdebug	cdfe798dcc08		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f2a0	68	__glim_EvalCoord1d	dynsym+mdebug	f7f933a94bc9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f2e4	76	__glim_EvalCoord1dv	dynsym+mdebug	bdfbe6ea9d98		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f330	64	__glim_EvalCoord1f	dynsym+mdebug	c15db934f55b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f330	64	__glim_EvalCoord1f	dynsym+mdebug	c15db934f55b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f370	68	__glim_EvalCoord1fv	dynsym+mdebug	31b340c0eeb9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f3b4	76	__glim_EvalCoord2d	dynsym+mdebug	9331c073d6d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f3b4	76	__glim_EvalCoord2d	dynsym+mdebug	9331c073d6d9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f400	88	__glim_EvalCoord2dv	dynsym+mdebug	f6d7e257caf1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f458	68	__glim_EvalCoord2f	dynsym+mdebug	d702cc958d63		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f49c	72	__glim_EvalCoord2fv	dynsym+mdebug	dd51d839cd2e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f4e4	148	__glim_MapGrid1d	dynsym+mdebug	dd60b6445e7b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f578	136	__glim_MapGrid1f	dynsym+mdebug	7ed852e08068		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f458	68	__glim_EvalCoord2f	dynsym+mdebug	d702cc958d63		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f49c	72	__glim_EvalCoord2fv	dynsym+mdebug	dd51d839cd2e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f4e4	148	__glim_MapGrid1d	dynsym+mdebug	dd60b6445e7b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f578	136	__glim_MapGrid1f	dynsym+mdebug	7ed852e08068		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f600	184	__glim_MapGrid2d	dynsym+mdebug	f47fbb2cbd9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f6b8	164	__glim_MapGrid2f	dynsym+mdebug	f2b57293160d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1f75c	244	__glim_EvalMesh1	dynsym+mdebug	4b7ba3364047		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -44216,14 +44216,14 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16900	384	__glim_Map2f	dynsym	45ce187b39ed		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16a80	56	__glim_EvalCoord1d	dynsym	228268f326e8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16ac0	64	__glim_EvalCoord1dv	dynsym	e4909af7d21a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b00	56	__glim_EvalCoord1f	dynsym	fcc18fd30608		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b00	56	__glim_EvalCoord1f	dynsym	fcc18fd30608		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b40	60	__glim_EvalCoord1fv	dynsym	567cf47ef42a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b80	64	__glim_EvalCoord2d	dynsym	afbe9a3b0048		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16b80	64	__glim_EvalCoord2d	dynsym	afbe9a3b0048		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16bc0	72	__glim_EvalCoord2dv	dynsym	d51a587b1809		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c10	64	__glim_EvalCoord2f	dynsym	bb2b25850c80		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c50	64	__glim_EvalCoord2fv	dynsym	67f99763d8f9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c90	136	__glim_MapGrid1d	dynsym	33992fe29765		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16d20	128	__glim_MapGrid1f	dynsym	cc532911e106		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c10	64	__glim_EvalCoord2f	dynsym	bb2b25850c80		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c50	64	__glim_EvalCoord2fv	dynsym	67f99763d8f9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16c90	136	__glim_MapGrid1d	dynsym	33992fe29765		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16d20	128	__glim_MapGrid1f	dynsym	cc532911e106		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16da0	168	__glim_MapGrid2d	dynsym	1c9814e7db52		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16e50	152	__glim_MapGrid2f	dynsym	ddcdfb8c0e01		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb16ef0	232	__glim_EvalMesh1	dynsym	1d244a0d3310		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -49890,14 +49890,14 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1cfb0	404	__glim_Map2f	dwarf+dynsym	30ec9fb65b3c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d150	56	__glim_EvalCoord1d	dwarf+dynsym	fb9537a9c51e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d190	64	__glim_EvalCoord1dv	dwarf+dynsym	2bfcb0e9ab35		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d1d0	56	__glim_EvalCoord1f	dwarf+dynsym	af57e8648056		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d1d0	56	__glim_EvalCoord1f	dwarf+dynsym	af57e8648056		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d210	60	__glim_EvalCoord1fv	dwarf+dynsym	c5eac4661364		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d250	64	__glim_EvalCoord2d	dwarf+dynsym	8a5cf92b89d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d250	64	__glim_EvalCoord2d	dwarf+dynsym	8a5cf92b89d9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d290	72	__glim_EvalCoord2dv	dwarf+dynsym	ed79eff84238		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d2e0	64	__glim_EvalCoord2f	dwarf+dynsym	270ac297d3a0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d320	64	__glim_EvalCoord2fv	dwarf+dynsym	7b620517adc0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d360	136	__glim_MapGrid1d	dwarf+dynsym	f4cd4b2b12dc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d3f0	128	__glim_MapGrid1f	dwarf+dynsym	d52d9adf8631		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d2e0	64	__glim_EvalCoord2f	dwarf+dynsym	270ac297d3a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d320	64	__glim_EvalCoord2fv	dwarf+dynsym	7b620517adc0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d360	136	__glim_MapGrid1d	dwarf+dynsym	f4cd4b2b12dc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d3f0	128	__glim_MapGrid1f	dwarf+dynsym	d52d9adf8631		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d470	168	__glim_MapGrid2d	dwarf+dynsym	32b54bb03138		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d520	152	__glim_MapGrid2f	dwarf+dynsym	e61af8732671		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe1d5c0	232	__glim_EvalMesh1	dwarf+dynsym	914931695684		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -70038,14 +70038,14 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4f7cc	324	__glim_Map2d
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4f910	304	__glim_Map2f	dynsym+mdebug	aacafa523bae		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fa40	68	__glim_EvalCoord1d	dynsym+mdebug	485029245e3b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fa84	76	__glim_EvalCoord1dv	dynsym+mdebug	7d12c4e53925		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fad0	64	__glim_EvalCoord1f	dynsym+mdebug	449be1585ec9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fad0	64	__glim_EvalCoord1f	dynsym+mdebug	449be1585ec9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fb10	68	__glim_EvalCoord1fv	dynsym+mdebug	359f616b80fa		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fb54	76	__glim_EvalCoord2d	dynsym+mdebug	6ebe430afede		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fb54	76	__glim_EvalCoord2d	dynsym+mdebug	6ebe430afede		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fba0	88	__glim_EvalCoord2dv	dynsym+mdebug	0da972d20a39		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fbf8	68	__glim_EvalCoord2f	dynsym+mdebug	24162021674e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc3c	72	__glim_EvalCoord2fv	dynsym+mdebug	28a2843781df		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc84	148	__glim_MapGrid1d	dynsym+mdebug	6db22fa17205		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fd18	136	__glim_MapGrid1f	dynsym+mdebug	54a23ba6f7cc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fbf8	68	__glim_EvalCoord2f	dynsym+mdebug	24162021674e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc3c	72	__glim_EvalCoord2fv	dynsym+mdebug	28a2843781df		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fc84	148	__glim_MapGrid1d	dynsym+mdebug	6db22fa17205		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fd18	136	__glim_MapGrid1f	dynsym+mdebug	54a23ba6f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fda0	184	__glim_MapGrid2d	dynsym+mdebug	9792dd4ebc9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fe58	164	__glim_MapGrid2f	dynsym+mdebug	ffe452e352ec		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4fefc	244	__glim_EvalMesh1	dynsym+mdebug	fa69179683c0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -75875,14 +75875,14 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda394d0	284	__glim_Map
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda395f0	280	__glim_Map2f	dwarf+dynsym	7276c61cafbc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39710	56	__glim_EvalCoord1d	dwarf+dynsym	69eaf0f4539d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39750	64	__glim_EvalCoord1dv	dwarf+dynsym	2eae4014c392		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39790	56	__glim_EvalCoord1f	dwarf+dynsym	9e1710c2ac59		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39790	56	__glim_EvalCoord1f	dwarf+dynsym	9e1710c2ac59		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda397d0	60	__glim_EvalCoord1fv	dwarf+dynsym	1fc3dcb84dac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39810	64	__glim_EvalCoord2d	dwarf+dynsym	7ef74c182227		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39810	64	__glim_EvalCoord2d	dwarf+dynsym	7ef74c182227		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39850	72	__glim_EvalCoord2dv	dwarf+dynsym	531700f253e4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398a0	60	__glim_EvalCoord2f	dwarf+dynsym	7be7f418bd0f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398e0	64	__glim_EvalCoord2fv	dwarf+dynsym	c282980319b1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39920	132	__glim_MapGrid1d	dwarf+dynsym	101e70eb0a48		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda399b0	124	__glim_MapGrid1f	dwarf+dynsym	dda322808a2c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398a0	60	__glim_EvalCoord2f	dwarf+dynsym	7be7f418bd0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda398e0	64	__glim_EvalCoord2fv	dwarf+dynsym	c282980319b1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39920	132	__glim_MapGrid1d	dwarf+dynsym	101e70eb0a48		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda399b0	124	__glim_MapGrid1f	dwarf+dynsym	dda322808a2c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39a30	164	__glim_MapGrid2d	dwarf+dynsym	a274b0f62821		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39ae0	148	__glim_MapGrid2f	dwarf+dynsym	a9c6bd8eb317		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda39b80	208	__glim_EvalMesh1	dwarf+dynsym	2f364f6c4426		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -81769,14 +81769,14 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ce840	300	__glim_Map
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ce970	296	__glim_Map2f	dwarf+dynsym	015567f42cac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceaa0	56	__glim_EvalCoord1d	dwarf+dynsym	51a70a105ca6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceae0	64	__glim_EvalCoord1dv	dwarf+dynsym	4d499ddcf01a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceb20	56	__glim_EvalCoord1f	dwarf+dynsym	78acd6640bbc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceb20	56	__glim_EvalCoord1f	dwarf+dynsym	78acd6640bbc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceb60	60	__glim_EvalCoord1fv	dwarf+dynsym	87574ffb52af		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceba0	64	__glim_EvalCoord2d	dwarf+dynsym	77ed92e170ac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ceba0	64	__glim_EvalCoord2d	dwarf+dynsym	77ed92e170ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cebe0	72	__glim_EvalCoord2dv	dwarf+dynsym	cb50b6fc5ce7		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cec30	60	__glim_EvalCoord2f	dwarf+dynsym	9602ad597e72		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cec70	64	__glim_EvalCoord2fv	dwarf+dynsym	b1056211d088		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cecb0	132	__glim_MapGrid1d	dwarf+dynsym	a42e907e83e8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ced40	124	__glim_MapGrid1f	dwarf+dynsym	0494749c979d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cec30	60	__glim_EvalCoord2f	dwarf+dynsym	9602ad597e72		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cec70	64	__glim_EvalCoord2fv	dwarf+dynsym	b1056211d088		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cecb0	132	__glim_MapGrid1d	dwarf+dynsym	a42e907e83e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ced40	124	__glim_MapGrid1f	dwarf+dynsym	0494749c979d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cedc0	164	__glim_MapGrid2d	dwarf+dynsym	3bfdfc6e2a9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cee70	148	__glim_MapGrid2f	dwarf+dynsym	6d9dac1e9058		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32cef10	208	__glim_EvalMesh1	dwarf+dynsym	50cef80b93e0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -87577,14 +87577,14 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4f7cc	324	__glim_Map2d
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4f910	304	__glim_Map2f	dynsym+mdebug	aacafa523bae		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fa40	68	__glim_EvalCoord1d	dynsym+mdebug	485029245e3b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fa84	76	__glim_EvalCoord1dv	dynsym+mdebug	7d12c4e53925		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fad0	64	__glim_EvalCoord1f	dynsym+mdebug	449be1585ec9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fad0	64	__glim_EvalCoord1f	dynsym+mdebug	449be1585ec9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fb10	68	__glim_EvalCoord1fv	dynsym+mdebug	359f616b80fa		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fb54	76	__glim_EvalCoord2d	dynsym+mdebug	6ebe430afede		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fb54	76	__glim_EvalCoord2d	dynsym+mdebug	6ebe430afede		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fba0	88	__glim_EvalCoord2dv	dynsym+mdebug	0da972d20a39		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fbf8	68	__glim_EvalCoord2f	dynsym+mdebug	24162021674e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fc3c	72	__glim_EvalCoord2fv	dynsym+mdebug	28a2843781df		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fc84	148	__glim_MapGrid1d	dynsym+mdebug	6db22fa17205		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fd18	136	__glim_MapGrid1f	dynsym+mdebug	54a23ba6f7cc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fbf8	68	__glim_EvalCoord2f	dynsym+mdebug	24162021674e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fc3c	72	__glim_EvalCoord2fv	dynsym+mdebug	28a2843781df		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fc84	148	__glim_MapGrid1d	dynsym+mdebug	6db22fa17205		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fd18	136	__glim_MapGrid1f	dynsym+mdebug	54a23ba6f7cc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fda0	184	__glim_MapGrid2d	dynsym+mdebug	9792dd4ebc9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fe58	164	__glim_MapGrid2f	dynsym+mdebug	ffe452e352ec		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4fefc	244	__glim_EvalMesh1	dynsym+mdebug	fa69179683c0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -93414,14 +93414,14 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda394d0	284	__glim_Map
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda395f0	280	__glim_Map2f	dwarf+dynsym	7276c61cafbc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39710	56	__glim_EvalCoord1d	dwarf+dynsym	69eaf0f4539d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39750	64	__glim_EvalCoord1dv	dwarf+dynsym	2eae4014c392		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39790	56	__glim_EvalCoord1f	dwarf+dynsym	9e1710c2ac59		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39790	56	__glim_EvalCoord1f	dwarf+dynsym	9e1710c2ac59		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda397d0	60	__glim_EvalCoord1fv	dwarf+dynsym	1fc3dcb84dac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39810	64	__glim_EvalCoord2d	dwarf+dynsym	7ef74c182227		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39810	64	__glim_EvalCoord2d	dwarf+dynsym	7ef74c182227		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39850	72	__glim_EvalCoord2dv	dwarf+dynsym	531700f253e4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda398a0	60	__glim_EvalCoord2f	dwarf+dynsym	7be7f418bd0f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda398e0	64	__glim_EvalCoord2fv	dwarf+dynsym	c282980319b1		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39920	132	__glim_MapGrid1d	dwarf+dynsym	101e70eb0a48		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda399b0	124	__glim_MapGrid1f	dwarf+dynsym	dda322808a2c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda398a0	60	__glim_EvalCoord2f	dwarf+dynsym	7be7f418bd0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda398e0	64	__glim_EvalCoord2fv	dwarf+dynsym	c282980319b1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39920	132	__glim_MapGrid1d	dwarf+dynsym	101e70eb0a48		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda399b0	124	__glim_MapGrid1f	dwarf+dynsym	dda322808a2c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39a30	164	__glim_MapGrid2d	dwarf+dynsym	a274b0f62821		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39ae0	148	__glim_MapGrid2f	dwarf+dynsym	a9c6bd8eb317		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda39b80	208	__glim_EvalMesh1	dwarf+dynsym	2f364f6c4426		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -99308,14 +99308,14 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227e840	300	__glim_Map
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227e970	296	__glim_Map2f	dwarf+dynsym	015567f42cac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eaa0	56	__glim_EvalCoord1d	dwarf+dynsym	51a70a105ca6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eae0	64	__glim_EvalCoord1dv	dwarf+dynsym	4d499ddcf01a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eb20	56	__glim_EvalCoord1f	dwarf+dynsym	78acd6640bbc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eb20	56	__glim_EvalCoord1f	dwarf+dynsym	78acd6640bbc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eb60	60	__glim_EvalCoord1fv	dwarf+dynsym	87574ffb52af		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eba0	64	__glim_EvalCoord2d	dwarf+dynsym	77ed92e170ac		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227eba0	64	__glim_EvalCoord2d	dwarf+dynsym	77ed92e170ac		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ebe0	72	__glim_EvalCoord2dv	dwarf+dynsym	cb50b6fc5ce7		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ec30	60	__glim_EvalCoord2f	dwarf+dynsym	9602ad597e72		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ec70	64	__glim_EvalCoord2fv	dwarf+dynsym	b1056211d088		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ecb0	132	__glim_MapGrid1d	dwarf+dynsym	a42e907e83e8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ed40	124	__glim_MapGrid1f	dwarf+dynsym	0494749c979d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ec30	60	__glim_EvalCoord2f	dwarf+dynsym	9602ad597e72		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ec70	64	__glim_EvalCoord2fv	dwarf+dynsym	b1056211d088		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ecb0	132	__glim_MapGrid1d	dwarf+dynsym	a42e907e83e8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ed40	124	__glim_MapGrid1f	dwarf+dynsym	0494749c979d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227edc0	164	__glim_MapGrid2d	dwarf+dynsym	3bfdfc6e2a9a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ee70	148	__glim_MapGrid2f	dwarf+dynsym	6d9dac1e9058		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227ef10	208	__glim_EvalMesh1	dwarf+dynsym	50cef80b93e0		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
