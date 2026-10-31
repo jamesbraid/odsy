@@ -415,3 +415,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `SWInit` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96a950 | 1452 | 1d43fbe1dbe1 | Established |
 | `HWInit` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96a8a0 | 176 | 8eaa6f0187e5 | Established |
 | `HWInit` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96a8a0 | 176 | 8eaa6f0187e5 | Established |
+| `InitFunctionPtrs` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd967900 | 692 | cc71abf7fd3f | Established |
+| `InitFunctionPtrs` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd967900 | 692 | cc71abf7fd3f | Established |
+| `__glOdysseyValidate` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd967da0 | 152 | bcfcf556f4ad | Established |
+| `__glOdysseyValidate` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd967da0 | 152 | bcfcf556f4ad | Established |
+| `InitialFree` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965d20 | 12 | f2aa07cfee56 | Established |
+| `InitialFree` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965d20 | 12 | f2aa07cfee56 | Established |
+| `InitialDestroyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965d30 | 120 | 6d2b64015021 | Established |
+| `InitialDestroyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965d30 | 120 | 6d2b64015021 | Established |
+| `DestroyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965db0 | 292 | f18387db11c6 | Established |
+| `DestroyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965db0 | 292 | f18387db11c6 | Established |
+| `CopyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c0a0 | 92 | 730d4bfab1e4 | Established |
+| `CopyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c0a0 | 92 | 730d4bfab1e4 | Established |
