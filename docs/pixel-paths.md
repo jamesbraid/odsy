@@ -233,8 +233,27 @@ word and a colour word with the same class and code come from different parts of
     `RenderFunc_ScaleBiasForSignedTypes` (0xd998010) in place of `RenderFunc_ScaleBias` (0xd9967e0) and sets a flag byte
     at op +0x3c (cleared for destination formats 0x1906, 0x1908, 0x190a and 0x8000). **unknown**: what the board does
     with a raw signed component. The type code in word 7 is shared with the unsigned type, and no routine read here
-    emits a formula for it. Next: run the two signed render routines in the emulator with chosen scale and bias floats
-    and read the command words they emit for a signed-byte draw.
+    **established** (disassembly of `RenderFunc_DownloadColor` 0xd9a3db0, `ImageChainAddOpScaleBias` 0xd996640,
+    `RenderFunc_ScaleBiasForSignedTypes` 0xd998010, `SetupScaleBiasForTexFilter` 0xd99ca10, `__glOdysseyImageMovePixelsDMAtoGfx`
+    0xd9b9e20, and a run of `__glOdysseyImageCalcXferWriteParams` 0xd9bd800 under the emulator over 14 formats, 18
+    destination classes and the six component types, bit 7 set and clear): the parameter routine reads bit 7 itself.
+    With it set, a signed type gets the same record as the unsigned type of that width (word 7 type code 2, 3 or 4,
+    the same format code and fields) except byte 0 (accepted) and byte 4 (signed flag, 1). Signed `COLOR_INDEX` and
+    `BGRA` bytes are refused (host conversion). The DMA writer never loads byte 4. The download step reads it only
+    to leave the direct path when the context hint word at +0x784 is 0x1102 (+0x788 at 0x1102 does that for every
+    type). The chain builder (0xd9907c0-0xd9909b0) then appends `ImageChainAddOpScaleBias` with the pixel-transfer
+    scale (context +0x280 to +0x28c) and bias (+0x294 to +0x2a0) unchanged, the bias multiplied by 0.5 (.lit8
+    0xdaf4d88) when bit 19 of +0x7b70 is clear (kinds 0 and 1). `SetupScaleBiasForTexFilter` writes the eight words at
+    context +0x8cec as `trunc(x * 4096.0) & 0xffff` (.lit4 0xdaf4b18), order scale R, bias R, scale G, bias G, scale B,
+    bias B, scale A, bias A, keeping the upper halves, and sets the mode word at +0x8ce8 to 2. The signed render
+    routine differs from the plain one only by the flag byte at op +0x3c: when set it overwrites the low half of the
+    alpha bias word with 0x1000 (flag set for source formats other than 0x1906, 0x1908, 0x190a, 0x8000). The unsigned
+    download path loads identity (scale 1.0, bias 0) instead of the op's vectors. No constant 0.5, 1/(2^b-1) or
+    (2c+1) is programmed for a sign. **inferred**: since nothing sign-specific is emitted, either the board
+    interprets component bits identically for both and the library relies on something outside these routines, or the
+    board's unpack of types 2, 3 and 4 depends on state not found here. Not resolved: the scale-and-bias-shaped chain op
+    `ImageChainAddOpAcceptSignedDataFromHost` (0xd99a950, render routine 0xd99aaa0, brackets its draw with block
+    0x042) has no static caller found by page-relative or table search.
   - So the word 7 low bytes seen in traces decode as format
     plus type: 0x41 index bytes, 0x42 luminance bytes, 0x48 luminance-alpha bytes, 0x49 RGB
     bytes, 0x4b RGBA bytes, 0x4c ABGR bytes, 0x61 16-bit index, 0x6b RGBA shorts, 0x6c ABGR
