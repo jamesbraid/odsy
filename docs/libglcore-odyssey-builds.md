@@ -355,3 +355,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_StencilOp` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95da60 | 524 | 35226f40dd88 | Established |
 | `__glOdyim_StencilMask` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d950 | 264 | b81da4837006 | Established |
 | `__glOdyim_StencilMask` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d950 | 264 | b81da4837006 | Established |
+| `__glOdyim_ColorMask` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b480 | 248 | 95cffdec8f1f | Established |
+| `__glOdyim_ColorMask` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b480 | 248 | 95cffdec8f1f | Established |
+| `__glOdyim_DepthMask` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b880 | 172 | 18e448e34eba | Established |
+| `__glOdyim_DepthMask` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b880 | 172 | 18e448e34eba | Established |
+| `__glOdyim_IndexMask` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c0f0 | 148 | a4467e6049f1 | Established |
+| `__glOdyim_IndexMask` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c0f0 | 148 | a4467e6049f1 | Established |
+| `__glOdyim_CullFace` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b690 | 236 | 10e182f8851b | Established |
+| `__glOdyim_CullFace` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b690 | 236 | 10e182f8851b | Established |
+| `__glOdyim_FrontFace` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c020 | 208 | 834f6306207c | Established |
+| `__glOdyim_FrontFace` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c020 | 208 | 834f6306207c | Established |
+| `__glOdyim_ShadeModel` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d750 | 212 | 0cf5dbd7f193 | Established |
+| `__glOdyim_ShadeModel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d750 | 212 | 0cf5dbd7f193 | Established |
