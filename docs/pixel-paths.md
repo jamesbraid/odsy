@@ -222,6 +222,19 @@ word and a colour word with the same class and code come from different parts of
   - Signed types (BYTE, SHORT, INT) are accepted for a direct transfer only when bit 7 of context
     +0x7b70 is set; otherwise the chain converts them on the host
     (`__glOdysseyImageChainAddOpAcceptSignedDataFromHost`).
+    **established** (disassembly, N32 IP30 build; the IP35 build has the same bytes for both routines): bit 7 is set by
+    `GetBoardInfo` (0xd965310, stores at 0xd9653dc and 0xd9653f8) exactly when the board kind at context +0x16a70 is
+    nonzero. That word is reply word 80 of the 588-byte ioctl 0x66 reply (`__glOdysseyGetBoardInfoRaw` copies the reply
+    to context +0x16a20), the kernel's variant flag (record +280): 0 for BUZZ revision nibbles 1 to 3, 1 for 9 to 15. So
+    variant A boards (gfxinfo prints "A.1") leave it clear and the library converts on the host, and variant B boards
+    ("B.1", "B.2") set it. No `GL_ODY_*` variable touches bit 7. Test sites: `RenderFunc_DownloadColor` 0xd9a3e74
+    (clear bit plus a signed source clears the direct-transfer flag), `ImageChainCreate` 0xd98ee0c, the colour-chain
+    builder 0xd990988 and `ImageChainAddOpScaleBias` 0xd996774, which with the bit set and a signed source installs
+    `RenderFunc_ScaleBiasForSignedTypes` (0xd998010) in place of `RenderFunc_ScaleBias` (0xd9967e0) and sets a flag byte
+    at op +0x3c (cleared for destination formats 0x1906, 0x1908, 0x190a and 0x8000). **unknown**: what the board does
+    with a raw signed component. The type code in word 7 is shared with the unsigned type, and no routine read here
+    emits a formula for it. Next: run the two signed render routines in the emulator with chosen scale and bias floats
+    and read the command words they emit for a signed-byte draw.
   - So the word 7 low bytes seen in traces decode as format
     plus type: 0x41 index bytes, 0x42 luminance bytes, 0x48 luminance-alpha bytes, 0x49 RGB
     bytes, 0x4b RGBA bytes, 0x4c ABGR bytes, 0x61 16-bit index, 0x6b RGBA shorts, 0x6c ABGR
