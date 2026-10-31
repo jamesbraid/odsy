@@ -103,3 +103,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyFindWindowSize` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9658c0 | 496 | e602dad60d9a | Established |
 | `__glOdysseyGetBoardInfoRaw` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9b90 | 444 | 1b30721200f7 | Established |
 | `__glOdysseyGetBoardInfoRaw` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9b90 | 444 | 1b30721200f7 | Established |
+| `__glOdysseyDriverMakeCurrent` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9d9d50 | 604 | 4004b1e999e2 | Established |
+| `__glOdysseyDriverMakeCurrent` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9d9d50 | 604 | 4004b1e999e2 | Established |
+| `__glOdysseyWindowToEyeZ` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9e4710 | 376 | 000aef98bfeb | Established |
+| `__glOdysseyWindowToEyeZ` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9e4710 | 376 | 000aef98bfeb | Established |
+| `__glOdysseyIsBboxClippedRange2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974500 | 280 | da9702aa9e2f | Established |
+| `__glOdysseyIsBboxClippedRange2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974500 | 280 | da9702aa9e2f | Established |
+| `__glOdysseyCreateContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c610 | 12648 | 070ef9c197f9 | Established |
+| `__glOdysseyCreateContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c610 | 12648 | 070ef9c197f9 | Established |
+| `ValidateLight` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c2ae0 | 776 | 46cfe56f96b8 | Established |
+| `ValidateLight` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c2ae0 | 776 | 46cfe56f96b8 | Established |
+| `ValidateLightColor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c2df0 | 672 | 8d0eaf35912a | Established |
+| `ValidateLightColor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c2df0 | 672 | 8d0eaf35912a | Established |
