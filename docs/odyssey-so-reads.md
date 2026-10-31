@@ -1529,7 +1529,7 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so`. GOT slots are named by the
   After miGetArcPts. If its return v0 is zero (0x169d7b0) the routine skips to the final free. Otherwise it calls miFillSppPoly (GOT local slot 323, address 0x15c3f90, call at 0x169d7e0) with a0 and a1 from sp+88 and sp+80, a2 = v0 (the count), a3 = the word at sp+48 (the points pointer that miGetArcPts stored), a4 = minus the caller word at sp+20, a5 = minus the caller word at sp+28, f18 = the caller double at sp+32 and f19 = the caller double at sp+40.
   Final free. Both paths call Xfree (global GOT slot at gp-28196) with a0 = the word at sp+48 (0x169d7f4), restore f20 and f22, and return Xfree's v0 (0x169d800). Return value: the v0 of Xfree on every path. The routine has no loop, no branch-likely branch and no store through a pointer other than its frame.
 
-## Ellipse angle, mono-to-stereo and fill-span routines read from whole listings
+## Ellipse angle and mono-to-stereo routines read from whole listings
 
 Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so`. GOT slots are named by their dynamic symbol, and addresses are in this module. Pool constants are named by the word's own address (the table at 0x172acc0 is the value of the slot at gp-28680).
 
