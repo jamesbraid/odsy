@@ -295,6 +295,170 @@ Facts (established, published):
   - Claim 4: **corroborated in part.** The extension exists (`GL_SGIX_vertex_preclip`, `GL_SGIX_vertex_preclip_hint`) and the shipped library implements it with a host path. The library has two controls, an enable and a three-valued hint, and the "fast" setting still checks w; see [raster.md](raster.md).
 - The public registry text of `SGIX_vertex_preclip` (status "incomplete", last modified 2000-04-19) defines the enable `VERTEX_PRECLIP_SGIX` (0x83EE), the hint `VERTEX_PRECLIP_HINT_SGIX` (0x83EF) and an "extended rasterizable view volume", a region larger than the clip volume in which hardware rejects fragments faster than the host can re-clip. It does not name VPro or any other hardware, and gives no sizes. Default state: enable false, hint DONT_CARE. The registry copy linked into this repository as a submodule was not checked out when this was written; the text was read from the public registry.
 
+## Recollections and history (leads, unverified)
+
+Leads from Usenet, mailing lists, forums, a blog, a Hacker News thread, a registry text and two archives. They are here to be tested against the board, the binaries and the diagnostics. None is evidence yet, and each claim below is **unverified** until software corroborates it. `usenet-comp:` marks a Usenet message-id, written as the archive gives it. "Who" gives the author's role only. Where a point is already in this file, the entry says where.
+
+- **Framebuffer size: 8 or 16 bytes per pixel, and the V6 budget.** Identity: `usenet-comp:7jvgfb.j4c9.ln@tankgirl.kanera.local` (reply chain); follow-up `usenet-comp:bfhbfh$5v9a1$1@bongo.munich.sgi.com`; related `usenet-comp:1127246162.808537@erwin.inf.tu-dresden.de`. Date: 2003-07-20 and 21; V10 thread 2005-09-20. Kind: Usenet. Who: an SGI-Germany-hosted poster with detailed board knowledge (role unverified, probably field or support), and experienced hobbyist users.
+  - Unverified: VPro takes only two framebuffer configurations, 8 or 16 bytes per pixel, counting colour and all auxiliary buffers. The manual's bpp column means bytes per pixel. [docs/raster.md](raster.md) already cites a 2005 post for the 8 or 16 byte point.
+  - Unverified: V6 has 32 MiB of board memory. Usable framebuffer is about 32 MiB, less 4 MiB of texture and 2 MiB of scratch, less x times y times bytes per pixel, less x times y times 3 when hardware accumulation is on (not on V6). 1600x1200 fits at 8 bytes per pixel (15.36 MB) and not at 16 (30.72 MB).
+  - Unverified: maximum refresh does not depend on framebuffer size. The DAC behind the analog 13W3 runs at 220 MHz, enough for 1600x1200 at 75 Hz and 1920x1080 at 72 Hz.
+  - Unverified: at 8 bytes per pixel, colour is 32-bit double-buffered without depth, or single-buffered with depth. Double buffering with depth needs 16 bytes per pixel or a V12.
+  - Test from software: run `setmon` or `xsetmon` with each `.vfo` and each framebuffer configuration and record which the driver accepts. Check that the model's allocator accepts 1600x1200 at 8 bytes per pixel and refuses 16 on a 32 MiB board, and that mode validation caps the pixel clock at 220 MHz.
+
+- **Accumulation buffer: main memory by default, 12 bytes per pixel from the pool when enabled, 24 bits per component on V8 and V12.** Identity: `usenet-comp:942dpm$pq95t$1@fido.engr.sgi.com`; `usenet-comp:93nv0u$ojthh$1@fido.engr.sgi.com`. Date: 2001-01-16 and shortly after. Kind: Usenet. Who: an SGI principal engineer on the OpenGL team, posting from an SGI news host.
+  - Unverified: even on Octane2 V8 and V12 the accumulation buffer is in main memory by default. `xsetmon` must reconfigure the framebuffer to put it in hardware.
+  - Unverified: hardware accumulation takes 12 bytes per pixel from the texture pool, 15 MB at 1280x1024.
+  - Unverified: on V8 the hardware accumulation buffer has 24 bits per R, G, B and A component, and plenty of memory remains for pbuffers.
+  - Unverified: without hardware accumulation, the method is a single-buffered pbuffer, `glXMakeContextCurrent(draw=window, read=pbuffer)`, `glBlendColor(1/n)` with `GL_CONSTANT_COLOR` and `GL_ONE`, and `glCopyPixels`.
+  - Test from software: run an accumulation test under both `xsetmon` framebuffer configurations. Check `GL_ACCUM_*_BITS` (0 for software, 24 for hardware) and that pool use equals width x height x 12 when hardware accumulation is on.
+
+- **No dedicated texture RAM on VPro; one shared pool; 8 MB single-texture limit.** Identity: `usenet-comp:9338rk$l5t8e$1@fido.engr.sgi.com`; `usenet-comp:92tvs7$kf44k$1@fido.engr.sgi.com`; `usenet-comp:9351ud$lkvoi$1@fido.engr.sgi.com`. Date: 2000-12 to 2001-01, approximate. Kind: Usenet. Who: an SGI OpenGL engineer, posting from an SGI news host.
+  - Unverified: there is no dedicated texture RAM on these boards. Memory is split between the framebuffer, textures and a few other uses, so a smaller framebuffer or less depth frees texture space.
+  - Unverified: unless a single texture is larger than 8 MB, the V6 pool is not a problem. This implies an 8 MB single-texture ceiling.
+  - Unverified: V6 is the low-end unit. V8 has more buffer space and more features.
+  - Test from software: allocate textures of increasing size, up to and past 8 MB, on a V6 guest. Record where `glTexImage2D` fails or falls back, and compare with the model's single-pool accounting. The shared pool already rests on other Usenet posts; the 8 MB figure is new.
+
+- **10 and 12-bit colour, per-pixel (fragment) lighting, V6 against V8.** Identity: `usenet-comp:3A4DE445.8536B201@sgi.com`. Date: 2000-12-30. Kind: Usenet. Who: an SGI employee posting from an sgi.com address, on the product side.
+  - Unverified: VPro has 10 and 12 bits of colour precision, against 8 on PC cards. V8 gives 12 bits each for R, G, B and alpha.
+  - Unverified: hardware per-pixel lighting, which SGI calls fragment lighting, computes Phong specular from the polygon normals already present under Gouraud shading.
+  - Unverified: hundreds of MB/s can be read from external devices into system memory while hundreds of MB/s are written to the card, without a stall.
+  - Test from software: `glXGetConfig` for RGBA 12/12/12/12 on V6 and on V8. Check `GL_EXTENSIONS` for `GL_SGIX_fragment_lighting`. Render a lit sphere with `glFragmentLight*SGIX` and compare it with vertex lighting to see whether the lighting is per pixel. [docs/libglcore-odyssey-reads.md](libglcore-odyssey-reads.md) already reads the fragment-lighting enable state.
+
+- **GL_SGIX_fragment_lighting is the Octane2 specular feature; sample code and entry-point list.** Identity: question `usenet-comp:pan.2001.11.15.02.41.19.699.12502@umbc.edu`; answer `usenet-comp:gregc.1005849254@cgl.ucsf.edu`. Date: 2001-11-15. Kind: Usenet. Who: an academic graphics-lab researcher outside SGI, who posted a working example and the `man -k frag` list.
+  - Unverified: the advertised per-pixel specular is the experimental GL_SGIX_fragment_lighting extension, not ordinary `GL_SPECULAR`.
+  - Unverified: the entry points are `glFragmentColorMaterialSGIX`, `glFragmentLight*SGIX`, `glFragmentLightModel*SGIX`, `glFragmentMaterial*SGIX`, `glGetFragmentLightSGIX` and `glGetFragmentMaterialSGIX`, `glLightEnviSGIX` and `glSampleMaskSGIS`.
+  - Unverified: a reader replied that he had no sample code for the extension until this post.
+  - Test from software: build the posted modified `movelight.c` against the guest libGL. Check that the extension is exposed and that each entry point resolves.
+
+- **OpenGL 1.2 on VPro only; older hardware lacks separate specular colour.** Identity: `usenet-comp:966id6$3da62$1@fido.engr.sgi.com`; `usenet-comp:3F27D020.5080109@brussels.sgi.com`. Date: 2001-01 (approximate) and 2003-07-30. Kind: Usenet. Who: an SGI OpenGL engineer; an SGI Benelux senior systems engineer.
+  - Unverified: on IRIX, OpenGL 1.2 and GLX 1.3 are supported on VPro only. MGRAS and IMPACT get about 90 percent of it as extensions but lack separate specular colour in hardware.
+  - Unverified: a field engineer repeats that V6 to V12 have OpenGL 1.2 while O2 and IMPACT do not.
+  - Test from software: `glGetString(GL_VERSION)` on a VPro guest should report 1.2. Separate specular colour (`GL_LIGHT_MODEL_COLOR_CONTROL`) should work, and the GLX version string should be 1.3.
+
+- **SGIX_pbuffer works on VPro despite the man page; two 1280x1024 RGBA pbuffers do not fit V6 or V10.** Identity: `usenet-comp:a8ka56$190gp$1@bongo.munich.sgi.com`; `usenet-comp:3D2980A5.30A5E333@ono.com`. Date: 2002-04-05 and 2002-06-26 to 07-10. Kind: Usenet. Who: an SGI-Germany-hosted poster and an experienced OpenGL application developer.
+  - Unverified: the `glXCreateGLXPbufferSGIX` man page omits VPro, but VPro supports both SGIX_pbuffer and GLX 1.3 pbuffers.
+  - Unverified: two 1280x1024 RGBA pbuffers cannot be allocated on V6 or V10 with a 1280x1024 framebuffer at 16 bytes per pixel. They might fit at 8 bytes per pixel or at a lower resolution. V6 and V10 do not support 12-bit components.
+  - Unverified: VPro pixel size is a multiple of 8 bytes, per the porting guide (source 5 above), and the pool is about 32 MB.
+  - Test from software: a GLX test that allocates N pbuffers at 1280x1024 under the 16 and 8 bytes per pixel framebuffer configurations. Query `glXQueryExtensionsString` for `GLX_SGIX_pbuffer`, and compare the failure point with the model's pool.
+
+- **VPro needs more pinned memory than MGRAS; the `gfxlockablemem` tunable and DMA warnings.** Identity: `usenet-comp:39EA0B49.EF3304AC@brussels.sgi.com`. Date: 2000-10-15. Kind: Usenet. Who: an SGI Benelux senior systems engineer.
+  - Unverified: Odyssey needs more memory pinned at times than SE, SSE or MXE. On small-memory machines (128 MB, for example), raise `gfxlockablemem` and its `_gt64` sibling with `systune` to stop DMA warnings after a VPro upgrade.
+  - Test from software: boot a small-memory IP30 guest with VPro and look for DMA or lockable-memory warnings in SYSLOG. Raise `gfxlockablemem` with `systune` and confirm the warnings stop. This would give the DMA path a pinned-page demand profile. The repo does not yet mention `gfxlockablemem`.
+
+- **odysdiags is an internal tool; `ide` cannot test Odyssey; a single-chip board cannot show its own diagnostic results.** Identity: `usenet-comp:bqfg34$l9e9$1@bongo.munich.sgi.com`. Date: 2003-12-01. Kind: Usenet. Who: an SGI-Germany-hosted poster.
+  - Unverified: `ide -fe` on an Octane V6 prints "Diagnostic for Odyssey graphics boards is not supported on this tool. Please refer to the Unix-base odysdiags tool."
+  - Unverified: `odysdiags` was never released (internal only). It needs a tty console while it runs, because a single-chip solution cannot run diagnostics and display results on the same head.
+  - Unverified: unsupported modes such as 1280x1024_59 at some depths show coloured stripes.
+  - Test from software: run the PROM `ide` against the emulated board and compare the message text. The repo already stores the published diagnostic reference (source 7 above). The thread would confirm the `odysdiags` name and the console-only need from a second source, if it holds.
+
+- **Mode files live in `/usr/gfx/ucode/ODSY/vof`; `setmon 1600x1024_60`.** Identity: `usenet-comp:d0n739$392u1k$1@fido.engr.sgi.com`; related `usenet-comp:d1c1ao$3b6d6g$1@fido.engr.sgi.com`. Date: 2005-03-03 to 05. Kind: Usenet. Who: an IRIX user (peer helper) posting a directory listing from a V12 machine.
+  - Unverified: the V12 mode files live in `/usr/gfx/ucode/ODSY/vof`. The listing shows 1600x1024_60, _72 and _83; 1600x1200_60, _72 and _75; 1920x1080_72; 1920x1200_60 and _60p; and 2@ dual-channel variants such as `2@1600x1024_60_ds`.
+  - Unverified: `/usr/gfx/setmon 1600x1024_60` selects a mode. Modes can exist without appearing in the preferences panel. A VFC blocksync template builds extra modes.
+  - Test from software: compare the guest's `/usr/gfx/ucode/ODSY/vof` listing with this one, and drive `setmon` on each `.vfo`. The timing generator should accept or reject them consistently. [docs/display-files.md](display-files.md) already tabulates these files; this adds the mode inventory and the 2@ naming.
+
+- **Default visual is 30-bit (0x40) on V6; applications expecting 24-bit (0x3d) get BadMatch.** Identity: `usenet-comp:d7kmcv$2fi$1@reader13.wxs.nl`; `usenet-comp:yqwyirupztky.fsf@Octane2.uci.edu`; `usenet-comp:3A643CA5.5060200@brussels.sgi.com`. Date: 2005-06-01; 2005-11-18; 2001-01-16. Kind: Usenet. Who: IRIX application developers and administrators; an SGI Benelux senior systems engineer for the pixel-packing remark.
+  - Unverified: on V6 the default X visual has 30 bit planes (ID 0x40), against 24-bit (0x3d) on IMPACT. Applications that assume 24 get BadMatch on `X_PutImage` (opcode 72).
+  - Unverified: `-depth 24` in xdm Xservers did not change the default visual. rdesktop on V12 falls back to 16 bits and shows a black window.
+  - Unverified: X pixel packing is 10 bits per component. Changing the default visual (PseudoColor 12-bit, for example) changes behaviour.
+  - Test from software: `xdpyinfo` or `xwininfo` on the emulated V6 X server, checking the visual ID and depth tables (0x40 at 30 bits by default, 0x3d at 24 bits available). Reproduce the BadMatch with `XPutImage` at depth 24 on a 30-bit window.
+
+- **Odyssey is SGI-designed, not NVIDIA; even V numbers are Octane (Odyssey), odd ones are IA32 (NVIDIA).** Identity: `usenet-comp:3B98D81C.3000809@brussels.sgi.com`; `usenet-comp:942v4t$19t0$1@fido.engr.sgi.com`; `usenet-comp:bhfcog$9op$1@bongo.munich.sgi.com`. Date: 2001-09-07, 2001-01-17, 2003-08-09. Kind: Usenet. Who: an SGI Benelux senior systems engineer; an SGI OpenGL engineer; users.
+  - Unverified: Octane boards use even VPro numbers (V6, V8, V10, V12). IA32 workstations use odd ones (V3, V5, V7). Marketing reused the VPro name.
+  - Unverified: VPro in Octane2 is unrelated to NVIDIA and entirely SGI-developed. One 2003 reply says "confirmed" to the GeForce claim, and a later poster contradicts it. Do not use that reply as evidence.
+  - Unverified: SGI's stated differences from IMPACT, V12 and Infinite Reality are clip textures, multisampling, multipipe and Origin 3000 scalability.
+  - Provenance only. This keeps IA32 VPro and NVIDIA material out of the Odyssey evidence. Test from software: check that the board identity strings carry even V numbers only.
+
+- **VPro hardware layout: two XIO quadrants; a second head needs another XIO widget; DCD; Tezro as an Origin 350 with XIO.** Identity: `usenet-comp:3CA9CB43.6080902@brussels.sgi.com`; `usenet-comp:3F15C0C4.40600@brussels.sgi.com`; `usenet-comp:3C5039F4.5060409@brussels.sgi.com`; `usenet-comp:3B6FD660.5000908@brussels.sgi.com`. Date: 2002-04-02, 2003-07-16, 2002-01-24, 2001-08-07. Kind: Usenet. Who: an SGI Benelux senior systems engineer.
+  - Unverified: a VPro board occupies two of the four XIO quadrants. A second VPro (dual head, DUO upgrade) needs another XIO widget. The DUO upgrade brings a PCI shoebox and an extra mouse and keyboard card.
+  - Unverified: DCD (Dual Channel Display) is one head with two outputs, unlike Octane2 Duo.
+  - Unverified: Tezro is an Origin 350 base module with two PCI slots swapped for two XIO slots that hold a V12. One PCI slot is taken by IO9. It uses the same 200 MHz SysAD as other Origin 3000 systems.
+  - Unverified: with one head and DCD, depending on PROM, IRIX and what was done to the VPro EEPROM, digital DVI may need an analog cable or removal of the 13W3 blanking panel.
+  - Test from software: check the Tezro and Onyx 350 topology against the model's XIO widget count and enumeration (`hinv` or `ioconfig` in the guest). Two VPro heads need a second XIO widget. EEPROM and cable behaviour is visible to the PROM.
+
+- **Linux IP30 list: VPro has dedicated memory; DMA image loading unknown outside SGI; widget IDs.** Identity: `linux-mips-list:47033156.7090703@gentoo.org` (thread with `4704DB98.1070905@gentoo.org`); `linux-mips-list:5562AF9F.3090900@gentoo.org`; `linux-mips-list:Pine.GSO.4.10.10404162305570.25696-100000@helios.et.put.poznan.pl`. Date: 2007-10-03, 2015-05-24, 2004-04-16. Kind: mailing list. Who: Linux/MIPS kernel developers and Gentoo port maintainers, not SGI insiders.
+  - Unverified: VPro and IMPACT have dedicated memory separate from system memory, so fbdev cannot drive X. Nobody outside SGI had worked out loading images into video memory by DMA, so IMPACT's shadow-framebuffer approach is not available.
+  - Unverified: the Odyssey xtalk widget has manufacturer 0x023 and part 0xc013 (Kona is 0x2aa and 0xc102). Odyssey is two XIO slots wide but plugs into one connector, usually A and B.
+  - Unverified: the 2004 IP30 port author calls VPro's architecture vastly different from MGRAS.
+  - Test from software: read the emulated widget ID register and compare it with 0x023 and 0xc013. The datasheet already carries 0xc013 ([docs/registers.md](registers.md)). The DMA statement is a gap marker, not a fact.
+
+- **Reported V8 OpenGL bug: orthographic projection without depth misdraws under IRIX 6.5.9m.** Identity: `usenet-comp:39C28490.928B5A73@mail.arc.nasa.gov`. Date: 2000-09-15. Kind: Usenet. Who: an application user at a government lab, on a V8. Not an insider. The only reply suggests a bad OS load.
+  - Unverified: orthographic projections with no depth buffering that worked on Octane and MXI lose clipping and draw lines and polygons in front of the viewer on V8 under IRIX 6.5.9m. The flight demo shows the same.
+  - Unverified: the reply blames a bad OS load, so the root cause is unresolved in the thread.
+  - Test from software: run an ortho no-depth test and the flight demo on a 6.5.9m-era VPro guest. A weak lead: unconfirmed and specific to an early driver.
+
+- **Hacker News, an ex-SGI advanced-graphics researcher on why VPro was "fatally broken".** Identity: https://news.ycombinator.com/item?id=30918654 (the same text at item?id=30920084 and item?id=30920824). Date: 2022-04-05. Kind: Hacker News comment. Who: a self-described former SGI junior researcher in the advanced graphics division. This lead is already recorded, with its claims tested against the shipped library, as [source 15](#15-recollection-a-hacker-news-comment-on-the-rasteriser-and-clipping-lead-unverified) above; the claims are not repeated here.
+
+- **Weird SGI VPro bug: long thin quads from Z=0 vanish on a V6; the `vpro_z0bug` reproducer; fixed by SGIX_vertex_preclip.** Identity: http://nuclear.mutantstargoat.com/blog/105-sgi_vpro_bug.html. The post includes a standalone test program named `vpro_z0bug`. Date: 2024-04-20. Kind: blog. Who: a retro-graphics hobbyist developer, with hands-on measurement; relays the ex-SGI researcher's account ([source 15](#15-recollection-a-hacker-news-comment-on-the-rasteriser-and-clipping-lead-unverified) above).
+  - Unverified: long thin quads that start at view-space Z=0 and run out to the far plane do not render on an Octane2 with a V6.
+  - Unverified: starting the quad at about Z=-0.01 makes it render.
+  - Unverified: `glEnable(GL_VERTEX_PRECLIP_SGIX)` with `glHint(GL_VERTEX_PRECLIP_HINT_SGIX, GL_FASTEST)` fixes it. `GL_NICEST` also works. `GL_DONT_CARE` does not.
+  - Unverified: per the spec, the hint only changes how the driver decides which polygons need software pre-clipping, yet the choice made no difference in the author's tunnel.
+  - Unverified: the post speculates that Quake III skybox rendering may hit the same bug.
+  - Observed on V6 only, by one author. V8, V10, V12 and Fuel or Tezro boards are untested, and whether BUZZ revisions differ is unknown.
+  - Test from software: run `vpro_z0bug` in the emulator and on a model for each board profile (V6, V8, V10, V12), with and without pre-clip, and with Z=0 against Z=-0.01. A model that renders the Z=0 quad correctly has not reproduced the hardware limitation. The result shows whether the limit is in BUZZ geometry or in the raster, and which boards have it.
+
+- **GL_SGIX_vertex_preclip and its hint: SGI-authored registry text.** Identity: https://registry.khronos.org/OpenGL/extensions/SGIX/SGIX_vertex_preclip.txt. A mirror on a personal freedesktop.org page returned HTTP 403 when fetched and was not read. Date: undated, circa 1999 to 2000 (not verified). Kind: extension registry text. Who: SGI OpenGL extension authors.
+  - Unverified: the extension defines an "extended rasterizable view volume", an expansion of the clip-space volume, for subsystems that can scissor in 2D or 3D faster than the host can re-tessellate clipped primitives. The lead gave this from a search snippet; [source 15](#15-recollection-a-hacker-news-comment-on-the-rasteriser-and-clipping-lead-unverified) above reports the registry text itself.
+  - Unverified: the hint selects how the driver detects primitives that need software pre-clipping.
+  - Unverified: OpenGL on Silicon Graphics Systems (007-2392-003, source 14 above) lists the extension among deprecated extensions kept for older systems, including VPro, InfinitePerformance and InfiniteReality. Whether that guide cites this passage is not checked.
+  - Test from software: `glGetString(GL_EXTENSIONS)` on each board must advertise the extension. Take the extended-volume bounds from the registry text, which source 15 summarises without numbers, and place vertices at, just inside and just outside them, and see what the driver software pre-clips. A guest trace can show whether the driver sends pre-clip work to the CPU or to BUZZ.
+
+- **IRIX Network forum thread 798: a V6 and V8 pixel-clock bug that causes artifacts.** Identity: https://forums.irixnet.org/thread-798.html. Date: 2018-12 to 2019-02. Kind: forum. Who: a hobbyist owner of a V8 board, quoting an old Nekochan wiki entry (the wiki's author is unknown).
+  - Unverified: the old Nekochan wiki says the first-generation VPro boards for Octane2 have a hardware bug that "causes flickering and artifacts when there is more than one OpenGL rendering context on the screen". Its workaround is to "underclock" the RAMDAC.
+  - Unverified: the owner saw no artifacts at 1280x720_60 at 16 bpp (a low pixel clock), and artifacts at higher pixel clocks and at the other end of the problem range.
+  - Unverified: a V6 "will happily do 1920x1200_60 at 8bpp". 16 bpp on the V8 showed problems.
+  - Unverified: the owner later said the card was dying, so some artifacts may come from a failing board rather than the design bug.
+  - Unverified: `odydiags` may be in `/usr/diags/bin` on the Customer Diagnostics 1.0 CD (SGI part 812-1122-001), and may have shipped only with Fuel. The poster was unsure.
+  - Test from software: set video formats on each V6 and V8 profile across the pixel-clock range and the bytes-per-pixel setting. Run two or more GL contexts at once (two `powerflip` instances, for example) and check whether the model reproduces the window the Higher Intellect page forbids (see the next entry). Look at the format-compiler files for the pixel-clock limits and at what the driver does at the edges. The repo stores a different thread from this forum (1573), not 798.
+
+- **Higher Intellect Vintage Wiki "VPro": the V6 and V8 pixel-clock section, resolution tables and BUZZ revision strings.** Identity: https://wiki.preterhuman.net/VPro (HTTP 403 on the fetch; the content was seen only through search snippets). Related: https://wiki.preterhuman.net/Octane_Graphics_Boards. Date: undated. Kind: community wiki. Who: a community wiki, apparently derived from the old Nekochan wiki (unverified).
+  - Unverified: on V6 and V8, modes in the 109 to 193 MHz range cannot be selected.
+  - Unverified: modes near the low edge (1280x1024_59 and _60, for example) are allowed only at 8 bytes per pixel framebuffer size, and some users report noise or flicker.
+  - Unverified: 1280x1024 at 60, 72, 75 and 85 Hz is listed as an "Additional V10/V12 Resolution". V6 and V8 get 1280x1024 at 96 and 100 Hz (quad stereo) instead.
+  - Unverified: one user's V6 reports "BUZZ version B.1, PB&J version 1, 32MB" and runs 1280x1024_60.
+  - Unverified: no source given on the page states the root cause (PLL, DAC range or PB&J).
+  - Test from software: this is a mixed-authorship secondary source and the full text was not read, so re-fetch it before relying on it. Verify against the format-compiler output, the video-format files shipped with IRIX and the model's video-timing path for each board profile. The BUZZ and PB&J revision strings come from `gfxinfo`, which can be checked against the model's identity registers.
+
+- **Wikipedia "SGI VPro" and its Usenet reference, "Octane2 Vpro based on GeForce2?" (comp.sys.sgi.hardware).** Identity: https://en.wikipedia.org/wiki/SGI_VPro; http://comp.sys.sgi.hardware.narkive.com/gZNH1I8g/octane2-vpro-based-on-geforce2 (the archive returned HTTP 503, so the thread was not read). Date: undated; the thread date was not retrieved. Kind: encyclopedia article and Usenet thread. Who: Usenet posters of unknown role. The article cites no interviews or insider sources.
+  - Unverified: the article gives BUZZ at 251 MHz with the memory bus at half that. It says an SGI service manual gives 266 MHz; that is a secondary report. [source 7 above](#7-vpro-odyssey-graphics-diagnostic-reference-108-0314-001) gives 266 MHz.
+  - Unverified: V10 and V12 boards for Fuel, Tezro and Onyx 3000 use a different XIO connector from the Octane2 boards (no citation given).
+  - Unverified: the V3, VR3, V7 and VR7 "VPro" cards are NVIDIA-based and unrelated to Odyssey.
+  - Unverified: the article gives texture memory as 104 MB in one place and 108 MB in another, so the page contradicts itself. [source 13 above](#13-datasheets-brochure-and-product-tables-octane2-datasheet-german-brochure-sgi-periodic-table-sgistuff-page) gives 104 MB for V8 and V12.
+  - Test from software: check the BUZZ and SDRAM clocks against the diagnostic manual and the PROM or driver clock-programming values. For the texture-memory split (24 MB of buffers and 8 MB of texture on V6, per a retro.swarm.cz report; 104 against 108 MB on V8 and V12), query the GL texture limits and `gfxinfo` on each board profile. Re-fetch the narkive thread later, since the 503 was probably temporary.
+
+- **HN comment attributing NVIDIA's talent acquisition and the Octane2, Fuel and Tezro decline to the advanced graphics division.** Identity: https://news.ycombinator.com/item?id=542017. Date: 2009 (month not retrieved). Kind: Hacker News comment. Who: an anonymous commenter, role unknown, second-hand.
+  - Unverified: NVIDIA was "hard pressed into buying talent", mostly from SGI's advanced graphics division, and this hurt SGI's new workstation lines (Octane2, Fuel, Tezro).
+  - Only a search-engine summary was seen, not the page. It has no technical content.
+  - Test from software: not testable. Listed so nobody spends time on it.
+
+- **SGI launch release and the UCSF graphics-board table.** Identity: https://www.thefreelibrary.com/SGI+DEBUTS+ADVANCED+GRAPHICS+OCTANE2+WORKSTATION.-a070735172; https://www.cgl.ucsf.edu/Resources/graphperf.html. Date: 2001 for the release (V10 and V12 announcement, per the sgistuff page); the UCSF table is undated. Kind: press release; academic lab page. Who: an SGI marketing release; an academic lab page that warns some of its figures are vendor numbers.
+  - Unverified: the launch figures are over 18 million 1-pixel lit, depth-buffered, Gouraud-shaded triangles per second and 448 megapixels per second of fill, measured with trilinear mipmapping and depth buffering.
+  - Unverified: hardware specular shading with normal interpolation "without a performance penalty".
+  - Unverified: the UCSF table lists the Octane2 V12 at 18.1 M polygons/s, against 31 M for a Quadro2 Pro.
+  - Neither source is an engineering account.
+  - Test from software: 448 Mpix/s and 18 M tri/s are marketing peaks, to be used only as upper bounds for a rate-limited model. A guest fill-rate test (trilinear plus depth) gives a per-clock figure to compare against.
+
+- **SPEC Viewperf 6.1.1 on SGI Octane2 with V6.** Identity: https://retro.swarm.cz/20180413/aaa-11/. Date: 2018-04-13. Kind: blog. Who: a hobbyist owner running a measurement.
+  - Unverified: V6 has 32 MB, with 24 MB for buffers and 8 MB for textures. [source 13 above](#13-datasheets-brochure-and-product-tables-octane2-datasheet-german-brochure-sgi-periodic-table-sgistuff-page) already gives the 8 MB texture figure from the datasheet.
+  - Unverified: the post gives V6 Viewperf results. These are a measured data point, not a design statement.
+  - Test from software: run the same Viewperf 6.1.1 datasets on the model and compare relative scores across tests. This exercises the texture-memory limit and lighting. Only a search summary was seen, so re-fetch the numbers before use.
+
+- **McCool et al., "Incremental and Hierarchical Hilbert Order Edge Equation Polygon Rasterization" (Graphics Hardware 2001).** Identity: https://dl.acm.org/doi/10.1145/383507.383528. Date: 2001. Kind: paper. Who: academic authors, not SGI.
+  - Unverified: Hilbert-order rasterisation improves texture-cache locality and can work in homogeneous coordinates with no clipper.
+  - The paper matches the ex-SGI account of "no clipping", but it is an independent academic design. It is not evidence of what BUZZ does.
+  - Test from software: a contrast case only. If the model's raster loop is homogeneous with no clipper, [source 15](#15-recollection-a-hacker-news-comment-on-the-rasteriser-and-clipping-lead-unverified) above says that should show precision loss near W=0.
+
+- **Nekonomicon forum thread, "SGI VPro VR3 vs Odyssey VPro".** Identity: gainos.org forum thread 16724722. The full URL has a personal user segment and was not fetched (DNS failure). Date: undated. Kind: forum. Who: a hobbyist.
+  - Unverified, per a search summary: the poster says BUZZ holds most of the graphics pipeline and PB&J is "primarily the DG portion". The poster says they found no information on PB&J and is guessing.
+  - Test from software: not testable. Low value. Settle it from the diagnostic manual and the model's own block diagram.
+
+- **Oral histories: CHM catalogue for graphics architects; the 3dfx panel; the SIGGRAPH 2021 SGI retrospective.** Identity: https://www.computerhistory.org/collections/catalog/102746834; https://f0lkl0r3.dev/welcome (index of CHM oral histories). Date: 2013 (3dfx panel); 2021 (SIGGRAPH retrospective). Kind: oral history. Who: graphics company founders and architects; none was identified as a VPro engineer.
+  - Unverified: no CHM oral history covering Odyssey, BUZZ, PB&J or Octane2 graphics was found. The 3dfx panel touches SGI only in passing.
+  - Unverified: the index lists SGI-related interviews (graphics architects and MIPS or SGI founders) that were not opened, so any VPro content in them is unknown.
+  - Test from software: not testable. This records a negative result for the CHM route. It stands unless a full-text search of the listed SGI-architect transcripts finds otherwise.
+ (docs: add unverified VPro history leads to published sources)
+
 ## What these sources settle, by open question
 
 - **Colour interpolation arithmetic.** Candidates only: a 12-bit bilerp of vertex colours from reciprocal-area-scaled edge distances, perspective-corrected by an interpolated 1/w, evaluated through a 4K x 4K recursive subdivision (sources 1, 3 and 6, inferred). A numeric test of the candidate against the 1090 residual pixels is the next route.
