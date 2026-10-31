@@ -307,3 +307,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdysseyEvalMesh2Point` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d2f0 | 476 | 8835e0b58c32 | Established |
 | `__glOdysseyInitAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd955de0 | 224 | 2e94957ad3ba | Established |
 | `__glOdysseyInitAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd955de0 | 224 | 2e94957ad3ba | Established |
+| `__glOdyim_Accum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd955ec0 | 364 | d273b300ae9b | Established |
+| `__glOdyim_Accum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd955ec0 | 364 | d273b300ae9b | Established |
+| `__glSoftAllocAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9536f0 | 64 | b3b82113c34f | Established |
+| `__glSoftAllocAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9536f0 | 64 | b3b82113c34f | Established |
+| `__glOdySoftAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd953a10 | 240 | 9b9ee3185696 | Established |
+| `__glOdySoftAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd953a10 | 240 | 9b9ee3185696 | Established |
+| `softClear` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd953730 | 728 | 0b7fdad1f7c3 | Established |
+| `softClear` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd953730 | 728 | 0b7fdad1f7c3 | Established |
+| `softMult` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd951d70 | 1764 | 707174b11883 | Established |
+| `softMult` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd951d70 | 1764 | 707174b11883 | Established |
+| `softAdd` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd952460 | 1656 | f4caced32510 | Established |
+| `softAdd` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd952460 | 1656 | f4caced32510 | Established |
