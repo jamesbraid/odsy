@@ -163,3 +163,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyssey_FastDispatchEnd` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x2328200 | 15872 | 4cab2551b407 | Established |
 | `__glOdyssey_FastDispatchEnd` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` | 0xdae4200 | 15872 | 4cab2551b407 | Established |
 | `__glOdyssey_FastDispatchEnd` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x2328200 | 15872 | 4cab2551b407 | Established |
+| `InitFastDispatch` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd967420 | 504 | 52bf50923ce9 | Established |
+| `InitFastDispatch` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd967420 | 504 | 52bf50923ce9 | Established |
+| `setCurrent` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd970bd0 | 340 | 6c21430b7038 | Established |
+| `setCurrent` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd970bd0 | 340 | 6c21430b7038 | Established |
+| `__glOdysseyInitKernel` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c63c0 | 656 | 5697524dc706 | Established |
+| `__glOdysseyInitKernel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c63c0 | 656 | 5697524dc706 | Established |
+| `CheckMMXfrArgs` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6ca0 | 128 | 650a3ab0f3c6 | Established |
+| `CheckMMXfrArgs` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6ca0 | 128 | 650a3ab0f3c6 | Established |
+| `CheckMMXfrArgs` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x325b220 | 128 | 650a3ab0f3c6 | Established |
+| `CheckMMXfrArgs` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x220b220 | 128 | 650a3ab0f3c6 | Established |
+| `CheckMMXfrArgs` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x220b220 | 128 | 650a3ab0f3c6 | Established |
+| `__glOdysseyPMObjGroupResident` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7170 | 168 | 482da20895a6 | Established |
