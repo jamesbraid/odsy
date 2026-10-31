@@ -379,3 +379,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_Hint` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd956ae0 | 220 | 5ecfe1145825 | Established |
 | `__glOdyim_ColorMaterial` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b580 | 268 | f70ad42664cf | Established |
 | `__glOdyim_ColorMaterial` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b580 | 268 | f70ad42664cf | Established |
+| `__glOdyim_ReadBuffer` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95b930 | 408 | b621a46228a3 | Established |
+| `__glOdyim_ReadBuffer` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95b930 | 408 | b621a46228a3 | Established |
+| `__glOdyim_DrawBuffer` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95bad0 | 1356 | b520127fd3b1 | Established |
+| `__glOdyim_DrawBuffer` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95bad0 | 1356 | b520127fd3b1 | Established |
+| `__glOdyim_Materialfv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95c900 | 488 | 8c43a78a7568 | Established |
+| `__glOdyim_Materialfv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95c900 | 488 | 8c43a78a7568 | Established |
+| `__glOdyim_Materialf` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95caf0 | 84 | 14675e34661c | Established |
+| `__glOdyim_Materialf` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95caf0 | 84 | 14675e34661c | Established |
+| `__glOdyim_Materialiv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d0b0 | 496 | aff27d9a0fd4 | Established |
+| `__glOdyim_Materialiv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d0b0 | 496 | aff27d9a0fd4 | Established |
+| `__glOdyim_Materiali` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95d2a0 | 84 | 4b729d34eb89 | Established |
+| `__glOdyim_Materiali` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95d2a0 | 84 | 4b729d34eb89 | Established |
