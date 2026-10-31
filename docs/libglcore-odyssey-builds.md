@@ -136,7 +136,7 @@ Context offsets are the copy's own. Several builds keep the context record with 
 
 ## Copies with the same code hash
 
-Each row is one routine in one build whose function-table code hash equals the hash of the N32 routine named in the reads chapter ([libglcore-odyssey-reads.md](libglcore-odyssey-reads.md)). The hash is the first 12 hex digits of the hash of the function's bytes, taken over the table size, and every row here has the same table size as its N32 routine. The inventory computed each hash over that build's own bytes, so an equal hash means equal bytes and the copy carries the N32 reading. The label is **Established** on the same terms as the first table. The matching was done by the inventory script; the copy was not disassembled row by row. One spot check was made by hand: `CheckMMXfrArgs`, 128 bytes at 0xd9c6ca0 in the N32 build and at 0x325b220 in the `usr/gfx/arch/IP30ODSY64` build, 32 words, equal in objdump. Copies whose hash differs from the N32 routine are not listed here.
+Each row is one routine in one build whose function-table code hash equals the hash of the N32 routine named in the reads chapter ([libglcore-odyssey-reads.md](libglcore-odyssey-reads.md)). The hash is the first 12 hex digits of the hash of the function's bytes, taken over the table size, and every row here has the same table size as its N32 routine. The inventory computed each hash over that build's own bytes, so an equal hash means equal bytes and the copy carries the N32 reading. The label follows the N32 reading: **Established** when the N32 entry in the reads chapter is established throughout, **Inferred** when part of it is inferred (as in the first table). The matching was done by the inventory script; the copy was not disassembled row by row. One spot check was made by hand: `CheckMMXfrArgs`, 128 bytes at 0xd9c6ca0 in the N32 build and at 0x325b220 in the `usr/gfx/arch/IP30ODSY64` build, 32 words, equal in objdump. Copies whose hash differs from the N32 routine are not listed here.
 
 | Routine | Binary | Address | Size | Function-table hash | Label |
 |---|---|---|---|---|---|
@@ -585,15 +585,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glsplc_AddSentinel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976070 | 156 | c8a561eaafb6 | Established |
 | `__glOdylc_Error` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
 | `__glOdylc_Error` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
-| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd958ea0 | 112 | 39d17880fb8b | Established |
-| `__glOdyim_BlendColorEXT` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95f100 | 472 | bb9efb60aca2 | Established |
-| `__glOdysseyIsBboxClippedRange` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973750 | 3496 | 33a20e3e8455 | Established |
-| `__glOdysseyEvalMesh2Fill` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d000 | 744 | 27cd127da822 | Established |
-| `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Established |
-| `__glOdysseyValidateLighting` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Established |
-| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd958ea0 | 112 | 39d17880fb8b | Established |
-| `__glOdyim_BlendColorEXT` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95f100 | 472 | bb9efb60aca2 | Established |
-| `__glOdysseyIsBboxClippedRange` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973750 | 3496 | 33a20e3e8455 | Established |
-| `__glOdysseyEvalMesh2Fill` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d000 | 744 | 27cd127da822 | Established |
-| `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Established |
-| `__glOdysseyValidateLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Established |
+| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd958ea0 | 112 | 39d17880fb8b | Inferred |
+| `__glOdyim_BlendColorEXT` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95f100 | 472 | bb9efb60aca2 | Inferred |
+| `__glOdysseyIsBboxClippedRange` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973750 | 3496 | 33a20e3e8455 | Inferred |
+| `__glOdysseyEvalMesh2Fill` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d000 | 744 | 27cd127da822 | Inferred |
+| `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Inferred |
+| `__glOdysseyValidateLighting` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Inferred |
+| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd958ea0 | 112 | 39d17880fb8b | Inferred |
+| `__glOdyim_BlendColorEXT` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95f100 | 472 | bb9efb60aca2 | Inferred |
+| `__glOdysseyIsBboxClippedRange` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973750 | 3496 | 33a20e3e8455 | Inferred |
+| `__glOdysseyEvalMesh2Fill` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d000 | 744 | 27cd127da822 | Inferred |
+| `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Inferred |
+| `__glOdysseyValidateLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Inferred |
