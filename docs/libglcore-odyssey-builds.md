@@ -72,6 +72,12 @@ Words compared: the number of instruction words in the routine, in N32 and in th
 | `InitBuffers` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd967bc0 | 480 | 120 of 120 equal | 2732fd7816a5 | Established |
 | `ApplyViewport` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965ab0 | 616 | 154 of 154 equal | 813125eb34fd | Established |
 | `ApplyViewport` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965ab0 | 616 | 154 of 154 equal | 813125eb34fd | Established |
+| `ApplyScissor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd965ee0 | 404 | 101 of 101 equal | 69d84c67c548 | Established |
+| `ApplyScissor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965ee0 | 404 | 101 of 101 equal | 69d84c67c548 | Established |
+| `LoseCurrent` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c100 | 500 | 125 of 125 equal | b2159b3ab177 | Established |
+| `LoseCurrent` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c100 | 500 | 125 of 125 equal | b2159b3ab177 | Established |
+| `MakeCurrent` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c300 | 108 | 27 of 27 equal | 55d45cf6e56b | Established |
+| `MakeCurrent` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c300 | 108 | 27 of 27 equal | 55d45cf6e56b | Established |
 
 Notes on individual rows:
 
