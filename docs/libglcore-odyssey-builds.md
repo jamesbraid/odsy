@@ -319,3 +319,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `softMult` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd951d70 | 1764 | 707174b11883 | Established |
 | `softAdd` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd952460 | 1656 | f4caced32510 | Established |
 | `softAdd` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd952460 | 1656 | f4caced32510 | Established |
+| `__glOdyHardAccum24` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd955c10 | 460 | cfb1f846c154 | Established |
+| `__glOdyHardAccum24` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd955c10 | 460 | cfb1f846c154 | Established |
+| `sendBlenderOpTokens` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950000 | 104 | 5410e245fb56 | Established |
+| `sendBlenderOpTokens` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950000 | 104 | 5410e245fb56 | Established |
+| `sendBlenderColorTokensAccum24` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950070 | 116 | e9c2b689c0c7 | Established |
+| `sendBlenderColorTokensAccum24` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950070 | 116 | e9c2b689c0c7 | Established |
+| `destroyScratchBufAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9500f0 | 152 | 7577de491ca3 | Established |
+| `destroyScratchBufAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9500f0 | 152 | 7577de491ca3 | Established |
+| `__glOdysseyAccumClose` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950190 | 116 | 592637cdd2b6 | Established |
+| `__glOdysseyAccumClose` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950190 | 116 | 592637cdd2b6 | Established |
+| `initScratchBufAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd950210 | 776 | a68215b08521 | Established |
+| `initScratchBufAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd950210 | 776 | a68215b08521 | Established |
