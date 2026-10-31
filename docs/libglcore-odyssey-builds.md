@@ -247,3 +247,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_Enable` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd956bc0 | 4920 | 01031b81a93f | Established |
 | `__glOdyim_Enable` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd956bc0 | 4920 | 01031b81a93f | Established |
 | `__glOdyim_Disable` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95dc70 | 5256 | 585317ae28cf | Established |
+| `__glOdyim_Disable` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95dc70 | 5256 | 585317ae28cf | Established |
+| `__glOdyim_IsEnabled` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd956830 | 680 | f90b36f42668 | Established |
+| `__glOdyim_IsEnabled` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd956830 | 680 | f90b36f42668 | Established |
+| `PushAttributes` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd957f00 | 3772 | c3b8f6340367 | Established |
+| `PushAttributes` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd957f00 | 3772 | c3b8f6340367 | Established |
+| `PopAttributes` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd958f60 | 7472 | f333a1a5c33c | Established |
+| `PopAttributes` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd958f60 | 7472 | f333a1a5c33c | Established |
+| `__glOdyim_PushAttrib` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd958dc0 | 212 | 1ca8bd287293 | Established |
+| `__glOdyim_PushAttrib` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd958dc0 | 212 | 1ca8bd287293 | Established |
+| `__glOdyim_PopAttrib` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95ad10 | 160 | d4fb6248b347 | Established |
+| `__glOdyim_PopAttrib` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95ad10 | 160 | d4fb6248b347 | Established |
+| `__glOdysseyFreeAttributeState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95adb0 | 232 | d3314d395234 | Established |
