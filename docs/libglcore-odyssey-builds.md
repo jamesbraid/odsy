@@ -451,3 +451,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glOdyim_GetClipPlane` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9859b0 | 232 | e0fc46ae7d05 | Established |
 | `__glOdyim_GetClipPlane` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9859b0 | 232 | e0fc46ae7d05 | Established |
 | `__glOdyGetFromHardware` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd985aa0 | 240 | 3f7e8d19e3ec | Established |
+| `__glOdyGetFromHardware` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd985aa0 | 240 | 3f7e8d19e3ec | Established |
+| `__glOdyGetFromShadow` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd986300 | 128 | 7107b70545e5 | Established |
+| `__glOdyGetFromShadow` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd986300 | 128 | 7107b70545e5 | Established |
+| `__glOdyim_GetDoublev` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd986c00 | 60 | c1a4a7a958f0 | Established |
+| `__glOdyim_GetDoublev` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd986c00 | 60 | c1a4a7a958f0 | Established |
+| `__glOdyim_GetFloatv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd986c40 | 60 | e801425c8264 | Established |
+| `__glOdyim_GetFloatv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd986c40 | 60 | e801425c8264 | Established |
+| `__glOdyim_GetIntegerv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd986c80 | 60 | 89fc2c810bf9 | Established |
+| `__glOdyim_GetIntegerv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd986c80 | 60 | 89fc2c810bf9 | Established |
+| `__glOdyim_GetBooleanv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd986cc0 | 60 | 7cc27a220266 | Established |
+| `__glOdyim_GetBooleanv` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd986cc0 | 60 | 7cc27a220266 | Established |
+| `__glOdyim_GetTexEnvfv` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd987740 | 276 | 62e306317255 | Established |
