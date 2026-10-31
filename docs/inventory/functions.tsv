@@ -14428,7 +14428,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268600	296	__glim_BlendEquationEXT	dwarf+dynsym	2cf4909971c8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268730	204	__glim_ClearAccum	dwarf+dynsym	02cf8e1d1d96		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268800	184	__glim_ClearColor	dwarf+dynsym	6585a8dfd06c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22688c0	132	__glim_ClearDepth	dwarf+dynsym	13c66d502603		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22688c0	132	__glim_ClearDepth	dwarf+dynsym	13c66d502603		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268950	144	__glim_ClearIndex	dwarf+dynsym	b281caf6187e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22689e0	124	__glim_ClearStencil	dwarf+dynsym	c987646ab1fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2268a60	120	__glim_ColorMask	dwarf+dynsym	5161d2262a66		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81479,7 +81479,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b83a0	600	__glim_Ble
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8600	296	__glim_BlendEquationEXT	dwarf+dynsym	2cf4909971c8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8730	204	__glim_ClearAccum	dwarf+dynsym	02cf8e1d1d96		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8800	184	__glim_ClearColor	dwarf+dynsym	6585a8dfd06c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b88c0	132	__glim_ClearDepth	dwarf+dynsym	13c66d502603		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b88c0	132	__glim_ClearDepth	dwarf+dynsym	13c66d502603		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8950	144	__glim_ClearIndex	dwarf+dynsym	b281caf6187e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b89e0	124	__glim_ClearStencil	dwarf+dynsym	c987646ab1fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32b8a60	120	__glim_ColorMask	dwarf+dynsym	5161d2262a66		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99018,7 +99018,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22683a0	600	__glim_Ble
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268600	296	__glim_BlendEquationEXT	dwarf+dynsym	2cf4909971c8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268730	204	__glim_ClearAccum	dwarf+dynsym	02cf8e1d1d96		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268800	184	__glim_ClearColor	dwarf+dynsym	6585a8dfd06c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22688c0	132	__glim_ClearDepth	dwarf+dynsym	13c66d502603		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22688c0	132	__glim_ClearDepth	dwarf+dynsym	13c66d502603		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268950	144	__glim_ClearIndex	dwarf+dynsym	b281caf6187e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22689e0	124	__glim_ClearStencil	dwarf+dynsym	c987646ab1fb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2268a60	120	__glim_ColorMask	dwarf+dynsym	5161d2262a66		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
