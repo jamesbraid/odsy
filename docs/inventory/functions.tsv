@@ -8739,7 +8739,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337e0	8	__glDispatchExec	dwarf+funcnames	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337f0	372	__glBeginDispatchOverride	dwarf+funcnames	972683c7b6b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda33970	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33b20	908	__glContextSetColorScales	dwarf+dynsym	420491982eb6		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33eb0	2980	__glSoftResetContext	dwarf+dynsym	c2269d3c7016		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda34a60	112	__glDestroyContext	dwarf+dynsym	1fd3b4610de9		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -14483,7 +14483,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75790,7 +75790,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda335d0	516	__glCopyCo
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337e0	8	__glDispatchExec	dwarf+funcnames	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337f0	372	__glBeginDispatchOverride	dwarf+funcnames	972683c7b6b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda33970	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33b20	908	__glContextSetColorScales	dwarf+dynsym	420491982eb6		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33eb0	2980	__glSoftResetContext	dwarf+dynsym	c2269d3c7016		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda34a60	112	__glDestroyContext	dwarf+dynsym	1fd3b4610de9		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -81534,7 +81534,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfdf0	112	__glim_Pol
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c04c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93329,7 +93329,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda335d0	516	__glCopyCo
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda337e0	8	__glDispatchExec	dwarf+funcnames	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda337f0	372	__glBeginDispatchOverride	dwarf+funcnames	972683c7b6b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda33970	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33b20	908	__glContextSetColorScales	dwarf+dynsym	420491982eb6		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33eb0	2980	__glSoftResetContext	dwarf+dynsym	c2269d3c7016		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda34a60	112	__glDestroyContext	dwarf+dynsym	1fd3b4610de9		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -99073,7 +99073,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fdf0	112	__glim_Pol
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270740	572	__glim_PopClientAttrib	dwarf+dynsym	302909919350		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270980	268	__glDrawBitmap	dwarf+dynsym	68705feaf952		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
