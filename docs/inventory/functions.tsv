@@ -8897,7 +8897,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40aa0	188	__glim_GetPolygonStipple	dwarf+dynsym	f522b863ec5e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40b60	452	__glim_GetLightfv	dwarf+dynsym	3452483ed791		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40d30	548	__glim_GetLightiv	dwarf+dynsym	9ff6dda5f64c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41100	912	__glim_GetMaterialiv	dwarf+dynsym	ba06ec1c3d97		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41490	776	__glim_GetMapfv	dwarf+dynsym	0f91e31742bd		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda417a0	888	__glim_GetMapdv	dwarf+dynsym	ac7eb80a024a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -75948,7 +75948,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40590	1292	__glim_Ge
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40aa0	188	__glim_GetPolygonStipple	dwarf+dynsym	f522b863ec5e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40b60	452	__glim_GetLightfv	dwarf+dynsym	3452483ed791		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40d30	548	__glim_GetLightiv	dwarf+dynsym	9ff6dda5f64c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41100	912	__glim_GetMaterialiv	dwarf+dynsym	ba06ec1c3d97		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda41490	776	__glim_GetMapfv	dwarf+dynsym	0f91e31742bd		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda417a0	888	__glim_GetMapdv	dwarf+dynsym	ac7eb80a024a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93487,7 +93487,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40590	1292	__glim_Ge
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40aa0	188	__glim_GetPolygonStipple	dwarf+dynsym	f522b863ec5e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40b60	452	__glim_GetLightfv	dwarf+dynsym	3452483ed791		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40d30	548	__glim_GetLightiv	dwarf+dynsym	9ff6dda5f64c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda40f60	404	__glim_GetMaterialfv	dwarf+dynsym	0623756e1020		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda41100	912	__glim_GetMaterialiv	dwarf+dynsym	ba06ec1c3d97		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda41490	776	__glim_GetMapfv	dwarf+dynsym	0f91e31742bd		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda417a0	888	__glim_GetMapdv	dwarf+dynsym	ac7eb80a024a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
