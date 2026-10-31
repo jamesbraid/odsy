@@ -1277,7 +1277,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977e10	84	__glOdysseySPBalloc	dynsym+mdebug	883b270b3662		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977e64	56	__glOdysseySPBfree	dynsym+mdebug	bfccdba95f21		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977e9c	104	__glOdysseySPCompMachdep	dynsym+mdebug	1cbb99162b9d		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977f20	64	__glOdyim_EvalCoord1d	dynsym+mdebug	2df9fb469128		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977f20	64	__glOdyim_EvalCoord1d	dynsym+mdebug	2df9fb469128		in	located	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977f60	76	__glOdyim_EvalCoord1dv	dynsym+mdebug	1f228fe04143		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977fac	60	__glOdyim_EvalCoord1f	dynsym+mdebug	e031ab345d23		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977fe8	64	__glOdyim_EvalCoord1fv	dynsym+mdebug	8052918c3b03		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -13009,7 +13009,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9e10	80	__glOdysseySPBalloc	dwarf+dynsym	cc1f02f816fe		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9e60	52	__glOdysseySPBfree	dwarf+dynsym	fc265850b31e		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9ea0	116	__glOdysseySPCompMachdep	dwarf+dynsym	965ff75cb979		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9f20	56	__glOdyim_EvalCoord1d	dwarf+dynsym	38c77076e914		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9f20	56	__glOdyim_EvalCoord1d	dwarf+dynsym	38c77076e914		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9f60	60	__glOdyim_EvalCoord1dv	dwarf+dynsym	4349dd1e59c2		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9fa0	56	__glOdyim_EvalCoord1f	dwarf+dynsym	e3a2ad9880c2		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21b9fe0	60	__glOdyim_EvalCoord1fv	dwarf+dynsym	dc1b6dc8a3a7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -19089,7 +19089,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.tex
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53ecc	84	__glOdysseySPBalloc	dynsym+mdebug	83fea191406b		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53f20	56	__glOdysseySPBfree	dynsym+mdebug	64f36f27df7c		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53f58	104	__glOdysseySPCompMachdep	dynsym+mdebug	037148fe4e03		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53fd0	64	__glOdyim_EvalCoord1d	dynsym+mdebug	6f7c16bf4806		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53fd0	64	__glOdyim_EvalCoord1d	dynsym+mdebug	6f7c16bf4806		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54010	76	__glOdyim_EvalCoord1dv	dynsym+mdebug	df30b548a202		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5405c	60	__glOdyim_EvalCoord1f	dynsym+mdebug	521dcbf7f78d		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54098	64	__glOdyim_EvalCoord1fv	dynsym+mdebug	a6fc2d16bad9		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -25300,7 +25300,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62480	76	__glOdysseySPBalloc	dynsym	e2712bed9230		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda624d0	52	__glOdysseySPBfree	dynsym	a078dd3d8398		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62510	92	__glOdysseySPCompMachdep	dynsym	0857fdcf6c6e		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62570	56	__glOdyim_EvalCoord1d	dynsym	6b5570baaafb		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62570	56	__glOdyim_EvalCoord1d	dynsym	6b5570baaafb		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda625b0	60	__glOdyim_EvalCoord1dv	dynsym	25af232daf45		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda625f0	56	__glOdyim_EvalCoord1f	dynsym	028468b4c241		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62630	60	__glOdyim_EvalCoord1fv	dynsym	d8284397d25b		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -30647,7 +30647,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.t
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346980	84	__glOdysseySPBalloc	dwarf+dynsym	f84d2da9415f		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3469e0	52	__glOdysseySPBfree	dwarf+dynsym	a669d53e321c		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346a20	92	__glOdysseySPCompMachdep	dwarf+dynsym	5da883fa3891		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346a80	56	__glOdyim_EvalCoord1d	dwarf+dynsym	d23c9451e598		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346a80	56	__glOdyim_EvalCoord1d	dwarf+dynsym	d23c9451e598		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346ac0	60	__glOdyim_EvalCoord1dv	dwarf+dynsym	429232d46819		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346b00	56	__glOdyim_EvalCoord1f	dwarf+dynsym	b8357165b76a		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb346b40	60	__glOdyim_EvalCoord1fv	dwarf+dynsym	8afc090ad573		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -36665,7 +36665,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.tex
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53ecc	84	__glOdysseySPBalloc	dynsym+mdebug	83fea191406b		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53f20	56	__glOdysseySPBfree	dynsym+mdebug	64f36f27df7c		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53f58	104	__glOdysseySPCompMachdep	dynsym+mdebug	037148fe4e03		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53fd0	64	__glOdyim_EvalCoord1d	dynsym+mdebug	6f7c16bf4806		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda53fd0	64	__glOdyim_EvalCoord1d	dynsym+mdebug	6f7c16bf4806		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54010	76	__glOdyim_EvalCoord1dv	dynsym+mdebug	df30b548a202		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda5405c	60	__glOdyim_EvalCoord1f	dynsym+mdebug	521dcbf7f78d		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda54098	64	__glOdyim_EvalCoord1fv	dynsym+mdebug	a6fc2d16bad9		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -42876,7 +42876,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62480	76	__glOdysseySPBalloc	dynsym	e2712bed9230		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda624d0	52	__glOdysseySPBfree	dynsym	a078dd3d8398		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62510	92	__glOdysseySPCompMachdep	dynsym	0857fdcf6c6e		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62570	56	__glOdyim_EvalCoord1d	dynsym	6b5570baaafb		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62570	56	__glOdyim_EvalCoord1d	dynsym	6b5570baaafb		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda625b0	60	__glOdyim_EvalCoord1dv	dynsym	25af232daf45		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda625f0	56	__glOdyim_EvalCoord1f	dynsym	028468b4c241		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda62630	60	__glOdyim_EvalCoord1fv	dynsym	d8284397d25b		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -48223,7 +48223,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.t
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66980	84	__glOdysseySPBalloc	dwarf+dynsym	f84d2da9415f		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd669e0	52	__glOdysseySPBfree	dwarf+dynsym	a669d53e321c		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66a20	92	__glOdysseySPCompMachdep	dwarf+dynsym	5da883fa3891		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66a80	56	__glOdyim_EvalCoord1d	dwarf+dynsym	d23c9451e598		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66a80	56	__glOdyim_EvalCoord1d	dwarf+dynsym	d23c9451e598		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66ac0	60	__glOdyim_EvalCoord1dv	dwarf+dynsym	429232d46819		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66b00	56	__glOdyim_EvalCoord1f	dwarf+dynsym	b8357165b76a		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbd66b40	60	__glOdyim_EvalCoord1fv	dwarf+dynsym	8afc090ad573		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -68328,7 +68328,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xd977bc4	2296	makeDL
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977e10	84	__glOdysseySPBalloc	dynsym+mdebug	883b270b3662		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977e64	56	__glOdysseySPBfree	dynsym+mdebug	bfccdba95f21		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977e9c	104	__glOdysseySPCompMachdep	dynsym+mdebug	1cbb99162b9d		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977f20	64	__glOdyim_EvalCoord1d	dynsym+mdebug	2df9fb469128		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977f20	64	__glOdyim_EvalCoord1d	dynsym+mdebug	2df9fb469128		in	located	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977f60	76	__glOdyim_EvalCoord1dv	dynsym+mdebug	1f228fe04143		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977fac	60	__glOdyim_EvalCoord1f	dynsym+mdebug	e031ab345d23		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd977fe8	64	__glOdyim_EvalCoord1fv	dynsym+mdebug	8052918c3b03		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -80060,7 +80060,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x3209c40	456	makeD
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209e10	80	__glOdysseySPBalloc	dwarf+dynsym	cc1f02f816fe		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209e60	52	__glOdysseySPBfree	dwarf+dynsym	fc265850b31e		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209ea0	116	__glOdysseySPCompMachdep	dwarf+dynsym	965ff75cb979		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209f20	56	__glOdyim_EvalCoord1d	dwarf+dynsym	38c77076e914		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209f20	56	__glOdyim_EvalCoord1d	dwarf+dynsym	38c77076e914		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209f60	60	__glOdyim_EvalCoord1dv	dwarf+dynsym	4349dd1e59c2		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209fa0	56	__glOdyim_EvalCoord1f	dwarf+dynsym	e3a2ad9880c2		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3209fe0	60	__glOdyim_EvalCoord1fv	dwarf+dynsym	dc1b6dc8a3a7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -85867,7 +85867,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xd977bc4	2296	makeDL
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977e10	84	__glOdysseySPBalloc	dynsym+mdebug	883b270b3662		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977e64	56	__glOdysseySPBfree	dynsym+mdebug	bfccdba95f21		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977e9c	104	__glOdysseySPCompMachdep	dynsym+mdebug	1cbb99162b9d		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977f20	64	__glOdyim_EvalCoord1d	dynsym+mdebug	2df9fb469128		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977f20	64	__glOdyim_EvalCoord1d	dynsym+mdebug	2df9fb469128		in	located	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977f60	76	__glOdyim_EvalCoord1dv	dynsym+mdebug	1f228fe04143		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977fac	60	__glOdyim_EvalCoord1f	dynsym+mdebug	e031ab345d23		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xd977fe8	64	__glOdyim_EvalCoord1fv	dynsym+mdebug	8052918c3b03		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -97599,7 +97599,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21b9c40	456	makeD
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9e10	80	__glOdysseySPBalloc	dwarf+dynsym	cc1f02f816fe		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9e60	52	__glOdysseySPBfree	dwarf+dynsym	fc265850b31e		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9ea0	116	__glOdysseySPCompMachdep	dwarf+dynsym	965ff75cb979		in	named-only	docs/libglcore-functions.md#odyssey-odyssey-path	`ODYSSEY` (Odyssey path)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9f20	56	__glOdyim_EvalCoord1d	dwarf+dynsym	38c77076e914		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9f20	56	__glOdyim_EvalCoord1d	dwarf+dynsym	38c77076e914		in	understood	docs/libglcore-odyssey-builds.md#copies-that-differ	Copies that differ
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9f60	60	__glOdyim_EvalCoord1dv	dwarf+dynsym	4349dd1e59c2		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9fa0	56	__glOdyim_EvalCoord1f	dwarf+dynsym	e3a2ad9880c2		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21b9fe0	60	__glOdyim_EvalCoord1fv	dwarf+dynsym	dc1b6dc8a3a7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
