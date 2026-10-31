@@ -49,6 +49,17 @@ Words compared: the number of instruction words in the routine, in N32 and in th
 | `DoDomain2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977d80 | 8168 | 2042 of 2042 equal | fb1424ec1a73 | Established |
 | `DoDomain2WithDerivs` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd979d70 | 10396 | 2599 of 2599 equal | 3177f071abb1 | Inferred |
 | `DoDomain2WithDerivs` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd979d70 | 10396 | 2599 of 2599 equal | 3177f071abb1 | Inferred |
+| `DoEvalCoord1` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd977830 | 948 | 237 of 237 equal | e739f970e953 | Established |
+| `DoEvalCoord1` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977830 | 948 | 237 of 237 equal | e739f970e953 | Established |
+| `ComputeFirstPartials` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x21bb670 | 156 | 39 of 39 equal | 6652c635ac34 | Established |
+| `ComputeFirstPartials` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd977c70 | 156 | 39 of 39 equal | 6652c635ac34 | Established |
+| `ComputeFirstPartials` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320b670 | 156 | 39 of 39 equal | 6652c635ac34 | Established |
+| `ComputeFirstPartials` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977c70 | 156 | 39 of 39 equal | 6652c635ac34 | Established |
+| `ComputeFirstPartials` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21bb670 | 156 | 39 of 39 equal | 6652c635ac34 | Established |
+| `ComputeNormal2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd977d10 | 100 | 25 of 25 equal | 673aa399880c | Established |
+| `ComputeNormal2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977d10 | 100 | 25 of 25 equal | 673aa399880c | Established |
+| `DoEvalCoord2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97c610 | 1484 | 371 of 371 equal | 839edc08cc3c | Established |
+| `DoEvalCoord2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97c610 | 1484 | 371 of 371 equal | 839edc08cc3c | Established |
 
 Notes on individual rows:
 
@@ -56,6 +67,7 @@ Notes on individual rows:
 - `getCurrent`, `MakeCurrentRead` and `DoDomain2WithDerivs` are **inferred** because their N32 entries are: the reads chapter says which parts were read in full. Their copies match the N32 words, so they take the N32 label.
 - The copies under `usr/gfx/arch/IP30ODSY32` and `usr/gfx/arch/IP35ODSY32` (the paths without the `builds/6.5.30-media` prefix) call through their own `.got`. The IP35 copy's `.got` is word for word the N32 build's. The IP30 copy's `.got` differs in 36 words, all for imported symbols (dynamic symbol indexes 4283 to 4319, for example `bcopy` at 4300 and `floor` at 4319). The name at every GOT index from 4281 up is the same in the N32 build and in this copy, so each call through a gp slot reaches the same routine.
 - The words in these rows were compared on the file bytes at each address, as 32-bit big-endian words, which are the words objdump prints. None of the routines has a direct `j` or `jal`, so no call target is an absolute address that could mean something else in another build.
+- The 64-bit copies of `ComputeFirstPartials` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY64` at 0x21bb670, and `usr/gfx/arch/IP30ODSY64` and `usr/gfx/arch/IP35ODSY64` at 0x320b670 and 0x21bb670) have the same 39 words as the N32 routine. Its body has no gp-relative load and no call, so the words are the whole comparison.
 
 ## Copies that differ
 

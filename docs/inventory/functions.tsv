@@ -13028,7 +13028,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb180	172	RestoreCurrentState	dwarf	b252d52769b7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb230	948	DoEvalCoord1	dwarf	41fbdbe9e431	multi-unit	in	named-only		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21bb5f0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6c35396cc3d9		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#identical-copies	Identical copies
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	named-only		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb780	8176	DoDomain2	dwarf	b66ba491e580	multi-unit	in	named-only		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bd770	10380	DoDomain2WithDerivs	dwarf	3f9581073009	multi-unit	in	named-only		
@@ -80079,7 +80079,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320aef0	656	GetCu
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b180	172	RestoreCurrentState	dwarf	b252d52769b7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b230	948	DoEvalCoord1	dwarf	41fbdbe9e431	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x320b5f0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6c35396cc3d9		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only		
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#identical-copies	Identical copies
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b780	8176	DoDomain2	dwarf	b66ba491e580	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320d770	10380	DoDomain2WithDerivs	dwarf	3f9581073009	multi-unit	in	named-only		
@@ -97618,7 +97618,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21baef0	656	GetCu
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb180	172	RestoreCurrentState	dwarf	b252d52769b7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb230	948	DoEvalCoord1	dwarf	41fbdbe9e431	multi-unit	in	named-only		
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21bb5f0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6c35396cc3d9		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only		
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#identical-copies	Identical copies
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	named-only		
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb780	8176	DoDomain2	dwarf	b66ba491e580	multi-unit	in	named-only		
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bd770	10380	DoDomain2WithDerivs	dwarf	3f9581073009	multi-unit	in	named-only		
