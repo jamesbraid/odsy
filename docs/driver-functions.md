@@ -83,12 +83,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   raw flags intersect 0x39f02587; otherwise it writes the pending bits to the clear register 0x101c.
 - `odsyDmaInterrupt` (`odsy_intr.o`, offset 0x540, 56 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)`.
-  Handles the DMA interrupt, source 2. The 56-byte routine only calls `odsyDMAIrptWakeup` with the board,
-  which wakes the thread waiting on a transfer; it reads no board register itself.
+  Handles the DMA interrupt, source 2. The 56-byte routine calls `odsyDMAIrptWakeup` with the board,
+  which wakes the thread waiting on a transfer, then adds one to the word at +16 of the `gfxinfo` entry
+  for the processor (the halfword at 0xffffffffffffc3a0); it reads no board register itself.
 - `odsySsyncInterrupt` (`odsy_intr.o`, offset 0x578, 72 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)`.
-  Handles the sync interrupt, source 4. The 72-byte routine wakes the DMA waiter through `odsyDMAWakeup`
-  and returns; it touches no board register itself.
+  Handles the sync interrupt, source 4. The 72-byte routine calls `odsySwap_softsync_intr` and then
+  `odsyDMAWakeup`, each with the board, and adds one to the word at +16 of the `gfxinfo` entry for the
+  processor (the halfword at 0xffffffffffffc3a0); it touches no board register itself.
 - `odsyHiwaterInterrupt` (`odsy_flow.o`, offset 0xcc, 464 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`.
   Runs when the host's flow-control credits for the board fall below the bias. It spins up to ten times
@@ -1966,56 +1968,82 @@ Lays out
   1 instruction address board-record displacement 1184 where the IP30 build uses 1288.
 - `odsy_teardown` (`odsy_init.o`, offset 0x4840, 240 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-  Declares a board dead, once. It takes the semaphore at board record +28488 with `psema` and increments
-  the counter at +816; only the increment that reaches 1 does the work. That pass logs the board number
-  (halfword +790) at severity 1, prints the dmawait timeout and finish values at severity 5 when the words at +46208 or +46212 are non-
-  zero, dumps the registers with `odsyPrintRegs` on the PIO base at +824, and calls `gthread_scan` with the callback `GfxKiller` and an argument block holding 9. The semaphore is
-  released with `vsema` on every path.
-  Compared with the IP30 build (offset 0x3e1c there) the 60 instructions are the same except for their
-  addresses: 1 instruction address board-record displacement 1056 where the IP30 build uses 1160; 1
-  instruction address board-record displacement -19304 where the IP30 build uses -19328; 1 instruction
-  address board-record displacement -19300 where the IP30 build uses -19324; 1 instruction load a 64-bit
-  command constant through $gp displacement -30568 where the IP30 build uses -30584; 1 instruction address
-  board-record displacement 1088 where the IP30 build uses 1192; 1 instruction address board-record
-  displacement 1128 where the IP30 build uses 1232.
+  Declares a board dead, once. Read in full on IP35, with the offsets below taken from this build. It
+  takes the semaphore at board record +28488 with `psema` (second argument 25) and adds one to the
+  counter at +816, the store in the delay slot of the branch. Any value but 1 releases the semaphore
+  with `vsema` and returns. The pass that reaches 1 logs the `.rodata` message at +1056 ("Graphics
+  error" with the board number from the halfword at +790) at severity 1. It then logs the message at
+  +1088 (dmawait time-out value) at severity 5 when the word at +46232 is non-zero, and the message at
+  +1128 (dmawait finish value) at severity 5 when the word at +46236 is non-zero. It calls
+  `odsyPrintRegs` on the PIO base at +824 and `gthread_scan` with `GfxKiller` (the doubleword at
+  `.srdata` +152), a stack block holding the word 9, the board record at +8 and 0 at +16, and 9 as the
+  third argument. It releases the semaphore with `vsema` and returns that result. The IP30 build reads
+  the two dmawait words at +46208 and +46212.
 - `odsyDmaInterrupt` (`odsy_intr.o`, offset 0x540, 56 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
-  Handles the DMA interrupt, source 2. The 56-byte routine only calls `odsyDMAIrptWakeup` with the board,
-  which wakes the thread waiting on a transfer; it reads no board register itself.
-  Compared with the IP30 build (offset 0x540 there) the 14 instructions are the same except for their
-  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+  Handles the DMA interrupt, source 2. The IP35 body is 14 instructions, all read: it calls
+  `odsyDMAIrptWakeup` with the unchanged board argument, then adds one to the word at +16 of the
+  `gfxinfo` entry for the halfword at 0xffffffffffffc428, the store sitting in the delay slot of the
+  return. It reads and writes no board register.
 - `odsyFlagInterrupt` (`odsy_intr.o`, offset 0x1ac, 916 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
-  Handles the flags interrupt, source 1. It loads the flags word 0x1014 and ANDs it with the enable mask
-  at 0x1034, calls `odsyLowaterInterrupt` for bit 9 and `odsyGenlockInterrupt` for bit 31, logs a message
-  for each other pending error or status bit, and then tears the board down with `odsy_teardown` when the
-  raw flags intersect 0x39f02587; otherwise it writes the pending bits to the clear register 0x101c.
-  Compared with the IP30 build (offset 0x1ac there) the 229 instructions are the same except for their
-  addresses: 2 instructions address board-record displacement -19360 where the IP30 build uses -19384; 1
-  instruction address board-record displacement -15320 where the IP30 build uses -15456.
+  Handles the flags interrupt, source 1; a0 is the board record. The IP35 body was read through every
+  bit test to the clear store. It loads the PIO base (doubleword at +824), the raw flags word at base
+  +4116 (0x1014) and the enable mask at base +4148 (0x1034), and works on pending = raw AND mask after
+  adding one to the word at +16 of the `gfxinfo` entry for the processor. Tests, in order: bit 9 calls
+  `odsyLowaterInterrupt`; bit 25 logs the `.rodata` message at +432 ("CFIFO HW received") at severity 5; bit 31 calls
+  `odsyGenlockInterrupt`; bit 30 logs the message at +472 (CLOCK_STOPPED_INTR) at severity 5; bits 29, 28,
+  27, 24, 23, 22, 21, 20 and 18 log the messages at +520, +568, +608, +648, +688, +736, +784, +832 and
+  +888 at severity 4 (the strings are READ_DURING_DIAG_ERROR, PUSH_CMD_ERROR, GFX_OFLOW_INTR, DBE_OFLOW_INTR, DFIFO_OFLOW_INTR, XFORM_IFIFO_OFLOW_INTR, XFORM_UCODE_OFLOW_INTR, XFORM_PTABLE_OFLOW_INTR and GFX_XTALK_STALL); any of the bits in 0x3c000 logs the +936 message (HOST_FLAG_INTR) at severity 5; then bits 13, 11, 10, 8 and 7 log +976, +1024, +1064, +1112 and +1160 at severity 4 (PRIV_VIOLATE_GFX, DMA_DONE_FLAG, DMA_CMD_OFLO_INTR, ILLEGAL_OUT_FORMAT, MULTGET_INTR). Bit 4 adds
+  one to the word at record +46176 and logs the +1216 message (CORRECTABLE_ECC_ERROR) at severity 5 with the text at +1200
+  ("multiple") when bit 3 is set or the text at +1432 ("single") when it is clear, and the count; bits
+  2, 1 and 0 log +1280, +1336 and +1384 at severity 4 (UNCORRECTABLE_ECC_ERROR, SYNC_TIMEOUT_FLAG, HEURISTIC_OVERFLOW). When the raw flags intersect 0x39f02587 it calls `odsy_teardown` and returns its result;
+  otherwise it writes the pending word to base +4124 (0x101c), issues `sync` and returns.
 - `odsySsyncInterrupt` (`odsy_intr.o`, offset 0x578, 72 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
-  Handles the sync interrupt, source 4. The 72-byte routine wakes the DMA waiter through `odsyDMAWakeup`
-  and returns; it touches no board register itself.
-  Compared with the IP30 build (offset 0x578 there) the 18 instructions are the same except for their
-  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+  Handles the sync interrupt, source 4. The IP35 body is 18 instructions, all read: it saves a0, calls
+  `odsySwap_softsync_intr` with the board, then `odsyDMAWakeup` with the board, and adds one to the word
+  at +16 of the `gfxinfo` entry for the halfword at 0xffffffffffffc428, the store sitting in the delay
+  slot of the return. It reads and writes no board register itself.
 - `odsyXtErrorInterrupt` (`odsy_intr.o`, offset 0x0, 428 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)`.
-  Handles the crossbar error interrupt, source 0. It counts the event in the host's per-cpu table, loads
-  the widget status word (0xc), and tests bit 8 (response time-out), bit 7 (address error) and bit 6
-  (packet format error) in that order, printing the matching message with the header from 0x44 and the
-  address words 0x1c and 0x14; only the address-error case also calls `odsyPrintRegs` and `odsy_teardown`.
-  It always ends by storing 0 to 0x44.
-  Compared with the IP30 build (offset 0x0 there) the 107 instructions are the same except for their
-  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+  Handles the crossbar error interrupt, source 0; a0 is the board record. The IP35 body, read whole from
+  its prologue to the stack epilogue, runs as follows. It loads the PIO base from the doubleword at
+  +824, adds one to the word at +16 of the `gfxinfo` entry (32 bytes per processor) for the halfword at
+  0xffffffffffffc428, reads the widget status word at base +12 and the header word at base +68, and
+  keeps the header in a stack slot. It tests bit 8 of the status (response time-out), then bit 7
+  (address error), then bit 6 (packet format error). A time-out logs the first message in the object's
+  `.rodata` at severity 4 with the board number (halfword at +790). An address error logs the message at
+  `.rodata` +56 at severity 4 with the board number, 0, the word at base +28 masked to 32 bits, the word
+  at base +68 and the word at base +20 masked with 0xffff0000, calls `odsyPrintRegs` on the base, copies
+  480 bytes (30 passes of two doublewords) from the table at `.srdata` +8 to the stack, logs the message
+  at +152 at severity 7 with the base +68 word and that buffer, and finally calls `odsy_teardown`. A
+  packet-format error logs the message at +184 at severity 4; with none of the three bits set the
+  message at +232 is logged instead. Every path stores 0 to the word at base +68 followed by `sync`; the
+  time-out and packet-format paths then log the message at +272 at severity 0 with the saved header, and
+  return without tearing the board down.
 - `odsyRetraceHandler` (`odsy_retrace.o`, offset 0x131c, 716 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)`.
-  Handles the retrace interrupt, source 3. It takes the retrace mutex, counts the retrace, loads the
-  buffer-select word at 0x10d4 and XORs it with the record shadow at +28528 to find windows whose buffer
-  changed, then for each of the 32 ids with a pending swap it validates, swaps with `odsySwapBuffer` or
-  writes the id to 0x10b4 after a repeat count, forcing a swap that has waited 300 retraces.
-  Compared with the IP30 build (offset 0x1274 there) the 179 instructions are the same except for their
-  addresses: 1 instruction address board-record displacement -15320 where the IP30 build uses -15456.
+  Handles the retrace interrupt, source 3; a0 is the board record. Every branch of the IP35 body was
+  read. It loads the PIO base from +824, calls `mutex_lock` on +28504 with 25 as the second argument,
+  saves the word at +128 (s6) and adds one to the words at +128 and +124. When the word at +28544 is
+  non-zero and the doubleword at +28536 is zero, it stores 0 to base +4284 (0x10bc), issues `sync` and
+  clears the word at +28544. When the pending word at +28568 is non-zero it computes changed = the word
+  at +28528 XOR the word at base +4308 (0x10d4) and loops over ids 0 to 31. An id bit not in +28568 is
+  skipped. If it is also set in +28564, it is cleared from +28568, +28548, +28556, +28552 and +28560 and
+  `odsyValidateBuffer` runs for it. Otherwise, if the bit is set in +28548, a per-id count at +28620
+  plus 40 times the id is incremented; past 300 it is reset, the bit is cleared from +28548,
+  `odsySwapBuffer` runs and the message at `.rodata` +328 (forced validation of the id) is logged at
+  severity 4. Next, when the bit is clear in +28560, `odsySwapBuffer` runs if the bit is set in +28556
+  or +28552. When it is set in +28560 and the id is not in the changed set, the doubleword at +28608
+  plus 40 times the id, if non-zero, receives s6 at its +28 and the bit is cleared from +28560 with
+  `odsyValidateBuffer`; when it is in the changed set the count at +28620 plus 40 times the id is
+  incremented, and on reaching 2 it is reset and the id bit is stored to base +4276 (0x10b4) followed by
+  `sync`. After the loop the word at +28564 is cleared in the delay slot of `sv_broadcast` on +28520.
+  Whether or not the loop ran, `rrmValidateRetrace` is then called for each event on the list at +29864
+  (links at +40 of each) and the list head is zeroed, `mutex_unlock` releases +28504,
+  `rrmValidateVideoSync` is called when the doubleword at +136 is non-zero, `odsyDMAWakeup` runs, and
+  the word at +16 of the `gfxinfo` entry is incremented.
 - `gf_OdsyPositionCursor` (`odsy_brdmgr.o`, offset 0x118c, 580 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
   Moves the hardware cursor. It stores the pointer position in the board record (halfwords at -19672 and

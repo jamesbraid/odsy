@@ -1,6 +1,6 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	input
 binaries	276	0	236	3	122	33	33	1	6	0	85.5	97.5	97.8	85.5			85.0	20	2026-10-30		0			
-functions	106592	0	3880	58	2151	1269	14928	71789	15995	0	3.6	17.6	85.0	3.6			95.0	20	2026-10-31		1412	482	3798	
+functions	106592	0	3887	58	2158	1269	14921	71789	15995	0	3.6	17.6	85.0	3.6			95.0	20	2026-10-31		1412	482	3798	
 functions (distinct names)	18949	0	1665	36	1661	79	704	5545	11035	0	8.8	12.5	41.8	8.8							91			
 mmio	67	0	57	0	57	0	2	1	0	7	85.1	98.5	100.0	95.5	56		91.7	12	2026-10-29		0			
 tokens	270	0	250	40	250	0	17	3	0	0	92.6	98.9	100.0	92.6			85.0	20	2026-10-29		0			
@@ -129,11 +129,11 @@ functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	9	0	9	0	9	0	0	0	0	0	1
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	9	0	9	0	9	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)	19	0	14	0	14	0	1	4	0	0	73.7	78.9	100.0	73.7							0	0	4	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)	20	0	3	0	3	0	17	0	0	0	15.0	100.0	100.0	15.0							0	0	0	
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	32	0	30	0	30	0	2	0	0	0	93.8	100.0	100.0	93.8							0	0	0	
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	5	0	1	0	1	0	4	0	0	0	20.0	100.0	100.0	20.0							0	0	0	
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)	32	0	32	0	32	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_intr.o)	5	0	5	0	5	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_map.o)	13	0	13	0	13	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)	6	0	5	0	5	0	1	0	0	0	83.3	100.0	100.0	83.3							0	0	0	
-functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	13	0	11	0	11	0	2	0	0	0	84.6	100.0	100.0	84.6							0	0	0	
+functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	13	0	12	0	12	0	1	0	0	0	92.3	100.0	100.0	92.3							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	5	0	5	0	5	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	67	0	66	1	66	0	1	0	0	0	98.5	100.0	100.0	98.5							0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	11	0	10	0	10	0	1	0	0	0	90.9	100.0	100.0	90.9							0	0	0	
