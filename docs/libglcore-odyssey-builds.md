@@ -295,3 +295,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `GetCurrentState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9774f0 | 656 | 343e6a7eea27 | Established |
 | `RestoreCurrentState` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd977780 | 172 | a0bc26a7a04d | Established |
 | `RestoreCurrentState` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977780 | 172 | a0bc26a7a04d | Established |
+| `__glOdysseyDoEvalCoord1` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd977bf0 | 128 | 6ca0b9ad5b8a | Established |
+| `__glOdysseyDoEvalCoord1` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd977bf0 | 128 | 6ca0b9ad5b8a | Established |
+| `__glOdysseyDoEvalCoord2` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97cbe0 | 140 | 049983bc4cd0 | Established |
+| `__glOdysseyDoEvalCoord2` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97cbe0 | 140 | 049983bc4cd0 | Established |
+| `__glOdysseyEvalMesh1Line` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97cc70 | 292 | f402502a867f | Established |
+| `__glOdysseyEvalMesh1Line` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97cc70 | 292 | f402502a867f | Established |
+| `__glOdysseyEvalMesh1Point` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97cda0 | 292 | 2e7ece53dc56 | Established |
+| `__glOdysseyEvalMesh1Point` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97cda0 | 292 | 2e7ece53dc56 | Established |
+| `__glOdysseyEvalMesh2Point` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d2f0 | 476 | 8835e0b58c32 | Established |
+| `__glOdysseyEvalMesh2Point` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d2f0 | 476 | 8835e0b58c32 | Established |
+| `__glOdysseyInitAccum` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd955de0 | 224 | 2e94957ad3ba | Established |
+| `__glOdysseyInitAccum` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd955de0 | 224 | 2e94957ad3ba | Established |
