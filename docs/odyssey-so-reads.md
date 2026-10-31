@@ -393,28 +393,12 @@ The audio-library and symbol-database routines are statically linked library cod
   A real call rather than a jump: `jalr` at 0x155052c to `alSetWidth` (0x1561cb0) from a frame that saves `gp` and `ra`, then returns the callee's result.
 - `ALgetwidth` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550550, 52 bytes): **established.**
   Calls `alGetWidth` at 0x15624c0 (`jalr` at 0x155056c) and passes the result back.
-- `ALsetsampfmt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550590, 52 bytes): **established.**
-  Jumps (0x15505ac) to `alSetSampFmt` at 0x1552860.
-- `ALgetsampfmt` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15505d0, 52 bytes): **established.**
-  Jumps (0x15505ec) to `alGetSampFmt` at 0x15529e0.
-- `ALsetchannels` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550610, 52 bytes): **established.**
-  Jumps (0x155062c) to `alSetChannels` at 0x15520b0.
-- `ALgetchannels` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550650, 52 bytes): **established.**
-  Jumps (0x155066c) to `alGetChannels` at 0x15521f0.
 - `ALsetfloatmax` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550690, 52 bytes): **established.**
   Calls `alSetFloatMax` at 0x1562320 (`jalr` at 0x15506ac) and returns its result; the argument is a floating-point maximum, passed through in the argument registers.
-- `ALgetfloatmax` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15506d0, 52 bytes): **established.**
-  Calls `alGetFloatMax` at 0x1562420 (`jalr` at 0x15506ec).
-- `ALcloseport` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550710, 52 bytes): **established.**
-  Jumps (0x155072c) to `alClosePort` at 0x1551ac0.
 - `ALopenport` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550750, 52 bytes): **established.**
   Jumps (0x155076c) to `alOpenPort` at 0x1552e80 with the port name, direction and configuration it was given.
 - `ALgetfd` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550790, 52 bytes): **established.**
   Jumps (0x15507ac) to `alGetFD` at 0x1552290, which yields the port's file descriptor.
-- `ALgetframenumber` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15507d0, 52 bytes): **established.**
-  Jumps (0x15507ec) to `alGetFrameNumber` at 0x15516e0.
-- `ALgetframetime` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550810, 52 bytes): **established.**
-  Jumps (0x155082c) to `alGetFrameTime` at 0x1552330.
 - `ALseterrorhandler` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15516a0, 52 bytes): **established.**
   Jumps (0x15516bc) to `alSetErrorHandler` at 0x15518e0, the routine below that installs the handler.
 - `alSetErrorHandler` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15518e0, 64 bytes): **established.**
