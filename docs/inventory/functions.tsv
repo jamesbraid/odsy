@@ -53972,7 +53972,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6da4	156	comparegt_an
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6e40	24	store_atomic	dwarf+symtab	a6b74aa6c039		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6e58	48	atomicIncPort	dwarf+symtab	d9045c7019a7		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6e90	140	copyin	dwarf+symtab	51666c584287		in	named-only	docs/display.md#pieces	Pieces
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6f1c	140	copyout	dwarf+symtab	52727ff5cfab		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6f1c	140	copyout	dwarf+symtab	52727ff5cfab		in	named-only	docs/compositor-probe.md#the-compositor-probe-and-the-gfxinfo-compositor-lines	The compositor probe and the gfxinfo compositor lines
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6fa8	88	swcopyin	dwarf+symtab	5d443c3f1737		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7000	88	swcopyout	dwarf+symtab	2291042563cc		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7058	140	uzero	dwarf+symtab	74bc23d2bbcb		in	undocumented		
@@ -54876,7 +54876,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x71bc	132	net_errmsg	d
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7240	240	hub_vector_read	dwarf+symtab	9497d3d1a211		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7330	240	hub_vector_write	dwarf+symtab	96f4c258fca6		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7420	140	copyin	dwarf+symtab	fb3474ce3584		in	named-only	docs/display.md#pieces	Pieces
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x74ac	140	copyout	dwarf+symtab	c649c7e0caf4		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x74ac	140	copyout	dwarf+symtab	c649c7e0caf4		in	named-only	docs/compositor-probe.md#the-compositor-probe-and-the-gfxinfo-compositor-lines	The compositor probe and the gfxinfo compositor lines
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7538	88	swcopyin	dwarf+symtab	bc3714125305		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7590	88	swcopyout	dwarf+symtab	9061542da6f1		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x75e8	140	uzero	dwarf+symtab	3e9c71c51a96		in	undocumented		
@@ -102696,7 +102696,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41c
 usr/gfx/gfxinfo	shared-tool	n32		0x1000b0e0	68	kona_init	dynsym	df15e4ca1e17		in	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000b1f8	540	kona_diagnose	dynsym	a67ac91e3773		in	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ca5c	532	kona_loaducode	dynsym	06a8883d0d64		in	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x1000cd5c	736	nic_report	dynsym	eed1b23c3c23		in	named-only	docs/vpro-tool-functions.md#board-information-tool-usrgfxgfxinfo	Board information tool, `usr/gfx/gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000cd5c	736	nic_report	dynsym	eed1b23c3c23		in	named-only	docs/compositor-probe.md#the-compositor-probe-and-the-gfxinfo-compositor-lines	The compositor probe and the gfxinfo compositor lines
 usr/gfx/gfxinfo	shared-tool	n32		0x1000d03c	568	printXvcInfo	dynsym	9569cf4b28aa		in	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000dcfc	216	crime_monitor_info	dynsym	a48030e62b06		in	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ddd4	412	crime_info	dynsym	0a40c6b700f9		in	undocumented		
@@ -102923,7 +102923,7 @@ usr/gfx/gfxinit	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41c
 usr/gfx/gfxinit	shared-tool	n32		0x1000b0e0	68	kona_init	dynsym	df15e4ca1e17		in	undocumented		
 usr/gfx/gfxinit	shared-tool	n32		0x1000b1f8	540	kona_diagnose	dynsym	a67ac91e3773		in	undocumented		
 usr/gfx/gfxinit	shared-tool	n32		0x1000ca5c	532	kona_loaducode	dynsym	06a8883d0d64		in	undocumented		
-usr/gfx/gfxinit	shared-tool	n32		0x1000cd5c	736	nic_report	dynsym	eed1b23c3c23		in	named-only	docs/vpro-tool-functions.md#board-information-tool-usrgfxgfxinfo	Board information tool, `usr/gfx/gfxinfo`
+usr/gfx/gfxinit	shared-tool	n32		0x1000cd5c	736	nic_report	dynsym	eed1b23c3c23		in	named-only	docs/compositor-probe.md#the-compositor-probe-and-the-gfxinfo-compositor-lines	The compositor probe and the gfxinfo compositor lines
 usr/gfx/gfxinit	shared-tool	n32		0x1000d03c	568	printXvcInfo	dynsym	9569cf4b28aa		in	undocumented		
 usr/gfx/gfxinit	shared-tool	n32		0x1000dcfc	216	crime_monitor_info	dynsym	a48030e62b06		in	undocumented		
 usr/gfx/gfxinit	shared-tool	n32		0x1000ddd4	412	crime_info	dynsym	0a40c6b700f9		in	undocumented		
