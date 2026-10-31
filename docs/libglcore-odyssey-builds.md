@@ -512,3 +512,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `__glsplc_AddSentinel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd976070 | 156 | c8a561eaafb6 | Established |
 | `__glOdylc_Error` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
 | `__glOdylc_Error` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd974c70 | 364 | 4093e64139ba | Established |
+| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd958ea0 | 112 | 39d17880fb8b | Established |
+| `__glOdyim_BlendColorEXT` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd95f100 | 472 | bb9efb60aca2 | Established |
+| `__glOdysseyIsBboxClippedRange` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd973750 | 3496 | 33a20e3e8455 | Established |
+| `__glOdysseyEvalMesh2Fill` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d000 | 744 | 27cd127da822 | Established |
+| `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Established |
+| `__glOdysseyValidateLighting` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Established |
+| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd958ea0 | 112 | 39d17880fb8b | Established |
+| `__glOdyim_BlendColorEXT` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd95f100 | 472 | bb9efb60aca2 | Established |
+| `__glOdysseyIsBboxClippedRange` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd973750 | 3496 | 33a20e3e8455 | Established |
+| `__glOdysseyEvalMesh2Fill` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d000 | 744 | 27cd127da822 | Established |
+| `__glOdysseyEvalMesh2Line` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd97d4d0 | 1336 | 3d7dd0d0edc5 | Established |
+| `__glOdysseyValidateLighting` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c3480 | 1620 | 568f337856dd | Established |
