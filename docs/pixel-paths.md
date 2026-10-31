@@ -108,7 +108,7 @@ All three builders fill eight words; word 0 is lowest in memory.
   6 (0, 0), 1 (2, 0), 2 (2, 2) for colour, 3 and 4 (3, 2) for colour, 5 (3, 1) for the left
   buffer and (2, 0) for the right; depth and stencil (0, 0) at layouts 2 to 4. Storage 3:
   layout 1 (4, 0); 2 (6, 2) for colour; 4 (7, 3) left and (6, 2) right for colour; depth and
-  stencil (4, 0) at layouts 2 and 4. Any other pair raises `GL_INVALID_ENUM` (0x502). That the
+  stencil (4, 0) at layouts 2 and 4. Any other pair raises `GL_INVALID_OPERATION` (0x502). That the
   codes place the colour, depth and stencil fields within the stored pixel is **inferred**; the
   board's meaning is unknown.
 - **`__glOdysseyImageCalcFieldFormat`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d9896a0, 100 bytes), **established**, read in full
@@ -439,7 +439,7 @@ addresses. No vendor source was read for any item here.
     `__glOdysseyImageCalcTexOffset` (0x0d9bef40), bits 25:20 the texel format index from `__glOdysseyImageCalcTexObjFormats` (0x0d9beda0), bits 11:0
     object +0x1c masked to 12 bits; other bits kept. Word 2 has bits 11:0 cleared and the rest kept.
   - The offset routine stores 0, or 2 only when object +44 and +48 are both 2 (the one nonzero store, `sw a3` at 0xd9bf064, with a3 = 2 from 0xd9bef74; every other pair stores 0, or raises
-    `GL_INVALID_ENUM` for an unlisted pair), so with the field at bits 28:26 it sets **bit 27 and never bit 26**. The format table (class to format index, second output): 0 (0,1), 1 (2,4), 2 (4,2), 3 (8,1), 4 (9,4), 5 (10,2), 6 (11,3),
+    `GL_INVALID_OPERATION` (0x502) for an unlisted pair), so with the field at bits 28:26 it sets **bit 27 and never bit 26**. The format table (class to format index, second output): 0 (0,1), 1 (2,4), 2 (4,2), 3 (8,1), 4 (9,4), 5 (10,2), 6 (11,3),
     7 (12,6), 8 (13,6), 9 (16,3), 10 (17,6), 11 (18,6), 12 (33,6), 13 (32,6), 14 (48,5), 15 (49,6), 16 (4,2), 17 (10,2) (jump table at 0x0dae927c).
   - Texture mode block 0x016 (words at +0x7cc4 to +0x7cd4, `BUZZ.h` TEXMODE0 to 4): TEXMODE0 bits 14:10 and 9:5 are log2 of object width (+0x20) and height (+0x24), bits 4:0 (R) cleared.
     TEXMODE1 bits 16:0 are the width and TEXMODE2 bits 16:0 the height, in texels as stored (not rounded); TEXMODE3 bits 16:0 are cleared (the depth word is 0). In TEXMODE1 to 3 the wrap auxiliary field 23:18 is also cleared; bits 31:24 and 17 are kept.
