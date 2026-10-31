@@ -3422,14 +3422,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda7f
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda7fcf0	400	__glRasterPos2	dynsym+mdebug	69a1a6372736		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda7fe80	404	__glRasterPos3	dynsym+mdebug	c2a21afc0d71		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80014	404	__glRasterPos4	dynsym+mdebug	4f2471c28c38		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda801b0	200	__glim_Rectd	dynsym+mdebug	eeda0705cbe5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80278	216	__glim_Rectdv	dynsym+mdebug	ebb58a09f561		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80350	180	__glim_Rectf	dynsym+mdebug	0c2ef8ee1a9f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80404	188	__glim_Rectfv	dynsym+mdebug	1a72fd340925		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda804c0	232	__glim_Recti	dynsym+mdebug	20ee042ec3b7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda805a8	232	__glim_Rectiv	dynsym+mdebug	a24c2bf1711e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80690	232	__glim_Rects	dynsym+mdebug	ebbfbd8daca2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80778	232	__glim_Rectsv	dynsym+mdebug	6f0b5798a81e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda801b0	200	__glim_Rectd	dynsym+mdebug	eeda0705cbe5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80278	216	__glim_Rectdv	dynsym+mdebug	ebb58a09f561		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80350	180	__glim_Rectf	dynsym+mdebug	0c2ef8ee1a9f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80404	188	__glim_Rectfv	dynsym+mdebug	1a72fd340925		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda804c0	232	__glim_Recti	dynsym+mdebug	20ee042ec3b7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda805a8	232	__glim_Rectiv	dynsym+mdebug	a24c2bf1711e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80690	232	__glim_Rects	dynsym+mdebug	ebbfbd8daca2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80778	232	__glim_Rectsv	dynsym+mdebug	6f0b5798a81e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80860	192	__glRect	dynsym+mdebug	5ff1a4b978d4		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80920	176	__glim_SelectBuffer	dynsym+mdebug	f9e0318fd555		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda809d0	116	__glim_InitNames	dynsym+mdebug	2507380a2c12		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -9259,14 +9259,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6a740	376	__glRasterPos2	dwarf+dynsym	3036a4a80591		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6a8c0	376	__glRasterPos3	dwarf+dynsym	927258a8caae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6aa40	376	__glRasterPos4	dwarf+dynsym	2ac5eb12f44b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6abc0	184	__glim_Rectd	dwarf+dynsym	cd4e2a2caf99		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ac80	176	__glim_Rectdv	dwarf+dynsym	61ccb31239fe		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ad30	184	__glim_Rectf	dwarf+dynsym	5e0bdc76ccaf		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6adf0	160	__glim_Rectfv	dwarf+dynsym	cb1255dedc3c		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ae90	192	__glim_Recti	dwarf+dynsym	504254345d3a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6af50	192	__glim_Rectiv	dwarf+dynsym	e229aef27cc3		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b010	192	__glim_Rects	dwarf+dynsym	f7fb8451f8e7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b0d0	192	__glim_Rectsv	dwarf+dynsym	eb4ebf6716b6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6abc0	184	__glim_Rectd	dwarf+dynsym	cd4e2a2caf99		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ac80	176	__glim_Rectdv	dwarf+dynsym	61ccb31239fe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ad30	184	__glim_Rectf	dwarf+dynsym	5e0bdc76ccaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6adf0	160	__glim_Rectfv	dwarf+dynsym	cb1255dedc3c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ae90	192	__glim_Recti	dwarf+dynsym	504254345d3a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6af50	192	__glim_Rectiv	dwarf+dynsym	e229aef27cc3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b010	192	__glim_Rects	dwarf+dynsym	f7fb8451f8e7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b0d0	192	__glim_Rectsv	dwarf+dynsym	eb4ebf6716b6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b190	200	__glRect	dwarf+dynsym	2983bf3960d5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b260	160	__glim_SelectBuffer	dwarf+dynsym	9524faedfaa8		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b300	108	__glim_InitNames	dwarf+dynsym	ab62ba4b13b7		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -15181,14 +15181,14 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b2c10	392	__glRasterPos2	dwarf+dynsym	65ede448e499		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b2da0	392	__glRasterPos3	dwarf+dynsym	4d89cf91f272		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b2f30	392	__glRasterPos4	dwarf+dynsym	6276321546e2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b30c0	180	__glim_Rectd	dwarf+dynsym	00d16e218125		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3180	168	__glim_Rectdv	dwarf+dynsym	ad8cf15b37b1		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3230	180	__glim_Rectf	dwarf+dynsym	7d8010751dc4		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b32f0	152	__glim_Rectfv	dwarf+dynsym	3648a04cfd9a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3390	184	__glim_Recti	dwarf+dynsym	c0cfc0362e5f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3450	184	__glim_Rectiv	dwarf+dynsym	0fe05f0a8957		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3510	184	__glim_Rects	dwarf+dynsym	1edeab2f7fd9		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b35d0	184	__glim_Rectsv	dwarf+dynsym	6b16a8ee61b5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b30c0	180	__glim_Rectd	dwarf+dynsym	00d16e218125		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3180	168	__glim_Rectdv	dwarf+dynsym	ad8cf15b37b1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3230	180	__glim_Rectf	dwarf+dynsym	7d8010751dc4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b32f0	152	__glim_Rectfv	dwarf+dynsym	3648a04cfd9a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3390	184	__glim_Recti	dwarf+dynsym	c0cfc0362e5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3450	184	__glim_Rectiv	dwarf+dynsym	0fe05f0a8957		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3510	184	__glim_Rects	dwarf+dynsym	1edeab2f7fd9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b35d0	184	__glim_Rectsv	dwarf+dynsym	6b16a8ee61b5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3690	200	__glRect	dwarf+dynsym	4c5096df0f0f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3760	160	__glim_SelectBuffer	dwarf+dynsym	5b9dc3f0a187		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22b3800	108	__glim_InitNames	dwarf+dynsym	843016b23e9c		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -21184,14 +21184,14 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f450	400	__glRasterPos2	dynsym+mdebug	b5e63b70c5a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f5e0	404	__glRasterPos3	dynsym+mdebug	f2aaf047f388		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f774	404	__glRasterPos4	dynsym+mdebug	ee0d833ec7a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f910	200	__glim_Rectd	dynsym+mdebug	8a63ae6ee8f7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f9d8	216	__glim_Rectdv	dynsym+mdebug	a3a20040cd1b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fab0	180	__glim_Rectf	dynsym+mdebug	7c1c02548d23		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fb64	188	__glim_Rectfv	dynsym+mdebug	204505a12b4b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fc20	232	__glim_Recti	dynsym+mdebug	bc5a87f9a8ae		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fd08	232	__glim_Rectiv	dynsym+mdebug	2ee5805664ca		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fdf0	232	__glim_Rects	dynsym+mdebug	148eb858ace7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fed8	232	__glim_Rectsv	dynsym+mdebug	4e2baf9ff164		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f910	200	__glim_Rectd	dynsym+mdebug	8a63ae6ee8f7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f9d8	216	__glim_Rectdv	dynsym+mdebug	a3a20040cd1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fab0	180	__glim_Rectf	dynsym+mdebug	7c1c02548d23		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fb64	188	__glim_Rectfv	dynsym+mdebug	204505a12b4b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fc20	232	__glim_Recti	dynsym+mdebug	bc5a87f9a8ae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fd08	232	__glim_Rectiv	dynsym+mdebug	2ee5805664ca		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fdf0	232	__glim_Rects	dynsym+mdebug	148eb858ace7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fed8	232	__glim_Rectsv	dynsym+mdebug	4e2baf9ff164		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4ffc0	192	__glRect	dynsym+mdebug	07b791c273ec		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb50080	176	__glim_SelectBuffer	dynsym+mdebug	78b39968da7f		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb50130	116	__glim_InitNames	dynsym+mdebug	72d7421a5c42		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -27008,14 +27008,14 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48b90	360	__glRasterPos2	dynsym	d1f53ed8857c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48d00	360	__glRasterPos3	dynsym	acab6d9301c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48e70	360	__glRasterPos4	dynsym	330668331834		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48fe0	196	__glim_Rectd	dynsym	f4155fd48c87		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb490b0	188	__glim_Rectdv	dynsym	a1d5fc224515		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49170	196	__glim_Rectf	dynsym	76983696feb2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49240	172	__glim_Rectfv	dynsym	88ec1e35dc1b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb492f0	204	__glim_Recti	dynsym	1ba5dec43da6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb493c0	204	__glim_Rectiv	dynsym	c327a152e494		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49490	204	__glim_Rects	dynsym	a1cf899d19dd		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49560	204	__glim_Rectsv	dynsym	9516b823bb82		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48fe0	196	__glim_Rectd	dynsym	f4155fd48c87		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb490b0	188	__glim_Rectdv	dynsym	a1d5fc224515		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49170	196	__glim_Rectf	dynsym	76983696feb2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49240	172	__glim_Rectfv	dynsym	88ec1e35dc1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb492f0	204	__glim_Recti	dynsym	1ba5dec43da6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb493c0	204	__glim_Rectiv	dynsym	c327a152e494		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49490	204	__glim_Rects	dynsym	a1cf899d19dd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49560	204	__glim_Rectsv	dynsym	9516b823bb82		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49630	200	__glRect	dynsym	70aa37aeb69a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49700	176	__glim_SelectBuffer	dynsym	463fa1694a87		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb497b0	108	__glim_InitNames	dynsym	ff01155b4031		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -32775,14 +32775,14 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432070	392	__glRasterPos2	dwarf+dynsym	c4d038d7da34		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432200	392	__glRasterPos3	dwarf+dynsym	c5622456ea88		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432390	392	__glRasterPos4	dwarf+dynsym	ff3b7f4c20a3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432520	196	__glim_Rectd	dwarf+dynsym	f570c11d271f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4325f0	188	__glim_Rectdv	dwarf+dynsym	eaf0cdf0be53		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4326b0	196	__glim_Rectf	dwarf+dynsym	7ef111b83c82		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432780	172	__glim_Rectfv	dwarf+dynsym	fde101649834		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432830	204	__glim_Recti	dwarf+dynsym	b38a4d9fcfe7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432900	204	__glim_Rectiv	dwarf+dynsym	85052ec576c5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4329d0	204	__glim_Rects	dwarf+dynsym	f1d88f5508a0		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432aa0	204	__glim_Rectsv	dwarf+dynsym	4e6aa4ccab10		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432520	196	__glim_Rectd	dwarf+dynsym	f570c11d271f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4325f0	188	__glim_Rectdv	dwarf+dynsym	eaf0cdf0be53		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4326b0	196	__glim_Rectf	dwarf+dynsym	7ef111b83c82		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432780	172	__glim_Rectfv	dwarf+dynsym	fde101649834		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432830	204	__glim_Recti	dwarf+dynsym	b38a4d9fcfe7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432900	204	__glim_Rectiv	dwarf+dynsym	85052ec576c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb4329d0	204	__glim_Rects	dwarf+dynsym	f1d88f5508a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432aa0	204	__glim_Rectsv	dwarf+dynsym	4e6aa4ccab10		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432b70	200	__glRect	dwarf+dynsym	96dda32c2eb2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432c40	176	__glim_SelectBuffer	dwarf+dynsym	c867163041fc		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb432cf0	108	__glim_InitNames	dwarf+dynsym	e8af0d85d449		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -38760,14 +38760,14 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f450	400	__glRasterPos2	dynsym+mdebug	b5e63b70c5a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f5e0	404	__glRasterPos3	dynsym+mdebug	f2aaf047f388		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f774	404	__glRasterPos4	dynsym+mdebug	ee0d833ec7a9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f910	200	__glim_Rectd	dynsym+mdebug	8a63ae6ee8f7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f9d8	216	__glim_Rectdv	dynsym+mdebug	a3a20040cd1b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fab0	180	__glim_Rectf	dynsym+mdebug	7c1c02548d23		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fb64	188	__glim_Rectfv	dynsym+mdebug	204505a12b4b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fc20	232	__glim_Recti	dynsym+mdebug	bc5a87f9a8ae		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fd08	232	__glim_Rectiv	dynsym+mdebug	2ee5805664ca		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fdf0	232	__glim_Rects	dynsym+mdebug	148eb858ace7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fed8	232	__glim_Rectsv	dynsym+mdebug	4e2baf9ff164		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f910	200	__glim_Rectd	dynsym+mdebug	8a63ae6ee8f7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4f9d8	216	__glim_Rectdv	dynsym+mdebug	a3a20040cd1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fab0	180	__glim_Rectf	dynsym+mdebug	7c1c02548d23		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fb64	188	__glim_Rectfv	dynsym+mdebug	204505a12b4b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fc20	232	__glim_Recti	dynsym+mdebug	bc5a87f9a8ae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fd08	232	__glim_Rectiv	dynsym+mdebug	2ee5805664ca		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fdf0	232	__glim_Rects	dynsym+mdebug	148eb858ace7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4fed8	232	__glim_Rectsv	dynsym+mdebug	4e2baf9ff164		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb4ffc0	192	__glRect	dynsym+mdebug	07b791c273ec		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb50080	176	__glim_SelectBuffer	dynsym+mdebug	78b39968da7f		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb50130	116	__glim_InitNames	dynsym+mdebug	72d7421a5c42		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -44584,14 +44584,14 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48b90	360	__glRasterPos2	dynsym	d1f53ed8857c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48d00	360	__glRasterPos3	dynsym	acab6d9301c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48e70	360	__glRasterPos4	dynsym	330668331834		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48fe0	196	__glim_Rectd	dynsym	f4155fd48c87		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb490b0	188	__glim_Rectdv	dynsym	a1d5fc224515		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49170	196	__glim_Rectf	dynsym	76983696feb2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49240	172	__glim_Rectfv	dynsym	88ec1e35dc1b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb492f0	204	__glim_Recti	dynsym	1ba5dec43da6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb493c0	204	__glim_Rectiv	dynsym	c327a152e494		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49490	204	__glim_Rects	dynsym	a1cf899d19dd		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49560	204	__glim_Rectsv	dynsym	9516b823bb82		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb48fe0	196	__glim_Rectd	dynsym	f4155fd48c87		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb490b0	188	__glim_Rectdv	dynsym	a1d5fc224515		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49170	196	__glim_Rectf	dynsym	76983696feb2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49240	172	__glim_Rectfv	dynsym	88ec1e35dc1b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb492f0	204	__glim_Recti	dynsym	1ba5dec43da6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb493c0	204	__glim_Rectiv	dynsym	c327a152e494		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49490	204	__glim_Rects	dynsym	a1cf899d19dd		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49560	204	__glim_Rectsv	dynsym	9516b823bb82		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49630	200	__glRect	dynsym	70aa37aeb69a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb49700	176	__glim_SelectBuffer	dynsym	463fa1694a87		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb497b0	108	__glim_InitNames	dynsym	ff01155b4031		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -50351,14 +50351,14 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52070	392	__glRasterPos2	dwarf+dynsym	c4d038d7da34		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52200	392	__glRasterPos3	dwarf+dynsym	c5622456ea88		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52390	392	__glRasterPos4	dwarf+dynsym	ff3b7f4c20a3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52520	196	__glim_Rectd	dwarf+dynsym	f570c11d271f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe525f0	188	__glim_Rectdv	dwarf+dynsym	eaf0cdf0be53		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe526b0	196	__glim_Rectf	dwarf+dynsym	7ef111b83c82		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52780	172	__glim_Rectfv	dwarf+dynsym	fde101649834		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52830	204	__glim_Recti	dwarf+dynsym	b38a4d9fcfe7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52900	204	__glim_Rectiv	dwarf+dynsym	85052ec576c5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe529d0	204	__glim_Rects	dwarf+dynsym	f1d88f5508a0		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52aa0	204	__glim_Rectsv	dwarf+dynsym	4e6aa4ccab10		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52520	196	__glim_Rectd	dwarf+dynsym	f570c11d271f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe525f0	188	__glim_Rectdv	dwarf+dynsym	eaf0cdf0be53		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe526b0	196	__glim_Rectf	dwarf+dynsym	7ef111b83c82		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52780	172	__glim_Rectfv	dwarf+dynsym	fde101649834		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52830	204	__glim_Recti	dwarf+dynsym	b38a4d9fcfe7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52900	204	__glim_Rectiv	dwarf+dynsym	85052ec576c5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe529d0	204	__glim_Rects	dwarf+dynsym	f1d88f5508a0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52aa0	204	__glim_Rectsv	dwarf+dynsym	4e6aa4ccab10		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52b70	200	__glRect	dwarf+dynsym	96dda32c2eb2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52c40	176	__glim_SelectBuffer	dwarf+dynsym	c867163041fc		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe52cf0	108	__glim_InitNames	dwarf+dynsym	e8af0d85d449		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -70473,14 +70473,14 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda7fbec	244	__glim_Raste
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda7fcf0	400	__glRasterPos2	dynsym+mdebug	69a1a6372736		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda7fe80	404	__glRasterPos3	dynsym+mdebug	c2a21afc0d71		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80014	404	__glRasterPos4	dynsym+mdebug	4f2471c28c38		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda801b0	200	__glim_Rectd	dynsym+mdebug	eeda0705cbe5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80278	216	__glim_Rectdv	dynsym+mdebug	ebb58a09f561		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80350	180	__glim_Rectf	dynsym+mdebug	0c2ef8ee1a9f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80404	188	__glim_Rectfv	dynsym+mdebug	1a72fd340925		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda804c0	232	__glim_Recti	dynsym+mdebug	20ee042ec3b7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda805a8	232	__glim_Rectiv	dynsym+mdebug	a24c2bf1711e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80690	232	__glim_Rects	dynsym+mdebug	ebbfbd8daca2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80778	232	__glim_Rectsv	dynsym+mdebug	6f0b5798a81e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda801b0	200	__glim_Rectd	dynsym+mdebug	eeda0705cbe5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80278	216	__glim_Rectdv	dynsym+mdebug	ebb58a09f561		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80350	180	__glim_Rectf	dynsym+mdebug	0c2ef8ee1a9f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80404	188	__glim_Rectfv	dynsym+mdebug	1a72fd340925		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda804c0	232	__glim_Recti	dynsym+mdebug	20ee042ec3b7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda805a8	232	__glim_Rectiv	dynsym+mdebug	a24c2bf1711e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80690	232	__glim_Rects	dynsym+mdebug	ebbfbd8daca2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80778	232	__glim_Rectsv	dynsym+mdebug	6f0b5798a81e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80860	192	__glRect	dynsym+mdebug	5ff1a4b978d4		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda80920	176	__glim_SelectBuffer	dynsym+mdebug	f9e0318fd555		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda809d0	116	__glim_InitNames	dynsym+mdebug	2507380a2c12		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -76310,14 +76310,14 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6a670	204	__glim_Ras
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6a740	376	__glRasterPos2	dwarf+dynsym	3036a4a80591		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6a8c0	376	__glRasterPos3	dwarf+dynsym	927258a8caae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6aa40	376	__glRasterPos4	dwarf+dynsym	2ac5eb12f44b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6abc0	184	__glim_Rectd	dwarf+dynsym	cd4e2a2caf99		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ac80	176	__glim_Rectdv	dwarf+dynsym	61ccb31239fe		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ad30	184	__glim_Rectf	dwarf+dynsym	5e0bdc76ccaf		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6adf0	160	__glim_Rectfv	dwarf+dynsym	cb1255dedc3c		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ae90	192	__glim_Recti	dwarf+dynsym	504254345d3a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6af50	192	__glim_Rectiv	dwarf+dynsym	e229aef27cc3		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b010	192	__glim_Rects	dwarf+dynsym	f7fb8451f8e7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b0d0	192	__glim_Rectsv	dwarf+dynsym	eb4ebf6716b6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6abc0	184	__glim_Rectd	dwarf+dynsym	cd4e2a2caf99		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ac80	176	__glim_Rectdv	dwarf+dynsym	61ccb31239fe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ad30	184	__glim_Rectf	dwarf+dynsym	5e0bdc76ccaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6adf0	160	__glim_Rectfv	dwarf+dynsym	cb1255dedc3c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6ae90	192	__glim_Recti	dwarf+dynsym	504254345d3a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6af50	192	__glim_Rectiv	dwarf+dynsym	e229aef27cc3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b010	192	__glim_Rects	dwarf+dynsym	f7fb8451f8e7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b0d0	192	__glim_Rectsv	dwarf+dynsym	eb4ebf6716b6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b190	200	__glRect	dwarf+dynsym	2983bf3960d5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b260	160	__glim_SelectBuffer	dwarf+dynsym	9524faedfaa8		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda6b300	108	__glim_InitNames	dwarf+dynsym	ab62ba4b13b7		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -82232,14 +82232,14 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3302b40	196	__glim_Ras
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3302c10	392	__glRasterPos2	dwarf+dynsym	65ede448e499		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3302da0	392	__glRasterPos3	dwarf+dynsym	4d89cf91f272		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3302f30	392	__glRasterPos4	dwarf+dynsym	6276321546e2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x33030c0	180	__glim_Rectd	dwarf+dynsym	00d16e218125		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303180	168	__glim_Rectdv	dwarf+dynsym	ad8cf15b37b1		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303230	180	__glim_Rectf	dwarf+dynsym	7d8010751dc4		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x33032f0	152	__glim_Rectfv	dwarf+dynsym	3648a04cfd9a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303390	184	__glim_Recti	dwarf+dynsym	c0cfc0362e5f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303450	184	__glim_Rectiv	dwarf+dynsym	0fe05f0a8957		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303510	184	__glim_Rects	dwarf+dynsym	1edeab2f7fd9		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x33035d0	184	__glim_Rectsv	dwarf+dynsym	6b16a8ee61b5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x33030c0	180	__glim_Rectd	dwarf+dynsym	00d16e218125		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303180	168	__glim_Rectdv	dwarf+dynsym	ad8cf15b37b1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303230	180	__glim_Rectf	dwarf+dynsym	7d8010751dc4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x33032f0	152	__glim_Rectfv	dwarf+dynsym	3648a04cfd9a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303390	184	__glim_Recti	dwarf+dynsym	c0cfc0362e5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303450	184	__glim_Rectiv	dwarf+dynsym	0fe05f0a8957		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303510	184	__glim_Rects	dwarf+dynsym	1edeab2f7fd9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x33035d0	184	__glim_Rectsv	dwarf+dynsym	6b16a8ee61b5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303690	200	__glRect	dwarf+dynsym	4c5096df0f0f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303760	160	__glim_SelectBuffer	dwarf+dynsym	5b9dc3f0a187		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x3303800	108	__glim_InitNames	dwarf+dynsym	843016b23e9c		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -88012,14 +88012,14 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda7fbec	244	__glim_Raste
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda7fcf0	400	__glRasterPos2	dynsym+mdebug	69a1a6372736		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda7fe80	404	__glRasterPos3	dynsym+mdebug	c2a21afc0d71		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80014	404	__glRasterPos4	dynsym+mdebug	4f2471c28c38		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda801b0	200	__glim_Rectd	dynsym+mdebug	eeda0705cbe5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80278	216	__glim_Rectdv	dynsym+mdebug	ebb58a09f561		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80350	180	__glim_Rectf	dynsym+mdebug	0c2ef8ee1a9f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80404	188	__glim_Rectfv	dynsym+mdebug	1a72fd340925		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda804c0	232	__glim_Recti	dynsym+mdebug	20ee042ec3b7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda805a8	232	__glim_Rectiv	dynsym+mdebug	a24c2bf1711e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80690	232	__glim_Rects	dynsym+mdebug	ebbfbd8daca2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80778	232	__glim_Rectsv	dynsym+mdebug	6f0b5798a81e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda801b0	200	__glim_Rectd	dynsym+mdebug	eeda0705cbe5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80278	216	__glim_Rectdv	dynsym+mdebug	ebb58a09f561		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80350	180	__glim_Rectf	dynsym+mdebug	0c2ef8ee1a9f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80404	188	__glim_Rectfv	dynsym+mdebug	1a72fd340925		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda804c0	232	__glim_Recti	dynsym+mdebug	20ee042ec3b7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda805a8	232	__glim_Rectiv	dynsym+mdebug	a24c2bf1711e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80690	232	__glim_Rects	dynsym+mdebug	ebbfbd8daca2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80778	232	__glim_Rectsv	dynsym+mdebug	6f0b5798a81e		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80860	192	__glRect	dynsym+mdebug	5ff1a4b978d4		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda80920	176	__glim_SelectBuffer	dynsym+mdebug	f9e0318fd555		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda809d0	116	__glim_InitNames	dynsym+mdebug	2507380a2c12		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -93849,14 +93849,14 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6a670	204	__glim_Ras
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6a740	376	__glRasterPos2	dwarf+dynsym	3036a4a80591		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6a8c0	376	__glRasterPos3	dwarf+dynsym	927258a8caae		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6aa40	376	__glRasterPos4	dwarf+dynsym	2ac5eb12f44b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6abc0	184	__glim_Rectd	dwarf+dynsym	cd4e2a2caf99		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6ac80	176	__glim_Rectdv	dwarf+dynsym	61ccb31239fe		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6ad30	184	__glim_Rectf	dwarf+dynsym	5e0bdc76ccaf		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6adf0	160	__glim_Rectfv	dwarf+dynsym	cb1255dedc3c		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6ae90	192	__glim_Recti	dwarf+dynsym	504254345d3a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6af50	192	__glim_Rectiv	dwarf+dynsym	e229aef27cc3		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b010	192	__glim_Rects	dwarf+dynsym	f7fb8451f8e7		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b0d0	192	__glim_Rectsv	dwarf+dynsym	eb4ebf6716b6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6abc0	184	__glim_Rectd	dwarf+dynsym	cd4e2a2caf99		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6ac80	176	__glim_Rectdv	dwarf+dynsym	61ccb31239fe		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6ad30	184	__glim_Rectf	dwarf+dynsym	5e0bdc76ccaf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6adf0	160	__glim_Rectfv	dwarf+dynsym	cb1255dedc3c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6ae90	192	__glim_Recti	dwarf+dynsym	504254345d3a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6af50	192	__glim_Rectiv	dwarf+dynsym	e229aef27cc3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b010	192	__glim_Rects	dwarf+dynsym	f7fb8451f8e7		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b0d0	192	__glim_Rectsv	dwarf+dynsym	eb4ebf6716b6		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b190	200	__glRect	dwarf+dynsym	2983bf3960d5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b260	160	__glim_SelectBuffer	dwarf+dynsym	9524faedfaa8		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda6b300	108	__glim_InitNames	dwarf+dynsym	ab62ba4b13b7		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -99771,14 +99771,14 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b2b40	196	__glim_Ras
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b2c10	392	__glRasterPos2	dwarf+dynsym	65ede448e499		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b2da0	392	__glRasterPos3	dwarf+dynsym	4d89cf91f272		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b2f30	392	__glRasterPos4	dwarf+dynsym	6276321546e2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b30c0	180	__glim_Rectd	dwarf+dynsym	00d16e218125		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3180	168	__glim_Rectdv	dwarf+dynsym	ad8cf15b37b1		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3230	180	__glim_Rectf	dwarf+dynsym	7d8010751dc4		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b32f0	152	__glim_Rectfv	dwarf+dynsym	3648a04cfd9a		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3390	184	__glim_Recti	dwarf+dynsym	c0cfc0362e5f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3450	184	__glim_Rectiv	dwarf+dynsym	0fe05f0a8957		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3510	184	__glim_Rects	dwarf+dynsym	1edeab2f7fd9		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b35d0	184	__glim_Rectsv	dwarf+dynsym	6b16a8ee61b5		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b30c0	180	__glim_Rectd	dwarf+dynsym	00d16e218125		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3180	168	__glim_Rectdv	dwarf+dynsym	ad8cf15b37b1		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3230	180	__glim_Rectf	dwarf+dynsym	7d8010751dc4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b32f0	152	__glim_Rectfv	dwarf+dynsym	3648a04cfd9a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3390	184	__glim_Recti	dwarf+dynsym	c0cfc0362e5f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3450	184	__glim_Rectiv	dwarf+dynsym	0fe05f0a8957		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3510	184	__glim_Rects	dwarf+dynsym	1edeab2f7fd9		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b35d0	184	__glim_Rectsv	dwarf+dynsym	6b16a8ee61b5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3690	200	__glRect	dwarf+dynsym	4c5096df0f0f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3760	160	__glim_SelectBuffer	dwarf+dynsym	5b9dc3f0a187		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22b3800	108	__glim_InitNames	dwarf+dynsym	843016b23e9c		in	located	docs/sample-implementation.md#so_selectc	so_select.c
