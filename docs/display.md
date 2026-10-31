@@ -269,3 +269,11 @@ Everything left in the display rows is a property of the hardware that no softwa
 - **Timing table state file.** A forum thread names the per-board timing-table file as `/var/X11/Xvc/Odyssey0_TimingTable`, and that clearing it forces the default resolution; the report is from a user and not from SGI (`docs/sources/reports/irixnet-vpro-odyssey-diagnostic-thread-1573.html`). Its format and its relation to the structure the kernel loads ([Pieces](#pieces)) were not checked: **unknown**.
 - **DAC.** The Fuel datasheet gives a 10-bit digital-to-analog display interface and 8-bit window ids (specs/fuel-datasheet-3215.pdf), consistent with the window-id handling under "Window ids" above.
 
+
+## Formats the X module refuses on a BUZZ A.1 board
+
+Release 6.5.30m. **Established** arithmetic: the rule is the one in [board.md](board.md), "Board kinds seen by software" (a pixel clock strictly between 109.0 and 194.0 MHz is refused), applied to the pixel clocks of the table in [display-files.md](display-files.md). Dual-channel files also go through the option-card test, which this list does not model. Of the 71 shipped files 35 are refused:
+
+`1280x1024_72` (129.25 MHz), `1280x1024_75` (134.956), `1280x1024_85` (157.455), `1280x1024_96s` (162.079), `1280x1024_100s_ds` (144.749), `1600x1024_60` (136.358), `1600x1024_72` (158.4), `1600x1200_60` (154.057), `1920x1200_25f` (152.579), `1920x1200_30f` (186.0), `1920x1200_60p` (157.386), the eleven `1920x1154` files from 130.771 to 163.641 MHz (`2398r2`, `24r2`, `25f`, `25r2`, `2997f`, `2997r2`, `30f`, `30r2`, `50`, `5994`, `60`), and in the dual-channel set `2@1280x1024_72`, `2@1280x1024_85`, `2@1600x1024_72`, `2@1600x1024_83_ds`, `2@1600x1200_60_ds`, `_72_ds`, `_75_ds`, `2@1920x1080_60_ds`, `_72_ds`, `2@1920x1200_50p`, `_60_ds`, `_60p`, `_72_ds`.
+
+Accepted by that test: every format at or below 108.702 MHz and the ones at or above 194.394 MHz: `1280x1024_100s` (194.394), `1280x1024_96`, `1600x1024_83`, `1600x1200_72` and `1920x1200_60` (195.0 each), `1600x1200_75` (202.5) and `1920x1080_72` (199.987), plus the low-clock files (`640x480_60` to `1280x1024_60`, `1280x1024_59`, `1280x720_*` and the interlaced and 25 or 30 frame files). `1280x1024_60` and `1280x1024_60_safe` pass the clock test but are refused at depth 16. The fastest shipped clock is 202.5 MHz (`1600x1200_75`).
