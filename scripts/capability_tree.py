@@ -296,7 +296,7 @@ class Walker:
                             tgt = int(o[0], 16)
                             c = self.calls.get(pc)
                             events.append(('tail', pc, c['callee'] if c and c['callee'] else hex(tgt),
-                                           ['%s=%s' % (k, render(regs2[k])) for k in sorted(c['args'])
+                                           ['%s=%s' % (k, render(regs2[k])) for k in sorted(c['args']) if k in ('a0', 'a1', 'a2', 'a3')
                                             if k in regs2] if c and c.get('args') else []))
                             out.append((events, conds, ('tail', '')))
                             break
@@ -305,7 +305,7 @@ class Walker:
                             name = c['callee'] if c and c.get('callee') else '<%s>' % render(regs2[o[-1]])
                         else:
                             name = c['callee'] if c and c.get('callee') else 'sub_%x' % int(o[-1], 16)
-                        args = ['%s=%s' % (k, render(regs2[k])) for k in sorted(c['args'])
+                        args = ['%s=%s' % (k, render(regs2[k])) for k in sorted(c['args']) if k in ('a0', 'a1', 'a2', 'a3')
                                 if c and k in regs2] if c and c.get('args') and c.get('callee') else []
                         events.append(('call', pc, name, args))
                         for r in REGS:
