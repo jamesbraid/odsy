@@ -57645,7 +57645,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f50b0	116	XETSwAllocColorPla
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f5130	1896	SProcCreateGC	dynsym	d83e41246e56		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f58a0	336	SProcXTestDispatch..LCD	dynsym	09d560e64136		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f59f0	700	_tr_flush_block	dynsym	21de8c538d1a		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f5cb0	252	AllocatePixmap	dynsym	c1646b8f42e1		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f5cb0	252	AllocatePixmap	dynsym	c1646b8f42e1		in	named-only	docs/odyssey-so-reads.md#span-array-lookup-clip-validation-and-pixmap-creation-read-from-whole-listings	Span-array lookup, clip validation and pixmap creation read from whole listings
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f5db0	140	bdfWarning	dynsym	f03868979171		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f5e40	280	SProcXCMiscDispatch..OND	dynsym	f932aec5350c		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100f5f60	28	dbcReset	dynsym	c6a5e92a60e8		in	undocumented		
@@ -105275,7 +105275,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163cbc0	184	miRecomputeExposu
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163cc80	1220	cfb32SolidSpansGeneral	dynsym	5210dc7d4f52		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163d150	244	odsyPowerSaver..IE	dynsym	188c31382d17		in	understood	docs/odyssey-so-reads.md#compositor-routines	Compositor routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163d250	1100	miSubtractSpans	dynsym	dfbcdecb9e84		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163d6a0	416	cfbCreatePixmap	dynsym	11c57f2fd35f		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163d6a0	416	cfbCreatePixmap	dynsym	11c57f2fd35f		in	understood	docs/odyssey-so-reads.md#span-array-lookup-clip-validation-and-pixmap-creation-read-from-whole-listings	Span-array lookup, clip validation and pixmap creation read from whole listings
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163d840	588	miRectIn	dynsym	aec966ae8ef0		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163da90	4344	mfbTileAreaPPWGeneral	dynsym	2f2b7df09f8c		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x163eb90	1184	cfb32FillRectTile32Copy	dynsym	7acdb3cb549c		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
@@ -105587,7 +105587,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cd670	592	miBSPolylines..KD
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cd8c0	88	cfbDestroyPixmap	dynsym	eb3ee23023b3		in	understood	docs/odyssey-so-reads.md#forwarding-routines-audio-library-format-file-finders-symbol-database-calls	Forwarding routines (audio library, format-file finders, symbol-database calls)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cd920	76	nfbInfPolyText8..CL	dynsym	e33b85276342		in	understood	docs/odyssey-so-reads.md#forwarding-routines-audio-library-format-file-finders-symbol-database-calls	Forwarding routines (audio library, format-file finders, symbol-database calls)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cd970	388	odsyCopyRect	dynsym	d3189a48a224		in	understood	docs/odyssey-so-reads.md#window-private-set-up-graphics-context-operation-tables-and-small-drawing-entry-points	Window-private set-up, graphics-context operation tables and small drawing entry points
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cdb00	412	realFindSpan..BAB	dynsym	8ec73571bb8f		in	named-only	docs/odyssey-so-functions.md#arcs-and-miscellaneous-misc	Arcs and miscellaneous (`misc`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cdb00	412	realFindSpan..BAB	dynsym	8ec73571bb8f		in	understood	docs/odyssey-so-reads.md#span-array-lookup-clip-validation-and-pixmap-creation-read-from-whole-listings	Span-array lookup, clip validation and pixmap creation read from whole listings
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cdca0	2280	cfbZeroArcSS8Xor..AN	dynsym	985bc5848ec6		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ce590	3636	mfbStippleBlackArea	dynsym	5472fdc1d3df		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16cf3d0	25176	odsyWideDash	dynsym	394a60f2a703		in	named-only	docs/odyssey-so-functions.md#driver-odsy	Driver (`odsy`)
@@ -105615,7 +105615,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16ddb60	2056	cfbZeroArcSS8Xor
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16de370	140	odsyQryCntrl..JD	dynsym	f36cf75b67c3		in	understood	docs/odyssey-so-reads.md#screen-controls-genlock-and-timing-file-output	Screen controls, genlock and timing-file output
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16de400	3552	cfb16LineSS1RectGeneral	dynsym	66377ba3ba49		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df1e0	1092	QuickSortSpans..NAB	dynsym	47b8ee3ba646		in	named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df630	412	ValidateClip..CF	dynsym	084622d57b40		in	named-only	docs/odyssey-so-functions.md#symbol-database-and-audio-library-other	Symbol database and audio library (`other`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df630	412	ValidateClip..CF	dynsym	084622d57b40		in	understood	docs/odyssey-so-reads.md#span-array-lookup-clip-validation-and-pixmap-creation-read-from-whole-listings	Span-array lookup, clip validation and pixmap creation read from whole listings
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16df7d0	3008	mfbZeroArcSS..FN	dynsym	364132b66143		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e0390	2360	odsyLoadDenali..NC	dynsym	3bf18708cd26		in	understood	docs/odyssey-so-reads.md#compositor-routines	Compositor routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16e0cd0	2792	cfbFillBoxTileOddCopy	dynsym	ec24543fcc69		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
