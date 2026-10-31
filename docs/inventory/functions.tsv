@@ -14456,7 +14456,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a390	136	__glim_LineStipple	dwarf+dynsym	83dd8ebfe9e6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226a420	44	RoundWidth	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226a450	80	ClampWidth	dwarf	9b4498ee4050		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a570	156	__glim_LogicOp	dwarf+dynsym	c5ab155b0aac		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a7a0	220	__glErrorCheckMaterial	dwarf+dynsym	96a46229fd5e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226a880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -14465,7 +14465,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226af10	84	__glim_Materiali	dwarf+dynsym	b76669053a0b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226af70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x226afa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226aff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226aff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b1d0	168	__glim_PolygonStipple	dwarf+dynsym	f9072fc4a620		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226b280	152	__glim_ShadeModel	dwarf+dynsym	35fa21627e92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81507,7 +81507,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba320	100	__glim_Lig
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba390	136	__glim_LineStipple	dwarf+dynsym	83dd8ebfe9e6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ba420	44	RoundWidth	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32ba450	80	ClampWidth	dwarf	9b4498ee4050		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba570	156	__glim_LogicOp	dwarf+dynsym	c5ab155b0aac		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba7a0	220	__glErrorCheckMaterial	dwarf+dynsym	96a46229fd5e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ba880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -81516,7 +81516,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bad80	400	__glim_Mat
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baf10	84	__glim_Materiali	dwarf+dynsym	b76669053a0b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32baf70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32bafa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32baff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb1d0	168	__glim_PolygonStipple	dwarf+dynsym	f9072fc4a620		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bb280	152	__glim_ShadeModel	dwarf+dynsym	35fa21627e92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99046,7 +99046,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a320	100	__glim_Lig
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a390	136	__glim_LineStipple	dwarf+dynsym	83dd8ebfe9e6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226a420	44	RoundWidth	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226a450	80	ClampWidth	dwarf	9b4498ee4050		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a4a0	208	__glim_LineWidth	dwarf+dynsym	2605900cbbe4		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a570	156	__glim_LogicOp	dwarf+dynsym	c5ab155b0aac		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a7a0	220	__glErrorCheckMaterial	dwarf+dynsym	96a46229fd5e		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226a880	396	__glim_Materialfv	dwarf+dynsym	be5666fe11a9		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -99055,7 +99055,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226ad80	400	__glim_Mat
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226af10	84	__glim_Materiali	dwarf+dynsym	b76669053a0b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226af70	44	RoundSize	dwarf	ab58958126f1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x226afa0	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226aff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226aff0	208	__glim_PointSize	dwarf+dynsym	b604a56e9963		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b0c0	268	__glim_PolygonMode	dwarf+dynsym	3c08e6b7ed8c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b1d0	168	__glim_PolygonStipple	dwarf+dynsym	f9072fc4a620		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226b280	152	__glim_ShadeModel	dwarf+dynsym	35fa21627e92		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
