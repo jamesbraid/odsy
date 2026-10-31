@@ -688,6 +688,18 @@ Each row is one routine in one build whose function-table code hash and size equ
 | `__glOdyim_EvalCoord2d` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320a020 | 64 | 23e4560a6156 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba020 | Established |
 | `__glOdyim_EvalCoord2f` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320a0b0 | 60 | 695650bd234d | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba0b0 | Established |
 | `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x320a0f0 | 64 | 5cff720d647a | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba0f0 | Established |
+| `AddKnownGroup` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x325c2b0 | 68 | fa1d1b2bb26c | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x220c2b0 | Established |
+| `DestroyKnownGroup` | `usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x325c3e0 | 60 | ccca9849122b | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x220c3e0 | Established |
+| `__glSoftAllocAccum` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd954b8c | 72 | 393e620e2958 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd954b8c | Established |
+| `__glOdyssey_CopyContext` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd95abcc | 112 | f4d280c20ac8 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd95abcc | Established |
+| `TargetIndexToTargetEnum` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd95ac3c | 80 | b9e04ddffbd5 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd95ac3c | Established |
+| `__glOdyim_Materialf` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd95ee90 | 96 | fabbd59d0e13 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd95ee90 | Established |
+| `__glOdyim_Materiali` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd95f6e0 | 96 | 0f39ea6a67ab | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd95f6e0 | Established |
+| `InitialFree` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd9687bc | 52 | 2f4829c14bb5 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd9687bc | Established |
+| `CopyContext` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd96f228 | 92 | d2db14d94c0b | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd96f228 | Established |
+| `__glOdyim_ListParameterfSGIX` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd974728 | 60 | 6eb0081e01e1 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd974728 | Established |
+| `__glOdyim_ListParameterivSGIX` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd974764 | 76 | 4c6d6cc7cf96 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd974764 | Established |
+| `__glOdyim_ListParameteriSGIX` | `usr/gfx/arch/IP35ODSY/libGLcore.so` | 0xd9747b0 | 72 | b2d7b73749cb | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd9747b0 | Established |
 
 ## Copies read in full
 
