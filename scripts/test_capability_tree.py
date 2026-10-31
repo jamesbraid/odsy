@@ -88,6 +88,21 @@ class BranchLikely(unittest.TestCase):
         self.assertEqual(ct.Walker(s).run(5)[0][2][1], '2')
 
 
+class O32Spellings(unittest.TestCase):
+    def test_page_address_in_a_register_names_the_same_word_as_a_zero_base(self):
+        s = sheet([(0x1000, 'addiu v0,zero,4096'), (0x1004, 'lw v1,16(v0)'), (0x1008, 'lw t0,1792(v1)'),
+                   (0x100c, 'ori t0,t0,0x40'), (0x1010, 'sw t0,1792(v1)'), (0x1014, 'jr ra'), (0x1018, 'nop')])
+        ((ev, _, _),) = ct.Walker(s).run(0)
+        self.assertEqual(ct.describe(ev, ('ret', ''), False), '[ctx+1792] |= 0x40; return')
+
+    def test_byte_masked_truth_value_reads_like_the_unmasked_one(self):
+        s = sheet([(0x1000, 'lw t0,1792(a1)'), (0x1004, 'andi t0,t0,0x40'), (0x1008, 'sltu v0,zero,t0'),
+                   (0x100c, 'andi v0,v0,0xff'), (0x1010, 'jr ra'), (0x1014, 'nop')])
+        ((ev, _, fin),) = ct.Walker(s).run(0)
+        self.assertEqual(ct.describe(ev, fin, True),
+                         'return 1 if ([a1+1792] & 0x40) is nonzero, else 0')
+
+
 def table_program(index_lines, with_table=True):
     """An o32-style routine at 0x1000 whose gp is 0x3000; case targets 0x1060, 0x1070, 0x1080."""
     gp = 0x3000

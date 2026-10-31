@@ -230,6 +230,11 @@ class Walker:
             base, off = fold(base, off)
             if is_int(base) and base >= STACK - 0x10000 and ((base + off) & M64) in regs['@mem']:
                 put(o[0], regs['@mem'][(base + off) & M64])
+            elif is_int(base) and base and base < STACK - 0x10000:
+                # a page address formed in a register (o32 adds the offset after addiu v0,zero,4096):
+                # the same absolute word as a load with a zero base
+                put(o[0], ('ld', 0, (base + off) & M64))
+                self.ldw[('ld', 0, (base + off) & M64)] = mn
             else:
                 put(o[0], ('ld', base, off))
                 self.ldw[('ld', base, off)] = mn
@@ -455,7 +460,9 @@ def describe(ev, final, returns=False):
         elif e[0] in ('call', 'tail'):
             parts.append('%s %s(%s)' % ('tail call' if e[0] == 'tail' else 'call', e[2], ', '.join(e[3])))
     if final[0] == 'ret' and returns:
-        parts.append('return %s' % re.sub(r'^\(0 <u (.*)\)$', r'1 if \1 is nonzero, else 0', final[1]))
+        # a truth value masked to a byte (andi v0,v0,0xff) is the same truth value
+        ret = re.sub(r'^\((\(0 <u .*\)) & 0xff\)$', r'\1', final[1])
+        parts.append('return %s' % re.sub(r'^\(0 <u (.*)\)$', r'1 if \1 is nonzero, else 0', ret))
     elif final[0] == 'ret':
         parts.append('return')
     return '; '.join(parts)
