@@ -211,3 +211,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `OpenPipeMemReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6fb0 | 444 | ae27c1ced612 | Established |
 | `OpenPipeMemReference` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6fb0 | 444 | ae27c1ced612 | Established |
 | `__glOdysseyClosePMObjReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7800 | 352 | 58f500f50b8a | Established |
+| `__glOdysseyClosePMObjReference` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7800 | 352 | 58f500f50b8a | Established |
+| `__glOdysseyClosePMObjWriteReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c76b0 | 324 | 367813893af3 | Established |
+| `__glOdysseyClosePMObjWriteReference` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c76b0 | 324 | 367813893af3 | Established |
+| `__glOdysseySharePM` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6650 | 88 | 7118e50738fa | Established |
+| `__glOdysseySharePM` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6650 | 88 | 7118e50738fa | Established |
+| `__glOdysseyUnSharePM` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c66b0 | 308 | 7a84340907ef | Established |
+| `__glOdysseyUnSharePM` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c66b0 | 308 | 7a84340907ef | Established |
+| `__glOdysseyCreatePMObj` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c67f0 | 508 | 811e64930fe0 | Established |
+| `__glOdysseyCreatePMObj` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c67f0 | 508 | 811e64930fe0 | Established |
+| `__glOdysseyDestroyPMObjGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c69f0 | 344 | edb3b4cd502e | Established |
+| `__glOdysseyDestroyPMObjGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c69f0 | 344 | edb3b4cd502e | Established |
+| `__glOdysseyDestroyPMObj` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6b50 | 324 | edd8925fbbcb | Established |
