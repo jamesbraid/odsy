@@ -438,8 +438,8 @@ addresses. No vendor source was read for any item here.
     the write reference, bits 31:29 kept. Word 1 bits 31:30 are object +0x28 (storage class), bits 28:26 the result of
     `__glOdysseyImageCalcTexOffset` (0x0d9bef40), bits 25:20 the texel format index from `__glOdysseyImageCalcTexObjFormats` (0x0d9beda0), bits 11:0
     object +0x1c masked to 12 bits; other bits kept. Word 2 has bits 11:0 cleared and the rest kept.
-  - The offset routine returns 0, or 1 only when object +44 is 2 and +48 is 1 (otherwise 0, or `GL_INVALID_ENUM` for an
-    unlisted pair), so bit 26 can be set and **bit 27 never is**. The format table (class to format index, second output): 0 (0,1), 1 (2,4), 2 (4,2), 3 (8,1), 4 (9,4), 5 (10,2), 6 (11,3),
+  - The offset routine stores 0, or 2 only when object +44 and +48 are both 2 (the one nonzero store, `sw a3` at 0xd9bf064, with a3 = 2 from 0xd9bef74; every other pair stores 0, or raises
+    `GL_INVALID_ENUM` for an unlisted pair), so with the field at bits 28:26 it sets **bit 27 and never bit 26**. The format table (class to format index, second output): 0 (0,1), 1 (2,4), 2 (4,2), 3 (8,1), 4 (9,4), 5 (10,2), 6 (11,3),
     7 (12,6), 8 (13,6), 9 (16,3), 10 (17,6), 11 (18,6), 12 (33,6), 13 (32,6), 14 (48,5), 15 (49,6), 16 (4,2), 17 (10,2) (jump table at 0x0dae927c).
   - Texture mode block 0x016 (words at +0x7cc4 to +0x7cd4, `BUZZ.h` TEXMODE0 to 4): TEXMODE0 bits 14:10 and 9:5 are log2 of object width (+0x20) and height (+0x24), bits 4:0 (R) cleared.
     TEXMODE1 bits 16:0 are the width and TEXMODE2 bits 16:0 the height, in texels as stored (not rounded); TEXMODE3 bits 16:0 are cleared (the depth word is 0). In TEXMODE1 to 3 the wrap auxiliary field 23:18 is also cleared; bits 31:24 and 17 are kept.
@@ -460,7 +460,7 @@ addresses. No vendor source was read for any item here.
   bit 17 (blend: cleared in one variant of the colour download step, which also sets TEXMODE4 bits 18 and 14) and, in the stencil steps, bit 15. The remaining
   stores restore saved copies. Bit 16 (depth test) and block 0x052 bit 24 (depth write) are left as the application set them.
 - **established.** The transfer branch tests block 0x004 against the mask `0x0013c010` (bits 20, 17, 16, 15, 14, 4: logic op, blend, depth test, stencil test, alpha test, polygon stipple) at 0xd9ba934 to 0xd9ba944 and takes a
-  different path (0xd9bb598) when none is set. The colour burst is drawn as a primitive (`0x14400` operand 0xa and a ten-operand `0xcf80a92f` block).
+  0xd9bb598 when none is set, which tests the block 0x052 colour enables (bits 23:20) and rejoins at 0xd9ba94c (clears a local flag) or 0xd9ba954; what that flag selects was not traced. The colour burst is drawn as a primitive (`0x14400` operand 0xa and a ten-operand `0xcf80a92f` block).
 - **inferred.** A colour `glDrawPixels` through the transfer branch is therefore subject to the depth test the application enabled (bit 16), with the raster position's depth, and to the depth write enable. 
 - **established** that `RenderFunc_CopyColor` (0x0d990dd0) calls the copy routine with the transfer flag 0, so `glCopyPixels` of colour is the board's own block 0x031 copy and not a primitive. Whether that copy engine applies the depth test: **unknown**; the library sets no bit for it.
 
