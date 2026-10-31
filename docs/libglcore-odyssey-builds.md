@@ -724,6 +724,14 @@ Each row is one routine in one build whose function-table code hash and size equ
 | `__glOdyle_Begin` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b8300 | 68 | 791e6d9867c8 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b8300 | Established |
 | `__glOdyle_End` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b8350 | 64 | 6dae90437193 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b8350 | Established |
 | `__glOdyim_EvalCoord1dv` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b9f60 | 60 | 4349dd1e59c2 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b9f60 | Established |
+| `__glOdyim_EvalCoord1fv` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21b9fe0 | 60 | dc1b6dc8a3a7 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21b9fe0 | Established |
+| `__glOdyim_EvalCoord2d` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21ba020 | 64 | 23e4560a6156 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba020 | Established |
+| `__glOdyim_EvalCoord2f` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21ba0b0 | 60 | 695650bd234d | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba0b0 | Established |
+| `__glOdyim_EvalCoord2fv` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x21ba0f0 | 64 | 5cff720d647a | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x21ba0f0 | Established |
+| `AddKnownGroup` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x220c2b0 | 68 | fa1d1b2bb26c | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x220c2b0 | Established |
+| `DestroyKnownGroup` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x220c3e0 | 60 | ccca9849122b | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x220c3e0 | Established |
+| `InitCSet` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x220c420 | 20 | 931c1c1883c7 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x220c420 | Established |
+| `InitCSetCursor` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x220c7f0 | 20 | f3a5e060bb32 | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` 0x220c7f0 | Established |
 
 ## Copies read in full
 
