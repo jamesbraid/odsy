@@ -199,3 +199,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `AddKnownGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7d90 | 68 | 0263b3e44086 | Established |
 | `AddKnownGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7d90 | 68 | 0263b3e44086 | Established |
 | `RemoveKnownGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7de0 | 212 | 60b2048dd90f | Established |
+| `RemoveKnownGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7de0 | 212 | 60b2048dd90f | Established |
+| `DestroyKnownGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7ec0 | 60 | cb9f5a4c8408 | Established |
+| `DestroyKnownGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7ec0 | 60 | cb9f5a4c8408 | Established |
+| `LookupKnownGroup` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7960 | 388 | 8e0fc939bb46 | Established |
+| `LookupKnownGroup` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7960 | 388 | 8e0fc939bb46 | Established |
+| `LookupCoresidRange` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7af0 | 568 | ac7ff0a2b9d7 | Established |
+| `LookupCoresidRange` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7af0 | 568 | ac7ff0a2b9d7 | Established |
+| `LookupCoresidRangeWithLevel` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7d30 | 92 | 3b1b8b680232 | Established |
+| `LookupCoresidRangeWithLevel` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7d30 | 92 | 3b1b8b680232 | Established |
+| `OpenPipeMemReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c6fb0 | 444 | ae27c1ced612 | Established |
+| `OpenPipeMemReference` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c6fb0 | 444 | ae27c1ced612 | Established |
+| `__glOdysseyClosePMObjReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7800 | 352 | 58f500f50b8a | Established |
