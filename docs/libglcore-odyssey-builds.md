@@ -175,3 +175,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `CheckMMXfrArgs` | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | 0x220b220 | 128 | 650a3ab0f3c6 | Established |
 | `CheckMMXfrArgs` | `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` | 0x220b220 | 128 | 650a3ab0f3c6 | Established |
 | `__glOdysseyPMObjGroupResident` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7170 | 168 | 482da20895a6 | Established |
+| `__glOdysseyPMObjGroupResident` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7170 | 168 | 482da20895a6 | Established |
+| `__glOdysseyOpenPMObjReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7220 | 584 | e632a326416d | Established |
+| `__glOdysseyOpenPMObjReference` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7220 | 584 | e632a326416d | Established |
+| `__glOdysseyOpenPMObjWriteReference` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7470 | 564 | 7bf25cb6e047 | Established |
+| `__glOdysseyOpenPMObjWriteReference` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7470 | 564 | 7bf25cb6e047 | Established |
+| `InitCSet` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c7f00 | 20 | db4eaf9c04ac | Established |
+| `InitCSet` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c7f00 | 20 | db4eaf9c04ac | Established |
+| `InitCSetCursor` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c82d0 | 20 | 32805a1ec840 | Established |
+| `InitCSetCursor` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c82d0 | 20 | 32805a1ec840 | Established |
+| `NewChunkNode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c8070 | 240 | 184389f72b86 | Established |
+| `NewChunkNode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd9c8070 | 240 | 184389f72b86 | Established |
+| `AllocSpecificCSetId` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd9c8160 | 360 | 996bdd4ddd81 | Established |
