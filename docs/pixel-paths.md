@@ -572,3 +572,96 @@ Release 6.5.30m, N32 `libGLcore.so` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY3
   adjusts (context +0xe4c, +0xe50) are 6144, so the library's window coordinates are GL window
   coordinates plus 6144, with no window origin in them; the kernel's clip push sends the draw
   drawable's screen origin in block 0x041 ([opengl.md](opengl.md#the-clip-push-odsyclippush)).
+
+## Pixel bursts, row ends, window-to-object copies and read conversion
+
+Release IRIX 6.5.30m, IP30, N32 `libGLcore.so`. Listings `libglcore/asm/ODYSSEY/ody_image_move.s`,
+`ody_image_chain.s`, `ody_image_api.s`, `ody_image_convert.s` and `ody_image.s`; routines run under Unicorn with
+`scripts/write_burst_sweep.py` and the harness of `scripts/read_header_sweep.py`. No vendor source was read. Software
+evidence only: it fixes the words the library sends and the bytes it expects, not what the board does with them.
+
+### Which burst tag a write uses
+
+- **`__glOdysseyImageCalcXferWriteParams`** (0x0d9bd800), **established**: its output record (fourth argument) holds, besides
+  the format and type codes, a burst tag at byte 20 (and a second code at byte 21). `__glOdysseyImageMovePixelsDMAtoGfx` (0x0d9b9e20)
+  stores byte 20 in the low bits of the shadow of the burst select word (`0x13c00 | tag`: the `lbu 68($sp)` feeding the store to context +0x9704 in its transfer branch), and the burst sender
+  `SendPixelsAsUserPIO` (0x0d9b9680) reads it back (`context +0x9704 & 0x3ff`) as the tag of every burst word it emits
+  (`0x14000 | tag | (words - words/16) << 10`).
+- **established**, by running the routine for every format, type and destination pixel class (`scripts/write_burst_sweep.py`):
+  - tag `0x10` for 1-byte index (`0x41`) and 16-bit index (`0x61`) sources into every class, and for luminance and
+    luminance-alpha (`0x42`, `0x48`, `0x62`, `0x68`) into the classes that do not set the expand flag (0 to 6, 9, 14 to 17);
+  - tag `0x11` for `0x42` and `0x48` into the expand classes (7, 8, 10, 11, 12 and 13), and for the byte forms of RED, GREEN,
+    BLUE, ALPHA, INTENSITY, RGB, BGR, RGBA, ABGR and BGRA (`0x43` to `0x4d`, `0x16c`);
+  - tag `0x12` for `0x62` and `0x68` into the expand classes, and for every 16-bit and wider-component form of the colour
+    channels (`0x63` to `0x6d`, `0x80` to `0x8d`, `0x10b`, `0x10c`).
+  The tag therefore follows the expand flag for luminance: byte sources 0x10 or 0x11, 16-bit sources 0x10 or 0x12.
+- **established** (`SendPixelsAsUserPIO`): the sender copies host words as 32-bit loads and stores. The bytes the board
+  sees are the host image's bytes in memory order, so on this big-endian host the first of two 16-bit components sits in the
+  high half of a word, and a byte pair `L, A` fills two adjacent bytes. A `0x68` pixel is one word; a `0x62` pixel is half a word.
+- **established** (the same routine): the burst length is `min(64 / bytes-per-pixel, 16 >> (tag == 0x12))` pixels, or 48 /
+  bytes-per-pixel when the pixel size is a multiple of 3, with the pixel size from the bytes-per-pixel code (word 7 bits 18:16)
+  through the inverse of the kernel's table. The first header's bits 27:24 carry that length (15 stands for 16) and its bits 23:20
+  are 0. Under tag `0x12` the length is doubled before encoding, so a header count is twice the pixel count (`5` pixels remaining
+  are sent as count `10`).
+
+### Row ends
+
+- **established** (`SendPixelsAsUserPIO`, per-row loop): each row is sent on its own. A row of `n` pixels is `n / burst` full
+  bursts, then one short burst of `ceil(remaining * bytes-per-pixel / 4)` words behind a new header; the next row's bursts
+  start at the row's own start address plus the host skip (word 5), never inside the previous row's last word.
+- **established**: the short burst's header is the first header with bit 16 set, bits 23:20 the remaining count (doubled
+  under tag `0x12`) and bits 18:17 `(4 - row end address) & 3`, the number of unused bytes in the row's last word. A row
+  that starts mid-word takes a separate path that copies the row to an aligned buffer first and sets bit 16 and bits
+  18:17 from the start offset (not read further).
+- **inferred**: bits 18:17 name the pad that the board must discard. Nothing in the library reads them back.
+- The bytes in the pad are whatever follows the row in host memory (the next row, or a gap), or the aligned buffer's
+  contents, so the board cannot treat them as pixels.
+
+### Copying a window into a scratch object
+
+- **`__glOdysseyRenderFunc_ReadbackColor`** (0x0d9a58c0), **established**: when `__glOdysseyImageCalcXferReadParams` (0x0d9bf200)
+  reports no exact read and `__glOdysseyImageCalcSuitableGfxFormatForReadback` (0x0d9ac0d0) accepts the pair, it builds a
+  scratch object description, copies the window rectangle into it with `__glOdysseyImageMovePixelsCopy` (transfer flag 1, so
+  header word 7 bit 27 is set) and then reads the object's rectangle `(0, 0, w, h)` with `__glOdysseyImageMovePixelsDMAtoHost`.
+  Pairs accepted (run through the routine): `RGBA`/`UNSIGNED_BYTE`, `RGBA`/`UNSIGNED_SHORT`, `RGBA` with 4/4/4/4 and 5/5/5/1 packing,
+  `COLOR_INDEX`/`UNSIGNED_BYTE` and `UNSIGNED_SHORT`; `RGB` pairs are not. With context +1148 zero the object is read straight into the
+  caller's image; otherwise it is read into a host scratch image and converted (what that word is: unknown). Read from the code path for
+  pixel classes of 10 and above; classes below 10 go through a jump table that was not read. The source description byte +11, when set,
+  draws a textured rectangle instead of copying.
+- **established** (`__glOdysseyImageDescribeWindow`, 0x0d989710, store at its start): a window description's word +4 is 1. The
+  read-image description `__glOdyim_ReadPixels` builds and the scratch object description have word +4 equal to 0.
+- **established** (`DMAtoHost`): header word 7 bit 30 is set when the source and destination descriptions differ in word +4. A
+  window read to client memory sets it; the object read above does not, so the object is read in its own row order, row 0 first.
+- **established** (`ImageCopyPixelBody`, 0x0d9b73c0): the eight words of the `0x2031` block carry the source's smaller corner,
+  the absolute width and height, and the destination's smaller corner (`slt` and `movz` choose minima; the size is a difference
+  of ends). They cannot name a direction. With the transfer flag the routine first sends the ten-float record `0xcf80a92f`
+  whose floats 4, 5 and 7, 8 are the destination's two corners; a mode argument (0 to 3) picks the corner order: 0 as given, 1
+  with x reversed, 2 with y reversed, 3 with both.
+- **established** (`__glOdysseyImageMovePixelsCopy`, 0x0d9b7820, the comparisons feeding the mode): mode = `2 * (Y xor S) + X`,
+  where S is the source description's word +4, X is 1 when the destination x lies within the source's x range and Y is 1 when
+  the destination y lies within the source's y range (the same two tests that become word 7 bits 31 and 30). A window source
+  (S = 1) that does not overlap its destination (X = Y = 0) gives mode 2, the destination corners with y reversed.
+- **inferred**: the board walks the destination corners as a directed rectangle, as it does for the image raster record, so
+  reversed y puts the source's top window row last and its bottom row first, which is the order the object read (row 0 first,
+  no bit 30) expects. Not read: what the board does with the record.
+- **unknown**: `glCopyTexImage` reaches the same copy through the image chain's copy step (`RenderFunc_CopyColor`,
+  0x0d990dd0, transfer flag 0), which sends no corner record; whether `MovePixelsCopy` forces the transfer path there is not resolved
+  (the decompiler folds the branch). Settle by running `MovePixelsCopy` under the probe for a window-to-texture-object copy and
+  listing its FIFO words with `scripts/fifo_words.py`.
+
+### Read conversion on the host
+
+- **established** (`__glOdysseyImageCalcXferReadParams` run on an RGBA8 window, class 10): `RGB`, `RED` and `GREEN` with `UNSIGNED_SHORT`, `SHORT` or
+  `FLOAT`, and `RGBA` with `UNSIGNED_SHORT`, are not exact; the pair the library requests is `RGBA`/`UNSIGNED_BYTE` (class 2, code 8), four
+  bytes a pixel, and it converts on the host. On an RGBA12 window (class 12) `RGB`/`UNSIGNED_SHORT` is exact (class 3, code 8).
+- **established** (`__glOdysseyRenderFunc_ReadbackColor`): the scratch host image for that read has alignment 1 and image byte 0
+  set, so `DMAtoHost` takes its row stride as the pixel row (`4 * width`) with no round-up and sends skip 0.
+- **established** (`__glOdyim_ReadPixels`, 0x0d989ea0, source lines 247 to 250): the destination image's alignment field
+  (+24) is `max(bytes per pixel, pack alignment)`, so 6 for `RGB`/`SHORT` and 4 for `RGB`/`UNSIGNED_BYTE`.
+- **established** (`__glOdysseyImageConvertHostImage`, 0x0d9a9e10, opening lines): both images' row strides are recomputed from
+  their own fields as `ceil(width * bytes_per_pixel / m) * m` with `m = max(alignment field, bytes per pixel)`; the routine never reads
+  the context's pack alignment. A 13-pixel `RGB`/`SHORT` row is 78 bytes and `m` is 6, so rows are 78 bytes apart, not 80.
+- **established** (`DMAtoHost`, 0x0d9bbf70): the direct DMA read path does the same `max(..)` stride and then rounds it up to the pack alignment
+  for client memory, giving 80. So a direct read and a converted read of the same `RGB`/`SHORT` rectangle leave rows 80 and 78
+  bytes apart; both are the library's own arithmetic, independent of the board's reply.
+- **inferred**: that `ConvertHostImage`'s strides are the row steps of its span loops (the loops were not read).
