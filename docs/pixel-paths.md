@@ -280,6 +280,118 @@ word and a colour word with the same class and code come from different parts of
   the transfer path it first writes the box floats, and after the words sends 0x14001 and, when
   asked, the flush sequence followed by 0x10658 and 0x120000.
 
+## Pixel-buffer swap state, depth and stencil by burst, and the zoom rectangle
+
+Release IRIX 6.5.30m, IP30. Kernel members of `odyssey.a` (`rrm.o`, `odsy_drawable.o`), N32
+`libGL.so` and N32 `libGLcore.so` (`root/usr/gfx/arch/IP30ODSY32/`). The FIFO word lists come
+from `scripts/fifo_words.py` run on the routines named; callees were taken from the target
+address, not the listing's label. No vendor source was read for these three items.
+
+### Front and back of a pixel buffer: what writes 0x609 bit 31
+
+- **established.** Nothing in libGLcore (the N32 listings and a constant search for 0x609, 1545 and
+  the wide-form id) writes registers 0x608 or 0x609. The kernel writes them in exactly two places:
+  `odsyPushBufferSelect` (`odsy_drawable.o` 0x744) and `odsyClipPush` (`odsy_clip.o` 0x728). The clip push only
+  resends the context words at +140 and +144 as they stand. `odsyBindDrawable` (`odsy_drawable.o` 0x138)
+  replaces the low 31 bits of those words with the drawable's first buffer and keeps their old
+  bit 31. So bit 31 of 0x609 is whatever the last buffer-select push left in context +144.
+- **established.** The push computes bit 31 of 0x609 from the read drawable's pane: set when the
+  client has no read drawable or the pane's halfword +18 is zero, clear when it is nonzero (the
+  `lh 18` of the pointer at +128 of the client record, `odsy_drawable.o` 0x744 to 0xa2b). Bit 31
+  of 0x608 follows the draw pane the same way. The draw buffer mask sent in block 0x024 has its
+  front and back pairs exchanged when the draw pane's halfword is nonzero. The mask bits are
+  front-left, front-right, back-left, back-right in that order (**established** from
+  `__glOdyim_DrawBuffer` 0x0d95bad0: `GL_FRONT_LEFT` sets the first argument of the draw-buffer
+  routine, `GL_BACK_LEFT` the third, `GL_FRONT_AND_BACK` all four on a double-buffered visual), so
+  the exchange `(1,2) <-> (4,8)` swaps front and back, not left and right.
+- **established.** A pixel buffer's pane is an ordinary pane. `bind_pane` (`rrm.o` 0x178) finds or creates a pane for any
+  drawable id (the pixel buffer's id too, through `RRM_BindRNToReadAndClip`, `rrm.o` 0x1554) and
+  zeroes its halfwords +18 and +12 on creation. Nothing in the pane code, the buffer-select push or the bind looks at
+  whether the id is a window or a pixel buffer (`gfP_OdsyPbufAssoc`, `odsy_drawable.o` 0xd20, only adds the
+  drawable-hash entry with the buffer set and does not touch a pane).
+- **established.** The writers of pane halfword +18, all in `rrm.o`: `bind_pane` (zero), `validate_pane_clip`
+  (0x614; a pane whose flag +12 bit 3 is clear takes +18 = bit 2 of the clip request's word 56, a pane
+  with the bit set keeps +18 and has bit 2 of word 56 rewritten from it), `RRM_LoadDisplayMode` (0x2c2c; refuses a pane with
+  flag bit 3, else +18 = bit 2 of request word 16), `RRM_MGR_SwapBuf` (0x3f80, +18 = bit 2 of
+  request word 16) and `RRM_SwapBuf` (0x3828, ioctl 1005). `validate_pane_swapbuf` (0x7d8) sets the flag bit 3 on a pane
+  and is reached only from the X server's swap-id validation (ioctl 1012).
+- **established.** `RRM_SwapBuf` toggles +18 (`xori 1`) when bit 3 of the word at +4 of its first argument is set,
+  and then lets `gf_OdsySchedSwapBuf` (`odsy_retrace.o` 0x380) call `odsyPushBufferSelect` ahead of the swap, so a swap
+  re-pushes 0x608/0x609 with the new bit 31. Bit 3 of that word is set by `gfxopen` (`gfx.o`) on the per-open record
+  under a condition not traced (**unknown**; **inferred** to mark a process whose swaps the kernel keeps
+  state for).
+- **established.** `glXSwapBuffers` in N32 `libGL.so` (0x0d833d30) calls the current context's swap slot directly when
+  the drawable equals the current draw drawable, whatever kind of drawable it is (the compare at 0xd833d68 and the
+  call at 0xd833e7c to 0xd833e88). That slot is **inferred** to be `__glOdysseySwapBuffers`
+  (0x0d9d9450), which returns without action unless the visual is double-buffered (byte +0xc96) and otherwise
+  sends ioctl 1005. So a single-buffered pixel buffer never swaps, and a double-buffered one can: its +18 toggles on
+  each swap and 0x609 bit 31 follows at the next buffer-select push. Nothing in the kernel or the libraries marks a pixel buffer as
+  never swapping; its allocation only leaves the swap state at zero.
+- **inferred.** The read path resolves front like the draw path: logical front (header word 4 bit 31 set) is the buffer
+  a front draw mask writes. The kernel makes the draw select absolute (exchanged when +18 is nonzero) and the read
+  register's bit 31 logical (set when +18 is zero), and uses the same pane state for both. What the board does with 0x609 bit 31
+  itself is in no software: **unknown**.
+
+### Depth and stencil by pixel burst: how the plane is chosen
+
+- **established.** The burst's leading operand (block 0x170, word `0x4570`, then the bare word 0x71) is built in
+  `SendPixelsAsUserPIO` (0x0d9b9680) from the write header's word 7: bits 4:0 and 8:5 (format and type), 9, 10 and 11
+  copied and bit 12 set; the remaining bits are the pixel count of the group (bits 27:24 in the first operand, bits 23:20 and
+  bit 16 in the per-row operands, stores at 0xd9b9864 to 0xd9b9a34 and 0xd9b9900 to 0xd9b9a1c). It has no size field (word 7's
+  bits 15:13 are not copied) and no field codes. A depth write and a stencil write both
+  carry format 0, type 4 (word 7 low bits 0x080), so their burst operands differ only in the pixel counts.
+- **established.** The plane is selected by write-enable state sent before the burst, not by the burst. The depth download
+  step (`RenderFunc_DownloadDepth` 0x0d9a1530) and the stencil download step (`RenderFunc_DownloadStencil` 0x0d9a1c60) change the shadow words, raise
+  dirty bits and call `__glOdysseyImageMovePixelsDMAtoGfx` (0x0d9b9e20) with its fourth argument 1, the transfer-path flag; the
+  transfer branch of that routine runs `__glOdysseyValidateHardware`, sends `0x00014400` and calls the burst sender before the
+  primitive end. After the call both restore the words.
+  In block terms (`docs/tokens.md`):
+  - Depth (stores at 0xd9a19a8 to 0xd9a19dc, the unzoomed branch at 0xd9a1b24 to 0xd9a1b58; dirty bits 0x84): block 0x052's
+    stencil write mask, bits 19:12, is cleared; block 0x005 bits 11:10 are cleared. Colour, index and depth
+    write enables (0x052 bits 11:0, 23:20, 24) are left as the application set them.
+  - Stencil (stores at 0xd9a20bc to 0xd9a212c; dirty bits 0x86): block 0x052 bits 11:0 (index mask), 20 to 23 (colour
+    enables) and 24 (depth write) are cleared and the stencil write mask 19:12 is left as the application set it;
+    block 0x005 bits 11:10 are cleared; block 0x004 bit 15 (stencil test) is set when the visual has stencil planes (byte
+    +0xc9a) and cleared otherwise. Stencil function and operation blocks are not touched.
+  - The depth and stencil copy steps (0x0d9a2b40 and 0x0d9a3400) change the same words the same way around their write-back call.
+- **inferred.** A format-0 write targets the combined depth and stencil word, and the 0x052 enables decide which part
+  lands: a depth download zeroes the stencil mask so only depth bits change; a stencil download switches off colour, index and depth
+  so only the stencil byte can change. The board's use of the words is not in the software: **unknown**.
+- **established.** The fifth argument of the move differs (1 for depth, 0 for stencil). What the move does with it was not traced:
+  **unknown**.
+
+### Pixel zoom: the texture move and the textured rectangle
+
+- **established.** The zoom steps are `RenderFunc_ColorZoom` (0x0d9a5f30) and `RenderFunc_IndexZoom` (0x0d9a6010),
+  chain ops 12 and 13 added by `ImageChainAddOpColorZoom` (0x0d9a5ea0) and `ImageChainAddOpIndexZoom` (0x0d9a5f80). Each is one
+  call of `__glOdysseyImageMovePixelsTexture` (0x0d9bbff0, 4284 bytes) with arguments (destination at +72 of the chain record,
+  source object at +68, the box floats, 1). The same routine is the draw step for interlace, LUT, convolution and colour
+  matrix steps.
+- **established** (`fifo_words.py` on 0x0d9bbff0 to 0x0d9bd0ac, one pass, no loop count): the sequence the move sends, in order:
+  1. settle `0x10443` 250, `0x10046` x2; level descriptor 60: `0x00010ebc` and the three words at context +32688, +32692, +32696; the settle sequence again.
+     **inferred**: the first descriptor word is the object's word at +31940 with bits 14:10 replaced by log2 of the object's
+     width (`__glOdysseyImageLogBase2` of object +0x20); the other two words carry further log2 fields from +0x20 and +0x24 (the walk shows
+     only the folded expression).
+  2. `__glOdysseyImageCalcPixelModeFields` into context +0x969c; settle; block 0x01d `0x0001081d` with the scissor words +0x7c20 and +0x7c24.
+  3. A state-loader (0x0d9bff00, 452 bytes) rewrites block 0x004's word (+0x7bfc, from +0x11c34 with bit 11 cleared when enable bit 6 is set), the three
+     block 0x021 words (+0x7c34 to +0x7c3c, from +0x11c3c to +0x11c44) and the descriptor word at +0x96a4 from the snapshot words at context
+     +0x11c28 to +0x11cc0, so the rectangle draws with a stored snapshot of raster state, not the application's. Dirty bits 0x200083 (blocks 0x021, 0x004, 0x052 and the descriptor block 0x017) are raised and
+     `__glOdysseyValidateHardware` sends the changed blocks. Block 0x006's low six bits are 60 (level 60). If the depth test is on (block 0x004 bit 16) the routine
+     calls `__glOdysseyImageCalcOdyEyeSpaceRasterPosZ` (0x0d9c21b0) for z; otherwise z is 0.0.
+  4. `0x00014400` with operand 7 (primitive begin, type 7).
+  5. Per rectangle: `0x8f80b968` (count field 14) and fourteen floats: 0.0, 0.0, 0.0, 1.0, x0, ya, z, x1, yb, z, s0, t0, s1, t1.
+     x0 and x1 are the box's words +0x10 and +0x18 (destination x range), ya and yb the destination rows (yb = ya + step), z as above,
+     s0 and s1 the box's source x range (words +0 and +8) over the object width rounded to a power of two, t0 and t1 the source
+     y range over the height rounded up the same way, advanced by one source row per rectangle.
+  6. `0x00014001` (primitive end), the settle sequence, then the saved shadow words of blocks 0x004, 0x021 and 0x052 are restored (dirty bits 0x83, or 0x80 on the early exit).
+- **established.** Rectangles per call: one per source row, step +1 or -1 by the order of the destination y words (box +0x14 and +0x1c). With the destination's
+  byte +8 set and the fourth argument 1, the loop reads |zoom y| (context +0x2ec) and accumulates it per source row
+  (`add.s f14,f14,f16` at 0xd9bce28), emitting one unit-height rectangle for each whole destination row the sum passes, none when it does not
+  advance; with x zoom the destination width is the box's, so x zoom is the ratio of the destination and source x ranges. With the destination's byte 12 set (copied from
+  context +0x704 bit 5 by the callers) rows are taken two at a time with doubled steps. The first four zeros-and-one words and the repeated z are
+  **unknown** in meaning; **inferred** to be a constant colour (0, 0, 0, 1) and the two corners' depth.
+- **unknown.** Which texture filter the sampler uses for the magnification: the move sends no filter word of its own.
+
 ## Raster distance
 
 - **`__glOdysseyDoGet`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d986380, 2164 bytes), **established** for enums 0xb04 to 0xb09:
