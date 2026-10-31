@@ -224,7 +224,7 @@ word and a colour word with the same class and code come from different parts of
     (`__glOdysseyImageChainAddOpAcceptSignedDataFromHost`).
     **established** (disassembly, N32 IP30 build; the IP35 build has the same bytes for both routines): bit 7 is set by
     `GetBoardInfo` (0xd965310, stores at 0xd9653dc and 0xd9653f8) exactly when the board kind at context +0x16a70 is
-    nonzero. That word is reply word 80 of the 588-byte ioctl 0x66 reply (`__glOdysseyGetBoardInfoRaw` copies the reply
+    nonzero. That word is the word at byte offset 80 of the 588-byte ioctl 0x66 reply (`__glOdysseyGetBoardInfoRaw` copies the reply
     to context +0x16a20), the kernel's variant flag (record +280): 0 for BUZZ revision nibbles 1 to 3, 1 for 9 to 15. So
     variant A boards (gfxinfo prints "A.1") leave it clear and the library converts on the host, and variant B boards
     ("B.1", "B.2") set it. No `GL_ODY_*` variable touches bit 7. Test sites: `RenderFunc_DownloadColor` 0xd9a3e74
@@ -241,19 +241,25 @@ word and a colour word with the same class and code come from different parts of
     the same format code and fields) except byte 0 (accepted) and byte 4 (signed flag, 1). Signed `COLOR_INDEX` and
     `BGRA` bytes are refused (host conversion). The DMA writer never loads byte 4. The download step reads it only
     to leave the direct path when the context hint word at +0x784 is 0x1102 (+0x788 at 0x1102 does that for every
-    type). The chain builder (0xd9907c0-0xd9909b0) then appends `ImageChainAddOpScaleBias` with the pixel-transfer
-    scale (context +0x280 to +0x28c) and bias (+0x294 to +0x2a0) unchanged, the bias multiplied by 0.5 (.lit8
-    0xdaf4d88) when bit 19 of +0x7b70 is clear (kinds 0 and 1). `SetupScaleBiasForTexFilter` writes the eight words at
-    context +0x8cec as `trunc(x * 4096.0) & 0xffff` (.lit4 0xdaf4b18), order scale R, bias R, scale G, bias G, scale B,
-    bias B, scale A, bias A, keeping the upper halves, and sets the mode word at +0x8ce8 to 2. The signed render
-    routine differs from the plain one only by the flag byte at op +0x3c: when set it overwrites the low half of the
-    alpha bias word with 0x1000 (flag set for source formats other than 0x1906, 0x1908, 0x190a, 0x8000). The unsigned
-    download path loads identity (scale 1.0, bias 0) instead of the op's vectors. No constant 0.5, 1/(2^b-1) or
-    (2c+1) is programmed for a sign. **inferred**: since nothing sign-specific is emitted, either the board
-    interprets component bits identically for both and the library relies on something outside these routines, or the
-    board's unpack of types 2, 3 and 4 depends on state not found here. Not resolved: the scale-and-bias-shaped chain op
-    `ImageChainAddOpAcceptSignedDataFromHost` (0xd99a950, render routine 0xd99aaa0, brackets its draw with block
-    0x042) has no static caller found by page-relative or table search.
+    type). **Sign reaches the board as a second pass.** The chain builder (0xd9907c0-0xd9909b0) appends
+    `ImageChainAddOpScaleBias` with the pixel-transfer scale (context +0x280 to +0x28c) and bias (+0x294 to +0x2a0),
+    the bias multiplied by 0.5 (.lit8 0xdaf4d88) when bit 19 of +0x7b70 is clear (kinds 0 and 1). For a signed source
+    that op's render routine is `RenderFunc_ScaleBiasForSignedTypes`, which (1) applies the application's scale and
+    bias, split into several passes when a scale lane exceeds the limit float at context +0x11e20 (each pass clamps
+    every lane's scale to the limit and divides the remainder by pow(limit, k); read, **inferred** as to intent), and
+    (2) at every exit (0xd998a64-0xd998adc) runs a final copy with scale 2.0 (.lit4 0xdaf4b40) and bias 1/4096
+    (.lit4 0xdaf4b38) in all four lanes, which `SetupScaleBiasForTexFilter` writes as `trunc(x * 4096.0) & 0xffff`
+    (4096.0 at .lit4 0xdaf4b18) into the eight words at context +0x8cec, order scale R, bias R, scale G, bias G, scale B,
+    bias B, scale A, bias A, upper halves kept, mode word +0x8ce8 = 2: the words are 0x2000 and 0x0001, that is `2c + 1`
+    in signed 3.12, GL's signed-to-normalised rule. When the op flag byte at +0x3c is set (source formats other than
+    0x1906, 0x1908, 0x190a, 0x8000) the low half of the alpha bias word is then overwritten with 0x1000 (opaque).
+    The plain `RenderFunc_ScaleBias` (0xd9967e0) never loads 2.0 or 1/4096. The unsigned download path loads identity.
+    **inferred**: the combined result is `2(s*x + b/2) + 1/4096` with the application's s and b. A pass of `2x + 1/4096`
+    on a raw byte read as unsigned gives GL's value for non-negative components but saturates every negative one, so
+    the board has to read the raw signed bits as signed; how it does, and the 8- to 12-bit widening, is **unknown**.
+    `0x042` is also written by `RenderFunc_Lut` (0xd991404) and `RenderFunc_ColorMatrix` (0xd99bb68); the
+    scale-and-bias-shaped chain op `ImageChainAddOpAcceptSignedDataFromHost` (0xd99a950, render routine 0xd99aaa0)
+    has no static caller found by page-relative or table search.
   - So the word 7 low bytes seen in traces decode as format
     plus type: 0x41 index bytes, 0x42 luminance bytes, 0x48 luminance-alpha bytes, 0x49 RGB
     bytes, 0x4b RGBA bytes, 0x4c ABGR bytes, 0x61 16-bit index, 0x6b RGBA shorts, 0x6c ABGR
