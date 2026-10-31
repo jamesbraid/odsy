@@ -392,6 +392,78 @@ address, not the listing's label. No vendor source was read for these three item
   **unknown** in meaning; **inferred** to be a constant colour (0, 0, 0, 1) and the two corners' depth.
 - **unknown.** Which texture filter the sampler uses for the magnification: the move sends no filter word of its own.
 
+## Stencil word position, the DMA question, the move's sampler words and depth test on colour writes
+
+Release IRIX 6.5.30m, IP30, N32 `libGLcore.so` (`root/usr/gfx/arch/IP30ODSY32/`). Routines were
+disassembled in plain `objdump` and walked with `scripts/fifo_words.py`; callees were taken from target
+addresses. No vendor source was read for any item here.
+
+### Where the stencil index sits in a burst word
+
+- **established.** `RenderFunc_DownloadStencil` (0x0d9a1c60) converts the image to `STENCIL_INDEX`/`UNSIGNED_INT` with
+  `__glOdysseyImageConvertHostImage` (0x0d9a9e10; the constants 6401 and 5125 at 0xd9a1db8 and 0xd9a1dbc). In the
+  stencil/unsigned-int branch of that routine (the branch at 0xd9ab054 to 0xd9abe7c) it installs
+  `__glOdySpanPackPioStencil` (0x0d9a8d90) as the span packer when its flag register is nonzero. That packer saves the two
+  floats at context +316 and +332, stores 16.0 and 0.0 there, calls `__glOdySpanShiftOffsetIndex` (0x0d9a8250) and restores
+  them. The shift routine computes `(word << trunc(+316)) + trunc(+332)` on each 32-bit word with no mask. So each stencil word
+  is `index << 16`: index 0x11 becomes `0x00110000`, in bits 23:16 (bits 31:24 take whatever is above the index).
+- **established.** `SendPixelsAsUserPIO` (0x0d9b9680) copies the host words to the FIFO unchanged (the `lw`/`sw` pairs at
+  0xd9b99d8 to 0xd9b9a18 and 0xd9b9c34 to 0xd9b9c60, plus a byte-copy realignment through a stack buffer at 0xd9b9aa0 to 0xd9b9ad8), so the burst word is the packed word.
+- **inferred.** The flag register that selects the packer is initialised from the conversion's fifth argument
+  (a stack pointer the download passes) and cleared on two other paths (0xd9aa8d4, 0xd9ab7a8); the walk did not prove
+  it is nonzero for every stencil download. A guest run showing the shifted word agrees.
+- **inferred.** The stencil write mask (block 0x052 bits 19:12) applies to the index, not to the word: the library keeps the
+  application's mask there for a stencil download and the index sits in bits 23:16, four bits above the mask's own position.
+  A literal `(word & mask) | (old & ~mask)` with the mask taken from 19:12 zeroes the index; the mask has to be applied to bits
+  23:16 shifted down. How the board aligns them: **unknown**, in no software.
+
+### Is there a depth/stencil write path other than the burst?
+
+- **established.** Every call to the write routine (`__glOdysseyImageMovePixelsDMAtoGfx`, 0x0d9b9e20) from a depth or stencil
+  step passes the transfer flag 1: `RenderFunc_DownloadDepth` and `RenderFunc_DownloadStencil` (two calls each) and
+  `RenderFunc_CopyDepth` and `RenderFunc_CopyStencil` (two calls each). The only calls with the flag 0 are in the colour
+  download step. In the routine the flag chooses the branch at 0xd9ba5ec: nonzero goes to the burst sequence (state flush,
+  `0x00014400`, `0xcf80a92f` block, burst sender, `0x00014001`), zero goes to the DMA branch at 0xd9bafbc. So the library
+  sends no depth or stencil by DMA.
+- **established.** The DMA header's word 4 size field for depth and stencil (1 and 0) is built by the routine but, on the branch these steps take, no header
+  is sent. The kernel's DMA transform path (`docs/kernel.md`, `odsyDMAOps` with word 7 bit 27) starts with the same
+  `0xcf80a92f` and `0x00014400` prologue, so **inferred**: a DMA-fed depth or stencil word would go through the same
+  rectangle primitive and the same block 0x052 enables. Whether the board takes the packed layout above from DMA data: **unknown**; the library never exercises it.
+
+### The texture move's sampler words (`__glOdysseyImageMovePixelsTexture`, 0x0d9bbff0)
+
+- **established**, stores at 0xd9bc1b8 to 0xd9bc36c. The move edits shadow words and leaves the rest as the context holds them:
+  - Block 0x005 (+0x7c00) bit 4 is set (2D target); block 0x006 low six bits are 60.
+  - Level descriptor 60 (context +32688, +32692, +32696, sent as block 0x2bc `0x00010ebc`): word 0 bits 28:0 are the object's board address from
+    the write reference, bits 31:29 kept. Word 1 bits 31:30 are object +0x28 (storage class), bits 28:26 the result of
+    `__glOdysseyImageCalcTexOffset` (0x0d9bef40), bits 25:20 the texel format index from `__glOdysseyImageCalcTexObjFormats` (0x0d9beda0), bits 11:0
+    object +0x1c masked to 12 bits; other bits kept. Word 2 has bits 11:0 cleared and the rest kept.
+  - The offset routine returns 0, or 1 only when object +44 is 2 and +48 is 1 (otherwise 0, or `GL_INVALID_ENUM` for an
+    unlisted pair), so bit 26 can be set and **bit 27 never is**. The format table (class to format index, second output): 0 (0,1), 1 (2,4), 2 (4,2), 3 (8,1), 4 (9,4), 5 (10,2), 6 (11,3),
+    7 (12,6), 8 (13,6), 9 (16,3), 10 (17,6), 11 (18,6), 12 (33,6), 13 (32,6), 14 (48,5), 15 (49,6), 16 (4,2), 17 (10,2) (jump table at 0x0dae927c).
+  - Texture mode block 0x016 (words at +0x7cc4 to +0x7cd4, `BUZZ.h` TEXMODE0 to 4): TEXMODE0 bits 14:10 and 9:5 are log2 of object width (+0x20) and height (+0x24), bits 4:0 (R) cleared.
+    TEXMODE1 bits 16:0 are the width and TEXMODE2 bits 16:0 the height, in texels as stored (not rounded); TEXMODE3 bits 16:0 are cleared (the depth word is 0). In TEXMODE1 to 3 the wrap auxiliary field 23:18 is also cleared; bits 31:24 and 17 are kept.
+    TEXMODE4 bits 25:23 are set to 6 (the value the X server's start-up also writes). Dirty bits 0x200 (block 0x016) and 0x200000 (block 0x017) are raised.
+- **established.** The move writes no other bit of TEXMODE4: wrap bits 13:8, trilinear bit 17, filter bits 7:1, bits 22:18 and 0 and bit 28 are not
+  touched. So the wrap, the minification and magnification filter are whatever the context's block 0x016 shadow holds when the move runs.
+  **inferred**: that is the shadow left by the last texture activation or the object-initialiser default (`TEXMODE4` = 0x82: mag filter linear), so the
+  zoom's magnification filter is not chosen by the zoom step; bits 22:18 are the context-kept bits (`BUZZ.h`), and bit 28 (set when the active level has no border) is absent unless the context carries it.
+  Meaning of bits 25:23 and 22:18: **unknown**.
+- **established.** The four floats 0, 0, 0, 1 in each rectangle word are sent to the board; the move sets neither block 0x01b (texture environment) nor the raster
+  colour, so whether they take part is decided by the context's texture-environment state: **unknown**.
+
+### Depth test and colour image writes
+
+- **established.** No routine that writes colour images (the write routine's transfer branch, the copy routine, the colour download step) has a header bit or
+  register for the depth test. The stores to the raster-mode word (context +0x7bfc, block 0x004) that I read change only bit 18 (dither: cleared in the write
+  routine at 0xd9ba970 to 0xd9ba97c and in the copy routine, when the context byte at +0x9dd0 is set and the source and destination pixel classes are equal),
+  bit 17 (blend: cleared in one variant of the colour download step, which also sets TEXMODE4 bits 18 and 14) and, in the stencil steps, bit 15. The remaining
+  stores restore saved copies. Bit 16 (depth test) and block 0x052 bit 24 (depth write) are left as the application set them.
+- **established.** The transfer branch tests block 0x004 against the mask `0x0013c010` (bits 20, 17, 16, 15, 14, 4: logic op, blend, depth test, stencil test, alpha test, polygon stipple) at 0xd9ba934 to 0xd9ba944 and takes a
+  different path (0xd9bb598) when none is set. The colour burst is drawn as a primitive (`0x14400` operand 0xa and a ten-operand `0xcf80a92f` block).
+- **inferred.** A colour `glDrawPixels` through the transfer branch is therefore subject to the depth test the application enabled (bit 16), with the raster position's depth, and to the depth write enable. 
+- **established** that `RenderFunc_CopyColor` (0x0d990dd0) calls the copy routine with the transfer flag 0, so `glCopyPixels` of colour is the board's own block 0x031 copy and not a primitive. Whether that copy engine applies the depth test: **unknown**; the library sets no bit for it.
+
 ## Raster distance
 
 - **`__glOdysseyDoGet`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d986380, 2164 bytes), **established** for enums 0xb04 to 0xb09:
