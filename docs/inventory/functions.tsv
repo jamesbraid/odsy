@@ -9112,7 +9112,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b370	320	__glNamesDeleteNames	dwarf+dynsym	673c6109d11b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4b0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4d0	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -76163,7 +76163,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b290	216	__glNamesG
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b370	320	__glNamesDeleteNames	dwarf+dynsym	673c6109d11b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4b0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b4d0	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -93702,7 +93702,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b290	216	__glNamesG
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b370	320	__glNamesDeleteNames	dwarf+dynsym	673c6109d11b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b4b0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b4d0	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b500	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b560	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b5c0	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda5b620	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
