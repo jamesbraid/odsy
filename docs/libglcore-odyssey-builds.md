@@ -427,3 +427,15 @@ Each row is one routine in one build whose function-table code hash equals the h
 | `DestroyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd965db0 | 292 | f18387db11c6 | Established |
 | `CopyContext` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c0a0 | 92 | 730d4bfab1e4 | Established |
 | `CopyContext` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c0a0 | 92 | 730d4bfab1e4 | Established |
+| `BindHyperpipe` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c370 | 128 | 092f1e308ca3 | Established |
+| `BindHyperpipe` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c370 | 128 | 092f1e308ca3 | Established |
+| `QueryHyperpipeBestAttrib` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c3f0 | 128 | fb04337a88d0 | Established |
+| `QueryHyperpipeBestAttrib` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c3f0 | 128 | fb04337a88d0 | Established |
+| `QueryHyperpipeAttrib` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c470 | 204 | 4d34d19036e8 | Established |
+| `QueryHyperpipeAttrib` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c470 | 204 | 4d34d19036e8 | Established |
+| `HyperpipeAttrib` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96c540 | 208 | 233a7910d1ea | Established |
+| `HyperpipeAttrib` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96c540 | 208 | 233a7910d1ea | Established |
+| `__glOdysseyInitIgloo` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96fc70 | 108 | 4b8ca415748f | Established |
+| `__glOdysseyInitIgloo` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96fc70 | 108 | 4b8ca415748f | Established |
+| `__glOdyim_RenderMode` | `usr/gfx/arch/IP30ODSY32/libGLcore.so` | 0xd96f780 | 1256 | d3cb9d96673d | Established |
+| `__glOdyim_RenderMode` | `usr/gfx/arch/IP35ODSY32/libGLcore.so` | 0xd96f780 | 1256 | d3cb9d96673d | Established |
