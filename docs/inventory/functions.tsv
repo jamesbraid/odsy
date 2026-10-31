@@ -2915,7 +2915,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b780	252	__glFindWindowSize	dynsym+mdebug	9a37db6b658a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4b87c	7860	FillBufferInfo	mdebug	950dc282029d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b8ec	356	__glMakeCurrentBuffers	dynsym+mdebug	f8ea701e8088		in	named-only	docs/libglcore-odyssey-reads.md#shadow-value-conversion	Shadow-value conversion
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ba50	248	__glLoseCurrentBuffers	dynsym+mdebug	ac5069bb5bb8		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ba50	248	__glLoseCurrentBuffers	dynsym+mdebug	ac5069bb5bb8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4bb48	212	__glFreeBufData	dynsym+mdebug	3c322cf1d2b3		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4bc20	1044	__glCheckConvolutionFilterArgs	dynsym+mdebug	15d7d725f83d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4c034	360	__glim_ConvolutionFilter1DEXT	dynsym+mdebug	b50a49d69fcf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -14636,7 +14636,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2278bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2278d70	940	__glContextSetColorScales	dwarf+dynsym	45793847ec74		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279120	3036	__glSoftResetContext	dwarf+dynsym	0bb04a17560f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279d70	552	__glDestroySoftContext	dwarf+dynsym	f9474f04974d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279fa0	208	__glFreePrivate	dwarf+dynsym	daf32f86c26e		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227a070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -69966,7 +69966,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b774	12	__glChangeRea
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b780	252	__glFindWindowSize	dynsym+mdebug	9a37db6b658a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda4b87c	7860	FillBufferInfo	mdebug	950dc282029d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b8ec	356	__glMakeCurrentBuffers	dynsym+mdebug	f8ea701e8088		in	named-only	docs/libglcore-odyssey-reads.md#shadow-value-conversion	Shadow-value conversion
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ba50	248	__glLoseCurrentBuffers	dynsym+mdebug	ac5069bb5bb8		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4ba50	248	__glLoseCurrentBuffers	dynsym+mdebug	ac5069bb5bb8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4bb48	212	__glFreeBufData	dynsym+mdebug	3c322cf1d2b3		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4bc20	1044	__glCheckConvolutionFilterArgs	dynsym+mdebug	15d7d725f83d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4c034	360	__glim_ConvolutionFilter1DEXT	dynsym+mdebug	b50a49d69fcf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81687,7 +81687,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32c8bb0	28	__glEn
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c8bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c8d70	940	__glContextSetColorScales	dwarf+dynsym	45793847ec74		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9120	3036	__glSoftResetContext	dwarf+dynsym	0bb04a17560f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9d70	552	__glDestroySoftContext	dwarf+dynsym	f9474f04974d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9fa0	208	__glFreePrivate	dwarf+dynsym	daf32f86c26e		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ca070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -87505,7 +87505,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b774	12	__glChangeRea
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b780	252	__glFindWindowSize	dynsym+mdebug	9a37db6b658a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda4b87c	7860	FillBufferInfo	mdebug	950dc282029d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b8ec	356	__glMakeCurrentBuffers	dynsym+mdebug	f8ea701e8088		in	named-only	docs/libglcore-odyssey-reads.md#shadow-value-conversion	Shadow-value conversion
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4ba50	248	__glLoseCurrentBuffers	dynsym+mdebug	ac5069bb5bb8		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4ba50	248	__glLoseCurrentBuffers	dynsym+mdebug	ac5069bb5bb8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4bb48	212	__glFreeBufData	dynsym+mdebug	3c322cf1d2b3		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4bc20	1044	__glCheckConvolutionFilterArgs	dynsym+mdebug	15d7d725f83d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4c034	360	__glim_ConvolutionFilter1DEXT	dynsym+mdebug	b50a49d69fcf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99226,7 +99226,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2278bb0	28	__glEn
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2278bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2278d70	940	__glContextSetColorScales	dwarf+dynsym	45793847ec74		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279120	3036	__glSoftResetContext	dwarf+dynsym	0bb04a17560f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279d70	552	__glDestroySoftContext	dwarf+dynsym	f9474f04974d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279fa0	208	__glFreePrivate	dwarf+dynsym	daf32f86c26e		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227a070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	located	docs/sample-implementation.md#so_contextc	so_context.c
