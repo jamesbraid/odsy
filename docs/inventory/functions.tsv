@@ -57409,7 +57409,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c12b0	352	CheckSelectionAcce
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1410	496	SProcXkbSetControls..GNF	dynsym	e4151f9587dc		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1600	1316	EnterLeaveEvent..NC	dynsym	8640c4bc9ea9		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1b30	120	SProcDPMSCapable..ELD	dynsym	7d139c00e88c		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1bb0	156	FreeScratchGC	dynsym	09b6ada4aee8		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1bb0	156	FreeScratchGC	dynsym	09b6ada4aee8		in	named-only	docs/odyssey-so-reads.md#scratch-gc-put-and-pixmap-get-image-routines-read-from-whole-listings	Scratch-GC put and pixmap get-image routines read from whole listings
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1c50	192	FontFileRegisterBitmapSource	dynsym	e22cedc25a95		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1d10	552	ProcXkbGetIndicatorState	dynsym	275b9fbed4a4		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100c1f40	128	AllocateOutputBuffer	dynsym	f304dcc3b194		in	undocumented		
@@ -59614,7 +59614,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10269b40	1020	glxNewPbuffer	dyn
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10269f40	292	SProcXineramaCopyArea	dynsym	11a707d08bd3		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026a070	768	ZlibRead	dynsym	1104ba2ce03c		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026a370	388	ProcSGIvcSetPlatformParameter	dynsym	97e895f202a2		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026a500	428	GetScratchGC	dynsym	507ca11228db		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026a500	428	GetScratchGC	dynsym	507ca11228db		in	named-only	docs/odyssey-so-reads.md#scratch-gc-put-and-pixmap-get-image-routines-read-from-whole-listings	Scratch-GC put and pixmap get-image routines read from whole listings
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026a6b0	1336	ResetHosts	dynsym	eefc08ed5247		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026abf0	3308	ProcXineramaPolyText8	dynsym	9ac548bfa46c		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1026b8e0	192	GenerateAuthorization	dynsym	04dc4ae6d597		in	undocumented		
@@ -105229,7 +105229,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d300	416	nfbFreeHWCmapArra
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162d4a0	2428	mfbTileFS	dynsym	7850bb6ef661		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162de20	912	cfb16SolidSpansCopy	dynsym	8a1a5d636793		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162e1b0	1936	odsyZeroArcPts..FE	dynsym	4f2ab0e48e5b		in	understood	docs/odyssey-so-reads.md#zero-width-arc-points-tiled-fills-and-pixel-read-back-routines	Zero-width arc points, tiled fills and pixel read-back routines
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162e940	412	cfb32GetImage	dynsym	3146b638ef99		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162e940	412	cfb32GetImage	dynsym	3146b638ef99		in	understood	docs/odyssey-so-reads.md#scratch-gc-put-and-pixmap-get-image-routines-read-from-whole-listings	Scratch-GC put and pixmap get-image routines read from whole listings
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162eae0	120	miBSCopyClip..HFB	dynsym	ae8356af47d5		in	understood	docs/odyssey-so-reads.md#audio-library-entry-points-backing-store-wrapper-restores-and-small-mi-helpers	Audio-library entry points, backing-store wrapper restores and small mi helpers
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162eb60	296	NewID..GG	dynsym	067a964b0dd1		in	understood	docs/odyssey-so-reads.md#window-display-identifier-routines	Window display-identifier routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x162ec90	208	cfb16FillRectTileOdd	dynsym	de4aeae257e0		in	understood	docs/odyssey-so-reads.md#tile-fills-glyph-set-up-and-private-allocation-read-from-whole-listings	Tile fills, glyph set-up and private allocation read from whole listings
@@ -105598,7 +105598,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d9210	216	nfb12RopLoop..MH	
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d92f0	776	nfbStereoDrawCID..EJ	dynsym	f2856b01670a		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d9600	1796	nfbPutPlane..PG	dynsym	113f78395561		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d9d10	232	rrmWorkProc	dynsym	95563c0efa7f		in	understood	docs/odyssey-so-reads.md#screen-window-and-context-teardown-and-clip-copy	Screen, window and context teardown and clip copy
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d9e00	404	nfbShmPutXYImage..KJ	dynsym	0f46250db40b		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d9e00	404	nfbShmPutXYImage..KJ	dynsym	0f46250db40b		in	understood	docs/odyssey-so-reads.md#scratch-gc-put-and-pixmap-get-image-routines-read-from-whole-listings	Scratch-GC put and pixmap get-image routines read from whole listings
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16d9fa0	532	odsyDisplayInit	dynsym	e3a5146bfd4c		in	understood	docs/odyssey-so-reads.md#board-control-routines	Board control routines
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16da1c0	2272	cfbZeroArcSS8Xor..IM	dynsym	a282bd9f7916		in	named-only	docs/odyssey-so-functions.md#colour-frame-buffer-code-cfb	Colour frame-buffer code (`cfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16daaa0	164	cfbCopyArea	dynsym	00a6fdd88426		in	understood	docs/odyssey-so-reads.md#raster-operation-word-loops-and-small-drawing-helpers	Raster-operation word loops and small drawing helpers
