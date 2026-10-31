@@ -3044,10 +3044,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55dbc	112	__glFogVertexLinear	dynsym+mdebug	5b6ebd94d09a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55e2c	136	__glFogColorSlow	dynsym+mdebug	5f5ddbaf2825		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	located	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -14481,7 +14481,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fd30	184	__glim_BlendColorEXT	dwarf+dynsym	621616996307		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fdf0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	ef7ab78eb48a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -70095,10 +70095,10 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragm
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55dbc	112	__glFogVertexLinear	dynsym+mdebug	5b6ebd94d09a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55e2c	136	__glFogColorSlow	dynsym+mdebug	5f5ddbaf2825		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -81532,7 +81532,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bf460	2252	__glim_Is
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfd30	184	__glim_BlendColorEXT	dwarf+dynsym	621616996307		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfdf0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	ef7ab78eb48a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32bfee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c0270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c04c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -87634,10 +87634,10 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragm
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55dbc	112	__glFogVertexLinear	dynsym+mdebug	5b6ebd94d09a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55e2c	136	__glFogColorSlow	dynsym+mdebug	5f5ddbaf2825		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -99071,7 +99071,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226f460	2252	__glim_Is
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fd30	184	__glim_BlendColorEXT	dwarf+dynsym	621616996307		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fdf0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	ef7ab78eb48a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fe60	120	__glim_PolygonOffset	dwarf+dynsym	7ec26c8ba1d8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x226fee0	356	__glFreeAttributeState	dwarf+dynsym	3cc9dae48d50		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270050	536	__glim_EnableClientState	dwarf+dynsym	7da9cb244c0f		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2270270	592	__glim_DisableClientState	dwarf+dynsym	74d01c2906a1		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22704c0	636	__glim_PushClientAttrib	dwarf+dynsym	1854b5bc3019		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
