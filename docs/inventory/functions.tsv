@@ -53096,7 +53096,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10021c90	500	getstring__9EZWrapperGv	dyns
 usr/bin/X11/xsetmon	shared-tool	n32		0x10021ed0	1220	mtest__Gv	dynsym	08c1d145c323		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100223a0	72	__ct__21AboutXsetmonFormClassGPCc	dynsym	a3ddf035dbdf		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100223f0	252	tTranspose__7MMatrixCGv	dynsym	692b065853ca		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x100224f0	100	changeSyncFormat__17SyncSelectorFrameGPC25SyncFormatDescriptorClass	dynsym	b84eea7f77fa		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x100224f0	100	changeSyncFormat__17SyncSelectorFrameGPC25SyncFormatDescriptorClass	dynsym	b84eea7f77fa		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10022560	104	__dt__19ServerInfoFormClassGv	dynsym	369058d3503d		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100225d0	112	doFinishRegionDragCallback__21GammaMapEditorClassUISGP10_WidgetRecP7_XEventPPcPUi	dynsym	5f2c2c3ac3ef		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10022640	120	fbDepthSelected__27FormatCombinationListsClassGP10_WidgetRecPv	dynsym	1f75d5055cb6		in	undocumented		
@@ -53107,7 +53107,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x100234f0	128	DisplayaccumBufType__19Stati
 usr/bin/X11/xsetmon	shared-tool	n32		0x10023570	8	doDownloadCombinationButton__29FormatCombinationListsClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10023580	24	className__22GammaAssignmentClassUIGv	dynsym	bfbc2a8512ee		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100235a0	52	ClearaccumBufType__21SetmonMasterFormClassGv	dynsym	932249c2bd95		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x100235e0	200	vCalculateGammaCurve__GfiPUs	dynsym	20176a69ef62		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x100235e0	200	vCalculateGammaCurve__GfiPUs	dynsym	20176a69ef62		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x100236b0	228	vPopulateList__27FormatCombinationListsClassGv	dynsym	38a6956873fd		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100237a0	8	doButtonNominalGain__18GainControlClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100237b0	1384	vLUDecompose__7MMatrixGPiPf	dynsym	d0c01318fb29		in	undocumented		
@@ -53130,7 +53130,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10024780	248	__dt__27FormatCombinationLis
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024880	396	vDetermineSplinePoints__19GammaMapEditorClassGv	dynsym	3e38d49d8533		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024a10	72	__ct__17SyncSelectorFrameGPCc	dynsym	ea61679bd9fe		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024a60	52	DisplayfbConfig__21SetmonMasterFormClassGPCc	dynsym	8c2828cdc05b		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10024aa0	52	DisplayCombination__21SetmonMasterFormClassGPCc	dynsym	f23178835b1a		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10024aa0	52	DisplayCombination__21SetmonMasterFormClassGPCc	dynsym	f23178835b1a		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024ae0	308	__dt__22GammaAssignmentClassUIGv	dynsym	8276b74c040c		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024c20	60	alarmFunc__Gi	dynsym	b4c8630d3ba7		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024c60	276	populateHPhaseWithChannel__16ChannelFormClassGiPC17XSGIvcChannelInfo	dynsym	1aa370906d55		in	undocumented		
@@ -53163,9 +53163,9 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x100264d0	88	__ct__12GammaClassUIGPCc	dyns
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026530	24	className__19StatisticsFormClassGv	dynsym	10831bc559f9		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026550	68	doDownloadfbDepthButtonCallback__29FormatCombinationListsClassUISGP10_WidgetRecPvT2	dynsym	97e904b311b9		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100265a0	108	__ct__21GammaMapEditorClassUIGPCcP10_WidgetRec	dynsym	b7df32cd7439		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10026610	168	vGammaScalarChanged__19GammaMapEditorClassGf	dynsym	1ed1aeaadaa4		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10026610	168	vGammaScalarChanged__19GammaMapEditorClassGf	dynsym	1ed1aeaadaa4		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x100266c0	68	doOptionTTLVoltageCallback__21ServerInfoFormClassUISGP10_WidgetRecPvT2	dynsym	27d55f471cae		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10026710	988	calculateDrawing__19GammaMapEditorClassGv	dynsym	30cc8f2c80f1		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10026710	988	calculateDrawing__19GammaMapEditorClassGv	dynsym	30cc8f2c80f1		in	named-only	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026af0	8	ok__21AboutXsetmonFormClassGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026b00	24	RegisterGammaMapEditorClassInterface__19GammaMapEditorClassSGv	dynsym	3217f41d12bd		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026b20	396	updateMemoUsageO2__19StatisticsFormClassGP10_WidgetRecPv	dynsym	3a3a929d3b69		in	undocumented		
@@ -53177,7 +53177,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10026ec0	8	doOptionTTLVoltage__21ServerIn
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026ed0	8	setToggleGammaScalar__21GammaMapEditorClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026ee0	104	ok__16AboutDialogClassGP10_WidgetRecPv	dynsym	f129685a39aa		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10026f50	176	__ct__7MMatrixGRC7MMatrix	dynsym	5d0c0ce8b70f		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10027000	76	vWindowToGamma__19GammaMapEditorClassCGPC6XPointRiT2	dynsym	8aa25589d6c9		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10027000	76	vWindowToGamma__19GammaMapEditorClassCGPC6XPointRiT2	dynsym	8aa25589d6c9		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027090	104	__dt__21AboutXsetmonFormClassGv	dynsym	96b398e9a8cf		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027100	104	cancel__16AboutDialogClassGP10_WidgetRecPv	dynsym	2dd44fc32018		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027170	800	__ct__18XSetmonWindowClassGPCcP3ArgUi	dynsym	51fd7b0c9df7		in	undocumented		
@@ -53215,12 +53215,12 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10028ca0	8	changeSyncFormat__19SyncSelect
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028cb0	72	__ct__21AboutXsetmonFormClassGPCcP10_WidgetRec	dynsym	4dd4393b4763		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028d00	96	doOptionBlanked__16ChannelFormClassGP10_WidgetRecPv	dynsym	4d8f81cf4396		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028d60	108	ClearfbConfig__19StatisticsFormClassGv	dynsym	6c66ef084cf8		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10028dd0	56	iSplineIndexToGammaIndex__19GammaMapEditorClassCGi	dynsym	05f535621cc5		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10028dd0	56	iSplineIndexToGammaIndex__19GammaMapEditorClassCGi	dynsym	05f535621cc5		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028e10	8	doButtonSet__18ChannelFormClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028e20	8	doOptionBlanked__18ChannelFormClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028e30	68	setToggleGammaPointsCallback__21GammaMapEditorClassUISGP10_WidgetRecPvT2	dynsym	5eb89f513e5f		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10028fd0	24	RegisterAboutXsetmonFormClassInterface__21AboutXsetmonFormClassSGv	dynsym	469415b0a6d2		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10028ff0	240	vLoadDrawTable__19GammaMapEditorClassGPUs	dynsym	ddd3d5520faa		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10028ff0	240	vLoadDrawTable__19GammaMapEditorClassGPUs	dynsym	ddd3d5520faa		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x100290e0	396	createChannelChanger__18ChannelFormClassUIGv	dynsym	2f11ae93fd77		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10029270	868	populateSyncWithChannel__16ChannelFormClassGiPC17XSGIvcChannelInfo	dynsym	526c2bcc0919		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100295e0	24	className__20GammaAssignmentClassGv	dynsym	ffb1705d1945		in	undocumented		
@@ -53245,12 +53245,12 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x1002a5e0	24	className__23AboutXsetmonForm
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002a600	428	populateRectangleWithChannel__16ChannelFormClassGiPC17XSGIvcChannelInfo	dynsym	e7b9dda1449b		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002a7b0	68	closeCallback__18XSetmonWindowClassSGP10_WidgetRecPvT2	dynsym	2aa75ff6650f		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002a800	220	DisplayfbConfig__19StatisticsFormClassGPCc	dynsym	011d289726d1		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x1002a8e0	540	DisplayCombination__28CombinationContentsListClassGPCc	dynsym	3868efafdcd6		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x1002a8e0	540	DisplayCombination__28CombinationContentsListClassGPCc	dynsym	3868efafdcd6		in	named-only	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002ab00	168	vDrawText__19GammaMapEditorClassCGPCc	dynsym	0fffdebbd192		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002abb0	184	__dt__12MyTabbedDeckGv	dynsym	efa2b6b60c18		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002ac70	176	bIsIdentity__7MMatrixCGv	dynsym	4d9d29610ab1		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002ad20	112	doArmScalarDragCallback__21GammaMapEditorClassUISGP10_WidgetRecP7_XEventPPcPUi	dynsym	3230fdf857ea		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x1002ad90	188	redraw__19GammaMapEditorClassCGi	dynsym	d9ab7a54d801		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x1002ad90	188	redraw__19GammaMapEditorClassCGi	dynsym	d9ab7a54d801		in	named-only	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002ae50	8	nameSelected__30CombinationContentsListClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002ae60	128	CreateGammaMapEditorClass__19GammaMapEditorClassSGPCcP10_WidgetRec	dynsym	a0dc8ddf6a5b		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1002aee0	24	className__16ChannelFormClassGv	dynsym	6d43e62fb75f		in	undocumented		
