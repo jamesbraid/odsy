@@ -38,6 +38,17 @@ One row per file. Columns: the file, its label, its role, ABI, size in bytes, by
 | `usr/gfx/arch/IP35ODSY64/libGL.so` | established | GLX client library | above the renderer | no direct access | 64-bit | 567424 | 215116 | 651 | 0 | 83 | 148 | 673 | - | - | `glXCreateContext` at 0x2167ac4 |
 | `usr/gfx/arch/IP35ODSY64/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | 64-bit | 4138224 | 1671168 | 4667 | 268 | 0 | 40 | 5137 | - | - | `__glOdysseyCreateContext` at 0x21b07b0 |
 
+- `usr/gfx/arch/IP35ODSY/libGL.so`: **inferred.**
+  The o32 GLX client layer of the IP35 directory, 486700 bytes and 671 functions. It exports 644 names, 83 of them `glX` calls, and imports 148, nearly all of them GL entry points that `libGLcore.so` resolves. Its context entry, `glXCreateContext` at 0xd8127e8, is the client call that opens a context.
+- `usr/gfx/arch/IP35ODSY/libGLcore.so`: **inferred.**
+  The o32 board renderer of the IP35 directory, 3553860 bytes, 5169 functions and 4737 exports, 268 of them `__glOdyssey` routines. It holds 1688912 bytes of code, and its context entry `__glOdysseyCreateContext` sits at 0xd96f6b0. This is the file that writes command words into the windows the kernel maps for the process.
+- `usr/gfx/arch/IP35ODSY32/libGL.so`: **inferred.**
+  The N32 GLX client layer of the IP35 directory, 516508 bytes and 673 functions. Its 652 exports are the most of the three GLX client files, 83 of them `glX` names, and `glXCreateContext` at 0xd832f24 is its context entry.
+- `usr/gfx/arch/IP35ODSY32/libGLcore.so`: **inferred.**
+  The N32 board renderer of the IP35 directory, 3812732 bytes, 5216 functions and 4750 exports, the largest export count of the three renderers. It carries 268 `__glOdyssey` routines and imports 40 names, and its context entry `__glOdysseyCreateContext` sits at 0xd96c610.
+- `usr/gfx/arch/IP35ODSY64/libGL.so`: **inferred.**
+  The 64-bit GLX client layer of the IP35 directory, 567424 bytes, 673 functions and 651 exports, 83 of them `glX`. It imports 148 names, and `glXCreateContext` at 0x2167ac4 is its context entry.
+
 ### Installed Octane2 directories (`usr/gfx/arch/IP30ODSY*`)
 
 | File | Label | Role | Layer | Board access | ABI | Bytes | Code bytes | Exports | Board-renderer exports | GLX exports | Imports | Functions | Added vs media build | Removed vs media build | Context entry |

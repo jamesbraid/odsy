@@ -117,15 +117,15 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	kernel	board-kernel	object	n64	13620	c
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	kernel	board-kernel	object	n64	16228	fa079f9475f5fefa		18	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	kernel	board-kernel	object	n64	7748	73931bda92cf6333		3	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)	kernel	board-kernel	object	n64	61364	2f77d298650a7f4b		21	symtab	193	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	symtab	8	0	located	docs/kernel-objects.md#ip35-build	IP35 build
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	symtab	16	0	located	docs/kernel-objects.md#ip35-build	IP35 build
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)	kernel	board-kernel	object	n64	16596	2a7e731b243ae3cd		8	symtab	8	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)	kernel	board-kernel	object	n64	49732	f1f36796b3b562c8		26	symtab	16	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_compositor.o)	kernel	board-kernel	object	n64	14260	9a2e70adc6f1562c		8	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)	kernel	board-kernel	object	n64	42820	f4287f15bdf94e9a		25	symtab	47	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddrn.o)	kernel	board-kernel	object	n64	10932	3eba17fd2b1dbff0		3	symtab	3	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)	kernel	board-kernel	object	n64	8052	529f62f5d023adc6		2	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_diag.o)	kernel	board-kernel	object	n64	13316	eaa00f3516f88664		8	symtab	5	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dma.o)	kernel	board-kernel	object	n64	35716	f331b8ce559f5893		22	symtab	6	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17892	b720e459433313a1		11	symtab	8	0	located	docs/kernel-objects.md#ip35-build	IP35 build
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)	kernel	board-kernel	object	n64	17892	b720e459433313a1		11	symtab	8	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_dvi.o)	kernel	board-kernel	object	n64	14676	53413c6a99a7dc6d		9	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)	kernel	board-kernel	object	n64	12324	c4c87485c608dea4		9	symtab	13	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)	kernel	board-kernel	object	n64	26324	e0b44ca930a6855e		19	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
@@ -138,8 +138,8 @@ usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)	kernel	board-kernel	object	n64
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)	kernel	board-kernel	object	n64	10148	6a5adafc75fbc5e8		5	symtab	6	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_pmm.o)	kernel	board-kernel	object	n64	78340	c1cd2b8bfc7d9141		67	symtab	0	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/odyssey.a(odsy_timings.o)	kernel	board-kernel	object	n64	4340	44e07342c9eb7399		0	none	0	0	understood	docs/kernel-objects.md#members-without-routines-in-the-other-builds	Members without routines in the other builds
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	37668	0b93c811ad9c1436		11	symtab	6	0	located	docs/kernel-objects.md#ip35-build	IP35 build
-usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	symtab	6	0	located	docs/kernel-objects.md#ip35-build	IP35 build
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)	kernel	board-kernel	object	n64	37668	0b93c811ad9c1436		11	symtab	6	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
+usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)	kernel	board-kernel	object	n64	9220	c8cc8b17871d7053		2	symtab	6	0	understood	docs/kernel-objects.md#ip35-build	IP35 build
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	symtab	0	0	understood	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/tport.a(tport.o)	kernel	board-kernel	object	n64	23668	312f6d991747e24c		22	symtab	0	0	understood	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/diags/compositor/bin/sting	diagnostics	board-diagnostic	executable	n32	368640	8781b667660f08c5		323	dynsym	0	0	understood	docs/diagnostics-and-libgl-functions.md#compositor-test-program-usrdiagscompositorbinsting	Compositor test program (`usr/diags/compositor/bin/sting`)
@@ -159,11 +159,11 @@ usr/gfx/arch/IP30ODSY32/libGL.so	libraries	board-library	shared-object	n32	51650
 usr/gfx/arch/IP30ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	7cdc1b3426125b92		5216	dynsym+dwarf	5153	0	undocumented		
 usr/gfx/arch/IP30ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9cc0e57ebdcaaa1f		673	dynsym (dwarf addresses stale, dropped)	0	0	undocumented		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	81edba0fb8e2731d		5137	dynsym+dwarf	5153	0	undocumented		
-usr/gfx/arch/IP35ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	984ac9208f2c2ca8		671	dynsym+mdebug	0	0	located	docs/libraries.md#ip35-host-directories	IP35 host directories
-usr/gfx/arch/IP35ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	917be72af65958b2		5169	dynsym+mdebug	4924	0	located	docs/libraries.md#ip35-host-directories	IP35 host directories
-usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	3c495b596716001b		673	dynsym (dwarf addresses stale, dropped)	0	0	located	docs/libraries.md#ip35-host-directories	IP35 host directories
-usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	dynsym+dwarf	5153	0	located	docs/libraries.md#ip35-host-directories	IP35 host directories
-usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	dynsym (dwarf addresses stale, dropped)	0	0	located	docs/libraries.md#ip35-host-directories	IP35 host directories
+usr/gfx/arch/IP35ODSY/libGL.so	libraries	board-library	shared-object	o32	486700	984ac9208f2c2ca8		671	dynsym+mdebug	0	0	understood	docs/libraries.md#ip35-host-directories	IP35 host directories
+usr/gfx/arch/IP35ODSY/libGLcore.so	libraries	board-library	shared-object	o32	3553860	917be72af65958b2		5169	dynsym+mdebug	4924	0	understood	docs/libraries.md#ip35-host-directories	IP35 host directories
+usr/gfx/arch/IP35ODSY32/libGL.so	libraries	board-library	shared-object	n32	516508	3c495b596716001b		673	dynsym (dwarf addresses stale, dropped)	0	0	understood	docs/libraries.md#ip35-host-directories	IP35 host directories
+usr/gfx/arch/IP35ODSY32/libGLcore.so	libraries	board-library	shared-object	n32	3812732	cf494ff4bb85a1e2		5216	dynsym+dwarf	5153	0	understood	docs/libraries.md#ip35-host-directories	IP35 host directories
+usr/gfx/arch/IP35ODSY64/libGL.so	libraries	board-library	shared-object	n64	567424	9e524e5dbfdb05bb		673	dynsym (dwarf addresses stale, dropped)	0	0	understood	docs/libraries.md#ip35-host-directories	IP35 host directories
 usr/gfx/arch/IP35ODSY64/libGLcore.so	libraries	board-library	shared-object	n64	4138224	4e78f11a45b36184		5137	dynsym+dwarf	5153	0	located	docs/libraries.md#ip35-host-directories	IP35 host directories
 usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	add7430a5ae4cc7f		227	dynsym	0	0	understood	docs/install-tools.md#install-tools-that-touch-the-vpro-board	Install tools that touch the VPro board

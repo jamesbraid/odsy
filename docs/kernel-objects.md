@@ -270,6 +270,17 @@ Patch 4104 member notes. Each member has the routines, addresses and code hashes
 
 IP35 member notes. Addresses are offsets into each member's text; media sizes are from the media table above.
 
+- `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)`: **inferred.**
+  The clip member of the IP35 build, 16596 bytes and the same eight routine names as the media member. `odsyClipMask` at 0x5bc (520 bytes), `gf_OdsyValidateBanks` at 0xb48 (8 bytes) and `gf_OdsySetNullClip` at 0xb50 (56 bytes) have the media member's code hashes. `odsyClipPush` at 0x7c4 (900 bytes, 948 in the media member) and `gfP_OdsyClearBuffer` at 0xccc (2228 bytes, 2084) differ from it, and the clear is 144 bytes longer than the media one.
+- `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ctxsw.o)`: **inferred.**
+  The context save and restore member of the IP35 build, 49732 bytes and 26 routines. `odsyRestoreRaster` at 0xc3c is 7192 bytes against the media member's 7468, `odsyRestoreXform` at 0x2854 is 2556 bytes (2644) and `odsyRestoreVB` at 0x3250 is 4024 bytes (4076). `gf_OdsyPcxSwap` at 0x560 is 1756 bytes (1536 in the media member), and `odsyRestartContext` at 0x4c50 is 2836 bytes (2884). The raster restore routines from `restorePoints` at 0x58b8 to `restorePolygon` at 0x5d50 keep the media member's code hashes.
+- `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`: **inferred.**
+  The drawable binding member of the IP35 build, 17892 bytes and 11 routines. `odsyBindDrawable` at 0x138 (692 bytes) and `odsyUnbindDrawable` at 0x3ec (336 bytes) keep the media member's code hashes. `gfP_OdsyMakeCurrent` at 0xab0 (916 bytes, 756 in the media member) and `gfP_OdsySetDrawBuffer` at 0x53c (676 bytes, 520) differ from it, as do `gfP_OdsyPbufAssoc` at 0xe44 and `gfP_OdsyPbufDeassoc` at 0x1008.
+- `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`: **inferred.**
+  The textport member of the IP35 build, 37668 bytes and 11 routines. `ODSY_SET_GC` at 0x30 (2440 bytes) has the media member's code hash, as do `odsy_cmov2i` at 0xf1c (16 bytes), `odsy_getdesc` at 0x15cc (24 bytes) and `odsy_unblank` at 0x17d4 (8 bytes). `odsy_drawbitmap` at 0xf2c is 1696 bytes against the media member's 1716, `odsy_sboxfi` at 0xb64 is 572 bytes (600) and `odsy_pnt2i` at 0xda0 is 380 bytes (404).
+- `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)`: **inferred.**
+  The microcode member of the IP35 build, 9220 bytes and two routines. `gf_OdsyDownload` at 0x120 is 1092 bytes, 252 more than the media member's 840, and its code hash differs. `odsyDownloadUcode` at 0x0 writes the microcode lines to the board.
+
 
 ## Members without routines in the other builds
 
