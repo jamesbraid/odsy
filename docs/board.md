@@ -17,6 +17,16 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
 - **inferred.** The word's top byte is a strap or ID field set by the board (no driver code writes it and the same register's other bits change at run time). The value 3 for size, recorded as 33, selects the same register code as 128 in step below; why the board distinguishes it: **unknown**. "33" is the driver's own marker, not a size in MB.
 - **inferred.** The bank count and CAS latency are what "board inventory reports" carry, because the driver stores them in the record that `odsyGatherInfo` fills and prints.
 
+## How the IP35 PROM labels the strap fields
+
+Release: IRIX 6.5.30m IP35 PROM (`usr/cpu/firmware/ip35prom.img`, 6.210), the inflated BASEIO segment, board-information routine near 0x130ba480. **established** (read from the code): it loads the word at +0x106c, splits it the way `odsyGatherInfo` does and keeps the results in a record: bits 31:30 select 32, 64, 128 or 33 (stored at record +12); bit 28 stores 2 when set and 3 when clear (+16); bit 29 stores 2 when clear and 4 when set (+20); bits 27:24 are stored raw (+52). It prints them with the strings "On board sdram size: %d Mb" ("On board sdram size: 32 Mb" has its own string), "Cas latency: CAS %d", "%d banks by sdram module" and "Board version %d - Buzz revision %d%s", and the error strings "Unknown sdram size", "Unknown sdram cas latency setting" and "Unknow number of sdram banks". The print routine's choice of record field for "Board version" was not traced, so the nibble as the printed board version is **inferred**.
+
+What the published prints add (three PROM transcripts, see [the PROM's board-register diagnostic](registers.md#the-ip35-proms-board-register-diagnostic-6210)): "Board version 1", "128 Mb", "CAS 3", "4 banks" on V12-class boards. Through the decode above that gives bits 31:30 = 2, bit 29 set, bit 28 clear and bits 27:24 = 1 (**inferred**: no raw strap word of any board was published). So the labels "banks" and "CAS latency" for bits 29 and 28 are the PROM's own, **established** as labels; what the hardware does with them is still **inferred** to be SDRAM controller configuration, because the kernel copies the decoded values into bits 2 and 1 of the +0x1004 configuration word.
+
+The size code 3 is not special in the PROM: it stores 33 and prints it. The kernel programs it like 128 MB (`odsyReset`: the size code 2 into bits 4:3) and rewrites its record to 32 in that branch (**established**, `odsy_init.o` near .text 0x2254 to 0x22dc); why: **unknown**.
+
+`odsyReset` validates the decoded banks, CAS latency and size before programming +0x1004. **established** for CAS latency and size (the banks branch was not re-read): a value outside the accepted set prints "invalid sdram casl" or "invalid sdram size" and execution falls through to the next step with that field's bits left clear; the reset does not abort.
+
 ## The board revision word at board +0x04
 
 - **established.** `odsyGatherInfo(board, 0)` reads +0x04 and takes bits 31:28 as a buzz revision type, stored in record +264, then dispatches through a 16-entry jump table (`odsy_init.o` `.rodata` offset 0x238):
