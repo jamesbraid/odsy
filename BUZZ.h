@@ -522,10 +522,44 @@
  * nibble: c12 = c8 << 4 | c8 >> 4, and alpha 0xfff. established:
  * ODSY_SET_GC (odsy_tport.o), the operands of block 0x21 (0x00010c21).
  */
-/* Block 0x021, three words: a control word (512 from the textport, the
- * blend factors when GL writes it: inferred from GL's blend paths), then
- * a constant colour as RG12 and BA12. The textport and the X server's
- * fills use the colour as the drawing colour. established as used. */
+/* Block 0x021, three words (word 0x00010c21, the blender). established:
+ * the 6.5.30m N32 libGLcore builds the word at 0xd9683f0 in
+ * __glOdysseyValidateHardware and sends the three context words at
+ * +0x7c34, +0x7c38 and +0x7c3c after it (0xd9683f8 to 0xd96840c); no
+ * other store in the library builds the word.
+ *   word 0, the control word. Bits 15:13 select the equation, bits 12:6
+ *   the source factor code and bits 5:0 the destination factor code
+ *   (bits 31:16 are not written by the GL entry points: unknown). The
+ *   equation field is written by glBlendEquationEXT (0xd95b2f0, store at
+ *   0xd95b360) as GL_FUNC_ADD 0 (0x8006), GL_MIN 1 (0x8007), GL_MAX 2
+ *   (0x8008), GL_ALPHA_MIN_SGIX 3 (0x8320), GL_ALPHA_MAX_SGIX 4 (0x8321),
+ *   GL_LOGIC_OP 5 (0xbf1), GL_FUNC_SUBTRACT 6 (0x800a) and
+ *   GL_FUNC_REVERSE_SUBTRACT 7 (0x800b); any other enumerant is
+ *   GL_INVALID_ENUM. The factor fields are written by glBlendFunc
+ *   (0xd95afe0, store at 0xd95b06c) from a six-bit code table (GL_ZERO
+ *   0x00, GL_ONE 0x08, GL_SRC_ALPHA 0x18, GL_DST_ALPHA 0x20, GL_ONE_MINUS_
+ *   SRC_ALPHA 0x39 and so on, read from the branches at 0xd95b004 to
+ *   0xd95b2d4). A fresh context and the textport send 0x200 (source ONE,
+ *   destination ZERO, equation 0). A stream word 0xa818 is equation 5
+ *   (GL_LOGIC_OP) with source code 0x20 and destination code 0x18.
+ *   words 1 and 2, the constant colour, written by glBlendColorEXT
+ *   (0xd95f100, stores 0xd95f200 to 0xd95f294): word 1 holds red in bits
+ *   23:12 and green in 11:0, word 2 blue in 23:12 and alpha in 11:0, each
+ *   a 12-bit field (value * 4096, 4095 at 1.0); bits 31:24 are kept.
+ *   sendBlenderOpTokens (0xd950000) and the 24-bit accumulation's colour
+ *   routine (0xd950070, 0xd955adc) write the same words. glLogicOp
+ *   (0xd95c390) writes block 0x022, not this block, and the library's
+ *   GL_COLOR_LOGIC_OP enable sets block 0x004 bit 20 (store at 0xd9579bc in
+ *   __glOdyim_Enable) without touching this block; the
+ *   blend-equation form of the logic operation is reached only through
+ *   glBlendEquationEXT(GL_LOGIC_OP), with block 0x004 bit 17 set by
+ *   GL_BLEND.
+ * Library layout: established. That the board applies equation 5 as the
+ * logic operation of block 0x022 is inferred: the diagnostic streams hold
+ * word 0 at 0xa818 and vary only block 0x022, so no stream shows another
+ * equation value or shows 5 against a different value. Whether the factor
+ * fields matter under equation 5 is unknown. The textport and the X
+ * server's fills use the colour words as the drawing colour. */
 #define BUZZ_REG_CONSTCOLOR        0x021
 
 /* ===================================================================

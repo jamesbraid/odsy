@@ -292,7 +292,7 @@ The full set of blocks the board holds as context state is what the kernel repla
 | 0x01b | 5 | 0x138 | texture environment |
 | 0x016 | 7 | 0x14c | texture modes |
 | 0x051, 0x04c | 1 each | 0x1b20, 0x1cac | |
-| 0x021 | 3 | 0xbc | constant colour |
+| 0x021 | 3 | 0xbc | blender: word 0 equation (15:13) and factor codes (12:6, 5:0), words 1 and 2 constant colour (`docs/raster.md`, logic operations) |
 | 0x030-0x033, 0x03d or 0x03b | 4 x 8, 2 or 8 | 0x1174 | post-filter scale and bias, by the mode word at shadow 0x1170 (1 or other: 0x030-0x033; 3: 0x03d; 2: 0x03b) |
 | 0x028-0x02b, 0x03a or 0x038 | 4 x 16, 4 or 16 | 0x1070 | a second three-layout set chosen by the word at 0x106c (1 or other: 0x028-0x02b; 3: 0x03a; 2: 0x038) |
 | 0x01e, 0x01f, 0x020, 0x058 | 1 each | 0xb0, 0xb4, 0xb8, 0xd8 | |

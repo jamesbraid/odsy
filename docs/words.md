@@ -288,8 +288,8 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
   the kernel textport start-up stream stores 0x80 for both, which would read as 1.0 in a fixed-point
   number with seven fraction bits (inferred from the value alone).
 - `0x00010c21` (block 0x021, three operands, `odsy_tport.o`): **established.**
-  The constant colour block. `ODSY_SET_GC` stores a control word and then the colour as two packed words, and
-  libGLcore's `__glOdysseyValidateHardware` sends the same block with what reads as the blend factors as its first operand (inferred from the GL blend paths). The textport's fills use the colour as the drawing colour.
+  The blender block. `ODSY_SET_GC` stores a control word and then the colour as two packed words, and
+  libGLcore's `__glOdysseyValidateHardware` (word built at 0xd9683f0) sends the same block with the equation (bits 15:13) and the two factor codes (bits 12:6 and 5:0) as its first operand, from `glBlendEquationEXT` and `glBlendFunc` (`BUZZ.h` section 4); the colour is the second and third operands only. The textport's fills use the colour as the drawing colour.
 - `0x00011023` (block 0x023, four operands, `odsy_tport.o`): **established.**
   Stored by `ODSY_SET_GC` twice and by `__glOdysseyValidateContext` in libGLcore, beside the sequencer
   registers 0x22 and 0x23 that choose colour-index or RGB handling (`docs/words.md`, sequencer section).
@@ -739,8 +739,8 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x01f` (state block between alpha test and depth test): **established.**
   Word 0x0001041f with one operand, replayed from hardware-shadow offset 0xb4 beside 0x01e at 0xb0 and
   0x020 at 0xb8; libGLcore's `__glOdysseyClear` sends it twice. The register's field is unknown.
-- `0x021` (constant colour block): **established.**
-  Word 0x00010c21 with three operands, a control word and a packed RG and BA colour, from `ODSY_SET_GC` and
+- `0x021` (blender block: equation, factors, constant colour): **established.**
+  Word 0x00010c21 with three operands, a control word (equation and blend factor codes) and a packed RG and BA colour, from `ODSY_SET_GC` and
   `__glOdysseyValidateHardware`; the kernel replays it from hardware-shadow offset 0xbc.
 - `0x023` (texture-clip block): **inferred.**
   Word 0x00011023, four operands, replayed from hardware-shadow offset 0xe8 and sent by `ODSY_SET_GC` twice; `docs/opengl.md`
