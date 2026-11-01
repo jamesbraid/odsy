@@ -2902,7 +2902,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49ea0	8	__glDispatchExec	mdebug	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49ea8	84	__glBeginDispatchOverride	mdebug	f5b78be674ab		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49efc	6528	__glEndDispatchOverride	mdebug	cb1ca7863f83		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a0c4	980	__glContextSetColorScales	dynsym+mdebug	a9af0b274d89		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a498	2848	__glSoftResetContext	dynsym+mdebug	e14fad3f63f9		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -8739,7 +8739,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337e0	8	__glDispatchExec	dwarf+funcnames	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337f0	372	__glBeginDispatchOverride	dwarf+funcnames	972683c7b6b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda33970	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33b20	908	__glContextSetColorScales	dwarf+dynsym	420491982eb6		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33eb0	2980	__glSoftResetContext	dwarf+dynsym	c2269d3c7016		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda34a60	112	__glDestroyContext	dwarf+dynsym	1fd3b4610de9		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -14633,7 +14633,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2278a90	8	__glDispatchExec	dwarf	4f22b4a20683		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2278aa0	260	__glBeginDispatchOverride	dwarf	eca99d121520		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x2278bb0	28	__glEndDispatchOverride	dwarf	a2c9f8c9177a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2278bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2278bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2278d70	940	__glContextSetColorScales	dwarf+dynsym	45793847ec74		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279120	3036	__glSoftResetContext	dwarf+dynsym	0bb04a17560f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -20666,7 +20666,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb19700	8	__glDispatchExec	mdebug	164a5797332c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb19708	84	__glBeginDispatchOverride	mdebug	1d3968058362		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1975c	6492	__glEndDispatchOverride	mdebug	e101f3a13d05		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19778	428	__glEarlyInitContext	dynsym+mdebug	3b6fba2d4381		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19778	428	__glEarlyInitContext	dynsym+mdebug	3b6fba2d4381		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19924	980	__glContextSetColorScales	dynsym+mdebug	50dcd6fe6903		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19cf8	2844	__glSoftResetContext	dynsym+mdebug	305aa0216cde		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1a814	116	__glDestroyContext	dynsym+mdebug	634157b9bcf2		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -26583,7 +26583,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb106d0	236	__glInitColorTables	dynsym	8427e6977583		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb107c0	112	__glFreeColorTables	dynsym	1f3bccfd5f38		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10830	516	__glCopyColorTableScaleBias	dynsym	c6da1448a4cf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10ac0	388	__glEarlyInitContext	dynsym	e946b578f001		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10ac0	388	__glEarlyInitContext	dynsym	e946b578f001		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10c50	932	__glContextSetColorScales	dynsym	de54b8c503b3		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11000	2944	__glSoftResetContext	dynsym	91e069ef5606		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11b80	108	__glDestroyContext	dynsym	d67985bcc4db		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -32229,7 +32229,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3f6ec0	8	__glDispatchExec	dwarf	ab7af76432d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3f6ed0	72	__glBeginDispatchOverride	dwarf	38460c871e0b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xb3f6f20	28	__glEndDispatchOverride	dwarf	8755d7dbbfeb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f6f40	404	__glEarlyInitContext	dwarf+dynsym	211672a3d879		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f6f40	404	__glEarlyInitContext	dwarf+dynsym	211672a3d879		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f70e0	952	__glContextSetColorScales	dwarf+dynsym	a1022a720110		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f74a0	2984	__glSoftResetContext	dwarf+dynsym	a0ae57eae9f4		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f8050	108	__glDestroyContext	dwarf+dynsym	f146559f7d4a		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -38242,7 +38242,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb19700	8	__glDispatchExec	mdebug	164a5797332c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb19708	84	__glBeginDispatchOverride	mdebug	1d3968058362		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xdb1975c	6492	__glEndDispatchOverride	mdebug	e101f3a13d05		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19778	428	__glEarlyInitContext	dynsym+mdebug	3b6fba2d4381		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19778	428	__glEarlyInitContext	dynsym+mdebug	3b6fba2d4381		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19924	980	__glContextSetColorScales	dynsym+mdebug	50dcd6fe6903		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb19cf8	2844	__glSoftResetContext	dynsym+mdebug	305aa0216cde		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1a814	116	__glDestroyContext	dynsym+mdebug	634157b9bcf2		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -44159,7 +44159,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb106d0	236	__glInitColorTables	dynsym	8427e6977583		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb107c0	112	__glFreeColorTables	dynsym	1f3bccfd5f38		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10830	516	__glCopyColorTableScaleBias	dynsym	c6da1448a4cf		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10ac0	388	__glEarlyInitContext	dynsym	e946b578f001		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10ac0	388	__glEarlyInitContext	dynsym	e946b578f001		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb10c50	932	__glContextSetColorScales	dynsym	de54b8c503b3		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11000	2944	__glSoftResetContext	dynsym	91e069ef5606		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11b80	108	__glDestroyContext	dynsym	d67985bcc4db		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -49805,7 +49805,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe16ec0	8	__glDispatchExec	dwarf	ab7af76432d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe16ed0	72	__glBeginDispatchOverride	dwarf	38460c871e0b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0xbe16f20	28	__glEndDispatchOverride	dwarf	8755d7dbbfeb		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe16f40	404	__glEarlyInitContext	dwarf+dynsym	211672a3d879		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe16f40	404	__glEarlyInitContext	dwarf+dynsym	211672a3d879		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe170e0	952	__glContextSetColorScales	dwarf+dynsym	a1022a720110		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe174a0	2984	__glSoftResetContext	dwarf+dynsym	a0ae57eae9f4		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe18050	108	__glDestroyContext	dwarf+dynsym	f146559f7d4a		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -69953,7 +69953,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49c9c	516	__glCopyColo
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49ea0	8	__glDispatchExec	mdebug	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49ea8	84	__glBeginDispatchOverride	mdebug	f5b78be674ab		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49efc	6528	__glEndDispatchOverride	mdebug	cb1ca7863f83		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a0c4	980	__glContextSetColorScales	dynsym+mdebug	a9af0b274d89		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a498	2848	__glSoftResetContext	dynsym+mdebug	e14fad3f63f9		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -75790,7 +75790,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda335d0	516	__glCopyCo
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337e0	8	__glDispatchExec	dwarf+funcnames	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda337f0	372	__glBeginDispatchOverride	dwarf+funcnames	972683c7b6b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xda33970	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33b20	908	__glContextSetColorScales	dwarf+dynsym	420491982eb6		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda33eb0	2980	__glSoftResetContext	dwarf+dynsym	c2269d3c7016		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda34a60	112	__glDestroyContext	dwarf+dynsym	1fd3b4610de9		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -81684,7 +81684,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c8880	516	__glCopyCo
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32c8a90	8	__glDispatchExec	dwarf	4f22b4a20683		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32c8aa0	260	__glBeginDispatchOverride	dwarf	eca99d121520		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32c8bb0	28	__glEndDispatchOverride	dwarf	a2c9f8c9177a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c8bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c8bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c8d70	940	__glContextSetColorScales	dwarf+dynsym	45793847ec74		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9120	3036	__glSoftResetContext	dwarf+dynsym	0bb04a17560f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
@@ -87492,7 +87492,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda49c9c	516	__glCopyColo
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda49ea0	8	__glDispatchExec	mdebug	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda49ea8	84	__glBeginDispatchOverride	mdebug	f5b78be674ab		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda49efc	6528	__glEndDispatchOverride	mdebug	cb1ca7863f83		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4a0c4	980	__glContextSetColorScales	dynsym+mdebug	a9af0b274d89		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4a498	2848	__glSoftResetContext	dynsym+mdebug	e14fad3f63f9		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -93329,7 +93329,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda335d0	516	__glCopyCo
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda337e0	8	__glDispatchExec	dwarf+funcnames	7b90b1c780e4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda337f0	372	__glBeginDispatchOverride	dwarf+funcnames	972683c7b6b2		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xda33970	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33990	388	__glEarlyInitContext	dwarf+dynsym	4ac37ec43bab		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33b20	908	__glContextSetColorScales	dwarf+dynsym	420491982eb6		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda33eb0	2980	__glSoftResetContext	dwarf+dynsym	c2269d3c7016		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda34a60	112	__glDestroyContext	dwarf+dynsym	1fd3b4610de9		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
@@ -99223,7 +99223,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2278880	516	__glCopyCo
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2278a90	8	__glDispatchExec	dwarf	4f22b4a20683		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2278aa0	260	__glBeginDispatchOverride	dwarf	eca99d121520		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x2278bb0	28	__glEndDispatchOverride	dwarf	a2c9f8c9177a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2278bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2278bd0	404	__glEarlyInitContext	dwarf+dynsym	36b1b4fc4865		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2278d70	940	__glContextSetColorScales	dwarf+dynsym	45793847ec74		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279120	3036	__glSoftResetContext	dwarf+dynsym	0bb04a17560f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
