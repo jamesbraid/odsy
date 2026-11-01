@@ -575,6 +575,22 @@ the same blocks after a lost context.
   14 alpha test, 15 stencil test, 16 depth test, 17 blending, 18 dither, 19 and 20 index and colour logic op, 22 fog,
   23 clockwise front face. The setters are `__glOdyim_Enable`, `__glOdyim_CullFace` and `__glOdyim_ShadeModel`; the
   kernel textport's `ODSY_SET_GC` stores the word with the constant its own drawing needs.
+  *Culling enabled with no face selected* (bit 8 set, bits 10:9 both clear): **established** that no shipped software
+  sends it, **unknown** what the board does with it. Bit 8 is set in one place, the `GL_CULL_FACE` case of
+  `__glOdyim_Enable` (0xd956bc0), and cleared by the same case of `__glOdyim_Disable`. Bits 10:9 are written only by
+  `__glOdyim_CullFace` (0xd95b690), which stores 01, 10 or 11 and raises `GL_INVALID_ENUM` for any other face, and are
+  therefore never 00 once `__glOdysseyInitDefaultValues` (0xd969ac0) has called it with `GL_BACK`; a new context starts at
+  01. `PopAttributes` merges the saved word under the mask 0x5fe1df, which can restore bit 8 but not 10:9 (the clear
+  mask is the 64-bit constant 0xffffffffffa01e20 at gp-14296, read from the file). All 143 stores to +0x7bfc (31740) in
+  the N32 library were listed and each was matched with the immediate masks and constants applied since the last load of
+  the word. The only immediate mask that clears any of bits 10:9 is the one in `__glOdyim_CullFace`, and the only
+  `ori` of 0x100 on the word is the enable case. Many of the stores take their mask from a register that an
+  earlier call or load filled (the accumulation and image paths, which save and put back whole words); for those the
+  claim rests on the image paths restoring a word that was itself written by the routines above, so it is **inferred**
+  for them. The X module's pixel-mode switch sends the word with bits 19 or 20 and 15 only (`docs/odyssey-so-reads.md`, the entries
+  that send 0x10404; not re-scanned here), so it never sets bit 8 either. If bit 8 with 00 must be modelled, "no face is
+  culled" follows from bits 9 and 10 being separate back and front selectors (**inferred**, from the 11 that
+  `GL_FRONT_AND_BACK` stores); "keep the previously selected face" has no software behind it. Either is a model choice.
 - `0x00010405` (block 0x005, one operand, `libGLcore.so`): **established.**
   The transform and texture path selection, from context +31744 when dirty bit 2 is set: bits 2:0 are the user clip planes as
   a thermometer code from `__glOdysseyValidateClipPlanes`, bits 5:3 the active texture target (1-D, 2-D, 3-D) from

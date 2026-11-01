@@ -204,7 +204,10 @@
  * (the per-level size loop in ody_texture.c near line 1740), so 0x57c is
  * the level's border width. inferred (from those formulas, not from a
  * name). So bit 28 is set when level 0 has no border and TEXMODE6 bit 24
- * when it has one. */
+ * when it has one.
+ * The pair is complementary wherever the texture code writes it; the
+ * convolution image steps set bit 28 and keep bit 24 as the context holds
+ * it, so both can be set (docs/texture-formats.md). */
 /* Bits 25:23: 3-bit value from the current-texture lookup at
  * activation. established: __glOdysseyTextureActivate (0x0d9d1f90)
  * line 1941. Meaning unknown. */
@@ -212,8 +215,12 @@
 #define TEXMODE4_ACT_MASK          0x03800000u
 /* Bits 22:18 and 0 are not taken from the texture object: the context
  * keeps its own copy and merges them in. established:
- * __glOdysseyValidateTextureState line 2476 (mask 0x007c0001). Meaning
- * unknown. */
+ * __glOdysseyValidateTextureState line 2476 (mask 0x007c0001). Bit 0 is
+ * the texture colour table enable, bits 22:20 the table's format code (1
+ * alpha, 2 luminance, 3 luminance-alpha, 4 intensity, 5 RGB, 6 RGBA) and
+ * bit 18 a flag the image-chain steps set while they draw (bit 19 is never
+ * set): established as setters, docs/texture-formats.md. What the board
+ * does with them: unknown. */
 #define TEXMODE4_CTX_BITS          0x007c0001u
 /* Bit 17: set for GL_LINEAR_MIPMAP_LINEAR and whenever either filter is
  * GL_PHASE_SGIX; cleared for every other min/mag pair. established:
