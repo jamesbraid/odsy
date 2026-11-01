@@ -40,12 +40,24 @@ Release IRIX 6.5.30m. A command word is a 32-bit value the host stores into the 
 - `0xc180cc16` (normal slot, three operands, opcode 0x16, `libGLcore.so`): **established.**
   Signed-byte normal, sent by `__glOdyim_Normal3b`, `Normal3bv` and the display-list `__glOdylc_Normal3b`
   forms, four routines in all. **inferred** that the board scales the raw byte operands to unit range, since the senders do no conversion.
+  The library's own read-back of the board's saved current normal gives the rule it assumes (**established** as library
+  code, 6.5.30m N32 `libGLcore.so`: the shadow decoder at 0xd985b90 takes the low six bits of a descriptor's first word,
+  which equal the opcode of the word the board last saw, as the form number, and sends form 22 to 0xd9861a8). Each of the
+  three operands x becomes (2x + 1) times a scale held in the context at +3552, as the same decoder does for byte colours.
+  The scale is the unit word at +3544 divided by 255.0 (the context reset at 0xda33eb0 stores it just before 0xda34020; the
+  early context initialiser at 0xda33990 sets the unit word to 1.0, so the scale is 1/255). **inferred** that the board uses the same rule: a read-back that
+  disagreed with what the board lit with would break glGet of the current normal. Whether the board clamps is unknown.
 - `0xc180cc17` (normal slot, three operands, opcode 0x17, `libGLcore.so`): **established.**
   Signed-short normal from six routines: the immediate and display-list `Normal3s` forms and the strided
   array routine `__glOdysseyArraysSep_N3S_V3F`, the only array path in libGLcore that carries short normals.
+  Read-back form 23 (0xd986140) is the same rule with the scale at +3560, 1/65535 for a unit word of 1.0 (divisor 65535.0).
 - `0xc180cc18` (normal slot, three operands, opcode 0x18, `libGLcore.so`): **established.**
   Signed-int normal sent by `__glOdyim_Normal3i`, `Normal3iv` and their display-list twins, four routines. It
   is the middle of the three integer forms, between short and the float word that follows.
+  Read-back form 24 (0xd9860e0) forms 1.0 + 2.0 x float(x) in single precision, then multiplies by the scale at +3568,
+  which is 1.0 divided by 4294964992.0 (the single 0x4f7ffff7, not 2^32 - 1) for a unit word of 1.0. **established** as
+  library code. The extremes -2^31 and 2^31 - 1 therefore read back as about -1.0000005 and +1.0000005: the host rule is
+  not exact at the ends, and the board's own scale is **unknown**.
 - `0xc180cc19` (normal slot, three operands, opcode 0x19, `libGLcore.so`): **established.**
   Float normal built in 17 routines, the widest sender set in the normal slot: `Normal3f`, `Normal3d` and
   their vector forms, and the array routines that hold normals as floats. It is also the form
