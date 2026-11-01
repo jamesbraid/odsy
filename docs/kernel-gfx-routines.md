@@ -27,3 +27,41 @@ The table lock is an 8-byte record `gfx_group_table_lock`: a word reader count a
 - `gfx_group_destroy` (`gfx.o`, offset 0x2fc, 208 bytes): **established.**
   Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
   Removes a group record from its chain and frees it (argument: the record). It takes the handle at +0, chooses the chain as in `gfx_group_find` and, under `gfxtable_writerlock`, walks the chain matching on the handle, not on the pointer. It unlinks the first record with an equal handle by copying that record's next pointer into the slot or into the previous record's +24. The lock is released with `gfxtable_writerunlock`. When a record was found it calls `spinlock_destroy` on its +16 and `kern_free` on it, and returns that call's result. A handle not found frees nothing and returns what the unlock returned.
+
+The thread table `gthread_table` is a pointer in the small-data area to 16 slots of 128 bytes. A slot holds a lock record as above (reader count at +0, spin lock at +4) and the head of a chain of thread records at +8. A thread record is 40 bytes: the thread handle at +0, a word at +8, a list pointer at +16, a group pointer at +24 (the last three zeroed at creation) and the next record at +32. Its slot is chosen by a byte hash of the handle, computed identically in every routine below that needs it: with b1, b2 and b3 the handle's bits 15:8, 23:16 and 31:24, the slot is (b3 xor 29*(b2 xor 29*b1)) and 15, where the multiplication by 29 is the sequence the code uses (x shifted left 3, minus x, shifted left 2, plus x) and the intermediate values are not masked to a byte. The record at +16 of a thread, when present, is a 32-byte list record: a word count at +0, a word at +4, a variable at +8, a spin lock at +16 and a doubleword at +24.
+
+- `init_gthread_table` (`gfx.o`, offset 0x3cc, 160 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Creates the thread table once (no arguments). It returns at once when the pointer is already set. Otherwise it calls `kern_malloc` for 2048 bytes, stores the pointer, calls `bzero` for 2048 bytes, and for each of the 16 slots calls `spinlock_init` on slot +4 with the name "ggt" and stores 0 in the slot's reader count (the store is in the delay slot of the loop branch). An allocation failure logs "Error: unable to allocate gthread table" with `cmn_err` and 0 as the first argument and then falls through to the same `bzero` and loop with the null pointer; the code does not stop there. It returns what the last `spinlock_init` returned, or nothing defined on the early return.
+
+- `gthread_create` (`gfx.o`, offset 0x46c, 252 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Makes a thread record and files it in the table (argument: the thread handle). It calls `kern_malloc` for 40 bytes and returns null on failure. It stores the handle at +0 and zero at +8, +16 and +24, then looks up the thread's group with `gfx_group_find`; when one exists it calls `gthread_attach_group` with the new record and the group. Under `gfxtable_writerlock` on the slot's lock record it copies the slot's chain head into +32 of the new record and stores the record as the new head, then calls `gfxtable_writerunlock`. It returns the record. No check is made for an existing record with the same handle.
+
+- `gthread_destroy` (`gfx.o`, offset 0x568, 244 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Removes a thread record from its slot's chain and frees it (argument: the thread handle). It locks the slot with `gfxtable_writerlock`, walks the chain from +8 matching the handle at +0 and unlinks the first match through its +32 link, unlocks with `gfxtable_writerunlock`, and, when a record was found, calls `kern_free` on it and returns that call's result. A missing record returns what the unlock returned. It does not detach the record's list or group first, so a caller must have called `gthread_detach_list` and `gthread_detach_group`.
+
+- `gthread_attach_list` (`gfx.o`, offset 0x65c, 156 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Points a thread at a list record, creating one when none is given (arguments: the thread record, a list record or null). With a list it adds 1 to the list's word count at +0, stores the list at thread +16 and returns 1. With null it calls `kern_malloc` for 32 bytes and returns 0 when that fails. A new list gets the word count 1 at +0, zero at +4 and +24, `init_sv` on +8 with 0 as the second argument, the name "glw" and -1 as the fourth, and `spinlock_init` on +16 with the name "gfxl"; it is then stored at thread +16 as above and 1 is returned.
+
+- `gthread_detach_list` (`gfx.o`, offset 0x6f8, 84 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Drops a thread's reference to its list record (argument: the thread record). It loads the list pointer at +16, zeroes that field and subtracts 1 from the list's count at +0. When the count reaches zero it calls `spinlock_destroy` on the list's +16, `sv_destroy` on its +8 and `kern_free` on the list. It returns 1 in both cases. The pointer is loaded and used without a null test.
+
+- `gthread_attach_group` (`gfx.o`, offset 0x74c, 92 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Joins a thread to a group record (arguments: the thread record, the group record). Under the group's spin lock at +16 it adds 1 to the group's word at +8 with the store of the incremented word in the delay slot of the unlock call; after the unlock it stores the group at thread +24. It returns 1.
+
+- `gthread_detach_group` (`gfx.o`, offset 0x7a8, 88 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Leaves a group (argument: the thread record). It returns 0 when the pointer at +24 is zero. Otherwise it zeroes that pointer first, then under the group's spin lock at +16 subtracts 1 from the group's word at +8, unlocks and returns 1. The group record is not freed here.
+
+- `gthread_find` (`gfx.o`, offset 0x800, 220 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Looks up a thread record by handle (argument: the handle). It hashes the handle to a slot, takes the slot's lock with `gfxtable_readerlock`, walks the chain from +8 through +32 comparing the handle at +0, calls `gfxtable_readerunlock` and returns the record or null. The record is returned after the lock is dropped.
+
+- `gthread_find_gfxp` (`gfx.o`, offset 0x8dc, 56 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Returns the doubleword at +24 of a thread's list record (argument: the handle). It calls `gthread_find` with the handle and returns 0 when no record is found or the record's list pointer at +16 is null; otherwise the result is the doubleword at +24 of that list.
