@@ -11,6 +11,8 @@ The index is the six-bit field in bits 25:20 of word 1 of a level descriptor (bl
 | `ChooseSuitableBuzzTexModeBaseFmt` | 0xd9cfc80 | index and GL internal format to a 3-bit class | same section |
 | `GetImageFmtEnumFromBuzzTexFormat` | 0xd9cfbd0 | index to the pixel class of [pixel-paths.md](pixel-paths.md) | same section |
 
+The words around the index (level-table entries and the bits the library writes, per-axis wraps, the environment block, the texture colour table, 3D levels) are in [texture-state.md](texture-state.md).
+
 ## The table
 
 Grades follow the repository rule. Each row's "selection", "widths" and "pixel class" columns are **established**: the routines were read in full and every input run. The component names in the widths column (which output is R, G, B, A, luminance or intensity) are **inferred** from which GL formats land on the row. Two facts hold for every row and are **unknown**: how the board packs the texel (bit order, whether a 12-bit value sits in 16 bits), and whether the board treats the index as a layout code or as an opaque number. The allocator sizes storage by the size code (`2 << c` bytes per texel, `AllocateGfxMemForTexture`, **established**), which is a unit the allocator uses, not a measured packing.
