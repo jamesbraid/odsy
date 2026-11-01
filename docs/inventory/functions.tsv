@@ -2683,7 +2683,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3935c	928	Mult	mdebug	38f35c913221		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only		
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39fb0	352	__glValidateAlphaTest	dynsym+mdebug	29b47945d90d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -2905,10 +2905,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a0c4	980	__glContextSetColorScales	dynsym+mdebug	a9af0b274d89		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a498	2848	__glSoftResetContext	dynsym+mdebug	e14fad3f63f9		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b02c	684	__glDestroySoftContext	dynsym+mdebug	2c8e9f500e8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b2d8	256	__glFreePrivate	dynsym+mdebug	5cc669f91a68		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b3d8	196	__glSetError	dynsym+mdebug	9a196181445f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b3d8	196	__glSetError	dynsym+mdebug	9a196181445f		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b49c	448	__glim_RenderMode	dynsym+mdebug	6a65b410da04		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b65c	280	__glChangeWindowSize	dynsym+mdebug	597a0669835c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b774	12	__glChangeReadWindowSize	dynsym+mdebug	3bb3620b5646		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -3044,10 +3044,10 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55dbc	112	__glFogVertexLinear	dynsym+mdebug	5b6ebd94d09a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55e2c	136	__glFogColorSlow	dynsym+mdebug	5f5ddbaf2825		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	understood	docs/sample-implementation.md#so_getc	so_get.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	located	docs/sample-implementation.md#so_getc	so_get.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -69734,7 +69734,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumu
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda3935c	928	Mult	mdebug	38f35c913221		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only		
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda39fb0	352	__glValidateAlphaTest	dynsym+mdebug	29b47945d90d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -69956,10 +69956,10 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32	.text	0xda49efc	6528	__glEn
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a0c4	980	__glContextSetColorScales	dynsym+mdebug	a9af0b274d89		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4a498	2848	__glSoftResetContext	dynsym+mdebug	e14fad3f63f9		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b02c	684	__glDestroySoftContext	dynsym+mdebug	2c8e9f500e8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b2d8	256	__glFreePrivate	dynsym+mdebug	5cc669f91a68		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b3d8	196	__glSetError	dynsym+mdebug	9a196181445f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b3d8	196	__glSetError	dynsym+mdebug	9a196181445f		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b49c	448	__glim_RenderMode	dynsym+mdebug	6a65b410da04		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b65c	280	__glChangeWindowSize	dynsym+mdebug	597a0669835c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda4b774	12	__glChangeReadWindowSize	dynsym+mdebug	3bb3620b5646		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -70095,10 +70095,10 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragm
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55dbc	112	__glFogVertexLinear	dynsym+mdebug	5b6ebd94d09a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55e2c	136	__glFogColorSlow	dynsym+mdebug	5f5ddbaf2825		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	understood	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87273,7 +87273,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda38f1c	1088	Accumu
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda3935c	928	Mult	mdebug	38f35c913221		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda396fc	584	Add	mdebug	8d0aaf6996d3		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda39944	392	Return	mdebug	ec51445d57e0		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only		
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda39acc	11752	Clear	mdebug	618f07374335	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39ce0	288	__glInitAccum64	dynsym+mdebug	e2e8b522bc40		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39e00	424	__glim_Accum	dynsym+mdebug	dcf82ec74d9b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda39fb0	352	__glValidateAlphaTest	dynsym+mdebug	29b47945d90d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87495,10 +87495,10 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32	.text	0xda49efc	6528	__glEn
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda49f18	428	__glEarlyInitContext	dynsym+mdebug	ce50b6c61d1f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4a0c4	980	__glContextSetColorScales	dynsym+mdebug	a9af0b274d89		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4a498	2848	__glSoftResetContext	dynsym+mdebug	e14fad3f63f9		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4afb8	116	__glDestroyContext	dynsym+mdebug	2dc7ac5fb462		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b02c	684	__glDestroySoftContext	dynsym+mdebug	2c8e9f500e8d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b2d8	256	__glFreePrivate	dynsym+mdebug	5cc669f91a68		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b3d8	196	__glSetError	dynsym+mdebug	9a196181445f		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b3d8	196	__glSetError	dynsym+mdebug	9a196181445f		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b49c	448	__glim_RenderMode	dynsym+mdebug	6a65b410da04		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b65c	280	__glChangeWindowSize	dynsym+mdebug	597a0669835c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda4b774	12	__glChangeReadWindowSize	dynsym+mdebug	3bb3620b5646		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -87634,10 +87634,10 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55af8	428	__glFogFragm
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ca4	280	__glFogVertex	dynsym+mdebug	3eb081310b09		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55dbc	112	__glFogVertexLinear	dynsym+mdebug	5b6ebd94d09a		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55e2c	136	__glFogColorSlow	dynsym+mdebug	5f5ddbaf2825		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55ed0	252	__glim_GetTexEnvfv	dynsym+mdebug	2dc5fcba8373		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda55fcc	224	__glim_GetTexEnviv	dynsym+mdebug	3e553688438e		in	understood	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	understood	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	understood	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda560ac	356	__glim_GetTexGenfv	dynsym+mdebug	af2b4bc53fdc		in	located	docs/sample-implementation.md#so_getc	so_get.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56210	392	__glim_GetTexGendv	dynsym+mdebug	b2c7cf8f34b9		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56398	364	__glim_GetTexGeniv	dynsym+mdebug	1e818f497cf6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56504	788	__glim_GetTexParameterfv	dynsym+mdebug	2cc6a8aa0d0e		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda56818	712	__glim_GetTexParameteriv	dynsym+mdebug	077fee5fe7a8		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
