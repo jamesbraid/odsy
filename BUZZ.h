@@ -552,8 +552,10 @@
  *   GL_COLOR_LOGIC_OP enable sets block 0x004 bit 20 (store at 0xd9579bc in
  *   __glOdyim_Enable) without touching this block; the
  *   blend-equation form of the logic operation is reached only through
- *   glBlendEquationEXT(GL_LOGIC_OP), with block 0x004 bit 17 set by
- *   GL_BLEND.
+ *   glBlendEquationEXT(GL_LOGIC_OP). Raster-state validation (0xd969500)
+ *   sets block 0x004 bit 17 from GL_BLEND, and the accumulation and
+ *   image-chain paths OR bit 17 into the same word. That a stream's bit 17
+ *   without bit 20 selects this route is inferred, not established.
  * Library layout: established. That the board applies equation 5 as the
  * logic operation of block 0x022 is inferred: the diagnostic streams hold
  * word 0 at 0xa818 and vary only block 0x022, so no stream shows another
