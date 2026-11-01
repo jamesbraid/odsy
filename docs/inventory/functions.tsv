@@ -53851,7 +53851,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x3050	212	init_board_r
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x3124	8	add_ioboard	dwarf+symtab	78aa5094d5ec		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x312c	184	add_cpuboard	dwarf+symtab	ccb11ca02f3d		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x31e4	8	cpuboard	dwarf+symtab	32295a3087c3		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x31ec	444	dprintf	dwarf+symtab	d18b3fd89138		in	named-only	openbsd/include/stdio.h:207	
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x31ec	444	dprintf	dwarf+symtab	d18b3fd89138		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x33a8	56	cpu_isvalid	dwarf+symtab	647b501f26e0		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x33e0	340	ip30_chips_mlreset	dwarf	a928137a0660		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x3534	340	ip30_early_piotrans_addr	dwarf	cdebabf88b45		in	undocumented		
@@ -53985,8 +53985,8 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7258	12	bzero_stores	
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7264	104	bzero_pref	symtab	721fae2475d8		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x72cc	8	bzero_end	symtab	78aa5094d5ec	shared-address	in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x72cc	8	bzerror	dwarf+symtab	78aa5094d5ec	shared-address	in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x72d4	452	bcmp	dwarf+symtab	78d02f9a0925	shared-address	in	named-only	openbsd/include/strings.h:62	
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x72d4	452	memcmp	symtab	78d02f9a0925	shared-address	in	named-only	openbsd/include/string.h:64	
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x72d4	452	bcmp	dwarf+symtab	78d02f9a0925	shared-address	in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x72d4	452	memcmp	symtab	78d02f9a0925	shared-address	in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7498	248	addupc	dwarf+symtab	b770b40ff003		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x7590	12	adderr	dwarf+symtab	c3194c6d3909		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x759c	28	fubyte	dwarf+symtab	c3d944bd87a4	shared-address	in	undocumented		
@@ -54391,7 +54391,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1877c	296	scache_data
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x188a4	196	ecc_compute_scdata_ecc	dwarf+symtab	fa8a7046dd1f		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x18968	44	ecc_bitcount	dwarf+symtab	17820dfa0c38		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x18994	84	ecc_scache_bits_in_error	dwarf+symtab	593dc7613290		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x189e8	76	warn	dwarf+symtab	8d966da40cd6		in	named-only	openbsd/include/err.h:55	
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x189e8	76	warn	dwarf+symtab	8d966da40cd6		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x18a34	64	engr_dvt_thread	dwarf+symtab	623505c04acf		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x18a74	140	dumptlb	dwarf+symtab	cc677e0565cc		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x18b00	156	checkAllTlbsDumped	dwarf+symtab	0dcd9790fdce		in	undocumented		
@@ -54887,8 +54887,8 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x779c	164	bzero	dwarf+
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x77d8	104	bzero_pref	symtab	721fae2475d8		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7840	8	bzero_end	symtab	78aa5094d5ec	shared-address	in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7840	8	bzerror	dwarf+symtab	78aa5094d5ec	shared-address	in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7848	452	bcmp	dwarf+symtab	78d02f9a0925	shared-address	in	named-only	openbsd/include/strings.h:62	
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7848	452	memcmp	symtab	78d02f9a0925	shared-address	in	named-only	openbsd/include/string.h:64	
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7848	452	bcmp	dwarf+symtab	78d02f9a0925	shared-address	in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7848	452	memcmp	symtab	78d02f9a0925	shared-address	in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7a0c	248	addupc	dwarf+symtab	6cfc218f288c		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7b04	12	adderr	dwarf+symtab	c3194c6d3909		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x7b10	28	fubyte	dwarf+symtab	c3d944bd87a4	shared-address	in	undocumented		
@@ -55761,7 +55761,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2efbc	188	nvchecksum_
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f078	52	update_checksum_base	dwarf	d05bec34369e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f0b0	8	VEC_addrerr	dwarf+symtab	6cc16abd70ee		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f0c0	68	VEC_tlbmiss	dwarf+symtab	1503c13cfd26		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f104	560	dprintf	dwarf+symtab	3202c7951459		in	named-only	openbsd/include/stdio.h:207	
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f104	560	dprintf	dwarf+symtab	3202c7951459		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f334	120	moduleid_to_decompressed_rack	dwarf	07afb9b5d9ff		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f3ac	148	brick_lookup	dwarf	7c0aa14866bc		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2f440	240	brick_register	dwarf	5c146c92c353		in	undocumented		
@@ -55918,7 +55918,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ca68	576	scache_prin
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3cca8	140	l2_data_sbe	dwarf+symtab	2c28b261ada3		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3cd34	216	l2_cache_check	dwarf+symtab	ba7550036568		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ce0c	832	scache_data_bit_location	dwarf+symtab	30134e428e0c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3d14c	76	warn	dwarf+symtab	8d966da40cd6		in	named-only	openbsd/include/err.h:55	
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3d14c	76	warn	dwarf+symtab	8d966da40cd6		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3d198	64	engr_dvt_thread	dwarf+symtab	56c3675c21a6		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3d1d8	344	bte_init	dwarf	b4491b6975da		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3d330	216	bte_init_buffers	dwarf+symtab	62052ea75c7f		in	undocumented		
@@ -59360,7 +59360,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023c030	276	ProcXineramaSetBuf
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023c150	72	_XkbClearOutline..KHF	dynsym	94049b7495d2		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023c1a0	512	AuthCheckSitePolicy..KL	dynsym	a4e20299ff4e		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023c3a0	1192	FreeResourceByType	dynsym	09ed413171ef		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023cd90	108	valloc	dynsym	5ba43d704fa7		in	named-only	openbsd/include/stdlib.h:199	
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023cd90	108	valloc	dynsym	5ba43d704fa7		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023ce00	196	SProcXineramaCreateColormap	dynsym	4bf9ee7813c8		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023ced0	2264	LbxReadRequestFromClient..JBG	dynsym	ab658c8a7539		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1023d7b0	444	ProcXvGetPortAttribute..GLE	dynsym	3f7805b3460f		in	undocumented		

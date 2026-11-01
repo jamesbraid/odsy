@@ -82,35 +82,49 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
 
 ### Routines read
 
-- **`418`** (routine; kernel record 418), **inferred**: the sixteen-word parameter store of opcode
+- **`418`** (routine; kernel record 418, records 418 to 442 identical in the kernel copy), **inferred**: the sixteen-word parameter store of opcode
   0x1a2 (`odsyRestoreXform` in `odsy_ctxsw.o`, `ValidateLight` and the constant block in
-  `ody_lighting.s` and `ody_context.s`). Inputs: operands 0 to 15, loaded one per record (418 to 433)
-  and passed unchanged by the vector unit. Each operand lands in lane x or y of R16 seven
-  records later (425 to 440), is read back one lane at a time in lane mode the record after, and is
-  stored at parameter word 0x200 + k (427 to 442); bit 9 of that address adds sequencer 0x31, so the
-  output is the sixteen words at the index the host loaded there. The routine copies and computes
-  nothing.
-- **`443`** (routine; kernel record 443), **inferred**: the four-word parameter store of opcode
+  `ody_lighting.s` and `ody_context.s`). **established** from the fields of records 418 to 442: records 418 to 433 load
+  operands 0 to 15 one per record (`r3` 0x10 to 0x1f, `d0` 4). Records 421, 422 and 426 to 441 are lane-mode reads of R16 (`a` 1, `r2` 0x10); `r1` alternates 0 and 1 through them,
+  so the lanes read alternate x and y, with scalar code 8 (`d1` 8) set only in 422 and 423. Port V writes R16 (`mc` 0x20 in 425 and 426, 0x21 from 427; `bx` 4 or 5) in 425 to 442, lane x on odd records and lane y on even,
+  and in 425 to 440 each write comes seven records after the operand it carries. The parameter-memory store flag is set in 427 to 442 with `ma` 0x200 up to 0x20f in order, one word a record,
+  so the stores follow the operand loads by 9 records. The end mark 2 is at 438, and 439 to 442 are its delay slots, still storing words 0x20c to 0x20f.
+  No record sets `ln`, so the routine writes no register through port P, and no record sets `d2` or leaves the colour field off its idle value. Records 441 and 442 carry `b` 1
+  and their port V writes have no operand load seven records before; their source is **unknown** (pass 16).
+  **inferred:** bit 9 of the `ma` field adds sequencer 0x31, so the output is sixteen words at the index the host loaded there.
+  The routine copies and computes nothing: scalar code 8 passes its lane unchanged, and under the pass 13 rules no later field of the routine takes the two results (422, 423).
+- **`443`** (routine; kernel record 443, records 443 to 455 identical in the kernel copy), **inferred**: the four-parameter store of opcode
   0x1bb; libGLcore sends texture-generation planes, clip planes and lighting constants this way
   (`updateTexGenCoord` in `ody_texgen.s`, `__glOdysseyValidateClipPlanes` in `ody_context.s`,
-  `__glOdysseyInitLighting` in `ody_lighting.s`). Its four operands (443 to 446) pass through R16
-  lanes x and y as in 418, and the outputs are parameter words 0x200 to 0x203 relative to sequencer
-  0x31 (452 to 455). It is a parameter store: each operand passes through scalar code 8 unchanged into its word.
-- **`456`** (routine; kernel record 456), **inferred**: the sixteen-word register store of opcode
-  0x1c8, through which libGLcore sends every matrix (`ody_xform.s`, the four validators). Inputs:
-  operands 0 to 15, one per record (456 to 471), passed unchanged by the vector unit (d0 = 4).
-  Outputs: the operands seven records later in lanes x, y, z and w of registers 0 to 3 (463 to 478),
-  counted from the register-file base the host puts in sequencer 0x34 (0, 20, 36 or 52 words), so
-  one row of the matrix fills one register. It is a register load: d0 = 4 passes each operand to port V unchanged.
-- **`479`** (routine; kernel record 479), **inferred**: the four-word register store of opcode
-  0x1df. Its four operands (479 to 482) become the four lanes of the register at the sequencer 0x34
-  base (486 to 489); libGLcore uses it for the clip-space z row at word 16, register R4
-  (`ody_xform.s`). Inputs: four operands; output: one register, a lane merge that puts each operand, unchanged, in its own lane.
-- **`490`** (routine; kernel record 490), **established**: the handler of opcode 0x1ea, sent by
+  `__glOdysseyInitLighting` in `ody_lighting.s`). **established** from the fields of records 443 to 455: records 443 to 446 load operands 0 to 3 (`r3` 0x10 to 0x13, `d0` 4),
+  447 and 448 are idle, and 449 to 454 are lane-mode reads of R16 (`a` 1, `r2` 0x10) with `r1` 0, 1, 0, 1, 0, 1, so the lane alternates x and y;
+  scalar code 8 is set in 450 and 451. Port V writes R16 lane x in 450 and 452 and lane y in 451 and 453 (`mc` 0x20 in 450 and 451, 0x21 in 452 and 453; `bx` 4 or 5), and port P writes R16 (`rb` 0x10) lane x in 454 and lane y in 455 (`ln` 4 and 5, `b` 2, `mc` 0x01).
+  The store flag is set in 452 to 455 with `ma` 0x200, 0x201, 0x202 and 0x203. The end mark 2 is at 451; 452 to 455 are its delay slots, so all four stores run in the delay slots.
+  **inferred:** the operands reach the four words in order through R16, as in 418. Records 454 and 455 take their port P data from the scalar results of 450 and 451 (`b` 2), which are code 8 passed over the R16 lanes read at 449 and 450,
+  before the operands arrive; read that way the routine leaves R16 lanes x and y as it found them. Like 418 the routine computes nothing.
+- **`456`** (routine; kernel record 456, records 456 to 478 identical in the kernel copy), **inferred**: the sixteen-word register store of opcode
+  0x1c8, through which libGLcore sends every matrix (`ody_xform.s`, the four validators). **established** from the fields of records 456 to 478:
+  records 456 to 471 load operands 0 to 15 one per record (`r3` 0x10 to 0x1f, `d0` 4, no issue), and records 472 to 478 load nothing. Port V writes in 463 to 478, each record one lane:
+  `bx` 4 to 7 gives lanes x to w and `mc` 0, 2, 4 and 6 gives registers 0, 1, 2 and 3, four lanes to a register, relative to the base sequencer 0x34 holds
+  (the host sets 0, 20, 36 or 52 words). The write comes seven records after the operand load. The end mark 2 is at 474 and 475 to 478 are its delay slots.
+  The parameter-memory store flag (the low bit of `mc`) is clear throughout, and `d1`, `d2`, `ma`, `ln`, `b` and the colour field are all zero, so the routine writes registers only.
+  **inferred:** each operand reaches the register lane unchanged, so one row of a matrix fills one register. Records 463 to 466 also carry 1 in `r1` and `r2`; no reading uses them
+  because `d0` has no issue bit.
+- **`479`** (routine; kernel record 479, records 479 to 489 identical in the kernel copy), **inferred**: the four-word register store of opcode
+  0x1df, which libGLcore uses for the clip-space z row at word 16, register R4 (`ody_xform.s`). **established** from the fields of records 479 to 489:
+  479 to 482 load operands 0 to 3 (`r3` 0x10 to 0x13, `d0` 4), 483 and 484 are idle, the end mark 2 is at 485, and 486 to 489 are port V writes (`mc` 0, `bx` 4 to 7), one per lane x to w of register 0 relative to the base in sequencer 0x34;
+  each follows its operand by seven records. 486 to 489 are the delay slots of the end mark. `r1` and `r2` are 1 in those four records and `d0` is 0, so no issue happens; no field of the routine addresses parameter memory,
+  scalar code or colour unit. **inferred:** the four operands arrive unchanged in the four lanes of one register, as the first four of 456's sixteen do.
+- **`490`** (routine; kernel record 490, records 490 to 514 identical in the kernel copy), **established**: the handler of opcode 0x1ea, sent by
   libGLcore's GL_SHININESS path with t, -t, t' and -t', the square roots of the front and back
   shininess (`ApplyParameterF`, `ody_attrib.s`, `ucode/buzz_isa.md` pass 14), and by the kernel's
   context restore with operand 0 of two attribute slots and each with bit 31 flipped
-  (`odsyRestoreVB`, `odsy_ctxsw.o`). **inferred:** it computes ten parameter words from them: it
+  (`odsyRestoreVB`, `odsy_ctxsw.o`). **established** from the fields of records 490 to 514: operands are loaded by `r3` at 490 (operand 0), 491 (3), 492 and 493 (0), 494 (1), 496 (0), 497 to 499 (2) and 500 (3),
+  with 495 idle; parameter-memory reads name `ma` 0x1e4 (490), 0x1e3 (491 and 492) and 0x1ea (494), which hold 2.828427, 0.0 and -0.707107 (`ucode/buzz_isa.md`, pass 12, from the host's constants block). Port P
+  writes R26 (`rb` 0x1a, `b` 0) lanes x, y and z in 492, 493 and 494 (`ln` 4, 5, 6), the words read two records before: 2.828427, 0.0 and 0.0. Port V writes lane w of R26 at 497 (`mc` 0x34) and lane w of R27 at 498 (`mc` 0x36)
+  and lanes of R25 at 508 and 512 (`mc` 0x32 and 0x33, `bx` 5). Scalar code 5 (`d1` 5) is set at 497, 498, 500, 501, 506 and 507 and code 0xd at 503 and 505. Port P writes R25 (`rb` 0x19, `b` 2, from the scalar result) lane x in 501, 504, 507, 509 and 511 and lane y in 502, 505 and 510 (`ln` 4 and 5).
+  The vector unit issues at 501 (`d0` 0xe, R26 against R26) and 503 (`d0` 0xe, R26 against R27); bit 44 (`d0` 1) is set at 502 and 506. The factor K is loaded (`d2` 0x80) at 496 (`a` 2), 499 and 504. The parameter-memory store flag is set in ten records, in this order of `ma`: 0xf2 (503), 0xf3 (505), 0xf0 (506), 0xf6 (507),
+  0xf4 (509), 0xf8 (510), 0xf5 (511), 0xf1 (512), 0xf7 (513) and 0xf9 (514). The end mark 2 is at 510, so 511 to 514 are delay slots and four of the ten stores run in them. No record sets `d2` to an output code or the output word field. **inferred:** it computes ten parameter words from them: it
   combines operands 0 to 3 with the constants 2.828, 0.0 and -0.707 (data words 0x1e4, 0x1e3, 0x1ea)
   through two dot products (R26 with itself at 501; at 503 R26's x to z lanes with R27's w lane, against
   the same, `ucode/buzz_isa.md` pass 17) and scalar codes 5 and 0xd,
@@ -123,35 +137,46 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   set-up 1265 puts in the w lanes of R22 and R24 (`ucode/buzz_isa.md` pass 17). The diagnostic image
   (`ucode/disasm/diagxform.lst`) has the same routine at 490 with R17, R18 and R16 for R26, R27 and
   R25, and gives the same words.
-- **`303`** (routine; kernel record 303), **inferred**: the pixel rectangle of opcode 0x12f, ten
+- **`303`** (routine; kernel record 303, records 303 to 323 identical in the kernel copy), **inferred**: the pixel rectangle of opcode 0x12f, ten
   operands, which every image draw and copy selects (libGLcore's pixel copy and move paths in
   `ody_image_move.s`, the X module's `odsyDrawImagePIO` and `odsyCopySDRAM`, the kernel's
-  `gfP_OdsyClearBuffer` and `odsyDMAOps`). Inputs: operands 0 to 5, passed through the vector unit
-  (303 to 308), and the slot-15 group of operands 6 to 9, which the colour unit takes twice with
-  code 0x1f22. Outputs: two seven-word vertices (headers of 6 at 309 and 322), the rectangle's two
-  corners: the colour as words 1, 2 and 8, 9, operands 0 to 2 as words 5, 6 and 4 and operands 3 to
-  5 as words 12, 13 and 11, and words 3 and 10 from code 0x21, the place 1/w has in a vertex. It
-  computes no product; it selects which operand fills which vertex word.
-- **`324`** (routine; kernel record 324), **inferred**: the clear and stipple rectangle of opcode
+  `gfP_OdsyClearBuffer` and `odsyDMAOps`). **established** from the fields of records 303 to 323: records 303 to 308 load operands 0 to 5 (`r3` 0x10 to 0x15, `d0` 4, no issue);
+  310 and 312 read slot 15 (`r3` 0xf) with colour operation 0x1f22, which is the group of operands 6 to 9; no record reads operands 6 to 9 by `r3` 0x16 to 0x19. Header records (`s1` 0x114 at 309, 0x214 at 322) both carry count field 6.
+  The word records name, in order, 1 and 2 (310, 311, colour words, `s1` 0x81), 8 and 9 (312, 313, colour words), 5, 6 and 4 (314 to 316), 12, 13 and 11 (317 to 319),
+  then 3 (320) and 10 (321) with `d2` 0x21, and 14 (323, `s1` 0x180, the last-word record). Word 7 is named by no record. The end mark 2 is at 319, so 320 to 323 are its delay slots.
+  No record sets `d1`, `ma`, `ln` or `b`: the routine reads no data memory and writes no register or parameter. **inferred:** the colour words carry the slot-15 group twice, once per corner; operand k of 0 to 5 reaches
+  the word record 11 records after its load (314 to 319, as in 324), operands 0 to 2 as words 5, 6 and 4 and operands 3 to 5 as words 12, 13 and 11; code 0x21 fills words 3 and 10, the place 1/w has in a vertex.
+  It computes no product; it selects which operand fills which vertex word.
+- **`324`** (routine; kernel record 324, records 324 to 359 identical in the kernel copy), **inferred**: the clear and stipple rectangle of opcode
   0x144, ten operands, sent as `0x8f80a944` by `__glOdysseyClear` (`ody_clear.s`, source line 415)
   between a begin word with primitive 7 and an end word, and by `LoadAndSendStippledQuads`
-  (`ody_bitmap.s`). It uses 303's two-vertex output layout twice (headers at 330 and 343, then 345
-  and 358), so it produces four vertices; their words 5, 6 and 4 take operands (0, 1, 2), (3, 1, 5),
+  (`ody_bitmap.s`). **established** from the fields of records 324 to 359: operands are loaded in two runs, 324 to 329 (`r3` 0x10, 0x11, 0x12, 0x13, 0x11, 0x15: operands 0, 1, 2, 3, 1, 5)
+  and 339 to 344 (`r3` 0x13, 0x14, 0x12, 0x10, 0x14, 0x15: operands 3, 4, 2, 0, 4, 5); no other record reads an operand. Slot 15 is read with colour operation 0x1f22 at 331, 333, 346 and 348.
+  Header records (count field 6) are at 330 and 345 (`s1` 0x114) and 343 and 358 (`s1` 0x214). Each run of word records names 1, 2, 8, 9, 5, 6, 4, 12, 13, 11, 3 and 10 in 303's order
+  (colour words 1, 2, 8, 9 at 331 to 334 and 346 to 349, then 335 to 340 and 350 to 355 for 5, 6, 4, 12, 13, 11, and `d2` 0x21 words 3 and 10 at 341, 342 and 356, 357) and ends in a last-word record
+  with field 14 at 344 and 359 (`s1` 0x180). The end mark 2 is at 355, so 356 to 359 are delay slots. No record sets `d1`, `ma`, `ln` or `b`.
+  **inferred:** it uses 303's two-vertex output layout twice, so it produces four vertices; with each word record taking the operand loaded 11 records before it, words 5, 6 and 4 take operands (0, 1, 2), (3, 1, 5),
   (3, 4, 2) and (0, 4, 5) in turn. With operands 0, 1 and 3, 4 as two opposite corners, that selects
   the four corners of an axis-aligned rectangle in order around it, which is what a clear needs and
   303's two corners are not. The colour words come from the slot-15 group as in 303.
-- **`360`** (routine; kernel record 360), **established**: the textured rectangle command of
+- **`360`** (routine; kernel record 360, records 360 to 409 identical in the kernel copy), **established** for the fields below: the textured rectangle command of
   opcode 0x168, fourteen operands, sent as `0xcf80b968` by the texture paths:
   `DownsampleTextureThruHW` (`ody_texture.s`) and `__glOdysseyImageMovePixelsTexture`
-  (`ody_image_move.s`). It reads operands 0 to 9 and slot 15, and is the only one of the three
-  rectangle routines that reads the data table (`ma` 0x1e3). **inferred** from the listing and `scripts/buzz_ucode_dataflow.py`: it takes operands 0 to 9 and the slot-15 group as inputs and selects them into the words of two corner packets announced by headers of 9; the colour passes through the colour unit's running sum (operation 0x0009) and leaves as words 1 and 11 (0x000a), code 0x21 fills words 6 and 0, and scalar code 5 runs twice near the end. It computes no product; the two packets are its whole output.
-- **`410`** (routine; kernel record 410), **inferred**: the colour-unit data load. The kernel sets
+  (`ody_image_move.s`). Operands are loaded by `r3` in 360 to 369 (0, 1, 2, 3, 1, 2, 6, 7, 8, 7) and 379 to 388 (3, 4, 5, 0, 4, 5, 8, 9, 6, 9); no record reads operands 10 to 13 by `r3` 0x1a to 0x1d, and slot 15 is read once, at 378,
+  with colour operation 0x1f20, which is the group of operands 10 to 13. It is the only one of the three rectangle routines that reads the data table: record 360 reads `ma` 0x1e3, the constant 0.0 (`ucode/buzz_isa.md`, pass 12), record 362 loads it as the factor K (`a` 3, `d2` 0x80), and
+  records 363 and 364 (`d1` 0xd, the multiply by K) take lane x of R0, read at 362 and 363; under the pass 13 rules no later record takes those results. Four header records, all with count field 9, sit at 366 and 389 (`s1` 0x116) and 383 and 404 (`s1` 0x216); the stretches that follow them hold
+  16, 5, 14 and 5 records. The word numbers reach 20 in each of the two groups (366 to 388 and 389 to 409); the header count of 9 does not cover them (pass 16 left this open). The word records numbered 16 to 20 are those whose colour field is 0x0009 (370, 374 to 376, 382, 388, 393 to 395, 401, 409),
+  which pass 16 reads as the fifth bit of the word number, not as a colour operation: 370 and 382 are word 16 (code 0x21), 376 is 17, 374 is 18, 375 is 19 and 388 and 409 are word 20 with the last-word bit. The word records with `d2` 0x21 are 369, 370, 381, 382, 400 and 401. Colour words
+  (`s1` 0x81, colour field 0x000a) are 384 and 385 as words 1 and 2, 386 and 387 as words 11 and 12, and 405 to 408 repeat them. The first stretch names words 5, 15, 6 (code 0x21), 16, 8, 9, 7, 18, 19, 17, 3, 4, 13, 14, 6 (0x21) and 16 (0x21);
+  scalar code 5 (`d1` 5) is set at 398 and 399 and nowhere else in the routine. The end mark 2 is at 405 and 406 to 409 are its delay slots. **inferred** from this and `scripts/buzz_ucode_dataflow.py`: it selects operands 0 to 9 and the slot-15 group into the words of the corner packets;
+  no field issues a dot product, so it computes none. The grouping of the four headers into packets, and what the words 13 to 20 mean, are **unknown**.
+- **`410`** (routine; kernel record 410, records 410 to 417 identical in the kernel copy), **inferred**: the colour-unit data load. The kernel sets
   sequencer 0x29 to 410 and sequencer 0x32 to a colour-unit address (24), then sends `0x8e809015`
   with four floats (`odsyRestoreXform`, `odsy_ctxsw.o`); libGLcore's lighting does the same
-  (`ody_lighting.s`). Its input is slot 14, the four floats that word carries, and its first record
-  copies them into the colour unit with code 0x1f20, the same code the vertex routines use for the
-  colour slot; sequencer 0x32 names the colour-unit memory as the destination. It is a colour-memory load:
-  three idle records follow up to the end mark at 413, so it moves one four-float vector per word. Its output is that vector at the colour-unit address in sequencer 0x32.
+  (`ody_lighting.s`). **established** from the fields of records 410 to 417: record 410 reads slot 14 (`r3` 0xe) with colour operation 0x1f20, the code the vertex routines use for the colour slot;
+  411 and 412 are idle; the end mark 2 is at 413 (every other field at the idle value); 414 to 416 are idle; and 417, the last delay slot, carries colour field 0xc008, which sets bit 31 and bit 30 with address 0 and the idle operation 0x08.
+  Nothing else is set: no vector, scalar, parameter or output field. **inferred** (pass 13 reads the colour-field bits): the slot-14 floats go into the colour unit at 410 and 417 stores that value,
+  bit 31 being a store and bit 30 adding the base in sequencer 0x32, so the word lands at the address the host loaded into 0x32, as one four-float vector per data-load word.
 - **`1221`** (routine; kernel record 1122), **established**: the null routine. Its only record is
   the end mark with every other field at the idle value, followed by four idle records.
   `AddProgram` (`ody_program.s`, source lines 1172 to 1192) puts it in sequencers 0x2a and 0x2c
