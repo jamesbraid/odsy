@@ -11,6 +11,110 @@ Questions the binaries and published sources have not yet answered. One entry ea
 
 An entry that exhausts all five is relabelled "unknown: no shipped software or published source depends on it" in its owning file, with the routes listed, and removed here.
 
+## Triage by route (2026-11-01)
+
+Every entry below opens with one route tag. Route numbers refer to the list at the top of this file.
+
+- An emulator run shows the driver's expectation, not the board.
+- **missing release or binary**: the next step needs a release, disc, binary or model that `root/` does not hold.
+- **hardware only**: no software or published route is named. Recorded, not scheduled.
+- **pointer**: a summary bullet with no route of its own.
+
+Counts over 72 entries: software now 65 (53 start in the tree or source, 12 start with a published search), missing release or binary 4, hardware only 2, pointer 1. Ten software-now entries also name a blocked route in their text, and the command FIFO credit entry also names a hardware-only part.
+
+What `root/` holds, checked on 2026-11-01: the 6.5.30m media subset, `odydiags` (6.5.15), patches 4103 and 4104, `ide.IP30`, `IP30prom.bin` and `ip35prom.img`. It holds no 6.5.8 or 6.5.14 release, no 6.5.9 or 6.5.10 libGLcore, no IP35 diagnostics, and none of `hinv`, `oglsnoop`, `pandora`, `ogldebug` or the `vfc` man page. 
+
+### Software now, in the order to run them
+
+Start at the top. Tier 1 needs only the tree and `root/`.
+
+Tier 1, local reads:
+
+2. Cursor alpha codes and control bits: disassemble the IP30 PROM's cursor set-up.
+3. PROM listing strings: find the references through the pointer tables, then disassemble the lister.
+4. Display FIFO depth: compare the level constants in `odsy_brdmgr.o` and `odsy_init.o`.
+5. Overlay capability: the readers of visual-record offset 56 in `Xsgi` and `odyssey.so`.
+6. Default X visual of a V6: follow `odsyInit` through `ddxDfltVisualID`.
+7. 24-bit accumulation and 12-bit visuals: decode `odsyCapabilityInfo` per memory size.
+8. Texture size cap: the texture-object size checks in `odsy_pmm.o`.
+9. Frame-buffer start address: trace the attach-path stores, then run `odsyConfigFb` under the shim.
+10. Pbuffer size code: decode the table, then run the 1280 x 1024 request under the shim.
+11. Board attach order: crossbar enumeration in `kernel.o` and the X module's board scan.
+12. Image path header codes: the 80-byte request builder of `odsyDrawImageDMA`.
+13. Display-mode bits 31:25: the OpenBSD driver's comments and the readers in `odsy_retrace.o`.
+14. Retrace period: decode the event entries against the `.vfo` fields.
+15. Line-table encoding: decode the signal and event bits across the 79 `.vfo` files in `root/`.
+16. Clock-part register bits: the write order in `odsy_ddc.o`.
+17. Scan and diagnostic registers: stores at those displacements in the diagnostic tool the entry names.
+18. DMA engine: search `odydiags` and the compositor tool `sting` for a diagnostic that drives the DIAGdma path.
+19. Routines no host code names: search the IP35 PROM image's BASEIO code for loads of them (the IP35 diagnostics are missing).
+20. Command FIFO flow control: the IP35 exception return path, for whether a return to kernel mode switches threads.
+21. Class-0 words 0x4c0 + n: trace the routine in `buzz_xform.bin` that reads the data written by the 0x3cf8 to 0x3cfb blocks.
+22. Shared libGLcore routine pairs: read each remaining pair in full.
+23. Generated entry points: derive each routine's argument layout from its record size and stores.
+24. Patch builds and the other builds with a different call count: compare each against the public source.
+25. Inventory credit for the six installed library rows: the exact-label match in `scripts/inventory.py`, changed in the shared script's owning workspace first (two entries).
+
+Tier 2, emulator runs (driver expectation only, route 4):
+
+26. Pixel header word fields: run the shipped driver under the emulator and log the words.
+27. Front and back with no displayed buffer: the patent's buffer-select passages, then the emulator.
+28. Pixel quads and window origin: the patent's rasteriser passages, then the emulator.
+29. Tables 0x220 and 0x230: stores through computed pointers, then the emulator.
+30. User windows and the 0x402c fields: the offsets libGLcore touches in its windows, then the emulator.
+31. Context save: the emulator, then route 5.
+32. Value-3 marks (patent and microcode entries, two entries): the emulator run that shows which table entry a mark takes.
+
+Tier 3, numeric and microcode checks on the stored frames and runs:
+
+33. Remaining operation codes, patent view: fit the table functions to the `odydiags` frames.
+34. Remaining operation codes, microcode view: the scalar output by code across table-program loops, then code 2 through program 1313.
+35. Colour operation 0x40 in the normalize programs: test the records with bit 0x40 in the 1520 and 1623 runs.
+36. Large checkerboard frame list value: search the plane set-up's order of operations against `checkr3d.SUM`.
+37. Colour interpolation (two entries): the fixed-point edge weights fitted against `--residue`, and the 12-bit colour modules and subdivision order from the patents.
+38. Antialiased coverage: fit G with the width-1.06 area filter and a closed form for the curve.
+39. Small clip w and integer vertex edges: search the shipped binaries in `root/` and the stored frames.
+
+Tier 4, route 5 reads:
+
+40. Blocks the hardware validator sends: route 5, then the emulator.
+41. COUNT 9 to 14: route 5.
+42. Attribute ids never sent: the run-time word builders in libGLcore, then route 5.
+43. Interrupt flags and enables: route 5 for the interrupt-controller side.
+44. Drawable registers 0x608 to 0x60f and block 0x017: route 5.
+45. Block 0x170 operand: the bit assembly of `odsyDrawImagePIO`.
+46. PB&J pixel fetch, and what raises retrace, sync, genlock and DBE overflow (two entries): route 5.
+48. Texture filter widths (two entries): route 5, then any software filter in libGLcore.
+
+Tier 5, published search (route 3 and similar):
+
+49. ICC texture level packing: published output from a board, the last route the entry names.
+50. ID word 0x003d0046: published `gfxinfo` output for V6 to V12 boards.
+51. Four library-only encodings: published output (low expected yield).
+52. Bits 18:16 of +0x1044: published output.
+53. Display-mode bits 23:12 and 3:0: published screenshots of 12- and 15-bit visuals, then route 5.
+54. IP35 digital output parts: published datasheets of the SiI164-family transmitters and the FS6131 register map.
+55. Raw widget revision: published `hinv` or crossbar dumps, and the PROM's Buzz revision string against a posted boot.
+56. Reset values and the widget request timeout: a published Octane2 boot that prints the same line.
+57. Memory organisation and bit 8 of 0x1004: published board photographs.
+58. Unclipped vertices and quads from Z=0 (two entries): newsgroup reports of VPro artefacts near the eye.
+59. Display register bit fields: published output.
+
+Not in this list: the raster tie rule and the pixel-clock artefacts (hardware only), and the four missing-binary entries (the texture unit model, `hinv`, the IRIX tools and man page, and the 6.5.9 projection path).
+
+### Duplicates and pointers for the owner
+
+Not merged here, because this pass only tags:
+
+- The colour interpolation question appears in the published-source list and in the raster rules.
+- The value-3 marks question appears in the published-source list and in the microcode section.
+- The texture arithmetic question appears in the published-source list and in the BUZZ section.
+- The unclipped-vertex question and the Z=0 quads question overlap.
+- The six installed library rows appear in the inventory-rule section and in the recollection leads.
+- The pointer bullet (3D checkerboard frame, DMA engine, display bit fields, board memory, ID word, user windows) repeats six entries below it. It can be deleted.
+
+Entries whose route 1 needs a release not in `root/` keep that part tagged missing in their own text. Nothing in this pass answers an entry.
+
 ## Published sources, route tried (2026-10-29)
 
 Patents, SGI manuals and white papers were searched for every open entry below; [published-sources.md](published-sources.md) holds the identity and facts of each. Result by entry, so no later reader repeats the route. Every patent fact is inferred, because no patent names the chip.
