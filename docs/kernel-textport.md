@@ -19,7 +19,7 @@ The driver is a STREAMS module with a single global state record in `.bss` (208 
 
 - `tp_close` (`tport.o`, offset 0x1a0, 164 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.
-  Closes the console stream and clears the state (no argument is used). The body was read to its single return. Under the spin lock `TPORT`, taken with interrupts blocked, it cancels each of the two timers whose identifiers are nonzero with `untimeout` and zeroes them, flushes the receive ring with `tp_flushr` and frees the pending message block with `freemsg` when one exists, zeroes the queue pointers at +8 and +16 and the flags at +24, releases the lock and returns 0.
+  Closes the console stream and clears the state (no argument is used). The body was read to its single return. Under the spin lock `TPORT`, taken with interrupts blocked, it cancels each of the two timers whose identifiers are nonzero with `untimeout` and zeroes them, then, only when a pending message block exists (the pointer at +192), flushes the receive ring with `tp_flushr` and frees the block with `freemsg`, zeroes the queue pointers at +8 and +16 and the flags at +24, releases the lock and returns 0.
 
 - `tp_wput` (`tport.o`, offset 0x244, 1156 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.
@@ -100,7 +100,7 @@ The driver is a STREAMS module with a single global state record in `.bss` (208 
 
 - `gfx_earlyinit` (`tport.o`, offset 0x1230, 64 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.
-  Early graphics probe of the IP35 build (no arguments; size 64 bytes here against 36 in the IP30 build). It calls `kona_earlyinit` and returns at once when that returns zero; it then calls `odsy_earlyinit` and returns when that returns nonzero; otherwise it calls `vga_earlyinit`. It is a priority chain: each probe is tried only after the one before it found no board.
+  Early graphics probe of the IP35 build (no arguments; size 64 bytes here against 36 in the IP30 build). It calls `kona_earlyinit` and returns at once when that returns nonzero; on zero it calls `odsy_earlyinit` and returns when that returns nonzero; on zero it calls `vga_earlyinit`. It is a priority chain: each probe is tried only after the one before it returned zero (that zero means no board is **inferred**).
 
 - `gfx_earlyinit` (`tport.o`, offset 0x1230, 36 bytes): **established.**
   Build: `usr/cpu/sysgen/IP30boot/tport.a(tport.o)`.
