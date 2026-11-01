@@ -2517,7 +2517,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda285f0	388	__glSpanRenderStencil	dynsym+mdebug	ca660fa2db36		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28774	324	__glSpanRenderStencil2	dynsym+mdebug	4bc5e0a5540a		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda288d0	196	__glElementsPerGroup	dynsym+mdebug	3c905fb913a9		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28994	348	__glBytesPerElement	dynsym+mdebug	fdb9cf22378d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28994	348	__glBytesPerElement	dynsym+mdebug	fdb9cf22378d		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28af0	260	__glSpecElementsPerGroup	dynsym+mdebug	d07d26ca0593		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28bf4	252	__glSpecBytesPerElement	dynsym+mdebug	6fc26af7ae61		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28cf0	536	__glInitUnpacker	dynsym+mdebug	26c2f2f24771		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -8354,7 +8354,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11910	416	__glSpanRenderStencil	dwarf+dynsym	274e8db95516		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11ab0	348	__glSpanRenderStencil2	dwarf+dynsym	5b2825581e43		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11c10	292	__glElementsPerGroup	dwarf+dynsym	c807ec9dca1a		in	understood	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11d40	412	__glBytesPerElement	dwarf+dynsym	8a70e5e93dc8		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11d40	412	__glBytesPerElement	dwarf+dynsym	8a70e5e93dc8		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11ee0	452	__glSpecElementsPerGroup	dwarf+dynsym	eaa703687eff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda120b0	452	__glSpecBytesPerElement	dwarf+dynsym	bf2a6a1b4619		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda12280	484	__glInitUnpacker	dwarf+dynsym	f990fa76e15e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -14244,7 +14244,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2256750	416	__glSpanRenderStencil	dwarf+dynsym	ef07b9e9fd16		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22568f0	368	__glSpanRenderStencil2	dwarf+dynsym	069ca8c33930		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2256a60	292	__glElementsPerGroup	dwarf+dynsym	c807ec9dca1a		in	understood	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2256b90	412	__glBytesPerElement	dwarf+dynsym	beb78ae47bb1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2256b90	412	__glBytesPerElement	dwarf+dynsym	beb78ae47bb1		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2256d30	452	__glSpecElementsPerGroup	dwarf+dynsym	eaa703687eff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2256f00	452	__glSpecBytesPerElement	dwarf+dynsym	bf2a6a1b4619		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22570d0	484	__glInitUnpacker	dwarf+dynsym	00121c6c80c7		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -20281,7 +20281,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf7e50	388	__glSpanRenderStencil	dynsym+mdebug	d5136600d3c7		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf7fd4	324	__glSpanRenderStencil2	dynsym+mdebug	1195b78fb1dd		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8120	196	__glElementsPerGroup	dynsym+mdebug	65d72141fa84		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf81e4	348	__glBytesPerElement	dynsym+mdebug	f145d0de7ed6		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf81e4	348	__glBytesPerElement	dynsym+mdebug	f145d0de7ed6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8340	260	__glSpecElementsPerGroup	dynsym+mdebug	1c1b737a3922		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8444	252	__glSpecBytesPerElement	dynsym+mdebug	b9bda700dcc1		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8540	536	__glInitUnpacker	dynsym+mdebug	081d24de99c6		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -26234,7 +26234,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf0e60	416	__glSpanRenderStencil	dynsym	99a54580fd43		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1000	348	__glSpanRenderStencil2	dynsym	f717cb716e1a		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1160	216	__glElementsPerGroup	dynsym	bed2448b9a85		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1240	396	__glBytesPerElement	dynsym	663dc658bb6a		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1240	396	__glBytesPerElement	dynsym	663dc658bb6a		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf13d0	452	__glSpecElementsPerGroup	dynsym	be1e29c82ce9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf15a0	448	__glSpecBytesPerElement	dynsym	ee3e7d171267		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1760	488	__glInitUnpacker	dynsym	515748fc8076		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -31840,7 +31840,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d6d00	432	__glSpanRenderStencil	dwarf+dynsym	7e5fbddaf32e		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d6eb0	372	__glSpanRenderStencil2	dwarf+dynsym	aaf6ab410046		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d7030	216	__glElementsPerGroup	dwarf+dynsym	bed2448b9a85		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d7110	396	__glBytesPerElement	dwarf+dynsym	b8f679a8585b		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d7110	396	__glBytesPerElement	dwarf+dynsym	b8f679a8585b		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d72a0	452	__glSpecElementsPerGroup	dwarf+dynsym	be1e29c82ce9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d7470	448	__glSpecBytesPerElement	dwarf+dynsym	ee3e7d171267		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3d7630	488	__glInitUnpacker	dwarf+dynsym	4a45b11c99eb		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -37857,7 +37857,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf7e50	388	__glSpanRenderStencil	dynsym+mdebug	d5136600d3c7		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf7fd4	324	__glSpanRenderStencil2	dynsym+mdebug	1195b78fb1dd		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8120	196	__glElementsPerGroup	dynsym+mdebug	65d72141fa84		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf81e4	348	__glBytesPerElement	dynsym+mdebug	f145d0de7ed6		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf81e4	348	__glBytesPerElement	dynsym+mdebug	f145d0de7ed6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8340	260	__glSpecElementsPerGroup	dynsym+mdebug	1c1b737a3922		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8444	252	__glSpecBytesPerElement	dynsym+mdebug	b9bda700dcc1		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdaf8540	536	__glInitUnpacker	dynsym+mdebug	081d24de99c6		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -43810,7 +43810,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf0e60	416	__glSpanRenderStencil	dynsym	99a54580fd43		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1000	348	__glSpanRenderStencil2	dynsym	f717cb716e1a		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1160	216	__glElementsPerGroup	dynsym	bed2448b9a85		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1240	396	__glBytesPerElement	dynsym	663dc658bb6a		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1240	396	__glBytesPerElement	dynsym	663dc658bb6a		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf13d0	452	__glSpecElementsPerGroup	dynsym	be1e29c82ce9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf15a0	448	__glSpecBytesPerElement	dynsym	ee3e7d171267		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdaf1760	488	__glInitUnpacker	dynsym	515748fc8076		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -49416,7 +49416,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf6d00	432	__glSpanRenderStencil	dwarf+dynsym	7e5fbddaf32e		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf6eb0	372	__glSpanRenderStencil2	dwarf+dynsym	aaf6ab410046		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf7030	216	__glElementsPerGroup	dwarf+dynsym	bed2448b9a85		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf7110	396	__glBytesPerElement	dwarf+dynsym	b8f679a8585b		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf7110	396	__glBytesPerElement	dwarf+dynsym	b8f679a8585b		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf72a0	452	__glSpecElementsPerGroup	dwarf+dynsym	be1e29c82ce9		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf7470	448	__glSpecBytesPerElement	dwarf+dynsym	ee3e7d171267		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbdf7630	488	__glInitUnpacker	dwarf+dynsym	4a45b11c99eb		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -69568,7 +69568,7 @@ usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28488	360	__glSpanRend
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda285f0	388	__glSpanRenderStencil	dynsym+mdebug	ca660fa2db36		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28774	324	__glSpanRenderStencil2	dynsym+mdebug	4bc5e0a5540a		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda288d0	196	__glElementsPerGroup	dynsym+mdebug	3c905fb913a9		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28994	348	__glBytesPerElement	dynsym+mdebug	fdb9cf22378d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28994	348	__glBytesPerElement	dynsym+mdebug	fdb9cf22378d		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28af0	260	__glSpecElementsPerGroup	dynsym+mdebug	d07d26ca0593		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28bf4	252	__glSpecBytesPerElement	dynsym+mdebug	6fc26af7ae61		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xda28cf0	536	__glInitUnpacker	dynsym+mdebug	26c2f2f24771		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -75405,7 +75405,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda117b0	348	__glSpanRe
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11910	416	__glSpanRenderStencil	dwarf+dynsym	274e8db95516		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11ab0	348	__glSpanRenderStencil2	dwarf+dynsym	5b2825581e43		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11c10	292	__glElementsPerGroup	dwarf+dynsym	c807ec9dca1a		in	understood	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11d40	412	__glBytesPerElement	dwarf+dynsym	8a70e5e93dc8		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11d40	412	__glBytesPerElement	dwarf+dynsym	8a70e5e93dc8		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda11ee0	452	__glSpecElementsPerGroup	dwarf+dynsym	eaa703687eff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda120b0	452	__glSpecBytesPerElement	dwarf+dynsym	bf2a6a1b4619		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda12280	484	__glInitUnpacker	dwarf+dynsym	f990fa76e15e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -81295,7 +81295,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a65e0	364	__glSpanRe
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a6750	416	__glSpanRenderStencil	dwarf+dynsym	ef07b9e9fd16		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a68f0	368	__glSpanRenderStencil2	dwarf+dynsym	069ca8c33930		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a6a60	292	__glElementsPerGroup	dwarf+dynsym	c807ec9dca1a		in	understood	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a6b90	412	__glBytesPerElement	dwarf+dynsym	beb78ae47bb1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a6b90	412	__glBytesPerElement	dwarf+dynsym	beb78ae47bb1		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a6d30	452	__glSpecElementsPerGroup	dwarf+dynsym	eaa703687eff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a6f00	452	__glSpecBytesPerElement	dwarf+dynsym	bf2a6a1b4619		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a70d0	484	__glInitUnpacker	dwarf+dynsym	00121c6c80c7		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -87107,7 +87107,7 @@ usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28488	360	__glSpanRend
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda285f0	388	__glSpanRenderStencil	dynsym+mdebug	ca660fa2db36		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28774	324	__glSpanRenderStencil2	dynsym+mdebug	4bc5e0a5540a		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda288d0	196	__glElementsPerGroup	dynsym+mdebug	3c905fb913a9		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28994	348	__glBytesPerElement	dynsym+mdebug	fdb9cf22378d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28994	348	__glBytesPerElement	dynsym+mdebug	fdb9cf22378d		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28af0	260	__glSpecElementsPerGroup	dynsym+mdebug	d07d26ca0593		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28bf4	252	__glSpecBytesPerElement	dynsym+mdebug	6fc26af7ae61		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY/libGLcore.so	board-library	o32		0xda28cf0	536	__glInitUnpacker	dynsym+mdebug	26c2f2f24771		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -92944,7 +92944,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda117b0	348	__glSpanRe
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda11910	416	__glSpanRenderStencil	dwarf+dynsym	274e8db95516		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda11ab0	348	__glSpanRenderStencil2	dwarf+dynsym	5b2825581e43		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda11c10	292	__glElementsPerGroup	dwarf+dynsym	c807ec9dca1a		in	understood	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda11d40	412	__glBytesPerElement	dwarf+dynsym	8a70e5e93dc8		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda11d40	412	__glBytesPerElement	dwarf+dynsym	8a70e5e93dc8		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda11ee0	452	__glSpecElementsPerGroup	dwarf+dynsym	eaa703687eff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda120b0	452	__glSpecBytesPerElement	dwarf+dynsym	bf2a6a1b4619		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda12280	484	__glInitUnpacker	dwarf+dynsym	f990fa76e15e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -98834,7 +98834,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22565e0	364	__glSpanRe
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2256750	416	__glSpanRenderStencil	dwarf+dynsym	ef07b9e9fd16		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22568f0	368	__glSpanRenderStencil2	dwarf+dynsym	069ca8c33930		in	located	docs/sample-implementation.md#px_renderc	px_render.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2256a60	292	__glElementsPerGroup	dwarf+dynsym	c807ec9dca1a		in	understood	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2256b90	412	__glBytesPerElement	dwarf+dynsym	beb78ae47bb1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2256b90	412	__glBytesPerElement	dwarf+dynsym	beb78ae47bb1		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2256d30	452	__glSpecElementsPerGroup	dwarf+dynsym	eaa703687eff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2256f00	452	__glSpecBytesPerElement	dwarf+dynsym	bf2a6a1b4619		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22570d0	484	__glInitUnpacker	dwarf+dynsym	00121c6c80c7		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
