@@ -291,14 +291,8 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
 
 ## Framing and synchronisation words stored to the FIFO
 
-- `0x00010019` (block 0x019, no operand, `libGLcore.so`): **inferred.**
-  Sits between the settle groups: it follows a 250 wait with two fillers and is followed by a 150 wait (0x00010443) with
-  four fillers (0x00010046), a store of zero to the context's settle-needed word at +0x10000 - 26576, and a
-  closing 250 wait with two fillers. Built in ten libGLcore routines
-  (`__glOdysseyFlush`, `Finish`, `SwapBuffers`, `SetDrawbuf`, `ValidateContext`, `ValidateHardware`, the pipe-memory object opens and reads, the
-  convolution-filter program) and in the kernel's `odsyPushBufferSelect`, `odsyDMAOp`, `odsyRestoreRaster`, `odsyRestartContext`
-  and textport. A flush is **inferred** only from where the senders sit (swaps, make-current, pixel and
-  memory-object paths); what the board does with the word is unknown.
+- `0x00010019` (block 0x019, no operand, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00010019 is the middle word of the settle sequence: a 250 wait with two fillers, then this word, then a 150 wait with four fillers, a zero stored to the settle-needed word at +0x10000 - 26576, and a closing 250 wait. Ten libGLcore routines and the kernel's `odsyPushBufferSelect`, `odsyDMAOp`, `odsyRestoreRaster`, `odsyRestartContext` and textport paths send it. The drivers never read a result after it, so no shipped software or published source depends on what the board does with it. Routes tried: the decompiled libGLcore listing (`ody_pmobj.c`, `ody_context.c` and `ody_unixcontext.c`), the binary scan, `BUZZ.h` section 5.
 - `0x00010046` (block 0x046, no operand, `libGLcore.so`): **inferred.**
   The filler of the settle sequence: two or four copies follow each wait word, sent in about forty libGLcore routines
   and in `odsyInitCfifo` (`odsy_init.o`) just before the microcode download, where the routine waits 2000 us.
@@ -315,15 +309,13 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
   The matching end word, built in `__glOdyim_End` and `sseyDoTriangleClip`, in `gfP_OdsyClearBuffer`, `odsyDMAOp` and
   the textport paths, and replayed with 0x14400 by `odsyRestoreGfe`; libGLcore flags it to insert a short settle
   group before the next register block.
-- `0x00010444` (block 0x044, one operand, `odsy_ctxsw.o`): **established.**
-  Appears only around context save and DMA: stored by `gf_OdsyPcxSwap` and twice by `odsyDMAOps`, and by
-  libGLcore's `__glOdysseyVertexWARClip`; the register's effect is not known from any sender.
+- `0x00010444` (block 0x044, one operand, `odsy_ctxsw.o`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00010444 with operand 0, stored once by `gf_OdsyPcxSwap`, twice by `odsyDMAOps`, including on the DMA error drain (`docs/kernel.md`), and by libGLcore's `__glOdysseyVertexWARClip`. The drivers never read a result from it, so no shipped software or published source depends on its effect. Routes tried: the binary scan, a literal search of the decompiled libGLcore listing (no store of the word), `BUZZ.h`, `docs/kernel.md`.
 - `0x00010850` (block 0x050, two operands, `odsy_ctxsw.o`): **established.**
   Context select: `gf_OdsyPcxSwap` stores it twice and `odsyRestartContext` once, with operands
   ((slot << 12) AND 0x7f000) OR x OR 0xf and 0 (`BUZZ.h`, context save).
-- `0x00010854` (block 0x054, two operands, `odsy_init.o`): **established.**
-  Built by `odsyInitCfifo` alone, at the start of the command-FIFO set-up, followed by five doubleword stores and a
-  2000 microsecond delay; the operands 0 and 0x0fffffff are built with `lui`/`ori` just before the doubleword stores. What the board does with them is unknown.
+- `0x00010854` (block 0x054, two operands, `odsy_init.o`): **inferred.**
+  The memory-protection command of the FIFO set-up. Operand 0 is the bottom and 0x0fffffff the top byte address of the board memory that ordinary FIFO writes may reach; memory below the bottom holds the command FIFO itself (`BUZZ.h` section 5, from the binaries read here). `odsyInitCfifo` (`odsy_init.o`) sends it first, before the five doubleword stores.
 - `0x00010658` (block 0x258, one operand, `odsy_dma.o`): **established.**
   Sent with operand 0x00120000 before a rectangle copy, by `odsyCopyRectBody`, the image paths
   (`__glOdysseyImageMovePixelsDMAtoGfx`) and the kernel's `odsyDMAOp` and `odsyRestartContext`.
@@ -425,8 +417,8 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
   Index 36, the third block of the full replay, which carries 16 words in `odsyRestoreXform`.
 - `0x34008034` (register 0x34, index 52, `odsy_ctxsw.o`): **established.**
   Index 52, the fourth block of the full replay in `odsyRestoreXform`.
-- `0x35008000` (register 0x35, value 0, `libGLcore.so`): **established.**
-  The context default that `__glOdysseyValidateContext` stores for register 0x35 (`ucode/buzz_isa.md`); its meaning is unknown.
+- `0x35008000` (register 0x35, value 0, `libGLcore.so`): **inferred.**
+  The colour-material copy enable of register 0x35 (`ucode/buzz_isa.md` names it that way, and gives the context default 0). `ValidateColorMaterial` (`libglcore/decomp/ODYSSEY/ody_attrib.c`) stores the word with the value it computes when the flag at context +0xC94 is set, and records the same value at context +0xa228. The default-state routine `__glOdysseyInitDefaultValues` (`ody_context.c`) sends the word with the zeroed +0xa228 word, so the default value is 0.
 
 ## GLX request-code words stored by libGL (not command words)
 
@@ -567,10 +559,8 @@ These words are not FIFO commands. `libGL.so` (the IP30 build under `usr/gfx/arc
   Level descriptor 60 of the 64-entry level table (0x280 + 60), a block `DownsampleTextureThruHW` and
   `__glOdysseyImageMovePixelsTexture` fill and send to render into a texture level; `__glOdysseyGetCurrentTexture` also builds it.
   Word 0 is the board address of the level, word 1 the pitch in tiles (inferred, `docs/buzz.md`).
-- `0x00011a50` (block 0x250, six operands, `libGLcore.so`): **established.**
-  Sent by `__glOdysseyValidateContext` (`ody_context.s`, source line 2529) after `0x00010407`, with six operands
-  taken from the context words at +0x10000 - 26796 to - 26776, which the routine masks and rewrites just before. The
-  fields' meaning is unknown.
+- `0x00011a50` (block 0x250, six operands, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00011a50 carries six operands from the context at +0x10000 - 26796, sent by `__glOdysseyValidateContext` (`libglcore/decomp/ODYSSEY/ody_context.c`) after block 0x007. The drivers never read a result from it, so no shipped software or published source depends on what the six words set. Routes tried: the binary scan, the decompiled listings (`ody_fragment.c` and `ody_context.c`), `BUZZ.h`, `docs/buzz.md`.
 
 ## Validator-only raster blocks stored to the FIFO
 
@@ -646,12 +636,10 @@ the same blocks after a lost context.
 - `0x0001044c` (block 0x04c, one operand, `libGLcore.so`): **established.**
   Sent by `__glOdysseyValidateContext` and replayed from hardware-shadow offset 0x1cac by `odsyRestoreRaster`; the
   field layout is unknown.
-- `0x00010018` (block 0x018, no operand, `odsy_ctxsw.o`): **established.**
-  Built by `__glOdysseyValidateHardware`, `odsyRestoreRaster` and `odsy_mm_obj_xfr_bs`, ahead of memory-object
-  transfers; it takes no operand, and what it does is unknown.
-- `0x00010400` (block 0x000, one operand, `libGLcore.so`): **established.**
-  Built in `__glOdyim_Enable`, `__glOdyim_Disable` and `__glOdyim_Hint` and by `odsyRestartContext` in the kernel;
-  the operand layout and effect are unknown.
+- `0x00010018` (block 0x018, no operand, `odsy_ctxsw.o`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00010018 takes no operand. It is built in `odsyRestoreRaster` and `odsy_mm_obj_xfr_bs`, and in libGLcore's `__glOdysseyValidateHardware` (`libglcore/decomp/ODYSSEY/ody_context.c`), ahead of memory-object transfers. The drivers never read a result from it, so no shipped software or published source depends on its effect. Routes tried: the binary scan, the decompiled libGLcore listing, `BUZZ.h`, `docs/buzz.md`.
+- `0x00010400` (block 0x000, one operand, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00010400 with one operand, stored by the kernel's `odsyRestartContext` (`odsy_ctxsw.o`). The decompiled libGLcore listing has no literal store of it: `__glOdyim_Hint` (`libglcore/decomp/ODYSSEY/ody_attrib.c`) sets bit 0x400 of the context dirty word at +16964 instead. The drivers never read a result from it, so no shipped software or published source depends on the operand's layout or its effect. Routes tried: the binary scan, the decompiled listing search, `BUZZ.h`, `docs/buzz.md`.
 
 ## Block ids 0x000 to 0x011 that are not board registers
 
@@ -715,14 +703,10 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   Four operands copied from context +0x969c to +0x96a8 by `__glOdysseyValidateHardware` as word 0x00011017 (the X module
   copies them from +6948 to +6960 of its own context); the kernel's
   `odsyRestartContext` sends it too and replays it from hardware-shadow offset 0x1b24.
-- `0x018` (block with no operand, `odsy_ctxsw.o`): **established.**
-  Word 0x00010018 is built in `odsyRestoreRaster` and `odsy_mm_obj_xfr_bs`; the replay table lists the block with zero
-  operands and no shadow offset. The block's effect is unknown.
-- `0x019` (flush block, `libGLcore.so`): **inferred.**
-  Word 0x00010019, no operand, the middle word of the settle sequence (between the 250 and 150 waits, the settle-needed word
-  cleared before the last group) in ten libGLcore routines and in the kernel's `odsyPushBufferSelect`, `odsyDMAOp`,
-  `odsyRestoreRaster`, `odsyRestartContext` and textport; reading it as a pipeline flush rests only on those
-  senders (swaps, make-current, pixel and memory-object paths), and what the board does with it is unknown.
+- `0x018` (block with no operand, `odsy_ctxsw.o`): **unknown: no shipped software or published source depends on it.**
+  The block has no operand and no shadow offset in the replay table of `odsyRestoreRaster`. Word 0x00010018 is built in `odsyRestoreRaster`, `odsy_mm_obj_xfr_bs` and libGLcore's `__glOdysseyValidateHardware`, and `odsyDMAWait` sends it inside its settle groups (`docs/driver-functions.md`). The drivers never read a result from it, so no shipped software or published source depends on its effect.
+- `0x019` (settle-sequence word, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
+  Block 0x019 has no operand. It is the middle word of the settle sequence, between the 250 and 150 waits, and the senders place it there: ten libGLcore routines and the kernel's `odsyPushBufferSelect`, `odsyDMAOp`, `odsyRestoreRaster`, `odsyRestartContext` and textport paths. The placement is the drivers' choice, and they never read a result after it, so no shipped software or published source depends on what the board does with it. Routes tried: the decompiled libGLcore listing (`ody_pmobj.c`, `ody_context.c` and `ody_unixcontext.c` carry the word), the binary scan, `BUZZ.h` section 5, and `docs/buzz.md`.
 - `0x01b` (texture environment block): **established.**
   Five operands as word 0x0001141b when dirty bit 0x100 is set; the first operand's bits 2:0 are the environment
   mode from `__glOdysseyTextureSetOp`. Replayed from hardware-shadow offset 0x138.
@@ -768,9 +752,8 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x03d` (mode-3 post-filter block, `odsy_ctxsw.o`): **established.**
   Word 0x0001083d, two operands, a scale of 0x1000 and a bias of 0 that the context's default-state routine
   writes; the kernel replays it in `odsyRestoreRaster`.
-- `0x03e` (texture offset block): **established.**
-  Word 0x00010c3e with three operands from context 0x8d6c to 0x8d74, always zero because `SetTexOffsetValues` zeroes
-  them; replayed from hardware-shadow offset 0x11f4. Field meaning unknown.
+- `0x03e` (texture offset block, `libGLcore.so`): **inferred.**
+  Three words, the texture offset values. `__glOdysseyValidateHardware` (`libglcore/decomp/ODYSSEY/ody_context.c`) sends them as word 0x00010c3e with operands from the context at +0x8d6c, +0x8d70 and +0x8d74. `__glOdysseyValidateTextureState` (`ody_texture.c`) copies those three from the texture state's +0xd0, +0xd4 and +0xd8 words, and `SetTexOffsetValues` (`ody_texture.c`) zeroes the same three words, so the block sends the texture's offset set. Replayed from hardware-shadow offset 0x11f4 by `odsyRestoreRaster`.
 - `0x040` (clip-origin block): **established.**
   Word 0x00010840 with a doubleword built from the board record and a drawable word, stored twice by `odsyClipPush`
   (`odsy_clip.o`) and by `__glOdysseySetDrawbuf` in libGLcore; the kernel's clip push writes it before block 0x041.
@@ -780,12 +763,10 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x042` (image-chain state block): **established.**
   Word 0x00010842, two operands, built by `__glOdysseyImageChainAddOpAcceptSignedDataFromHost` and replayed from
   hardware-shadow offset 0x1ca4. Field layout unknown.
-- `0x044` (block around save and DMA, `odsy_ctxsw.o`): **established.**
-  Word 0x00010444 with operand 0: `gf_OdsyPcxSwap` stores it once and `odsyDMAOps` twice, including on the error drain
-  (`docs/kernel.md`); libGLcore's `__glOdysseyVertexWARClip` builds it too. Effect unknown.
-- `0x045` (gamma-fit block, `odyssey.so`): **established.**
-  Word 0x00010845, two operands, sent only by the X module: `odsyGammaFit` with a clamped float result and 0x76ff, and
-  `odsyInitDefaultHW` with screen set-up words. Effect unknown.
+- `0x044` (block around save and DMA, `odsy_ctxsw.o`): **unknown: no shipped software or published source depends on it.**
+  Block 0x044 with operand 0. Word 0x00010444 is stored once by `gf_OdsyPcxSwap` and twice by `odsyDMAOps`, including on the DMA error drain (`docs/kernel.md`), and libGLcore's `__glOdysseyVertexWARClip` sends it too. The drivers never read a result from it, so no shipped software or published source depends on its effect. Routes tried: the binary scan, a literal search of the decompiled libGLcore listing (no store of the word), `BUZZ.h`, `docs/kernel.md`.
+- `0x045` (gamma-fit block, `odyssey.so`): **unknown: no shipped software or published source depends on it.**
+  Block 0x045 with two operands, sent only by the X module: `odsyGammaFit` sends one operand equal to its float result truncated and clamped to 255 and the constant 0x76ff, and `odsyInitDefaultHW` sends two screen set-up words. The drivers never read a result back from the board for it, so no shipped software or published source depends on what the two operands set. Routes tried: a text search of the X module and kernel listings under `ddx/` and `odsy_kernel/` for the word and the constant, the binary scan, `BUZZ.h`, and `docs/tokens.md`.
 - `0x046` (pad block, `odsy_init.o`): **inferred.**
   Word 0x00010046, no operand, repeated after each wait of the settle sequence and stored by `odsyInitCfifo` before the
   2000 microsecond delay of microcode load; read as a no-op filler from the repeats.
@@ -803,28 +784,25 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x053` (rectangle-copy block): **established.**
   Word 0x00011453, five operands from context +6964 to +6980, sent by `odsyCopyRectBody` after block 0x258;
   replayed from hardware-shadow offset 0x1b34.
-- `0x054` (command FIFO set-up block, `odsy_init.o`): **established.**
-  Word 0x00010854, operands 0 and 0x0fffffff, built by `odsyInitCfifo` alone before the microcode download. Effect unknown.
+- `0x054` (command FIFO set-up block, `odsy_init.o`): **inferred.**
+  Word 0x00010854 with operands 0 and 0x0fffffff, built by `odsyInitCfifo` before the microcode download. The two operands are the bottom and top byte addresses of the board memory that ordinary FIFO writes may reach, with the command FIFO below the bottom.
 - `0x056` (state block replayed from 0x1cb0, `libGLcore.so`): **established.**
   Word 0x00010456, one operand, built by `__glOdyim_PolygonOffsetEXT`, `__glOdysseyFindWindowSize` and
   `__glOdysseyValidateContext`. Field layout unknown.
 - `0x057` (state block replayed from 0x1cb4, `libGLcore.so`): **established.**
   Word 0x00010457, one operand, sent by `__glOdysseyValidateContext` only. Field layout unknown.
-- `0x250` (six-operand context block): **established.**
-  Word 0x00011a50, six operands from context +0x10000 - 26796, sent by `__glOdysseyValidateContext` after block 0x007.
-  Field meaning unknown.
-- `0x258` (copy-prefix block, `odsy_dma.o`): **established.**
-  Word 0x00010658 with operand 0x00120000, sent by `odsyCopyRectBody` before block 0x053, by the image-move paths, and by
-  `odsyDMAOp` and `odsyRestartContext` in the kernel. Effect unknown.
+- `0x250` (six-operand context block, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00011a50 carries six operands, the context words at +0x10000 - 26796 to +0x10000 - 26776, and `__glOdysseyValidateContext` sends it after block 0x007 (`libglcore/decomp/ODYSSEY/ody_context.c`). The drivers never read a result from these six words, so no shipped software or published source depends on what they set. Routes tried: the binary scan, the decompiled listings for the word (`ody_fragment.c` and `ody_context.c`), `BUZZ.h`, and `docs/buzz.md`.
+- `0x258` (copy-prefix block, `odsy_dma.o`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00010658 with operand 0x00120000, sent by `odsyCopyRectBody` before the rectangle-copy block 0x053, by the image-move paths (`__glOdysseyImageMovePixelsDMAtoGfx`), and by the kernel's `odsyDMAOp` and `odsyRestartContext`. The drivers never read a result from it, so no shipped software or published source depends on what the operand selects. Routes tried: the binary scan, the decompiled listing for the word (`ody_pmobj.c`), `BUZZ.h`, `docs/kernel.md`.
 - `0x25a` (tag write-back block, `libGLcore.so`): **inferred.**
   Word 0x00010a5a, two operands, a host location ORed with 0x8000 and a 16-bit tag, sent by `__glOdyGetFromHardware`
   and the kernel's `odsyDMAOp`; the reading is that the board writes the tag to that location, which libGLcore polls.
 - `0x2bc` (level descriptor 60, `libGLcore.so`): **established.**
   Word 0x00010ebc is block 0x280 + 60 with three operands, which `DownsampleTextureThruHW` fills and sends to render into
   a texture level; word 0 is the level's board address and word 1 its pitch in tiles (inferred, `docs/buzz.md`).
-- `0x007` (block, `libGLcore.so`): **established.**
-  Word 0x00010407 carries it with one operand, and `odsyRestoreRaster` rebuilds eight operands for it in registers rather than
-  from a shadow offset (`docs/buzz.md`, replay table); `__glOdysseyValidateContext` sends the word with a zero operand. Effect unknown.
+- `0x007` (block, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
+  Word 0x00010407 carries it with one operand. `odsyRestoreRaster` (`odsy_ctxsw.o`) rebuilds its eight operands in registers rather than from a shadow offset, and `__glOdysseyValidateContext` sends the word with a zero operand just before block 0x250. The drivers never read a result back from it, so no shipped software or published source depends on what it sets. Routes tried: the binary scan for word 0x00010407, the decompiled senders in `ody_fragment.c`, `ody_lighting.c` and `ody_context.c`, `BUZZ.h`, and the replay table in `docs/buzz.md`.
 - `0x024` (block, `odsy_tport.o`): **established.**
   Word 0x00010424, one operand: `ODSY_SET_GC` writes and reads hardware-shadow offset 0x2b68, and `odsyRestoreRaster` replays
   that offset; `odsyPushBufferSelect` instead builds a 4-bit buffer mask from the board record's flags at +568
@@ -840,6 +818,13 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   Built only by `odsyZeroOut`, which stores it once at the start of its fill loop together with the constants 1856 and 448
   and then writes zero words in runs of up to 16 through the command FIFO port. **inferred** from the zero fill that the loop clears a memory; what register the word addresses is unknown.
 
+- `0x8f80a944` (ten-operand state word, opcode 0x144, `libGLcore.so`): **inferred.**
+  The clear-rectangle form. `__glOdysseyClear` (`libglcore/decomp/ODYSSEY/ody_clear.c`) sends it after the primitive begin word 0x14400 with operand 7 and before the end word 0x14001, with ten operands: four words from the record at stack slot sp98, the first corner as two floats, one word from stack slot sp30, the second corner as two floats, and sp30 again. `LoadAndSendStippledQuads` (`ody_bitmap.c`) sends the same word.
+- `0x8f80b968` (fourteen-operand state word, opcode 0x168, `libGLcore.so`): **inferred.**
+  The textured-rectangle form. `DownsampleTextureThruHW` (`libglcore/decomp/ODYSSEY/ody_texture.c`) sends it between the begin word 0x14400 with operand 7 and the end word 0x14001, with fourteen operands: four zero words, the first corner as two floats, a zero word, the second corner as two floats, then a zero word and four more operands that the routine computes. `ody_image_move.c` and `ody_bitmap.c` send the same word.
+- `0x908091bb` (four-operand state word, opcode 0x1bb, `libGLcore.so`): **inferred.**
+  A table write: four floats stored at the entry that the preceding register-0x31 word selects. `__glOdysseyInitLighting` (`libglcore/decomp/ODYSSEY/ody_lighting.c`) sends it after the index words for entries 240 and 244 with four zero floats. `__glOdysseyValidateClipPlanes` (`ody_context.c`) sends it after index 288 with the four floats of a user clip plane, copied from the plane array at +0x6d4. `ody_texgen.c` sends it for texture-generation planes, and `ucode/buzz_isa.md`'s register table places the 0x1bb stores at the register-0x31 parameter base.
+
 ## Constant words and operands the kernel builds that match no word family
 
 The inventory's second store scan lists every constant the kernel and library store through the FIFO port, not only words of a known family. These twelve kernel entries are from 6.5.30 disassembly of `odyssey.a`; the address after each name is the instruction that completes the constant.
@@ -847,9 +832,8 @@ The inventory's second store scan lists every constant the kernel and library st
 - `0x0007f00f` (operand of block 0x050, `odsy_ctxsw.o`): **established.**
   `gf_OdsyPcxSwap` completes it with `ori a3,a3,0xf00f` at 0x7c4 and again into `s6` at 0x81c, and stores it directly after `0x00010850` with a zero operand following.
   It is the context-select operand for slot 127, the value used when no context is incoming: 127 shifted to bits 18:12, ORed with 0xf (`docs/driver-functions.md`, the context switch).
-- `0x00ffffff` (second operand of the reset form of block 0x04b, `odsy_clip.o`): **established.**
-  `odsyClipPush` builds it with `lui 0xff` and `ori 0xffff` at 0xa78 and stores it between a zero operand (0xa70) and six more zeros (0xa84 to 0xaa4), so the eight operands read 0, 0xffffff and six zeros.
-  What the board does with the value is unknown.
+- `0x00ffffff` (second operand of the reset form of block 0x04b, `odsy_clip.o`): **unknown: no shipped software or published source depends on it.**
+  `odsyClipPush` builds it with `lui 0xff` and `ori 0xffff` at 0xa78 and stores it between a zero operand (0xa70) and six more zeros (0xa84 to 0xaa4), so the eight operands read 0, 0xffffff and six zeros. The host writes it into the FIFO and no shipped software reads it back, so no shipped software or published source depends on what the block sets. Routes tried: the binary scan, a text search of the kernel disassembly for the constant (none, since it is built with `lui` and `ori`), `BUZZ.h`, `docs/buzz.md`.
 - `0x0fffffff` (second operand of block 0x054, `odsy_init.o`): **inferred.**
   `odsyInitCfifo` builds it with `lui 0xfff` and `ori 0xffff` at 0x23c0 and stores it at 0x23c4 straight after a zero operand, behind the word `0x00010854`.
   Inferred from the pair (0, 0x0fffffff) that these are the bottom and top byte addresses of the memory range unprivileged writes may reach (`docs/buzz.md`, block 0x054); the code shows the values and their order only.
