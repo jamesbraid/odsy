@@ -4651,4 +4651,51 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
 - `gfx_exit` (`gfxstubs.o`, offset 0x0, 8 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)`.
   Process-exit graphics hook as the IP35 stub archive defines it. Its two words are `jr ra` at 0x0 and `move v0,zero` in the delay slot at 0x4, the same bytes as the IP30 stub, so it answers 0 and touches nothing. It is the first routine of the archive; `gfx_disp`, which answers 1, follows at 0x8.
-
+- `gfxread` (`gfx.o`, offset 0x2b38, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  The read entry point of the graphics device, which refuses: `jr ra` at 0x2b38 with `addiu v0,zero,54` in its delay slot, so every read returns the constant 54 and touches none of its arguments. It has no frame and makes no call.
+- `gfxwrite` (`gfx.o`, offset 0x2b40, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  The write entry point of the graphics device, also a refusal: the return at 0x2b40 carries `addiu v0,zero,54` in its delay slot, giving the same constant 54 as the read entry point beside it. No argument is read and nothing is stored.
+- `gfxmap` (`gfx.o`, offset 0x331c, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  The memory-map entry point of the graphics device. It answers every request with the constant 54, formed by the `li v0,54` at 0x3320 in the delay slot of the return at 0x331c, without examining the mapping request. The device does not map through this entry.
+- `gfxunmap` (`gfx.o`, offset 0x3324, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  The unmap entry point of the graphics device, paired with `gfxmap` at 0x331c. Its return at 0x3324 has `li v0,54` in the delay slot, so it reports 54 whatever is passed in and leaves every table alone.
+- `GfxMessage` (`gfx.o`, offset 0x1bd8, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Sends a message to the graphics manager in the ordinary, non-interrupt way. It opens a 16-byte frame, calls `GfxSendMessage` at 0x1be0 and puts 0 in the second argument in the delay slot, leaving the other arguments as they came in. The value of `GfxSendMessage` is its own return value.
+- `GfxIntrMessage` (`gfx.o`, offset 0x1bf4, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Interrupt-context sibling of `GfxMessage`: it calls `GfxSendMessage` at 0x1bfc with the second argument set to 1 in the delay slot (`GfxMessage` passes 0 there) and returns that routine's result. Everything else about its 16-byte frame matches the other wrapper.
+- `GfxListWriterUnlock` (`gfx.o`, offset 0x2a88, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Releases the spinlock inside a graphics list record. It calls `mutex_spinunlock` at 0x2a90 with the lock at the record's +16 (address formed in the delay slot) and the second argument, the saved interrupt level, passed through untouched. It returns what `mutex_spinunlock` returns. It changes no counter, unlike the reader unlock.
+- `gfxtable_writerunlock` (`gfx.o`, offset 0x108, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Drops the exclusive hold on the graphics group table. It calls `mutex_spinunlock` at 0x110 on the lock at +4 of the table's lock record, with the caller's second argument (the level saved when the lock was taken) unchanged, and returns that call's result. It does not touch the reader count at +0.
+- `gfx_frs_valid_pipenum` (`gfx.o`, offset 0x3418, 12 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Tells whether a pipe number is in range for the frame scheduler. It loads the word `GfxNumberOfBoards` gp-relative at 0x3418 and returns the signed compare `slt` of the first argument against it from the delay slot at 0x3420, so the answer is 1 for any number below the board count, negative numbers included, and 0 otherwise.
+- `gfx_shfree` (`gfx.o`, offset 0x33ec, 44 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Frees the calling thread's shared graphics group. It calls `curthreadhandle` at 0x33f4 with no argument, passes that handle to `gfx_group_find` at 0x33fc and passes the group found to `gfx_group_destroy` at 0x3404, returning the destroy result. The group found is not tested for null, and the routine's own arguments are never read.
+- `gfxcleanup` (`gfx.o`, offset 0x13ac, 52 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Frees a graphics record when nothing refers to it. It loads the word at record +56 and returns at once if it is nonzero. When it is zero, `spinlock_destroy` runs at 0x13c8 on the record address as it was passed (the lock sits at +0) and `kern_free` at 0x13d0 on the same address. The return value is not set.
+- `gfxtable_readerunlock` (`gfx.o`, offset 0x44, 68 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Drops one reader of the graphics group table. It takes the spinlock at +4 of the lock record with `mutex_spinlock` at 0x58, subtracts 1 from the reader count word at +0 and stores it at 0x74, in the delay slot of the `mutex_spinunlock` call at 0x70, then releases the lock with the level that `mutex_spinlock` returned. It never wakes a waiting writer.
+- `GfxListReaderLock` (`gfx.o`, offset 0x2aa4, 68 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Takes a shared hold on a graphics list. It locks the spinlock at record +16 with `mutex_spinlock` at 0x2ab8, adds 1 to the reader count word at +4, and stores it at 0x2ad4 in the delay slot of the `mutex_spinunlock` call at 0x2ad0, which gets the saved level. It does not wait for a writer, so exclusion rests on the callers.
+- `GfxListReaderUnlock` (`gfx.o`, offset 0x2ae8, 80 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Gives up a shared hold on a graphics list. Under the spinlock at +16 (`mutex_spinlock` at 0x2afc) it subtracts 1 from the reader count at +4, storing it at 0x2b18 in the delay slot of `sv_signal` at 0x2b14, which wakes a waiter on the synchronisation variable at +8, and then calls `mutex_spinunlock` at 0x2b24 with the saved level. The signal is made on every call, not only when the count reaches zero.
+- `gfx_frs_install` (`gfx.o`, offset 0x3424, 88 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Hands a frame-scheduler request to a board's driver (arguments: request, pipe number). It indexes the `GfxBoards` array with the second argument, loads the board's operations table at board +56 and the function pointer at table +208, and, when it is set, calls it at 0x3450 with the doubleword at board +64 first and the original first argument second. A null pointer logs the string "[gfx_frs_install]: Null operation" through `cmn_err` at severity 5 at 0x346c.
+- `gfx_frs_uninstall` (`gfx.o`, offset 0x347c, 80 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Takes a frame scheduler off a board's driver (argument: pipe number). It indexes `GfxBoards` with the argument, loads the operations table at board +56 and the pointer at table +216, and calls it at 0x34a0 with the doubleword at board +64 as its only argument. A null pointer logs "[gfx_frs_uninstall]: Null operation" at severity 5 through `cmn_err` at 0x34bc.
