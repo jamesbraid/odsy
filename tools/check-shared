@@ -21,7 +21,8 @@ tools/ghidra-export.py tools/ghidra-scripts/ReBSimAdd.java tools/ghidra-scripts/
 tools/ghidra-scripts/ReMipsGp.java tools/ghidra-scripts/ReObjectSymbols.java
 scripts/inventory.py scripts/facts.py scripts/check_claims.py scripts/test_facts.py scripts/pre-push scripts/check-leaks.sh
 scripts/mdebug.py scripts/test_mdebug.py
-tools/ghidra-scripts/ReMdebugImport.java'
+tools/ghidra-scripts/ReMdebugImport.java
+scripts/syscall_table.py scripts/test_syscall_table.py'
 manifest=tools/shared.sha256
 if [ "${1:-}" = --update ]; then
     # shellcheck disable=SC2086
