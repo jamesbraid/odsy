@@ -56988,7 +56988,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10079250	336	ProcClearToBackgro
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100793a0	36	LbxUseTagsOpt..GDG	dynsym	7df7b7db8abf		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100793d0	492	ProcCreateGC	dynsym	bf482aa51ecf		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100795c0	1568	SProcChangeKeyboardControl	dynsym	ddf3af326d7b		in	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10079be0	112	nmbxCanSupportBuffers	dynsym	e27e82a8c25d		in	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10079be0	112	nmbxCanSupportBuffers	dynsym	e27e82a8c25d		in	named-only	docs/odyssey-so-reads.md#window-border-and-background-painters	Window border and background painters
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10079c50	120	LbxResetProc..PAG	dynsym	d660b482cca6		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10079cd0	284	LBX_IgnoreClient	dynsym	439ce9560a83		in	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10079df0	384	SProcXineramaStoreColors	dynsym	9ec291ce6557		in	undocumented		
@@ -105208,7 +105208,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1620ae0	468	cfb32ZeroPolyArcS
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1620cc0	248	miBSPolyText8..BEB	dynsym	abe522700133		in	understood	docs/odyssey-so-reads.md#backing-store-wrappers-for-text-glyph-and-stipple-drawing	Backing-store wrappers for text, glyph and stipple drawing
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1620dc0	8	nfbChangeGC..LJ	dynsym	78aa5094d5ec		in	understood	docs/odyssey-so-reads.md#empty-and-constant-result-routines-of-the-shared-x-code	Empty and constant-result routines of the shared X code
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1620dd0	564	mfbSolidPP	dynsym	8dd7f4cd2a41		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1621010	568	nfbPaintWindowBorder	dynsym	110a39d8715c		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1621010	568	nfbPaintWindowBorder	dynsym	110a39d8715c		in	understood	docs/odyssey-so-reads.md#window-border-and-background-painters	Window border and background painters
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1621250	1204	mfbInvertSolidFS	dynsym	10ca0e8a5d78		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x1621710	2760	nfbImageGlyphBlt	dynsym	ddb572bfcc47		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x16221e0	440	nfbInfImageGlyphBlt..GL	dynsym	5ff26ed976e3		in	understood	docs/odyssey-so-reads.md#inf-layer-drawing-wrappers-with-a-saved-argument-block-read-from-whole-listings	Inf-layer drawing wrappers with a saved-argument block, read from whole listings
@@ -105363,7 +105363,7 @@ usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b4e0	432	nfbInfPolyRectang
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b690	768	nfbOpStippledFS	dynsym	c20fbbf43cd5		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166b990	448	nfbComputeDidFlag..IG	dynsym	a2350c8c8ca3		in	understood	docs/odyssey-so-reads.md#stereo-wrappers-for-the-rectangle-rectangle-outline-and-segment-draws	Stereo wrappers for the rectangle, rectangle-outline and segment draws
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166bb50	2160	odsyValidateClip	dynsym	febcad39a2d2		in	understood	docs/odyssey-so-reads.md#clip-and-visual-validation-routines	Clip and visual validation routines
-usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c3c0	636	nfbPaintWindowBackground	dynsym	59dac9d90593		in	named-only	docs/odyssey-so-functions.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb`)
+usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c3c0	636	nfbPaintWindowBackground	dynsym	59dac9d90593		in	understood	docs/odyssey-so-reads.md#window-border-and-background-painters	Window border and background painters
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166c640	2644	mfbUnnaturalStippleFS	dynsym	1faae6ea443d		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d0a0	740	miFillRectPolyHelper..KBB	dynsym	261277ff4b27		in	named-only	docs/odyssey-so-functions.md#machine-independent-x-code-mi-mfb	Machine-independent X code (`mi`, `mfb`)
 usr/lib/X11/dyDDX/odyssey.so	board-x-module	n32		0x166d390	120	odsyLstVideoFmtCombs..BC	dynsym	72469646b2a4		in	understood	docs/odyssey-so-reads.md#timing-and-format-file-routines	Timing and format-file routines
