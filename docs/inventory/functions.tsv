@@ -8284,7 +8284,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0adc0	392	__glDrawPixels0	dwarf+dynsym	5368eefd0939		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0af50	316	__glLateScissorRender	dwarf+dynsym	604834be6c44		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b090	948	__glInitLateScissor	dwarf+dynsym	6d3be287d061		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b450	224	__glSlowPickDrawPixels	dwarf+dynsym	d4e491b2c4c6		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b450	224	__glSlowPickDrawPixels	dwarf+dynsym	d4e491b2c4c6		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b530	308	__glGenericPickDrawPixels	dwarf+dynsym	2f75fe9e7a6f		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b670	464	__glClipReadPixels	dwarf+dynsym	b1a3a2ae1be6		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b840	96	__glLoadPackModes	dwarf+dynsym	d23c3af53486		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -14174,7 +14174,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x224f980	424	__glDrawPixels0	dwarf+dynsym	6b853c2a1f4d		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x224fb30	308	__glLateScissorRender	dwarf+dynsym	b2bbe6e4284e		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x224fc70	808	__glInitLateScissor	dwarf+dynsym	3f02847de0ff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x224ffa0	228	__glSlowPickDrawPixels	dwarf+dynsym	ee57f7d6b47d		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x224ffa0	228	__glSlowPickDrawPixels	dwarf+dynsym	ee57f7d6b47d		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2250090	308	__glGenericPickDrawPixels	dwarf+dynsym	e8822ebab036		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22501d0	464	__glClipReadPixels	dwarf+dynsym	b177b6fff746		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22503a0	96	__glLoadPackModes	dwarf+dynsym	ea3f79af79db		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -75335,7 +75335,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0abf0	456	__glDrawPi
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0adc0	392	__glDrawPixels0	dwarf+dynsym	5368eefd0939		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0af50	316	__glLateScissorRender	dwarf+dynsym	604834be6c44		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b090	948	__glInitLateScissor	dwarf+dynsym	6d3be287d061		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b450	224	__glSlowPickDrawPixels	dwarf+dynsym	d4e491b2c4c6		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b450	224	__glSlowPickDrawPixels	dwarf+dynsym	d4e491b2c4c6		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b530	308	__glGenericPickDrawPixels	dwarf+dynsym	2f75fe9e7a6f		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b670	464	__glClipReadPixels	dwarf+dynsym	b1a3a2ae1be6		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0b840	96	__glLoadPackModes	dwarf+dynsym	d23c3af53486		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -81225,7 +81225,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x329f780	512	__glDrawPi
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x329f980	424	__glDrawPixels0	dwarf+dynsym	6b853c2a1f4d		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x329fb30	308	__glLateScissorRender	dwarf+dynsym	b2bbe6e4284e		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x329fc70	808	__glInitLateScissor	dwarf+dynsym	3f02847de0ff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x329ffa0	228	__glSlowPickDrawPixels	dwarf+dynsym	ee57f7d6b47d		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x329ffa0	228	__glSlowPickDrawPixels	dwarf+dynsym	ee57f7d6b47d		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a0090	308	__glGenericPickDrawPixels	dwarf+dynsym	e8822ebab036		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a01d0	464	__glClipReadPixels	dwarf+dynsym	b177b6fff746		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32a03a0	96	__glLoadPackModes	dwarf+dynsym	ea3f79af79db		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -92874,7 +92874,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0abf0	456	__glDrawPi
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0adc0	392	__glDrawPixels0	dwarf+dynsym	5368eefd0939		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0af50	316	__glLateScissorRender	dwarf+dynsym	604834be6c44		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0b090	948	__glInitLateScissor	dwarf+dynsym	6d3be287d061		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0b450	224	__glSlowPickDrawPixels	dwarf+dynsym	d4e491b2c4c6		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0b450	224	__glSlowPickDrawPixels	dwarf+dynsym	d4e491b2c4c6		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0b530	308	__glGenericPickDrawPixels	dwarf+dynsym	2f75fe9e7a6f		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0b670	464	__glClipReadPixels	dwarf+dynsym	b1a3a2ae1be6		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0b840	96	__glLoadPackModes	dwarf+dynsym	d23c3af53486		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -98764,7 +98764,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x224f780	512	__glDrawPi
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x224f980	424	__glDrawPixels0	dwarf+dynsym	6b853c2a1f4d		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x224fb30	308	__glLateScissorRender	dwarf+dynsym	b2bbe6e4284e		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x224fc70	808	__glInitLateScissor	dwarf+dynsym	3f02847de0ff		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x224ffa0	228	__glSlowPickDrawPixels	dwarf+dynsym	ee57f7d6b47d		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x224ffa0	228	__glSlowPickDrawPixels	dwarf+dynsym	ee57f7d6b47d		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2250090	308	__glGenericPickDrawPixels	dwarf+dynsym	e8822ebab036		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22501d0	464	__glClipReadPixels	dwarf+dynsym	b177b6fff746		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x22503a0	96	__glLoadPackModes	dwarf+dynsym	ea3f79af79db		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
