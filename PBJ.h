@@ -90,9 +90,21 @@
  * (gfP_OdsyBRDMGRsetColors) and the cursor position when cursor control
  * bit 2 is set; type 3 for everything the kernel loads at start-up or
  * mode set, and for the textport's colour map (odsy_mapcolor).
- * established as uses. inferred, weakly: bit 30 asks PB&J to apply the
- * write at the next vertical blank (every type-7 user is something that
- * would tear if changed mid-frame), type 3 applies at once. */
+ * established as uses. inferred: bit 30 asks PB&J to apply the write at
+ * the next vertical blank, type 3 applies at once. Basis: every type-7
+ * user is something that would tear if changed mid-frame (the X server
+
+
+
+
+ * colour map, frame and line tables and start-up registers as type 3).
+ * colour-map load is sent as type 7 by the 6.5.30 kernel, the textport
+
+
+
+ * Bits 29:28 (both set in both types) are probably a target field, one
+ * bit per BUZZ chip of a two-BUZZ board (inferred from the name alone;
+ * unknown). No shipped code sends another type value. */
 #define PBJ_TYPE_NOW               3 /* established as used */
 #define PBJ_TYPE_SYNCED            7 /* established as used; meaning inferred */
 

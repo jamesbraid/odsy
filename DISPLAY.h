@@ -142,7 +142,41 @@
 /* Bits 3:0: 6 on single-buffered TrueColor modes, 7 on the
  * double-buffered ones (ids 18-19, table B), 1 on ids 14-17, 0 on the
  * rest. Bits 23:12: 0x4b5, 0x521, 0x965, 0x520, 0x964, 0x600, 0xa40.
- * established as values; meaning unknown. */
+ * established as values; meaning unknown (but see the next comment). */
+/*
+ * The textport's mode word. Which bits the driver sets, from the 6.5.30
+
+
+
+
+
+
+
+
+
+ * established (6.5.30 kernel, odsyInitDBE in odsy_init.o, 0x2e60 to
+ * 0x2e88, with the first mask word from docs/kernel.md): the same
+ * routine builds the word as ((X & 0xfe001fff) | 0x4b5e00) & 0xfffffe00
+ * with X a stack word it never stores to, and the overlay word as
+ * Y & 0xffffff00. So the fields the routine assigns cover bits 24:0 of
+ * the main-mode word and bits 7:0 of the overlay word; bits 31:25 of
+ * the main-mode word and 31:8 of the overlay word are assigned by
+ * nothing and keep whatever the stack held.
+ * inferred (by comparing the constants): 0x4b5e00 is the id 0 word above
+ * (0x4b5f00, 8-bit PseudoColor) with bit 8 clear, i.e. the first
+ * colour-map group 0 instead of 16 (bits 8:4); so bits 24:9, which
+ * the textport sets to the 8-bit colour-index pair, hold the two format
+ * fields the table calls "bits 23:12" and "11:9", and a TrueColor word
+ * changes them to another pair. Which bit belongs to which of the two
+ * format fields, and bit 24, is not shown. Bits 3:0 (6 on TrueColor,
+ * 7 on the double-buffered ones, 1 and 0 on colour-index ones) would be
+ * gamma compensation, true colour and stereo with one spare bit: that
+ * assignment is inferred from the count of fields alone.
+
+ * unknown: bits 31:25. The OpenBSD driver sets two of them (bits 31 and
+ * 28 of 0x905215a6, the word it writes to all 32 entries) and no
+ * IRIX 6.5.30 word has either set; no named field covers them, so
+ * their effect is not given by any software read. */
 
 /* ===================================================================
  * 3. Narrow TrueColor visuals: how pixels are stored and shown

@@ -61202,7 +61202,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66400	136	popviewport	dynsym
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66488	136	__GLpopattributes	dynsym+mdebug	16048842245a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66488	136	popattributes	dynsym	16048842245a	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66510	136	__GLarcs	dynsym+mdebug	c88304b56a4b	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66510	136	arcs	dynsym	c88304b56a4b	shared-address	in	named-only	docs/board.md#strap-word-and-configuration-register-fields-pass-12	Strap word and configuration register fields (pass 12)
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66510	136	arcs	dynsym	c88304b56a4b	shared-address	in	named-only	docs/board.md#the-revision-nibble-the-letter-and-the-inventory-name	The revision nibble, the letter and the inventory name
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66598	64	__GLgl_glx_getconfig	dynsym+mdebug	65d593601a36	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec66598	64	gl_glx_getconfig	dynsym	65d593601a36	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec665d8	64	__GLendsurface	dynsym+mdebug	7c23185cc06b	shared-address	in	undocumented		
@@ -65330,7 +65330,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66ee8	180	popviewport	dyns
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66f9c	180	__GLpopattributes	dynsym	553c83ae1e66	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec66f9c	180	popattributes	dynsym	553c83ae1e66	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67050	180	__GLarcs	dynsym	40c4011f273d	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67050	180	arcs	dynsym	40c4011f273d	shared-address	in	named-only	docs/board.md#strap-word-and-configuration-register-fields-pass-12	Strap word and configuration register fields (pass 12)
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67050	180	arcs	dynsym	40c4011f273d	shared-address	in	named-only	docs/board.md#the-revision-nibble-the-letter-and-the-inventory-name	The revision nibble, the letter and the inventory name
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67104	68	__GLgl_glx_getconfig	dynsym	3c9d6c0ea711	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67104	68	gl_glx_getconfig	dynsym	3c9d6c0ea711	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec67148	68	__GLendsurface	dynsym	c39a1b115809	shared-address	in	undocumented		

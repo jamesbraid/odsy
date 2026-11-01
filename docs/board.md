@@ -40,6 +40,14 @@ Size code 3 is a 32 MB board to both programs. **established** (read from both):
 - **established.** After a valid type it reads the word at +0x23380c, keeps bits 2:0 in record +268, and returns.
 - **inferred.** Bit 31 (record +280) is a variant flag, the low three bits the BUZZ revision. **established** (`docs/pbj.md`, items 3 and 4): +0x23380c is display address 0x2701, the register whose bits 2:0 `gfxinit` prints as "PB&J version"; `odsyGatherInfo` stores them in record +268. `+0x233804` is the clock-programming word read by `odsyLoadTimingTable` (`docs/display.md`), a neighbour in the same block. The meaning of bits 31:3 of 0x2701: **unknown**, `odsyInitDBE` tests bit 10 (`PBJ.h` section 2); a read-back of the whole word on a real board with known revisions would settle the rest.
 
+### The revision nibble, the letter and the inventory name
+
+Read:
+
+
+
+- **inferred.** So the letter that `gfxinit` prints is the type the revision nibble selects, not a per-nibble letter: nibbles 1 to 3 print A and 9 to 15 print B. With the printed number as the revision minus 1 (`docs/vpro-tool-functions.md`), the published V12 sample whose raw revision is 10 prints B.1, which fits (10 gives type B, revision 2, printed 1); a nibble of 2 would print A.1, the letter and number the published V6 and V8 captures show, so those boards would carry nibble 2 (type A stores the nibble unchanged), if the report's revision word is the record's +264 word, which was not traced. Linux's names (nibble 1 "A", nibble 2 "B", `xwidget.h`) are a coarser labelling and do not agree with the IRIX one for nibble 2. Whether a B.1 board is nibble 10 and a B.2 board nibble 11 is likewise inferred from the same rule. Routes tried: the 6.5.30 binaries (the printed number rests on that reading), Linux, the published `hinv` and `gfxinfo` captures of [published-sources.md](published-sources.md). No published capture pairs a raw widget revision with the printed letter except the one V12 sample, so the nibble of an A.1 board is not confirmed by any capture.
+
 ## Memory configuration word at board +0x1004
 
 - **established.** `odsyReset` builds a word in a record copy and stores it to +0x1004 (a 400 us delay after each store):
