@@ -786,3 +786,57 @@ eight floats (a2: source x0, y0, x1, y1 then destination x0, y0, x1, y1) and the
   (0xd9905e0, above). **established** for enable, disable and `glIsEnabled`. The generic getter has no case for 0x8353 in any
   immediate comparison, so `glGetBooleanv` leaves the output alone and raises an error: running the getter on 0x8353 under
   `glcore_probe.py` calls the error routine with 0x500 (`GL_INVALID_ENUM`). **established**.
+
+## Image-write corner order, scissor words, paging header and colour operands
+
+Release IRIX 6.5.30m, IP30, N32 `libGLcore.so` (`root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/`) and `odyssey.a` (`odsy_pmm.o`). Plain
+`objdump` of the listed addresses and the committed decompilation; no vendor source was read for these entries.
+
+- **`__glOdysseyImageMovePixelsDMAtoGfx`** (0x0d9b9e20, 6772 bytes), the y order of the corner record, **inferred** (the instructions at 0xd9ba7a8 to
+  0xd9ba80c read; the box the caller passes was not traced). The routine loads the source description's second word (+4) into `a6`, and two `movz.s`
+  (0xd9ba7f8 and 0xd9ba80c) pick which of the box's two destination y values goes first in the ten-operand block `0xcf80a92f` that
+  the kernel sends ahead of a transform-path DMA (`odsyDMAOps` fills it from the same context words): the box's own order when
+  `a6` is zero (host memory and scratch objects), the exchanged order when it is one (a window). The pixel zoom is not read in this routine, so a
+  reversed corner order can come only from the box, which the colour download step builds from the zoom. Header word 7 bit 30 is the
+  exclusive-or of the destination's and the source's word +4, so every write from host memory to a window carries it whatever its rows' order; it
+  cannot be what separates one such write from another. `odsyMMxfr` keeps only bits 27 and 30 of word 7 from the caller (`docs/kernel.md`, `MMxfr`),
+  so beyond the format and type codes in its low bits, bit 27 (the transform path) is the only caller bit left in word 7 that can tell two such writes apart.
+- **`odsyDMAOps`** (`odsy_dma.o`, 0x0, entry at `.text` 0xb34), the clipped path's host row offset, **inferred** (the clipped path's instructions read and its registers traced by hand,
+  not the whole routine). The path starts at 0x1484, clears header word 7 bit 27, keeps bit 30 (the `andi` with 0x40 at 0x14c4) and cuts the request into
+  pieces at the context's clip rectangles. For each piece it rebuilds header words 1 and 3 from the piece's near corner and size, and picks the piece's
+  host byte offset at 0x1808: with bit 30 clear, the host row stride (header word 5 plus the low 20 bits of word 6) times the piece's rows above the
+  request's first y; with bit 30 set, that stride times the request's end y less the piece's end y (the code at 0x1670 to 0x1680), plus the x offset times the
+  bytes a pixel. So with bit 30 set the host buffer's first row is the request's last row in the header's y axis, and with it clear the first row is the
+  request's y. This is the only place the shipped software reads bit 30 as a row order. It holds for the clipped path only: the transform
+  path (from 0xc5c) tests no bit 30 (the only `andi` with 0x40 in the routine is the one at 0x14c4), and what the board does with the
+  bit on the plain path, where the kernel reads nothing, is **unknown**.
+- **`__glOdysseyImageMovePixelsDMAtoGfx`**, block `0x01d`, **established** (instructions) for the selects, **inferred** for the roles. For a
+  window destination reached with the fifth argument 1, the branch entered at 0xd9bb22c compares +0x7c20 and +0x7c24 (the operands of
+  block `0x0001081d`) with +0x165bc and +0x165c0 and, on a difference, copies those two words in and sends the block, so the transfer is
+  scissored by the window-relative scissor words that `__glOdysseyValidateScissor` (0xd9696f0, 248 bytes) and `ApplyScissor` build, not by the
+  window-clip words at +0x165b4 and +0x165b8 that `ValidateScissor` sends for ordinary drawing. Each word is a 12-bit near value in bits 23:12 and a
+  12-bit far value in bits 11:0, first the x range and then the y range. For any other destination the decompilation shows the routine
+  storing the destination box into the same two words, near and far in that layout, and passing the four 12-bit values to ioctl 0x6f64000d
+  (**inferred**: the decompiler folds those branches). The far values are the last pixel, since the kernel's clip push adds one to a far
+  value (`docs/driver-functions.md`, `odsyClipPush`). Which rectangle the scissor words hold when the scissor test is off was not read:
+  **unknown** (`ApplyScissor` takes a rectangle from the context at +0x743c, and where that rectangle starts out was not traced).
+- **`SetupDMAParams`** (`odsy_pmm.o`, 0x3934, 540 bytes), the paging header's size ladder, **established** (whole routine read). The memory object's
+  bytes-a-texel byte at +17 is compared with 16, 8, 4 and 2 in that order. 2 gives pixel-size code 0, 4 gives 1 and 8 gives 2
+  (branch targets 0x3b0c, 0x3b20 and 0x3b18); 16 logs the severity-4 message and also uses 2 (0x3b28). Any other value, 32 included, falls to the join at 0x3a34 with
+  the code taken from a stack word nothing stored, so the code, and with it word 4's low bits and word 7's size field, is whatever was on the stack. The
+  object constructor accepts 32 (`docs/driver-functions.md`, `odsy_mm_obj_new`), and the library's texture allocator books at most 8, so only
+  16 and 32 are affected. The kernel never reads a backing-store page's bytes: `odsy_mm_obj_alloc_bs`, `odsy_mm_obj_free_bs` and
+  `odsy_mm_obj_xfr_bs` manage it and hand its address to `odsyDMAOp` as the transfer's host side, and the debug dump `SpewObjectToUser` writes a
+  description, not texels (**inferred** from those routines; the other routines that mention offset +80 were not read for it).
+- **`__glOdysseyImageMovePixelsTexture`** (0x0d9bbff0, 4284 bytes), the count-14 word's operand roles, **inferred**. The microcode routine that
+  `0x8f80b968` selects (`ucode/buzz_routines.md`, routine 360) takes the four slot-15 operands, the way routine 303 takes them for the ten-operand
+  rectangle word, and ten more. The library fills the word with (0, 0, 0, 1), then x0, y, z, x1, y, z, then s0, t0, s1, t1.
+  Read against 303's use of the first group as colour and its next six as two (x, y, z) corners, the last four are the two
+  corners' texture coordinates, (s0, t0) for the first corner and (s1, t1) for the second. The routine never reads a filter word from this
+  block. The sampler it draws under is the context's, and the move's own stores change no filter bit (above), so the magnification
+  filter is the one the transfer's default block carries: nearest (**established** for the library's request, as above).
+- **`__glOdyim_Color3ub`** (0x0dad4600, 32 bytes) and **`__glOdyim_Color3ubv`** (0x0dad4680, 44 bytes), **established** (both read in full). The
+  scalar emitter stores `0xc580cc08` and then its three argument registers unmasked, so a value above 255 reaches the board only
+  from a caller that breaks the `GLubyte` prototype; the vector emitter loads each component with `lbu`, so it cannot send one. No shipped
+  software is known to depend on what the board answers for a byte operand above 255: **unknown**. Routes tried: the two emitters and the
+  four-component pair `__glOdyim_Color4ubv` (0x0dad4f00, 52 bytes), the kernel's textport colour store, and the OpenBSD driver's fill (three bytes).
