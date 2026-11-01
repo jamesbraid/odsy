@@ -4,6 +4,8 @@ Release IRIX 6.5.30m (libGLcore in `usr/gfx/arch/IP30ODSY*`, kernel `odyssey.a`,
 
 ## Attribute words
 
+Which public entry point sends each word, with the address of the sender and of the instruction that forms the word, is in [gl-entry-points.md](gl-entry-points.md).
+
 An attribute word is `BUZZ_ATTR_WORD(slot, count, op)` (`BUZZ.h`): bits 31:24 are 0x80 for the position or `0xc0 | slot`, bits 13:10 the number of operand words that follow, bits 9:0 the opcode. The opcode names the data type the entry point sends (`BUZZ.h`, "Per-vertex words"): 0x00-0x05 Vertex2/3/4 integer then float, 0x06 and 0x07 Index integer and float, 0x08-0x0e Color3, 0x0f-0x15 Color4 (each unsigned byte, unsigned short, unsigned int, byte, short, int, float), 0x16-0x19 Normal3 byte, short, int, float, 0x1e-0x25 TexCoord1 to 4 integer then float. **established** that each row below is sent by the named entry point, with its slot, operand count and opcode; **inferred** that the data-type reading follows the opcode order, because the entry points read agree with it (`__glOdylc_Color3ui` 0x0a, `__glOdylc_Color4b` 0x12, `__glOdyim_TexCoord3d` 0x23). Double-precision entry points send the float form, converting on the host (`Color3d` 0x0e, `TexCoord1d` 0x1f, `Indexd` 0x07).
 
 Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratch*` entry points send the same colour and index opcodes as slot 5 to it. What the board does with a scratch colour: **unknown**.
