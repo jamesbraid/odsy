@@ -100,7 +100,7 @@ The installed files differ from the media files of the same name only in bytes o
 | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | 64-bit | 3760880 | 1589248 | 4605 | 249 | 0 | 40 | 5076 | 12 | 73 | `__glOdysseyCreateContext` at 0xbd5f5a0 |
 
 - `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGL.so`: **inferred.**
-  The o32 GLX client layer of patch 4104, 451872 bytes, the same size as patch 4103's copy, with the same 650 functions and 609 exports. Its context entry `glXCreateContext` is at 0xd8b11c4, the address patch 4103 gives. The file hash differs from patch 4103's.
+  The o32 GLX client layer of patch 4104, 451872 bytes, the same size as patch 4103's copy, with the same 650 functions and 609 exports. Its context entry `glXCreateContext` is at 0xd8b11c4, the address patch 4103 gives. The file hash differs from patch 4103's, but `.text`, `.rodata`, `.data` and the symbol tables are byte for byte the same: the differences are in `.dynamic` (the MIPS time stamp, 2000-11-03 03:36:44 in patch 4103 and 06:23:48 in patch 4104), `.liblist`, `.mdebug` and the quickstart `.got` slots that hold addresses inside other shared libraries.
 - `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so`: **inferred.**
   The o32 board renderer of patch 4104, 3436908 bytes, 5103 functions and 4673 exports, the counts patch 4103 gives. Its context entry `__glOdysseyCreateContext` is at 0xda4ba44, and it gains twelve functions and loses 78 against the media build.
 - `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGL.so`: **inferred.**

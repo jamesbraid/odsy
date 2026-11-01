@@ -227,11 +227,11 @@ Patch 4103 member notes. Addresses are offsets into each member's text; media si
 Patch 4104 member notes. Each member has the routines, addresses and code hashes of its patch 4103 counterpart, so the notes say only what differs.
 
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`: **inferred.**
-  The clip member of patch 4104, 10932 bytes, 16 more than patch 4103's. Its six routines keep patch 4103's addresses and sizes, and `odsyClipPush` at 0x604 (660 bytes) and `odsyClipMask` at 0x4dc (296 bytes) keep its code hashes. Because the routine sizes are unchanged, the 16 extra bytes lie outside these routines.
+  The clip member of patch 4104, 10932 bytes, 16 more than patch 4103's. Its six routines keep patch 4103's addresses and sizes, and `odsyClipPush` at 0x604 (660 bytes) and `odsyClipMask` at 0x4dc (296 bytes) keep its code hashes. The `.text` section is byte for byte patch 4103's. Only `.debug_info` is longer, by 29 bytes, because the compile command line it records adds `-DSTP_SUPPORT` and `-DCELL_CAPABLE`; the member grows by 16 bytes overall.
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`: **inferred.**
   The context save and restore member of patch 4104, 45396 bytes, 32 more than patch 4103's, with the same 26 routines at the same addresses. `odsyRestoreRaster` at 0xa88 (4996 bytes) and `gf_OdsyPcxSwap` at 0x4cc (1468 bytes) carry patch 4103's code hashes.
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`: **inferred.**
-  The drawable binding member of patch 4104, 16916 bytes. Every routine with a code hash matches the patch 4103 routine of the same name, and `gfP_OdsyMakeCurrent` at 0x9b0 (784 bytes) is the entry that binds a client's drawables.
+  The drawable binding member of patch 4104, 16916 bytes. Its `.text` is byte for byte patch 4103's, so every routine matches the patch 4103 routine of the same name; the only longer section is `.debug_info` (29 bytes, the same two added compile flags as `odsy_clip.o`), and `gfP_OdsyMakeCurrent` at 0x9b0 (784 bytes) is the entry that binds a client's drawables.
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`: **inferred.**
   The textport member of patch 4104, 34836 bytes, 32 more than patch 4103's. `ODSY_SET_GC` at 0x30 is 1664 bytes and `odsy_drawbitmap` at 0xb44 is 1236 bytes, as in patch 4103, and `odsy_tpinit` at 0x1034 (396 bytes) keeps its place.
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)`: **inferred.**

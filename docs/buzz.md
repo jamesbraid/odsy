@@ -306,7 +306,7 @@ The full set of blocks the board holds as context state is what the kernel repla
 | 0x057 | 1 | 0x1cb4 | |
 | 0x04d | 16 | 0xf8 | a third 16-word bitmap beside 0x04e/0x04f |
 | 0x042 | 2 | 0x1ca4 | |
-| 0x007 | 8 operands built in registers | | |
+| 0x007 | 1 operand, sent 8 times with indexes 7 down to 0, each followed by block 0x250 plus the index (6 operands) | 0x1bdc plus 24 per index | per-index entry select; see `docs/words.md` |
 | 0x04b | 8 | 0x2b40 | window descriptor (`docs/opengl.md`) |
 | 0x041, 0x024, 0x040 | 2, 1, 2 | 0x2b60, 0x2b68, 0x2b6c | 0x040/0x041 also sent by `odsyClipPush` |
 
