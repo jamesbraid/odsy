@@ -8308,7 +8308,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0de80	276	__glCopyImage2	dwarf+dynsym	787ad501b9e2		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0dfa0	440	__glCopyImageSpans	dwarf+dynsym	22c801290e88		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e160	204	__glGenericPickCopyImageSpan	dwarf+dynsym	7a6260248df6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e230	188	__glCopyImage3D	dwarf+dynsym	01e760d2f8ee		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e230	188	__glCopyImage3D	dwarf+dynsym	01e760d2f8ee		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e2f0	248	__glGenericPickCopyImage	dwarf+dynsym	d43a15057631		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e3f0	192	__glInitReadImageSrcInfo	dwarf+dynsym	aed4c4d5b6d0		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e4b0	304	__glGenericPickReadImage	dwarf+dynsym	f4ad47b413f7		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -75359,7 +75359,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0ddc0	188	__glCopyIm
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0de80	276	__glCopyImage2	dwarf+dynsym	787ad501b9e2		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0dfa0	440	__glCopyImageSpans	dwarf+dynsym	22c801290e88		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e160	204	__glGenericPickCopyImageSpan	dwarf+dynsym	7a6260248df6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e230	188	__glCopyImage3D	dwarf+dynsym	01e760d2f8ee		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e230	188	__glCopyImage3D	dwarf+dynsym	01e760d2f8ee		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e2f0	248	__glGenericPickCopyImage	dwarf+dynsym	d43a15057631		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e3f0	192	__glInitReadImageSrcInfo	dwarf+dynsym	aed4c4d5b6d0		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xda0e4b0	304	__glGenericPickReadImage	dwarf+dynsym	f4ad47b413f7		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
@@ -92898,7 +92898,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0ddc0	188	__glCopyIm
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0de80	276	__glCopyImage2	dwarf+dynsym	787ad501b9e2		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0dfa0	440	__glCopyImageSpans	dwarf+dynsym	22c801290e88		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0e160	204	__glGenericPickCopyImageSpan	dwarf+dynsym	7a6260248df6		in	named-only	docs/libglcore-functions.md#pixel-pixel-paths	`pixel` (pixel paths)
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0e230	188	__glCopyImage3D	dwarf+dynsym	01e760d2f8ee		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0e230	188	__glCopyImage3D	dwarf+dynsym	01e760d2f8ee		in	understood	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0e2f0	248	__glGenericPickCopyImage	dwarf+dynsym	d43a15057631		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0e3f0	192	__glInitReadImageSrcInfo	dwarf+dynsym	aed4c4d5b6d0		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xda0e4b0	304	__glGenericPickReadImage	dwarf+dynsym	f4ad47b413f7		in	located	docs/sample-implementation.md#px_pathsc	px_paths.c
