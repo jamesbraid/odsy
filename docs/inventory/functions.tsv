@@ -61942,7 +61942,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec70eb0	136	xfpts	dynsym	f4aab
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec70f38	136	__GLpnt2	dynsym+mdebug	ee4249bc8874	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec70f38	136	pnt2	dynsym	ee4249bc8874	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec70fc0	136	__GLdither	dynsym+mdebug	82574160b319	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec70fc0	136	dither	dynsym	82574160b319	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec70fc0	136	dither	dynsym	82574160b319	shared-address	in	named-only	docs/blend-residue-fit.md#the-blend-frames-residue-measurements-and-fits	The blend frame's residue: measurements and fits
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71048	136	__GLsubpixel	dynsym+mdebug	6ff5577eab37	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec71048	136	subpixel	dynsym	6ff5577eab37	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec710d0	136	__GLacbuf	dynsym+mdebug	9ab20b13d707	shared-address	in	undocumented		
@@ -66070,7 +66070,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74ad0	180	xfpts	dynsym	7d1
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74b84	180	__GLpnt2	dynsym	9676453ca2ad	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74b84	180	pnt2	dynsym	9676453ca2ad	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74c38	180	__GLdither	dynsym	e43fe86c4b83	shared-address	in	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74c38	180	dither	dynsym	e43fe86c4b83	shared-address	in	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74c38	180	dither	dynsym	e43fe86c4b83	shared-address	in	named-only	docs/blend-residue-fit.md#the-blend-frames-residue-measurements-and-fits	The blend frame's residue: measurements and fits
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74cec	180	__GLsubpixel	dynsym	86ffcb163ba8	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74cec	180	subpixel	dynsym	86ffcb163ba8	shared-address	in	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec74da0	180	__GLacbuf	dynsym	9f8ccd67d8d5	shared-address	in	undocumented		
