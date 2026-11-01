@@ -238,7 +238,7 @@ def netbsd_table(path):
     return out
 
 
-def qemu_table(path):
+def qirix_table(path):
     out = {}
     for ln in open(path, encoding='utf-8', errors='replace'):
         m = re.match(r'#define\s+TARGET_NR_(\w+)\s+\((\d+)\+TARGET_NR_Linux\)', ln)
@@ -265,7 +265,7 @@ def cross_check(rows_by_kernel, directory, report):
     if os.path.exists(nb):
         pubs['netbsd'] = netbsd_table(nb)
     if os.path.exists(qi):
-        pubs['qemu-irix'] = qemu_table(qi)
+        pubs['qemu-irix'] = qirix_table(qi)
     lines = []
     summary = []
     for kern, rows in rows_by_kernel.items():
@@ -276,7 +276,7 @@ def cross_check(rows_by_kernel, directory, report):
             same_name = diff_name = same_n = diff_n = nosys = missing = 0
             for idx, r in sorted(first.items()):
                 number = r[2] if r[2] != '' else idx
-                # qemu and linux number from 1000; NetBSD from 0
+                # qemu-irix and Linux number from 1000; NetBSD from 0
                 key = number if src == 'linux' else idx
                 pub = tbl.get(key)
                 ours = r[4]

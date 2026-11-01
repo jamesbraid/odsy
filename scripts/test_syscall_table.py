@@ -14,7 +14,7 @@ import syscall_table  # noqa: E402
 
 
 class PublicLists(unittest.TestCase):
-    def test_linux_netbsd_and_qemu_parsers(self):
+    def test_public_list_parsers(self):
         with tempfile.TemporaryDirectory() as d:
             lin = os.path.join(d, 'l.S')
             with open(lin, 'w') as f:
@@ -28,7 +28,7 @@ class PublicLists(unittest.TestCase):
                 f.write('#define TARGET_NR_read\t\t(3+TARGET_NR_Linux)\n')
             self.assertEqual(syscall_table.linux_table(lin), {1001: ('exit', 1)})
             self.assertEqual(syscall_table.netbsd_table(nb), {4: ('sys_write', 3), 5: ('irix_sys_open', 3)})
-            self.assertEqual(syscall_table.qemu_table(qi), {3: 'read'})
+            self.assertEqual(syscall_table.qirix_table(qi), {3: 'read'})
             self.assertEqual(syscall_table.norm('sys_exit'), syscall_table.norm('rexit'))
 
     def test_number_base_is_read_from_the_subtraction_before_the_bound_check(self):
