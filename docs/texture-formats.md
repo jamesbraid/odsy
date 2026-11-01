@@ -40,13 +40,13 @@ Widths are in bits, in the order the routine writes them: R, G, B, A, L, I. Comp
 | 33 | R12 G12 B12 A12 | 48 | 2, 8 | 12 | `GL_RGB12`, `GL_RGB16`, `GL_RGBA12`, `GL_RGBA16`; the pixel-class 12 move | 5 for `GL_RGB12`, `GL_RGB16`; 6 for `GL_RGBA12`, `GL_RGBA16` | established |
 | 48 | R8 G8 B8 (ICC) | 24 | 0, 2 | 14 | `GL_R5_G6_B5_ICC_SGIX` (0x8466) | 5 | widths established; the 5/6/5 stored width is inferred from the enumerant name and the 2-byte size |
 | 49 | R8 G8 B8 A8 (ICC) | 32 | 1, 4 | 15 | `GL_R5_G6_B5_A8_ICC_SGIX` (0x8467) | 6 | as 48 |
-| 14, 15, 19 to 31, 34 to 47, 50 to 63 | none: `CalcTexelSizes` writes zero widths and size code 0 | 0 | 0, 2 | none | none | 0 | established that no libGLcore path emits them; unknown what the board does with them |
+| 14, 15, 19 to 31, 34 to 47, 50 to 63 | none: `CalcTexelSizes` writes zero widths and leaves the size code unwritten | 0 | not written (the caller's value stays) | none | none | 0 | established for 14, 15, 19 to 31, 34 to 47, 50 and 51 (the sweep); 52 to 63 rest on the index < 50 bounds check at 0xd9d01e4, which was read but not run; unknown what the board does with them |
 
 By grade, over the 50 indices the library's tables span (0 to 49) and the 14 values above them that the six-bit field can still hold:
 
 - 16 rows are emitted by the library and established: 0, 2, 4, 8, 9, 10, 11, 12, 13, 16, 17, 18, 33, 48 and 49 from the GL selector, and 32 from the image move only. Rows 32, 48 and 49 carry an inferred part, noted in the table.
 - 5 rows have a width entry but no emitter: 1, 3, 5, 6 and 7. The entry is established; what separates 1 from 0, 3 from 2 and 5 from 4, and why 3/3/2 has two indices and no selector, is unknown.
-- 29 rows (14, 15, 19 to 31, 34 to 47) and the 14 values 50 to 63 have no entry: established that the library writes none of them, unknown what the board does with them. No shipped software depends on them.
+- 29 rows (14, 15, 19 to 31, 34 to 47) and the 14 values 50 to 63 have no entry: established that the library writes none of them for 14, 15, 19 to 31, 34 to 47, 50 and 51 (the sweep); 52 to 63 rest on the index < 50 bounds check at 0xd9d01e4, which was read but not run. Unknown what the board does with them. No shipped software depends on them.
 
 Nothing is unknown about which index the library sends for a GL format. What the board does with an index is unknown for every row.
 
