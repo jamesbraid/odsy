@@ -27,11 +27,11 @@ A pane is the resource manager's record of one drawable that a process has bound
 
 - `pane_cleanup` (`rrm.o`, offset 0x408, 180 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
-  Unbinds a drawable from its pane for good (arguments: id, node). It finds the pane with `clip2pane` and does nothing when there is none. Under `panesema` and the pane's spin lock it zeroes the id at +4, clears valid bits 1, 3 and 6 (mask 0x4a), and, when any waiter bit is set, zeroes the waiter halfword and the guarded word at +56, releases the semaphore at +40 and wakes the waiters with `sv_signal`. When the swap-group pointer at +160 is nonzero it calls `rrmSwapUnGroup` for the pane. It releases `panesema` last.
+  Unbinds a drawable from its pane for good (arguments: id, node). It finds the pane with `clip2pane` and does nothing when there is none. Under `panesema` and the pane's spin lock it zeroes the id at +4, clears valid bits 1, 3 and 6 (mask 0x4a), and, when any waiter bit is set, zeroes the waiter halfword and the guarded doubleword at +56, releases the semaphore at +40 and wakes the waiters with `sv_signal`. When the swap-group pointer at +160 is nonzero it calls `rrmSwapUnGroup` for the pane. It releases `panesema` last.
 
 - `pane_setnullclip` (`rrm.o`, offset 0x4bc, 72 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
-  Installs an empty clip for a pane (arguments: pane, resource node). It calls the function at offset 88 of the table that the node's word at +32 points to, with the address of the pane's clip copy at +96 as its only argument, then sets valid bits 1, 3, 6 and 7 (mask 0xca) and increments the version at +8. It takes no lock.
+  Installs an empty clip for a pane (arguments: pane, resource node). It calls the function at offset 88 of the table that the node's doubleword at +32 points to, with the address of the pane's clip copy at +96 as its only argument, then sets valid bits 1, 3, 6 and 7 (mask 0xca) and increments the version at +8. It takes no lock.
 
 - `pane_validmask` (`rrm.o`, offset 0x504, 8 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
@@ -52,7 +52,7 @@ A pane is the resource manager's record of one drawable that a process has bound
 
 - `validate_pane_swapbuf` (`rrm.o`, offset 0x7d8, 160 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
-  Records a swap id on a pane (arguments: id, node, swap id). With a pane found by `clip2pane`, under its spin lock it stores the id at +20, sets valid bit 3 and, when waiter bit 3 was set, clears it and, if no waiter remains, zeroes the guarded word at +56 and releases the semaphore at +40; then it signals the waiters with `sv_signal`. It returns 0 whether or not a pane was found.
+  Records a swap id on a pane (arguments: id, node, swap id). With a pane found by `clip2pane`, under its spin lock it stores the id at +20, sets valid bit 3 and, when waiter bit 3 was set, clears it and, if no waiter remains, zeroes the guarded doubleword at +56 and releases the semaphore at +40; then it signals the waiters with `sv_signal`. It returns 0 whether or not a pane was found.
 
 - `validate_pane_buffer` (`rrm.o`, offset 0x878, 80 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
@@ -73,7 +73,7 @@ A pane is the resource manager's record of one drawable that a process has bound
 
 - `RRM_init_panes` (`rrm.o`, offset 0xea4, 216 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
-  Releases every pane that belongs to one resource node (argument: the node). It walks all `max_pane` records and, for each whose owner key at +88 equals the node's key at +40, clears the valid halfword at +12; when waiter bits are set it zeroes the waiter halfword and the guarded word at +56 and releases the semaphore at +40; and when the swap-group pointer at +160 is nonzero it calls `rrmSwapUnGroup` with the node and the pane. Panes of other nodes are not touched.
+  Releases every pane that belongs to one resource node (argument: the node). It walks all `max_pane` records and, for each whose owner key at +88 equals the node's key at +40, clears the valid halfword at +12; when waiter bits are set it zeroes the waiter halfword and the guarded doubleword at +56 and releases the semaphore at +40; and when the swap-group pointer at +160 is nonzero it calls `rrmSwapUnGroup` with the node and the pane. Panes of other nodes are not touched.
 
 - `RRM_init` (`rrm.o`, offset 0xf7c, 172 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
@@ -81,7 +81,7 @@ A pane is the resource manager's record of one drawable that a process has bound
 
 - `RRM_Init` (`rrm.o`, offset 0x1028, 72 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
-  Initialises the locks of one board manager object (argument: the object). It calls `spinlock_init` on the word at +48 with the name "bdatalock" and `init_sema` on the semaphore at +56 with count 1 and the name "gfxsema", the semaphore that `rrmInvalidateRN` takes.
+  Initialises the locks of one board manager object (argument: the object). It calls `spinlock_init` on the lock at +48 with the name "bdatalock" and `init_sema` on the semaphore at +56 with count 1 and the name "gfxsema", the semaphore that `rrmInvalidateRN` takes.
 
 - `rrmDoUnMapGfx` (`rrm.o`, offset 0x1070, 100 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
