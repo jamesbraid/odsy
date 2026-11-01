@@ -54489,11 +54489,11 @@ usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x18f0	36	RRM_UnbindRNFrom
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1914	732	RRM_OpenRN	dwarf+symtab	96a049f13a47		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1bf0	796	rrmCloseRN	dwarf+symtab	f64313d2e529		in	named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1f0c	32	RRM_CloseRN	dwarf+symtab	8066a1f9382a		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1f2c	572	RRM_Exit	dwarf+symtab	6583d922c5a0		in	undocumented		
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2168	8	rrmGetResourceMask	dwarf+symtab	0d94b77e1c7c		in	undocumented		
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x1f2c	572	RRM_Exit	dwarf+symtab	6583d922c5a0		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2168	8	rrmGetResourceMask	dwarf+symtab	0d94b77e1c7c		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2170	936	rrmSuspend	dwarf+symtab	8bb2ec9bea08		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2518	1180	rrmResume	dwarf+symtab	ab43414ba21a		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x29b4	192	rrmSetResourceMask	dwarf+symtab	5f7ec5053113		in	undocumented		
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x29b4	192	rrmSetResourceMask	dwarf+symtab	5f7ec5053113		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2a74	72	RRM_ValidateSwapBuf	dwarf+symtab	50f6c750e37e		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2abc	68	rrmValidateBuffer	dwarf+symtab	6f8fa96a6447		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2b00	104	RRM_ValidateMessage	dwarf+symtab	8d6626b90d15		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
@@ -54502,10 +54502,10 @@ usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2c2c	336	RRM_LoadDisplay
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2d7c	88	RRM_GetDisplayModes	dwarf+symtab	852e96b06ebd		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2dd4	120	rrmValidateMyRetrace	dwarf+symtab	f46138439360		in	named-only	docs/kernel.md#rrm-retrace-and-video-sync-callbacks	RRM retrace and video-sync callbacks
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2e4c	80	rrmValidateRetrace	dwarf+symtab	7752c3ccc723		in	named-only	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2e9c	376	rrmAllocPcxid	dwarf+symtab	5b4bb2dc0805		in	undocumented		
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x2e9c	376	rrmAllocPcxid	dwarf+symtab	5b4bb2dc0805		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3014	596	rrmValidateMyPcx	dwarf+symtab	5925b015de43		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3268	256	RRM_ValidateClip	dwarf+symtab	c65b3e74ba62		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
-usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3368	880	RRM_ValidFault	dwarf+symtab	a66b75768ae5		in	undocumented		
+usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3368	880	RRM_ValidFault	dwarf+symtab	a66b75768ae5		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x36d8	96	RRM_CheckValidFault	dwarf+symtab	c2dfc3271d7a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3738	240	rrmSwapWait	dwarf+symtab	e374f9b7fad1		in	named-only	docs/display.md#ioctl-1005-the-kernel-side-of-a-buffer-swap	Ioctl 1005, the kernel side of a buffer swap
 usr/cpu/sysgen/IP30boot/rrm.o	shared-kernel	n64	.text	0x3828	668	RRM_SwapBuf	dwarf+symtab	59723e99b10a		in	located	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
@@ -56434,11 +56434,11 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x18f0	36	RRM_UnbindRNFrom
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1914	732	RRM_OpenRN	dwarf+symtab	96a049f13a47		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1bf0	796	rrmCloseRN	dwarf+symtab	f64313d2e529		in	named-only	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1f0c	32	RRM_CloseRN	dwarf+symtab	8066a1f9382a		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1f2c	572	RRM_Exit	dwarf+symtab	6583d922c5a0		in	undocumented		
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2168	8	rrmGetResourceMask	dwarf+symtab	0d94b77e1c7c		in	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x1f2c	572	RRM_Exit	dwarf+symtab	6583d922c5a0		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2168	8	rrmGetResourceMask	dwarf+symtab	0d94b77e1c7c		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2170	936	rrmSuspend	dwarf+symtab	8bb2ec9bea08		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2518	1196	rrmResume	dwarf+symtab	da17809819b4		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x29c4	192	rrmSetResourceMask	dwarf+symtab	5f7ec5053113		in	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x29c4	192	rrmSetResourceMask	dwarf+symtab	5f7ec5053113		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2a84	72	RRM_ValidateSwapBuf	dwarf+symtab	50f6c750e37e		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2acc	68	rrmValidateBuffer	dwarf+symtab	6f8fa96a6447		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2b10	104	RRM_ValidateMessage	dwarf+symtab	8d6626b90d15		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
@@ -56447,10 +56447,10 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2c3c	336	RRM_LoadDisplay
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2d8c	88	RRM_GetDisplayModes	dwarf+symtab	852e96b06ebd		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2de4	120	rrmValidateMyRetrace	dwarf+symtab	f46138439360		in	named-only	docs/kernel.md#rrm-retrace-and-video-sync-callbacks	RRM retrace and video-sync callbacks
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2e5c	80	rrmValidateRetrace	dwarf+symtab	7752c3ccc723		in	named-only	docs/buzz.md#odsyretracehandler-and-the-swap-registers	`odsyRetraceHandler` and the swap registers
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	5b4bb2dc0805		in	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	5b4bb2dc0805		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3024	596	rrmValidateMyPcx	dwarf+symtab	7fe844ac5142		in	named-only	docs/kernel-shared.md#shared-kernel-objects-around-the-vpro-driver	Shared kernel objects around the VPro driver
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3278	256	RRM_ValidateClip	dwarf+symtab	c65b3e74ba62		in	understood	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3378	880	RRM_ValidFault	dwarf+symtab	a66b75768ae5		in	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3378	880	RRM_ValidFault	dwarf+symtab	a66b75768ae5		in	named-only	docs/open-questions.md#where-this-pass-stopped	Where this pass stopped
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x36e8	96	RRM_CheckValidFault	dwarf+symtab	c2dfc3271d7a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3748	240	rrmSwapWait	dwarf+symtab	e374f9b7fad1		in	named-only	docs/display.md#ioctl-1005-the-kernel-side-of-a-buffer-swap	Ioctl 1005, the kernel side of a buffer swap
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3838	668	RRM_SwapBuf	dwarf+symtab	48a500bc5963		in	located	docs/ioctls.md#resource-manager-requests-1000-to-1025	Resource-manager requests (1000 to 1025)
