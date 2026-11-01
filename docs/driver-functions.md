@@ -3364,12 +3364,27 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   instructions in the same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), the header constant
   for the update-enable word comes from the next small-data slot (-30624 instead of -30632) and the copy-failure
   message is at a different offset; the flag handling and the two control-word writes are unchanged.
+- `odsy_usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  The IP35 build of the stand-in for the USB compositor's tile update. The ten instructions and relocations equal the IP30 member's (compared with objdump, 0x7f4 to 0x81c in both): it loads a pointer from the read-only small-data word at gp-30720, sets a0 to 4, and calls `cmn_err` with a1 equal to that pointer plus 208 (the addition is in the call's delay slot at 0x808), then returns -1 (`li v0,-1` at 0x810). It reads none of its arguments and touches no board register. This kernel does not carry the real operation.
+- `usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Second, weak symbol at the same 40 bytes as `odsy_usb_comp_update_tiles` in the IP35 member (symbol table: both at 0x7f4, size 40); the same code, message offset 208 and result -1. The member's own call to the tile update is an undefined weak reference to this name.
+- `odsy_usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  The IP35 build of the stand-in for the USB compositor's register access, identical to the IP30 member's instructions (compared, 0x81c to 0x844 in both): pointer at gp-30720, a0 = 4, `cmn_err` with a1 equal to that pointer plus 248 (delay slot at 0x830), result -1 (0x838). It reads none of its arguments and touches no register.
+- `usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Second, weak symbol at the same 40 bytes as `odsy_usb_comp_readwrite_register` in the IP35 member (both at 0x81c, size 40); the same code, message offset 248 and result -1.
 - `odsy_program_compositor_tiling` (`odsy_hpipe.o`, offset 0x844, 1044 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
   The IP35 build of the compositor tile programming, compared with the IP30 listing instruction by instruction, every instruction of the body: 278
   instructions in the same order. The board's layout words are at -19264, -19260, -19256 and -19252 from +0x10000
   (IP30: -19288 to -19276); the range arithmetic, the USB compositor branch and the registers 35 to 42 are
   unchanged.
+- `odsy_i2cFixupAfterErr` (`odsy_ddc.o`, offset 0x0, 76 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)`.
+  The IP35 build of the two-wire error recovery. Its 19 instructions and their relocations match the IP30 listing word for word (objdump of both members compared over 0x0 to 0x4c): it loads the two delay constants from the small-data words at gp-30720 and gp-30716, takes the larger with `slt` and `movn`, calls `odsy_usdelay` with the board pointer at port record +16 (the first call's delay slot holds the `movn`), calls `odsy_i2cReset` on the port record, loads a third constant from gp-30712 and calls `odsy_usdelay` again with the same board pointer.
 - `odsy_i2cProbe2b` (`odsy_ddc.o`, offset 0x410, 6172 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ddc.o)`.
   The IP35 build of the monitor-bus probe, compared with the IP30 listing instruction by instruction, every instruction of the body: 1584 instructions in the
