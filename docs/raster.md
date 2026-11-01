@@ -68,6 +68,8 @@ The 128 x 64 streams name a microcode layout no held image has; the runs substit
 
 - **established**, `alpha.SUM` and `alpha.sml`: block 0x01e's comparison and reference act as `docs/tokens.md` reads them. Under reference 0.5, LEQUAL passes alphas 0.3 and 0.5, EQUAL passes 0.5 only, GEQUAL passes 0.5, 0.7 and 1.0, GREATER 0.7 and 1.0, NOTEQUAL 0.3, 0.7 and 1.0, LESS 0.3, ALWAYS all four and NEVER none; a rejected fragment leaves the frame unchanged. Alpha 0.5 equals reference 0x800.
 - The precision at which alpha meets the reference: **not tested**. Comparing floor(256 a) with the reference's top eight bits and comparing the unconverted alpha with reference / 4096 give the same frames, since no tested alpha lies within 1/256 of 0.5 other than 0.5 itself.
+- **The library's encoding of the reference**, **established**, `__glOdyim_AlphaFunc` (0x0d95aea0, 320 bytes, `ody_attrib.s`), read in full: the reference is clamped to [0, 1]; a reference of 1.0 or more is sent as 4095 (the single 0x457ff000), anything else as the truncation of reference x 4096; the result is masked to 12 bits and merged under the comparison in bits 14:12 of the word at context +31784, which block `0x01e` carries. So 1.0 is 4095 and 0.5 is 2048 (0x800); a reference of 0.99999 is 4095 too (truncation of 4095.96).
+- **How the board reads that field**, **inferred (vendor simulation)**: the frames reject a decode of field / 4095 and accept field / 4096 or a comparison in 12-bit steps. With reference 0x800, alpha 0.5 passes EQUAL and GEQUAL and fails GREATER, which field / 4095 (0.50012) would turn into a failed EQUAL and a failed GEQUAL. Of the two that survive, the 12-bit comparison, min(4095, floor(4096 a)) against the field, is the one under which the library's choice of 4095 for 1.0 gives GL's answers: alpha 1.0 fails GREATER against a reference of 1.0 and passes GEQUAL. A float comparison of alpha against field / 4096 would pass GREATER (1.0 > 0.99976). That the board holds fragment alpha in 12 bits is the white paper's 12-bit colour path read for this board; no frame tests an alpha within 1/256 of a reference other than 0.5. **Unknown:** whether the quantisation truncates or rounds; floor(4096 a) is what the library's own encoder does.
 
 ### Texturing
 
@@ -278,6 +280,13 @@ The conversion routines, all in `ody_image_convert.c` of the N32 library:
 Block 0x051 bit 1 is set when the far end is below the near one ([tokens.md](tokens.md), block
 0x051).
 
+### The depth clear
+
+- **The value the library sends**, **established**: `__glOdyim_Clear` (0x0d9644d0, 1476 bytes, `ody_clear.s`, the multiplications at source lines 137, 139 and 159, one per call to `__glOdysseyClear` at 0x0d964aa0) takes the GL clear depth as a single, widens it to a double, multiplies by 2S (the double 0x41fffff800000000) and narrows the product back to a single with a round-to-nearest conversion (`cvt.s.d`) before passing it. So `glClearDepth(1.0)` sends 2S exactly (the single 0x4fffffc0, the same word the field diagnostics' own clear carries) and 0.0 sends 0.
+- **The kernel forwards it unchanged**, **established**, `gfP_OdsyClearBuffer` (ioctl 0x6f64000e, `odsy_clip.o`, 0xc60, 2084 bytes, IP30 6.5.30m): the 44-byte request holds the four colour floats and then the depth word (offset 16); the routine contains no floating-point instruction and stores those five words to the command FIFO as they are, the depth word twice, as the z of the two corners after `0x00014400` operand 10 and the state word `0x8f80a92f`. The colour is also unconverted. So the conversion from the single to the board's 24-bit depth word is on the board, not in the library or the kernel; the library's fallback fill (operand 7, state word `0x8f80a944`, corners as x, y, z floats) passes the same single as z.
+- **Consequence for the model**: the rectangle's z operand is in the units of the depth word's value (2S at the far plane), not a window fraction, whatever path draws the clear.
+- **Unknown**: how the board maps that single onto an exponent of six bits and a mantissa of eighteen: by truncation, as the library's host encoder does, or by rounding. 0, 2S and the other defaults the library and kernel send are exactly representable at 18 bits (2S has 17 fraction bits set), so no shipped caller discriminates. Any clear depth d for which float32(d x 2S) has a set bit below the 18th mantissa bit does (for example 0.3); reading it back through the library's decoder shows which.
+
 ### Clipping at the near and far planes
 
 - Published (US 6,259,460, columns on the raster unit): frustum clipping "is effectively performed
@@ -415,12 +424,32 @@ depth is its own eye distance.
   Support Tools 2.7 OpenGL suite (its `polygon_offset` test ships without a program or checksum,
   below).
 
+## Antialiased coverage
+
+The `aapts` and `aalines` frames (`__clog_aapts` 0x10071b40 and `__clog_aalines` 0x1000b550 in `odydiags`; stored 1280 x 1024 frames `aapts.SUM` and `aalines.SUM`, CRC-32 `1850ba19` and `7d84de2f` in `csumlist`) draw antialiased points and lines on a grey background (0.2, 0.2, 0.2, 1). `scripts/odydiags_aa_fit.py` replays both streams through the transform reading and prints the fit below. The frames are the simulator's output, as for every frame in this file.
+
+**State.** Block 0x004 is `0x23201` for points (bit 0 point smooth, bit 17 blending, bits 9, 12 and 13 not needed here) and `0x23202` for lines (bit 1, line smooth). Block 0x04a carries the line width in its first operand and the point size in its second, both with seven fraction bits (see [Block 0x04a](tokens.md)): `aapts` draws sizes 1 (0x80) and 2 (0x100), `aalines` widths 1, 2 and 3 in three screen quarters. Colours are flat, all components 1 or 0, so a channel with source value 1 stores 51 + 204 a and a channel with source 0 stores 51 (1 - a), with a the coverage.
+
+- **Blend**, **established (vendor simulation)**: source alpha over destination on all four bytes with the source alpha equal to the coverage. A white point stores alpha a^2 + (1 - a), so the alpha byte is the blend of an alpha of a with the destination alpha of 1. For the 69 lit pixels of the size 1 points that sit away from other points the colour byte and the alpha byte give the same coverage to one step under this rule.
+- **Coverage depends only on the pixel's area in the primitive**, **inferred (vendor simulation)**: a = G(c), where c is the exact area of the pixel square inside the primitive and G is a single monotone curve shared by points and lines. The primitive is a strip of the line width about the segment, or a square of the point size (not a disc). Reading G from the axis-aligned lines (c = width / 2 - |distance| + 1/2) and applying it unchanged to the other primitives:
+
+| c | G(c) | c | G(c) | c | G(c) |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 0.00 | 0.3125 | 0.567 | 0.6875 | 0.726 |
+| 0.0625 | 0.181 | 0.375 | 0.608 | 0.75 | 0.753 |
+| 0.125 | 0.314 | 0.4375 | 0.644 | 0.8125 | 0.791 |
+| 0.1875 | 0.423 | 0.5 | 0.667 | 0.875 | 0.843 |
+| 0.25 | 0.504 | 0.5625 | 0.686 | 0.9375 | 0.913 |
+| | | 0.625 | 0.706 | 1 | 0.997 |
+
+  G is below 0.04 at c = 0 (a pixel entirely outside the edge stores nothing from 0.03 beyond it), 1.000 from c = 1.03, and 0.104 at c = 0.031. The curve is concave to c = 0.5, nearly flat from 0.4 to 0.75 and steep again to 1, so it is not a power law: a pixel half covered stores 0.667, a quarter covered 0.504. The widths 1, 2 and 3 give the same curve (they collapse to within one step as a function of the edge distance), and so do the two point sizes. A closed form for G is **unknown**; block 0x045, which `diag_lineAA_gamma` (0x1052e1d0) loads with 255 and 0x76ff before both tests, is the only register the streams set that could shape it, and no shipped software reads back what it does (`docs/words.md`).
+  Fit quality, edge pixels only (stored coverage strictly between 0 and 1): near-axis lines 4527 pixels, mean difference 0.4 step of 204, largest 4; size 1 points 49 pixels, mean 2.9, largest 8; size 2 points 277 pixels, mean 2.4, largest 8. The line of slope -0.27 (15 degrees from the x axis) has 1367 edge pixels with a mean difference of 7 steps and a largest of 26: the area rule explains why its centre pixels reach only 0.90 (the unit strip leaves the corners of a pixel on its centre line uncovered, exact area 0.90), but the hardware reads about 0.03 higher than G of that area. The residual for oblique lines is **unknown**.
+- **Why the earlier readings failed.** The size 1 point's "pi/4 at the centre" is not a disc: the sample points never sit on a pixel centre (offsets 0.06 and 0.13), where the square footprint covers 0.82 of the pixel and G(0.82) = 0.79, the stored 0.784. The "0.15 at 0.95 pixel" is G(0.05): the curve has a fat low tail. The corner point (centre on a pixel corner) lights four pixels at c = 0.25, G = 0.504, the stored 0.49 to 0.50.
+- **Line ends**, **unknown**: pixels within 1.5 of an end are not predicted by the strip clipped at the endpoints (mean difference 25 steps over 133 pixels with c from either side partial; extending the strip makes it worse). The cap rule is not the strip's own.
+- **Polygons**: no stored frame draws antialiased polygons. The library sets block 0x004 bit 2 for `GL_POLYGON_SMOOTH` like bits 0 and 1 (`docs/tokens.md`), so the board is asked for them; the coverage rule for polygon edges is **unknown** and the area rule is the natural extension (**inferred**, untested).
+
 ## Remaining frames
 
 - `checkr3d.SUM`: fitted without a match (above).
 - `blend`: fitted without a match (above).
-- `aapts` and `aalines` draw antialiased primitives on a grey background (0x333333ff). Not fitted. Read so far from `aapts.SUM` (869 pixels differ from the background) and its stream, all **inferred**:
-  - The drawn points carry block 0x004 = 0x23201: bit 0 (`GL_POINT_SMOOTH`), bit 17 (blending) and bits 9, 12 and 13; block 0x04a sends 0x80 for the point size (1.0) in the lower-left quarter and 0x100 (2.0) in the right half.
-  - Blending: in the lower-left quarter every one of the 134 lit pixels around the white points fits result = a src + (1 - a) dst on all four bytes, with src (1, 1, 1, a) and dst the background (0.2, 0.2, 0.2, 1): alpha comes out as a² + (1 - a), so the factors are source alpha and one minus source alpha, alpha included.
-  - Coverage a: about 0.784 (π/4) for a point near a pixel centre (pixel (2, 368), 0xd3d3d3d4, point at (2.559, 368.633)); 0.5 for each of the four pixels around a point on a pixel corner (the centre point at (320, 255.992): pixels (319, 255) 0x999999c0, (320, 255) 0x989898c0, (319, 256) 0x979797c0, (320, 256) 0x969696c0); and still about 0.15 at 0.95 pixel. So a point of size 1 reaches beyond the one-pixel disc. The coverage is not a function of the Euclidean distance from the pixel centre alone, nor of the max + min/2 or max + 3 min/8 approximations of it: 750 to 1191 pairs of pixels order the other way.
-
+- `aapts` and `aalines` are fitted in [Antialiased coverage](#antialiased-coverage) above.

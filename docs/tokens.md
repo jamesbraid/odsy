@@ -137,6 +137,20 @@ after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context fl
   operand each. The kernel textport sends 0x80 for both (`buzz_init`, `odsy_tport.o`)
   which would read as 1.0 in fixed point with seven
   fraction bits.
+- **0x04a** operands, **established**, `__glOdysseyValidateContextRasterMisc` (0x0d969500, 488 bytes, source
+  lines 2073 to 2103, `ody_context.s`) with `__glOdyim_LineWidth` (0x0d95c2a0) and
+  `__glOdyim_PointSize` (0x0d95d300): the first operand (context +31828) is the line width and the
+  second (+31832) the point size, each as 128 x the size truncated to an integer and masked to 24
+  bits, the top byte kept from the old word. A smoothed primitive (context enable bits 0x200 for
+  lines, 0x400 for points) uses the clamped size: widths 0.5 to 10 for lines and sizes 0.5 to 2.0
+  for points (the point routine stores 2.0 for any larger size); an unsmoothed primitive uses the
+  size rounded to an integer, trunc(size + 0.5) with a minimum of 1. Both routines raise
+  GL_INVALID_VALUE for a size of zero or less and GL_INVALID_OPERATION inside glBegin. The clamp
+  limits are context words set to 0.5, 10.0 and 0.125 (minimum, maximum, granularity) at +3744 to
+  +3752 for points and +3756 to +3764 for lines in the context creation routine (`ody_context.s`,
+  source lines 4296 to 4301); that GL_POINT_SIZE_RANGE and GL_LINE_WIDTH_RANGE report them is
+  **inferred** from the offsets. The antialiased frames of
+  [raster.md](raster.md) use 1 to 3 and the sizes 1 and 2 in these operands.
 
 ## Blocks only the hardware validator sends
 
