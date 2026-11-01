@@ -27,7 +27,7 @@ The share of understood rows that an independent audit found real when it re-der
 | binaries | 62.5% | 8 | 2026-11-01 |
 | functions | 85.0% | 20 | 2026-11-01 |
 | mmio | 87.5% | 8 | 2026-11-01 |
-| tokens | 37.5% | 8 | 2026-11-01 |
+| tokens | 45.0% | 20 | 2026-11-01 |
 | ioctls | 73.3% | 15 | 2026-10-29 |
 | ucode | 84.0% | 25 | 2026-10-29 |
 
