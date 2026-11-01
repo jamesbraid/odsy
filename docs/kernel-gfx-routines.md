@@ -65,3 +65,19 @@ The thread table `gthread_table` is a pointer in the small-data area to 16 slots
 - `gthread_find_gfxp` (`gfx.o`, offset 0x8dc, 56 bytes): **established.**
   Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
   Returns the doubleword at +24 of a thread's list record (argument: the handle). It calls `gthread_find` with the handle and returns 0 when no record is found or the record's list pointer at +16 is null; otherwise the result is the doubleword at +24 of that list.
+
+- `GfxListWriterLock` (`gfx.o`, offset 0x2a10, 120 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Takes a graphics list record's spin lock for writing and waits until its word at +4 is no longer positive (argument: the list record, whose count is at +0, spin lock at +16 and wait variable at +8). It calls `mutex_spinlock` on +16. While the signed word at +4 is above zero it calls `sv_wait` on +8 with 25 as the second argument, the lock as the third and the saved level as the fourth (the call releases the lock), then takes the lock again. It returns the saved level with the spin lock held; `GfxListWriterUnlock` releases it.
+
+- `GfxRqService` (`gfx.o`, offset 0x1c10, 124 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Service routine of the graphics stream: it forwards queued messages to the next module (argument: the queue). It calls `getq` and returns 0 at once when nothing is queued. For each message it calls `canput` on the queue pointer at +24; when that says no, it puts the message back with `putbq` and returns 1. Otherwise it calls the function at offset 0 of the table that the first word of the next queue points to, with the next queue and the message, then calls `getq` again and loops while one is returned. It returns 0 when the queue drains.
+
+- `irix5_to_gfx_getboardinfo_args` (`gfx.o`, offset 0x34cc, 120 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Converts the board-information request from the 32-bit argument layout to the 64-bit one, in the same two-step form as `irix5_to_RRM_GetDisplayModes`. With a zero first argument it compares the word at +0 of the fourth argument with 12, allocates 12 bytes with `kern_malloc` into +16 when that word is smaller or else copies the pointer at +8 to +16, stores 12 at +4 and returns 0. With a nonzero first argument it reads 12 bytes from the pointer at +16 and writes the second argument: the word at 0 to +0, the word at 4 zero-extended to a doubleword at +8 and the word at 8 to +16. The destination is 24 bytes. It returns 0.
+
+- `irix5_to_gfx_attach_board_args` (`gfx.o`, offset 0x35e4, 112 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfx.o`.
+  Converts the attach-board request in the same two-step form. With a zero first argument it checks the word at +0 of the fourth argument against 8, allocates 8 bytes into +16 with `kern_malloc` when it is smaller or else copies the pointer at +8 to +16, stores 8 at +4 and returns 0. With a nonzero first argument it reads 8 bytes from the pointer at +16 and writes the second argument: the word at 0 to +0 and the word at 4 zero-extended to a doubleword at +8. The destination is 16 bytes. It returns 0.
