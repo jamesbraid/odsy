@@ -1562,19 +1562,9 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   It calls `odsy_i2c_write_denali_byte` for each byte of the buffer in order, stopping at the first failure. It then takes the semaphore again, waits for level 15, writes the saved 0x3804 value back, replays the deferred cursor update and returns 0, or 1 when a byte write or a FIFO wait failed (the restore of 0x3804 is attempted on that path too).
 - `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
-Lays out
-  the board's SDRAM for a frame buffer size and programs the scan-out registers. When the word at +16 of its
-  argument block is set it only returns `odsyProbeFb`. Otherwise it rounds width and height up to 16-pixel
-  tiles and the tile row up to an even count, takes the depth (32, 16 or 8) to find how many 32-bit tile slots the frame buffer
-  needs, and places the frame buffer at the board record's +1360 start address (sdram address in 512-byte
-  units) rounded up to a four-tile boundary, then the overlay and window-id buffer (2 bytes deep, sixteen times denser) at +1496,
-  the unused coarse-Z slot, up to four 8-bit accumulation buffers (the argument's word +12 chooses none, 2 or 4)
-  at the following boundaries, and the first free address for textures and pixel buffers at +1088. It returns -1
-  when that address passes the SDRAM size held at +252 (in megabytes). The routine writes the start
-  addresses and the five region sizes back into the argument block at +20 to +48, then pushes six scan-out
-  commands (overlay base, pixel base, width, height, stride and depth code 4, 3 or 2) after waiting for display-FIFO
-  level 10 with `odsy_poll_dfifo_level`, stores the width and height as halfwords at +232 and +234 and
-  returns 0.
+  Lays out board memory for a frame-buffer request and programs the scan-out registers (arguments: board record, 52-byte request block). When the request word at +16 is nonzero it returns what `odsyProbeFb` returns and changes nothing. The decompiled listing was followed through the probe branch, the oversubscription branch and the commit path, and the six pushed headers were matched to display registers by decoding the six consecutive literal doublewords the routine loads, whose address field (bits 31:14 after removing 0x30000001) reads 0x2800, 0x2801, 0x2802, 0x2803, 0x2807 and 0x2809.
+  Sizing: the tile columns are ceil(width / 16) plus one, rounded down to even, so the row stride is an even number of tiles; the tile rows are ceil(height / 16). The tile count is the product, which is the size in units for depth 32; it is halved (rounded up) for depth 16 and quartered for depth 8, and those depths store 3 and 2 as the depth code (4 for depth 32). The record's start word at +1360 (units shifted left 9) is rounded up to a multiple of 4 and becomes the frame-buffer region at +1360; its region record at +1304 takes the depth at +1321, the width and height at +1336 and +1340 and the column count at +1348. The overlay region at +1496 follows, rounded to a multiple of 4, depth 2, one sixteenth of the tile count rounded up. The coarse-Z slot that follows has size zero (its pointer at +2152 is cleared and its start is the overlay end rounded again). Up to four 8-bit accumulation regions, selected by request word +12 (0 none, 1 two, 2 four), each a quarter of the tile count, follow it; their region records are 136 bytes each from +1576, with the start words from +1632 and the record pointers from +2160. The end, rounded to a multiple of 4, is stored at +1088 as the first free address for later allocations.
+  A request whose end, shifted left 13, is not below the SDRAM size word at +252 shifted left 20 logs a severity 4 message and returns -1 with no register written. Otherwise it writes results into the request: +20 the frame-buffer start word (record +1360), +24 the overlay start word (+1496), +28 the frame-buffer start in units shifted left 13, +32, +36, +40 and +44 the sizes of the frame-buffer, overlay, accumulation and coarse-Z regions (the last is zero), and +48 the SDRAM size in bytes. It then takes the display semaphore unless the start-up word at +46184 is set, waits for display-FIFO level 10 and pushes six display-register writes in this order: 0x2800 the overlay start, 0x2801 the frame-buffer start, 0x2802 and 0x2803 each with data 0, 0x2807 the row stride in tiles, 0x2809 the depth code. It releases with the cursor replay, stores the width and height as halfwords at +232 and +234, clears the words at +796 and +800, and sets the halfword at +804 to 1, and returns 0. A failed level wait releases and returns -1.
 - `odsyLoadTimingTable` (`odsy_brdmgr.o`, offset 0x3c4c, 8392 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
   Programs a video timing into the board: the pixel-clock generator, the
@@ -1673,21 +1663,9 @@ Lays out
   ends with the markers 15608 to 15611, each followed by 16 zero words, and returns nothing.
 - `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
-Lays out
-  the board's SDRAM for a frame buffer size and programs the scan-out registers. When the word at +16 of its
-  argument block is set it only returns `odsyProbeFb`. Otherwise it rounds width and height up to 16-pixel
-  tiles and the tile row up to an even count, takes the depth (32, 16 or 8) to find how many 32-bit tile slots the frame buffer
-  needs, and places the frame buffer at the board record's +1360 start address (sdram address in 512-byte
-  units) rounded up to a four-tile boundary, then the overlay and window-id buffer (2 bytes deep, sixteen times denser) at +1496,
-  the unused coarse-Z slot, up to four 8-bit accumulation buffers (the argument's word +12 chooses none, 2 or 4)
-  at the following boundaries, and the first free address for textures and pixel buffers at +1088. It returns -1
-  when that address passes the SDRAM size held at +252 (in megabytes). The routine writes the start
-  addresses and the five region sizes back into the argument block at +20 to +48, then pushes six scan-out
-  commands (overlay base, pixel base, width, height, stride and depth code 4, 3 or 2) after waiting for display-FIFO
-  level 10 with `odsy_poll_dfifo_level`, stores the width and height as halfwords at +232 and +234 and
-  returns 0.
-  Compared with the IP30 build (offset 0x824 there) the 537 instructions are the same except for their
-  addresses: 3 instructions address board-record displacement -19328 where the IP30 build uses -19352.
+  Lays out board memory for a frame-buffer request and programs the scan-out registers (arguments: board record, 52-byte request block). When the request word at +16 is nonzero it returns what `odsyProbeFb` returns and changes nothing. The decompiled listing was followed through the probe branch, the oversubscription branch and the commit path, and the six pushed headers were matched to display registers by decoding the six consecutive literal doublewords the routine loads, whose address field (bits 31:14 after removing 0x30000001) reads 0x2800, 0x2801, 0x2802, 0x2803, 0x2807 and 0x2809.
+  Sizing: the tile columns are ceil(width / 16) plus one, rounded down to even, so the row stride is an even number of tiles; the tile rows are ceil(height / 16). The tile count is the product, which is the size in units for depth 32; it is halved (rounded up) for depth 16 and quartered for depth 8, and those depths store 3 and 2 as the depth code (4 for depth 32). The record's start word at +1360 (units shifted left 9) is rounded up to a multiple of 4 and becomes the frame-buffer region at +1360; its region record at +1304 takes the depth at +1321, the width and height at +1336 and +1340 and the column count at +1348. The overlay region at +1496 follows, rounded to a multiple of 4, depth 2, one sixteenth of the tile count rounded up. The coarse-Z slot that follows has size zero (its pointer at +2152 is cleared and its start is the overlay end rounded again). Up to four 8-bit accumulation regions, selected by request word +12 (0 none, 1 two, 2 four), each a quarter of the tile count, follow it; their region records are 136 bytes each from +1576, with the start words from +1632 and the record pointers from +2160. The end, rounded to a multiple of 4, is stored at +1088 as the first free address for later allocations.
+  A request whose end, shifted left 13, is not below the SDRAM size word at +252 shifted left 20 logs a severity 4 message and returns -1 with no register written. Otherwise it writes results into the request: +20 the frame-buffer start word (record +1360), +24 the overlay start word (+1496), +28 the frame-buffer start in units shifted left 13, +32, +36, +40 and +44 the sizes of the frame-buffer, overlay, accumulation and coarse-Z regions (the last is zero), and +48 the SDRAM size in bytes. It then takes the display semaphore unless the start-up word at +46208 is set, waits for display-FIFO level 10 and pushes six display-register writes in this order: 0x2800 the overlay start, 0x2801 the frame-buffer start, 0x2802 and 0x2803 each with data 0, 0x2807 the row stride in tiles, 0x2809 the depth code. It releases with the cursor replay, stores the width and height as halfwords at +232 and +234, clears the words at +796 and +800, and sets the halfword at +804 to 1, and returns 0. A failed level wait releases and returns -1.
 - `odsyLowaterInterrupt` (`odsy_flow.o`, offset 0x584, 144 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_flow.o)`.
   Runs when the command FIFO drains below its low-water mark. It cancels the FIFO timer, clears bit 9 in
@@ -1785,19 +1763,9 @@ Lays out
   While the counter is below 800 the routine returns 0 as soon as status bit 9 (transfer done) reads set, and otherwise waits 100 microseconds with `odsy_usdelay`; the pass that makes the counter 800 returns 2 without testing the bit. A failed FIFO wait returns 3.
 - `odsyInitBoardGfx` (`odsy_init.o`, offset 0xc5c, 640 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-  Builds the software state of a board after attach. It clears the first 200 bytes of the record,
-  initialises the semaphores, mutexes, sync variable and spin lock the driver uses (named "odsy dfifo
-  sema", "odsy mouse pos lock", "scanbuf_lock", "shdwptr_lock" and "pfstat_lock" among them) at their
-  fixed offsets, calls `odsyInitDDRNs` and `odsyInitHwWrRgn`, and allocates 0xc000 zeroed bytes into the
-  pointer at +888, whose offset +32 becomes the microcode buffer pointer at +34136. It adds hardware-
-  inventory entries built from the memory-size word at +252 and the flag words at +280 and +296, sets +176
-  to 1, +88 to 40 and +20 to 1, and registers the board with `GfxRegisterBoard`.
-  Compared with the IP30 build (offset 0x904 there) the 160 instructions are the same except for their
-  addresses: 1 instruction address board-record displacement 216 where the IP30 build uses 320; 1
-  instruction address board-record displacement 232 where the IP30 build uses 336; 1 instruction address
-  board-record displacement 256 where the IP30 build uses 360; 1 instruction address board-record
-  displacement 272 where the IP30 build uses 376; 1 instruction address board-record displacement 288
-  where the IP30 build uses 392.
+  Builds the software state of one board after attach (argument: board number, used to fetch the record from the table of board pointers). The decompiled listing was followed to the end and the inventory branches and their constants were checked in the assembly. It clears the first 200 bytes, then sets up the driver's locks in this order: a semaphore at +0x74b0 (count 1), the 32 KB slot mask at +0x7500, a mutex at +0x16a8, a synchronisation variable at +0x16b8, the display semaphore at +0x8530 (count 1), a spin lock at +0x8540, mutexes at +0x8520 and +0x8510 and a semaphore at +0x6f48 (count 1). It clears the words at +0x16d4, +0x16d8, +0x1afc, +0x1b00 and +0x6f18 and stores 0x1f0 at +0xb3d4.
+  It calls `odsyInitDDRNs` with the record and `odsyInitHwWrRgn` with the board number, allocates 0xc000 zeroed bytes with `kmem_zalloc` into +888, and stores that pointer plus 32 at +34136 as the microcode buffer pointer. The inventory state word is 0x10000, 0x20000 or 0x30000 for a memory size word (+252) of 32, 64 or 128 and 0 for any other size, ORed with 0x1000000 when the word at +280 is 0 and 0x2000000 when it is 1; `add_to_inventory` receives class 7, type 21, the board number and that word. When the halfword at +296 is nonzero and the halfword at +298 is 3 it adds a second entry with class 17, type 3 and state 0.
+  Last it sets the words at +176 and +20 to 1 and +88 to 40, points +96 at +0x86c8, initialises three more mutexes at +0xb338, +0xb370 and +0x8580, and registers the record with `GfxRegisterBoard`.
 - `odsyInitInterrupts` (`odsy_init.o`, offset 0x3100, 1032 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
   Programs the five interrupt sources. It builds the error-source destination words at 0x34 and 0x3c, the
