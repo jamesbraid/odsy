@@ -396,6 +396,9 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
   Initialises the lock of the display-pipe state with `spinlock_init`, giving it the global
   `odsy_hpipe_state_lock` and the name "HpipeStateLock".
+- `odsy_hpipe_sema_init` (`odsy_hpipe.o`, offset 0x0, 32 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
+  Creates the display-pipe state lock on the IP35 build; the whole 32-byte body is a frame, one call and a return. It passes the address of the global lock word, which a gp-relative relocation names `odsy_hpipe_state_lock`, and the small-data string "HpipeStateLock" to `spinlock_init` and returns that call's result. The listing matches the IP30 routine.
 - `odsy_hpipe_invalidate` (`odsy_hpipe.o`, offset 0x20, 68 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
   Forgets the cached display-pipe state of a board. It zeroes the two doublewords at board record +46216
@@ -403,8 +406,8 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   structure at `OdsyHpipeState` when that pointer is set, and releases the lock with `mutex_spinunlock`.
 - `odsy_usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
-  Placeholder for a tile-update operation that the kernel build does not carry. It calls `cmn_err` at
-  severity 4 with "usb_comp_update_tiles not in kernel!" and returns -1, with no board access. Other code
+  Stand-in for a tile-update operation that this kernel does not carry; the two builds' 40 bytes are identical. It loads its message from the small-data pointer, calls `cmn_err` at
+  severity 4 with the string at offset 208 of that table, "usb_comp_update_tiles not in kernel!", and returns -1; it reads none of its arguments and touches no board. The caller `odsy_program_compositor_tiling` passes the unit number (bits 15:8 of the board's compositor word), a pointer to eight tile words on its stack and the byte count 32, so the intended operation sends the eight x and y range words to a compositor identified by unit; its effect in a kernel that has it is unknown. Other code
   in `odsy_hpipe.o` reaches it under the second symbol `usb_comp_update_tiles` at the same address.
 - `usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
@@ -413,9 +416,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   kernel!" at severity 4 with `cmn_err` and returns -1.
 - `odsy_usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
-  Placeholder for the register read-write operation of the USB compositor, which is not in this kernel. It
-  calls `cmn_err` at severity 4 with "usb_comp_readwrite_register not in kernel" and returns -1 without
-  touching a register.
+  Stand-in for the register read-write operation of the USB compositor, which this kernel does not carry. It calls `cmn_err` at severity 4 with the string at offset 248 of the small-data table, "usb_comp_readwrite_register not in kernel", and returns -1; it reads none of its arguments and touches no register. `odsy_program_compositor_tiling` calls it with the unit number, register 1, a count of 1, a flag of 0 and a pointer to a stack word that holds a word read from the board record with bit 5 set before the tile update and cleared again afterwards, so the intended operation is a one-word register access on the unit's compositor.
 - `usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
   Second symbol for the 40-byte code at offset 0x81c that `odsy_usb_comp_readwrite_register` also names.
