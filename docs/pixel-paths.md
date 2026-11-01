@@ -16,7 +16,7 @@ from the visual ([raster.md](raster.md#which-windows-carry-the-16-bit-word) has 
 
 Pixel classes, from that table and the read routine below: 2 L8, 5 L12, 6 LA8, 7 RGBA 4/4/4/4,
 8 RGBA 5/5/5/1, 9 LA12, 10 RGBA8, 11 RGBA 10/10/10/2, 12 RGBA12, 16 CI8, 17 CI12. Classes 0, 1,
-3, 4 and 13 are reached only by texture objects; 14 and 15 by nothing.
+3, 4 and 13 are reached only by texture objects; 14 and 15 only as the destination class of an upload to an ICC texture (index 48 and 49), where the transfer sends plain components (see [texture-formats.md](texture-formats.md), "How an ICC level's texels are packed").
 
 ## The header
 
