@@ -4594,3 +4594,61 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
 - `odsy_probeDenaliChannel` (`odsy_denali.o`, offset 0x0, 824 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_denali.o)`.
   Looks for the Denali device on one channel of a board's two-wire bus on IP35 (arguments: board, channel, result pointer, port select; frame of 1120 bytes). Select 0 uses the port record at board +0xb3e0; a nonzero select needs the halfword at board +298 to equal 3, otherwise the result word is set to 0 and the routine returns 0, and then uses the port record at +0xb408. The port mutex is taken with `mutex_lock` at level 25 on the address held at port +16 plus 0x8520 when the word at port +28 is nonzero and plus 0x8510 when it is zero. Only a nonzero select then sets device byte 31 at port +32, reads register 5 with `odsy_i2cDDCRegRead` at 0x7c, and writes register 0 as 32 with bit 5 set in register 5 for a nonzero channel, or register 0 as 16 with bit 5 cleared for channel 0, through `odsy_i2cPLLRegWrite`. Both selects then set device byte 239 at +32 and call `odsy_i2c_read_denali` into a word array at 8(sp) with the length out at 4(sp): a failed read goes to the exit; after each successful read it stops the bus and waits 100 microseconds, ends the loop when the length is zero and reads again otherwise, and after 101 reads it logs a severity 4 message with the channel and goes to the exit. It then sets device byte 238, starts with `odsy_i2c_start` (nonzero goes to the exit), sends the bytes 2, 0 and 64 with `odsy_i2c_write_denali`, stops, waits 300 microseconds and reads with device byte 239 up to 10 times, 10 microseconds apart, until the length out is 10. A match stores 4 in the result for select 0, or the channel shifted left once with bit 0 set otherwise; ten mismatches store nothing. The exit stops the bus, writes register 0 as 48 with device byte 31 when select was nonzero, unlocks the mutex and returns 0.
+- `gfx_exit` (`gfxstubs.o`, offset 0x0, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the per-process graphics exit hook. Its delay slot is `move v0,zero`, so it reports 0 to every caller and does nothing else. The routine of the same name in `gfx.o` runs 428 bytes and takes the process's graphics state down. The return is at 0x0.
+- `gfx_disp` (`gfxstubs.o`, offset 0x8, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the graphics dispatch hook. The delay slot of its `jr ra` is `li v0,1`, so it answers 1 whatever it is asked, with no memory access. The routine of the same name in `gfx.o` is 308 bytes long. The return is at 0x8.
+- `gfx_earlyinit` (`gfxstubs.o`, offset 0x10, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the early graphics probe, with a `nop` in the delay slot: it leaves v0 as the caller had it and probes nothing. The real routine of the name sits in the console driver `tport.o` and is 36 bytes. The return is at 0x10.
+- `tp_init` (`gfxstubs.o`, offset 0x18, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for console terminal start-up. Its delay slot is `move v0,zero`, which answers 0 and sets up no terminal. The routine of this name in `tport.o` is 456 bytes. The return is at 0x18.
+- `tp_dogui` (`gfxstubs.o`, offset 0x20, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the console's graphical-login switch. It clears v0 in the delay slot of its return and leaves everything else untouched. `tport.o` carries a 92-byte routine of the same name. The return is at 0x20.
+- `tpcons_write` (`gfxstubs.o`, offset 0x28, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for writing console text to the terminal driver: a return with a `nop` delay slot, so the characters are dropped and v0 is untouched. In `tport.o` the routine of this name is 64 bytes long. The return is at 0x28.
+- `gfx_fault` (`gfxstubs.o`, offset 0x30, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the graphics page-fault hook. It loads 1 into v0 in the delay slot of its return and reads none of the fault's arguments. The routine in `gfx.o` is 216 bytes. The return is at 0x30.
+- `rrmSuspend` (`gfxstubs.o`, offset 0x38, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for suspending the resource manager around a context switch; its return has a `nop` delay slot, so it does no work and sets no result. `rrm.o` holds a routine of this name 936 bytes long. The return is at 0x38.
+- `rrmResume` (`gfxstubs.o`, offset 0x40, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for resuming the resource manager after a context switch, again a bare return with a `nop` in the delay slot. The routine in `rrm.o` is 1180 bytes, 244 more than the suspend routine. The return is at 0x40.
+- `gfx_shcheck` (`gfxstubs.o`, offset 0x48, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the shared-graphics-resource check: one return and a `nop`, so no check is made and no value is set. The routine of the name in `gfx.o` is 596 bytes. The return is at 0x48.
+- `gfx_shdup` (`gfxstubs.o`, offset 0x50, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for duplicating a shared graphics resource into a new process. Return plus `nop`: nothing is copied. The routine in `gfx.o` is 124 bytes. The return is at 0x50.
+- `gfx_shalloc` (`gfxstubs.o`, offset 0x58, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for allocating a shared graphics resource, a return with a `nop` delay slot, so nothing is allocated and v0 is not set. The `gfx.o` routine of this name is 192 bytes. The return is at 0x58.
+- `gfx_shfree` (`gfxstubs.o`, offset 0x60, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for releasing a shared graphics resource, a bare return with a `nop` delay slot. The routine in `gfx.o` is 44 bytes, the shortest of the four `gfx_sh` routines there. The return is at 0x60.
+- `shmiq_sproc` (`gfxstubs.o`, offset 0x68, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  A hook whose name points at the shared-memory input queue, here reduced to a bare return. Both words of the body were read: `jr ra` at 0x68, then a `nop`, so it reads no argument and v0 stays as the caller left it. `gfx_shfree` before it and `initkbdtype` after it have the same two words.
+- `initkbdtype` (`gfxstubs.o`, offset 0x70, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The keyboard type start-up entry as this archive defines it. It is `jr ra` at 0x70 and a `nop` at 0x74, so it neither records a type nor changes v0, and it is the last of the eight consecutive `nop` stubs that end at 0x78 (`rrmSuspend` is the first of the run, at 0x38).
+- `gfx_frs_valid_pipenum` (`gfxstubs.o`, offset 0x78, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for the frame-scheduler pipe-number check. The delay slot of the return is `move v0,zero`, so every pipe number is answered with 0. The routine in `gfx.o` is 12 bytes, three instructions. The return is at 0x78.
+- `gfx_frs_install` (`gfxstubs.o`, offset 0x80, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for installing the frame scheduler on a pipe: a return with a `nop` delay slot, so nothing is installed. The `gfx.o` routine is 88 bytes. The return is at 0x80.
+- `gfx_frs_uninstall` (`gfxstubs.o`, offset 0x88, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)`.
+  The stub for removing the frame scheduler from a pipe, a return plus `nop`; it removes nothing and sets no result. The `gfx.o` routine is 80 bytes. The return is at 0x88.
+- `gfx_exit` (`gfxstubs.o`, offset 0x0, 8 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)`.
+  Process-exit graphics hook as the IP35 stub archive defines it. Its two words are `jr ra` at 0x0 and `move v0,zero` in the delay slot at 0x4, the same bytes as the IP30 stub, so it answers 0 and touches nothing. It is the first routine of the archive; `gfx_disp`, which answers 1, follows at 0x8.
+
