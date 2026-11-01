@@ -451,11 +451,14 @@
  * (0x0d9d01d0, jump table jtbl_0dae9514) gives the component widths it
  * reports, and a storage class; ChooseSuitableBuzzTexObjFormat
  * (0x0d9cfdc0) picks the index from the GL internal format.
- * All rows established from those two functions; the class meaning is
- * inferred: 0 = 8- or 16-bit texel, 1 = 32-bit, 2 = 48-bit (it is 0 for
- * every 8/16-bit layout and 2 only for 12/12/12/12).
+ * All rows established from those two functions, run for every input
+ * (scripts/texfmt_sweep.py). The class column is the size code
+ * CalcTexelSizes returns, the c of the element size 2 << c bytes that
+ * AllocateGfxMemForTexture asks the allocator for: 0 = 2 bytes, 1 = 4,
+ * 2 = 8 (the 8-bit and 12-bit layouts are booked at 2 bytes, 12/12/12/12
+ * at 8). That is the allocator's unit; the board's packing is unknown.
  *
- *  idx  layout          class  chosen for GL internal format
+ *  idx  layout          size   chosen for GL internal format
  *  0,1  A8              0      GL_ALPHA, ALPHA4, ALPHA8 (0)
  *  2,3  I8              0      INTENSITY, INTENSITY4, INTENSITY8 (2)
  *  4,5  L8              0      1, LUMINANCE, LUMINANCE4, LUMINANCE8 (4)
@@ -464,7 +467,7 @@
  *  9    I12             0      INTENSITY12, INTENSITY16
  *  10   L12             0      LUMINANCE12, LUMINANCE16
  *  11   L8 A8           0      2, LUMINANCE_ALPHA, L4A4, L6A2, L8A8
- *  12   R4 G4 B4 A4     0      R3_G3_B2, RGB4, RGBA2, RGBA4
+ *  12   R4 G4 B4 A4     0      R3_G3_B2, RGB2, RGB4, RGBA2, RGBA4
  *  13   R5 G5 B5 A1     0      RGB5, RGB5_A1
  *  16   L12 A12         1      L12A4, L12A12, L16A16
  *  17   R8 G8 B8 A8     1      3, 4, RGB, RGBA, RGB8, RGBA8
@@ -473,6 +476,13 @@
  *  48   R8 G8 B8 (ICC)  0      GL_R5_G6_B5_ICC_SGIX
  *  49   R8 G8 B8 A8 (ICC) 1    GL_R5_G6_B5_A8_ICC_SGIX
  *  others               -      none (CalcTexelSizes reports zero)
+ *
+ * Index 12 is the 4/4/4/4 layout whatever the GL format; whether a texture
+ * is RGB or RGBA is the separate class in TEXMODE4 bits 25:23, which the
+ * driver derives from the index and the GL internal format (5 for GL_RGB4
+ * and the other RGB-family formats, 6 for GL_RGBA4), so index 12 appears
+ * with both classes. Every row and the routines that write the index are in
+ * docs/texture-formats.md.
  *
  * Even/odd pairs (0/1, 2/3, 4/5, 6/7, 32/33) share a layout; the
  * difference is unknown. The ICC formats are activated with half the
