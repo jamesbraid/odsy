@@ -276,34 +276,30 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
 routines chosen by the texture state it worked out at source line 677 (the texture
 dimension from the 1D, 2D and 3D enables) and line 753 (texture generation on).
 
-- **`0`** (routine; kernel record 0), **inferred**: the clip-plane routine `AddProgram` stores into
-  the list when hardware clip planes are on (`ody_program.s`, source line 1137). Inputs: the
-  position slot, the modelview rows R9 to R12, the combined rows R0 to R4, and the eye-space planes
-  `__glOdysseyValidateClipPlanes` stores at parameter words 0x120 to 0x12b, one plane of four words
-  per enabled plane (`ody_context.s`, source lines 1761 to 1790). It computes the eye coordinates MV
-  times P (records 0 to 3, written to R27 at 7 to 10), issues the five position products of the
-  vertex transform (records 4 to 8), loads plane A into R25 and plane B into R26 (records 2 to 9)
-  and plane C into R25 again (10 to 13), and in its delay slots computes plane A's distance, the dot
-  product of R25 with the eye coordinates (record 9), and moves R27 into the operand latch (record
-  11). Outputs: plane A's distance and the position results go to the output stage; R27 and the
-  latch hold the eye coordinates for 12, 26 or 40.
-- **`12`** (routine; kernel record 12), **inferred**: the clip-plane follow-up when texturing is off
-  (`ody_program.s`, line 1139). It takes the eye coordinates routine 0 left in the latch and
-  computes the distances to plane B (R26, record 12) and plane C (R25, record 14), so a program with
-  three hardware planes evaluates all three; its only output words, 5, 4 and 3 at records 22, 23 and
-  25, follow those three products.
-- **`26`** (routine; kernel record 26), **inferred**: the clip-plane follow-up when texturing is on
-  without texture generation (`ody_program.s`, line 1139). It evaluates no further plane: it
-  transforms the texture-coordinate slot 3 by the rows R8, R5 and R6 (q, s, t; records 26 to 28),
-  then outputs word 5 (36), consumes q (0x08) and outputs s and t multiplied by 1/w (0x26) as words
+- **`0`** (routine; kernel record 0; records 0 to 15 identical in the kernel copy), **inferred**: the clip-plane routine `AddProgram` stores into
+  the list when hardware clip planes are on (`ody_program.s`, source line 1137). **established** from the fields of records 0 to 11: record 0 loads slot 0 (`r3` 0, `d0` 0xc) and issues on R9; records 1 to 9 issue (`d0` 9) on R10, R11, R12 (`r1` 0xa, 0xb, 0xc),
+  then R3, R0, R1, R4, R2 (3, 0, 1, 4, 2) and R25 (0x19 at 9); 10 carries no issue and 11 loads from R27 (`d0` 6, `r2` 0x1b, a register load). The end mark 1 is at 7, so 8 to 11 are its delay slots. Parameter-memory reads
+  name `ma` 0x120 to 0x12b in order in records 0 to 11. Port P writes R25 (`rb` 0x19) lanes x to w (`ln` 4 to 7) in 2 to 5 from words 0x120 to 0x123, R26 (`rb` 0x1a) lanes x to w in 6 to 9 from 0x124 to 0x127, and R25 lanes x and y in 10 and 11 from 0x128 and 0x129
+  (lanes z and w follow in 12 and 13, which belong to routine 12). Port V writes R27 lanes x to w (`mc` 0x36, `bx` 4 to 7) in 7 to 10. No scalar, output or colour field is set. **inferred** by the pass 13 rules: the
+  four issues on R9 to R12 give the eye coordinates MV times P in R27 (written 7 to 10); the five on R3, R0, R1, R4, R2 are the position products of the vertex transform, taken by the vertex routine after it; plane A sits in R25 (written 2 to 5) and is latched at 9, and the fire that
+  dots it with the eye coordinates the load at 11 put in B is the first record of routine 12. Inputs: the position slot, the modelview rows R9 to R12, the combined rows R0 to R4, and the eye-space planes
+  `__glOdysseyValidateClipPlanes` stores at parameter words 0x120 to 0x12b, one plane of four words per enabled plane (`ody_context.s`, source lines 1761 to 1790).
+  Outputs: no output word of its own; R27 and the latch hold the eye coordinates for 12, 26 or 40.
+- **`12`** (routine; kernel record 12; records 12 to 25 identical in the kernel copy), **inferred**: the clip-plane follow-up when texturing is off
+  (`ody_program.s`, line 1139). **established** from the fields of records 12 to 25: records 12 to 15 are vector records (`d0` 9, 1, 8, 1) with `r1` 0x1a at 12 (R26, plane B) and 0x19 at 14 (R25, plane C); port P writes R25 lanes z and w
+  (`ln` 6 and 7) in 12 and 13; 16 to 20 are idle; the end mark 1 is at 21; and the only output records are word field 5 at 22, 4 at 23 and 3 at 25 (`s1` 0x80, no `d2` code, no header; 24 is idle). The delay slots are 22 to 25.
+  **inferred:** it takes the eye coordinates routine 0 left in the operand latch and fires the plane A product left latched by 0 (record 12), plane B (R26, issue 12, fire 13) and plane C (R25, issue 14, fire 15), so a program with
+  three hardware planes evaluates all three; the three output words, 5, 4 and 3 at 22, 23 and 25, come ten records after those three fires (12, 13, 15).
+- **`26`** (routine; kernel record 26; records 26 to 40 identical in the kernel copy), **inferred**: the clip-plane follow-up when texturing is on
+  without texture generation (`ody_program.s`, line 1139). **established** from the fields of records 26 to 39: record 26 loads slot 3 (`r3` 3, `d0` 0xd) and issues on R8, 27 and 28 issue on R5 and R6 (`d0` 9), 29 is a fire (`d0` 1), 30 to 34 are idle,
+  the end mark 1 is at 35, and the output records are word field 5 at 36 (`s1` 0x80), `d2` 0x08 at 37 (no word), `d2` 0x26 with word field 3 at 38 and 4 at 39. The delay slots are 36 to 39. No record reads parameter memory (`ma` 0). **inferred:** it
+  transforms the texture-coordinate slot by the rows R8, R5 and R6 (q, s, t) and, by the pass 13 rules, outputs word 5 (36) from the plane A product fired at 26, consumes q (0x08) and outputs s and t multiplied by 1/w (0x26) as words
   3 and 4. With texturing only plane A is used, which matches `__glOdysseyGetNumHWClipPlanes`
   lowering the hardware plane count when texturing (`ody_clip.s`, source lines 138 to 151).
-- **`40`** (routine; kernel record 40), **inferred**: the clip-plane follow-up with texturing and
-  texture generation (`ody_program.s`, line 1139). It issues no product (one pipeline mark at 40,
-  idle records, end mark 46) and outputs only word 5 at 50, the place 12 and 26 also give plane A's
-  result, because the texture-generation routines appended after it (51 to 123) produce the texture
-  coordinates. Its only input is the plane-A product the clip routine before it fired; it computes no product of its own and outputs that result as word 5 at record 50.
-
+- **`40`** (routine; kernel record 40; records 40 to 50 identical in the kernel copy), **inferred**: the clip-plane follow-up with texturing and
+  texture generation (`ody_program.s`, line 1139). **established** from the fields of records 40 to 50: record 40 carries only `d0` 1 (bit 44, a fire of the operand already latched), 41 to 45 are idle, the end mark 1 is at 46, 47 to 49 are idle
+  and word field 5 is the only output, at record 50 (`s1` 0x80, no `d2` code); nothing else in the routine is set. The delay slots are 47 to 50. **inferred:** it issues no product of its own and fires the product the clip routine before it latched (plane A), outputting that result as word 5,
+  the place 12 and 26 also give plane A's result, because the texture-generation routines appended after it (51 to 123) produce the texture coordinates.
 ### Lighting routines
 
 `AddProgram` (`ody_program.s`, source lines 838 to 876) walks the enabled lights (mask at
@@ -1110,12 +1106,15 @@ them. Routine 303, the copy routine, is the only entry in this stretch any host 
   fifth slot after end mark 600, that runs straight into entry 606 (sequencer list entry named by
   `AddProgram`). **inferred:** it is the alignment gap before 606, not a routine of its own;
   entering at 605 would cost one idle cycle and then run 606. It is an idle record: a null step that only delays 606 by one cycle.
-- **`278`** (routine; file offset 0xd08 of `buzz_xform.bin`), **inferred**: a parameter-memory dump
-  that no host code in any release searched selects. It reads parameter words 0x140 to 0x14f and
-  then 0x1f5 and 0x1f6, puts each into lane x or y of R16 two records later, reads it back in lane
-  mode through scalar code 8, which passes a value unchanged, and outputs the first sixteen as words
-  0 to 15 (records 286 to 301) with no packet header, closing with word 0 at 302. It computes no
-  arithmetic, and no host code writes parameter words 0x140 to 0x14f. It is a parameter dump: it reads no operand from the command word and sends the sixteen words unchanged.
+- **`278`** (routine; file offset 0xd08 of `buzz_xform.bin`; records 278 to 302 identical in the kernel copy), **inferred**: a parameter-memory dump that no host code in any release searched selects.
+  **established** from the fields: it reads parameter words `ma` 0x140 to 0x14f in records 278 to 293 and 0x1f5 and 0x1f6 in 294 and 295,
+  one a record; from 279 to 296 each record is a lane-mode read of R16 (`a` 1, `r2` 0x10, `r1` alternating 0 and 1), and port P writes R16 (`rb` 0x10, `b` 0) lane x in 280, 282 and every even record to 296 and lane y in the odd records 281 to 297 (`ln` 4 and 5),
+  from the word read two records before. Scalar code 8 (`d1` 8) is set in 280 to 297. The output word field counts 0 to 11 in 286 to 297 (`s1` 0x80, no `d2` code, no header record), then 12 at 298 (the end mark 2, `s1` 0x80), 13 and 14 at 299 and 300
+  (which also carry port V writes of R16, `mc` 0x20, `bx` 4 and 5, `b` 1), 15 at 301 and word field 0 with colour bit 0 set (0x0009) and the last-word bit at 302: that is word 16, so the routine names seventeen words, 0 to 16 (`ucode/buzz_isa.md`, pass 16).
+  The delay slots are 299 to 302. No record sets `ln` 6 or 7, `d0`, `mc` store flags or the colour operation other than 302's.
+  **inferred** that it is a parameter dump, by the pass 13 rules: the output stage takes the scalar result four records before each word record, so word k of 0 to 15 (records 286 to 301) takes the code 8 result at 282 + k, which is parameter word 0x140 + k read at 278 + k, and passes it unchanged;
+  word 16 (302) has no scalar result four records before, and parameter words 0x1f5 and 0x1f6, read at 294 and 295, reach R16 but no later record reads them. The stream carries no `d2` code, so the pairing of word and parameter rests on that timing rule alone.
+  It computes nothing, and no host code selects it (the search above) or writes parameter words 0x140 to 0x14f.
 - **`525`** (routine; file offset 0x189c of `buzz_xform.bin`), **inferred**: a complete
   single-vertex program for position only, which no host code selects (search above). Its inputs are
   the position slot and R0 to R4. It computes the five products of routine 214 (525 to 529), writes
