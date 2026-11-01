@@ -48,6 +48,8 @@ One row per file. Columns: the file, its label, its role, ABI, size in bytes, by
   The N32 board renderer of the IP35 directory, 3812732 bytes, 5216 functions and 4750 exports, the largest export count of the three renderers. It carries 268 `__glOdyssey` routines and imports 40 names, and its context entry `__glOdysseyCreateContext` sits at 0xd96c610.
 - `usr/gfx/arch/IP35ODSY64/libGL.so`: **inferred.**
   The 64-bit GLX client layer of the IP35 directory, 567424 bytes, 673 functions and 651 exports, 83 of them `glX`. It imports 148 names, and `glXCreateContext` at 0x2167ac4 is its context entry.
+- `usr/gfx/arch/IP35ODSY64/libGLcore.so`: **inferred.**
+  The 64-bit board renderer of the IP35 directory, 4138224 bytes, 5137 functions and 4667 exports, 268 of them `__glOdyssey` routines. It holds 1671168 bytes of code, and `__glOdysseyCreateContext` at 0x21b07b0 is its context entry.
 
 ### Installed Octane2 directories (`usr/gfx/arch/IP30ODSY*`)
 
@@ -73,6 +75,19 @@ The installed files differ from the media files of the same name only in bytes o
 | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so` | established | GLX client library | above the renderer | no direct access | 64-bit | 513624 | 209324 | 617 | 0 | 80 | 148 | 650 | 1 | 24 | `glXCreateContext` at 0xcf85fa8 |
 | `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | 64-bit | 3760880 | 1589248 | 4605 | 249 | 0 | 40 | 5076 | 12 | 73 | `__glOdysseyCreateContext` at 0xb33f5a0 |
 
+- `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so`: **inferred.**
+  The o32 GLX client layer of patch 4103, 451872 bytes and 650 functions. It exports 609 names, 80 of them `glX` calls, against 644 and 83 in the media build. Against that build it gains one function and loses 22, and its context entry `glXCreateContext` is at 0xd8b11c4.
+- `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so`: **inferred.**
+  The o32 board renderer of patch 4103, 3436908 bytes, 5103 functions and 4673 exports, 249 of them `__glOdyssey` routines. Its symbol names include `hardAccumulate24`, `hardAccumulate31` and `hardMult31`, the 24-bit and 31-bit accumulation routines the media build does not have, and no `BindHyperpipe` or `QueryHyperpipeAttrib`. Its context entry is `__glOdysseyCreateContext` at 0xda4ba44.
+- `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so`: **inferred.**
+  The N32 GLX client layer of patch 4103, 464860 bytes with 650 functions and 617 exports, 80 of them `glX` names. It gains one function and loses 24 against the media build. Its `glXCreateContext` entry is at 0xd8c2198.
+- `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so`: **inferred.**
+  The N32 board renderer of patch 4103, 3446300 bytes, 5155 functions and 4687 exports, with 249 `__glOdyssey` routines and 40 imports. Its code is 1575852 bytes. It gains twelve functions and loses 73 against the media build, and its context entry `__glOdysseyCreateContext` sits at 0xda5b150.
+- `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so`: **inferred.**
+  The 64-bit GLX client layer of patch 4103, 513624 bytes and 650 functions. Its 617 exports include 80 `glX` names, and it gains one function and loses 24 against the media build. `glXCreateContext` at 0xcf85fa8 is the context entry.
+- `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so`: **inferred.**
+  The 64-bit board renderer of patch 4103, 3760880 bytes, 5076 functions and 4605 exports, the fewest of the three renderers in this build. It carries 249 `__glOdyssey` routines and 1589248 bytes of code, and it gains twelve functions and loses 73 against the media build. `__glOdysseyCreateContext` at 0xb33f5a0 is its context entry.
+
 ### Patch 4104 (`builds/vpro-patch-4104`)
 
 | File | Label | Role | Layer | Board access | ABI | Bytes | Code bytes | Exports | Board-renderer exports | GLX exports | Imports | Functions | Added vs media build | Removed vs media build | Context entry |
@@ -83,5 +98,10 @@ The installed files differ from the media files of the same name only in bytes o
 | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | N32 | 3446300 | 1575852 | 4687 | 249 | 0 | 40 | 5155 | 12 | 73 | `__glOdysseyCreateContext` at 0xda5b150 |
 | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` | established | GLX client library | above the renderer | no direct access | 64-bit | 513624 | 209324 | 617 | 0 | 80 | 148 | 650 | 1 | 24 | `glXCreateContext` at 0xcf95fa8 |
 | `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` | established | board renderer | renders and queues commands | mapped windows and ioctls | 64-bit | 3760880 | 1589248 | 4605 | 249 | 0 | 40 | 5076 | 12 | 73 | `__glOdysseyCreateContext` at 0xbd5f5a0 |
+
+- `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGL.so`: **inferred.**
+  The o32 GLX client layer of patch 4104, 451872 bytes, the same size as patch 4103's copy, with the same 650 functions and 609 exports. Its context entry `glXCreateContext` is at 0xd8b11c4, the address patch 4103 gives. The file hash differs from patch 4103's.
+- `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so`: **inferred.**
+  The o32 board renderer of patch 4104, 3436908 bytes, 5103 functions and 4673 exports, the counts patch 4103 gives. Its context entry `__glOdysseyCreateContext` is at 0xda4ba44, and it gains twelve functions and loses 78 against the media build.
 
 The IP35 directories and the media copies (the six entries above) have the same exports, imports and function counts as the installed IP30 files in every row. The two patch builds are smaller than the media build and differ in the same way in every ABI: each lacks the media copy's GLX query-function group (`glXGetProcAddress`, `glXGetProcAddressARB`, `glXGetCurrentDrawableEXT` and the `__glx_Get...` filter and parameter routines) and has `GetBoardName` instead, and each `libGLcore.so` lacks the media copy's soft-clip and hyperpipe query routines (`BindHyperpipe`, `QueryHyperpipeAttrib`, `__glOdysseySoftClipRenderTriangleFast` and others) while adding twelve routines for 24-bit and 31-bit hardware accumulation (`hardAccumulate24`, `hardAccumulate31`, `hardMult31`, `__glOdyim_HardAccum31`, `__glOdysseyValidateClipmap` and others). Patch 4103 and patch 4104 have equal export counts in every ABI; their byte differences are in the dynamic-link tables and debug tables, with seventeen code bytes differing in the two `libGLcore.so` files of the N32 and 64-bit ABIs (one function, `AllocateGfxMemForTexture`, differs in the 64-bit file).
