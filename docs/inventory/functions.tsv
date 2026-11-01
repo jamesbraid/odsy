@@ -53132,7 +53132,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10024a10	72	__ct__17SyncSelectorFrameGPCc
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024a60	52	DisplayfbConfig__21SetmonMasterFormClassGPCc	dynsym	8c2828cdc05b		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024aa0	52	DisplayCombination__21SetmonMasterFormClassGPCc	dynsym	f23178835b1a		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024ae0	308	__dt__22GammaAssignmentClassUIGv	dynsym	8276b74c040c		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10024c20	60	alarmFunc__Gi	dynsym	b4c8630d3ba7		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10024c20	60	alarmFunc__Gi	dynsym	b4c8630d3ba7		in	named-only	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024c60	276	populateHPhaseWithChannel__16ChannelFormClassGiPC17XSGIvcChannelInfo	dynsym	1aa370906d55		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024d80	72	__ct__21GammaMapEditorClassUIGPCc	dynsym	43fc6d68503a		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10024dd0	136	getTheStereoDialog__Gv	dynsym	64672a1b6448		in	undocumented		
@@ -53183,12 +53183,12 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10027100	104	cancel__16AboutDialogClassGP
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027170	800	__ct__18XSetmonWindowClassGPCcP3ArgUi	dynsym	51fd7b0c9df7		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027490	24	className__28CombinationContentsListClassGv	dynsym	81cafff9cd9b		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100274b0	116	__ct__12GammaClassUIGPCcP10_WidgetRec	dynsym	00f95d282442		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10027530	256	WaitForVerifyDisplayMode__27FormatCombinationListsClassGPc	dynsym	8c6056514753		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10027530	256	WaitForVerifyDisplayMode__27FormatCombinationListsClassGPc	dynsym	8c6056514753		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027630	96	postErrorMessage__17TextErrorMessagerGP9strstream	dynsym	3681d62eb89a		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027690	64	okToQuit__18XSetmonWindowClassGv	dynsym	409403f1f504		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100276d0	8	doToggleExternalLock__21ServerInfoFormClassUIGP10_WidgetRecPv	dynsym	78aa5094d5ec		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x100276e0	96	__ct__28CombinationContentsListClassGPCc	dynsym	e5382aab2380		in	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x10027740	188	assignChannelMap__20GammaAssignmentClassGP10_WidgetRecPviT3	dynsym	241f91910d5a		in	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x10027740	188	assignChannelMap__20GammaAssignmentClassGP10_WidgetRecPviT3	dynsym	241f91910d5a		in	understood	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027800	128	CreateStatisticsFormClass__19StatisticsFormClassSGPCcP10_WidgetRec	dynsym	6517aeea494b		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027880	464	populateGainWithChannel__16ChannelFormClassGiPC17XSGIvcChannelInfo	dynsym	677ef236e3b2		in	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10027a50	8	doInputSyncSourceNotify__21ServerInfoFormClassUIGP10_WidgetRecP7_XEvent	dynsym	78aa5094d5ec		in	undocumented		
@@ -53770,7 +53770,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xff0	36	sthread_launch
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1014	24	p0_launch	dwarf+symtab	07dd9bac3171		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x102c	68	resumeidle	dwarf+symtab	e5b45d1ee52f		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1070	60	toidlestk	dwarf+symtab	85d17e1eb426		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x10ac	60	setjmp	dwarf+symtab	99dfa838538b		in	named-only	docs/vpro-tool-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater, `usr/gfx/STINGRAY/bin/cmp_flash`
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x10ac	60	setjmp	dwarf+symtab	99dfa838538b		in	named-only	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x10e8	60	longjmp	dwarf+symtab	925d6d0f3f0a		in	named-only	docs/vpro-tool-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater, `usr/gfx/STINGRAY/bin/cmp_flash`
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1180	8	ackkgclock	symtab	78aa5094d5ec	shared-address	in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1180	8	allowintrs	symtab	78aa5094d5ec	shared-address	in	undocumented		
@@ -54750,7 +54750,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xf80	36	sthread_launch
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfa4	24	p0_launch	dwarf+symtab	07dd9bac3171		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfbc	68	resumeidle	dwarf+symtab	da960a29be23		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1000	60	toidlestk	dwarf+symtab	d3354398d55b		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x103c	60	setjmp	dwarf+symtab	99dfa838538b		in	named-only	docs/vpro-tool-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater, `usr/gfx/STINGRAY/bin/cmp_flash`
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x103c	60	setjmp	dwarf+symtab	99dfa838538b		in	named-only	docs/install-tools.md#xsetmon-gamma-and-sync-routines	`xsetmon` gamma and sync routines
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1078	60	longjmp	dwarf+symtab	925d6d0f3f0a		in	named-only	docs/vpro-tool-functions.md#compositor-flash-updater-usrgfxstingraybincmp_flash	Compositor flash updater, `usr/gfx/STINGRAY/bin/cmp_flash`
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x10b4	12	he_arcs_set_vectors	dwarf+symtab	5fe1255fc6ac		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x10c0	376	restart	dwarf	d3518401de5c		in	undocumented		
