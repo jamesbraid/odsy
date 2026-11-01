@@ -14639,7 +14639,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x22
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279d70	552	__glDestroySoftContext	dwarf+dynsym	f9474f04974d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x2279fa0	208	__glFreePrivate	dwarf+dynsym	daf32f86c26e		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227a070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227a070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227a130	424	__glim_RenderMode	dwarf+dynsym	3d24dc92d1ac		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227a2e0	288	__glChangeWindowSize	dwarf+dynsym	0d1d988e7fbc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x227a400	12	__glChangeReadWindowSize	dwarf+dynsym	56f1a6c952a4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -20672,7 +20672,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1a814	116	__glDestroyContext	dynsym+mdebug	634157b9bcf2		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1a888	684	__glDestroySoftContext	dynsym+mdebug	40899717ec44		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1ab34	256	__glFreePrivate	dynsym+mdebug	aca92db67ff8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1ac34	196	__glSetError	dynsym+mdebug	a5ace6742b8a		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1ac34	196	__glSetError	dynsym+mdebug	a5ace6742b8a		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1acf8	448	__glim_RenderMode	dynsym+mdebug	3484c8ec87bc		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1aeb8	280	__glChangeWindowSize	dynsym+mdebug	d02676034f1a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1afd0	12	__glChangeReadWindowSize	dynsym+mdebug	e2ce20992552		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -26589,7 +26589,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11b80	108	__glDestroyContext	dynsym	d67985bcc4db		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11bf0	576	__glDestroySoftContext	dynsym	ca3cfebd2f5b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11e30	224	__glFreePrivate	dynsym	b510b5eacdc0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11f10	184	__glSetError	dynsym	a3dd11f814e3		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11f10	184	__glSetError	dynsym	a3dd11f814e3		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11fd0	436	__glim_RenderMode	dynsym	69576bf4de73		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb12190	256	__glChangeWindowSize	dynsym	ffe36a9fb6a5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb12290	12	__glChangeReadWindowSize	dynsym	7157b5d6649f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -32235,7 +32235,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f8050	108	__glDestroyContext	dwarf+dynsym	f146559f7d4a		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f80c0	592	__glDestroySoftContext	dwarf+dynsym	310ae5e1002d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f8310	224	__glFreePrivate	dwarf+dynsym	ca5eb95341e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f83f0	184	__glSetError	dwarf+dynsym	e936d1a560a7		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f83f0	184	__glSetError	dwarf+dynsym	e936d1a560a7		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f84b0	440	__glim_RenderMode	dwarf+dynsym	ef47470a22b2		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f8670	284	__glChangeWindowSize	dwarf+dynsym	7a90d61c6f1c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xb3f8790	12	__glChangeReadWindowSize	dwarf+dynsym	2b943fa2824b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -38248,7 +38248,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xd
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1a814	116	__glDestroyContext	dynsym+mdebug	634157b9bcf2		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1a888	684	__glDestroySoftContext	dynsym+mdebug	40899717ec44		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1ab34	256	__glFreePrivate	dynsym+mdebug	aca92db67ff8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1ac34	196	__glSetError	dynsym+mdebug	a5ace6742b8a		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1ac34	196	__glSetError	dynsym+mdebug	a5ace6742b8a		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1acf8	448	__glim_RenderMode	dynsym+mdebug	3484c8ec87bc		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1aeb8	280	__glChangeWindowSize	dynsym+mdebug	d02676034f1a		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY/libGLcore.so	board-library	o32		0xdb1afd0	12	__glChangeReadWindowSize	dynsym+mdebug	e2ce20992552		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -44165,7 +44165,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11b80	108	__glDestroyContext	dynsym	d67985bcc4db		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11bf0	576	__glDestroySoftContext	dynsym	ca3cfebd2f5b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11e30	224	__glFreePrivate	dynsym	b510b5eacdc0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11f10	184	__glSetError	dynsym	a3dd11f814e3		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11f10	184	__glSetError	dynsym	a3dd11f814e3		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb11fd0	436	__glim_RenderMode	dynsym	69576bf4de73		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb12190	256	__glChangeWindowSize	dynsym	ffe36a9fb6a5		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xdb12290	12	__glChangeReadWindowSize	dynsym	7157b5d6649f		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -49811,7 +49811,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe18050	108	__glDestroyContext	dwarf+dynsym	f146559f7d4a		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe180c0	592	__glDestroySoftContext	dwarf+dynsym	310ae5e1002d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe18310	224	__glFreePrivate	dwarf+dynsym	ca5eb95341e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe183f0	184	__glSetError	dwarf+dynsym	e936d1a560a7		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe183f0	184	__glSetError	dwarf+dynsym	e936d1a560a7		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe184b0	440	__glim_RenderMode	dwarf+dynsym	ef47470a22b2		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe18670	284	__glChangeWindowSize	dwarf+dynsym	7a90d61c6f1c		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0xbe18790	12	__glChangeReadWindowSize	dwarf+dynsym	2b943fa2824b		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -81690,7 +81690,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9120	3036	__glSoftR
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9d70	552	__glDestroySoftContext	dwarf+dynsym	f9474f04974d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32c9fa0	208	__glFreePrivate	dwarf+dynsym	daf32f86c26e		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ca070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ca070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ca130	424	__glim_RenderMode	dwarf+dynsym	3d24dc92d1ac		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ca2e0	288	__glChangeWindowSize	dwarf+dynsym	0d1d988e7fbc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x32ca400	12	__glChangeReadWindowSize	dwarf+dynsym	56f1a6c952a4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -99229,7 +99229,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279120	3036	__glSoftR
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279d00	112	__glDestroyContext	dwarf+dynsym	f3c5e3b332e0		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279d70	552	__glDestroySoftContext	dwarf+dynsym	f9474f04974d		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x2279fa0	208	__glFreePrivate	dwarf+dynsym	daf32f86c26e		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227a070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	located	docs/sample-implementation.md#so_contextc	so_context.c
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227a070	184	__glSetError	dwarf+dynsym	1ea493cae989		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227a130	424	__glim_RenderMode	dwarf+dynsym	3d24dc92d1ac		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227a2e0	288	__glChangeWindowSize	dwarf+dynsym	0d1d988e7fbc		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x227a400	12	__glChangeReadWindowSize	dwarf+dynsym	56f1a6c952a4		in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
