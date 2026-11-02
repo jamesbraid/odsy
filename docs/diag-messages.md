@@ -61,7 +61,9 @@ The generator takes every routine of the target from the fact sheet
 3. Builds the basic blocks of the routine, the edges between them and their dominators. A
    conditional branch gates the call when the call's block is unreachable from the entry once the
    edge along one arm is removed, so the call needs the other arm. A jump register's delay slot
-   is treated as the branch's arm, and a delay slot that another jump enters is a block of its own.
+   is treated as the branch's arm. A jump that lands on a branch's delay slot runs that instruction
+   and then the next one, not either arm of the branch, so the landing is a copy of the slot's block
+   that only falls through.
 
 The fact sheet's argument values are not used for the format. For a relocatable object they drop
 the immediate that a delay slot adds to a relocated address, so a format such as `.rodata+128`

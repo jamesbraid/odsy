@@ -368,13 +368,24 @@ class Blocks:
             self.blocks.append((s, e))
             for k in range(s, e):
                 self.block_of[k] = b
+        self.norig = len(self.blocks)
+        # A jump that lands on a branch's delay slot runs that instruction and then the one after it,
+        # not either arm of the branch. Such a landing gets a copy of the block that only falls through.
+        self.entry_copy = {}
+        for s, e in list(self.blocks):
+            if (s - 1) in R.branch_at and e == s + 1:
+                self.entry_copy[s] = len(self.blocks)
+                self.blocks.append((s, e))
         nb = len(self.blocks)
         self.succ = [[] for _ in range(nb)]
         self.indirect = [False] * nb
-        for b, (s, e) in enumerate(self.blocks):
+        for s, c in self.entry_copy.items():
+            nxt = self.block_of.get(s + 1)
+            self.succ[c] = [nxt] if nxt is not None else []
+        for b, (s, e) in enumerate(self.blocks[:self.norig]):
             br = R.branch_at.get(e - 2)
             if br is not None and br['i'] >= s:
-                t = self.block_of.get(br['target']) if br.get('target') is not None else None
+                t = self.target_block(br)
                 ft = self.block_of.get(br['i'] + 2)
                 if br['mn'] in BRANCH_UNCOND:
                     self.succ[b] = [t] if t is not None else []
@@ -393,7 +404,7 @@ class Blocks:
             elif (s - 1) in R.branch_at:
                 # a delay slot that a jump enters directly: it runs before either arm of its branch
                 x = R.branch_at[s - 1]
-                t = self.block_of.get(x['target']) if x.get('target') is not None else None
+                t = self.target_block(x)
                 ft = self.block_of.get(x['i'] + 2)
                 if x['mn'] in BRANCH_UNCOND:
                     self.succ[b] = [t] if t is not None else []
@@ -441,7 +452,7 @@ class Blocks:
         edge removed, b cannot be reached from the entry. Dominance is not enough, because an arm
         can dominate b and still be bypassed by a path that joins it from the other side.
         """
-        cands = [k for k in self.reachable if k != b and (self.dom[b] >> k) & 1]
+        cands = [k for k in self.reachable if k != b and k < self.norig and (self.dom[b] >> k) & 1]
         cands.sort(key=lambda k: -bin(self.dom[k]).count('1'))
         for k in cands:
             s, e = self.blocks[k]
@@ -449,7 +460,7 @@ class Blocks:
             br = R.branch_at.get(e - 2) or R.branch_at.get(e - 1)
             if br is None or br['mn'] not in BRANCH_COND or br.get('target') is None:
                 continue
-            ts = self.block_of.get(br['target'])
+            ts = self.target_block(br)
             fs = self.block_of.get(br['i'] + 2)
             # a taken arm that leaves the routine has no edge here, so it cannot be the path to b
             if fs is None or ts == fs:
@@ -460,6 +471,13 @@ class Blocks:
             if not self.reaches(b, k, fs):
                 return br, False
         return None
+
+    def target_block(self, br):
+        """The block a branch's taken edge enters: the copy of a delay slot's block when it lands on one."""
+        t = br.get('target')
+        if t is None:
+            return None
+        return self.entry_copy.get(t, self.block_of.get(t))
 
     def reaches(self, b, k, drop):
         """Whether block b can be reached from the entry when the edge from block k to block drop is removed."""
