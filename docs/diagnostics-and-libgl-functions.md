@@ -183,6 +183,18 @@ The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   The installed image is `usr/gfx/arch/IP30ODSY/libGL.so` at the same address.
   Allocates a 0xb8-byte vertex-array state record, stores it at context offset 0xb4, and initializes its byte, word and limit fields. The initialized record contains four-component size 4, type 0x1406, and upper limits 0x7fffffff; it is independent of the board FIFO.
+- `__glXFindVisualConfig` (`libGL.so`, offset 0xd80f138, 200 bytes): **established.**
+  The installed image is `usr/gfx/arch/IP30ODSY/libGL.so`.
+  Calls the display helper through the GOT at 0xd80f15c with the display, screen and visual arguments. A null helper result returns zero. Otherwise it reads the configuration count with `lw` at 0xd80f184 from +0x88, rejects a negative or out-of-range screen index, and uses the array pointer loaded by `lw` at 0xd80f190 from +0x20. It walks 32-byte screen records and then 0xc8-byte visual records, returning the first record whose field loaded by `lw` at 0xd80f1cc matches the requested visual, or zero when no match exists.
+- `AuxScore` (`libGL.so`, offset 0xd811c34, 8 bytes): **established.**
+  The installed image is `usr/gfx/arch/IP30ODSY/libGL.so`.
+  Returns the first integer argument minus the second in the delay-slot `subu` at 0xd811c38. The body makes no call and has no conditional path.
+- `StencilScore` (`libGL.so`, offset 0xd8125dc, 8 bytes): **established.**
+  The installed image is `usr/gfx/arch/IP30ODSY/libGL.so`.
+  Returns the first integer argument minus the second in the delay-slot `subu` at 0xd8125e0. The body makes no call and has no conditional path.
+- `glXCreateContext` (`libGL.so`, offset 0xd8127e8, 96 bytes): **established.**
+  The installed image is `usr/gfx/arch/IP30ODSY/libGL.so`.
+  Forwards the display and visual arguments plus the saved share-context and direct-rendering arguments to the internal constructor called at 0xd81282c. It supplies zero for the two optional arguments stored at stack offsets 0x18 and 0x1c, returns that constructor's result, and performs no direct X or board access.
 - `__glx_Vertex4sv` (`libGL.so`, offset 0xd8129c4, 144 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   Writes command token 0x000c004c to the current GLX render buffer, copies four signed halfwords from the caller's eight-byte vector, advances the buffer pointer by 12 bytes, and calls the buffer-flush helper when the new pointer exceeds the end pointer.
