@@ -6,6 +6,39 @@ Words sent to the board are the class-1 command words of `BUZZ.h`: `0x00010000 |
 
 Dispatch-table slots. The context holds a pointer at +0x17f4 to a table of 4-byte entry points in the order of the GL entry names (`__glim_Vertex2f` calls slot +0x534, the `Vertex2fv` entry, with a pointer to two floats). Names given for slots below are **inferred** from that order together with the width and count of the arguments each caller passes.
 
+## Small support routines read from the body
+
+- `__glOdysseyInitAsyncState` (`libGLcore.so`, 0xd956030, 8 bytes): **established.**
+  Returns immediately through its link register and does not read or write the context or board. The complete body is the two-instruction listing in `libglcore/asm/ODYSSEY/ody_async.s` at 0xd956030.
+- `__glOdysseySPBalloc` (`libGLcore.so`, 0xd976410, 76 bytes): **established.**
+  Reads the requested element count at argument record +0, clamps it to 1024 when smaller, writes that clamp back, multiplies the count by four, and calls the allocator function at argument object +0. It returns that allocator result; the full body is in `libglcore/asm/ODYSSEY/ody_dlist.s` at 0xd976410.
+- `__glOdysseySPBfree` (`libGLcore.so`, 0xd976460, 52 bytes): **established.**
+  Loads the free callback from argument object +12, calls it with the object as its only argument, preserves the global pointer across the call, and returns the callback result. The complete body is in `libglcore/asm/ODYSSEY/ody_dlist.s` at 0xd976460.
+- `__glOdysseySPCompMachdep` (`libGLcore.so`, 0xd9764a0, 116 bytes): **established.**
+  Adds a sentinel to the record passed in argument +1, tests that record's word +20, and stores one of two internal callback addresses at record +8: the first when +20 is nonzero and the second otherwise. It returns no value. The complete branch and stores are in `libglcore/asm/ODYSSEY/ody_dlist.s` at 0xd9764a0.
+- `__glOdysseyImageCalcSuitableHostFormatForDownload` (`libGLcore.so`, 0xd9ac1f0, 144 bytes): **established.**
+  Selects host format pairs from selector argument +2 and writes the format and type to the output pointers in arguments +3 and +4. Selectors 0 and 3 write format 6406 with types 5121 and 5123; selectors 16 and 17 write format 6400 with those same types; selector 16 uses 5121. Other selectors leave the outputs untouched. Every path returns 1. The full switch is in `libglcore/asm/ODYSSEY/ody_image_convert.s` at 0xd9ac1f0.
+- `__glOdysseyImageTilingFree` (`libGLcore.so`, 0xd9c1720, 116 bytes): **established.**
+  If the tiling record is non-null, it calls the allocator callback at +12 first with the record's pointer at +8, then clears record words +0, +4 and +8 and calls the same callback again to free the record itself. A null record returns without a call. The complete body is in `libglcore/asm/ODYSSEY/ody_image_tiling.s` at 0xd9c1720.
+- `__glOdysseyImageLogBase2` (`libGLcore.so`, 0xd9c1e40, 64 bytes): **established.**
+  Returns zero for input zero; otherwise counts right shifts until the input becomes zero and adds one when the original value was not a power of two. The full integer loop is in `libglcore/asm/ODYSSEY/ody_image_utils.s` at 0xd9c1e40.
+- `__glOdysseyPickDepthProcs` (`libGLcore.so`, 0xd9c59e0, 8 bytes): **established.**
+  Returns immediately and changes no context state. The complete body is the two-instruction listing in `libglcore/asm/ODYSSEY/ody_pick.s` at 0xd9c59e0.
+- `__glOdysseyPickPixelProcs` (`libGLcore.so`, 0xd9c59f0, 96 bytes): **established.**
+  Installs the board draw-pixels, convolution, separable-filter and slow separable-filter callbacks into context slots +12616, +12640, +12644 and +12648/+12652, then calls `__glOdysseySetCurrentFilter` with selector 2. The complete stores and call are in `libglcore/asm/ODYSSEY/ody_pick.s` at 0xd9c59f0.
+- `__glOdysseyPickRenderBitmapProcs` (`libGLcore.so`, 0xd9c5a50, 84 bytes): **established.**
+  Always installs `__glOdysseyRenderBitmap` at context slot +12568. It selects the fast bitmap callback only when the byte at +1189 is nonzero and the three words at +1192, +1196 and +1200 are all zero; otherwise it installs the generic bitmap callback at +12564. The full conditional is in `libglcore/asm/ODYSSEY/ody_pick.s` at 0xd9c5a50.
+- `__glOdysseyPickTextureProcs` (`libGLcore.so`, 0xd9c5ab0, 196 bytes): **established.**
+  Chooses the texture-coordinate callback at context slot +12052 from the texture flag word at +1792. When the required flag bits and the two words at +1984 and +2108 permit hardware calculation, modes 9216, 9217 and 9218 select eye-linear, object-linear and sphere-map callbacks; the remaining accepted case selects the ordinary texture callback. All other branches select the mixed-texture callback. The complete tests are in `libglcore/asm/ODYSSEY/ody_pick.s` at 0xd9c5ab0.
+- `__glOdysseyInitLUTs` (`libGLcore.so`, 0xd9c3ae0, 360 bytes): **established.**
+  Clears 20604 bytes at the process-global LUT area, then builds eight 2060-byte records with kind 6, element width 8, 16 entries, one component and a 256-element allocation request. It calls `__glOdysseyCreatePMObj` for each record and stops on the first failure; on success it sets the global completion byte. The full loop and failure path are in `libglcore/asm/ODYSSEY/ody_lut.s` at 0xd9c3ae0.
+- `__glOdysseyImageChainFree` (`libGLcore.so`, 0xd98f070, 148 bytes): **established.**
+  Recursively frees the linked operation records whose next pointer is at +76, clears chain words +0, +4 and +8, and calls the allocator callback at the process-global object +12 with the chain record. A null chain skips all work. The complete recursion is in `libglcore/asm/ODYSSEY/ody_image_chain.s` at 0xd98f070.
+- `__glOdysseyImageCalcTexOffset` (`libGLcore.so`, 0xd9bef40, 296 bytes): **established.**
+  Reads descriptor words +44 and +48 and writes an offset code through argument +1. For the first word zero, second-word values 0, 3 and 4 produce code 0; for first word one, second word one produces code 0; for first word two, second-word values 0, 1 and 6 produce code 0 while value 2 produces code 2. Other combinations call `__glSetError` with 1282 and return 0. Successful combinations return 1. The complete decision tree is in `libglcore/asm/ODYSSEY/ody_image_move.s` at 0xd9bef40.
+- `__glOdysseyInitFragmentMaterial` (`libGLcore.so`, 0xd985210, 8 bytes): **established.**
+  Returns immediately without touching the context, board or its arguments. The complete body is the two-instruction listing in `libglcore/asm/ODYSSEY/ody_fragment.s` at 0xd985210.
+
 ## Validation and defaults
 
 - `__glOdysseyValidateHardware` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd968180, 4992 bytes): **established.**
