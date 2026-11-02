@@ -1985,3 +1985,251 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   The monochrome zero-arc path skips the body when the initial mode test at 0x169a384 is false or the count at 0x169a3ac is nonpositive. Otherwise it scans 12-byte records from a3 at 0x169a3d8, applies the 0x321 width and height tests at 0x169a3f0 and 0x169a3fc, and emits clipped halfwords at 0x169a420, 0x169a438, 0x169a444 and 0x169a464. The screen operation at 0x169a480 gates the helper at `gp-0x723c` (0x169a490); the fallback is called at 0x169a4b8.
 - `miClearToBackground` (`usr/lib/X11/dyDDX/odyssey.so`, 0x161df40, 492 bytes): **established.**
   Clips a requested background rectangle to window bounds. It reads window x/y/width/height halfwords at +8, +10, +0x2c and +0x2e (loads at 0x161df7c, 0x161df70, 0x161df8c and 0x161dfc8), adds the requested offsets, and writes four clipped halfwords to the frame at 0x161e000 through 0x161e00c. The region constructor at screen offset +0x154 runs at 0x161e020; with the drawable flag at +0x74 clear it may call the backing-store callback at +0xd8 (0x161e0c8), then the paint callback at +0x104 (0x161e0f0), and frees the temporary region through +0x15c at 0x161e08c.
+
+## Drawing, display and frame-buffer routines
+
+- `odsyStippledFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1685d30):
+  **Established.** Let R be the selected pointer loaded from the indexed
+  structure (`lw` at 0x1685dc8), and B the pointer loaded from the indexed
+  `buzz_regionsp` table (`lw` at 0x1685e20, `lw` at 0x1685e34). The `beq`
+  at 0x1685ecc falls through when the two compared values differ; on that
+  path it stores the selected value, either 3 or 12, at B + 0x2b68 (`sw` at
+  0x1685ed4) and clears B + 0x1cb8 (`sw` at 0x1685ed8). The value loaded
+  from R (`lw` at 0x1685edc) is used as a write pointer. The subsequent
+  words include 0x10443, 0xfa, 0x10046, 0x10046 and 0x10019 in that order
+  (`sw` at 0x1685ee8, `sw` at 0x1685ef4, `sw` at 0x1685f00, `sw` at
+  0x1685f08, `sw` at 0x1685f14).
+
+  On another path it writes 0x1204b through the pointer loaded from R (`sw`
+  at 0x16867b8). The following values include the words from B + 0x2b40 and
+  B + 0x2b44, each sent through that pointer (`lw` at 0x16867c0, `sw` at
+  0x16867c4, `lw` at 0x16867cc, `sw` at 0x16867d0). Role unknown. Its calls include `ErrorF` (`jalr` at 0x16862fc).
+- `odsyFillPolygonStippled` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16d5630):
+  **Established.** The routine loads a halfword from offset 0xe of the
+  pointer at entry register `a1` + 0x24 (`lw` at 0x16d5654, `lhu` at 0x16d5704).
+  When the comparison is reached and that halfword is not 0x20, the `beq`
+  at 0x16d5780 falls through to `odsyGrowBitmap` (`jalr` at 0x16d57a0).
+  A zero return takes the `beqz` at 0x16d57c0 to a tail call of
+  `miFillPolygon` (`jr` at 0x16d796c). If the return is nonzero, the branch
+  falls through and the routine subtracts one from the word at offset 0x18
+  of the original pointer (`lw` at 0x16d57c8, `addiu` at 0x16d57cc,
+  `sw` at 0x16d57d4). That store is in the delay slot of the `beqz` at
+  0x16d57d0, which takes the branch when the decremented value is zero.
+
+  On the path where the `beq` at 0x16d5838 falls through because its
+  compared values differ, it writes 0x10443, 0xfa, 0x10046, 0x10046 and
+  0x10019 in that order through the pointer loaded from the selected
+  structure (`lw` at 0x16d5848, `sw` at 0x16d5854, `sw` at 0x16d5860,
+  `sw` at 0x16d586c, `sw` at 0x16d5874, `sw` at 0x16d5880). Role unknown.
+- `odsyCopySDRAM..AB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ed8a0):
+  **Established.** The N32 routine occupies 13844 bytes. It obtains a pointer P by indexing an array reached through the seventh
+  argument (`lw` at 0x16ed8c4, `lw` at 0x16ed8cc, `lw` at 0x16ed8dc,
+  `lw` at 0x16ed8f4). It obtains a separate state pointer B through
+  `buzz_regionsp` and the index reached from P+0x5c (`lw` at 0x16ed8f8,
+  `lw` at 0x16ed904, `lw` at 0x16ed914, `lw` at 0x16ed930). The purpose
+  of the word it clears at B+0x84 is unknown (`sw` at 0x16ed938).
+
+  On the path comparing four halfwords in P, the `bne` at 0x16ed974 is
+  taken when P+0x6c differs from P+0x60 (`lh` at 0x16ed968, `lh` at
+  0x16ed964). If it falls through, the `bne` at 0x16ed984 takes its branch
+  when P+0x70 differs from P+0x64 (`lh` at 0x16ed980, `lh` at 0x16ed970).
+  Its fall-through reaches the `bne` at 0x16ed994, taken when P+0x6e
+  differs from P+0x62 (`lh` at 0x16ed990, `lh` at 0x16ed988). If that
+  falls through, the `bne` at 0x16ed9a4 is taken when P+0x72 differs
+  from P+0x66 (`lh` at 0x16ed9a0, `lh` at 0x16ed998). A taken comparison
+  reaches stores that update those four cached halfwords (`sh` at 0x16ed9d0,
+  `sh` at 0x16ed9d4, `sh` at 0x16ed9d8, `sh` at 0x16ed9e4). The resulting
+  path also writes words at B+0x2b40 and B+0x2b44 (`sw` at 0x16ed9ec,
+  `sw` at 0x16eda0c), and writes 0 and 0xffffff at B+0x2b5c and B+0x2b58
+  respectively (`sw` at 0x16eda10, `sw` at 0x16eda24).
+
+  On that update path, the `beqz` at 0x16eda40 skips the following four
+  stores when its tested register is zero; the tool cannot resolve that
+  register's value at the branch. On fall-through the four words 0x10443,
+  0xfa, 0x10046, 0x10046 go through the pointer loaded from P (`lw` at
+  0x16eda50, `sw` at 0x16eda54, `sw` at 0x16eda5c, `sw` at 0x16eda64,
+  `sw` at 0x16eda6c). The next word through that pointer is 0x1204b (`sw`
+  at 0x16eda80). This is a partial list of the emitted words, not a complete
+  command stream.
+
+  A loop-path test takes the `blez` at 0x16ee3f4 when register `a1`
+  is nonpositive, and falls through when it is positive; its origin is
+  not resolved at that branch. The routine's
+  calls include `odsyCopyRectBody` (`jalr` at 0x16ee868). The hardware's
+  interpretation of these words and the routine's role are unknown.
+- `odsyWideDash` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16cf3d0):
+  **Established.** The N32 routine occupies 25176 bytes. It obtains a
+  pointer P by indexing the array reached through the first argument (`lw`
+  at 0x16cf3d0, `lw` at 0x16cf464, `lw` at 0x16cf418, `lw` at 0x16cf470).
+  On this path it obtains a separate state pointer B by indexing
+  `buzz_regionsp` with the value reached through P+0x5c (`lw` at 0x16cf480,
+  `lw` at 0x16cf490, `lw` at 0x16cf494, `lw` at 0x16cf4ac). The `beqz`
+  at 0x16cf4b8 takes the return path when the fourth argument is zero and
+  falls through otherwise. Its delay-slot store clears B+0x84 on both paths
+  (`sw` at 0x16cf4bc). The meaning of that state word is unknown.
+
+  On a later path, `beqz` at 0x16cfa74 skips the next four output stores
+  when its tested register is zero; the facts tool cannot resolve that
+  register's value at the branch. Otherwise the routine clears B+0x1cb8
+  (`sw` at 0x16cfa7c) and writes 0x10443, 0xfa, 0x10046 and 0x10046 through
+  the pointer loaded from P (`lw` at 0x16cfa80, `sw` at 0x16cfa8c, `sw` at
+  0x16cfa98, `sw` at 0x16cfaa4, `sw` at 0x16cfaac). The common continuation
+  writes 0x1204b through that pointer (`sw` at 0x16cfabc). Subsequent words
+  include values read from B+0x2b40 and B+0x2b44 (`lw` at 0x16cfac4, `sw`
+  at 0x16cfac8, `lw` at 0x16cfad0, `sw` at 0x16cfad4); this is not the
+  complete output sequence. The board's interpretation is unknown.
+
+  The routine's calls include `miWideDash` (`jalr` at 0x16d00f4), with its
+  first four arguments equal to the first four arguments passed to this
+  routine. Its other `miWideDash` call sites include `jalr` at 0x16d0518,
+  `jalr` at 0x16d1a6c and `jalr` at 0x16d1b2c.
+- `odsyCopyRectSingleBuffer..F` (`usr/lib/X11/dyDDX/odyssey.so`,
+  0x16bada0): **Established effects; role unknown.** The `beqz` at
+  0x16bae04 takes the alternate path when the word loaded from the fifth
+  argument at +0x78 is zero (`lw` at 0x16badc8). On a later path, it writes
+  0x1204b through a loaded pointer (`sw` at 0x16bb0f4), followed by words
+  from a separately selected record, including the words at offsets 0x2b40
+  and 0x2b44 (`lw` at 0x16bb0fc, `sw` at 0x16bb100, `lw` at 0x16bb108,
+  `sw` at 0x16bb10c). Calls include `odsyCopyRectBody` with the original
+  first argument, a stack pointer, the original fifth argument and another
+  stack pointer (`jalr` at 0x16be548). These are selected effects from the
+  6.5.30m N32 routine, which occupies 16200 bytes.
+- `odsyDoBitBltSS..BB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x17142a0):
+  **Established effects; role unknown.** One output path writes the words
+  0x10443, 0xfa, 0x10046, 0x10046 and 0x10019 through the same loaded
+  pointer (`sw` at 0x171477c, `sw` at 0x171478c, `sw` at 0x1714798,
+  `sw` at 0x17147a0, `sw` at 0x17147ac). The routine also calls
+  `odsyCopySDRAM..AB` at four sites: their `a3`, `a4` and `a5` arguments
+  are respectively 0, 0, 3 (`jalr` at 0x1716054); 0, 4, 3 (`jalr` at
+  0x1716078); 1, 0, 0 (`jalr` at 0x17160a8); and 0, 0, 2 (`jalr` at
+  0x17160d4). The 6.5.30m N32 routine occupies 7748 bytes. These are
+  selected effects; the output sequence and paths are not exhaustive.
+- `nfbGetImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x156ef10):
+  **Established.** The `beqz` at 0x156ef6c bypasses the following dispatch
+  when the first byte of argument 0 is zero (`lbu` at 0x156ef4c). Otherwise
+  the routine reads the byte at argument 0 + 3 (`lbu` at 0x156ef78). The
+  taken `beq` at 0x156ef80 selects `mfbGetImage` for value 1 (`jalr` at
+  0x156f63c), and the taken `beq` at 0x156ef8c selects `cfbGetImage` for
+  value 8 (`jalr` at 0x156f64c). Values 16 and 32 select `cfb16GetImage`
+  and `cfb32GetImage` through the taken `beq` at 0x156ef98
+  and `beq` at 0x156efa4 (`jalr` at 0x156f670, `jalr` at 0x156f62c). If none of
+  these comparisons is taken it calls `FatalError` (`jalr` at 0x156efb0).
+  When the dispatch is bypassed, the `beq` at 0x156f00c takes a separate
+  path if argument 5 is 2. Role unknown.
+- `nfbPutImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171d350):
+  **Established.** The `beqz` at 0x171d388 takes the return path if
+  argument 5 is zero; otherwise the `beqz` at 0x171d390 takes the return
+  path if argument 6 is zero. The later `beqz` at 0x171d3a8 selects a path
+  calling `nfbPutPlane..PG` when the tested value is zero (`jalr` at
+  0x171d7e0). Its fall-through reaches the `beq` at 0x171d3b0, which
+  selects another call of `nfbPutPlane..PG` when the tested value is 1
+  (`jalr` at 0x171d83c). On the latter call, argument 2 is the byte at
+  argument 1 + 4 (`lbu` at 0x171d814). The source of the tested value is
+  unknown. The value 2 instead takes the `beq` at 0x171d3c0 to a path
+  with an indirect call whose target is unknown (`jalr` at 0x171d420).
+  Role unknown.
+- `nfbCopyArea` (`usr/lib/X11/dyDDX/odyssey.so`, 0x169c770):
+  **Established.** A zero argument 5 takes the `beqz` at 0x169c7b8 to a
+  path returning zero (`move` at 0x169cd94). If argument 5 is nonzero, a
+  zero argument 6 takes the `beqz` at 0x169c7c0 to the same return path.
+  On a later dispatch path it reads the byte at argument 2 + 4 (`lbu` at
+  0x169d044). The `bnez` at 0x169d04c is taken when that byte is less
+  than 9, and the selected path calls `cfbCopyArea` (`jalr` at 0x169d2d8).
+  Other calls include `miCopyArea` (`jalr` at 0x169d11c) and
+  `nfbDoBitBltSS` (`jalr` at 0x169d1b0). Role unknown.
+- `nfbReadDisplay` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1694d50):
+  **Established.** The `beq` at 0x1694db4 takes a return-0x11 path when the
+  loaded index is -1 (`lw` at 0x1694d94, `addiu` at 0x1694d9c, `addiu` at
+  0x169568c). If the indexed pointer is zero, `beqz` at 0x1694dcc takes the
+  same return path (`lw` at 0x1694dc8). With that pointer nonzero, `beqz`
+  at 0x1694dd8 also takes it when the word read through the pointer is zero
+  (`lw` at 0x1694dd4). On a later path the routine calls `Xalloc` (`jalr`
+  at 0x1695cf4); the allocation size is unknown. The
+  hardware effect and broader role are unknown. Its 6.5.30m N32 body occupies
+  5452 bytes.
+- `nfbSetStereoMode` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15933e0):
+  **Established.** It compares the fourth argument with a word at +0xdc of
+  the object reached through the first argument's +0x74 pointer (`lw` at
+  0x15933e0, `lw` at 0x15933e8). The `beq` at 0x1593408 returns zero
+  when they match (`move` at 0x1593438). If they differ and that word is
+  zero, the `beqz` at 0x1593410 takes the path which saves words from the
+  first argument's offsets +0xd8, +0xdc and +0xe0 into the pointed object's
+  offsets +0xe4, +0xe8 and +0xec, respectively (`lw` at 0x1593454, `sw` at
+  0x1593458, `lw` at 0x159345c, `sw` at 0x1593464, `lw` at 0x1593468,
+  `sw` at 0x159346c), provided the fourth argument is nonzero: the `beqz`
+  at 0x159344c otherwise takes the alternate path. Role unknown beyond these
+  state updates. The 6.5.30m N32 routine occupies 1880 bytes.
+- `nfbStereoValidateSwapbuf..FJ` (`usr/lib/X11/dyDDX/odyssey.so`,
+  0x1618720): **Established.** It loads a word from the selected private
+  record at offset +0x34 (`lw` at 0x1618758). When that word is nonzero,
+  the `bnez` at 0x1618768 takes the path that calls the function pointer
+  loaded from offset +0xf4 of the object reached via the first argument's
+  +0x10 and then +0x74 pointers (`lw` at 0x161875c, `lw` at 0x1618894,
+  `lw` at 0x1618898, `jalr` at 0x161889c). The callback receives the
+  original first three arguments (`jalr` at 0x161889c). Another path makes
+  an indirect call with `a2` 0, `a3` 3 and `a4` -1 (`jalr` at 0x1618870).
+  The first callback's target and the routine's broader role are unknown.
+  Its 6.5.30m N32 body occupies 700 bytes.
+- `nfbSetDidFlags` (`usr/lib/X11/dyDDX/odyssey.so`, 0x167bcb0):
+  **Established.** In the 6.5.30m N32 build, it indexes the first argument's
+  +0x84 array using `nfbWindowPrivateIndex` to obtain P (`lw` at 0x167bcb0,
+  `lw` at 0x167bcbc, `lw` at 0x167bcc8). It calls `nfbComputeDidFlag..IG`
+  with the first argument, P, and the word reached through first argument
+  +0x10 then +0x74; the fourth call argument is unknown (`lw` at 0x167bd08,
+  `lw` at 0x167bd1c, `jalr` at 0x167bd18).
+
+  The `beqz` at 0x167bd2c takes a path that writes P+0x20 when
+  the first argument's word at +0x24 is zero (`lw` at 0x167bd20, `lw` at
+  0x167be9c, `sw` at 0x167beb0). The stored value is unresolved by the
+  facts tool. A later `beqz` at
+  0x167be14 reaches that same path when its tested register is zero, but
+  the facts tool does not resolve that register. When it falls through,
+  the routine sets bit 3 at P+0x20 (`lw` at 0x167be1c, `ori` at 0x167be24,
+  `sw` at 0x167be28). The private field's role is unknown.
+- `nfbStereoDrawCID..EJ` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16d92f0):
+  **Established.** The 6.5.30m N32 code indexes the array at the first
+  argument's +0x84 using `nfbWindowPrivateIndex` to obtain P (`lw` at
+  0x16d930c, `lw` at 0x16d9310, `lw` at 0x16d9324). Its `beqz` at
+  0x16d9340 takes the zero path when P+0x34 is zero (`lw` at 0x16d932c).
+  On the nonzero path the `beq` at 0x16d9364 selects a separate path when
+  the word at [[argument 0 +0x10] +0x74] +0xdc equals 1 (`lw` at
+  0x16d9330, `lw` at 0x16d933c, `lw` at 0x16d9358).
+
+  One path copies P+0x34 to P+0x38 (`lw` at 0x16d9390, `sw` at 0x16d9394);
+  another stores 1 at P+0x38 (`sw` at 0x16d950c). Its indirect calls
+  include an unknown callback at `jalr` at 0x16d93f0 with the entry second
+  argument as its second argument; the facts tool leaves the fourth call
+  argument unknown. The field and callbacks' roles remain unknown.
+- `nfbInitHWCmapArrays` (`usr/lib/X11/dyDDX/odyssey.so`, 0x170eda0):
+  **Established.** The 6.5.30m N32 routine tests its first argument as a
+  signed value: the `blez` at 0x170edbc takes the nonpositive path. That
+  path sets `s0` to zero (`move` at 0x170f940) before the
+  common path stores a value in `odsyNumHWCmaps` (`sw` at 0x170ef84). The
+  facts tool does not resolve the stored value at that joined path.
+  The routine calls `Xalloc` (`jalr` at 0x170ef8c); the facts tool does not
+  resolve its requested size. Its result is stored in `odsyHWCmaps` (`sw` at 0x170ef98, in the
+  delay slot of `bne` at 0x170ef94). The branch falls
+  through on zero, which leads to a zero return (`move` at 0x170efa8, `jr`
+  at 0x170efb4).
+
+  After a nonzero first result it calls `Xalloc` again (`jalr` at
+  0x170efc8), storing the result in `odsyCmapGroups` (`sw` at 0x170efd8).
+  The `beqz` at 0x170efd4 takes the path that passes the pointer loaded from `odsyHWCmaps` to
+  `Xfree` when the second result is zero (`lw` at 0x170f94c, `jalr` at
+  0x170f948). The
+  table contents and any board effects are not established by these facts.
+- `nfbUninstallHWColormap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x170fed0):
+  **Established.** In the 6.5.30m N32 routine the `beqz` at 0x170ff3c
+  takes the return path if the word at argument +0x44 is zero (`lw` at
+  0x170ff0c). Otherwise it loads the word through that pointer (`lw` at
+  0x170ff44); the `bltz` at 0x170ff48 takes the return path if it is
+  negative. Later the `beq` at 0x1710010 takes the return path when the
+  word at argument +8 equals the word reached through argument +0xc and
+  then +0x1c (`lw` at 0x1710008, `lw` at 0x1710004, `lw` at 0x171000c).
+
+  On the fall-through path it calls `LookupIDByType` with that latter word
+  and 6 (`jalr` at 0x171001c). Before calling `WalkTree` it writes -1 to the
+  word pointed to by argument +0x44 (`sw` at 0x17100cc). The `WalkTree`
+  call passes the word at argument +0xc, `TellLostMap`, and the address
+  argument +8 as its first three arguments (`jalr` at 0x17100d4). Any callback effects on
+  hardware are unknown.
