@@ -800,19 +800,19 @@ Thirty-three routines of the compile path (the `__glOdysplc_` thunks and `__glOd
 
 These entries are from the o32 IP30 build at `usr/gfx/arch/IP30ODSY/libGLcore.so`, not the N32 build described above. I read each complete body from its own o32 listing. The indirect calls are left as table offsets because this stripped build does not provide a reliable source-level name for those slots.
 
-- `__glOdyle_TexImage1D` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972a30): **established.**
+- `__glOdyle_TexImage1D` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972a30): **established.**
   Occupies 344 bytes. It copies the 36-byte image-state record at the current context's +0x4a4 into a stack record, refreshes the same 36-byte record from the process-global pointer held in the routine's GOT slot, then passes the caller's words at +0 through +0x18 and a pointer to caller record +0x20 to the function pointer in the process table at +0x1100 (the load at 0xd972b10). It returns caller record +0x20 plus the caller's +0x1c length rounded up to four bytes; the final `lw`/`addiu` pair is at 0xd972b64/0xd972b84 in the exact o32 body.
-- `__glOdyle_TexImage2D` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972b88): **established.**
+- `__glOdyle_TexImage2D` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972b88): **established.**
   Occupies 352 bytes. It performs the same two 36-byte state copies, passes caller words through +0x1c and a pointer to +0x24 to the function pointer in the process table at +0x1104 (the load at 0xd972c70), and returns +0x24 after rounding the caller's +0x20 length up to a four-byte boundary; the return arithmetic is at 0xd972cc4-0xd972ce4.
-- `__glOdyle_TexImage3DEXT` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972ce8): **established.**
+- `__glOdyle_TexImage3DEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972ce8): **established.**
   Occupies 360 bytes. After the two 36-byte state copies, it forwards caller words through +0x20 and a pointer to +0x2c to the process-table function at +0x1360 (loaded at 0xd972dd8), then returns +0x2c plus the four-byte-rounded caller length at +0x24; the exact final calculation is at 0xd972e2c-0xd972e4c.
-- `__glOdyle_TexSubImage1DEXT` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972e50): **established.**
+- `__glOdyle_TexSubImage1DEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972e50): **established.**
   Occupies 336 bytes. It copies the same 36-byte context records, forwards caller words through +0x14 and a pointer to +0x1c to the process-table function at +0x12fc (the load at 0xd972f28), and returns +0x1c plus the four-byte-rounded caller length at +0x18; the return path is at 0xd972f7c-0xd972f9c.
-- `__glOdyle_TexSubImage2DEXT` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972fa0): **established.**
+- `__glOdyle_TexSubImage2DEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd972fa0): **established.**
   Occupies 352 bytes. It copies both 36-byte state records, forwards caller words through +0x1c and a pointer to +0x24 to the process-table function at +0x1300 (the load at 0xd973088), and returns +0x24 plus the four-byte-rounded caller length at +0x20; the exact return instructions are 0xd9730dc-0xd9730fc.
-- `__glOdyle_TexSubImage3DEXT` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd973100): **established.**
+- `__glOdyle_TexSubImage3DEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd973100): **established.**
   Occupies 368 bytes. It copies both 36-byte state records, forwards caller words through +0x20 and a pointer to +0x2c to the process-table function at +0x1364 (the load at 0xd9731f8), and returns +0x2c plus the four-byte-rounded caller length at +0x28; the exact return instructions are 0xd97324c-0xd97326c.
-- `__glOdysplc_DrawElements` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd9778f0): **established.**
+- `__glOdysplc_DrawElements` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd9778f0): **established.**
   Occupies 72 bytes. It loads the current context from process word 0x1010, clears that context's byte at +0x169dc with `sb` at 0xd977914, calls the function pointer in its GOT at 0xd977918, and returns that call's result without changing its arguments.
-- `__glOdysplc_DrawArraysEXT` (`usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd977938): **established.**
+- `__glOdysplc_DrawArraysEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, 0xd977938): **established.**
   Occupies 72 bytes. Its complete body mirrors the preceding draw entry: it loads process word 0x1010, clears byte +0x169dc with `sb` at 0xd97795c, calls the separate GOT function pointer loaded at 0xd977960, and returns that call's result with the caller arguments unchanged.
