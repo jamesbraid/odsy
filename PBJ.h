@@ -54,6 +54,15 @@
  * ===================================================================
  * Addresses are 14 bits (0x0000-0x3fff), one 32-bit register each.
  *
+ * Depth: the display FIFO is inferred to hold 24 doublewords. The
+ * 6.5.30 kernel objects pass odsy_poll_dfifo_level the constants 1, 7, 10
+ * to 15 (taken from the immediate loaded before each call); calls whose
+ * level is a variable were not counted. No level above 15 is passed, so
+ * the kernel never relies on a deeper FIFO. What the level counts (free
+ * entries below 24, or the fill) and the FIFO depth are unknown from the
+ * binaries alone; a read of the body of odsy_poll_dfifo_level would
+ * settle the sense of the level.
+ *
  * Writes: display FIFO words (DISPLAY.h section 1). The FIFO consumes a
  * stream of 32-bit words, a header (type 31:28, address 27:14, count
  * 13:0) followed by COUNT data words written to consecutive addresses.
@@ -93,15 +102,8 @@
  * established as uses. inferred: bit 30 asks PB&J to apply the write at
  * the next vertical blank, type 3 applies at once. Basis: every type-7
  * user is something that would tear if changed mid-frame (the X server
-
-
-
-
- * colour map, frame and line tables and start-up registers as type 3).
  * colour-map load is sent as type 7 by the 6.5.30 kernel, the textport
-
-
-
+ * colour map, frame and line tables and start-up registers as type 3).
  * Bits 29:28 (both set in both types) are probably a target field, one
  * bit per BUZZ chip of a two-BUZZ board (inferred from the name alone;
  * unknown). No shipped code sends another type value. */

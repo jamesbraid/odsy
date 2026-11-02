@@ -33,7 +33,7 @@ Tier 1, local reads:
 1. Textport command blocks: the PROM and kernel both replay a stored stream (done, see `firmware-images.md`); what remains is block 0x018 and the 0x258 operand, route 1 (earlier releases).
 2. Cursor alpha codes 1 and 2: the control bits are done (PROM cursor set-up read); route 1 and route 3 remain.
 3. PROM listing strings: the lister is read (`firmware-images.md`); the identity-read helper at 0xbfc6de58 remains.
-4. Display FIFO depth: compare the level constants in `odsy_brdmgr.o` and `odsy_init.o`.
+4. Display FIFO depth: done (24 doublewords, `PBJ.h` section 2); only whether it is the hardware size remains.
 5. Overlay capability: the readers of visual-record offset 56 in `Xsgi` and `odyssey.so`.
 6. Default X visual of a V6: follow `odsyInit` through `ddxDfltVisualID`.
 7. 24-bit accumulation and 12-bit visuals: decode `odsyCapabilityInfo` per memory size.
@@ -161,7 +161,7 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 ## PB&J and display
 
 - [software now] **Display register bit fields.** (The colour-map top is answered: 8192 entries, `docs/pbj.md`.) Fields of the registers in `PBJ.h` section 3, of 0x2700 beyond those named, of 0x2b00, and the mode-table words (`docs/pbj.md`, `docs/kernel.md`). Tried: every writer, now named by format field (`docs/display.md`, structure builder). Next: route 1, then 3. Route 1 (releases not in root/) is blocked: [missing release or binary].
-- [software now] **Display FIFO depth** (`PBJ.h` section 2). Type 3 as immediate and type 7 at vertical retrace, from which registers use each (`PBJ.h` section 2, `docs/pbj.md`). Next: the level constants the polling routine passes, compared across `odsy_brdmgr.o` and `odsy_init.o`.
+- [software now] **Display FIFO depth** (`PBJ.h` section 2). The depth is inferred from the wait levels the kernel passes (`PBJ.h` section 2, "Depth"). Type 3 as immediate and type 7 at vertical retrace, from which registers use each (`PBJ.h` section 2, `docs/pbj.md`). Left: whether the board's 24 is the hardware size or only the driver's budget; no software reads the fill past 24. Tried: every display-FIFO writer and the level constants of `odsy_brdmgr.o`, `odsy_init.o`, `odsy_i2c.o`, `odsy_ddc.o`, `odsy_intr.o` and `odsy_retrace.o`. Next: published output (route 3).
 - [software now] **How PB&J fetches pixels from BUZZ memory** (`docs/pbj.md`). Tried: no kernel path moves data to PB&J except by PIO. Next: route 5.
 - [software now] **What raises retrace, video sync, genlock and DBE overflow** (`PBJ.h` section 5, `docs/kernel.md`). Tried: every handler. Next: route 5.
 - [software now] **Line-table encoding.** Low-byte signal bits, event entries, bit 13 and the entry duration rule (`docs/display.md`, line-table structure). Tried: both built-in timings and the `.vfo` state tables. Next: any `.vfo` source or format compiler on another disc, then route 5. The 79 .vfo files in root/ are read here. The .vfo sources or a format compiler on another disc are [missing release or binary].
