@@ -2027,3 +2027,51 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysseyFreeAttributeState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 232 bytes
 
   **Established effects.** It reads doublewords at entry `a0 + 0x4e10` and `a0 + 0x4e18` (`ld` at 0x31eeeec, 0x31eeee8). When the former is unsigned less than the latter, `beqz` at 0x31eef10 falls through to call `__glOdyim_PopAttrib` (`bgezall` at 0x31eef1c). After rereading those fields, `bnez` at 0x31eef30 repeats the call while the former remains unsigned less than the latter (`ld` at 0x31eef28, 0x31eef24). A later path calls an unknown indirect target and clears the doubleword at entry `a0 + 0x18d48` (`jalr` at 0x31eefa4; `sd` at 0x31eefb8). The fields' roles and the routine's broader role are Unknown.
+
+## 64-bit IP30 library: array and rendering paths
+
+- `__glOdysseyGetNumHWClipPlanes` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+  - **Established.** It reads the words at argument 0 + 0x814, +0x808 and +0x9ec0 (`lw` at 0x3282ad0, 0x3282ad8, 0x3282b0c). `beqz` at 0x3282adc skips the initial loop when the first word is zero and falls through when nonzero.
+  - In that loop the code subtracts 1, ANDs the result with the current value and increments a counter (`addiu` at 0x3282af0, 0x3282afc; `and` at 0x3282af4). `bnez` at 0x3282af8 repeats when that AND result is nonzero and falls through when zero. The resulting count and the routine’s broader role are Unknown.
+- `__glOdysseyGetNumSWClipPlanes` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  - **Established.** It reads the word at argument 0 + 0x814 (`lw` at 0x3282b70). `beqz` at 0x3282b8c skips the loop when that word is zero and falls through when nonzero. The loop repeatedly clears bits using a value ANDed with one less than itself and increments a counter (`addiu` at 0x3282ba0, 0x3282bac; `and` at 0x3282ba4); `bnez` at 0x3282ba8 repeats while that result is nonzero.
+  - Both paths call `__glOdysseyGetNumHWClipPlanes` with original argument 0 (`bgezall` at 0x3282bb8), and the routine subtracts its result from the counter (`subu` at 0x3282bc8). The count’s hardware role and the routine’s broader role are Unknown.
+- `__glOdysseyInitRGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 240 bytes
+  - **Established.** It calls `__glInitBuffer` with the original first four arguments (`jalr` at 0x325f2c4). Its subsequent word stores include 1 at argument 0 + 0xbc, +0xa4 and +0x80, and zero at +0xb4 and +0xb0 (`sw` at 0x325f2f8, 0x325f300, 0x325f304, 0x325f2fc, 0x325f308).
+  - The routine also stores the word 0x3f800000 at several offsets of argument 0, including +0xb8 and +0xcc (`swc1` at 0x325f334, 0x325f338). The fields’ hardware roles and the routine’s broader role are Unknown.
+- `__glOdysseyPickRenderBitmapProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  - **Established.** It reads the word at argument 0 + 0x598 (`lw` at 0x3259fc8). `bnez` at 0x3259fdc selects the store at +0x4cc8 when that word is nonzero and falls through when zero; its delay slot stores 0x31f4bc0 at +0x4cd0 on both paths (`sd` at 0x3259fe0).
+  - The selected store writes 0x32c0980 at +0x4cc8 (`sd` at 0x325a008). An alternate path writes 0x32c0a90 at the same offset (`sd` at 0x325a010). The stored addresses and the routine’s broader role are Unknown.
+- `__glOdysseyHistogramMinMax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  - **Established.** On a selected path it reads the word at argument 0 + 0x5d8 (`lw` at 0x32561ac). `blez` at 0x32561b0 branches when that word is nonpositive signed and falls through when positive. The positive path calls `doOdysseyHistogramMinMax` with the original first four arguments (`bgezall` at 0x32561c8).
+  - Earlier tests include `beqz` at 0x325619c, taken when the byte at argument 0 + 0x5f8 is zero and falling through when nonzero (`lbu` at 0x3256198). The hardware effect and the routine’s broader role are Unknown.
+- `__glOdysseyArraysInt_C3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  - **Established effects.** Each pass writes 0xc580cc0e, three Unknown words, 0x8080cc03 and three more Unknown words to absolute 0x10000 (`sw` at 0x3367610, 0x3367614, 0x3367618, 0x336761c, 0x3367620, 0x3367624, 0x3367628, 0x336762c). The six word loads have Unknown addresses (`lw` at 0x33675f8, 0x33675fc, 0x3367600, 0x3367604, 0x3367608, 0x336760c).
+  - `bne` repeats when its tested value is nonzero; hostfacts leaves that value Unknown (`bne` at 0x3367630). The values' hardware roles and the routine's wider role are Unknown.
+- `__glOdysseyArraysSep_C3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  - **Established effects.** The loop writes 0xc580cc0e, three Unknown words, 0x8080cc03 and three Unknown words in that order to process address 0x10000 (`sw` at 0x3367694, 0x3367698, 0x336769c, 0x33676a0, 0x33676a4, 0x33676a8, 0x33676ac, 0x33676b0). It reads six words from addresses hostfacts leaves Unknown (`lw` at 0x3367678, 0x336767c, 0x3367680, 0x3367684, 0x3367688, 0x336768c).
+  - The `bne` is taken back to the loop when its Unknown tested value is nonzero (`bne` at 0x33676b4). The hardware roles of the words and the wider routine are Unknown.
+- `__glOdysseyArraysInt_N3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  - **Established effects.** Window stores in each pass are 0xc180cc19, three words of Unknown value, 0x8080cc03 and three more Unknown words at absolute 0x10000 (`sw` at 0x3367704, 0x3367708, 0x336770c, 0x3367710, 0x3367714, 0x3367718, 0x336771c, 0x3367720). The addresses of its six loads are Unknown (`lw` at 0x33676ec, 0x33676f0, 0x33676f4, 0x33676f8, 0x33676fc, 0x3367700).
+  - `bne` takes the loop back when its tested value, Unknown to hostfacts, is nonzero (`bne` at 0x3367724). The values' hardware roles and the routine's wider role are Unknown.
+- `__glOdysseyArraysInt_V3F_N3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  - **Established effects.** In one loop pass the writes to absolute 0x10000 are 0xc180cc19, three Unknown words, 0x8080cc03 and three Unknown words (`sw` at 0x3367774, 0x3367778, 0x336777c, 0x3367780, 0x3367784, 0x3367788, 0x336778c, 0x3367790). Six preceding loads use addresses hostfacts cannot resolve (`lw` at 0x336775c, 0x3367760, 0x3367764, 0x3367768, 0x336776c, 0x3367770).
+  - The pass repeats when `bne` tests a nonzero value; the tool leaves that value Unknown (`bne` at 0x3367794). The word roles and the broader routine role are Unknown.
+- `__glOdysseyArraysSep_N3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  - **Established effects.** Stores to absolute 0x10000 on each pass are ordered as 0xc180cc19, three Unknown words, 0x8080cc03 and three Unknown words (`sw` at 0x33677f8, 0x33677fc, 0x3367800, 0x3367804, 0x3367808, 0x336780c, 0x3367810, 0x3367814). The six word loads use Unknown addresses (`lw` at 0x33677dc, 0x33677e0, 0x33677e4, 0x33677e8, 0x33677ec, 0x33677f0).
+  - `bne` returns to the loop when its Unknown tested value is nonzero (`bne` at 0x3367818). The hardware roles of the words and this routine are Unknown.
+- `__glOdysseyGetSeparableFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+
+  **Established effects.** The routine reads a doubleword at entry `a0 + 0x4b8` and saves it at entry `sp - 8` (`ld` at 0x32202d0; `sd` at 0x32202dc). It calls `__glSlowPickGetSeparableFilter` with entry `a0` through `a3`, writing a doubleword to `a0 + 0x4b8` in the call delay slot (`jalr` at 0x32202ec; `sd` at 0x32202f0). It later writes another doubleword at that same field (`sd` at 0x3220300). The stored values, field role and broader routine role are Unknown.
+- `__glOdysseyInitLerpTree` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+
+  **Established effects.** It calls `memset` with entry `a0`, zero in `a1`, and 0x2d0 in `a2` (`jalr` at 0x324098c). It then loads the single-precision value 1.0 from absolute 0x33977a0 (`lwc1` at 0x3240998). Stores of that value include words at entry `a0 + 0x24c`, `a0 + 0x248`, `a0 + 0x1bc`, and `a0 + 0x24` (`swc1` at 0x32409a0, 0x32409a4, 0x32409a8, 0x32409dc). The initialized fields' roles and the broader routine role are Unknown.
+- `__glOdysseyGetFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 60 bytes
+
+  **Established effects.** It reads a doubleword at absolute 0x1020 in the delay slot of `beq` at 0x32409f8 (`ld` at 0x32409fc). That branch is taken for entry `a0 = 0x8010`, returning the loaded value plus 0x3b8 (`jr` at 0x3240a1c; `daddiu` at 0x3240a20). If it falls through, `beq` at 0x3240a04 takes the path returning the loaded value plus 0x410 when entry `a0 = 0x8011` (`jr` at 0x3240a24; `daddiu` at 0x3240a28). The remaining result, field roles and broader routine role are Unknown.
+- `__glOdysseyPickAllProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1020 bytes
+
+  **Established effects.** It calls `__glGenericModeFlags` with entry `a0` through `a3`, then stores the result at entry `a0 + 0x97fc` (`jalr` at 0x325a11c; `sw` at 0x325a12c). The `beqz` at 0x325a138 falls through when the word at entry `a0 + 0x4714` has any bit in 0x21 set (`lw` at 0x325a130). On that fall-through path, calls include `__glValidateLighting` and indirect calls whose targets are Unknown (`jalr` at 0x325a2b8, 0x325a2ac, 0x325a2c4). Before returning it clears words at entry `a0 + 0x4714` and `a0 + 0x4710` (`sw` at 0x325a360, 0x325a368). The field roles and broader routine role are Unknown.
+- `__glOdysseySoftClipPickAllProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 644 bytes
+
+  **Established effects.** A zero byte at entry `a0 + 0xde4` makes `beqz` at 0x325a52c take a path that reaches `__glOdysseyPickAllProcs` with entry `a0` (`lbu` at 0x325a50c; `bgezall` at 0x325a578). A later continuation clears words at entry `a0 + 0x8cec`, `a0 + 0x8ce8` and `a0 + 0x8ce4`, then writes a word at `a0 + 0x8ce0` (`sw` at 0x325a5e4, 0x325a5e8, 0x325a5ec, 0x325a5f0). Calls on that continuation include indirect calls whose targets are Unknown (`jalr` at 0x325a5f8, 0x325a604, 0x325a610). The field roles and broader routine role are Unknown.
