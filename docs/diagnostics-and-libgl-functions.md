@@ -86,6 +86,56 @@ library helpers without a prefix: visual and framebuffer-config scoring and orde
 
 `orderSmaller`, `sampleBuffersScore`, `videoPackingToInternalFormat`
 
+### Read hardware-facing `libGL.so` routines
+
+The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build. Each routine was read from its generated fact sheet and instruction listing; the addresses and sizes are the binary's `.text` values.
+
+- `Ioctl` (`libGL.so`, offset 0xd8113d4, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Selects a board descriptor from the table at address 0x1014 using the board index in `a0`, loads that descriptor's file descriptor at offset 4, calls the imported `ioctl` with the caller's remaining arguments, and returns the imported result unchanged. The only board-specific memory access is the descriptor-table load at 0x1014; a board index therefore selects the descriptor but this helper does not interpret the request.
+- `GetBoardNumber` (`libGL.so`, offset 0xd811418, 548 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Reads the display's private board property through `XInternAtom`, indexes the per-display record with the requested screen number, and calls `XGetWindowProperty` on that record before releasing the returned property with `XFree`. The property path is conditional on the X display data and the routine returns the board number obtained from that property, or the failure value produced by the X-side path.
+- `glXSwapBuffers` (`libGL.so`, offset 0xd811aa4, 400 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Looks up the current display and drawable from the display table at 0x1014, builds the GLX swap request for the supplied drawable, sends it through the GLX command path after `__glXSetupForCommand`, flushes the X connection, and returns the command-path result. The routine takes the display and drawable arguments, uses request opcode 0x0b, and calls `XFlush` on the final path.
+- `glXMakeCurrent` (`libGL.so`, offset 0xd812940, 68 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Passes the supplied display, drawable and context to `__glXMakeContextCurrent`, using the same drawable for the read and draw targets, and returns that helper's result. No board register or mapped FIFO is touched directly; hardware attachment is delegated to the context-current path.
+- `__glXSendMakeCurrent` (`libGL.so`, offset 0xd810ad4, 496 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Sends the GLX make-current request after `__glXSetupForCommand`, flushes the connection, waits for the reply, and reports a reply error through `__glXPostHiddenError` with the reply's error fields. The three incoming arguments identify the display-side context and draw/read drawables; the routine returns the request/reply path's status rather than a hardware value.
+- `__glXHWAttach` (`libGL.so`, offset 0xd811524, 280 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Opens the graphics device for the display record, then sends private requests 0x67 and 0x70 through `Ioctl`, using the context as the request owner and a 4-byte stack result for each call. Each request has its own error-reporting path; failure in either attach request prevents the hardware context from being considered attached.
+- `__glXOpenGraphicsDevice` (`libGL.so`, offset 0xd8104b0, 388 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Opens the device name held by the display record with flags 0x802, marks the resulting descriptor close-on-exec with `fcntl` command 2 and value 5, and queries it with ioctl request 0x65. Open, `fcntl`, and ioctl failures call `__glXFatal` with their corresponding diagnostic string; the successful descriptor is returned to the caller.
+- `__glXOpenGraphics` (`libGL.so`, offset 0xd8125ec, 508 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Obtains the display's graphics-device record, calls `__glXOpenGraphicsDevice` to establish its descriptor, and then calls `__glXHWAttach` for the display-side context. It returns the attach result, so device opening and hardware-context attachment are one conditional path for this helper.
+- `__glXInitialize` (`libGL.so`, offset 0xd80f258, 900 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Initializes the display's GLX private record, checks for the GLX extension, calls `QueryVersion`, allocates the 16-byte screen-record array and a 0x2a4-byte configuration record, then fills the screen configurations through `AllocAndFetchScreenConfigs`. It installs the extension-list entry and client information only after the version and configuration paths succeed; missing GLX or allocation failure leaves initialization unsuccessful.
+- `GetFBConfigs` (`libGL.so`, offset 0xd80d940, 1776 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Sends the framebuffer-configuration request over the X connection, waits with `_XReply`, allocates the returned configuration storage, reads the reply payload with `_XRead`, and applies the visual override path before returning the configuration list. The temporary reply and X property allocations are released on the cleanup paths; a failed request returns no configuration list.
+- `GetVisualConfigs` (`libGL.so`, offset 0xd80e030, 5608 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Issues the visual-configuration request, obtains its count and record sizes from the reply, allocates and zeroes the result storage, reads the records with `_XRead`, and passes the result through `__glXOverrideVisualGetVisualInfo`. It frees the temporary X reply data on both success and failure; the returned list is therefore derived from the server reply rather than a board register read.
+- `QueryVersion` (`libGL.so`, offset 0xd811658, 1500 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Builds and sends the GLX version query, flushes the connection, waits with `_XReply`, and copies the reply's major and minor version words into the caller's output locations. It also consumes the reply's extension/version fields before returning the X reply status; no hardware descriptor is accessed by this routine.
+- `CreateContext` (`libGL.so`, offset 0xd80f618, 2324 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Allocates a 0x12c-byte client context record, initializes it through `__glXInitialize`, resolves the requested FBConfig or visual, and selects the direct or indirect creation path using `isLocal`. The direct path calls `__glXCreateDirectContext`; the indirect path builds the GLX protocol context and flushes the display. Allocation or visual lookup failure frees the temporary record and returns failure.
+- `__glXBindHWContextToWindow` (`libGL.so`, offset 0xd810634, 748 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Calls `__glXHWAttach`, then sends private requests 0x3ea and 0x3eb through `Ioctl` with stack-built request records, followed by request 0x400 for the window binding. Each request has a distinct error string and failure path; success leaves the display-side hardware context bound to the selected window and returns success.
+- `__glXGetBoardNumber` (`libGL.so`, offset 0xd8129b8, 12 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Returns the board-number field from the display-private record supplied in `a0`; the routine is a three-instruction field accessor with no calls, register accesses or error path. Its result is the value consumed by the higher-level board-selection helpers.
+
 
 ## Board diagnostics and updaters
 
