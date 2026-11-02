@@ -2664,3 +2664,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysseyCvtToInternalFmt` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 756 bytes
 
   **Established effects.** Entry `a2 = 0x1908` makes `beq` at 0x3245550 take the return path (`jr` at 0x32455dc). If it falls through, `beq` at 0x324555c selects another path for `a2 = 0x1906`. On a different path, `blez` at 0x3245588 falls through when entry `a1` is signed positive; later word stores include 0x3f800000 at addresses hostfacts cannot resolve (`swc1` at 0x32455b0, 0x32455c4, 0x32455c8). The addresses, data roles and wider hardware effects of these stores are Unknown.
+
+## 64-bit IP30 library: texture and conversion paths
+
+- `__glLookUpTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 192 bytes
+
+  **Established effects.** For entry argument 1 equal to 0xde0, `beq` at 0x3313f98 is taken to select two successive doubleword loads: first from entry argument 0 plus 0x8d88, then from the loaded address (`ld` at 0x3313ff8; `ld` at 0x3314000). If it falls through, `beq` at 0x3313fa4 takes the path loading the doubleword at offset 8 of the same loaded base for 0xde1 (`ld` at 0x3314008; `ld` at 0x3314010). Further branches cover other values, and the final fall-through returns zero (`beq` at 0x3313fb0; `beq` at 0x3313fbc; `beq` at 0x3313fc4; `beq` at 0x3313fcc; `move` at 0x3313fb4; `jr` at 0x3313fd4). The hardware significance of the loaded values and this lookup routine’s wider role are Unknown.
+- `__glLookUpTextureObject` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+
+  **Established effects.** `beq` at 0x3314058 is taken to load a doubleword at offset 0 of the address loaded from entry argument 0 plus 0x8d90 when entry argument 1 equals 0xde0 (`ld` at 0x3314094; `ld` at 0x331409c). On fall-through, `beq` at 0x3314060 takes the path loading offset 8 of that loaded address for 0xde1 (`ld` at 0x33140a4; `ld` at 0x33140ac). The next `beq` at 0x3314068 is taken to load offset 0x10 for 0x806f, and falls through to return zero otherwise (`ld` at 0x3314080; `ld` at 0x3314088; `jr` at 0x3314070). The loaded values’ hardware meaning and this routine’s wider role are Unknown.
+- `__glTexInitTextureObject` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 60 bytes
+
+  **Established effects.** It stores entry argument 2 as a word at argument 1 plus 0xf8 and entry argument 3 at plus 0x10, and clears the byte at plus 0x14 (`sw` at 0x3314160; `sw` at 0x3314170; `sb` at 0x3314168). The doubleword stores include 0x33140e0 at plus 0x120 and 0x3314120 at plus 0x128 (`sd` at 0x3314188; `sd` at 0x3314184). Its return delay slot writes the word 0x3f800000 at plus 0xfc (`lwc1` at 0x331418c; `jr` at 0x3314194; `swc1` at 0x3314198). The fields’ hardware roles and the purpose of this initialization path are Unknown.
+- `IsTextureConsistent` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 324 bytes
+
+  **Established effects.** It loads a doubleword at entry argument 1 plus 0xe8, then tests words at offsets 8, 0xc and 0x10 of the loaded address (`ld` at 0x3317720; `lw` at 0x3317724; `lw` at 0x3317730; `lw` at 0x331773c). Each corresponding `beqz` takes the zero-return path when its tested word is zero (`beqz` at 0x3317728; `beqz` at 0x3317734; `beqz` at 0x3317740; `jr` at 0x3317838). Later comparisons include `bne` at 0x33177d8 and 0x33177e8, each selecting another zero return for unequal tested values (`jr` at 0x3317830). One operand of each comparison is Unknown in the facts report; the field roles and the wider purpose of this test are also Unknown.
+- `__glIsTextureConsistent` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+
+  **Established effects.** It calls `__glLookUpTexture` with its first two entry arguments, then calls `IsTextureConsistent` with entry argument 0 and the lookup result (`bgezall` at 0x3317894; `bgezall` at 0x33178a8). The routine returns the second call's result (`jr` at 0x33178bc). The hardware effects of the calls and the wider purpose of this consistency check are Unknown in this body.
+- `SoftClipSecondQuadsVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** The byte at entry argument 0 +0x275 is copied to argument 1 +0xc0 (`lbu` at 0x327b04c; `sb` at 0x327b054). Doubleword writes set argument 0 +0x4e30 to argument 0 +104128 and +0x4890 to 0x327b000 (`sd` at 0x327b064, 0x327b070). The roles of these fields and this quad-vertex routine remain Unknown.
+- `SoftClipThirdQuadsVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** It reads the byte at entry argument 0 +0x275 and stores it at argument 1 +0xc0 (`lbu` at 0x327b00c; `sb` at 0x327b014). The routine also writes argument 0 +104544 at argument 0 +0x4e30 and 0x327af10 at +0x4890 as doublewords (`sd` at 0x327b024, 0x327b030). The purpose of these writes and the wider effect of this vertex routine are Unknown.
+- `SoftClipFirstQuadStripVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** It writes byte 1 at entry argument 1 +0xc0 and a doubleword of argument 0 +103712 at argument 0 +0x4e30 (`sb` at 0x327b2a4; `sd` at 0x327b2b4). The return delay slot stores doubleword 0x327b230 at argument 0 +0x4890 (`jr` at 0x327b2bc; `sd` at 0x327b2c0). The two fields and this strip-vertex routine have Unknown hardware roles.
+- `SoftClipOddQuadStripVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 56 bytes
+  - **Established effects.** It stores byte 1 at entry argument 1 +0xc0, copies the doubleword at argument 0 +0x4e38 to +0x4e30 and writes entry argument 1 at +0x4e38 (`sb` at 0x327b1f4; `ld` at 0x327b1f8; `sd` at 0x327b208, 0x327b200). Further doubleword stores place 0x327a8b0 at +0x4920 and 0x327b100 at +0x4890 (`sd` at 0x327b218, 0x327b224). The written fields and the odd-strip path have Unknown hardware roles.
+- `SoftClipFirstPolygonVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 64 bytes
+  - **Established effects.** It copies the byte at entry argument 0 +0x275 to argument 1 +0xc0 (`lbu` at 0x327b60c; `sb` at 0x327b614). Doubleword stores write argument 0 +103712 at argument 0 +0x4e30, 0x327b5c0 at +0x4890 and entry argument 1 at +0x8cd8 (`sd` at 0x327b628, 0x327b634, 0x327b63c). The polygon path’s wider role and the meanings of its destinations are Unknown.
+- `__glOdysseyCvtScaleBias` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1348 bytes
+
+  **Established effects.** The `bnez` at 0x324216c is taken when entry `a2` is unsigned less than 0x1406. On a later path, `beq` at 0x324219c falls through when `(entry a0 + (entry a1 << 2))` differs from entry `a0`. The following loop includes a single-precision load, multiply and word store at addresses hostfacts cannot resolve (`lwc1` at 0x32421b0; `mul.s` at 0x32421b8; `swc1` at 0x32421bc). Other paths include multiply-adds (`madd.s` at 0x3242414, 0x324242c, 0x3242444). The loop access addresses, the data roles and the broader purpose of this conversion are Unknown.
+- `__glOdysseyCvtToRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1052 bytes
+
+  **Established effects.** Entry `a3` unsigned less than 0x1907 makes `bnez` at 0x324277c take a selector branch. If it falls through, `beqz` at 0x3242788 takes another branch for `a3` unsigned at least 0x1908. On the intervening path, `blez` at 0x3242790 falls through when entry `a2` is signed positive. The `beqz` at 0x324279c falls through when its tested value is nonzero; the value is Unknown. Its delay slot loads the single-precision value 1.0 from absolute 0x33977a0, and the fall-through path includes a word load and store with unresolved bases (`lwc1` at 0x32427a0, 0x32427a4; `swc1` at 0x32427bc). The data, destination and broader conversion roles are Unknown.
+- `__glOdyssey_ks_to_alphas` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1060 bytes
+
+  **Established effects.** It calls `get_prime_sums` with entry `a0`, entry `a1`, entry `sp - 0xb0` and entry `sp - 0x78` in `a0` through `a3` (`bgezall` at 0x3245160). Calls then include `multiplicative_inverse`, first with 0x1000 in `a0` (`bgezall` at 0x324518c, 0x324522c, 0x3245280). The routine writes doublewords at entry `a2` offsets 0x38, 0x30 and 0x28 (`sd` at 0x3245208, 0x3245264, 0x32452b8). Their values, the fields' roles and the purpose of this calculation are Unknown.
+- `__glOdysseyGenericConvolution` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 3056 bytes
+
+  **Established effects.** The routine calls `floorf` twice (`jalr` at 0x32489a8, 0x32489d0). On a later path it calls `__glOdysseyProgramGenericConvolutionFilter`, passing entry `a0` in `a1` (`bgezall` at 0x3248bfc). Another path calls `__glOdysseyMap2DFilterToAlphas` with entry `a0`, `a1`, `a2` and `a5` in `a0` through `a3` (`bgezall` at 0x3249520). The descriptions above cover selected calls; the resulting hardware effects and this routine’s broader role are Unknown.
+- `__glOdysseyDisableHyperpipe` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+
+  **Established effects.** It returns directly and executes a `nop` in the return delay slot (`jr` at 0x3288e50; `nop` at 0x3288e54). The effect of this empty body on the surrounding operation is Unknown.
