@@ -92,7 +92,7 @@ The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build
 
 - `Ioctl` (`libGL.so`, offset 0xd8113d4, 68 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
-  Selects a board descriptor from the table at address 0x1014 using the board index in `a0`, loads that descriptor's file descriptor at offset 4, calls the imported `ioctl` with the caller's remaining arguments, and returns the imported result unchanged. The only board-specific memory access is the descriptor-table load at 0x1014; a board index therefore selects the descriptor but this helper does not interpret the request.
+  Selects a board descriptor from the table at address 0x1014 using the board index in `a0`, loads that descriptor's file descriptor at offset 4, calls the imported `ioctl` with the caller's remaining arguments, and returns the imported result unchanged. The only board-specific memory access is the descriptor-table load at 0xd8113e0, which reads the table pointer from absolute address 0x1014; a board index therefore selects the descriptor but this helper does not interpret the request.
 - `GetBoardNumber` (`libGL.so`, offset 0xd811418, 548 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   Reads the display's private board property through `XInternAtom`, indexes the per-display record with the requested screen number, and calls `XGetWindowProperty` on that record before releasing the returned property with `XFree`. The property path is conditional on the X display data and the routine returns the board number obtained from that property, or the failure value produced by the X-side path.
