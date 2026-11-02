@@ -47,6 +47,41 @@ How the library is organised (all **inferred** from names):
 - `__glOdylc_Color3usv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd961e10): **established.**
   Size 316 bytes. It loads three unsigned shorts from vector offsets 0, 2 and 4 (`lhu` at 0xd961eb8, 0xd961ec4 and 0xd961ecc), writes them after token `0xc580cc09` (`sw` at 0xd961eb4), and marks colour state dirty. A successful vector record advances 16 bytes and four words; allocation failure leaves the list-space accounting on its retry path. Established from the complete N32 routine at 0xd961e10.
 
+### N32 four-component colour command senders read from the 6.5.30 media build
+
+- `__glOdylc_Color4b` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd961f50): **established.**
+  Size 344 bytes. It writes the four signed-byte arguments into a 20-byte display-list record (`sw` at 0xd962004, 0xd962008, 0xd96200c and 0xd962014), prefixes them with token `0xc580d012` (`sw` at 0xd96201c), and marks colour state dirty. The sender reserves five words and advances the list pointer by 20 bytes when the write succeeds. Established from the complete N32 routine at 0xd961f50.
+- `__glOdylc_Color4bv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9620b0): **established.**
+  Size 324 bytes. It loads four signed bytes from vector offsets 0, 1, 2 and 3 (`lb` at 0xd962158, 0xd962160, 0xd96216c and 0xd962174), stores them after token `0xc580d012` (`sw` at 0xd962154), and sets the colour dirty flag. One successful vector command consumes five list words and updates the pointer by 20 bytes. Established from the complete N32 routine at 0xd9620b0.
+- `__glOdylc_Color4d` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962200): **established.**
+  Size 376 bytes. It saves four double arguments, converts them to single precision, and emits token `0xc580d015` (`sw` at 0xd9622d4) followed by four float components (`swc1` at 0xd9622dc, 0xd9622e4, 0xd9622ec and 0xd9622f0). The 20-byte record advances the display-list accounting by five words after space is available. Established from the complete N32 routine at 0xd962200.
+- `__glOdylc_Color4dv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962380): **established.**
+  Size 340 bytes. It reads four doubles at vector offsets 0, 8, 16 and 24 (`ldc1` at 0xd96241c, 0xd962428, 0xd962434 and 0xd962440), converts the components as required, and writes them after token `0xc580d015` (`sw` at 0xd962418). The routine emits five list words and marks colour state dirty before returning. Established from the complete N32 routine at 0xd962380.
+- `__glOdylc_Color4f` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9624e0): **established.**
+  Size 360 bytes. It emits the four single-precision arguments after token `0xc580d015` (`sw` at 0xd9625b0 and `swc1` at 0xd9625b4, 0xd9625b8, 0xd9625bc and 0xd9625c0). It marks colour dirty, obtains five display-list words when needed, and advances the command pointer by 20 bytes. Established from the complete N32 routine at 0xd9624e0.
+- `__glOdylc_Color4fv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962650): **established.**
+  Size 324 bytes. It loads four floats from vector offsets 0, 4, 8 and 12 (`lwc1` at 0xd9626ec, 0xd9626f4, 0xd962700 and 0xd962710), stores them after token `0xc580d015` (`sw` at 0xd9626e8), and updates the dirty colour state. A complete vector record is 20 bytes, or five pending words, in the display-list stream. Established from the complete N32 routine at 0xd962650.
+- `__glOdylc_Color4i` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9627a0): **established.**
+  Size 344 bytes. It writes four signed integer arguments after token `0xc580d014` (`sw` at 0xd962854, 0xd962858, 0xd96285c, 0xd962864 and 0xd96286c), marks the colour state dirty, and commits a five-word command. When the list lacks room, it obtains another block before writing the 20-byte record. Established from the complete N32 routine at 0xd9627a0.
+- `__glOdylc_Color4iv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962900): **established.**
+  Size 324 bytes. It reads four signed integers from vector offsets 0, 4, 8 and 12 (`lw` at 0xd9629a8, 0xd9629b0, 0xd9629bc and 0xd9629c8), writes token `0xc580d014` at 0xd9629a4, and stores the values in the following four slots. The vector sender marks colour dirty and accounts for five display-list words. Established from the complete N32 routine at 0xd962900.
+- `__glOdylc_Color4s` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962a50): **established.**
+  Size 344 bytes. It emits four signed short arguments after token `0xc580d013` (`sw` at 0xd962b04, 0xd962b08, 0xd962b0c, 0xd962b14 and 0xd962b1c), sets the colour dirty flag, and advances a 20-byte display-list record. The reservation path requires five words and retries when the current block is too short. Established from the complete N32 routine at 0xd962a50.
+- `__glOdylc_Color4sv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962bb0): **established.**
+  Size 324 bytes. It sign-extends vector shorts loaded at offsets 0, 2, 4 and 6 (`lh` at 0xd962c58, 0xd962c60, 0xd962c6c and 0xd962c74), then stores them after token `0xc580d013` (`sw` at 0xd962c54). The command consumes five list words and leaves the colour state dirty. Established from the complete N32 routine at 0xd962bb0.
+- `__glOdylc_Color4ub` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962d00): **established.**
+  Size 344 bytes. It places four unsigned-byte arguments after token `0xc580d00f` (`sw` at 0xd962db4, 0xd962db8, 0xd962dbc, 0xd962dc4 and 0xd962dcc), marks colour state dirty, and updates the five-word list accounting. The direct form advances the output pointer by 20 bytes. Established from the complete N32 routine at 0xd962d00.
+- `__glOdylc_Color4ubv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962e60): **established.**
+  Size 324 bytes. It reads four unsigned bytes from vector offsets 0, 1, 2 and 3 (`lbu` at 0xd962f08, 0xd962f10, 0xd962f1c and 0xd962f24), stores them after token `0xc580d00f` (`sw` at 0xd962f04), and marks colour state dirty. A successful vector operation advances 20 bytes and five list words. Established from the complete N32 routine at 0xd962e60.
+- `__glOdylc_Color4ui` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd962fb0): **established.**
+  Size 344 bytes. It emits four unsigned integer arguments after token `0xc580d011` (`sw` at 0xd963064, 0xd963068, 0xd96306c, 0xd963074 and 0xd96307c), sets colour dirty, and advances the display-list pointer by 20 bytes. The full-list branch obtains another five-word span before storing the record. Established from the complete N32 routine at 0xd962fb0.
+- `__glOdylc_Color4uiv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963110): **established.**
+  Size 324 bytes. It loads four unsigned integers from vector offsets 0, 4, 8 and 12 (`lw` at 0xd9631b8, 0xd9631c4, 0xd9631d0 and 0xd9631d8), writes token `0xc580d011` at 0xd9631b4, and places the values in the remaining record slots. It marks colour dirty and counts five words for the completed 20-byte command. Established from the complete N32 routine at 0xd963110.
+- `__glOdylc_Color4us` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963260): **established.**
+  Size 344 bytes. It writes four unsigned short arguments after token `0xc580d010` (`sw` at 0xd963314, 0xd963318, 0xd96331c, 0xd963324 and 0xd96332c), marks the colour state dirty, and advances a five-word display-list record. The sender reserves another block when fewer than five words remain. Established from the complete N32 routine at 0xd963260.
+- `__glOdylc_Color4usv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9633c0): **established.**
+  Size 324 bytes. It loads four unsigned shorts at vector offsets 0, 2, 4 and 6 (`lhu` at 0xd963468, 0xd963470, 0xd96347c and 0xd963484), writes them after token `0xc580d010` (`sw` at 0xd963464), and marks colour state dirty. The vector record is 20 bytes and advances the pending count by five. Established from the complete N32 routine at 0xd9633c0.
+
 ### o32 attribute setters read from the 6.5.30 media build
 
 - `__glOdyim_BlendEquationEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, address `0xd95d73c`): **established.**
