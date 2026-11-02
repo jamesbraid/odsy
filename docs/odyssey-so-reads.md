@@ -3960,3 +3960,117 @@ One path reads a word from an unknown base (`lw` at 0x15bde88), performs AND and
   **Established effects.** Signed nonpositive `a2` takes the return path (`blez` at 0x15ebbcc; `jr` at 0x15ee0ec). On a later path, `addiu` increments register `a1` by 12 (`addiu` at 0x15ebc10); its value is unknown there. The `beqz` at 0x15ebc3c takes the path to that increment when unknown `a5` is zero. If it falls through, `beqz` at 0x15ebc48 takes that path when unknown `a4` is zero. After both fall through, `beqz` at 0x15ebc54 takes the increment path when unknown `a6` is zero.
 
   On another path the routine calls an unknown indirect target (`jalr` at 0x15ebce8). If that call returns a value other than 1, `bne` at 0x15ebd0c takes the path to `miPolyFillArc` with third argument 1 (`jalr` at 0x15ebc00). A later path includes a word load, AND, XOR and word store (`lw` at 0x15ec08c; `and` at 0x15ec098; `xor` at 0x15ec09c; `sw` at 0x15ec0a4). The store's value and base and the routine's role remain Unknown.
+
+## X line, arc and glyph paths
+
+- `cfb16LineSD` (`usr/lib/X11/dyDDX/odyssey.so`, 16028 bytes):
+  **Established effects.** It reads a byte at entry `a1 +0x5` (`lbu` at
+  0x1628124). The `beq` at 0x1628150 takes the path that writes zero to
+  entry `sp -0x3cc` when that byte is 3, and falls through otherwise (`sw`
+  at 0x162ae98). The selected path subsequently branches to another block
+  (`b` at 0x162aeb8). Another path reads an unsigned halfword from an unknown
+  address (`lhu` at 0x162924c), executes AND and XOR instructions (`and` at
+  0x1629260; `xor` at 0x1629264), and stores a halfword with unknown value
+  and destination (`sh` at 0x1629268). The routine's broader role remains
+  unknown.
+- `cfb16PolyFillArcSolidGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 10876 bytes):
+  **Established effects.** The `blez` at 0x15f0f0c takes the return path when
+  `a2` is signed nonpositive and falls through when positive (`jr` at
+  0x15f345c). A later `addiu` adds 0xc to `a1` (`addiu` at 0x15f0f50).
+  Three tests take paths back toward that block when their respective `a5`,
+  `a4` or `a6` values are zero (`beqz` at 0x15f0f7c; `beqz` at 0x15f0f88;
+  `beqz` at 0x15f0f94); hostfacts does not resolve those values. An indirect
+  call has an unknown callee (`jalr` at 0x15f102c). If its return differs
+  from 1, `bne` at 0x15f1048 takes a path calling `miPolyFillArc` with `a2`
+  equal to 1 (`jalr` at 0x15f0f40); equality falls through. A separate loop
+  reads a word from an unknown base (`lw` at 0x15f13f4), executes AND and XOR
+  (`and` at 0x15f1400; `xor` at 0x15f1404), and stores an unknown value to
+  an unknown base in the branch delay slot (`sw` at 0x15f140c). Its `bnez` at
+  0x15f1408 repeats while the tested `a6` is nonzero and falls through when
+  zero; the store runs on both paths. The complete output and the routine's
+  role are unknown.
+- `cfb16SegmentSD` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15ba5b0):
+  **Established effects.** The 14024-byte routine reads entry `a1 +0x4c`
+  (`lw` at 0x15ba624) and indexes the resulting pointer using the word at
+  0x173f524 (`lw` at 0x15ba620; `lw` at 0x15ba634). It also reads entry
+  `a1 +0x5` (`lbu` at 0x15ba638); the `beq` at 0x15ba658 takes its
+  alternate path when that byte equals 3 and falls through otherwise. The
+  `blez` at 0x15baa3c takes the return path when entry `a2` is signed
+  nonpositive and falls through when positive (`jr` at 0x15bc580). One path
+  reads a halfword at an unknown address (`lhu` at 0x15bb3f0), executes
+  AND and XOR (`and` at 0x15bb404; `xor` at 0x15bb408), and stores a
+  halfword at an unknown address (`sh` at 0x15bb40c). The stored value and
+  the routine's broader role remain unknown.
+- `cfb32LineSD` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15f92d0):
+  **Established effects.** The 15804-byte routine reads entry `a1 +0x4c`
+  (`lw` at 0x15f9334) and indexes the resulting pointer using the word at
+  0x173f518 (`lw` at 0x15f9330; `lw` at 0x15f9340). It also reads entry
+  `a1 +0x5` (`lbu` at 0x15f9344); the `beq` at 0x15f9370 takes its
+  alternate path when that byte equals 3 and falls through otherwise. One
+  path reads a word at an unknown address (`lw` at 0x15fa43c), executes AND
+  and XOR (`and` at 0x15fa450; `xor` at 0x15fa454), and writes a word to
+  an unknown address (`sw` at 0x15fa458). Hostfacts does not resolve the
+  stored value, and the routine's overall role is unknown.
+- `cfb32SegmentSD` (`usr/lib/X11/dyDDX/odyssey.so`, 13880 bytes):
+  **Established effects.** It reads the word at 0x173f440, named
+  `miZeroLineScreenIndex` (`lw` at 0x15a5e74). The `bltz` at 0x15a5e8c takes
+  its alternate path when that word is signed negative and falls through
+  when nonnegative. It reads entry `a1 +0x5` (`lbu` at 0x15a5ec8); the
+  `beq` at 0x15a5ee8 branches when that byte equals 3 and falls through
+  otherwise. The `blez` at 0x15a62bc takes the return path when entry `a2`
+  is signed nonpositive and falls through when positive (`jr` at 0x15a7df0).
+  The positive path reads four signed halfwords at unknown addresses (`lh`
+  at 0x15a6344, 0x15a6348, 0x15a634c, 0x15a6350). A later path reads a
+  word at an unknown address (`lw` at 0x15a6c64), executes AND and XOR
+  (`and` at 0x15a6c78; `xor` at 0x15a6c7c), and stores a word to an
+  unknown address (`sw` at 0x15a6c80). The stored value and the routine's
+  role are unknown.
+- `cfbLineSD` — `usr/lib/X11/dyDDX/odyssey.so` — 16100 bytes
+
+  **Established effects.** A byte at entry `a1 + 0x5` selects an initial path (`lbu` at 0x164e4e4). When it equals 3, `beq` at 0x164e510 takes the branch that stores zero at entry `sp - 0x3cc` (`sw` at 0x16511e4). Later, when the tested register is nonzero, `beqz` at 0x164f5e0 falls through to a byte read from an unknown base (`lbu` at 0x164f5fc), AND and XOR operations (`and` at 0x164f610; `xor` at 0x164f614), and a byte store to an unknown base (`sb` at 0x164f618). The stored value, destination and routine role are unknown.
+- `cfbSegmentSD` — `usr/lib/X11/dyDDX/odyssey.so` — 0x168c890
+  **Established effects.** The routine occupies 14224 bytes. It indexes the word read at entry `a1` + 0x4c (`lw` at 0x168c904) using the word at 0x173f470 (`lw` at 0x168c900; `lw` at 0x168c914). A byte comes from entry `a1` + 0x5 (`lbu` at 0x168c918); the `beq` at 0x168c938 takes its alternate path when that byte equals 3.
+  Signed entry `a2` at or below zero takes the return path (`blez` at 0x168cd1c). On another path, the code reads a byte at an unknown address (`lbu` at 0x168d6d0), applies AND and XOR operations (`and` at 0x168d6e4; `xor` at 0x168d6e8), and stores a byte to an unknown address (`sb` at 0x168d6ec). The stored value, destination and routine role are unknown.
+- `mfbLineSD` — `usr/lib/X11/dyDDX/odyssey.so` — 12188 bytes
+  **Established effects.** The word at `miZeroLineScreenIndex` is loaded (`lw` at 0x15a0c54); `bltz` at 0x15a0c70 is taken when that word is negative and falls through when it is nonnegative.
+
+  On the path that reaches 0x15a0c90, the word at entry `a1` + 0x14 is read (`lw` at 0x15a0c90); `beqz` at 0x15a0c98 is taken when its low bit is zero and falls through when that bit is nonzero.
+
+  One loop reads a byte from an unknown base (`lbu` at 0x15a0d64); `bnez` at 0x15a0d74 repeats the loop when its tested value is nonzero and falls through when it is zero. The delay slot adds the byte to `s7`, whose value is unknown (`addu` at 0x15a0d78).
+
+  A call to `mfbReduceRop` passes the byte at entry `a1` + 0x5 and the word at entry `a1` + 0x1c as its first two arguments; the next two arguments are unknown (`lw` at 0x15a38dc; `lbu` at 0x15a38e4; `jalr` at 0x15a38e0). The routine's broader role is Unknown.
+- `mfbPolyFillArcSolid` — `usr/lib/X11/dyDDX/odyssey.so` — 13024 bytes
+  **Established effects.** An indexed private byte (`lbu` at 0x15835bc) is compared with 5: `beq` at 0x15835d4 takes the return path when equal and falls through when unequal. On fall-through, `beqz` at 0x15835e8 takes the return path when bit 0 of the word at entry `a1` + 0x14 is clear and falls through when it is set (`lw` at 0x15835e0).
+
+  `blez` at 0x15835f4 takes the return path when entry `a2` is signed nonpositive and falls through when positive.
+
+  The routine calls `miPolyFillArc` with its original first two arguments, 1 as the third and an unknown fourth argument (`jalr` at 0x1583628). Another call reaches `miFillArcSliceSetup` with an unknown first argument, a stack address as the second, the original second argument as the third and 0x172acc0 as the fourth (`jalr` at 0x15843c4).
+
+  At one word update, `beqz` at 0x1583920 branches when the private byte is zero; otherwise `beq` at 0x1583928 branches when it equals 0xf. When both branches fall through, an XOR instruction runs (`xor` at 0x158392c), followed by a word store whose destination and value hostfacts cannot resolve (`sw` at 0x1583930). The drawing effect and routine role are unknown.
+- `mfbSegmentSS` — `usr/lib/X11/dyDDX/odyssey.so` — 11476 bytes
+
+  **Established effects.** The function tests bit 0 of the word at entry `a1 + 0x14` (`lw` at 0x1657318; `andi` at 0x165731c). If clear, `beqz` at 0x1657320 takes the return path (`jr` at 0x1658564); `blez` at 0x1657388 also takes it when signed entry `a2` is nonpositive. A later path reads four signed halfwords from unknown bases (`lh` at 0x1657468; `lh` at 0x165746c; `lh` at 0x1657470; `lh` at 0x1657474) and adds eight to a register whose value is unknown (`addiu` at 0x1657480).
+
+  One selector checks an indexed byte (`lbu` at 0x1657344): zero takes `beqz` at 0x1657d18 toward a path containing word AND operations (`lw` at 0x1657c00; `and` at 0x1657c08; `sw` at 0x1657c0c), while 0xf takes `beq` at 0x1657d24 toward a path containing OR operations (`lw` at 0x1658340; `or` at 0x1658348; `sw` at 0x165834c). For 0xa, `bne` at 0x1657d2c falls through toward a path containing XOR operations (`lw` at 0x1657d70; `xor` at 0x1657d78; `sw` at 0x1657d7c). The stored values, destinations and routine role are unknown.
+- `cfbTEGlyphBlt8` — `usr/lib/X11/dyDDX/odyssey.so` — 24196 bytes
+  **Established effects.** The routine reads the word at entry `a1 + 0x2c` (`lw` at 0x16f7ac0) and two signed halfwords from that pointer at offsets 0x44 and 0x46 (`lh` at 0x16f7ac8, 0x16f7acc). The `beqz` at 0x16f7af8 takes the return path if their sum is zero and falls through otherwise.
+  An indirect call to an unknown callee supplies a stack address in `a1`, the original `a3` in `a3`, and an unknown `a2` (`jalr` at 0x16f7b68). When that call returns 2, `beq` at 0x16f7b74 branches to a call to `cfbImageGlyphBlt8` (`jalr` at 0x16fd904); otherwise it falls through. On that fall-through, `beqz` at 0x16f7b7c takes the return path for a zero result and falls through for a nonzero result.
+  On one path, `cfb8SetOpaqueStipple` receives 3, the words at entry `a1 + 0x18` and `a1 + 0x1c`, and 0xff (`lw` at 0x16f7b94, 0x16f7b90; `jalr` at 0x16f7ba0). A separate loop reads an entry from the table at 0x173f4c8 (`lw` at 0x16f7d7c) and stores that entry as a word at an unknown address (`sw` at 0x16f7d80). The `bne` at 0x16f7d84 repeats when the unknown `ra` value differs from the sum of the two halfwords and falls through when they are equal. The store destination and the routine's wider role remain Unknown.
+- `miWideDash` (`usr/lib/X11/dyDDX/odyssey.so`, 17920 bytes):
+  **Established effects.** The routine reads a halfword at entry `a1 + 0x6`
+  (`lhu` at 0x17042c4). When that value is zero, `beqz` at 0x17042e4 takes
+  a path that recursively calls `miWideDash` with the original first four
+  arguments (`bgezall` at 0x17079e4). The call's delay slot stores 1 at
+  entry `a1 + 0x6` (`sh` at 0x17079e8); after the call returns, it stores
+  zero there (`sh` at 0x17079fc). If the halfword is nonzero, the `beqz`
+  falls through.
+
+  On a later path, `beqz` at 0x170430c takes a return path when entry `a3`
+  is zero and falls through when nonzero. A separate path calls `miWideLine`
+  with the original first four arguments (`jalr` at 0x1706f50).
+
+  A loop reads a byte from an unknown address (`lbu` at 0x170441c); `bnez`
+  at 0x170442c repeats when its tested value is nonzero and falls through
+  when zero. Its delay-slot instruction adds register `t9` to `a4` (`addu`
+  at 0x1704430). The purpose of that sum and the routine's broader role
+  are unknown.
