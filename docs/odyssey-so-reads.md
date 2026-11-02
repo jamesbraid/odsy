@@ -2233,3 +2233,170 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   call passes the word at argument +0xc, `TellLostMap`, and the address
   argument +8 as its first three arguments (`jalr` at 0x17100d4). Any callback effects on
   hardware are unknown.
+
+## Frame-buffer image, copy and span routines
+
+- `nfbPolyFillRect` (`usr/lib/X11/dyDDX/odyssey.so`, 0x158f310):
+  **Established effects; role unknown.** The routine calls a function pointer loaded at +0x18c from
+  the first word of the second argument (`lw` at 0x158f35c, `lw` at 0x158f368, `jalr` at
+  0x158f388). Later it stores four halfwords through a pointer whose origin is
+  unknown (`sh` at 0x158f590, `sh` at 0x158f594, `sh` at 0x158f598, `sh` at
+  0x158f5a0). At the `beqz` at 0x158f64c, a zero value skips a second
+  indirect call; the value's origin is unknown. When it falls through, the
+  call receives the original second argument followed by the original first
+  argument (`jalr` at 0x158f664). The 6.5.30m N32 body occupies 1148 bytes.
+- `nfbGetSpans` (`usr/lib/X11/dyDDX/odyssey.so`, 0x162ca50):
+  **Established effects; role unknown.** When the first byte of the first
+  argument is nonzero, the `beqz` at 0x162caa8 falls through to load byte 3
+  (`lbu` at 0x162ca88, `lbu` at 0x162cab0). Comparisons of that byte select
+  `cfbGetSpans` for 8 (`beq` at 0x162cac0, `jalr` at 0x162d0c4),
+  `cfb16GetSpans` for 16 (`beq` at 0x162cac8, `jalr` at 0x162d0d8), and
+  `cfb32GetSpans` for 32 (`beq` at 0x162cad0, `jalr` at 0x162d0b0).
+  At each call the first four arguments are the original four arguments.
+  The 6.5.30m N32 routine occupies 1688 bytes.
+- `nfbCopyPlane` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163f040):
+  **Established effects; role unknown.** If the first byte of the first
+  argument differs from 1, the `bne` at 0x163f068 takes the path to
+  `miCopyPlane` (`lbu` at 0x163f048, `jalr` at 0x163f0a4). When that byte
+  and the first byte of the second argument both equal 1, the `beq` at
+  0x163f074 takes the path that examines byte 4 of the third argument (`lbu`
+  at 0x163f070, `lbu` at 0x163f0ec). Values below 9 take the `bnez` at
+  0x163f0f8 to `cfbCopyPlane` (`jalr` at 0x163f534). For values from 9
+  through 16, that branch and the `beqz` at 0x163f104 fall through to
+  `cfb16CopyPlane` (`jalr` at 0x163f118). The 6.5.30m N32 routine occupies
+  1304 bytes.
+- `nfbShmPutImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1675a60):
+  **Established effects; role unknown.** If the fourth argument is not 2,
+  the `beq` at 0x1675aa8 falls through to a comparison of the third argument
+  with 1 (`addiu` at 0x1675a90, `addiu` at 0x1675a74). A nonmatching third
+  argument takes the `bne` at 0x1675ab0 to `nfbShmPutXYImage..KJ` (`jalr`
+  at 0x1675c1c). On another path, the `beqz` at 0x1675bac selects between
+  indirect calls for a zero or nonzero `a3`; its origin is unknown (`jalr` at 0x1675c50,
+  `jalr` at 0x1675bd0). Both receive the original first and second arguments
+  in `a1` and `a2`, respectively. The 6.5.30m N32 body occupies 544 bytes.
+- `nfbPutPlane..PG` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16d9600):
+  **Established effects; role unknown.** On one path it writes the same
+  word to offsets +0x28 and +0x34 of a selected record (`sw` at 0x16d99f0,
+  `sw` at 0x16d99f4). It then makes an indirect call with the original
+  second argument in `a0`, 7 in `a1`, and the original first argument in
+  `a2` (`jalr` at 0x16d9a04). A subsequent indirect call receives a stack
+  address in `a0`; `a1` and `a2` are unresolved (`jalr` at
+  0x16d9a30). These are selected effects from the 6.5.30m N32 routine,
+  which occupies 1796 bytes.
+- `nfbDoBitBltSP` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1708840):
+  **Established.** The 6.5.30m N32 routine uses `nfbWindowPrivateIndex` to
+  look up a value through the second argument's +0x84 array (`lw` at
+  0x170886c, `lw` at 0x1708870, `lw` at 0x1708884). It loads a word at
+  +0x14 of a pointer reached from that lookup (`lw` at 0x1708898, `lw` at
+  0x17088b0). Its `beq` at 0x17088b8 takes the return path when the sixth
+  entry argument equals 5; otherwise the `beqz` at 0x17088c0 takes the
+  return path when the seventh entry argument is zero. Those branches do
+  not establish what those arguments represent.
+
+  On another path it calls `Xalloc` (`jalr` at 0x1708bf0) and later invokes
+  an indirect routine (`jalr` at 0x1708c20). The facts tool cannot resolve
+  that callback's target or most arguments. The routine also writes words
+  to a base the facts tool cannot resolve (`sw` at 0x1708d0c, `sw` at
+  0x17090b0). Their destinations, hardware effects and the routine's role are unknown.
+- `nfbDoBitBltSS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x17093b0):
+  **Established.** In the 6.5.30m N32 binary it reads the second argument's
+  +8 word (`lw` at 0x17093d8). When that word is zero, the `beqz` at
+  0x17093f8 takes a separate path. Otherwise the routine reads a word at
+  +4 through it (`lw` at 0x1709400), and the `beqz` at 0x1709404 takes
+  the return path if that word is zero.
+
+  One loop calls an unresolved indirect routine (`jalr` at 0x170946c). Its
+  second argument points 92 bytes below the entry stack pointer; its third,
+  fourth and fifth arguments are the fifth, sixth and first entry arguments
+  (`jalr` at 0x170946c).
+  The callback's first argument is unknown. The `bnez` at 0x1709478 repeats
+  the loop when its tested register is nonzero; the facts tool cannot
+  resolve that register's value. The callback's behavior and the routine's role are unknown.
+- `nfbStippledFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x161bab0):
+  **Established.** The 6.5.30m N32 routine follows the word at the first argument's +0x24 (`lw` at 0x161bac8), then reads a word at +0x1c (`lw` at 0x161bad0) and an unsigned halfword at +0xc (`lhu` at 0x161bad8) from that object. A `blez` at 0x161bb4c takes the return path if the fifth
+  argument is nonpositive, interpreted as signed.
+
+  The callback target is read from +0xc of a pointer reached through the
+  second argument's +0x84 array (`lw` at 0x161bb04, `lw` at 0x161bb0c,
+  `lw` at 0x161bb28, `lw` at 0x161bb30, `lw` at 0x161bb50). A call through
+  that target passes zero as its third argument (`jalr` at 0x161bb90); the
+  target and second argument are unknown. The routine's hardware effect and role are unknown.
+- `nfbOpStippledFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x166b690):
+  **Established.** This 6.5.30m N32 body reads the first argument's +0x24
+  pointer (`lw` at 0x166b6a0), then an unsigned halfword at +0xc (`lhu` at 0x166b6b0) and a word at +0x1c (`lw` at 0x166b6ac). It also indexes the
+  first argument's +0x4c array using `nfbGCPrivateIndex` and reads a word
+  at +0x44 of the resulting object (`lw` at 0x166b6c8, `lw` at 0x166b6cc,
+  `lw` at 0x166b6e0, `lw` at 0x166b6f4).
+
+  A signed nonpositive fifth argument takes the `blez` at 0x166b738 to the
+  return path. On the other path the function calls an unresolved indirect
+  target, passing zero as its third argument and the word reached through
+  first argument +0x24 then +0x1c as its fourth (`jalr` at 0x166b784). It
+  makes further calls through a register (`jalr` at 0x166b7d8 and
+  `jalr` at 0x166b924). The callback and hardware roles are unknown.
+- `nfbStippledFillRects` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16bee20):
+  **Established.** In the 6.5.30m N32 binary it obtains two unsigned
+  halfwords at +0xc and +0xe through the first argument's +0x24 pointer
+  (`lw` at 0x16bee40, `lhu` at 0x16bee48, `lhu` at 0x16bee4c). The
+  `beqz` at 0x16beea8 takes the return path when the fourth argument is
+  zero. On the other path the routine calls an unresolved indirect target
+  with a first argument 128 bytes below the entry stack pointer (`jalr` at
+  0x16befdc); the facts tool does not resolve that callback's second or
+  third arguments.
+
+  Other call sites include `jalr` at 0x16bf024, `jalr` at 0x16bf0fc and
+  `jalr` at 0x16bf144. The third argument is zero at two of those calls (`jalr` at 0x16bf024,
+  `jalr` at 0x16bf144). The callbacks' hardware effect and the routine's
+  role are unknown.
+- `nfbStereoCopyWindow..CJ` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160c6c0):
+  **Established.** A word reached through argument 0 and loaded from offset
+  0xdc of a nested structure selects between two indirect calls (`lw` at
+  0x160c6e4, `lw` at 0x160c6f0, `lw` at 0x160c904). The `beq` at
+  0x160c914 takes the branch when that word equals 2, reaching the call at
+  0x160cce8 (`jalr` at 0x160cce8). When it differs from 2, the branch
+  falls through to a different call (`jalr` at 0x160c928). Both targets are
+  unknown. On one later path, it subtracts a halfword from the halfword at
+  argument 0 + 0xa (`lhu` at 0x160cac4, `lh` at 0x160cac8, `subu` at
+  0x160cad0, `sh` at 0x160cad4), calls an unknown target (`jalr` at
+  0x160caf4), then adds a halfword to the current value at that address
+  (`lh` at 0x160cafc, `lhu` at 0x160cb00, `addu` at 0x160cb04, `sh` at
+  0x160cb0c). Role unknown.
+- `nfbStereoSetSpans` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1675f60):
+  **Established.** It saves the word at argument 1 + 0x48 (`lw` at
+  0x1675f60, `sd` at 0x1675f68), replaces it with the word at +0x5c of an
+  indexed structure (`lw` at 0x1675fcc, `sw` at 0x1675fd0), and writes 1
+  at that structure's +0x68 (`sw` at 0x1675fd8). One path calls an unknown
+  target reached through argument 1 + 0x48 and then +4 (`lw` at 0x167634c,
+  `lw` at 0x1676350, `jalr` at 0x1676364). Near that path's return it puts
+  the saved word back at argument 1 + 0x48 (`ld` at 0x16766d8, `sw` at
+  0x16766ec) and clears the indexed structure's word at +0x68 (`sw` at
+  0x16766f0). Role unknown.
+- `nfbStereoFillSpans` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16843b0):
+  **Established.** The `beq` at 0x1684454 is taken when the word at offset
+  0xdc in the nested structure selected from argument 0 equals 1 (`lw` at
+  0x16843d4, `lw` at 0x1684404, `lw` at 0x1684438). On the other path,
+  it adds the unsigned halfword at +0xe2 of that nested structure to the
+  halfword at argument 0 + 0xa (`lhu` at 0x1684410, `lh` at 0x1684778,
+  `addu` at 0x168477c, `sh` at 0x1684780), then makes an indirect call
+  (`jalr` at 0x16847a8). Later on that path it subtracts the same saved
+  value from the current halfword at argument 0 + 0xa (`lh` at 0x1684abc,
+  `subu` at 0x1684ac0, `sh` at 0x1684ac4) before another indirect call
+  (`jalr` at 0x1684aec). The targets and role are unknown.
+- `nfbStereoValidateClip..DJ` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16a6900):
+  **Established.** On a path where the value tested by the `beqz` at
+  0x16a6a08 is nonzero, the branch falls through and the routine adds it to
+  the halfword at argument 0 + 0xa (`lh` at 0x16a6a24, `addu` at 0x16a6a28,
+  `sh` at 0x16a6a2c). Its origin is unknown in the facts output. It then
+  calls a function through a pointer loaded from a nested structure (`lw` at
+  0x16a6a30, `jalr` at 0x16a6a34). When the `beqz` at 0x16a6a3c falls
+  through for a nonzero value, it subtracts that value from the current
+  halfword at argument 0 + 0xa (`lh` at 0x16a6a44, `subu` at 0x16a6a48,
+  `sh` at 0x16a6a4c). The indirect target and role are unknown.
+- `nfbSetSpans` (`usr/lib/X11/dyDDX/odyssey.so`, 0x161a030):
+  **Established.** It obtains an indexed pointer through argument 0's word
+  at +0x84, dereferences that pointer, then loads a word at +8 of the result (`lw` at
+  0x161a054, `lw` at 0x161a0a4, `lw` at 0x161a0c0, `lw` at 0x161a0d0).
+  On one path it makes an indirect call with zero for argument 2 and the
+  original argument 0 for argument 5 (`jalr` at 0x161a48c). The `beqz` at
+  0x161a0e0 selects a separate path when register `a6` is zero. The indirect
+  target and the routine's role are unknown.
