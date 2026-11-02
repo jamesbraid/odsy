@@ -1,2 +1,3 @@
 irix-657m-src	public submodule holding the IRIX 6.5.7 sources
 qemu-irix	public third-party tree whose system call numbers are cross-checked
+/emdash	PostScript glyph name (the em dash character) inside vendor PDF font tables; not a tool name
