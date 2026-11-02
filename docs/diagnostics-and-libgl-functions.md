@@ -135,6 +135,54 @@ The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build
 - `__glXGetBoardNumber` (`libGL.so`, offset 0xd8129b8, 12 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   Returns the board-number field from the display-private record supplied in `a0`; the routine is a three-instruction field accessor with no calls, register accesses or error path. Its result is the value consumed by the higher-level board-selection helpers.
+- `__glXMalloc` (`libGL.so`, offset 0xd80f0ec, 76 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Preserves the first argument as the allocation context, passes the second argument as the byte count to the imported allocator, and returns its pointer. A zero byte count takes a short path that returns zero without calling the allocator; the nonzero path returns the allocator result unchanged.
+- `__glXCalloc` (`libGL.so`, offset 0xd80f200, 88 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Treats its first argument as the allocation context and requires both the element count and element size to be nonzero. It passes those two values to the imported zeroing allocator and returns its pointer; either zero input returns zero without an allocation call.
+- `glXMakeCurrentReadSGI` (`libGL.so`, offset 0xd80f5dc, 60 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Forwards the display, draw drawable and read drawable arguments to `__glXMakeContextCurrent`, supplies the constant flag 1 as its final stack argument, and returns that helper's result. The 60-byte wrapper performs no direct X request or board access.
+- `ColorScore` (`libGL.so`, offset 0xd80ff2c, 28 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes four times the difference between its second and first arguments when the first is nonzero. When the first argument is zero it returns the negation of the second argument instead; `glXChooseVisual` uses this score while comparing visual candidates.
+- `DepthScore` (`libGL.so`, offset 0xd81163c, 28 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes twice the difference between its second and first arguments when the first is nonzero. When the first argument is zero it returns the negation of the second argument instead; `glXChooseVisual` uses the result in its depth-buffer preference calculation.
+- `__glXInitDummyContext` (`libGL.so`, offset 0xd8128e8, 88 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Builds the process-wide dummy context at the display-private base plus 0x6640. It installs three pointers to the record at base plus 0x6580, sets the record size field to 0xbc, clears four state words, and publishes the record through the display table at address 0x1014 plus offset 0x114.
+- `__glXPixmapMemory` (`libGL.so`, offset 0xd812984, 52 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Reads the process-wide pointer at display-private offset 0x6564 and returns it when nonzero. A zero pointer produces zero; the incoming argument is stored to the stack but otherwise has no effect, and the routine makes no X or driver call.
+- `__glXGetModes` (`libGL.so`, offset 0xd812848, 160 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Tries three mode-lookup paths with the same three arguments. A result from the first or second path is advanced by 0x48, a result from the third is advanced by 0x28, and three failed lookups return zero; `CreateContext` consumes the selected mode record.
+- `__glXSetupForCommand` (`libGL.so`, offset 0xd811310, 196 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Selects the display's current context from the table at address 0x1014. If the requested command is already current it returns the cached byte at context offset 0x11f; otherwise it invokes the context switch callback when present, retries the comparison, and falls back to the display lookup helper, returning byte 7 of that result or zero.
+- `__glXAddDrawableInterest` (`libGL.so`, offset 0xd8118d8, 260 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Searches the linked drawable-interest list rooted at display-private offset 0x6560 for the supplied drawable. A match increments the record's reference count at +0x14; otherwise it allocates 0x4c bytes, initializes the drawable, counters, callbacks and sentinel fields, links the record at the list head, and returns it or zero on allocation failure.
+- `__glXAllocHWContext` (`libGL.so`, offset 0xd8119dc, 200 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Reads the board index from the display context's +0x4c record and rejects a board descriptor whose file descriptor at the table rooted at address 0x1014 is negative. It requests a hardware-context record with flags -1 and 2, stores the returned handle at context offset 0xcc, and on failure calls the context error callback and returns -1.
+- `__glXInitVertexArrayState` (`libGL.so`, offset 0xd8117cc, 268 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Allocates a 0xb8-byte vertex-array state record, stores it at context offset 0xb4, and initializes its byte, word and limit fields. The initialized record contains four-component size 4, type 0x1406, and upper limits 0x7fffffff; it is independent of the board FIFO.
+- `__glx_Vertex4sv` (`libGL.so`, offset 0xd8129c4, 144 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x000c004c to the current GLX render buffer, copies four signed halfwords from the caller's eight-byte vector, advances the buffer pointer by 12 bytes, and calls the buffer-flush helper when the new pointer exceeds the end pointer.
+- `__glx_ClipPlane` (`libGL.so`, offset 0xd812a54, 268 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x0028004d, copies four eight-byte values from the caller's plane equation at offsets 0, 8, 16 and 24, stores the plane selector in the command record, advances by 40 bytes, and flushes when the buffer limit is crossed.
+- `__glx_PolygonMode` (`libGL.so`, offset 0xd812b60, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x000c0065 and the two caller arguments to the current render buffer, advances its write pointer by 12 bytes, and calls the flush helper only when the advanced pointer is beyond the stored end pointer.
+- `__glx_Vertex4s` (`libGL.so`, offset 0xd812bdc, 192 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Sign-extends four scalar arguments to 16 bits, writes command token 0x000c004c followed by those four halfwords, advances the render-buffer pointer by 12 bytes, and flushes on overflow of the current buffer range.
 
 
 ## Board diagnostics and updaters
