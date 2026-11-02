@@ -5165,8 +5165,8 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
 - `odsyDMAWait` (`odsy_dma.o`, offset 0x1ea8, 984 bytes): **established.**
   Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
   A set teardown word at board +728 returns 9; otherwise it takes the mutex at +2472 (`lw` at 0x1ec0, `beqz` at 0x1ed0, `jal` at 0x1ef0).
-  Mode 0 arms a 1500-tick harmless timeout and sleeps on the variable at +2488; a nonzero mode checks the requested tag against the issued and completed counters at +3544 and +3552, then waits on the matching ring entry when it is still pending (`jal` at 0x209c and 0x20bc; `jal` at 0x2160 and 0x2194; loads at 0x1f1c and 0x1f20).
-  The ring index and 128-entry table are at +2512 and +2520. Out-of-window or mismatched tags log and return 22 (`jal` at 0x221c and 0x2240); context cleanup releases pinned ranges and ids and destroys completed records (`jal` at 0x2030, 0x2040, 0x1fe8 and 0x1ff4).
+  Mode 0 arms a 1500-tick harmless timeout and sleeps on the variable at +2488; a nonzero mode checks the requested tag against the issued and completed counters at +3544 and +3552, then waits on the matching ring entry when it is still pending (`beqz` at 0x1f08; `jal` at 0x209c and 0x20bc; `jal` at 0x2160 and 0x2194; `ld` at 0x1f1c and 0x1f20).
+  The ring index and 128-entry table are at +2512 and +2520 (`lw` at 0x2114, `ld` at 0x2120 and 0x2128). Out-of-window or mismatched tags log and return 22 (`jal` at 0x221c and 0x2240); context cleanup releases pinned ranges and ids and destroys completed records (`jal` at 0x2030, 0x2040, 0x1fe8 and 0x1ff4).
   A null context argument returns 0 after writing -1 through the tag pointer (`beqz` at 0x1f8c, `sd` at 0x1fe0); a return of 22 after the wait also writes -1 there (`sd` at 0x21d8, `jr` at 0x1ed8).
 - `odsyDMAWakeup` (`odsy_dma.o`, offset 0x2280, 720 bytes): **established.**
   Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
@@ -5191,3 +5191,41 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
   It splits a transfer into pieces sized for a 0x24000-byte staging area (`ori` at 0x277c). The descriptor's row length is the low 20 bits of +24 plus +20 (`lw` at 0x279c and 0x27a0, `and` at 0x27a4, `addu` at 0x27a8); an oversized row logs and returns 1 (`bnez` at 0x27b0, `jal` at 0x2a00).
   When the transfer offset fits in the staging area it writes a single piece and count 128 (`beqz` at 0x2794, `sw` at 0x2984 and 0x2994, `sd` at 0x2988 and 0x29b8, `sw` at 0x29e0). Otherwise it allocates and fills linked 48-byte piece records, advancing rows and host pointers; allocation failure logs and returns 1 (`jal` at 0x2830, `beqz` at 0x2844, `slt` at 0x2920, `beqz` at 0x2924, `jal` at 0x2a38).
+- `ReleaseTftchWarList` (`odsy_dma.o`, offset 0x2a4c, 80 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  A count below 2 frees no array; otherwise it calls `kmem_free` on the pointer at +8 with size 48 times the count minus 48 (`lw` at 0x2a4c, `beqz` at 0x2a5c, `dsll` at 0x2a78 and 0x2a84, `dsubu` at 0x2a7c, `daddiu` at 0x2a90, `jal` at 0x2a8c).
+  It clears the count and pointer fields at +0 and +8 (`sw` at 0x2a64, `sd` at 0x2a68).
+- `odsy_DmaRegion_DoTransfer` (`odsy_dma.o`, offset 0x2a8, 188 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  It converts the region's page-table pointer at +0 to a physical address with `kvtophys` (`jal` at 0x2bc).
+  It sends two doublewords through the FIFO window at register base +0x110000. Bit 2 of its third argument selects the high word of the first doubleword, 0xe03 when set and 0xe01 when clear; the physical-address fields are packed the same way on both paths (`andi` at 0x2f0, `beqz` at 0x310, `addiu` at 0x2c4 and 0x350, `sd` at 0x340 and 0x34c). It returns 0 (`jr` at 0x348).
+- `generatePageTable` (`odsy_dma.o`, offset 0x430, 1076 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  It reads row count bits 31:16 from the descriptor at +12 (zero means 65536), row length bits 19:0 at +24 and stride at +20 (`lw` at 0x4c8 and 0x4d8, `lwu` at 0x4fc; `movz` at 0x4ec).
+  With no supplied address list it creates one and fills it from the buffer, using the user or kernel conversion call selected by the address threshold (`jal` at 0x69c, `beqz` at 0x6bc, `jal` at 0x6cc and 0x6fc).
+  It reads list pieces of up to 0x4000 bytes and writes each piece's address and byte count into the output table (`jal` at 0x53c and 0x614, each with a2=0x4000; `sw` at 0x660 and 0x670). It logs list errors and destroys a list it created (`jal` at 0x5d0, 0x7b4, 0x7f0, 0x81c, 0x838 and 0x4a0).
+- `odsy_dma_poll_timer` (`odsy_dma.o`, offset 0x864, 28 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  The timer callback releases the polling semaphore by calling `vsema` on the semaphore in static data (`jal` at 0x86c).
+- `DmaFinishedPollDelay` (`odsy_dma.o`, offset 0x880, 80 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  It initializes a zero-count semaphore, schedules `odsy_dma_poll_timer` after 25 ticks, and waits on the semaphore at priority 25 (`jal` at 0x89c, 0x8ac and 0x8bc; the tick count is a2=0x19 at 0x8a4 and the wait priority is a1=0x19 at 0x8b8).
+- `odsyDestroyDrawable` (`odsy_drawable.o`, offset 0x10c, 32 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  It frees the drawable record passed as its second argument with size 40 (`jal` at 0x118, with a0=a1 and a1=0x28).
+- `odsyBindDrawable` (`odsy_drawable.o`, offset 0x12c, 684 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  A `which` value of 1 selects the read binding at context +352; every other value selects the draw binding at +400 (`beq` at 0x150, `sw` at 0x16c and 0x174).
+  It forms the drawable key from the corresponding context drawable state, locks and searches the 13-bucket table at board +10520, and promotes the lock on a hit (`ld` at 0x15c, `lw` at 0x160, `jal` at 0x1bc and 0x1cc, `jal` at 0x1e8).
+  It fills the binding record from the drawable or board buffer state, releases the lock and returns 0; a failed promotion returns 13 and a missing drawable record returns 22 (`sw` at 0x238 and 0x308, `beqz` at 0x1f0 and 0x230, `jal` at 0x204 and 0x3a4, `jr` at 0x2d4, `jal` at 0x3c4).
+- `odsyUnbindDrawable` (`odsy_drawable.o`, offset 0x3d8, 388 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  A `which` value of 1 selects the read binding at context +352; other values select the draw binding at +400 (`beq` at 0x3e8).
+  If the binding is active and references a shared drawable, it looks up the key in the table at board +10520 under the lock at +10528, promotes the lock, and decrements the drawable's user count (`beqz` at 0x400, `jal` at 0x444, 0x458 and 0x468, `sw` at 0x484).
+  When the count reaches zero it removes the drawable and calls `odsyDestroyDrawable`; it then clears the binding key and flag bits 0 and 1 (`jal` at 0x508 and 0x528, `sw` at 0x4ac and 0x4b8). Missing entries return 22 and failed promotion returns 13 (`beqz` at 0x460 and 0x470, `jr` at 0x4c4).
+- `odsyFindDrawable` (`odsy_drawable.o`, offset 0x5c, 108 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  It takes the read lock at board +10528, looks up the key in the table at +10520, releases the lock and returns the lookup result (`jal` at 0x78, 0xa0 and 0xac).
+- `odsyCreateDrawable` (`odsy_drawable.o`, offset 0xc8, 68 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`.
+  It allocates a 40-byte record; if allocation succeeds it clears +32 and stores its second argument at +16, otherwise it returns 0 (`jal` at 0xd8, `bnez` at 0xe4, `sw` at 0xf8 and 0x100, `jr` at 0x104).
