@@ -3277,3 +3277,64 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   The 6.5.30 function occupies 1140 bytes at 0x16cbd70. It reads a byte at entry `a0` (`lbu` at 0x16cbdb4) and, on a subsequent path, loads two words from unknown bases (`lw` at 0x16cc044, 0x16cc058). It combines values using AND and XOR (`and` at 0x16cc064; `xor` at 0x16cc06c) and stores a word to an unknown destination (`sw` at 0x16cc074). The routine's role and the destination's purpose are unknown. Established.
 - `cfb32Tile32FSGeneral` — `usr/lib/X11/dyDDX/odyssey.so`
   This 6.5.30 function occupies 1436 bytes at 0x15c7b50. It loads a word from entry `a1 +0x4c` (`lw` at 0x15c7b80) and calls `miClipSpans` (`jalr` at 0x15c7ca4). The `blez` at 0x15c7d44 takes the return path when the call result is signed nonpositive. A word from an unknown base is ANDed and XORed (`lw` at 0x15c7ed4, `and` at 0x15c7ee0, `xor` at 0x15c7ee4), then stored to an unknown destination (`sw` at 0x15c7eec); the roles of the routine and the destination are unknown. Established.
+
+## X glyph, region and fill helpers
+
+- `miPolyGlyphBlt` (`usr/lib/X11/dyDDX/odyssey.so`, 1152 bytes):
+  **Established.** It loads a word at entry register `a1` +0x10 and shifts it left 14 bits (`lw` at 0x1639be0; `sll` at 0x1639be8). `bltz` takes another path when that shifted value is negative (`bltz` at 0x1639c00). On the fall-through path it makes an indirect call whose target is unknown; `beqz` takes the exit path if the call returns zero (`jalr` at 0x1639c40; `beqz` at 0x1639c48). The routine's role and any hardware effect are unknown.
+- `cfb32FillRectTile32Copy` (`usr/lib/X11/dyDDX/odyssey.so`, 1184 bytes):
+  **Established.** A byte at entry register `a0` chooses a path when it equals 1 (`lbu` at 0x163ebdc; `beq` at 0x163ebf4). A later loop reads a word and stores it to another address; the bases of both accesses are unknown (`lw` at 0x163ec6c; `sw` at 0x163ec70). The routine’s role, the source and destination purposes, and any hardware effect are unknown.
+- `cfbCopyPlane` (`usr/lib/X11/dyDDX/odyssey.so`, 1200 bytes):
+  **Established.** The byte at entry register `a0` +3 determines whether `beq` takes the path for value 1 (`lbu` at 0x1667188; `beq` at 0x16671a8). One path calls an unknown indirect destination (`jalr` at 0x16671f0); other calls include `cfb8SetOpaqueStipple` (`jalr` at 0x1667270). The routine's role and any hardware effect are unknown.
+- `mfbInvertSolidFS` (`usr/lib/X11/dyDDX/odyssey.so`, 1204 bytes):
+  **Established.** It reads a word at entry register `a1` +0x14; `beqz` takes the return path when bit 0 is clear (`lw` at 0x1621280; `beqz` at 0x16212a8). A path with the bit set can call `miClipSpans` (`jalr` at 0x16213b4). On another path a word read from an unknown base is XORed with a second value and written back (`lw` at 0x1621434; `xor` at 0x1621438; `sw` at 0x162143c). The routine’s role, the destination’s purpose, and any hardware effect are unknown.
+- `miBSClearBackingRegion..JEB` (`usr/lib/X11/dyDDX/odyssey.so`, 1204 bytes):
+  **Established.** The word at entry register `a1` +8 selects a separate path when zero (`lw` at 0x162f0e4; `beqz` at 0x162f0f8). Calls on a later path include an unknown indirect target and `FreeScratchGC` (`jalr` at 0x162f188; `jalr` at 0x162f194). The function's role and hardware effect are unknown.
+- `miBSRestoreAreas..PEB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160a200):
+  **Established effects; role unknown.** A byte at +0x15 of the object
+  pointed to by first argument +0x74 is compared with 5 (`lw` at 0x160a21c,
+  `lbu` at 0x160a228, `addiu` at 0x160a22c). Equality takes the `beq` at
+  0x160a248 to a separate path. Another path calls `miTileVirtualBS..KFB`
+  with the original first argument (`jalr` at 0x160a344). The wider
+  behavior and hardware effect are unknown. The 6.5.30m N32 body occupies
+  1216 bytes.
+- `cfb32SolidSpansGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163cc80):
+  **Established effects; role unknown.** The `beqz` at 0x163cda8 takes the return path when `sp` is
+  zero (`jr` at 0x163ce5c); its value is unknown to the analysis. A later
+  path includes a call to `miClipSpans` with the original fourth, fifth and third
+  arguments in `a1`, `a2` and `a3` (`jalr` at 0x163cddc). The hardware
+  effect is unknown; the 6.5.30m N32 routine occupies 1220 bytes.
+- `miRegionAppend` (`usr/lib/X11/dyDDX/odyssey.so`, 0x164c970):
+  **Established effects; role unknown.** When the pointer at second argument
+  +8 is nonzero, the `beqz` at 0x164c99c falls through to read a word at
+  pointer +4 (`lw` at 0x164c97c, `lw` at 0x164c9a4). If that word is zero,
+  the `beqz` at 0x164c9a8 takes a return-1 path (`addiu` at 0x164cc88,
+  `jr` at 0x164cc94). Other paths include calls to `miRectAlloc` and
+  `memmove` (`jalr` at 0x164c9e0, `jalr` at 0x164cae8). No hardware
+  effect is established. The 6.5.30m N32 body occupies 1224 bytes.
+- `miBSClearBackingStore..IEB` (`usr/lib/X11/dyDDX/odyssey.so`,
+  0x16b1070): **Established effects; role unknown.** It reads a byte at
+  +0x15 of the object pointed to by first argument +0x74 (`lw` at
+  0x16b1094, `lbu` at 0x16b10ac). If the byte is 1, the `beq` at
+  0x16b10cc takes a return-zero path (`move` at 0x16b13d8, `jr` at
+  0x16b13e4). Later calls on other paths include `GetScratchGC`,
+  `DoChangeGC` and `ValidateGC` (`jalr` at 0x16b11c8, `jalr` at 0x16b122c,
+  `jalr` at 0x16b123c). The hardware effect is unknown. The 6.5.30m N32
+  routine occupies 1244 bytes.
+- `cfbSolidSpansXor` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1722ef0):
+  **Established effects; role unknown.** The `beqz` at 0x172300c takes a return path when `sp` is zero
+  (`jr` at 0x17230b8); its value is unknown. A later path calls `miClipSpans` with the original fourth,
+  fifth and third arguments in `a1`, `a2` and `a3`
+  (`jalr` at 0x172304c). Subsequent work includes byte stores to an
+  unresolved destination (`sb` at 0x17230e4, `sb` at 0x1723110). Its
+  hardware effect is unknown. The 6.5.30m N32 routine occupies 1244 bytes.
+- `cfbPolyPoint` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 routine occupies 1276 bytes at 0x16a3420. It reads a word at entry `a1 +0x4c` (`lw` at 0x16a3438), and calls `ffs` (`jalr` at 0x16a3834). One path reads a byte from an unknown base, performs AND and XOR operations, and stores a byte of unknown value to an unknown destination (`lbu` at 0x16a35a8, `and` at 0x16a35ac, `xor` at 0x16a35b0, `sb` at 0x16a35b8). The routine's role is Unknown. Established.
+- `cfb32FillBoxTile32sCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 the routine occupies 1332 bytes at 0x1678140. It reads halfwords at entry `a3 +0xc` and `a3 +0xe` (`lhu` at 0x1678148, 0x1678178). Its operations include loading a word from an unknown base and storing a word of unknown value to an unknown destination (`lw` at 0x1678460, `sw` at 0x1678464). The routine's role is Unknown. Established.
+- `mfbWhiteStippleFS` — `usr/lib/X11/dyDDX/odyssey.so`
+  This 6.5.30 routine occupies 1368 bytes at 0x16a1780. It reads a word from entry `a1 +0x14` (`lw` at 0x16a17ac) and calls `miClipSpans` (`jalr` at 0x16a18e0). The `blez` at 0x16a193c takes the return path when that result is signed nonpositive. A path reads a word from an unknown base, performs an OR operation, and stores a word of unknown value to an unknown destination (`lw` at 0x16a1994, `or` at 0x16a199c, `sw` at 0x16a19a0). The routine's role is Unknown. Established.
+- `mfbInvertStippleFS` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 body occupies 1368 bytes at 0x171ec60. It reads entry `a1 +0x14` as a word (`lw` at 0x171ec8c), then calls `miClipSpans` (`jalr` at 0x171edc0). The `blez` at 0x171ee1c takes the return path when the call result is signed nonpositive. A path loads a word from an unknown base, performs an XOR operation, and stores a word of unknown value to an unknown destination (`lw` at 0x171ee74, `xor` at 0x171ee7c, `sw` at 0x171ee80). The routine's role is Unknown. Established.
+- `cfb16Tile32FSCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 this function occupies 1476 bytes at 0x15c9290. It reads a word at entry `a1 +0x4c` (`lw` at 0x15c92b0), and calls `miClipSpans` (`jalr` at 0x15c93dc). The `blez` at 0x15c9454 takes the return path for a signed nonpositive call result. Its writes include a word to an unknown destination (`sw` at 0x15c95b8); the routine's role is Unknown. Established.
