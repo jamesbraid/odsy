@@ -2075,3 +2075,50 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysseySoftClipPickAllProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 644 bytes
 
   **Established effects.** A zero byte at entry `a0 + 0xde4` makes `beqz` at 0x325a52c take a path that reaches `__glOdysseyPickAllProcs` with entry `a0` (`lbu` at 0x325a50c; `bgezall` at 0x325a578). A later continuation clears words at entry `a0 + 0x8cec`, `a0 + 0x8ce8` and `a0 + 0x8ce4`, then writes a word at `a0 + 0x8ce0` (`sw` at 0x325a5e4, 0x325a5e8, 0x325a5ec, 0x325a5f0). Calls on that continuation include indirect calls whose targets are Unknown (`jalr` at 0x325a5f8, 0x325a604, 0x325a610). The field roles and broader routine role are Unknown.
+
+## 64-bit IP30 library: element and interpolation paths
+
+- `__glOdysseyArraysSep_N3S_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  - **Established effects.** Each pass writes 0xc180cc17, three Unknown words, 0x8080cc03 and three further Unknown words to absolute 0x10000 (`sw` at 0x336787c, 0x3367880, 0x3367884, 0x3367888, 0x336788c, 0x3367890, 0x3367894, 0x3367898). It loads three halfwords and three words from addresses hostfacts leaves Unknown (`lh` at 0x3367860, 0x3367864, 0x3367868; `lw` at 0x336786c, 0x3367870, 0x3367874).
+  - `bne` repeats when its Unknown tested value is nonzero (`bne` at 0x336789c). The hardware roles of the values are Unknown. The broader role of the routine is Unknown.
+- `__glOdysseyArraysInt_T2F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+  - **Established effects.** The ordered writes on each pass to process address 0x10000 are 0xc380c821, two Unknown words, 0x8080cc03 and three Unknown words (`sw` at 0x33678e8, 0x33678ec, 0x33678f0, 0x33678f4, 0x33678f8, 0x33678fc, 0x3367900). Five word loads use addresses hostfacts cannot resolve (`lw` at 0x33678d4, 0x33678d8, 0x33678dc, 0x33678e0, 0x33678e4).
+  - The loop's `bne` is taken when its Unknown tested value is nonzero (`bne` at 0x3367904). The values' hardware roles are Unknown. Its broader role is Unknown.
+- `__glOdysseyArraysSep_T2F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  - **Established effects.** Each loop pass stores 0xc380c821, two words of Unknown value, 0x8080cc03 and three further Unknown words at absolute 0x10000 (`sw` at 0x3367964, 0x3367968, 0x336796c, 0x3367970, 0x3367974, 0x3367978, 0x336797c). It reads five words from Unknown addresses (`lw` at 0x336794c, 0x3367950, 0x3367954, 0x3367958, 0x336795c).
+  - `bne` takes the loop back when the tested value, Unknown to hostfacts, is nonzero (`bne` at 0x3367980). The command values' hardware roles are Unknown. The broader purpose of this routine is Unknown.
+- `__glOdysseyElementsInt_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** One pass writes 0x8080cc03 followed by three Unknown words to absolute 0x10000 (`sw` at 0x33679d4, 0x33679d8, 0x33679dc, 0x33679e0). The addresses for the four word loads are Unknown (`lw` at 0x33679b8, 0x33679c8, 0x33679cc, 0x33679d0).
+  - `bne` returns to the loop when its tested value is nonzero; hostfacts leaves that value Unknown (`bne` at 0x33679e4). The hardware role of the constant is Unknown. Its overall role is Unknown.
+- `__glOdysseyElementsInt_C3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  - **Established effects.** The loop writes 0xc580cc0e, three Unknown words, 0x8080cc03 and three Unknown words, in order, to process address 0x10000 (`sw` at 0x3367a5c, 0x3367a60, 0x3367a64, 0x3367a68, 0x3367a6c, 0x3367a70, 0x3367a74, 0x3367a78). Its seven word loads have Unknown addresses (`lw` at 0x3367a34, 0x3367a44, 0x3367a48, 0x3367a4c, 0x3367a50, 0x3367a54, 0x3367a58).
+  - `bne` repeats when its tested value is nonzero, but hostfacts cannot resolve that value (`bne` at 0x3367a7c). The command roles are Unknown. The broader role of this routine is Unknown.
+- `__glOdysseySetRealLerpEvenEven` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 440 bytes
+  - **Established.** The stores to argument 0 include zero at +0x244, the word 0x3f000000 at +0x1f8, and 0x40800000 at +0x24 (`sw` at 0x3212124; `swc1` at 0x321225c, 0x32122cc). The routine has no calls in its body. The destination's hardware role is Unknown. The routine’s broader role is Unknown.
+- `__glOdysseySetImaginaryLerpEvenEven` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 448 bytes
+  - **Established.** `beqz` at 0x32122e0 branches to return when argument 0 is zero and falls through when nonzero. The fall-through writes zero to +0x244, 0x3f800000 to +0x200, and 0x3f000000 to +0x1fc of argument 0 (`sw` at 0x32122e8; `swc1` at 0x32123f0, 0x3212444).
+  - The return delay slot on the nonzero path writes 0x40800000 to argument 0 + 0x24 (`swc1` at 0x3212494). The destination fields' hardware roles are Unknown. The routine’s broader purpose is Unknown.
+- `__glOdysseySetRealLerpOddEven` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 548 bytes
+  - **Established.** It stores 0x3f000000 at argument 0 + 0x1fc, then calls `__rcis` (`swc1` at 0x32124c0; `jalr` at 0x3212544). Subsequent stores include zero at +0x244 and 1 at +0x234 of argument 0 (`sw` at 0x3212550, 0x3212594).
+  - A later floating-point word store targets argument 0 + 0x200, but its value is Unknown in the facts report (`swc1` at 0x3212680). The hardware role of these fields is Unknown. The routine’s overall role is Unknown.
+- `__glOdysseySetImaginaryLerpOddEven` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 552 bytes
+  - **Established.** `beqz` at 0x32126d8 returns when argument 0 is zero and falls through when nonzero. On fall-through, it stores 0x3f000000 at +0x1fc of argument 0 and calls `__rcis` (`swc1` at 0x32126f8; `jalr` at 0x3212778).
+  - After that call, the stores include zero at +0x244 and 1 at +0x214 (`sw` at 0x3212784, 0x3212848). The floating-point word stored at +0x200 is Unknown (`swc1` at 0x32128b4); the fields' hardware effects are Unknown. The broader role is Unknown.
+- `__glOdysseySetRealLerpEvenOdd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 548 bytes
+  - **Established.** It writes 0x3f000000 to argument 0 + 0x1fc before calling `__rcis` (`swc1` at 0x3212920; `jalr` at 0x32129a4). Its later word stores include zero at +0x244 and 1 at +0x234 of argument 0 (`sw` at 0x32129b0, 0x32129f4).
+  - The code also writes a floating-point word of Unknown value at +0x200 (`swc1` at 0x3212ae0). The destination's hardware role is Unknown. Its broader role remains Unknown.
+- `__glOdysseyElementsSep_C3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
+  - **Established effects.** Each pass writes 0xc580cc0e, three Unknown words, 0x8080cc03 and three further Unknown words to absolute 0x10000 (`sw` at 0x3367b0c, 0x3367b10, 0x3367b14, 0x3367b18, 0x3367b1c, 0x3367b20, 0x3367b24, 0x3367b28). The addresses of its seven word loads are Unknown (`lw` at 0x3367ad0, 0x3367af4, 0x3367af8, 0x3367afc, 0x3367b00, 0x3367b04, 0x3367b08).
+  - `bne` returns to the loop when its tested value is nonzero; hostfacts leaves that value Unknown (`bne` at 0x3367b2c). The hardware roles of the stored values are Unknown. The routine’s broader role is Unknown.
+- `__glOdysseyElementsInt_N3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  - **Established effects.** In each pass the ordered writes to absolute 0x10000 are 0xc180cc19, three Unknown words, 0x8080cc03 and three further Unknown words (`sw` at 0x3367ba4, 0x3367ba8, 0x3367bac, 0x3367bb0, 0x3367bb4, 0x3367bb8, 0x3367bbc, 0x3367bc0). Seven word loads use Unknown addresses (`lw` at 0x3367b7c, 0x3367b8c, 0x3367b90, 0x3367b94, 0x3367b98, 0x3367b9c, 0x3367ba0).
+  - The `bne` is taken back to the loop for a nonzero tested value, which hostfacts leaves Unknown (`bne` at 0x3367bc4). The hardware roles of the words are Unknown. Its broader role is Unknown.
+- `__glOdysseyElementsInt_V3F_N3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  - **Established effects.** The window receives 0xc180cc19, three Unknown words, 0x8080cc03 and three more Unknown words at absolute 0x10000 on each pass (`sw` at 0x3367c3c, 0x3367c40, 0x3367c44, 0x3367c48, 0x3367c4c, 0x3367c50, 0x3367c54, 0x3367c58). The seven preceding word loads use addresses hostfacts cannot resolve (`lw` at 0x3367c14, 0x3367c24, 0x3367c28, 0x3367c2c, 0x3367c30, 0x3367c34, 0x3367c38).
+  - `bne` repeats when its Unknown tested value is nonzero (`bne` at 0x3367c5c). The hardware roles of the values are Unknown. The broader purpose of this routine is Unknown.
+- `__glOdysseyElementsSep_N3F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
+  - **Established effects.** One loop pass writes 0xc180cc19, three words of Unknown value, 0x8080cc03 and three more Unknown words to process address 0x10000 (`sw` at 0x3367cec, 0x3367cf0, 0x3367cf4, 0x3367cf8, 0x3367cfc, 0x3367d00, 0x3367d04, 0x3367d08). Seven word loads have Unknown addresses (`lw` at 0x3367cb0, 0x3367cd4, 0x3367cd8, 0x3367cdc, 0x3367ce0, 0x3367ce4, 0x3367ce8).
+  - When its tested value is nonzero, `bne` takes the loop back; the value is Unknown in hostfacts (`bne` at 0x3367d0c). The word roles are Unknown. Its wider role remains Unknown.
+- `__glOdysseyElementsSep_N3S_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
+  - **Established effects.** The loop's ordered stores to absolute 0x10000 are 0xc180cc17, three Unknown words, 0x8080cc03 and three Unknown words (`sw` at 0x3367d9c, 0x3367da0, 0x3367da4, 0x3367da8, 0x3367dac, 0x3367db0, 0x3367db4, 0x3367db8). It reads four words and three halfwords from addresses hostfacts leaves Unknown (`lw` at 0x3367d60, 0x3367d90, 0x3367d94, 0x3367d98; `lh` at 0x3367d84, 0x3367d88, 0x3367d8c).
+  - `bne` is taken back to the loop when its Unknown tested value is nonzero (`bne` at 0x3367dbc). The hardware roles of the values are Unknown. The wider role of the routine is Unknown.
