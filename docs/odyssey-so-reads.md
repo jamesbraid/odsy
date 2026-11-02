@@ -3211,3 +3211,69 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   result is zero. On that path the `beqz` at 0x171b3a8 falls through when its tested register is nonzero and reaches `Xfree`
   (`jalr` at 0x171b3b4); that path returns zero (`move` at 0x171b3e4,
   `jr` at 0x171b3f0). The allocation's hardware effect and the routine's role are unknown.
+
+## X pixmap rotation and span routines
+
+- `cfb32FillRectSolidXor` (`usr/lib/X11/dyDDX/odyssey.so`, 1020 bytes):
+  **Established.** It reads the byte addressed by entry register `a0`; `beq` takes an alternate path if that byte equals 1 (`lbu` at 0x16f54e8; `beq` at 0x16f5504). A later loop reads a word, XORs it with a saved value, and writes the result back to an address whose base is unknown (`lw` at 0x16f55a0; `xor` at 0x16f55b0; `sw` at 0x16f55b4). The routine's role and the destination's hardware effect are unknown.
+- `mfbWhiteSolidFS` (`usr/lib/X11/dyDDX/odyssey.so`, 1028 bytes):
+  **Established.** It reads the word at entry register `a1` +0x14 and exits when `beqz` finds bit 0 clear (`lw` at 0x169c390; `beqz` at 0x169c3b8). On a path where that bit is set it can call `miClipSpans` (`jalr` at 0x169c4c0). A subsequent path ORs a loaded word with another value and stores the result at an unknown base (`lw` at 0x169c554; `or` at 0x169c558; `sw` at 0x169c55c). The routine's role and the destination's hardware effect are unknown.
+- `cfb32XRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 1028 bytes):
+  **Established.** `beqz` takes the return path when entry register `a0` is zero (`beqz` at 0x171fdb8). Otherwise it reads the byte at `a0` +3, with `beq` taking a distinct path when the byte is 0x20 (`lbu` at 0x171fdc0; `beq` at 0x171fdc8). A loop on that path stores words to an address with unknown base (`sw` at 0x171fea4). The routine's role and the destination's hardware effect are unknown.
+- `cfbXRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 1036 bytes):
+  **Established.** The initial `beqz` returns when entry register `a0` is zero (`beqz` at 0x16f1198). For nonzero `a0`, the byte at +3 selects a path when it equals 8 (`lbu` at 0x16f11a0; `beq` at 0x16f11a8). That path includes word stores to an unknown base (`sw` at 0x16f128c). The routine's role and the destination's hardware effect are unknown.
+- `cfb16XRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 1036 bytes):
+  **Established.** If entry register `a0` is zero, `beqz` takes the return path (`beqz` at 0x1711cc8). Otherwise, `beq` selects a path when the byte at `a0` +3 is 0x10 (`lbu` at 0x1711cd0; `beq` at 0x1711cd8). The selected path includes a loop with word stores whose base is unknown (`sw` at 0x1711dbc). The routine's role and the destination's hardware effect are unknown.
+- `mfbBlackSolidFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x156e690):
+  **Established effects; hardware effect unknown.** It reads the word at
+  second argument +0x14 (`lw` at 0x156e6c0). When bit 0 is clear, the
+  `beqz` at 0x156e6e8 takes the return path (`andi` at 0x156e6cc, `jr` at
+  0x156e870). The other path includes a call to `miClipSpans`, passing the
+  original fourth, fifth and third arguments in `a1`, `a2` and `a3`
+  respectively (`jalr` at 0x156e7f4). Its wider role is unknown. The
+  6.5.30m N32 routine occupies 1040 bytes.
+- `mfbCopyRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1565180):
+  **Established effects; role unknown.** The `beqz` at 0x15651ac selects an
+  alternate path when the pointer read through the second argument is zero
+  (`lw` at 0x156519c). On the nonzero path two `bne` branches test words at
+  +0x1c and halfwords at +0xe of the first argument and the pointed object
+  (`lw` at 0x15651b4, `lw` at 0x15651b8, `lhu` at 0x15651bc, `lhu` at
+  0x15651c4, `bne` at 0x15651c0, `bne` at 0x15651c8). If both comparisons
+  fall through, `memmove` receives the word at first argument +0x20 in
+  `a1` (`lw` at 0x15651d8, `jalr` at 0x15651e0). Its count and hardware effect are unknown. The
+  6.5.30m N32 body occupies 1044 bytes.
+- `miBSTranslateBackingStore..AFB` (`usr/lib/X11/dyDDX/odyssey.so`,
+  0x1671ef0): **Established effects; hardware effect unknown.** It reads a
+  byte at +0x15 of the object reached through first argument +0x74 (`lw` at
+  0x1671f08, `lbu` at 0x1671f20). Values 1 and 4 take the `beq` branches
+  at 0x1671f40 and 0x1671f50 to a return-zero path (`move` at 0x1672274,
+  `jr` at 0x1672280). Other paths include a call to
+  `miCreateBSPixmap..LFB` with the original first argument and zero in `a1`
+  (`bgezall` at 0x1672060). The wider role is unknown; the 6.5.30m N32
+  routine occupies 1056 bytes.
+- `cfb32FillSpanTile32sCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ba400):
+  **Established effects; role unknown.** Its initial reads include halfwords
+  from fifth argument +0xc and +0xe and a word from +0x20 (`lhu` at
+  0x16ba408, `lhu` at 0x16ba428, `lw` at 0x16ba440). The `beq` at
+  0x16ba44c selects a separate path when the first byte of the first
+  argument equals 1 (`lbu` at 0x16ba430). The listing contains no calls;
+  the hardware effect is unknown. The N32 body occupies 1092 bytes in
+  6.5.30m.
+- `miSubtractSpans` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163d250):
+  **Established effects; role unknown.** It reads a word from first argument
+  +4 (`lw` at 0x163d254). A nonpositive signed value takes the `blez` at
+  0x163d274 to return (`jr` at 0x163d5f4). The fall-through path includes
+  two `memmove` calls (`jalr` at 0x163d46c, `jalr` at 0x163d480) and
+  `Xrealloc` calls (`jalr` at 0x163d60c, `jalr` at 0x163d650). Their sizes
+  and the routine's hardware effect are unknown. The 6.5.30m N32 routine
+  occupies 1100 bytes.
+- `cfb32Tile32FSCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 routine occupies 1120 bytes at 0x15b2a70. It reads a word from entry `a1 +0x4c` (`lw` at 0x15b2a90) and a byte from entry `a0` (`lbu` at 0x15b2bf0). It calls `miClipSpans` (`jalr` at 0x15b2bc4); the `blez` at 0x15b2c38 takes the return path when that result is signed nonpositive. Its stores include words to unknown destinations (`sw` at 0x15b2d64, 0x15b2e84). The roles of the routine and those destinations are unknown. Established.
+- `cfbSolidSpansCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 this routine occupies 1124 bytes at 0x16558a0. It reads a word at entry `a1 +0x4c` (`lw` at 0x16558cc) and calls `miClipSpans` (`jalr` at 0x16559fc). A `blez` at 0x1655a28 takes the return path when that call's result is signed nonpositive. Its writes include a word and a byte to unknown destinations (`sw` at 0x1655c04; `sb` at 0x1655a98); the roles of the routine and those destinations are unknown. Established.
+- `cfb16SolidSpansXor` — `usr/lib/X11/dyDDX/odyssey.so`
+  This 6.5.30 routine occupies 1128 bytes at 0x1668630. It reads a word at entry `a1 +0x4c` (`lw` at 0x1668660), then calls `miClipSpans` (`jalr` at 0x166878c). The `blez` at 0x16687c0 takes the return path for a signed nonpositive result. A word is loaded, XORed, and stored to an unknown destination (`lw` at 0x16688e8, `xor` at 0x16688f0, `sw` at 0x16688f8); the roles of the routine and the destination are unknown. Established.
+- `cfb32FillBoxTile32sGeneral` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 function occupies 1140 bytes at 0x16cbd70. It reads a byte at entry `a0` (`lbu` at 0x16cbdb4) and, on a subsequent path, loads two words from unknown bases (`lw` at 0x16cc044, 0x16cc058). It combines values using AND and XOR (`and` at 0x16cc064; `xor` at 0x16cc06c) and stores a word to an unknown destination (`sw` at 0x16cc074). The routine's role and the destination's purpose are unknown. Established.
+- `cfb32Tile32FSGeneral` — `usr/lib/X11/dyDDX/odyssey.so`
+  This 6.5.30 function occupies 1436 bytes at 0x15c7b50. It loads a word from entry `a1 +0x4c` (`lw` at 0x15c7b80) and calls `miClipSpans` (`jalr` at 0x15c7ca4). The `blez` at 0x15c7d44 takes the return path when the call result is signed nonpositive. A word from an unknown base is ANDed and XORed (`lw` at 0x15c7ed4, `and` at 0x15c7ee0, `xor` at 0x15c7ee4), then stored to an unknown destination (`sw` at 0x15c7eec); the roles of the routine and the destination are unknown. Established.
