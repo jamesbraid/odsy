@@ -201,6 +201,48 @@ The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build
 - `__glXGetDrawableSize` (`libGL.so`, offset 0xd8110fc, 532 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   Returns four size words through caller pointers. With the process-wide pixmap-memory pointer at private offset 0x6564 set, it writes zeroes and the cached words at offsets 0x6568 and 0x656c; otherwise it dispatches on the drawable type, using X geometry queries for ordinary drawables and private requests 0x801d and 0x801e for the pbuffer cases, then copies the resulting width, height, origin and auxiliary size words to the outputs.
+- `__glx_Vertex4iv` (`libGL.so`, offset 0xd812c9c, 144 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x0014004b, copies four 32-bit coordinates from the caller's vector, advances the current render-buffer pointer by 20 bytes, and calls the buffer-flush helper when the new pointer passes the buffer end.
+- `__glx_Vertex4i` (`libGL.so`, offset 0xd812d2c, 144 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x0014004b and four scalar integer coordinates to the current render buffer, advances by 20 bytes, and flushes only when the advanced pointer exceeds the stored limit.
+- `__glx_ColorMaterial` (`libGL.so`, offset 0xd812dbc, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x000c004e and its two arguments, advances the render-buffer pointer by 12 bytes, and invokes the flush helper when the pointer crosses the buffer end.
+- `__glx_PointSize` (`libGL.so`, offset 0xd812e38, 112 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x00080064 and the incoming single-precision value, advances the current render-buffer pointer by 8 bytes, and flushes on buffer overflow.
+- `__glx_InitNames` (`libGL.so`, offset 0xd812ea8, 108 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Appends command token 0x00040079 to the current render buffer, advances its pointer by 4 bytes, and calls the flush helper only when the new pointer is beyond the buffer limit.
+- `__glx_LoadName` (`libGL.so`, offset 0xd812f14, 116 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Appends command token 0x0008007a followed by the caller's name value, advances by 8 bytes, and flushes when the current buffer cannot hold the command.
+- `__glx_CullFace` (`libGL.so`, offset 0xd812f88, 116 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Appends command token 0x0008004f and the supplied face value, advances the write pointer by 8 bytes, and invokes the buffer-flush helper only after crossing the end pointer.
+- `__glx_Fogf` (`libGL.so`, offset 0xd812ffc, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Converts the incoming scalar bits to a floating-point payload, writes command token 0x000c0050 and the selector/value pair, advances by 12 bytes, and flushes if the new pointer exceeds the current limit.
+- `__glx_Vertex4fv` (`libGL.so`, offset 0xd813078, 144 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x0014004a, copies four single-precision coordinates from the caller's vector, advances the render-buffer pointer by 20 bytes, and flushes on overflow.
+- `__glx_TexParameterf` (`libGL.so`, offset 0xd813108, 132 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x00100069, stores the target, parameter and floating-point value, advances by 16 bytes, and calls the flush helper when the buffer end is reached.
+- `__glx_TexParameteri` (`libGL.so`, offset 0xd813264, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x0010006b and three integer arguments to the render buffer, advances its pointer by 16 bytes, and flushes when the updated pointer is beyond the buffer limit.
+- `__glx_TexGeni` (`libGL.so`, offset 0xd8133c4, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x00100077 and the three integer arguments for the texture-generation request, advances by 16 bytes, and flushes on pointer overflow.
+- `__glx_ShadeModel` (`libGL.so`, offset 0xd81344c, 116 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x00080068 and the caller's mode value, advances the buffer pointer by 8 bytes, and invokes the flush helper only when it passes the stored end.
+- `__glx_PassThrough` (`libGL.so`, offset 0xd8134c0, 112 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes command token 0x0008007b and the incoming single-precision marker, advances by 8 bytes, and flushes when the current render buffer is full.
 
 
 ## Board diagnostics and updaters
