@@ -72,10 +72,18 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   One call, `pane_cleanup`, which releases the pane the clip holds; `rrmDisposeClip` in the X module sends
   it.
 - `RRM_SwapBuf` (ioctl 1005, `rrm.o`): **established.**
+  IP30 entry: offset 0x3828, 668 bytes.
   The kernel side of a buffer swap, with a 12-byte argument: it marks the node as swapped, waits in
   `rrmSwapWait` for the retrace target, validates the pane's buffer and calls the board's swap entry
   `gf_OdsySchedSwapBuf`. The full path is in `docs/display.md`; the table slot has no sender in the
   shipped binaries other than libGLcore's swap sequence.
+- `RRM_SwapBuf` (ioctl 1005, `rrm.o`, IP35): **established.**
+  Entry offset 0x3838, 668 bytes. The IP35 body has the same request and return paths as IP30: it tests
+  node flag bit 3 before the optional wait, rejects a failed caller check with 14, copies the pane's swap
+  id into the node record, toggles pane halfword +18 when that flag is set, updates the board's in-flight
+  count and per-id table, calls the board operation-table entry at +0x88 with the node, request word and
+  id, and decrements the count on failure. It returns 0 on success, 4 when the optional swap validation
+  returns zero, and 14 for the caller-check failure; the board callback's result is returned otherwise.
 - `RRM_SetSwapInterval` (ioctl 1006, `rrm.o`): **established.**
   Calls nothing: it refuses a negative interval from argument word 1 with error 22 and otherwise stores
   the value in the node at +32 and in the node's second record at +24, which `RRM_SwapBuf` tests for nonzero before it calls `rrmSwapWait` (that routine itself reads the same record's +28 target count);
