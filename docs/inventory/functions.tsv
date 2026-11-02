@@ -7139,7 +7139,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977780	172	RestoreCurrentState	dwarf+funcnames	a0bc26a7a04d		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977830	948	DoEvalCoord1	dwarf+funcnames	e739f970e953	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd977bf0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6ca0b9ad5b8a		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d10	100	ComputeNormal2	dwarf+funcnames	673aa399880c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -13028,7 +13028,7 @@ builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb180	172	RestoreCurrentState	dwarf	b252d52769b7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb230	948	DoEvalCoord1	dwarf	41fbdbe9e431	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x21bb5f0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6c35396cc3d9		in	understood	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
-builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#identical-copies	Identical copies
+builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bb780	8176	DoDomain2	dwarf	b66ba491e580	multi-unit	in	named-only		
 builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x21bd770	10380	DoDomain2WithDerivs	dwarf	3f9581073009	multi-unit	in	named-only		
@@ -24655,7 +24655,7 @@ builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ClipIT	dwarf+funcnames			in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ClipT	dwarf+funcnames			in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeCoverageStuff	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeFirstPartials	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeFirstPartials	dwarf+funcnames			in	located	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeLightMaterialState	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeLightProcs	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeLightState	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -42231,7 +42231,7 @@ builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ClipIT	dwarf+funcnames			in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ClipT	dwarf+funcnames			in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeCoverageStuff	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
-builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeFirstPartials	dwarf+funcnames			in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeFirstPartials	dwarf+funcnames			in	located	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeLightMaterialState	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeLightProcs	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
 builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0x0		ComputeLightState	dwarf+funcnames			in	named-only	docs/libglcore-functions.md#soft-software-renderer	`soft` (software renderer)
@@ -74190,7 +74190,7 @@ usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd9774f0	656	GetCu
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977780	172	RestoreCurrentState	dwarf+funcnames	a0bc26a7a04d		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977830	948	DoEvalCoord1	dwarf+funcnames	e739f970e953	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32		0xd977bf0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6ca0b9ad5b8a		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d10	100	ComputeNormal2	dwarf+funcnames	673aa399880c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -79966,7 +79966,7 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x31fecd0	1504	SWIn
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x31ff2b0	4052	MakeCurrentRead	dwarf	b6cb58b46812		in	located	docs/libglcore-odyssey-reads.md#shadow-value-conversion	Shadow-value conversion
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x3200290	92	CopyContext	dwarf	504f2c415193		in	understood	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32002f0	420	LoseCurrent	dwarf	8165419a773d	multi-unit	in	named-only		
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32004a0	108	MakeCurrent	dwarf	896df58fcf4e	multi-unit	in	named-only		
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x32004a0	108	MakeCurrent	dwarf	896df58fcf4e	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x3200510	128	BindHyperpipe	dwarf	1a8d7619bbfb		in	located	docs/libglcore-odyssey-builds.md#o32-ip30-routines-read-in-full	O32 IP30 routines read in full
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x3200590	128	QueryHyperpipeBestAttrib	dwarf	e8c1ce7dde44		in	located	docs/libglcore-odyssey-builds.md#o32-ip30-routines-read-in-full	O32 IP30 routines read in full
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x3200610	204	QueryHyperpipeAttrib	dwarf	3a5bbc5625e4		in	located	docs/libglcore-odyssey-reads.md#context-set-up-tear-down-and-drawable-binding	Context set-up, tear-down and drawable binding
@@ -80079,8 +80079,8 @@ usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320aef0	656	GetCu
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b180	172	RestoreCurrentState	dwarf	b252d52769b7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b230	948	DoEvalCoord1	dwarf	41fbdbe9e431	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64		0x320b5f0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6c35396cc3d9		in	understood	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#identical-copies	Identical copies
-usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	named-only		
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
+usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320b780	8176	DoDomain2	dwarf	b66ba491e580	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x320d770	10380	DoDomain2WithDerivs	dwarf	3f9581073009	multi-unit	in	named-only		
 usr/gfx/arch/IP30ODSY64/libGLcore.so	board-library	n64	.text	0x3210000	1460	DoEvalCoord2	dwarf	9a27418c4aa7	multi-unit	in	named-only		
@@ -91729,7 +91729,7 @@ usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd9774f0	656	GetCu
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977780	172	RestoreCurrentState	dwarf+funcnames	a0bc26a7a04d		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977830	948	DoEvalCoord1	dwarf+funcnames	e739f970e953	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32		0xd977bf0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6ca0b9ad5b8a		in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
-usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
+usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977c70	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977d10	100	ComputeNormal2	dwarf+funcnames	673aa399880c	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd977d80	8168	DoDomain2	dwarf+funcnames	fb1424ec1a73	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY32/libGLcore.so	board-library	n32	.text	0xd979d70	10396	DoDomain2WithDerivs	dwarf+funcnames	3177f071abb1	multi-unit	in	understood	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
@@ -97618,7 +97618,7 @@ usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21baef0	656	GetCu
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb180	172	RestoreCurrentState	dwarf	b252d52769b7		in	located	docs/libglcore-odyssey-reads.md#evaluators	Evaluators
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb230	948	DoEvalCoord1	dwarf	41fbdbe9e431	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64		0x21bb5f0	128	__glOdysseyDoEvalCoord1	dwarf+dynsym	6c35396cc3d9		in	understood	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
-usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	named-only	docs/libglcore-odyssey-builds.md#identical-copies	Identical copies
+usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb670	156	ComputeFirstPartials	dwarf	6652c635ac34	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#copies-credited-by-word-comparison	Copies credited by word comparison
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb710	100	ComputeNormal2	dwarf	62b0f2f28ffe	multi-unit	in	understood	docs/libglcore-odyssey-builds.md#64-bit-ip30-routines-read-in-full	64-bit IP30 routines read in full
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bb780	8176	DoDomain2	dwarf	b66ba491e580	multi-unit	in	named-only		
 usr/gfx/arch/IP35ODSY64/libGLcore.so	board-library	n64	.text	0x21bd770	10380	DoDomain2WithDerivs	dwarf	3f9581073009	multi-unit	in	named-only		
