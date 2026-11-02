@@ -5022,3 +5022,61 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   It then calls `odsy_EdidCksum` (`jal` at 0x1b00). A zero checksum takes the
   branch and returns one (`beqz` at 0x1b08, `addiu` at 0x1b80). A nonzero
   checksum falls through to a zero return (`move` at 0x1b10).
+- `sgiEdid` (`odsy_ddc.o`, offset 0x1b84, 56 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It checks EDID byte 8 for 0x4c (`lbu` at 0x1b84, `bne` at 0x1b90).
+  It accepts byte 9 when it is 0xf8 or 0xe9 (`lbu` at 0x1b98, `beq` at 0x1b9c and 0x1ba4).
+  It returns 1 on a match and 0 otherwise (`jr` at 0x1bb4 and 0x1bac).
+- `odsy_i2c2abReset` (`odsy_ddc.o`, offset 0x1bbc, 304 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It starts a transfer with address byte 0x6e (`jal` at 0x1bd0).
+  It then sends 0x50, 0x81, 0xf0 and 0x4f in order (`jal` at 0x1be8, 0x1c00, 0x1c18 and 0x1c30).
+  A nonzero result branches to an error path (`bnez` at 0x1bd8, 0x1bf0, 0x1c08, 0x1c20 and 0x1c3c).
+  It returns 0 after the sequence and 1 on an error path (`jr` at 0x1c48).
+- `odsy_i2c2abAttention` (`odsy_ddc.o`, offset 0x1cec, 148 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It enters slave receive mode with arguments 1 and 0x50 (`jal` at 0x1d14).
+  It requests four bytes into a local buffer (`jal` at 0x1d2c, with count argument 4).
+  A nonzero result branches to an error path (`bnez` at 0x1d1c and 0x1d34). It returns 0 or 1 (`jr` at 0x1d40).
+- `odsy_i2c2abIDRequest` (`odsy_ddc.o`, offset 0x1d80, 304 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It starts a transfer using 0x6e, then sends 0x50, 0x81, 0xf1 and 0x4e (`jal` at 0x1d94, 0x1dac, 0x1dc4, 0x1ddc and 0x1df4).
+  The last send sets argument 3 to 1. A nonzero result branches to an error path (`bnez` at 0x1d9c, 0x1db4, 0x1dcc, 0x1de4 and 0x1e00).
+  It returns 0 after the sequence or 1 on an error path (`jr` at 0x1e0c).
+- `odsy_i2c2abPresencechk` (`odsy_ddc.o`, offset 0x1eb0, 304 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It starts a transfer using 0x6e, then sends 0x50, 0x81, 0xf1 and 0x48 (`jal` at 0x1ec4, 0x1edc, 0x1ef4, 0x1f0c and 0x1f24).
+  The last send sets argument 3 to 1. A nonzero result branches to an error path (`bnez` at 0x1ecc, 0x1ee4, 0x1efc, 0x1f14 and 0x1f30).
+  It returns 0 after the sequence or 1 on an error path (`jr` at 0x1f3c).
+- `odsy_i2c2abIDReply` (`odsy_ddc.o`, offset 0x1fe0, 8 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  This two-instruction stub reads no argument, makes no call and returns 0 (`jr` at 0x1fe0).
+- `odsy_i2c2abAssignAddr` (`odsy_ddc.o`, offset 0x1fe8, 8 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  This two-instruction stub reads no argument, makes no call and returns 0 (`jr` at 0x1fe8).
+- `odsy_i2cProbe2ab` (`odsy_ddc.o`, offset 0x1ff0, 364 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It calls the reset and attention routines, then makes ID-request, reply and address-assignment calls (`jal` at 0x2030, 0x2058, 0x2084, 0x2094 and 0x20ac).
+  A zero reset result branches toward the attention step (`beqz` at 0x2038). A nonzero attention result returns to the retry sequence (`bnez` at 0x2060).
+  Nonzero results from the final three calls branch to separate handling (`bnez` at 0x208c, 0x209c and 0x20b4). The loop exit at 0x2028 is taken once the retry counter reaches 30, and the code after it sets the return value 1 (`addiu` at 0x2104, `jr` at 0x2110); the other return value, 0, is set at 0x20f0.
+- `odsy_copyin_cmd` (`odsy_ddc.o`, offset 0x215c, 136 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads the length at argument offset +16 and the source pointer at +24 (`lw` at
+  0x215c, `ld` at 0x2174). A length that is nonpositive or above 256 logs through `cmn_err`
+  at severity 1 and returns -22 (`blez` at 0x2164, `slti` at 0x2168, `beqz` at 0x216c, `jal`
+  at 0x21b4, `addiu` at 0x21bc). A null source pointer returns -22 without logging (`beqz`
+  at 0x2178, `addiu` at 0x21a4). Otherwise it calls `copyin` with the source pointer, its
+  second argument and the length (`jal` at 0x2184). A nonzero `copyin` result logs and
+  returns -14 (`bnez` at 0x218c, `jal` at 0x21d0, `addiu` at 0x21d8). Success returns 0
+  (`jr` at 0x2198).
+- `odsy_i2cPLLSeqRegWrite` (`odsy_ddc.o`, offset 0x218, 240 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It starts a transfer with the port byte at +32 shifted left by one (`lbu` at 0x228,
+  `jal` at 0x240) and sends its second argument (`jal` at 0x25c). It then sends bytes from
+  the pointer in its third argument: the first count minus one bytes with the final flag
+  clear (`jal` at 0x294, `lbu` at 0x298) and the last byte with the final flag set (`jal`
+  at 0x2c8, `lbu` at 0x2cc). The count is its fourth argument (`ld` at 0x26c, `addiu` at
+  0x270); when it is 1 the loop is skipped (`beqz` at 0x278). A nonzero send result
+  branches to a reset path (`bnez` at 0x248, 0x264, 0x29c and 0x2d4) that calls
+  `odsy_i2cReset` (`jal` at 0x2e8). It returns 0 after successful sends or 1 after reset
+  (`jr` at 0x300).
