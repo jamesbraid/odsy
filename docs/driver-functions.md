@@ -4761,3 +4761,129 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
   Seven words, read in full: a nop-delay-slot call to `cfi_validate` (relocation R_MIPS_26), returning its result with
   the arguments passed through.
+- `gf_OdsyFrsUninstall` (`odsy_retrace.o`, offset 0x11e4, 8 bytes): **established.**
+  Build: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)`.
+  It returns zero and makes no calls or memory accesses (`jr` at 0x11e4, `or` at 0x11e8). Its role is unknown.
+- `gfP_OdsyInvalidIoctl` (`odsy.o`, offset 0x5c, 36 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)`.
+  It calls `cmn_err` at severity 5 (`jal` at 0x68, a0=5). It returns 22 (`jr` at 0x78). Its message pointer is in
+  read-only data (`ld` at 0x64), but the text is unresolved.
+- `odsyGctxFromRnid` (`odsy.o`, offset 0xfc, 92 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)`.
+  A nonpositive first argument takes the error branch (`blez` at 0x100). An argument above the loaded limit takes the
+  same path (`bne` at 0x10c taken). It calls `cmn_err` at severity 4 and returns zero (`jal` at 0x144, `jr` at 0x130).
+  For an in-range argument, it loads a doubleword at +0x70 from an unresolved base (`ld` at 0x12c). The returned value
+  is unknown.
+- `OdsyNextCSetElem` (`odsy_adt.o`, offset 0x144, 240 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  It returns zero if the current-node pointer at +8 is null, the end flag at +28 is set, or the element count at +20 is
+  zero (`beq` at 0x14c, `bne` at 0x158, `beq` at 0x164). Otherwise it scans slots and updates the cursor at +24 (`sw` at
+  0x188, 0x1c0, 0x1c4, 0x200 and 0x204). It may advance the current-node pointer at +8 (`sd` at 0x1d4 and 0x210). The
+  internal node bases are unresolved (`lw` at 0x18c, `ld` at 0x1a0 and 0x1ac).
+- `OdsyFindMatchingCSetElem` (`odsy_adt.o`, offset 0x234, 296 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  A zero shift at +32 takes the return-zero branch (`beq` at 0x254 taken). Otherwise it walks the chunk list from the
+  pointer at +0, bounded by the chunk count at +16 (`blez` at 0x27c, `ld` at 0x278 and 0x2a8), and reads each nonzero
+  slot through an unresolved chunk base (`ld` at 0x2c8 and 0x2f0). For each slot it calls an indirect target with the
+  slot value in a0 and its own second argument in a1 (`jalr` at 0x2cc); the target is its third argument. A zero result
+  ends the search and returns that slot value (`beq` at 0x2d4 taken, `or` at 0x338). A nonzero result moves on to the
+  next slot. Running out of chunks returns zero (`or` at 0x318).
+- `OdsyDestroyCSet` (`odsy_adt.o`, offset 0x28, 264 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  A nonpositive node count at +16 takes the loop-skip branch (`blez` at 0x54 taken). The loop calls `kmem_free` twice
+  (`jal` at 0x7c and 0x8c). The second call uses size 32. The first call's arguments are unknown. It also calls an
+  indirect target with unresolved address and arguments (`jalr` at 0xc4). It ends by calling `OdsyInitCSet` with shift
+  zero (`jal` at 0x118, a0=entry arg0, a1=0).
+- `NewChunkNode` (`odsy_adt.o`, offset 0x35c, 68 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  It calls `kmem_alloc` for 32 bytes with flag zero (`jal` at 0x368, a0=0x20, a1=0). A null result falls through to
+  return zero (`bne` at 0x374 falls through). Otherwise it clears 32 bytes with `bzero` and returns the allocation
+  (`jal` at 0x38c, a0=kmem_alloc result, a1=0x20, `jr` at 0x380).
+- `OdsyAllocSpecificCSetId` (`odsy_adt.o`, offset 0x3a0, 460 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  A zero shift at +32 takes the return-minus-one branch (`beq` at 0x3d4 taken). When extending the node list, it calls
+  `NewChunkNode` with the word at set+0x20 (`jal` at 0x4c4, a0=[set+0x20]). It increments the count at +16 (`sw` at
+  0x4c0). It allocates and clears a block, but its size is unresolved (`jal` at 0x524 and 0x55c). A null node result
+  branches to the -1 return (`beq` at 0x4cc). A null allocation falls through to the -1 return (`bne` at 0x530 falls
+  through, `addiu` at 0x53c). Some node-link and slot store bases are unresolved (`sd` at 0x45c and 0x52c).
+- `OdsyDeallocCSetId` (`odsy_adt.o`, offset 0x7cc, 164 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  It clears a value through an unresolved pointer base and updates that base+8 value (`sd` at 0x818, `sw` at 0x824). It
+  decrements the set count at +20 (`sw` at 0x830). When the branch at 0x838 is taken because the base+8 value is zero,
+  it calls `kmem_free` and clears a pointer through the unresolved base (`jal` at 0x85c, `sd` at 0x864). The first two
+  call arguments are unknown.
+- `OdsyLookupCSetId` (`odsy_adt.o`, offset 0x870, 248 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  A zero shift at +32 takes the return-zero branch (`beq` at 0x878 taken). Otherwise it starts from the pointer at +0
+  and repeats loads at displacement +0x10 through unresolved bases (`ld` at 0x884, 0x894, 0x8b0, 0x8d4, 0x8ec and
+  0x904). Each listed branch is taken for a zero head or link and returns zero (`beq` at 0x888, 0x8a8, 0x8cc, 0x8e0,
+  0x8fc and 0x918). It masks the id with a shift-derived low-bit mask and loads that slot, but the slot-array base is
+  unresolved (`and` at 0x934, `ld` at 0x940).
+- `OdsyInit32kSlotMask` (`odsy_adt.o`, offset 0x968, 56 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  It clears 0x1010 bytes at the first argument (`jal` at 0x97c, a0=entry arg0, a1=0x1010). It writes zero at +8 and the
+  second argument at +0 (`sw` at 0x984, `sd` at 0x990).
+- `OdsyAlloc32kSlot` (`odsy_adt.o`, offset 0x9a0, 312 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  The branch at 0x9ac falls through when the semaphore pointer at +0 is nonnull. That path calls `psema` at priority 25
+  (`jal` at 0x9bc, a0=[arg0+0], a1=25). An index at +8 of at least 0x200 takes the failure branch (`beq` at 0x9d0
+  taken). An index below zero also takes it (`bltz` at 0x9d8 taken). The failure branch releases the semaphore when it
+  is held and returns -1 (`jal` at 0xa6c, `addiu` at 0xa7c). For a valid index it reads and updates a doubleword in the
+  computed bitmap (`ld` at 0x9e8, `sd` at 0xa20). It scans up to 64 bits (`slti` at 0xa0c). The success return value is
+  saved on the stack and is the index at +8 shifted left by 6 plus the bit found (`sll` at 0x9f0, `addu` at 0xa24, `ld`
+  at 0xa4c, `jr` at 0xa54). When the word becomes all ones (`beq` at 0xa28 taken) it advances the index at +8 to the
+  next word that is not all ones (`sw` at 0xa94 and 0xab8; `addiu` at 0xa8c forms the all-ones constant that the compare
+  at 0xaa4 uses).
+- `OdsyFree32kSlot` (`odsy_adt.o`, offset 0xad8, 240 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  A null first argument takes the severity-4 logging path (`beq` at 0xae8 taken, `jal` at 0xb94, a0=4). It shifts the
+  slot argument right by 6 (`sra` at 0xaf0). An index at least 0x200 takes the error branch (`beq` at 0xafc taken). For
+  a valid index it clears a bit in the computed bitmap word (`sd` at 0xb40). The branch at 0xb4c falls through when this
+  index is below the saved index at +8. That path stores the index (`sw` at 0xb5c). The branch at 0xb64 falls through
+  when the semaphore pointer at +0 is nonnull. That path calls `vsema` (`jal` at 0xb70).
+- `odsyHashAlloc` (`odsy_adt.o`, offset 0xbc8, 112 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  It calls `kmem_alloc` with an unknown size and flag zero (`jal` at 0xbe8, a0 unknown, a1=0). A successful allocation
+  receives the first argument at +0 (`sw` at 0xc00). When the first argument is positive, it initializes links in a loop
+  (`blez` at 0xbfc falls through, `sd` at 0xc20 and 0xc28). The link-store bases are unresolved.
+- `odsyHashDealloc` (`odsy_adt.o`, offset 0xc38, 44 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  It reads the word at table +0 and passes the table to `kmem_free` (`lw` at 0xc38, `jal` at 0xc50, a0=entry arg0). The
+  size argument is unknown. The routine returns the `kmem_free` result (`jr` at 0xc5c).
+- `odsyHashLookup` (`odsy_adt.o`, offset 0xc64, 76 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  The routine makes no calls. A matching sentinel takes the return-zero branch (`beq` at 0xc7c taken). Otherwise it
+  compares a loaded word with the third argument. A match takes the return-current-pointer branch (`beq` at 0xc88 taken,
+  `jr` at 0xca8). A pointer differing from the sentinel takes the loop branch (`bne` at 0xc94 taken) after loading the
+  next pointer at +0 (`ld` at 0xc90).
+- `odsyHashInsert` (`odsy_adt.o`, offset 0xcb0, 48 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  The routine makes no calls. It writes the surrounding links into the third argument at +8 and +0 (`sd` at 0xcd0 and
+  0xcd4). It also updates an unresolved link base at +8 with the third argument (`sd` at 0xcdc). The surrounding base is
+  unknown.
+- `odsyHashRemove` (`odsy_adt.o`, offset 0xce0, 36 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
+  The routine makes no calls. It copies the entry's +0 link to the pointer loaded from +8 (`ld` at 0xce0 and 0xce4, `sd`
+  at 0xce8). It copies the entry's +8 link to the pointer loaded from +0 (`sd` at 0xcf4). It clears both links in the
+  entry (`sd` at 0xcf8 and 0xd00) and returns the original +0 pointer (`jr` at 0xcfc).
+- `gf_OdsyDetach` (`odsy_attach.o`, offset 0x1a8, 100 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)`.
+  The branch at 0x1b8 falls through when bit 2 of the flag word at +48 is set. That path calls `odsyDiagExit` with the
+  doubleword at +32 and the original first argument (`jal` at 0x1c8). The branch at 0x1dc falls through when bit 0 is
+  set. That path calls `gf_OdsyUnMapGfx` (`jal` at 0x1e4). It always calls `gfxdd_munmap` with the handle at +40 and
+  clears that field in the call's delay slot (`jal` at 0x1f0, `sd` at 0x1f4). It returns zero (`jr` at 0x204).
+- `gfP_OdsyBRDMGRsetDpyMode` (`odsy_brdmgr.o`, offset 0x1f90, 120 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  It copies 8 bytes from the third argument to its stack frame (`jal` at 0x1fac, a0=entry arg2, a2=8). On success it
+  calls `gf_OdsySetDisplayMode` with the first argument, but its remaining arguments are unresolved (`jal` at 0x1fc0).
+  It stores the call result through the fourth argument and returns zero (`sw` at 0x1fc8, `jr` at 0x1fdc). A nonzero
+  `copyin` result takes the error branch (`bne` at 0x1fb4 taken). It calls `cmn_err` at severity 4, stores 14 through
+  the fourth argument and returns 14 (`jal` at 0x1fec, `sw` at 0x1ff8, `jr` at 0x1fdc).
+- `gfP_OdsyBRDMGRsetBlanking` (`odsy_brdmgr.o`, offset 0x2008, 116 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+  It loads the doubleword at +32 of the first argument and keeps it on the stack (`ld` at 0x2008, `sd` at 0x2028). It
+  copies 4 bytes from the third argument to its stack frame with `copyin` (`jal` at 0x202c, a0=entry arg2, a2=4). On
+  success it calls `odsyBlankScreen` with the saved doubleword in a0 and the copied word in a1 (`jal` at 0x203c, `lw` at
+  0x2040), stores the call result through the fourth argument and returns it unchanged (`sw` at 0x2044, `jr` at 0x2050).
+  A nonzero `copyin` result takes the error branch (`bne` at 0x2034 taken). It calls `cmn_err` at severity 4, stores 14
+  through the fourth argument and returns 14 (`jal` at 0x2060, `sw` at 0x206c, `addiu` at 0x2070).
