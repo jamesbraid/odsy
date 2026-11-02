@@ -4887,3 +4887,66 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   0x2040), stores the call result through the fourth argument and returns it unchanged (`sw` at 0x2044, `jr` at 0x2050).
   A nonzero `copyin` result takes the error branch (`bne` at 0x2034 taken). It calls `cmn_err` at severity 4, stores 14
   through the fourth argument and returns 14 (`jal` at 0x2060, `sw` at 0x206c, `addiu` at 0x2070).
+- `odsyRestoreVertex` (`odsy_ctxsw.o`, offset 0x45b8, 356 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It calls `odsyRestoreVB` with a descriptor address formed from the pointer at +112 of
+  its second argument plus 140 plus 8 times the index in a5 (`jal` at 0x4610, `sd` at
+  0x4614). It stores that descriptor address through the pointer in a4 (`sd` at 0x461c).
+  The branch at 0x4630 skips `odsySetProgram` when the word at +10972 of the pointer at
+  +96 of the second argument is zero. When it is nonzero, the routine calls it with the word
+  at 11040 plus 4 times the index from that same pointer (`beqz` at 0x4630, `jal` at 0x4648).
+  It reads the saved command word at 256 plus 4 times the index from the pointer at +112
+  (`lw` at 0x4658). The command word's count field, bits 13:10, selects the path. A nonzero
+  count writes the command word to the window at 0x110000 and then that many following words
+  from 768 plus 16 times the index in the same block (`sw` at 0x469c and 0x46c4). A zero
+  count is accepted only when the word, with bits 22:16 masked off, equals 0x3000c02e or
+  0x2f00c02e (`bnez` at 0x4678, `beq` at 0x4688, `bne` at 0x4690). Any other zero-count word
+  calls `cmn_err` at severity 7 and writes nothing (`jal` at 0x470c).
+- `restorePoints` (`odsy_ctxsw.o`, offset 0x471c, 8 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  The body is a return (`jr` at 0x471c). It has no memory accesses or calls.
+  Its return value is unknown.
+- `restoreLines` (`odsy_ctxsw.o`, offset 0x4724, 56 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It calls `odsyRestoreVertex` once with its first five arguments unchanged and a5 set
+  to the fourth argument plus 3, remainder 4 (`andi` at 0x473c, `jal` at 0x4748). It returns
+  that call's result (`jr` at 0x4754).
+- `restoreLineLoop` (`odsy_ctxsw.o`, offset 0x475c, 124 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It first calls `odsyRestoreVertex` with its first four arguments unchanged
+  and a5=0 (`jal` at 0x477c). When the third argument is at least 2, the
+  branch is taken to a second call (`beqz` at 0x4788). That call keeps the first five arguments and passes in a5 one more than the remainder of (arg4 + 1) divided by 3 (`div` at 0x47ac, `mfhi` at 0x47c0, `jal` at 0x47c8). It returns the called routine's result (`jr` at 0x4794).
+- `restoreLineStrip` (`odsy_ctxsw.o`, offset 0x47d8, 56 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It calls `odsyRestoreVertex` once with its first five arguments unchanged and a5 set
+  to the fourth argument plus 3, remainder 4 (`andi` at 0x47f0, `jal` at 0x47fc). It returns
+  that result (`jr` at 0x4808).
+- `restoreTriangles` (`odsy_ctxsw.o`, offset 0x4810, 212 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  A nonpositive third argument takes the loop-skip branch (`blez` at 0x4868).
+  For a positive count, the loop calls `odsyRestoreVertex` and repeats while
+  its index is below the count (`jal` at 0x488c, `bnez` at 0x48b4).
+  The first five call arguments pass through unchanged. a5 starts at the fourth argument minus the third plus 4, remainder 4, and advances by 1, remainder 4, after each call (`jal` at 0x488c).
+- `restoreTriStrip` (`odsy_ctxsw.o`, offset 0x48e4, 212 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  A nonpositive third argument takes the loop-skip branch (`blez` at 0x493c).
+  For a positive count, the loop calls `odsyRestoreVertex` and repeats while
+  its index is below the count (`jal` at 0x4960, `bnez` at 0x4988).
+  The first five call arguments pass through unchanged. a5 starts at the fourth argument minus the third plus 4, remainder 4, and advances by 1, remainder 4, after each call (`jal` at 0x4960).
+- `restoreTriFan` (`odsy_ctxsw.o`, offset 0x49b8, 124 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It first calls `odsyRestoreVertex` with its first four arguments unchanged
+  and a5=0 (`jal` at 0x49d8). When the third argument is at least 2, the
+  branch is taken to a second call (`beqz` at 0x49e4). That call keeps the first five arguments and passes in a5 one more than the remainder of (arg4 + 1) divided by 3 (`div` at 0x4a08, `mfhi` at 0x4a1c, `jal` at 0x4a24). It returns the called routine's result (`jr` at 0x49f0).
+- `restoreQuads` (`odsy_ctxsw.o`, offset 0x4a34, 212 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  A nonpositive third argument takes the loop-skip branch (`blez` at 0x4a8c).
+  For a positive count, the loop calls `odsyRestoreVertex` and repeats while
+  its index is below the count (`jal` at 0x4ab0, `bnez` at 0x4ad8).
+  The first five call arguments pass through unchanged. a5 starts at the fourth argument minus the third plus 4, remainder 4, and advances by 1, remainder 4, after each call (`jal` at 0x4ab0).
+- `restoreQuadStrip` (`odsy_ctxsw.o`, offset 0x4b08, 212 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  A nonpositive third argument takes the loop-skip branch (`blez` at 0x4b60).
+  For a positive count, the loop calls `odsyRestoreVertex` and repeats while
+  its index is below the count (`jal` at 0x4b84, `bnez` at 0x4bac).
+  The first five call arguments pass through unchanged. a5 starts at the fourth argument minus the third plus 4, remainder 4, and advances by 1, remainder 4, after each call (`jal` at 0x4b84).
