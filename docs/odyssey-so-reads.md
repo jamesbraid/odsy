@@ -2549,3 +2549,156 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   unresolved. Otherwise the routine calls `ChangeWindowProperty` with
   fourth argument 0x20 and fifth argument zero (`jalr` at 0x161de8c). Its
   hardware effects are unknown.
+
+## Frame-buffer clipping and window management
+
+- `nfbComputeUniverseSL..GJ` (`usr/lib/X11/dyDDX/odyssey.so`,
+  0x1677470): **Established effects; role unknown.** It reads two words at
+  offsets +0x48 and +0x28 from the object reached through first-argument
+  pointers +0x10 and +0x74 (`lw` at 0x1677498, `lw` at 0x16774a0, `lw` at
+  0x16774a8, `lw` at 0x16774c8). The `blez` at 0x16774e8 takes an
+  alternate path when the +0x28 word is nonpositive as a signed integer.
+  It also stores a word through the original fifth argument (`sw` at
+  0x1677cc8); the stored value is unknown. The 6.5.30m N32 routine occupies
+  3200 bytes.
+- `nfbComputeClipsSL..HJ` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ad6b0):
+  **Established effects; role unknown.** It reads a halfword at +0x64 and
+  a signed halfword at +8 of the first argument (`lhu` at 0x16ad6bc, `lh`
+  at 0x16ad6c4), then stores a halfword in its stack frame (`sh` at
+  0x16ad6f8). Later, when an indexed word is nonzero, the `beqz` at
+  0x16ad794 falls through to an indirect call with the original fifth
+  argument in `a0` and the first argument plus 0x54 in `a2` (`jalr` at
+  0x16ad7b0). The callback target and hardware effect are unknown. These
+  are selected effects of the 4648-byte 6.5.30m N32 routine.
+- `nfbMarkOverlappedWindows` (`usr/lib/X11/dyDDX/odyssey.so`, 0x162f640):
+  **Established effects; role unknown.** The `beqz` at 0x162f68c bypasses
+  the initial clearing path when the third argument is zero. On its
+  nonzero path the routine stores the original first argument through the
+  third argument (`sw` at 0x162f710). Its calls include `Xalloc` with 0x18
+  in `a0` (`jalr` at 0x162fe24). The wider algorithm and hardware effect
+  remain unknown; the 6.5.30m N32 body occupies 3172 bytes.
+- `miSetShape` (`usr/lib/X11/dyDDX/odyssey.so`, 0x170bcb0):
+  **Established effects; hardware effect unknown.** It reads the word at
+  +0x7c of the first argument (`lw` at 0x170bcbc). Calls include
+  `SetWinSize` and `SetBorderSize`, each receiving the original first
+  argument (`jalr` at 0x170bd70, `jalr` at 0x170bd7c), and
+  `ResizeChildrenWinSize`, receiving that argument and four zeros in the
+  following argument registers (`jalr` at 0x170bd98). These are selected
+  effects of the 812-byte 6.5.30m N32 body; its wider role is unknown.
+- `miMoveWindow` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1697260):
+  **Established effects; hardware effect unknown.** The `beqz` at
+  0x16972a0 takes the return path when the word at first argument +0x18 is
+  zero (`lw` at 0x1697270). The fall-through path includes calls to
+  `SetWinSize` with the original first three arguments (`jalr` at
+  0x1697374), `SetBorderSize` with the original first argument (`jalr` at
+  0x1697380), and `MoveWindowInStack` with the original first and fourth
+  arguments (`jalr` at 0x16973a4). The 6.5.30m N32 routine occupies 696
+  bytes; the wider role is unknown.
+- `miGetImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16abb10):
+  **Established.** The 6.5.30m N32 routine reads a byte at the first
+  argument's +2 (`lbu` at 0x16abb34). The `bne` at 0x16abb60 takes a
+  separate path when the sixth entry argument differs from 2 (`addiu` at
+  0x16abb48). On that path it calls `ffs` with the seventh entry argument
+  (`jalr` at 0x16abcc8), then calls `miGetPlane..IBB` with the first entry
+  argument and the `ffs` result minus 1 as its first two arguments (`jalr`
+  at 0x16abcec).
+
+  On the other path the `blez` at 0x16abbbc skips the following loop when
+  the fifth entry argument is nonpositive, interpreted as signed. The
+  loop's calls include an unresolved indirect routine (`jalr` at
+  0x16abbf8). It receives the original first and fourth arguments as its
+  first two arguments (`jalr` at 0x16abbf8). The callback target, the
+  routine's role and its hardware effects are unknown.
+- `miPolyText8` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16338f0):
+  **Established.** In the 6.5.30m N32 binary the routine reads a pointer at
+  the second entry argument's +0x2c (`lw` at 0x163391c). It calls
+  `GetGlyphs` with that pointer, the fifth and sixth entry arguments, and
+  zero as its first four arguments (`jalr` at 0x1633938). The `beqz` at
+  0x1633950 takes a return path when its tested register is zero, but the
+  facts tool does not resolve that register's value. On that path the
+  routine returns its third entry argument (`move` at 0x1633a9c, `jr` at
+  0x1633aa4).
+
+  On the other path, a later indirect call receives the original first four
+  arguments (`jalr` at 0x1633a64). Its target is unknown. The callback's
+  effect on hardware and the routine's role are unknown.
+- `miPolyText16` (`usr/lib/X11/dyDDX/odyssey.so`, 0x168bd90):
+  **Established.** The 6.5.30m N32 function reads a pointer from the second
+  entry argument's +0x2c (`lw` at 0x168bdb4) and an unsigned halfword at +0xa through that pointer (`lhu` at 0x168bddc). Its `GetGlyphs` call
+  receives that pointer, the fifth and sixth entry arguments, and either 2
+  or 3 as its fourth argument (`jalr` at 0x168bdf4). The facts tool reports
+  both possible values without resolving which applies.
+
+  After the call, the `beqz` at 0x168be0c takes the return path when its
+  tested register is zero. The facts tool cannot resolve that register;
+  this path returns the original third argument (`move` at 0x168bf5c, `jr`
+  at 0x168bf64). The other path includes an unresolved indirect call
+  (`jalr` at 0x168bf24). The routine's role and any hardware effect of that callback are unknown.
+- `miRectIn` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163d840):
+  **Established.** This 6.5.30m N32 function reads the first argument's +8
+  word (`lw` at 0x163d840). The `beqz` at 0x163d848 takes a separate path
+  when that pointer is zero. Otherwise it reads the word at +4 through the
+  pointer (`lw` at 0x163d850); `beqz` at 0x163d854 takes a path returning
+  zero when that word is zero (`move` at 0x163d8d8, `jr` at 0x163d8dc).
+
+  The remaining code compares signed halfwords from both arguments, including
+  the second argument's +0, +2, +4 and +6 halfwords (`lh` at 0x163d864,
+  `lh` at 0x163d85c, `lh` at 0x163d860, `lh` at 0x163d880). The function
+  returns values 0, 1 or 2 on its various paths (`move` at 0x163d8d8,
+  `addiu` at 0x163da6c, `move` at 0x163da78, `jr` at 0x163da7c). Their meaning and the
+  routine's role are unknown.
+- `miInverse` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16acb90):
+  **Established.** The 6.5.30m N32 routine reads a pointer from the second entry argument at +8
+  (`lw` at 0x16acb98). If it is nonzero, the routine reads a word at +4
+  through it (`lw` at 0x16acbc0); the `beqz` at 0x16acbc4 selects a
+  separate path when that word is zero. The `beqz` at 0x16acbb8 selects a
+  different path when the pointer itself is zero.
+
+  The routine calls `miRegionOp..IAB` on one path (`jalr` at 0x16acc4c).
+  It passes the original first argument, a pointer 96 bytes below the entry
+  stack pointer, and the original second argument as the first three
+  arguments (`jalr` at 0x16acc4c). The `beqz` at 0x16acc54 takes a zero-return path if the call
+  returns zero (`move` at 0x16acd78, `jr` at 0x16acd84). The routine's
+  role and hardware effect are unknown.
+- `nfbCheckSubSaveUnder..MG` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1566950):
+  **Established.** The `beqz` at 0x156699c takes a separate path when
+  argument 3 is zero and falls through when it is nonzero. On a later path
+  the routine calls itself with 1 as argument 3 (`bgezall` at 0x1566d74).
+  Its indirect calls include a call through an unknown target (`jalr` at
+  0x1566afc). Another path sets bit 0x1000000 in the word at argument 0 +
+  0x7c (`sw` at 0x1566f5c). Role unknown.
+- `nfbLineSD` (`usr/lib/X11/dyDDX/odyssey.so`, 0x158aad0):
+  **Established.** It loads the word at absolute address 0x173f440
+  (`lw` at 0x158aafc). The `bltz` at 0x158ab14 is taken when that word
+  is negative as a signed value; that path stores zero in a stack slot
+  (`sd` at 0x158e5f4). When the branch falls through, it reads through
+  argument 0 + 0x10 and then +0x1b4 before an indexed load (`lw` at
+  0x158ab1c, `lw` at 0x158ab20, `lw` at 0x158ab34). Its calls include an
+  indirect call with an unresolved target; argument 1 is 1 and argument 5
+  is the routine's original argument 0 (`jalr` at 0x158d274).
+  Role unknown.
+- `nfbValidateGC..CK` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15bfe40):
+  **Established.** It reads the first byte of argument 2 (`lbu` at
+  0x15bfe78). The `beqz` at 0x15bfe98 takes a separate path when that byte
+  is zero. Its delay slot reads the byte at +0x14 of an indexed structure
+  on both paths (`lbu` at 0x15bfe9c). On fall-through, the `beq` at
+  0x15bfea0 falls through if that byte differs from 1, and the routine
+  writes 1 at that location (`sb` at 0x15bfea8). Calls
+  include `Xfree` (`jalr` at 0x15bfebc). Role unknown.
+- `nfbSlideAndSizeWindow` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1603ae0):
+  **Established.** The `beqz` at 0x1603b6c takes a return path when the
+  word at argument 0 + 0x18 is zero (`lw` at 0x1603b1c). If the branch
+  falls through, a later path writes halfwords at argument 0 + 0xa and +8
+  (`sh` at 0x1603f64, `sh` at 0x1603f68), followed by the low halfwords
+  of arguments 3 and 4 at +0xc and +0xe (`sh` at 0x1603f6c, `sh` at
+  0x1603f74). Its calls include `Xalloc` (`jalr` at 0x1603be8). Role
+  unknown.
+- `nfbLayerValidateTreeSL` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160a6c0):
+  **Established.** If argument 1 is nonzero, the `bnez` at 0x160a730 is
+  taken; when it is zero, fall-through loads a word at argument 0 + 0x24
+  (`lw` at 0x160a738). The `beq` at 0x160a744 selects a separate path if
+  argument 2 equals 3. On the path where that comparison falls through, it
+  calls `nfbComputeUniverseSL..GJ` with the original argument 0 as
+  argument 0 and original argument 2 as argument 3 (`jalr` at 0x160a828).
+  A zero result takes the `beqz` at 0x160a838; a nonzero result falls
+  through. Role unknown.
