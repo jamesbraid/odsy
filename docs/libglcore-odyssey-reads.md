@@ -2621,3 +2621,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `ImageChainAddOpPixelTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
 
   **Established effects.** A nonzero `ImageChainOpCreate` result takes `bnez` at 0x3235078 into record setup (`jalr` at 0x3235070). The path stores 0xb at result offset 0, 1 at 0x14 and 0x32350f0 at 8 (`sw` at 0x3235090; `sw` at 0x3235098; `sd` at 0x32350b4). It ORs 0xe into the word at 0x10 before calling `ImageChainAddOp` (`lw` at 0x32350ac; `ori` at 0x32350c0; `sw` at 0x32350c4; `jalr` at 0x32350cc). The record fields and this pixel-texture setup have Unknown hardware roles.
+
+## 64-bit IP30 library: texture lookup and dispatch paths
+
+- `ImageChainDetermineChainType` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 384 bytes
+
+  **Established effects.** `beqz` at 0x3223338 falls through when the word at +0x38 of the doubleword at entry argument 0 +0x20 is nonzero (`ld` at 0x3223330; `lw` at 0x3223334). On that path, `beqz` at 0x3223348 falls through when the corresponding word through entry argument 0 +0x28 is nonzero (`ld` at 0x3223340; `lw` at 0x3223344). If both are nonzero, `beq` at 0x3223350 selects a store of 5 at argument 0 plus 0x1c for entry argument 1 equal to 0x1801 (`sw` at 0x3223464). Other paths also write that word (`sw` at 0x3223384, 0x32233a0); its meaning and the wider role of this chain classification are Unknown.
+- `ImageChainAddOpHistogramMinmax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+
+  **Established effects.** The `bnez` at 0x3234c28 takes setup when `ImageChainOpCreate` returns nonzero (`jalr` at 0x3234c20). That path writes 0xa at result offset 0, 1 at 0x14, and 0x3234ca0 at offset 8 (`sw` at 0x3234c48; `sw` at 0x3234c40; `sd` at 0x3234c64). It ORs 0xc into the word at offset 0x10 before calling `ImageChainAddOp` (`lw` at 0x3234c5c; `ori` at 0x3234c70; `sw` at 0x3234c74; `jalr` at 0x3234c7c). The record's hardware meaning and this operation's wider role are Unknown.
+- `FreeTextureObject` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+
+  **Established effects.** `beq` at 0x3263b44 skips `__glOdysseyDestroyPMObjGroup` when the word at entry argument 1 plus 0x504 equals -1 (`lw` at 0x3263b24; `jalr` at 0x3263b54). On fall-through, that call receives entry argument 0 and entry argument 1 plus 0x504 as its first two arguments (`jalr` at 0x3263b54; `daddiu` at 0x3263b58). Both paths reach an indirect call whose target is loaded from entry argument 0 plus 0x18 (`ld` at 0x3263b60; `jalr` at 0x3263b64). The indirect callee, its hardware effect and the broader object-release role are Unknown.
+- `__glLookUpTextureParams` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+
+  **Established effects.** `beq` at 0x3313ef8 selects the doubleword at entry argument 0 plus 0xab8 when entry argument 1 equals 0xde0 (`ld` at 0x3313f28). If that branch falls through, `beq` at 0x3313f00 selects the same loaded value plus 0xe0 for 0xde1 (`ld` at 0x3313f2c; `daddiu` at 0x3313f34). After both fall through, `beq` at 0x3313f08 selects that value plus 0x1c0 for 0x806f; its fall-through returns zero (`ld` at 0x3313f18; `daddiu` at 0x3313f20; `jr` at 0x3313f10). The returned values' hardware meaning and this lookup's wider role are Unknown.
+- `__glLookUpTextureTexobjs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+
+  **Established effects.** The `beq` at 0x3313f48 takes the 0xde0 path, returning the doubleword at entry argument 0 plus 0xab8 with 0xd8 added (`ld` at 0x3313f74; `daddiu` at 0x3313f7c). On fall-through, `beq` at 0x3313f50 selects an addition of 0x1b8 for entry argument 1 equal to 0xde1 (`ld` at 0x3313f80; `daddiu` at 0x3313f88). The final `beq` at 0x3313f58 selects an addition of 0x298 for 0x806f and falls through to return zero otherwise (`ld` at 0x3313f68; `daddiu` at 0x3313f70; `jr` at 0x3313f60). The returned values' meaning and this lookup's wider role are Unknown.
+- `SoftClipFirstTrianglesVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** It copies the byte at entry argument 0 +0x275 to argument 1 +0xc0 (`lbu` at 0x327ab4c; `sb` at 0x327ab54). Doubleword stores then put argument 0 +103712 at argument 0 +0x4e30 and 0x327ab00 at +0x4890 (`sd` at 0x327ab64, 0x327ab70). The roles of these fields and this triangle path are Unknown.
+- `SoftClipSecondTrianglesVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** The byte at entry argument 0 +0x275 is written to argument 1 +0xc0 (`lbu` at 0x327ab0c; `sb` at 0x327ab14). It stores argument 0 +104128 at argument 0 +0x4e30 and 0x327aa70 at +0x4890 as doublewords (`sd` at 0x327ab24, 0x327ab30). The stored values and the second-triangle path have Unknown roles.
+- `SoftClipFirstTriangleStripVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** Byte 1 is stored at entry argument 1 +0xc0 (`sb` at 0x327ad44). The subsequent doubleword writes place argument 0 +103712 at entry argument 0 +0x4e30 and 0x327ace0 at +0x4890 (`sd` at 0x327ad54, 0x327ad60). The strip fields and this routine’s broader hardware effect are Unknown.
+- `SoftClipFirstTriangleFanVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** The routine writes byte 1 at entry argument 1 +0xc0 and stores argument 0 +103712 as a doubleword at argument 0 +0x4e30 (`sb` at 0x327aea4; `sd` at 0x327aeb4). Its return delay slot stores 0x327ae30 at argument 0 +0x4890 (`jr` at 0x327aebc; `sd` at 0x327aec0). The fields and the fan setup’s broader role are Unknown.
+- `SoftClipFirstQuadsVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** A byte from entry argument 0 +0x275 is copied to argument 1 +0xc0 (`lbu` at 0x327b08c; `sb` at 0x327b094). It writes doublewords argument 0 +103712 at argument 0 +0x4e30 and 0x327b040 at +0x4890 (`sd` at 0x327b0a4, 0x327b0b0). The copied byte, stored values and quad path have Unknown roles.
+- `pack_ub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+
+  **Established effects.** If entry `a0` is zero, `beqz` at 0x32066b8 takes the return path (`jr` at 0x3206710). On one nonzero path it loads a word from entry `a1` and stores a byte from that value at entry `a2` (`lw` at 0x32066d0; `sb` at 0x32066dc). A later loop includes word loads and byte stores with bases hostfacts cannot resolve (`lw` at 0x32066f0, 0x3206700; `sb` at 0x32066f8, 0x320670c). The output bytes and the routine's hardware role remain Unknown.
+- `__glOdyssey_FastDispatchBase` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3374000
+
+  **Established effects.** It loads a doubleword from absolute 0x1ba0 and jumps to that value with entry `a0` through `a3` (`ld` at 0x3374000; `jr` at 0x3374004). The indirect target and the dispatch hardware role are Unknown. Hostfacts bounds this shared-address symbol at the next symbol, 128 bytes after its start; the remaining listed instructions are not reached by fall-through from this entry (`jr` at 0x3374004).
+- `__glOdyssey_FastDispatchVertexBase` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3376900
+
+  **Established effects.** A doubleword loaded from absolute 0x1ae0 supplies the target of an indirect tail jump, with entry `a0` through `a3` passed on (`ld` at 0x3376900; `jr` at 0x3376904). The jump target and this vertex dispatch's hardware role are Unknown. Hostfacts bounds this shared-address symbol at the next symbol, 256 bytes after its start; the remaining listed instructions are not reached by fall-through from this entry (`jr` at 0x3376904).
+- `__glOdysseyReconstructFromResidue` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 692 bytes
+
+  **Established effects.** A word equal to 1 at absolute 0x1030 makes `beq` at 0x32448a0 take the path calling `__glSetError` with `a0 = 0x502` (`lw` at 0x3244884; `jalr` at 0x3244b04). On another path, the routine performs unsigned halfword loads from addresses hostfacts cannot resolve (`lhu` at 0x324498c, 0x3244998, 0x32449b0, 0x32449c8). The multiply-add is followed by `beqz` at 0x3244a50; its taken path, selected when entry argument 5 is zero, contains a halfword store at an unknown address (`madd.s` at 0x3244a40; `sh` at 0x3244960). The computed value, destination and wider hardware effect are Unknown.
+- `__glOdysseyCvtToInternalFmt` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 756 bytes
+
+  **Established effects.** Entry `a2 = 0x1908` makes `beq` at 0x3245550 take the return path (`jr` at 0x32455dc). If it falls through, `beq` at 0x324555c selects another path for `a2 = 0x1906`. On a different path, `blez` at 0x3245588 falls through when entry `a1` is signed positive; later word stores include 0x3f800000 at addresses hostfacts cannot resolve (`swc1` at 0x32455b0, 0x32455c4, 0x32455c8). The addresses, data roles and wider hardware effects of these stores are Unknown.
