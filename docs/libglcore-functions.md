@@ -82,6 +82,29 @@ How the library is organised (all **inferred** from names):
 - `__glOdylc_Color4usv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9633c0): **established.**
   Size 324 bytes. It loads four unsigned shorts at vector offsets 0, 2, 4 and 6 (`lhu` at 0xd963468, 0xd963470, 0xd96347c and 0xd963484), writes them after token `0xc580d010` (`sw` at 0xd963464), and marks colour state dirty. The vector record is 20 bytes and advances the pending count by five. Established from the complete N32 routine at 0xd9633c0.
 
+### N32 colour-index command senders read from the 6.5.30 media build
+
+- `__glOdylc_Indexd` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963510): **established.**
+  Size 304 bytes. It converts the double argument to single precision (`cvt.s.d` at 0xd9635b8) and writes token `0xc580c407` followed by that float (`sw` at 0xd9635c0 and `swc1` at 0xd9635c4). The sender marks colour-index state dirty and advances an 8-byte, two-word display-list record. Established from the complete N32 routine at 0xd963510.
+- `__glOdylc_Indexdv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963640): **established.**
+  Size 304 bytes. It loads one double from vector offset 0 (`ldc1` at 0xd9636dc), converts it to a single, and emits token `0xc580c407` plus the result (`sw` at 0xd9636d8 and `swc1` at 0xd9636f4). The vector form consumes two list words and marks colour-index state dirty. Established from the complete N32 routine at 0xd963640.
+- `__glOdylc_Indexf` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963770): **established.**
+  Size 300 bytes. It stores the single-precision argument after token `0xc580c407` (`sw` at 0xd96381c and `swc1` at 0xd963820), marks the indexed-colour state dirty, and advances the list pointer by 8 bytes. A short list obtains two fresh words before writing. Established from the complete N32 routine at 0xd963770.
+- `__glOdylc_Indexfv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9638a0): **established.**
+  Size 300 bytes. It loads one float from vector offset 0 (`lwc1` at 0xd963948), writes it after token `0xc580c407` (`sw` at 0xd963944 and `swc1` at 0xd963950), and marks indexed-colour state dirty. The completed command occupies two display-list words. Established from the complete N32 routine at 0xd9638a0.
+- `__glOdylc_Indexi` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd9639d0): **established.**
+  Size 296 bytes. It emits the signed integer argument after token `0xc580c406` (`sw` at 0xd963a78 and 0xd963a7c), marks indexed-colour state dirty, and accounts for one two-word record. The list-space path retries after reserving two words. Established from the complete N32 routine at 0xd9639d0.
+- `__glOdylc_Indexiv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963b00): **established.**
+  Size 300 bytes. It reads the indexed-colour integer from the caller's vector and stores it after token `0xc580c406` (`sw` at 0xd963ba8 and 0xd963bb0). It sets the dirty state and advances the output pointer by 8 bytes, using the same two-word reservation path as the scalar sender. Established from the complete N32 routine at 0xd963b00.
+- `__glOdylc_Indexs` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963c30): **established.**
+  Size 296 bytes. It places the signed short argument in the second word after token `0xc580c406` (`sw` at 0xd963cd8 and 0xd963cdc), marks indexed-colour state dirty, and commits an 8-byte display-list command. If space is unavailable, it obtains a two-word span before retrying. Established from the complete N32 routine at 0xd963c30.
+- `__glOdylc_Indexsv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963d60): **established.**
+  Size 300 bytes. It loads the short vector element at offset 0 (`lh` at 0xd963e0c), writes token `0xc580c406` and the value (`sw` at 0xd963e08 and 0xd963e10), and marks indexed-colour state dirty. The vector path advances the list pointer by 8 bytes and the pending count by two. Established from the complete N32 routine at 0xd963d60.
+- `__glOdylc_Indexub` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963e90): **established.**
+  Size 296 bytes. It emits the unsigned-byte index after token `0xc580c406` (`sw` at 0xd963f38 and 0xd963f3c), marks indexed-colour state dirty, and consumes two display-list words. The scalar path reserves a new two-word span when the current list is full. Established from the complete N32 routine at 0xd963e90.
+- `__glOdylc_Indexubv` (`usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd963fc0): **established.**
+  Size 300 bytes. It loads the unsigned-byte vector element at offset 0 (`lbu` at 0xd96406c), stores it after token `0xc580c406` (`sw` at 0xd964068 and 0xd964070), and marks indexed-colour state dirty. The vector sender updates the pointer by 8 bytes and the count by two after a successful reservation. Established from the complete N32 routine at 0xd963fc0.
+
 ### o32 attribute setters read from the 6.5.30 media build
 
 - `__glOdyim_BlendEquationEXT` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`, address `0xd95d73c`): **established.**
