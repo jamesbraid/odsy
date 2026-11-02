@@ -3569,3 +3569,36 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   This 6.5.30 function occupies 2272 bytes at 0x16da1c0. It reads a word at entry `a1 +0x4c` (`lw` at 0x16da224) and calls `miZeroArcSetup` (`jalr` at 0x16da24c). One path reads a word from an unknown base (`lw` at 0x16da3f8), performs XOR (`xor` at 0x16da404), and stores a word with unknown value and destination (`sw` at 0x16da408). The destination and routine roles are unknown. Established.
 - `cfbZeroArcSS8Xor..AN` — `usr/lib/X11/dyDDX/odyssey.so`
   The 6.5.30 body occupies 2280 bytes at 0x16cdca0. It reads an unsigned halfword from entry `a2 +0x4` (`lhu` at 0x16cdd8c) and calls `miZeroArcSetup` (`jalr` at 0x16cdd2c). An unsigned halfword load from an unknown base (`lhu` at 0x16cded8) precedes an XOR (`xor` at 0x16cdee4) and a halfword store with unknown value and destination (`sh` at 0x16cdee8). The destination and routine roles are unknown. Established.
+
+## X span, line and glyph helpers
+
+- `cfb16FillSpanTileOddCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 2660 bytes):
+  **Established.** The code reads a word at entry `a4` +0x1c (`lw` at 0x16a1e54). On a path that reads the byte addressed by entry `a0`, `beq` takes an alternate path if the byte equals 1 (`lbu` at 0x16a1ea4; `beq` at 0x16a1eac). A later path includes a word store with unknown destination base and value (`sw` at 0x16a1fb8). The routine's role and hardware effect are unknown.
+- `mfbBresS` (`usr/lib/X11/dyDDX/odyssey.so`, 2672 bytes):
+  **Established.** It loads a word from entry stack pointer +0xc (`lw` at 0x16533ac). The `beqz` takes the return path when register `t0`, whose value is unknown at the branch, is zero (`beqz` at 0x16533ec). On another path `bltz` selects a branch when register `t3`, whose value is unknown at the branch, is signed negative; its delay-slot word store runs on both paths (`bltz` at 0x165349c; `sw` at 0x16534a0). That store's base and value, the function's role, and its hardware effect are unknown.
+- `cfb16SegmentSS1RectCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 2720 bytes):
+  **Established.** It reads the byte addressed by entry `a0` and a word at 0x173f440 (`lbu` at 0x1613ee0; `lw` at 0x1613f10). `bltz` takes a separate path if the latter word is signed negative (`bltz` at 0x1613f28). A later halfword store has an unknown base and takes its value from a record selected via entry `a1` (`sh` at 0x1614044). The routine's role and the destination's hardware effect are unknown.
+- `cfb32SegmentSS1RectXor` (`usr/lib/X11/dyDDX/odyssey.so`, 2748 bytes):
+  **Established.** The routine loads the word at 0x173f440; `bltz` takes a different path if the word is signed negative (`lw` at 0x1683914; `bltz` at 0x1683928). A later path includes a word store whose base and value are unknown (`sw` at 0x1683a68). The function's role and hardware effect are unknown.
+- `mfbTEGlyphBltWhite` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 routine occupies 2772 bytes at 0x15632e0. It loads words from entry `a1 +0x2c` and `a1 +0x14` (`lw` at 0x15632e0, 0x1563304). Its calls include `mfbImageGlyphBltWhite` (`jalr` at 0x15638d4); a separate indirect call has an unknown target (`jalr` at 0x15633e4). The routine also writes a word of unknown value to an unknown destination (`sw` at 0x15635fc); the routine's role and that destination's hardware effect are unknown. Established.
+- `cfb16FillRectSolidXor` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 the body occupies 2792 bytes at 0x162bf50. It reads a byte at entry `a0` (`lbu` at 0x162bf70) and a word at entry `a1 +0x4c` (`lw` at 0x162bfbc). Its stores include a word with unknown value and destination (`sw` at 0x162c040); the routine's role is unknown. Established.
+- `cfbFillBoxTileOddCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  This 6.5.30 function occupies 2792 bytes at 0x16e0cd0. It loads a word at entry `a3 +0x1c` (`lw` at 0x16e0cfc), and unsigned halfwords at entry `a3 +0xc` and `a3 +0xe` (`lhu` at 0x16e0d18, 0x16e0d2c). A word store has unknown value and destination (`sw` at 0x16e1044); the routine's role is unknown. Established.
+- `cfb32DoBitbltCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 routine occupies 2800 bytes at 0x1722230. It reads bytes at entry `a0` and `a1` (`lbu` at 0x1722240, 0x1722280), and reads a word at entry `a3 +0x8` (`lw` at 0x17222d0). Its writes include a word of unknown value to an unknown destination (`sw` at 0x1722818); the routine's role is unknown. Established.
+- `cfb16FillBoxTileOddCopy` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 function occupies 2808 bytes at 0x16076e0. It loads an unsigned halfword at entry `a3 +0xc` (`lhu` at 0x1607728) and a word at entry `a3 +0x20` (`lw` at 0x1607754). Its stores include a word with unknown value and destination (`sw` at 0x1607a64); the routine's role is unknown. Established.
+- `miFillConvexPoly` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 routine occupies 3212 bytes at 0x16f15a0. It loads a signed halfword at entry `a3 +0x2` (`lh` at 0x16f15a8), and later reads a word at entry `a1 +0x48` (`lw` at 0x16f1ff0). Its effects include a word store with unknown value and destination (`sw` at 0x16f1a84) and an indirect call to an unknown target (`jalr` at 0x16f2014). The routine's role is unknown. Established.
+- `cfb8LineSS1RectXor` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 the function occupies 3236 bytes at 0x160b3d0. It reads a word from entry `a1 +0x4c` (`lw` at 0x160b424), and a signed halfword from entry `a0 +0xa` (`lh` at 0x160b448). Its stores include a byte with unknown value and destination (`sb` at 0x160b5d0); the routine's role and destination are unknown. Established.
+- `cfb16SetSpans` — `usr/lib/X11/dyDDX/odyssey.so`
+  This 6.5.30 routine occupies 3304 bytes at 0x16e7bd0. It loads a byte at entry `a1 +0x5` (`lbu` at 0x16e7bd0) and a word at entry `a1 +0x4c` (`lw` at 0x16e7c14). A word store has unknown value and destination (`sw` at 0x16e7f30); the routine's role and destination are unknown. Established.
+- `cfbSetSpans` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 body occupies 3336 bytes at 0x1710420. It reads a byte from entry `a1 +0x5` (`lbu` at 0x1710420), a word from entry `a1 +0x4c` (`lw` at 0x1710464), and a byte from entry `a0` (`lbu` at 0x1710474). Its writes include a word with unknown value and destination (`sw` at 0x171078c); the routine's role and destination are unknown. Established.
+- `cfb32LineSS1RectXor` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 this function occupies 3364 bytes at 0x1703510. It reads a word from entry `a0 +0x10` (`lw` at 0x170353c), a word from entry `a1 +0x4c` (`lw` at 0x170355c), and a signed halfword from entry `a0 +0xa` (`lh` at 0x1703598). One word store has an unknown value and destination (`sw` at 0x1703740); the routine's role and destination are unknown. Established.
+- `cfb16LineSS1RectGeneral` — `usr/lib/X11/dyDDX/odyssey.so` — 3552 bytes
+  **Established.** It reads the word at 0x173f440, named `miZeroLineScreenIndex` (`lw` at 0x16de40c). The `bltz` at 0x16de428 is taken for a negative signed value and falls through for a nonnegative value. It reads the first byte of the first argument and a word at the second argument plus 0x4c (`lbu` at 0x16de448; `lw` at 0x16de450). The routine's role is unknown.
