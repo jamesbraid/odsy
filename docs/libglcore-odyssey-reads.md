@@ -2122,3 +2122,53 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysseyElementsSep_N3S_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
   - **Established effects.** The loop's ordered stores to absolute 0x10000 are 0xc180cc17, three Unknown words, 0x8080cc03 and three Unknown words (`sw` at 0x3367d9c, 0x3367da0, 0x3367da4, 0x3367da8, 0x3367dac, 0x3367db0, 0x3367db4, 0x3367db8). It reads four words and three halfwords from addresses hostfacts leaves Unknown (`lw` at 0x3367d60, 0x3367d90, 0x3367d94, 0x3367d98; `lh` at 0x3367d84, 0x3367d88, 0x3367d8c).
   - `bne` is taken back to the loop when its Unknown tested value is nonzero (`bne` at 0x3367dbc). The hardware roles of the values are Unknown. The wider role of the routine is Unknown.
+
+## 64-bit IP30 library: filters and indexed element paths
+
+- `__glOdysseySetImaginaryLerpEvenOdd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 552 bytes
+  - **Established.** `beqz` at 0x3212b38 branches to return for zero argument 0 and falls through when nonzero. The fall-through stores 0x3f000000 at argument 0 + 0x1fc and calls `__rcis` (`swc1` at 0x3212b58; `jalr` at 0x3212bd8).
+  - Subsequent stores include zero at +0x244 and 1 at +0x21c of argument 0 (`sw` at 0x3212be4, 0x3212c88). The destination fields' hardware roles and the routine’s broader role are Unknown.
+- `__glOdysseySetRealLerpOddOdd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 548 bytes
+  - **Established.** It writes 0x3f000000 at argument 0 + 0x1fc and calls `__rcis` (`swc1` at 0x3212d80; `jalr` at 0x3212e04). Later writes include zero at +0x244 and 1 at +0x230 (`sw` at 0x3212e10, 0x3212e64). The fields' hardware effects and the routine’s broader role are Unknown.
+- `__glOdysseySetImaginaryLerpOddOdd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 552 bytes
+  - **Established.** `beqz` at 0x3212f98 selects return when argument 0 is zero and falls through when nonzero. That fall-through writes 0x3f000000 at argument 0 + 0x1fc, then calls `__rcis` (`swc1` at 0x3212fb8; `jalr` at 0x3213038).
+  - Later stores include zero at +0x244 and 1 at +0x234 (`sw` at 0x3213044, 0x3213088). The destination fields' hardware roles and the routine’s broader role are Unknown.
+- `__glOdysseySetSkewLerp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1796 bytes
+  - **Established.** The function calls `printf` (`jalr` at 0x32131e8). Its subsequent word stores include zero at argument 0 + 0x7e4 and 1 at +0xaa4 (`sw` at 0x32131f8, 0x32133f8). The hardware role of these record writes and the routine’s broader role are Unknown.
+- `__glOdysseySPBalloc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 80 bytes
+
+  **Established effects.** It reads a word at entry `a1` (`lw` at 0x3209e10). When that word is unsigned less than 0x400, `beqz` at 0x3209e2c falls through to store 0x400 back at entry `a1` (`sw` at 0x3209e38). Both arms continue to an indirect call with entry `a0` in `a0`; its target and `a1` argument are Unknown (`jalr` at 0x3209e48). The field's role and the routine's broader role are Unknown.
+- `__glOdysseySPBfree` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+
+  **Established effects.** It loads a doubleword at entry `a0 + 0x18` as an indirect call target (`ld` at 0x3209e74; `jalr` at 0x3209e7c). The call receives entry `a0` through `a3`, and its result is returned (`jalr` at 0x3209e7c; `jr` at 0x3209e8c). The target's role, hardware effect and routine's broader role are Unknown.
+- `__glOdysseySPCompMachdep` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+
+  **Established effects.** It calls `makeDLState` with entry `a0` through `a3` (`bgezall` at 0x3209ec4). A zero doubleword at entry `a1 + 0x28` makes `beqz` at 0x3209edc take the path storing 0x3209c00 at entry `a1 + 0x10` (`ld` at 0x3209ecc; `sd` at 0x3209f04). If nonzero, the branch falls through to store 0x3209b00 at that field (`sd` at 0x3209eec). The fields' roles and the routine's broader role are Unknown.
+- `__glOdysseyDoGet` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2176 bytes
+
+  **Established effects.** A word equal to 1 at absolute 0x1030 makes `beq` at 0x321a0ac take the path calling `__glSetError` with `a0 = 0x502` (`lw` at 0x321a08c; `jalr` at 0x321a664). Other paths include calls to `__glOdysseyUpdateRasterPos`, `__glOdyGetFromShadow`, `__glConvertResult`, and `__glDoGet` (`bgezall` at 0x321a1b0, 0x321a27c; `jalr` at 0x321a144, 0x321a1c8). These are selected paths; the hardware effects and the routine's broader role are Unknown.
+- `__glOdysseyRasterPosGeneral` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1388 bytes
+
+  **Established effects.** It copies four words from entry `a1` offsets 0, 4, 8 and 0xc to entry `a0` offsets 0x1b0, 0x1b4, 0x1b8 and 0x1bc (`lwc1` at 0x325e97c, 0x325e98c, 0x325e998, 0x325e9a4; `swc1` at 0x325e988, 0x325e994, 0x325e9a0, 0x325e9b0). Calls include `__glClipCheckAll` and `__glOdysseyUpdateRasterPos` (`jalr` at 0x325ea08, 0x325eec0). On reaching `beqz` at 0x325eaa0, a zero word at absolute 0x1030 takes a path that stores words to absolute 0x10000, including 0x3cf8, 0x3cf9, 0x3cfa and 0x3cfb, with zero stores between them (`lw` at 0x325ea9c; `sw` at 0x325eb38, 0x325eb80, 0x325ebc8, 0x325ec10; `sw` at 0x325eb3c, 0x325eb84, 0x325ebcc). The destination's hardware role and the routine's broader role are Unknown.
+- `__glOdysseyElementsInt_T2F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  - **Established effects.** The loop writes 0xc380c821, two Unknown words, 0x8080cc03 and three more Unknown words to absolute 0x10000 (`sw` at 0x3367e30, 0x3367e34, 0x3367e38, 0x3367e3c, 0x3367e40, 0x3367e44, 0x3367e48). Its six word loads have addresses hostfacts leaves Unknown (`lw` at 0x3367e0c, 0x3367e1c, 0x3367e20, 0x3367e24, 0x3367e28, 0x3367e2c).
+  - The `bne` takes the loop back when its tested value is nonzero; the value is Unknown in hostfacts (`bne` at 0x3367e4c). The hardware roles of the stored values and the routine’s broader role are Unknown.
+- `__glOdysseyElementsSep_T2F_V3F` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  - **Established effects.** The ordered stores on a pass to process address 0x10000 are 0xc380c821, two Unknown words, 0x8080cc03 and three Unknown words (`sw` at 0x3367ed8, 0x3367edc, 0x3367ee0, 0x3367ee4, 0x3367ee8, 0x3367eec, 0x3367ef0). Six word loads use Unknown addresses (`lw` at 0x3367ea0, 0x3367ec4, 0x3367ec8, 0x3367ecc, 0x3367ed0, 0x3367ed4).
+  - `bne` returns to the loop for a nonzero tested value, which hostfacts leaves Unknown (`bne` at 0x3367ef4). The stored values and the routine’s broader hardware role are Unknown.
+- `PackQuadLerpTree` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1128 bytes
+  - **Established effects.** It saves entry argument 0 at entry sp -0x48 (`sd` at 0x3211cb8). It also saves the values formed by adding 676, 672 and 668 to that argument at entry sp -0xd0, -0xd8 and -0xb8 respectively (`sd` at 0x3211cc0, 0x3211cc8, 0x3211cd0). This describes the initial stack setup; the routine’s broader role is Unknown.
+- `__glOdysseyMap1DFilterToAlphas` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2248 bytes
+  - **Established.** It reads the process word at 0x1030; `beq` at 0x3247204 takes `__glSetError` with 0x502 when the word equals 1 and falls through otherwise (`lw` at 0x32471e4; `jalr` at 0x3247a68).
+  - On fall-through, `beq` at 0x3247218 takes a separate path when argument 2 equals 2 and falls through otherwise. The routine's calls include `__glOdysseyProgramConvolutionFilter`, with original argument 0 as its second argument and argument 2 minus 1 as its third on one path (`bgezall` at 0x324732c). One preceding floating-point word store has an Unknown destination in the facts report (`swc1` at 0x3247288). The routine’s broader role and hardware effects are Unknown.
+- `__glOdysseyMap2DFilterToAlphas` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 6508 bytes
+  - **Established.** `bnez` at 0x32458a0 takes a dispatch path when argument 2 is unsigned less than 0xe and falls through otherwise. The fall-through reads a doubleword at argument 0 + 0x20 and copies a floating-point word from an Unknown base to another Unknown base (`ld` at 0x32458d4; `lwc1` at 0x32458dc; `swc1` at 0x32458e4).
+  - `bne` at 0x3245970 repeats that block while the compared values differ and falls through when equal. The following call to `__glOdysseyProgramConvolutionFilter` passes original argument 0 as its second argument and argument 2 minus 1 as its third (`bgezall` at 0x3245990). The facts report does not resolve the indirect dispatch targets. The routine’s broader role and hardware effects are Unknown.
+- `__glOdysseyComputeLightState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 784 bytes
+  - **Established.** It reads the word at argument 0 + 0xf68 (`lw` at 0x3285398). `blez` at 0x32853b8 branches to the exit path when that word is nonpositive signed and falls through when positive.
+  - On a later path, `beqz` at 0x3285420 skips `__glFreeSpecLUT` when its tested value is zero and falls through to that call when nonzero (`jalr` at 0x328542c). Both paths reach `__glCreateSpecLUT` (`jalr` at 0x328543c). The floating-point results, broader role and hardware effects are Unknown.
+- `__glOdysseyVisualsMatch` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  - **Established.** The routine compares the word at argument 1 + 0 with argument 0 + 0xde0 (`lw` at 0x326e244, 0x326e240). `bne` at 0x326e248 takes the return-zero path when unequal and falls through when equal (`dli` at 0x326e294).
+  - On reaching it, `beqz` at 0x326e26c branches when the byte at argument 1 + 4 is zero and falls through when nonzero (`lbu` at 0x326e268). The taken path compares the words at +0x24 of arguments 1 and 3; `bne` at 0x326e2a0 returns zero when unequal and falls through to return 1 when equal (`lw` at 0x326e298, 0x326e29c; `dli` at 0x326e2ac). The routine’s broader role and hardware relevance are Unknown.
+- `__glOdysseyInitAsyncState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  - **Established.** The body returns through the link register with a no-operation delay slot (`jr` at 0x31ea1b0; `nop` at 0x31ea1b4). Its wider role and hardware effect are Unknown.
