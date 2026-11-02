@@ -2578,3 +2578,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - On fall-through, `beqz` at 0x3284d6c is taken when mask 0x100 of the word at [0x1020]:8 +0x814 is zero; its nonzero fall-through updates that word and sets mask 0x510 in +0x18e58 (`lw` at 0x3284d5c, 0x3284d78; `andi` at 0x3284d60; `beqz` at 0x3284d6c; `sw` at 0x3284d74, 0x3284d80; `ori` at 0x3284d7c). The fields and the broader end path have Unknown hardware roles.
 - `SoftClipPointVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
   - **Established effects.** It stores entry argument 1 as a doubleword at argument 0 +0x8cd8 and reads the word at argument 1 +0x4 (`sd` at 0x327bb18; `lw` at 0x327bb1c). `beqz` is taken when that word is zero and calls the indirect target loaded from argument 0 +0x4cb0; hostfacts leaves the target Unknown (`beqz` at 0x327bb30; `ld` at 0x327bb44; `jalr` at 0x327bb4c). The fields and the point-vertex path have Unknown hardware roles.
+
+## 64-bit IP30 library: packing and image render paths
+
+- `makeDLState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 456 bytes
+
+  **Established effects.** It calls an unknown indirect target with entry `a0` and 0x44 in `a1` (`jalr` at 0x3209c5c). Its result is stored as a doubleword at entry `a1 + 0x28` in the delay slot of `beqz` at 0x3209c6c (`sd` at 0x3209c70). The branch takes the return path when the result is zero (`jr` at 0x3209df8). If it falls through, the routine reads a byte at entry `a0 + 0x18ed0`; zero makes `beqz` at 0x3209c80 take a path that clears a byte at the call result plus 0x28 (`lbu` at 0x3209c7c; `sb` at 0x3209e04). The indirect target, the fields' roles and the wider purpose of this state setup are Unknown.
+- `ExecuteDlistNomem` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+
+  **Established effects.** It calls `__glSetError` with 0x505 in `a0` (`jalr` at 0x3209c1c). The call result is returned after the saved return address and global pointer are reloaded (`ld` at 0x3209c24, 0x3209c28; `jr` at 0x3209c2c). The error call's hardware effect and the purpose of this path are Unknown.
+- `pack_b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+
+  **Established effects.** A zero entry `a0` makes `beqz` at 0x3206798 take the return path (`jr` at 0x32067f0). When `beqz` at 0x32067a4 falls through for an Unknown tested value, it loads a word at entry `a1` and stores a byte from that value at entry `a2` (`lw` at 0x32067b0; `sb` at 0x32067bc). A later loop includes word loads and byte stores with bases hostfacts cannot resolve (`lw` at 0x32067d0, 0x32067e0; `sb` at 0x32067d8, 0x32067ec). The packed bytes' hardware role and this routine's broader purpose are Unknown.
+- `pack_s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+
+  **Established effects.** The `beqz` at 0x3206808 returns when entry `a0` is zero (`jr` at 0x3206860). When `beqz` at 0x3206814 falls through for an Unknown tested value, a word at entry `a1` supplies a halfword store at entry `a2` (`lw` at 0x3206820; `sh` at 0x320682c). A subsequent loop contains two word loads and two halfword stores whose bases are Unknown (`lw` at 0x3206840, 0x3206850; `sh` at 0x3206848, 0x320685c). The halfword output's hardware role and the purpose of this packing path are Unknown.
+- `pack_us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+
+  **Established effects.** If entry `a0` is zero, `beqz` at 0x3206728 takes the return path (`jr` at 0x3206780). When `beqz` at 0x3206734 falls through for an Unknown tested value, it reads a word from entry `a1` and writes its low halfword at entry `a2` (`lw` at 0x3206740; `sh` at 0x320674c). Later loop accesses include word loads and halfword stores at addresses hostfacts cannot resolve (`lw` at 0x3206760, 0x3206770; `sh` at 0x3206768, 0x320677c). The halfword data's hardware role and this routine's wider purpose are Unknown.
+- `__glOdyim_SoftClipMaterialf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  - **Established effects.** It stores $f14 at entry sp -0x10 (`swc1` at 0x3281954). `beq` is taken for entry argument 1 equal to 0x1601, calling `__glOdyim_SoftClipMaterialfv` with the first two entry arguments and entry sp -0x10 (`beq` at 0x328196c; `bgezall` at 0x3281994). The branch's fall-through calls `__glSetError` with 0x500 (`jalr` at 0x3281978). The hardware effect of this material dispatch and its wider role are Unknown.
+- `__glOdyim_SoftClipMateriali` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  - **Established effects.** Entry argument 2 is saved as a word at entry sp -0xc (`sw` at 0x3281ea4). For entry argument 1 equal to 0x1601, `beq` is taken to `__glOdyim_SoftClipMaterialiv`, passing the first two entry arguments and entry sp -0xc (`beq` at 0x3281ebc; `bgezall` at 0x3281ee4). When the `beq` falls through, it calls `__glSetError` with 0x500 (`jalr` at 0x3281ec8). The hardware effect of the integer material path and its wider role are Unknown.
+- `SoftClipFirstLinesVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** It stores entry argument 0 +103712 at argument 0 +0x4e30 and 0x327b680 at +0x4890 as doublewords (`sd` at 0x327b71c, 0x327b728). The latter store runs in the return delay slot (`jr` at 0x327b724). The fields and the lines-vertex routine have Unknown hardware roles.
+- `SoftClipFirstLineLoopVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** Its doubleword writes place entry argument 0 +103712 at argument 0 +0x4e30 and 0x327b940 at +0x4890 (`sd` at 0x327b9fc, 0x327ba08). The second executes in the `jr` delay slot (`jr` at 0x327ba04). The stored fields and this line-loop path have Unknown hardware roles.
+- `SoftClipFirstLineLoopVertexPartial` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** It writes entry argument 0 +103712 at argument 0 +0x4e30, then 0x327ba50 at +0x4890 (`sd` at 0x327babc, 0x327bac8). Both stores are doublewords and the latter is in the return delay slot (`jr` at 0x327bac4). The two destinations and this partial line-loop path have Unknown hardware roles.
+- `RenderFunc_ColorZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+
+  **Established effects.** It supplies doublewords at offsets 0x60 and 0x58 of entry argument 0 as the first two arguments to `__glOdysseyImageMovePixelsTexture` (`ld` at 0x323a0cc; `ld` at 0x323a0e0; `jalr` at 0x323a0dc). Entry argument 1 is passed as argument 2 and 1 as argument 3 (`jalr` at 0x323a0dc). It returns 1 after that call (`addiu` at 0x323a0e8; `jr` at 0x323a0f0). The callee’s hardware effect and the wider purpose of this color-zoom path are Unknown.
+- `RenderFunc_IndexZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+
+  **Established effects.** The call to `__glOdysseyImageMovePixelsTexture` uses the doublewords at entry argument 0 plus 0x60 and 0x58, followed by entry argument 1 and the constant 1 (`ld` at 0x323a1ac; `ld` at 0x323a1c0; `jalr` at 0x323a1bc). On return from the call the routine sets its own result to 1 (`addiu` at 0x323a1c8; `jr` at 0x323a1d0). The hardware effect of the pixel-move call and the role of this index-zoom path are Unknown.
+- `RenderFunc_Interlace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 200 bytes
+
+  **Established effects.** Before calling `__glOdysseyImageMovePixelsTexture`, it writes either 0 or 1 to byte offset 0xc of each doubleword referenced at entry argument 0 offsets 0x58 and 0x60 (`ld` at 0x323a2cc, 0x323a2e0; `sb` at 0x323a2d0, 0x323a2f4; `jalr` at 0x323a300). After the call it clears those two bytes, the second in the return delay slot (`sb` at 0x323a314, 0x323a32c; `jr` at 0x323a328). The byte roles, hardware effect of the call and purpose of this interlace path are Unknown.
+- `RenderFunc_IndexShiftOffset` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 192 bytes
+
+  **Established effects.** It copies the words at entry argument 0 offsets 0x28 and 0x38 to stack locations (`lwc1` at 0x323a420; `swc1` at 0x323a428; `lwc1` at 0x323a42c; `swc1` at 0x323a430). It also loads and truncates floating-point words from entry argument 1, including the words at offsets 0 and 0x1c (`lwc1` at 0x323a434; `trunc.w.s` at 0x323a438; `lwc1` at 0x323a48c; `trunc.w.s` at 0x323a4a4). The routine calls `__glOdysseyImageConvertHostImage` and returns 1 (`bgezall` at 0x323a4c4; `addiu` at 0x323a4d0; `jr` at 0x323a4d8). The conversion’s hardware effect and the purpose of this index-shift path are Unknown.
+- `ImageChainAddOpPixelTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+
+  **Established effects.** A nonzero `ImageChainOpCreate` result takes `bnez` at 0x3235078 into record setup (`jalr` at 0x3235070). The path stores 0xb at result offset 0, 1 at 0x14 and 0x32350f0 at 8 (`sw` at 0x3235090; `sw` at 0x3235098; `sd` at 0x32350b4). It ORs 0xe into the word at 0x10 before calling `ImageChainAddOp` (`lw` at 0x32350ac; `ori` at 0x32350c0; `sw` at 0x32350c4; `jalr` at 0x32350cc). The record fields and this pixel-texture setup have Unknown hardware roles.
