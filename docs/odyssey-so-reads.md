@@ -3093,3 +3093,121 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   and `AllocateGCPrivate` with `a2` 0x70 (`jalr` at 0x16c8310). These are
   selected effects; the wider role is unknown. The 6.5.30m N32 routine
   occupies 3224 bytes.
+
+## X image, arc and span helpers
+
+- `cfbCopyRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 872 bytes):
+  **Established.** A zero word addressed by argument 1 makes `beqz` take a separate path (`lw` at 0x1672320; `beqz` at 0x1672334). On the nonzero path the routine can call `memmove` (`jalr` at 0x1672368). Its other calls include `cfbXRotatePixmap` and `cfbYRotatePixmap` (`jalr` at 0x1672460; `jalr` at 0x167247c). The routine’s role and hardware effect are unknown.
+- `miBSCopyArea..HDB` (`usr/lib/X11/dyDDX/odyssey.so`, 872 bytes):
+  **Established.** It loads the word at +0x44 of argument 2 (`lw` at 0x16c6c64) and writes selected-record words to argument 2 at +0x48 and +0x44 (`lw` at 0x16c6cb8; `sw` at 0x16c6cc4; `lw` at 0x16c6cd0; `sw` at 0x16c6cdc). The second store runs in the delay slot of `beq`, which takes a distinct path when arguments 0 and 1 are equal (`beq` at 0x16c6cd8; `sw` at 0x16c6cdc). An indirect call on another path has an unknown destination (`jalr` at 0x16c6e04). The routine’s role and hardware effect are unknown.
+- `cfb16CopyRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 872 bytes):
+  **Established.** It tests the word addressed by argument 1; `beqz` takes the alternate path when the word is zero (`lw` at 0x1701e00; `beqz` at 0x1701e14). The nonzero path can call `memmove` (`jalr` at 0x1701e48), while later call sites include `cfb16XRotatePixmap` and `cfb16YRotatePixmap` (`jalr` at 0x1701f3c; `jalr` at 0x1701f58). The routine’s role and hardware effect are unknown.
+- `miWindowExposures` (`usr/lib/X11/dyDDX/odyssey.so`, 880 bytes):
+  **Established.** It reads a word at +0x74 of argument 0, and `beqz` takes a separate path when the word is zero (`lw` at 0x16b63fc; `beqz` at 0x16b641c). Calls include an unknown indirect target (`jalr` at 0x16b6484) and `miSendExposures` (`jalr` at 0x16b6534). The routine’s role and hardware effect are unknown.
+- `miBSCopyPlane..IDB` (`usr/lib/X11/dyDDX/odyssey.so`, 900 bytes):
+  **Established.** The function reads argument 2's word at +0x44 (`lw` at 0x16c7e94) and replaces words at +0x48 and +0x44 with words from a selected record (`lw` at 0x16c7ee8; `sw` at 0x16c7ef4; `lw` at 0x16c7f00; `sw` at 0x16c7f0c). The `beq` takes a different path when arguments 0 and 1 are equal; its delay-slot store runs on both paths (`beq` at 0x16c7f08; `sw` at 0x16c7f0c). One later call goes to an unknown indirect target (`jalr` at 0x16c8044). The routine’s role and hardware effect are unknown.
+- `miCopyPlane` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171bf70):
+  **Established effects; hardware effect unknown.** It reads a byte from
+  the first argument (`lbu` at 0x171c0b4). If the byte equals 1, the `beq`
+  at 0x171c0bc selects a path that skips an intervening indirect call
+  (`jalr` at 0x171c0e8). Another call reaches `miHandleExposures` with the
+  original first four arguments (`jalr` at 0x171c198). The remaining role
+  is unknown; the 6.5.30m N32 body occupies 900 bytes.
+- `miFillWideEllipse` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16a5340):
+  **Established effects; role unknown.** It calls
+  `miComputeWideEllipse..MN` with the second argument's halfword at +6 in
+  `a0` and the original third argument in `a1` (`lhu` at 0x16a5348, `jalr`
+  at 0x16a53a0). A zero return takes the `beqz` at 0x16a53a8 to the return
+  path (`jr` at 0x16a568c). The nonzero path includes a call to `Xfree`
+  with the helper's result (`jalr` at 0x16a5638). The hardware effect is
+  unknown; the 6.5.30m N32 routine occupies 904 bytes.
+- `cfb16SolidSpansCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 0x162de20):
+  **Established effects; role unknown.** The `beqz` at 0x162df2c takes a
+  return path if register `sp` is zero; its value is unknown.
+  On a later path it calls `miClipSpans` with the original fourth,
+  fifth and third arguments in `a1`, `a2` and `a3`, respectively (`jalr` at
+  0x162df6c). Subsequent stores include a word written to an unresolved
+  destination (`sw` at 0x162e010). The hardware effect is unknown. The
+  6.5.30m N32 routine occupies 912 bytes.
+- `cfb32FillSpanTile32sGeneral` (`usr/lib/X11/dyDDX/odyssey.so`,
+  0x163c250): **Established effects; role unknown.** It reads halfwords
+  from the fifth argument at +0xc (`lhu` at 0x163c258) and +0xe (`lhu` at 0x163c260) and a word at +0x20 (`lw` at 0x163c268). The `beq` at
+  0x163c294 selects an alternate path when the first byte of the first
+  argument is 1 (`lbu` at 0x163c278). The routine has no calls in the
+  listing; its hardware effect is unknown. The 6.5.30m N32 body occupies
+  916 bytes.
+- `miSubtractO..MAB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15aeff0):
+  **Established effects; role unknown.** On one path the `beqz` at
+  0x15af244 is taken when the word at first argument +8 is zero (`lw` at
+  0x15af240). It calls `Xalloc` with `a0` 0x18 (`jalr` at 0x15af304) and
+  stores that result at first argument +8 (`sw` at 0x15af30c). The call
+  list also includes `miRectAlloc` with the first argument and 1 in `a1`
+  (`jalr` at 0x15af350). The hardware effect is unknown. This 6.5.30m N32
+  body occupies 936 bytes.
+- `cfb32SolidSpansXor` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16802f0):
+  **Established.** The 6.5.30m N32 body uses `cfb32GCPrivateIndex` to
+  index the second argument's +0x4c array (`lw` at 0x1680314, `lw` at
+  0x1680318, `lw` at 0x168032c). It reads words at +8 and +0xc of the
+  resulting object (`lw` at 0x1680334, `lw` at 0x1680354). The routine
+  calls `miClipSpans`, passing the original fourth, fifth and third
+  arguments as the call's second, third and fourth arguments (`jalr` at 0x168044c).
+
+  The `blez` at 0x1680484 takes the return path when the `miClipSpans`
+  result is nonpositive as a signed value. On a positive-result path it
+  reads, XORs and writes words (`lw` at 0x1680554, `xor` at 0x168055c,
+  `sw` at 0x1680564). The facts tool cannot resolve the destination base;
+  its hardware effect and role are unknown.
+- `mfbXRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x169d870):
+  **Established.** The 6.5.30m N32 routine's `beqz` at 0x169d878 takes the
+  return path when the first argument is zero. Otherwise it reads an
+  unsigned halfword at first argument +0xc (`lhu` at 0x169d884). The `bne`
+  at 0x169d8c0 selects a path that calls `ErrorF` when that halfword is not
+  0x20 (`jalr` at 0x169db70).
+
+  On the equal path it reads the first argument's word at +0x20 and unsigned
+  halfword at +0xe (`lw` at 0x169d8b8, `lhu` at 0x169d8c8). One loop reads,
+  shifts and writes words (`lw` at 0x169d90c, `sllv` at 0x169d918, `srlv`
+  at 0x169d924, `sw` at 0x169d930). The facts tool cannot resolve the
+  loop's memory base. Its role and any effect on hardware remain unknown.
+- `miClipSpans` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15fe2a0):
+  **Established.** In the 6.5.30m N32 binary the `beqz` at 0x15fe2e0
+  selects a separate path when the first argument's +8 word is zero (`lw`
+  at 0x15fe2c0). If it is nonzero, the routine reads +4 through that word
+  (`lw` at 0x15fe2e8); `beqz` at 0x15fe2ec takes a return path if the
+  second word is zero.
+
+  When the seventh entry argument is zero, `beqz` at 0x15fe2f4 selects a
+  path containing another test. The `bnez` at 0x15fe64c bypasses
+  `QuickSortSpans..NAB` when its tested register is nonzero; the facts tool
+  does not resolve that register. On fall-through the routine calls
+  `QuickSortSpans..NAB` with its original second, third and fourth arguments
+  as the first three call arguments (`jalr` at 0x15fe668). The helper's hardware effect and this
+  routine's role are unknown.
+- `miGetArcPts..GO` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15b2670):
+  **Established effects; role unknown.** A call to `Xrealloc` receives the
+  word read through the original third argument in `a0` (`lw` at 0x15b2740,
+  `jalr` at 0x15b274c). A nonzero result takes the `bnez` at 0x15b2754;
+  on that path the routine stores the result through the original third
+  argument (`sw` at 0x15b2790). A zero result falls through to a zero return
+  (`move` at 0x15b2760, `jr` at 0x15b2764). Other calls include
+  `miDcos..CO` and `miDsin..DO` (`jalr` at 0x15b27a0, `jalr` at 0x15b27b8).
+  The 6.5.30m N32 routine occupies 1020 bytes. Its wider role and hardware
+  effect are unknown.
+- `miCreateETandAET` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171b010):
+  **Established.** In the 6.5.30m N32 body, the `beqz` at 0x171b058 is
+  taken when the first argument is at least 2 as a signed value (`slti` at
+  0x171b044). If it falls through, the routine returns 1 (`move` at
+  0x171b068, `jr` at 0x171b084).
+
+  On the taken path it stores the 32-bit word 0x80000001 at fourth argument
+  +4 and zero words at +0x24, +0x20 and +0x1c (`sw` at 0x171b08c, `sw` at
+  0x171b090, `sw` at 0x171b094, `sw` at 0x171b098). It also stores
+  0x7fffffff and 0x80000001 at third argument +4 and +0 respectively, then
+  clears the word at +0x10 (`sw` at 0x171b0a0, `sw` at 0x171b0a4, `sw` at
+  0x171b0a8). These fields' roles are unknown.
+
+  Later the routine calls `Xalloc` with 0x130 as its first argument (`jalr`
+  at 0x171b2fc). The `beqz` at 0x171b304 takes the failure path when the
+  result is zero. On that path the `beqz` at 0x171b3a8 falls through when its tested register is nonzero and reaches `Xfree`
+  (`jalr` at 0x171b3b4); that path returns zero (`move` at 0x171b3e4,
+  `jr` at 0x171b3f0). The allocation's hardware effect and the routine's role are unknown.
