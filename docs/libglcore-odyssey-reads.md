@@ -549,6 +549,39 @@ These routines keep the GL value in the generic part of the context and build th
 - `__glOdyim_ReadBuffer` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`, 0xd95b930, 408 bytes): **established.**
   glReadBuffer (argument: the buffer). A 13-entry jump table at 0xdae8020 (found with `ghidra/scripts/IrixJumpTables.java`) decodes 0x400 to 0x40c: GL_FRONT_LEFT, GL_FRONT and GL_LEFT store GL_FRONT at +0x4d4; GL_BACK_LEFT and GL_BACK need the back-buffer byte +0xc96 and store GL_BACK; GL_FRONT_RIGHT and GL_RIGHT need the stereo byte +0xc97 and store the value as given; GL_BACK_RIGHT needs both; GL_AUX0 to GL_AUX3 need the auxiliary-buffer count at +0xce0 to exceed the index and store the value; GL_FRONT_AND_BACK and everything outside the range raise GL_INVALID_ENUM. A missing buffer raises GL_INVALID_OPERATION (and for the stereo test of GL_FRONT_RIGHT the value is still stored after the error). The requested value goes to +0x4d8, the global is set to 2 and +0x2e24 gets bit 4.
 
+## 64-bit state setters re-read from the shipped binary
+
+- `__glOdyim_IsEnabled` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ea9f0, 680 bytes): **established.**
+  Answers the enabled-state query for board-owned enumerants from the current context, returning 0 or 1. It tests capability bits at +0x704 and +0x718, the preclip byte at +0x19db4 and the eight fragment-light bits at +0x1647c; unsupported enumerants tail-call the generic query, while a query inside begin/end raises 0x502.
+- `__glOdyim_Hint` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31eaca0, 212 bytes): **established.**
+  Accepts hint modes 0x1100 through 0x1102, rejects other modes with GL_INVALID_ENUM, and handles target 0x83ef by storing the mode at +0x19db8. When that value changes with +0x19db4 enabled it marks +0x19dc0, dirty bit 10 at +0x16964 and the validation state; other targets call the generic hint routine.
+- `__glOdyim_AlphaFunc` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31eefd0, 324 bytes): **established.**
+  Validates the comparison function in 0x200..0x207, packs it into bits 14:12 of +0x7c28, clamps the reference to the colour scale at +0xdd8 and converts it to the 12-bit field at +0x7c28 bits 11:0. It stores the function at +0x71c and sends block 0x1041e with +0x7c28; invalid values call `__glSetError` with 0x500.
+- `__glOdyim_BlendFunc` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ef120, 788 bytes): **established.**
+  Maps each source and destination blend factor to its six-bit hardware code, stores the packed pair in +0x7c34 and the original enumerants at +0x724 and +0x728, and marks dirty bit 0 at +0x16960 for block 0x10c21. Unsupported factors call `__glSetError` with 0x500 and send nothing.
+- `__glOdyim_BlendEquationEXT` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ef440, 404 bytes): **established.**
+  Converts the eight accepted blend equations 0x8006, 0x8007, 0x8008, 0x8320, 0x8321, 0xbf1, 0x800a and 0x800b to bits 15:13 of +0x7c34, stores the original value at +0x72c and marks dirty bit 0 at +0x16960. An unlisted value raises GL_INVALID_ENUM.
+- `__glOdyim_ColorMask` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ef5e0, 256 bytes): **established.**
+  Stores the four enable flags as bytes at +0x75c through +0x75f, mirrors them into bits 20 through 23 of +0x7c5c and marks dirty bit 7 at +0x16960. The four argument paths use a read-modify-write of +0x7c5c.
+- `__glOdyim_ColorMaterial` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ef6e0, 276 bytes): **established.**
+  Accepts the three face values and five material parameters, stores them at +0x568 and +0x56c, and rejects other values with GL_INVALID_ENUM. If colour material is enabled at bit 7 of +0x700 it calls the context entries at +0x2e48 and +0x2f18, then calls `ValidateColorMaterial`.
+- `__glOdyim_CullFace` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ef800, 260 bytes): **established.**
+  Encodes GL_BACK, GL_FRONT and GL_FRONT_AND_BACK in bits 10:9 of +0x7bfc, stores the original face at +0x1ec, sets dirty bit 1 at +0x16960 and sets bit 2 at +0x2e24. Other values call `__glSetError` with 0x500.
+- `__glOdyim_DepthFunc` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31ef910, 248 bytes): **established.**
+  Accepts comparison values 0x200 through 0x207, stores the value at +0x660, copies its low three bits into +0x7c30 and sends block 0x10420. It raises GL_INVALID_ENUM for other values and sets bit 11 at +0x16964 after a valid update.
+- `__glOdyim_DepthMask` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31efa10, 180 bytes): **established.**
+  Stores the flag byte at +0x664 and sets bit 24 of +0x7c5c only when the flag is nonzero and the visual's depth-buffer byte at +0xc99 is set. It marks dirty bit 7 at +0x16960 and returns without a FIFO write.
+- `__glOdyim_ReadBuffer` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31efad0, 416 bytes): **established.**
+  Decodes the read-buffer range 0x400..0x40c, checks back-buffer, stereo and auxiliary-buffer availability at +0xc96, +0xc97 and +0xce0, stores the request at +0x4d8 and the selected board value at +0x4d4, then sets validation state 2 and bit 4 at +0x2e24. Invalid values raise GL_INVALID_ENUM; unavailable buffers raise GL_INVALID_OPERATION.
+- `__glOdyim_FrontFace` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31f01f0, 224 bytes): **established.**
+  Accepts GL_CW and GL_CCW, sets or clears bit 23 of +0x7bfc, stores the original winding at +0x1f0, sets dirty bit 1 at +0x16960 and sets bit 2 at +0x2e24. Other values raise GL_INVALID_ENUM.
+- `__glOdyim_LineStipple` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31f0370, 268 bytes): **established.**
+  Stores the 16-bit pattern at +0x1e0 and the repeat factor clamped to 1..256 at +0x1e2, copies the pattern into the low 16 bits of +0x7c44 and +0x7c48, puts factor minus one in +0x7c4c and sends block 0x10c48.
+- `__glOdyim_LineWidth` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31f0480, 240 bytes): **established.**
+  Rejects nonpositive widths with GL_INVALID_VALUE, stores the float at +0x1d4, rounds an integer copy at +0x1dc, clamps another copy at +0x1d8 using the limits at +0xeac and +0xeb0, and marks bit 11 at +0x16964. No FIFO word is stored on this path.
+- `__glOdyim_LogicOp` (`usr/gfx/arch/IP30ODSY64/libGLcore.so`, 0x31f0570, 220 bytes): **established.**
+  Accepts the sixteen values 0x1500..0x150f, stores the original operation at +0x740, copies its low four bits to +0x7c40 bits 3:0 and sends block 0x10422. Values outside the range raise GL_INVALID_ENUM.
+
 ## Draw-buffer, material and polygon-stipple setters
 
 The routines below were read from the decompilation next to the assembly and then run in an emulator one input at a time (`scripts/glcore_sweep.py` for the decision trees, `scripts/fifo_words.py` for the command words). The emulator keeps 32-bit floating-point registers, so the shininess and colour-index branches of the two material-parameter routines, which hold doubles in odd-numbered registers, were read from the assembly and their command words checked by hand.
