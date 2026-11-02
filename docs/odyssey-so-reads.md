@@ -561,6 +561,36 @@ The audio library's objects carry a magic number in their first word: 0xbb82 for
   Returns the port's fill point in sample units: the ring size at +8 minus the word behind the pointer at +0x18, shifted left by the word at +0x7c and right by the word at +0x80 (a port has magic 0xbb81).
 - `ALsetfillpoint` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550350, 180 bytes): **established.**
   The inverse: converts the argument from sample units (shift left by +0x80, right by +0x7c), subtracts it from the ring size at +8 and stores the result through the pointer at +0x18, then returns 0.
+- `ALgetparams` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550850, 572 bytes): **established.**
+  Reads the parameter table selected by the device argument. It validates the parameter count, opens the master device through the handle at +0x17324e0, walks entries of the table at +0x17324e8 in 8-byte steps, and returns zero only after closing the descriptor; invalid arguments and open failures return -1 through `setoserror`.
+- `ALsetparams` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1550ea0, 1688 bytes): **established.**
+  Writes parameter records selected by the device argument. The routine walks the caller's records in the same 8-byte, 14-byte, 15-byte and 16-byte table forms used by the parameter ids, opens the master device at +0x17324e0, and closes it on each completed path; malformed records and device errors return -1.
+- `alReadFrames` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1551bb0, 668 bytes): **established.**
+  Moves frames from a port in chunks bounded by 256 frames. Each chunk calls the port function pointer at +0x70, and a nonempty wait path sets the descriptor bit at +0x24 before calling `select`; the routine returns the transferred count or zero on the empty path.
+- `alSetConfig` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1552450, 744 bytes): **established.**
+  Applies a configuration to a port after checking the port and configuration magic words. It copies the configuration fields into the port record, recalculates the frame-shift and scale state through the configuration helpers, and returns zero on success or -1 after the common error hook.
+- `_AL2assignfuncs` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1552bc0, 620 bytes): **established.**
+  Installs the port's sample conversion function pointers from the format and channel fields. The selection stores a contiguous table of pointers and strides, with the longest path writing fourteen words before returning the helper result at 0x1552a80.
+- `_AL2ReadMonoFromStereo_d` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1554b30, 1684 bytes): **established.**
+  Converts double-precision stereo input to mono output. It handles the leading alignment cases, then runs paired loads and stores through the 176-byte loop paths and writes the remaining sample in the tail; the listing has no board access.
+- `_AL2WriteNToN_8` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15551d0, 968 bytes): **established.**
+  Copies 8-bit samples between N-channel layouts. The body selects the channel-count path, uses 32- and 64-byte unrolled stores for the main loops, and finishes with a 48-byte tail path; all data accesses are through the caller's records.
+- `_AL2WriteNToN_16` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15555a0, 968 bytes): **established.**
+  Copies 16-bit samples between N-channel layouts. Its 32-, 64- and 112-byte loop paths have the same control shape as the 8-bit writer but use halfword-sized sample accesses, followed by the 48-byte tail.
+- `_AL2WriteNToN_24` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1555a00, 1048 bytes): **established.**
+  Copies 24-bit samples between N-channel layouts. The listing handles the short channel cases separately, then stores 160 bytes per unrolled pass in the widest path and drains the remaining 4-, 12- or 36-byte groups.
+- `_AL2WriteNToN_fnl` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1555ff0, 660 bytes): **established.**
+  Copies non-interleaved floating-point samples between N-channel layouts. It selects the channel stride, stores 12 words in the main loop and handles 8-, 9-, 6- and 4-word tails according to the remaining channel count.
+- `_AL2WriteNToN_dnl` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1556460, 660 bytes): **established.**
+  Copies non-interleaved double samples between N-channel layouts. The loop structure and 12-word main transfer match the floating-point writer, while the tail stores the double-sized channel records before returning.
+- `_AL2ReadNFromN_8` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1556700, 972 bytes): **established.**
+  Reads 8-bit N-channel samples into the caller's destination layout. The body uses 8-, 16- and 28-byte channel groups, with a five-byte remainder path and a final 12-byte tail, and returns through the shared conversion epilogue.
+- `_AL2ReadNFromN_16` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1556ad0, 972 bytes): **established.**
+  Reads 16-bit N-channel samples into the caller's destination layout. It uses the same channel cases as the 8-bit reader with doubled transfers: 16-, 32- and 56-byte groups, then 10- and 24-byte tails.
+- `_AL2ReadNFromN_24` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1556f50, 896 bytes): **established.**
+  Reads 24-bit N-channel samples into the destination layout. The widest loop stores 33 words per pass, while the short paths drain 1-, 4-, 8-, 13- and 29-word groups before the conversion epilogue.
+- `_AL2ReadNFromN_f` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15572d0, 2264 bytes): **established.**
+  Reads floating-point N-channel samples into the destination layout. It has separate channel-count loops, including 24-word and 52-word store groups, and completes through four-word, eight-word and 12-word tails.
 - `_AL2WriteMonoToStereo_24` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1553a20, 188 bytes): **established.**
   Duplicates each 32-bit mono sample into two adjacent words (left and right) for the count in the third argument, handling an odd count first with one pair and then two samples per loop pass (the unrolled loop at 0x1553a58 onward); a count of zero or below does nothing.
 - `_AL2Read4ChanFromStereo_24` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1558c30, 140 bytes): **established.**
