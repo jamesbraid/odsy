@@ -84,7 +84,7 @@ Earlier readings of these bits did not scan the PROM images. Both IP30 images ca
 
 ### Board reset pulse, +0x100c
 
-- `odsyLowLevelReset` (`odsy_init.o`, IP30 build, 980 bytes): **established.** One form writes 0x200, waits 1,000,000 microseconds and writes 0; the other writes 0x16d (built as 0x100, 0x40, 0x20, 0x8, 0x4, 0x1), waits 200,000 microseconds and writes 0. The form chosen depends on a field of the host chip's identity word (a revision above 4 takes the 0x200 form). The IP35 build has only the 0x200 form. This replaces the earlier statement that the timings were not re-checked.
+- `odsyLowLevelReset` (`odsy_init.o`, IP30 build, 980 bytes): **established.** One form stores 0x200 to the register (offset 0x1acc), waits 1,000,000 microseconds and never writes 0 back to the register: the zero stores at 0x1ab4 and 0x1ae4 go to the driver's shadow word in the board record (record offset 34216). The other stores 0x16d (built as 0x100, 0x40, 0x20, 0x8, 0x4, 0x1; the store is at 0x1b0c), waits 200,000 microseconds and does write 0 to the register (0x1b24). The form chosen depends on a field of the host chip's identity word (a revision above 4 takes the 0x200 form). The IP35 build has only the 0x200 form. This replaces the earlier statement that the timings were not re-checked.
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
 - **Established:** `odsyLowLevelReset` is called at the start of `odsyReset`, which then stores every register listed above and sends no drawing state. So a driver run does not depend on any state surviving the pulse.
 - **Unknown:** which state a pulse clears. A model that clears all board state on a pulse is consistent with the driver; one that keeps state is too.

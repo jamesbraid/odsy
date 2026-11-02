@@ -12,8 +12,8 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   call to `odsy_hpipe_invalidate`.
 - `odsyLowLevelReset` (`odsy_init.o`, offset 0x1830, 980 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
-  Resets the board's link. On a host whose chip-id register shows a newer part it writes 0x200 to 0x100c,
-  waits one second and writes 0; on the older part it writes the six bits that sum to 0x16d, waits 200 ms,
+  Resets the board's link. On a host whose chip-id register shows a newer part it writes 0x200 to 0x100c
+  and waits one second, leaving the register at 0x200 (the zeros go to the driver's shadow word); on the older part it writes the six bits that sum to 0x16d, waits 200 ms,
   writes 0 and calls `odsyLLPReset`. Both paths save and clear bits of the host chip's per-widget word at
   offset 268 (64 bytes per widget) before the reset and restore it after, and they read the words at 276
   and 316 to see whether the widget answered, logging a message and trying again when it did not.
@@ -2503,7 +2503,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   widgets 8, 9 and 14 are left out of the next walk and a word at +188 of a second per-node block is cleared of this widget's bit. The walk covers widgets 8 to 15 other than this one: for each whose
   per-widget word at +276 has bit 31 set and whose word at +316 has bit 5 set, it clears this widget's bit (its number minus 8) in the node block's word at +124
   or in the following words at a stride of 8 from +132. It then saves the chip control word at +36 and the widget's word at +268, clears bits 5, 2 and 1 of the first and bits 31, 17, 16, 8, 7, 6, 5, 4, 3 and 1 of the
-  second, stores 0x200 to the board's reset register 0x100c, waits one second with `odsy_usdelay`, writes 0, and checks that the widget's words at +276
+  second, stores 0x200 to the board's reset register 0x100c, waits one second with `odsy_usdelay`, writes 0 only to the driver's shadow word (not to the register), and checks that the widget's words at +276
   and +316 again show the same two bits. When they do it restores the control word, puts the saved widget word back with bits 22:18 cleared and bit 20 set, waits 100 ms and
   returns. When they do not it logs at severity 4 and repeats, up to seven attempts.
 - `mm_rewind_cond_list_cursor` (`odsy_pmm.o`, offset 0x88, 240 bytes): **established.**

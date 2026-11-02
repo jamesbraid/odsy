@@ -460,7 +460,7 @@ The roles below are read from the order and values of the stores in `odsyReset` 
 
 ### Board reset control 0x100c and the abort register
 
- 6.5.30's 0x100c sequence on older hosts writes 0x16d (built bit by bit as 0x100, 0x40, 0x20, 0x8, 0x4, 0x1), waits 200 ms and writes 0: six bits set together and cleared together, the same shape as the source's six abort fields. **inferred** that 0x100c is the board at once; which bit is which: **unknown**, nothing in either release tests a single bit. The other form, 0x200 held for one second (newer hosts and all of IP35), is **unknown**. A read of the board-side handling of the 0x100c bits in the microcode or in the host-interface registers (`PBJ.h`) would settle both.
+6.5.30's 0x100c sequence on older hosts writes 0x16d (built bit by bit as 0x100, 0x40, 0x20, 0x8, 0x4, 0x1), waits 200 ms and writes 0 to the register: six bits set together and cleared together (the 0x200 form is not cleared by the driver). **inferred** that 0x100c aborts six units of the board at once; which bit is which: **unknown**, nothing tests a single bit. The other form, 0x200 held for one second (newer hosts and all of IP35), is **unknown**. A read of the board-side handling of the 0x100c bits in the microcode or in the host-interface registers (`PBJ.h`) would settle both.
 
 ## 11. Public driver cross-check
 
