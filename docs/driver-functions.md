@@ -4950,3 +4950,75 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   For a positive count, the loop calls `odsyRestoreVertex` and repeats while
   its index is below the count (`jal` at 0x4b84, `bnez` at 0x4bac).
   The first five call arguments pass through unchanged. a5 starts at the fourth argument minus the third plus 4, remainder 4, and advances by 1, remainder 4, after each call (`jal` at 0x4b84).
+- `restorePolygon` (`odsy_ctxsw.o`, offset 0x4bdc, 220 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It first calls `odsyRestoreVertex` with its first four arguments unchanged
+  and a5=0 (`jal` at 0x4c24). When the third argument is at most 1, the branch
+  skips the loop (`blez` at 0x4c48). For larger counts, it makes additional
+  calls while its index is below the third argument minus 1 (`jal` at 0x4c68,
+  `bnez` at 0x4c80). The first four call arguments pass through unchanged.
+- `restoreRect` (`odsy_ctxsw.o`, offset 0x4cb8, 728 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  The third argument selects separate command-building paths: values below 2
+  take the branch at 0x4cd8, and other values fall through (`bnez` at 0x4cd8).
+  Both paths write words to the window at 0x110000 (`sw` at 0x4d50, 0x4d78,
+  0x4e08, 0x4e34, 0x4ec8 and 0x4ef4). The command words come from the block at +112 of the second argument. The first word is at 256 plus 4 times the slot (`lw` at 0x4d08), its count is bits 13:10 (`lw` at 0x4d54), and the following words are at 768 plus 16 times the slot (`lw` at 0x4d74). The slots are the fourth argument plus 2 and then minus 1, remainder 4, on the path for values of 2 or more, and the fourth argument plus 3, remainder 4, on the other path. It calls `cmn_err` at severity 7 on three error paths, one per command word whose count is zero and whose masked value is neither 0x3000c02e nor 0x2f00c02e (`jal` at 0x4f30, 0x4f58 and 0x4f80). Its return value is unknown.
+- `odsyResetHwShadow` (`odsy_ctxsw.o`, offset 0x4f90, 320 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It clears 0x900 bytes at its first argument with `bzero` (`jal` at 0x4fa0,
+  a0=arg0, a1=0x900). It then writes default words into the record, including
+  offsets +0x80, +0xb0, +0x100, +0x130, +0x170, +0x1c0 and +0x230
+  (`sw` at 0x4fe4, 0x5034, 0x50c0, 0x50b4, 0x50ac, 0x503c and 0x504c).
+  The routine makes no other calls in this body.
+- `gfP_OdsyGLGet` (`odsy_ctxsw.o`, offset 0x50d0, 584 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It initializes the result word to zero and checks the teardown word at
+  board+728 (`sw` at 0x50d4, `lw` at 0x50e4, `bnez` at 0x50fc). It follows the
+  current-client pointer through manager+72 and +112, then copies a 4-byte
+  selector from the third argument (`ld` at 0x5108 and 0x510c, `jal` at
+  0x5124). A failed copy takes the error path (`bnez` at 0x512c). It calls `RRM_CheckValidFault` with its first argument and takes the error path on a negative result (`jal` at 0x5134, `bltz` at 0x5140), increments the board busy count at +80
+  (`sw` at 0x5154), and arms `odsy_glget_timeout` for 1500 ticks (`jal` at
+  0x51d8, a2=0x5dc). It polls with 1-microsecond delays (`jal` at 0x5254).
+  Cleanup decrements the busy count (`sw` at 0x5218). Several error paths
+  store 14 or 1 through the result pointer (`sw` at 0x5208, 0x52ac, 0x52e8
+  and 0x5308). It writes one doubleword to the window at 0x110000 (`sd` at 0x51dc): its high word is 0x4c0 through 0x4c3 for selectors 0 through 3 and its low bit is set (`addiu` at 0x5234, 0x5194, 0x5288 and 0x5294, `ori` at 0x51d4).
+- `odsy_glget_timeout` (`odsy_ctxsw.o`, offset 0x5c, 92 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  It logs at severity 1 (`jal` at 0x74). If the global timeout flag is zero,
+  the branch is taken and it re-arms `timeout` for 1500 ticks (`beqz` at 0x80,
+  `jal` at 0xa4). If the flag is nonzero, it falls through to `odsy_teardown`
+  with the first argument (`jal` at 0x88).
+- `gf_OdsyPcxSwitch` (`odsy_ctxsw.o`, offset 0xb8, 8 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ctxsw.o)`.
+  The body returns -1 and has no memory accesses or calls (`jr` at 0xb8,
+  `addiu` at 0xbc).
+- `odsy_i2cDDCRegRead` (`odsy_ddc.o`, offset 0x188, 144 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads the device byte at port+0x20 (`lbu` at 0x198). It starts a transfer,
+  sends the second argument, then receives a byte through the third argument
+  (`jal` at 0x1b0, 0x1c8 and 0x1e0). A nonzero result from any operation takes
+  the shared reset path (`bnez` at 0x1b8, 0x1d0 and 0x1e8). That path calls
+  `odsy_i2cReset` and returns 1 (`jal` at 0x1fc). Success returns 0
+  (`jr` at 0x210).
+- `odsy_validate_ddc_data` (`odsy_ddc.o`, offset 0x1a90, 44 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It passes its arguments to `odsy_i2cValidEdid` (`jal` at 0x1a98). A zero
+  result takes the branch and returns zero (`beqz` at 0x1aa0, `move` at 0x1ab8).
+  A nonzero result falls through and returns one (`addiu` at 0x1aa8,
+  `jr` at 0x1aac).
+- `odsy_EdidCksum` (`odsy_ddc.o`, offset 0x1abc, 44 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It sums the 128 bytes at its first argument (`lbu` at 0x1acc), keeping the running
+  sum to 8 bits (`andi` at 0x1adc), and repeats while its counter is below 0x80 (`slti`
+  at 0x1ad0, `bnez` at 0x1ad8). It returns the sum.
+- `odsy_i2cValidEdid` (`odsy_ddc.o`, offset 0x1ae8, 156 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It requires byte 0 to be zero (`lbu` at 0x1ae8, `beqz` at 0x1af0).
+  Bytes 1 through 6 are checked against 0xff (`lbu` at 0x1b1c, `lbu` at
+  0x1b28, `lbu` at 0x1b34, `lbu` at 0x1b40, `lbu` at 0x1b4c and `lbu` at
+  0x1b58). A mismatch returns zero (`bne` at 0x1b20, `bne` at 0x1b2c,
+  `bne` at 0x1b38, `bne` at 0x1b44, `bne` at 0x1b50 and `bne` at 0x1b5c).
+  Byte 7 must be zero (`lbu` at 0x1b64, `bnez` at 0x1b68).
+  It then calls `odsy_EdidCksum` (`jal` at 0x1b00). A zero checksum takes the
+  branch and returns one (`beqz` at 0x1b08, `addiu` at 0x1b80). A nonzero
+  checksum falls through to a zero return (`move` at 0x1b10).
