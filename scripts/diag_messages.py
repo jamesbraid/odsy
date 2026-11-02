@@ -10,10 +10,11 @@ condition it sits under.
 
 The format and the severity argument are resolved from the instructions that set them, not
 from the fact sheet's argument values: the fact sheet drops the immediate of a relocated
-address in a relocatable object. The condition comes from the dominators of the routine's
-basic blocks. A call is gated only by a conditional branch one of whose sides dominates the
-call and the other side does not; a call on a path with no such branch is unconditional
-within the routine.
+address in a relocatable object. The condition comes from the routine's basic blocks and the
+edges between them. A call is gated by a conditional branch when it is reachable only through one
+arm of that branch: with the other arm's edge removed, the call cannot be reached from the entry.
+A call that some path through the routine returns without is not unconditional, and the text says
+so when no single branch decides it.
 
 Run from the repository root inside the toolchain environment (MIPS objdump and pyelftools,
 as for scripts/facts.py). The TSV is sorted and has no timestamps, so the same inputs give
@@ -380,11 +381,24 @@ class Blocks:
                 else:
                     self.succ[b] = [x for x in (t, ft) if x is not None]
                 continue
-            last = R.ins[e - 1]
-            if last['mn'] == 'jr' and last['ops'][:1] == ['ra']:
+            # a jump register sits in the block's last two slots: the jump, then its delay slot
+            jr = [R.ins[k] for k in (e - 2, e - 1) if k >= s and R.ins[k]['mn'] == 'jr']
+            if jr and jr[0]['ops'][:1] == ['ra']:
                 self.succ[b] = []
-            elif last['mn'] == 'jr':
+            elif jr:
                 self.indirect[b] = True
+            elif (e - 1) in R.branch_at:
+                # the delay slot is the next block, one instruction long (the block after it is a leader)
+                self.succ[b] = [b + 1]
+            elif (s - 1) in R.branch_at:
+                # a delay slot that a jump enters directly: it runs before either arm of its branch
+                x = R.branch_at[s - 1]
+                t = self.block_of.get(x['target']) if x.get('target') is not None else None
+                ft = self.block_of.get(x['i'] + 2)
+                if x['mn'] in BRANCH_UNCOND:
+                    self.succ[b] = [t] if t is not None else []
+                else:
+                    self.succ[b] = [y for y in (t, ft) if y is not None]
             elif b + 1 < nb:
                 self.succ[b] = [b + 1]
         reach = {0}
@@ -417,25 +431,51 @@ class Blocks:
                     dom[b] = new
                     changed = True
         self.dom = dom
+        # blocks that leave the routine: a return, or a jump out (a tail call); an indirect jump is not an exit
+        self.exits = [k for k in sorted(reach) if not self.succ[k] and not self.indirect[k]]
 
     def gate(self, R, b):
-        """(branch, taken) for the nearest conditional branch that alone decides whether block b runs."""
+        """(branch, taken) for the nearest conditional branch that alone decides whether block b runs.
+
+        A branch decides b when b is reachable only through one of its arms: with the other arm's
+        edge removed, b cannot be reached from the entry. Dominance is not enough, because an arm
+        can dominate b and still be bypassed by a path that joins it from the other side.
+        """
         cands = [k for k in self.reachable if k != b and (self.dom[b] >> k) & 1]
         cands.sort(key=lambda k: -bin(self.dom[k]).count('1'))
         for k in cands:
             s, e = self.blocks[k]
-            br = R.branch_at.get(e - 2)
+            # the branch is either inside the block with its delay slot, or the block's last instruction
+            br = R.branch_at.get(e - 2) or R.branch_at.get(e - 1)
             if br is None or br['mn'] not in BRANCH_COND or br.get('target') is None:
                 continue
             ts = self.block_of.get(br['target'])
             fs = self.block_of.get(br['i'] + 2)
-            in_t = ts is not None and ts in self.reachable and (self.dom[b] >> ts) & 1
-            in_f = fs is not None and fs in self.reachable and (self.dom[b] >> fs) & 1
-            if in_t and not in_f:
+            # a taken arm that leaves the routine has no edge here, so it cannot be the path to b
+            if fs is None or ts == fs:
+                continue
+            # b cannot be reached without the taken edge, so b runs only when the branch is taken
+            if not self.reaches(b, k, ts):
                 return br, True
-            if in_f and not in_t:
+            if not self.reaches(b, k, fs):
                 return br, False
         return None
+
+    def reaches(self, b, k, drop):
+        """Whether block b can be reached from the entry when the edge from block k to block drop is removed."""
+        seen = {0}
+        stack = [0]
+        while stack:
+            x = stack.pop()
+            if x == b:
+                return True
+            for y in self.succ[x]:
+                if x == k and y == drop:
+                    continue
+                if y not in seen:
+                    seen.add(y)
+                    stack.append(y)
+        return False
 
 
 def arg_value(R, reg, idx):
@@ -495,8 +535,11 @@ def rows_for_routine(path, member, label, group, img, addr, size, rels, srdata, 
             site['condition'] = 'dead code: no branch in the routine reaches it'
         else:
             gate = B.gate(R, b)
-            if gate is None:
+            if gate is None and all((B.dom[x] >> b) & 1 for x in B.exits):
                 site['condition'] = 'no conditional branch gates the call; it runs on every path through the routine'
+            elif gate is None:
+                # branches join before the call, so no one branch decides it, but a path returns without it
+                site['condition'] = 'no single branch decides it; some path through the routine returns without it'
             else:
                 br, taken = gate
                 ct = cond_text(br['mn'], br['ops'][:-1], taken)

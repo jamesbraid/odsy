@@ -36,9 +36,11 @@ by `scripts/diag_messages.py`; rerun that script to regenerate it, do not edit t
   is a pointer taken from a structure.
 - `message`: the C string the call passes, with `\n` shown as the two characters. `(not resolved)`
   when the format argument does not trace to a constant in the routine.
-- `condition`: what the call's routine has to do before the call runs. A call is gated only by a
-  conditional branch that one of its sides leads to and the other side does not. The text gives the
-  register test that holds on the path, and the branch that makes it.
+- `condition`: what the call's routine has to do before the call runs. A call is gated by a
+  conditional branch when it can be reached only through one arm of that branch. The text gives the
+  register test that holds on the path, and the branch that makes it. When the branches join before
+  the call, no single branch decides it: the text says so, and says whether every return path runs
+  the call.
 - `grade`: `established` when the format and the severity were read from the instructions and
   the gating comes from a complete flow graph of the routine. `inferred` when the format or the
   stream did not trace, when the routine has an indirect jump the flow graph does not follow, or
@@ -56,8 +58,10 @@ The generator takes every routine of the target from the fact sheet
    address the slot holds, and the offset in the instruction is taken from the object's `gp`
    base. Linked addresses come from the file image.
 2. Reads the C string at that address.
-3. Builds the basic blocks of the routine and their dominators. The nearest dominator that has
-   a conditional branch on one side only is the gate for the call.
+3. Builds the basic blocks of the routine, the edges between them and their dominators. A
+   conditional branch gates the call when the call's block is unreachable from the entry once the
+   edge along one arm is removed, so the call needs the other arm. A jump register's delay slot
+   is treated as the branch's arm, and a delay slot that another jump enters is a block of its own.
 
 The fact sheet's argument values are not used for the format. For a relocatable object they drop
 the immediate that a delay slot adds to a relocated address, so a format such as `.rodata+128`
@@ -94,5 +98,5 @@ Each is a single row with its routine, call address and gate in the table.
   above, 14 in `odsyRestoreVB`, where the search could not trace the format across the routine's joins, and one
   each in `odsy_hpipe_discover`, `gf_OdsyInitialize` and `odsy_ProbeRainier`. Those three were not
   traced further.
-- **Dead code.** 12 rows are in code that no branch of the routine reaches. The table keeps them
-  and states the condition as dead.
+- **Dead code.** No row is dead code: every call in the table is reached from the routine's entry.
+  A call that no branch reaches is marked `dead code` in the condition column.
