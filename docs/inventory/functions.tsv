@@ -53737,13 +53737,13 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x30	428	tfp_special_in
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1dc	80	kpreemption	symtab	686a224a1e79		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x22c	88	arcs_write	dwarf+symtab	d0965c8708a1		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x284	96	arcs_load	dwarf+symtab	a5a4410148a8		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2e4	68	prom_autoboot	dwarf+symtab	cc546568257a		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2e4	68	prom_autoboot	dwarf+symtab	cc546568257a		in	located	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x328	88	prom_reinit	dwarf+symtab	2d130caea995		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x380	72	arcs_setuproot	dwarf+symtab	0bb6b15bc9a5		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x3c8	40	arcs_getenv	dwarf+symtab	8b5dcf22cda8		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x3f0	40	arcs_nvram_tab	dwarf+symtab	236b4a1b27ac		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x418	36	arcs_eaddr	dwarf+symtab	ed7786f4e118		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x43c	28	prom_eaddr	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x418	36	arcs_eaddr	dwarf+symtab	ed7786f4e118		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x43c	28	prom_eaddr	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x458	584	arcs_to_dsk	dwarf	3ff18a3cdcbc		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6a0	728	exception_exit	dwarf+symtab	26703b27eaf7		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x910	112	exception_leave	symtab	84647d0fb09e		in	undocumented		
@@ -53833,9 +53833,9 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2630	32	fp_find	dwarf
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2650	28	fp_init	dwarf+symtab	7817ac548105		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x266c	28	pg_setcachable	dwarf+symtab	f64fae1e00e0		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2688	8	pte_cachebits	dwarf+symtab	49e298b4a7cc		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2690	96	set_leds	dwarf+symtab	2c731dfa30fc		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2690	96	set_leds	dwarf+symtab	2c731dfa30fc		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x26f0	28	reset_leds	dwarf+symtab	7817ac548105		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x270c	28	sys_setled	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x270c	28	sys_setled	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2728	348	dobootduty	dwarf	d4aeee827e3f		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x2884	48	cpu_disable	dwarf	a902ef13a125		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x28b4	32	cpu_exists	dwarf	3151317b3d13		in	undocumented		
@@ -53879,7 +53879,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4ad8	96	startprfclk	d
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4b38	128	stopprfclk	dwarf+symtab	6f4902aaf6b0		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4bb8	8	ackrtclock	dwarf+symtab	78aa5094d5ec		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4bc0	188	init_timebase	dwarf+symtab	30d1c4470441		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4c7c	364	inittodr	dwarf+symtab	2be0d4d4f76e		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4c7c	364	inittodr	dwarf+symtab	2be0d4d4f76e		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4de8	36	query_cyclecntr	dwarf+symtab	b676b9a72e1d		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4e0c	32	query_fasttimer	dwarf+symtab	7c744a25babc		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x4e2c	8	query_cyclecntr_size	dwarf+symtab	15dfbc0b7e2f		in	undocumented		
@@ -53912,7 +53912,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6328	68	irix5_microti
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x636c	68	microtime	dwarf+symtab	a54c9d44e7ff		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x63b0	216	local_settime	dwarf+symtab	a18c8647305f		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x6488	68	settime	dwarf+symtab	6062ae0a7b4e		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x64cc	28	clkset	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x64cc	28	clkset	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x64e8	8	enable_fastclock	dwarf+symtab	78aa5094d5ec		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x64f0	8	cache_preempt_limit	dwarf+symtab	78aa5094d5ec		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x64f8	40	get_realtime_ticks	dwarf+symtab	6c6eb3f3f008		in	undocumented		
@@ -54418,7 +54418,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19a30	80	hwperf_setup
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19a80	200	hwperf_multiplex_events	dwarf+symtab	653af5f2d1b7		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19b48	124	hwperf_add_counters	dwarf+symtab	f28dc6f496e3		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19bc4	192	hwperf_fork_counters	dwarf+symtab	d030b75e0584		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19c84	28	hwperf_intr	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19c84	28	hwperf_intr	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19ca0	188	hwperf_sys_counters	dwarf+symtab	57fde21279f3		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19d5c	240	hwperf_get_access	dwarf+symtab	da283409fb1a		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x19e4c	360	hwperf_check_release	dwarf+symtab	34f4527f085e		in	undocumented		
@@ -54436,7 +54436,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1a720	144	hwperf_cpu_
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1a7b0	36	hwperf_cpu_monitor_info_free	dwarf+symtab	89974d882003		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1a7d4	68	hwperf_multiplex_counter_check	dwarf	4b65d93fba3d		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1a818	120	hwperf_next_event_index_get	dwarf	0e30166d03bb		in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1a890	448	r1nk_perf_intr	dwarf+symtab	124e73a06bc9		in	undocumented		
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1a890	448	r1nk_perf_intr	dwarf+symtab	124e73a06bc9		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1aa50	256	r1nk_perf_intr_action	dwarf+symtab	1a0281b7ad85		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1ab50	372	r1nk_perf_update_counters	dwarf+symtab	883d5e5732c3		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x1acc4	380	r1nk_perf_start_counters	dwarf+symtab	191abc24e29c		in	undocumented		
@@ -54721,7 +54721,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x30	428	tfp_special_in
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1dc	80	kpreemption	symtab	ca65f6ff0b60		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22c	180	arcs_write	dwarf+symtab	67d77bdec2da		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e0	96	arcs_load	dwarf+symtab	ad8dcae09042		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x340	28	prom_autoboot	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x340	28	prom_autoboot	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x35c	60	prom_reinit	dwarf+symtab	841314d4c782		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x398	68	arcs_setuproot	dwarf+symtab	a2f4c5cd1e6e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3dc	584	arcs_to_dsk	dwarf	fa1d1db4cb3b		in	undocumented		
@@ -54755,7 +54755,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1078	60	longjmp	dwarf
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x10b4	12	he_arcs_set_vectors	dwarf+symtab	5fe1255fc6ac		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x10c0	376	restart	dwarf	d3518401de5c		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1238	32	he_arcs_restart	dwarf+symtab	2888abd22c33		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1258	32	he_arcs_reboot	dwarf+symtab	a527a043c01a		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1258	32	he_arcs_reboot	dwarf+symtab	a527a043c01a		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1278	36	he_arcs_write	dwarf+symtab	e6e5749f1fac		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x129c	24	hub_widget_id	dwarf+symtab	a37c640b03c6		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12b4	28	get_nasid	dwarf+symtab	a20e8cfc012d		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
@@ -54953,12 +54953,12 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9344	136	promlog_put_
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x93cc	156	promlog_delete	dwarf+symtab	e7b44ff0dbcd		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9468	588	promlog_dump	dwarf+symtab	e4c767cd5238		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x96b4	140	promlog_errmsg	dwarf+symtab	d984b7378dd0		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9740	28	fprom_reset	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9740	28	fprom_reset	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x975c	80	fprom_probe	dwarf+symtab	7b18c50cad3a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x97ac	28	fprom_erase_sector	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x97ac	28	fprom_erase_sector	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x97c8	136	fprom_flash_sectors	dwarf+symtab	b09276ff1350		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9850	28	fprom_write	dwarf+symtab	a86de4a9d7a4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x986c	28	fprom_validate	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9850	28	fprom_write	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x986c	28	fprom_validate	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9888	28	fprom_read	dwarf+symtab	a86de4a9d7a4		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x98a4	28	fprom_errmsg	dwarf+symtab	a86de4a9d7a4		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x98c0	24	cfi_cmd	dwarf	12b9fa563454		in	undocumented		
@@ -54973,14 +54973,14 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9c14	24	verify_op	dwa
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9c2c	28	cfi_verify	dwarf	f55f24694986		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9c48	384	cfi_write_word	dwarf	0de828e37625		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x9dc8	720	cfi_write_block	dwarf	adf45a7bed47		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa098	32	cfi_reset	dwarf+symtab	f1fff51388b9		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa098	32	cfi_reset	dwarf+symtab	f1fff51388b9		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa0b8	448	cfi_probe	dwarf+symtab	6cfb43f8e09b		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa278	280	cfi_erase_sector	dwarf+symtab	c74b3eb46d61		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa278	280	cfi_erase_sector	dwarf+symtab	c74b3eb46d61		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa390	12	read_op	dwarf	13f8172595f7		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa39c	28	cfi_read	dwarf+symtab	e8bde6635411		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa3b8	140	cfi_write	dwarf+symtab	89d9c6e9bf99		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa3b8	140	cfi_write	dwarf+symtab	89d9c6e9bf99		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa444	32	validate_op	dwarf	9f815471fda6		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa464	28	cfi_validate	dwarf+symtab	082e6c1fb5cb		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa464	28	cfi_validate	dwarf+symtab	082e6c1fb5cb		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa480	108	cfi_errmsg	dwarf+symtab	8cc1312d7ab5		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa4ec	56	update_ust_i	dwarf+symtab	68393f3de45e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xa524	48	get_ust_nano	dwarf+symtab	a445e1999f50		in	undocumented		
@@ -55083,10 +55083,10 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xf838	344	memory_set_a
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xf990	116	page_allow_access	dwarf+symtab	35c59394f984		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfa04	64	decode_prot	dwarf+symtab	991e4cfdb7d7		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfa44	944	show_dir_state	dwarf+symtab	5bdcecf7aa9a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfdf4	112	set_dir_state	dwarf+symtab	478c491f67f0		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfdf4	112	set_dir_state	dwarf+symtab	478c491f67f0		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfe64	28	set_dir_state_POISONED	dwarf+symtab	ed8536cc708f		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfe80	48	is_POISONED_dir_state	dwarf+symtab	9d2a41ebce84		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfeb0	28	set_dir_state_UNOWNED	dwarf+symtab	12a18864d05c		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfeb0	28	set_dir_state_UNOWNED	dwarf+symtab	12a18864d05c		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfecc	48	is_UNOWNED_dir_state	dwarf+symtab	c9c6e2ad7201		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0xfefc	264	set_dir_owner	dwarf+symtab	d676de91e159		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x10004	192	get_dir_ent	dwarf+symtab	fa1eafd9e9fc		in	undocumented		
@@ -55475,8 +55475,8 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x244a8	136	sLine	dwarf
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24530	32	sCacheSize	dwarf+symtab	8d2d001b2026		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24550	24	reset_leds	dwarf+symtab	14a3e76eba71		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24568	480	bump_leds	dwarf+symtab	1cbd99183b79		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24748	352	set_leds	dwarf+symtab	69d1fdd1e05c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x248a8	28	sys_setled	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24748	352	set_leds	dwarf+symtab	69d1fdd1e05c		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x248a8	28	sys_setled	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x248d0	144	encode_int_serial	symtab	837034227370		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24960	152	decode_int_serial	symtab	23d6d337b405		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x249f8	124	encode_str_serial	symtab	2cd004612598		in	undocumented		
@@ -55538,7 +55538,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2777c	96	startprfclk	
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x277dc	128	stopprfclk	dwarf+symtab	7cc2d6661ea2		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2785c	8	ackrtclock	dwarf+symtab	78aa5094d5ec		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x27864	332	init_timebase	dwarf+symtab	7b12928c9655		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x279b0	244	inittodr	dwarf+symtab	8816bc7fccc1		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x279b0	244	inittodr	dwarf+symtab	8816bc7fccc1		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x27aa4	36	query_cyclecntr	dwarf+symtab	4b7a4a9623db		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x27ac8	36	query_fasttimer	dwarf+symtab	fdb3e256d7d1		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x27aec	8	query_cyclecntr_size	dwarf+symtab	15dfbc0b7e2f		in	undocumented		
@@ -55570,7 +55570,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2941c	68	irix5_microt
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x29460	68	microtime	dwarf+symtab	a54c9d44e7ff		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x294a4	216	local_settime	dwarf+symtab	38740dbef749		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2957c	68	settime	dwarf+symtab	6062ae0a7b4e		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x295c0	28	clkset	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x295c0	28	clkset	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x295dc	8	enable_fastclock	dwarf+symtab	78aa5094d5ec		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x295e4	28	cache_preempt_limit	dwarf+symtab	6050b8326726		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x29600	40	get_realtime_ticks	dwarf+symtab	529ffd185ec0		in	undocumented		
@@ -55885,7 +55885,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x39bc4	980	_mul_sd	dwa
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x39f98	156	_abs_sd	dwarf+symtab	6d81be6b4e54		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a034	152	_neg_sd	dwarf+symtab	d30af80a1802		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a0cc	1196	_div_sd	dwarf+symtab	e2d2733b4c7a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a578	448	r1nk_perf_intr	dwarf+symtab	a27c2f3a78fa		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a578	448	r1nk_perf_intr	dwarf+symtab	a27c2f3a78fa		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a738	256	r1nk_perf_intr_action	dwarf+symtab	e12ddf8a7794		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a838	372	r1nk_perf_update_counters	dwarf+symtab	fc62cdccf5c1		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3a9ac	372	r1nk_perf_start_counters	dwarf+symtab	057328e46930		in	undocumented		
@@ -55969,7 +55969,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x40134	80	hwperf_setup
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x40184	200	hwperf_multiplex_events	dwarf+symtab	1efbc7f972f4		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x4024c	124	hwperf_add_counters	dwarf+symtab	f28dc6f496e3		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x402c8	192	hwperf_fork_counters	dwarf+symtab	f5aeabc60604		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x40388	28	hwperf_intr	dwarf+symtab	a86de4a9d7a4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x40388	28	hwperf_intr	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x403a4	204	hwperf_sys_counters	dwarf+symtab	129185d4c9c2		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x40470	240	hwperf_get_access	dwarf+symtab	aeebb2c6c574		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x40560	360	hwperf_check_release	dwarf+symtab	05d935b87ecb		in	undocumented		

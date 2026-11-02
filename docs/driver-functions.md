@@ -4732,3 +4732,45 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
 - `odsy_rainier_write_rcx_reg` (`odsy_rainier.o`, offset 0x0, 24 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)`.
   Writes one 32-bit register of the Rainier window on the IP35 build. It loads the doubleword at +16 of the first argument, takes the second argument as a signed word shifted right 2 then left 2 (`sra`, `dsll`), adds the two and stores the third argument as a word there in the delay slot of the return. There is no barrier and no value is returned; the six instructions are the same as in the IP30 build.
+- `set_dir_state_UNOWNED` (`kernel.o`, offset 0xfeb0, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Seven words, read in full: it saves the return address, sets a1 to 1 in the delay slot of a call to `set_dir_state`
+  (relocation R_MIPS_26 to that symbol), restores the return address and returns the callee's result. The first argument
+  passes through untouched. The bytes match the `GfxIntrMessage` body in `gfx.o`, but the call there goes to
+  `GfxSendMessage`; the words of the call are zero in both objects, so the callee is known only from the relocation.
+- `prom_eaddr` (`kernel.o`, offset 0x43c, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/kernel.o`.
+  Seven words, read in full: a call to `arcs_eaddr` (relocation R_MIPS_26) with a nop in its delay slot, then the return
+  address is restored and the callee's result is returned. No argument is set or changed.
+- `sys_setled` (`kernel.o`, offset 0x270c, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/kernel.o`.
+  Seven words, read in full: forwards its arguments unchanged to `set_leds` (relocation R_MIPS_26), with a nop in the
+  delay slot, and returns that routine's result.
+- `clkset` (`kernel.o`, offset 0x64cc, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `inittodr` (relocation R_MIPS_26) that leaves a0 and a1 as the
+  caller set them, then returns the callee's v0.
+- `hwperf_intr` (`kernel.o`, offset 0x19c84, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP30boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `r1nk_perf_intr` (relocation R_MIPS_26) and a return of its result.
+  The body does nothing else.
+- `prom_autoboot` (`kernel.o`, offset 0x340, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `he_arcs_reboot` (relocation R_MIPS_26), with the callee's result
+  returned unchanged.
+- `fprom_reset` (`kernel.o`, offset 0x9740, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `cfi_reset` (relocation R_MIPS_26), returning its result. It does
+  not touch the flash device itself.
+- `fprom_erase_sector` (`kernel.o`, offset 0x97ac, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `cfi_erase_sector` (relocation R_MIPS_26), returning its result
+  with a0 and a1 unchanged.
+- `fprom_write` (`kernel.o`, offset 0x9850, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `cfi_write` (relocation R_MIPS_26), returning its result with the
+  arguments passed through.
+- `fprom_validate` (`kernel.o`, offset 0x986c, 28 bytes): **established.**
+  Build: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Seven words, read in full: a nop-delay-slot call to `cfi_validate` (relocation R_MIPS_26), returning its result with
+  the arguments passed through.
