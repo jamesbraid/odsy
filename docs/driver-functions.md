@@ -422,24 +422,6 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Second symbol for the 40-byte code at offset 0x81c that `odsy_usb_comp_readwrite_register` also names.
   The relocations of `odsy_hpipe.o` call it by this name; the code logs "usb_comp_readwrite_register not
   in kernel" at severity 4 with `cmn_err` and returns -1.
-- `odsy_usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The IP35 body is byte-identical to the IP30 stand-in: it loads the diagnostic string pointer, calls
-  `cmn_err` with severity 4 and the string at table offset 0xd0, then returns -1. It reads none of its
-  arguments and touches no board. The same address is also exported as `usb_comp_update_tiles`.
-- `usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  Alias for the IP35 40-byte stand-in at 0x7f4. Its `cmn_err` call uses severity 4 and the table string
-  at 0xd0, and its return value is -1. The body reads no arguments and performs no board access.
-- `odsy_usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The IP35 stand-in loads the diagnostic string pointer, calls `cmn_err` with severity 4 and the table
-  string at offset 0xf8, then returns -1. It reads no arguments and writes no compositor register. The
-  same address is also exported as `usb_comp_readwrite_register`.
-- `usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  Alias for the IP35 40-byte stand-in at 0x81c. Its `cmn_err` call uses severity 4 and the table string
-  at 0xf8, and it returns -1 without reading arguments or accessing a register.
 - `odsyUnmapPages` (`odsy_map.o`, offset 0x9b8, 40 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
   Drops one user mapping. It loads the mapping handle stored at the address in its argument, zeroes that
