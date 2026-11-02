@@ -183,6 +183,24 @@ The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build
 - `__glx_Vertex4s` (`libGL.so`, offset 0xd812bdc, 192 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   Sign-extends four scalar arguments to 16 bits, writes command token 0x000c004c followed by those four halfwords, advances the render-buffer pointer by 12 bytes, and flushes on overflow of the current buffer range.
+- `__glXInitThread` (`libGL.so`, offset 0xd80ff60, 448 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Creates or reuses the per-thread GLX record. It compares the current thread value and current context in the record rooted at address 0x1000, allocates a 0x124-byte record when they differ, fills the 0x100-byte context slots with -1, installs the thread and context pointers, and clears the display/context bookkeeping fields. The first thread also runs the one-time library initialization and publishes the initial display record.
+- `__glXFindDisplay` (`libGL.so`, offset 0xd810120, 192 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Gets the display-list head from the global pointer at the library data table, initializing that list when it is empty, then looks up the supplied X display. A miss calls the display-record constructor with error slot 0x11 and the library's display and screen tables; the constructor result is stored as the new head and returned, while a failed initialization returns zero.
+- `__glXCreateDirectContext` (`libGL.so`, offset 0xd8101e0, 676 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Copies the selected mode's four component values into a stack record, or copies the supplied fallback mode when the selected record is absent, and normalizes the 0x8014 and 0x8015 API cases. It invokes the optional context-format hook, searches the direct-context provider list, requests a context with request 0x66 and the display's board number, and calls the provider to finish construction; absent providers or a failed request return zero after the corresponding error path.
+- `__glXQueryServerString` (`libGL.so`, offset 0xd810920, 436 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Appends the GLX server-string request with opcode 0x13 and the caller's string selector and screen values to the display command buffer, growing or flushing the buffer when its end is reached. It sends the request, handles the selector's low two bits when choosing the reply path, and returns the response produced by the display callback or the stored error result.
+- `__glXClientInfo` (`libGL.so`, offset 0xd810f50, 428 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Appends a 0x14 client-information request containing protocol version 4, the caller's string pointer and the constant field 3, then invokes the X transport helper and aligns the command-buffer pointer to a four-byte boundary. It flushes when the request will not fit and returns through the display callback after the command is sent.
+- `__glXGetDrawableSize` (`libGL.so`, offset 0xd8110fc, 532 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Returns four size words through caller pointers. With the process-wide pixmap-memory pointer at private offset 0x6564 set, it writes zeroes and the cached words at offsets 0x6568 and 0x656c; otherwise it dispatches on the drawable type, using X geometry queries for ordinary drawables and private requests 0x801d and 0x801e for the pbuffer cases, then copies the resulting width, height, origin and auxiliary size words to the outputs.
 
 
 ## Board diagnostics and updaters
