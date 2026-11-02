@@ -1004,7 +1004,7 @@ The following accumulation routines were read from their complete o32 bodies in 
 - `__glOdyim_FragmentLightiSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd98636c, 128 bytes):
   **Established.** Accepts fragment-light parameter selectors 0x1205 through 0x1209 (`a1 - 0x1205` below 5), saves the integer value from `a2` at `sp+0x28`, and dispatches through the selector table. Any other selector reports error 0x500. The function has no direct board store; its selected helper receives the saved value pointer.
 - `__glOdyim_FragmentLightModelfSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd9868e0, 116 bytes):
-  **Established.** Accepts only selectors 0x8408, 0x8409 and 0x840b, saves the float argument at `sp+0x24`, and calls the selected fragment-light-model helper. Other selectors use the error path with 0x500. The accepted selector tests are explicit branches at 0xd9868fc, 0xd986904 and 0xd986910.
+  **Established.** Accepts only selectors 0x8408, 0x8409 and 0x840b, saves the float argument at `sp+0x24`, and calls the selected fragment-light-model helper. Other selectors use the error path with 0x500. The accepted selector tests are explicit branches at 0xd9868fc, 0xd986908 and 0xd986910.
 - `__glOdyim_FragmentMaterialiSGIX` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd98a8e4, 96 bytes):
   **Established.** Handles only parameter 0x1601 in `a1`; for that parameter it saves `a2` at `sp+0x28` and calls the fragment-material helper with its address. All other parameters report error 0x500. No board address is written directly by this wrapper.
 - `__glOdyim_lmcolor` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` 0xd98e228, 76 bytes):
