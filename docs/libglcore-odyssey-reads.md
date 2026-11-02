@@ -2220,3 +2220,49 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysseyDoTriangleClip` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 680 bytes
   - **Established effects.** Calls include `__glOdysseyClipToPlaneObj`; afterward `bnez` is taken to return when its result is signed less than 3 (`bgezall` at 0x32821f0; `bnez` at 0x3282208). On a later path, it writes 0x14400 and 9 to process address 0x10000 (`sw` at 0x3282244, 0x3282250).
   - Further calls include `__glOdysseySetProgram` and unresolved indirect targets (`jalr` at 0x32822dc, 0x3282270, 0x32822e8). The later window sequence includes 0x14001 and, when `beqz` at 0x3282368 falls through for a nonzero value hostfacts leaves Unknown, 0x10443, 0xfa and two 0x10046 words (`sw` at 0x3282348; `beqz` at 0x3282368; `sw` at 0x3282374, 0x3282378, 0x328237c, 0x3282380). The stored words and this triangle-clipping path have Unknown hardware roles.
+
+## 64-bit IP30 library: lighting and clip paths
+
+- `__glOdysseyChangeMaterialEmission` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+
+  **Established effects.** It copies four words from entry `a0` offsets 0x260, 0x264, 0x268 and 0x26c to entry `a1` offsets 0x30, 0x34, 0x38 and 0x3c respectively (`lwc1` at 0x3284f50, 0x3284f58, 0x3284f60, 0x3284f68; `swc1` at 0x3284f54, 0x3284f5c, 0x3284f64, 0x3284f70). The final store runs in the return delay slot (`jr` at 0x3284f6c). The copied fields and this emission path have Unknown hardware roles.
+- `__glOdysseyChangeMaterialSpecular` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+
+  **Established effects.** Four words at entry `a0 + 0x260`, `a0 + 0x264`, `a0 + 0x268`, and `a0 + 0x26c` are loaded (`lwc1` at 0x3284f80, 0x3284f88, 0x3284f90, 0x3284f98). The routine writes them in that order to entry `a1` offsets 0x20, 0x24, 0x28, and 0x2c (`swc1` at 0x3284f84, 0x3284f8c, 0x3284f94, 0x3284fa0). The last write is the return delay slot (`jr` at 0x3284f9c); the specular path and destination field roles are Unknown.
+- `__glOdysseyChangeMaterialAmbient` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+
+  **Established effects.** The body transfers words at entry `a0` offsets 0x260, 0x264, 0x268 and 0x26c into entry `a1` offsets 0, 4, 8 and 0xc (`lwc1` at 0x3284fb0, 0x3284fb8, 0x3284fc0, 0x3284fc8; `swc1` at 0x3284fb4, 0x3284fbc, 0x3284fc4, 0x3284fd0). Its fourth store executes during return (`jr` at 0x3284fcc). The roles of the ambient destination fields and this path are Unknown.
+- `__glOdysseyChangeMaterialDiffuse` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+
+  **Established effects.** It reads four words from entry `a0 + 0x260`, `a0 + 0x264`, `a0 + 0x268` and `a0 + 0x26c` (`lwc1` at 0x3284fe0, 0x3284fe8, 0x3284ff0, 0x3284ff8). These go to entry `a1 + 0x10`, `a1 + 0x14`, `a1 + 0x18` and `a1 + 0x1c` in order (`swc1` at 0x3284fe4, 0x3284fec, 0x3284ff4, 0x3285000). The final store is in the return delay slot (`jr` at 0x3284ffc). The diffuse destinations and this routine have Unknown hardware roles.
+- `__glOdysseyChangeMaterialAmbientAndDiffuse` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+
+  **Established effects.** Each word read from entry `a0` offsets 0x260, 0x264, 0x268 and 0x26c is stored twice (`lwc1` at 0x3285010, 0x328501c, 0x3285028, 0x3285034). The destinations, in source order, are entry `a1` offsets 0 and 0x10, 4 and 0x14, 8 and 0x18, then 0xc and 0x1c (`swc1` at 0x3285014, 0x3285018, 0x3285020, 0x3285024, 0x328502c, 0x3285030, 0x3285038, 0x3285040). The final store runs in the return delay slot (`jr` at 0x328503c). The paired destination fields and their hardware purpose are Unknown.
+- `__glOdyim_Lightfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established.** It reads the process word at 0x1030 (`lw` at 0x3256a04). `beq` at 0x3256a24 takes the error path when that word equals 1 and falls through otherwise; the taken path calls `__glSetError` with 0x502 (`jalr` at 0x3256a6c).
+  - Fall-through calls `__glim_Lightfv` with the original first four arguments, then `dirtyLight` with original arguments 0 and 1 as its second and third arguments (`jalr` at 0x3256a30; `bgezall` at 0x3256a48). The facts report leaves the first argument to `dirtyLight` Unknown (`bgezall` at 0x3256a48). The hardware effect and wider purpose of this vector path are Unknown.
+- `__glOdyim_Lightf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established.** `beq` at 0x3256ab4 tests the process word at 0x1030, branching when it equals 1 and falling through otherwise (`lw` at 0x3256a94). The branch target calls `__glSetError` with 0x502 (`jalr` at 0x3256afc).
+  - The fall-through calls `__glim_Lightf` and then `dirtyLight` (`jalr` at 0x3256ac0; `bgezall` at 0x3256ad8). The latter receives original argument 0 as its second argument and original argument 1 as its third; its first argument is Unknown (`bgezall` at 0x3256ad8). The scalar floating-point path’s broader role and hardware effect are Unknown.
+- `__glOdyim_Lightiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established.** It tests the word at 0x1030 with `beq` at 0x3256b44: equality with 1 selects `__glSetError` with 0x502, and inequality falls through (`lw` at 0x3256b24; `jalr` at 0x3256b8c).
+  - On fall-through `__glim_Lightiv` is called with the original first four arguments (`jalr` at 0x3256b50). A following `dirtyLight` call receives the original first two arguments as its second and third; the facts report leaves its first argument Unknown (`bgezall` at 0x3256b68). The integer-vector path’s hardware effect and broader purpose remain Unknown.
+- `__glOdyim_Lighti` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established.** `beq` at 0x3256bd4 branches when the process word at 0x1030 equals 1 and falls through when unequal (`lw` at 0x3256bb4). The taken path calls `__glSetError` with 0x502 (`jalr` at 0x3256c1c).
+  - Otherwise it calls `__glim_Lighti`, then `dirtyLight` (`jalr` at 0x3256be0; `bgezall` at 0x3256bf8). The latter call's first argument is Unknown; its second and third are the original arguments 0 and 1 (`bgezall` at 0x3256bf8). The broader purpose and hardware effect of this integer path are Unknown.
+- `__glOdyim_LightModelfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
+  - **Established.** `beq` at 0x3256c5c selects an error call with 0x502 when the word at 0x1030 equals 1 and falls through otherwise (`lw` at 0x3256c3c; `jalr` at 0x3256cd0). Fall-through calls `__glim_LightModelfv` with the original first four arguments (`jalr` at 0x3256c68).
+  - On reaching `beq` at 0x3256c98, its delay slot writes 2 to 0x1030 on both branch paths (`sw` at 0x3256c9c). The branch is taken when original argument 0 equals 0xb53 and falls through when unequal; the fall-through writes 2 to 0x1030 again (`sw` at 0x3256cb8). The purpose and hardware effect of the light-model path are Unknown.
+- `__glOdysseySoftClipRenderLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1108 bytes
+  - **Established effects.** One path writes 0x14400 and 1 to process address 0x10000 (`sw` at 0x3280f7c, 0x3280f88). Calls on that path include `__glOdysseySetProgram` with entry argument 0 and 1, plus indirect calls whose targets hostfacts leaves Unknown (`jalr` at 0x328105c, 0x3281068, 0x3281074).
+  - The later sequence writes 0x14001 to 0x10000; `beqz` falls through when the word at entry argument 0 +0xba44 is nonzero, and the fall-through writes 0x10443, 0xfa and two 0x10046 words there (`sw` at 0x3280fc0; `lw` at 0x3280fc4; `beqz` at 0x3280fd0; `sw` at 0x3280fe0, 0x3280fe8, 0x3280ff0, 0x3280ff4). The purpose of the stored values and this rendering path is Unknown.
+- `__glOdysseySoftClipClipTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+  - **Established effects.** The routine saves entry arguments 1, 2 and 3 as doublewords at entry sp -0x30, -0x28 and -0x20 (`sd` at 0x32823f8, 0x328240c, 0x3282418). It calls `__glOdysseyDoTriangleClip` with entry argument 0, entry sp -0x30, 3 and entry argument 4 (`bgezall` at 0x3282420). The broader hardware effect is Unknown.
+- `__glOdysseySoftClipClipTriangleFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+  - **Established effects.** Entry arguments 1, 2 and 3 are stored as doublewords at entry sp -0x30, -0x28 and -0x20 (`sd` at 0x32826f8, 0x328270c, 0x3282718). A call to `__glOdysseyDoTriangleClipFast` passes entry argument 0, entry sp -0x30, 3 and entry argument 4 (`bgezall` at 0x3282720). Its hardware effect remains Unknown.
+- `__glOdysseySoftClipClipLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 400 bytes
+  - **Established effects.** The body reads words at +0x4 of entry arguments 1 and 2 and ORs them (`lw` at 0x328275c, 0x3282774; `or` at 0x3282798). The `beqz` at 0x32827a0 tests bit 0 of a value hostfacts leaves Unknown; it is taken when that bit is clear (`beqz` at 0x32827a0).
+  - Calls include three indirect sites whose targets hostfacts cannot resolve (`jalr` at 0x3282824, 0x3282854, 0x32828bc). The compared fields, indirect targets and line-clipping path have Unknown roles.
+- `__glOdysseySoftClipValidateVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+  - **Established effects.** The `beqz` falls through when mask 0x8 of a value hostfacts leaves Unknown is nonzero (`beqz` at 0x327ee54). That path copies words at entry argument 1 +0xc8, +0xcc, +0xd0 and +0xd4 to +0x28, +0x2c, +0x30 and +0x34 (`lwc1` at 0x327ee5c, 0x327ee60, 0x327ee68, 0x327ee64; `swc1` at 0x327ee78, 0x327ee74, 0x327ee70, 0x327ee6c).
+  - Both outcomes call `__glValidateVertex4` with the first four entry arguments (`jalr` at 0x327ee80). The copied fields and this vertex-validation path have Unknown hardware roles.
