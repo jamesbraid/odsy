@@ -3402,3 +3402,36 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   The 6.5.30 routine occupies 1520 bytes at 0x1672680. It reads a signed halfword at entry `a0 +0xa` (`lh` at 0x16726c4) and a word at entry `a1 +0x4c` (`lw` at 0x16726d0). Its writes include a word to an unknown destination (`sw` at 0x1672a10); the routine's role is Unknown. Established.
 - `cfb16LineSS1RectPreviousCopy` — `usr/lib/X11/dyDDX/odyssey.so`
   The 6.5.30 function occupies 1528 bytes at 0x15da3f0. It loads a byte at entry `a0` (`lbu` at 0x15da438), a word at entry `a1 +0x4c` (`lw` at 0x15da440), and a signed halfword at entry `a0 +0xa` (`lh` at 0x15da44c). Its stores include a halfword to an unknown destination (`sh` at 0x15da790); the routine's role is Unknown. Established.
+
+## X window, span and scanline helpers
+
+- `miValidateTree` (`usr/lib/X11/dyDDX/odyssey.so`, 1540 bytes):
+  **Established.** It reads a word at entry `a0` +0x10 (`lw` at 0x16f3ee8). When entry `a1` is zero, `bnez` falls through and the code loads the word at `a0` +0x24 (`bnez` at 0x16f3f30; `lw` at 0x16f3f38). It then calls an unknown indirect destination (`jalr` at 0x16f3f48). The records' roles and any hardware effect are unknown.
+- `miPushPixels` (`usr/lib/X11/dyDDX/odyssey.so`, 1544 bytes):
+  **Established.** The routine calls `Xalloc`; `beqz` takes the return path when it returns zero (`jalr` at 0x1607110; `beqz` at 0x160711c). A later path calls an unknown indirect destination (`jalr` at 0x1607294). The routine's purpose and hardware effect are unknown.
+- `cfb32FillRectTile32General` (`usr/lib/X11/dyDDX/odyssey.so`, 1580 bytes):
+  **Established.** It reads the byte addressed by entry `a0`, and `beq` takes a distinct path when the value is 1 (`lbu` at 0x16dd554; `beq` at 0x16dd5d8). Another path reads a word from an unknown base (`lw` at 0x16dd670) and performs AND and XOR operations (`and` at 0x16dd688; `xor` at 0x16dd690). It stores a word with an unknown value to an unknown base (`sw` at 0x16dd694). The routine's role and hardware effect are unknown.
+- `cfbSolidSpansGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 1628 bytes):
+  **Established.** It calls `miClipSpans` (`jalr` at 0x1609870). A later loop reads a byte from an unknown base (`lbu` at 0x1609900) and performs AND and XOR operations (`and` at 0x160990c; `xor` at 0x1609910). It stores a byte with an unknown value to an unknown base (`sb` at 0x1609918). The routine's role and hardware effect are unknown.
+- `cfb16FillRectSolidCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 1640 bytes):
+  **Established.** The byte addressed by entry `a0` selects an alternate path when it equals 1 (`lbu` at 0x1586fd4; `beq` at 0x1586ff0). A later loop reads a word from an unknown base (`lw` at 0x1587074) and performs AND and OR operations (`and` at 0x158707c; `or` at 0x1587084). It stores a word with an unknown value to an unknown base (`sw` at 0x1587088). The routine's role and hardware effect are unknown.
+- `miPolyRectangle` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 this routine occupies 1684 bytes at 0x167d4f0. It reads a word from entry `a1 +0x10` (`lw` at 0x167d51c), and a signed halfword from entry `a3` on one path (`lh` at 0x167d56c). It invokes an unknown callee indirectly (`jalr` at 0x167d5e8); the role of the operation is Unknown. Established.
+- `miSendExposures` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 body occupies 1720 bytes at 0x15c0600. It reads a word at entry `a1 +0x8` (`lw` at 0x15c0618) and calls `LookupIDByType` and `DeliverEvents` (`jalr` at 0x15c07a8, 0x15c0a38). It also writes halfwords to storage whose base is unknown (`sh` at 0x15c06b4, 0x15c06c0); the storage's role is Unknown. Established.
+- `miHandleExposures` — `usr/lib/X11/dyDDX/odyssey.so`
+  This 6.5.30 function occupies 1724 bytes at 0x15e1ef0. It reads words at entry `a2` and `a2 +0x10` (`lw` at 0x15e1efc, 0x15e1f0c). Its indirect calls include two whose targets are unknown (`jalr` at 0x15e1fbc, 0x15e1fd8). Its named calls include `NotClippedByChildren` (`jalr` at 0x15e23c0). The routine's broader role is Unknown. Established.
+- `mfbPolyPoint` — `usr/lib/X11/dyDDX/odyssey.so`
+  The 6.5.30 routine occupies 1800 bytes at 0x16379e0. It reads a word from entry `a1 +0x14` (`lw` at 0x1637a00). One path loads a word from an unknown base, executes an XOR, and stores a word to an unknown destination; the stored value is unknown (`lw` at 0x1637b60, `xor` at 0x1637b64, `sw` at 0x1637b6c). The routine's role is Unknown. Established.
+- `cfb16FillSpanTile32sGeneral` — `usr/lib/X11/dyDDX/odyssey.so`
+  In 6.5.30 the function occupies 1808 bytes at 0x1566240. It reads unsigned halfwords from entry `a4 +0xc` and `a4 +0xe` (`lhu` at 0x1566270, 0x1566278). Its operations include a word load from an unknown base, AND and XOR instructions, and a word store to an unknown destination; the stored value is unknown (`lw` at 0x1566414, `and` at 0x1566420, `xor` at 0x1566428, `sw` at 0x1566430). The routine's role is Unknown. Established.
+- `cfb32SetSpans` — `usr/lib/X11/dyDDX/odyssey.so` — 1640 bytes
+  **Established.** The routine reads a byte from the first argument (`lbu` at 0x16b98ac). The `beq` at 0x16b98c8 is taken when that byte equals 1 and falls through otherwise. It also reads a word at the second argument plus 0x14 (`lw` at 0x16b9a2c). Word stores include a store to an unknown base (`sw` at 0x16b9ad4). The role of these accesses is Unknown.
+- `miBSValidateGC..CFB` — `usr/lib/X11/dyDDX/odyssey.so` — 1664 bytes
+  **Established.** It reads a word at the first argument plus 0x4c (`lw` at 0x15c4938), then stores words at the first argument plus 0x44 and 0x48 (`sw` at 0x15c494c, 0x15c4954). It calls an unknown indirect callee with the original first four arguments (`jalr` at 0x15c4964). The role of this sequence is Unknown.
+- `mfbSetScanline` — `usr/lib/X11/dyDDX/odyssey.so` — 1664 bytes
+  **Established.** It subtracts the second argument from the third and masks the result with 0x1f (`subu` at 0x16ec8d4; `andi` at 0x16ec8d8). The `beqz` at 0x16ec910 is taken when the tool's unknown value is at least 0x21 signed and falls through when it is less. The routine has no calls; its role is Unknown.
+- `cfb32GetSpans` — `usr/lib/X11/dyDDX/odyssey.so` — 1676 bytes
+  **Established.** It reads a byte at the first argument plus 0x3 (`lbu` at 0x16b1570). The `beq` at 0x16b1590 is taken when that byte equals 1; otherwise, the `beq` at 0x16b1598 is taken when it equals 0x20. If both branches fall through, it calls `FatalError` (`jalr` at 0x16b15b0). Word stores include a store at the sixth argument (`sw` at 0x16b17b4). The routine’s role is Unknown.
+- `miBSGetImage..FCB` — `usr/lib/X11/dyDDX/odyssey.so` — 1684 bytes
+  **Established.** It reads a word at the first argument plus 0x10 (`lw` at 0x167a680) and writes a word at 0xa4 from that loaded pointer (`sw` at 0x167a6dc). It reads the first argument's first byte (`lbu` at 0x167a6e4); the `beq` at 0x167a704 is taken when that byte equals 1 and falls through otherwise. Calls include an unknown indirect callee and `FreeScratchGC` (`jalr` at 0x167a760, 0x167a8c4). The role of this sequence is Unknown.
