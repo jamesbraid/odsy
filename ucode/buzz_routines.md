@@ -107,7 +107,7 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   records 456 to 471 load operands 0 to 15 one per record (`r3` 0x10 to 0x1f, `d0` 4, no issue), and records 472 to 478 load nothing. Port V writes in 463 to 478, each record one lane:
   `bx` 4 to 7 gives lanes x to w and `mc` 0, 2, 4 and 6 gives registers 0, 1, 2 and 3, four lanes to a register, relative to the base sequencer 0x34 holds
   (the host sets 0, 20, 36 or 52 words). The write comes seven records after the operand load. The end mark 2 is at 474 and 475 to 478 are its delay slots.
-  The parameter-memory store flag (the low bit of `mc`) is clear throughout, and `d1`, `d2`, `ma`, `ln`, `b` and the colour field are all zero, so the routine writes registers only.
+  The parameter-memory store flag (the low bit of `mc`) is clear throughout, and `d1`, `d2`, `ma`, `ln` and `b` are zero and the colour field stays at its idle value 0x0008, so the routine writes registers only.
   **inferred:** each operand reaches the register lane unchanged, so one row of a matrix fills one register. Records 463 to 466 also carry 1 in `r1` and `r2`; no reading uses them
   because `d0` has no issue bit.
 - **`479`** (routine; kernel record 479, records 479 to 489 identical in the kernel copy), **inferred**: the four-word register store of opcode
@@ -276,7 +276,7 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
 routines chosen by the texture state it worked out at source line 677 (the texture
 dimension from the 1D, 2D and 3D enables) and line 753 (texture generation on).
 
-- **`0`** (routine; kernel record 0; records 0 to 15 identical in the kernel copy), **inferred**: the clip-plane routine `AddProgram` stores into
+- **`0`** (routine; kernel record 0; records 0 to 11 identical in the kernel copy), **inferred**: the clip-plane routine `AddProgram` stores into
   the list when hardware clip planes are on (`ody_program.s`, source line 1137). **established** from the fields of records 0 to 11: record 0 loads slot 0 (`r3` 0, `d0` 0xc) and issues on R9; records 1 to 9 issue (`d0` 9) on R10, R11, R12 (`r1` 0xa, 0xb, 0xc),
   then R3, R0, R1, R4, R2 (3, 0, 1, 4, 2) and R25 (0x19 at 9); 10 carries no issue and 11 loads from R27 (`d0` 6, `r2` 0x1b, a register load). The end mark 1 is at 7, so 8 to 11 are its delay slots. Parameter-memory reads
   name `ma` 0x120 to 0x12b in order in records 0 to 11. Port P writes R25 (`rb` 0x19) lanes x to w (`ln` 4 to 7) in 2 to 5 from words 0x120 to 0x123, R26 (`rb` 0x1a) lanes x to w in 6 to 9 from 0x124 to 0x127, and R25 lanes x and y in 10 and 11 from 0x128 and 0x129
@@ -290,7 +290,7 @@ dimension from the 1D, 2D and 3D enables) and line 753 (texture generation on).
   (`ln` 6 and 7) in 12 and 13; 16 to 20 are idle; the end mark 1 is at 21; and the only output records are word field 5 at 22, 4 at 23 and 3 at 25 (`s1` 0x80, no `d2` code, no header; 24 is idle). The delay slots are 22 to 25.
   **inferred:** it takes the eye coordinates routine 0 left in the operand latch and fires the plane A product left latched by 0 (record 12), plane B (R26, issue 12, fire 13) and plane C (R25, issue 14, fire 15), so a program with
   three hardware planes evaluates all three; the three output words, 5, 4 and 3 at 22, 23 and 25, come ten records after those three fires (12, 13, 15).
-- **`26`** (routine; kernel record 26; records 26 to 40 identical in the kernel copy), **inferred**: the clip-plane follow-up when texturing is on
+- **`26`** (routine; kernel record 26; records 26 to 39 identical in the kernel copy), **inferred**: the clip-plane follow-up when texturing is on
   without texture generation (`ody_program.s`, line 1139). **established** from the fields of records 26 to 39: record 26 loads slot 3 (`r3` 3, `d0` 0xd) and issues on R8, 27 and 28 issue on R5 and R6 (`d0` 9), 29 is a fire (`d0` 1), 30 to 34 are idle,
   the end mark 1 is at 35, and the output records are word field 5 at 36 (`s1` 0x80), `d2` 0x08 at 37 (no word), `d2` 0x26 with word field 3 at 38 and 4 at 39. The delay slots are 36 to 39. No record reads parameter memory (`ma` 0). **inferred:** it
   transforms the texture-coordinate slot by the rows R8, R5 and R6 (q, s, t) and, by the pass 13 rules, outputs word 5 (36) from the plane A product fired at 26, consumes q (0x08) and outputs s and t multiplied by 1/w (0x26) as words
@@ -300,6 +300,7 @@ dimension from the 1D, 2D and 3D enables) and line 753 (texture generation on).
   texture generation (`ody_program.s`, line 1139). **established** from the fields of records 40 to 50: record 40 carries only `d0` 1 (bit 44, a fire of the operand already latched), 41 to 45 are idle, the end mark 1 is at 46, 47 to 49 are idle
   and word field 5 is the only output, at record 50 (`s1` 0x80, no `d2` code); nothing else in the routine is set. The delay slots are 47 to 50. **inferred:** it issues no product of its own and fires the product the clip routine before it latched (plane A), outputting that result as word 5,
   the place 12 and 26 also give plane A's result, because the texture-generation routines appended after it (51 to 123) produce the texture coordinates.
+
 ### Lighting routines
 
 `AddProgram` (`ody_program.s`, source lines 838 to 876) walks the enabled lights (mask at

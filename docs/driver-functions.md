@@ -2505,7 +2505,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   or in the following words at a stride of 8 from +132. It then saves the chip control word at +36 and the widget's word at +268, clears bits 5, 2 and 1 of the first and bits 31, 17, 16, 8, 7, 6, 5, 4, 3 and 1 of the
   second, stores 0x200 to the board's reset register 0x100c, waits one second with `odsy_usdelay`, writes 0 only to the driver's shadow word (not to the register), and checks that the widget's words at +276
   and +316 again show the same two bits. When they do it restores the control word, puts the saved widget word back with bits 22:18 cleared and bit 20 set, waits 100 ms and
-  returns. When they do not it logs at severity 4 and repeats, up to seven attempts.
+  returns. When they do not it logs at severity 4 and repeats, up to four attempts in all (the retry counter steps by 2 and the loop ends once it reaches 7).
 - `mm_rewind_cond_list_cursor` (`odsy_pmm.o`, offset 0x88, 240 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
   Moves saved free-list cursors back to an earlier free node after a node appears in front of them. Arguments:
