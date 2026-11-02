@@ -2533,3 +2533,48 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `StoreStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f84c0
 
   **Established effects.** It reads a word at entry `a0 + 0x9740`; zero makes `beqz` at 0x31f8508 take the return path (`lw` at 0x31f84ec; `jr` at 0x31f85f0). On a later path, `beqz` at 0x31f8570 falls through when its tested value is nonzero and reaches an indirect call (`jalr` at 0x31f858c). That call receives the doubleword at entry `a0 + 0x9840` in `a0` and entry `sp - 0xa0` in `a1` (`ld` at 0x31f84f8; `jalr` at 0x31f858c). The tested value, target, fields and stippled-span path have Unknown hardware roles. This body occupies 312 bytes at the cited address.
+
+## 64-bit IP30 library: display lists and image operations
+
+- `InterpretVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 376 bytes
+
+  **Established effects.** It reads a doubleword at absolute 0x1020 and stores entry `a1` as a word at that value plus 0x18f08 in the delay slot of `beqz` at 0x320688c (`ld` at 0x3206878; `sw` at 0x3206890). The branch is taken for entry `a1 = 0`, reaching an indirect call with entry `a2` in `a0` (`jalr` at 0x3206914). If it falls through, `beq` at 0x3206898 selects another indirect call for entry `a1 = 1` (`jalr` at 0x3206944). The targets, destination field and wider vertex path have Unknown roles.
+- `InterpretNormal` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 212 bytes
+
+  **Established effects.** Entry `a1 = 0x16` makes `beq` at 0x3206c98 take a path calling `pack_b` with entry `a2` in `a1` and entry `sp - 0x20` in `a2` (`bgezall` at 0x3206cec). It then calls an unknown indirect target with that stack address in `a0` (`jalr` at 0x3206d00). If the first selector falls through and entry `a1 = 0x17`, `beq` at 0x3206ca0 takes the path calling `pack_s` followed by another unknown target (`bgezall` at 0x3206d18; `jalr` at 0x3206d2c). The indirect targets and hardware effects of this normal dispatch are Unknown.
+- `InterpretTexCoord` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 252 bytes
+
+  **Established effects.** On one path, an indirect jump uses the table at 0x3380da0 (`jr` at 0x3206d90). The table's first entry leads to an indirect call with entry `a2` in `a0` (`jalr` at 0x3206dbc); its fourth entry leads to another such call (`jalr` at 0x3206da0). Other table paths include indirect calls at 0x3206dd4 and 0x3206dec (`jalr` at 0x3206dd4, 0x3206dec). The index, indirect targets and hardware role of this coordinate dispatch are Unknown.
+- `InterpretColorIndex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 644 bytes
+
+  **Established effects.** Its indirect jump uses a table at 0x3380d20 (`jr` at 0x3206a28). Calls on table paths include `pack_s`, `pack_b`, `pack_us`, and `pack_ub`, each receiving entry `a2` in `a1` and entry `sp - 0x20` in `a2` (`bgezall` at 0x3206a3c, 0x3206ae8, 0x3206b30, 0x3206b60). Other paths invoke indirect targets (`jalr` at 0x3206a6c, 0x3206a84, 0x3206a9c). The jump index, indirect targets and hardware role of this color-index dispatch are Unknown.
+- `ExecuteDlist` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 248 bytes
+
+  **Established effects.** It loads a doubleword from entry `a1 + 0x28` (`ld` at 0x3209b04), stores that value at entry `a0 + 0x18f00`, and stores that value plus 4 at `a0 + 0x18ef0` (`sd` at 0x3209b38, 0x3209b60). Its other writes include -1 at `a0 + 0x18f08` and zero bytes at 0x18efb, 0x18efa and 0x18ef8 (`sw` at 0x3209b34; `sb` at 0x3209b3c, 0x3209b40, 0x3209b48). It calls `__glSPInterpret` with the doubleword at entry `a1 + 0x20` in `a0` (`ld` at 0x3209b70; `jalr` at 0x3209b6c). The stored fields and the wider display-list path have Unknown hardware roles.
+- `ImageChainAddOpColorZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+
+  **Established effects.** `bnez` at 0x323a038 takes the setup path if `ImageChainOpCreate` returns nonzero (`jalr` at 0x323a030). That path stores 0xc at result offset 0, 1 at offset 0x14, and 0x323a0b0 at offset 8 (`sw` at 0x323a058; `sw` at 0x323a050; `sd` at 0x323a074). It ORs 0x2c into the result word at offset 0x10, calls `ImageChainAddOp`, and returns 1 (`lw` at 0x323a06c; `ori` at 0x323a080; `sw` at 0x323a084; `jalr` at 0x323a08c; `jr` at 0x323a09c). The zoom record’s hardware role and the broader purpose of this path are Unknown.
+- `ImageChainAddOpIndexZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+
+  **Established effects.** After `ImageChainOpCreate`, `bnez` at 0x323a118 falls through to a zero return if the result is zero (`jalr` at 0x323a110; `jr` at 0x323a128). When the branch is taken, stores to the result include 0xd at offset 0 and 0x323a190 at offset 8 (`sw` at 0x323a138; `sd` at 0x323a154). It then calls `ImageChainAddOp` with the result as argument 1 and zero as argument 3 (`jalr` at 0x323a16c). The indexed zoom fields and the routine’s wider hardware role remain Unknown.
+- `ImageChainAddOpInterlace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+
+  **Established effects.** If `ImageChainOpCreate` returns zero, `beqz` at 0x323a200 selects a zero return (`jalr` at 0x323a1f4; `jr` at 0x323a26c). Otherwise `beqz` at 0x323a208 selects a store of 0xf at result offset 0 when entry argument 1 is zero; fall-through stores 0xe there (`sw` at 0x323a278; `sw` at 0x323a210). The paths join to store 0x323a280 at result offset 8 and call `ImageChainAddOp` (`sd` at 0x323a234; `jalr` at 0x323a24c). The interlace record’s hardware purpose and the routine’s broader role are Unknown.
+- `ImageChainAddOpIndexShiftOffset` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 196 bytes
+
+  **Established effects.** The `bnez` at 0x323a370 selects record setup for a nonzero `ImageChainOpCreate` result (`jalr` at 0x323a368). The routine writes 6 and 0 to result words at offsets 0 and 0x14 (`sw` at 0x323a38c; `sw` at 0x323a384). It stores 0x323a420 at offset 8 and ORs 2 into the result word at 0x10 before calling `ImageChainAddOp` (`sd` at 0x323a3cc; `lw` at 0x323a394; `ori` at 0x323a3dc; `sw` at 0x323a3e0; `jalr` at 0x323a3fc). The shifted-index fields and their wider hardware role are Unknown.
+- `ImageChainAddOpScaleBiasGfx` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 236 bytes
+
+  **Established effects.** When `ImageChainOpCreate` returns nonzero, `bnez` at 0x322dbc0 takes the setup path (`jalr` at 0x322dbb8). That path copies the words at offsets 0 and 4 of entry argument 1 into result offsets 0x28 and 0x2c (`lwc1` at 0x322dbe4; `swc1` at 0x322dbe8; `lwc1` at 0x322dbec; `swc1` at 0x322dbf0). It calls `ImageChainOpAllocateFilters` with the result and 1, then calls `ImageChainAddOp` (`jalr` at 0x322dc54; `jalr` at 0x322dc74). The copied fields’ hardware role and the scale-bias routine’s wider purpose are Unknown.
+- `__glOdysseySoftClipMatValidateVbuf0V1V2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  - **Established effects.** The first `beqz` falls through when the byte at entry argument 0 +0x19518 is nonzero and calls an indirect target hostfacts leaves Unknown (`lbu` at 0x327a9e0; `beqz` at 0x327a9fc; `jalr` at 0x327aa10).
+  - It then tests the bytes at +0x198 through the doublewords at argument 0 +0x4e38 and +0x4e40 (`ld` at 0x327aa18, 0x327aa34; `lbu` at 0x327aa1c, 0x327aa38). Each `beqz` falls through on a nonzero byte and calls an unresolved indirect target (`beqz` at 0x327aa20, 0x327aa3c; `jalr` at 0x327aa2c, 0x327aa48). The tested fields, indirect targets and this validation path have Unknown hardware roles.
+- `__glOdyim_SoftClipEnable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  - **Established effects.** Either `beq` is taken for entry argument 0 equal to 0xb50 or 0xb57 and calls `__glim_Enable` with that argument (`beq` at 0x3281584, 0x328158c; `jalr` at 0x32815b4). Both that path and the fall-through call `__glOdyim_Enable` with entry argument 0 (`jalr` at 0x3281594). The hardware effect of this enable dispatch is Unknown.
+- `__glOdyim_SoftClipDisable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+  - **Established effects.** The two `beq` tests select entry argument 0 equal to 0xb50 or 0xb57; either taken path calls `__glim_Disable` with entry argument 0 (`beq` at 0x32815f4, 0x32815fc; `jalr` at 0x3281628). Execution then joins the fall-through path at a call to `__glOdyim_Disable`, also with entry argument 0 (`jalr` at 0x3281608). The hardware effect of this disable dispatch is Unknown.
+- `__glOdyim_SoftClipEnd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 192 bytes
+  - **Established effects.** It calls `__glim_End` with the first four entry arguments (`jalr` at 0x3284d40). The following `bnez` returns when the byte at [0x1020]:8 +0x1c48c is nonzero (`ld` at 0x3284d44; `lbu` at 0x3284d50; `bnez` at 0x3284d54; `jr` at 0x3284dd8).
+  - On fall-through, `beqz` at 0x3284d6c is taken when mask 0x100 of the word at [0x1020]:8 +0x814 is zero; its nonzero fall-through updates that word and sets mask 0x510 in +0x18e58 (`lw` at 0x3284d5c, 0x3284d78; `andi` at 0x3284d60; `beqz` at 0x3284d6c; `sw` at 0x3284d74, 0x3284d80; `ori` at 0x3284d7c). The fields and the broader end path have Unknown hardware roles.
+- `SoftClipPointVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** It stores entry argument 1 as a doubleword at argument 0 +0x8cd8 and reads the word at argument 1 +0x4 (`sd` at 0x327bb18; `lw` at 0x327bb1c). `beqz` is taken when that word is zero and calls the indirect target loaded from argument 0 +0x4cb0; hostfacts leaves the target Unknown (`beqz` at 0x327bb30; `ld` at 0x327bb44; `jalr` at 0x327bb4c). The fields and the point-vertex path have Unknown hardware roles.
