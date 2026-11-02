@@ -404,24 +404,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Forgets the cached display-pipe state of a board. It zeroes the two doublewords at board record +46216
   and +46224, then takes `odsy_hpipe_state_lock` with `mutex_spinlock`, clears the first word of the
   structure at `OdsyHpipeState` when that pointer is set, and releases the lock with `mutex_spinunlock`.
-- `odsy_usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
-  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
-  Stand-in for a tile-update operation that this kernel does not carry; the two builds' 40 bytes are identical. It loads its message from the small-data pointer, calls `cmn_err` at
-  severity 4 with the string at offset 208 of that table, "usb_comp_update_tiles not in kernel!", and returns -1; it reads none of its arguments and touches no board. The caller `odsy_program_compositor_tiling` passes the unit number (bits 15:8 of the board's compositor word), a pointer to eight tile words on its stack and the byte count 32, so the intended operation sends the eight x and y range words to a compositor identified by unit; its effect in a kernel that has it is unknown. Other code
-  in `odsy_hpipe.o` reaches it under the second symbol `usb_comp_update_tiles` at the same address.
-- `usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
-  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
-  Second symbol for the 40-byte code at offset 0x7f4 that `odsy_usb_comp_update_tiles` also names.
-  `odsy_hpipe.o` calls this name through its relocations, and the code logs "usb_comp_update_tiles not in
-  kernel!" at severity 4 with `cmn_err` and returns -1.
-- `odsy_usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
-  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
-  Stand-in for the register read-write operation of the USB compositor, which this kernel does not carry. It calls `cmn_err` at severity 4 with the string at offset 248 of the small-data table, "usb_comp_readwrite_register not in kernel", and returns -1; it reads none of its arguments and touches no register. `odsy_program_compositor_tiling` calls it with the unit number, register 1, a count of 1, a flag of 0 and a pointer to a stack word that holds a word read from the board record with bit 5 set before the tile update and cleared again afterwards, so the intended operation is a one-word register access on the unit's compositor.
-- `usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
-  Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
-  Second symbol for the 40-byte code at offset 0x81c that `odsy_usb_comp_readwrite_register` also names.
-  The relocations of `odsy_hpipe.o` call it by this name; the code logs "usb_comp_readwrite_register not
-  in kernel" at severity 4 with `cmn_err` and returns -1.
+- `odsy_usb_comp_update_tiles` (`usr/cpu/sysgen/IP30boot/odyssey.a`, 0x7f4): **established.**
+  The member `odsy_hpipe.o` occupies 40 bytes. It loads the small-data base pointer at `ld` 0x7f4 and adds 0xd0 to it in the `daddiu` delay slot at 0x808, then calls the imported `cmn_err` at 0x804 with severity 4 and returns -1 from `addiu` at 0x810. It reads no arguments and writes no board register; the string is the missing tile-update diagnostic. The caller passes a unit, eight tile words and byte count 32. The same body is exported as `usb_comp_update_tiles`.
+- `usb_comp_update_tiles` (`usr/cpu/sysgen/IP30boot/odyssey.a`, 0x7f4): **established.**
+  This alias names the same 40-byte body as `odsy_usb_comp_update_tiles`: the `cmn_err` call is relocated at 0x804, its message pointer is formed at 0x808, and the return value is -1 from 0x810. It therefore has no hardware effect in this kernel.
+- `odsy_usb_comp_readwrite_register` (`usr/cpu/sysgen/IP30boot/odyssey.a`, 0x81c): **established.**
+  The member `odsy_hpipe.o` occupies 40 bytes. It loads the small-data base pointer at `ld` 0x81c and adds 0xf8 to it in the `daddiu` delay slot at 0x830, calls the imported `cmn_err` at 0x82c with severity 4, and returns -1 from `addiu` at 0x838. It reads no arguments and writes no register; the caller supplies a compositor unit, register 1, count 1, flag 0 and a stack word.
+- `usb_comp_readwrite_register` (`usr/cpu/sysgen/IP30boot/odyssey.a`, 0x81c): **established.**
+  This alias names the same 40-byte body as `odsy_usb_comp_readwrite_register`: the `cmn_err` call is relocated at 0x82c, its message pointer is formed at 0x830, and the return value is -1 from 0x838. It therefore has no hardware effect in this kernel.
 - `odsyUnmapPages` (`odsy_map.o`, offset 0x9b8, 40 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
   Drops one user mapping. It loads the mapping handle stored at the address in its argument, zeroes that
@@ -3364,18 +3354,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   instructions in the same order. The start-up word is at -19328 from +0x10000 (IP30: -19352), the header constant
   for the update-enable word comes from the next small-data slot (-30624 instead of -30632) and the copy-failure
   message is at a different offset; the flag handling and the two control-word writes are unchanged.
-- `odsy_usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The IP35 build of the stand-in for the USB compositor's tile update. The ten instructions and relocations equal the IP30 member's (compared with objdump, 0x7f4 to 0x81c in both): it loads a pointer from the read-only small-data word at gp-30720, sets a0 to 4, and calls `cmn_err` with a1 equal to that pointer plus 208 (the addition is in the call's delay slot at 0x808), then returns -1 (`li v0,-1` at 0x810). It reads none of its arguments and touches no board register. This kernel does not carry the real operation.
-- `usb_comp_update_tiles` (`odsy_hpipe.o`, offset 0x7f4, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  Second, weak symbol at the same 40 bytes as `odsy_usb_comp_update_tiles` in the IP35 member (symbol table: both at 0x7f4, size 40); the same code, message offset 208 and result -1. The member's own call to the tile update is an undefined weak reference to this name.
-- `odsy_usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  The IP35 build of the stand-in for the USB compositor's register access, identical to the IP30 member's instructions (compared, 0x81c to 0x844 in both): pointer at gp-30720, a0 = 4, `cmn_err` with a1 equal to that pointer plus 248 (delay slot at 0x830), result -1 (0x838). It reads none of its arguments and touches no register.
-- `usb_comp_readwrite_register` (`odsy_hpipe.o`, offset 0x81c, 40 bytes): **established.**
-  Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
-  Second, weak symbol at the same 40 bytes as `odsy_usb_comp_readwrite_register` in the IP35 member (both at 0x81c, size 40); the same code, message offset 248 and result -1.
+- `odsy_usb_comp_update_tiles` (`usr/cpu/sysgen/IP35boot/odyssey.a`, 0x7f4): **established.**
+  The member `odsy_hpipe.o` occupies 40 bytes. Its exact body matches the IP30 object: it loads the small-data base pointer at `ld` 0x7f4, adds 0xd0 in the `daddiu` delay slot at 0x808, calls the imported `cmn_err` at 0x804 with severity 4, and returns -1 from `addiu` at 0x810. It reads no arguments and writes no board register. The same body is exported as `usb_comp_update_tiles`.
+- `usb_comp_update_tiles` (`usr/cpu/sysgen/IP35boot/odyssey.a`, 0x7f4): **established.**
+  This weak alias names the same 40-byte body as `odsy_usb_comp_update_tiles`: the `cmn_err` call is relocated at 0x804, its message pointer is formed at 0x808, and the return value is -1 from 0x810. It therefore has no hardware effect in this kernel.
+- `odsy_usb_comp_readwrite_register` (`usr/cpu/sysgen/IP35boot/odyssey.a`, 0x81c): **established.**
+  The member `odsy_hpipe.o` occupies 40 bytes. Its exact body matches the IP30 object: it loads the small-data base pointer at `ld` 0x81c, adds 0xf8 in the `daddiu` delay slot at 0x830, calls the imported `cmn_err` at 0x82c with severity 4, and returns -1 from `addiu` at 0x838. It reads no arguments and writes no register.
+- `usb_comp_readwrite_register` (`usr/cpu/sysgen/IP35boot/odyssey.a`, 0x81c): **established.**
+  This weak alias names the same 40-byte body as `odsy_usb_comp_readwrite_register`: the `cmn_err` call is relocated at 0x82c, its message pointer is formed at 0x830, and the return value is -1 from 0x838. It therefore has no hardware effect in this kernel.
 - `odsy_program_compositor_tiling` (`odsy_hpipe.o`, offset 0x844, 1044 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)`.
   The IP35 build of the compositor tile programming, compared with the IP30 listing instruction by instruction, every instruction of the body: 278
