@@ -5080,3 +5080,71 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   branches to a reset path (`bnez` at 0x248, 0x264, 0x29c and 0x2d4) that calls
   `odsy_i2cReset` (`jal` at 0x2e8). It returns 0 after successful sends or 1 after reset
   (`jr` at 0x300).
+- `odsy_i2c_cmd` (`odsy_ddc.o`, offset 0x21e4, 2284 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads a halfword at request offset +2 (`lhu` at 0x21e4) and a word at +8 (`lw` at 0x2200).
+  It loads handle data from one of two offsets at +0x56b0 or +0x56d8 and the paired word at +0x56bc or +0x56e4 (`ld` at 0x2270, `lw` at 0x2268).
+  It calls `mutex_lock` with priority 25 on two paths and calls `mutex_unlock` (`jal` at 0x2284, 0x22f8, 0x22d4 and 0x2308).
+  A value other than 0 or 1 in the request field at +8 returns -22 (`bne` at 0x2228, `jr` at 0x22b4). The halfword at request +2 selects the operation: values below 13 index a jump table in the object's read-only data (`sltiu` at 0x2294, `jr` at 0x22ac), and larger values go to the common exit. The table entries and the operation bodies are not described here.
+- `odsy_Probe2AB` (`odsy_ddc.o`, offset 0x2ad0, 796 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It calls reset, receive, send, stop and delay routines, and copies a reply buffer (`jal` at 0x2af8, 0x2b34, 0x2b74, 0x2b9c, 0x2bb0 and 0x2c78).
+  It writes 0xf0, 0xf1 and 0xf2 to byte offset 128 of the receive buffer (`sb` at 0x2b5c, 0x2cc8 and 0x2d2c).
+  It compares the reply with up to three strings addressed from its first argument, 19 bytes each, using `strncmp` (`jal` at 0x2dc4, `slti` at 0x2dd4). It returns 0 or 1 (`jr` at 0x2c08); the 1 is set after that comparison loop (`addiu` at 0x2de0).
+- `odsy_2abCmdWrapper` (`odsy_ddc.o`, offset 0x2dec, 288 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads the request length at +16 (`lw` at 0x2e38) and the reply pointer at +32 (`ld` at 0x2e30), then clears the halfword at +20 (`sh` at 0x2e40).
+  It calls `odsy_2abSendCmd` with the request length, its third argument and a flag that is set when the reply pointer is zero (`jal` at 0x2e44, `sltiu` at 0x2e48). When the reply pointer at +32 is nonzero, it calls `odsy_2abGetReply` with its own fourth argument as the destination buffer and the address of a stack word that receives the reply length (`beqz` at 0x2e58, `jal` at 0x2e64, a1 from the fourth argument, a2=sp-96). That stack word is stored as a halfword at +20 (`sh` at 0x2e80). Once the retry count passes a global limit it returns -145 when the reply helper returned zero and -5 otherwise (`slt` at 0x2e88, `movn` at 0x2e94). It also calls `odsy_usdelay` on retry paths (`jal` at 0x2eac, 0x2eec and 0x2efc).
+- `odsy_2abSendCmd` (`odsy_ddc.o`, offset 0x2f0c, 732 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It stores either 0x4 or 0x6e in a one-byte data slot (`sb` at 0x2f74).
+  It starts a transfer using that slot, then calls the byte-send helper repeatedly (`jal` at 0x2fec, 0x3068, 0x30a0, 0x3110 and 0x3148).
+  It reads a byte through its third argument (`lbu` at 0x2fac).
+  Error paths call `odsy_i2cFixupAfterErr` (`jal` at 0x3000, 0x3078, 0x30b0, 0x3158 and 0x3178). Another path calls `odsy_i2c_stop` (`jal` at 0x31d4).
+  It can return 0, 1 or 3 (`jr` at 0x2fdc).
+- `odsy_i2cPLLSeqRegRead` (`odsy_ddc.o`, offset 0x308, 276 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads a byte from the port record at +32 (`lbu` at 0x318).
+  It starts and sends a transfer (`jal` at 0x330 and 0x348).
+  It then starts again with address byte 0x4d (`jal` at 0x35c, with a1=0x4d).
+  It receives through long- and short-receive helpers, including a long receive into the third argument (`jal` at 0x374, 0x3b0 and 0x3e4).
+  A nonzero helper result branches to the reset path (`bnez` at 0x338, 0x350, 0x364, 0x37c, 0x3b8 and 0x3ec). That path calls `odsy_i2cReset` (`jal` at 0x400).
+  It returns 0 after successful reads or 1 after reset (`jr` at 0x414).
+- `odsy_2abGetReply` (`odsy_ddc.o`, offset 0x31e8, 560 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It first calls `odsy_i2c_stop` (`jal` at 0x3200). It zeros the output word through its third argument (`sw` at 0x321c).
+  It enters slave receive mode with values 1 and 0x28 and a local buffer (`jal` at 0x3218).
+  The call arguments are a1=1, a2=0x28 and a3=sp-112.
+  It calls the receive helper into that buffer with mode values 1 and 0x80 (`jal` at 0x328c and 0x32dc).
+  Those call arguments include a1=1, a2=1 or 0x80 and a3=sp-112.
+  It calls `odsy_i2cFixupAfterErr` on several paths and delays through `odsy_usdelay` (`jal` at 0x322c, 0x3264, 0x329c, 0x32f0, 0x33ac, 0x33c4 and 0x33e4).
+  It returns -1 on most error paths, 0 on the path at 0x32b4, and otherwise the count in the output word when the final byte matches the running checksum (`lw` at 0x340c, `jr` at 0x324c).
+- `odsy_i2cPLLRegWrite` (`odsy_ddc.o`, offset 0x4c, 140 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads the port byte at +32 and starts a transfer (`lbu` at 0x5c, `jal` at 0x70).
+  It sends the second argument, then the third argument with final flag 1 (`jal` at 0x88 and 0xa0).
+  The second send uses a1=a2 and a3=1.
+  A nonzero result from any operation branches to reset (`bnez` at 0x78, 0x90 and 0xa8).
+  The reset path calls `odsy_i2cReset` (`jal` at 0xbc).
+  It returns 0 when the transfer completes or 1 after reset (`jr` at 0xd0).
+- `odsy_i2cPLLRegRead` (`odsy_ddc.o`, offset 0xd8, 176 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+  It reads the port byte at +32 (`lbu` at 0xe8). It starts a transfer and sends the second argument (`jal` at 0xfc and 0x114).
+  It starts again (`jal` at 0x138).
+  It then receives into the third argument (`jal` at 0x150, with a3=a2).
+  A nonzero result from any operation branches to the reset path (`bnez` at 0x104, 0x11c, 0x140 and 0x158). That path calls `odsy_i2cReset` (`jal` at 0x16c).
+  It returns 0 after the receive or 1 after reset (`jr` at 0x180).
+- `gfP_OdsyDIAGfreeScanbuf` (`odsy_diag.o`, offset 0x214, 144 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  It locks the mutex at board record +22008 with priority 25 (`jal` at 0x23c, arguments a0=record+22008 and a1=25).
+  If the client matches the owner at +22056, it unmaps pages at +22040 and frees the buffer at +22024 for the size at +22048 (`bne` at 0x24c, `jal` at 0x258 and 0x264).
+  It clears the owner, size and pointers (`sd` at 0x26c, `sw` at 0x270, `sd` at 0x274 and 0x278).
+  It always releases the mutex (`jal` at 0x280) and stores 0 through its fourth argument (`sw` at 0x2a0).
+- `gfP_OdsyDIAGreleaseShadowPtrs` (`odsy_diag.o`, offset 0x53c, 212 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  It locks the mutex at board record +22064 with priority 25 (`jal` at 0x568, arguments a0=record+22064 and a1=25).
+  A matching client and owner at +22080 enters cleanup (`beq` at 0x574). A mismatch stores 1 through the result pointer (`sw` at 0x58c).
+  The cleanup path calls `odsyUnmapPages` for the shadow pointer and four regions (`jal` at 0x5ac and 0x5c8).
+  The loop repeats while its index is below four (`bnez` at 0x5d4).
+  It clears the owner and stores 0 through the result pointer (`sd` at 0x5dc, `sw` at 0x600). It then releases the mutex (`jal` at 0x5e0).
+  The return is 0 or 1 (`jr` at 0x608).
