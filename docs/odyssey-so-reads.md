@@ -2702,3 +2702,146 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   argument 0 and original argument 2 as argument 3 (`jalr` at 0x160a828).
   A zero result takes the `beqz` at 0x160a838; a nonzero result falls
   through. Role unknown.
+
+## Frame-buffer and region helpers
+
+- `cfb32UnnaturalTileFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1669d30):
+  **Established.** It reads a word at argument 1 + 0x14 (`lw` at
+  0x1669d4c). The `beqz` at 0x1669d6c takes the return path when that
+  word is zero; its fall-through reaches the `beq` at 0x1669d7c, which
+  takes a separate path when the word is -1. A later path calls
+  `miClipSpans`, passing original arguments 3, 4 and 2 as arguments 1, 2
+  and 3 (`jalr` at 0x1669eb4). Another indirect call receives the result
+  (`jalr` at 0x1669ef8); that target and the routine's role are unknown.
+- `miShapedWindowIn` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1586850):
+  **Established.** It reads a word at argument 2 + 8 (`lw` at 0x158685c).
+  The `beqz` at 0x1586878 selects a separate path when the word is zero.
+  Otherwise it reads the word at +4 of the loaded pointer (`lw` at
+  0x1586888); the `beqz` at 0x1586898 returns zero when that second word
+  is zero (`move` at 0x1586a44). On the other path an indirect call has an
+  unknown target (`jalr` at 0x1586954). The `beq` at 0x1586970 tests its
+  return against 1, and the following `beqz` at 0x1586978 tests for zero.
+  Role unknown.
+- `miSubtract` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16325f0):
+  **Established.** The `beqz` at 0x1632610 falls through when the word at
+  argument 1 + 8 is nonzero (`lw` at 0x16325f4). On that path a second
+  `beqz` at 0x163261c takes the branch when the word at +4 of the loaded
+  pointer is zero (`lw` at 0x1632618), leading to `miRegionCopy` (`jalr`
+  at 0x16326e8). Another path calls `miRegionOp..IAB` with arguments 0, 1
+  and 2 unchanged (`jalr` at 0x1632714). Role unknown.
+- `miChangeBorderWidth` (`usr/lib/X11/dyDDX/odyssey.so`, 0x17132e0):
+  **Established.** It reads the unsigned halfword at argument 0 + 0x64
+  (`lhu` at 0x17132f0). The `beq` at 0x1713320 takes the return path if
+  that halfword equals argument 1, and falls through if they differ. On a
+  path reaching `SetBorderSize` (`jalr` at 0x171334c), the delay slot stores
+  the low halfword of argument 1 at argument 0 + 0x64 (`sh` at 0x1713350).
+  The call list also includes `WindowsRestructured` (`jalr` at 0x17134b0).
+  Role unknown.
+- `miBSPolySegment..LDB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x165e9b0):
+  **Established.** It reads the word at argument 1 + 0x44 (`lw` at
+  0x165e9b4) and later replaces that location with a word loaded at +0x14
+  of an indexed structure (`lw` at 0x165ea28, `sw` at 0x165ea30). The
+  `beqz` at 0x165ea44 takes a separate exit if register `sp` is zero; its value is unknown at that branch. On its fall-through path, the routine makes two indirect calls
+  (`jalr` at 0x165eb30, `jalr` at 0x165eb50) and writes the saved word
+  back at argument 1 + 0x44 (`sd` at 0x165ea58, `ld` at 0x165eb60,
+  `sw` at 0x165eb70). The call targets and role
+  are unknown.
+- `miBSPolyRectangle..MDB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ab7d0):
+  **Established effects; role unknown.** The routine stores two words from
+  a selected record at second-argument offsets +0x48 and +0x44 (`sw` at
+  0x16ab838, `sw` at 0x16ab84c). A nonpositive signed third argument takes
+  the `blez` at 0x16ab884 past the halfword-copy loop to the indirect call
+  at 0x16ab948 (`jalr` at 0x16ab948). That callback receives the original
+  first four arguments (`jalr` at 0x16ab948). A later indirect call's target is also unknown
+  (`jalr` at 0x16ab968). This is a selected reading of the 528-byte
+  6.5.30m N32 routine.
+- `miBSPolyFillRect..PDB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16f4a70):
+  **Established effects; role unknown.** It places two selected-record
+  words at +0x48 and +0x44 of the second argument (`sw` at 0x16f4ad8,
+  `sw` at 0x16f4aec). When the signed third argument is positive, the
+  `blez` at 0x16f4b24 falls through to a loop containing halfword loads and
+  stores (`lh` at 0x16f4b80, `sh` at 0x16f4b90). The path later invokes an
+  unknown callback with the original first four arguments (`jalr` at
+  0x16f4be8). Its 6.5.30m N32 body occupies 528 bytes.
+- `cfbYRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15a06a0):
+  **Established effects; role unknown.** For a nonzero first argument, it
+  examines the byte at +3 (`beqz` at 0x15a06b4, `lbu` at 0x15a06c0). If
+  the byte equals 8, the `beq` at 0x15a06c8 selects a path containing
+  three calls to `memmove` (`jalr` at 0x15a0870, `jalr` at 0x15a088c,
+  `jalr` at 0x15a08a8). The first call reads its source pointer from the
+  first argument at +0x20 (`lw` at 0x15a0848, `jalr` at 0x15a0870);
+  hostfacts leaves the move sizes unresolved. The N32 body is 536 bytes
+  in 6.5.30m.
+- `cfb16YRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15f3b80):
+  **Established effects; role unknown.** A zero first argument takes the
+  `beqz` at 0x15f3b94 to the return path (`jr` at 0x15f3cbc). Otherwise it
+  reads the byte at +3 (`lbu` at 0x15f3ba0). A value of 16 takes the `beq`
+  at 0x15f3ba8 to a path with three `memmove` calls (`jalr` at 0x15f3d50,
+  `jalr` at 0x15f3d6c, `jalr` at 0x15f3d88); their lengths are unknown.
+  The N32 routine occupies 536 bytes in 6.5.30m.
+- `cfb32YRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1609fe0):
+  **Established effects; role unknown.** The `beqz` at 0x1609ff4 returns
+  early for a zero first argument (`jr` at 0x160a11c). With a nonzero
+  argument it compares byte +3 with 32 (`lbu` at 0x160a000, `addiu` at
+  0x160a004, `beq` at 0x160a008). Equality takes the path containing calls
+  to `memmove` (`jalr` at 0x160a1b0, `jalr` at 0x160a1cc,
+  `jalr` at 0x160a1e8). The arguments not
+  resolved by the facts analysis, including the lengths, are unknown. The
+  routine occupies 536 bytes in the 6.5.30m N32 binary.
+- `miMarkOverlappedWindows` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1668aa0):
+  **Established.** The 6.5.30m N32 code follows the word at the first
+  argument's +0x10 to load another word at +0x1d0 (`lw` at 0x1668ab4,
+  `lw` at 0x1668acc). The `beqz` at 0x1668ad4 skips a store if the third
+  argument is zero; otherwise it stores the first argument through the third
+  argument (`sw` at 0x1668adc). The `bne` at 0x1668ae0 takes a different
+  path when the first and second arguments differ. On that path `beqz` at
+  0x1668c20 returns zero if the second argument is zero (`move` at
+  0x1668ca8, `jr` at 0x1668cb4).
+
+  The routine's calls include two unresolved indirect targets (`jalr` at
+  0x1668b84, `jalr` at 0x1668c6c). The routine's role and the hardware effects of those calls are unknown.
+- `miIntersectO..JAB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16b81c0):
+  **Established.** The 6.5.30m N32 routine reads the pointer at first
+  argument +8 (`lw` at 0x16b81ec). Later `beqz` at 0x16b8318 takes a
+  path that calls `Xalloc` with 0x18 bytes when that pointer is zero
+  (`jalr` at 0x16b83a4). If it is nonzero, the routine compares its first
+  two words (`lw` at 0x16b8320, `lw` at 0x16b8324); the `bne` at
+  0x16b8328 takes a separate path when those words differ.
+
+  With equal words, `bnez` at 0x16b8330 takes the `Xrealloc` path if the
+  first word is nonzero (`jalr` at 0x16b825c). Otherwise the function calls
+  `Xalloc` with 0x10 bytes (`jalr` at 0x16b833c). These allocations do not
+  establish the hardware's interpretation of the resulting data.
+- `cfbUnnaturalTileFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163bfc0):
+  **Established.** The 6.5.30m N32 routine reads the second argument's
+  +0x14 word (`lw` at 0x163bfdc). Its `beqz` at 0x163bffc takes the return
+  path when that word is zero. On a later path it calls `miClipSpans`
+  (`jalr` at 0x163c158): the call's second, third and fourth arguments are
+  the entry fourth, fifth and third arguments. The callback also receives
+  the entry sixth argument as its seventh argument (`jalr` at 0x163c158).
+
+  The subsequent indirect call takes `miClipSpans`'s result as its second
+  argument (`jalr` at 0x163c19c). The facts tool does not resolve that
+  callback's target. Its role and hardware effects are unknown.
+- `mfbCopyPlane` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160c3b0):
+  **Established.** The 6.5.30m N32 routine reads a byte at the first
+  argument's +2 (`lbu` at 0x160c3d0). The `beq` at 0x160c3f0 selects one
+  path when that byte equals 1 (`addiu` at 0x160c3d8). On the other path it
+  loads `copyPlaneScreenIndex..8` (`lw` at 0x160c3f8), and the `bltz` at
+  0x160c3fc selects an error call if the index is negative as a signed
+  value (`jalr` at 0x160c474, `FatalError`).
+
+  A different path calls `mfbReduceRop`, passing the byte at third
+  argument +5 and the word at third argument +0x18 as its first two
+  arguments (`jalr` at 0x160c4d4). Other calls include unresolved indirect targets
+  (`jalr` at 0x160c50c, `jalr` at 0x160c570). The routine's role and hardware effects of those callbacks are unknown.
+- `mfbSolidPP` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1620dd0):
+  **Established.** In the 6.5.30m N32 code, `beqz` at 0x1620e08 takes
+  the return path if the first argument's +0x14 word is zero (`lw` at
+  0x1620de8). If the branch falls through, the routine reads a word at
+  first argument +0x18 (`lw` at 0x1620e10) and a byte at +5 (`lbu` at 0x1620e14).
+
+  A later path calls `mfbDoBitblt` with the original second and third
+  arguments as its first two arguments (`jalr` at 0x1620fc0). The facts
+  tool does not resolve its third argument. The routine's role and the
+  hardware effect of that call are unknown.
