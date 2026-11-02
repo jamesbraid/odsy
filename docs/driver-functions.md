@@ -753,8 +753,8 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   returns 1; success returns 0.
 - `odsyDiagExit` (`odsy_sched.o`, offset 0x480, 128 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
-  Cleans up a diagnostics client. When the owner word at board record +45928 equals its second argument it
-  calls `gfP_OdsyDIAGfreeScanbuf` for that client, and when the word at +45952 equals it, it calls
+  Cleans up a diagnostics client. When the owner doubleword at board record +45928 equals its second argument it
+  calls `gfP_OdsyDIAGfreeScanbuf` for that client, and when the doubleword at +45952 equals it, it calls
   `gfP_OdsyDIAGreleaseShadowPtrs`, each with a local result word. It returns the result word, initially 0.
 - `gf_OdsyReleaseGfxSema` (`odsy_sched.o`, offset 0x3f4, 140 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)`.
@@ -851,8 +851,8 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
   Retires one DMA region record. When the page array at +16 exists it poisons the byte count at +24 with
   0x91 and frees it with `kmem_free`; with no array it logs "odsyDMADone: null xlat_tbl!" at severity 4.
-  It then zeroes +24 and +16. If the word at +40 is zero it calls `sv_broadcast` and `sv_destroy` on the
-  variable at +32; otherwise it broadcasts only when the word at +64 is non-zero.
+  It then zeroes +24 and +16. If the doubleword at +40 is zero it calls `sv_broadcast` and `sv_destroy` on the
+  variable at +32; otherwise it broadcasts only when the doubleword at +64 is non-zero.
 - `odsy_DmaRegion_DoTransfer` (`odsy_dma.o`, offset 0x348, 196 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
   Starts one host-memory transfer by writing a two-doubleword kick to the command FIFO port at board base
@@ -927,7 +927,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsyUnpinAndUnmapGctxRegions` (`odsy_map.o`, offset 0x564, 232 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
   Releases the context regions of a client record. It calls `odsyUnmapPages` on the field at +208 when the
-  word at +200 is set; for the shadow mapping at +176 it calls `unmaputokv` and `unuseracc` (11128 bytes,
+  doubleword at +200 is set; for the shadow mapping at +176 it calls `unmaputokv` and `unuseracc` (11128 bytes,
   flags 273) on the addresses at +176 and +184 and clears both. It then walks the colour-set container at
   +312, unmapping each element whose field at +16 is set, freeing its 16384-byte buffer at +8 and the
   32-byte element, and finishes with `OdsyDestroyCSet`.
@@ -973,14 +973,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `gfP_OdsyDIAGfreeScanbuf` (`odsy_diag.o`, offset 0x218, 160 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
   Releases the diagnostic scan buffer of a client. It takes the mutex at board record +0xb338 with
-  `mutex_lock`. When the owner word at +45928 is the calling client it calls `odsyUnmapPages` on the
+  `mutex_lock`. When the owner doubleword at +45928 is the calling client it calls `odsyUnmapPages` on the
   handle at +0xb358, frees the buffer pointed to at +45896 with the size at +45920 through `kmem_free`,
   and zeroes the owner, the size and the two pointers. It always unlocks, stores 0 in the result word and
   returns 0.
 - `gfP_OdsyDIAGreleaseShadowPtrs` (`odsy_diag.o`, offset 0x590, 228 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
   Releases the diagnostic shadow-pointer mappings of a client. It takes the mutex at board record +0xb370
-  with `mutex_lock`. If the owner word at +45952 is not the caller it unlocks and stores 1 in the result
+  with `mutex_lock`. If the owner doubleword at +45952 is not the caller it unlocks and stores 1 in the result
   word. Otherwise it calls `odsyUnmapPages` on the handle at +0xb3c8 and on four handles starting at
   +0xb388, zeroing the four doublewords from +45992 as it goes, clears the owner word, unlocks, stores 0
   in the result word and returns 0.
@@ -1995,13 +1995,13 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   the record the handle points to (+0x8520 when the handle's word at +28 is nonzero, +0x8510 otherwise),
   jumps through a 17-entry table, and unlocks on every exit. Command 0 calls `odsy_i2cReset`. Command 1 starts
   a transfer with `odsy_i2c_start`; on port 1 it first sets or clears bit 5 of the clock part's register 5
-  (address byte 31) by the request halfword at +0 and writes register 0 as 0. Command 2 calls `odsy_i2c_stop`
+  (address byte 31) by the request halfword at +0 (`lhu` at 0x25a8) and writes register 0 as 0. Command 2 calls `odsy_i2c_stop`
   and on port 1 writes register 0 as 0x30. Command 4 sends up to the request's count with `odsy_i2c_sendbyte`
   and command 3 receives up to 256 bytes with `odsy_i2c_long_recvbyte`, copying them out; both return the
   count, or -5 when the transfer stopped early. Commands 6 and 7 write and read one register of the device at address
   byte shifted right by one with `odsy_i2cPLLRegWrite` and `odsy_i2cDDCRegRead`. Command 8 reads an EDID with
   `odsy_i2cProbe2b` into the record's slots (main port at +308, left DCD channel at +438, right at +568, each
-  a halfword valid flag followed by 128 bytes; port 1 selects the channel by the halfword at +0, writing register 0
+  a halfword valid flag followed by 128 bytes; port 1 selects the channel by the halfword at +0 (`lhu` at 0x2544), writing register 0
   as 0x10 or 0x20 around the probe and restoring 0x30); command 9 copies a stored slot out, returning -22 when
   its valid flag is zero. Commands 10 and 12 log the 2AB initialise message and call `odsy_i2cProbe2ab` and
   `odsy_i2c2abPresencechk`; either failure returns -5. Command 11 runs `odsy_2abCmdWrapper` and copies out its
@@ -2661,7 +2661,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
   Private request 0: joins the calling graphics context to a share group. It copies in 72 bytes (a failed copy logs and
   returns 14) and finds the context from the halfword at +10 with `odsyGctxFromRnid` (none: 22). A context whose
-  word at +184 is already set returns 0 at once. Otherwise `odsyPinAndMapGctxSwShadowRgn` pins and maps the
+  doubleword at +184 is already set returns 0 at once. Otherwise `odsyPinAndMapGctxSwShadowRgn` pins and maps the
   software shadow with the word at +16 (its error is returned), the context's fields +584, +232 and +240 are cleared
   or set to -1, three sets at +264, +312 and +360 are initialised and id 0 of the first is filled with the placeholder 1.
   The manager's busy word at +80 is held up for the rest of the call under the same owner and `psema` rule as
@@ -2675,7 +2675,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `gfP_OdsyMMalloc` (`odsy_pmm.o`, offset 0x117c, 804 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
   Private request 1: creates a memory object. It finds the calling context from the board's current-client pointer
-  (none: status 1; no share group: 14), copies in 72 bytes and requires the slot halfword at +8 to be below 16
+  (none: status 1; no share group: 14), copies in 72 bytes and requires the slot halfword at +8 (`lhu` at 0x11dc) to be below 16
   (else 22; the earlier note that calls it the object type is wrong, it indexes the group's 16 object slots).
   Under the manager's busy count it uses the group id at +4: -1 creates a group with `odsy_mm_grp_new` (a failure
   logs and returns 12), any other value is looked up in the share group's set at +72 (a miss stores -1 at +4 and
@@ -2689,7 +2689,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Private request 2: destroys a memory object or a whole group. It checks the context and share group as `MMalloc`
   does (1 and 14), copies in 72 bytes and looks up the group id at +4 in the set at +72 (a miss gives 22). With the
   word at +52 zero it destroys the whole group with `odsy_mm_grp_destroy`; otherwise it destroys the object in the slot
-  named by the halfword at +8 (22 when that is 16 or more) and, if the group then holds no objects, clears +52 and
+  named by the halfword at +8 (`lhu` at 0x1528) (22 when that is 16 or more) and, if the group then holds no objects, clears +52 and
   destroys the group as well. The 72 bytes are copied back only when the group was destroyed.
 - `gfP_OdsyMMmakeResident` (`odsy_pmm.o`, offset 0x16f0, 904 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
@@ -2724,7 +2724,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   logs and returns 22. A zero 29-bit address in word +28 takes the object's board address (+56); the offset at +64 is added and
   the top three bits kept. Word +24 is the host buffer size, which must cover the rows given by bits 31:16 of +40
   (0 meaning 65536), with the row stride at +48 and the row length in the low 20 bits of +52. The header word
-  at +56 gets 0x32 in its top byte together with a direction bit (set when bit 0 of +60 is clear) and bits 3 and 6
+  at +56 (of the copied request on the stack: `lw` at 0x23b0, `sw` at 0x2410) gets 0x32 in its top byte together with a direction bit (set when bit 0 of +60 is clear) and bits 3 and 6
   carried from it. `odsyDMAOps` then runs the transfer; with bit 1 of +60 set `odsyDMAWait` waits for it too, and the
   80 bytes are copied back with the status.
 - `SpewObjectToUser` (`odsy_pmm.o`, offset 0xa4c, 248 bytes): **established.**
@@ -2737,7 +2737,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `gfP_OdsyMMdebug` (`odsy_pmm.o`, offset 0x6f0, 860 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
   Private request 10: lists every memory object. It copies in 24 bytes; command 1 runs and command 2 returns 22
-  (as does any other value, with a log). Command 1 needs the buffer capacity in the word at +8 to be above 16 (else
+  (as does any other value, with a log). Command 1 needs the buffer capacity in the word at +8 (`lw` at 0x750) to be above 16 (else
   14). Holding the manager's busy count it spews the manager's own record, every committed object of the board table at
   +2136, and then every object of every group of every share group in the set at +2368, each as a 68-byte record
   through `SpewObjectToUser`; running out of capacity logs and returns 11. The number of records is copied to the
@@ -3004,7 +3004,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `gf_OdsyCreateDDRN` (`odsy_ddrn.o`, offset 0x50, 1000 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddrn.o)`.
   Creates the per-client context record when a process opens the board (arguments: board record, resource node; result
-  0 for success, 1 for failure, with the node's word at +56 cleared on most failures). It fails at once when the board's context
+  0 for success, 1 for failure, with the node's doubleword at +56 cleared on most failures). It fails at once when the board's context
   table at +28456 is missing, logs severity 5 and fails when the node's flag word (+4 of the object at node +64)
   has bit 2 set, and logs severity 4 and fails when the board's started halfword (+794) is zero or its teardown flag
   (+816) is set. It takes the table lock at +29872 (`psema`, 25) and picks the first of 127 slots that is empty or
@@ -3494,7 +3494,8 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   In order: the 0x024 operand (+11112) is the fifth argument, or 12 when the mode is 2; one full settle group of `BUZZ.h` section 5 (0x10443 with
   250, two 0x10046, 0x10019, 0x10443 with 150, four 0x10046, 0x10443 with 250, two 0x10046) is sent, then block 0x024 and the second half
   of the settle group. The raster-mode word at +132 gets bits 0x18 set when the enable flag is nonzero and bits 0x18 and 0x20000 cleared
-  otherwise. Mode 1 (RGB) sets bit 20 of that word and stores the sequencer pair 0x22008000 and 0x23008002 (cached at +9828 and +9832);
+  otherwise. Mode 1 (RGB) sets bit 20 of that word, writes 0 and 2 to the cache at +9828 and +9832 (`sw` at 0x274 and 0x27c), and
+  sends the sequencer words 0x22008000 and 0x23008000 with the cached values ORed into their low bits, which gives the RGB pair;
   modes 0 and 2 (colour index) set bit 19 and store the pair 0x22008001 and 0x23008003. When the colour-block flag and the enable flag are both set,
   the routine first writes the constant-colour block 0x021 from +188, +192 and +196: 512, then the stack value widened to 12 bits a channel
   (RGB mode), or 512, the stack value shifted left by 12 and 1 (index mode), and sets bit 17 of the raster-mode word. It sends block 0x004
@@ -3530,7 +3531,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `gfP_OdsyClearBuffer` (`odsy_clip.o`, offset 0xc60, 2084 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_clip.o)`.
   Private request 14, the clear. It zeroes the status word, checks the caller with `RRM_CheckValidFault` and copies in 44 bytes (failure: log, status 14), then takes the busy count at
-  +80. The request holds four clear-value words at +0 to +12, one more word at +16, a rectangle at +20 to +32 and band height at +36 and a flag word at +40. When bit 27 of the
+  +80. The request holds four clear-value words at +0 to +12, one more word at +16, a rectangle at +20 to +32 and band height at +36 and a flag word at +40 (`lw` at 0xd08). When bit 27 of the
   context's block 0x017 third word (+6956) is set, the rectangle is the request's own and the count is 1. Otherwise the rectangles are the context's clip list, a
   count at +40 and four four-entry arrays at +44, +60, +76 and +92, and the request is refused (status 14) when a drawable field at +48 is set and the request's flag word is zero or when the count is not positive. It attaches the process
   to flow control when it is not attached (sets bit 1 of the context word at +4, `gfx_flow_attach_me`, builds the 0x1074 word from the credit target number and clears 0x107c) and detaches again at the end
