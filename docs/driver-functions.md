@@ -5148,3 +5148,46 @@ The source stores the tracker initial value 0xffff twice into the synchronous sl
   The loop repeats while its index is below four (`bnez` at 0x5d4).
   It clears the owner and stores 0 through the result pointer (`sd` at 0x5dc, `sw` at 0x600). It then releases the mutex (`jal` at 0x5e0).
   The return is 0 or 1 (`jr` at 0x608).
+- `gfP_OdsyDIAGreset` (`odsy_diag.o`, offset 0x938, 72 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)`.
+  It takes the board pointer from the request at +32 (`ld` at 0x948), calls `odsyReset` with the third argument (`jal` at 0x94c), then calls `odsyInitDBE` with that board, `default_timing` and flag 0 (`jal` at 0x95c).
+  It stores 0 through the fourth argument and returns 0 (`sw` at 0x97c, `jr` at 0x978).
+- `odsy_dmawait_timeout` (`odsy_dma.o`, offset 0x1e38, 56 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  The timeout callback logs at severity 1 (`jal` at 0x1e50), then calls `odsy_teardown` with its board argument (`jal` at 0x1e58).
+- `odsy_dmawait_harmless_timeout` (`odsy_dma.o`, offset 0x1e70, 56 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  The nonfatal timeout callback logs at severity 7 (`jal` at 0x1e88), then broadcasts on the board's synchronization variable at +2488 (`jal` at 0x1e90; argument formed at 0x1e94).
+- `odsy_DmaRegion_Pin` (`odsy_dma.o`, offset 0x1e8, 104 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  A nonzero pinned flag at +52 returns 0; a zero flag proceeds to `useracc` (`beqz` at 0x1f4, `jal` at 0x218).
+  It pins the address at +32 and length at +40 with mode 0x110 and extra flag 0 (`jal` at 0x218). An error is returned unchanged; success sets +52 to 1, rebuilds the translation list and returns 0 (`beqz` at 0x224, `sw` at 0x240, `jal` at 0x23c).
+- `odsyDMAWait` (`odsy_dma.o`, offset 0x1ea8, 984 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  A set teardown word at board +728 returns 9; otherwise it takes the mutex at +2472 (`lw` at 0x1ec0, `beqz` at 0x1ed0, `jal` at 0x1ef0).
+  Mode 0 arms a 1500-tick harmless timeout and sleeps on the variable at +2488; a nonzero mode checks the requested tag against the issued and completed counters at +3544 and +3552, then waits on the matching ring entry when it is still pending (`jal` at 0x209c and 0x20bc; `jal` at 0x2160 and 0x2194; loads at 0x1f1c and 0x1f20).
+  The ring index and 128-entry table are at +2512 and +2520. Out-of-window or mismatched tags log and return 22 (`jal` at 0x221c and 0x2240); context cleanup releases pinned ranges and ids and destroys completed records (`jal` at 0x2030, 0x2040, 0x1fe8 and 0x1ff4).
+  A null context argument returns 0 after writing -1 through the tag pointer (`beqz` at 0x1f8c, `sd` at 0x1fe0); a return of 22 after the wait also writes -1 there (`sd` at 0x21d8, `jr` at 0x1ed8).
+- `odsyDMAWakeup` (`odsy_dma.o`, offset 0x2280, 720 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  Under the mutex at board +2472, it processes completed entries from the 128-slot table at +2520 using the ring index at +2512 and counters at +3544 and +3552 (`jal` at 0x229c; `ld` at 0x22bc and 0x22c0, `lw` at 0x22f0 and 0x22f4).
+  For a completed entry it frees its transfer buffer, clears its size, pointer and busy fields, writes the completion tag to the host page at board +760, wakes and destroys the entry wait variable, and frees the entry when no pinned range remains (`jal` at 0x23dc, `sw` at 0x23e4, `sd` at 0x23e8 and `sw` at 0x23ec, `sd` at 0x23f8, `jal` at 0x2360, 0x2368 and 0x2414).
+  It broadcasts on the queue variable at +2488 and writes the adjusted ring index to the completion halfword (`jal` at 0x244c, `sh` at 0x254c). Invalid counts or missing entries are logged at severity 4 (`jal` at 0x24c4, 0x24e0, 0x24f8 and 0x2514).
+- `odsy_DmaRegion_UnPin` (`odsy_dma.o`, offset 0x250, 88 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  When the pinned flag at +52 is set, it calls `unuseracc` on the address at +32 and length at +40 with mode 0x110, then clears the flag (`beqz` at 0x25c, `jal` at 0x274, `sw` at 0x278).
+  If the translation-list pointer at +0 is nonzero, it frees the list using its size at +8, then clears both fields (`beqz` at 0x280, `jal` at 0x288, `sw` at 0x290 and `sd` at 0x294).
+- `odsyDMAFinish` (`odsy_dma.o`, offset 0x2550, 268 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  It waits in mode 1 for the context's two tags at +168 and +176, then locks the board mutex at +2472 (`jal` at 0x256c and 0x2580; `jal` at 0x2598).
+  It walks the transfer set at context +312, frees each transfer buffer, releases pinned pages with mode 0x110 and frees each 72-byte record (`jal` at 0x25a0, 0x25a8, 0x25f8 and 0x260c; `jal` at 0x25c4, with a1=0x48).
+  It destroys the set and releases the mutex (`jal` at 0x2628 and 0x2634).
+- `gfP_OdsyMMwaitXfr` (`odsy_dma.o`, offset 0x265c, 248 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  It initializes the result word to 0 and checks the teardown flag at board +728 (`sw` at 0x265c, `lw` at 0x266c, `bnez` at 0x2680). A set flag only logs at severity 4 (`jal` at 0x26ec) and the routine carries on.
+  It follows the current client from manager +72 and then +112; a missing client logs and returns 1 (`ld` at 0x2688 and 0x268c, `beqz` at 0x2694, `jal` at 0x270c).
+  It copies an 8-byte tag from the user pointer, waits in mode 1 through `odsyDMAWait`, and stores that result (`jal` at 0x26a8 and 0x26c0; `sw` at 0x26d0). Copy failure logs and returns 14 (`bnez` at 0x26b0, `jal` at 0x2734, `sw` at 0x2750).
+- `ConstructTftchWarList` (`odsy_dma.o`, offset 0x2754, 760 bytes): **established.**
+  Build: `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
+  It splits a transfer into pieces sized for a 0x24000-byte staging area (`ori` at 0x277c). The descriptor's row length is the low 20 bits of +24 plus +20 (`lw` at 0x279c and 0x27a0, `and` at 0x27a4, `addu` at 0x27a8); an oversized row logs and returns 1 (`bnez` at 0x27b0, `jal` at 0x2a00).
+  When the transfer offset fits in the staging area it writes a single piece and count 128 (`beqz` at 0x2794, `sw` at 0x2984 and 0x2994, `sd` at 0x2988 and 0x29b8, `sw` at 0x29e0). Otherwise it allocates and fills linked 48-byte piece records, advancing rows and host pointers; allocation failure logs and returns 1 (`jal` at 0x2830, `beqz` at 0x2844, `slt` at 0x2920, `beqz` at 0x2924, `jal` at 0x2a38).
