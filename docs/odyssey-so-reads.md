@@ -2990,3 +2990,106 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   its first argument on one path (`sh` at 0x15c0dd0, `sh` at 0x15c0de4,
   `sh` at 0x15c0e00, `sh` at 0x15c0e20). The role and hardware effects
   of this routine are unknown.
+
+## X image, span and screen initialization routines
+
+- `miComputeCompositeClip` (`usr/lib/X11/dyDDX/odyssey.so`, 716 bytes):
+  **Established.** The byte at the second argument selects a path: `beqz` falls through when it is nonzero (`lbu` at 0x1690f3c; `beqz` at 0x1690f64). On that path, when the `bltz` at 0x1690f8c falls through because its tested shifted value is nonnegative, the code sets bit 0x40 in a word in the selected record (`sw` at 0x1690f98), calls an unknown indirect target with a stack pointer and 1 as its first two arguments (`jalr` at 0x1690fa8), and saves the return value in that record at +8 (`sw` at 0x1690fb0). The role of the selected record and any hardware effect are unknown.
+- `cfb32SolidSpansCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 724 bytes):
+  **Established.** It loads a word from +0xc of a record selected through the second argument (`lw` at 0x16ba174), and calls `miClipSpans` (`jalr` at 0x16ba270). A zero value in a3 takes the branch back to an earlier test (`beqz` at 0x16ba3b0). On a store path the loaded word is written to an address whose base is unknown (`sw` at 0x16ba3c4). The destination's hardware role is unknown.
+- `cfb16LineSS1Rect` (`usr/lib/X11/dyDDX/odyssey.so`, 732 bytes):
+  **Established.** The routine reads a byte from a record selected through the second argument (`lbu` at 0x1636d64). The `beq` is taken when that byte is 3 (`beq` at 0x1636d84). On another path an indirect call has an unknown target (`jalr` at 0x1636e64); a return value of -1 takes the following branch to the epilogue (`beq` at 0x1636e78). The routine's role and hardware effect are unknown.
+- `cfb8LineSS1Rect` (`usr/lib/X11/dyDDX/odyssey.so`, 732 bytes):
+  **Established.** A byte read from a record selected via the second argument (`lbu` at 0x16c9044) determines whether `beq` takes the path for value 3 (`beq` at 0x16c9064). On a separate path the routine calls an unknown indirect target (`jalr` at 0x16c9144); `beq` takes the epilogue when that call returns -1 (`beq` at 0x16c9158). The effect on hardware and the role of this dispatch are unknown.
+- `cfb32LineSS1Rect` (`usr/lib/X11/dyDDX/odyssey.so`, 732 bytes):
+  **Established.** The code fetches a byte from a record selected via the second argument (`lbu` at 0x170fad4); `beq` takes a distinct path when the byte equals 3 (`beq` at 0x170faf4). An indirect call on another path has an unknown destination (`jalr` at 0x170fbd4). Its return of -1 makes the next `beq` take the exit path (`beq` at 0x170fbe8). The dispatch's purpose and hardware effect remain unknown.
+- `miBSSaveDoomedAreas..OEB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16a3140):
+  **Established.** The 6.5.30m N32 routine reads a word at first argument
+  +0x7c and shifts it left 20 bits (`lw` at 0x16a3154, `sll` at 0x16a316c).
+  The `bltz` at 0x16a3180 takes a separate path when that shifted value is
+  negative as a signed value. It loads the pointer at first argument +0x74 (`lw` at 0x16a3148).
+  On one continuation of the fall-through path it clears the
+  halfwords at +6 and +4 (`sh` at 0x16a31d8, `sh` at 0x16a31e0), then
+  clears the first word (`sw` at 0x16a31e8).
+
+  On later paths its calls include `miCreateBSPixmap..LFB` and
+  `miResizeBackingStore..NEB` (`jalr` at 0x16a3330, `jalr` at 0x16a3350).
+  Both receive the original first argument as their first argument (`jalr`
+  at 0x16a3330, `jalr` at 0x16a3350). The routine’s role and the
+  calls’ hardware effects are unknown.
+- `cfbResolveColor` (`usr/lib/X11/dyDDX/odyssey.so`, 0x161e130):
+  **Established.** The 6.5.30m N32 body reads signed halfwords at offsets
+  +4 and +6 of the fourth argument (`lh` at 0x161e130, `lh` at 0x161e13c).
+  The `beq` at 0x161e158 selects one path when the +4 halfword equals 3,
+  and the `beq` at 0x161e160 selects that same path when it equals 5. The
+  next `beq` at 0x161e168 selects a different path for 1; `beqz` at
+  0x161e170 selects another for zero.
+
+  On the 3-or-5 path it reads unsigned halfwords through the first three
+  arguments and writes halfwords back through those pointers (`lhu` at
+  0x161e31c, `sh` at 0x161e334, `lhu` at 0x161e338, `sh` at 0x161e350,
+  `lhu` at 0x161e354, `sh` at 0x161e37c). The routine’s role and the hardware interpretation of
+  the resulting values are unknown.
+- `miFillRectPolyHelper..KBB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x166d0a0):
+  **Established.** The 6.5.30m N32 routine uses `bnez` at 0x166d0d8 to
+  choose an allocation path when register `a3` is nonzero. On
+  that path it calls `Xalloc` with register `a7` shifted left
+  by 2 as the first call argument; its entry provenance is not resolved (`jalr` at 0x166d15c). The `beqz` at
+  0x166d164 takes the return path when that call returns zero.
+
+  If the first allocation succeeds it calls `Xalloc` again (`jalr` at
+  0x166d170); the facts tool does not resolve the requested size. A zero
+  second result takes `beqz` at 0x166d188 to an `Xfree` call (`jalr` at
+  0x166d374). Other calls include `miAppendSpans` (`jalr` at 0x166d344).
+  The routine’s role and the callbacks’ hardware effects are unknown.
+- `cfb32FillRectSolidGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16f77a0):
+  **Established.** The 6.5.30m N32 code reads a byte through the first
+  argument (`lbu` at 0x16f77a0). Its `beq` at 0x16f77c0 selects a different
+  pointer path when the byte equals 1 (`addiu` at 0x16f77b0). The routine
+  separately indexes the second argument's +0x4c array with
+  `cfb32GCPrivateIndex` (`lw` at 0x16f77f4, `lw` at 0x16f77f8, `lw` at
+  0x16f780c).
+
+  The `blez` at 0x16f781c takes the return path if register `a2` is nonpositive as a signed value; its entry provenance
+  is not resolved. A loop reads and writes a word at an
+  unresolved base (`lw` at 0x16f78b0, `sw` at 0x16f78c4); the `bnez` at
+  0x16f78c8 repeats while its tested register is nonzero, but the facts tool
+  cannot resolve that register. The routine’s role, destination and hardware effects are
+  unknown.
+- `cfb32FillRectSolidCopy` (`usr/lib/X11/dyDDX/odyssey.so`, 0x169d3c0):
+  **Established.** This 6.5.30m N32 routine loads a byte from the first
+  argument (`lbu` at 0x169d3d0). When it equals 1, the `beq` at 0x169d3ec
+  takes a separate path (`addiu` at 0x169d3dc). On a subsequent path the
+  `blez` at 0x169d42c takes the return path when register `a2` is nonpositive, interpreted as signed; its entry
+  provenance is not resolved.
+
+  It indexes second argument +0x4c using `cfb32GCPrivateIndex` and reads the
+  selected object's +0xc word (`lw` at 0x169d40c, `lw` at 0x169d410, `lw`
+  at 0x169d420, `lw` at 0x169d430). Stores on one path write that word to
+  addresses whose base is unresolved (`sw` at 0x169d468, `sw` at
+  0x169d4a4). The routine’s role, those destinations and their hardware effects are unknown.
+- `miIntersect` (`usr/lib/X11/dyDDX/odyssey.so`, 804 bytes):
+  **Established.** It reads the word at +8 of the second argument; `beqz` takes a separate path if that word is zero (`lw` at 0x1567d20; `beqz` at 0x1567d3c). On a later path it stores 0x173f710 at +8 of the first argument (`sw` at 0x1567de4) and copies the first argument's halfword at +0 to +4 (`lh` at 0x1567df0; `sh` at 0x1567df4). The record's role and any hardware effect are unknown.
+- `cfbPutImage` (`usr/lib/X11/dyDDX/odyssey.so`, 808 bytes):
+  **Established.** The first `beqz` takes the exit path when register `a5` is zero; otherwise the next `beqz` exits if register `a6` is zero (`beqz` at 0x15d2a74; `beqz` at 0x15d2a7c). On another path it calls `GetScratchPixmapHeader` (`jalr` at 0x15d2af4) and stores a word with bit 0x80 set into a record selected through entry register `a1` (`sw` at 0x15d2bc8). That record's role and hardware effect are unknown.
+- `cfb32PutImage` (`usr/lib/X11/dyDDX/odyssey.so`, 808 bytes):
+  **Established.** When register `a5` is zero, `beqz` takes the return path; if it is nonzero, a second `beqz` takes that path when register `a6` is zero (`beqz` at 0x163c6c4; `beqz` at 0x163c6cc). Another path writes a word to a record selected through entry register `a1` (`sw` at 0x163c774), then later writes that record's word OR 0x80 in the delay slot of an indirect call (`sw` at 0x163c818; `jalr` at 0x163c814). The record and hardware effect have unknown roles.
+- `cfb16PutImage` (`usr/lib/X11/dyDDX/odyssey.so`, 808 bytes):
+  **Established.** It exits when `beqz` finds register `a5` zero, or when the next `beqz` finds register `a6` zero (`beqz` at 0x1672cc4; `beqz` at 0x1672ccc). On a different path, a word is written into a record selected through entry register `a1` (`sw` at 0x1672d74); a later store writes that record's word OR 0x80 (`sw` at 0x1672e18). The purpose of this record and any hardware effect are unknown.
+- `cfb32CopyRotatePixmap` (`usr/lib/X11/dyDDX/odyssey.so`, 856 bytes):
+  **Established.** The `beqz` takes a separate path when the word addressed by entry register `a1` is zero (`beqz` at 0x16552b4). On the nonzero path the routine can call `memmove` (`jalr` at 0x16552e8). Later paths include calls to `cfb32XRotatePixmap` and `cfb32YRotatePixmap` (`jalr` at 0x16553dc; `jalr` at 0x16553f4). The routine’s role and hardware effect are unknown.
+- `nfbGenericScreenInit` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16c81f0):
+  **Established effects; hardware effect unknown.** It calls
+  `mfbAllocatePrivates`, `cfbAllocatePrivates`, `cfb16AllocatePrivates`,
+  and `cfb32AllocatePrivates` on successive paths (`jalr` at 0x16c8294,
+  `jalr` at 0x16c82ac, `jalr` at 0x16c82c4, `jalr` at 0x16c82dc). Each
+  receives the original first argument in `a0` (`jalr` at 0x16c8294,
+  `jalr` at 0x16c82ac, `jalr` at 0x16c82c4, `jalr` at 0x16c82dc).
+  After each call, a zero
+  result takes the respective `beqz` at 0x16c829c, 0x16c82b4, 0x16c82cc,
+  or 0x16c82e4 to a return-zero path (`move` at 0x16c8868, `move` at
+  0x16c88b4, `move` at 0x16c8904, `move` at 0x16c8928). On a later path
+  it calls `AllocateWindowPrivate` with `a2` 0x40 (`jalr` at 0x16c82f8)
+  and `AllocateGCPrivate` with `a2` 0x70 (`jalr` at 0x16c8310). These are
+  selected effects; the wider role is unknown. The 6.5.30m N32 routine
+  occupies 3224 bytes.
