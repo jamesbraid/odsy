@@ -25,3 +25,4 @@ root/
 # Ghidra module build output and test dumps
 /ghidra/processors/odsy-buzz/data/languages/*.sla
 /.cache/
+.re-leak-terms
