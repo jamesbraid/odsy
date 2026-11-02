@@ -243,6 +243,51 @@ The following entries are from the IP30 o32 `libGL.so` in the 6.5.30 media build
 - `__glx_PassThrough` (`libGL.so`, offset 0xd8134c0, 112 bytes): **established.**
   Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
   Writes command token 0x0008007b and the incoming single-precision marker, advances by 8 bytes, and flushes when the current render buffer is full.
+- `__glx_Vertex4f` (`libGL.so`, offset 0xd813530, 140 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x0014004a and four single-precision coordinates, advances the render-buffer pointer by 20 bytes, and flushes when the updated pointer crosses the buffer end.
+- `__glx_Scissor` (`libGL.so`, offset 0xd8135bc, 144 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x00140067 and four integer arguments, advances by 20 bytes, and invokes the flush helper only when the new pointer is beyond the current limit.
+- `__glx_Vertex4dv` (`libGL.so`, offset 0xd81364c, 252 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x00240049, copies four eight-byte coordinates from the caller in four 8-byte transfers, advances by 36 bytes, and flushes on buffer overflow.
+- `__glx_Vertex4d` (`libGL.so`, offset 0xd8137b4, 244 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Stores four double-precision scalar arguments in a temporary record, copies all four to a 36-byte render command with token 0x00240049, advances the buffer pointer, and flushes if the limit is crossed.
+- `__glx_Fogfv` (`libGL.so`, offset 0xd8138a8, 200 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes the parameter byte count from the selector, rounds it to a four-byte boundary, writes token 0x0051 with the selector, copies that many values from the caller, advances by the rounded length plus 8, and flushes on overflow.
+- `__glx_LightModelf` (`libGL.so`, offset 0xd813970, 124 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Converts the scalar bits to a float payload, writes token 0x000c005a with the light-model selector and value, advances by 12 bytes, and flushes when the buffer end is crossed.
+- `__glx_Materialfv` (`libGL.so`, offset 0xd8139ec, 216 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes and aligns the selector-dependent payload size, writes token 0x0061 with the face and parameter selectors, copies the caller's float vector, advances by the aligned size plus 12, and flushes on overflow.
+- `__glx_Lightiv` (`libGL.so`, offset 0xd813ac4, 216 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes and aligns the integer-vector payload size, writes token 0x0059 with the light and parameter selectors, copies the vector, advances by the aligned size plus 12, and calls the flush helper when the buffer limit is exceeded.
+- `__glx_Lighti` (`libGL.so`, offset 0xd813b9c, 136 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x00100058 and three integer arguments, advances the current render buffer by 16 bytes, and flushes only when the resulting pointer is past its end.
+- `__glx_Lightfv` (`libGL.so`, offset 0xd813c24, 216 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes and aligns the float-vector payload size, writes token 0x0057 with the light and parameter selectors, copies the vector, advances by the aligned length plus 12, and flushes on overflow.
+- `__glx_TexEnvfv` (`libGL.so`, offset 0xd813cfc, 216 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes and aligns the float-vector payload size, writes token 0x0070 with the target and parameter selectors, copies the vector, advances by the aligned length plus 12, and invokes the flush helper when the buffer is full.
+- `__glx_Materialf` (`libGL.so`, offset 0xd813dd4, 132 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x00100060 with the face and parameter selectors and one float value, advances by 16 bytes, and flushes when the updated pointer exceeds the buffer end.
+- `__glx_LineWidth` (`libGL.so`, offset 0xd813e58, 112 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x0008005f and one single-precision width, advances the buffer pointer by 8 bytes, and flushes on overflow.
+- `__glx_LineStipple` (`libGL.so`, offset 0xd813ec8, 128 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Writes token 0x000c005e with the factor and 16-bit pattern, advances by 12 bytes, and calls the flush helper when the new pointer crosses the limit.
+- `__glx_LightModeliv` (`libGL.so`, offset 0xd813f48, 200 bytes): **established.**
+  Build: `6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
+  Computes and aligns the integer-vector payload size, writes token 0x005d with the model selector, copies the caller's vector, advances by the aligned length plus 8, and flushes on overflow.
 
 
 ## Board diagnostics and updaters
