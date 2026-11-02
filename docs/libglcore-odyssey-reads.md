@@ -2398,3 +2398,48 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** Doubleword writes set entry argument 0 +0x4e30 to argument 0 +103296 and +0x4920 to 0x327a6b0 (`sd` at 0x327ba24, 0x327ba34). The return's delay-slot store places 0x327b9e0 at +0x4890 (`jr` at 0x327ba3c; `sd` at 0x327ba40). The roles of the written fields and the loop routine’s broader effect are Unknown.
 - `__glOdysseySoftClipBeginLLoopPartial` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
   - **Established effects.** It places entry argument 0 +103296 at argument 0 +0x4e30, 0x327a6b0 at +0x4920 and 0x327baa0 at +0x4890 (`sd` at 0x327bae4, 0x327baf4, 0x327bb00). All three stores are doublewords; the last runs in the return delay slot (`jr` at 0x327bafc). The roles of the three fields and the partial-loop routine’s wider effect are Unknown.
+
+## 64-bit IP30 library: image-chain and hyperpipe dispatch
+
+- `ImageChainOpCreate` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+
+  **Established effects.** It calls an unknown function with the doubleword at absolute 0x1020 and 0x78 as its first two arguments (`ld` at 0x3222da0; `jalr` at 0x3222db0). When that call returns zero, `beqz` at 0x3222db8 takes the path calling `__glSetError` with 0x505 (`jalr` at 0x3222e08). On fall-through, its zeroing stores include doublewords at offsets 0, 0x38 and 0x70 of the call result (`sd` at 0x3222dfc; `sd` at 0x3222ddc; `sd` at 0x3222dc0). The returned record’s hardware meaning and the creation routine’s broader role are Unknown.
+- `ImageChainOpAllocateFilters` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 432 bytes
+
+  **Established effects.** If entry argument 1 is zero, `beqz` at 0x3222e34 selects a store of zero to the doubleword at argument 0 plus 0x20 (`sd` at 0x3222fc0). Otherwise it calls an unknown function and stores its result at that offset in the delay slot of `bnez` (`jalr` at 0x3222e64; `bnez` at 0x3222e6c; `sd` at 0x3222e70). A nonzero result takes the branch into a loop that calls `__glOdysseyInitLerpTree` four times and `__glOdysseyProgramTexFilter` once per iteration (`jalr` at 0x3222f08; `jalr` at 0x3222f1c; `jalr` at 0x3222f30; `jalr` at 0x3222f44; `jalr` at 0x3222f90). The `bne` at 0x3222f9c repeats when its unknown tested value differs from -1. The result’s hardware meaning and the filter allocation routine’s broader role are Unknown.
+- `ImageChainOpFree` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 180 bytes
+
+  **Established effects.** `beqz` at 0x3222fe0 skips the body when entry argument 0 is zero. Otherwise, if its doubleword at offset 0x20 is nonzero, `beqz` at 0x3222fec falls through to an indirect call with that doubleword as argument 1 (`ld` at 0x3222fe8; `jalr` at 0x3222ff8). Subsequent zeroing includes doublewords at offsets 0, 0x38 and 0x70 of entry argument 0, followed by another indirect call (`sd` at 0x322305c; `sd` at 0x3223040; `sd` at 0x3223024; `jalr` at 0x3223068). The indirect callees, the record’s hardware meaning and the free routine’s broader role are Unknown.
+- `ImageChainOpCreateScratchImage` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 252 bytes
+
+  **Established effects.** An indirect call receives the doubleword at absolute 0x1020 and 0x40 as its first two arguments (`ld` at 0x3223098; `jalr` at 0x32230ac). `beqz` at 0x32230b8 selects an `__glSetError` call with 0x505 if that result is zero (`jalr` at 0x322312c). On fall-through, it stores byte 1 at offset 0 and entry argument 0 as a word at offset 0x38 of the result (`sb` at 0x32230e8; `sw` at 0x32230f8). The `beq` at 0x32230fc selects a path with a `ceil` call when entry argument 0 equals 1 (`jalr` at 0x3223174). The indirect callee, the record’s hardware meaning and the scratch-image routine’s broader role are Unknown.
+- `ImageChainAddOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 404 bytes
+
+  **Established effects.** When the doubleword at entry argument 0 plus 8 is zero, `bnez` at 0x32231a8 falls through to write entry argument 1 to the doublewords at argument 0 offsets 8 and 0x10 (`ld` at 0x3223190; `sd` at 0x32231bc; `sd` at 0x32231b8). Other paths include two calls to `ImageChainOpCreateScratchImage` (`bgezall` at 0x3223248; `bgezall` at 0x32232c0). A continuation reached by several paths increments the word at entry argument 0 (`lw` at 0x3223288; `sw` at 0x3223294). The linked records’ hardware meaning and the add-operation routine’s broader role are Unknown.
+- `BindHyperpipe` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+
+  **Established effects.** When entry `a1 = -1`, `beq` at 0x320053c takes the path calling `__glOdysseyUnbindHyperpipe` with the word at entry `a0 + 0x285d8` in `a1` (`lw` at 0x3200574; `jalr` at 0x3200570). Otherwise it falls through to call `__glOdysseyBindHyperpipe` with entry `a0` through `a3`, then stores entry `a1` at `a0 + 0x285d8` (`jalr` at 0x3200548; `sw` at 0x3200558). The stored field and this bind path’s broader hardware role are Unknown.
+- `QueryHyperpipeBestAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+
+  **Established effects.** A signed negative word at entry `a0 + 0x285d8` makes `bltz` at 0x32005b8 take the path returning 0x5c (`lw` at 0x32005a0; `addiu` at 0x32005d8; `jr` at 0x32005e0). If it falls through, `beq` at 0x32005c4 selects `__glOdysseyQueryHyperpipeBestRect` when entry `a2 = 1` (`jalr` at 0x32005f8). The call receives entry `a0`, `a1`, `a3`, `a4`, and `a5` in `a0` through `a4` (`jalr` at 0x32005f8). The selector, field and query path’s hardware roles are Unknown.
+- `QueryHyperpipeAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 204 bytes
+
+  **Established effects.** Entry `a2 = 1` makes `beq` at 0x320062c select `__glOdysseyQueryHyperpipeRect` (`jalr` at 0x3200690). If that branch falls through, `beq` at 0x3200638 selects `__glOdysseyQueryHyperpipeLimit` for 2; subsequent branches select `__glOdysseyQueryHyperpipeStereo` for 3 and `__glOdysseyQueryHyperpipePixelAverage` for 4 (`beq` at 0x3200644, 0x320064c; `jalr` at 0x32006ac, 0x32006c8, 0x3200668). Each of those calls receives entry `a0`, `a1`, `a3` and `a4` in `a0` through `a3` (`jalr` at 0x3200690, 0x32006ac, 0x32006c8, 0x3200668). The selector’s meaning and this query path’s hardware role are Unknown.
+- `HyperpipeAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 208 bytes
+
+  **Established effects.** It loads the word at entry `a0 + 0x285d8`; a signed negative value makes `bltz` at 0x3200708 take the path returning 0x5c (`lw` at 0x32006ec; `addiu` at 0x3200768; `jr` at 0x3200770). If the branch falls through, `beq` at 0x3200714 selects `__glOdysseyHyperpipeRect` for entry `a2 = 1` (`jalr` at 0x3200780). If that selector falls through, `beq` at 0x3200720 selects `__glOdysseyHyperpipeStereo` for 3 and `beq` at 0x320072c selects `__glOdysseyHyperpipePixelAverage` for 4 (`jalr` at 0x320079c, 0x3200744). The field, selector and attribute path’s hardware roles are Unknown.
+- `__glOdysseyEnableHyperpipe` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+
+  **Established effects.** The routine returns directly, with a `nop` in its delay slot (`jr` at 0x3288e40; `nop` at 0x3288e44). The effect of this empty body on hyperpipe hardware is Unknown.
+- `__glOdysseySoftClipBeginPoints` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** It writes entry argument 0 +103296 as a doubleword at argument 0 +0x4e30 (`sd` at 0x327bb7c). The return delay slot stores 0x327bb10 at +0x4890 (`jr` at 0x327bb84; `sd` at 0x327bb88). The point setup fields and its wider hardware effect remain Unknown.
+- `__glOdysseySoftClipEvenTriangleStripVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established effects.** It writes byte 1 at entry argument 1 +0xc0 and stores entry argument 1 as a doubleword at argument 0 +0x8cd8 (`sb` at 0x327abc4; `sd` at 0x327ac0c). It calls `__glOdysseySoftClipProcessTriangle` with entry argument 0, the doubleword at argument 0 +0x4e40, entry argument 1 and the doubleword at argument 0 +0x4e38 (`ld` at 0x327abd4, 0x327abc8; `bgezall` at 0x327ac10).
+  - After the call, stores include entry argument 1 at argument 0 +0x4e38 and 0x327ac50 at +0x4890 (`sd` at 0x327ac30, 0x327ac3c). The updated fields and the even-vertex path have Unknown hardware roles.
+- `__glOdysseySoftClipOddTriangleStripVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established effects.** The routine sets byte 1 at entry argument 1 +0xc0 and writes argument 1 as a doubleword at argument 0 +0x8cd8 (`sb` at 0x327ac54; `sd` at 0x327ac9c). Its call to `__glOdysseySoftClipProcessTriangle` passes entry argument 0, the doublewords at argument 0 +0x4e40 and +0x4e38, and entry argument 1 (`ld` at 0x327ac64, 0x327ac58; `bgezall` at 0x327aca0).
+  - Subsequent doubleword stores include entry argument 1 at argument 0 +0x4e38 and 0x327abc0 at +0x4890 (`sd` at 0x327acc0, 0x327accc). These destinations and the odd-vertex path have Unknown hardware roles.
+- `__glOdysseySoftClipPickClipProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  - **Established effects.** It writes 0x32823f0 at entry argument 0 +0x49a8 and 0x3282740 at +0x4c98 as doublewords (`sd` at 0x325a794, 0x325a79c). The second store executes in the return delay slot (`jr` at 0x325a798). The installed values and this selection path have Unknown hardware roles.
+- `__glOdysseySoftClipPickClipProcsFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  - **Established effects.** Two doubleword stores place 0x32826f0 at entry argument 0 +0x49a8 and 0x3282740 at +0x4c98 (`sd` at 0x325a7b4, 0x325a7bc). The latter runs in the `jr` delay slot (`jr` at 0x325a7b8). The fields and the fast selection path have Unknown hardware roles.
