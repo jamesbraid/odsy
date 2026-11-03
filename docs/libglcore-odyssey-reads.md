@@ -7862,3 +7862,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   When entry `a3` is signed negative, `bltz` takes a path copying floating-point words from entry `a1` offsets +0xa0, +0xa4, +0xa8 and +0xac to entry `a5` offsets +0, +4, +8 and +0x10 (`bltz` at 0x3316ae0; `lwc1` at 0x3316b0c, 0x3316b14, 0x3316b1c, 0x3316b24; `swc1` at 0x3316b10, 0x3316b18, 0x3316b20, 0x3316b2c). The fields’ roles are Unknown.
 - `__glExtractTexelL_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316bb0
   It loads a word at entry `a0` +8 and a doubleword at entry `a0` +0 (`lw` at 0x3316bb0; `ld` at 0x3316bc0). It loads a floating-point word from an unknown base and stores a word of unknown value at entry `a5` +0xc (`lwc1` at 0x3316bd0; `swc1` at 0x3316bd8). The operation’s wider purpose is Unknown.
+
+## 64-bit IP30 library: texel extraction paths
+
+- `__glExtractTexelLA_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a word at entry `a0` +8 and a doubleword at entry `a0` +0 (`lw` at 0x3316be0; `ld` at 0x3316bf4). Floating-point word stores of Unknown values go to entry `a5` +0xc and +0x10, with the latter in the return delay slot (`swc1` at 0x3316c08, 0x3316c14; `jr` at 0x3316c10). The later use of these two stored words is Unknown.
+- `__glExtractTexelRGB_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine reads a word at entry `a0` +8 (`lw` at 0x3316c20). It stores floating-point words of Unknown value at entry `a5` +0, +4 and +8 (`swc1` at 0x3316c4c, 0x3316c54, 0x3316c60). The purpose of the three destination fields is Unknown.
+- `__glExtractTexelRGBA_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A word and a doubleword are read at entry `a0` +8 and +0 (`lw` at 0x3316c70; `ld` at 0x3316c84). The stores include Unknown floating-point words at entry `a5` +0, +4, +8 and +0x10 (`swc1` at 0x3316c98, 0x3316ca0, 0x3316ca8, 0x3316cb4). The meaning of the four written fields is Unknown.
+- `__glExtractTexelA_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a floating-point word at an unknown base and stores a floating-point word of Unknown value to entry `a5` +0x10 in the return delay slot (`lwc1` at 0x3316ce0; `jr` at 0x3316ce4; `swc1` at 0x3316ce8). The entry `a0` word at +8 is also read (`lw` at 0x3316cc0). The destination field’s purpose remains Unknown.
+- `__glExtractTexelI_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A floating-point word from an unknown base is loaded before an Unknown floating-point word is stored to entry `a5` +0x14 (`lwc1` at 0x3316d10; `swc1` at 0x3316d18). Its input accesses include a doubleword at entry `a0` +0 (`ld` at 0x3316d00). The field purpose is Unknown.
+- `__glExtractTexelRGB8_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  An unsigned byte is loaded from an unknown base, moved to a floating-point register and converted from a word to single precision (`lbu` at 0x3316d40; `mtc1` at 0x3316d44; `cvt.s.w` at 0x3316d4c). It also reads a floating-point word at +0xf34 of the doubleword at entry `a1` +0 and writes an Unknown floating-point word to entry `a5` +0 (`ld` at 0x3316d48; `lwc1` at 0x3316d50; `swc1` at 0x3316d58). The field's role is Unknown.
+- `__glExtractTexelRGBA8_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine reads an unsigned byte at an unknown base and converts a word to single precision (`lbu` at 0x3316db0; `mtc1` at 0x3316db4; `cvt.s.w` at 0x3316dbc). Its floating-point word stores include Unknown values at entry `a5` +0, +4, +8 and +0x10 (`swc1` at 0x3316dc8, 0x3316de0, 0x3316df8, 0x3316e14). The output fields' meanings are Unknown.
+- `__glExtractTexel3L` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When entry `a3` is signed negative, `bltz` takes the path that copies the floating-point word at entry `a1` +0xa0 to entry `a5` +0xc (`bltz` at 0x3316e20; `lwc1` at 0x3316e68; `swc1` at 0x3316e70). The field's wider purpose is Unknown.
+- `__glExtractTexel3LA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If entry `a3` is signed negative, `bltz` takes a path copying floating-point words from entry `a1` +0xa0 and +0xac to entry `a5` +0xc and +0x10 (`bltz` at 0x3316eb0; `lwc1` at 0x3316ef8, 0x3316f00; `swc1` at 0x3316efc, 0x3316f08). Their hardware role is Unknown.
+- `__glExtractTexel3RGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A negative signed entry `a3` makes `bltz` take the path copying words from entry `a1` +0xa0, +0xa4 and +0xa8 to entry `a5` +0, +4 and +8 (`bltz` at 0x3316f50; `lwc1` at 0x3316f98, 0x3316fa0, 0x3316fa8; `swc1` at 0x3316f9c, 0x3316fa4, 0x3316fb0). The purpose of those fields is Unknown.
+- `__glExtractTexel3L_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33173c0
+  It reads words at entry `a0` +8 and +0x14 (`lw` at 0x33173cc) and a doubleword at +0 (`ld` at 0x33173ec). The `lw` at 0x33173c0 reads the word at argument 0 +0x8. A floating-point word of unknown value is stored at entry `a5` +0xc in the return delay slot (`jr` at 0x3317400; `swc1` at 0x3317404). The purpose of the destination field is Unknown.
+- `__glExtractTexel3LA_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317410
+  The routine reads a doubleword from entry `a0` +0 and words at +8 and +0x14 (`ld` at 0x3317440; `lw` at 0x3317410, 0x331741c). Floating-point word stores at entry `a5` +0xc and +0x10 contain unknown values (`swc1` at 0x3317454, 0x3317460). Their purposes are Unknown.
+- `__glExtractTexel3RGB_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317470
+  Entry `a0` +0x14 supplies a word, and entry `a0` +0 supplies a doubleword (`lw` at 0x331747c; `ld` at 0x33174a4). The body writes floating-point words of unknown value at entry `a5` +0, +4 and +8 (`swc1` at 0x33174b8, 0x33174c0, 0x33174cc). The fields’ meanings are Unknown.
+- `__glExtractTexel3RGBA_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33174d0
+  It loads words at entry `a0` +8 and +0x14 (`lw` at 0x33174d0, 0x33174dc). Its floating-point word stores include unknown values at entry `a5` +0, +4, +8 and +0x10 (`swc1` at 0x3317514, 0x331751c, 0x3317524, 0x3317530). How these four stored words are used is Unknown.
+- `__glExtractTexel3A_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317540
+  A word is read from entry `a0` +8 and a doubleword from entry `a0` +0 (`lw` at 0x3317540; `ld` at 0x331756c). The return delay slot stores a floating-point word of unknown value at entry `a5` +0x10 (`jr` at 0x3317580; `swc1` at 0x3317584). The destination field’s use is Unknown.
