@@ -6893,3 +6893,45 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glSlowPickGetConvolutionFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32afee0
   **Established effects.** Its calls include `__glInitMemGet` and `__glInitUnpacker`, each with entry `a0`, entry stack pointer minus 696 in `a1`, and unknown `a2` and `a3` (`jalr` at 0x32aff48, 0x32aff84).
   It later calls `__glGenericPickCopyImage` with entry `a0`, entry stack pointer minus 696 in `a1`, zero in `a2`, and 1 in `a3` (`jalr` at 0x32affc0). The hardware effects of these calls and the wider routine role are Unknown.
+
+## 64-bit IP30 library: vertex and texture parameter paths
+
+- `__glce_Vertex4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established effects.** The entry doubleword at absolute 0x1b80 is saved on the stack (`ld` at 0x335b1b0; `sd` at 0x335b1c4). It loads the doubleword at 0x1020 and then the doubleword at that value +0x25d0 (`ld` at 0x335b1d4, 0x335b1ec). The first `glVertex4i` call receives entry arguments 0–3 and its delay slot stores that second loaded doubleword to 0x1b80 (`jalr` at 0x335b1f4; `sd` at 0x335b1f8).
+  - A second `glVertex4i` call also receives entry arguments 0–3; its delay slot writes an Unknown value to 0x1b80 (`jalr` at 0x335b218; `sd` at 0x335b21c). Another Unknown value is stored there in the return delay slot (`jr` at 0x335b234; `sd` at 0x335b238). The slot's hardware meaning and the wider routine role are Unknown.
+- `__glce_Vertex4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** The value initially at 0x1b88 is saved to the stack (`ld` at 0x335b240; `sd` at 0x335b248). A doubleword from absolute 0x1020 supplies the base for a +0x25d8 load (`ld` at 0x335b258, 0x335b270). `glVertex4iv` receives entry arguments 0–3 and its call delay slot writes that loaded doubleword to 0x1b88 (`jalr` at 0x335b278; `sd` at 0x335b27c).
+  - Its next `glVertex4iv` call passes entry argument 0; hostfacts leaves arguments 1–3 and the value stored to 0x1b88 in the call delay slot Unknown (`jalr` at 0x335b290; `sd` at 0x335b294). The return delay slot writes an Unknown doubleword to 0x1b88 (`jr` at 0x335b2ac; `sd` at 0x335b2b0). The significance of these writes and this entry's wider role are Unknown.
+- `__glce_Vertex4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335b2c0, 140 bytes
+  - **Established effects.** A stack save retains the entry doubleword from absolute 0x1b90 (`ld` at 0x335b2c0; `sd` at 0x335b2d4). The first `glVertex4s` call takes entry arguments 0–3; its delay slot stores at address 0x1b90 the doubleword loaded from [0x1020]:8 +0x25e0 (`ld` at 0x335b2e4, 0x335b2fc; `jalr` at 0x335b304; `sd` at 0x335b308).
+  - The same four entry arguments reach a second `glVertex4s` call, whose delay slot writes an Unknown value to that absolute location (`jalr` at 0x335b328; `sd` at 0x335b32c). On return, a further Unknown doubleword is stored to 0x1b90 in the delay slot (`jr` at 0x335b344; `sd` at 0x335b348). The meaning of this location and the broader role of the routine are Unknown.
+- `__glce_Vertex4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** It saves the doubleword from 0x1b98 on the stack (`ld` at 0x335b350; `sd` at 0x335b358). The first `glVertex4sv` invocation retains entry arguments 0–3 and writes the doubleword at [0x1020]:8 +0x25e8 to 0x1b98 in its call delay slot (`ld` at 0x335b368, 0x335b380; `jalr` at 0x335b388; `sd` at 0x335b38c).
+  - The next `glVertex4sv` call passes entry argument 0; its remaining reported arguments and delay-slot store value are Unknown (`jalr` at 0x335b3a0; `sd` at 0x335b3a4). An Unknown value is subsequently written to 0x1b98 in the return delay slot (`jr` at 0x335b3bc; `sd` at 0x335b3c0). The written slot and this routine's wider role have Unknown hardware significance.
+- `__glce_VertexPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** The routine loads the entry doubleword at absolute 0x17a8 and obtains another from 0x1020 (`ld` at 0x33619a8, 0x33619b0). `glVertexPointer` receives entry arguments 0–3; its call delay slot writes the doubleword at [0x1020]:8 +0x3f70 to 0x17a8 (`ld` at 0x33619c8; `jalr` at 0x33619cc; `sd` at 0x33619d0). A later store restores the entry doubleword to 0x17a8 (`sd` at 0x33619dc). The meaning of this slot and the wider hardware role of the entry are Unknown.
+- `glMultiTexCoord2dSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** This body returns; its delay slot is a no-operation (`jr` at 0x33064f0; `nop` at 0x33064f4). The entry's role is Unknown.
+- `glMultiTexCoord2fSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** It executes a return with a no-operation in the delay slot (`jr` at 0x3306500; `nop` at 0x3306504). Its broader purpose is Unknown.
+- `glMultiTexCoord2iSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** The instruction pair is a return and a no-operation delay slot (`jr` at 0x3306510; `nop` at 0x3306514). Its role is Unknown.
+- `glMultiTexCoord2sSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** A no-operation occupies the delay slot of the return (`jr` at 0x3306520; `nop` at 0x3306524). The entry's purpose is Unknown.
+- `glMultiTexCoord3dSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** It returns with a no-operation as its delay-slot instruction (`jr` at 0x3306530; `nop` at 0x3306534). Its wider role is Unknown.
+- `__glOdyim_ConvolutionParameterfEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3220a10
+  **Established effects.** `beq` at 0x3220a2c is taken when entry `a1` equals 0x8013 (`dli` at 0x3220a18).
+  The path calls `__glOdyim_ConvolutionParameterfvEXT` with entry `a0`, `a1`, `a3`, and entry stack pointer minus 32 in `a2` (`bgezall` at 0x3220a54). The selected call’s hardware effect and the routine’s wider role are Unknown.
+- `__glOdyim_ConvolutionParameteriEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3220c80
+  **Established effects.** When entry `a1` is not 0x8013, `beq` at 0x3220c9c falls through (`dli` at 0x3220c88).
+  It calls `__glSetError` with 0x500 in `a0` and entry `a1` through `a3` (`jalr` at 0x3220ca8). The error call’s hardware relevance and the routine’s broader purpose are Unknown.
+- `__glOdyim_SoftColor4b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3286e70
+  **Established effects.** It calls `__glOdyim_Color4b`, then `__glim_Color4b`, each with entry `a0` through `a3` (`jalr` at 0x3286ea0, 0x3286eb8).
+  The latter result is returned (`jr` at 0x3286ecc). The hardware effects of either color call and the routine’s broader role are Unknown.
+- `__glOdyim_SoftColor4bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3286ee0
+  **Established effects.** The first call is to `__glOdyim_Color4bv` with entry `a0` through `a3` (`jalr` at 0x3286f04).
+  It then calls `__glim_Color4bv` with entry `a0`; `a1` through `a3` are unknown (`jalr` at 0x3286f10). The second result is returned (`jr` at 0x3286f24); the hardware effects of those calls and the routine’s wider role are Unknown.
+- `__glOdyim_SoftColor4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32870b0
+  **Established effects.** Calls to `__glOdyim_Color4i` and `__glim_Color4i` occur in that order, each receiving entry `a0` through `a3` (`jalr` at 0x32870e0, 0x32870f8).
+  The routine returns the second call's result (`jr` at 0x328710c). The hardware effects of these calls and this entry’s wider role are Unknown.
