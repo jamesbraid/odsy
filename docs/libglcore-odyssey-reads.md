@@ -4577,3 +4577,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established.** A pair of partial doubleword loads uses argument 0 +4 and +0xb (`ldl` at 0x336f280; `ldr` at 0x336f294), while an unsigned word comes from argument 0 +0 (`lwu` at 0x336f28c). It stores word 0xce80cc0d followed by that loaded word to address 0x10000 (`sw` at 0x336f298, 0x336f29c), then stores a doubleword from the partial-load register at the same address in the return delay slot (`jr` at 0x336f2a0; `sd` at 0x336f2a4). The doubleword value, hardware effect and wider role of the doubleword and word stores are Unknown.
 - `__glOdyim_ScratchColor3s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
   **Established.** It writes the word 0xce80cc0c to address 0x10000 (`sw` at 0x336f30c), then writes the low words of entry arguments 0, 1 and 2 at that address (`sw` at 0x336f310, 0x336f314, 0x336f31c). The third argument store is in the return delay slot (`jr` at 0x336f318; `sw` at 0x336f31c). The hardware effect and wider role of these three argument writes are Unknown.
+
+## 64-bit IP30 library: scratch color and index window stores
+
+- `__glOdyim_ScratchColor4dv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x336f8c0
+  **Established effects.** It loads doublewords at a0 offsets 0, 8, 0x10 and 0x18 (`ldc1` at 0x336f8c0, 0x336f8cc, 0x336f8d4, 0x336f8dc).
+  It converts the four floating-point values from double to single precision (`cvt.s.d` at 0x336f8d8, 0x336f8e0, 0x336f8e8, 0x336f8f0).
+  Stores to absolute address 0x10000 comprise a word from sign-extended 0xffffffffce80d015 and four floating-point words whose values hostfacts leaves unknown (`sw` at 0x336f8e4; `swc1` at 0x336f8ec, 0x336f8f4, 0x336f8f8, 0x336f900).
+  The final store executes in the return delay slot (`jr` at 0x336f8fc; `swc1` at 0x336f900). The four converted values and their hardware role remain Unknown.
+- `__glOdyim_ScratchColor4d` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x336f800
+  **Established effects.** Four floating-point registers are converted from double to single precision (`cvt.s.d` at 0x336f800, 0x336f808, 0x336f810, 0x336f818).
+  At absolute address 0x10000 it stores a word from sign-extended 0xffffffffce80d015 and four floating-point words of unknown value (`sw` at 0x336f81c; `swc1` at 0x336f820, 0x336f824, 0x336f828, 0x336f830).
+  The last store is in the return delay slot (`jr` at 0x336f82c; `swc1` at 0x336f830). The effect of these five writes is Unknown.
+- `__glOdyim_ScratchColor4bv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x336f780
+  **Established effects.** It reads signed bytes at a0 offsets 0, 1, 2 and 3 (`lb` at 0x336f780, 0x336f78c, 0x336f794, 0x336f798).
+  It writes a word from sign-extended 0xffffffffce80d012 followed by those four byte-derived values as words to absolute address 0x10000 (`sw` at 0x336f79c, 0x336f7a0, 0x336f7a4, 0x336f7a8, 0x336f7b0).
+  The fourth value is stored in the return delay slot (`jr` at 0x336f7ac; `sw` at 0x336f7b0). The role of the byte-derived words is Unknown.
+- `__glOdyim_ScratchColor3usv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x336f680
+  **Established effects.** Three unsigned halfwords are fetched from a0 offsets 0, 2 and 4 (`lhu` at 0x336f680, 0x336f68c, 0x336f694).
+  A word from sign-extended 0xffffffffce80cc09 and the three fetched values are stored as words at absolute address 0x10000 (`sw` at 0x336f698, 0x336f69c, 0x336f6a0, 0x336f6a8).
+  The return’s delay slot carries the third fetched value (`jr` at 0x336f6a4; `sw` at 0x336f6a8). The destination and halfword-derived words have Unknown hardware meaning.
+- `__glOdyim_ScratchColor3us` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x336f600
+  **Established effects.** It writes a word from sign-extended 0xffffffffce80cc09 and then the low words of entry a0, a1 and a2 to absolute address 0x10000 (`sw` at 0x336f60c, 0x336f610, 0x336f614, 0x336f61c).
+  The a2 store occupies the return delay slot (`jr` at 0x336f618; `sw` at 0x336f61c). The three argument words have Unknown hardware meaning.
+- `__glOdyim_ScratchColor3ui` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  **Established.** It constructs the word 0xce80cc0a (`lui` at 0x336f500; `ori` at 0x336f508) and writes it to address 0x10000 (`sw` at 0x336f50c). Three further stores write the low words of entry arguments 0, 1 and 2 there (`sw` at 0x336f510, 0x336f514, 0x336f51c); the final store runs in the return delay slot (`jr` at 0x336f518). The sequence's role is Unknown.
+- `__glOdyim_ScratchColor3ubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  **Established.** It reads unsigned bytes at argument 0 +0, +1 and +2 (`lbu` at 0x336f480, 0x336f48c, 0x336f494). After forming 0xce80cc08 (`lui` at 0x336f484; `ori` at 0x336f490), it stores that word at 0x10000 (`sw` at 0x336f498), followed by the loaded values as words in order (`sw` at 0x336f49c, 0x336f4a0, 0x336f4a8). The byte sequence’s wider hardware role is Unknown.
+- `__glOdyim_ScratchColor3ub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  **Established.** The word 0xce80cc08 is formed (`lui` at 0x336f400; `ori` at 0x336f408) and stored at 0x10000 (`sw` at 0x336f40c). It then writes the low words of entry arguments 0, 1 and 2 at that address (`sw` at 0x336f410, 0x336f414, 0x336f41c), with the last store in the return delay slot (`jr` at 0x336f418). The sequence’s hardware role is Unknown.
+- `__glOdyim_ScratchColor3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  **Established.** Three signed halfwords are read from argument 0 +0, +2 and +4 (`lh` at 0x336f380, 0x336f38c, 0x336f394). It forms 0xce80cc0c (`lui` at 0x336f384; `ori` at 0x336f390) and stores that word to 0x10000 (`sw` at 0x336f398). It writes the loaded values as words to the same address (`sw` at 0x336f39c, 0x336f3a0, 0x336f3a8). The purpose of these writes and the wider routine role are Unknown.
+- `__glOdyim_ScratchColor4uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  **Established.** Its partial doubleword loads use argument 0 +0 and +7 for one register, and +8 and +0xf for another (`ldl` at 0x336fe00, 0x336fe0c; `ldr` at 0x336fe14, 0x336fe18). It forms 0xce80d011 (`lui` at 0x336fe04; `ori` at 0x336fe10) and stores that word at 0x10000 (`sw` at 0x336fe1c), then writes both partial-load registers as doublewords to the same address (`sd` at 0x336fe20, 0x336fe28). The values of both doubleword stores and the wider routine role are Unknown.
+- `__glOdyim_ScratchColor4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** Entry argument 0 +0 and +8 are accessed by `ldl`, and +7 and +0xf by `ldr` (`ldl` at 0x336fb00, 0x336fb0c; `ldr` at 0x336fb14, 0x336fb18). Word 0xce80d014 precedes two doubleword stores of facts-Unknown values to 0x10000 (`sw` at 0x336fb1c; `sd` at 0x336fb20, 0x336fb28). The last doubleword is written in the return delay slot (`jr` at 0x336fb24; `sd` at 0x336fb28). The role of the destination in hardware and this routine's overall purpose remain Unknown.
+- `__glOdyim_ScratchColor4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** Using `ldl` and `ldr`, the body accesses entry argument 0 +0, +8, +7 and +0xf (`ldl` at 0x336fa00, 0x336fa0c; `ldr` at 0x336fa14, 0x336fa18). It writes word 0xce80d015 to absolute 0x10000 before two doublewords whose values hostfacts leaves Unknown (`sw` at 0x336fa1c; `sd` at 0x336fa20, 0x336fa28). The latter store executes in the return delay slot (`jr` at 0x336fa24; `sd` at 0x336fa28). The destination's hardware meaning and this routine's broader purpose remain Unknown.
+- `__glOdyim_ScratchColor3uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
+  - **Established effects.** `ldl` and `ldr` access entry argument 0 +4 and +0xb, while `lwu` reads a word from +0 (`ldl` at 0x336f580; `ldr` at 0x336f594; `lwu` at 0x336f58c). Stores to 0x10000 write word 0xce80cc0a, the loaded word, then a doubleword whose value hostfacts leaves Unknown (`sw` at 0x336f598, 0x336f59c; `sd` at 0x336f5a4). The doubleword write runs in the return delay slot (`jr` at 0x336f5a0; `sd` at 0x336f5a4). The destination's hardware function and the routine's wider role remain Unknown.
+- `__glOdyim_ScratchIndexubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 28 bytes
+  - **Established effects.** A byte at entry argument 0 +0 is loaded without sign extension (`lbu` at 0x3370400). The body writes word 0xce80c406 at 0x10000, followed by a word containing that byte (`sw` at 0x3370410, 0x3370418). The second write is in the return delay slot (`jr` at 0x3370414; `sw` at 0x3370418). This routine's broader role and the destination's hardware purpose are Unknown.
+- `__glOdyim_ScratchIndexsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 28 bytes
+  - **Established effects.** A halfword is loaded from entry argument 0 +0 (`lh` at 0x3370300). The output at absolute 0x10000 consists of word 0xce80c406 and a word containing that loaded value (`sw` at 0x3370310, 0x3370318). The latter store executes in the return delay slot (`jr` at 0x3370314; `sw` at 0x3370318). The hardware significance of that destination and this routine's wider function remain Unknown.
