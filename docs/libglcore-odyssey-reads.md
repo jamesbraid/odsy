@@ -7565,3 +7565,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It passes 0xa8 as the second argument to `__glSPDlalloc` (`addiu` at 0x3353c80; `jalr` at 0x3353c84). If that call returns nonzero, `bnez` takes the path calling `memcpy` with result +8 and entry `a2` as the first two arguments (`bnez` at 0x3353c8c; `jalr` at 0x3353cc0). The first call’s `a0` value and wider role are Unknown.
 - `__glsplc_ReadBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3353cf0
   The `__glSPDlalloc` call receives 8 and 0xa9 as its first two arguments (`addiu` at 0x3353d08, 0x3353d18; `jalr` at 0x3353d14). A nonzero return makes `beqz` fall through to a word store of entry `a0` at result +0 (`beqz` at 0x3353d1c; `sw` at 0x3353d34). The field’s purpose is Unknown.
+
+## 64-bit IP30 library: pixel list execution
+
+- `__glle_PixelTransferf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls through the doubleword at absolute 0x13f8 with a word from entry `a0` +0 in `a0` and a floating-point word from entry `a0` +4 in `f13` (`ld` at 0x334b6a8; `lw` at 0x334b6b0; `jalr` at 0x334b6b8; `lwc1` at 0x334b6bc). The routine returns entry `a0` plus 8 (`daddiu` at 0x334b6c8; `jr` at 0x334b6d0). The call target is Unknown.
+- `__glle_PixelTransferi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The doubleword read from absolute 0x1400 supplies an indirect call target (`ld` at 0x334b6f8; `jalr` at 0x334b708). That call receives words loaded from entry `a0` +0 and +4 as `a0` and `a1` (`lw` at 0x334b700, 0x334b70c; `jalr` at 0x334b708). It returns entry `a0` plus 8; the target's role is Unknown (`daddiu` at 0x334b718; `jr` at 0x334b720).
+- `__glle_PixelMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call through the doubleword at absolute 0x1418 receives words from entry `a0` +0 and +4 as `a0` and `a1`, and entry `a0` +8 as `a2` (`ld` at 0x334b748; `lw` at 0x334b750, 0x334b760; `daddiu` at 0x334b758; `jalr` at 0x334b75c). Its target and the final return value are Unknown.
+- `__glle_PixelMapuiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword at absolute 0x1420 and calls through it with words from entry `a0` +0 and +4 in `a0` and `a1`, and entry `a0` +8 in `a2` (`ld` at 0x334b7b8; `lw` at 0x334b7c0, 0x334b7d0; `daddiu` at 0x334b7c8; `jalr` at 0x334b7cc). The target and resulting hardware effect are Unknown.
+- `__glle_PixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  An indirect call takes its target from absolute 0x1428; its first three arguments are the words at entry `a0` +0 and +4, followed by entry `a0` +8 (`ld` at 0x334b828; `lw` at 0x334b830, 0x334b840; `daddiu` at 0x334b838; `jalr` at 0x334b83c). The call's identity and this routine's return value are Unknown.
+- `__glsplc_CopyPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3353d50
+  `__glSPDlalloc` receives 0x18 and 0xaa as its first two arguments (`addiu` at 0x3353d78, 0x3353d80; `jalr` at 0x3353d84). When the result is nonzero, `beqz` falls through to word stores of entry `a1` and `a0` at result +4 and +0 (`beqz` at 0x3353d8c; `sw` at 0x3353db8, 0x3353dc4). The stored values’ role is Unknown.
+- `__glsplc_TagSampleBufferSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33551e0
+  This body calls `__glSPDlalloc` with zero and 0xe0 as the first two arguments (`addiu` at 0x33551f8; `jalr` at 0x3355200; `move` at 0x3355204). It then returns (`jr` at 0x3355210). The call’s wider purpose is Unknown.
+- `__glsplc_PixelTexGenSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3355570
+  The `__glSPDlalloc` call has first arguments 8 and 0xe9 (`addiu` at 0x3355588, 0x3355598; `jalr` at 0x3355594). If the result is nonzero, `beqz` falls through and entry `a0` is stored as a word at result +0 (`beqz` at 0x335559c; `sw` at 0x33555b4). The record’s broader meaning is Unknown.
+- `__glsplc_PixelTexGenParameteriSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3355d40
+  It passes 8 and 0xfe to `__glSPDlalloc` (`addiu` at 0x3355d5c, 0x3355d6c; `jalr` at 0x3355d68). When the result is nonzero, `beqz` falls through to stores of entry `a1` and `a0` as words at result +4 and +0 (`beqz` at 0x3355d70; `sw` at 0x3355d84, 0x3355d90). The field roles are Unknown.
+- `__glsplc_PixelTexGenParameterivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3355da0
+  The first call is `__glPixelTexGenParameterivSGIS_size`, with the first four entry arguments (`jalr` at 0x3355dc4). Another call passes 0xff as `a1` to `__glSPDlalloc`; its `a0` value is unknown (`addiu` at 0x3355de8; `jalr` at 0x3355dec). A nonzero allocation result takes `bnez` to a `memcpy` call with result +8 and entry `a1` as the first two arguments (`bnez` at 0x3355df4; `jalr` at 0x3355e20). The wider purpose is Unknown.
+- `__glle_PixelTexGenParameterivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334d020
+  It calls an unknown target loaded from 0x1960, passing the word at entry `a0` +0 as `a0` and entry `a0` +8 as `a1` (`ld` at 0x334d034; `lw` at 0x334d040; `jalr` at 0x334d048; `daddiu` at 0x334d04c). It then calls `__glPixelTexGenParameterivSGIS_size` with that word as its first argument (`jalr` at 0x334d054; `lw` at 0x334d058). The wider role is Unknown.
+- `__glle_PixelTexGenParameterfSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334d090
+  An indirect call through the doubleword at 0x1968 receives the word at entry `a0` +0 in `a0` and the floating-point word at +4 in `f13` (`lw` at 0x334d0b0; `jalr` at 0x334d0b8; `lwc1` at 0x334d0bc). The `ld` at 0x334d0a8 reads the doubleword at absolute 0x1968. It returns entry `a0` +8 (`daddiu` at 0x334d0c8; `jr` at 0x334d0d0). The destination’s role is Unknown.
+- `__glle_PixelTexGenParameterfvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334d0e0
+  The first call uses the doubleword at 0x1970 as an unknown target and passes the entry `a0` word as `a0`, with entry `a0` +8 as `a1` (`ld` at 0x334d0f4; `lw` at 0x334d100; `jalr` at 0x334d108; `daddiu` at 0x334d10c). A subsequent call to `__glPixelTexGenParameterfvSGIS_size` receives the same word as its first argument (`jalr` at 0x334d114; `lw` at 0x334d118). The routine’s wider purpose is Unknown.
+- `__glsplc_PixelZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33539c0
+  It calls `__glSPDlalloc` with `a0` 8 and `a1` 0xa3 (`addiu` at 0x33539e4, 0x33539dc; `jalr` at 0x33539e8). `beqz` falls through when the result is nonzero, and that path stores entry `f12` and `f13` as words at result offsets +0 and +4 (`beqz` at 0x33539f0; `swc1` at 0x3353a04, 0x3353a10). The record’s purpose is Unknown.
+- `__glsplc_PixelTransferf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3353a20
+  The routine calls `__glSPDlalloc` with first arguments 8 and 0xa4 (`addiu` at 0x3353a44, 0x3353a3c; `jalr` at 0x3353a48). When the result is nonzero, `beqz` falls through and the path stores entry `a0` and `f13` as words at result offsets +0 and +4 (`beqz` at 0x3353a50; `sw` at 0x3353a64; `swc1` at 0x3353a70). The allocation’s role is Unknown.
