@@ -6607,3 +6607,41 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glSpanSwapAndSkipBytes4` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a9080
   **Established effects.** When the word at entry `a1` +0xc4 is signed positive, `blez` at 0x32a9094 falls through (`lw` at 0x32a9080).
   The subsequent `blez` at 0x32a90a0 falls through when the word at `a1` +0x28 is signed positive (`lw` at 0x32a9098). The path reads four bytes and stores four bytes at unknown bases (`lbu` at 0x32a90b0, 0x32a90b4, 0x32a90c0, 0x32a90cc; `sb` at 0x32a90b8, 0x32a90bc, 0x32a90d0, 0x32a90dc). The significance of the four byte accesses and the wider routine role remain Unknown.
+
+## 64-bit IP30 library: vertex and span read paths
+
+- `__glsplc_Vertex3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+  - **Established effects.** It calls `__glSPDlalloc2` with 0x18 and 0x44 as its first two arguments (`jalr` at 0x3350da4). The `beqz` falls through for a nonzero return, selecting floating-point doubleword copies from original argument 0 +0, +8 and +0x10 to result +0, +8 and +0x10 (`beqz` at 0x3350dac; `ldc1` at 0x3350db8, 0x3350dc0, 0x3350dc8; `sdc1` at 0x3350dbc, 0x3350dc4, 0x3350dd8). The meanings of these copies and the routine’s broader role are Unknown.
+- `__glsplc_Vertex3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 108 bytes
+  - **Established effects.** The first two arguments to `__glSPDlalloc` are 0x10 and 0x45 (`jalr` at 0x3350e1c). Its nonzero return makes `beqz` fall through to floating-point word stores of f12, f13 and f14 at result +0, +4 and +8 (`beqz` at 0x3350e24; `swc1` at 0x3350e4c, 0x3350e3c, 0x3350e40). The destination fields and this scalar entry’s wider role remain Unknown.
+- `__glsplc_Vertex3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+  - **Established effects.** `__glSPDlalloc` receives 0x10 and 0x45 as arguments 0 and 1 (`jalr` at 0x3350e84). When its return is nonzero, `beqz` falls through to a copy of floating-point words from original argument 0 +0, +4 and +8 to result +0, +4 and +8 (`beqz` at 0x3350e8c; `lwc1` at 0x3350e98, 0x3350ea0, 0x3350ea8; `swc1` at 0x3350e9c, 0x3350ea4, 0x3350eb8). The meanings of the copied words and the broader routine role are Unknown.
+- `__glsplc_Vertex3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 108 bytes
+  - **Established effects.** A call to `__glSPDlalloc` passes 0x10 and 0x46 as the first two arguments (`jalr` at 0x3350efc). The `beqz` falls through on a nonzero result, leading to word stores of the low words of original arguments 0, 1 and 2 at result +0, +4 and +8 (`beqz` at 0x3350f04; `sw` at 0x3350f2c, 0x3350f20, 0x3350f1c). The meanings of these copies and the routine’s broader role are Unknown.
+- `__glsplc_Vertex3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 104 bytes
+  - **Established effects.** It invokes `__glSPDlalloc` with 0x10 and 0x46 (`jalr` at 0x3350f64). A nonzero return makes `beqz` fall through to word copies from original argument 0 +0, +4 and +8 to result +0, +4 and +8 (`beqz` at 0x3350f6c; `lw` at 0x3350f7c, 0x3350f84, 0x3350f8c; `sw` at 0x3350f80, 0x3350f88, 0x3350f98). The destination fields and the wider purpose of this vector path are Unknown.
+- `glTexCoord3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** The routine reads a doubleword from absolute address 0x1de8 (`ld` at 0x3376380) and jumps indirectly through it (`jr` at 0x3376384). The destination, location’s role and wider role of this entry are Unknown.
+- `glTexCoord3s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** A doubleword loaded at absolute address 0x1df0 (`ld` at 0x3376400) supplies the indirect jump target (`jr` at 0x3376404). The target, field’s purpose and the routine’s broader role are Unknown.
+- `glTexCoord3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** It loads a doubleword from absolute address 0x1df8 (`ld` at 0x3376480) and transfers control through that value (`jr` at 0x3376484). The destination and hardware significance of this location are Unknown, as is the routine’s wider role.
+- `glTexCoord4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** Its indirect jump uses the doubleword loaded from absolute address 0x1e00 (`ld` at 0x3376500; `jr` at 0x3376504). The field’s purpose, jump target and broader role of this entry remain Unknown.
+- `glTexCoord4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** It reads the doubleword at absolute address 0x1e08 (`ld` at 0x3376580), then jumps to that value (`jr` at 0x3376584). The location’s role and the jump target are Unknown; so is the routine’s wider role.
+- `__glSpanClampPreFloat` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ab620
+  **Established effects.** It reads words at entry `a1` +0x24 and +0xc4 (`lw` at 0x32ab620, 0x32ab624).
+  `blez` at 0x32ab638 is taken when its unknown tested value is signed nonpositive. Its delay slot reads the floating-point word at entry `a0` +0xf2c on both paths (`lwc1` at 0x32ab63c). The taken path returns the word at entry `a1` +0x24 (`lw` at 0x32ab620; `jr` at 0x32ab688). The hardware effect and the routine's wider role are Unknown.
+- `__glSpanClampNegPreFloat` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ab6e0
+  **Established effects.** It reads words at entry `a1` +0x24 and +0xc4 and a floating-point word at entry `a0` +0xf2c (`lw` at 0x32ab6e0, 0x32ab6e4; `lwc1` at 0x32ab6ec).
+  The tested value of `blez` at 0x32ab6fc is unknown; the branch is taken when it is signed nonpositive. Its delay-slot negation executes on both paths (`neg.s` at 0x32ab700). The effects on hardware and the purpose of this routine remain Unknown.
+- `__glSpanClampPostFloat` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ab7a0
+  **Established effects.** `blez` at 0x32ab7b8 is taken when its unknown tested value is signed nonpositive.
+  The delay slot reads a floating-point word at entry `a0` +0xf2c on either path (`lwc1` at 0x32ab7bc). The taken path returns the word at entry `a1` +0x7c (`lw` at 0x32ab7a0; `jr` at 0x32ab808). This routine's broader role and hardware effect are Unknown.
+- `__glSpanReadCI2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a37d0
+  **Established effects.** `blez` at 0x32a3818 falls through when the word at entry `a1` +0xb8 is signed positive (`lw` at 0x32a37e8).
+  That path calls an unknown target read from entry `a0` +0x9a50 (`ld` at 0x32a3840; `jalr` at 0x32a3850). The call receives the doubleword at entry `a0` +0x4720 in `a0`, with unknown `a1` through `a3` (`jalr` at 0x32a3850; `ld` at 0x32a3854). The target's hardware effect and the routine's broader role are Unknown.
+- `__glSpanReadDepthUint1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a3bc0
+  **Established effects.** When the word at entry `a1` +0xc4 is signed positive, `blez` at 0x32a3c2c falls through (`lw` at 0x32a3bd8).
+  The resulting path calls an unknown target loaded from entry `a0` +0x9da8 (`ld` at 0x32a3c50; `jalr` at 0x32a3c60). Its `a0` argument is entry `a0` +40160 and `a1` through `a3` are unknown (`jalr` at 0x32a3c60). The callee's hardware effects and the routine's wider role remain Unknown.
