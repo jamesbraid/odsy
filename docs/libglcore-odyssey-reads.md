@@ -7697,3 +7697,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The first instruction loads a doubleword from absolute 0x1958; the next jumps to that value with entry `a0` through `a3` (`ld` at 0x336910c; `jr` at 0x3369110). The target and role are Unknown.
 - `glPixelTexGenParameterivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369118
   It uses the doubleword at absolute 0x1960 as an indirect jump target without changing argument registers 0 through 3 (`ld` at 0x3369118; `jr` at 0x336911c). Its destination and role are Unknown.
+
+## 64-bit IP30 library: pixel and texture entry points
+
+- `glPixelMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its jump target is the doubleword at absolute 0x1418; the indirect transfer retains entry arguments 0 through 3 (`ld` at 0x336892c; `jr` at 0x3368930). The target is Unknown.
+- `glPixelMapuiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It passes the first four entry arguments to the address loaded as a doubleword from 0x1420 (`ld` at 0x3368938; `jr` at 0x336893c). The destination and hardware effect are Unknown.
+- `glPixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword load from absolute 0x1428 feeds an indirect jump, without changing the first four arguments (`ld` at 0x3368944; `jr` at 0x3368948). The code does not resolve its target or role.
+- `glReadBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry jumps to the doubleword loaded at 0x1430, with arguments 0 through 3 still at their entry values (`ld` at 0x3368950; `jr` at 0x3368954). The callee's identity and effect are Unknown.
+- `glCopyPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Control transfers through the doubleword read from absolute 0x1438 with the original first four argument registers (`ld` at 0x336895c; `jr` at 0x3368960). The target and this routine's broader role are Unknown.
+- `glCopyTexImage1D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry doubleword at absolute 0x1738 supplies an indirect jump target (`ld` at 0x3368ddc; `jr` at 0x3368de0). Arguments `a0` through `a3` retain their entry values (`jr` at 0x3368de0). The target and its role are Unknown.
+- `glCopyTexImage1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It transfers control through the doubleword read at 0x1738, with entry `a0` through `a3` intact (`ld` at 0x3368ddc; `jr` at 0x3368de0). The destination’s identity and role are Unknown.
+- `glCopyTexImage2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  An indirect jump takes its destination from the doubleword loaded at 0x1740 (`ld` at 0x3368de8; `jr` at 0x3368dec). The first four arguments remain unchanged (`jr` at 0x3368dec). The target’s role is Unknown.
+- `glCopyTexImage2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  This entry reads the doubleword at absolute 0x1740 and jumps to it with the first four entry arguments (`ld` at 0x3368de8; `jr` at 0x3368dec). Its destination and wider effect are Unknown.
+- `glTagSampleBufferSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword loaded from 0x17d8 is the target of a tail jump that carries the original `a0` through `a3` (`ld` at 0x3368ecc; `jr` at 0x3368ed0). The destination and its wider role are Unknown.
+- `glPixelTexGenParameterfSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369124
+  The routine loads the doubleword at absolute 0x1968 and transfers to it, carrying the original first four arguments (`ld` at 0x3369124; `jr` at 0x3369128). Its indirect target and purpose are Unknown.
+- `glPixelTexGenParameterfvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369130
+  The loaded doubleword from absolute 0x1970 becomes the jump target; the first four argument registers remain at entry values (`ld` at 0x3369130; `jr` at 0x3369134). The destination and wider role are Unknown.
+- `glGetPixelTexGenParameterivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336913c
+  An indirect jump uses the doubleword read from absolute 0x1978 and passes through entry `a0` to `a3` (`ld` at 0x336913c; `jr` at 0x3369140). Its target’s identity and role are Unknown.
+- `glGetPixelTexGenParameterfvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369148
+  At entry it reads a doubleword at absolute 0x1980, then jumps through that value with `a0` through `a3` unchanged (`ld` at 0x3369148; `jr` at 0x336914c). The indirect destination and its purpose are Unknown.
+- `glTextureColorMaskSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369274
+  The doubleword at absolute 0x1a48 supplies the target of a jump that carries the first four original argument registers (`ld` at 0x3369274; `jr` at 0x3369278). The target’s identity and role are Unknown.
