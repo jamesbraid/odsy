@@ -5025,3 +5025,54 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** Entry arguments 0–3 are passed to `__glOdyim_ScratchIndexfv` (`jalr` at 0x3288424). Its delay slot retains entry argument 0 in `fp` (`jalr` at 0x3288424; `move` at 0x3288428). A second call targets `__glim_Indexfv`, with entry argument 0 first and its other arguments Unknown according to hostfacts (`jalr` at 0x3288430). The calls' hardware implications and the broader function of this entry are Unknown.
 - `__glOdyim_SoftScratchIndexi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
   - **Established effects.** It invokes `__glOdyim_ScratchIndexi` with the original first four arguments (`jalr` at 0x3288474). The following `__glim_Indexi` call has entry argument 0 as its first argument; the facts report leaves the remaining arguments Unknown (`jalr` at 0x3288480). After that call the saved return address is reloaded and the routine returns through it (`ld` at 0x3288488; `jr` at 0x3288494). The callees' effects on hardware and the wider role of this wrapper remain Unknown.
+
+## 64-bit IP30 library: index callers and texture dispatch
+
+- `__glOdyim_SoftScratchIndexiv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32884a0
+  **Established effects.** It calls `__glOdyim_ScratchIndexiv` with entry a0 through a3 (`jalr` at 0x32884c4).
+  Next it calls `__glim_Indexiv` with entry a0; a1 through a3 are unknown (`jalr` at 0x32884d0).
+  The routine returns that call’s value (`jr` at 0x32884e4); the two callees’ hardware effects and the routine’s wider role are Unknown.
+- `__glOdyim_SoftScratchIndexs` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32884f0
+  **Established effects.** Entry a0 is passed to `__glOdyim_ScratchIndexs`, followed by `__glim_Indexs` (`jalr` at 0x3288514, 0x3288520).
+  The latter call has unknown a1 through a3, and the routine returns its result (`jalr` at 0x3288520; `jr` at 0x3288534).
+  The hardware effects of these two calls, and the routine’s wider role, remain Unknown.
+- `__glOdyim_SoftScratchIndexsv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3288540
+  **Established effects.** The first call, `__glOdyim_ScratchIndexsv`, receives entry a0 through a3 (`jalr` at 0x3288564).
+  It then invokes `__glim_Indexsv` with entry a0; the other three argument values are unknown, and its result is returned (`jalr` at 0x3288570; `jr` at 0x3288584).
+  The two callees’ hardware effects and this routine’s broader role are Unknown.
+- `__glOdyim_SoftScratchIndexub` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3288590
+  **Established effects.** It saves the return address as a doubleword on the stack (`sd` at 0x32885b0).
+  Its calls are to `__glOdyim_ScratchIndexub` and `__glim_Indexub`, in that order, with entry a0 at both (`jalr` at 0x32885b4, 0x32885c0).
+  The latter call’s a1 through a3 are unknown; its result is returned (`jalr` at 0x32885c0; `jr` at 0x32885d4). The calls’ hardware effects and the routine’s wider role are Unknown.
+- `__glOdyim_SoftScratchIndexubv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32885e0
+  **Established effects.** A call to `__glOdyim_ScratchIndexubv` is followed by one to `__glim_Indexubv`, each receiving entry a0 (`jalr` at 0x3288604, 0x3288610).
+  Hostfacts leaves a1 through a3 unknown at the second call, whose result the routine returns (`jalr` at 0x3288610; `jr` at 0x3288624).
+  The hardware consequences of these calls and the routine’s broader role are Unknown.
+- `__glTextureSBReplaceI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 344 bytes
+  **Established.** It copies a floating-point word from argument 2 +0x14 to +0, +4, +8 and +0x10 (`lwc1` at 0x331eed8; `swc1` at 0x331ef10, 0x331ef08, 0x331ef04, 0x331ef00). Four calls to `__GL_TEXENV_CLAMP` follow (`bgezall` at 0x331ef38, 0x331ef5c, 0x331ef80, 0x331efa4); their floating-point results are written to those four offsets (`swc1` at 0x331ef44, 0x331ef68, 0x331ef8c, 0x331efac). The meanings of those fields and this routine’s wider role are Unknown.
+- `__glTextureCTModulateA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 472 bytes
+  **Established.** It reads a word at argument 0 +0x1a30 (`lw` at 0x33203f8). `beq` at 0x332041c takes a path calling `__GL_TEXENV_CLAMP` when that word equals 0x1906, and falls through otherwise (`bgezall` at 0x3320504). On fall-through, `beq` at 0x3320428 takes the same path for 0x8049 and falls through for other values.
+  The routine contains other calls to `__GL_TEXENV_CLAMP` (`bgezall` at 0x3320478, 0x3320568). The tested word’s meaning and the wider role of this modulation routine are Unknown.
+- `__glTextureCTBlendA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 472 bytes
+  **Established.** The word at argument 0 +0x1a30 is read (`lw` at 0x3322ae8). `beq` at 0x3322b0c takes a path calling `__GL_TEXENV_CLAMP` if the word is 0x1906 and falls through otherwise (`bgezall` at 0x3322bf4); if it falls through, `beq` at 0x3322b18 also takes that path for 0x8049 and falls through otherwise. The body includes two other calls to the same callee (`bgezall` at 0x3322b68, 0x3322c58). The blend routine’s wider role and the tested field’s meaning are Unknown.
+- `__glTextureCTReplaceA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 488 bytes
+  **Established.** A word read from argument 0 +0x1a30 (`lw` at 0x33247a8) is tested by `beq` at 0x33247d8. Equality with 0x1906 takes a path calling `__GL_TEXENV_CLAMP`, while inequality falls through (`bgezall` at 0x33248c4). The next `beq` at 0x33247e4 takes that path for 0x8049 and falls through for other values.
+  Calls elsewhere in the routine include `__GL_TEXENV_CLAMP` (`bgezall` at 0x3324834, 0x3324928). The tested field’s meaning and the replacement routine’s wider role are Unknown.
+- `__glim_AreTexturesResidentEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 500 bytes
+  **Established.** It reads the word at process address 0x1030 (`lw` at 0x3327ac4). `beq` at 0x3327ae4 takes a path calling `__glSetError` with argument 0 equal to 0x502 when that word is one, and falls through otherwise (`jalr` at 0x3327c80). On fall-through, `bltz` at 0x3327aec takes a path calling `__glSetError` with argument 0 equal to 0x501 for a negative entry argument 0 and falls through when nonnegative (`jalr` at 0x3327c68).
+  Later calls include `__glNamesLockData` and `IsTextureConsistent` (`jalr` at 0x3327b88, 0x3327ba4). On reaching the consistency test, `bnez` at 0x3327bac takes the `IsTextureResident` call path for a nonzero result and falls through for zero (`bnez` at 0x3327bac; `bgezall` at 0x3327b44). The meaning of the word at 0x1030 and this query routine’s wider role are Unknown.
+- `InitFunctionPtrs` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31fbbe0
+  **Established effects.** It writes doubleword values to fields of entry `a0`, including 0x326df10 at +0x4730 and 0x32ed670 at +0x4838 (`sd` at 0x31fbc04, 0x31fbc0c).
+  It also stores 0x31fa170 at +0xb0 and 0x31fb8e0 at +0x4740 (`sd` at 0x31fbe6c, 0x31fbe88).
+  The return delay slot stores 0x327ba10 at entry `a0` +0x1c578 (`jr` at 0x31fbe8c; `sd` at 0x31fbe90). The hardware effects and the routine’s wider role are Unknown.
+- `SWInit` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31fecd0
+  **Established effects.** It calls `InitBuffers` with the four entry argument registers (`bgezall` at 0x31fece4).
+  When that result is zero, `beqz` takes the path returning zero (`beqz` at 0x31fecec; `move` at 0x31feff8; `jr` at 0x31ff000).
+  When the branch falls through, the routine calls `InitFunctionPtrs` and `__glSoftResetContext` with entry `a0`; the remaining argument values are unknown (`bgezall` at 0x31fecf8; `jalr` at 0x31fed04).
+  The later call to `__glOdysseyInitDefaultValues` uses entry `a0`, with the other argument values unknown (`bgezall` at 0x31fed34).
+  If its result is zero, `beqz` takes a return-zero path (`beqz` at 0x31fed3c; `move` at 0x31ff130; `jr` at 0x31ff138). The wider role and hardware effect of this initialization path are Unknown.
+- `AnalyzeVertarrays` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3276640
+  **Established effects.** The routine clears a word at entry `a0` +0x18f38 and doublewords at +0x18f28 and +0x18f30 (`sw` at 0x3276648; `sd` at 0x327664c, 0x3276650).
+  It also clears doublewords at +0x18f20 and +0x18f18 (`sd` at 0x3276654, 0x3276658).
+  When the `beq` at 0x327666c is taken because its Unknown operand equals 0x37, and the word at entry `a0` +0x1608 equals 0xc, `beq` at 0x32766f0 is taken and the routine stores values at +0x18f20, +0x18f18 and +0x18f28 (`lw` at 0x32766ec; `sd` at 0x3276840, 0x3276844, 0x3276850).
+  The hardware effect of these selections and the routine’s wider role are Unknown.
