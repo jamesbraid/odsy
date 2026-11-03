@@ -4441,3 +4441,52 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The floating-point word at argument 1 +0xc is read (`lwc1` at 0x331e70c). A multiplication follows (`mul.s` at 0x331e724), and an Unknown word is stored at that offset (`swc1` at 0x331e728). The value’s significance and the routine’s broader role are Unknown.
 - `__glTextureSBBlendA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 120 bytes
   **Established.** It calls `__GL_TEXENV_CLAMP` (`bgezall` at 0x331e788), then stores its floating-point result at argument 2 +0x10 (`swc1` at 0x331e794). It loads a floating-point word from argument 1 +0xc (`lwc1` at 0x331e798), performs a multiplication (`mul.s` at 0x331e7a4), then stores an Unknown word at that offset (`swc1` at 0x331e7a8). The role of the field and the broader effect of this routine are Unknown.
+
+## 64-bit IP30 library: viewport and texture replacement paths
+
+- `__glOdyim_Scissor` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32784d0
+  **Established effects.** A word is read at absolute address 0x1030 (`lw` at 0x32784d8).
+  When the word equals 1, `beq` takes the error path and calls `__glSetError` with a0 = 0x502 (`beq` at 0x32784f4; `jalr` at 0x3278530).
+  When it differs from 1, the branch falls through to calls to `__glim_Scissor` and an unknown callee (`beq` at 0x32784f4; `jalr` at 0x3278500; `jalr` at 0x3278514).
+  The indirect target and this scissor routine’s wider role are Unknown.
+- `__glOdyim_Viewport` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3278e40
+  **Established effects.** It reads a word at absolute address 0x1030 (`lw` at 0x3278e48).
+  If the word equals 1, `beq` takes the path calling `__glSetError` with a0 = 0x502 (`beq` at 0x3278e64; `jalr` at 0x3278ecc).
+  Otherwise `beq` falls through to call `__glim_Viewport` and an unknown target, then writes the word 2 to absolute address 0x1030 in the return delay slot (`beq` at 0x3278e64; `jalr` at 0x3278e70; `jalr` at 0x3278e84; `sw` at 0x3278eb8; `jr` at 0x3278eb4).
+  The indirect target and viewport routine’s broader hardware role are Unknown.
+- `__glOdysplc_EvalMesh1` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3209380
+  **Established effects.** Loads the doubleword at absolute address 0x1020 (`ld` at 0x3209384).
+  It calls `__glsplc_EvalMesh1` and clears a byte at offset 0x18ed0 from that doubleword in the call delay slot (`jalr` at 0x32093ac; `sb` at 0x32093b0).
+  The callee’s result is returned (`jr` at 0x32093bc). The cleared byte’s role and this evaluation routine’s wider effect are Unknown.
+- `__glOdyim_EdgeFlag` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x326e9b0
+  **Established effects.** Writes one of the words 0x2f00c02e and 0x3000c02e to absolute address 0x10000 in the return delay slot (`sw` at 0x326e9cc; `jr` at 0x326e9c8).
+  The destination’s hardware role and this edge-flag routine’s wider effect are Unknown.
+- `__glOdyim_EdgeFlagv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x326e9d0
+  **Established effects.** Loads an unsigned byte from the first argument (`lbu` at 0x326e9d0).
+  In the return delay slot, it stores one of 0x2f00c02e and 0x3000c02e as a word to absolute address 0x10000 (`sw` at 0x326e9f0; `jr` at 0x326e9ec).
+  The destination’s hardware role and this byte-input routine’s wider effect are Unknown.
+- `__glOdyim_Color4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+  - **Established effects.** Word 0xc580d015 precedes the entry floating-point words in `f12`–`f15` in writes to absolute 0x10000 (`sw` at 0x336f94c; `swc1` at 0x336f950, 0x336f954, 0x336f958, 0x336f960). The `f15` write executes as the return delay-slot instruction (`jr` at 0x336f95c; `swc1` at 0x336f960). The destination's hardware significance and this entry's broader role remain Unknown.
+- `__glOdyim_Color4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** `ldl` accesses entry argument 0 +0 and +8, while `ldr` accesses +7 and +0xf (`ldl` at 0x336f9c0, 0x336f9cc; `ldr` at 0x336f9d4, 0x336f9d8). Stores to 0x10000 place word 0xc580d015 before two doublewords whose values hostfacts leaves Unknown (`sw` at 0x336f9dc; `sd` at 0x336f9e0, 0x336f9e8). The second doubleword is written in the return delay slot (`jr` at 0x336f9e4; `sd` at 0x336f9e8). The hardware role of this destination and the routine's wider function are Unknown.
+- `__glOdyim_Color4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** Entry argument 0 +0 and +8 are accessed by `ldl`, and +7 and +0xf by `ldr` (`ldl` at 0x336fac0, 0x336facc; `ldr` at 0x336fad4, 0x336fad8). Word 0xc580d014 precedes two doubleword stores of facts-Unknown values to 0x10000 (`sw` at 0x336fadc; `sd` at 0x336fae0, 0x336fae8). The final doubleword is written in the return delay slot (`jr` at 0x336fae4; `sd` at 0x336fae8). The role of the destination in hardware and this routine's overall purpose remain Unknown.
+- `__glOdyim_Color4ub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+  - **Established effects.** Five word writes to 0x10000 contain 0xc580d00f followed by the low words of entry arguments 0–3 (`sw` at 0x336fc4c, 0x336fc50, 0x336fc54, 0x336fc58, 0x336fc60). The argument 3 store is the return delay-slot instruction (`jr` at 0x336fc5c; `sw` at 0x336fc60). The wider role of this entry and the hardware function of the destination are Unknown.
+- `__glOdyim_Color4uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** Using `ldl` and `ldr`, the body accesses entry argument 0 +0, +8, +7 and +0xf (`ldl` at 0x336fdc0, 0x336fdcc; `ldr` at 0x336fdd4, 0x336fdd8). It writes word 0xc580d011 to absolute 0x10000 before two doublewords whose values hostfacts leaves Unknown (`sw` at 0x336fddc; `sd` at 0x336fde0, 0x336fde8). The latter store executes in the return delay slot (`jr` at 0x336fde4; `sd` at 0x336fde8). The destination's hardware meaning and this routine's broader purpose remain Unknown.
+- `__glTextureSBBlendI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 400 bytes
+  **Established.** It reads a floating-point word from argument 2 +0x14 (`lwc1` at 0x331e7d8) and copies it to +0, +4, +8 and +0x10 (`swc1` at 0x331e814, 0x331e80c, 0x331e808, 0x331e804). Four calls to `__GL_TEXENV_CLAMP` follow (`bgezall` at 0x331e840, 0x331e864, 0x331e888, 0x331e8ac); the floating-point result of the last call is written at argument 2 +0x10 (`swc1` at 0x331e8bc).
+  The routine later stores floating-point words at argument 1 +0, +4, +8 and +0xc (`swc1` at 0x331e8e0, 0x331e8f8, 0x331e910, 0x331e940). The meanings of these fields and the broader blend routine are Unknown.
+- `__glTextureSBReplaceL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
+  **Established.** A floating-point word read from argument 2 +0xc (`lwc1` at 0x331e968) is written to argument 2 +0, +4 and +8 (`swc1` at 0x331e99c, 0x331e994, 0x331e990). The routine calls `__GL_TEXENV_CLAMP` three times (`bgezall` at 0x331e9c4, 0x331e9e8, 0x331ea0c), storing the floating-point results at those same three offsets (`swc1` at 0x331e9d0, 0x331e9f4, 0x331ea1c).
+  It later multiplies floating-point values (`mul.s` at 0x331ea24, 0x331ea40, 0x331ea5c) and writes floating-point words at argument 1 +0, +4 and +8 (`swc1` at 0x331ea28, 0x331ea44, 0x331ea60). The facts report does not resolve those stored values; the fields and broader replacement role are Unknown.
+- `__glTextureSBReplaceLA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 340 bytes
+  **Established.** It copies the floating-point word from argument 2 +0xc to +0, +4 and +8 (`lwc1` at 0x331ea88; `swc1` at 0x331eabc, 0x331eab4, 0x331eab0). It calls `__GL_TEXENV_CLAMP` four times (`bgezall` at 0x331eae4, 0x331eb08, 0x331eb2c, 0x331eb50); its fourth floating-point result is stored at argument 2 +0x10 (`swc1` at 0x331eb58).
+  Four later floating-point multiplications occur (`mul.s` at 0x331eb68, 0x331eb78, 0x331eb94, 0x331ebb0), and words are stored at argument 1 +0, +4, +8 and +0xc (`swc1` at 0x331eb6c, 0x331eb7c, 0x331eb98, 0x331ebb4). Those stored values, the field meanings and the wider routine role are Unknown in the facts report.
+- `__glTextureSBReplaceRGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 276 bytes
+  **Established.** It invokes `__GL_TEXENV_CLAMP` three times (`bgezall` at 0x331ec38, 0x331ec5c, 0x331ec80), placing the floating-point results at argument 2 +0, +4 and +8 (`swc1` at 0x331ec44, 0x331ec68, 0x331ec90).
+  Subsequent floating-point multiplications occur (`mul.s` at 0x331ec98, 0x331ecb4, 0x331ecd0), followed by word stores at argument 1 +0, +4 and +8 (`swc1` at 0x331ec9c, 0x331ecb8, 0x331ecd4). The facts report leaves those stored values unresolved, and the broader RGB replacement role is Unknown.
+- `__glTextureSBReplaceRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 328 bytes
+  **Established.** Calls to `__GL_TEXENV_CLAMP` occur four times (`bgezall` at 0x331ed58, 0x331ed7c, 0x331eda0, 0x331edc4). Their floating-point results are stored at argument 2 +0, +4, +8 and +0x10 respectively (`swc1` at 0x331ed64, 0x331ed88, 0x331edac, 0x331edcc).
+  The code multiplies four floating-point pairs (`mul.s` at 0x331eddc, 0x331edec, 0x331ee08, 0x331ee24) and stores words at argument 1 +0, +4, +8 and +0xc (`swc1` at 0x331ede0, 0x331edf0, 0x331ee0c, 0x331ee28). The facts report does not resolve the store values, and the field meanings and wider RGBA routine role are Unknown.
