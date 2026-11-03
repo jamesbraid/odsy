@@ -5915,3 +5915,41 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glTRim_Vertex4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32607d0
   **Established effects.** It increments the word at +0x18d70 of the doubleword read from absolute 0x1020 (`lw` at 0x32607e8; `addiu` at 0x3260804; `sw` at 0x3260808). The `ld` at 0x32607d0 reads the doubleword at absolute 0x1020.
   Four words from floating-point registers are stored at unknown destinations (`swc1` at 0x3260818, 0x326081c, 0x3260820, 0x3260824). Their values, destination roles and the broader routine role are Unknown.
+
+## 64-bit IP30 library: transform and coordinate entry paths
+
+- `__glOdyim_Scaled` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3278c80
+  **Established effects.** The word at absolute 0x1030 is compared with 1; `beq` takes the error arm on equality and falls through otherwise (`lw` at 0x3278c88; `beq` at 0x3278ca4). The taken arm calls `__glSetError` with `a0 = 0x502` (`jalr` at 0x3278cdc). On fall-through, `__glim_Scaled` precedes `dirtyMatrix` (`jalr` at 0x3278cb0; `bgezall` at 0x3278cc0). What these calls accomplish in hardware and the routine's wider role are Unknown.
+- `__glOdyim_Scalef` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3278cf0
+  **Established effects.** When the word at absolute 0x1030 equals 1, `beq` takes the path to `__glSetError` with `a0 = 0x502` (`lw` at 0x3278cf8; `beq` at 0x3278d14; `jalr` at 0x3278d4c). If the word differs, fall-through calls `__glim_Scalef` followed by `dirtyMatrix` (`jalr` at 0x3278d20; `bgezall` at 0x3278d30). The hardware effects of this sequence and the routine's wider role are Unknown.
+- `__glOdyim_Translated` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3278d60
+  **Established effects.** `beq` branches when the word read from absolute 0x1030 equals 1, and falls through when it differs (`lw` at 0x3278d68; `beq` at 0x3278d84). The taken path passes `a0 = 0x502` to `__glSetError` (`jalr` at 0x3278dbc); the fall-through path calls `__glim_Translated` and then `dirtyMatrix` (`jalr` at 0x3278d90; `bgezall` at 0x3278da0). The translation path's hardware effects and the wider routine role are Unknown.
+- `__glOdyim_Translatef` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3278dd0
+  **Established effects.** A word loaded at absolute 0x1030 controls `beq`: equality with 1 takes the path calling `__glSetError` with `a0 = 0x502`; inequality falls through to `__glim_Translatef` and `dirtyMatrix` (`lw` at 0x3278dd8; `beq` at 0x3278df4; `jalr` at 0x3278e2c, 0x3278e00; `bgezall` at 0x3278e10). The effect of these calls on hardware and the wider role of this routine remain Unknown.
+- `__glOdysseyChangeBackMaterialColor` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32850e0
+  **Established effects.** `beq` takes an indirect-call path when the word at absolute 0x1030 equals 1 and falls through when it differs (`lw` at 0x32850e8; `beq` at 0x3285108; `jalr` at 0x328515c). The taken arm rejoins the other path before another indirect call and `__glClampAndScaleColor` (`b` at 0x3285164; `jalr` at 0x3285128, 0x3285138). The latter call clears a byte at entry `a0 +0x1c449` in its delay slot (`sb` at 0x328513c). Both indirect targets, the byte's role and the routine's wider hardware role are Unknown.
+- `__glsplc_TexCoord1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  **Established effects.** `__glSPDlalloc2` receives 8 and 0x30 as its first two arguments (`jalr` at 0x334fcf4). On a nonzero result, `beqz` at 0x334fcfc falls through and the routine stores entry `f12` as a doubleword at that result plus 0 (`sdc1` at 0x334fd14). The meaning of this write and the broader routine role are Unknown.
+- `__glsplc_TexCoord1dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 88 bytes
+  **Established effects.** The first two arguments to `__glSPDlalloc2` are 8 and 0x30 (`jalr` at 0x334fd54). A zero result takes `beqz` at 0x334fd5c to the return path; its nonzero fall-through copies the doubleword at entry argument 0 plus 0 to the result plus 0 (`ldc1` at 0x334fd68; `sdc1` at 0x334fd78). The copied data’s hardware meaning and the routine’s wider purpose are Unknown.
+- `__glsplc_TexCoord1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  **Established effects.** It invokes `__glSPDlalloc` with 8 and 0x31 as the first two arguments (`jalr` at 0x334fdb4). When the result is nonzero, `beqz` at 0x334fdbc falls through to store entry `f12` as a floating-point word at the result plus 0 (`swc1` at 0x334fdd4). What that word represents and this function’s broader role are Unknown.
+- `__glsplc_TexCoord1fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 88 bytes
+  **Established effects.** `__glSPDlalloc` is called with 8 and 0x31 as its first two arguments (`jalr` at 0x334fe14). `beqz` at 0x334fe1c takes the return path on zero; if the call result is nonzero, it falls through to copy a floating-point word from entry argument 0 plus 0 to the result plus 0 (`lwc1` at 0x334fe28; `swc1` at 0x334fe38). The purpose of this copied word and the routine’s overall role are Unknown.
+- `__glsplc_TexCoord1i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  **Established effects.** The call to `__glSPDlalloc` passes 8 and 0x32 in its first two argument registers (`jalr` at 0x334fe74). For a nonzero return, `beqz` at 0x334fe7c falls through and the low word of entry argument 0 is written at the return value plus 0 (`sw` at 0x334fe94). The written value’s hardware significance and this routine’s wider role are Unknown.
+- `__glTRim_Vertex4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
+  - **Established effects.** It reads signed halfwords at entry argument 0 +0, +2, +4 and +6 (`lh` at 0x3260888, 0x32608a8, 0x32608b8, 0x32608c8).
+  - A word at +0x18d70 of the doubleword loaded from absolute 0x1020 is incremented (`lw` at 0x326087c; `addiu` at 0x3260880; `sw` at 0x3260884). The `ld` at 0x3260870 reads the doubleword at absolute 0x1020. The field's hardware meaning and this routine's broader role are Unknown.
+- `__glTRim_Vertex2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  - **Established effects.** Words at entry argument 0 +0 and +4 are copied to destinations whose bases hostfacts leaves Unknown (`lwc1` at 0x325faa0, 0x325fab4; `swc1` at 0x325fab0, 0x325fabc).
+  - It increments the word at +0x18d70 of the doubleword loaded from absolute 0x1020 (`lw` at 0x325fa8c; `addiu` at 0x325fa98; `sw` at 0x325fa9c). The `ld` at 0x325fa80 reads the doubleword at absolute 0x1020. The field's hardware purpose and the routine's broader role are Unknown.
+- `__glTRim_Begin` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 268 bytes
+  - **Established effects.** `beqz` is taken when its tested value is zero and falls through when nonzero; hostfacts leaves that tested value Unknown (`beqz` at 0x325f6e8).
+  - On the taken path, `bnez` falls through when entry argument 0 is unsigned at least 0xa, reaching a call to `__glSetError` with 0x500 (`bnez` at 0x325f72c; `jalr` at 0x325f738). The hardware effect and this routine's wider role are Unknown.
+- `ProcessOverflow` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 296 bytes
+  - **Established effects.** It reads the word at +0x18d78 of the doubleword loaded from absolute 0x1020, sets bit zero, and writes it back (`lw` at 0x325f40c; `ori` at 0x325f414; `sw` at 0x325f41c). The `ld` at 0x325f3f8 reads the doubleword at absolute 0x1020.
+  - That write executes in the delay slot of a call to `__glTRim_End` with entry arguments 0 through 3 (`bgezall` at 0x325f418; `sw` at 0x325f41c). The field's hardware meaning and the broader role of this routine are Unknown.
+- `Pass` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 236 bytes
+  - **Established effects.** `beqz` is taken when the word at +0x18d74 of the doubleword loaded from absolute 0x1020 is unsigned at least the word at +0x18d70, and falls through when it is less (`lw` at 0x325f538, 0x325f53c; `sltu` at 0x325f540; `beqz` at 0x325f544). The `ld` at 0x325f528 reads the doubleword at absolute 0x1020.
+  - On reaching the later test, `beqz` is taken when bit zero of the word at +0x18d78 is clear and falls through when set (`lw` at 0x325f588; `andi` at 0x325f590; `beqz` at 0x325f5a4). The taken path clears words at +0x18d78 and +0x18d74 (`sw` at 0x325f5f0, 0x325f5f4). The fields' hardware meanings and the wider role of `Pass` are Unknown.
