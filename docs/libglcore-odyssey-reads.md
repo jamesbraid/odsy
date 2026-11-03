@@ -5333,3 +5333,61 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** A nonzero word at 0x1060 makes `beqz` at 0x31f71ac fall through (`lw` at 0x31f7190; `beqz` at 0x31f71ac). On reaching the next test, `beqz` at 0x31f71b8 is taken when the word at 0x1048 is signed at least 5; `b` at 0x31f7260 joins the path that reads unsigned bytes from entry argument 0 at offsets 0–3 (`lw` at 0x31f71a4; `beqz` at 0x31f71b8; `b` at 0x31f7260; `lbu` at 0x31f7218, 0x31f7220, 0x31f722c, 0x31f7234). Those bytes are stored as words at unknown destinations (`sw` at 0x31f721c, 0x31f7224, 0x31f7230, 0x31f7238). The function's wider hardware effect and the destinations' purpose are Unknown.
 - `__glOdylc_Color4ui` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f72c0
   **Established effects.** When execution reaches `__glSPDlistSpace`, its arguments include zero in `a0`, the entry values in `a1`–`a3`, and the word read from 0x1048 in `a6` (`lw` at 0x31f72f4; `jalr` at 0x31f732c). If the result is zero, `beqz` at 0x31f734c is taken (`beqz` at 0x31f734c). That path adds 1 to the word at 0x1048 and stores it back (`lw` at 0x31f73fc; `addiu` at 0x31f7404; `sw` at 0x31f7408). The role of that word and the routine's broader hardware effect are Unknown.
+
+## 64-bit IP30 library: fast vertices and coordinate paths
+
+- `__glOdyim_SoftVertex3dvFast` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3280150
+  **Established effects.** Loads doublewords at entry a0 offsets 0, 8 and 0x10 (`ldc1` at 0x3280158, 0x328015c, 0x3280168).
+  It converts their floating-point registers from double to single precision (`cvt.s.d` at 0x328017c, 0x3280184, 0x328018c).
+  The word at offset 0x18c88 from the doubleword loaded at absolute 0x1020 decides `beqz`: zero takes the branch and nonzero falls through (`ld` at 0x3280160; `lw` at 0x3280174; `beqz` at 0x32801c8).
+  If execution reaches the later indirect call, its target is Unknown (`jalr` at 0x32802c0). The call effects and the wider routine role are Unknown.
+- `__glOdyim_SoftVertex3fFast` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32802e0
+  **Established effects.** A doubleword at absolute 0x1020 leads to another at offset 0x4e30 (`ld` at 0x32802e4, 0x32802f4).
+  The second value is the base for word stores from f12, f13 and f14 at offsets 0x18, 0x1c and 0x20 (`swc1` at 0x3280304, 0x3280308, 0x3280310).
+  `beqz` takes its branch if the word at offset 0x18c88 from the first doubleword is zero, and falls through if nonzero (`lw` at 0x32802f8; `beqz` at 0x328033c).
+  The later indirect call has an Unknown target when reached (`jalr` at 0x3280430); its effects and this routine’s wider role are Unknown.
+- `__glOdyim_SoftVertex3fvFast` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3280450
+  **Established effects.** Floating-point words are read from entry a0 offsets 0, 4 and 8 (`lwc1` at 0x3280458, 0x328045c, 0x3280464).
+  After fetching the doubleword at absolute 0x1020 and a doubleword at its +0x4e30, it writes those words at offsets 0x18, 0x1c and 0x20 from the latter (`ld` at 0x3280460, 0x3280470; `swc1` at 0x3280480, 0x3280484, 0x328048c).
+  When the later indirect call is reached, its target is Unknown (`jalr` at 0x32805b0). The call effects and this entry’s wider role remain Unknown.
+- `__glOdyim_SoftVertex4dFast` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32805d0
+  **Established effects.** Converts f15 through f12 from double to single precision (`cvt.s.d` at 0x32805f4, 0x3280600, 0x328060c, 0x3280618).
+  The doubleword at absolute 0x1020 leads to another at offset 0x4e30, where floating-point words of unknown value are stored at offsets 0x24, 0x20, 0x1c and 0x18 (`ld` at 0x32805d8, 0x32805e4; `swc1` at 0x3280604, 0x3280614, 0x3280624, 0x3280630).
+  The indirect call, if reached, has an Unknown target (`jalr` at 0x3280744); its effects and the wider role of this routine are Unknown.
+- `__glOdyim_SoftVertex4dvFast` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3280760
+  **Established effects.** It fetches doublewords from entry a0 offsets 0, 8, 0x10 and 0x18 (`ldc1` at 0x328076c, 0x3280770, 0x3280774, 0x328077c).
+  After reading the doubleword at absolute 0x1020 and another at +0x4e30, it stores floating-point words of unknown value at offsets 0x24, 0x20, 0x1c and 0x18 from the latter (`ld` at 0x3280778, 0x3280784; `swc1` at 0x32807a4, 0x32807b4, 0x32807c4, 0x32807d0).
+  On reaching the indirect call, the target is Unknown (`jalr` at 0x32808d4). The call effects and the wider role of this routine remain Unknown.
+- `__glOdylc_TexCoord2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 292 bytes
+  **Established effects.** One path writes 0xc380c820 and the low words of entry arguments 0 and 1 to destinations hostfacts leaves Unknown (`ori` at 0x32619c8; `sw` at 0x32619cc, 0x32619d0, 0x32619d4). That path increments the word at absolute 0x1060 by three (`lw` at 0x32619e0; `addiu` at 0x32619f0; `sw` at 0x32619f8).
+  After a call to `__glSPDlistSpace`, `beqz` at 0x3261998 is taken on a zero return and falls through otherwise (`jalr` at 0x3261980). The meaning of the written words and the routine's wider role are Unknown.
+- `__glOdylc_TexCoord2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
+  **Established effects.** On a path that writes 0xc380c820 to an unknown destination, it reads signed halfwords at entry argument 0 +0 and +2 and stores them as words to unknown destinations (`ori` at 0x3261af0; `sw` at 0x3261af4, 0x3261afc, 0x3261b04; `lh` at 0x3261af8, 0x3261b00).
+  When the `beqz` at 0x3261ac0 is reached after `__glSPDlistSpace`, it takes the branch for a zero result and falls through for a nonzero result (`jalr` at 0x3261aac). The purpose of the stores and the wider role of this routine are Unknown.
+- `__glOdylc_TexCoord3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 332 bytes
+  **Established effects.** One path performs three double-to-single conversions and writes floating-point words to unknown destinations; hostfacts does not resolve those stored values (`cvt.s.d` at 0x3261c2c, 0x3261c38, 0x3261c40; `swc1` at 0x3261c3c, 0x3261c44, 0x3261c48). It also writes 0xc380cc23 to an unknown destination (`ori` at 0x3261c30; `sw` at 0x3261c34).
+  The routine can call `__glSPDlistSpace` (`jalr` at 0x3261be0). When reached, `beqz` at 0x3261bfc is taken on a zero return and falls through on a nonzero return. The hardware meaning of these writes and the routine's broader purpose are Unknown.
+- `__glOdylc_TexCoord3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 308 bytes
+  **Established effects.** A selected path loads doublewords at entry argument 0 +0, +8 and +0x10 and performs double-to-single conversions; its floating-point word stores have unknown destinations (`ldc1` at 0x3261d58, 0x3261d64, 0x3261d70; `cvt.s.d` at 0x3261d5c, 0x3261d68, 0x3261d84; `swc1` at 0x3261d60, 0x3261d6c, 0x3261d88). Hostfacts leaves the three stored values Unknown. The path also writes 0xc380cc23 to an unknown destination (`ori` at 0x3261d50; `sw` at 0x3261d54).
+  Following a call to `__glSPDlistSpace`, `beqz` at 0x3261d30 is taken for a zero result and falls through for a nonzero result (`jalr` at 0x3261d1c). The word's hardware meaning and the routine's wider role are Unknown.
+- `__glOdylc_TexCoord3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 320 bytes
+  **Established effects.** One path writes 0xc380cc23 and the entry floating-point words in f12, f13 and f14 to destinations hostfacts cannot resolve (`ori` at 0x3261ebc; `sw` at 0x3261ec0; `swc1` at 0x3261ec4, 0x3261ec8, 0x3261ecc).
+  After a call to `__glSPDlistSpace`, `beqz` at 0x3261e8c is taken for a zero result and falls through for a nonzero result (`jalr` at 0x3261e70). These writes do not establish the destinations' hardware purpose or the routine's overall role; both are Unknown.
+- `__glOdylc_Color4uiv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31f7420
+  **Established effects.** The `beqz` at 0x31f745c falls through when the word at 0x1060 is nonzero (`lw` at 0x31f7440).
+  The following `beqz` at 0x31f7468 is taken when the word at 0x1048 is signed greater than or equal to five (`lw` at 0x31f7454; `slti` at 0x31f7464).
+  That path branches to word copies from entry `a0` +0, +4, +8 and +0xc to an unknown base (`b` at 0x31f7510; `lw` at 0x31f74c8, 0x31f74d0, 0x31f74dc, 0x31f74e4; `sw` at 0x31f74cc, 0x31f74d4, 0x31f74e0, 0x31f74e8). The meaning of these copied words and the routine’s wider hardware role are Unknown.
+- `__glOdylc_Color4us` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31f7570
+  **Established effects.** `beqz` at 0x31f75ac falls through when the word at 0x1060 is nonzero (`lw` at 0x31f7590).
+  On that path, `beqz` at 0x31f75b8 is taken when the word at 0x1048 is signed greater than or equal to five (`lw` at 0x31f75a4; `slti` at 0x31f75b4).
+  The subsequent branch reaches stores of the low words of entry `a3`, `a2`, `a1` and `a0` to an unknown base (`b` at 0x31f7668; `sw` at 0x31f7624, 0x31f7628, 0x31f762c, 0x31f7634). The purpose of those argument writes and the wider role of this routine are Unknown.
+- `__glOdylc_Color4usv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31f76d0
+  **Established effects.** The branch `beqz` at 0x31f770c falls through when the word at 0x1060 is nonzero (`lw` at 0x31f76f0).
+  Then `beqz` at 0x31f7718 is taken when the word at 0x1048 is signed greater than or equal to five (`lw` at 0x31f7704; `slti` at 0x31f7714).
+  A branch leads to reads of unsigned halfwords at entry `a0` +0, +2, +4 and +6, each written as a word at an unknown base (`b` at 0x31f77c0; `lhu` at 0x31f7778, 0x31f7780, 0x31f778c, 0x31f7794; `sw` at 0x31f777c, 0x31f7784, 0x31f7790, 0x31f7798). The four halfword-derived words have an Unknown hardware meaning, as does the routine’s wider role.
+- `__glOdylc_Indexd` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31f7820
+  **Established effects.** On paths reaching the call, it invokes `__glSPDlistSpace` with `a0` zero, `a1` 0x20000, `a2` the word at 0x1048 and unknown `a3` (`jalr` at 0x31f7884).
+  When the result is zero, `beqz` at 0x31f7898 is taken. That path reads the word at 0x1048, adds one and stores the result there (`lw` at 0x31f7934; `addiu` at 0x31f793c; `sw` at 0x31f7940). The changed word’s meaning and the index routine’s wider hardware role are Unknown.
+- `__glOdylc_Indexdv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31f7950
+  **Established effects.** When execution reaches `__glSPDlistSpace`, its call has `a0` zero, `a1` the doubleword at 0x1020, `a2` 0x20000 and `a3` the word at 0x1048 (`jalr` at 0x31f79b0).
+  When the call returns zero, `beqz` at 0x31f79c4 is taken, leading to a word load from 0x1048 and a write of that value plus one (`lw` at 0x31f7a64; `addiu` at 0x31f7a6c; `sw` at 0x31f7a70). The updated word and this routine’s wider hardware role have Unknown meanings.
