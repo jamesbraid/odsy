@@ -4907,3 +4907,44 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** The body saves `f15`, `f14` and `f13` as doublewords at entry sp -0x28, -0x20 and -0x18 (`sdc1` at 0x3286ff4, 0x3286ffc, 0x3287010). After `__glOdyim_Color4f` returns, those registers are loaded again before `__glim_Color4f` executes (`jalr` at 0x3287020; `ldc1` at 0x328702c, 0x3287030, 0x328703c; `jalr` at 0x3287038). The `f15` load is in the latter call's delay slot (`jalr` at 0x3287038; `ldc1` at 0x328703c). The hardware meanings of these calls and the wider routine role are Unknown.
 - `__glOdyim_SoftColor4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
   - **Established effects.** `__glOdyim_Color4fv` is called with entry arguments 0–3, followed by `__glim_Color4fv` with entry argument 0 first (`jalr` at 0x3287084, 0x3287090). Hostfacts leaves the second call's remaining arguments Unknown. After that call the saved return address is loaded and the routine returns through it (`ld` at 0x3287098; `jr` at 0x32870a4). The effects of these calls on hardware and the broader purpose of this entry are Unknown.
+
+## 64-bit IP30 library: soft color and index sender calls
+
+- `__glOdyim_SoftColor4iv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287120
+  **Established effects.** Calls `__glOdyim_Color4iv` with entry a0 and then `__glim_Color4iv` with the same a0; the latter call’s a1 through a3 are unknown (`jalr` at 0x3287144, 0x3287150).
+  The latter result is returned (`jr` at 0x3287164); the wider effect of this color entry is Unknown.
+- `__glOdyim_SoftColor4ub` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287230
+  **Established effects.** The routine calls `__glOdyim_Color4ub` with entry a0 through a3, then calls `__glim_Color4ub` with those same four values (`jalr` at 0x3287260, 0x3287278).
+  The second call reloads a3 in its delay slot (`ld` at 0x328727c; `jalr` at 0x3287278).
+  The second call’s result is returned (`jr` at 0x328728c); the color entry’s broader role is Unknown.
+- `__glOdyim_SoftColor4uiv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287360
+  **Established effects.** Entry a0 goes to `__glOdyim_Color4uiv` and subsequently to `__glim_Color4uiv`; a1 through a3 at the second call are unknown (`jalr` at 0x3287384, 0x3287390).
+  The second callee supplies the returned value (`jr` at 0x32873a4); this vector path’s hardware effect is Unknown.
+- `__glOdyim_SoftIndexd` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287470
+  **Established effects.** It calls `__glOdyim_Indexd` and copies f12 to f31 in that call’s delay slot (`jalr` at 0x3287494; `mov.d` at 0x3287498).
+  The next call is to `__glim_Indexd`; a0 through a3 are unknown, and its delay slot copies f31 to f12 (`jalr` at 0x32874a0; `mov.d` at 0x32874a4).
+  The second callee’s result is returned (`jr` at 0x32874b4); the index routine’s broader role is Unknown.
+- `__glOdyim_SoftIndexdv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32874c0
+  **Established effects.** Entry a0 is passed to `__glOdyim_Indexdv`, followed by `__glim_Indexdv` with the same a0 (`jalr` at 0x32874e4, 0x32874f0).
+  The second call’s a1 through a3 are unknown; its result is returned (`jalr` at 0x32874f0; `jr` at 0x3287504).
+  The index-vector routine’s broader role is Unknown.
+- `__glOdyim_SoftIndexf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** The first call is to `__glOdyim_Indexf` (`jalr` at 0x3287534). Its delay slot copies f12 to f31 (`mov.s` at 0x3287538); the `__glim_Indexf` call's delay slot copies f31 back to f12 (`jalr` at 0x3287540; `mov.s` at 0x3287544). Hostfacts leaves the second call's reported integer arguments unknown. The calls' hardware effects and the broader role are Unknown.
+- `__glOdyim_SoftIndexfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** It calls `__glOdyim_Indexfv` with entry arguments 0 through 3 (`jalr` at 0x3287584), followed by `__glim_Indexfv` with entry argument 0 (`jalr` at 0x3287590). Hostfacts cannot follow the other reported arguments to the second call. The routine's wider role and the calls' hardware effects are Unknown.
+- `__glOdyim_SoftIndexi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** The call to `__glOdyim_Indexi` receives entry arguments 0 through 3 unchanged (`jalr` at 0x32875d4). The subsequent `__glim_Indexi` call receives entry argument 0; its other reported arguments are unknown (`jalr` at 0x32875e0). The call effects and broader routine role are Unknown.
+- `__glOdyim_SoftIndexiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** `__glOdyim_Indexiv` is called with entry arguments 0 through 3 (`jalr` at 0x3287624). It next calls `__glim_Indexiv`, whose argument 0 is the entry argument 0 and whose other reported arguments are unknown (`jalr` at 0x3287630). The wider role and hardware effects are Unknown.
+- `__glOdyim_SoftIndexs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** Entry arguments 0 through 3 are passed to `__glOdyim_Indexs` (`jalr` at 0x3287674). It then invokes `__glim_Indexs` with entry argument 0; hostfacts reports its other arguments as unknown (`jalr` at 0x3287680). The broader role and hardware effects of the calls remain Unknown.
+- `__glOdyim_SoftIndexsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** The first observed call is `__glOdyim_Indexsv`, with entry arguments 0–3 (`jalr` at 0x32876c4). It then calls `__glim_Indexsv` with entry argument 0 first; hostfacts leaves the later call's other arguments Unknown (`jalr` at 0x32876d0). The routine returns the latter call's result (`jr` at 0x32876e4). The callees' hardware effects and this routine's wider role remain Unknown.
+- `__glOdyim_SoftIndexub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** It invokes `__glOdyim_Indexub` with the original first four arguments (`jalr` at 0x3287714). Entry argument 0 is retained in `fp` during that call's delay slot (`jalr` at 0x3287714; `move` at 0x3287718). The subsequent `__glim_Indexub` call uses entry argument 0 first, while hostfacts leaves the remaining arguments Unknown (`jalr` at 0x3287720). The hardware significance of these calls and the broader function of the wrapper are Unknown.
+- `__glOdyim_SoftIndexubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** Entry arguments 0–3 are passed to `__glOdyim_Indexubv` (`jalr` at 0x3287764). A second call targets `__glim_Indexubv`, again with entry argument 0 as its first argument; its other arguments are Unknown (`jalr` at 0x3287770). The second result is returned (`jr` at 0x3287784). The call effects on hardware and the routine's overall purpose are Unknown.
+- `__glOdyim_SoftScratchColor3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** It calls `__glOdyim_ScratchColor3fv` with entry arguments 0–3, then `__glim_Color3fv` with entry argument 0 first (`jalr` at 0x3287974, 0x3287980). The facts report leaves the second call's other arguments Unknown. The saved return address is reloaded after the second call before the return (`ld` at 0x3287988; `jr` at 0x3287994). The hardware roles of these calls and the routine's broader function remain Unknown.
+- `__glOdyim_SoftScratchColor3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  - **Established effects.** Entry arguments 1 and 2 are saved on the stack (`sd` at 0x32879bc, 0x32879a8). The routine first calls `__glOdyim_ScratchColor3i` with entry arguments 0–3, then `__glim_Color3i` with entry arguments 0–2 (`jalr` at 0x32879cc, 0x32879e0). Argument 2 is reloaded in the second call's delay slot (`jalr` at 0x32879e0; `ld` at 0x32879e4). The calls' hardware implications and the entry's wider role are Unknown.
