@@ -7598,3 +7598,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It calls `__glSPDlalloc` with `a0` 8 and `a1` 0xa3 (`addiu` at 0x33539e4, 0x33539dc; `jalr` at 0x33539e8). `beqz` falls through when the result is nonzero, and that path stores entry `f12` and `f13` as words at result offsets +0 and +4 (`beqz` at 0x33539f0; `swc1` at 0x3353a04, 0x3353a10). The record’s purpose is Unknown.
 - `__glsplc_PixelTransferf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3353a20
   The routine calls `__glSPDlalloc` with first arguments 8 and 0xa4 (`addiu` at 0x3353a44, 0x3353a3c; `jalr` at 0x3353a48). When the result is nonzero, `beqz` falls through and the path stores entry `a0` and `f13` as words at result offsets +0 and +4 (`beqz` at 0x3353a50; `sw` at 0x3353a64; `swc1` at 0x3353a70). The allocation’s role is Unknown.
+
+## 64-bit IP30 library: pixel command dispatch
+
+- `__glce_PixelMapuiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335e9b0
+  It reads the doubleword at 0x1420, then calls `glPixelMapuiv` twice (`ld` at 0x335e9b0; `jalr` at 0x335e9f0, 0x335ea10). Each call delay slot stores a doubleword at 0x1420, as does the return delay slot (`sd` at 0x335e9f4, 0x335ea14, 0x335ea30; `jr` at 0x335ea2c). The field’s role is Unknown.
+- `__glce_PixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335ea40
+  A doubleword at 0x1428 is read before two calls to `glPixelMapusv` (`ld` at 0x335ea40; `jalr` at 0x335ea80, 0x335eaa0). Both call delay slots and the return delay slot write doublewords to that address (`sd` at 0x335ea84, 0x335eaa4, 0x335eac0; `jr` at 0x335eabc). Its wider purpose is Unknown.
+- `__glce_ReadBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335ead0
+  The routine reads 0x1430 as a doubleword, calls `glReadBuffer` twice, and stores doublewords at 0x1430 in both call delay slots (`ld` at 0x335ead0; `jalr` at 0x335eb08, 0x335eb20; `sd` at 0x335eb0c, 0x335eb24). A further store to that address occupies the return delay slot (`jr` at 0x335eb3c; `sd` at 0x335eb40). The field role is Unknown.
+- `__glce_CopyPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335eb50
+  It saves the doubleword at 0x1438 and calls `glCopyPixels` twice (`ld` at 0x335eb50; `jalr` at 0x335eb98, 0x335ebc0). Both call delay slots store doublewords at 0x1438; the return delay slot stores there as well (`sd` at 0x335eb9c, 0x335ebc4, 0x335ebe0; `jr` at 0x335ebdc). The field’s broader role is Unknown.
+- `__glce_ReadPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335ebf0
+  It saves the doubleword at absolute 0x1440 (`ld` at 0x335ebf8). The delay slot of its `glReadPixels` call stores a doubleword to 0x1440, and the saved value is restored afterward (`jalr` at 0x335ec1c; `sd` at 0x335ec20, 0x335ec2c). The stored value’s purpose is Unknown.
+- `__glsplc_PixelTexGenParameterfSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glSPDlalloc` with 8 and 0x100 in `a0` and `a1` (`addiu` at 0x3355e64, 0x3355e5c; `jalr` at 0x3355e68). When the result is nonzero, `beqz` falls through to stores of entry `a0` as a word at result +0 and entry `f13` as a floating-point word at result +4 (`beqz` at 0x3355e70; `sw` at 0x3355e84; `swc1` at 0x3355e90). The fields' roles are Unknown.
+- `__glsplc_PixelTexGenParameterfvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call to `__glPixelTexGenParameterfvSGIS_size` receives the first four entry arguments (`jalr` at 0x3355ec4). `bltz` takes the path to `__glsplc_InvalidEnum` when the tested signed value is negative; hostfacts does not resolve the value (`bltz` at 0x3355edc; `jalr` at 0x3355f30). Its wider purpose is Unknown.
+- `__glce_FeedbackBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call to `glFeedbackBuffer` passes entry arguments 0 through 3 (`jalr` at 0x335cbfc). Its delay slot stores the doubleword from offset 0x3a18 of the doubleword read at 0x1020 to absolute 0x1250; the original doubleword at 0x1250 is restored after the call (`ld` at 0x335cbd8, 0x335cbe0, 0x335cbf8; `jalr` at 0x335cbfc; `sd` at 0x335cc00, 0x335cc0c). The role of the slot is Unknown.
+- `__glce_SelectBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads the doubleword at 0x1258, then calls `glSelectBuffer` with entry arguments 0 through 3 (`ld` at 0x335cc28; `jalr` at 0x335cc4c). The call's delay slot writes the doubleword from +0x3a20 of the value read at 0x1020 to 0x1258, and the original slot value is written back afterward (`ld` at 0x335cc30, 0x335cc48; `jalr` at 0x335cc4c; `sd` at 0x335cc50, 0x335cc5c). The slot's wider meaning is Unknown.
+- `__glce_PixelZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its two calls to `glPixelZoom` include delay-slot stores of doublewords to absolute 0x13f0 (`jalr` at 0x335e72c, 0x335e744; `sd` at 0x335e730, 0x335e748). The first stored value comes from offset 0x1e40 and the second from 0x3bb8 of the doubleword read at 0x1020 (`ld` at 0x335e70c, 0x335e724, 0x335e73c; `sd` at 0x335e730, 0x335e748). The slot's role is Unknown.
+- `__glce_InstrumentsBufferSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33629e0
+  It calls `glInstrumentsBufferSGIX` with the first four entry arguments (`jalr` at 0x3362a0c). The call delay slot stores at absolute 0x18a0 the doubleword loaded from +0x4068 of the doubleword at absolute 0x1020 (`ld` at 0x33629f0, 0x3362a08; `jalr` at 0x3362a0c; `sd` at 0x3362a10). The stored value’s wider role is Unknown.
+- `__glce_PixelTexGenParameteriSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3363440
+  It calls `glPixelTexGenParameteriSGIS` twice (`jalr` at 0x336347c, 0x3363498). The first call’s delay slot stores to absolute 0x1958 the doubleword loaded at +0x23a8 from the doubleword at 0x1020 (`ld` at 0x336345c, 0x3363474; `jalr` at 0x336347c; `sd` at 0x3363480). The destination’s role is Unknown.
+- `__glce_PixelTexGenParameterivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33634c0
+  Calls include two to `glPixelTexGenParameterivSGIS` (`jalr` at 0x33634fc, 0x3363518). In the first call’s delay slot it writes absolute 0x1960 with the doubleword loaded from +0x23b0 of the doubleword at 0x1020 (`ld` at 0x33634dc, 0x33634f4; `jalr` at 0x33634fc; `sd` at 0x3363500). The stored value’s purpose is Unknown.
+- `__glce_PixelTexGenParameterfSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3363540
+  `glPixelTexGenParameterfSGIS` is called at two sites (`jalr` at 0x3363580, 0x336359c). The first call’s delay slot stores to absolute 0x1968 a doubleword read from +0x23b8 relative to the doubleword at absolute 0x1020 (`ld` at 0x336355c, 0x3363574; `jalr` at 0x3363580; `sd` at 0x3363584). The purpose of that slot is Unknown.
+- `__glce_PixelTexGenParameterfvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33635d0
+  The routine invokes `glPixelTexGenParameterfvSGIS` twice (`jalr` at 0x336360c, 0x3363628). Its first call delay slot stores the doubleword at +0x23c0 of the doubleword read from absolute 0x1020 to absolute 0x1970 (`ld` at 0x33635ec, 0x3363604; `jalr` at 0x336360c; `sd` at 0x3363610). The destination’s wider role is Unknown.
