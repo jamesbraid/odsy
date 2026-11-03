@@ -7007,3 +7007,41 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysplc_EvalCoord2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3209290
   **Established effects.** It calls `__glsplc_EvalCoord2dv`, passing entry `a0`, `a1`, `a2` and `a3` (`jalr` at 0x32092bc).
   During the call's delay slot, it clears the byte at +0x18ed0 of the doubleword read from absolute 0x1020 (`jalr` at 0x32092bc; `sb` at 0x32092c0). The `ld` at 0x3209294 reads the doubleword at absolute 0x1020. The cleared byte and this routine's broader hardware role remain Unknown.
+
+## 64-bit IP30 library: vertex and matrix entry paths
+
+- `glVertex2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** A doubleword loaded from absolute 0x1b08 becomes the target of an indirect jump, with the first four argument registers retaining their entry values (`ld` at 0x3376e00; `jr` at 0x3376e04). The jump target, its effect and the wider role of this entry are Unknown.
+- `glVertex2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** The jump target is loaded as a doubleword from absolute 0x1b10; the tail jump carries the original first four arguments (`ld` at 0x3376f00; `jr` at 0x3376f04). What the loaded target does, and this routine’s wider role, are Unknown.
+- `glVertex2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** A doubleword is read at absolute 0x1b18 before an indirect jump that preserves the first four argument registers (`ld` at 0x3377000; `jr` at 0x3377004). The indirect destination, its effect and this entry’s wider role are Unknown.
+- `glVertex3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** The first instruction reads a doubleword from absolute 0x1b20; an indirect jump uses that target and the first four entry arguments (`ld` at 0x3377100; `jr` at 0x3377104). The target’s identity and effects, and the routine’s wider role, are Unknown.
+- `glVertex3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** A doubleword at absolute 0x1b28 supplies an indirect jump target with arguments 0 through 3 unchanged (`ld` at 0x3377200; `jr` at 0x3377204). The selected destination and its effects are Unknown, as is this routine’s wider role.
+- `glTextureMaterialSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** The routine returns via the link register with a no-operation in the delay slot (`jr` at 0x3306740; `nop` at 0x3306744). Its role is Unknown.
+- `__glim_TexCoord1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
+  **Established effects.** It loads a doubleword from absolute 0x1020 and stores floating-point words at the loaded value +0x190 and +0x18c (`ld` at 0x3313854; `swc1` at 0x3313858, 0x331385c). It converts entry `f12` from double to single precision (`cvt.s.d` at 0x3313860). A floating-point word of Unknown value is stored at +0x188; the word loaded from +0xf2c is copied to +0x194 in the return delay slot (`swc1` at 0x3313868; `lwc1` at 0x3313864; `jr` at 0x331386c; `swc1` at 0x3313870). The field meanings and wider routine role are Unknown.
+- `__glim_TexCoord1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  **Established effects.** A doubleword is loaded from absolute 0x1020 (`ld` at 0x3313884). Relative to that value, the routine writes floating-point words at +0x190 and +0x18c, and entry `f12` at +0x188 (`swc1` at 0x3313888, 0x331388c, 0x3313894). The word loaded at +0xf2c is copied to +0x194 in the return delay slot (`lwc1` at 0x3313890; `jr` at 0x3313898; `swc1` at 0x331389c). The field meanings and broader role of this path are Unknown.
+- `__glim_TexCoord1i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
+  **Established effects.** It loads the doubleword at absolute 0x1020, then writes floating-point words at that value +0x190 and +0x18c (`ld` at 0x33138a4; `swc1` at 0x33138ac, 0x33138b8). A floating-point word read at +0xf2c is copied to +0x194 (`lwc1` at 0x33138b0; `swc1` at 0x33138bc). Entry argument 0 is moved to a floating-point register and converted from a word to single precision (`mtc1` at 0x33138a8; `cvt.s.w` at 0x33138b4). The return delay slot stores a floating-point word of Unknown value at +0x188 (`jr` at 0x33138c0; `swc1` at 0x33138c4). The effects of these fields and the routine’s wider role are Unknown.
+- `__glim_TexCoord1s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
+  **Established effects.** The doubleword at absolute 0x1020 is loaded (`ld` at 0x33138d4). Floating-point words are written at the loaded value +0x190 and +0x18c, while the word read at +0xf2c is copied to +0x194 (`swc1` at 0x33138dc, 0x33138e8; `lwc1` at 0x33138e0; `swc1` at 0x33138ec). Entry argument 0 is moved to a floating-point register and converted from a word to single precision (`mtc1` at 0x33138d8; `cvt.s.w` at 0x33138e4). Its return delay slot writes a floating-point word of Unknown value at +0x188 (`jr` at 0x33138f0; `swc1` at 0x33138f4). The significance of these locations and the routine’s broader function are Unknown.
+- `__glOdysplc_EvalCoord2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32092e0
+  **Established effects.** It invokes `__glsplc_EvalCoord2f` with entry `a0` through `a3` (`jalr` at 0x320930c).
+  The delay slot clears a byte at +0x18ed0 of the doubleword read at 0x1020 (`jalr` at 0x320930c; `sb` at 0x3209310). The `ld` at 0x32092e4 reads the doubleword at absolute 0x1020. The meaning of that cleared byte and the evaluation wrapper’s hardware role are Unknown.
+- `__glOdysplc_EvalCoord2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3209330
+  **Established effects.** A byte at +0x18ed0 of the doubleword read at 0x1020 is cleared in the call delay slot (`jalr` at 0x320935c; `sb` at 0x3209360). The `ld` at 0x3209334 reads the doubleword at absolute 0x1020.
+  The call targets `__glsplc_EvalCoord2fv`, with entry `a0` through `a3` (`jalr` at 0x320935c); its result is returned (`jr` at 0x320936c). What the byte controls and this vector evaluation routine’s wider role are Unknown.
+- `__glOdysplc_LoadIdentity` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3209560
+  **Established effects.** It passes entry `a0` through `a3` to `__glsplc_LoadIdentity` (`jalr` at 0x320958c).
+  The call delay slot clears the byte at +0x18ed0 of the doubleword read at 0x1020 (`jalr` at 0x320958c; `sb` at 0x3209590). The `ld` at 0x3209564 reads the doubleword at absolute 0x1020. The result is returned (`jr` at 0x320959c); the byte’s purpose and the effects of this identity dispatch remain Unknown.
+- `__glOdysplc_MultMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3209650
+  **Established effects.** A call to `__glsplc_MultMatrixf` receives entry `a0`, `a1`, `a2` and `a3` (`jalr` at 0x320967c).
+  In the delay slot it clears a byte at +0x18ed0 of the doubleword read at 0x1020 (`jalr` at 0x320967c; `sb` at 0x3209680). The `ld` at 0x3209654 reads the doubleword at absolute 0x1020. The cleared field’s significance and this matrix routine’s wider role are Unknown.
+- `__glOdysplc_MultMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32096a0
+  **Established effects.** It calls `__glsplc_MultMatrixd` with entry `a0` through `a3` (`jalr` at 0x32096cc).
+  The call delay slot clears the byte at +0x18ed0 of the doubleword read at 0x1020 (`jalr` at 0x32096cc; `sb` at 0x32096d0). The `ld` at 0x32096a4 reads the doubleword at absolute 0x1020. The call result is returned (`jr` at 0x32096dc). The hardware meaning of the byte and this double-precision dispatch’s role are Unknown.
