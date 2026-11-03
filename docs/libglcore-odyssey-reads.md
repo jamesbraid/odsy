@@ -7961,3 +7961,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The `glTexCoord1fv` call receives entry `a1` as `a0` through a delay-slot move (`jalr` at 0x3333ccc; `move` at 0x3333cd0). Its later hardware role is Unknown.
 - `glMultiTexCoord2fvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   Its call to `glTexCoord2fv` sets `a0` to entry `a1` in the delay slot (`jalr` at 0x3333d0c; `move` at 0x3333d10). What the target does to hardware is Unknown.
+
+## 64-bit IP30 library: texture list operations
+
+- `__gllc_TexEnvf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343090
+  It calls `__glTexEnvfv_size` with entry `a1` as `a0` (`jalr` at 0x33430c0). When the result equals 1, `beq` takes the path to `__gllc_TexEnvfv`, passing the first two entry arguments and entry stack pointer minus 0x10 as the third (`addiu` at 0x33430c8; `beq` at 0x33430cc; `bgezall` at 0x33430f8; `daddiu` at 0x33430fc). The effect of the vector call beyond this dispatch is Unknown.
+- `__gllc_TexEnvfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343110
+  The call to `__glTexEnvfv_size` receives entry `a1` as `a0` (`jalr` at 0x3343144). If the later `__glDlistAllocOp2` result is nonzero, `bnez` takes the path storing halfword 0x6f at result +0x14 (`jalr` at 0x3343168; `bnez` at 0x3343170; `addiu` at 0x3343194; `sh` at 0x3343198). How the stored halfword is used is Unknown.
+- `__gllc_TexEnvi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33431f0
+  `__glTexEnviv_size` is called with entry `a1` as the first argument (`jalr` at 0x3343220). Its return equal to 1 makes `beq` take the path calling `__gllc_TexEnviv`, with the original first two arguments and entry stack pointer minus 0xc as `a2` (`addiu` at 0x3343228; `beq` at 0x334322c; `bgezall` at 0x3343258; `daddiu` at 0x334325c). The purpose of this integer dispatch is Unknown.
+- `__gllc_TexEnviv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343270
+  It calls `__glTexEnviv_size` with entry `a1` as `a0` (`jalr` at 0x33432a4). A nonzero `__glDlistAllocOp2` return takes `bnez` to a halfword store of 0x71 at result +0x14 (`jalr` at 0x33432cc; `bnez` at 0x33432d4; `addiu` at 0x33432f8; `sh` at 0x33432fc). The stored field’s purpose is Unknown.
+- `__gllc_TexGend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343350
+  The routine passes entry `a1` as `a0` to `__glTexGendv_size` (`jalr` at 0x3343380). If the result equals 1, `beq` takes the path calling `__gllc_TexGendv` with the first two entry arguments and entry stack pointer minus 0x10 as the third (`addiu` at 0x3343388; `beq` at 0x334338c; `bgezall` at 0x33433b8; `daddiu` at 0x33433bc). The subsequent effect of the double-precision path is Unknown.
+- `glMultiTexCoord4dvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3333e70
+  The call to `glTexCoord4dv` receives entry `a1` as its first argument; the move into `a0` is in the call delay slot (`jalr` at 0x3333e8c; `move` at 0x3333e90). The wider purpose is Unknown.
+- `__gllc_TexParameterf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3342dd0
+  It calls `__glTexParameterfv_size` with entry `a1` as `a0` (`jalr` at 0x3342e00). If that result equals 1, `beq` takes the path calling `__gllc_TexParameterfv`; it falls through when the result differs (`addiu` at 0x3342e08; `beq` at 0x3342e0c; `bgezall` at 0x3342e38). The selected vector operation’s hardware effect is Unknown.
+- `__gllc_TexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3342e50
+  After a call to `__glDlistAllocOp2`, `bnez` is taken when its result is nonzero and falls through when zero (`jalr` at 0x3342eac; `bnez` at 0x3342eb4). The taken path stores halfword 0x69 at result +0x14 (`addiu` at 0x3342ed8; `sh` at 0x3342edc). That field’s meaning is Unknown.
+- `__gllc_TexParameteri` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3342f30
+  The function passes entry `a1` to `__glTexParameteriv_size` as its first argument (`jalr` at 0x3342f60). `beq` takes the path calling `__gllc_TexParameteriv` if the result equals 1 and falls through otherwise (`addiu` at 0x3342f68; `beq` at 0x3342f6c; `bgezall` at 0x3342f98). The result’s role is Unknown.
+- `__gllc_TexParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3342fb0
+  It calls `__glDlistAllocOp2`; `bnez` takes the following branch when the return is nonzero and falls through for zero (`jalr` at 0x334300c; `bnez` at 0x3343014). The taken path writes halfword 0x6b at offset +0x14 of that result (`addiu` at 0x3343038; `sh` at 0x334303c). The halfword’s purpose is Unknown.
+- `__gllc_TexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33433d0
+  It calls `__glTexGendv_size` with entry `a1` as the first argument (`jalr` at 0x3343404). When `__glDlistAllocOp2` returns nonzero, `bnez` takes the path that writes halfword 0x73 at result +0x14 (`jalr` at 0x3343428; `bnez` at 0x3343430; `addiu` at 0x3343458; `sh` at 0x334345c). How the halfword is used later is Unknown.
+- `__gllc_TexGenf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33434c0
+  `__glTexGenfv_size` receives entry `a1` as `a0` (`jalr` at 0x33434f0). Its result equal to 1 takes `beq` to a call to `__gllc_TexGenfv` with the first two entry arguments and entry stack pointer minus 0x10 as `a2` (`addiu` at 0x33434f8; `beq` at 0x33434fc; `bgezall` at 0x3343528; `daddiu` at 0x334352c). The effect of the vector call remains Unknown.
+- `__gllc_TexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343540
+  It first calls `__glTexGenfv_size` with entry `a1` as `a0` (`jalr` at 0x3343574). A nonzero `__glDlistAllocOp2` result takes `bnez` to a store of halfword 0x75 at result +0x14 (`jalr` at 0x3343598; `bnez` at 0x33435a0; `addiu` at 0x33435c4; `sh` at 0x33435c8). The stored field’s purpose is Unknown.
+- `__gllc_TexGeni` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343620
+  The `__glTexGeniv_size` call receives entry `a1` as its first argument (`jalr` at 0x3343650). If it returns 1, `beq` takes the path calling `__gllc_TexGeniv` with entry `a0`, entry `a1`, and entry stack pointer minus 0xc (`addiu` at 0x3343658; `beq` at 0x334365c; `bgezall` at 0x3343688; `daddiu` at 0x334368c). The operation’s broader purpose is Unknown.
+- `__gllc_TexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33436a0
+  Entry `a1` is passed as `a0` to `__glTexGeniv_size` (`jalr` at 0x33436d4). When `__glDlistAllocOp2` returns nonzero, `bnez` takes the path storing halfword 0x77 at result +0x14 (`jalr` at 0x33436f8; `bnez` at 0x3343700; `addiu` at 0x3343724; `sh` at 0x3343728). The field’s wider meaning is Unknown.
