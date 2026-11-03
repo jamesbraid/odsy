@@ -6446,3 +6446,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** For entry `a0 = 0xb00`, `beq` branches to the path invoking `__glim_GetBooleanv` (`addiu` at 0x32887b4; `beq` at 0x32887c8; `jalr` at 0x3288818). The first two call arguments are entry `a0` and `a1`; hostfacts reports unknown values for `a2` and `a3` (`jalr` at 0x3288818). The call's hardware effect and this routine's wider role remain Unknown.
 - `RestoreCurrentState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
   **Established effects.** The first `beqz` falls through when mask 0x2 of the word at entry `a1` is nonzero (`lw` at 0x320b180; `andi` at 0x320b18c; `beqz` at 0x320b19c). On that path an indirect call uses a target loaded from +0xc28 of the doubleword at entry `a0` +0x1ad8 (`ld` at 0x320b1a4, 0x320b1a8; `jalr` at 0x320b1ac). Its arguments are entry `a1` +4, entry `a1`, entry `a2` and the word at entry `a1` (`lw` at 0x320b180; `jalr` at 0x320b1ac; `daddiu` at 0x320b1b0). The indirect target's hardware effect and this routine's broader role are Unknown.
+
+## 64-bit IP30 library: vertex and texture state helpers
+
+- `__gllc_Vertex3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  - **Established effects.** `__glDlistAllocOp2` receives 8 as argument 1; a nonzero result takes the `bnez` to a halfword store of 0x47 at result +0x14 (`jalr` at 0x334175c; `bnez` at 0x3341764; `sh` at 0x3341780). On that path, halfwords from original argument 0 +0, +2 and +4 are copied to result +0x18, +0x1a and +0x1c (`lh` at 0x334178c, 0x3341794, 0x334179c; `sh` at 0x3341790, 0x3341798, 0x33417a0).
+  - On the same path, it passes the result as argument 1 to `__glDlistAppendOp` (`jalr` at 0x33417b8). The meaning of the copied halfwords and the routine's wider role are Unknown.
+- `__gllc_Vertex4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
+  - **Established effects.** A nonzero return from `__glDlistAllocOp2`, called with argument 1 equal to 0x20, takes the `bnez` to a byte 1 at result +0x16 and halfword 0x48 at +0x14 (`jalr` at 0x3341804; `bnez` at 0x334180c; `sb` at 0x3341824; `sh` at 0x334182c).
+  - That path stores f12 through f15 as floating-point doublewords at result +0x18, +0x20, +0x28 and +0x30, then calls `__glDlistAppendOp` (`sdc1` at 0x3341854, 0x3341850, 0x334184c, 0x3341848; `jalr` at 0x334186c). The written values and this routine's wider role have Unknown hardware meaning.
+- `__gllc_Vertex4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  - **Established effects.** It calls `__glDlistAllocOp2` with argument 1 set to 0x20; `bnez` is taken when the return is nonzero (`jalr` at 0x33418ac; `bnez` at 0x33418b4). The selected path writes byte 1 at result +0x16 and halfword 0x48 at +0x14 (`sb` at 0x33418cc; `sh` at 0x33418d8).
+  - Four floating-point doublewords are copied from original argument 0 +0, +8, +0x10 and +0x18 to result +0x18, +0x20, +0x28 and +0x30 before the call to `__glDlistAppendOp` (`ldc1` at 0x33418dc, 0x33418e4, 0x33418ec, 0x33418f8; `sdc1` at 0x33418e0, 0x33418e8, 0x33418f4, 0x3341900; `jalr` at 0x3341918). The hardware significance of those copied doublewords and the wider routine role are Unknown.
+- `__gllc_Vertex4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  - **Established effects.** `__glDlistAllocOp2` is invoked with 0x10 as argument 1; the `bnez` is taken for a nonzero result (`jalr` at 0x3341964; `bnez` at 0x334196c). The taken path stores halfword 0x49 at result +0x14 and floating-point words f12 through f15 at +0x18, +0x1c, +0x20 and +0x24 (`sh` at 0x3341984; `swc1` at 0x33419ac, 0x33419a8, 0x33419a4, 0x33419a0).
+  - The result is passed as argument 1 to `__glDlistAppendOp` (`jalr` at 0x33419c4). The purpose of the halfword and float writes, and the wider routine role, are Unknown.
+- `__gllc_Vertex4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  - **Established effects.** With argument 1 equal to 0x10, `__glDlistAllocOp2` is called and its nonzero result takes the `bnez` to a store of halfword 0x49 at result +0x14 (`jalr` at 0x3341a0c; `bnez` at 0x3341a14; `sh` at 0x3341a30).
+  - Four floating-point words from original argument 0 +0, +4, +8 and +0xc are copied to result +0x18, +0x1c, +0x20 and +0x24 on that path (`lwc1` at 0x3341a34, 0x3341a3c, 0x3341a44, 0x3341a50; `swc1` at 0x3341a38, 0x3341a40, 0x3341a4c, 0x3341a58). It calls `__glDlistAppendOp` with the result as argument 1 (`jalr` at 0x3341a70). The meanings of these float words and the routine's broader role are Unknown.
+- `glTexCoord1dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** A doubleword is loaded from absolute address 0x1d48 (`ld` at 0x3375980), then used as an indirect jump target (`jr` at 0x3375984). The target, the location’s meaning and the routine’s wider hardware role are Unknown.
+- `glTexCoord1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** It loads the doubleword at absolute address 0x1d50 (`ld` at 0x3375a00) and jumps through it (`jr` at 0x3375a04). The destination, the field’s purpose and this routine’s broader hardware role are Unknown.
+- `glTexCoord1fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** The code reads a doubleword at absolute address 0x1d58 (`ld` at 0x3375a80) and transfers control indirectly through the value (`jr` at 0x3375a84). The loaded location’s meaning, the target’s effect and the wider role of this routine are Unknown.
+- `glTexCoord1i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** An indirect jump uses the doubleword loaded from absolute address 0x1d60 (`ld` at 0x3375b00; `jr` at 0x3375b04). The destination, field meaning and wider effect of the routine remain Unknown.
+- `glTexCoord1iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** It reads a doubleword from absolute address 0x1d68 (`ld` at 0x3375b80), then jumps to that value (`jr` at 0x3375b84). The target, the loaded location’s meaning and the routine’s hardware role are Unknown.
+- `IsLegalRange` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32676d0
+  **Established effects.** `bltz` at 0x32676d8 is taken when entry `a1` is signed negative, leading to a zero return (`move` at 0x326773c; `jr` at 0x3267740).
+  The routine also calls `__glSetError` with 0x501 in `a0`, unknown `a1`, and entry `a2` and `a3` on other paths (`jalr` at 0x3267720). The error call’s hardware effect and the routine’s wider role are Unknown.
+- `CheckTargetLevel` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32680c0
+  **Established effects.** `bnez` at 0x32680dc is taken when entry `a0` is unsigned less than 0x8064 (`dli` at 0x32680c8; `sltu` at 0x32680d0).
+  On a later path `bltz` at 0x326813c is taken when entry `a1` is signed negative, returning 0x501 (`addiu` at 0x3268140; `jr` at 0x3268158). The wider role and hardware effect are Unknown.
+- `SetDetailEntry` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326cb90
+  **Established effects.** Its literal loads include 1.0, 4095.0 and 4096.0 (`lwc1` at 0x326cb9c, 0x326cbe8, 0x326cbf4).
+  `bc1t` at 0x326cbd8 is taken when floating-point condition code 2 is true. That path ends with a word store to entry `a0` + (entry `a1` shifted left 2) (`dsll` at 0x326cbcc; `daddu` at 0x326cbd0; `jr` at 0x326cc4c; `sw` at 0x326cc50). The stored word’s hardware meaning and this entry’s wider role are Unknown.
+- `dirtyLight` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3256960
+  **Established effects.** `beqz` at 0x3256968 falls through when entry `a1` minus 16384 is unsigned less than eight (`addiu` at 0x3256960; `sltiu` at 0x3256964).
+  On this path it sets bit 0x40 in the word at entry `a0` +0x18e58 (`lw` at 0x325697c; `ori` at 0x3256980; `sw` at 0x3256984). The modified field’s hardware effect and the wider role of this light path are Unknown.
+- `dirtyMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3278360
+  **Established effects.** `beq` at 0x3278368 is taken when the word at entry `a0` +0x7d0 equals 0x1700 (`lw` at 0x3278360; `addiu` at 0x3278364).
+  That path sets bits 0x37 in the word at entry `a0` +0x18e58 (`lw` at 0x32783a8; `ori` at 0x32783ac; `sw` at 0x32783b0). The modified word’s hardware effect and the wider role of this matrix path are Unknown.
