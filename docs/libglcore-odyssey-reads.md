@@ -7268,3 +7268,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It calls `__glInitLineData` with the first four entry argument registers (`bgezall` at 0x32e29b4). When the word at entry `a0` +0x95ac is zero, `beqz` is taken to the return path (`lw` at 0x32e29bc; `beqz` at 0x32e29d0; `jr` at 0x32e2cf8). The wider role is Unknown.
 - `__glGenericPickRenderBitmapProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f2980
   The routine stores the doubleword 0x32c0be0 at entry `a0` +0x4cd0 in the delay slot of `bnez`, which executes on both paths (`bnez` at 0x32f299c; `sd` at 0x32f29a0). When the word at entry `a0` +0x598 is nonzero, that `bnez` is taken and reaches a return whose delay slot stores 0x32c0980 at entry `a0` +0x4cc8 (`lw` at 0x32f2988; `bnez` at 0x32f299c; `jr` at 0x32f29c4; `sd` at 0x32f29c8). The meaning of these stored values is Unknown.
+
+## 64-bit IP30 library: state setup and primitive paths
+
+- `__glOdysseyInitFragmentMaterial` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The two-instruction body returns with a no-op in its delay slot (`jr` at 0x3218d40; `nop` at 0x3218d44). Its return value and wider role are Unknown.
+- `__glOdysseyPickDepthProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Control returns immediately and the delay slot does nothing (`jr` at 0x3259f50; `nop` at 0x3259f54). This body does not establish a return value or a hardware role.
+- `__glOdysseyFinishHyperpipe` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entire body is a return followed by a no-op delay slot (`jr` at 0x3288e60; `nop` at 0x3288e64). Its return value and purpose are Unknown.
+- `__glOdysseyInitHyperpipeState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The return's delay slot writes a zero word at entry `a0` +0 (`jr` at 0x3288e70; `sw` at 0x3288e74). The field's meaning is Unknown.
+- `__glDoBlendMax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads floating-point words at entry `a2` +0 and entry `a3` +0; when the latter is less than the former, `bc1f` falls through and writes the former to entry `a3` +0 (`lwc1` at 0x32c10e0, 0x32c10e4; `c.lt.s` at 0x32c10e8; `bc1f` at 0x32c10ec; `swc1` at 0x32c10f4). Its wider hardware role is Unknown.
+- `__glRenderAliasedPoint1_NoTex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f4b20
+  A byte at entry `a0` +0x986c controls `beqz`, which is taken when the byte is zero and falls through when it is nonzero (`lbu` at 0x32f4b58; `beqz` at 0x32f4b74). The routine also reads floating-point words at entry `a1` +0x88 and +0x8c (`lwc1` at 0x32f4b20, 0x32f4b30). Their roles are Unknown.
+- `__glRenderAliasedPoint1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f4be0
+  The `beqz` is taken when bit 0x8 of the word at entry `a0` +0x97fc is clear and falls through when it is set (`lw` at 0x32f4bf0; `andi` at 0x32f4c74; `beqz` at 0x32f4c80). The fall-through path makes an indirect call to an unknown target (`jalr` at 0x32f4cb4). The field’s role is Unknown.
+- `__glRenderFlatFogPoint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f4ce0
+  It reads the doubleword at entry `a1` +0x8, stores the current stack address there, and later restores the original doubleword (`ld` at 0x32f4d24; `sd` at 0x32f4d28, 0x32f4d48). Two indirect calls have unknown destinations (`jalr` at 0x32f4d1c, 0x32f4d34). The field’s wider purpose is Unknown.
+- `__glRenderAliasedPointN` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f4d60
+  Entry `a0` +0x280 supplies a word tested by `beqz`: the branch is taken when bit 0 is clear and falls through when set (`lw` at 0x32f4d90; `andi` at 0x32f4da8; `beqz` at 0x32f4dbc). A word from entry `a0` +0x97fc is loaded in the delay slot on both paths (`lw` at 0x32f4dc0). The field meanings are Unknown.
+- `__glRenderTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fb230
+  It reads a word at +0x8c from each of entry arguments `a1`, `a2` and `a3` (`lw` at 0x32fb250, 0x32fb244, 0x32fb25c). Its accesses include floating-point word stores of unknown value at entry `a0` +0x9708 and +0x9704 (`swc1` at 0x32fb33c, 0x32fb340). The fields’ purposes are Unknown.
+- `__glim_RenderMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with `a0` equal to 0x502 (`lw` at 0x32ca138; `addiu` at 0x32ca140; `beq` at 0x32ca158; `bgezall` at 0x32ca26c; `addiu` at 0x32ca270). The wider role is Unknown.
+- `__glRenderFlatFogLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword at entry `a0` +0x4cf8 and calls through it, passing entry `a0`, entry stack pointer -0x60, and the doubleword at entry `a2` +8 as its first three arguments (`ld` at 0x32e2d30, 0x32e2d48; `daddiu` at 0x32e2d60; `jalr` at 0x32e2d64). The target and its effects are Unknown.
+- `__glRenderAntiAliasLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine calls `__glInitAALineData` with its first four entry arguments (`bgezall` at 0x32e3324). It reads a floating-point word at entry `a0` +0x95b4 and compares it with a floating-point register; `bc1t` is taken if they compare equal (`lwc1` at 0x32e3340; `c.eq.s` at 0x32e3350; `bc1t` at 0x32e335c). The wider hardware effect is Unknown.
+- `__glRenderAntiAliasedRGBPoint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the byte at entry `a0` +0x986c is zero, `beqz` takes the branch to 0x32f46b4 (`lbu` at 0x32f4670; `beqz` at 0x32f4694). Its calls include `Coverage` (`bgezall` at 0x32f4844) and an indirect call with an unknown target (`jalr` at 0x32f4868). Their hardware effects are Unknown.
+- `__glRenderAntiAliasedCIPoint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The byte at entry `a0` +0x986c decides `beqz`: nonzero falls through and zero takes the branch (`lbu` at 0x32f4914; `beqz` at 0x32f4938). Calls include `Coverage` and `__glBuildAntiAliasIndex` (`bgezall` at 0x32f4a84, 0x32f4a9c). Their wider role is Unknown.
