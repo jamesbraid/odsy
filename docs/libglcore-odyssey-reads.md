@@ -7150,3 +7150,32 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   If the doubleword at entry `a0` offset 0x9888 is zero, `beqz` takes the path with five indirect calls, each passing entry `a0` and 0x400 as the first two arguments (`ld` at 0x32907d0, `beqz` at 0x32907e4, `jalr` at 0x3290920, `jalr` at 0x3290934, `jalr` at 0x3290948, `jalr` at 0x329095c, `jalr` at 0x3290970). Their results are stored at entry `a0` offsets 0x9888, 0x9890, 0x9898, 0x98a0 and 0x98a8, respectively, with the last store in the delay slot of the branch back to the other path (`sd` at 0x329092c, `sd` at 0x3290940, `sd` at 0x3290954, `sd` at 0x3290968, `b` at 0x329097c, `sd` at 0x3290980). Role: Unknown.
 - `__glGenericPickTriangleProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f2770
   Its accesses include loading words at entry `a0` offsets 0x294 and 0x298, masking each with 0xf, and storing the results as bytes at offsets 0x986a and 0x986b (`lw` at 0x32f27d8, `andi` at 0x32f27dc, `sb` at 0x32f27e0, `lw` at 0x32f27e4, `andi` at 0x32f27e8, `sb` at 0x32f27ec). When the word at entry `a0` offset 0x808 has bit 0x800 clear, `beqz` is taken and its target stores the doubleword 0x32f9930 at offset 0x4998 before joining the following block (`lw` at 0x32f285c, `andi` at 0x32f2860, `beqz` at 0x32f2864, `b` at 0x32f28a8, `sd` at 0x32f28ac). Role: Unknown.
+
+## 64-bit IP30 library: entry dispatch and conversion paths
+
+- `glClear` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33686ec
+  It reads a doubleword at absolute address 0x1298 and jumps through that value, preserving entry arguments `a0` through `a3` (`ld` at 0x33686ec; `jr` at 0x33686f0). The destination and its role are Unknown.
+- `glDetailTexFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368ed8
+  A doubleword loaded from absolute 0x17e0 supplies an indirect jump target; the first four argument registers retain their entry values (`ld` at 0x3368ed8; `jr` at 0x3368edc). The target and its role are Unknown.
+- `glSharpenTexFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368ef0
+  The entry reads a doubleword at absolute 0x17f0, then transfers control through it with `a0` through `a3` unchanged (`ld` at 0x3368ef0; `jr` at 0x3368ef4). The indirect destination and its role are Unknown.
+- `__glOdysplc_PopMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  It reads the doubleword at absolute 0x1020 (`ld` at 0x32096f4), then calls `__glsplc_PopMatrix` with the first four entry arguments (`jalr` at 0x320971c). The call delay slot stores a zero byte at offset 0x18ed0 of that loaded value (`sb` at 0x3209720). The byte’s role is Unknown.
+- `__glOdysplc_Rotated` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  An absolute 0x1020 doubleword load supplies the base for a zero byte written at +0x18ed0 (`ld` at 0x3209744; `sb` at 0x3209770). The write occupies the delay slot of the call to `__glsplc_Rotated`, which receives entry arguments a0 through a3 (`jalr` at 0x320976c). The stored byte’s purpose is Unknown.
+- `__glOdysplc_Rotatef` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  It calls `__glsplc_Rotatef` with entry a0 through a3 (`jalr` at 0x32097bc). In the call delay slot it writes a zero byte at +0x18ed0 of the doubleword loaded from absolute 0x1020 (`sb` at 0x32097c0). The `ld` at 0x3209794 reads the doubleword at absolute 0x1020. The wider effect is Unknown.
+- `__glOdysplc_Scaled` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  It reads the doubleword at absolute 0x1020 (`ld` at 0x32097e4), then calls `__glsplc_Scaled` with the first four entry arguments (`jalr` at 0x320980c). The call delay slot stores a zero byte at offset 0x18ed0 of that loaded value (`sb` at 0x3209810). The byte’s role is Unknown.
+- `__glOdysplc_Scalef` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  An absolute 0x1020 doubleword load supplies the base for a zero byte written at +0x18ed0 (`ld` at 0x3209834; `sb` at 0x3209860). The write occupies the delay slot of the call to `__glsplc_Scalef`, which receives entry arguments a0 through a3 (`jalr` at 0x320985c). The stored byte’s purpose is Unknown.
+- `__glOdysplc_Translated` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  It calls `__glsplc_Translated` with entry a0 through a3 (`jalr` at 0x32098ac). In the call delay slot it writes a zero byte at +0x18ed0 of the doubleword loaded from absolute 0x1020 (`sb` at 0x32098b0). The `ld` at 0x3209884 reads the doubleword at absolute 0x1020. The wider effect is Unknown.
+- `__glOdyim_SoftGetMaterialfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3288830
+  It loads a word from absolute 0x1030 and a doubleword from 0x1020 (`lw` at 0x3288838; `ld` at 0x328883c). The `beq` is taken when that word equals 1 and falls through when it differs (`beq` at 0x3288858). The field roles are Unknown.
+- `__glOdyim_SoftGetMaterialiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32889f0
+  A word at absolute 0x1030 and a doubleword at 0x1020 are read on entry (`lw` at 0x32889f8; `ld` at 0x32889fc). If the word equals 1, `beq` takes its branch; if it differs, execution falls through (`beq` at 0x3288a14). The broader purpose is Unknown.
+- `__glOdysseyCvtToFloat` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3240b10
+  The initial `bnez` is taken when entry `a3` is unsigned less than 0x8034 and falls through otherwise (`dli` at 0x3240b38; `sltu` at 0x3240b40; `bnez` at 0x3240b54). Its accesses include a floating-point word store of unknown value at entry `a1` +0 (`swc1` at 0x3240c0c). The broader role is Unknown.
+- `__glOdysseyCvtToResidue` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3242b90
+  Entry `a3` is compared with 0x1909 by `beq`, which takes its branch on equality and falls through on inequality (`addiu` at 0x3242ba0; `beq` at 0x3242bb4). The body includes a floating-point word store of unknown value through an unknown base (`swc1` at 0x3242d54). Its wider purpose is Unknown.
