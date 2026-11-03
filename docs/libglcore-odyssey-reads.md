@@ -4760,3 +4760,66 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `AddProgram` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 5540 bytes
   - **Established effects.** The routine calls `__glOdysseyGetNumHWClipPlanes` with its original first four arguments, then `__glOdysseyGetNumSWClipPlanes` with entry argument 0 first (`jalr` at 0x325cdc8, 0x325cddc). It loads a byte at entry argument 0 +0x18bb0 after those calls (`lbu` at 0x325cdec).
   - `beqz` at 0x325cdf0 falls through when that byte is nonzero and reaches `__glOdysseyUpdateTransform` with entry argument 0 as its first argument (`jalr` at 0x325cdfc). When the byte is zero, the branch takes the path past that call. The rest of the routine's paths and stores are not enumerated here; this byte's hardware role and the wider purpose of the routine are Unknown.
+
+## 64-bit IP30 library: material and transfer operations
+
+- `__glOdyle_ConvolutionFilter1DEXT` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32058c0
+  **Established effects.** After loading the doubleword at absolute address 0x1020, it reads and writes a word at offset 0x594 from that value (`ld` at 0x32058d4; `lw` at 0x32058f0; `sw` at 0x320595c).
+  An indirect call has an unknown target; after it, a word of unknown value is written at that offset (`jalr` at 0x32059c8; `sw` at 0x3205a0c).
+  It returns entry a0 plus the word at entry a0 +0x14 plus 0x18 (`lw` at 0x3205a38; `daddu` at 0x3205a40; `jr` at 0x3205a4c; `daddiu` at 0x3205a50); the role of this filter dispatch is Unknown.
+- `__glOdyle_ConvolutionFilter2DEXT` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3205a60
+  **Established effects.** The doubleword from absolute address 0x1020 supplies the base for word accesses including offset 0x5bc (`ld` at 0x3205a74; `lw` at 0x3205ab8; `sw` at 0x3205b4c).
+  After an indirect call to an unknown target, a word of unknown value is written at that offset (`jalr` at 0x3205b6c; `sw` at 0x3205bd0).
+  Its return value is entry a0 plus the word at entry a0 +0x18 plus 0x20 (`lw` at 0x3205bdc; `daddu` at 0x3205be4; `jr` at 0x3205bf0; `daddiu` at 0x3205bf4); the hardware effect of this filter path is Unknown.
+- `__glOdyle_SeparableFilter2DEXT` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3205c00
+  **Established effects.** The routine loads the doubleword at absolute address 0x1020 and accesses words including offset 0x594 from it (`ld` at 0x3205c14; `lw` at 0x3205c30; `sw` at 0x3205c9c).
+  It calls an unknown indirect target and subsequently writes a word of unknown value at the same offset (`jalr` at 0x3205d18; `sw` at 0x3205d5c).
+  The returned value adds the words at entry a0 +0x18 and +0x1c to entry a0 and adds 0x20 (`lw` at 0x3205d88, 0x3205d8c; `daddu` at 0x3205d94, 0x3205da0; `jr` at 0x3205da4; `daddiu` at 0x3205da8); the role of this separable-filter path is Unknown.
+- `__glOdyle_ColorTableSGI` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3205db0
+  **Established effects.** A doubleword loaded from absolute address 0x1020 serves as the base for word accesses including offset 0x5bc (`ld` at 0x3205dc4; `lw` at 0x3205e08; `sw` at 0x3205e9c).
+  Following a call through an unknown target, it writes a word of unknown value at that offset (`jalr` at 0x3205eb8; `sw` at 0x3205f1c).
+  The result returned is entry a0 plus the word at entry a0 +0x14 plus 0x18 (`lw` at 0x3205f28; `daddu` at 0x3205f30; `jr` at 0x3205f3c; `daddiu` at 0x3205f40); the hardware effect of this color-table path is Unknown.
+- `__glOdyle_ColorSubTable` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3205f50
+  **Established effects.** It fetches a doubleword at absolute address 0x1020, then reads and overwrites a word at offset 0x594 from that value (`ld` at 0x3205f64; `lw` at 0x3205f80; `sw` at 0x3205fec).
+  An unknown indirect call is followed by a word store of unknown value at the same offset (`jalr` at 0x3206058; `sw` at 0x320609c).
+  Its return adds entry a0, the word at entry a0 +0x14 and 0x18 (`lw` at 0x32060c8; `daddu` at 0x32060d0; `jr` at 0x32060dc; `daddiu` at 0x32060e0); the broader subtable routine role is Unknown.
+- `ApplyMaterialF` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1888 bytes
+  **Established.** It loads a doubleword from process address 0x1020 (`ld` at 0x3217178). On a later path it reads a word at the loaded doubleword +0xbb80 (`lw` at 0x321729c); `beqz` at 0x32172a0 takes a separate path when that word is zero and falls through when nonzero. On fall-through it forms and stores 0x10443, 0xfa, 0x10046 twice and 0x13c4d as words to address 0x10000 (`lui` at 0x3217294; `ori` at 0x32172ac, 0x32172bc, 0x32172c8; `addiu` at 0x32172b4; `sw` at 0x32172b0, 0x32172b8, 0x32172c0, 0x32172c4, 0x32172cc).
+  The following word stores include values read from that doubleword +0x9fc0 and +0x9fc4 (`lw` at 0x32172d0, 0x32172d8; `sw` at 0x32172d4, 0x32172dc). The field meanings, written words and the wider role of this floating-point path are Unknown.
+- `ApplyMaterialI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2332 bytes
+  **Established.** It loads a doubleword at process address 0x1020 (`ld` at 0x32178d8). On a later path, a word at the loaded doubleword +0xbb80 is read (`lw` at 0x3217a58); `beqz` at 0x3217a5c takes a separate path when it is zero and falls through for nonzero. That fall-through writes 0x10443, 0xfa, 0x10046 twice and 0x13c4d as words to 0x10000 (`lui` at 0x3217a50; `ori` at 0x3217a68, 0x3217a78, 0x3217a84; `addiu` at 0x3217a70; `sw` at 0x3217a6c, 0x3217a74, 0x3217a7c, 0x3217a80, 0x3217a88).
+  The subsequent word stores include values read at that doubleword +0x9fc0 and +0x9fc4 (`lw` at 0x3217a8c, 0x3217a94; `sw` at 0x3217a90, 0x3217a98). The meaning of these fields and writes, and the broader role of the integer routine, are Unknown.
+- `RenderFunc_AcceptSignedDataFromHost` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1456 bytes
+  **Established.** Its calls include `__glOdysseyImageMovePixelsDMAtoGfx` with argument 0 pointing 312 bytes below the entry stack pointer, argument 2 pointing 248 bytes below it, and arguments 3 and 4 equal to one and zero (`jalr` at 0x322ef80). It later calls `__glOdysseyOpenPMObjReference` (`jalr` at 0x322f02c); `beqz` at 0x322f034 takes a path calling `__glSetError` with argument 0 equal to 0x505 when the open call returns zero and falls through when nonzero (`jalr` at 0x322f198).
+  On fall-through it forms and writes 0x10443, 0xfa, 0x10046 twice and 0x10842 as words to 0x10000 (`lui` at 0x322f048; `ori` at 0x322f050, 0x322f060, 0x322f06c; `addiu` at 0x322f058; `sw` at 0x322f054, 0x322f05c, 0x322f064, 0x322f068, 0x322f070). It later calls `__glOdysseyClosePMObjReference` (`jalr` at 0x322f0c0). The hardware meaning of the written words and the broader role of this routine are Unknown.
+- `RenderFunc_ColorMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 5616 bytes
+  - **Established effects.** The first `beqz` at 0x322f60c takes a separate path when the byte at entry argument 0 +0x4d is zero and falls through when it is nonzero (`lbu` at 0x322f5c0). On a later path, the routine calls `__glOdysseyOpenPMObjReference` with [0x1020]:8 as its first argument (`jalr` at 0x322fcb4). If that call returns nonzero, `beqz` at 0x322fcbc falls through.
+  - The ensuing word stores to absolute 0x10000 include 0x10443, 0xfa, two 0x10046 words and 0x10842 (`sw` at 0x322fcdc, 0x322fce4, 0x322fcec, 0x322fcf0, 0x322fcf8). Further words are written on this path (`sw` at 0x322fd00, 0x322fd08). The hardware meaning of these values and the routine's broader role remain Unknown.
+- `ValidateFragmentLightColor` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1064 bytes
+  - **Established effects.** The first call is to `__glUnScaleColorf`, with entry argument 0 first and entry argument 1 third (`jalr` at 0x32574d4). On reaching `beqz` at 0x325781c, the branch falls through when the word at entry argument 0 +0xbb80 is nonzero (`lw` at 0x3257818). That arm clears the word and writes 0x10443, 0xfa and two 0x10046 words to 0x10000 (`sw` at 0x3257824, 0x3257828, 0x325782c, 0x3257834, 0x3257838).
+  - Both outcomes of that branch reach subsequent word writes at 0x10000, including 0x10407 and the low word of entry argument 3 (`sw` at 0x325784c, 0x3257850). Additional words follow (`sw` at 0x3257864, 0x325786c). The field, output values and broader routine role remain Unknown in hardware terms.
+- `ValidateLight` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 780 bytes
+  - **Established effects.** At the first test, `bc1f` at 0x3256ef4 takes a path when the comparison `f7 == f5` is false and falls through when it is true (`c.eq.d` at 0x3256ed0). Those paths later reach word stores to absolute 0x10000 that include an Unknown value, 0x9080bda2 and values from table entries 0xbb84 and 0xbb88 (`sw` at 0x32570d0, 0x32570d8; `lwc1` at 0x32570dc, 0x32570e4; `swc1` at 0x32570e0, 0x32570e8).
+  - Further table-entry words follow at that address, including entries 0xbb8c and 0xbb90 (`lwc1` at 0x32570ec, 0x32570f4; `swc1` at 0x32570f0, 0x32570f8). This is a partial output list; the hardware significance of its words and the wider routine role are Unknown.
+- `initScratchBufAccum` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31e4200
+  **Established effects.** The routine loads the doubleword at absolute address 0x1020 (`ld` at 0x31e4208).
+  One path calls `__glOdysseyCreatePMObj` with a3 = 0, a4 = 6, a5 = 8 and a6 = 1, storing word -1 at offset 0x1441c from the loaded doubleword in the call delay slot (`jalr` at 0x31e4330; `sw` at 0x31e4334).
+  `beqz` takes the error arm if that call returns zero and falls through if it returns nonzero; the error arm calls `__glSetError` with a0 = 0x505 (`beqz` at 0x31e4338; `jalr` at 0x31e44f4).
+  The meaning of the written field and this routine’s wider hardware role are Unknown.
+- `hardAdd24` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31e8270
+  **Established effects.** `bc1f` takes its branch when the f26 == f4 comparison is false and falls through when it is true (`c.eq.d` at 0x31e8280; `bc1f` at 0x31e828c).
+  One path calls `__glOdysseyImageMovePixelsCopy` with a3 = 1 and a4 = 0, while writing word 2 at absolute address 0x1030 in the delay slot (`jalr` at 0x31e8490; `sw` at 0x31e8494).
+  The effect of that copy call on hardware and the role of this add routine are Unknown.
+- `hardMult24` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x31e8700
+  **Established effects.** The doubleword from absolute address 0x1020 is loaded before the floating-point branch (`ld` at 0x31e874c).
+  `bc1t` takes its branch when f0 equals the 0x3ff0000000000000 value in f26 and falls through otherwise (`ldc1` at 0x31e8730; `c.eq.d` at 0x31e8744; `bc1t` at 0x31e8764).
+  A fall-through path calls `__glOdysseyImageMovePixelsCopy` with a3 = 1 and a4 = 0; its delay slot stores word 2 to absolute address 0x1030 (`jalr` at 0x31e88b8; `sw` at 0x31e88bc).
+  The hardware effect of that call and this routine’s overall role are Unknown.
+- `RenderFunc_ScaleBias` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x322a950
+  **Established effects.** The body loads a doubleword at absolute address 0x1020 (`ld` at 0x322a9c4).
+  Its paths include a call to `__glOdysseyImageMovePixelsCopy` with a2 equal to entry stack pointer minus 0x160, a3 = 1 and a4 = 1; a0 is unknown at this call (`jalr` at 0x322b168).
+  Another call to the same callee has a3 = 0 and a4 = 1 (`jalr` at 0x322b36c). The hardware effects of these selected copy calls and the routine’s overall role are Unknown.
+- `RenderFunc_ScaleBiasForSignedTypes` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x322c160
+  **Established effects.** This routine reads a doubleword at absolute address 0x1020 (`ld` at 0x322c1cc).
+  One path calls `__glOdysseyImageMovePixelsCopy` with a2 equal to entry stack pointer minus 0x190, a3 = 1 and a4 = 0; a1 is unknown at this call (`jalr` at 0x322c9d4).
+  A further call to that callee has a3 = 1 and a4 = 1 (`jalr` at 0x322ccc4). The hardware effects of these selected calls and the signed-type routine’s wider role are Unknown.
