@@ -6969,3 +6969,41 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** `__glOdyim_Color4ui` is called with entry `a0` through `a3` (`jalr` at 0x3287320). The next `__glim_Color4ui` call also receives those entry values, with `a3` reloaded in its delay slot (`jalr` at 0x3287338; `ld` at 0x328733c). Its result supplies the return value (`jr` at 0x328734c). The wider role of this routine and the calls' hardware effects are Unknown.
 - `__glOdyim_SoftColor4us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
   **Established effects.** It calls `__glOdyim_Color4us` with entry `a0` through `a3` (`jalr` at 0x32873e0). The later `__glim_Color4us` call receives the same entry arguments; its delay slot reloads `a3` (`jalr` at 0x32873f8; `ld` at 0x32873fc). The latter result is returned (`jr` at 0x328740c). The purpose of this routine and the calls' effects on hardware are Unknown.
+
+## 64-bit IP30 library: vertex and evaluation entry points
+
+- `glVertex2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - Entry loads a doubleword at absolute 0x1ae0 and jumps through it, with the first four argument registers retaining their entry values (`ld` at 0x3376900; `jr` at 0x3376904). The target and this routine’s wider role are Unknown.
+- `glVertex2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - An indirect tail jump uses the doubleword loaded from absolute 0x1ae8, passing the original first four arguments (`ld` at 0x3376a00; `jr` at 0x3376a04). The target’s identity and the wider role of this entry are Unknown.
+- `glVertex2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - It reads the doubleword at absolute 0x1af0 and jumps to that value without changing the first four argument registers (`ld` at 0x3376b00; `jr` at 0x3376b04). The indirect destination and the routine’s wider purpose are Unknown.
+- `glVertex2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - The entry path transfers control indirectly to the doubleword read from absolute 0x1af8, with the first four entry arguments (`ld` at 0x3376c00; `jr` at 0x3376c04). The destination and the wider effect of this entry are Unknown.
+- `glVertex2i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - Its indirect jump takes its target from a doubleword at absolute 0x1b00; arguments 0 through 3 remain their entry values (`ld` at 0x3376d00; `jr` at 0x3376d04). The destination and the routine’s broader role are Unknown.
+- `glMultiTexCoord4iSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** Its complete body returns with a no-operation in the delay slot (`jr` at 0x3306590; `nop` at 0x3306594). The entry's purpose is Unknown.
+- `glMultiTexCoord4sSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** Control returns through the link register; the delay-slot instruction does nothing (`jr` at 0x33065a0; `nop` at 0x33065a4). Its role is Unknown.
+- `glMultiTexCoordPointerSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** A no-operation fills the delay slot of the sole return (`jr` at 0x33065b0; `nop` at 0x33065b4). Its wider purpose is Unknown.
+- `glSelectTextureSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** The full instruction pair returns with a no-operation delay slot (`jr` at 0x3306650; `nop` at 0x3306654). The entry's role is Unknown.
+- `glTextureLightSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** It returns via the link register and executes a no-operation in the delay slot (`jr` at 0x3306730; `nop` at 0x3306734). Its purpose is Unknown.
+- `__glOdyim_SoftColor4usv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3287420
+  **Established effects.** The first call is to `__glOdyim_Color4usv` with entry `a0` through `a3` (`jalr` at 0x3287444).
+  It then invokes `__glim_Color4usv` with entry `a0`; `a1` through `a3` are unknown (`jalr` at 0x3287450). The second result is returned (`jr` at 0x3287464). The wider role of these calls and their hardware effects are Unknown.
+- `__glOdysplc_EvalCoord1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32091a0
+  **Established effects.** It calls `__glsplc_EvalCoord1f` with entry `a0` through `a3` (`jalr` at 0x32091cc).
+  Its call delay slot clears a byte at +0x18ed0 of the doubleword read from absolute 0x1020 (`jalr` at 0x32091cc; `sb` at 0x32091d0). The `ld` at 0x32091a4 reads the doubleword at absolute 0x1020. The byte's significance and the routine's wider role are Unknown.
+- `__glOdysplc_EvalCoord1fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32091f0
+  **Established effects.** A byte at +0x18ed0 of the doubleword loaded from absolute 0x1020 is cleared in the call delay slot (`jalr` at 0x320921c; `sb` at 0x3209220). The `ld` at 0x32091f4 reads the doubleword at absolute 0x1020.
+  The call targets `__glsplc_EvalCoord1fv`, passing entry `a0` through `a3` (`jalr` at 0x320921c), and its result is returned (`jr` at 0x320922c). The cleared byte's role and this routine's hardware effect are Unknown.
+- `__glOdysplc_EvalCoord2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3209240
+  **Established effects.** The `__glsplc_EvalCoord2d` call receives entry `a0` through `a3` (`jalr` at 0x320926c).
+  Its delay-slot store clears a byte at +0x18ed0 from the doubleword read at absolute 0x1020 (`jalr` at 0x320926c; `sb` at 0x3209270). The `ld` at 0x3209244 reads the doubleword at absolute 0x1020. The call result is returned (`jr` at 0x320927c); the byte's meaning and the wider role of this path are Unknown.
+- `__glOdysplc_EvalCoord2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3209290
+  **Established effects.** It calls `__glsplc_EvalCoord2dv`, passing entry `a0`, `a1`, `a2` and `a3` (`jalr` at 0x32092bc).
+  During the call's delay slot, it clears the byte at +0x18ed0 of the doubleword read from absolute 0x1020 (`jalr` at 0x32092bc; `sb` at 0x32092c0). The `ld` at 0x3209294 reads the doubleword at absolute 0x1020. The cleared byte and this routine's broader hardware role remain Unknown.
