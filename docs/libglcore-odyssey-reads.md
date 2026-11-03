@@ -7763,3 +7763,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The first call, `__glInitReadImageSrcInfo`, passes entry `a0` and entry stack pointer -0x2a0 in `a0` and `a1` (`daddiu` at 0x32b0374; `jalr` at 0x32b03a0). Its `__glInitMemLoad` call receives entry `a2` and the doubleword at entry `a0` +0x460 in `a2` and `a3` (`ld` at 0x32b03b4; `jalr` at 0x32b03b8). The field roles are Unknown.
 - `__glim_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   If the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32c8434; `addiu` at 0x32c843c; `beq` at 0x32c8454; `bgezall` at 0x32c86e8; `addiu` at 0x32c86ec). The fall-through path calls `__glCheckColorSubTableArgs` (`bgezall` at 0x32c8474). Its broader hardware effect is Unknown.
+
+## 64-bit IP30 library: texture queries and coordinates
+
+- `__glim_TexCoord4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313da0
+  It transfers entry `a3` through `a0` to floating-point registers and converts words to single precision (`mtc1` at 0x3313da0, 0x3313da4, 0x3313da8, 0x3313dac; `cvt.s.w` at 0x3313db0, 0x3313db8, 0x3313dbc, 0x3313dc0). A doubleword read from absolute 0x1020 supplies the base for word stores at +0x194, +0x190, +0x18c and +0x188, whose values are unknown (`ld` at 0x3313db4; `swc1` at 0x3313dc4, 0x3313dc8, 0x3313dcc, 0x3313dd4). The fields’ role is Unknown.
+- `__glim_TexCoord4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313de0
+  It reads doublewords from entry `a0` +0, +8, +0x10 and +0x18 and converts doubles to single precision (`ldc1` at 0x3313de0, 0x3313df0, 0x3313dfc, 0x3313e08; `cvt.s.d` at 0x3313de8, 0x3313df4, 0x3313e00, 0x3313e0c). Word stores of unknown value go to +0x188, +0x18c, +0x190 and +0x194 of the doubleword read from absolute 0x1020 (`ld` at 0x3313de4; `swc1` at 0x3313dec, 0x3313df8, 0x3313e04, 0x3313e14). Its broader role is Unknown.
+- `__glim_TexCoord4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313e20
+  It copies words from entry `a0` +0, +4, +8 and +0xc to +0x188, +0x18c, +0x190 and +0x194 of the doubleword loaded from absolute 0x1020 (`ld` at 0x3313e20; `lwc1` at 0x3313e24, 0x3313e2c, 0x3313e34, 0x3313e3c; `swc1` at 0x3313e28, 0x3313e30, 0x3313e38, 0x3313e44). The fields’ purpose is Unknown.
+- `__glim_TexCoord4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313e50
+  The routine reads words at entry `a0` +0, +4, +8 and +0xc, and converts words to single precision (`lw` at 0x3313e50, 0x3313e64, 0x3313e74, 0x3313e84; `cvt.s.w` at 0x3313e58, 0x3313e6c, 0x3313e7c, 0x3313e8c). It stores words of unknown value at +0x188, +0x18c, +0x190 and +0x194 of the doubleword read from 0x1020 (`ld` at 0x3313e5c; `swc1` at 0x3313e60, 0x3313e70, 0x3313e80, 0x3313e94). The wider role is Unknown.
+- `__glim_TexCoord4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313ea0
+  Its reads are signed halfwords at entry `a0` +0, +2, +4 and +6 (`lh` at 0x3313ea0, 0x3313eb4, 0x3313ec4, 0x3313ed4). Relative to the doubleword loaded from 0x1020, it writes words of unknown value at +0x188, +0x18c, +0x190 and +0x194 (`ld` at 0x3313eac; `swc1` at 0x3313eb0, 0x3313ec0, 0x3313ed0, 0x3313ee4). The fields’ purpose is Unknown.
+- `__glim_GetTexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d4a30
+  When the word at 0x1030 equals 1, `beq` is taken to a call to `__glSetError` with `a0` 0x502 (`lw` at 0x32d4a38; `addiu` at 0x32d4a40; `beq` at 0x32d4a58; `jalr` at 0x32d4b30; `addiu` at 0x32d4b34). Another path calls `__glConvertResult` (`bgezall` at 0x32d4afc). The field’s role is Unknown.
+- `__glim_GetTexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d4b60
+  A word loaded from 0x1030 decides a `beq`: equality with 1 takes the error path (`lw` at 0x32d4b74; `addiu` at 0x32d4b78; `beq` at 0x32d4b94). When it falls through, `__glLookUpTextureParams` is called with the doubleword at 0x1020 as `a0` and entry `a0` as `a1` (`ld` at 0x32d4b8c; `jalr` at 0x32d4ba0). The word’s wider role is Unknown.
+- `__glim_GetTexParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d4e70
+  If the word read at 0x1030 differs from 1, `beq` falls through to a call to `__glLookUpTextureParams` with entry `a0` as `a1` (`lw` at 0x32d4e84; `addiu` at 0x32d4e88; `beq` at 0x32d4ea4; `jalr` at 0x32d4eb0). The same `beq` is taken when the word equals 1 (`beq` at 0x32d4ea4). Its wider purpose is Unknown.
+- `__glim_GetTexLevelParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d5480
+  The routine loads a doubleword from 0x1020 and a word from 0x1030 (`ld` at 0x32d548c; `lw` at 0x32d549c). If that word differs from 1, `beq` falls through to `__glLookUpTexture`, passing the loaded doubleword and entry `a0` as its first two arguments (`addiu` at 0x32d5498; `beq` at 0x32d54bc; `jalr` at 0x32d54cc). The field roles are Unknown.
+- `__glim_GetTexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d5750
+  The `beq` is taken when the word at 0x1030 equals 1 and otherwise falls through (`lw` at 0x32d5758; `addiu` at 0x32d575c; `beq` at 0x32d5774). Its calls include `__glLookUpTextureParams` with the doubleword at 0x1020 as `a0` and entry `a0` as `a1` (`jalr` at 0x32d57b8; `ld` at 0x32d57bc). The field meanings are Unknown.
+- `__glCopyColorTableScaleBias` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its copies include floating-point words from entry `a0` +0x30 and +0x34 to the same offsets at entry `a1` (`lwc1` at 0x32c8880, 0x32c8888; `swc1` at 0x32c8884, 0x32c888c). The meanings of these fields are Unknown.
+- `__glim_CopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at 0x1030 is zero, `beqz` takes the path to `__glCheckConvolutionFilterArgs` (`lw` at 0x32cb4bc; `beqz` at 0x32cb4d8; `bgezall` at 0x32cb534). If the first `beqz` falls through and that word differs from 2, `beq` falls through to `__glSetError` with 0x502 in `a0` (`beqz` at 0x32cb4d8; `addiu` at 0x32cb4d0; `beq` at 0x32cb4e0; `bgezall` at 0x32cb4ec; `addiu` at 0x32cb4f0). The wider effect is Unknown.
+- `__glim_CopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beqz` at 0x32cb608 takes the path to `__glCheckConvolutionFilterArgs` if the word at 0x1030 is zero (`lw` at 0x32cb5f0; `beqz` at 0x32cb608; `bgezall` at 0x32cb668). If that branch falls through and the word differs from 2, `beq` falls through to a call to `__glSetError` with 0x502 in `a0` (`beqz` at 0x32cb608; `addiu` at 0x32cb610; `beq` at 0x32cb614; `bgezall` at 0x32cb620; `addiu` at 0x32cb624). Its broader role is Unknown.
+- `__glim_GetTexEnvfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32d45c8; `addiu` at 0x32d45d0; `beq` at 0x32d45e8; `jalr` at 0x32d4688; `addiu` at 0x32d468c). Calls on other paths include `__glUnScaleColorf` (`jalr` at 0x32d4648). Their hardware effect is Unknown.
+- `__glim_GetTexEnviv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beq` at 0x32d46c8 is taken when the word at absolute 0x1030 equals 1; that path calls `__glSetError` with 0x502 in `a0` (`lw` at 0x32d46a8; `addiu` at 0x32d46b0; `beq` at 0x32d46c8; `jalr` at 0x32d4758; `addiu` at 0x32d475c). Another path calls `__glUnScaleColori` (`jalr` at 0x32d4728). Its wider role is Unknown.
