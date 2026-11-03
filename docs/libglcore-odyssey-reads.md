@@ -7895,3 +7895,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It loads words at entry `a0` +8 and +0x14 (`lw` at 0x33174d0, 0x33174dc). Its floating-point word stores include unknown values at entry `a5` +0, +4, +8 and +0x10 (`swc1` at 0x3317514, 0x331751c, 0x3317524, 0x3317530). How these four stored words are used is Unknown.
 - `__glExtractTexel3A_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317540
   A word is read from entry `a0` +8 and a doubleword from entry `a0` +0 (`lw` at 0x3317540; `ld` at 0x331756c). The return delay slot stores a floating-point word of unknown value at entry `a5` +0x10 (`jr` at 0x3317580; `swc1` at 0x3317584). The destination field’s use is Unknown.
+
+## 64-bit IP30 library: texture objects and extraction
+
+- `__glExtractTexel3RGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317000
+  If entry `a3` is signed negative, `bltz` takes the branch to a path that copies floating-point words from entry `a1` +0xa0 and +0xa4 to entry `a5` +0 and +4 (`bltz` at 0x3317000; `lwc1` at 0x3317048, 0x3317050; `swc1` at 0x331704c, 0x3317054). The branch falls through when `a3` is nonnegative (`bltz` at 0x3317000). How the copied words are used is Unknown.
+- `__glExtractTexel3A` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33170c0
+  The initial `bltz` is taken when entry `a3` is signed less than zero and falls through otherwise (`bltz` at 0x33170c0). Its taken path copies the floating-point word at entry `a1` +0xac to entry `a5` +0x10 (`lwc1` at 0x3317108; `swc1` at 0x3317110). The field’s purpose is Unknown.
+- `__glExtractTexel3I` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317150
+  A signed-negative entry `a3` takes the `bltz` branch; a nonnegative value falls through (`bltz` at 0x3317150). The branch target copies a floating-point word from entry `a1` +0xa0 to entry `a5` +0x14 (`lwc1` at 0x3317198; `swc1` at 0x33171a0). The values’ role is Unknown.
+- `__glExtractTexel3RGB8` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33171e0
+  When entry `a3` is signed negative, `bltz` takes the branch to a path copying the floating-point word at entry `a1` +0xa0 to entry `a5` +0 (`bltz` at 0x33171e0; `lwc1` at 0x3317228; `swc1` at 0x331722c). Nonnegative `a3` falls through; the doubleword at entry `a1` +0 is read in the delay slot on either path (`bltz` at 0x33171e0; `ld` at 0x33171e4). The fields’ meanings are Unknown.
+- `__glExtractTexel3RGBA8` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33172c0
+  Entry `a3` controls `bltz`: negative signed values take the branch and nonnegative values fall through (`bltz` at 0x33172c0). On the taken path, it copies a floating-point word from entry `a1` +0xa0 to entry `a5` +0 (`lwc1` at 0x3317308; `swc1` at 0x331730c). The broader purpose is Unknown.
+- `__glExtractTexel3I_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317590
+  It loads words from entry `a0` +8 and +0x14 and a doubleword from +0 (`lw` at 0x3317590, 0x331759c; `ld` at 0x33175bc). A floating-point word is read from an unknown base (`lwc1` at 0x33175cc). A word of unknown value is stored at entry `a5` +0x14 (`swc1` at 0x33175d4). The use of that stored word is Unknown.
+- `__glExtractTexel3RGB8_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33175e0
+  Its reads include words at entry `a0` +8 and +0x14 and a doubleword at entry `a1` +0 (`lw` at 0x33175e0, 0x33175ec; `ld` at 0x3317624). Three bytes are loaded from unknown bases and floating-point words of unknown value are written at entry `a5` +0, +4 and +8 (`lbu` at 0x331761c, 0x3317638, 0x3317650; `swc1` at 0x3317634, 0x331764c, 0x3317668). The operation’s wider purpose is Unknown.
+- `__glExtractTexel3RGBA8_B` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3317670
+  It reads words from entry `a0` +8 and +0x14 and the doubleword at entry `a1` +0 (`lw` at 0x3317670, 0x331767c; `ld` at 0x33176b4). Byte reads use unknown bases, and word stores of unknown value go to entry `a5` +0, +4, +8 and +0x10 (`lbu` at 0x33176ac, 0x33176c8, 0x33176e0, 0x33176f8; `swc1` at 0x33176c4, 0x33176dc, 0x33176f4, 0x3317710). The fields’ role is Unknown.
+- `__glTexCreateProxyLevel` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33187e0
+  It calls `ComputeTexLevelSize` with entry `a0` and `a1` as its first two arguments, entry stack pointer minus 0xf0 as `a2`, and entry `a2` as `a3` (`bgezall` at 0x331884c). The routine’s wider role is Unknown.
+- `__glTexCreateLevel` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3318940
+  The first call is `ComputeTexLevelSize`, receiving entry `a0`, entry `a1`, entry stack pointer minus 0x110 and entry `a2` as its first four arguments (`bgezall` at 0x33189b8). Calls include `__glFloorLog2` (`jalr` at 0x3318a24, 0x3318a40, 0x3318a5c). The result’s wider meaning is Unknown.
+- `__glInitTexSourceUnpack` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3318e90
+  It calls `__glLoadUnpackModes`; the call’s delay slot copies the floating-point word at entry `a0` +0xf2c to entry `a1` +0xb0 (`lwc1` at 0x3318ea0; `jalr` at 0x3318ee0; `swc1` at 0x3318ee4). The copied field’s wider role is Unknown.
+- `__glInitTexDestPack` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3318f00
+  A floating-point word from entry `a0` +0xf2c is stored at entry `a1` +0xb0 in the delay slot of the `__glLoadPackModes` call (`lwc1` at 0x3318f10; `jalr` at 0x3318f4c; `swc1` at 0x3318f50). The meaning of that field is Unknown.
+- `__glEmptyFreeTexObj` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3326e70
+  The body returns through `ra`, with a no-op in the delay slot (`jr` at 0x3326e70; `nop` at 0x3326e74). Its return value and wider role are Unknown.
+- `__glFreeTexObj` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3326e80
+  When the word at entry `a0` +0xff8 is signed less than or equal to zero, `blez` takes a path to an indirect call (`lw` at 0x3326e8c; `blez` at 0x3326eac; `jalr` at 0x3326f08). That call receives entry `a0` and the doubleword at entry `a1` +0x100 as its first two arguments (`ld` at 0x3326f38; `jalr` at 0x3326f08). The callee and routine’s wider role are Unknown.
+- `__glDisposeTexObj` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3326f50
+  It decrements the word at entry `a1` +0 and stores the result there (`lw` at 0x3326f50; `addiu` at 0x3326f5c; `sw` at 0x3326f68). `beqz` takes the path to an indirect call if that result is zero (`beqz` at 0x3326f6c; `jalr` at 0x3326f88). The target and the word’s role are Unknown.
