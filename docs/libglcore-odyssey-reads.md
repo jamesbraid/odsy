@@ -6764,3 +6764,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glim_DeleteAsyncMarkersSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8110
   **Established effects.** `beq` at 0x32b8134 falls through when the word at 0x1030 does not equal 1 (`lw` at 0x32b8118; `addiu` at 0x32b811c).
   On that path `bltz` at 0x32b813c is taken when entry `a1` is signed negative, leading to `__glSetError` with 0x501 in `a0` (`jalr` at 0x32b8180). The deletion routine’s broader role and the hardware effect of its error path are Unknown.
+
+## 64-bit IP30 library: vertex and async marker paths
+
+- `__glce_Vertex2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** The entry saves the doubleword from absolute 0x1b08 on the stack (`ld` at 0x335a9d0; `sd` at 0x335a9d8). The first `glVertex2iv` call writes the doubleword at [0x1020]:8 +0x2558 to 0x1b08 in its delay slot (`ld` at 0x335a9e8, 0x335aa00; `jalr` at 0x335aa08; `sd` at 0x335aa0c).
+  - The second call also writes to 0x1b08 in its delay slot, but its value is Unknown (`jalr` at 0x335aa20; `sd` at 0x335aa24). The return delay-slot store to that address likewise has an Unknown value (`jr` at 0x335aa3c; `sd` at 0x335aa40). The location's meaning and the broader routine role are Unknown.
+- `__glce_Vertex2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  - **Established effects.** A doubleword read from absolute 0x1b10 is saved on the stack (`ld` at 0x335aa50; `sd` at 0x335aa5c). The delay slot of the first `glVertex2s` call writes [[0x1020]:8 +0x2560]:8 to 0x1b10 (`ld` at 0x335aa6c, 0x335aa84; `jalr` at 0x335aa8c; `sd` at 0x335aa90).
+  - A second `glVertex2s` call and the return each have a delay-slot store to 0x1b10; both stored values are Unknown (`jalr` at 0x335aaa8; `sd` at 0x335aaac; `jr` at 0x335aac4; `sd` at 0x335aac8). The purpose of this location and the wider role of the routine are Unknown.
+- `__glce_Vertex2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** The doubleword at absolute 0x1b18 is copied to the stack (`ld` at 0x335aad0; `sd` at 0x335aad8). Its first `glVertex2sv` call places [[0x1020]:8 +0x2568]:8 at 0x1b18 in the call delay slot (`ld` at 0x335aae8, 0x335ab00; `jalr` at 0x335ab08; `sd` at 0x335ab0c).
+  - At the later call, a doubleword of Unknown value is stored at 0x1b18 (`jalr` at 0x335ab20; `sd` at 0x335ab24). The return delay slot writes another Unknown value to that location (`jr` at 0x335ab3c; `sd` at 0x335ab40). The significance of the stored values and the routine's wider role are Unknown.
+- `__glce_Vertex3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  - **Established effects.** The value loaded at absolute 0x1b20 is saved to the stack (`ld` at 0x335ab50; `sd` at 0x335ab60). The first and second `glVertex3d` calls write doublewords from [0x1020]:8 +0x2570 and +0x42e8 respectively to 0x1b20 in their delay slots (`ld` at 0x335ab70, 0x335ab88, 0x335aba4; `jalr` at 0x335ab90, 0x335abac; `sd` at 0x335ab94, 0x335abb0).
+  - At return, the delay-slot store writes an Unknown value to 0x1b20 (`jr` at 0x335abcc; `sd` at 0x335abd0). The meaning of this location and the routine's broader role are Unknown.
+- `__glce_Vertex3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** It saves the doubleword read at absolute 0x1b28 on the stack (`ld` at 0x335abe0; `sd` at 0x335abe8). The first `glVertex3dv` call writes [[0x1020]:8 +0x2578]:8 to 0x1b28 in its delay slot (`ld` at 0x335abf8, 0x335ac10; `jalr` at 0x335ac18; `sd` at 0x335ac1c).
+  - The subsequent call writes an Unknown doubleword to the same absolute address (`jalr` at 0x335ac30; `sd` at 0x335ac34). A further Unknown value is stored there in the return delay slot (`jr` at 0x335ac4c; `sd` at 0x335ac50). The location's hardware significance and this routine's wider role are Unknown.
+- `__glle_TexImage4DSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** It returns entry argument 0 in v0 (`jr` at 0x32ec660; `move` at 0x32ec664). Its wider role is Unknown.
+- `__gllc_TexImage4DSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  **Established.** The stack pointer is reduced by 0x40, then restored in the return delay slot (`daddiu` at 0x32ec670, 0x32ec678; `jr` at 0x32ec674). The routine's purpose is Unknown.
+- `__glle_TexSubImage4DSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** The return delay slot copies entry argument 0 to v0 (`jr` at 0x32ec680; `move` at 0x32ec684). Its wider role is Unknown.
+- `__gllc_TexSubImage4DSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  **Established.** It subtracts 0x40 from the stack pointer and adds it back while returning (`daddiu` at 0x32ec690, 0x32ec698; `jr` at 0x32ec694). The routine's role is Unknown.
+- `__glGenericPickTextureProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2684 bytes
+  **Established.** It reads a word at argument 0 +0x808 (`lw` at 0x32f2a24). One path stores a doubleword at argument 0 +0x48f0 and zero at argument 0 +0x8da0 (`sd` at 0x32f2a60, 0x32f2a6c). Calls include `__glIsTextureConsistent`, `__glLookUpTextureParams`, and `__glLookUpTexture` (`jalr` at 0x32f2a84, 0x32f2a9c, 0x32f2ab0). The meanings of these fields and the routine’s broader role are Unknown.
+- `__glFreeAsyncMarker` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8250
+  **Established effects.** It calls an unknown target read from entry `a0` +0x18, passing entry `a0` through `a3` (`ld` at 0x32b8264; `jalr` at 0x32b826c).
+  The call result is returned (`jr` at 0x32b827c). The indirect target’s hardware effect and the wider purpose of this routine are Unknown.
+- `__glDisposeAsyncMarker` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8290
+  **Established effects.** An unknown call target is loaded from entry `a1` +8 (`ld` at 0x32b82a4).
+  The call passes entry `a0` through `a3` and its result is returned (`jalr` at 0x32b82ac; `jr` at 0x32b82bc). The disposal path’s wider role and the indirect call’s hardware effect are Unknown.
+- `__glim_FinishAsyncSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8190
+  **Established effects.** `beq` at 0x32b81bc is taken when the word at 0x1030 equals 1 (`lw` at 0x32b819c; `addiu` at 0x32b81a4).
+  That path calls `__glSetError` with 0x502 in `a0` and entry `a1` through `a3` (`jalr` at 0x32b8224). The routine’s broader role and the error call’s hardware effect are Unknown.
+- `__glim_BlendEquationEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8600
+  **Established effects.** The `beq` at 0x32b8624 is taken when the word at 0x1030 equals 1 (`lw` at 0x32b8608; `addiu` at 0x32b860c).
+  The path calls `__glSetError` with 0x502 in `a0`, entry `a1` and `a3`, and the doubleword read at 0x1020 in `a2` (`ld` at 0x32b8614; `jalr` at 0x32b8718). The wider role of this routine and the error call’s hardware effect are Unknown.
+- `__glim_ClearIndex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8950
+  **Established effects.** When the word at 0x1030 is not 1, `beq` at 0x32b896c falls through (`lw` at 0x32b8950; `addiu` at 0x32b8954).
+  That path writes a floating-point word at +0x85c of the doubleword read from 0x1020 (`swc1` at 0x32b89b8). The `ld` at 0x32b895c reads the doubleword at absolute 0x1020. The store executes in the delay slot of the return (`jr` at 0x32b89b4). The stored word’s hardware effect and the routine’s wider role are Unknown.
