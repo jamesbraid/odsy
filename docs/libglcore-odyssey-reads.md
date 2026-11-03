@@ -4823,3 +4823,50 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** This routine reads a doubleword at absolute address 0x1020 (`ld` at 0x322c1cc).
   One path calls `__glOdysseyImageMovePixelsCopy` with a2 equal to entry stack pointer minus 0x190, a3 = 1 and a4 = 0; a1 is unknown at this call (`jalr` at 0x322c9d4).
   A further call to that callee has a3 = 1 and a4 = 1 (`jalr` at 0x322ccc4). The hardware effects of these selected calls and the signed-type routine’s wider role are Unknown.
+
+## 64-bit IP30 library: image transfer and color dispatch
+
+- `ConvolutionDenormAndScale` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 4404 bytes
+  **Established effects.** It loads a doubleword at process address 0x1020 (`ld` at 0x3230e00) and reads a byte at that value plus 0x13f54 (`lbu` at 0x3230f4c). When the byte is zero, `beqz` takes a separate path and otherwise falls through (`beqz` at 0x3230f60). A later path includes `LoadTextureFilter` and `__glOdysseyImageMovePixelsCopy`; the latter receives entry argument 2 as its first two arguments and entry argument 1 as its third (`bgezall` at 0x32311a4; `jalr` at 0x32311c0). The byte's meaning and the routine's broader hardware role are Unknown.
+- `RenderFunc_HistogramMinmax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 952 bytes
+  **Established effects.** Calls include `__glOdysseyImageCalcXferReadParams`, with zero as argument 0 and entry sp minus 152 as argument 3 (`jalr` at 0x3234db4). A later possible call to `__glOdysseyImageMovePixelsDMAtoHost` passes entry sp minus 256 and entry sp minus 192 as arguments 0 and 2 (`jalr` at 0x3234f04).
+  On reaching the next test, it loads the byte at +0xb of the doubleword loaded from entry argument 0 +0x58 (`ld` at 0x3234f80; `lbu` at 0x3234f84). A zero byte takes `beqz` to a path calling `__glOdysseyImageMovePixelsCopy`; a nonzero byte falls through to `__glOdysseyImageMovePixelsTexture` (`beqz` at 0x3234f88; `jalr` at 0x3235048, 0x3234f98). The byte's meaning and this routine's broader hardware role are Unknown.
+- `RenderFunc_DownloadDepth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1668 bytes
+  **Established effects.** On one path, it calls an unknown indirect target (`jalr` at 0x3235a08). When that result is zero, `beqz` takes a path calling `__glSetError` with argument 0 equal to 0x505; a nonzero result falls through (`beqz` at 0x3235a10; `jalr` at 0x3235b80). The fall-through includes `__glOdysseyImageMovePixelsDMAtoGfx`, with the doubleword at entry argument 0 +0x60 as argument 0 and entry sp minus 200 and entry sp minus 256 as arguments 1 and 2 (`jalr` at 0x3235af4). The indirect target and this depth-download routine's broader hardware role are Unknown.
+- `RenderFunc_DownloadStencil` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1720 bytes
+  **Established effects.** One path makes an indirect call to an unknown target (`jalr` at 0x323612c). A zero result takes `beqz` to `__glSetError` with argument 0 equal to 0x505; a nonzero result falls through (`beqz` at 0x3236134; `jalr` at 0x3236308). The fall-through calls `__glOdysseyImageMovePixelsDMAtoGfx` with the doubleword at entry argument 0 +0x60 as argument 0, entry sp minus 208 and entry sp minus 264 as arguments 1 and 2, then one and zero as arguments 3 and 4 (`jalr` at 0x323626c). The indirect target and this stencil-download routine's broader hardware role are Unknown.
+- `RenderFunc_CopyDepth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2080 bytes
+  **Established effects.** It calls `__glOdysseyImageCalcXferReadParams` with 0x1902 and 0x1405 as its first two arguments (`jalr` at 0x3236d04). Possible calls include `__glOdysseyImageMovePixelsDMAtoHost`, with entry sp minus 424 and entry sp minus 360 as arguments 0 and 2 (`jalr` at 0x3236e68).
+  After another indirect call (`jalr` at 0x3236eec), a zero result takes `beqz` to `__glSetError` with argument 0 equal to 0x505; a nonzero result falls through (`beqz` at 0x3236ef4; `jalr` at 0x32372ac). A possible path after fall-through calls `__glOdysseyImageMovePixelsDMAtoGfx` with the doubleword at entry argument 0 +0x60 as argument 0 and one as both arguments 3 and 4 (`jalr` at 0x32371f0). The indirect target and the broader hardware role of this depth-copy routine are Unknown.
+- `RenderFunc_CopyStencil` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3237540
+  **Established effects.** It calls `__glOdysseyImageMovePixelsDMAtoHost` with a0 = entry stack pointer minus 0x1b0 and a2 = entry stack pointer minus 0x170; a3 is unknown (`jalr` at 0x323770c).
+  A later indirect call has an unknown target; `beqz` takes the error path when its result is zero and falls through when it is nonzero (`jalr` at 0x323778c; `beqz` at 0x3237794).
+  The error path calls `__glSetError` with a0 = 0x505 (`jalr` at 0x3237bb4).
+  On a later path, `beqz` takes its branch when the tested value masked with 0xff is zero and falls through when nonzero; the facts report leaves the tested value unknown (`beqz` at 0x323780c).
+  The taken arm calls `__glOdysseyImageMovePixelsDMAtoGfx` with a3 = 1 and a4 = 0 (`jalr` at 0x3237d48). On the fall-through arm, `beqz` at 0x323799c falls through when the result of an unknown indirect call is nonzero, reaching the same callee with a3 = 1 and a4 = 0 (`jalr` at 0x3237994, 0x3237af8).
+  The effects of these DMA-related calls and the wider routine role are Unknown.
+- `GetCurrentState` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x320aef0
+  **Established effects.** It clears a word at entry a2 (`sw` at 0x320aef0).
+  The entry `beq` takes its branch when entry a1 equals 1 and falls through when it differs (`beq` at 0x320af0c).
+  On a path reaching the later `bne`, the branch is taken if the doubleword at offset 0x3e0 from the doubleword at entry a0 +0x1ad8 differs from 0x32886b0; it falls through when equal (`ld` at 0x320af60, 0x320af64; `bne` at 0x320af6c).
+  The taken path calls `__glOdyGetFromHardware` with a1 = 0 (`jalr` at 0x320b00c). Its wider hardware role is Unknown.
+- `__glOdyim_SoftColor3b` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32868f0
+  **Established effects.** Calls `__glOdyim_Color3b` with the entry a0, a1 and a2 values (`jalr` at 0x328691c).
+  It then calls `__glim_Color3b` with those same three entry values and returns its result (`jalr` at 0x3286930; `jr` at 0x3286944).
+  The broader hardware role is Unknown.
+- `__glOdyim_SoftColor3bv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3286950
+  **Established effects.** The first call is to `__glOdyim_Color3bv` with entry a0 (`jalr` at 0x3286974).
+  The next call is to `__glim_Color3bv`, also with entry a0; its a1, a2 and a3 values are unknown (`jalr` at 0x3286980).
+  The second callee’s result is returned (`jr` at 0x3286994). The wider hardware role is Unknown.
+- `__glOdyim_SoftColor3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  **Established effects.** It saves f14 and f13 as doublewords at entry sp -0x28 and -0x20 (`sdc1` at 0x32869a8, 0x32869bc). After calling `__glOdyim_Color3d`, it reloads f13, then calls `__glim_Color3d` with the f14 reload in the call delay slot (`jalr` at 0x32869cc; `ldc1` at 0x32869d8; `jalr` at 0x32869e0; `ldc1` at 0x32869e4). The hardware effects of these color calls and the routine's wider role are Unknown.
+- `__glOdyim_SoftColor3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established effects.** Its `__glOdyim_Color3dv` call receives entry arguments 0 through 3 (`jalr` at 0x3286a24). The subsequent `__glim_Color3dv` call receives entry argument 0 (`jalr` at 0x3286a30). Control returns after that call (`jr` at 0x3286a44); the effects of these calls and the wider role of this vector routine are Unknown.
+- `__glOdyim_SoftColor3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  **Established effects.** The body saves f14 at entry sp -0x28 and f13 at entry sp -0x20, both as doublewords (`sdc1` at 0x3286a58, 0x3286a6c). It calls `__glOdyim_Color3f` and reloads f13; the f14 reload occupies the delay slot of its `__glim_Color3f` call (`jalr` at 0x3286a7c; `ldc1` at 0x3286a88; `jalr` at 0x3286a90; `ldc1` at 0x3286a94). What these color calls do to hardware and the routine's broader purpose are Unknown.
+- `__glOdyim_SoftScratchColor3b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  - **Established effects.** It calls `__glOdyim_ScratchColor3b` with entry arguments 0–3, then calls `__glim_Color3b` with entry arguments 0–2 (`jalr` at 0x32877bc, 0x32877d0). The second call reloads argument 2 in its delay slot (`jalr` at 0x32877d0; `ld` at 0x32877d4). The hardware effect of these calls and this routine's wider role are Unknown.
+- `__glOdyim_SoftScratchColor3bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** Its first call invokes `__glOdyim_ScratchColor3bv` with entry arguments 0–3 (`jalr` at 0x3287814). A later `__glim_Color3bv` call uses entry argument 0 first; its remaining arguments are Unknown in hostfacts (`jalr` at 0x3287820). The routine's broader function and the calls' hardware significance remain Unknown.
+- `__glOdyim_SoftScratchColor3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  - **Established effects.** Floating-point registers `f13` and `f14` are saved at entry sp -0x20 and -0x28 respectively (`sdc1` at 0x328785c, 0x3287848). After a call to `__glOdyim_ScratchColor3d`, those two doublewords are loaded again and the routine calls `__glim_Color3d` (`jalr` at 0x328786c; `ldc1` at 0x3287878, 0x3287884; `jalr` at 0x3287880). The `f14` reload occurs in the second call's delay slot (`jalr` at 0x3287880; `ldc1` at 0x3287884). The hardware effects of these callees and the routine's wider role are Unknown.
