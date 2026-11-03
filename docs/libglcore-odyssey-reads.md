@@ -4397,3 +4397,47 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glTextureSBDecalRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 356 bytes
   **Established.** Four calls go to `__GL_TEXENV_CLAMP` (`bgezall` at 0x331e0a8, 0x331e0cc, 0x331e0f0, 0x331e114); their floating-point results are stored at argument 2 +0, +4, +8 and +0x10 (`swc1` at 0x331e0b4, 0x331e0d8, 0x331e0fc, 0x331e120).
   It subtracts two floating-point values (`sub.s` at 0x331e134), and later writes floating-point words at argument 1 +0, +4 and +8 (`swc1` at 0x331e144, 0x331e160, 0x331e194). The hardware meaning of these values and the routine’s broader role are Unknown.
+
+## 64-bit IP30 library: evaluation and texture blend paths
+
+- `__glOdysplc_EvalPoint1` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3209420
+  A doubleword is read from absolute address 0x1020 (`ld` at 0x3209424).
+  The call to `__glsplc_EvalPoint1` clears a byte at offset 0x18ed0 from that loaded value in its delay slot (`jalr` at 0x320944c; `sb` at 0x3209450).
+  It returns the callee’s result (`jr` at 0x320945c). The cleared byte’s purpose and the wider role of this evaluation wrapper are Unknown. Established effects.
+- `__glOdysplc_EvalPoint2` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3209470
+  The routine fetches a doubleword from absolute address 0x1020 (`ld` at 0x3209474).
+  It calls `__glsplc_EvalPoint2`, storing zero as a byte at offset 0x18ed0 from the fetched value in the delay slot (`jalr` at 0x320949c; `sb` at 0x32094a0).
+  The result of that call is returned (`jr` at 0x32094ac). The byte’s meaning and this second evaluation wrapper’s broader role are Unknown. Established effects.
+- `glDrawArrays` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3369280
+  Loads a doubleword from absolute address 0x1a50 and jumps to it (`ld` at 0x3369280; `jr` at 0x3369284).
+  The destination and the drawing entry’s wider role are Unknown. Established effects.
+- `glRectd` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3368410
+  Reads a doubleword at absolute address 0x1f00, then transfers control to that value (`ld` at 0x3368410; `jr` at 0x3368414).
+  The target and the double-precision rectangle entry’s wider role are Unknown. Established effects.
+- `glRectf` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3368428
+  An indirect jump uses the doubleword loaded from absolute address 0x1f10 (`ld` at 0x3368428; `jr` at 0x336842c).
+  The jump target and the floating-point rectangle entry’s wider role are Unknown. Established effects.
+- `__glOdyim_Color3uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
+  - **Established effects.** `ldl` and `ldr` access entry argument 0 +4 and +0xb, while `lwu` reads a word from +0 (`ldl` at 0x336f540; `ldr` at 0x336f554; `lwu` at 0x336f54c). Stores to absolute 0x10000 write word 0xc580cc0a, the loaded word, then a doubleword whose value hostfacts leaves Unknown (`sw` at 0x336f558, 0x336f55c; `sd` at 0x336f564). The doubleword write runs in the return delay slot (`jr` at 0x336f560; `sd` at 0x336f564). The destination's hardware function and the routine's broader role remain Unknown.
+- `__glOdyim_Color3us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  - **Established effects.** Four word writes to 0x10000 place 0xc580cc09 before the low words of entry arguments 0–2 (`sw` at 0x336f5cc, 0x336f5d0, 0x336f5d4, 0x336f5dc). Argument 2's store executes in the return delay slot (`jr` at 0x336f5d8; `sw` at 0x336f5dc). What those writes mean in hardware and this entry's wider role are Unknown.
+- `__glOdyim_Color3usv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
+  - **Established effects.** Three halfwords are read without sign extension from entry argument 0 +0, +2 and +4 (`lhu` at 0x336f640, 0x336f64c, 0x336f654). At 0x10000 the word 0xc580cc09 precedes the loaded values in word stores (`sw` at 0x336f658, 0x336f65c, 0x336f660, 0x336f668); the last store follows the return in its delay slot (`jr` at 0x336f664; `sw` at 0x336f668). The destination's hardware purpose and the routine's overall role remain Unknown.
+- `__glOdyim_Color4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  - **Established effects.** Four incoming floating-point values are converted from double to single precision (`cvt.s.d` at 0x336f7c0, 0x336f7c8, 0x336f7d0, 0x336f7d8). The routine writes 0xc580d015 and then four floating-point words with values hostfacts leaves Unknown to absolute 0x10000 (`sw` at 0x336f7dc; `swc1` at 0x336f7e0, 0x336f7e4, 0x336f7e8, 0x336f7f0). The final word is stored in the return delay slot (`jr` at 0x336f7ec; `swc1` at 0x336f7f0). The destination's hardware meaning and this routine's broader function are Unknown.
+- `__glOdyim_Color4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  - **Established effects.** Doublewords from entry argument 0 +0, +8, +0x10 and +0x18 are loaded and converted to single precision (`ldc1` at 0x336f840, 0x336f84c, 0x336f854, 0x336f85c; `cvt.s.d` at 0x336f858, 0x336f860, 0x336f868, 0x336f870). At 0x10000, word 0xc580d015 precedes four floating-point stores whose values the facts report leaves Unknown (`sw` at 0x336f864; `swc1` at 0x336f86c, 0x336f874, 0x336f878, 0x336f880). The last store occupies the return delay slot (`jr` at 0x336f87c; `swc1` at 0x336f880). The wider routine role and the destination's hardware significance are Unknown.
+- `__glTextureSBBlendL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 332 bytes
+  **Established.** A floating-point word from argument 2 +0xc (`lwc1` at 0x331e1c8) is copied to argument 2 +0, +4 and +8 (`swc1` at 0x331e200, 0x331e1f8, 0x331e1f4). Three calls to `__GL_TEXENV_CLAMP` follow (`bgezall` at 0x331e22c, 0x331e250, 0x331e274), with their results stored at those three offsets (`swc1` at 0x331e238, 0x331e25c, 0x331e284).
+  Later stores write floating-point words at argument 1 +0, +4 and +8 (`swc1` at 0x331e2a4, 0x331e2bc, 0x331e2ec). The meanings of these fields and the broader routine role are Unknown.
+- `__glTextureSBBlendLA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 384 bytes
+  **Established.** The word at argument 2 +0xc is loaded as a floating-point value (`lwc1` at 0x331e318), then written at argument 2 +0, +4 and +8 (`swc1` at 0x331e350, 0x331e348, 0x331e344). It calls `__GL_TEXENV_CLAMP` four times (`bgezall` at 0x331e37c, 0x331e3a0, 0x331e3c4, 0x331e3e8); the fourth result is stored at argument 2 +0x10 (`swc1` at 0x331e3f8).
+  Near return, a floating-point multiplication (`mul.s` at 0x331e468) precedes a word store at argument 1 +0xc (`swc1` at 0x331e46c). The destination fields and the wider role of this routine remain Unknown.
+- `__glTextureSBBlendRGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 320 bytes
+  **Established.** It calls `__GL_TEXENV_CLAMP` at three points (`bgezall` at 0x331e4f0, 0x331e514, 0x331e538) and stores the floating-point results at argument 2 +0, +4 and +8 (`swc1` at 0x331e4fc, 0x331e520, 0x331e548).
+  Later arithmetic includes floating-point subtraction (`sub.s` at 0x331e558, 0x331e574, 0x331e58c), followed by floating-point word stores at argument 1 +0, +4 and +8 (`swc1` at 0x331e568, 0x331e580, 0x331e5b0). The meanings of the written fields and the routine’s broader role are Unknown.
+- `__glTextureSBBlendRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 376 bytes
+  **Established.** The routine calls `__GL_TEXENV_CLAMP` four times (`bgezall` at 0x331e630, 0x331e654, 0x331e678, 0x331e69c) and stores those floating-point results at argument 2 +0, +4, +8 and +0x10 (`swc1` at 0x331e63c, 0x331e660, 0x331e684, 0x331e6ac).
+  The floating-point word at argument 1 +0xc is read (`lwc1` at 0x331e70c). A multiplication follows (`mul.s` at 0x331e724), and an Unknown word is stored at that offset (`swc1` at 0x331e728). The value’s significance and the routine’s broader role are Unknown.
+- `__glTextureSBBlendA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 120 bytes
+  **Established.** It calls `__GL_TEXENV_CLAMP` (`bgezall` at 0x331e788), then stores its floating-point result at argument 2 +0x10 (`swc1` at 0x331e794). It loads a floating-point word from argument 1 +0xc (`lwc1` at 0x331e798), performs a multiplication (`mul.s` at 0x331e7a4), then stores an Unknown word at that offset (`swc1` at 0x331e7a8). The role of the field and the broader effect of this routine are Unknown.
