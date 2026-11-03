@@ -7400,3 +7400,34 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It reads a doubleword at absolute 0x1558 and makes two calls to `glLoadMatrixf` (`ld` at 0x335f7d0; `jalr` at 0x335f808, 0x335f820). Their delay slots write doublewords to 0x1558, and the return delay slot writes another doubleword there (`sd` at 0x335f80c, 0x335f824, 0x335f840; `jr` at 0x335f83c). The field’s wider purpose is Unknown.
 - `__glce_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f850
   This routine reads the doubleword at 0x1560 and calls `glLoadMatrixd` twice (`ld` at 0x335f850; `jalr` at 0x335f888, 0x335f8a0). Both call delay slots store doublewords at 0x1560; another store to that address executes in the return delay slot (`sd` at 0x335f88c, 0x335f8a4, 0x335f8c0; `jr` at 0x335f8bc). The stored values’ broader role is Unknown.
+
+## 64-bit IP30 library: pixel and buffer paths
+
+- `__glim_PixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32924b0
+  A word read from absolute 0x1030 is compared with 1; `beq` is taken when equal and falls through otherwise (`lw` at 0x32924c0; `addiu` at 0x32924c8; `beq` at 0x32924e0). The taken path calls `__glSetError` with `a0` 0x502 (`jalr` at 0x3292828; `addiu` at 0x329282c). The wider role is Unknown.
+- `__glCheckReadPixelArgs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3292e20
+  The first `bltz` is taken if entry `a1` is signed less than zero; when it falls through, the second `bltz` tests entry `a2` for signed less than zero (`bltz` at 0x3292e38, 0x3292e40). Each taken path reaches a call to `__glSetError` with `a0` 0x501 (`jalr` at 0x329321c; `addiu` at 0x3293220). Other argument checks are present; the complete role is Unknown.
+- `__glim_ReadPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3293400
+  A `beqz` takes its branch if the word read at absolute 0x1030 is zero and falls through if nonzero (`lw` at 0x3293420; `beqz` at 0x3293438). A different path calls `glReadPixels`, with a zero word store to 0x1030 in its delay slot (`jalr` at 0x3293490; `sw` at 0x3293494). The field’s role is Unknown.
+- `__glim_CopyPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3293500
+  It reads the word at absolute 0x1030; `beqz` takes the branch when that word is zero and falls through when nonzero (`lw` at 0x329350c; `beqz` at 0x3293528). Another path invokes `glCopyPixels`, storing a zero word to 0x1030 in the call delay slot (`jalr` at 0x32935d8; `sw` at 0x32935dc). The word’s purpose is Unknown.
+- `__glInitBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c34c0
+  Its doubleword stores include 0x32c3690 at entry `a0` +0x60, and 0x32c3580 at both +0x58 and +0x50 (`sd` at 0x32c34dc, 0x32c34e0, 0x32c34e4). The stored values’ wider role is Unknown.
+- `__glMakeCurrentBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3500
+  It copies a doubleword from entry `a1` +0 to entry `a0` +0x18, and a word from `a1` +8 to `a0` +0x20 (`ld` at 0x32c3500; `sd` at 0x32c3504; `lw` at 0x32c3508; `sw` at 0x32c350c). It also writes entry `a2` at `a0` +0 (`sd` at 0x32c3530). The fields’ wider meaning is Unknown.
+- `__glLoseCurrentBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3540
+  If the doubleword at entry `a0` +0 is nonzero, `beqz` falls through and stores zero there (`ld` at 0x32c3540; `beqz` at 0x32c3544; `sd` at 0x32c354c). That path copies the doubleword at `a0` +0x18 to offset 0 of the doubleword loaded from `a0` +0x70 (`ld` at 0x32c3548, 0x32c3550; `sd` at 0x32c3554). The fields’ role is Unknown.
+- `__glMoveBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3690
+  It stores entry `a2` at entry `a0` +0x30 as a word, then stores entry `a1` at +0x2c in the return delay slot (`sw` at 0x32c3690; `jr` at 0x32c3694; `sw` at 0x32c3698). Their later use is Unknown.
+- `__glFreeBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c36a0
+  When the doubleword at entry `a0` +0 is nonzero, `beqz` falls through to an indirect call with that doubleword as its first argument (`ld` at 0x32c36a0; `beqz` at 0x32c36b8; `jalr` at 0x32c36c8). Both paths store zero to entry `a0` +0 (`sd` at 0x32c36d8). The indirect target and wider role are Unknown.
+- `__glSep2dCopyPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b2af0
+  It reads the word at entry `a1` +0xbc and a doubleword at `a1` +0x228 (`lw` at 0x32b2b10; `ld` at 0x32b2b18). Calls include `__glElementsPerGroup` and `__glim_ReadPixels` (`jalr` at 0x32b2b8c, 0x32b2c8c). The routine’s broader effect is Unknown.
+- `__glResizeBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3580
+  The reads include a word at entry `a0` +0x24 and a doubleword at +0x18 (`ld` at 0x32c35bc). The `lw` at 0x32c3584 reads the word at argument 0 +0x24. An indirect call returns a value that is stored at entry `a0` +0x18 (`jalr` at 0x32c35f8; `sd` at 0x32c3610). The callee and the field’s purpose are Unknown.
+- `FillBufferInfo` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ca4f0
+  An indirect call receives 1 and 0xd0 as its first two arguments (`addiu` at 0x32ca4f8, 0x32ca50c; `jalr` at 0x32ca508). The returned value is the base for doubleword stores including 0x32c36a0 at +0x68 and +0x88 (`sd` at 0x32ca518, 0x32ca51c). The callee and stored value’s role are Unknown.
+- `__glMakeCurrentBuffers` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ca540
+  An indirect call receives the first four entry arguments (`jalr` at 0x32ca570). Its returned doubleword is stored at entry `a0` +0x9e90 (`sd` at 0x32ca580). The callee and stored value’s wider use are Unknown.
+- `__glCopyConvolutionPixelModeState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32cc060
+  The copies include a word from entry `a0` +0x8c to entry `a1` +0x8c, and a floating-point word from `a0` +0x98 to `a1` +0x98 (`lw` at 0x32cc060; `sw` at 0x32cc064; `lwc1` at 0x32cc068; `swc1` at 0x32cc06c). The fields’ purpose is Unknown.
