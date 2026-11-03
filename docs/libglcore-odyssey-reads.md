@@ -7083,3 +7083,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glMipsCopyDispatch` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32905b0
   **Established effects.** Its first loop reads and writes a doubleword at unknown bases (`ld` at 0x32905e0; `sd` at 0x32905ec).
   `bnez` at 0x32905e8 repeats that loop when its tested value is nonzero; the value is unknown. The store is in the branch delay slot and executes on both paths. The routine’s wider hardware effect and role are Unknown.
+
+## 64-bit IP30 library: vertex and state entry operations
+
+- `glVertex3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** It loads the doubleword at absolute 0x1b58 and transfers control through it; arguments 0 through 3 retain their entry values (`ld` at 0x3377800; `jr` at 0x3377804). The destination and this entry’s broader hardware role are Unknown.
+- `glVertex4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** An indirect jump takes its target from the doubleword read at absolute 0x1b60 and carries the original first four argument registers (`ld` at 0x3377900; `jr` at 0x3377904). The target’s identity and this entry’s broader hardware role are Unknown.
+- `glVertex4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** The first instruction reads a doubleword at absolute 0x1b68; the following tail jump uses it without changing the first four arguments (`ld` at 0x3377a00; `jr` at 0x3377a04). Its destination and the routine’s broader hardware role are Unknown.
+- `glVertex4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** A doubleword loaded from absolute 0x1b70 supplies an indirect jump target, with arguments 0 through 3 unchanged (`ld` at 0x3377b00; `jr` at 0x3377b04). The target’s identity and this routine’s broader hardware role are Unknown.
+- `glVertex4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  - **Established effects.** Entry reads the doubleword at absolute 0x1b78, then jumps through it with the first four entry arguments (`ld` at 0x3377c00; `jr` at 0x3377c04). The indirect destination and the routine’s broader hardware role are Unknown.
+- `__glim_TexCoord2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
+  It loads a doubleword from absolute address 0x1020 (`ld` at 0x33139f4). Relative to that value, it stores entry f12 and f13 at +0x188 and +0x18c (`swc1` at 0x3313a04, 0x33139fc), and copies a word from +0xf2c to +0x194 (`lwc1` at 0x3313a00; `swc1` at 0x3313a0c). Another word store at +0x190 has an unknown value (`swc1` at 0x33139f8). The routine's role is Unknown.
+- `__glim_TexCoord2i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 48 bytes
+  It moves entry a0 and a1 into floating-point registers and converts words to single precision (`mtc1` at 0x3313a18, 0x3313a10; `cvt.s.w` at 0x3313a2c, 0x3313a24). It loads a doubleword from absolute address 0x1020 (`ld` at 0x3313a14). Relative to that value, word stores at +0x188, +0x18c and +0x190 have unknown values (`swc1` at 0x3313a3c, 0x3313a34, 0x3313a28); it copies the word at +0xf2c to +0x194 (`lwc1` at 0x3313a20; `swc1` at 0x3313a30). Its role is Unknown.
+- `__glim_TexCoord2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 48 bytes
+  The routine transfers entry a0 and a1 to floating-point registers and converts words to single precision (`mtc1` at 0x3313a48, 0x3313a40; `cvt.s.w` at 0x3313a5c, 0x3313a54). It loads a doubleword from absolute address 0x1020 (`ld` at 0x3313a44). Relative to that value, it stores words of unknown value at +0x188, +0x18c and +0x190 (`swc1` at 0x3313a6c, 0x3313a64, 0x3313a58) and copies the word at +0xf2c to +0x194 (`lwc1` at 0x3313a50; `swc1` at 0x3313a60). Its role is Unknown.
+- `__glim_TexCoord2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 48 bytes
+  It loads doublewords from entry a0 +0x0 and +0x8 (`ldc1` at 0x3313a70, 0x3313a84) and converts doubles to single precision (`cvt.s.d` at 0x3313a7c, 0x3313a94). It loads a doubleword from absolute address 0x1020 (`ld` at 0x3313a74). Relative to that value, word stores at +0x188, +0x18c and +0x190 have unknown values (`swc1` at 0x3313a80, 0x3313a9c, 0x3313a90); the word at +0xf2c is copied to +0x194 (`lwc1` at 0x3313a78; `swc1` at 0x3313a8c). The role is Unknown.
+- `__glim_TexCoord2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
+  It loads a doubleword from absolute address 0x1020 (`ld` at 0x3313aa0). Relative to that value, it copies words from entry a0 +0x0 and +0x4 to +0x188 and +0x18c (`lwc1` at 0x3313aa4, 0x3313ab4; `swc1` at 0x3313ab0, 0x3313ac4), and copies the word at +0xf2c to +0x194 (`lwc1` at 0x3313aa8; `swc1` at 0x3313abc). A further word store at +0x190 has an unknown value (`swc1` at 0x3313ab8). The routine's role is Unknown.
+- `__glim_StencilMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bb320
+  **Established effects.** When the word at 0x1030 differs from 1, the `beq` falls through (`lw` at 0x32bb320, `addiu` at 0x32bb324, `beq` at 0x32bb33c). This path stores a halfword of unknown value at offset 0x78a of the doubleword loaded from 0x1020 (`ld` at 0x32bb32c, `sh` at 0x32bb358). The purpose of this mask update is unknown.
+- `__glim_BlendColorEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfd30
+  **Established effects.** The `beq` falls through when the word at 0x1030 differs from 1 (`lw` at 0x32bfd30, `addiu` at 0x32bfd34, `beq` at 0x32bfd4c). On that path, floating-point words of unknown value are stored at offsets 0x844, 0x840, 0x83c and 0x838 of the doubleword loaded from 0x1020 (`ld` at 0x32bfd3c, `swc1` at 0x32bfdac, `swc1` at 0x32bfdb0, `swc1` at 0x32bfdb4, `swc1` at 0x32bfdc0). The broader purpose of these stored values is unknown.
+- `__glim_PolygonOffsetEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfdf0
+  **Established effects.** A word at 0x1030 is compared with 1; if it differs, the `beq` falls through (`lw` at 0x32bfdf0, `addiu` at 0x32bfdf4, `beq` at 0x32bfe0c). That path stores entry registers `f13` and `f12` at offsets 0x2a8 and 0x2a4 of the doubleword loaded from 0x1020, respectively (`ld` at 0x32bfdfc, `swc1` at 0x32bfe14, `swc1` at 0x32bfe18). The effect of these two values on later operations is unknown.
+- `__glim_PolygonOffset` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfe60
+  **Established effects.** If the word at 0x1030 is not 1, the `beq` falls through (`lw` at 0x32bfe60, `addiu` at 0x32bfe64, `beq` at 0x32bfe7c). The path stores entry register `f12` at offset 0x2a4 and a floating-point word of unknown value at offset 0x2a8 of the doubleword loaded from 0x1020 (`ld` at 0x32bfe6c, `swc1` at 0x32bfe88, `swc1` at 0x32bfe90). The later use of these stored values is unknown.
+- `__glim_Color3ub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c36f0
+  **Established effects.** It copies a floating-point word from offset 0xf2c to offset 0x26c of the doubleword loaded from 0x1020 (`ld` at 0x32c36f4, `lwc1` at 0x32c370c, `swc1` at 0x32c3740). It calls an unknown callee with that doubleword as `a0`, entry `a1` and `a2`, and the doubleword plus entry `a0` shifted left by 2 as `a3` (`ld` at 0x32c36f4, `dsll` at 0x32c36fc, `daddu` at 0x32c3704, `jalr` at 0x32c3748). The delay slot stores a floating-point word at offset 0x268 of the doubleword (`jalr` at 0x32c3748, `swc1` at 0x32c374c). The purpose of the call and copied values is unknown.
