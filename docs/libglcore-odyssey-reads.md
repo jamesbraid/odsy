@@ -4948,3 +4948,44 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** It calls `__glOdyim_ScratchColor3fv` with entry arguments 0–3, then `__glim_Color3fv` with entry argument 0 first (`jalr` at 0x3287974, 0x3287980). The facts report leaves the second call's other arguments Unknown. The saved return address is reloaded after the second call before the return (`ld` at 0x3287988; `jr` at 0x3287994). The hardware roles of these calls and the routine's broader function remain Unknown.
 - `__glOdyim_SoftScratchColor3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
   - **Established effects.** Entry arguments 1 and 2 are saved on the stack (`sd` at 0x32879bc, 0x32879a8). The routine first calls `__glOdyim_ScratchColor3i` with entry arguments 0–3, then `__glim_Color3i` with entry arguments 0–2 (`jalr` at 0x32879cc, 0x32879e0). Argument 2 is reloaded in the second call's delay slot (`jalr` at 0x32879e0; `ld` at 0x32879e4). The calls' hardware implications and the entry's wider role are Unknown.
+
+## 64-bit IP30 library: soft scratch color sender calls
+
+- `__glOdyim_SoftScratchColor3iv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287a00
+  **Established effects.** Calls `__glOdyim_ScratchColor3iv` with entry a0, then `__glim_Color3iv` with the same a0; a1 through a3 are unknown at the latter call (`jalr` at 0x3287a24, 0x3287a30).
+  The second call supplies the return value (`jr` at 0x3287a44). The pair’s wider hardware effect is Unknown.
+- `__glOdyim_SoftScratchColor3s` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287a50
+  **Established effects.** It calls `__glOdyim_ScratchColor3s` followed by `__glim_Color3s`, passing entry a0, a1 and a2 to both (`jalr` at 0x3287a7c, 0x3287a90).
+  Entry a2 is reloaded in the second call’s delay slot (`ld` at 0x3287a94; `jalr` at 0x3287a90).
+  The second result is returned (`jr` at 0x3287aa4). The role of these scalar calls in hardware remains Unknown.
+- `__glOdyim_SoftScratchColor3sv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287ab0
+  **Established effects.** Entry a0 is sent to `__glOdyim_ScratchColor3sv`, then to `__glim_Color3sv` (`jalr` at 0x3287ad4, 0x3287ae0).
+  At the latter call a1, a2 and a3 are unknown; its result is returned (`jalr` at 0x3287ae0; `jr` at 0x3287af4).
+  The wider effect of this vector call pair on hardware is Unknown.
+- `__glOdyim_SoftScratchColor3ub` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287b00
+  **Established effects.** It saves entry a2 and a1 as doublewords on the stack (`sd` at 0x3287b08, 0x3287b1c).
+  The two calls, `__glOdyim_ScratchColor3ub` and `__glim_Color3ub`, both receive entry a0, a1 and a2 (`jalr` at 0x3287b2c, 0x3287b40).
+  The second call’s return value is propagated (`jr` at 0x3287b54). The hardware role of these byte-input calls is Unknown.
+- `__glOdyim_SoftScratchColor3ubv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3287b60
+  **Established effects.** It forwards entry a0 first to `__glOdyim_ScratchColor3ubv` and then to `__glim_Color3ubv`; a1 through a3 of the second call are unknown (`jalr` at 0x3287b84, 0x3287b90).
+  Its return value is the second call’s result (`jr` at 0x3287ba4). What the byte-vector call pair does to hardware remains Unknown.
+- `__glOdyim_SoftScratchColor3ui` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  **Established.** It saves entry arguments 1 and 2 as doublewords on the stack (`sd` at 0x3287bcc, 0x3287bb8), then calls `__glOdyim_ScratchColor3ui` (`jalr` at 0x3287bdc). The following `__glim_Color3ui` call receives entry arguments 0 through 2 unchanged (`jalr` at 0x3287bf0). The wider role and calls' hardware effects are Unknown.
+- `__glOdyim_SoftScratchColor3uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** `__glOdyim_ScratchColor3uiv` is called with entry arguments 0 through 3 (`jalr` at 0x3287c34). It next invokes `__glim_Color3uiv` with entry argument 0; hostfacts leaves the other reported arguments unknown (`jalr` at 0x3287c40). The routine's broader role and the hardware effects of its calls are Unknown.
+- `__glOdyim_SoftScratchColor3us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  **Established.** The routine saves entry arguments 2 and 1 on the stack as doublewords (`sd` at 0x3287c68, 0x3287c7c). After calling `__glOdyim_ScratchColor3us` (`jalr` at 0x3287c8c), it reloads argument 1 (`ld` at 0x3287c98). The `__glim_Color3us` call receives entry arguments 0 through 2, with argument 2 reloaded in the call delay slot (`jalr` at 0x3287ca0; `ld` at 0x3287ca4). The calls' hardware effects and wider purpose are Unknown.
+- `__glOdyim_SoftScratchColor3usv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established.** Its first call is to `__glOdyim_ScratchColor3usv` with entry arguments 0 through 3 unchanged (`jalr` at 0x3287ce4). `__glim_Color3usv` follows with entry argument 0; its other reported arguments are unknown (`jalr` at 0x3287cf0). The hardware effects and this routine's broader role are Unknown.
+- `__glOdyim_SoftScratchColor4b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  **Established.** It saves entry arguments 3, 2 and 1 as stack doublewords (`sd` at 0x3287d14, 0x3287d1c, 0x3287d30), then calls `__glOdyim_ScratchColor4b` (`jalr` at 0x3287d40). It reloads arguments 1 and 2 (`ld` at 0x3287d4c, 0x3287d50). The subsequent `__glim_Color4b` call receives entry arguments 0 through 3, with argument 3 loaded in the delay slot (`jalr` at 0x3287d58; `ld` at 0x3287d5c). The wider role and the calls' hardware effects are Unknown.
+- `__glOdyim_SoftScratchColor4bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** Its first call invokes `__glOdyim_ScratchColor4bv` with entry arguments 0–3 (`jalr` at 0x3287da4). It then calls `__glim_Color4bv` with entry argument 0 first; the facts report leaves that call's remaining arguments Unknown (`jalr` at 0x3287db0). The hardware meaning of these calls and the routine's broader role remain Unknown.
+- `__glOdyim_SoftScratchColor4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  - **Established effects.** The body saves doublewords from `f13`, `f14` and `f15` at entry sp -0x18, -0x20 and -0x28 (`sdc1` at 0x3287df0, 0x3287ddc, 0x3287dd4). After calling `__glOdyim_ScratchColor4d`, it reloads `f13` and `f14` before calling `__glim_Color4d` (`jalr` at 0x3287e00; `ldc1` at 0x3287e0c, 0x3287e10; `jalr` at 0x3287e18). The `f15` reload runs in the latter call's delay slot (`jalr` at 0x3287e18; `ldc1` at 0x3287e1c). The callees' hardware effects and this entry's wider role are Unknown.
+- `__glOdyim_SoftScratchColor4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** Entry arguments 0–3 are passed to `__glOdyim_ScratchColor4dv` (`jalr` at 0x3287e64). A second call targets `__glim_Color4dv` with entry argument 0 first; hostfacts leaves its other arguments Unknown (`jalr` at 0x3287e70). The second call's result is returned (`jr` at 0x3287e84). The hardware role of these calls and the routine's overall purpose remain Unknown.
+- `__glOdyim_SoftScratchColor4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  - **Established effects.** It saves `f15`, `f14` and `f13` as doublewords at entry sp -0x28, -0x20 and -0x18 (`sdc1` at 0x3287e94, 0x3287e9c, 0x3287eb0). Following `__glOdyim_ScratchColor4f`, the routine reloads `f13` and `f14` before calling `__glim_Color4f` (`jalr` at 0x3287ec0; `ldc1` at 0x3287ecc, 0x3287ed0; `jalr` at 0x3287ed8). The `f15` reload is in the second call's delay slot (`jalr` at 0x3287ed8; `ldc1` at 0x3287edc). The effects of those calls on hardware and this routine's broader function are Unknown.
+- `__glOdyim_SoftScratchColor4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** The first `jalr` calls `__glOdyim_ScratchColor4fv` with entry arguments 0–3, while its delay slot retains entry argument 0 in `fp` (`jalr` at 0x3287f24; `move` at 0x3287f28). The following `__glim_Color4fv` call uses entry argument 0 first; its remaining arguments are Unknown in hostfacts (`jalr` at 0x3287f30). The routine returns the latter result (`jr` at 0x3287f44); the wider hardware significance of this wrapper remains Unknown.
