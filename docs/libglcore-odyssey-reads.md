@@ -7499,3 +7499,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   On a path through its computed dispatch, it copies a word from a computed doubleword base to entry `a1` +0 (`lw` at 0x32d7408; `sw` at 0x32d7414). When the word at absolute 0x1030 equals 1, `beq` takes the path to `__glSetError` with 0x502 in `a0` (`lw` at 0x32d7378; `addiu` at 0x32d7380; `beq` at 0x32d7398; `jalr` at 0x32d7560; `addiu` at 0x32d7564). Its wider purpose is Unknown.
 - `__glim_GetPixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   One dispatch path loads a word from a computed doubleword base and writes its low halfword to entry `a1` +0 (`lw` at 0x32d7608; `sh` at 0x32d7614). The `beq` at 0x32d7598 is taken when the word at 0x1030 equals 1 and leads to `__glSetError` with 0x502 in `a0` (`lw` at 0x32d7578; `addiu` at 0x32d7580; `beq` at 0x32d7598; `jalr` at 0x32d7760; `addiu` at 0x32d7764). The wider hardware effect is Unknown.
+
+## 64-bit IP30 library: pixel selection and entry points
+
+- `__glPixelTexGenParameterivSGIS_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3304300
+  The first `beq` is taken when entry `a0` equals 0x8354 and falls through otherwise (`dli` at 0x3304300; `beq` at 0x3304308). The taken path returns 1 in the return delay slot (`jr` at 0x3304334; `addiu` at 0x3304338). The wider role is Unknown.
+- `__glPixelTexGenParameterfvSGIS_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3304340
+  It calls `__glPixelTexGenParameterivSGIS_size` with the first four entry arguments (`bgezall` at 0x330435c). The result reaches the return (`jr` at 0x330436c). Its wider purpose is Unknown.
+- `glGetPixelTransformParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3306490
+  The body returns with a no-operation delay slot (`jr` at 0x3306490; `nop` at 0x3306494). The integer return value and this entry’s purpose are Unknown.
+- `glGetPixelTransformParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33064a0
+  Its only transfer is a return with a no-operation in the delay slot (`jr` at 0x33064a0; `nop` at 0x33064a4). Its purpose and the value returned in the integer register are Unknown.
+- `glPixelTransformParameterfSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3306600
+  Entry returns through `ra`; its delay slot is a no-operation (`jr` at 0x3306600; `nop` at 0x3306604). The value left in the return register and this routine’s role are Unknown.
+- `glPixelTransformParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3306610
+  The routine transfers to `ra` and executes a no-operation in its delay slot (`jr` at 0x3306610; `nop` at 0x3306614). Neither an integer return value nor a wider purpose is established; both are Unknown.
+- `glPixelTransformParameteriSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3306620
+  It returns immediately, executing a no-operation in the return delay slot (`jr` at 0x3306620; `nop` at 0x3306624). The purpose of this entry and its return-register value remain Unknown.
+- `glPixelTransformParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3306630
+  A return to `ra` is followed by a no-operation in the delay slot (`jr` at 0x3306630; `nop` at 0x3306634). Its wider role is Unknown, as is the integer return value.
+- `glPixelTransformSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3306640
+  Its two instructions return through `ra` and execute a no-operation in the delay slot (`jr` at 0x3306640; `nop` at 0x3306644). The integer value returned and the effect intended by this entry are Unknown.
+- `SwapBuffers` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33396b0
+  The body consists of a return through `ra` with a no-operation in the delay slot (`jr` at 0x33396b0; `nop` at 0x33396b4). This body leaves its integer return value and broader role Unknown.
+- `__glGenericPickBufferProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It clears a byte at entry `a0` +0x9948 and reads a word at entry `a0` +0x868 (`sb` at 0x32f3528; `lw` at 0x32f352c). When the byte at entry `a0` +0xde6 is zero, `beqz` takes a path that stores a doubleword at +0x4718; the value's role is Unknown (`beqz` at 0x32f3594; `sd` at 0x32f35b4). The `lbu` at 0x32f3590 reads the byte at argument 0 +0xde6.
+- `__glGenericPickPixelProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a floating-point word at entry `a0` +0x378 and converts it to double precision (`lwc1` at 0x32f35c4; `cvt.d.s` at 0x32f35d4). `bc1f` takes its branch when the converted value does not compare equal to the loaded double-precision 1.0 (`ldc1` at 0x32f35d0; `c.eq.d` at 0x32f35d8; `bc1f` at 0x32f35dc). The broader hardware role is Unknown.
+- `__glim_SelectBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  After the initial `beq` falls through, `bltz` takes the `__glSetError` path when entry `a0` is signed negative, passing 0x501 in `a0` (`beq` at 0x3303788; `bltz` at 0x3303790; `jalr` at 0x33037f0; `addiu` at 0x33037f4). A separate path stores entry `a1` as doublewords at offsets 0x14b0 and 0x14a8 from the doubleword read at 0x1020 (`ld` at 0x330376c; `sd` at 0x33037a4, 0x33037ac). Their later role is Unknown.
+- `__glPixelTransformParameterfvSGI_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its first `bnez` is taken when entry `a0` is unsigned less than 0x8019 and falls through otherwise (`dli` at 0x33041c0; `sltu` at 0x33041c4; `bnez` at 0x33041c8). One return path sets `v0` to 4 in the return delay slot (`jr` at 0x330425c; `addiu` at 0x3304260). The meaning of this result is Unknown.
+- `__glPixelTransformParameterivSGI_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glPixelTransformParameterfvSGI_size` with its first four entry arguments (`bgezall` at 0x33042dc). The call's return value reaches the caller unchanged (`jr` at 0x33042ec). The wider role is Unknown.
