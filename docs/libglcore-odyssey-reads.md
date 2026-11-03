@@ -7928,3 +7928,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   When the word at entry `a0` +0xff8 is signed less than or equal to zero, `blez` takes a path to an indirect call (`lw` at 0x3326e8c; `blez` at 0x3326eac; `jalr` at 0x3326f08). That call receives entry `a0` and the doubleword at entry `a1` +0x100 as its first two arguments (`ld` at 0x3326f38; `jalr` at 0x3326f08). The callee and routine’s wider role are Unknown.
 - `__glDisposeTexObj` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3326f50
   It decrements the word at entry `a1` +0 and stores the result there (`lw` at 0x3326f50; `addiu` at 0x3326f5c; `sw` at 0x3326f68). `beqz` takes the path to an indirect call if that result is zero (`beqz` at 0x3326f6c; `jalr` at 0x3326f88). The target and the word’s role are Unknown.
+
+## 64-bit IP30 library: multitexture coordinate entry paths
+
+- `glMultiTexCoord3fvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3333d30
+  It calls `glTexCoord3fv`, placing entry `a1` in `a0` in the call delay slot (`jalr` at 0x3333d4c; `move` at 0x3333d50). The callee’s later effect is Unknown.
+- `glMultiTexCoord4fvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3333d70
+  The call to `glTexCoord4fv` receives entry `a1` as `a0`; that argument is set in the delay slot (`jalr` at 0x3333d8c; `move` at 0x3333d90). Its wider effect is Unknown.
+- `glMultiTexCoord1dvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3333db0
+  Entry `a1` becomes the first argument to `glTexCoord1dv` in the call delay slot (`jalr` at 0x3333dcc; `move` at 0x3333dd0). The routine’s broader purpose is Unknown.
+- `glMultiTexCoord2dvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3333df0
+  It invokes `glTexCoord2dv` with the entry `a1` value in `a0`, moved in the call delay slot (`jalr` at 0x3333e0c; `move` at 0x3333e10). The callee’s hardware effect remains Unknown.
+- `glMultiTexCoord3dvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3333e30
+  A call to `glTexCoord3dv` takes entry `a1` as its first argument, set in the delay slot (`jalr` at 0x3333e4c; `move` at 0x3333e50). What the callee does with that argument is Unknown.
+- `glMultiTexCoord1svSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `glTexCoord1sv` with entry `a1` in `a0`; the move occurs in the call delay slot (`jalr` at 0x3333acc; `move` at 0x3333ad0). The callee's wider hardware effect is Unknown.
+- `glMultiTexCoord2svSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call to `glTexCoord2sv` receives entry `a1` as its first argument, set in the delay slot (`jalr` at 0x3333b0c; `move` at 0x3333b10). The downstream hardware role is Unknown.
+- `glMultiTexCoord3svSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It passes entry `a1` as `a0` to `glTexCoord3sv`, with the move in the call's delay slot (`jalr` at 0x3333b4c; `move` at 0x3333b50). The effects of the callee are Unknown.
+- `glMultiTexCoord4svSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A call to `glTexCoord4sv` uses entry `a1` as `a0`; that argument is moved in the delay slot (`jalr` at 0x3333b8c; `move` at 0x3333b90). The outcome of that call on hardware is Unknown.
+- `glMultiTexCoord1ivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its `glTexCoord1iv` call takes entry `a1` in `a0`, supplied by the delay-slot move (`jalr` at 0x3333bcc; `move` at 0x3333bd0). The callee's hardware effect is Unknown.
+- `glMultiTexCoord2ivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The delay slot of its `glTexCoord2iv` call moves entry `a1` into `a0` (`jalr` at 0x3333c0c; `move` at 0x3333c10). Its downstream role is Unknown.
+- `glMultiTexCoord3ivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Entry `a1` is supplied as the first argument to `glTexCoord3iv` by the call delay slot (`jalr` at 0x3333c4c; `move` at 0x3333c50). The callee's wider effects are Unknown.
+- `glMultiTexCoord4ivSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `glTexCoord4iv` and moves entry `a1` to `a0` in the delay slot (`jalr` at 0x3333c8c; `move` at 0x3333c90). The call's hardware effect is Unknown.
+- `glMultiTexCoord1fvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `glTexCoord1fv` call receives entry `a1` as `a0` through a delay-slot move (`jalr` at 0x3333ccc; `move` at 0x3333cd0). Its later hardware role is Unknown.
+- `glMultiTexCoord2fvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its call to `glTexCoord2fv` sets `a0` to entry `a1` in the delay slot (`jalr` at 0x3333d0c; `move` at 0x3333d10). What the target does to hardware is Unknown.
