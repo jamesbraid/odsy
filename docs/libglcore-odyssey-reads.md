@@ -7235,3 +7235,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Its reads include words at entry `a1` +0xfc and +0x108, and a doubleword at entry `a0` +0x4d58 (`lw` at 0x32a6440, 0x32a6478; `ld` at 0x32a6480). An indirect call uses the doubleword at entry `a0` +0x4718 and entry stack pointer minus 0xd0 as its first two arguments (`ld` at 0x32a6554; `jalr` at 0x32a6558). The target and broader role are Unknown.
 - `__glSpanRenderCI2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a65e0
   `blez` skips an inner loop when the word read from entry `a1` +0xc8 is signed less than or equal to zero (`lw` at 0x32a6608; `blez` at 0x32a669c). That loop includes an indirect call whose first argument is the doubleword at entry `a0` +0x4718 and whose second is entry stack pointer minus 0xc0 (`ld` at 0x32a66e0; `jalr` at 0x32a66dc). The callee and role are Unknown.
+
+## 64-bit IP30 library: span and bitmap paths
+
+- `__glSpanRenderStencilUshort2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5080
+  Entry `a1` +0xfc and +0xec supply two words (`lw` at 0x32a5080, 0x32a508c). The body also makes an indirect call to an unknown target (`jalr` at 0x32a5150). The routine’s wider role is Unknown.
+- `__glSpanRenderStencilUbyte` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a51b0
+  The routine reads words at entry `a1` +0xc8 and +0x100 (`lw` at 0x32a51b0, 0x32a51d8). An indirect call occurs later; its destination is unknown (`jalr` at 0x32a52b0). The field meanings are Unknown.
+- `__glSpanRenderStencilUbyte2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5340
+  It loads words from entry `a1` +0xe4 and +0xec (`lw` at 0x32a5354, 0x32a534c), then has an indirect call with an unknown target (`jalr` at 0x32a5404). The wider effect is Unknown.
+- `__glSpanRenderCIushort` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5460
+  Among its accesses are a doubleword read at entry `a0` +0x4d58 and a word read at entry `a1` +0x108 (`ld` at 0x32a54a4; `lw` at 0x32a5498). It calls an unknown target indirectly (`jalr` at 0x32a5588). Their roles are Unknown.
+- `__glSpanRenderCIushort2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5610
+  A doubleword is loaded from entry `a0` +0x4d58, and a word from entry `a1` +0x100 (`ld` at 0x32a5630; `lw` at 0x32a5638). It also issues an indirect call to an unknown destination (`jalr` at 0x32a56f0). The field purposes are Unknown.
+- `__glSpanRenderCIubyte` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5760
+  The accesses include a word at entry `a1` +0xc8 and a doubleword at entry `a0` +0x4d58 (`lw` at 0x32a57ac; `ld` at 0x32a57a4). An indirect call has an unknown callee (`jalr` at 0x32a5888). The broader role is Unknown.
+- `__glSpanRenderCIubyte2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5910
+  It reads a word from entry `a1` +0x108 and a doubleword from entry `a0` +0x4d58 (`lw` at 0x32a5928; `ld` at 0x32a5930). The body contains an indirect call whose target is unknown (`jalr` at 0x32a59f4). The purpose of these fields is Unknown.
+- `__glSpanRenderCIubyte3` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5a60
+  Entry `a1` +0xe0 is read as a word, and entry `a0` +0x4d58 as a doubleword (`lw` at 0x32a5a80; `ld` at 0x32a5aa0). The code makes a call through an unknown target (`jalr` at 0x32a5bc8). Its wider purpose is Unknown.
+- `__glSpanRenderCIubyte4` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5c50
+  It loads words at entry `a1` +0xe0 and +0x100 and a doubleword at entry `a0` +0x4d58 (`lw` at 0x32a5c50, 0x32a5c7c; `ld` at 0x32a5c74). A later indirect call goes to an unknown callee (`jalr` at 0x32a5d8c). Their roles are Unknown.
+- `__glSpanRenderRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a5e00
+  The initial reads include words at entry `a1` +0xec and +0xfc (`lw` at 0x32a5e00, 0x32a5e04). It calls an unknown target indirectly (`jalr` at 0x32a5f08). The wider effect is Unknown.
+- `__glSpanRenderStencil` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a6750
+  It reads words at entry `a1` +0xc8 and +0xec (`lw` at 0x32a6750, 0x32a6754). An indirect call passes entry `a0` +0x9c08 as its first argument; the remaining argument values are unknown (`jalr` at 0x32a686c). The callee and routine role are Unknown.
+- `__glSpanRenderStencil2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a68f0
+  Its inputs include the words at entry `a1` +0xc8 and +0x100 and at entry `a0` +0xe00 (`lw` at 0x32a68f8, 0x32a6908, 0x32a6924). It makes an indirect call with entry `a0` +0x9c08 as the first argument and unknown remaining argument values (`jalr` at 0x32a69f0). Its destination and wider purpose are Unknown.
+- `__glRenderBitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c0be0
+  `beqz` takes the return path when the byte at entry `a0` +0x274 is zero (`lbu` at 0x32c0c00; `beqz` at 0x32c0c20; `jr` at 0x32c0e98). When that `beqz` falls through and the word at entry `a0` +0xdd4 equals 0x1c01, `beq` is taken to a call to `__glFeedbackBitmap` with entry `a0` and entry `a0` +0x198 as its first two arguments (`lw` at 0x32c0c2c; `addiu` at 0x32c0c44; `beq` at 0x32c0c48; `jalr` at 0x32c0ed0; `daddiu` at 0x32c0ed4). The routine's wider role is Unknown.
+- `__glRenderAliasLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e2970
+  It calls `__glInitLineData` with the first four entry argument registers (`bgezall` at 0x32e29b4). When the word at entry `a0` +0x95ac is zero, `beqz` is taken to the return path (`lw` at 0x32e29bc; `beqz` at 0x32e29d0; `jr` at 0x32e2cf8). The wider role is Unknown.
+- `__glGenericPickRenderBitmapProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32f2980
+  The routine stores the doubleword 0x32c0be0 at entry `a0` +0x4cd0 in the delay slot of `bnez`, which executes on both paths (`bnez` at 0x32f299c; `sd` at 0x32f29a0). When the word at entry `a0` +0x598 is nonzero, that `bnez` is taken and reaches a return whose delay slot stores 0x32c0980 at entry `a0` +0x4cc8 (`lw` at 0x32f2988; `bnez` at 0x32f299c; `jr` at 0x32f29c4; `sd` at 0x32f29c8). The meaning of these stored values is Unknown.
