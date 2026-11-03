@@ -5672,3 +5672,51 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdylc_Vertex3iBbox` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3274a80
   **Established effects.** On reaching its `__glSPDlistSpace` call, it passes zero as `a0`, entry `a1` and `a2`, the doubleword at 0x1020 as `a3`, and the word at 0x1048 as `a5` (`jalr` at 0x3274b98).
   `beqz` at 0x3274ba4 is taken when the call returns zero. That path increments the word at 0x1048 (`lw` at 0x3274c5c; `addiu` at 0x3274c64; `sw` at 0x3274c68). The hardware meaning of that word and the routine's broader role are Unknown.
+
+## 64-bit IP30 library: vertex bounds and coordinate dispatch
+
+- `__glOdylc_Vertex2dvBbox` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32734e0
+  **Established effects.** The byte at +0x18ed0 from the doubleword fetched at absolute 0x1020 decides `beqz`: zero takes the branch and nonzero falls through (`lbu` at 0x3273508; `beqz` at 0x3273528). The `ld` at 0x32734e4 reads the doubleword at absolute 0x1020.
+  The word at +0x18ed4 is loaded in the branch delay slot on both arms; fall-through adds 1 and writes it back (`beqz` at 0x3273528; `lw` at 0x327352c; `addiu` at 0x3273534; `sw` at 0x3273538).
+  A later path calls `__glSPDlistSpace` (`jalr` at 0x3273608). The wider hardware role is Unknown.
+- `__glOdylc_Vertex2fBbox` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32736f0
+  **Established effects.** It loads a doubleword at absolute 0x1020 and a byte at +0x18ed0 from that value (`lbu` at 0x3273718). The `ld` at 0x32736f4 reads the doubleword at absolute 0x1020.
+  `beqz` takes its branch if the byte is zero; the nonzero fall-through increments the word at +0x18ed4 from the doubleword (`beqz` at 0x327373c; `lw` at 0x327374c; `addiu` at 0x3273750; `sw` at 0x3273758).
+  The routine includes a call to `__glSPDlistSpace` (`jalr` at 0x32737e8). The broader hardware role is Unknown.
+- `__glOdylc_Vertex2fvBbox` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32738c0
+  **Established effects.** It reads the byte at +0x18ed0 from the doubleword loaded at absolute 0x1020 (`lbu` at 0x32738e8). The `ld` at 0x32738c4 reads the doubleword at absolute 0x1020.
+  `beqz` takes its branch when the byte is zero and falls through when nonzero (`beqz` at 0x3273908). Both arms load the word at +0x18ed4 in the branch delay slot; fall-through increments and stores it (`lw` at 0x327390c; `addiu` at 0x3273914; `sw` at 0x3273918).
+  It calls `__glSPDlistSpace` on a later path (`jalr` at 0x32739c8). The routine’s wider hardware role is Unknown.
+- `__glOdylc_Vertex2iBbox` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3273aa0
+  **Established effects.** A byte at +0x18ed0 from the doubleword at absolute 0x1020 is tested by `beqz`: zero takes the branch and nonzero falls through (`lbu` at 0x3273acc; `beqz` at 0x3273aec). The `ld` at 0x3273aa4 reads the doubleword at absolute 0x1020.
+  The fall-through adds 1 to the word at +0x18ed4 from that doubleword (`lw` at 0x3273b04; `addiu` at 0x3273b08; `sw` at 0x3273b10).
+  One path calls `__glSPDlistSpace` (`jalr` at 0x3273bac). Its broader hardware role is Unknown.
+- `__glOdylc_Vertex2ivBbox` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3273c80
+  **Established effects.** It reads a doubleword at absolute 0x1020 and tests a byte at offset 0x18ed0 from it (`ld` at 0x3273c84; `lbu` at 0x3273ca8).
+  `beqz` is taken when the byte is zero and falls through when nonzero (`beqz` at 0x3273cc8). Its delay slot loads the word at +0x18ed4 on both paths; the fall-through increments and stores that word (`lw` at 0x3273ccc; `addiu` at 0x3273cd0; `sw` at 0x3273cd4).
+  The body includes a `__glSPDlistSpace` call (`jalr` at 0x3273da8). Its wider hardware role is Unknown.
+- `__gllc_TexCoord1sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 136 bytes
+  **Established.** It calls `__glDlistAllocOp2` (`jalr` at 0x333fedc); `bnez` at 0x333fee4 takes the following path for a nonzero return and falls through on zero. The taken path stores halfword 0x33 at the returned address +0x14 (`sh` at 0x333ff00), copies a halfword from argument 0 +0 to the returned address +0x18 (`lh` at 0x333ff0c; `sh` at 0x333ff10), and calls `__glDlistAppendOp` (`jalr` at 0x333ff28). The halfword fields and this routine’s wider purpose remain Unknown.
+- `__gllc_TexCoord2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 148 bytes
+  **Established.** After `__glDlistAllocOp2` (`jalr` at 0x333ff6c), `bnez` at 0x333ff74 branches for a nonzero return and falls through for zero. On the taken path it writes byte 1 and halfword 0x34 at the returned address +0x16 and +0x14 respectively (`sb` at 0x333ff8c; `sh` at 0x333ff94), and stores entry f12 and f13 as doublewords at +0x18 and +0x20 (`sdc1` at 0x333ffac, 0x333ffa8). It then calls `__glDlistAppendOp` (`jalr` at 0x333ffc4). The byte and doubleword fields do not establish the routine’s hardware role, which is Unknown.
+- `__gllc_TexCoord2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  **Established.** `bnez` at 0x3340014 is taken on a nonzero return from `__glDlistAllocOp2` and falls through on zero (`jalr` at 0x334000c). On that taken path, doublewords loaded from argument 0 +0 and +8 are written at the returned address +0x18 and +0x20 (`ldc1` at 0x334003c, 0x3340048; `sdc1` at 0x3340044, 0x3340050). It also writes byte 1 and halfword 0x34 at +0x16 and +0x14 (`sb` at 0x334002c; `sh` at 0x3340038) and calls `__glDlistAppendOp` (`jalr` at 0x3340068). The meaning of these copied values and the routine’s wider role are Unknown.
+- `__gllc_TexCoord2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  **Established.** A call to `__glDlistAllocOp2` (`jalr` at 0x33400ac) precedes `bnez` at 0x33400b4, taken for a nonzero return and falling through for zero. The taken path writes halfword 0x35 at the returned address +0x14 and entry f12 and f13 as floating-point words at +0x18 and +0x1c (`sh` at 0x33400cc; `swc1` at 0x33400e4, 0x33400e0). It calls `__glDlistAppendOp` (`jalr` at 0x33400fc). The halfword and floating-point writes leave the routine’s hardware role Unknown.
+- `__gllc_TexCoord2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  **Established.** `bnez` at 0x3340144 branches when `__glDlistAllocOp2` returns nonzero and falls through when it returns zero (`jalr` at 0x334013c). On the taken path, it stores halfword 0x35 at the returned address +0x14 (`sh` at 0x3340160), copies floating-point words from argument 0 +0 and +4 to the returned address +0x18 and +0x1c (`lwc1` at 0x3340164, 0x3340170; `swc1` at 0x334016c, 0x3340178), and calls `__glDlistAppendOp` (`jalr` at 0x3340190). The purpose of the copied words and the overall routine remains Unknown.
+- `__glOdylc_Vertex3ivBbox` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3274c80
+  **Established effects.** The `beqz` at 0x3274cc8 falls through when the byte at the doubleword loaded from 0x1020 plus 0x18ed0 is nonzero (`ld` at 0x3274c84; `lbu` at 0x3274ca8). Its delay-slot word load at plus 0x18ed4 runs on both paths (`lw` at 0x3274ccc).
+  Fall-through increments that word (`addiu` at 0x3274cd0; `sw` at 0x3274cd4). The field's hardware meaning and the routine's broader role are Unknown.
+- `__glOdylc_Vertex3sBbox` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3274ea0
+  **Established effects.** On reaching the call, it invokes `__glSPDlistSpace` with zero in `a0`, entry `a1` and `a2`, the doubleword at 0x1020 in `a3`, and the word at 0x1048 in `a5` (`ld` at 0x3274ea8; `lw` at 0x3274f98; `jalr` at 0x3274fb8).
+  The following `beqz` at 0x3274fc4 is taken for a zero return and reaches a path incrementing the word at absolute 0x1048 (`lw` at 0x327507c; `addiu` at 0x3275084; `sw` at 0x3275088). The word's hardware meaning and this routine's broader role remain Unknown.
+- `__glOdylc_Vertex3svBbox` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32750a0
+  **Established effects.** A nonzero byte at the doubleword loaded from 0x1020 plus 0x18ed0 makes `beqz` at 0x32750e8 fall through (`ld` at 0x32750a4; `lbu` at 0x32750c8). The branch delay slot reads the word at plus 0x18ed4 on either arm (`lw` at 0x32750ec).
+  The fall-through arm increments and stores that word (`addiu` at 0x32750f0; `sw` at 0x32750f4). Its hardware meaning and the broader role of this routine are Unknown.
+- `__glTRim_Vertex2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x325fc30
+  **Established effects.** The word at the doubleword read from absolute 0x1020 plus 0x18d70 is incremented (`ld` at 0x325fc30; `lw` at 0x325fc3c; `addiu` at 0x325fc50; `sw` at 0x325fc54).
+  It writes entry `f13` and `f12` as words at addresses hostfacts leaves Unknown (`swc1` at 0x325fc60, 0x325fc64). The destinations' hardware meaning and the wider role of this routine are Unknown.
+- `__glTRim_Vertex2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x325fcc0
+  **Established effects.** A doubleword read at 0x1020 supplies a base; the word at that value plus 0x18d70 is incremented (`ld` at 0x325fcc0; `lw` at 0x325fccc; `addiu` at 0x325fce0; `sw` at 0x325fce4).
+  The routine copies the word at that value plus 0xf2c to an address hostfacts leaves Unknown (`lwc1` at 0x325fd00; `swc1` at 0x325fd04). The copied field's hardware effect and the routine's broader role are Unknown.
