@@ -6935,3 +6935,37 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdyim_SoftColor4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32870b0
   **Established effects.** Calls to `__glOdyim_Color4i` and `__glim_Color4i` occur in that order, each receiving entry `a0` through `a3` (`jalr` at 0x32870e0, 0x32870f8).
   The routine returns the second call's result (`jr` at 0x328710c). The hardware effects of these calls and this entry’s wider role are Unknown.
+
+## 64-bit IP30 library: vertex pointer and color dispatch
+
+- `__glce_VertexPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  - **Established effects.** It loads the doublewords at absolute 0x1700 and 0x1020 (`ld` at 0x3361118, 0x3361120). It calls `glVertexPointerEXT` with entry arguments 0 through 3, writing the doubleword at [0x1020]:8 +0x3ec8 to 0x1700 in the call delay slot (`ld` at 0x3361138; `jalr` at 0x336113c; `sd` at 0x3361140). After the call it writes the original [0x1700]:8 value back to 0x1700 (`sd` at 0x336114c). The location's meaning and the routine's wider role are Unknown.
+- `__glim_VertexPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 88 bytes
+  - **Established effects.** `beq` at 0x3334d50 is taken when the word at absolute 0x1030 equals 1, reaching `__glSetError` with argument 0 equal to 0x502 (`lw` at 0x3334d34; `jalr` at 0x3334d78). When that branch falls through for a word unequal to 1, the routine calls `__glim_VertexPointerEXT` with entry arguments 0 through 2, zero as argument 3, and entry argument 3 as argument 4 (`bgezall` at 0x3334d5c). The effects and broader role of this dispatch are Unknown.
+- `__glim_VertexPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 344 bytes
+  - **Established effects.** A negative signed entry argument 2 takes `bltz` at 0x3333ec8 to the error path; on its fall-through, a negative signed argument 3 takes `bltz` at 0x3333ed0 to the same path. That path calls `__glSetError` with argument 0 equal to 0x501 and stores a doubleword at [0x1020]:8 +0x1618 (`ld` at 0x3333eb0; `jalr` at 0x3333fa4; `sd` at 0x3333fa8).
+  - On a selected later path, word stores include the low words of entry arguments 0 and 1 at [0x1020]:8 +0x1600 and +0x1604, and a doubleword store writes entry argument 4 at +0x15f8 (`sw` at 0x3333f38, 0x3333f3c; `sd` at 0x3333f4c). The fields' meanings and the wider role of this routine are Unknown.
+- `glVertexPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  - **Established effects.** It loads the doubleword at absolute 0x17a8 and jumps indirectly through it with entry arguments 0 through 3 (`ld` at 0x3368e84; `jr` at 0x3368e88). The destination and the routine's hardware role are Unknown.
+- `glVertexPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  - **Established effects.** The doubleword loaded from absolute 0x1700 supplies an indirect jump target; entry arguments 0 through 3 are retained (`ld` at 0x3368d88; `jr` at 0x3368d8c). Neither the target's identity nor this entry's wider hardware role is known.
+- `glMultiTexCoord3fSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** The complete body contains a return with a no-operation delay slot (`jr` at 0x3306540; `nop` at 0x3306544). The entry's purpose is Unknown.
+- `glMultiTexCoord3iSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** Its two instructions return and execute a no-operation in the delay slot (`jr` at 0x3306550; `nop` at 0x3306554). The role is Unknown.
+- `glMultiTexCoord3sSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** The function returns, with no operation in the delay slot (`jr` at 0x3306560; `nop` at 0x3306564). Its wider purpose is Unknown.
+- `glMultiTexCoord4dSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** Its only instructions are a return and a no-operation in the delay slot (`jr` at 0x3306570; `nop` at 0x3306574). The entry's role is Unknown.
+- `glMultiTexCoord4fSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  **Established.** Control returns through the link register, with a no-operation in the delay slot (`jr` at 0x3306580; `nop` at 0x3306584). Its purpose is Unknown.
+- `__glOdyim_SoftColor4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  **Established effects.** It invokes `__glOdyim_Color4s` with entry `a0` through `a3` (`jalr` at 0x32871a0). The following `__glim_Color4s` call receives the same entry arguments (`jalr` at 0x32871b8); its `a3` reload executes in the call delay slot (`ld` at 0x32871bc). Its result is returned (`jr` at 0x32871cc). The calls' hardware effects and the routine's wider role are Unknown.
+- `__glOdyim_SoftColor4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established effects.** It calls `__glOdyim_Color4sv` with entry `a0` through `a3` (`jalr` at 0x3287204). The subsequent `__glim_Color4sv` call receives entry `a0`; its `a1` through `a3` are Unknown (`jalr` at 0x3287210). It returns that call's result (`jr` at 0x3287224). The effects of these calls on hardware and this routine's broader role are Unknown.
+- `__glOdyim_SoftColor4ubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  **Established effects.** The `__glOdyim_Color4ubv` call receives entry `a0` through `a3` (`jalr` at 0x32872c4). A subsequent call to `__glim_Color4ubv` uses entry `a0` and Unknown `a1` through `a3` (`jalr` at 0x32872d0). Its result is returned (`jr` at 0x32872e4). The hardware effects and broader role of this call sequence are Unknown.
+- `__glOdyim_SoftColor4ui` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  **Established effects.** `__glOdyim_Color4ui` is called with entry `a0` through `a3` (`jalr` at 0x3287320). The next `__glim_Color4ui` call also receives those entry values, with `a3` reloaded in its delay slot (`jalr` at 0x3287338; `ld` at 0x328733c). Its result supplies the return value (`jr` at 0x328734c). The wider role of this routine and the calls' hardware effects are Unknown.
+- `__glOdyim_SoftColor4us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  **Established effects.** It calls `__glOdyim_Color4us` with entry `a0` through `a3` (`jalr` at 0x32873e0). The later `__glim_Color4us` call receives the same entry arguments; its delay slot reloads `a3` (`jalr` at 0x32873f8; `ld` at 0x32873fc). The latter result is returned (`jr` at 0x328740c). The purpose of this routine and the calls' effects on hardware are Unknown.
