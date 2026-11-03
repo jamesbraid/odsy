@@ -7301,3 +7301,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   When the byte at entry `a0` +0x986c is zero, `beqz` takes the branch to 0x32f46b4 (`lbu` at 0x32f4670; `beqz` at 0x32f4694). Its calls include `Coverage` (`bgezall` at 0x32f4844) and an indirect call with an unknown target (`jalr` at 0x32f4868). Their hardware effects are Unknown.
 - `__glRenderAntiAliasedCIPoint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   The byte at entry `a0` +0x986c decides `beqz`: nonzero falls through and zero takes the branch (`lbu` at 0x32f4914; `beqz` at 0x32f4938). Calls include `Coverage` and `__glBuildAntiAliasIndex` (`bgezall` at 0x32f4a84, 0x32f4a9c). Their wider role is Unknown.
+
+## 64-bit IP30 library: rendering and matrix paths
+
+- `__glRenderFlatTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fb6c0
+  Its accesses include floating-point word stores of unknown values to entry `a0` +0x9708, +0x9704 and +0x9700 (`swc1` at 0x32fb7c0, 0x32fb7c4, 0x32fb7cc). It also reads a doubleword at entry `a0` +0x8cd8 (`ld` at 0x32fb7ec). The fields’ roles are Unknown.
+- `__glRenderFlatOneFaceTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fb950
+  The entry reads words from offset +0x8c of arguments `a1`, `a2` and `a3` (`lw` at 0x32fb970, 0x32fb964, 0x32fb97c). Its accesses also include a byte at entry `a0` +0x986d (`lbu` at 0x32fba08). The broader role is Unknown.
+- `__glRenderSmoothTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fbdb0
+  Among its writes are floating-point words of unknown value at entry `a0` +0x9700 and +0x96fc (`swc1` at 0x32fbecc, 0x32fbed0). It reads a doubleword from entry `a0` +0x4998 and makes an indirect call with an unknown destination (`ld` at 0x32fbf90; `jalr` at 0x32fbfa8). The field meanings are Unknown.
+- `__glRenderSmoothOneFaceTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fc040
+  The body reads floating-point words at entry `a3` +0x88 and +0x8c (`lwc1` at 0x32fc094, 0x32fc098). Another access reads a byte at entry `a0` +0x986d (`lbu` at 0x32fc0f8). Their roles are Unknown.
+- `__glRenderSmoothOneFaceTmesh` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fc480
+  The accesses include a word read at entry `a0` +0x8ce4 and floating-point word stores of unknown values at entry `a0` +0x9708 and +0x9704 (`lw` at 0x32fc554; `swc1` at 0x32fc548, 0x32fc54c). It makes an indirect call to an unknown target (`jalr` at 0x32fc624). The fields’ purposes are Unknown.
+- `__glDontRenderTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fc950
+  The body transfers control to the return address and executes a no-op in its delay slot (`jr` at 0x32fc950; `nop` at 0x32fc954). Its return value and wider role are Unknown.
+- `DoRender` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3312240
+  Its calls include `DoInterpolate` with entry `a0` as the first argument (`bgezall` at 0x33124d8) and `glBegin` with 5 as the first argument (`jalr` at 0x3312500; `addiu` at 0x3312504). The purpose of these calls in the larger operation is Unknown.
+- `__glTextureRGB_L_NML_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332df30
+  Its reads include a floating-point word at entry `a0` +0xf28 and a word at entry `a0` +0x9740 (`lwc1` at 0x332df70; `lw` at 0x332dfa4). Calls include `floorf` at three sites (`jalr` at 0x332e004, 0x332e01c, 0x332e02c). The purpose of these calls in the routine is Unknown.
+- `__glTextureRGB_L_NML_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332e9c0
+  When the word read at entry `a0` +0x9740 is zero, `beqz` takes the return path (`lw` at 0x332ea3c; `beqz` at 0x332ea60; `jr` at 0x332f4ac). Its calls include `floorf` (`jalr` at 0x332ed5c). The routine's wider purpose is Unknown.
+- `__glTextureRGB_F_F_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3329650
+  The initial `beqz` is taken to the return path when the word at entry `a0` +0x9740 is zero (`lw` at 0x33296d4; `beqz` at 0x33296ec; `jr` at 0x332a4d8). Its calls include `floor` (`jalr` at 0x33297a4). The wider purpose is Unknown.
+- `__glTextureRGB_F_F_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3328750
+  It reads a floating-point word at entry `a0` +0xf28 (`lwc1` at 0x33287a0). `bltz` takes the return path when the word at entry `a0` +0x9740 minus 1 is signed negative (`lw` at 0x33287c4; `addiu` at 0x33287d4; `bltz` at 0x33287e4; `jr` at 0x33295d8). Its wider role is Unknown.
+- `__glTextureRGB_L_LML_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332f4d0
+  It reads a floating-point word from entry `a0` +0xf28 (`lwc1` at 0x332f518). The `bltz` goes to the return path when the word at entry `a0` +0x9740 minus 1 is signed negative (`lw` at 0x332f54c; `addiu` at 0x332f55c; `bltz` at 0x332f56c; `jr` at 0x3330684). Its role is Unknown.
+- `__glDoLoadMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at entry `a0` +0x7d0 equals 0x1700, `beq` is taken to a path containing an indirect call (`lw` at 0x33380c8; `addiu` at 0x33380d0; `beq` at 0x33380e8; `jalr` at 0x333823c). The target and this path's wider effect are Unknown.
+- `__gllc_LoadMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glDlistAllocOp2` with the doubleword at absolute 0x1020 as `a0` and 0x40 as `a1` (`ld` at 0x3345404; `addiu` at 0x3345420; `jalr` at 0x334542c). If the result is nonzero, `bnez` is taken to a `memcpy` call with that result plus 0x18, entry `a0`, and 0x40 as the first three arguments (`bnez` at 0x3345434; `daddiu` at 0x3345458; `addiu` at 0x3345450; `jalr` at 0x3345460). The operation's wider role is Unknown.
+- `__gllc_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The allocation call to `__glDlistAllocOp2` receives the doubleword at 0x1020 and 0x80 as `a0` and `a1` (`ld` at 0x3345494; `addiu` at 0x33454b0; `jalr` at 0x33454bc). `bnez` takes the copy path when the result is nonzero; that path calls `memcpy` with the result plus 0x18, entry `a0`, and 0x80 as its first three arguments (`bnez` at 0x33454c4; `daddiu` at 0x33454e8; `addiu` at 0x33454e0; `jalr` at 0x33454f8). The role is Unknown.
