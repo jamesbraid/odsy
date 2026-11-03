@@ -7431,3 +7431,38 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   An indirect call receives the first four entry arguments (`jalr` at 0x32ca570). Its returned doubleword is stored at entry `a0` +0x9e90 (`sd` at 0x32ca580). The callee and stored value’s wider use are Unknown.
 - `__glCopyConvolutionPixelModeState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32cc060
   The copies include a word from entry `a0` +0x8c to entry `a1` +0x8c, and a floating-point word from `a0` +0x98 to `a1` +0x98 (`lw` at 0x32cc060; `sw` at 0x32cc064; `lwc1` at 0x32cc068; `swc1` at 0x32cc06c). The fields’ purpose is Unknown.
+
+## 64-bit IP30 library: pixel transfer paths
+
+- `__glInitDefaultPixelMap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  One path calls an unknown target with entry `a0` and 4 as `a0` and `a1` (`jalr` at 0x3290708; `addiu` at 0x329070c). When the tested value is unsigned at least 0xa, `beqz` takes the path calling `__glSetError` with 0x500 in `a0`; hostfacts does not resolve the tested value (`beqz` at 0x32906f0; `jalr` at 0x32907ac; `addiu` at 0x32907b0). The routine's role is Unknown.
+- `__glFreePixelState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the doubleword at entry `a0` +0x4d0 is nonzero, `beqz` falls through to an indirect call with entry `a0` and that doubleword as its first two arguments, then stores a zero doubleword at the same offset (`ld` at 0x32909d0; `beqz` at 0x32909d4; `jalr` at 0x32909e0; `sd` at 0x32909e8). The callee's identity and wider effect are Unknown.
+- `__glInitPixelState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its stores include copies of the floating-point word at entry `a0` +0xf2c to +0x39c and +0x398 (`lwc1` at 0x3290cd4; `swc1` at 0x3290cdc, 0x3290ce0). It calls `__glInitDefaultPixelMap` with entry `a0` and 0xc70 as the first two arguments (`addiu` at 0x3290d18; `bgezall` at 0x3290d34). The fields' meanings are Unknown.
+- `__glim_PixelStoref` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `bnez` at 0x3291098 is taken when entry `a0` is unsigned less than 0xd03 and falls through otherwise (`sltiu` at 0x3291084; `bnez` at 0x3291098). Its calls include `__glim_PixelStorei` with entry `a0` and zero in `a1` (`bgezall` at 0x32911c4; `move` at 0x32911c8). The wider role is Unknown.
+- `__glim_PixelStorei` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32912a4; `addiu` at 0x32912ac; `beq` at 0x32912c0; `jalr` at 0x32915f4; `addiu` at 0x32915f8). Its hardware effect is Unknown.
+- `__glComputeSpanPixelArray` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x329eed0
+  It reads a floating-point word at entry `a1` +0xb0 and another at entry `a0` +0xf2c (`lwc1` at 0x329eed8, 0x329eef0). Its accesses include a doubleword read at entry `a1` +0x160 (`ld` at 0x329ef0c). The fields’ roles are Unknown.
+- `__glConv2dReadPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b15a0
+  The routine loads doublewords at entry `a1` +0x190 and +0x228 (`ld` at 0x32b15a0, 0x32b15f4) and reads a floating-point word at +0xd0 (`lwc1` at 0x32b15e4). Its calls include an indirect call to an unknown target (`jalr` at 0x32b1784). The fields’ purposes are Unknown.
+- `__glSep2dReadPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b1950
+  Entry `a0` +0x4c0 and entry `a1` +0x228 supply doublewords (`ld` at 0x32b1964, 0x32b1990). The body also reads a word at entry `a0` +0x9944 (`lw` at 0x32b1984). These fields’ roles are Unknown.
+- `__glGetCurrentSetDefaultPixelXferState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b1f60
+  An indirect call goes to an unknown target with entry `a0`, 0x26 and 0x4 as its first three arguments (`addiu` at 0x32b1f78, 0x32b1f7c; `jalr` at 0x32b1f8c). It reads and writes a word at entry `a0` +0x808 (`lw` at 0x32b1f94; `sw` at 0x32b1fb4). The field and call purposes are Unknown.
+- `__glRestoreCurrentPixelXferState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b21d0
+  The `beqz` is taken if entry `a1` is zero and falls through if it is nonzero (`beqz` at 0x32b21e8). On fall-through, it ORs words from entry `a1` +0 and `a0` +0x808, storing the result at `a0` +0x808 (`lw` at 0x32b21f4, 0x32b21f0; `or` at 0x32b21fc; `sw` at 0x32b2200). The field’s role is Unknown.
+- `__glConv2dCopyPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b2330
+  A byte at entry `a1` +0xf0 controls `beqz`: zero takes the branch and nonzero falls through (`lbu` at 0x32b2370; `beqz` at 0x32b2390). Entry `a0` +0x9944 is also read as a word (`lw` at 0x32b2364). The byte and word roles are Unknown.
+- `__glim_PixelZoom` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 equals 1, `beq` takes the path to `__glSetError` with 0x502 in `a0` (`lw` at 0x3291830; `addiu` at 0x3291834; `beq` at 0x329184c; `jalr` at 0x3291904; `addiu` at 0x3291908). Another path writes floating-point words of unknown value at offsets 0x398 and 0x39c of the doubleword loaded from 0x1020 (`ld` at 0x329183c; `swc1` at 0x32918cc, 0x32918d0). The wider effect is Unknown.
+- `__glim_PixelTransferf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at absolute 0x1030 differs from 1, `beq` falls through (`lw` at 0x3291920; `addiu` at 0x3291924; `beq` at 0x329193c). One subsequent path stores entry `f13` at offset 0x35c from the doubleword loaded at 0x1020 (`ld` at 0x329192c; `swc1` at 0x329195c). The field's purpose is Unknown.
+- `__glim_PixelTransferi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It moves entry `a1` to a floating-point register and calls `__glim_PixelTransferf`; the delay slot converts that word to single precision (`mtc1` at 0x3291cd4; `bgezall` at 0x3291ce0; `cvt.s.w` at 0x3291ce4). The downstream hardware effect is Unknown.
+- `__glim_PixelMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at 0x1030 differs from 1, `beq` falls through to `blez` (`lw` at 0x3291d10; `addiu` at 0x3291d18; `beq` at 0x3291d30; `blez` at 0x3291d38). When entry `a1` is signed less than or equal to zero, `blez` takes the path calling `__glSetError` with 0x501 in `a0` (`blez` at 0x3291d38; `jalr` at 0x329206c; `addiu` at 0x3292070). The role is Unknown.
+- `__glim_PixelMapuiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beq` at 0x3292110 falls through when the word at absolute 0x1030 differs from 1 (`lw` at 0x32920f0; `addiu` at 0x32920f8; `beq` at 0x3292110). On that path, `blez` takes the error call when entry `a1` is signed less than or equal to zero; the call passes 0x501 in `a0` to `__glSetError` (`blez` at 0x3292118; `jalr` at 0x329243c; `addiu` at 0x3292440). The broader hardware effect is Unknown.
