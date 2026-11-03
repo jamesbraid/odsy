@@ -6850,3 +6850,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glGenMatrixSignature` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b5c20
   **Established effects.** The routine clears a byte at entry `a0` +0x9940 and a word at +0x9938 (`sw` at 0x32b5c38). The `sb` at 0x32b5c2c writes the byte at argument 0 +0x9940.
   It sets bit 0x10 in the word at entry `a0` +0x4714 (`lw` at 0x32b5c50; `ori` at 0x32b5c64; `sw` at 0x32b5c68). The fields’ hardware roles and this routine’s wider effect are Unknown.
+
+## 64-bit IP30 library: vertex and image state checks
+
+- `__glce_Vertex3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** It saves the doubleword from absolute 0x1b58 at entry sp -0x18 (`ld` at 0x335af10; `sd` at 0x335af18). The first `glVertex3sv` call stores the doubleword at [0x1020]:8 +0x25a8 to 0x1b58 in its delay slot (`ld` at 0x335af28, 0x335af40; `jalr` at 0x335af48; `sd` at 0x335af4c).
+  - A second `glVertex3sv` call writes an Unknown value to 0x1b58 in its delay slot (`jalr` at 0x335af60; `sd` at 0x335af64). The return delay slot writes another Unknown doubleword there (`jr` at 0x335af7c; `sd` at 0x335af80). The location's hardware meaning and the routine's broader role are Unknown.
+- `__glce_Vertex4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established effects.** The doubleword at 0x1b60 is saved at entry sp -0x8 (`ld` at 0x335af90; `sd` at 0x335afa4). In the first `glVertex4d` call's delay slot, the value read from [0x1020]:8 +0x25b0 is written to 0x1b60 (`ld` at 0x335afb4, 0x335afcc; `jalr` at 0x335afd4; `sd` at 0x335afd8).
+  - The second call to `glVertex4d` writes the doubleword at [0x1020]:8 +0x4328 to that same absolute location in its delay slot (`ld` at 0x335afec; `jalr` at 0x335aff4; `sd` at 0x335aff8). The `jr` delay-slot store writes an Unknown value to 0x1b60 (`jr` at 0x335b014; `sd` at 0x335b018). The fields' hardware effects and this entry's wider role are Unknown.
+- `__glce_Vertex4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** It saves [0x1b68]:8 at entry sp -0x18 (`ld` at 0x335b020; `sd` at 0x335b028). Its first `glVertex4dv` call writes the doubleword from [0x1020]:8 +0x25b8 to 0x1b68 in the call delay slot (`ld` at 0x335b038, 0x335b050; `jalr` at 0x335b058; `sd` at 0x335b05c).
+  - A later `glVertex4dv` call's delay slot writes an Unknown doubleword to 0x1b68 (`jalr` at 0x335b070; `sd` at 0x335b074). A further Unknown value is stored there in the return delay slot (`jr` at 0x335b08c; `sd` at 0x335b090). The hardware significance of these accesses and the wider routine role are Unknown.
+- `__glce_Vertex4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  - **Established effects.** The value read from 0x1b70 is saved at entry sp -0x8 (`ld` at 0x335b0a0; `sd` at 0x335b0b4). Two calls to `glVertex4f` place the doublewords read at [0x1020]:8 +0x25c0 and +0x4338 at 0x1b70 in their respective delay slots (`ld` at 0x335b0c4, 0x335b0dc, 0x335b0fc; `jalr` at 0x335b0e4, 0x335b104; `sd` at 0x335b0e8, 0x335b108).
+  - On return, the `jr` delay slot writes an Unknown doubleword to 0x1b70 (`jr` at 0x335b124; `sd` at 0x335b128). What the location controls, and the routine's broader hardware role, are Unknown.
+- `__glce_Vertex4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  - **Established effects.** A doubleword loaded from 0x1b78 is saved at entry sp -0x18 (`ld` at 0x335b130; `sd` at 0x335b138). The first `glVertex4fv` delay slot stores the doubleword at [0x1020]:8 +0x25c8 to 0x1b78 (`ld` at 0x335b148, 0x335b160; `jalr` at 0x335b168; `sd` at 0x335b16c).
+  - Another `glVertex4fv` call writes an Unknown value to 0x1b78 in its delay slot (`jalr` at 0x335b180; `sd` at 0x335b184). The value written to that address in the return delay slot is also Unknown (`jr` at 0x335b19c; `sd` at 0x335b1a0). The hardware meaning of that location and the wider role of this routine are Unknown.
+- `CheckTexImageArgs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2068 bytes
+  **Established.** It calls `__glLookUpTexture` (`bgezall` at 0x3317904); `beqz` at 0x331790c takes a path calling `__glSetError` with argument 0 equal to 0x500 when the lookup returns zero, and falls through otherwise (`jalr` at 0x3317a3c). Other calls include `__glSetError` with argument 0 equal to 0x502 (`jalr` at 0x33179a8). The routine's wider role is Unknown.
+- `__glTextureCTReplaceRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1620 bytes
+  **Established.** A word at argument 0 +0x1a30 is read (`lw` at 0x332414c). `beq` at 0x332417c takes a path calling `__GL_TEXENV_CLAMP` when the word equals 0x190a and falls through otherwise (`bgezall` at 0x33244e0). The field and routine roles are Unknown.
+- `__glTextureCTReplaceI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1640 bytes
+  **Established.** A floating-point word read from argument 2 +0x14 is copied to argument 2 +0, +4, +8 and +0x10 (`lwc1` at 0x332499c; `swc1` at 0x33249a4, 0x33249a8, 0x33249b0, 0x33249bc). `beq` at 0x33249e8 takes a path calling `__GL_TEXENV_CLAMP` when the word at argument 0 +0x1a30 equals 0x190a and falls through otherwise (`lw` at 0x33249c8; `bgezall` at 0x3324d40). The routine's wider role is Unknown.
+- `__glCalcMixedTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1004 bytes
+  **Established.** It loads a word from argument 0 +0x808 (`lw` at 0x33255ec). `bgez` at 0x3325618 is taken when that word shifted left by 0x2d is nonnegative as a signed value and falls through when negative. Its calls include an indirect call whose target is unknown (`jalr` at 0x33256bc). The field and routine roles are Unknown.
+- `CheckTexSubImageArgs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1068 bytes
+  **Established.** The routine calls `__glLookUpTexture` (`jalr` at 0x3325c6c). `beqz` at 0x3325c74 branches when the return is zero and falls through when nonzero; its taken path calls `__glSetError` with argument 0 equal to 0x500 (`jalr` at 0x3325d60). The routine's wider purpose is Unknown.
+- `__glSpanClampSigned` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32abf70
+  **Established effects.** It reads words at entry `a1` +0x7c and +0xc8 (`lw` at 0x32abf70, 0x32abf74).
+  `blez` at 0x32abf88 is taken when its unknown tested value is signed nonpositive, returning the word at `a1` +0x7c (`jr` at 0x32ac020). The loaded words and this routine have Unknown hardware roles.
+- `__glSpanZeroFillAlpha` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32acbf0
+  **Established effects.** `blez` at 0x32acbf8 falls through when the word at entry `a1` +0xc4 is signed positive (`lw` at 0x32acbf0).
+  `beqz` at 0x32acc0c then falls through if the word's low two bits are nonzero (`andi` at 0x32acc04). That path includes floating-point word loads and stores at unknown bases (`lwc1` at 0x32acc14, 0x32acc1c; `swc1` at 0x32acc18, 0x32acc20). The hardware roles of these destinations and the wider routine are Unknown.
+- `__glRowSetNoAlpha` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ae830
+  **Established effects.** When the word at entry `a1` +0xc8 is signed positive, `blez` at 0x32ae838 falls through (`lw` at 0x32ae830).
+  The next `beqz` at 0x32ae84c falls through when that word's low two bits are nonzero (`andi` at 0x32ae844). The path writes floating-point words at unknown bases (`swc1` at 0x32ae854, 0x32ae858, 0x32ae85c). The meaning of these writes and the wider routine role are Unknown.
+- `__glRowSetAll` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ae900
+  **Established effects.** `blez` at 0x32ae908 falls through when the word at entry `a1` +0xc8 is signed positive (`lw` at 0x32ae900).
+  On that fall-through, it writes four floating-point words at unknown bases (`swc1` at 0x32ae920, 0x32ae924, 0x32ae92c, 0x32ae930). The written words and the wider routine role have Unknown hardware significance.
+- `__glSlowPickGetConvolutionFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32afee0
+  **Established effects.** Its calls include `__glInitMemGet` and `__glInitUnpacker`, each with entry `a0`, entry stack pointer minus 696 in `a1`, and unknown `a2` and `a3` (`jalr` at 0x32aff48, 0x32aff84).
+  It later calls `__glGenericPickCopyImage` with entry `a0`, entry stack pointer minus 696 in `a1`, zero in `a2`, and 1 in `a3` (`jalr` at 0x32affc0). The hardware effects of these calls and the wider routine role are Unknown.
