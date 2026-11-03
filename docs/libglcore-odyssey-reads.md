@@ -6357,3 +6357,51 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `floatToS58_Clamp` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3264050
   **Established effects.** Its literal loads include -32.0, 31.99609375 and 256.0 (`ldc1` at 0x3264050, 0x3264064; `lwc1` at 0x3264074).
   The return delay slot masks `v0` with 0x3fff (`jr` at 0x3264088; `andi` at 0x326408c). The wider role and hardware effect are Unknown.
+
+## 64-bit IP30 library: vertex and conversion helper paths
+
+- `__gllc_Vertex2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  - **Established effects.** The call to `__glDlistAllocOp2` supplies 8 as argument 1 (`jalr` at 0x334114c). `bnez` at 0x3341154 takes the store path for a nonzero result and falls through for zero. On the taken path, it writes halfword 0x42 at result +0x14 and copies words from entry argument 0 +0 and +4 to result +0x18 and +0x1c (`sh` at 0x3341178; `lw` at 0x334117c, 0x3341184; `sw` at 0x3341180, 0x3341188).
+  - The same path passes that result as argument 1 to `__glDlistAppendOp` (`jalr` at 0x33411a0). The fields' meanings and the routine's hardware role are Unknown.
+- `__gllc_Vertex2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  - **Established effects.** `__glDlistAllocOp2` receives 8 in argument 1 (`jalr` at 0x33411e0). A nonzero return takes `bnez` at 0x33411e8; zero falls through. The taken arm writes halfword 0x43 at result +0x14 and the low halfwords of entry arguments 0 and 1 at +0x18 and +0x1a (`sh` at 0x3341200, 0x3341218, 0x3341210).
+  - It then calls `__glDlistAppendOp` with the allocation result as argument 1 (`jalr` at 0x3341230). The purpose of these fields and any hardware effect remain Unknown.
+- `__gllc_Vertex2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  - **Established effects.** `__glDlistAllocOp2` is called with argument 1 equal to 8 (`jalr` at 0x334126c). The following `bnez` branches for a nonzero return and falls through for zero (`bnez` at 0x3341274). Its taken arm writes halfword 0x43 at result +0x14 and copies halfwords from entry argument 0 +0 and +2 to result +0x18 and +0x1a (`sh` at 0x3341298, 0x33412a0, 0x33412a8; `lh` at 0x334129c, 0x33412a4).
+  - On that arm `__glDlistAppendOp` receives the result as argument 1 (`jalr` at 0x33412c0). The meanings of these writes and the routine's broader role are Unknown.
+- `__gllc_Vertex3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  - **Established effects.** The call to `__glDlistAllocOp2` passes 0x18 as argument 1 (`jalr` at 0x3341300). `bnez` at 0x3341308 selects the store arm for a nonzero result and falls through for zero. That arm writes byte 1 at result +0x16, halfword 0x44 at +0x14, and entry floating-point doublewords f12, f13 and f14 at +0x18, +0x20 and +0x28 (`sb` at 0x3341320; `sh` at 0x3341328; `sdc1` at 0x3341348, 0x3341344, 0x3341340).
+  - It calls `__glDlistAppendOp` on the same arm with the result as argument 1 (`jalr` at 0x3341360). The stored fields' purpose and the routine's hardware effect are Unknown.
+- `__gllc_Vertex3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  - **Established effects.** Argument 1 to `__glDlistAllocOp2` is 0x18 (`jalr` at 0x334139c). The `bnez` at 0x33413a4 takes the following store arm when the call result is nonzero, and falls through when it is zero. That arm writes byte 1 and halfword 0x44 to result +0x16 and +0x14 (`sb` at 0x33413bc; `sh` at 0x33413c8).
+  - Three floating-point doublewords from entry argument 0 +0, +8 and +0x10 are copied to result +0x18, +0x20 and +0x28 (`ldc1` at 0x33413cc, 0x33413d4, 0x33413e0; `sdc1` at 0x33413d0, 0x33413dc, 0x33413e8). The arm then calls `__glDlistAppendOp` (`jalr` at 0x3341400). The copied data's hardware meaning and the routine's role are Unknown.
+- `__glce_TexCoord3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  **Established effects.** The doubleword at absolute 0x1df8 is saved on the stack (`ld` at 0x335a290; `sd` at 0x335a298). The first `glTexCoord3sv` call has a delay-slot store of the doubleword at [0x1020]:8 +0x2848 to 0x1df8 (`ld` at 0x335a2a8, 0x335a2c0; `jalr` at 0x335a2c8; `sd` at 0x335a2cc).
+  A later doubleword load has an Unknown base (`ld` at 0x335a2d8). The second `glTexCoord3sv` call stores an Unknown value to 0x1df8 in its delay slot (`jalr` at 0x335a2e0; `sd` at 0x335a2e4). The return delay slot also stores an Unknown value there (`jr` at 0x335a2fc; `sd` at 0x335a300). The significance of these writes and the routine's broader role are Unknown.
+- `__glce_TexCoord4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  **Established effects.** The routine saves the doubleword from 0x1e00 on its stack (`ld` at 0x335a310; `sd` at 0x335a324). Its first `glTexCoord4d` call writes the doubleword at [0x1020]:8 +0x2850 to 0x1e00 in the delay slot (`ld` at 0x335a334, 0x335a34c; `jalr` at 0x335a354; `sd` at 0x335a358).
+  The second call to `glTexCoord4d` stores the doubleword at [0x1020]:8 +0x45c8 to the same absolute address in its delay slot (`ld` at 0x335a36c; `jalr` at 0x335a374; `sd` at 0x335a378). Its return delay slot writes an Unknown doubleword to 0x1e00 (`jr` at 0x335a394; `sd` at 0x335a398). The role of the stored doublewords and the wider routine are Unknown.
+- `__glce_TexCoord4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  **Established effects.** A doubleword read at 0x1e08 is saved on the stack (`ld` at 0x335a3a0; `sd` at 0x335a3a8). A first `glTexCoord4dv` call stores the value at [0x1020]:8 +0x2858 to 0x1e08 in its delay slot (`ld` at 0x335a3b8, 0x335a3d0; `jalr` at 0x335a3d8; `sd` at 0x335a3dc).
+  A subsequent doubleword load uses an Unknown base (`ld` at 0x335a3e8); the second call to `glTexCoord4dv` writes an Unknown value to 0x1e08 in its delay slot (`jalr` at 0x335a3f0; `sd` at 0x335a3f4). The value written there by the return delay slot is also Unknown (`jr` at 0x335a40c; `sd` at 0x335a410). The location's hardware meaning and the wider purpose of this routine are Unknown.
+- `__glce_TexCoord4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  **Established effects.** It saves the 0x1e10 doubleword on the stack (`ld` at 0x335a420; `sd` at 0x335a434). The first `glTexCoord4f` call has a delay-slot write to 0x1e10 of the doubleword loaded from [0x1020]:8 +0x2860 (`ld` at 0x335a444, 0x335a45c; `jalr` at 0x335a464; `sd` at 0x335a468).
+  A second call to `glTexCoord4f` writes the doubleword at [0x1020]:8 +0x45d8 to 0x1e10 in its delay slot (`ld` at 0x335a47c; `jalr` at 0x335a484; `sd` at 0x335a488). The return delay-slot store to that absolute address has an Unknown value (`jr` at 0x335a4a4; `sd` at 0x335a4a8). The purpose of the values written there, and this routine's wider role, are Unknown.
+- `__glce_TexCoord4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  **Established effects.** The doubleword read from absolute 0x1e18 is saved to the stack (`ld` at 0x335a4b0; `sd` at 0x335a4b8). In the first `glTexCoord4fv` call's delay slot, the routine stores the value at [0x1020]:8 +0x2868 to 0x1e18 (`ld` at 0x335a4c8, 0x335a4e0; `jalr` at 0x335a4e8; `sd` at 0x335a4ec).
+  It then loads a doubleword from an Unknown base (`ld` at 0x335a4f8). The second `glTexCoord4fv` call writes an Unknown doubleword to 0x1e18 in its delay slot (`jalr` at 0x335a500; `sd` at 0x335a504); the return delay-slot store there is also Unknown (`jr` at 0x335a51c; `sd` at 0x335a520). The two later writes' hardware meaning and the routine's overall role are Unknown.
+- `floatToS312_Clamp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3264090
+  **Established effects.** Its literal loads include -8.0, 7.999755859375 and 4096.0 (`ldc1` at 0x3264090, 0x32640a4; `lwc1` at 0x32640b4).
+  The return delay slot masks `v0` with 0xffff (`jr` at 0x32640c8; `andi` at 0x32640cc). The mask’s hardware meaning and this conversion routine’s wider role are Unknown.
+- `CubicBezierFitLinear` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3213b80
+  **Established effects.** It reads a word at entry `a0` +4 and copies it to entry `a1` +0 (`lwc1` at 0x3213b88; `swc1` at 0x3213b94).
+  The routine also writes floating-point words at entry `a1` +8 and +0xc (`swc1` at 0x3213b90, 0x3213b8c). The destination fields’ hardware roles and this routine’s wider purpose are Unknown.
+- `Dot` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32866c0
+  **Established effects.** It reads words at entry `a0` +0, +4 and +8 and entry `a1` +0, +4 and +8 (`lwc1` at 0x32866cc, 0x32866c8, 0x32866d0, 0x32866c0, 0x32866c4, 0x32866d8).
+  A floating-point multiply-add executes in the return delay slot (`jr` at 0x32866e0; `madd.s` at 0x32866e4). The resulting arithmetic’s hardware relevance and the routine’s wider purpose are Unknown.
+- `vvec` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3285680
+  **Established effects.** `beqz` at 0x328568c falls through when the word at entry `a1` +0xc shifted left one is nonzero (`lw` at 0x3285680; `sll` at 0x3285684).
+  On that path `beqz` at 0x3285698 is taken when the word at entry `a2` +0xc shifted left one is zero (`lw` at 0x3285688; `sll` at 0x3285690). It then copies words from entry `a2` +0, +4 and +8 to entry `a0` +0, +4 and +8 (`lwc1` at 0x3285694, 0x3285720, 0x3285728; `swc1` at 0x328571c, 0x3285724, 0x3285730). The copied fields’ hardware meanings and this routine’s broader role are Unknown.
+- `multiplicative_inverse` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3244b20
+  **Established effects.** When entry `a1` is zero, `beqz` at 0x3244b38 is taken and the routine returns 1 (`addiu` at 0x3244b34; `jr` at 0x3244bd0).
+  Otherwise the branch falls through to a loop whose `bnez` at 0x3244bb0 is taken when its tested value is nonzero; that value is unknown. The computation’s hardware relevance and the routine’s wider role are Unknown.
