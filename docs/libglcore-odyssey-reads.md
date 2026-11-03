@@ -7334,3 +7334,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It calls `__glDlistAllocOp2` with the doubleword at absolute 0x1020 as `a0` and 0x40 as `a1` (`ld` at 0x3345404; `addiu` at 0x3345420; `jalr` at 0x334542c). If the result is nonzero, `bnez` is taken to a `memcpy` call with that result plus 0x18, entry `a0`, and 0x40 as the first three arguments (`bnez` at 0x3345434; `daddiu` at 0x3345458; `addiu` at 0x3345450; `jalr` at 0x3345460). The operation's wider role is Unknown.
 - `__gllc_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   The allocation call to `__glDlistAllocOp2` receives the doubleword at 0x1020 and 0x80 as `a0` and `a1` (`ld` at 0x3345494; `addiu` at 0x33454b0; `jalr` at 0x33454bc). `bnez` takes the copy path when the result is nonzero; that path calls `memcpy` with the result plus 0x18, entry `a0`, and 0x80 as its first three arguments (`bnez` at 0x33454c4; `daddiu` at 0x33454e8; `addiu` at 0x33454e0; `jalr` at 0x33454f8). The role is Unknown.
+
+## 64-bit IP30 library: OpenGL entry dispatch
+
+- `glLoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword from absolute 0x1560 supplies an indirect jump target, with entry `a0` through `a3` unchanged (`ld` at 0x3368b18; `jr` at 0x3368b1c). The target and role are Unknown.
+- `glTexImage3D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry loads a doubleword at absolute 0x16b0 and jumps through it, preserving the first four argument registers (`ld` at 0x3368d10; `jr` at 0x3368d14). Its destination and wider role are Unknown.
+- `glTexImage3DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Control transfers through the doubleword read from absolute 0x16b0, carrying the original `a0` through `a3` (`ld` at 0x3368d10; `jr` at 0x3368d14). The indirect target and its role are Unknown.
+- `glAreTexturesResidentEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads the doubleword at absolute 0x1708 before an indirect jump; argument registers `a0` through `a3` retain their entry values (`ld` at 0x3368d94; `jr` at 0x3368d98). The destination and its role are Unknown.
+- `glBindTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  An indirect tail transfer uses a doubleword loaded from absolute 0x1710 and leaves entry arguments `a0` through `a3` intact (`ld` at 0x3368da0; `jr` at 0x3368da4). Its target and role are Unknown.
+- `glBindTextureEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  This entry reads absolute 0x1710 as a doubleword and jumps to the loaded value, with the first four arguments unchanged (`ld` at 0x3368da0; `jr` at 0x3368da4). The destination identity and role are Unknown.
+- `glDeleteTexturesEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The first instruction loads a doubleword from absolute 0x1718; the next jumps through it with entry `a0` through `a3` (`ld` at 0x3368dac; `jr` at 0x3368db0). Its indirect target and purpose are Unknown.
+- `glGenTexturesEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A load from absolute 0x1720 obtains the doubleword used as the jump target, while `a0` through `a3` stay at their entry values (`ld` at 0x3368db8; `jr` at 0x3368dbc). The target and this routine’s role are Unknown.
+- `glIsTextureEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine transfers control to the doubleword fetched from absolute 0x1728, passing along the first four entry argument registers (`ld` at 0x3368dc4; `jr` at 0x3368dc8). The indirect destination and role are Unknown.
+- `glPrioritizeTextures` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  After reading the doubleword at absolute 0x1730, it jumps to that value with `a0` through `a3` preserved (`ld` at 0x3368dd0; `jr` at 0x3368dd4). The destination and wider role are Unknown.
+- `glTexImage1D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword loaded from absolute 0x11f0 is the target of an indirect jump carrying entry arguments `a0` through `a3` (`ld` at 0x33685f0; `jr` at 0x33685f4). The destination and its role are Unknown.
+- `glTexImage2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads the doubleword at absolute 0x11f8 and transfers control through it with the first four entry arguments (`ld` at 0x33685fc; `jr` at 0x3368600). The target identity and wider role are Unknown.
+- `glRenderMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  An indirect tail jump uses the doubleword read at absolute 0x1260; arguments `a0` through `a3` retain their entry values (`ld` at 0x3368698; `jr` at 0x336869c). The target’s effect is Unknown.
+- `glGetTexImage` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry loads a doubleword from absolute 0x1508, then jumps to that value with its first four argument registers unchanged (`ld` at 0x3368a94; `jr` at 0x3368a98). The destination’s role is Unknown.
+- `glLoadMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It passes the first four entry arguments to an indirect jump target loaded from absolute 0x1558 (`ld` at 0x3368b0c; `jr` at 0x3368b10). The destination is unknown and so is its wider effect.
