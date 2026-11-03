@@ -7796,3 +7796,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   When the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32d45c8; `addiu` at 0x32d45d0; `beq` at 0x32d45e8; `jalr` at 0x32d4688; `addiu` at 0x32d468c). Calls on other paths include `__glUnScaleColorf` (`jalr` at 0x32d4648). Their hardware effect is Unknown.
 - `__glim_GetTexEnviv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   The `beq` at 0x32d46c8 is taken when the word at absolute 0x1030 equals 1; that path calls `__glSetError` with 0x502 in `a0` (`lw` at 0x32d46a8; `addiu` at 0x32d46b0; `beq` at 0x32d46c8; `jalr` at 0x32d4758; `addiu` at 0x32d475c). Another path calls `__glUnScaleColori` (`jalr` at 0x32d4728). Its wider role is Unknown.
+
+## 64-bit IP30 library: texture generation and extraction
+
+- `__glim_TexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x3314bf8; `addiu` at 0x3314c00; `beq` at 0x3314c14; `jalr` at 0x3314de0; `addiu` at 0x3314de4). On another path it reads a floating-point word at entry `a2` +0 (`lwc1` at 0x3314c98). The field role is Unknown.
+- `__glim_TexGenf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beq` at 0x3314e2c is taken when entry `a1` equals 0x2500 and calls `__glim_TexGenfv` with entry `a0`, entry `a1`, and entry stack pointer -0x10 as the first three arguments (`addiu` at 0x3314e18; `beq` at 0x3314e2c; `bgezall` at 0x3314e54; `daddiu` at 0x3314e58). When it falls through, the routine calls `__glSetError` with 0x500 in `a0` (`beq` at 0x3314e2c; `jalr` at 0x3314e38; `addiu` at 0x3314e3c). The hardware effect of the call is Unknown.
+- `__glim_TexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A path reads the doubleword at entry `a2` +0 and converts it to single precision (`ldc1` at 0x3314f18; `cvt.s.d` at 0x3314f1c). When the word at 0x1030 equals 1, the initial `beq` takes the path to `__glSetError` with 0x502 in `a0` (`lw` at 0x3314e78; `addiu` at 0x3314e80; `beq` at 0x3314e94; `jalr` at 0x3315080; `addiu` at 0x3315084). Its wider effect is Unknown.
+- `__glim_TexGend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If entry `a1` equals 0x2500, `beq` takes the call to `__glim_TexGendv`, passing entry `a0`, entry `a1`, and entry stack pointer -0x10 as the first three arguments (`addiu` at 0x33150b8; `beq` at 0x33150cc; `bgezall` at 0x33150f4; `daddiu` at 0x33150f8). Its fall-through path calls `__glSetError` with 0x500 (`beq` at 0x33150cc; `jalr` at 0x33150d8; `addiu` at 0x33150dc). The target's hardware role is Unknown.
+- `__glim_TexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  One path reads a word from entry `a2` +0, moves it into a floating-point register, and converts a word to single precision (`lw` at 0x33151b8; `mtc1` at 0x33151bc; `cvt.s.w` at 0x33151c0). If the word at 0x1030 equals 1, `beq` takes the path to `__glSetError` with 0x502 in `a0` (`lw` at 0x3315118; `addiu` at 0x3315120; `beq` at 0x3315134; `jalr` at 0x3315334; `addiu` at 0x3315338). Its wider hardware effect is Unknown.
+- `__glim_TexParameterf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33159b0
+  The first `bnez` is taken when entry `a1` is unsigned less than 0x8066 and falls through otherwise (`dli` at 0x33159b4; `sltu` at 0x33159bc; `bnez` at 0x33159d0). A later path calls `__glim_TexParameterfv` with entry `a0` and `a1` as its first two arguments (`bgezall` at 0x3315a3c). The parameter’s wider role is Unknown.
+- `__glim_TexParameteri` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316010
+  It tests entry `a1` against 0x8066 as unsigned: `bnez` is taken for values below that constant and falls through otherwise (`dli` at 0x3316014; `sltu` at 0x331601c; `bnez` at 0x3316030). Its calls include `__glim_TexParameteriv` with entry `a0` and `a1` as the first two arguments (`bgezall` at 0x33160a0). The wider purpose is Unknown.
+- `__glTexParameteriv_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316300
+  The routine calls `__glTexParameterfv_size` with the first four entry arguments (`bgezall` at 0x331631c). Its return carries the callee’s result (`jr` at 0x331632c). The result’s broader meaning is Unknown.
+- `__glim_TexEnvf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316490
+  When entry `a1` equals 0x2200, `beq` takes the path that calls `__glim_TexEnvfv` (`addiu` at 0x3316498; `beq` at 0x33164ac; `bgezall` at 0x33164d4). When it differs, the branch falls through to `__glSetError` with `a0` 0x500 (`beq` at 0x33164ac; `jalr` at 0x33164b8; `addiu` at 0x33164bc). The vector call’s wider effect is Unknown.
+- `__glim_TexEnvi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316630
+  Its `beq` takes the branch for entry `a1` equal to 0x2200 and falls through for other values (`addiu` at 0x3316638; `beq` at 0x331664c). The taken path calls `__glim_TexEnviv`; the fall-through calls `__glSetError` with `a0` 0x500 (`beq` at 0x331664c; `bgezall` at 0x3316674; `jalr` at 0x3316658; `addiu` at 0x331665c). The parameter role is Unknown.
+- `__glTexEnviv_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33166c0
+  It calls `__glTexEnvfv_size` with the first four entry arguments (`bgezall` at 0x33166dc). The effect of the called routine is Unknown.
+- `__glExtractTexelL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316780
+  When entry `a3` is signed negative, `bltz` takes a path that copies a floating-point word from entry `a1` +0xa0 to entry `a5` +0xc (`bltz` at 0x3316780; `lwc1` at 0x33167ac; `swc1` at 0x33167b4). The fields’ meaning is Unknown.
+- `__glExtractTexelLA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33167e0
+  A signed negative entry `a3` makes `bltz` take a path copying floating-point words from entry `a1` +0xa0 and +0xac to entry `a5` +0xc and +0x10 (`bltz` at 0x33167e0; `lwc1` at 0x331680c, 0x3316814; `swc1` at 0x3316810, 0x331681c). The role of those fields is Unknown.
+- `__glExtractTexelRGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3316850
+  `bltz` is taken when entry `a3` is signed negative; that path copies words from entry `a1` +0xa0, +0xa4 and +0xa8 to entry `a5` +0, +4 and +8 (`bltz` at 0x3316850; `lwc1` at 0x331687c, 0x3316884, 0x331688c; `swc1` at 0x3316880, 0x3316888, 0x3316894). Their wider meaning is Unknown.
+- `__glExtractTexelRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33168e0
+  If entry `a3` is signed negative, the first `bltz` takes a path copying floating-point words from entry `a1` +0xa0 and +0xac to entry `a5` +0 and +0x10 (`bltz` at 0x33168e0; `lwc1` at 0x331690c, 0x3316924; `swc1` at 0x3316910, 0x331692c). That path also copies the words at +0xa4 and +0xa8 to +4 and +8 (`lwc1` at 0x3316914, 0x331691c; `swc1` at 0x3316918, 0x3316920). The fields’ role is Unknown.
