@@ -6531,3 +6531,41 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glSpanAlignPixels2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a9460
   **Established effects.** It reads words at entry `a1` +0x28 and +0xc4 (`lw` at 0x32a9460, 0x32a9464).
   `blez` at 0x32a9478 is taken when its tested value is signed nonpositive; that value is Unknown. That path returns the word read at +0x28 (`jr` at 0x32a94a0). The span routine's broader role and hardware effect are Unknown.
+
+## 64-bit IP30 library: vertex and span alignment paths
+
+- `__glle_Vertex4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  - **Established effects.** A doubleword at absolute 0x1b98 supplies an indirect call target; the original first four arguments reach the call (`ld` at 0x3349f24; `jalr` at 0x3349f34). It returns original argument 0 +8 (`daddiu` at 0x3349f44; `jr` at 0x3349f4c). The target, its hardware effects and this routine's wider role are Unknown.
+- `__glsplc_Vertex2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+  - **Established effects.** It calls `__glSPDlalloc2` with 0x10 and 0x40 as the first two arguments (`jalr` at 0x3350a38). When the result is nonzero, `beqz` falls through and writes the entry floating-point doublewords f12 and f13 at the result +0 and +8 (`beqz` at 0x3350a40; `sdc1` at 0x3350a54, 0x3350a60). The written data's hardware meaning and the broader role of this routine are Unknown.
+- `__glsplc_Vertex2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+  - **Established effects.** `__glSPDlalloc2` receives 0x10 and 0x40 as its first two arguments (`jalr` at 0x3350a94). The `beqz` falls through for a nonzero result, selecting a copy of floating-point doublewords from entry argument 0 +0 and +8 to result +0 and +8 (`beqz` at 0x3350a9c; `ldc1` at 0x3350aa8, 0x3350ab0; `sdc1` at 0x3350aac, 0x3350ac0). The copied fields' hardware meaning and the routine's wider purpose are Unknown.
+- `__glsplc_Vertex2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+  - **Established effects.** The call to `__glSPDlalloc` passes 8 and 0x41 as its first two arguments (`jalr` at 0x3350af8). A nonzero result makes `beqz` fall through to stores of entry floating-point words f12 and f13 at result +0 and +4 (`beqz` at 0x3350b00; `swc1` at 0x3350b14, 0x3350b20). These fields' hardware significance and the wider role of this entry are Unknown.
+- `__glsplc_Vertex2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+  - **Established effects.** It invokes `__glSPDlalloc` with 8 and 0x41 as the first two arguments (`jalr` at 0x3350b54). When the return is nonzero, `beqz` falls through to copy floating-point words from entry argument 0 +0 and +4 to result +0 and +4 (`beqz` at 0x3350b5c; `lwc1` at 0x3350b68, 0x3350b70; `swc1` at 0x3350b6c, 0x3350b80). The copied values' hardware effects and this routine's overall role remain Unknown.
+- `glTexCoord2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** The routine reads a doubleword from absolute address 0x1d98 (`ld` at 0x3375e80) and jumps indirectly through it (`jr` at 0x3375e84). The destination, purpose of the 0x1d98 location and this routine’s hardware role are Unknown.
+- `glTexCoord2i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** A doubleword loaded at absolute address 0x1da0 (`ld` at 0x3375f00) supplies the indirect jump target (`jr` at 0x3375f04). The indirect target, purpose of 0x1da0 and wider hardware effect are Unknown.
+- `glTexCoord2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** It loads a doubleword from absolute address 0x1da8 (`ld` at 0x3375f80) and transfers control through that value (`jr` at 0x3375f84). Neither the purpose of 0x1da8 nor the destination or routine’s hardware role is known.
+- `glTexCoord2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** Its indirect jump uses the doubleword loaded from absolute address 0x1db0 (`ld` at 0x3376000; `jr` at 0x3376004). The 0x1db0 location’s purpose, jump target and routine’s hardware effect remain Unknown.
+- `glTexCoord2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  **Established.** It reads the doubleword at absolute address 0x1db8 (`ld` at 0x3376080), then jumps to that value (`jr` at 0x3376084). The function’s hardware role, the target and the purpose of 0x1db8 are Unknown.
+- `__glSpanAlignPixels2Dst` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a94b0
+  **Established effects.** It reads words at entry `a1` +0x80 and +0xc4 (`lw` at 0x32a94b0, 0x32a94b4).
+  `blez` at 0x32a94c8 is taken when its tested value is signed nonpositive; that value is unknown. The path returns the word at entry `a1` +0x80 (`jr` at 0x32a94f0). The effect of this return on hardware and the routine’s wider role are Unknown.
+- `__glSpanAlignPixels4` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a9500
+  **Established effects.** It reads words at entry `a1` +0x28 and +0xc4 (`lw` at 0x32a9500, 0x32a9504).
+  When an unknown tested value is signed positive, `blez` at 0x32a9518 falls through. The path reads four bytes from unknown bases and writes four bytes to unknown bases (`lbu` at 0x32a9520, 0x32a9524, 0x32a9528, 0x32a9530; `sb` at 0x32a9534, 0x32a9538, 0x32a9540, 0x32a954c). The byte accesses do not establish the routine’s wider role or hardware effect; both are Unknown.
+- `__glSpanAlignPixels4Dst` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a9560
+  **Established effects.** The routine reads words at entry `a1` +0x80 and +0xc4 (`lw` at 0x32a9560, 0x32a9564).
+  `blez` at 0x32a9578 is taken when its unknown tested value is signed nonpositive. That path returns the word at entry `a1` +0x80 (`jr` at 0x32a95b0). The returned word’s meaning, the routine’s wider role and its hardware effect are Unknown.
+- `__glSpanSkipPixels1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a9110
+  **Established effects.** `blez` at 0x32a9124 is taken when the word at entry `a1` +0xc4 is signed nonpositive (`lw` at 0x32a9110).
+  The word at `a1` +0x28 is read in that branch's delay slot on both paths (`lw` at 0x32a9128). The wider role and hardware effect are Unknown.
+- `__glSpanSkipPixels2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32a91d0
+  **Established effects.** When the word at entry `a1` +0xc4 is signed nonpositive, `blez` at 0x32a91e4 is taken (`lw` at 0x32a91d0).
+  Its delay slot reads the word at `a1` +0x28 on both paths (`lw` at 0x32a91e8). What this skip path accomplishes overall and its hardware effect are Unknown.
