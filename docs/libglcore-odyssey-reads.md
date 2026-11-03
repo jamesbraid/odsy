@@ -7179,3 +7179,26 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The initial `bnez` is taken when entry `a3` is unsigned less than 0x8034 and falls through otherwise (`dli` at 0x3240b38; `sltu` at 0x3240b40; `bnez` at 0x3240b54). Its accesses include a floating-point word store of unknown value at entry `a1` +0 (`swc1` at 0x3240c0c). The broader role is Unknown.
 - `__glOdysseyCvtToResidue` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3242b90
   Entry `a3` is compared with 0x1909 by `beq`, which takes its branch on equality and falls through on inequality (`addiu` at 0x3242ba0; `beq` at 0x3242bb4). The body includes a floating-point word store of unknown value through an unknown base (`swc1` at 0x3242d54). Its wider purpose is Unknown.
+
+## 64-bit IP30 library: state and query paths
+
+- `__glOdylc_Normal3b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A path stores 0xc180cc16 and the first three entry arguments as words at unknown bases (`sw` at 0x32593a4, 0x32593a8, 0x32593ac, 0x32593b0). It then stores a doubleword at absolute 0x1058 and a word at absolute 0x1048, both of unknown value (`sd` at 0x32593b8; `sw` at 0x32593c4). The destination and broader role are Unknown.
+- `__glOdyDecodeShadowFormat` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a word from entry `a0` +0 (`lw` at 0x3219884). When the tested value is unsigned greater than or equal to 0x3b, `beqz` at 0x32198c0 is taken to a call of `__glSetError` with `a0` equal to 0x500 (`beqz` at 0x32198c0; `jalr` at 0x32198d8; `addiu` at 0x32198dc). The tested value is Unknown in hostfacts; the wider role is Unknown.
+- `__glOdyim_GetIntegerv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glOdysseyDoGet` with entry `a0` and `a1`, `a2` equal to 3, and `a3` equal to 0x33812a8 (`bgezall` at 0x321a9a4; `addiu` at 0x321a99c; `daddiu` at 0x321a9a8). The callee's hardware effect is Unknown.
+- `__glOdyim_GetBooleanv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call to `__glOdysseyDoGet` passes entry `a0` and `a1`, 4 in `a2`, and 0x33812b8 in `a3` (`bgezall` at 0x321a9e4; `addiu` at 0x321a9dc; `daddiu` at 0x321a9e8). The effects beyond this call are Unknown.
+- `__glOdyim_ConvolutionParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at absolute 0x1030 equals 1, `beq` is taken to `__glSetError` with `a0` equal to 0x502 (`lw` at 0x3220838; `addiu` at 0x3220840; `beq` at 0x3220858; `jalr` at 0x322094c; `addiu` at 0x3220950). On a different path it copies a floating-point word from entry `a2` +0 to +0x30 of the value returned by `__glOdysseyGetFilter` (`jalr` at 0x3220864; `lwc1` at 0x32208c0; `swc1` at 0x32208c4). The wider effect is Unknown.
+- `__glOdyim_ConvolutionParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 differs from 1, `beq` falls through to the call to `__glOdysseyGetFilter` (`lw` at 0x3220a80; `addiu` at 0x3220a84; `beq` at 0x3220aa0; `jalr` at 0x3220aac). One path reads a word at entry `a2` +0, converts a word to single precision, and stores an Unknown floating-point word at +0x10 of that call's return value (`lw` at 0x3220b9c; `cvt.s.w` at 0x3220ba4; `swc1` at 0x3220ba8). The field role is Unknown.
+- `__glOdyim_GetConvolutionParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 is 1, `beq` takes the path calling `__glSetError` with `a0` equal to 0x502 (`lw` at 0x3220cf0; `addiu` at 0x3220cf8; `beq` at 0x3220d10; `jalr` at 0x3220f28; `addiu` at 0x3220f2c). Another path copies a floating-point word from +0x30 of the `__glOdysseyGetFilter` return value to entry `a2` +0 (`jalr` at 0x3220d1c; `lwc1` at 0x3220d84; `swc1` at 0x3220d88). The wider role is Unknown.
+- `__glOdyim_GetConvolutionParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beqz` at 0x3220fcc is taken when `__glOdysseyGetFilter` returns zero; that path calls `__glSetError` with `a0` equal to 0x500 (`jalr` at 0x3220fc4; `beqz` at 0x3220fcc; `jalr` at 0x3221180; `addiu` at 0x3221184). A separate path copies a word from +8 of the filter call's return value to entry `a2` +0 (`lw` at 0x3221054; `sw` at 0x322105c). Its hardware effect is Unknown.
+- `doOdysseyHistogramMinMax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When entry `a3` equals 0x1908, `beq` is taken and the target stores the word 4 at entry stack pointer -0x2cc (`addiu` at 0x3255cc8; `beq` at 0x3255cd8; `addiu` at 0x3255d18; `sw` at 0x3255d1c). Its calls include an indirect call with entry `a0` and entry stack pointer -0x2f0 as the first two arguments; its target is Unknown (`jalr` at 0x3255eec; `daddiu` at 0x3255ef0). The broader role is Unknown.
+- `__glOdylc_Error` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1060 is nonzero, `beqz` falls through to a call to `__glsplc_AddIlist` (`lw` at 0x3208650; `beqz` at 0x3208668; `jalr` at 0x32086a0). When it is zero, the taken path stores the doubleword loaded from 0x1058 minus 4 back at 0x1058 (`ld` at 0x3208640; `daddiu` at 0x32086b4; `sd` at 0x32086b8). Its broader role is Unknown.
