@@ -5182,3 +5182,53 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdylc_Color3uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 316 bytes
   **Established effects.** A nonzero word at 0x1060 makes `beqz` at 0x31f5ecc fall through (`lw` at 0x31f5eb0). If the signed word at 0x1048 is at least 4, `beqz` at 0x31f5ed8 is taken and `b` enters the common store block (`lw` at 0x31f5ec4; `beqz` at 0x31f5ed8; `b` at 0x31f5f78).
   It writes 0xc580cc0a followed by words read from entry `a0` +0, +4 and +8; the write destinations are Unknown (`lui` at 0x31f5f28; `ori` at 0x31f5f30; `lw` at 0x31f5f38, 0x31f5f44, 0x31f5f4c; `sw` at 0x31f5f34, 0x31f5f3c, 0x31f5f48, 0x31f5f50). The consumers of the stored words and the routine's broader hardware role are Unknown.
+
+## 64-bit IP30 library: soft vertices and texture blend operations
+
+- `__glOdyim_SoftVertex3f` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3279d40
+  **Established effects.** Reads the doubleword at absolute 0x1020 and another at offset 0x4e30 from it (`ld` at 0x3279d48, 0x3279d4c).
+  It writes f14, f13 and f12 as words at offsets 0x20, 0x1c and 0x18 from the second value (`swc1` at 0x3279d58, 0x3279d5c, 0x3279d60).
+  Both indirect call targets and the wider role of this path remain Unknown (`jalr` at 0x3279d8c, 0x3279db0).
+- `__glOdyim_SoftVertex3fv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3279dd0
+  **Established effects.** Loads floating-point words from entry a0 offsets 0, 8 and 4 (`lwc1` at 0x3279dec, 0x3279df0, 0x3279df4).
+  The doubleword at absolute 0x1020 leads to another at offset 0x4e30; the loaded words are written at offsets 0x18, 0x20 and 0x1c from that second value (`ld` at 0x3279dd8, 0x3279ddc; `swc1` at 0x3279e00, 0x3279df8, 0x3279dfc).
+  The two indirect calls have Unknown targets, as does the routine’s wider hardware role (`jalr` at 0x3279e28, 0x3279e4c).
+- `__glOdyim_SoftVertex3i` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3279e70
+  **Established effects.** Moves entry a2, a1 and a0 into floating-point registers and converts them from word to single precision (`mtc1` at 0x3279e78, 0x3279e80, 0x3279e84; `cvt.s.w` at 0x3279e8c, 0x3279e90, 0x3279e98).
+  It loads the doubleword at absolute 0x1020 and a doubleword at offset 0x4e30 from it (`ld` at 0x3279e7c, 0x3279e88).
+  Floating-point words of unknown value go to offsets 0x20, 0x1c and 0x18 from the second loaded value (`swc1` at 0x3279ea0, 0x3279ea4, 0x3279ea8).
+  Those indirect targets and the integer-input path’s broader hardware role are Unknown (`jalr` at 0x3279ed4, 0x3279ef8).
+- `__glOdyim_SoftVertex3iv` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3279f20
+  **Established effects.** Reads three words at entry a0 offsets 8, 4 and 0, moves them to floating-point registers and converts those registers from word to single precision (`lw` at 0x3279f3c, 0x3279f40, 0x3279f44; `mtc1` at 0x3279f48, 0x3279f4c, 0x3279f50; `cvt.s.w` at 0x3279f54, 0x3279f58, 0x3279f5c).
+  A doubleword from absolute 0x1020 leads to another at +0x4e30; three floating-point words of unknown value are written at +0x20, +0x1c and +0x18 from the latter (`ld` at 0x3279f28, 0x3279f2c; `swc1` at 0x3279f60, 0x3279f64, 0x3279f68).
+  The target of each indirect call and the broader effect of this vector-input path are Unknown (`jalr` at 0x3279f90, 0x3279fb4).
+- `__glOdyim_SoftVertex3s` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3279fd0
+  **Established effects.** Entry a2, a1 and a0 move into floating-point registers, which are converted from word to single precision (`mtc1` at 0x3279fd8, 0x3279fe0, 0x3279fe4; `cvt.s.w` at 0x3279fec, 0x3279ff0, 0x3279ff8).
+  It fetches the doubleword at absolute 0x1020 and another at offset 0x4e30 from it (`ld` at 0x3279fdc, 0x3279fe8).
+  Three floating-point word stores at offsets 0x20, 0x1c and 0x18 from the second value have unknown values (`swc1` at 0x327a000, 0x327a004, 0x327a008).
+  Neither indirect target nor the wider role of the short-input path is resolved (`jalr` at 0x327a034, 0x327a058); both are Unknown.
+- `__glTextureCTDecalRGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 900 bytes
+  **Established effects.** It reads a word from argument 0 +0x1a30 (`lw` at 0x3320c38). `beq` at 0x3320c68 takes a path calling `__GL_TEXENV_CLAMP` when the word is 0x1909 and falls through otherwise (`bgezall` at 0x3320e84). Calls elsewhere in the body include the same callee (`bgezall` at 0x3320cfc, 0x3320d64, 0x3320dcc). The selector word’s meaning and this routine’s wider role are Unknown.
+- `__glTextureCTDecalRGBA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1684 bytes
+  **Established effects.** The word at argument 0 +0x1a30 is loaded (`lw` at 0x3320fcc). `beq` at 0x3320ffc takes a path with a `__GL_TEXENV_CLAMP` call for 0x190a and falls through for a different value (`bgezall` at 0x33213a4). The routine also calls that callee at other sites (`bgezall` at 0x33210c8, 0x332112c, 0x3321190). The significance of the tested word and the wider decal routine remain Unknown.
+- `__glTextureCTBlendL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 900 bytes
+  **Established effects.** A floating-point word from argument 2 +0xc is copied to +0, +4 and +8 of that argument (`lwc1` at 0x332166c; `swc1` at 0x3321678, 0x332167c, 0x3321684). It reads argument 0 +0x1a30 as a word (`lw` at 0x3321690); `beq` at 0x33216b8 takes a path calling `__GL_TEXENV_CLAMP` for 0x1909 and falls through otherwise (`bgezall` at 0x33218ac). The copied words’ meaning and this blend routine’s wider role are Unknown.
+- `__glTextureCTBlendLA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1744 bytes
+  **Established effects.** It loads argument 2 +0xc as a floating-point word and stores the value at +0, +4 and +8 (`lwc1` at 0x33219fc; `swc1` at 0x3321a08, 0x3321a0c, 0x3321a18). The word at argument 0 +0x1a30 is read (`lw` at 0x3321a24); `beq` at 0x3321a4c takes a `__GL_TEXENV_CLAMP` path when that word equals 0x190a and falls through when it differs (`bgezall` at 0x3321df4). The tested and copied fields, and the wider role of this routine, remain Unknown.
+- `__glTextureCTBlendRGB` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 860 bytes
+  **Established effects.** A word at argument 0 +0x1a30 is read (`lw` at 0x33220d0). `beq` at 0x3322108 takes a path calling `__GL_TEXENV_CLAMP` when the word is 0x1909 and falls through when it differs (`bgezall` at 0x33222f8). Calls elsewhere include `__GL_TEXENV_CLAMP` (`bgezall` at 0x33221c8, 0x332222c, 0x3322290). The role of the selector word and the broader effect of this RGB routine are Unknown.
+- `__glOdylc_Color3us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f5fd0
+  **Established effects.** When the word at 0x1060 is nonzero, `beqz` at 0x31f600c falls through (`lw` at 0x31f5ff0). On reaching the next test, `beqz` at 0x31f6018 takes the path for the signed word at 0x1048 at least 4; an unconditional branch joins the stores (`lw` at 0x31f6004; `b` at 0x31f60bc). That path writes the low words of entry `a0`, `a1` and `a2` to an Unknown base (`sw` at 0x31f6088, 0x31f608c, 0x31f6090).
+  It reads the word at 0x1060, adds 4 and stores it back (`lw` at 0x31f60a4; `addiu` at 0x31f60b0; `sw` at 0x31f60b8). The destinations’ meanings and this routine’s wider hardware role are Unknown.
+- `__glOdylc_Color3usv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f6120
+  **Established effects.** A nonzero word at 0x1060 makes `beqz` at 0x31f615c fall through (`lw` at 0x31f6140). When the signed word at 0x1048 is at least 4, `beqz` at 0x31f6168 takes the subsequent path, which branches to the loads (`lw` at 0x31f6154; `b` at 0x31f6208). It reads unsigned halfwords at entry `a0` +0, +2 and +4 and writes each as a word to an Unknown base (`lhu` at 0x31f61c8, 0x31f61d4, 0x31f61dc; `sw` at 0x31f61cc, 0x31f61d8, 0x31f61e0).
+  The destination and the vector routine’s wider hardware effect are Unknown.
+- `__glOdylc_Color4b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f6260
+  **Established effects.** `beqz` at 0x31f629c falls through when the word at 0x1060 is nonzero (`lw` at 0x31f6280). The next `beqz` at 0x31f62a8 is taken when the signed word at 0x1048 is at least 5; an unconditional branch reaches the selected writes (`lw` at 0x31f6294; `b` at 0x31f6358). In instruction order, the low words of entry `a3`, `a2`, `a1` and `a0` are stored at an Unknown base (`sw` at 0x31f6314, 0x31f6318, 0x31f631c, 0x31f6324).
+  The same path adds 5 to the word at 0x1060 and stores the sum (`lw` at 0x31f6340; `addiu` at 0x31f634c; `sw` at 0x31f6354). The stored values’ hardware meaning and the wider role of this routine are Unknown.
+- `__glOdylc_Color4bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f63c0
+  **Established effects.** The first `beqz` at 0x31f63fc falls through for a nonzero word at 0x1060 (`lw` at 0x31f63e0). The second `beqz` at 0x31f6408 is taken when the signed word at 0x1048 is at least 5, and an unconditional branch joins the selected accesses (`lw` at 0x31f63f4; `b` at 0x31f64b0). Four signed bytes are read from entry `a0` +0, +1, +2 and +3 (`lb` at 0x31f6468, 0x31f6470, 0x31f647c, 0x31f6484); the words written from them have Unknown destination bases (`sw` at 0x31f646c, 0x31f6474, 0x31f6480, 0x31f6488).
+  The purpose of these writes and the routine’s broader hardware role remain Unknown.
+- `__glOdylc_Color4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f6510
+  **Established effects.** On paths reaching its call, `__glSPDlistSpace` receives `a0` zero, `a1` 0x10000, `a2` the word at 0x1048 and an Unknown `a3` (`lw` at 0x31f6550; `jalr` at 0x31f658c). When the call result is zero, `beqz` at 0x31f65ac is taken, and the routine stores the doubleword previously read from 0x1058 minus 4 back to 0x1058 (`ld` at 0x31f6560; `daddiu` at 0x31f6660; `sd` at 0x31f6664).
+  The meaning of the 0x1058 value and this routine’s wider hardware role are Unknown.
