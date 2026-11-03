@@ -7367,3 +7367,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The entry loads a doubleword from absolute 0x1508, then jumps to that value with its first four argument registers unchanged (`ld` at 0x3368a94; `jr` at 0x3368a98). The destination’s role is Unknown.
 - `glLoadMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
   It passes the first four entry arguments to an indirect jump target loaded from absolute 0x1558 (`ld` at 0x3368b0c; `jr` at 0x3368b10). The destination is unknown and so is its wider effect.
+
+## 64-bit IP30 library: texture and matrix dispatch
+
+- `__glTextureRGB_L_LML_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3330790
+  A word at entry `a0` +0x9740 controls the first `beqz`: zero takes the return path (`lw` at 0x3330814; `beqz` at 0x3330830; `jr` at 0x3331aec). On other paths the routine includes calls to `floorf` (`jalr` at 0x33308b8, 0x33308d0). The wider role is Unknown.
+- `__glTextureRGB_F_LML_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332a510
+  The entry loads a floating-point word from `a0` +0xf28 (`lwc1` at 0x332a558). The initial `bltz` takes the return path when the word at entry `a0` +0x9740 minus 1 is signed negative (`lw` at 0x332a58c; `addiu` at 0x332a59c; `bltz` at 0x332a5ac; `jr` at 0x332bff0). The routine's wider role is Unknown.
+- `__glTextureRGB_F_LML_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332c1d0
+  Its initial `beqz` is taken to the return path when the word at entry `a0` +0x9740 is zero (`lw` at 0x332c254; `beqz` at 0x332c270; `jr` at 0x332dee0). Its calls include `floor` (`jalr` at 0x332c338). The wider effect is Unknown.
+- `__glTextureRGB_N_N_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a word at entry `a0` +0x9740 and subtracts one; `bltz` is taken when that result is signed negative (`lw` at 0x3331b40; `addiu` at 0x3331b54; `bltz` at 0x3331b68). The branch delay slot reads a word from the doubleword at entry `a0` +0xac0 on both paths (`ld` at 0x3331b30; `bltz` at 0x3331b68; `lw` at 0x3331b6c). The wider role is Unknown.
+- `__glTextureRGB_N_N_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A word read at entry `a0` +0x9740 decides `beqz`: zero takes the branch and nonzero falls through (`lw` at 0x3331eb8; `beqz` at 0x3331ed4). It also reads doublewords at entry `a0` +0x9820 and +0x9830 (`ld` at 0x3331eb0, 0x3331eb4). The field purposes and this routine’s role are Unknown.
+- `__glTextureRGB_N_NMN_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine reads a floating-point word from entry `a0` +0xf28 (`lwc1` at 0x3332294). Its `bltz` is taken if the word at entry `a0` +0x9740 minus one is signed negative (`lw` at 0x33322c8; `addiu` at 0x33322d8; `bltz` at 0x33322e8). The role of this test and any hardware effect are Unknown.
+- `__glTextureRGB_N_NMN_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A word at entry `a0` +0x9740 controls `beqz`; the branch is taken when the word is zero (`lw` at 0x3332754; `beqz` at 0x3332770). A doubleword is loaded at entry `a0` +0x9830 before that decision (`ld` at 0x3332750). The roles of this routine and the loaded field are Unknown.
+- `__glle_LoadMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword read at absolute 0x1558 supplies an indirect call target, with the first four entry arguments passed through (`ld` at 0x334ba34; `jalr` at 0x334ba44). It then returns entry `a0` plus 0x40 (`daddiu` at 0x334ba54; `jr` at 0x334ba5c). The target's effect is Unknown.
+- `__glle_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls through a doubleword read from absolute 0x1560, passing its first four entry arguments (`ld` at 0x334ba84; `jalr` at 0x334ba94). The returned integer-register value is entry `a0` plus 0x80 (`daddiu` at 0x334baa4; `jr` at 0x334baac). The indirect target is Unknown.
+- `__glsplc_LoadMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `__glSPDlalloc` call receives 0x40 and 0xaf in `a0` and `a1` (`addiu` at 0x3353f28, 0x3353f38; `jalr` at 0x3353f34). When its return value is nonzero, `bnez` takes the path calling `memcpy` with the return value, entry `a0`, and 0x40 (`bnez` at 0x3353f3c; `jalr` at 0x3353f5c; `addiu` at 0x3353f60). The use of the copied data is Unknown.
+- `__glsplc_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3353f70
+  It calls `__glSPDlalloc2` with `a0` 0x80 and `a1` 0xb0 (`addiu` at 0x3353f88, 0x3353f98; `jalr` at 0x3353f94). If the result is nonzero, `bnez` is taken and it calls `memcpy` with the result as `a0`, entry `a0` as `a1`, and 0x80 as `a2` (`bnez` at 0x3353f9c; `jalr` at 0x3353fbc; `addiu` at 0x3353fc0). The allocation’s wider role is Unknown.
+- `__glce_RenderMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335cc70, 76 bytes
+  The doubleword at absolute 0x1260 is saved (`ld` at 0x335cc78). The delay slot of a call to `glRenderMode` stores at address 0x1260 the doubleword at +0x3a28 of the value read from absolute 0x1020 (`ld` at 0x335cc80, 0x335cc98; `jalr` at 0x335cc9c; `sd` at 0x335cca0). The saved doubleword is restored afterward (`sd` at 0x335ccac). Its wider purpose is Unknown.
+- `__glce_GetTexImage` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f410
+  It saves the doubleword at 0x1508 and reads the doubleword at 0x1020 (`ld` at 0x335f418, 0x335f420). A call to `glGetTexImage` has a delay-slot store to 0x1508 of the value loaded at +0x3cd0 of the latter (`ld` at 0x335f438; `jalr` at 0x335f43c; `sd` at 0x335f440). It restores the original value after the call (`sd` at 0x335f44c). The field role is Unknown.
+- `__glce_LoadMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f7d0
+  It reads a doubleword at absolute 0x1558 and makes two calls to `glLoadMatrixf` (`ld` at 0x335f7d0; `jalr` at 0x335f808, 0x335f820). Their delay slots write doublewords to 0x1558, and the return delay slot writes another doubleword there (`sd` at 0x335f80c, 0x335f824, 0x335f840; `jr` at 0x335f83c). The field’s wider purpose is Unknown.
+- `__glce_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f850
+  This routine reads the doubleword at 0x1560 and calls `glLoadMatrixd` twice (`ld` at 0x335f850; `jalr` at 0x335f888, 0x335f8a0). Both call delay slots store doublewords at 0x1560; another store to that address executes in the return delay slot (`sd` at 0x335f88c, 0x335f8a4, 0x335f8c0; `jr` at 0x335f8bc). The stored values’ broader role is Unknown.
