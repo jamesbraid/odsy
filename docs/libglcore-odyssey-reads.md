@@ -7730,3 +7730,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   At entry it reads a doubleword at absolute 0x1980, then jumps through that value with `a0` through `a3` unchanged (`ld` at 0x3369148; `jr` at 0x336914c). The indirect destination and its purpose are Unknown.
 - `glTextureColorMaskSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369274
   The doubleword at absolute 0x1a48 supplies the target of a jump that carries the first four original argument registers (`ld` at 0x3369274; `jr` at 0x3369278). The target’s identity and role are Unknown.
+
+## 64-bit IP30 library: texture coordinates and copy paths
+
+- `__glim_GetTexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d4770
+  The `beq` is taken when the word at 0x1030 equals 1 and falls through when it differs (`lw` at 0x32d4778; `addiu` at 0x32d4780; `beq` at 0x32d4798). On the taken path, it calls `__glSetError` with `a0` 0x502 (`jalr` at 0x32d48ac; `addiu` at 0x32d48b0). The field’s role is Unknown.
+- `__glim_GetTexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32d48c0
+  A word from 0x1030 is compared with 1; `beq` takes the branch on equality and falls through otherwise (`lw` at 0x32d48c8; `addiu` at 0x32d48d0; `beq` at 0x32d48e8). The taken path calls `__glSetError` with 0x502 in `a0` (`jalr` at 0x32d4a1c; `addiu` at 0x32d4a20). The word’s purpose is Unknown.
+- `__glim_TexCoord3s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313be0
+  It loads a doubleword from 0x1020 and copies a floating-point word from +0xf2c to +0x194 of that value (`ld` at 0x3313be4; `lwc1` at 0x3313bf0; `swc1` at 0x3313bfc). Word stores at +0x188, +0x18c and +0x190 have unknown values (`swc1` at 0x3313c10, 0x3313c08, 0x3313c04). The fields’ roles are Unknown.
+- `__glim_TexCoord3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313c20
+  The body reads floating-point doublewords at entry `a0` +0, +8 and +0x10 (`ldc1` at 0x3313c20, 0x3313c30, 0x3313c3c). A doubleword read at 0x1020 supplies a base for word stores of unknown value at +0x188, +0x18c and +0x190 (`ld` at 0x3313c24; `swc1` at 0x3313c2c, 0x3313c38, 0x3313c50). Their purpose is Unknown.
+- `__glim_TexCoord3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313c60
+  It loads a doubleword from 0x1020, then copies floating-point words from entry `a0` +0, +4 and +8 to offsets +0x188, +0x18c and +0x190 of the loaded value (`ld` at 0x3313c60; `lwc1` at 0x3313c64, 0x3313c6c, 0x3313c78; `swc1` at 0x3313c68, 0x3313c74, 0x3313c84). The word at +0xf2c of that base is also copied to +0x194 (`lwc1` at 0x3313c70; `swc1` at 0x3313c7c). The fields’ meanings are Unknown.
+- `__glim_TexCoord3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313c90
+  It loads words at entry `a0` +0, +4 and +8 (`lw` at 0x3313c90, 0x3313ca4, 0x3313cb4). It loads a doubleword from absolute 0x1020, copies its word at +0xf2c to +0x194, and stores words of unknown value at +0x188, +0x18c and +0x190 (`ld` at 0x3313c9c; `lwc1` at 0x3313cbc; `swc1` at 0x3313cc4, 0x3313ca0, 0x3313cb0, 0x3313ccc). The fields’ role is Unknown.
+- `__glim_TexCoord3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313cd0
+  Three signed halfwords are read from entry `a0` +0, +2 and +4 (`lh` at 0x3313cd0, 0x3313ce4, 0x3313cf4). A doubleword loaded from absolute 0x1020 supplies the base for word stores of unknown value at +0x188, +0x18c and +0x190; the word at +0xf2c is copied to +0x194 (`ld` at 0x3313cdc; `swc1` at 0x3313ce0, 0x3313cf0, 0x3313d0c; `lwc1` at 0x3313cfc; `swc1` at 0x3313d04). Their wider purpose is Unknown.
+- `__glim_TexCoord4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313d10
+  It converts four doubles to single precision (`cvt.s.d` at 0x3313d14, 0x3313d18, 0x3313d20, 0x3313d28). Relative to the doubleword at absolute 0x1020, word stores at +0x194, +0x190, +0x18c and +0x188 have unknown values (`ld` at 0x3313d10; `swc1` at 0x3313d1c, 0x3313d24, 0x3313d2c, 0x3313d34). The uses of these four stored words are Unknown.
+- `__glim_TexCoord4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313d40
+  The doubleword at absolute 0x1020 supplies the base for stores of entry `f15`, `f14`, `f13` and `f12` at +0x194, +0x190, +0x18c and +0x188 respectively (`ld` at 0x3313d40; `swc1` at 0x3313d44, 0x3313d48, 0x3313d4c, 0x3313d54). The four fields’ roles are Unknown.
+- `__glim_TexCoord4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3313d60
+  It moves the first four entry arguments to floating-point registers and converts words to single precision (`mtc1` at 0x3313d60, 0x3313d64, 0x3313d68, 0x3313d6c; `cvt.s.w` at 0x3313d70, 0x3313d78, 0x3313d7c, 0x3313d80). The doubleword at 0x1020 supplies the base for word stores at +0x194, +0x190, +0x18c and +0x188; their values are unknown (`ld` at 0x3313d74; `swc1` at 0x3313d84, 0x3313d88, 0x3313d8c, 0x3313d94). The effect of these writes on later operations is Unknown.
+- `CopyVertexCode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When bit 0 of the tested word is clear, `beqz` takes the branch past the first group of calls; hostfacts does not resolve the word's value (`andi` at 0x31fad48; `beqz` at 0x31fad58). The fall-through path calls `memcpy` with entry `a0` and `a1` as its first two arguments and an Unknown third argument (`jalr` at 0x31fad68). The wider role is Unknown.
+- `__glSpanCopy` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `memcpy` with entry `a3` and `a2` as its first two arguments; hostfacts cannot resolve the third (`jalr` at 0x329a314; `move` at 0x329a318). The copy's wider role is Unknown.
+- `__glSlowPickCopyConvolutionFilter1D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glInitReadImageSrcInfo` with entry `a0` and entry stack pointer -0x2a0 as `a0` and `a1` (`daddiu` at 0x32b01b4; `jalr` at 0x32b01dc). The next `__glInitMemLoad` call uses entry `a2` as its third argument and the doubleword at entry `a0` +0x408 as its fourth (`ld` at 0x32b01f0; `jalr` at 0x32b01f4). The broader hardware effect is Unknown.
+- `__glSlowPickCopyConvolutionFilter2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The first call, `__glInitReadImageSrcInfo`, passes entry `a0` and entry stack pointer -0x2a0 in `a0` and `a1` (`daddiu` at 0x32b0374; `jalr` at 0x32b03a0). Its `__glInitMemLoad` call receives entry `a2` and the doubleword at entry `a0` +0x460 in `a2` and `a3` (`ld` at 0x32b03b4; `jalr` at 0x32b03b8). The field roles are Unknown.
+- `__glim_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32c8434; `addiu` at 0x32c843c; `beq` at 0x32c8454; `bgezall` at 0x32c86e8; `addiu` at 0x32c86ec). The fall-through path calls `__glCheckColorSubTableArgs` (`bgezall` at 0x32c8474). Its broader hardware effect is Unknown.
