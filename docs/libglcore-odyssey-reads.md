@@ -8291,3 +8291,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Its initial `bltz` takes the path to `__glsplc_InvalidValue` if the tested signed value is negative; that value is Unknown (`bltz` at 0x3355808; `jalr` at 0x3355870). Another path calls `__glSPDlalloc` with 0xee in `a1` (`addiu` at 0x3355814; `jalr` at 0x3355818). The use of the filter allocation is Unknown.
 - `__glce_CopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   It calls `glCopyConvolutionFilter1DEXT` twice, each time passing entry arguments 0 through 3 (`jalr` at 0x3360698, 0x33606c0). The first delay slot writes the doubleword at +0x2078 of the value loaded from 0x1020 to absolute 0x1628 (`ld` at 0x3360678, 0x3360690; `jalr` at 0x3360698; `sd` at 0x336069c). The slot's role is Unknown.
+
+## 64-bit IP30 library: color table entry paths
+
+- `__glce_GetColorTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3364430
+  A doubleword at 0x1a78 is read before calling `glGetColorTable` (`ld` at 0x3364438; `jalr` at 0x336445c). The call delay slot writes to 0x1a78; the original doubleword is restored afterward (`jalr` at 0x336445c; `sd` at 0x3364460, 0x336446c). The use of the restored doubleword is Unknown.
+- `__glce_GetColorTableParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3364480
+  It saves the doubleword at 0x1a80, calls `glGetColorTableParameterfv`, then restores that value (`ld` at 0x3364488; `jalr` at 0x33644ac; `sd` at 0x33644bc). The call delay slot also stores a doubleword at 0x1a80 (`jalr` at 0x33644ac; `sd` at 0x33644b0). The use of this saved slot is Unknown.
+- `__glce_GetColorTableParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33644d0
+  The routine reads a doubleword from 0x1a88 and invokes `glGetColorTableParameteriv` (`ld` at 0x33644d8; `jalr` at 0x33644fc). A doubleword is written at 0x1a88 in the call delay slot, and the initial value is restored afterward (`jalr` at 0x33644fc; `sd` at 0x3364500, 0x336450c). Its broader meaning is Unknown.
+- `glCopyConvolutionFilter1D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368c44
+  A doubleword read from 0x1628 supplies an indirect jump target, carrying entry `a0` through `a3` unchanged (`ld` at 0x3368c44; `jr` at 0x3368c48). What the selected target does is Unknown.
+- `glCopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368c44
+  It loads the doubleword at absolute 0x1628 and jumps through it with the first four entry arguments (`ld` at 0x3368c44; `jr` at 0x3368c48). The target’s identity and effect are Unknown.
+- `glColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f14
+  It reads the doubleword at absolute 0x1808 and jumps through it, keeping entry `a0` through `a3` intact (`ld` at 0x3368f14; `jr` at 0x3368f18). The indirect destination and wider role are Unknown.
+- `glColorTableParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f20
+  The entry transfers to the value of a doubleword loaded from absolute 0x1810, with the first four entry argument registers (`ld` at 0x3368f20; `jr` at 0x3368f24). The target’s identity and role are Unknown.
+- `glColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f20
+  A load from absolute 0x1810 obtains the doubleword used for an indirect jump; `a0` through `a3` retain their entry values (`ld` at 0x3368f20; `jr` at 0x3368f24). The target and its purpose are Unknown.
+- `glCopyColorTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f2c
+  The doubleword at absolute 0x1818 is loaded and used as a jump target with the first four arguments unchanged (`ld` at 0x3368f2c; `jr` at 0x3368f30). The destination and routine role are Unknown.
+- `glCopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f2c
+  It obtains an indirect target from the doubleword at absolute 0x1818, then transfers control with entry `a0` through `a3` (`ld` at 0x3368f2c; `jr` at 0x3368f30). The callee’s identity and role are Unknown.
+- `__glce_CopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Both calls to `glCopyConvolutionFilter2DEXT` receive the first four entry arguments (`jalr` at 0x336073c, 0x3360768). In the first call's delay slot it stores the doubleword at +0x2080 of the value read at 0x1020 to absolute 0x1630 (`ld` at 0x336071c, 0x3360734; `jalr` at 0x336073c; `sd` at 0x3360740). The slot's broader role is Unknown.
+- `__glce_ColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine calls `glColorTableSGI` twice with entry arguments 0 through 3 (`jalr` at 0x3361f9c, 0x3361fc8). Its first call delay slot stores the doubleword at +0x2250 of the value loaded from 0x1020 to 0x1800 (`ld` at 0x3361f7c, 0x3361f94; `jalr` at 0x3361f9c; `sd` at 0x3361fa0). The slot's hardware meaning is Unknown.
+- `__glce_ColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It invokes `glColorTableParameterfvSGI` twice, with the first call receiving the first four entry arguments (`jalr` at 0x3362030, 0x3362050). During the first call's delay slot, the doubleword at +0x2258 of the value at 0x1020 is written to absolute 0x1808 (`ld` at 0x3362010, 0x3362028; `jalr` at 0x3362030; `sd` at 0x3362034). The later use of that slot is Unknown.
+- `__glce_ColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Two calls to `glColorTableParameterivSGI` are present; the first passes entry arguments 0 through 3 (`jalr` at 0x33620c0, 0x33620e0). That call's delay slot stores the doubleword at +0x2260 of the value read from 0x1020 to 0x1810 (`ld` at 0x33620a0, 0x33620b8; `jalr` at 0x33620c0; `sd` at 0x33620c4). The slot's function is Unknown.
+- `__glce_CopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Both `glCopyColorTableSGI` calls receive the first four entry arguments (`jalr` at 0x3362158, 0x3362180). The first call's delay slot writes the doubleword at +0x2268 of the value loaded at 0x1020 to absolute 0x1818 (`ld` at 0x3362138, 0x3362150; `jalr` at 0x3362158; `sd` at 0x336215c). The role of this stored doubleword is Unknown.
