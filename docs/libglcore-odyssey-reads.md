@@ -8357,3 +8357,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It calls through the doubleword read at absolute 0x1940 (`ld` at 0x334cf98; `jalr` at 0x334cfa4). The call receives words at entry `a0` offsets +0, +4, +8 and +0xc as its first four arguments (`lw` at 0x334cf7c, 0x334cfa8, 0x334cfa0, 0x334cf9c; `jalr` at 0x334cfa4). The integer return value is entry `a0` +0x18, and the target is Unknown (`daddiu` at 0x334cfb4; `jr` at 0x334cfbc).
 - `__glsplc_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   The `__glSPDlalloc` call receives 0x18 and 0xfc as its first two arguments (`addiu` at 0x3355ce0, 0x3355cd8; `jalr` at 0x3355ce4). Its `beqz` falls through when the result is nonzero, and that path writes entry `a0` as a word at result +0 (`beqz` at 0x3355cec; `sw` at 0x3355d24). The record's wider role is Unknown.
+
+## 64-bit IP30 library: blend and subimage paths
+
+- `glGetColorTableParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33692d4
+  The entry jumps through a doubleword read from absolute 0x1a88, keeping the first four argument registers unchanged (`ld` at 0x33692d4; `jr` at 0x33692d8). The target and role are Unknown.
+- `__glim_BlendFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b83a0
+  It reads a word at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x32b83a0; `ld` at 0x32b83ac). Its stores include entry `a1` and entry `a0` at offsets +0x830 and +0x82c of the loaded doubleword (`sw` at 0x32b84c4, 0x32b84c8). Their wider purpose is Unknown.
+- `__glDoBlendAdd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1020
+  It reads floating-point words at entry `a3` +0 and entry `a2` +0, performs a single-precision addition and writes an unknown word at entry `a3` +0 (`lwc1` at 0x32c1020, 0x32c1024; `add.s` at 0x32c102c; `swc1` at 0x32c1030). The operation’s wider role is Unknown.
+- `__glDoBlendMin` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1070
+  The `bc1f` falls through when the floating-point word at entry `a2` +0 is less than the one at entry `a3` +0 (`lwc1` at 0x32c1070, 0x32c1074; `c.lt.s` at 0x32c1078; `bc1f` at 0x32c107c). That path stores a floating-point word of unknown value at entry `a3` +0 (`swc1` at 0x32c1084). The subsequent use of the destination word is Unknown.
+- `__glDoBlendSubtract` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1150
+  It loads floating-point words from entry `a2` +0 and `a3` +0, subtracts in single precision, then writes an unknown word at `a3` +0 (`lwc1` at 0x32c1150, 0x32c1154; `sub.s` at 0x32c115c; `swc1` at 0x32c1160). The purpose of this subtraction path is Unknown.
+- `__glce_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Both calls to `glCopyColorSubTable` receive the first four entry arguments (`jalr` at 0x3363398, 0x33633c0). The first call's delay slot writes the doubleword at +0x2390 of the value read at 0x1020 to absolute 0x1940 (`ld` at 0x3363378, 0x3363390; `jalr` at 0x3363398; `sd` at 0x336339c). The slot's wider role is Unknown.
+- `glCopyTexSubImage1D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It jumps through the doubleword read at absolute 0x1748, carrying entry arguments 0 through 3 (`ld` at 0x3368df4; `jr` at 0x3368df8). The destination and hardware effect are Unknown.
+- `glCopyTexSubImage1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry transfers control through the doubleword loaded from 0x1748, with the first four arguments unchanged (`ld` at 0x3368df4; `jr` at 0x3368df8). Its target is Unknown.
+- `glCopyTexSubImage2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword at absolute 0x1750 supplies an indirect jump target; arguments 0 through 3 keep their entry values (`ld` at 0x3368e00; `jr` at 0x3368e04). The destination's role is Unknown.
+- `glCopyTexSubImage2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword at 0x1750 and jumps to it with its first four entry arguments (`ld` at 0x3368e00; `jr` at 0x3368e04). The target's wider effect is Unknown.
+- `__glDoBlendReverseSubtract` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c11a0
+  It loads floating-point words at entry `a3` +0 and `a2` +0, performs single-precision subtraction, and stores an unknown word at `a3` +0 (`lwc1` at 0x32c11a0, 0x32c11a4; `sub.s` at 0x32c11ac; `swc1` at 0x32c11b0). How the subtracted value is used later is Unknown.
+- `__glDoBlendAlphaMin` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c11f0
+  `bc1f` falls through when the floating-point word at entry `a2` +0xc is less than or equal to the word at entry `a3` +0xc (`lwc1` at 0x32c11f0, 0x32c11f4; `c.le.s` at 0x32c11f8; `bc1f` at 0x32c11fc). That path copies the word at entry `a2` +0 to entry `a3` +0 (`lwc1` at 0x32c1200; `swc1` at 0x32c1204). The fields’ meaning is Unknown.
+- `__glDoBlendAlphaMax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1230
+  When the floating-point word at entry `a3` +0xc is less than or equal to the word at entry `a2` +0xc, `bc1f` falls through (`lwc1` at 0x32c1230, 0x32c1234; `c.le.s` at 0x32c1238; `bc1f` at 0x32c123c). The fall-through path copies entry `a2` +0 to entry `a3` +0 as a word (`lwc1` at 0x32c1240; `swc1` at 0x32c1244). Their purpose is Unknown.
+- `__glDoBlendLogicOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1270
+  If the word at entry `a0` +0x848 equals 0x1500, `beq` takes a path with floating-point word stores at entry `a3` +0xc, +8, +4 and +0; the values are unknown (`lw` at 0x32c1274; `addiu` at 0x32c1278; `beq` at 0x32c1288; `swc1` at 0x32c157c, 0x32c1580, 0x32c1584, 0x32c1590). The fields’ wider role is Unknown.
+- `__glDoBlendSourceZERO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1870
+  The routine moves zero to a floating-point register (`mtc1` at 0x32c1870). It writes floating-point words of unknown value at entry `a3` +0xc, +8, +4 and +0 (`swc1` at 0x32c1874, 0x32c1878, 0x32c187c, 0x32c1884). The four destination words’ later use is Unknown.
