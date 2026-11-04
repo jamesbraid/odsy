@@ -8522,3 +8522,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Its reads include floating-point words at entry `a0` +0x9a18 and +0x99f8, and a word at +0x9740 (`lwc1` at 0x32c31e8, 0x32c31ec; `lw` at 0x32c31f0). It also loads doublewords from +0x9828 and +0x9820 (`ld` at 0x32c3200, 0x32c3204). The later use of these five values is Unknown.
 - `__glBlendStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3390
   It reads a word at entry `a0` +0x9740 and doublewords at +0x9828, +0x9820 and +0x9830 (`lw` at 0x32c33b4; `ld` at 0x32c33bc, 0x32c33c8, 0x32c33d4). Its calls include an indirect call through a doubleword at entry `a0` +0x4d10 (`ld` at 0x32c3428; `jalr` at 0x32c3438). The effect of the indirect call is Unknown.
+
+## 64-bit IP30 library: depth and stencil spans
+
+- `__glDepthPassStippledLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A word at entry `a0` +0x9740 controls `beqz`: zero takes the return path and nonzero falls through (`lw` at 0x32e6fd0; `beqz` at 0x32e7020; `jr` at 0x32e714c). The field's hardware role is Unknown.
+- `__glGenericPickDepthProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It clears the byte at entry `a0` +0x9d78 and reads a byte at entry `a0` +0x764 (`sb` at 0x32f3d1c; `lbu` at 0x32f3ce8). A path includes an indirect call with entry `a0` in `a0` and entry `a0` +0x9ce0 in `a1` (`jalr` at 0x32f3d7c; `daddu` at 0x32f3d80). The callee and field roles are Unknown.
+- `__glStencilTestSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The initial `beqz` is taken to the return path when the word at entry `a0` +0x9740 is zero (`lw` at 0x32fdbe4; `beqz` at 0x32fdbf0; `jr` at 0x32fdd44). Nonzero falls through; the field's hardware meaning is Unknown (`beqz` at 0x32fdbf0).
+- `__glStencilTestStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at entry `a0` +0x9740 is zero, `beqz` takes the path returning 1 in `v0` (`lw` at 0x32fdd6c; `beqz` at 0x32fdd7c; `addiu` at 0x32fdf14; `jr` at 0x32fdf1c). How this result is used by callers is Unknown.
+- `__glDepthTestOffsetSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword at entry `a0` +0x4928 and a floating-point word at entry `a0` +0x9858 (`ld` at 0x32fdf40; `lwc1` at 0x32fdf7c). The `bc1f` at 0x32fdfa4 is taken when the comparison of `f0` less than that floating-point word is false (`c.lt.s` at 0x32fdf8c; `bc1f` at 0x32fdfa4). The purpose of the two loaded fields is Unknown.
+- `__glDepthPassSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3300120
+  It reads a word at entry `a0` +0x9740 and doublewords at +0x9c98 and +0x9810 (`lw` at 0x3300128; `ld` at 0x3300130, 0x3300134). Its byte stores include one at offset +0 of the doubleword read from entry `a0` +0x9810 and another through an unknown base (`ld` at 0x3300134; `sb` at 0x3300164, 0x3300188). The purpose of the loaded values and byte writes is Unknown.
+- `__glDepthPassStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33001b0
+  A word from entry `a0` +0x9740 and doublewords from +0x9c98, +0x9810 and +0x9830 are read (`lw` at 0x33001b8; `ld` at 0x33001bc, 0x33001c0, 0x33001c8). It also stores a byte through an unknown base (`sb` at 0x33001e4). The role of the loaded fields in the operation is Unknown.
+- `PassDepthFailOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3305050
+  It reads doublewords at entry `a0` +0, +0x18 and +0x88 (`ld` at 0x3305064, 0x330507c) and a word at +0x28 (`lw` at 0x3305058). The `ld` at 0x3305050 reads the doubleword at argument 0 +0x0. The return delay slot stores a byte through an unknown base (`jr` at 0x330508c; `sb` at 0x3305090). What the four loaded fields represent is Unknown.
+- `DepthPassOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33050a0
+  Entry `a0` +0x90 and +0x18 supply doublewords (`ld` at 0x33050cc, 0x33050b4). It stores a byte through an unknown base in the return delay slot (`jr` at 0x33050dc; `sb` at 0x33050e0). The data’s purpose is Unknown.
+- `FreeStencilBuf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33055d0
+  Four indirect calls have unknown destinations and pass entry `a1` as `a0` (`jalr` at 0x3305600, 0x3305610, 0x3305620, 0x3305630). Afterward, zero doublewords are stored at entry `a0` +0x78, +0x80, +0x88 and +0x90 (`sd` at 0x3305650, 0x330564c, 0x3305644, 0x3305640). The purpose of the calls and cleared locations is Unknown.
+- `__gllc_ClearStencil` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343c80
+  It calls `__glDlistAllocOp2` with the doubleword at absolute 0x1020 and 8 as the first two arguments (`ld` at 0x3343c84; `addiu` at 0x3343ca0; `jalr` at 0x3343cac). When the result is nonzero, `bnez` takes the path storing halfword 0x82 at result +0x14 (`bnez` at 0x3343cb4; `addiu` at 0x3343cd4; `sh` at 0x3343cd8). The later use of this stored halfword is Unknown.
+- `__gllc_ClearDepth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343d00
+  The `__glDlistAllocOp2` call receives the doubleword at 0x1020 and 8 as its first two arguments (`ld` at 0x3343d04; `addiu` at 0x3343d24; `jalr` at 0x3343d28). A nonzero result takes `bnez` to a halfword store of 0x83 at result +0x14 (`bnez` at 0x3343d30; `addiu` at 0x3343d5c; `sh` at 0x3343d60). The field’s wider role is Unknown.
+- `__gllc_StencilMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343d80
+  It passes the doubleword from absolute 0x1020 and 8 to `__glDlistAllocOp2` (`ld` at 0x3343d84; `addiu` at 0x3343da0; `jalr` at 0x3343dac). If that call returns nonzero, `bnez` takes the path writing halfword 0x84 at result +0x14 (`bnez` at 0x3343db4; `addiu` at 0x3343dd4; `sh` at 0x3343dd8). The stored value’s meaning is Unknown.
+- `__gllc_DepthMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3343ea0
+  `__glDlistAllocOp2` receives the doubleword at absolute 0x1020 and 8 (`ld` at 0x3343ea4; `addiu` at 0x3343ec0; `jalr` at 0x3343ecc). Its nonzero return makes `bnez` take a path that writes 0x86 as a halfword at result +0x14 (`bnez` at 0x3343ed4; `addiu` at 0x3343ef4; `sh` at 0x3343ef8). The record’s wider role is Unknown.
+- `__gllc_BlendFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3344a80
+  The first two arguments to `__glDlistAllocOp2` are the doubleword at 0x1020 and 8 (`ld` at 0x3344a80; `addiu` at 0x3344aa4; `jalr` at 0x3344ab0). `bnez` takes the path storing halfword 0x9e at result +0x14 when the result is nonzero (`bnez` at 0x3344ab8; `addiu` at 0x3344ad4; `sh` at 0x3344ad8). The consumer of the stored halfword is Unknown.
