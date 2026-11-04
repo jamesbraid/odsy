@@ -8423,3 +8423,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It loads floating-point words from entry `a0` +0x844 and entry `a1` +0xc (`lwc1` at 0x32c2020, 0x32c2024). Its writes include floating-point words of unknown value at entry `a3` +0xc and +8 (`swc1` at 0x32c203c, 0x32c2044). Their wider role is Unknown.
 - `__glDoBlendDestCA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2060
   Entry `a0` +0x844 and entry `a2` +0 supply floating-point words (`lwc1` at 0x32c2060, 0x32c2064). An indirect call uses a doubleword loaded from entry `a0` +0x4d28 as its unknown target (`ld` at 0x32c20a8; `jalr` at 0x32c20b0). The fields’ purposes are Unknown.
+
+## 64-bit IP30 library: blend execution paths
+
+- `__glDoBlendSourceMCC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c20d0
+  Its reads include floating-point words at entry `a1` +8 and +0xc, and doublewords at entry `a0` +0x838 and +0x840 (`lwc1` at 0x32c20d0, 0x32c20d4; `ld` at 0x32c20dc, 0x32c20e4). It writes floating-point words of unknown value at entry `a3` +0xc, +8, +4 and +0 (`swc1` at 0x32c2120, 0x32c2128, 0x32c2130, 0x32c213c). The fields’ wider role is Unknown.
+- `__glDoBlendDestMCC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2140
+  The routine reads a floating-point word from entry `a0` +0xf2c and doublewords from +0x838 and +0x840 (`lwc1` at 0x32c2140; `ld` at 0x32c2144, 0x32c214c). An indirect call receives entry `a0`, entry `a1`, entry stack pointer minus 0x20 and entry `a3` (`jalr` at 0x32c21cc; `daddiu` at 0x32c21d0). Its target and the operation’s role are Unknown.
+- `__glDoBlendSourceMCA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c21f0
+  It reads floating-point words at entry `a0` +0x844 and +0xf2c (`lwc1` at 0x32c21f0, 0x32c21f4). The word stores to entry `a3` +0xc, +8, +0 and +4 have unknown values (`swc1` at 0x32c2214, 0x32c221c, 0x32c2220, 0x32c222c). The purpose of these four destination words is Unknown.
+- `__glDoBlendDestMCA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2230
+  It loads floating-point words at entry `a0` +0x844 and +0xf2c (`lwc1` at 0x32c2230, 0x32c2234). An indirect call takes the first two entry arguments, entry stack pointer minus 0x20, and entry `a3` (`jalr` at 0x32c2288; `daddiu` at 0x32c228c). The destination and wider purpose are Unknown.
+- `__glDoNoFetchBlend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c22b0
+  A doubleword loaded at entry `a0` +0x4d10 supplies an indirect call target (`ld` at 0x32c22c4; `jalr` at 0x32c22d0). The call arguments are entry `a0`, entry `a2` +0xc, zero and entry `a3` (`daddiu` at 0x32c22c8; `jalr` at 0x32c22d0; `move` at 0x32c22d4). The target and role are Unknown.
+- `__glDoBlendSourceDC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads floating-point words at entry `a2` +0, entry `a1` +0 and entry `a0` +0x9a20 (`lwc1` at 0x32c1a9c, 0x32c1aa0, 0x32c1ad4). Its stores include floating-point words of Unknown value at entry `a3` +0 and +0xc (`swc1` at 0x32c1af8, 0x32c1ae0). The output fields' roles are Unknown.
+- `__glDoBlendSourceMDC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Floating-point reads include entry `a0` +0xf2c, entry `a2` +0, and entry `a0` +0x9a20 (`lwc1` at 0x32c1b00, 0x32c1b04, 0x32c1b28). It performs a negative multiply-subtract and writes a floating-point word of Unknown value at entry `a3` +0 (`nmsub.s` at 0x32c1b3c; `swc1` at 0x32c1b6c). The later use of this computed word is Unknown.
+- `__glDoBlendSourceSA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine reads floating-point words at entry `a1` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c1b74, 0x32c1b7c). Its stores include Unknown floating-point words at entry `a3` +0 and +0xc (`swc1` at 0x32c1bb0, 0x32c1b98). The purpose of these destination words remains Unknown.
+- `__glDoBlendDestSA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its inputs include floating-point words at entry `a1` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c1bc4, 0x32c1bcc). It calls through the doubleword at entry `a0` +0x4d28 with entry stack pointer -0x20 in `a2` (`ld` at 0x32c1c18; `jalr` at 0x32c1c20; `daddiu` at 0x32c1c24). The callee's role is Unknown.
+- `__glDoBlendSourceMSA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine reads floating-point words from entry `a1` +0xc and entry `a0` offsets +0x9a2c and +0xf2c (`lwc1` at 0x32c1c44, 0x32c1c4c, 0x32c1c50). It performs a negative multiply-subtract and writes an Unknown floating-point word at entry `a3` +0 (`nmsub.s` at 0x32c1c54; `swc1` at 0x32c1c84). The effect of this calculation beyond the stored word is Unknown.
+- `__glDoFetchBlend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c22f0
+  The first indirect call receives entry `a1`, words at entry `a2` +0 and +4, and entry stack pointer minus 0x40 (`lw` at 0x32c2324, 0x32c2330; `jalr` at 0x32c232c). The second takes entry `a0`, entry `a2` +0xc, entry stack pointer minus 0x40 and entry `a3` (`jalr` at 0x32c2348; `daddiu` at 0x32c234c). Both targets and the wider role are Unknown.
+- `__glDoBlend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2370
+  It makes indirect calls through doublewords read at entry `a0` +0x4d18 and +0x4d20 (`ld` at 0x32c238c, 0x32c23ac; `jalr` at 0x32c23a4, 0x32c23bc). Each call receives the first four entry arguments (`jalr` at 0x32c23a4, 0x32c23bc). The targets and routine role are Unknown.
+- `__glDoBlendZeroClamp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2450
+  Two indirect calls use doublewords read at entry `a0` +0x4d18 and +0x4d20 as targets (`ld` at 0x32c246c, 0x32c248c; `jalr` at 0x32c247c, 0x32c2498). Both receive the first four entry arguments (`jalr` at 0x32c247c, 0x32c2498). Their identities and the wider role are Unknown.
+- `__glDoBlendNoClamp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2510
+  It calls through doublewords at entry `a0` +0x4d18 and +0x4d20 (`ld` at 0x32c252c, 0x32c2548; `jalr` at 0x32c2540, 0x32c2558). The first four entry argument registers are passed to both calls (`jalr` at 0x32c2540, 0x32c2558). The targets and routine’s broader role are Unknown.
+- `__glDoBlend_SA_ZERO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2580
+  Its reads include floating-point words at entry `a1` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c2584, 0x32c258c). It writes floating-point words of unknown value at entry `a3` +0, +4, +8 and +0xc (`swc1` at 0x32c259c, 0x32c25a8, 0x32c25b4, 0x32c25c4). The fields’ purpose is Unknown.
