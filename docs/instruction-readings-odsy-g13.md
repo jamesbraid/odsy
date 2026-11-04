@@ -1630,7 +1630,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 4 bytes from [sym(__glx_contextList)] +0x108 into `t6` (`lw` at 0xd81f524).
   Loads 4 bytes from abs 0x1014 into `v0` (`lw` at 0xd81f530).
   Loads 4 bytes from [0x1014] +0x114 into `t7` (`lw` at 0xd81f534).
-  Performs 3 4-byte loads from ? (base unknown), including `lw` at 0xd81f53c, `lw` at 0xd81f584, `lw` at 0xd81f5b4.
+  Performs 8 4-byte loads from ? (base unknown), including `lw` at 0xd81f53c, `lw` at 0xd81f584, `lw` at 0xd81f5b4.
   Stores 4 bytes from `s2` to [0x1014] +0x114 (`sw` at 0xd81f540).
   Loads 4 bytes from abs 0x1048 into `t8` (`lw` at 0xd81f544).
   Stores 4 bytes from `t4` to ? (base unknown) (`sw` at 0xd81f590).
@@ -1889,7 +1889,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 4 bytes from abs 0xd845c98 into `t9` (`lw` at 0xd820690).
   Loads 4 bytes from a0 (arg0 at entry) +0x4c into `t6` (`lw` at 0xd82069c).
   Loads 4 bytes from abs 0xd8458e8 into `t9` (`lw` at 0xd8206b4).
-  Performs 2 4-byte loads from ? (base unknown), including `lw` at 0xd8206b8, `lw` at 0xd8206cc.
+  Performs 3 4-byte loads from ? (base unknown), including `lw` at 0xd8206b8, `lw` at 0xd8206cc.
   Loads 4 bytes from abs 0x1014 into `v0` (`lw` at 0xd8206d0).
   Loads 4 bytes from [0x1014] +0x0 into `t8` (`lw` at 0xd8206dc).
   Loads 4 bytes from ? (base unknown) into `t0` (`lw` at 0xd8206e0).
@@ -2430,9 +2430,9 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 1 byte from a0 (arg0 at entry) +0x79 into `t2` (`lbu` at 0xd8238f4).
   Loads 4 bytes from abs 0xd8458ec into `t9` (`lw` at 0xd823904).
   Loads 4 bytes from abs 0xd8458f4 into `t1` (`lw` at 0xd8239bc).
-  Performs 5 1-byte loads from ? (base unknown), including `lbu` at 0xd8239fc, `lbu` at 0xd823a00, `lbu` at 0xd823a34.
+  Performs 7 1-byte loads from ? (base unknown), including `lbu` at 0xd8239fc, `lbu` at 0xd823a00, `lbu` at 0xd823a34.
   Loads 1 byte from table(0xd841de0) +0x0 into `t6` (`lbu` at 0xd823a0c).
-  Performs 2 1-byte loads from table(0xd841de0) +0x0, including `lbu` at 0xd823a14, `lbu` at 0xd823a94.
+  Performs 4 1-byte loads from table(0xd841de0) +0x0, including `lbu` at 0xd823a14, `lbu` at 0xd823a94.
   Calls `ElementsPerGroup [0xd820be4]` via register-constant with a0=a3 at entry (arg3), a1=0x1a00, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0xd823920).
   The `blez` at 0xd8238f0 is taken when v0(=[a0+124]) <= 0 (signed) and falls through when v0(=[a0+124]) > 0 (signed).
   The `bne` at 0xd823958 is taken when t0(?) != 0 and falls through when t0(?) == 0.
@@ -3413,7 +3413,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 4 bytes from a1 (arg1 at entry) +0x4 into `a1` (`lw` at 0xd827fcc).
   Loads 4 bytes from ? (base unknown) into `t0` (`lw` at 0xd827fd4).
   Loads 4 bytes from abs 0xd845a7c into `t9` (`lw` at 0xd827fe4).
-  Performs 4 4-byte loads from ? (base unknown), including `lw` at 0xd82801c, `lw` at 0xd82802c, `lw` at 0xd828034.
+  Performs 5 4-byte loads from ? (base unknown), including `lw` at 0xd82801c, `lw` at 0xd82802c, `lw` at 0xd828034.
   Calls `__glXInitialize` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0xd827f64).
   Calls `malloc` via got with a0=0xe8, a1=[a1+4], a2=[([ret(__glXInitialize)+32] + ([a1+8] << 0x5))+12], a3=a1 at entry (arg1) (`jalr` at 0xd827ff0).
   The `bne` at 0xd827f70 is taken when v0(=ret(__glXInitialize)) != 0 and falls through when v0(=ret(__glXInitialize)) == 0.
