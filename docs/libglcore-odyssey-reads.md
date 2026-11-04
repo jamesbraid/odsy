@@ -8456,3 +8456,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It calls through doublewords at entry `a0` +0x4d18 and +0x4d20 (`ld` at 0x32c252c, 0x32c2548; `jalr` at 0x32c2540, 0x32c2558). The first four entry argument registers are passed to both calls (`jalr` at 0x32c2540, 0x32c2558). The targets and routine’s broader role are Unknown.
 - `__glDoBlend_SA_ZERO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2580
   Its reads include floating-point words at entry `a1` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c2584, 0x32c258c). It writes floating-point words of unknown value at entry `a3` +0, +4, +8 and +0xc (`swc1` at 0x32c259c, 0x32c25a8, 0x32c25b4, 0x32c25c4). The fields’ purpose is Unknown.
+
+## 64-bit IP30 library: depth and stencil paths
+
+- `__glSpanModifyDepth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The word at entry `a1` +0xc4 decides `blez`: a signed value less than or equal to zero takes the return path (`lw` at 0x3295960; `blez` at 0x3295978; `jr` at 0x32959c8). If `blez` falls through and the following `beqz` also falls through, it reads a floating-point word from entry `a2` +0 (`blez` at 0x3295978; `beqz` at 0x3295988; `lwc1` at 0x3295990). The purpose of the resulting depth words is Unknown.
+- `__glSpanModifyStencil` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A byte at entry `a0` +0x3a9 controls `beqz`: zero takes its branch and nonzero falls through (`lbu` at 0x3295a30; `beqz` at 0x3295a3c). The delay slot reads a word at entry `a0` +0x3a4 on both paths (`beqz` at 0x3295a3c; `lw` at 0x3295a40). The fields' hardware meanings are Unknown.
+- `__glSpanReadDepth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at entry `a1` +0xc4 is signed less than or equal to zero, `blez` takes the path to return (`lw` at 0x32a38ec; `blez` at 0x32a3918; `jr` at 0x32a3a34). Another path calls an unknown target with entry `a0` +0x9ce0 in `a0` (`jalr` at 0x32a394c). How the returned values are used beyond this path is Unknown.
+- `__glSpanReadDepth2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its `blez` is taken to return when the word at entry `a1` +0xb8 is signed less than or equal to zero (`lw` at 0x32a3a80; `blez` at 0x32a3aac; `jr` at 0x32a3bb4). On a separate path an indirect call receives entry `a0` +0x9ce0 as `a0`; the target is Unknown (`jalr` at 0x32a3ae4). The hardware role is Unknown.
+- `__glSpanReadDepthUint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `blez` at 0x32a3d24 takes the return path if the word at entry `a1` +0xb8 is signed less than or equal to zero (`lw` at 0x32a3cd0; `blez` at 0x32a3d24; `jr` at 0x32a3da4). Its fall-through path includes an indirect call with entry `a0` +0x9ce0 as `a0` (`blez` at 0x32a3d24; `jalr` at 0x32a3d60). The target and wider effect are Unknown.
+- `__glInitDepth24` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32cd930
+  It calls `__glInitBuffer` with the first four entry arguments (`jalr` at 0x32cd954). Its stores include byte zero at entry `a0` +0x90 and words 0x18 and 4 at +0x10 and +0x24 (`sb` at 0x32cd988; `addiu` at 0x32cd9a0, 0x32cd9a8; `sw` at 0x32cd9a4, 0x32cd9ac). The fields’ wider role is Unknown.
+- `__glInitDepth32` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32cda20
+  The first four entry arguments go to `__glInitBuffer` (`jalr` at 0x32cda44). It stores byte 1 at entry `a0` +0x90 and word 0x20 at +0x10 (`addiu` at 0x32cda7c, 0x32cda94; `sb` at 0x32cda80; `sw` at 0x32cda98). The use of these two initialized fields is Unknown.
+- `__glInitDepth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32cdb10
+  Its calls include `getenv` and direct calls to `__glInitDepth24` and `__glInitDepth32` (`jalr` at 0x32cdb40; `bgezall` at 0x32cdb64, 0x32cdb7c). The two initialization calls receive entry `a0` and `a1` as their first two arguments (`bgezall` at 0x32cdb64, 0x32cdb7c; `move` at 0x32cdb68, 0x32cdb80). The wider selection role is Unknown.
+- `__glStencilTestLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e5a90
+  Its reads include a doubleword at entry `a0` +0x9c08, a word at +0x95bc and a signed halfword at +0x788 (`lh` at 0x32e5ab4). The `lw` at 0x32e5aa4 reads the word at argument 0 +0x95bc. The `ld` at 0x32e5aa0 reads the doubleword at argument 0 +0x9c08. It also reads a doubleword at entry `a0` +0x9830 (`ld` at 0x32e5ae4). The purpose of these loaded fields is Unknown.
+- `__glStencilTestStippledLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e5d60
+  The routine loads a doubleword at entry `a0` +0x9c08, a word at +0x95bc and a signed halfword at +0x788 (`lh` at 0x32e5d84). The `lw` at 0x32e5d74 reads the word at argument 0 +0x95bc. The `ld` at 0x32e5d70 reads the doubleword at argument 0 +0x9c08. Further accesses include a doubleword read at entry `a0` +0x9830 (`ld` at 0x32e5dbc). Their wider purpose is Unknown.
+- `__glSpanReadStencil` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at entry `a1` +0xc4 is signed greater than zero, `blez` falls through to a loop that includes an indirect call with entry `a0` +0x9c08 in `a0` (`lw` at 0x32a3dcc; `blez` at 0x32a3df8; `jalr` at 0x32a3e40). The target and broader effect are Unknown.
+- `__glSpanReadStencil2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `blez` at 0x32a3ee0 takes the return path when the word at entry `a1` +0xb8 is signed less than or equal to zero (`lw` at 0x32a3eb4; `blez` at 0x32a3ee0; `jr` at 0x32a3f64). Its fall-through path includes a call to an unknown target with entry `a0` +0x9c08 in `a0` (`blez` at 0x32a3ee0; `jalr` at 0x32a3f20). The indirect target and its effects are Unknown.
+- `__glim_DepthFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32b8c9c; `addiu` at 0x32b8ca4; `beq` at 0x32b8cbc; `jalr` at 0x32b8e2c; `addiu` at 0x32b8e30). The hardware effect of this routine is Unknown.
+- `__glim_DepthMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The initial `beq` takes the `__glSetError` path with 0x502 in `a0` when the word at 0x1030 equals 1 (`lw` at 0x32b8e5c; `addiu` at 0x32b8e64; `beq` at 0x32b8e7c; `jalr` at 0x32b8ef8; `addiu` at 0x32b8efc). Calls on other paths include `__glReadjustZCounts` (`jalr` at 0x32b8f0c). The effect of the latter call is Unknown.
+- `__glim_StencilFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at 0x1030 equals 1, `beq` is taken to `__glSetError` with 0x502 in `a0` (`lw` at 0x32bb3b8; `addiu` at 0x32bb3c0; `beq` at 0x32bb3d8; `jalr` at 0x32bb470; `addiu` at 0x32bb474). On the fall-through path, `bnez` is taken when entry `a0` is unsigned less than 0x200 (`beq` at 0x32bb3d8; `sltiu` at 0x32bb3e0; `bnez` at 0x32bb3e4). The hardware effect is Unknown.
