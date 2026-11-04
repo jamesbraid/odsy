@@ -7994,3 +7994,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The `__glTexGeniv_size` call receives entry `a1` as its first argument (`jalr` at 0x3343650). If it returns 1, `beq` takes the path calling `__gllc_TexGeniv` with entry `a0`, entry `a1`, and entry stack pointer minus 0xc (`addiu` at 0x3343658; `beq` at 0x334365c; `bgezall` at 0x3343688; `daddiu` at 0x334368c). The operation’s broader purpose is Unknown.
 - `__gllc_TexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33436a0
   Entry `a1` is passed as `a0` to `__glTexGeniv_size` (`jalr` at 0x33436d4). When `__glDlistAllocOp2` returns nonzero, `bnez` takes the path storing halfword 0x77 at result +0x14 (`jalr` at 0x33436f8; `bnez` at 0x3343700; `addiu` at 0x3343724; `sh` at 0x3343728). The field’s wider meaning is Unknown.
+
+## 64-bit IP30 library: coordinate list execution
+
+- `__glle_TexCoord1dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls through a doubleword read at absolute 0x1d48, passing entry arguments 0 through 3 (`ld` at 0x33496b4; `jalr` at 0x33496c4). The integer return register receives entry `a0` plus 8 (`daddiu` at 0x33496d4; `jr` at 0x33496dc). The target is Unknown.
+- `__glle_TexCoord1fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The doubleword at absolute 0x1d58 supplies an indirect call target, with the first four entry arguments passed unchanged (`ld` at 0x3349704; `jalr` at 0x3349714). It returns entry `a0` plus 8 in `v0` (`daddiu` at 0x3349724; `jr` at 0x334972c). The callee's effect is Unknown.
+- `__glle_TexCoord1iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Entry arguments 0 through 3 reach an indirect call through the doubleword loaded from 0x1d68 (`ld` at 0x3349754; `jalr` at 0x3349764). Afterward `v0` is set to entry `a0` plus 8 (`daddiu` at 0x3349774; `jr` at 0x334977c). The destination and hardware role are Unknown.
+- `__glle_TexCoord1sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  An indirect call uses the doubleword at 0x1d78 and receives the original first four arguments (`ld` at 0x33497a4; `jalr` at 0x33497b4). The routine returns entry `a0` plus 8 (`daddiu` at 0x33497c4; `jr` at 0x33497cc). The target's identity is Unknown.
+- `__glle_TexCoord2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The indirect call reads its target as a doubleword at absolute 0x1d88 and carries entry arguments 0 through 3 (`ld` at 0x33497f4; `jalr` at 0x3349804). Its integer result is entry `a0` plus 0x10 (`daddiu` at 0x3349814; `jr` at 0x334981c). The call's hardware effect is Unknown.
+- `__glle_TexCoord3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33499c0
+  An indirect call takes its unknown target from the doubleword at 0x1de8 (`ld` at 0x33499d4; `jalr` at 0x33499e4). Afterward the routine returns entry `a0` +0x10 (`daddiu` at 0x33499f4; `jr` at 0x33499fc). The destination’s role is Unknown.
+- `__glle_TexCoord3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3349a10
+  It calls an unknown target through the doubleword at absolute 0x1df8 (`ld` at 0x3349a24; `jalr` at 0x3349a34). Entry `a0` +8 becomes the returned value (`daddiu` at 0x3349a44; `jr` at 0x3349a4c). Its wider effect is Unknown.
+- `__glle_TexCoord4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3349a60
+  The doubleword read at 0x1e08 supplies an indirect call target (`ld` at 0x3349a74; `jalr` at 0x3349a84). The function returns entry `a0` +0x20 (`daddiu` at 0x3349a94; `jr` at 0x3349a9c). The target identity and role are Unknown.
+- `__glle_TexCoord4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3349ab0
+  It reads an indirect call target from absolute 0x1e18 (`ld` at 0x3349ac4; `jalr` at 0x3349ad4). Its return value is entry `a0` +0x10 (`daddiu` at 0x3349ae4; `jr` at 0x3349aec). The call’s purpose is Unknown.
+- `__glle_TexCoord4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3349b00
+  A call through the doubleword at 0x1e28 has an unknown destination (`ld` at 0x3349b14; `jalr` at 0x3349b24). The return carries entry `a0` +0x10 (`daddiu` at 0x3349b34; `jr` at 0x3349b3c). Its broader role is Unknown.
+- `__glle_TexCoord2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It transfers control to the doubleword read at 0x1d98, passing entry arguments 0 through 3 (`ld` at 0x3349844; `jalr` at 0x3349854). On return it sets `v0` to entry `a0` plus 8 (`daddiu` at 0x3349864; `jr` at 0x334986c). The target's role is Unknown.
+- `__glle_TexCoord2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call target comes from an absolute doubleword load at 0x1da8; its first four arguments retain their entry values (`ld` at 0x3349894; `jalr` at 0x33498a4). The routine returns entry `a0` plus 8 (`daddiu` at 0x33498b4; `jr` at 0x33498bc). The destination is Unknown.
+- `__glle_TexCoord2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads the doubleword at 0x1db8 for an indirect call with the first four entry arguments (`ld` at 0x33498e4; `jalr` at 0x33498f4). Its return value in `v0` is entry `a0` plus 8 (`daddiu` at 0x3349904; `jr` at 0x334990c). The call's hardware effect is Unknown.
+- `__glle_TexCoord3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword read at absolute 0x1dc8 provides the target of a call using entry arguments 0 through 3 (`ld` at 0x3349934; `jalr` at 0x3349944). The returned integer value is entry `a0` plus 0x18 (`daddiu` at 0x3349954; `jr` at 0x334995c). The target and its effects are Unknown.
+- `__glle_TexCoord3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its indirect call takes the doubleword at 0x1dd8 as target and receives the original first four arguments (`ld` at 0x3349984; `jalr` at 0x3349994). Entry `a0` plus 0x10 is returned in `v0` (`daddiu` at 0x33499a4; `jr` at 0x33499ac). The callee's wider role is Unknown.
