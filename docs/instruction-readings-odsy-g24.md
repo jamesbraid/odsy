@@ -5486,24 +5486,24 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   Loads 1 byte at ? (`lbu` at 0xd99898c).
   3 4-byte lw loads at abs 0xdafe408, including `lw` at 0xd9989d0, `lw` at 0xd9989f0, `lw` at 0xd998a04.
   Loads 4 bytes at a0 +0x8 (`lw` at 0xd998a48).
-  Calls `ceilf` via got with a0=unknown, a1=unknown, a2=0x1, a3=unknown (`jalr` at 0xd997874).
+  Calls `ceilf` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3) (`jalr` at 0xd997874).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997890).
   Calls `ImageChainOpCreate [0xd994a84]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997928).
   Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997970).
-  Calls `__glOdysseyMap1DFilterToAlphas [0xd9be9e4]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=a1 (`jalr` at 0xd997cd4).
-  Calls `ceilf` via got with a0=unknown, a1=unknown, a2=0x1, a3=unknown (`jalr` at 0xd997e20).
+  Calls `__glOdysseyMap1DFilterToAlphas [0xd9be9e4]` via register-constant with a0=?, a1=?, a2=?, a3=a1 at entry (arg1) (`jalr` at 0xd997cd4).
+  Calls `ceilf` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3) (`jalr` at 0xd997e20).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997e40).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997e60).
   Calls `ImageChainOpCreate [0xd994a84]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997ef8).
   Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd997f40).
   Calls `__glOdysseyGenericConvolution [0xd9c1074]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd9982a4).
-  Calls `ceilf` via got with a0=unknown, a1=unknown, a2=0x1, a3=unknown (`jalr` at 0xd9983ec).
+  Calls `ceilf` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3) (`jalr` at 0xd9983ec).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99840c).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99842c).
   Calls `ImageChainOpCreate [0xd994a84]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd9984c4).
   Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99850c).
   Calls `__glOdysseyGenericConvolution [0xd9c1074]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd998870).
-  Calls `ImageChainAddOp [0xd994f50]` via register-constant with a0=unknown, a1=unknown, a2=[a0+8], a3=0x0 (`jalr` at 0xd998a44).
+  Calls `ImageChainAddOp [0xd994f50]` via register-constant with a0=a0 at entry (arg0), a1=?, a2=[a0+8], a3=0x0 (`jalr` at 0xd998a44).
   At `beq` at 0xd9977e4 (target 0xd997810), taken when a1 == 0 and falls through when a1 != 0.
   At `beq` at 0xd9977f0 (target 0xd997810), taken when a1 == at(=0x8010) and falls through when a1 != at(=0x8010).
   At `beq` at 0xd9977f8 (target 0xd998354), taken when a1 == at(=0x8011) and falls through when a1 != at(=0x8011).
@@ -5539,7 +5539,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   At `bgez` at 0xd997d58 (target 0xd997d6c), taken when t1(?) >= 0 (signed) and falls through when t1(?) < 0 (signed).
   At `bc1tl` at 0xd997d74 (target 0xd997d0c), taken when f6 < f16 (c.lt.s at 0xd997d6c) and falls through when not (f6 < f16 (c.lt.s at 0xd997d6c)); its branch-likely delay slot `lwc1 $f4,112(sp)` at 0xd997d78 runs only when taken and is annulled on fall-through.
   At `beq` at 0xd997d80 (target 0xd99891c), the branch is always taken.
-  At `bc1tl` at 0xd997d90 (target 0xd997dac), taken when f16 == f0 (c.eq.s at 0xd997d88) and falls through when not (f16 == f0 (c.eq.s at 0xd997d88)); its branch-likely delay slot `c.eq.s $f16,$f0` at 0xd997d94 runs only when taken and is annulled on fall-through.
+  At `bc1tl` at 0xd997d90 (target 0xd997dac), taken when condition not analyzed; falls through when condition not analyzed; its branch-likely delay slot `c.eq.s $f16,$f0` at 0xd997d94 runs only when taken and is annulled on fall-through.
   At `bc1f` at 0xd997da0 (target 0xd997e04), taken when not (f18 == f0 (c.eq.s at 0xd997d98)) and falls through when f18 == f0 (c.eq.s at 0xd997d98).
   At `bc1fl` at 0xd997db0 (target 0xd997dd4), taken when not (f16 == f0 (c.eq.s at 0xd997da8)) and falls through when f16 == f0 (c.eq.s at 0xd997da8); its branch-likely delay slot `c.eq.s $f18,$f0` at 0xd997db4 runs only when taken and is annulled on fall-through.
   At `bc1f` at 0xd997de0 (target 0xd997e00), taken when not (f18 == f0 (c.eq.s at 0xd997dd0)) and falls through when f18 == f0 (c.eq.s at 0xd997dd0).
@@ -5658,24 +5658,24 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   Loads 4 bytes at abs 0xdafe408 (`lw` at 0xd99c824).
   4 4-byte sw stores at ?, including `sw` at 0xd99c830, `sw` at 0xd99c844, `sw` at 0xd99c848.
   Loads 4 bytes at a0 +0x8 (`lw` at 0xd99c860).
-  Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=[0x1010] (`jalr` at 0xd99b9d8).
+  Calls `ceilf` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010] (`jalr` at 0xd99b9d8).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99b9f4).
   Calls `ImageChainOpCreate [0xd994a84]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99ba8c).
-  Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99bad0).
-  Calls `__glOdysseyMap1DFilterToAlphas [0xd9be9e4]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=a1 (`jalr` at 0xd99bd70).
-  Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=[0x1010] (`jalr` at 0xd99beb0).
+  Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=?, a2=a2 at entry (arg2), a3=? (`jalr` at 0xd99bad0).
+  Calls `__glOdysseyMap1DFilterToAlphas [0xd9be9e4]` via register-constant with a0=?, a1=?, a2=?, a3=a1 at entry (arg1) (`jalr` at 0xd99bd70).
+  Calls `ceilf` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010] (`jalr` at 0xd99beb0).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99bed0).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99bef0).
   Calls `ImageChainOpCreate [0xd994a84]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99bf88).
-  Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99bfcc).
+  Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=?, a2=a2 at entry (arg2), a3=? (`jalr` at 0xd99bfcc).
   Calls `__glOdysseyGenericConvolution [0xd9c1074]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99c27c).
-  Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=[0x1010] (`jalr` at 0xd99c3bc).
+  Calls `ceilf` via got with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010] (`jalr` at 0xd99c3bc).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99c3dc).
   Calls `ceilf` via got with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99c3fc).
   Calls `ImageChainOpCreate [0xd994a84]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99c494).
-  Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99c4d8).
+  Calls `ImageChainOpAllocateFilters [0xd994b04]` via register-constant with a0=ret(ImageChainOpCreate), a1=?, a2=a2 at entry (arg2), a3=? (`jalr` at 0xd99c4d8).
   Calls `__glOdysseyGenericConvolution [0xd9c1074]` via register-constant with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0xd99c784).
-  Calls `ImageChainAddOp [0xd994f50]` via register-constant with a0=unknown, a1=unknown, a2=[a0+8], a3=0x0 (`jalr` at 0xd99c85c).
+  Calls `ImageChainAddOp [0xd994f50]` via register-constant with a0=a0 at entry (arg0), a1=?, a2=[a0+8], a3=0x0 (`jalr` at 0xd99c85c).
   At `beq` at 0xd99b944 (target 0xd99b970), taken when a1 == 0 and falls through when a1 != 0.
   At `beq` at 0xd99b950 (target 0xd99b970), taken when a1 == at(=0x8010) and falls through when a1 != at(=0x8010).
   At `beq` at 0xd99b958 (target 0xd99c320), taken when a1 == at(=0x8011) and falls through when a1 != at(=0x8011).
@@ -5707,7 +5707,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   At `bgez` at 0xd99bde8 (target 0xd99bdfc), taken when t0(?) >= 0 (signed) and falls through when t0(?) < 0 (signed).
   At `bc1tl` at 0xd99be04 (target 0xd99bd9c), taken when f4 < f16 (c.lt.s at 0xd99bdfc) and falls through when not (f4 < f16 (c.lt.s at 0xd99bdfc)); its branch-likely delay slot `lwc1 $f8,96(sp)` at 0xd99be08 runs only when taken and is annulled on fall-through.
   At `beq` at 0xd99be0c (target 0xd99c824), the branch is always taken.
-  At `bc1tl` at 0xd99be1c (target 0xd99be38), taken when f16 == f0 (c.eq.s at 0xd99be14) and falls through when not (f16 == f0 (c.eq.s at 0xd99be14)); its branch-likely delay slot `c.eq.s $f16,$f0` at 0xd99be20 runs only when taken and is annulled on fall-through.
+  At `bc1tl` at 0xd99be1c (target 0xd99be38), taken when condition not analyzed; falls through when condition not analyzed; its branch-likely delay slot `c.eq.s $f16,$f0` at 0xd99be20 runs only when taken and is annulled on fall-through.
   At `bc1f` at 0xd99be2c (target 0xd99be90), taken when not (f18 == f0 (c.eq.s at 0xd99be24)) and falls through when f18 == f0 (c.eq.s at 0xd99be24).
   At `bc1fl` at 0xd99be3c (target 0xd99be60), taken when not (f16 == f0 (c.eq.s at 0xd99be34)) and falls through when f16 == f0 (c.eq.s at 0xd99be34); its branch-likely delay slot `c.eq.s $f18,$f0` at 0xd99be40 runs only when taken and is annulled on fall-through.
   At `bc1f` at 0xd99be6c (target 0xd99be8c), taken when not (f18 == f0 (c.eq.s at 0xd99be5c)) and falls through when f18 == f0 (c.eq.s at 0xd99be5c).
@@ -11421,7 +11421,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   Exact build: `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`.
   Range: 0xd9eb61c-0xd9ec958 (4924 bytes).
   At `bc1fl` at 0xd9eb628 (target 0xd9eb63c), taken when not (f12 < f14 (c.lt.s at 0xd9eb61c)) and falls through when f12 < f14 (c.lt.s at 0xd9eb61c); its branch-likely delay slot `c.lt.s $f4,$f12` at 0xd9eb62c runs only when taken and is annulled on fall-through.
-  At `bc1fl` at 0xd9eb640 (target 0xd9eb654), taken when not (f4 < f12 (c.lt.s at 0xd9eb638)) and falls through when f4 < f12 (c.lt.s at 0xd9eb638); its branch-likely delay slot `mov.s $f0,$f12` at 0xd9eb644 runs only when taken and is annulled on fall-through.
+  At `bc1fl` at 0xd9eb640 (target 0xd9eb654), taken when condition not analyzed; falls through when condition not analyzed; its branch-likely delay slot `mov.s $f0,$f12` at 0xd9eb644 runs only when taken and is annulled on fall-through.
   Returns v0 = ?, f0 = f14 (`jr` at 0xd9eb630).
   Returns v0 = ? (`jr` at 0xd9eb648).
   Returns v0 = ? (`jr` at 0xd9eb654).
