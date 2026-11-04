@@ -54064,12 +54064,12 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x9020	164	nvchecksum	d
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x90c4	376	ip30_set_an_nvram	dwarf+symtab	8fdba9a5c81a		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x923c	284	set_nvram	dwarf+symtab	ba5cb913cbbd		in	understood	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x9358	372	ip30_get_an_nvram	dwarf+symtab	21e2690d5333		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x94d0	12	read_branch_diag	dwarf+symtab	173e4e133975		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x94dc	12	write_branch_diag	dwarf+symtab	ad5749af13dd		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x94e8	36	branch_prediction_off	dwarf+symtab	94298365c425		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x950c	28	branch_prediction_on	dwarf+symtab	9961ed580f4a		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x9528	36	branch_prediction_taken	dwarf+symtab	9856fc38d44c		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x954c	24	branch_prediction_fwd_not_taken	dwarf+symtab	9d9cbea0564e		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x94d0	12	read_branch_diag	dwarf+symtab	173e4e133975		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x94dc	12	write_branch_diag	dwarf+symtab	ad5749af13dd		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x94e8	36	branch_prediction_off	dwarf+symtab	94298365c425		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x950c	28	branch_prediction_on	dwarf+symtab	9961ed580f4a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x9528	36	branch_prediction_taken	dwarf+symtab	9856fc38d44c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x954c	24	branch_prediction_fwd_not_taken	dwarf+symtab	9d9cbea0564e		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x9564	96	r12k_perf_overflow_intr	dwarf+symtab	71e7ca5c8c24		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x95c4	48	r10k_perf_overflow_intr	dwarf+symtab	3b52d9399d73		in	undocumented		
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0x95f4	104	r1nkperf_data_register_get	dwarf+symtab	e138c7a139fc		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -54097,20 +54097,20 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa260	460	ecc_exceptio
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa480	8	ULIsystrap_j	dwarf+symtab	ef9020c98b58		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa500	380	systrap	dwarf+symtab	49b8330f0f57		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa67c	32	VEC_syscall	dwarf+symtab	0dccd5448c5c		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa6a0	40	get_fpc_csr	dwarf+symtab	63b1294bfb88		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa6c8	48	set_fpc_csr	dwarf+symtab	13fb2c9001a4		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa6f8	12	get_cpu_irr	dwarf+symtab	2b8946786132		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa6a0	40	get_fpc_csr	dwarf+symtab	63b1294bfb88		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa6c8	48	set_fpc_csr	dwarf+symtab	13fb2c9001a4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa6f8	12	get_cpu_irr	dwarf+symtab	2b8946786132		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa704	52	get_fpc_irr	dwarf+symtab	61c61500d26e		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa738	16	reviderror	dwarf+symtab	d25ddacfc03a		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa748	12	get_cpu_cnf	dwarf+symtab	65d36b16835c		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa754	24	clear_sline	dwarf+symtab	ab8dfae3b137		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa738	16	reviderror	dwarf+symtab	d25ddacfc03a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa748	12	get_cpu_cnf	dwarf+symtab	65d36b16835c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa754	24	clear_sline	dwarf+symtab	ab8dfae3b137		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa76c	44	scache_ild	dwarf+symtab	aef3ea1ce7d7		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa798	92	dLine	dwarf+symtab	7bb2585699be		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa7f4	32	dCacheSize	dwarf+symtab	890df7432f8b		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa7f4	32	dCacheSize	dwarf+symtab	890df7432f8b		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa814	112	iLine	dwarf+symtab	cb38742b7460		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa884	36	iCacheSize	dwarf+symtab	5bd333765010		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa884	36	iCacheSize	dwarf+symtab	5bd333765010		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa8a8	136	sLine	dwarf+symtab	a455b314187a		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa930	32	sCacheSize	dwarf+symtab	8d2d001b2026		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa930	32	sCacheSize	dwarf+symtab	8d2d001b2026		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa950	48	bcopyb	dwarf	1a9d6a0f1d39		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa980	100	bcopyh	dwarf	01d9dd9b55e2		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xa9e4	104	bcopyw	dwarf	b2e47ed2bf3a		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -54157,22 +54157,22 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb798	52	sw_cachesynch
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb7cc	128	cache_tag_ecc	dwarf+symtab	8e1c0cb9bf8b		in	understood	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb850	52	VEC_trap	dwarf+symtab	59c2a9b8739a	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb850	64	soft_trap	symtab	8ee421078d24	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb890	12	uli_getasids	dwarf+symtab	5522d9383584		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb89c	12	uli_setasids	dwarf+symtab	54ba683355d1		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8a8	44	uli_eret	dwarf+symtab	6ab98be69964		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8e0	28	spl0	dwarf+symtab	77e42c3ec2cb		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl1	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl3	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl5	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl6	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splgio0	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splgio1	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splgio2	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splhi	dwarf+symtab	d1a16d27e908	shared-address	in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splhi_relnet	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb890	12	uli_getasids	dwarf+symtab	5522d9383584		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb89c	12	uli_setasids	dwarf+symtab	54ba683355d1		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8a8	44	uli_eret	dwarf+symtab	6ab98be69964		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8e0	28	spl0	dwarf+symtab	77e42c3ec2cb		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl1	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl3	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl5	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spl6	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splgio0	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splgio1	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splgio2	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splhi	dwarf+symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splhi_relnet	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splhintr	symtab	d1a16d27e908	shared-address	in	undocumented		
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splimp	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splnet	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splimp	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splnet	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splretr	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	spltty	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xb8fc	24	splvme	symtab	d1a16d27e908	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -54243,18 +54243,18 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd718	108	sw_cachesync
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd790	16	_j_exceptnorm	dwarf+symtab	5b5c65cbd526		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7a0	16	_j_endexceptnorm	symtab	9361df19a7db	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7a0	16	_j_exceptnorm_nosymmon	dwarf+symtab	9361df19a7db	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7b0	80	_endexceptnorm_prolog	symtab	5b6fb58e61fa	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7b0	80	_exceptnorm_prolog	dwarf+symtab	5b6fb58e61fa	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7b0	80	_j_endexceptnorm_nosymmon	symtab	5b6fb58e61fa	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7b0	80	_endexceptnorm_prolog	symtab	5b6fb58e61fa	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7b0	80	_exceptnorm_prolog	dwarf+symtab	5b6fb58e61fa	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd7b0	80	_j_endexceptnorm_nosymmon	symtab	5b6fb58e61fa	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd800	12	utlbmiss_prolog_up	dwarf+symtab	e0b6dea606c1		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd80c	16	eutlbmiss_prolog_up	symtab	74ea3ec324b3	shared-address	in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd80c	16	utlbmiss_prolog_mp	dwarf+symtab	74ea3ec324b3	shared-address	in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd81c	100	eutlbmiss_prolog_mp	symtab	cd00e292c597		in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd81c	100	eutlbmiss_prolog_mp	symtab	cd00e292c597		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd880	40	utlbmiss	dwarf+symtab	b6dcbf9caa30		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd890	24	utlbmiss_not_large_page	symtab	1a621009c71c		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd8a8	136	eutlbmiss	symtab	44527d966e57	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd8a8	136	lpg_utlbmiss	dwarf+symtab	44527d966e57	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd930	80	elpg_utlbmiss	symtab	5b6fb58e61fa		in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd930	80	elpg_utlbmiss	symtab	5b6fb58e61fa		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd980	60	utlbmiss2	dwarf+symtab	bae768566344		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd990	44	utlbmiss2_not_large_page	symtab	badc331600c8		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xd9bc	4	eutlbmiss2	symtab	c703f88a8732	shared-address	in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -54274,7 +54274,7 @@ usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdb58	44	lpg_overlay_c
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdb84	4	elpg_overlay_counting_utlbmiss	symtab	fc2233899786	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdb84	4	utlbmiss_prolog_patch	dwarf+symtab	fc2233899786	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdb88	32	utlbmissj	dwarf+symtab	59e7addb5e06		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdba8	8	eutlbmissj	symtab	af5570f5a181		in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
+usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdba8	8	eutlbmissj	symtab	af5570f5a181		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdbb0	104	_ecc_errorvec	dwarf+symtab	cd7fffd4cb81		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdc18	24	_ecc_end	symtab	3d30d72cf42a	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP30boot/kernel.o	shared-kernel	n64	.text	0xdc18	24	get_mem_conf	dwarf	3d30d72cf42a	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -54805,7 +54805,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3890	132	router_get_i
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3914	136	timeout_poll	dwarf+symtab	cff9ecc380ed		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x399c	328	router_state_empty	dwarf	4342a149fc08		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ae4	504	router_print_state_specific	dwarf+symtab	1aa91fab6c7c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3cdc	212	router_print_state	dwarf+symtab	8cfd49545e77		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3cdc	212	router_print_state	dwarf+symtab	8cfd49545e77		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3db0	232	get_routername	dwarf+symtab	226cde63aac3		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3e98	516	try_router	dwarf	dec0784d9b64		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x409c	340	klcfg_discover_route	dwarf+symtab	eee84663f668		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -54840,7 +54840,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x57d8	220	membank_chec
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x58b4	168	mem_mixed_hidensity_banks	dwarf+symtab	dd19c057e571		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x595c	44	nodevertex_widgetnum_get	dwarf+symtab	40e69bddcbf2		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5988	120	nodevertex_xbow_peer_get	dwarf+symtab	0391b644f071		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5a00	248	get_nic_string	dwarf	50d1eb911a96		in	understood	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5a00	248	get_nic_string	dwarf	50d1eb911a96		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5af8	168	get_first_string	dwarf+symtab	8d0d19ca1698		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5ba0	252	get_ptrs	dwarf+symtab	4528a0a38cb1		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x5c9c	176	sort_nic_names	dwarf	5b238d5f597b		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55148,8 +55148,8 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12068	360	router_guar
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x121d0	488	router_lock	dwarf+symtab	d72273193274		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x123b8	116	router_unlock	dwarf+symtab	c9df03530da3		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1242c	332	set_md_outgoing_rq_queue_size	dwarf	81c03a9aa990		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12578	76	snnet_init	dwarf+symtab	00f67c2191a0		in	understood	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x125c4	12	kl_perr_init	dwarf+symtab	c1a34ddeaf4d		in	understood	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12578	76	snnet_init	dwarf+symtab	00f67c2191a0		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x125c4	12	kl_perr_init	dwarf+symtab	c1a34ddeaf4d		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x125d0	464	kl_perr	dwarf+symtab	dde5b1e9ebb2		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x127a0	232	kl_perr_dumpbuf	dwarf+symtab	2e48826fe223		in	understood	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12888	416	save_cache_error	dwarf+symtab	1120483bec96		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55161,136 +55161,136 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12f0c	88	clear_hub_pi
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x12f64	200	clear_hub_md_error	dwarf+symtab	5fc98ae7302e		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1302c	340	save_err_node_comp	dwarf+symtab	c3d6fbdf28a2		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13180	244	save_err_io_comp	dwarf+symtab	2a99a995d13a		in	located	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13274	408	save_err_router_comp	dwarf+symtab	c267eaf3a44b		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1340c	312	save_router_err	dwarf+symtab	885ecf3c5d90		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13544	232	save_err_xbow_comp	dwarf+symtab	a65a83fd49a1		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1362c	216	save_hub_pi_error	dwarf+symtab	2e647f802b9c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13704	236	save_hub_md_error	dwarf+symtab	760f5cd22641		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x137f0	92	save_hub_io_crb	dwarf+symtab	0b4f7f3e6747		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1384c	28	save_hub_io_ieph	dwarf+symtab	901b17e8b67a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13868	164	save_hub_io_error	dwarf+symtab	d607c7f53344		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1390c	184	save_hub_err_ext	dwarf+symtab	9cc99b907fea		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x139c4	100	save_hub_ni_error	dwarf+symtab	9a40dcb9d4b7		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13a28	136	save_hub_lb_error	dwarf+symtab	b6faa38fc806		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13ab0	328	save_hub_xb_error	dwarf+symtab	8d4781c52f20		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13bf8	416	save_hub_err	dwarf+symtab	5c003f709880		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13d98	604	save_bridge_err	dwarf+symtab	c12d4f227f4a		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13ff4	180	save_xbow_err	dwarf+symtab	cb5a0e6c5f99		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x140a8	572	kl_error_show_node	dwarf+symtab	4956b9cb04dc		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x142e4	164	kl_error_show	dwarf+symtab	346e942876c2		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14388	48	kl_dump_hw_state	dwarf+symtab	b89962cd50b7		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x143b8	48	kl_log_hw_state	dwarf+symtab	5df6224dba52		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x143e8	52	kl_error_show_dump	dwarf+symtab	ba90bd9463b5		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1441c	48	kl_error_show_log	dwarf+symtab	8d70df62bc3d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1444c	48	kl_error_show_idbg	dwarf+symtab	cd29af4bf198		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1447c	44	kl_error_show_reset_ste	dwarf+symtab	0f3b3cd7fd70		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x144a8	384	show_err_node_comp	dwarf+symtab	326ae3f75b94		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14628	1000	show_cache_err	dwarf+symtab	2b3feb951ed3		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14a10	180	show_hub_err	dwarf+symtab	cc93adc26d90		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14ac4	332	show_pi_error_spool_entry	dwarf+symtab	be8dd32dd86a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14c10	1480	show_hub_pi_err	dwarf+symtab	d9e5f8c2c380		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x151d8	376	show_hub_md_misc_error_flags	dwarf	7934c6c5e501		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15350	1552	show_hub_md_err	dwarf+symtab	2b4b56710f2e		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15960	356	show_hub_io_ieph	dwarf+symtab	b1f3f1634632		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15ac4	944	show_hub_io_err	dwarf+symtab	d9a79d940af0		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15e74	24	get_ni_port_error_bit	dwarf+symtab	11351216af07		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15e8c	156	show_ni_port_error	dwarf+symtab	8cb545085e4e		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15f28	904	show_hub_ni_err	dwarf+symtab	5bc59ccca684		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x162b0	512	show_hub_lb_err	dwarf+symtab	e4e14555bd7d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x164b0	532	show_hub_xb_err	dwarf+symtab	651470f424cc		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x166c4	316	show_err_io_comp	dwarf+symtab	aece83971050		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x16800	1640	show_bridge_err	dwarf+symtab	23da87848774		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x16e68	252	show_err_xbow_comp	dwarf+symtab	e96b6da96d31		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x16f64	700	show_xbow_err	dwarf+symtab	7aaa4f8187fa		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17220	496	show_rr_error_status	dwarf+symtab	9c737b2875ef		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17410	460	show_rr_status_rev_id	dwarf+symtab	0ab007c112fa		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x175dc	464	show_err_router_comp	dwarf+symtab	cb75885b3bab		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x177ac	420	hub_error_clear	dwarf+symtab	be5713f68dbf		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17950	1464	hub_error_init	dwarf+symtab	3fdf0db93ddc		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17f08	452	hubii_eint_init	dwarf+symtab	9c784454cb7b		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x180cc	260	hubni_eint_init	dwarf+symtab	850942e82ad4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x181d0	1624	hubpi_eint_handler	dwarf+symtab	258a6a508223		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18828	332	hubni_print_state	dwarf+symtab	decfa78637ee		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18974	176	ni_port_down_reset	dwarf+symtab	23aa035c4b50		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18a24	764	check_ni_errors_nasid	dwarf	9e6e71bde5c2		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18d20	416	hubni_error_handler_nasid	dwarf	82d726d704e5		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18ec0	36	check_ni_errors	dwarf+symtab	655d74afe350		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18ee4	56	hubni_error_handler	dwarf+symtab	708b7075489f		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13274	408	save_err_router_comp	dwarf+symtab	c267eaf3a44b		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1340c	312	save_router_err	dwarf+symtab	885ecf3c5d90		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13544	232	save_err_xbow_comp	dwarf+symtab	a65a83fd49a1		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1362c	216	save_hub_pi_error	dwarf+symtab	2e647f802b9c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13704	236	save_hub_md_error	dwarf+symtab	760f5cd22641		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x137f0	92	save_hub_io_crb	dwarf+symtab	0b4f7f3e6747		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1384c	28	save_hub_io_ieph	dwarf+symtab	901b17e8b67a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13868	164	save_hub_io_error	dwarf+symtab	d607c7f53344		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1390c	184	save_hub_err_ext	dwarf+symtab	9cc99b907fea		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x139c4	100	save_hub_ni_error	dwarf+symtab	9a40dcb9d4b7		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13a28	136	save_hub_lb_error	dwarf+symtab	b6faa38fc806		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13ab0	328	save_hub_xb_error	dwarf+symtab	8d4781c52f20		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13bf8	416	save_hub_err	dwarf+symtab	5c003f709880		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13d98	604	save_bridge_err	dwarf+symtab	c12d4f227f4a		in	understood	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x13ff4	180	save_xbow_err	dwarf+symtab	cb5a0e6c5f99		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x140a8	572	kl_error_show_node	dwarf+symtab	4956b9cb04dc		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x142e4	164	kl_error_show	dwarf+symtab	346e942876c2		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14388	48	kl_dump_hw_state	dwarf+symtab	b89962cd50b7		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x143b8	48	kl_log_hw_state	dwarf+symtab	5df6224dba52		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x143e8	52	kl_error_show_dump	dwarf+symtab	ba90bd9463b5		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1441c	48	kl_error_show_log	dwarf+symtab	8d70df62bc3d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1444c	48	kl_error_show_idbg	dwarf+symtab	cd29af4bf198		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1447c	44	kl_error_show_reset_ste	dwarf+symtab	0f3b3cd7fd70		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x144a8	384	show_err_node_comp	dwarf+symtab	326ae3f75b94		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14628	1000	show_cache_err	dwarf+symtab	2b3feb951ed3		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14a10	180	show_hub_err	dwarf+symtab	cc93adc26d90		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14ac4	332	show_pi_error_spool_entry	dwarf+symtab	be8dd32dd86a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x14c10	1480	show_hub_pi_err	dwarf+symtab	d9e5f8c2c380		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x151d8	376	show_hub_md_misc_error_flags	dwarf	7934c6c5e501		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15350	1552	show_hub_md_err	dwarf+symtab	2b4b56710f2e		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15960	356	show_hub_io_ieph	dwarf+symtab	b1f3f1634632		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15ac4	944	show_hub_io_err	dwarf+symtab	d9a79d940af0		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15e74	24	get_ni_port_error_bit	dwarf+symtab	11351216af07		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15e8c	156	show_ni_port_error	dwarf+symtab	8cb545085e4e		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x15f28	904	show_hub_ni_err	dwarf+symtab	5bc59ccca684		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x162b0	512	show_hub_lb_err	dwarf+symtab	e4e14555bd7d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x164b0	532	show_hub_xb_err	dwarf+symtab	651470f424cc		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x166c4	316	show_err_io_comp	dwarf+symtab	aece83971050		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x16800	1640	show_bridge_err	dwarf+symtab	23da87848774		in	understood	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x16e68	252	show_err_xbow_comp	dwarf+symtab	e96b6da96d31		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x16f64	700	show_xbow_err	dwarf+symtab	7aaa4f8187fa		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17220	496	show_rr_error_status	dwarf+symtab	9c737b2875ef		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17410	460	show_rr_status_rev_id	dwarf+symtab	0ab007c112fa		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x175dc	464	show_err_router_comp	dwarf+symtab	cb75885b3bab		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x177ac	420	hub_error_clear	dwarf+symtab	be5713f68dbf		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17950	1464	hub_error_init	dwarf+symtab	3fdf0db93ddc		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x17f08	452	hubii_eint_init	dwarf+symtab	9c784454cb7b		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x180cc	260	hubni_eint_init	dwarf+symtab	850942e82ad4		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x181d0	1624	hubpi_eint_handler	dwarf+symtab	258a6a508223		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18828	332	hubni_print_state	dwarf+symtab	decfa78637ee		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18974	176	ni_port_down_reset	dwarf+symtab	23aa035c4b50		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18a24	764	check_ni_errors_nasid	dwarf	9e6e71bde5c2		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18d20	416	hubni_error_handler_nasid	dwarf	82d726d704e5		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18ec0	36	check_ni_errors	dwarf+symtab	655d74afe350		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18ee4	56	hubni_error_handler	dwarf+symtab	708b7075489f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18f1c	36	hubni_eint_handler	dwarf+symtab	32da5129a57e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18f40	36	hubni_rmteint_handler	dwarf+symtab	ba31dac2a79f		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x18f64	368	klsave_md_registers	dwarf+symtab	a753e3238975		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x190d4	196	save_md_error	dwarf+symtab	377b857f5bd8		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19198	48	probe_md_errors	dwarf+symtab	5d0f9e837455		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x191c8	760	log_md_errors	dwarf+symtab	e957fd5e7785		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x194c0	620	check_md_errors	dwarf+symtab	dc5ab098df6a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1972c	56	md_err_log_first	dwarf+symtab	ac6c7c978ff2		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19764	148	md_err_log_next	dwarf+symtab	45cc3f3bf2a6		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x197f8	44	md_err_log_last	dwarf+symtab	f33455506a52		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19824	168	md_err_log_prev	dwarf+symtab	da0314b2ba3f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x198cc	128	md_err_log_new	dwarf+symtab	df41bdf0109f		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x190d4	196	save_md_error	dwarf+symtab	377b857f5bd8		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19198	48	probe_md_errors	dwarf+symtab	5d0f9e837455		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x191c8	760	log_md_errors	dwarf+symtab	e957fd5e7785		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x194c0	620	check_md_errors	dwarf+symtab	dc5ab098df6a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1972c	56	md_err_log_first	dwarf+symtab	ac6c7c978ff2		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19764	148	md_err_log_next	dwarf+symtab	45cc3f3bf2a6		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x197f8	44	md_err_log_last	dwarf+symtab	f33455506a52		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19824	168	md_err_log_prev	dwarf+symtab	da0314b2ba3f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x198cc	128	md_err_log_new	dwarf+symtab	df41bdf0109f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1994c	468	klsave_spool_registers	dwarf+symtab	fd6b3dfa1340		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19b20	560	hubpi_spool_get_next	dwarf+symtab	00591c790495		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19d50	1344	huberror_process_rrb_error	dwarf+symtab	8ac65039fb82		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a290	1148	huberror_process_wrb_error	dwarf+symtab	46f33e81a79e		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a70c	248	huberror_process_stack_entry	dwarf+symtab	6ddf3093cb5d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a804	144	process_error_spool	dwarf+symtab	c61ee671a86f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a894	548	get_matching_spool_addr	dwarf+symtab	5b63565c4f29		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1aab8	160	hubiio_crb_free	dwarf+symtab	e0c8d7730d68		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ab58	808	hubiio_crb_error_handler	dwarf+symtab	f6bdafbfe97d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ae80	104	hubii_check_widget_disabled	dwarf+symtab	87e0ee35ad67		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1aee8	72	hubii_prb_handler	dwarf	317d3c3afbb8		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1af30	204	hubiio_prb_error_handler	dwarf+symtab	0515477e4b62		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19b20	560	hubpi_spool_get_next	dwarf+symtab	00591c790495		in	understood	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x19d50	1344	huberror_process_rrb_error	dwarf+symtab	8ac65039fb82		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a290	1148	huberror_process_wrb_error	dwarf+symtab	46f33e81a79e		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a70c	248	huberror_process_stack_entry	dwarf+symtab	6ddf3093cb5d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a804	144	process_error_spool	dwarf+symtab	c61ee671a86f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1a894	548	get_matching_spool_addr	dwarf+symtab	5b63565c4f29		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1aab8	160	hubiio_crb_free	dwarf+symtab	e0c8d7730d68		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ab58	808	hubiio_crb_error_handler	dwarf+symtab	f6bdafbfe97d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ae80	104	hubii_check_widget_disabled	dwarf+symtab	87e0ee35ad67		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1aee8	72	hubii_prb_handler	dwarf	317d3c3afbb8		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1af30	204	hubiio_prb_error_handler	dwarf+symtab	0515477e4b62		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1affc	416	hubii_eint_handler	dwarf+symtab	c0672a01d2c7		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b19c	104	ii_llp_error_monitor	dwarf+symtab	ba461350b9b4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b204	300	ni_llp_error_monitor	dwarf+symtab	d6a9b4250310		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b330	64	cleanup_remote_pi	dwarf+symtab	a071b143366f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b370	116	hub_error_count_update	dwarf+symtab	1d39dbd12d82		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b3e4	172	hub_error_count_enable	dwarf+symtab	05ac7d8dfbc6		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b490	84	hub_error_count_disable	dwarf+symtab	0c39fe1fb17b		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b4e4	88	hub_error_count_get	dwarf+symtab	6232cdceae4d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b53c	52	decode_xrb_err	dwarf+symtab	735b7135a2bb		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b570	180	decode_crb_stat	dwarf+symtab	9874d26b2dd4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b624	328	print_spool_entry	dwarf+symtab	ebb70d812c92		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b76c	464	dump_error_spool	dwarf+symtab	fc9eee91a9cd		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b19c	104	ii_llp_error_monitor	dwarf+symtab	ba461350b9b4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b204	300	ni_llp_error_monitor	dwarf+symtab	d6a9b4250310		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b330	64	cleanup_remote_pi	dwarf+symtab	a071b143366f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b370	116	hub_error_count_update	dwarf+symtab	1d39dbd12d82		in	understood	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b3e4	172	hub_error_count_enable	dwarf+symtab	05ac7d8dfbc6		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b490	84	hub_error_count_disable	dwarf+symtab	0c39fe1fb17b		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b4e4	88	hub_error_count_get	dwarf+symtab	6232cdceae4d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b53c	52	decode_xrb_err	dwarf+symtab	735b7135a2bb		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b570	180	decode_crb_stat	dwarf+symtab	9874d26b2dd4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b624	328	print_spool_entry	dwarf+symtab	ebb70d812c92		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b76c	464	dump_error_spool	dwarf+symtab	fc9eee91a9cd		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b93c	68	err_int_block_mask	dwarf+symtab	cd5a9628eb2e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b980	76	err_int_unblock_mask	dwarf+symtab	62bcb135e0a8		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1b9cc	76	md_int_block	dwarf+symtab	439aa65ee171		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ba18	72	md_int_unblock	dwarf+symtab	7d4d62d9dbcb		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ba60	108	recover_error_init	dwarf+symtab	adc2e0dad53a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bacc	108	klerror_global_check	dwarf+symtab	692fded6df1d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bb38	416	klerror_check_recoverable	dwarf+symtab	a4a3fa4c2047		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bcd8	24	sn0_skip_dump	dwarf+symtab	d8a8f504dc63		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bcf0	572	stop_all_cpus	dwarf	f9f32bbbb4eb		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bf2c	456	sn0_error_dump	dwarf+symtab	90e90e26d7c0		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c0f4	44	sn0_error_state	dwarf+symtab	658a88db3dd8		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ba60	108	recover_error_init	dwarf+symtab	adc2e0dad53a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bacc	108	klerror_global_check	dwarf+symtab	692fded6df1d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bb38	416	klerror_check_recoverable	dwarf+symtab	a4a3fa4c2047		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bcd8	24	sn0_skip_dump	dwarf+symtab	d8a8f504dc63		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bcf0	572	stop_all_cpus	dwarf	f9f32bbbb4eb		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1bf2c	456	sn0_error_dump	dwarf+symtab	90e90e26d7c0		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c0f4	44	sn0_error_state	dwarf+symtab	658a88db3dd8		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c120	1352	dobuserre	dwarf+symtab	c499250ff876		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c668	208	error_lookup_inst_type	dwarf+symtab	bd05247bc115		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c738	236	error_check_memory_access	dwarf+symtab	ea2480fa02bc		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c824	576	error_check_poisoned_state	dwarf+symtab	9a49c526672b		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ca64	312	handle_hspec_buserr	dwarf+symtab	01f318a52984		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1cb9c	448	handle_mspec_buserr	dwarf+symtab	f1cd5bb54640		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1cd5c	592	handle_io_buserr	dwarf+symtab	52cce9a3fe09		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1cfac	2308	handle_uncac_buserr	dwarf+symtab	876d63779917		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1d8b0	2420	handle_cac_buserr	dwarf+symtab	01e503c7053f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e224	312	dump_crb	dwarf+symtab	f35b4a1324ad		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e35c	388	kl_ioerror_handler	dwarf+symtab	9f0bf4d4a33a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e4e0	72	kl_panic_setup	dwarf+symtab	250d66b35c1c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e528	48	kl_panic	dwarf+symtab	ba2e0984be7f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e558	192	vphys_get_pattr	dwarf	180b94e59da8		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e618	124	pde_get_pattr	dwarf	077685a6b9bc		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e694	316	vtop_attr_get	dwarf	54c479f1c880		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e7d0	124	error_clean_cache_line	dwarf+symtab	17bd844466a0		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e84c	100	initiator_to_cpunum	dwarf+symtab	5de64740f15c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e8b0	396	poison_page	dwarf+symtab	480a6e9053b6		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ea3c	68	error_page_discard	dwarf+symtab	284ba0468660		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ea80	28	sn0_error_mark_page	dwarf+symtab	a86de4a9d7a4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ea9c	88	sn0_error_reclaim_page	dwarf+symtab	254ccd538bab		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eaf4	8	error_reg_partition_handler	dwarf+symtab	c9e8dbe0b10a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eafc	128	error_check_part_page	dwarf+symtab	7024f0a50473		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eb7c	72	partition_handle_error	dwarf+symtab	3e823a27c2d3		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ebc4	108	errste_prfunc	dwarf+symtab	9c3621f39b8d		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ec30	40	errorste_reset	dwarf+symtab	5a1f9db070f6		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ec58	116	ms1bit	dwarf+symtab	4f4561327064		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c668	208	error_lookup_inst_type	dwarf+symtab	bd05247bc115		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c738	236	error_check_memory_access	dwarf+symtab	ea2480fa02bc		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1c824	576	error_check_poisoned_state	dwarf+symtab	9a49c526672b		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ca64	312	handle_hspec_buserr	dwarf+symtab	01f318a52984		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1cb9c	448	handle_mspec_buserr	dwarf+symtab	f1cd5bb54640		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1cd5c	592	handle_io_buserr	dwarf+symtab	52cce9a3fe09		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1cfac	2308	handle_uncac_buserr	dwarf+symtab	876d63779917		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1d8b0	2420	handle_cac_buserr	dwarf+symtab	01e503c7053f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e224	312	dump_crb	dwarf+symtab	f35b4a1324ad		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e35c	388	kl_ioerror_handler	dwarf+symtab	9f0bf4d4a33a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e4e0	72	kl_panic_setup	dwarf+symtab	250d66b35c1c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e528	48	kl_panic	dwarf+symtab	ba2e0984be7f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e558	192	vphys_get_pattr	dwarf	180b94e59da8		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e618	124	pde_get_pattr	dwarf	077685a6b9bc		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e694	316	vtop_attr_get	dwarf	54c479f1c880		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e7d0	124	error_clean_cache_line	dwarf+symtab	17bd844466a0		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e84c	100	initiator_to_cpunum	dwarf+symtab	5de64740f15c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1e8b0	396	poison_page	dwarf+symtab	480a6e9053b6		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ea3c	68	error_page_discard	dwarf+symtab	284ba0468660		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ea80	28	sn0_error_mark_page	dwarf+symtab	a86de4a9d7a4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ea9c	88	sn0_error_reclaim_page	dwarf+symtab	254ccd538bab		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eaf4	8	error_reg_partition_handler	dwarf+symtab	c9e8dbe0b10a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eafc	128	error_check_part_page	dwarf+symtab	7024f0a50473		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eb7c	72	partition_handle_error	dwarf+symtab	3e823a27c2d3		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ebc4	108	errste_prfunc	dwarf+symtab	9c3621f39b8d		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ec30	40	errorste_reset	dwarf+symtab	5a1f9db070f6		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ec58	116	ms1bit	dwarf+symtab	4f4561327064		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eccc	40	intr_stray	dwarf+symtab	2b08af592a00		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1ecf4	436	intr_init_vecblk	dwarf+symtab	dfd53670df8d		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1eea8	564	do_intr_reserve_level	dwarf	5ad0112f0ee6		in	undocumented		
@@ -55304,42 +55304,42 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1f834	28	intr_block_b
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1f850	28	intr_unblock_bit	dwarf+symtab	4e0b7c85ec68		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1f86c	352	do_intr_cpu_choose	dwarf	b3b5b50a5e43		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1f9cc	28	intr_cpu_choose_from_node	dwarf	295349a1af92		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1f9e8	120	subnodevertex_to_subnode	dwarf	41f361bb9c9f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1fa60	132	mark_subnodevertex_as_subnode	dwarf+symtab	2d2776bde071		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1f9e8	120	subnodevertex_to_subnode	dwarf	41f361bb9c9f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1fa60	132	mark_subnodevertex_as_subnode	dwarf+symtab	2d2776bde071		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1fae4	184	intr_target_from_desc	dwarf+symtab	452e17328a98		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1fb9c	64	intr_cnode_seen	dwarf	fd6780c49132		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1fbdc	168	intr_bit_reserve_test	dwarf	624b185a009f		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x1fc84	980	intr_heuristic	dwarf+symtab	c01c0fde6691		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20058	72	cause_intr_connect	dwarf+symtab	0699e0eef4d4		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20058	72	cause_intr_connect	dwarf+symtab	0699e0eef4d4		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x200a0	64	cause_intr_disconnect	dwarf+symtab	e4d8671e9726		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x200e0	16	nointr	dwarf	47d7932962f8		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x200f0	352	intpend0	dwarf	5245114585ce		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20250	236	intpend1	dwarf	2c3ca223d1af		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x200f0	352	intpend0	dwarf	5245114585ce		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20250	236	intpend1	dwarf	2c3ca223d1af		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2033c	636	intr	dwarf+symtab	f201a996e5e9		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x205b8	36	setrtvector	dwarf+symtab	8485962c8ebb		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x205dc	36	setkgvector	dwarf+symtab	f5e28d2b8ad8		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x205b8	36	setrtvector	dwarf+symtab	8485962c8ebb		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x205dc	36	setkgvector	dwarf+symtab	f5e28d2b8ad8		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20600	140	idle_err	dwarf+symtab	ebf0cb58ea55		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2068c	24	earlynofault	dwarf+symtab	624e31b87e77		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x206a4	108	sendintr	dwarf+symtab	ff654949d5dc		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20710	272	cpuintr	dwarf	2648aa117825		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20820	100	install_cpuintr	dwarf+symtab	5b6ac4b2b126		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20884	80	dbgintr	dwarf	cfd8f7cecda3		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20884	80	dbgintr	dwarf	cfd8f7cecda3		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x208d4	180	install_dbgintr	dwarf+symtab	b68039279b74		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20988	72	tlbintr	dwarf	654dab63afe3		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x209d0	180	install_tlbintr	dwarf+symtab	38667997fd1b		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20a84	304	protected_broadcast	dwarf+symtab	d378b42f237a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20bb4	84	chkdebug	dwarf+symtab	cb70855fb2fa		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20a84	304	protected_broadcast	dwarf+symtab	d378b42f237a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20bb4	84	chkdebug	dwarf+symtab	cb70855fb2fa		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20c08	108	install_gfxintr	dwarf+symtab	b364e8960641		in	named-only	docs/kernel-flow-control.md#ip35-build-usrcpusysgenip35bootgfxsagfx_flowo	IP35 build (`usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)`)
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20c74	272	debug_stop_all_cpus	dwarf+symtab	22143b3ce548		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20d84	348	intr_reserve_hardwired	dwarf+symtab	575f20e6ecf8		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20ee0	120	intr_clear_bits	dwarf	10af38853fbc		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20f58	316	intr_clear_all	dwarf+symtab	ec815101f401		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21094	448	dump_vector	dwarf	d53f425b4909		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x20f58	316	intr_clear_all	dwarf+symtab	ec815101f401		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21094	448	dump_vector	dwarf	d53f425b4909		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21254	844	intr_dumpvec	dwarf+symtab	a46e7fa8ad56		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x215a0	332	enable_ithreads	dwarf+symtab	cc04cc26b353		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x215a0	332	enable_ithreads	dwarf+symtab	cc04cc26b353		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x216ec	52	intpend0_intrd	dwarf	99ec815db0c3		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21720	124	intpend0_intrd_start	dwarf	fbd9a60adde5		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2179c	92	intr_thread_setup	dwarf	f8d6d666a858		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2179c	92	intr_thread_setup	dwarf	f8d6d666a858		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21800	56	tfi_save	dwarf+symtab	23e6f8986331		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21838	56	tfi_restore	dwarf+symtab	0a54feea6840		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21870	4	assbuffer	dwarf+symtab	df3f619804a9		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55366,19 +55366,19 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dbc	8	ip26_enable_u
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dbc	20	ip26_return_ucmem	symtab	4bb71562d901	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dbc	20	ip28_enable_ucmem	symtab	4bb71562d901	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dbc	20	ip28_return_ucmem	symtab	4bb71562d901	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dd0	28	spl0	dwarf+symtab	77e42c3ec2cb		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl1	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl3	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl5	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl6	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splgio0	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splgio1	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splgio2	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splhi	dwarf+symtab	d20175b8aee2	shared-address	in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splhi_relnet	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dd0	28	spl0	dwarf+symtab	77e42c3ec2cb		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl1	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl3	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl5	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spl6	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splgio0	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splgio1	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splgio2	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splhi	dwarf+symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splhi_relnet	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splhintr	symtab	d20175b8aee2	shared-address	in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splimp	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splnet	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splimp	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splnet	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splretr	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	spltty	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21dec	24	splvme	symtab	d20175b8aee2	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55394,13 +55394,13 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21ed4	28	splx	dwarf+s
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21ed4	28	splxecc	symtab	50d1a155518b	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21ef0	32	isspl0	dwarf+symtab	9bdb1538e91c		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21f10	8	delay_for_intr	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21f18	28	hubio_init	dwarf+symtab	a86de4a9d7a4		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21f34	352	hub_pio_init	dwarf	1424ce2f654a		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22094	792	hub_piomap_alloc	dwarf+symtab	cfabe0b57dfa		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x223ac	236	hub_piomap_free	dwarf+symtab	764d80c20d32		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22498	96	hub_piomap_addr	dwarf+symtab	1349f9e56ec6		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x224f8	8	hub_piomap_done	dwarf+symtab	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22500	196	hub_piotrans_addr	dwarf+symtab	c5b8e8842727		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21f18	28	hubio_init	dwarf+symtab	a86de4a9d7a4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x21f34	352	hub_pio_init	dwarf	1424ce2f654a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22094	792	hub_piomap_alloc	dwarf+symtab	cfabe0b57dfa		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x223ac	236	hub_piomap_free	dwarf+symtab	764d80c20d32		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22498	96	hub_piomap_addr	dwarf+symtab	1349f9e56ec6		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x224f8	8	hub_piomap_done	dwarf+symtab	78aa5094d5ec		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22500	196	hub_piotrans_addr	dwarf+symtab	c5b8e8842727		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x225c4	8	hub_dma_init	dwarf	78aa5094d5ec		in	named-only	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x225cc	128	hub_dmamap_alloc	dwarf+symtab	838d9b28dbee		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2264c	40	hub_dmamap_free	dwarf+symtab	1ac027619b46		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55412,8 +55412,8 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22784	8	hub_dmatrans_
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2278c	8	hub_dmamap_drain	dwarf+symtab	78aa5094d5ec		in	named-only	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22794	8	hub_dmaaddr_drain	dwarf+symtab	78aa5094d5ec		in	named-only	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2279c	8	hub_dmalist_drain	dwarf+symtab	78aa5094d5ec		in	named-only	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x227a4	8	hub_intr_init	dwarf	78aa5094d5ec		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x227ac	84	hub_device_desc_update	dwarf	f6628cc385e2		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x227a4	8	hub_intr_init	dwarf	78aa5094d5ec		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x227ac	84	hub_device_desc_update	dwarf	f6628cc385e2		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22800	520	do_hub_intr_alloc	dwarf	1480836470f1		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22a08	28	hub_intr_alloc	dwarf+symtab	97bd00796017		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22a24	28	hub_intr_alloc_nothd	dwarf+symtab	466f294539fd		in	undocumented		
@@ -55422,31 +55422,31 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22ab8	136	hub_intr_co
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22b40	100	hub_intr_disconnect	dwarf+symtab	fbb587b4ad7a		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22ba4	28	hub_intr_cpu_get	dwarf+symtab	61c74e6169ed		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22bc0	8	hub_intr_cpuid_get	dwarf+symtab	acb766709b99		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22bc8	52	hub_provider_startup	dwarf+symtab	7986267a335f		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22bfc	28	hub_provider_shutdown	dwarf+symtab	a86de4a9d7a4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22c18	84	hub_check_is_widget0	dwarf+symtab	ffdb7db106eb		in	named-only	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22bc8	52	hub_provider_startup	dwarf+symtab	7986267a335f		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22bfc	28	hub_provider_shutdown	dwarf+symtab	a86de4a9d7a4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22c18	84	hub_check_is_widget0	dwarf+symtab	ffdb7db106eb		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22c6c	104	hub_check_window_equiv	dwarf+symtab	eb8868462602		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22cd4	136	hub_check_pci_equiv	dwarf+symtab	6fc4d97c40fe		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22d5c	148	hub_setup_prb	dwarf+symtab	197f376d2a71		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22df0	240	hub_set_piomode	dwarf+symtab	91aa14bf7032		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22ee0	72	hub_widget_flags_set	dwarf+symtab	38634e74f701		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22f28	148	hub_device_flags_set	dwarf+symtab	ce36a865dd48		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22fbc	124	hubii_ixtt_set	dwarf+symtab	23a0d2fcf76b		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23038	124	hubii_ixtt_get	dwarf+symtab	9c473d6fa668		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x230b4	436	hub_device_inquiry	dwarf+symtab	08c731c5a883		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23270	12	read_branch_diag	dwarf+symtab	173e4e133975		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2327c	12	write_branch_diag	dwarf+symtab	ad5749af13dd		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23288	36	branch_prediction_off	dwarf+symtab	94298365c425		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x232ac	28	branch_prediction_on	dwarf+symtab	9961ed580f4a		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x232c8	36	branch_prediction_taken	dwarf+symtab	9856fc38d44c		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x232ec	24	branch_prediction_fwd_not_taken	dwarf+symtab	9d9cbea0564e		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22cd4	136	hub_check_pci_equiv	dwarf+symtab	6fc4d97c40fe		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22d5c	148	hub_setup_prb	dwarf+symtab	197f376d2a71		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22df0	240	hub_set_piomode	dwarf+symtab	91aa14bf7032		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22ee0	72	hub_widget_flags_set	dwarf+symtab	38634e74f701		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22f28	148	hub_device_flags_set	dwarf+symtab	ce36a865dd48		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x22fbc	124	hubii_ixtt_set	dwarf+symtab	23a0d2fcf76b		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23038	124	hubii_ixtt_get	dwarf+symtab	9c473d6fa668		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x230b4	436	hub_device_inquiry	dwarf+symtab	08c731c5a883		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23270	12	read_branch_diag	dwarf+symtab	173e4e133975		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2327c	12	write_branch_diag	dwarf+symtab	ad5749af13dd		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23288	36	branch_prediction_off	dwarf+symtab	94298365c425		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x232ac	28	branch_prediction_on	dwarf+symtab	9961ed580f4a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x232c8	36	branch_prediction_taken	dwarf+symtab	9856fc38d44c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x232ec	24	branch_prediction_fwd_not_taken	dwarf+symtab	9d9cbea0564e		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23304	96	r12k_perf_overflow_intr	dwarf+symtab	71e7ca5c8c24		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23364	48	r10k_perf_overflow_intr	dwarf+symtab	3b52d9399d73		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23394	104	r1nkperf_data_register_get	dwarf+symtab	e138c7a139fc		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x233fc	104	r1nkperf_control_register_get	dwarf+symtab	0c2e9cdbd4b0		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23464	100	r1nkperf_data_register_set	dwarf+symtab	0fc6a07a2616		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x234c8	100	r1nkperf_control_register_set	dwarf+symtab	1ed754a7c450		in	located	docs/instruction-readings-odsy-g12.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2352c	12	get_r10k_config	dwarf+symtab	65d36b16835c		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2352c	12	get_r10k_config	dwarf+symtab	65d36b16835c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23580	1020	exception	dwarf+symtab	ffbd60b4c9ce		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2381c	76	exception_endfast	symtab	1ef56b84888e	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2381c	76	handle_intr_wgflush	symtab	1ef56b84888e	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55459,37 +55459,37 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x23fb4	204	kvmiss_hit	
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24080	8	ULIsystrap_j	dwarf+symtab	ef9020c98b58		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24100	380	systrap	dwarf+symtab	5208faf1d791		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2427c	32	VEC_syscall	dwarf+symtab	589b2f4328d2		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x242a0	40	get_fpc_csr	dwarf+symtab	63b1294bfb88		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x242c8	48	set_fpc_csr	dwarf+symtab	13fb2c9001a4		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x242f8	12	get_cpu_irr	dwarf+symtab	2b8946786132		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x242a0	40	get_fpc_csr	dwarf+symtab	63b1294bfb88		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x242c8	48	set_fpc_csr	dwarf+symtab	13fb2c9001a4		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x242f8	12	get_cpu_irr	dwarf+symtab	2b8946786132		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24304	52	get_fpc_irr	dwarf+symtab	23bd7f3bc767		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24338	16	reviderror	dwarf+symtab	d25ddacfc03a		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24348	12	get_cpu_cnf	dwarf+symtab	65d36b16835c		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24354	24	clear_sline	dwarf+symtab	ab8dfae3b137		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24338	16	reviderror	dwarf+symtab	d25ddacfc03a		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24348	12	get_cpu_cnf	dwarf+symtab	65d36b16835c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24354	24	clear_sline	dwarf+symtab	ab8dfae3b137		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2436c	44	scache_ild	dwarf+symtab	aef3ea1ce7d7		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24398	92	dLine	dwarf+symtab	7bb2585699be		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x243f4	32	dCacheSize	dwarf+symtab	890df7432f8b		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x243f4	32	dCacheSize	dwarf+symtab	890df7432f8b		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24414	112	iLine	dwarf+symtab	cb38742b7460		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24484	36	iCacheSize	dwarf+symtab	5bd333765010		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24484	36	iCacheSize	dwarf+symtab	5bd333765010		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x244a8	136	sLine	dwarf+symtab	a455b314187a		in	located	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24530	32	sCacheSize	dwarf+symtab	8d2d001b2026		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24530	32	sCacheSize	dwarf+symtab	8d2d001b2026		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24550	24	reset_leds	dwarf+symtab	14a3e76eba71		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24568	480	bump_leds	dwarf+symtab	1cbd99183b79		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24748	352	set_leds	dwarf+symtab	69d1fdd1e05c		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x248a8	28	sys_setled	dwarf+symtab	a86de4a9d7a4		in	understood	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x248d0	144	encode_int_serial	symtab	837034227370		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24960	152	decode_int_serial	symtab	23d6d337b405		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x249f8	124	encode_str_serial	symtab	2cd004612598		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24a74	124	decode_str_serial	symtab	f4b3980510ff		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24af0	72	module_lookup	symtab	8b8fa4a9ab74		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24b38	108	cmoduleid_lookup	symtab	2d1c505b161c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24ba4	108	cnodemodule_lookup	symtab	355e567dc9b2		in	named-only	docs/driver-functions.md#kernel-driver-functions-one-entry-each	Kernel driver functions, one entry each
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24c10	336	module_add_node	symtab	101e76853110		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24d60	508	module_probe_snum	symtab	741906d63036		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24f5c	356	module_init	symtab	36b717a77088		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x250c0	44	get_elsc	symtab	83431b4a0f35		in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x250ec	248	get_kmod_info	symtab	37f8ffa87bce		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x251e4	248	get_kmod_sys_snum	symtab	53bd3e7c9a38		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x249f8	124	encode_str_serial	symtab	2cd004612598		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24a74	124	decode_str_serial	symtab	f4b3980510ff		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24af0	72	module_lookup	symtab	8b8fa4a9ab74		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24b38	108	cmoduleid_lookup	symtab	2d1c505b161c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24ba4	108	cnodemodule_lookup	symtab	355e567dc9b2		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24c10	336	module_add_node	symtab	101e76853110		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24d60	508	module_probe_snum	symtab	741906d63036		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x24f5c	356	module_init	symtab	36b717a77088		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x250c0	44	get_elsc	symtab	83431b4a0f35		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x250ec	248	get_kmod_info	symtab	37f8ffa87bce		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x251e4	248	get_kmod_sys_snum	symtab	53bd3e7c9a38		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e0	8	dcache_wb	symtab	78aa5094d5ec	shared-address	in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e0	8	dcache_wbinval	symtab	78aa5094d5ec	shared-address	in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e0	8	dki_dcache_inval	symtab	78aa5094d5ec	shared-address	in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55497,33 +55497,33 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e0	8	dki_dcache_wb
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e0	8	dki_dcache_wbinval	symtab	78aa5094d5ec	shared-address	in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e0	8	dummy_func	dwarf+symtab	78aa5094d5ec	shared-address	in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x252e8	208	bootstrap	dwarf+symtab	824615eebe43		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x253b8	168	mapped_kernel_setup_tlb	dwarf+symtab	d97a23f621a0		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x253b8	168	mapped_kernel_setup_tlb	dwarf+symtab	d97a23f621a0		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25460	324	nmi_dump	dwarf+symtab	a2c45acf925d		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x255a4	140	dumptlb	dwarf+symtab	cc677e0565cc		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25630	156	checkAllTlbsDumped	dwarf+symtab	8ed0449b38d8		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x256d0	52	VEC_trap	dwarf+symtab	59c2a9b8739a	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x256d0	64	soft_trap	symtab	8ee421078d24	shared-address	in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25710	12	uli_getasids	dwarf+symtab	5522d9383584		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2571c	12	uli_setasids	dwarf+symtab	54ba683355d1		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25728	44	uli_eret	dwarf+symtab	6ab98be69964		in	named-only	docs/instruction-readings-odsy-g15.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25754	308	add_sidcache	dwarf+symtab	d6abb34a0326		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25888	68	get_cpu_freq	dwarf+symtab	3dc4829c4231		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25710	12	uli_getasids	dwarf+symtab	5522d9383584		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2571c	12	uli_setasids	dwarf+symtab	54ba683355d1		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25728	44	uli_eret	dwarf+symtab	6ab98be69964		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25754	308	add_sidcache	dwarf+symtab	d6abb34a0326		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25888	68	get_cpu_freq	dwarf+symtab	3dc4829c4231		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x258cc	708	add_cpuboard	dwarf+symtab	a8533ae53a23		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25b90	108	VEC_fpe	dwarf+symtab	81dc986a5f65		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25bfc	400	dobootduty	dwarf	965b159c90a1		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25d8c	296	sn_mp_setup	dwarf	118081579cc0		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25eb4	8	is_prom_downrev	dwarf+symtab	87506497337c		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25d8c	296	sn_mp_setup	dwarf	118081579cc0		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25eb4	8	is_prom_downrev	dwarf+symtab	87506497337c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x25ebc	1108	allowboot	dwarf+symtab	d8bfc0d1ed36		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26310	8	disallowboot	dwarf+symtab	78aa5094d5ec		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26318	596	cboot	dwarf+symtab	fcd7fcd4eaee		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2656c	220	cpu_io_setup	dwarf	1233aa29f3d3		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26648	192	install_cpu_nmi_handler	dwarf+symtab	2cccfaa43a2c		in	named-only	docs/instruction-readings-odsy-g18.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26708	144	nmi_cpu_eframe_save	dwarf+symtab	86b0a89062e1		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26798	176	nmi_node_eframe_save	dwarf+symtab	2ea227c6bf28		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26848	76	nmi_eframes_save	dwarf+symtab	2f438f8c2856		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2656c	220	cpu_io_setup	dwarf	1233aa29f3d3		in	understood	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26648	192	install_cpu_nmi_handler	dwarf+symtab	2cccfaa43a2c		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26708	144	nmi_cpu_eframe_save	dwarf+symtab	86b0a89062e1		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26798	176	nmi_node_eframe_save	dwarf+symtab	2ea227c6bf28		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26848	76	nmi_eframes_save	dwarf+symtab	2f438f8c2856		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26894	568	cont_nmi_dump	dwarf+symtab	3c67c7d6e9d6		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26acc	56	cpu_isvalid	dwarf+symtab	25f5ee2298ed		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26b04	928	adjust_nmi_handler	dwarf+symtab	d8a76e1393c3		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26b04	928	adjust_nmi_handler	dwarf+symtab	d8a76e1393c3		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26ea4	180	clean_icache	dwarf+symtab	105f56230b81		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x26f58	216	clean_dcache	dwarf+symtab	04323e7471ef		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x27030	284	sync_dcaches_excl	dwarf+symtab	0304cc7f78cc		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55702,18 +55702,18 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2db7c	836	_hook_excep
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dec0	16	_j_exceptnorm	dwarf+symtab	5b5c65cbd526		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2ded0	16	_j_endexceptnorm	symtab	9361df19a7db	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2ded0	16	_j_exceptnorm_nosymmon	dwarf+symtab	9361df19a7db	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dee0	32	_endexceptnorm_prolog	symtab	66687aadf862	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dee0	32	_exceptnorm_prolog	dwarf+symtab	66687aadf862	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dee0	32	_j_endexceptnorm_nosymmon	symtab	66687aadf862	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dee0	32	_endexceptnorm_prolog	symtab	66687aadf862	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dee0	32	_exceptnorm_prolog	dwarf+symtab	66687aadf862	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dee0	32	_j_endexceptnorm_nosymmon	symtab	66687aadf862	shared-address	in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df00	12	utlbmiss_prolog_up	dwarf+symtab	e0b6dea606c1		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df0c	16	eutlbmiss_prolog_up	symtab	74ea3ec324b3	shared-address	in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df0c	16	utlbmiss_prolog_mp	dwarf+symtab	74ea3ec324b3	shared-address	in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df1c	100	eutlbmiss_prolog_mp	symtab	cd00e292c597		in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df1c	100	eutlbmiss_prolog_mp	symtab	cd00e292c597		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df80	40	utlbmiss	dwarf+symtab	b6dcbf9caa30		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2df90	24	utlbmiss_not_large_page	symtab	1a621009c71c		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dfa8	136	eutlbmiss	symtab	481c1fbaa3d8	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2dfa8	136	lpg_utlbmiss	dwarf+symtab	481c1fbaa3d8	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e030	80	elpg_utlbmiss	symtab	5b6fb58e61fa		in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e030	80	elpg_utlbmiss	symtab	5b6fb58e61fa		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e080	60	utlbmiss2	dwarf+symtab	4e45cd266c00		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e090	44	utlbmiss2_not_large_page	symtab	c7a4deff5ac6		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e0bc	4	eutlbmiss2	symtab	c703f88a8732	shared-address	in	named-only	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55733,7 +55733,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e264	44	lpg_overlay_
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e290	4	elpg_overlay_counting_utlbmiss	symtab	4756b6381442	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e290	4	utlbmiss_prolog_patch	dwarf+symtab	4756b6381442	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e294	32	utlbmissj	dwarf+symtab	59e7addb5e06		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e2b4	12	eutlbmissj	symtab	15ec7bf0b507		in	named-only	docs/instruction-readings-odsy-g16.md#skipped-routines	Skipped routines
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e2b4	12	eutlbmissj	symtab	15ec7bf0b507		in	located	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e2c0	88	_ecc_errorvec	dwarf+symtab	05262da04530		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e318	36	_ecc_end	symtab	cd988059adf8	shared-address	in	named-only	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x2e318	36	get_nvreg	dwarf+symtab	cd988059adf8	shared-address	in	undocumented		
@@ -55823,8 +55823,8 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x33d18	600	klhwg_conne
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x33f70	560	klhwg_device_disable_hints_add	dwarf+symtab	f5b1056b660e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x341a0	512	klhwg_dimm_flavor_info_print	dwarf+symtab	459b7a133413		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x343a0	560	klhwg_premium_std_dimm_mix_check	dwarf+symtab	8448c1dd5501		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x345d0	348	klhwg_add_all_modules	dwarf+symtab	65a3a902c025		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3472c	212	klhwg_add_all_nodes	dwarf+symtab	88d3d6e311a1		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x345d0	348	klhwg_add_all_modules	dwarf+symtab	65a3a902c025		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3472c	212	klhwg_add_all_nodes	dwarf+symtab	88d3d6e311a1		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x34800	428	fpunit_fpstore_s	dwarf+symtab	6dc388b31431		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x349ac	268	get_freemem_start	dwarf+symtab	f8ab64ef90f7		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x34ab8	220	setup_replication_mask	dwarf+symtab	0017f5134598		in	undocumented		
@@ -55856,7 +55856,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37464	84	resetcounter
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x374b8	32	initcounter	dwarf+symtab	ff403fc77859		in	located	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x374d8	36	delaycounter	dwarf+symtab	b0757c06a658		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37500	276	_badaddr_val	dwarf+symtab	e4975ae6e345		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37614	296	_wbadaddr_val	dwarf+symtab	5bea1c849408		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37614	296	_wbadaddr_val	dwarf+symtab	5bea1c849408		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3773c	224	earlybadaddr	dwarf+symtab	a3bafeae4557		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3781c	108	wbadmemaddr	dwarf+symtab	0f88c1093bf0		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37888	48	baerror	dwarf+symtab	2b5539a824b6		in	located	docs/instruction-readings-odsy-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -55867,7 +55867,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x378f8	8	cpu_waitforre
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37900	252	hub_ioerror_local	dwarf+symtab	05c0fc339e09		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x379fc	232	hub_xp_error_handler	dwarf+symtab	a65ff4e8889e		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37ae4	104	is_widget_pio_enabled	dwarf+symtab	584d520e1dc4		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37b4c	1028	hub_ioerror_handler	dwarf+symtab	39de90e9f21c		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37b4c	1028	hub_ioerror_handler	dwarf+symtab	39de90e9f21c		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x37f50	3196	crbx	dwarf+symtab	53ced12a3a27		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x38bcc	192	hub_error_devenable	dwarf+symtab	a31d64059b53		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x38c8c	160	hub_widgetdev_enable	dwarf+symtab	9b3b2b205150		in	undocumented		
@@ -55946,7 +55946,7 @@ usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ec34	48	wbadaddr_val
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ec64	8	is_buserror	dwarf+symtab	87506497337c		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ec6c	288	probe_common	dwarf	b55e17bf8f0d		in	undocumented		
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3ed8c	960	bte_error_handler	dwarf+symtab	8cbaa7b8b38c		in	undocumented		
-usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3f14c	336	bte_crb_error_handler	dwarf+symtab	10e4fd1f404c		in	undocumented		
+usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3f14c	336	bte_crb_error_handler	dwarf+symtab	10e4fd1f404c		in	named-only	docs/instruction-readings-odsy-g19.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3f2a0	872	VEC_cpfault	dwarf+symtab	10212dd7c0fa		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3f608	308	hwperf_init	dwarf+symtab	aa91b23521db		in	located	docs/instruction-readings-odsy-g17.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP35boot/kernel.o	shared-kernel	n64	.text	0x3f73c	80	hwperf_overflowed_intr	dwarf+symtab	555466fe1014		in	named-only	docs/instruction-readings-odsy-g14.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
