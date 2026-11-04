@@ -8489,3 +8489,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The initial `beq` takes the `__glSetError` path with 0x502 in `a0` when the word at 0x1030 equals 1 (`lw` at 0x32b8e5c; `addiu` at 0x32b8e64; `beq` at 0x32b8e7c; `jalr` at 0x32b8ef8; `addiu` at 0x32b8efc). Calls on other paths include `__glReadjustZCounts` (`jalr` at 0x32b8f0c). The effect of the latter call is Unknown.
 - `__glim_StencilFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   When the word at 0x1030 equals 1, `beq` is taken to `__glSetError` with 0x502 in `a0` (`lw` at 0x32bb3b8; `addiu` at 0x32bb3c0; `beq` at 0x32bb3d8; `jalr` at 0x32bb470; `addiu` at 0x32bb474). On the fall-through path, `bnez` is taken when entry `a0` is unsigned less than 0x200 (`beq` at 0x32bb3d8; `sltiu` at 0x32bb3e0; `bnez` at 0x32bb3e4). The hardware effect is Unknown.
+
+## 64-bit IP30 library: line tests and blend spans
+
+- `__glDepthTestLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e6060
+  Its reads include a word at entry `a0` +0x9790 and doublewords at +0x9830 and +0x9ce0 (`lw` at 0x32e6074; `ld` at 0x32e6078, 0x32e608c). The routine also makes an indirect call with its first four argument values unknown (`jalr` at 0x32e61b0). The callee and field roles are Unknown.
+- `__glDepthTestStippledLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e63f0
+  The body reads a doubleword at entry `a0` +0x4928, words at +0x9714 and +0x9790, and a doubleword at +0x9ce0 (`ld` at 0x32e6418, 0x32e6438). The `lw` at 0x32e6420 reads the word at argument 0 +0x9714, and the `lw` at 0x32e6424 reads the word at argument 0 +0x9790. It makes an indirect call whose first four argument values are unknown (`jalr` at 0x32e65bc). Its target and wider role are Unknown.
+- `__glDepthTestStencilLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e66c0
+  It loads a doubleword from entry `a0` +0x9ce0, a word from +0x95bc and another doubleword from +0x9c98 (`ld` at 0x32e66d8, 0x32e66ec; `lw` at 0x32e66dc). An indirect call has unknown first four argument values (`jalr` at 0x32e6948). The destination and field roles are Unknown.
+- `__glDepthTestStencilStippledLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e6a40
+  Its reads include doublewords at entry `a0` +0x9ce0 and +0x4928, and words at +0x95bc and +0x9d08 (`ld` at 0x32e6a68, 0x32e6a78; `lw` at 0x32e6a6c, 0x32e6a74). It calls an unknown target with its first four argument values unknown (`jalr` at 0x32e6c90). The routine’s wider purpose is Unknown.
+- `__glDepthPassLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32e6de0
+  The entry reads a doubleword at `a0` +0x9c08 and words at +0x95bc and +0x9c30 (`ld` at 0x32e6de8; `lw` at 0x32e6dec, 0x32e6df4). It also loads a doubleword at entry `a0` +0x9c98 (`ld` at 0x32e6e18). What the loaded fields represent is Unknown.
+- `__glim_StencilOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bb480
+  The routine reads a word at 0x1030 and a doubleword at 0x1020 (`lw` at 0x32bb488; `ld` at 0x32bb48c). Its accesses include a word store of 2 to 0x1030 (`addiu` at 0x32bb588; `sw` at 0x32bb58c). The later use of these two locations is Unknown.
+- `__glDoBlend_SA_ONE` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c25d0
+  It reads floating-point words from entry `a1` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c25d4, 0x32c25dc). Its stores include floating-point words of unknown value at entry `a3` +0xc and +8 (`swc1` at 0x32c2638, 0x32c2640). Their broader role is Unknown.
+- `__glDoBlend_SA_MSA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2660
+  Floating-point words are loaded from entry `a0` +0x9a2c, entry `a1` +0xc and entry `a2` +0 (`lwc1` at 0x32c266c, 0x32c2664, 0x32c2678). The body stores a floating-point word of unknown value at entry `a3` +0xc (`swc1` at 0x32c26b8). The fields’ meanings are Unknown.
+- `__glDoBlend_MSA_SA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c26d0
+  Entry `a0` +0xf2c and entry `a2` +8 supply floating-point words (`lwc1` at 0x32c26e0, 0x32c26ec). Its writes include a floating-point word of unknown value at entry `a3` +0xc (`swc1` at 0x32c2728). The data’s purpose is Unknown.
+- `__glGenericPickBlendProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2740
+  Its entry reads a byte at `a0` +0xde5 and words at `a0` +0x848 and +0x834 (`lbu` at 0x32c2744; `lw` at 0x32c2740, 0x32c2748). The stores include the doubleword 0x32c22b0 at entry `a0` +0x4d08 (`sd` at 0x32c27d0). The purpose of the loaded fields and stored address is Unknown.
+- `__glBlendSpan_SA_MSA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2d90
+  The entry reads a word at `a0` +0x9740 and floating-point words at +0xf2c and +0x9a2c (`lw` at 0x32c2d98; `lwc1` at 0x32c2d9c, 0x32c2da0). It also reads doublewords at +0x9828 and +0x9820 (`ld` at 0x32c2da8, 0x32c2db0). Their roles are Unknown.
+- `__glBlendSpan_MSA_SA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2f00
+  It loads a word from entry `a0` +0x9740 and a floating-point word from +0x9a2c (`lw` at 0x32c2f08; `lwc1` at 0x32c2f0c). The entry also reads doublewords at `a0` +0x9828 and +0x9820 (`ld` at 0x32c2f14, 0x32c2f1c). How these four values are used is Unknown.
+- `__glBlendSpan_SA_ZERO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3070
+  The routine reads a word at entry `a0` +0x9740, a floating-point word at +0x9a2c (`lwc1` at 0x32c3080) and a doubleword at +0x9820 (`ld` at 0x32c3084). The `lw` at 0x32c3078 reads the word at argument 0 +0x9740. Their broader roles are Unknown.
+- `__glBlendSpan_SA_ONE` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c31e0
+  Its reads include floating-point words at entry `a0` +0x9a18 and +0x99f8, and a word at +0x9740 (`lwc1` at 0x32c31e8, 0x32c31ec; `lw` at 0x32c31f0). It also loads doublewords from +0x9828 and +0x9820 (`ld` at 0x32c3200, 0x32c3204). The later use of these five values is Unknown.
+- `__glBlendStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c3390
+  It reads a word at entry `a0` +0x9740 and doublewords at +0x9828, +0x9820 and +0x9830 (`lw` at 0x32c33b4; `ld` at 0x32c33bc, 0x32c33c8, 0x32c33d4). Its calls include an indirect call through a doubleword at entry `a0` +0x4d10 (`ld` at 0x32c3428; `jalr` at 0x32c3438). The effect of the indirect call is Unknown.
