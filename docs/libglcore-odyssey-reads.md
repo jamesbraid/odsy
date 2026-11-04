@@ -8225,3 +8225,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   `__glSPDlalloc` receives 0x18 and 0xc9 as its first two arguments (`addiu` at 0x33548e8, 0x33548f0; `jalr` at 0x33548f4). If the result is nonzero, `beqz` falls through to word stores of entry `a1` and `a0` at result +4 and +0 (`beqz` at 0x33548fc; `sw` at 0x3354928, 0x3354934). The record’s role is Unknown.
 - `__glsplc_CopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3354950
   The routine calls `__glSPDlalloc` with 0x18 and 0xca (`addiu` at 0x335497c, 0x3354984; `jalr` at 0x3354988). A nonzero result makes `beqz` fall through to stores of entry `a1` and `a0` as words at result +4 and +0 (`beqz` at 0x3354990; `sw` at 0x33549c4, 0x33549d0). The use of the stored arguments remains Unknown.
+
+## 64-bit IP30 library: color table state paths
+
+- `__glim_GetColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  If the word at 0x1030 is zero, `beqz` takes the path calling `__glCheckColorTableArgs` (`lw` at 0x32c7788; `beqz` at 0x32c77a0; `bgezall` at 0x32c77f8). If the first branch falls through and that word differs from 2, the next `beq` falls through to `__glSetError` with 0x502 in `a0` (`beqz` at 0x32c77a0; `addiu` at 0x32c77a8; `beq` at 0x32c77ac; `bgezall` at 0x32c77b4; `addiu` at 0x32c77b8). The purpose of the color-table check is Unknown.
+- `__glColorTableModifiers` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the tested value is unsigned at least 0x1a, `beqz` takes the path calling `__glSetError` with 0x500 in `a0`; hostfacts does not resolve that tested value (`beqz` at 0x32c79ac; `bgezall` at 0x32c79c8; `addiu` at 0x32c79cc). When the tested value is unsigned less than 0x1a, `beqz` falls through to an indirect jump table (`beqz` at 0x32c79ac; `jr` at 0x32c79bc). The selected modifier’s downstream effect is Unknown.
+- `__glColorTableParameterv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glColorTableModifiers` with entry arguments 0 through 2 and entry stack pointer -0x20 in `a3` (`bgezall` at 0x32c7b9c; `daddiu` at 0x32c7ba0). `beqz` takes the return path if that call returns zero and falls through otherwise (`beqz` at 0x32c7ba8; `jr` at 0x32c7cbc). Its broader hardware role is Unknown.
+- `__glim_ColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 differs from 1, `beq` falls through to `__glColorTableParameterv` (`lw` at 0x32c7d1c; `addiu` at 0x32c7d20; `beq` at 0x32c7d38; `bgezall` at 0x32c7d54). The call receives the doubleword at 0x1020 and entry `a0`, `a1`, and `a2` as its first four arguments (`bgezall` at 0x32c7d54; `ld` at 0x32c7d58). Its wider effect is Unknown.
+- `__glim_ColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beq` at 0x32c7da8 falls through when the word at 0x1030 is not 1, leading to `__glColorTableParameterv` (`lw` at 0x32c7d8c; `addiu` at 0x32c7d90; `beq` at 0x32c7da8; `bgezall` at 0x32c7dc4). That call's first four arguments are the doubleword at 0x1020, entry `a0`, entry `a1`, and zero (`bgezall` at 0x32c7dc4; `ld` at 0x32c7dc8). The callee's hardware effect is Unknown.
+- `__glle_ColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ecb10
+  It reads a doubleword from 0x1020, then loads an indirect call target from +0x4e00 of that value (`ld` at 0x32ecb2c, 0x32ecb3c; `jalr` at 0x32ecb50). The target’s identity and broader role are Unknown.
+- `__gllc_ColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ecb90
+  The accesses include a doubleword read at 0x1020 and a word read at 0x1030 (`ld` at 0x32ecbac; `lw` at 0x32ecbb0). Its calls include `__glCheckColorTableArgs` and `__glImageSize` (`jalr` at 0x32ecc20, 0x32ecca8). The fields’ purposes are Unknown.
+- `__glim_TexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x331a390
+  When the word read from 0x1030 equals 1, `beq` is taken; if different, it falls through (`lw` at 0x331a3c4; `addiu` at 0x331a3c8; `beq` at 0x331a3e4). The fall-through path calls `__glLookUpTextureParams` with the doubleword from 0x1020 as `a0` and entry `a0` as `a1` (`beq` at 0x331a3e4; `bgezall` at 0x331a3f4; `ld` at 0x331a3f8). The field’s meaning is Unknown.
+- `__gllc_ColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3346eb0
+  After `__glDlistAllocOp2`, `bnez` takes the path that stores halfword 0xe4 at result +0x14 when the result is nonzero; it falls through on zero (`jalr` at 0x3346f0c; `bnez` at 0x3346f14; `addiu` at 0x3346f38; `sh` at 0x3346f3c). The halfword’s role is Unknown.
+- `__gllc_ColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3346f90
+  A nonzero return from `__glDlistAllocOp2` takes `bnez` to a path that writes halfword 0xe5 at result +0x14 (`jalr` at 0x3346fec; `bnez` at 0x3346ff4; `addiu` at 0x3347018; `sh` at 0x334701c). The branch falls through if the return is zero (`bnez` at 0x3346ff4). How that halfword is used is Unknown.
+- `__glGetColorTableParameterv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The call to `__glColorTableModifiers` receives entry arguments 0 through 2 and entry stack pointer -0x20 in `a3` (`bgezall` at 0x32c7e0c; `daddiu` at 0x32c7e10). If the result is zero, `beqz` takes the return path (`beqz` at 0x32c7e18; `jr` at 0x32c7f1c). How the returned data is used beyond this routine is Unknown.
+- `__glim_GetColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at 0x1030 differs from 1, `beq` falls through to `__glGetColorTableParameterv` (`lw` at 0x32c7f7c; `addiu` at 0x32c7f80; `beq` at 0x32c7f98; `bgezall` at 0x32c7fb4). The call receives the doubleword at 0x1020 and entry `a0`, `a1`, and `a2` as its first four arguments (`bgezall` at 0x32c7fb4; `ld` at 0x32c7fb8). Its hardware effect is Unknown.
+- `__glim_GetColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `beq` at 0x32c8008 falls through when the word at absolute 0x1030 is not 1, reaching `__glGetColorTableParameterv` (`lw` at 0x32c7fec; `addiu` at 0x32c7ff0; `beq` at 0x32c8008; `bgezall` at 0x32c8024). That call passes the doubleword at 0x1020, entry `a0`, entry `a1`, and zero as its first four arguments (`bgezall` at 0x32c8024; `ld` at 0x32c8028). The downstream role is Unknown.
+- `__glim_CopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  When the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32c8078; `addiu` at 0x32c8080; `beq` at 0x32c8098; `bgezall` at 0x32c83a8; `addiu` at 0x32c83ac). The fall-through path calls `__glCheckColorTableArgs` (`beq` at 0x32c8098; `bgezall` at 0x32c80b8). Its hardware effect is Unknown.
+- `__glInitColorTables` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its stores include the word 0x1908 at entry `a0` +0x1a48 (`addiu` at 0x32c8710; `sw` at 0x32c8714). It also copies a floating-point word from entry `a0` +0xf2c to +0x1a74 and +0x1a70 (`lwc1` at 0x32c876c; `swc1` at 0x32c8778, 0x32c877c). The purposes of the initialized fields are Unknown.
