@@ -8258,3 +8258,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   When the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 in `a0` (`lw` at 0x32c8078; `addiu` at 0x32c8080; `beq` at 0x32c8098; `bgezall` at 0x32c83a8; `addiu` at 0x32c83ac). The fall-through path calls `__glCheckColorTableArgs` (`beq` at 0x32c8098; `bgezall` at 0x32c80b8). Its hardware effect is Unknown.
 - `__glInitColorTables` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   Its stores include the word 0x1908 at entry `a0` +0x1a48 (`addiu` at 0x32c8710; `sw` at 0x32c8714). It also copies a floating-point word from entry `a0` +0xf2c to +0x1a74 and +0x1a70 (`lwc1` at 0x32c876c; `swc1` at 0x32c8778, 0x32c877c). The purposes of the initialized fields are Unknown.
+
+## 64-bit IP30 library: color table dispatch
+
+- `__glce_GetColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33621b0
+  It saves the doubleword at 0x1820 and calls `glGetColorTableSGI` (`ld` at 0x33621b8; `jalr` at 0x33621dc). The call delay slot stores a doubleword to 0x1820; the saved value is restored after the call (`jalr` at 0x33621dc; `sd` at 0x33621e0, 0x33621ec). How that stored location is used is Unknown.
+- `__glce_GetColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3362200
+  The doubleword at 0x1828 is saved across a call to `glGetColorTableParameterfvSGI` (`ld` at 0x3362208; `jalr` at 0x336222c; `sd` at 0x336223c). That call’s delay slot writes another doubleword to 0x1828 (`jalr` at 0x336222c; `sd` at 0x3362230). Its broader purpose is Unknown.
+- `__glce_GetColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3362250
+  A doubleword at absolute 0x1830 is read before `glGetColorTableParameterivSGI` is called (`ld` at 0x3362258; `jalr` at 0x336227c). The call delay slot stores a doubleword to 0x1830 and the original value is restored afterward (`jalr` at 0x336227c; `sd` at 0x3362280, 0x336228c). The purpose of this saved location remains Unknown.
+- `__glce_GetTexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3362720
+  It reads the doubleword at 0x1870, calls `glGetTexFilterFuncSGIS`, and restores the original doubleword afterward (`ld` at 0x3362728; `jalr` at 0x336274c; `sd` at 0x336275c). The call delay slot also stores a doubleword at 0x1870 (`jalr` at 0x336274c; `sd` at 0x3362750). The stored field’s meaning is Unknown.
+- `__glce_TexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3362770
+  A doubleword is loaded from 0x1878 before two calls to `glTexFilterFuncSGIS` (`ld` at 0x3362770; `jalr` at 0x33627b4, 0x33627d8). Both call delay slots and the return delay slot write doublewords to 0x1878 (`jalr` at 0x33627b4, 0x33627d8; `sd` at 0x33627b8, 0x33627dc, 0x33627f8; `jr` at 0x33627f4). The field purpose is Unknown.
+- `glCopyConvolutionFilter2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368c50
+  It jumps through the doubleword loaded from absolute 0x1630, preserving the first four entry argument registers (`ld` at 0x3368c50; `jr` at 0x3368c54). The indirect target and its role are Unknown.
+- `glCopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368c50
+  The entry reads a doubleword at absolute 0x1630 and transfers control to it with entry `a0` through `a3` unchanged (`ld` at 0x3368c50; `jr` at 0x3368c54). Its destination and purpose are Unknown.
+- `glColorTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f08
+  A doubleword fetched from absolute 0x1800 supplies an indirect jump target; the first four argument registers retain their entry values (`ld` at 0x3368f08; `jr` at 0x3368f0c). The target’s identity and role are Unknown.
+- `glColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f08
+  The initial load reads the doubleword at absolute 0x1800, then the routine jumps to it with the original `a0` through `a3` (`ld` at 0x3368f08; `jr` at 0x3368f0c). The destination and its wider role are Unknown.
+- `glColorTableParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368f14
+  An indirect jump uses the doubleword read at absolute 0x1808 while passing through the first four entry arguments (`ld` at 0x3368f14; `jr` at 0x3368f18). Its target and purpose are Unknown.
+- `__glsplc_ColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It passes entry `a1` as `a0` to `__glColorTableParameterfvSGI_size` (`move` at 0x33553a8; `jalr` at 0x33553ac). When the Unknown value tested by `bltz` is signed negative, the branch takes the path calling `__glsplc_InvalidEnum` (`bltz` at 0x33553c4; `jalr` at 0x3355420). How the allocated data is used is Unknown.
+- `__glsplc_ColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine calls `__glColorTableParameterivSGI_size` with entry `a1` in `a0` (`move` at 0x3355458; `jalr` at 0x335545c). A signed negative tested value makes `bltz` take the path to `__glsplc_InvalidEnum`; hostfacts cannot resolve that value (`bltz` at 0x3355474; `jalr` at 0x33554d0). Its hardware role is Unknown.
+- `__glsplc_CopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `__glSPDlalloc` call receives 0x18 and 0xe6 in `a0` and `a1` (`addiu` at 0x3355510, 0x3355508; `jalr` at 0x3355514). If its return value is nonzero, `beqz` falls through to word stores of entry `a0` and `a1` at result +0 and +4 (`beqz` at 0x335551c; `sw` at 0x3355554, 0x3355548). The record's role is Unknown.
+- `__glsplc_TexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its initial `bltz` takes the path to `__glsplc_InvalidValue` if the tested signed value is negative; that value is Unknown (`bltz` at 0x3355808; `jalr` at 0x3355870). Another path calls `__glSPDlalloc` with 0xee in `a1` (`addiu` at 0x3355814; `jalr` at 0x3355818). The use of the filter allocation is Unknown.
+- `__glce_CopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `glCopyConvolutionFilter1DEXT` twice, each time passing entry arguments 0 through 3 (`jalr` at 0x3360698, 0x33606c0). The first delay slot writes the doubleword at +0x2078 of the value loaded from 0x1020 to absolute 0x1628 (`ld` at 0x3360678, 0x3360690; `jalr` at 0x3360698; `sd` at 0x336069c). The slot's role is Unknown.
