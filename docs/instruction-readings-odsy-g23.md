@@ -290,7 +290,7 @@ Skipped 5,598 understood and 46,048 located rows because targets were limited to
   Stores 4 bytes from $f14 to a2 (arg2 at entry) +0x4 (`swc1` at 0xd9f201c) with value [a0+3540].
   Calls `(unknown callee)` via register with a0=sp-48, a1=a1+96, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0xd9f1f58).
   Calls `Dot [0xd9f1f00]` via direct with a0=a1+32, a1=sp-48, a2=?, a3=? (`bgezall` at 0xd9f1f6c).
-  At `bc3fl` at 0xd9f1f94 (target 0xd9f2878), taken when (condition not decoded) -> outside and falls through when (condition not decoded).
+  The instruction at 0xd9f1f94 is `nmsub.s`, a single-precision floating-point negative multiply-subtract.
   At `bc1t` at 0xd9f1fd4 (target 0xd9f2010), taken when f6 == f0(=ret(Dot)) (c.eq.s at 0xd9f1fc8) and falls through when not (f6 == f0(=ret(Dot)) (c.eq.s at 0xd9f1fc8)).
   Returns v0 = ret(Dot); f0 = ret(Dot) (`jr` at 0xd9f2008).
   Returns v0 = ret(Dot); f0 = ret(Dot) (`jr` at 0xd9f2024).
@@ -515,7 +515,7 @@ Skipped 5,598 understood and 46,048 located rows because targets were limited to
   Stores 4 bytes from $f14 to a2 (arg2 at entry) +0x4 (`swc1` at 0x22367dc) with value [a0+3880].
   Calls `(unknown callee)` via register with a0=sp-48, a1=a1+104, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0x2236718).
   Calls `Dot [0x22366c0]` via direct with a0=a1+40, a1=sp-48, a2=?, a3=? (`bgezall` at 0x223672c).
-  At `bc3fl` at 0x2236754 (target 0x2237038), taken when (condition not decoded) -> outside and falls through when (condition not decoded).
+  The instruction at 0x2236754 is `nmsub.s`, a single-precision floating-point negative multiply-subtract.
   At `bc1t` at 0x2236794 (target 0x22367d0), taken when f6 == f0(=ret(Dot)) (c.eq.s at 0x2236788) and falls through when not (f6 == f0(=ret(Dot)) (c.eq.s at 0x2236788)).
   Returns v0 = ret(Dot); f0 = ret(Dot) (`jr` at 0x22367c8).
   Returns v0 = ret(Dot); f0 = ret(Dot) (`jr` at 0x22367e4).
@@ -841,7 +841,7 @@ Skipped 5,598 understood and 46,048 located rows because targets were limited to
   Stores 4 bytes from $f3 to a2 (arg2 at entry) +0x4 (`swc1` at 0xbdd7188) with value [a0+3888].
   Calls `(unknown callee)` via register with a0=sp-80, a1=a1+108, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0xbdd70d8).
   Calls `Dot [0xbdd7080]` via direct with a0=a1+44, a1=sp-80, a2=?, a3=? (`bgezall` at 0xbdd70ec).
-  At `bc3f` at 0xbdd711c (target 0xbddba00), taken when (condition not decoded) -> outside and falls through when (condition not decoded).
+  The instruction at 0xbdd711c is `nmsub.s`, a single-precision floating-point negative multiply-subtract.
   At `bc1t` at 0xbdd7154 (target 0xbdd717c), taken when f6 == f0(=0x0) (c.eq.s at 0xbdd7148) and falls through when not (f6 == f0(=0x0) (c.eq.s at 0xbdd7148)).
   Returns v0 = ret(Dot) (`jr` at 0xbdd7194).
 

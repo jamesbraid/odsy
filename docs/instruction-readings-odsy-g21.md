@@ -3466,7 +3466,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   Stores 4 bytes from $f3 to a2 (arg2 at entry) +0x4 (`swc1` at 0xb3b7188) with value [a0+3888].
   Calls `(unknown callee)` via register with a0=sp-80, a1=a1+108, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0xb3b70d8).
   Calls `Dot [0xb3b7080]` via direct with a0=a1+44, a1=sp-80, a2=?, a3=? (`bgezall` at 0xb3b70ec).
-  At `bc3f` at 0xb3b711c (target 0xb3bba00), taken when (condition not decoded) -> outside and falls through when (condition not decoded).
+  The instruction at 0xb3b711c is `nmsub.s`, a single-precision floating-point negative multiply-subtract.
   At `bc1t` at 0xb3b7154 (target 0xb3b717c), taken when f6 == f0(=0x0) (c.eq.s at 0xb3b7148) and falls through when not (f6 == f0(=0x0) (c.eq.s at 0xb3b7148)).
   Returns v0 = ret(Dot) (`jr` at 0xb3b7194).
 - `grow_region` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3c0c40 (n64).
