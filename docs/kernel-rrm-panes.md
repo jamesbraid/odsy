@@ -27,7 +27,7 @@ A pane is the resource manager's record of one drawable that a process has bound
 
 - `pane_cleanup` (`rrm.o`, offset 0x408, 180 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
-  Unbinds a drawable from its pane for good (arguments: id, node). It finds the pane with `clip2pane` and does nothing when there is none. Under `panesema` and the pane's spin lock it zeroes the id at +4, clears valid bits 1, 3 and 6 (mask 0x4a), and, when any waiter bit is set, zeroes the waiter halfword and the guarded doubleword at +56, releases the semaphore at +40 and wakes the waiters with `sv_signal`. When the swap-group pointer at +160 is nonzero it calls `rrmSwapUnGroup` for the pane. It releases `panesema` last.
+  Unbinds a drawable from its pane for good (arguments: id, node). It finds the pane with `clip2pane` and does nothing when there is none. Under `panesema` and the pane's spin lock it zeroes the id at +4, clears valid bits 1, 3 and 6 (the halfword at +12 is ANDed with -0x4b, the mask `a3` takes at 0x450), and, when any waiter bit is set, zeroes the waiter halfword and the guarded doubleword at +56, releases the semaphore at +40 and wakes the waiters with `sv_signal`. When the swap-group pointer at +160 is nonzero it calls `rrmSwapUnGroup` for the pane. It releases `panesema` last.
 
 - `pane_setnullclip` (`rrm.o`, offset 0x4bc, 72 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/rrm.o`.
