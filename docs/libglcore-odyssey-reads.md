@@ -8159,3 +8159,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The jump target is loaded as a doubleword from 0x1220; the four entry argument registers are preserved (`ld` at 0x3368638; `jr` at 0x336863c). The destination's role is Unknown.
 - `glTexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   This entry reads a doubleword at absolute 0x1228 and jumps to it with the original first four arguments (`ld` at 0x3368644; `jr` at 0x3368648). The code leaves the target and hardware effect Unknown.
+
+## 64-bit IP30 library: texture and color-table entry paths
+
+- `glGetTexEnviv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It jumps to the doubleword read from 0x14e8 with its first four arguments unchanged (`ld` at 0x3368a64; `jr` at 0x3368a68). The indirect target is Unknown.
+- `glGetTexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry loads absolute 0x14f0 as a doubleword, then jumps through the loaded value with entry `a0` through `a3` (`ld` at 0x3368a70; `jr` at 0x3368a74). The destination’s effect is Unknown.
+- `glGetTexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  An indirect jump carries the first four entry arguments to a target loaded from 0x14f8 (`ld` at 0x3368a7c; `jr` at 0x3368a80). The destination’s behavior remains Unknown.
+- `glGetTexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads a doubleword at 0x1500 and transfers control to that value, keeping entry `a0`–`a3` (`ld` at 0x3368a88; `jr` at 0x3368a8c). The target is Unknown.
+- `glGetTexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at 0x1510 is loaded as an indirect jump target; the first four argument registers retain their entry values (`ld` at 0x3368aa0; `jr` at 0x3368aa4). The target’s role is Unknown.
+- `glGetTexParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368aac
+  The doubleword read at absolute 0x1518 supplies the target of an indirect jump, with `a0` through `a3` unchanged from entry (`ld` at 0x3368aac; `jr` at 0x3368ab0). The destination and its role are Unknown.
+- `glTexCoordPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368d7c
+  It loads a doubleword from absolute 0x16f8 and transfers control through it, preserving the first four argument registers (`ld` at 0x3368d7c; `jr` at 0x3368d80). The target and wider role are Unknown.
+- `glTexCoordPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3368e78
+  A doubleword at absolute 0x17a0 provides an indirect jump target, carrying entry arguments `a0` through `a3` (`ld` at 0x3368e78; `jr` at 0x3368e7c). The destination’s identity and purpose are Unknown.
+- `glTexCoord4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3376880
+  Entry reads the doubleword at absolute 0x1e38 and jumps through it without changing the first four arguments (`ld` at 0x3376880; `jr` at 0x3376884). Its indirect target and role are Unknown.
+- `__glsplc_ColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x328f380
+  Its calls include `FormatAndType` with entry `a3` and `a4` as the first two arguments (`bgezall` at 0x328f42c), and `__glImageSize` with entry `a2`, 1, entry `a3` and entry `a4` (`jalr` at 0x328f448; `addiu` at 0x328f44c). The wider purpose is Unknown.
+- `__glSpanApplyRGBAColorTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32963b0
+  When bit 0 of the word at entry `a0` +0x9944 is clear, `beqz` takes a path that tests another bit (`lw` at 0x32963b8; `andi` at 0x32963c4; `beqz` at 0x32963cc; `andi` at 0x3296a5c). The field’s broader role is Unknown.
+- `__glCheckColorTableArgs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c5f50
+  Its calls include `__glElementsPerGroup` with entry `a2` as `a0` and another with entry `a4` as `a0` (`jalr` at 0x32c609c, 0x32c60cc). The effects of these calls beyond this routine are Unknown.
+- `__glLoadColorTableParams` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c6aa0
+  It writes entry `a3`, `a2` and `a1` as words to entry `a0` +0x14, +0x10 and +0 respectively (`sw` at 0x32c6aa4, 0x32c6aac, 0x32c6ab4). The last store runs in the delay slot of `bnez` on both paths (`bnez` at 0x32c6ab0; `sw` at 0x32c6ab4). The fields’ purpose is Unknown.
+- `__glColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c6f40
+  Its calls include `__glElementsPerGroup` and `__glLoadColorTableParams` (`jalr` at 0x32c6fc8; `bgezall` at 0x32c6ff0). A later `__glInitMemUnpack` call receives entry `a0`, entry stack pointer minus 0x2e8, entry `a3` and 1 as its first four arguments (`jalr` at 0x32c70dc; `daddiu` at 0x32c70e0). The wider operation is Unknown.
+- `__glim_ColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c72d0
+  When the word at absolute 0x1030 is zero, `beqz` takes the path to `__glCheckColorTableArgs` (`lw` at 0x32c72e8; `beqz` at 0x32c730c; `bgezall` at 0x32c736c). Its second, third and fourth arguments are entry `a0`, `a1` and `a2` (`bgezall` at 0x32c736c). The routine’s wider role is Unknown.
