@@ -8126,3 +8126,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   `glTexCoordPointerEXT` is called with entry `a0` through `a3` (`jalr` at 0x33610ec). Its delay slot stores to absolute 0x16f8 the doubleword at +0x3ec0 relative to the doubleword at 0x1020 (`ld` at 0x33610d0, 0x33610e8; `jalr` at 0x33610ec; `sd` at 0x33610f0). The location’s meaning is Unknown.
 - `__glce_TexCoordPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3361950
   It calls `glTexCoordPointer` with the first four entry argument registers (`jalr` at 0x336197c). The call’s delay slot stores a doubleword from +0x3f68 of the doubleword read at 0x1020 to absolute 0x17a0 (`ld` at 0x3361960, 0x3361978; `jalr` at 0x336197c; `sd` at 0x3361980). The slot’s role is Unknown.
+
+## 64-bit IP30 library: texture state entry points
+
+- `glTexParameterf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The doubleword at absolute 0x11d0 supplies an indirect jump target, with entry arguments 0 through 3 unchanged (`ld` at 0x33685c0; `jr` at 0x33685c4). Its destination and role are Unknown.
+- `glTexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword at 0x11d8 and jumps through it, carrying the first four entry arguments (`ld` at 0x33685cc; `jr` at 0x33685d0). The target's hardware effect is Unknown.
+- `glTexParameteri` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Entry reads the doubleword at absolute 0x11e0 and transfers control through it with the original first four arguments (`ld` at 0x33685d8; `jr` at 0x33685dc). The destination is Unknown.
+- `glTexParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  An indirect jump uses the doubleword read from 0x11e8 and keeps arguments 0 through 3 at their entry values (`ld` at 0x33685e4; `jr` at 0x33685e8). Its target and broader role are Unknown.
+- `glTexEnvf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its entry arguments 0 through 3 pass through a jump whose target is the doubleword loaded at 0x1200 (`ld` at 0x3368608; `jr` at 0x336860c). The identity and effect of that target are Unknown.
+- `glTexGenf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads the doubleword at 0x1230 and transfers control through it with entry `a0` through `a3` (`ld` at 0x3368650; `jr` at 0x3368654). The target’s role is Unknown.
+- `glTexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at 0x1238 supplies an indirect jump target, carrying the first four arguments unchanged (`ld` at 0x336865c; `jr` at 0x3368660). The destination is Unknown.
+- `glTexGeni` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  An indirect tail jump uses the doubleword read from 0x1240 with entry `a0` through `a3` preserved (`ld` at 0x3368668; `jr` at 0x336866c). Its destination’s purpose is Unknown.
+- `glTexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine reads a doubleword at 0x1248 and jumps through it, retaining the first four entry arguments (`ld` at 0x3368674; `jr` at 0x3368678). The target and wider effect are Unknown.
+- `glGetTexEnvfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword loaded from absolute 0x14e0 is used as the target of an indirect jump with entry arguments `a0`–`a3` (`ld` at 0x3368a58; `jr` at 0x3368a5c). The effect of this indirect destination is Unknown.
+- `glTexEnvfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry jumps to the doubleword read from absolute 0x1208, with its first four argument registers unchanged (`ld` at 0x3368614; `jr` at 0x3368618). The target and its wider purpose are Unknown.
+- `glTexEnvi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword load from 0x1210 feeds an indirect jump; arguments 0 through 3 retain their entry values (`ld` at 0x3368620; `jr` at 0x3368624). The callee's identity is Unknown.
+- `glTexEnviv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It transfers control through the doubleword at absolute 0x1218, passing the first four entry arguments (`ld` at 0x336862c; `jr` at 0x3368630). The target and its hardware effect are Unknown.
+- `glTexGend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The jump target is loaded as a doubleword from 0x1220; the four entry argument registers are preserved (`ld` at 0x3368638; `jr` at 0x336863c). The destination's role is Unknown.
+- `glTexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  This entry reads a doubleword at absolute 0x1228 and jumps to it with the original first four arguments (`ld` at 0x3368644; `jr` at 0x3368648). The code leaves the target and hardware effect Unknown.
