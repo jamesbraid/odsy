@@ -8324,3 +8324,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Two calls to `glColorTableParameterivSGI` are present; the first passes entry arguments 0 through 3 (`jalr` at 0x33620c0, 0x33620e0). That call's delay slot stores the doubleword at +0x2260 of the value read from 0x1020 to 0x1810 (`ld` at 0x33620a0, 0x33620b8; `jalr` at 0x33620c0; `sd` at 0x33620c4). The slot's function is Unknown.
 - `__glce_CopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
   Both `glCopyColorTableSGI` calls receive the first four entry arguments (`jalr` at 0x3362158, 0x3362180). The first call's delay slot writes the doubleword at +0x2268 of the value loaded at 0x1020 to absolute 0x1818 (`ld` at 0x3362138, 0x3362150; `jalr` at 0x3362158; `sd` at 0x336215c). The role of this stored doubleword is Unknown.
+
+## 64-bit IP30 library: copy and color entry paths
+
+- `glCopyTexSubImage3D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  An indirect jump takes its target from the doubleword at 0x1758 and carries the first four entry arguments (`ld` at 0x3368e0c; `jr` at 0x3368e10). What the selected indirect target does is Unknown.
+- `glCopyTexSubImage3DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1758, then jumps through it with entry `a0` through `a3` unchanged (`ld` at 0x3368e0c; `jr` at 0x3368e10). The target is Unknown.
+- `glGetColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at 0x1820 supplies an indirect jump destination; the first four entry arguments are preserved (`ld` at 0x3368f38; `jr` at 0x3368f3c). The effect of the selected color-table target is Unknown.
+- `glGetColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It transfers control to the doubleword read at 0x1828 with `a0`–`a3` retaining their entry values (`ld` at 0x3368f44; `jr` at 0x3368f48). The destination’s identity is Unknown.
+- `glGetColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword loaded from absolute 0x1830 becomes the target of a tail jump carrying the first four entry arguments (`ld` at 0x3368f50; `jr` at 0x3368f54). The target’s role is Unknown.
+- `glGetTexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It jumps through the doubleword loaded from 0x1870, preserving entry `a0` through `a3` (`ld` at 0x3368fb0; `jr` at 0x3368fb4). The target and wider effect are Unknown.
+- `glTexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at 0x1878 is read as an indirect jump target; its first four argument registers retain their entry values (`ld` at 0x3368fbc; `jr` at 0x3368fc0). The target’s purpose is Unknown.
+- `glCopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Entry reads the doubleword at absolute 0x1940 and transfers to that address with the first four original arguments (`ld` at 0x33690e8; `jr` at 0x33690ec). The destination is Unknown.
+- `glGetColorTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword from 0x1a78 supplies an indirect tail jump, carrying entry arguments `a0` through `a3` (`ld` at 0x33692bc; `jr` at 0x33692c0). The target’s role is Unknown.
+- `glGetColorTableParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads an indirect jump destination from the doubleword at 0x1a80 and leaves the first four entry arguments unchanged (`ld` at 0x33692c8; `jr` at 0x33692cc). The purpose of that indirect destination is Unknown.
+- `CopyColorIndexCode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its calls include `memcpy` with entry `a0` and `a1` as its first two arguments; hostfacts cannot resolve the third (`jalr` at 0x31fa490). The final instruction sequence jumps through a register (`jr` at 0x31fa860). The purpose of these copy calls remains Unknown.
+- `__glCopyContext` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It copies a floating-point word from entry `a1` +0x99f0 to entry `a0` +0x99f0 (`lwc1` at 0x32bb5f8; `swc1` at 0x32bb604). When bit 0x200 of entry `a2` is clear, `beqz` is taken past another group of copies (`andi` at 0x32bb648; `beqz` at 0x32bb64c). The field's hardware role is Unknown.
+- `__gllc_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glDlistAllocOp2` with the doubleword at 0x1020 as `a0` and 0x18 as `a1` (`ld` at 0x3347adc; `addiu` at 0x3347b00; `jalr` at 0x3347b0c). When the result is nonzero, `bnez` takes the path storing halfword 0xfc at result +0x14 (`bnez` at 0x3347b14; `addiu` at 0x3347b30; `sh` at 0x3347b34). The field meaning is Unknown.
+- `__glle_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls through the doubleword read at absolute 0x1940 (`ld` at 0x334cf98; `jalr` at 0x334cfa4). The call receives words at entry `a0` offsets +0, +4, +8 and +0xc as its first four arguments (`lw` at 0x334cf7c, 0x334cfa8, 0x334cfa0, 0x334cf9c; `jalr` at 0x334cfa4). The integer return value is entry `a0` +0x18, and the target is Unknown (`daddiu` at 0x334cfb4; `jr` at 0x334cfbc).
+- `__glsplc_CopyColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The `__glSPDlalloc` call receives 0x18 and 0xfc as its first two arguments (`addiu` at 0x3355ce0, 0x3355cd8; `jalr` at 0x3355ce4). Its `beqz` falls through when the result is nonzero, and that path writes entry `a0` as a word at result +0 (`beqz` at 0x3355cec; `sw` at 0x3355d24). The record's wider role is Unknown.
