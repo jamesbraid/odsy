@@ -8390,3 +8390,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   If the word at entry `a0` +0x848 equals 0x1500, `beq` takes a path with floating-point word stores at entry `a3` +0xc, +8, +4 and +0; the values are unknown (`lw` at 0x32c1274; `addiu` at 0x32c1278; `beq` at 0x32c1288; `swc1` at 0x32c157c, 0x32c1580, 0x32c1584, 0x32c1590). The fields’ wider role is Unknown.
 - `__glDoBlendSourceZERO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1870
   The routine moves zero to a floating-point register (`mtc1` at 0x32c1870). It writes floating-point words of unknown value at entry `a3` +0xc, +8, +4 and +0 (`swc1` at 0x32c1874, 0x32c1878, 0x32c187c, 0x32c1884). The four destination words’ later use is Unknown.
+
+## 64-bit IP30 library: blend factor paths
+
+- `__glDoBlendDestMSA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1c90
+  It reads floating-point words at entry `a1` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c1c94, 0x32c1c9c). It calls an unknown target loaded from entry `a0` +0x4d28 (`ld` at 0x32c1cec; `jalr` at 0x32c1cf4). The fields’ roles are Unknown.
+- `__glDoBlendSourceDA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1d10
+  Floating-point words are read at entry `a2` +0xc and entry `a0` +0x9a2c (`lwc1` at 0x32c1d14, 0x32c1d1c). Its stores include words of unknown value at entry `a3` +0xc and +8 (`swc1` at 0x32c1d3c, 0x32c1d44). The data’s purpose is Unknown.
+- `__glDoBlendDestDA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1d60
+  Entry `a2` offsets +0 and +0xc supply floating-point words (`lwc1` at 0x32c1d70, 0x32c1d64). An indirect call uses the doubleword read at entry `a0` +0x4d28 as an unknown target (`ld` at 0x32c1db8; `jalr` at 0x32c1dc0). The effect of the indirect call is Unknown.
+- `__glDoBlendSourceMDA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1de0
+  The accesses include floating-point reads at entry `a0` +0x9a2c and +0xf2c (`lwc1` at 0x32c1dec, 0x32c1df0). It stores words of unknown value at entry `a3` +0xc and +8 (`swc1` at 0x32c1e10, 0x32c1e18). How these stored words are used is Unknown.
+- `__glDoBlendDestMDA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1e30
+  It reads floating-point words at entry `a0` +0xf2c and entry `a2` +0xc (`lwc1` at 0x32c1e40, 0x32c1e34). A doubleword at entry `a0` +0x4d28 supplies an indirect call target (`ld` at 0x32c1e8c; `jalr` at 0x32c1e94). The destination and broader effect are Unknown.
+- `__glDoBlendDestZERO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It writes floating-point words of Unknown value at entry stack pointer -0x20, -0x1c, -0x18 and -0x14 (`swc1` at 0x32c18b0, 0x32c18a8, 0x32c18a0, 0x32c189c). An indirect call through the doubleword at entry `a0` +0x4d28 receives entry stack pointer -0x20 in `a2` (`ld` at 0x32c18b8; `jalr` at 0x32c18c0; `daddiu` at 0x32c18c4). The target and hardware role are Unknown.
+- `__glDoBlendSourceONE` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It copies floating-point words from entry `a1` +0, +4, +8 and +0xc to the same offsets at entry `a3` (`lwc1` at 0x32c18e0, 0x32c18ec, 0x32c18e4, 0x32c18e8; `swc1` at 0x32c1900, 0x32c18f8, 0x32c18f4, 0x32c18f0). The fields' meanings are Unknown.
+- `__glDoBlendDestONE` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword loaded at entry `a0` +0x4d28 supplies an indirect call target (`ld` at 0x32c1924; `jalr` at 0x32c192c). The first four arguments retain their entry values at that call, whose target and hardware effect are Unknown (`jalr` at 0x32c192c).
+- `__glDoBlendDestSC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads floating-point words from entry `a2` +0, entry `a1` +0 and entry `a0` +0x9a20 (`lwc1` at 0x32c1950, 0x32c1954, 0x32c1960). The routine calls through a doubleword at entry `a0` +0x4d28 with entry stack pointer -0x20 in `a2` (`ld` at 0x32c19cc; `jalr` at 0x32c19d4; `daddiu` at 0x32c19d8). The callee's role is Unknown.
+- `__glDoBlendDestMSC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its reads include floating-point words at entry `a0` +0x9a20 and +0xf2c (`lwc1` at 0x32c19fc, 0x32c1a00). It calls through a doubleword at entry `a0` +0x4d28, passing entry stack pointer -0x20 as `a2` (`ld` at 0x32c1a70; `jalr` at 0x32c1a78; `daddiu` at 0x32c1a7c). The target and broader hardware effect are Unknown.
+- `__glDoBlendSourceSAT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1eb0
+  It reads floating-point words at entry `a0` +0x9a2c, entry `a1` +0xc and entry `a2` +0xc (`lwc1` at 0x32c1ebc, 0x32c1ec8, 0x32c1eb4). When `bc1f` falls through because `f8` is less than `f9`, it copies the word at entry `a1` +0xc to entry `a3` +0xc (`lwc1` at 0x32c1ec8; `c.lt.s` at 0x32c1ed0; `bc1f` at 0x32c1edc; `swc1` at 0x32c1ee4). The purpose of the copied word is Unknown.
+- `__glDoBlendSourceCC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1f30
+  Doublewords are loaded at entry `a0` +0x838 and +0x840 (`ld` at 0x32c1f40, 0x32c1f48). Its stores include floating-point words of unknown value at entry `a3` +8 and +0xc (`swc1` at 0x32c1f74, 0x32c1f6c). The data’s purpose is Unknown.
+- `__glDoBlendDestCC` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c1f90
+  The routine reads doublewords at entry `a0` +0x838 and +0x840, plus a floating-point word at entry `a2` +0 (`ld` at 0x32c1f94, 0x32c1f9c; `lwc1` at 0x32c1f90). It makes an indirect call through the doubleword at entry `a0` +0x4d28 (`ld` at 0x32c1ff4; `jalr` at 0x32c1ffc). The target and field meanings are Unknown.
+- `__glDoBlendSourceCA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2020
+  It loads floating-point words from entry `a0` +0x844 and entry `a1` +0xc (`lwc1` at 0x32c2020, 0x32c2024). Its writes include floating-point words of unknown value at entry `a3` +0xc and +8 (`swc1` at 0x32c203c, 0x32c2044). Their wider role is Unknown.
+- `__glDoBlendDestCA` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c2060
+  Entry `a0` +0x844 and entry `a2` +0 supply floating-point words (`lwc1` at 0x32c2060, 0x32c2064). An indirect call uses a doubleword loaded from entry `a0` +0x4d28 as its unknown target (`ld` at 0x32c20a8; `jalr` at 0x32c20b0). The fields’ purposes are Unknown.
