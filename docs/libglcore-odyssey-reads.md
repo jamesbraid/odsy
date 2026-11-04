@@ -8192,3 +8192,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Its calls include `__glElementsPerGroup` and `__glLoadColorTableParams` (`jalr` at 0x32c6fc8; `bgezall` at 0x32c6ff0). A later `__glInitMemUnpack` call receives entry `a0`, entry stack pointer minus 0x2e8, entry `a3` and 1 as its first four arguments (`jalr` at 0x32c70dc; `daddiu` at 0x32c70e0). The wider operation is Unknown.
 - `__glim_ColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c72d0
   When the word at absolute 0x1030 is zero, `beqz` takes the path to `__glCheckColorTableArgs` (`lw` at 0x32c72e8; `beqz` at 0x32c730c; `bgezall` at 0x32c736c). Its second, third and fourth arguments are entry `a0`, `a1` and `a2` (`bgezall` at 0x32c736c). The routine’s wider role is Unknown.
+
+## 64-bit IP30 library: color table and convolution lists
+
+- `__glFreeColorTables` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c8800
+  Its four indirect calls have unknown targets and pass entry `a0` as their first argument (`jalr` at 0x32c8828, 0x32c8838, 0x32c8848, 0x32c8858). Their second arguments are doublewords read at entry `a0` +0x17d8, +0x1888, +0x1938 and +0x19e8, respectively (`ld` at 0x32c8818, 0x32c883c, 0x32c884c, 0x32c885c). The calls’ wider purpose is Unknown.
+- `__glColorTableParameterfvSGI_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3304080
+  The first `beq` is taken if entry `a0` equals 0x80d6; on fall-through, a second `beq` is taken if it equals 0x80d7 (`dli` at 0x3304080, 0x3304088; `beq` at 0x3304084, 0x330408c). Either taken path returns 4 (`jr` at 0x330409c; `addiu` at 0x33040a0). The result’s broader meaning is Unknown.
+- `__glColorTableParameterivSGI_size` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33040b0
+  It calls `__glColorTableParameterfvSGI_size` with the first four entry arguments (`bgezall` at 0x33040cc). The callee’s result reaches the return (`jr` at 0x33040dc). The forwarded result’s interpretation is Unknown.
+- `__gllc_CopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3346100
+  It calls `__glDlistAllocOp2` with the doubleword at 0x1020 as `a0` and 0x18 as `a1` (`ld` at 0x334610c; `addiu` at 0x3346130; `jalr` at 0x334613c). `bnez` takes the branch when the result is nonzero and falls through if zero (`bnez` at 0x3346144). The taken path calls `__glDlistAppendOp` (`jalr` at 0x3346194). The allocation’s role is Unknown.
+- `__gllc_CopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33461b0
+  A call to `__glDlistAllocOp2` receives the doubleword read at 0x1020 and 0x18 as its first two arguments (`ld` at 0x33461c0; `addiu` at 0x33461e4; `jalr` at 0x33461f0). Its nonzero return takes `bnez` to a path calling `__glDlistAppendOp`; a zero return falls through (`bnez` at 0x33461f8; `jalr` at 0x3346250). The broader purpose is Unknown.
+- `__gllc_CopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3347070
+  It calls `__glDlistAllocOp2` with the doubleword at absolute 0x1020 and 0x18 as the first two arguments (`ld` at 0x334707c; `addiu` at 0x33470a0; `jalr` at 0x33470ac). A nonzero result takes `bnez` to a halfword store of 0xe6 at result +0x14 (`bnez` at 0x33470b4; `addiu` at 0x33470d0; `sh` at 0x33470d4). What later consumes the stored halfword is Unknown.
+- `__gllc_TexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3347440
+  If `__glDlistAllocOp2` returns nonzero, `bnez` takes a path writing halfword 0xee at result +0x14 (`jalr` at 0x3347490; `bnez` at 0x3347498; `addiu` at 0x33474b8; `sh` at 0x33474bc). On that path `memcpy` receives result +0x28 and entry `a3` as its first two arguments (`jalr` at 0x33474e4). The use of the copied filter data is Unknown.
+- `__glle_CopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334c150
+  It calls an unknown target with the words at entry `a0` +0, +4, +8, +0xc and +0x10 as `a0` through `a4` (`lw` at 0x334c15c, 0x334c188, 0x334c180, 0x334c17c, 0x334c164; `jalr` at 0x334c184). The target and broader role are Unknown.
+- `__glle_CopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334c1b0
+  The indirect call receives words from entry `a0` offsets +0, +4, +8, +0xc, +0x10 and +0x14 as arguments 0 through 5 (`lw` at 0x334c1bc, 0x334c1ec, 0x334c1e4, 0x334c1e0, 0x334c1c8, 0x334c1c4; `jalr` at 0x334c1e8). The destination and role are Unknown.
+- `__glle_ColorTableParameterfvSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334c880
+  An indirect call receives words at entry `a0` +0 and +4 as its first two arguments and entry `a0` +8 as the third (`lw` at 0x334c8a0, 0x334c8b0; `daddiu` at 0x334c8a8; `jalr` at 0x334c8ac). It then calls `__glColorTableParameterfvSGI_size` with the word at entry `a0` +4 as `a0` (`jalr` at 0x334c8b8; `lw` at 0x334c8bc). The initial target and routine role are Unknown.
+- `__glle_ColorTableParameterivSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334c900
+  The first indirect call takes the words at entry `a0` +0 and +4, followed by entry `a0` +8 (`lw` at 0x334c920, 0x334c930; `daddiu` at 0x334c928; `jalr` at 0x334c92c). A subsequent call to `__glColorTableParameterivSGI_size` receives the word at entry `a0` +4 as its first argument (`jalr` at 0x334c938; `lw` at 0x334c93c). The first target and wider role are Unknown.
+- `__glle_CopyColorTableSGI` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334c980
+  It passes the words at entry `a0` offsets +0, +4, +8, +0xc and +0x10 as the first five arguments to an indirect target (`lw` at 0x334c98c, 0x334c9b8, 0x334c9b0, 0x334c9ac, 0x334c994; `jalr` at 0x334c9b4). The callee and routine’s role are Unknown.
+- `__glle_TexFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334cbb0
+  An indirect call receives words from entry `a0` +0, +4 and +8 as its first three arguments, and entry `a0` +0x10 as its fourth (`lw` at 0x334cbbc, 0x334cbe4, 0x334cbd8; `daddiu` at 0x334cbdc; `jalr` at 0x334cbe0). The target and wider purpose are Unknown.
+- `__glsplc_CopyConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33548c0
+  `__glSPDlalloc` receives 0x18 and 0xc9 as its first two arguments (`addiu` at 0x33548e8, 0x33548f0; `jalr` at 0x33548f4). If the result is nonzero, `beqz` falls through to word stores of entry `a1` and `a0` at result +4 and +0 (`beqz` at 0x33548fc; `sw` at 0x3354928, 0x3354934). The record’s role is Unknown.
+- `__glsplc_CopyConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3354950
+  The routine calls `__glSPDlalloc` with 0x18 and 0xca (`addiu` at 0x335497c, 0x3354984; `jalr` at 0x3354988). A nonzero result makes `beqz` fall through to stores of entry `a1` and `a0` as words at result +4 and +0 (`beqz` at 0x3354990; `sw` at 0x33549c4, 0x33549d0). The use of the stored arguments remains Unknown.
