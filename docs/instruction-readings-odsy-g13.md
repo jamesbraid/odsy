@@ -3449,52 +3449,14 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `bgez` at 0xd82814c is taken when a2 >= 0 (signed) and falls through when a2 < 0 (signed).
   The `bgez` at 0xd82815c is taken when a3 >= 0 (signed) and falls through when a3 < 0 (signed).
   The `beq` at 0xd828170 is taken when t6(=a0-6400) >= 0xb (unsigned) and falls through when t6(=a0-6400) < 0xb (unsigned).
-  The `bne` at 0xd82819c is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bne` at 0xd8281a8 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8281bc is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8281e0 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8281e8 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8281f0 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8281f8 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd828218 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bne` at 0xd828240 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beql` at 0xd828248 is taken when condition not analyzed and falls through when condition not analyzed.
-  Its delay slot runs only when the branch at 0xd828248 is taken and is annulled on fall-through.
-  The `beq` at 0xd828260 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bne` at 0xd828288 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bgez` at 0xd828290 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8282b8 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8282c4 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8282cc is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8282d8 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8282e0 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8282ec is taken when condition not analyzed and falls through when condition not analyzed.
+  The 19 conditional branches in the range 0xd828194-0xd828330 are not reached from the entry per hostfacts and are not listed.
   Returns with v0 = 0x0 at `jr` at 0xd828154, `jr` at 0xd828164, `jr` at 0xd828200.
 
 - `__glXTexImage1D_size` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`, 0xd828334, 460 bytes) Inferred.
   Calls `(unknown callee)` via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xd828370).
   The `bgez` at 0xd828340 is taken when a2 >= 0 (signed) and falls through when a2 < 0 (signed).
   The `beq` at 0xd828354 is taken when t6(=a0-6400) >= 0xb (unsigned) and falls through when t6(=a0-6400) < 0xb (unsigned).
-  The `bne` at 0xd828380 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bne` at 0xd82838c is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8283a0 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8283c4 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8283cc is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8283d4 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8283dc is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8283fc is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bne` at 0xd828424 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beql` at 0xd82842c is taken when condition not analyzed and falls through when condition not analyzed.
-  Its delay slot runs only when the branch at 0xd82842c is taken and is annulled on fall-through.
-  The `beq` at 0xd828444 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bne` at 0xd82846c is taken when condition not analyzed and falls through when condition not analyzed.
-  The `bgez` at 0xd828474 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd828494 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8284a0 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8284a8 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8284b4 is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8284bc is taken when condition not analyzed and falls through when condition not analyzed.
-  The `beq` at 0xd8284c8 is taken when condition not analyzed and falls through when condition not analyzed.
+  The 19 conditional branches in the range 0xd828378-0xd8284fc are not reached from the entry per hostfacts and are not listed.
   Returns with v0 = 0x0 at `jr` at 0xd828348, `jr` at 0xd8283e4.
 
 - `__glXTexEnviv_size` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`, 0xd828500, 52 bytes) Inferred.
