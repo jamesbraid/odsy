@@ -502,7 +502,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
 - `brick_register` (`usr/cpu/sysgen/IP35boot/kernel.o`, 0x2f440, 240 bytes) Inferred.
   Loads 4 bytes from a2 (arg2 at entry) +0x0 into `at` (`lw` at 0x2f448).
   Stores 2 bytes from `s1` to ? (base unknown) (`sh` at 0x2f49c).
-  Performs 3 4-byte loads from a2 (arg2 at entry) +0x0, including `lw` at 0x2f4b8, `lw` at 0x2f4f0, `lw` at 0x2f500.
+  Performs 4 4-byte loads from a2 (arg2 at entry) +0x0, including `lw` at 0x2f4b8, `lw` at 0x2f4f0, `lw` at 0x2f500.
   Performs 2 8-byte loads from sym(.srdata) +0x600, including `ld` at 0x2f4c0, `ld` at 0x2f514.
   Stores 2 bytes from `s2` to (a1 + ([a2] + [a2])) +0x0 (`sh` at 0x2f4fc).
   Stores 4 bytes from `a1` to a2 (arg2 at entry) +0x0 (`sw` at 0x2f510).
@@ -853,7 +853,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Performs 3 8-byte loads from entry(sym(GfxDev)) +0x8, including `ld` at 0x2c98, `ld` at 0x32ec, `ld` at 0x3304.
   Performs 3 8-byte loads from [entry(sym(GfxDev))+8]:8 +0x10, including `ld` at 0x2c9c, `ld` at 0x32f0, `ld` at 0x3308.
   Performs 2 4-byte stores to a5 (arg5 at entry) +0x0, including `sw` at 0x2cbc, `sw` at 0x312c.
-  Performs 4 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2cc0, `ld` at 0x2da4, `ld` at 0x2e50.
+  Performs 5 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2cc0, `ld` at 0x2da4, `ld` at 0x2e50.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc8 into `t9` (`ld` at 0x2d0c).
   Loads 8 bytes from entry(sym(GfxDev)) +0x48 into `a1` (`ld` at 0x2d24).
   Performs 17 8-byte loads from entry(sym(GfxDev)) +0x28, including `ld` at 0x2d3c, `ld` at 0x2d48, `ld` at 0x2d60.
@@ -863,13 +863,13 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x60 into `v0` (`ld` at 0x2d74).
   Performs 2 4-byte stores to entry(sym(GfxDev)) +0x4, including `sw` at 0x2d9c, `sw` at 0x2f7c.
   Loads 8 bytes from sym(.srdata) +0x0 into `a2` (`ld` at 0x2de4).
-  Performs 2 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e0c, `sd` at 0x3188.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e14, `lw` at 0x3190.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e2c, `lw` at 0x31a8.
+  Performs 4 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e0c, `sd` at 0x3188.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e14, `lw` at 0x3190.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e2c, `lw` at 0x31a8.
   Loads 8 bytes from sym(.srdata) +0x58 into `a3` (`ld` at 0x2e94).
   Performs 2 8-byte loads from sym(.srdata) +0x50, including `ld` at 0x2f0c, `ld` at 0x2f44.
   Loads 8 bytes from sym(.srdata) +0x48 into `a3` (`ld` at 0x2f9c).
-  Performs 2 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x2fbc, `ld` at 0x303c.
+  Performs 4 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x2fbc, `ld` at 0x303c.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x18 into `t3` (`ld` at 0x2fc8).
   Stores 4 bytes from `zero` to [entry(sym(GfxDev))+40]:8 +0x80 (`sw` at 0x2fe0).
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc0 into `a1` (`ld` at 0x2fe8).
@@ -880,7 +880,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `a4` (`ld` at 0x30f0).
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `v0` (`ld` at 0x3110).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x8 into `a0` (`ld` at 0x311c).
-  Performs 2 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x313c, `ld` at 0x3168.
+  Performs 6 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x313c, `ld` at 0x3168.
   Stores 8 bytes from `s0` to [entry(sym(GfxDev))+40]:8 +0x48 (`sd` at 0x31c8).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `a6` (`lw` at 0x31d0).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `t0` (`lw` at 0x31e8).
@@ -888,9 +888,9 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxBoards))+56]:8 +0x0 into `t1` (`ld` at 0x3200).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x40 into `a0` (`ld` at 0x3214).
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x8, including `sd` at 0x3220, `sd` at 0x326c, `sd` at 0x329c.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3224, `ld` at 0x32a8.
+  Performs 3 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3224, `ld` at 0x32a8.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x28, including `sd` at 0x3228, `sd` at 0x3264, `sd` at 0x32ac.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x322c, `ld` at 0x32a0.
+  Performs 5 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x322c, `ld` at 0x32a0.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x20, including `sd` at 0x3230, `sd` at 0x3260, `sd` at 0x32a4.
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `t2` (`ld` at 0x3240).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x38 into `t2` (`ld` at 0x3244).
@@ -1020,7 +1020,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Performs 3 8-byte loads from entry(sym(GfxDev)) +0x8, including `ld` at 0x2c98, `ld` at 0x32ec, `ld` at 0x3304.
   Performs 3 8-byte loads from [entry(sym(GfxDev))+8]:8 +0x10, including `ld` at 0x2c9c, `ld` at 0x32f0, `ld` at 0x3308.
   Performs 2 4-byte stores to a5 (arg5 at entry) +0x0, including `sw` at 0x2cbc, `sw` at 0x312c.
-  Performs 4 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2cc0, `ld` at 0x2da4, `ld` at 0x2e50.
+  Performs 5 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2cc0, `ld` at 0x2da4, `ld` at 0x2e50.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc8 into `t9` (`ld` at 0x2d0c).
   Loads 8 bytes from entry(sym(GfxDev)) +0x48 into `a1` (`ld` at 0x2d24).
   Performs 17 8-byte loads from entry(sym(GfxDev)) +0x28, including `ld` at 0x2d3c, `ld` at 0x2d48, `ld` at 0x2d60.
@@ -1030,13 +1030,13 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x60 into `v0` (`ld` at 0x2d74).
   Performs 2 4-byte stores to entry(sym(GfxDev)) +0x4, including `sw` at 0x2d9c, `sw` at 0x2f7c.
   Loads 8 bytes from sym(.srdata) +0x0 into `a2` (`ld` at 0x2de4).
-  Performs 2 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e0c, `sd` at 0x3188.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e14, `lw` at 0x3190.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e2c, `lw` at 0x31a8.
+  Performs 4 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e0c, `sd` at 0x3188.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e14, `lw` at 0x3190.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e2c, `lw` at 0x31a8.
   Loads 8 bytes from sym(.srdata) +0x58 into `a3` (`ld` at 0x2e94).
   Performs 2 8-byte loads from sym(.srdata) +0x50, including `ld` at 0x2f0c, `ld` at 0x2f44.
   Loads 8 bytes from sym(.srdata) +0x48 into `a3` (`ld` at 0x2f9c).
-  Performs 2 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x2fbc, `ld` at 0x303c.
+  Performs 4 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x2fbc, `ld` at 0x303c.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x18 into `t3` (`ld` at 0x2fc8).
   Stores 4 bytes from `zero` to [entry(sym(GfxDev))+40]:8 +0x80 (`sw` at 0x2fe0).
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc0 into `a1` (`ld` at 0x2fe8).
@@ -1047,7 +1047,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `a4` (`ld` at 0x30f0).
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `v0` (`ld` at 0x3110).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x8 into `a0` (`ld` at 0x311c).
-  Performs 2 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x313c, `ld` at 0x3168.
+  Performs 6 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x313c, `ld` at 0x3168.
   Stores 8 bytes from `s0` to [entry(sym(GfxDev))+40]:8 +0x48 (`sd` at 0x31c8).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `a6` (`lw` at 0x31d0).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `t0` (`lw` at 0x31e8).
@@ -1055,9 +1055,9 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxBoards))+56]:8 +0x0 into `t1` (`ld` at 0x3200).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x40 into `a0` (`ld` at 0x3214).
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x8, including `sd` at 0x3220, `sd` at 0x326c, `sd` at 0x329c.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3224, `ld` at 0x32a8.
+  Performs 3 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3224, `ld` at 0x32a8.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x28, including `sd` at 0x3228, `sd` at 0x3264, `sd` at 0x32ac.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x322c, `ld` at 0x32a0.
+  Performs 5 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x322c, `ld` at 0x32a0.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x20, including `sd` at 0x3230, `sd` at 0x3260, `sd` at 0x32a4.
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `t2` (`ld` at 0x3240).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x38 into `t2` (`ld` at 0x3244).
@@ -1187,7 +1187,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Performs 3 8-byte loads from entry(sym(GfxDev)) +0x8, including `ld` at 0x2ce8, `ld` at 0x3338, `ld` at 0x3350.
   Performs 3 8-byte loads from [entry(sym(GfxDev))+8]:8 +0x10, including `ld` at 0x2cec, `ld` at 0x333c, `ld` at 0x3354.
   Performs 2 4-byte stores to a5 (arg5 at entry) +0x0, including `sw` at 0x2d0c, `sw` at 0x3178.
-  Performs 4 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2d10, `ld` at 0x2df4, `ld` at 0x2e9c.
+  Performs 5 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2d10, `ld` at 0x2df4, `ld` at 0x2e9c.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc8 into `t9` (`ld` at 0x2d5c).
   Loads 8 bytes from entry(sym(GfxDev)) +0x48 into `a1` (`ld` at 0x2d74).
   Performs 17 8-byte loads from entry(sym(GfxDev)) +0x28, including `ld` at 0x2d8c, `ld` at 0x2d98, `ld` at 0x2db0.
@@ -1197,13 +1197,13 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x60 into `v0` (`ld` at 0x2dc4).
   Performs 2 4-byte stores to entry(sym(GfxDev)) +0x4, including `sw` at 0x2dec, `sw` at 0x2fc8.
   Loads 8 bytes from sym(.srdata) +0x0 into `a2` (`ld` at 0x2e30).
-  Performs 2 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e58, `sd` at 0x31d4.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e60, `lw` at 0x31dc.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e78, `lw` at 0x31f4.
+  Performs 4 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e58, `sd` at 0x31d4.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e60, `lw` at 0x31dc.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e78, `lw` at 0x31f4.
   Loads 8 bytes from sym(.srdata) +0x58 into `a3` (`ld` at 0x2ee0).
   Performs 2 8-byte loads from sym(.srdata) +0x50, including `ld` at 0x2f58, `ld` at 0x2f90.
   Loads 8 bytes from sym(.srdata) +0x48 into `a3` (`ld` at 0x2fe8).
-  Performs 2 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x3008, `ld` at 0x3088.
+  Performs 4 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x3008, `ld` at 0x3088.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x18 into `t3` (`ld` at 0x3014).
   Stores 4 bytes from `zero` to [entry(sym(GfxDev))+40]:8 +0x80 (`sw` at 0x302c).
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc0 into `a1` (`ld` at 0x3034).
@@ -1214,7 +1214,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `a4` (`ld` at 0x313c).
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `v0` (`ld` at 0x315c).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x8 into `a0` (`ld` at 0x3168).
-  Performs 2 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x3188, `ld` at 0x31b4.
+  Performs 6 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x3188, `ld` at 0x31b4.
   Stores 8 bytes from `s0` to [entry(sym(GfxDev))+40]:8 +0x48 (`sd` at 0x3214).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `a6` (`lw` at 0x321c).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `t0` (`lw` at 0x3234).
@@ -1222,9 +1222,9 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxBoards))+56]:8 +0x0 into `t1` (`ld` at 0x324c).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x40 into `a0` (`ld` at 0x3260).
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x8, including `sd` at 0x326c, `sd` at 0x32b8, `sd` at 0x32e8.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3270, `ld` at 0x32f4.
+  Performs 3 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3270, `ld` at 0x32f4.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x28, including `sd` at 0x3274, `sd` at 0x32b0, `sd` at 0x32f8.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x3278, `ld` at 0x32ec.
+  Performs 5 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x3278, `ld` at 0x32ec.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x20, including `sd` at 0x327c, `sd` at 0x32ac, `sd` at 0x32f0.
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `t2` (`ld` at 0x328c).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x38 into `t2` (`ld` at 0x3290).
@@ -1354,7 +1354,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Performs 3 8-byte loads from entry(sym(GfxDev)) +0x8, including `ld` at 0x2ce8, `ld` at 0x3338, `ld` at 0x3350.
   Performs 3 8-byte loads from [entry(sym(GfxDev))+8]:8 +0x10, including `ld` at 0x2cec, `ld` at 0x333c, `ld` at 0x3354.
   Performs 2 4-byte stores to a5 (arg5 at entry) +0x0, including `sw` at 0x2d0c, `sw` at 0x3178.
-  Performs 4 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2d10, `ld` at 0x2df4, `ld` at 0x2e9c.
+  Performs 5 8-byte loads from ret(gthread_find) +0x18, including `ld` at 0x2d10, `ld` at 0x2df4, `ld` at 0x2e9c.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc8 into `t9` (`ld` at 0x2d5c).
   Loads 8 bytes from entry(sym(GfxDev)) +0x48 into `a1` (`ld` at 0x2d74).
   Performs 17 8-byte loads from entry(sym(GfxDev)) +0x28, including `ld` at 0x2d8c, `ld` at 0x2d98, `ld` at 0x2db0.
@@ -1364,13 +1364,13 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x60 into `v0` (`ld` at 0x2dc4).
   Performs 2 4-byte stores to entry(sym(GfxDev)) +0x4, including `sw` at 0x2dec, `sw` at 0x2fc8.
   Loads 8 bytes from sym(.srdata) +0x0 into `a2` (`ld` at 0x2e30).
-  Performs 2 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e58, `sd` at 0x31d4.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e60, `lw` at 0x31dc.
-  Performs 2 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e78, `lw` at 0x31f4.
+  Performs 4 8-byte stores to [entry(sym(GfxDev))+40]:8 +0x48, including `sd` at 0x2e58, `sd` at 0x31d4.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e60, `lw` at 0x31dc.
+  Performs 6 4-byte loads from [entry(sym(GfxDev))+40]:8 +0x68, including `lw` at 0x2e78, `lw` at 0x31f4.
   Loads 8 bytes from sym(.srdata) +0x58 into `a3` (`ld` at 0x2ee0).
   Performs 2 8-byte loads from sym(.srdata) +0x50, including `ld` at 0x2f58, `ld` at 0x2f90.
   Loads 8 bytes from sym(.srdata) +0x48 into `a3` (`ld` at 0x2fe8).
-  Performs 2 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x3008, `ld` at 0x3088.
+  Performs 4 8-byte loads from [entry(sym(GfxDev))+40]:8 +0x48, including `ld` at 0x3008, `ld` at 0x3088.
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0x18 into `t3` (`ld` at 0x3014).
   Stores 4 bytes from `zero` to [entry(sym(GfxDev))+40]:8 +0x80 (`sw` at 0x302c).
   Loads 8 bytes from [entry(sym(GfxDev))+32]:8 +0xc0 into `a1` (`ld` at 0x3034).
@@ -1381,7 +1381,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `a4` (`ld` at 0x313c).
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `v0` (`ld` at 0x315c).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x8 into `a0` (`ld` at 0x3168).
-  Performs 2 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x3188, `ld` at 0x31b4.
+  Performs 6 8-byte loads from table(sym(GfxBoards)) +0x0, including `ld` at 0x3188, `ld` at 0x31b4.
   Stores 8 bytes from `s0` to [entry(sym(GfxDev))+40]:8 +0x48 (`sd` at 0x3214).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `a6` (`lw` at 0x321c).
   Loads 4 bytes from [entry(sym(GfxDev))+40]:8 +0x68 into `t0` (`lw` at 0x3234).
@@ -1389,9 +1389,9 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 8 bytes from [entry(sym(GfxBoards))+56]:8 +0x0 into `t1` (`ld` at 0x324c).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x40 into `a0` (`ld` at 0x3260).
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x8, including `sd` at 0x326c, `sd` at 0x32b8, `sd` at 0x32e8.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3270, `ld` at 0x32f4.
+  Performs 3 8-byte loads from entry(sym(GfxBoards)) +0x40, including `ld` at 0x3270, `ld` at 0x32f4.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x28, including `sd` at 0x3274, `sd` at 0x32b0, `sd` at 0x32f8.
-  Performs 2 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x3278, `ld` at 0x32ec.
+  Performs 5 8-byte loads from entry(sym(GfxBoards)) +0x38, including `ld` at 0x3278, `ld` at 0x32ec.
   Performs 4 8-byte stores to entry(sym(GfxDev)) +0x20, including `sd` at 0x327c, `sd` at 0x32ac, `sd` at 0x32f0.
   Loads 8 bytes from table(sym(GfxBoards)) +0x0 into `t2` (`ld` at 0x328c).
   Loads 8 bytes from entry(sym(GfxBoards)) +0x38 into `t2` (`ld` at 0x3290).
@@ -1555,7 +1555,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
 
 - `glXChooseVisual` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`, 0xd80e650, 2716 bytes) Inferred.
   Loads 4 bytes from a2 (arg2 at entry) +0x0 into `v1` (`lw` at 0xd80e730).
-  Performs 23 4-byte loads from ? (base unknown), including `lw` at 0xd80e75c, `lw` at 0xd80e778, `lw` at 0xd80e7b0.
+  Performs 54 4-byte loads from ? (base unknown), including `lw` at 0xd80e75c, `lw` at 0xd80e778, `lw` at 0xd80e7b0.
   Performs 2 4-byte loads from abs 0xd8458f4, including `lw` at 0xd80e794, `lw` at 0xd80ec70.
   Loads 4 bytes from table(0xd840e84) +0x0 into `t9` (`lw` at 0xd80e7a0).
   Loads 4 bytes from abs 0xd845d00 into `t9` (`lw` at 0xd80e954).
@@ -1563,7 +1563,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 4 bytes from ret(__glXInitialize) +0x20 into `t9` (`lw` at 0xd80e9cc).
   Performs 4 4-byte loads from ([ret(__glXInitialize)+32] + (a1 << 0x5)) +0x4, including `lw` at 0xd80e9e4, `lw` at 0xd80ea48, `lw` at 0xd80f058.
   Performs 27 4-byte loads from ([ret(__glXInitialize)+32] + (a1 << 0x5)) +0x8, including `lw` at 0xd80e9ec, `lw` at 0xd80eb2c, `lw` at 0xd80eb68.
-  Performs 30 4-byte loads from ? (base unknown), including `lw` at 0xd80ea08, `lw` at 0xd80ea60, `lw` at 0xd80ea70.
+  Performs 54 4-byte loads from ? (base unknown), including `lw` at 0xd80ea08, `lw` at 0xd80ea60, `lw` at 0xd80ea70.
   Performs 3 1-byte loads from ? (base unknown), including `lbu` at 0xd80ea9c, `lbu` at 0xd80eab4, `lbu` at 0xd80eac8.
   Performs 13 4-byte loads from abs 0xd8458e8, including `lw` at 0xd80eaf0, `lw` at 0xd80eb30, `lw` at 0xd80eb6c.
   Loads 4 bytes from table(0xd840f24) +0x0 into `t9` (`lw` at 0xd80ec7c).
@@ -1756,28 +1756,28 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 4 bytes from abs 0xd845bb4 into `t9` (`lw` at 0xd811cf0).
   Loads 4 bytes from a0 (arg0 at entry) +0x20 into `t0` (`lw` at 0xd811cf4).
   Loads 4 bytes from a0 (arg0 at entry) +0x0 into `a0` (`lw` at 0xd811cf8).
-  Performs 5 4-byte stores to ? (base unknown), including `sw` at 0xd811d14, `sw` at 0xd811e74, `sw` at 0xd811ea0.
+  Performs 61 4-byte stores to ? (base unknown), including `sw` at 0xd811d14, `sw` at 0xd811e74, `sw` at 0xd811ea0.
   Performs 2 4-byte loads from abs 0xd845b88, including `lw` at 0xd811d18, `lw` at 0xd812010.
   Performs 2 4-byte loads from abs 0xd845b8c, including `lw` at 0xd811d38, `lw` at 0xd812068.
   Performs 3 4-byte loads from abs 0xd845a4c, including `lw` at 0xd811d5c, `lw` at 0xd812160, `lw` at 0xd812560.
   Performs 3 4-byte loads from abs 0xd8459b4, including `lw` at 0xd811d60, `lw` at 0xd812164, `lw` at 0xd812564.
-  Performs 12 4-byte loads from ? (base unknown), including `lw` at 0xd811d94, `lw` at 0xd811d98, `lw` at 0xd811df8.
-  Performs 8 4-byte loads from ? (base unknown), including `lw` at 0xd811dbc, `lw` at 0xd811dcc, `lw` at 0xd811de4.
-  Performs 5 4-byte stores to ? (base unknown), including `sw` at 0xd811df0, `sw` at 0xd812444, `sw` at 0xd81244c.
+  Performs 34 4-byte loads from ? (base unknown), including `lw` at 0xd811d94, `lw` at 0xd811d98, `lw` at 0xd811df8.
+  Performs 34 4-byte loads from ? (base unknown), including `lw` at 0xd811dbc, `lw` at 0xd811dcc, `lw` at 0xd811de4.
+  Performs 61 4-byte stores to ? (base unknown), including `sw` at 0xd811df0, `sw` at 0xd812444, `sw` at 0xd81244c.
   Stores 4 bytes from `t1` to ? (base unknown) (`sw` at 0xd811e18).
   Performs 2 4-byte loads from abs 0xd845a70, including `lw` at 0xd811e38, `lw` at 0xd811f6c.
   Performs 2 4-byte loads from abs 0xd845a7c, including `lw` at 0xd811e58, `lw` at 0xd811f94.
   Performs 2 4-byte loads from abs 0xd845b90, including `lw` at 0xd811e7c, `lw` at 0xd811fbc.
-  Performs 6 4-byte loads from ? (base unknown), including `lw` at 0xd811ed8, `lw` at 0xd811ee8, `lw` at 0xd811ef8.
+  Performs 34 4-byte loads from ? (base unknown), including `lw` at 0xd811ed8, `lw` at 0xd811ee8, `lw` at 0xd811ef8.
   Stores 4 bytes from `t4` to ? (base unknown) (`sw` at 0xd811f20).
   Stores 4 bytes from `t8` to ? (base unknown) (`sw` at 0xd811f4c).
-  Performs 26 4-byte stores to ? (base unknown), including `sw` at 0xd812198, `sw` at 0xd81219c, `sw` at 0xd8121a8.
+  Performs 61 4-byte stores to ? (base unknown), including `sw` at 0xd812198, `sw` at 0xd81219c, `sw` at 0xd8121a8.
   Performs 10 1-byte stores to ? (base unknown), including `sb` at 0xd8121bc, `sb` at 0xd8121c0, `sb` at 0xd812210.
   Performs 8 8-byte stores to ? (base unknown), including `sdc1` at 0xd812298, `sdc1` at 0xd8122a4, `sdc1` at 0xd8122b0.
-  Performs 2 1-byte loads from ? (base unknown), including `lbu` at 0xd812338, `lbu` at 0xd812340.
-  Performs 5 4-byte loads from ? (base unknown), including `lw` at 0xd81237c, `lw` at 0xd812438, `lw` at 0xd812448.
+  Performs 3 1-byte loads from ? (base unknown), including `lbu` at 0xd812338, `lbu` at 0xd812340.
+  Performs 34 4-byte loads from ? (base unknown), including `lw` at 0xd81237c, `lw` at 0xd812438, `lw` at 0xd812448.
   Loads 4 bytes from ? (base unknown) into `t7` (`lw` at 0xd8123b8).
-  Performs 22 4-byte stores to ? (base unknown), including `sw` at 0xd81246c, `sw` at 0xd812470, `sw` at 0xd812480.
+  Performs 61 4-byte stores to ? (base unknown), including `sw` at 0xd81246c, `sw` at 0xd812470, `sw` at 0xd812480.
   Loads 1 byte from ? (base unknown) into `t1` (`lbu` at 0xd812478).
   Loads 4 bytes from ? (base unknown) into `t1` (`lw` at 0xd8124e8).
   Loads 4 bytes from ? (base unknown) into `t8` (`lw` at 0xd812528).
@@ -1857,7 +1857,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Loads 4 bytes from abs 0xd845924 into `t8` (`lw` at 0xd812678).
   Loads 4 bytes from a0 (arg0 at entry) +0x108 into `v0` (`lw` at 0xd812688).
   Loads 4 bytes from [a0+264] +0x8 into `a0` (`lw` at 0xd812698).
-  Performs 5 4-byte loads from ? (base unknown), including `lw` at 0xd81269c, `lw` at 0xd8126ac, `lw` at 0xd8126b4.
+  Performs 6 4-byte loads from ? (base unknown), including `lw` at 0xd81269c, `lw` at 0xd8126ac, `lw` at 0xd8126b4.
   Performs 5 4-byte stores to ? (base unknown), including `sw` at 0xd8126a8, `sw` at 0xd8126b0, `sw` at 0xd8126bc.
   Loads 4 bytes from abs 0xd845a68 into `t9` (`lw` at 0xd8126d4).
   Performs 2 4-byte loads from abs 0xd8458f0, including `lw` at 0xd812714, `lw` at 0xd8127b0.
