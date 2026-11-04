@@ -8093,3 +8093,36 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   It invokes `glGetTexGendv` with arguments `a0` through `a3` unchanged from entry (`jalr` at 0x335f34c). The call delay slot stores to absolute 0x14f0 a doubleword loaded at +0x3cb8 from the doubleword at 0x1020 (`ld` at 0x335f330, 0x335f348; `jalr` at 0x335f34c; `sd` at 0x335f350). The field’s broader role is Unknown.
 - `__glce_GetTexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f370
   Entry arguments 0 through 3 are passed to `glGetTexGenfv` (`jalr` at 0x335f39c). In the call delay slot, a doubleword read at +0x3cc0 from the doubleword at 0x1020 is stored to absolute 0x14f8 (`ld` at 0x335f380, 0x335f398; `jalr` at 0x335f39c; `sd` at 0x335f3a0). The meaning of this destination remains Unknown.
+
+## 64-bit IP30 library: texture parameter dispatch
+
+- `__glce_TexGend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335c870
+  The routine loads the doubleword at 0x1220 before two calls to `glTexGend` (`ld` at 0x335c870; `jalr` at 0x335c8b4, 0x335c8d4). Each call delay slot writes a doubleword to 0x1220, with a third store in the return delay slot (`sd` at 0x335c8b8, 0x335c8d8, 0x335c8f8; `jr` at 0x335c8f4). The later use of that location is Unknown.
+- `__glce_TexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335c900, 132 bytes
+  It saves a doubleword from absolute 0x1228 and invokes `glTexGendv` twice (`ld` at 0x335c900; `jalr` at 0x335c940, 0x335c960). Doubleword stores at address 0x1228 occupy both call delay slots and the return delay slot (`sd` at 0x335c944, 0x335c964, 0x335c980; `jr` at 0x335c97c). The field’s purpose is Unknown.
+- `__glce_TexGenf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335c990
+  The doubleword at 0x1230 is read before two `glTexGenf` calls (`ld` at 0x335c990; `jalr` at 0x335c9d4, 0x335c9f4). Their delay slots write doublewords to 0x1230, and a final write there occurs in the return delay slot (`sd` at 0x335c9d8, 0x335c9f8, 0x335ca18; `jr` at 0x335ca14). The field meaning is Unknown.
+- `__glce_TexGenfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335ca20
+  It reads a doubleword at 0x1238 and calls `glTexGenfv` twice (`ld` at 0x335ca20; `jalr` at 0x335ca60, 0x335ca80). Both call delay slots and the return delay slot store doublewords at 0x1238 (`sd` at 0x335ca64, 0x335ca84, 0x335caa0; `jr` at 0x335ca9c). The field’s wider role is Unknown.
+- `__glce_TexGeni` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335cab0
+  Entry loads the doubleword at 0x1240 before calling `glTexGeni` twice (`ld` at 0x335cab0; `jalr` at 0x335caf0, 0x335cb10). A doubleword is stored at 0x1240 in each call delay slot, and again in the return delay slot (`sd` at 0x335caf4, 0x335cb14, 0x335cb30; `jr` at 0x335cb2c). The field purpose is Unknown.
+- `__glsplc_TexGeni` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `__glTexGeniv_size` with entry `a1` in `a0` (`jalr` at 0x3352888; `move` at 0x335288c). If the result equals 1, `beq` is taken to `__glsplc_TexGeniv` with entry `a0`, entry `a1`, and entry stack pointer -0xc as its first three arguments (`addiu` at 0x3352890; `beq` at 0x3352894; `bgezall` at 0x33528c0; `daddiu` at 0x33528c4). The downstream hardware effect is Unknown.
+- `__glsplc_TexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Entry `a1` is passed as `a0` to `__glTexGeniv_size` (`move` at 0x33528f8; `jalr` at 0x33528fc). `bltz` takes the path to `__glsplc_InvalidEnum` if the tested signed value is negative; hostfacts leaves that value Unknown (`bltz` at 0x3352914; `jalr` at 0x3352970). The meaning of the tested value and the error call’s downstream effect are Unknown.
+- `__glce_TexParameterf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It calls `glTexParameterf` twice, with the first call receiving entry arguments 0 through 3 (`jalr` at 0x335c2c4, 0x335c2e4). The first delay slot writes the doubleword at +0x1c20 of the value loaded from 0x1020 to absolute 0x11d0 (`ld` at 0x335c2a0, 0x335c2b8; `jalr` at 0x335c2c4; `sd` at 0x335c2c8). The slot's meaning is Unknown.
+- `__glce_TexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine invokes `glTexParameterfv` twice, passing the first four entry arguments to the first call (`jalr` at 0x335c350, 0x335c370). Its first delay slot stores the doubleword at +0x1c28 of the value read at 0x1020 to 0x11d8 (`ld` at 0x335c330, 0x335c348; `jalr` at 0x335c350; `sd` at 0x335c354). The hardware role of that slot is Unknown.
+- `__glce_TexParameteri` — `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its two calls to `glTexParameteri` include a first call with the original four argument registers (`jalr` at 0x335c3e0, 0x335c400). In the first call's delay slot, it stores the doubleword at +0x1c30 of the value read from 0x1020 to absolute 0x11e0 (`ld` at 0x335c3c0, 0x335c3d8; `jalr` at 0x335c3e0; `sd` at 0x335c3e4). The purpose of this slot is Unknown.
+- `__glce_GetTexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f3c0
+  It calls `glGetTexGeniv` with the first four entry arguments (`jalr` at 0x335f3ec). A doubleword from +0x3cc8 of the doubleword at 0x1020 is written to absolute 0x1500 in that call’s delay slot (`ld` at 0x335f3d0, 0x335f3e8; `jalr` at 0x335f3ec; `sd` at 0x335f3f0). The destination’s wider meaning is Unknown.
+- `__glce_GetTexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f460
+  The call to `glGetTexParameterfv` receives entry `a0` through `a3` (`jalr` at 0x335f48c). Its delay slot writes to absolute 0x1510 the doubleword loaded from +0x3cd8 of the doubleword at 0x1020 (`ld` at 0x335f470, 0x335f488; `jalr` at 0x335f48c; `sd` at 0x335f490). The slot’s broader role is Unknown.
+- `__glce_GetTexParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f4b0
+  It invokes `glGetTexParameteriv` with the first four original argument registers (`jalr` at 0x335f4dc). In the call delay slot, the doubleword at +0x3ce0 of the doubleword loaded from 0x1020 goes to absolute 0x1518 (`ld` at 0x335f4c0, 0x335f4d8; `jalr` at 0x335f4dc; `sd` at 0x335f4e0). The stored value’s role is Unknown.
+- `__glce_TexCoordPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33610c0
+  `glTexCoordPointerEXT` is called with entry `a0` through `a3` (`jalr` at 0x33610ec). Its delay slot stores to absolute 0x16f8 the doubleword at +0x3ec0 relative to the doubleword at 0x1020 (`ld` at 0x33610d0, 0x33610e8; `jalr` at 0x33610ec; `sd` at 0x33610f0). The location’s meaning is Unknown.
+- `__glce_TexCoordPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3361950
+  It calls `glTexCoordPointer` with the first four entry argument registers (`jalr` at 0x336197c). The call’s delay slot stores a doubleword from +0x3f68 of the doubleword read at 0x1020 to absolute 0x17a0 (`ld` at 0x3361960, 0x3361978; `jalr` at 0x336197c; `sd` at 0x3361980). The slot’s role is Unknown.
