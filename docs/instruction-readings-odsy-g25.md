@@ -361,16 +361,16 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bgezall` at 0xec5fb84 calls gl_intrptab_insert [0xec5f9f0] with a0=0xecd7dc0, a1=?, a2=?, a3=?.
   The `bgezall` at 0xec5fb98 calls gl_intrptab_insert [0xec5f9f0] with a0=0xecd7dd0, a1=?, a2=?, a3=?.
   The `bgezall` at 0xec5fbac calls gl_intrptab_insert [0xec5f9f0] with a0=0xecd7de0, a1=?, a2=?, a3=?.
-  The `beq` branch at 0xec5faec targets 0xec5fbb8 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb04 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb18 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb2c targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb40 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb54 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb68 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb7c targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fb90 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
-  The `beq` branch at 0xec5fba4 targets 0xec5fbb4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xec5faec targets 0xec5fbb8 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb04 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb18 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb2c targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb40 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb54 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb68 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb7c targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fb90 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0xec5fba4 targets 0xec5fbb4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The return at 0xec5fbc4 has v0 = ret(gl_intrptab_insert).
 - `__GLswapbuffers` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec6fef8 (n32).
   Evidence grade: inferred.

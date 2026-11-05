@@ -465,7 +465,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 160 bytes.
   The `ll` at 0xdad53e0 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `sc` at 0xdad53ec stores 4 bytes to a0 (arg0 at entry) +0x0.
-  The `beq` branch at 0xdad5470 targets 0xdad53e0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xdad5470 targets 0xdad53e0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The return at 0xdad5478 has v0 = [a0].
 
 - `__glOdysseyAtomicAdd` in `usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdad5480 (o32).

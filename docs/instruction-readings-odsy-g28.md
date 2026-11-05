@@ -2789,7 +2789,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xda6b03c loads 4 bytes from a1 (arg1 at entry) +0x8.
   29 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda6b050, `lwc1` at 0xda6b074, `lwc1` at 0xda6b078.
   8 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xda6b070, `swc1` at 0xda6b0a4, `swc1` at 0xda6b0d8.
-  The `beq` branch at 0xda6b040 targets 0xda6b12c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xda6b040 targets 0xda6b12c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bnel` branch at 0xda6b124 targets 0xda6b04c, is taken when v1(?) != v0(=0x40), and falls through when v1(?) == v0(=0x40); its branch-likely delay slot `mul.s $f4,$f8,$f24` at 0xda6b128 runs only when taken and is annulled on fall-through.
   The return at 0xda6b208 has v0 = 0x40.
 
@@ -7049,7 +7049,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beql` branch at 0xda88a40 targets 0xda88ad8, is taken when t2(?) == t7(?), and falls through when t2(?) != t7(?); its branch-likely delay slot `or t2,zero,zero` at 0xda88a44 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda88acc targets 0xda88a84, is taken when v0(?) != a2(=table(0xdb19938)), and falls through when v0(?) == a2(=table(0xdb19938)).
   The `bltz` branch at 0xda88ae4 targets 0xda8a498, is taken when t6(?) < 0 (signed), and falls through when t6(?) >= 0 (signed).
-  The `beq` branch at 0xda88b2c targets 0xda88db4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xda88b2c targets 0xda88db4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0xda8a4c8 targets 0xda8a5d0, is taken when a3(?) >= a1(?) (signed), and falls through when a3(?) < a1(?) (signed).
   The `beq` branch at 0xda8a4d4 targets 0xda8a54c, is taken when (a2(?) & 0x3) == 0, and falls through when (a2(?) & 0x3) != 0.
   The `bne` branch at 0xda8a53c targets 0xda8a52c, is taken when a0(?) != t2(?), and falls through when a0(?) == t2(?).

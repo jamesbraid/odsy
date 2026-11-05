@@ -285,7 +285,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `blez` branch at 0x5a08 targets 0x5ac0, is taken when t0(=[a0+23]:1) <= 0 (signed), and falls through when t0(=[a0+23]:1) > 0 (signed).
   The `beq` branch at 0x5a68 targets 0x5a7c, is taken when t3(?) >= 0x20 (unsigned), and falls through when t3(?) < 0x20 (unsigned).
   The `bne` branch at 0x5a80 targets 0x5a2c, is taken when a7(?) != 0, and falls through when a7(?) == 0.
-  The `bne` branch at 0x5a88 targets 0x5aa4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0x5a88 targets 0x5aa4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The return at 0x5a90 has v0 = 0x0.
   The return at 0x5ac0 has v0 = 0x0.
   The instructions from 0x5a98 to 0x5abc are not reached by any path from the entry, and their branches are not listed.
@@ -3187,8 +3187,8 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `beq` branch at 0xde88 targets 0xdeb4, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0xdeac targets 0xde84, is taken when a1(=entry(sym(cpuid_to_compact_node))) == s2(=a1), and falls through when a1(=entry(sym(cpuid_to_compact_node))) != s2(=a1).
   The `beq` branch at 0xdec4 targets 0xdfc8, is taken when v0(=ret(kmem_zalloc_node)) == 0, and falls through when v0(=ret(kmem_zalloc_node)) != 0.
-  The `beq` branch at 0xdf28 targets 0xdf48 and is never taken: its operands are equal constants, so execution always falls through.
-  The `bne` branch at 0xdf40 targets 0xdf10 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xdf28 targets 0xdf48 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `bne` branch at 0xdf40 targets 0xdf10 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0xdf6c targets 0xdf94, is taken when v0(?) >= 0x8 (signed), and falls through when v0(?) < 0x8 (signed).
   The `bne` branch at 0xdf88 targets 0xdf54, is taken when v0(?) < 0x8 (signed), and falls through when v0(?) >= 0x8 (signed).
   The `beq` branch at 0xdfa4 targets 0xdeb4 and is always taken.
@@ -3654,7 +3654,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   It occupies 84 bytes.
   The `jal` at 0xf5a8 calls memory_read_accessible with a0=table(0x0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0xf5b0 targets 0xf5d8, is taken when v0(=ret(memory_read_accessible)) == 0, and falls through when v0(=ret(memory_read_accessible)) != 0.
-  The `bne` branch at 0xf5bc targets 0xf5a8 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0xf5bc targets 0xf5a8 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0xf5d8 targets 0xf5c4 and is always taken.
   The return at 0xf5d0 has v0 = one of 0x0, 0x1.
 - `memory_write_accessible` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0xf5e0 (n64).
@@ -3688,7 +3688,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   It occupies 84 bytes.
   The `jal` at 0xf770 calls memory_write_accessible with a0=table(0x0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0xf778 targets 0xf7a0, is taken when v0(=ret(memory_write_accessible)) == 0, and falls through when v0(=ret(memory_write_accessible)) != 0.
-  The `bne` branch at 0xf784 targets 0xf770 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0xf784 targets 0xf770 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0xf7a0 targets 0xf78c and is always taken.
   The return at 0xf798 has v0 = one of 0x0, 0x1.
 - `set_dir_access` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0xf7a8 (n64).

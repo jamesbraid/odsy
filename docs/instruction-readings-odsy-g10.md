@@ -2351,7 +2351,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x3374 targets 0x3350 and is always taken.
   The `beq` branch at 0x339c targets 0x345c, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.
   The `beq` branch at 0x33a4 targets 0x33ec and is always taken.
-  The `bne` branch at 0x33ac targets 0x3434 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0x33ac targets 0x3434 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x33c0 targets 0x33b4, is taken when v0(?) < 0x28 (unsigned), and falls through when v0(?) >= 0x28 (unsigned).
   The `beq` branch at 0x33e4 targets 0x3454, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.
   The `beq` branch at 0x3400 targets 0x33ac, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.

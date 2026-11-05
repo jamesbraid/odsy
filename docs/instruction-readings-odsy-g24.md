@@ -1549,7 +1549,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   It occupies 1236 bytes.
   The `lw` at 0xd980428 loads 4 bytes from abs 0xdaedcd4.
   Calls (unnamed) [0xd980438] via register-constant with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xd980430).
-  The `beq` branch at 0xd980414 targets 0xd9804b0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xd980414 targets 0xd9804b0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The instructions from 0xd980438 to 0xd980880 are not reached by any path from the entry, and their branches are not listed.
 - `__glOdysseySetRealLerpEvenEven` in `usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd980884 (o32).
   Evidence grade: inferred.
@@ -3687,7 +3687,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bne` branch at 0xd98e8b0 targets 0xd98e868, is taken when s1(?) < 0x24 (unsigned), and falls through when s1(?) >= 0x24 (unsigned).
   The `bne` branch at 0xd98e8f0 targets 0xd98e91c, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0xd98e914 targets 0xd98ed68 and is always taken.
-  The `bne` branch at 0xd98e920 targets 0xd98e8c8 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0xd98e920 targets 0xd98e8c8 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bgez` branch at 0xd98e954 targets 0xd98e96c, is taken when s0(=[[0x1010]+73244]) >= 0 (signed), and falls through when s0(=[[0x1010]+73244]) < 0 (signed).
   The `beq` branch at 0xd98e9b8 targets 0xd98ea08, is taken when (t2(?) & 0x78) == 0, and falls through when (t2(?) & 0x78) != 0.
   The `bne` branch at 0xd98e9e8 targets 0xd98ea00, is taken when (t2(?) & 0x78) != 0, and falls through when (t2(?) & 0x78) == 0.
@@ -3725,7 +3725,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bne` branch at 0xd98ee30 targets 0xd98ee00, is taken when s2(?) < 0x8 (unsigned), and falls through when s2(?) >= 0x8 (unsigned).
   The `bne` branch at 0xd98ee54 targets 0xd98ee44, is taken when v1(?) < 0x3 (unsigned), and falls through when v1(?) >= 0x3 (unsigned).
   The `beql` branch at 0xd98ee78 targets 0xd98ee9c, is taken when t8(=[[0x1010]+42808]) == 0, and falls through when t8(=[[0x1010]+42808]) != 0; its branch-likely delay slot `addiu s2,s2,4` at 0xd98ee7c runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xd98eea0 targets 0xd98ee74 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0xd98eea0 targets 0xd98ee74 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The return at 0xd98eed0 has v0 = 0x1.
 - `__glOdysseyImageXfer` in `usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd98eed8 (o32).
   Evidence grade: inferred.
@@ -7068,9 +7068,9 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd9ba61c targets 0xd9ba62c, is taken when s2(?) >= a0(?) (signed), and falls through when s2(?) < a0(?) (signed).
   The `beq` branch at 0xd9ba624 targets 0xd9ba62c and is always taken.
   The `beq` branch at 0xd9ba630 targets 0xd9ba6bc and is always taken.
-  The `bnel` branch at 0xd9ba638 targets 0xd9ba2e0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bnel` branch at 0xd9ba638 targets 0xd9ba2e0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bnel` branch at 0xd9ba644 targets 0xd9ba2dc, is taken when s2(?) != s7(?), and falls through when s2(?) == s7(?); its branch-likely delay slot `or s1,zero,zero` at 0xd9ba648 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd9ba650 targets 0xd9ba28c and is never taken: its operands are equal constants, so execution always falls through.
+  The `bnel` branch at 0xd9ba650 targets 0xd9ba28c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xd9ba660 targets 0xd9ba284, is taken when t7(?) != s7(?), and falls through when t7(?) == s7(?).
   The `bne` branch at 0xd9ba670 targets 0xd9ba230, is taken when t8(?) != s3(=0x1), and falls through when t8(?) == s3(=0x1).
   The `bne` branch at 0xd9ba680 targets 0xd9ba22c, is taken when t2(?) != s7(?), and falls through when t2(?) == s7(?).
@@ -7240,11 +7240,11 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bne` branch at 0xd9bb900 targets 0xd9bb534, is taken when a2(?) != t5(=a2), and falls through when a2(?) == t5(=a2).
   The `beq` branch at 0xd9bb908 targets 0xd9be9b4 and is always taken.
   The `blez` branch at 0xd9bb910 targets 0xd9be9b0, is taken when s2(=a2) <= 0 (signed), and falls through when s2(=a2) > 0 (signed).
-  The `beq` branch at 0xd9bb93c targets 0xd9bc29c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xd9bb93c targets 0xd9bc29c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0xd9bc2b4 targets 0xd9be9b0, is taken when s2(=a2) <= 0 (signed), and falls through when s2(=a2) > 0 (signed).
-  The `beq` branch at 0xd9bc2ec targets 0xd9bd194 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xd9bc2ec targets 0xd9bd194 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0xd9bd1ac targets 0xd9be9b0, is taken when s2(=a2) <= 0 (signed), and falls through when s2(=a2) > 0 (signed).
-  The `beq` branch at 0xd9bd1e0 targets 0xd9be9a0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xd9bd1e0 targets 0xd9be9a0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The return at 0xd9be9dc has v0 = ?.
   The instructions from 0xd9bb960 to 0xd9bc2b0 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd9bc310 to 0xd9bd1a8 are not reached by any path from the entry, and their branches are not listed.

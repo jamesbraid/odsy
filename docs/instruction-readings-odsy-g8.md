@@ -4996,7 +4996,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x2800 targets 0x2810, is taken when at(?) >= v1(?) (unsigned), and falls through when at(?) < v1(?) (unsigned).
   The `beq` branch at 0x2844 targets 0x2a14, is taken when v0(=ret(kmem_alloc)) == 0, and falls through when v0(=ret(kmem_alloc)) != 0.
   The `blez` branch at 0x284c targets 0x295c, is taken when s5(?) <= 0 (signed), and falls through when s5(?) > 0 (signed).
-  The `bne` branch at 0x2864 targets 0x2934 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0x2864 targets 0x2934 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x286c targets 0x2948, is taken when t0(?) == a1(?), and falls through when t0(?) != a1(?).
   The `beq` branch at 0x28a0 targets 0x2950, is taken when s1(?) == 0, and falls through when s1(?) != 0.
   The `bne` branch at 0x28d4 targets 0x291c, is taken when t0(?) != a1(?), and falls through when t0(?) == a1(?).
@@ -9210,7 +9210,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x3374 targets 0x3350 and is always taken.
   The `beq` branch at 0x339c targets 0x345c, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.
   The `beq` branch at 0x33a4 targets 0x33ec and is always taken.
-  The `bne` branch at 0x33ac targets 0x3434 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0x33ac targets 0x3434 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x33c0 targets 0x33b4, is taken when v0(?) < 0x28 (unsigned), and falls through when v0(?) >= 0x28 (unsigned).
   The `beq` branch at 0x33e4 targets 0x3454, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.
   The `beq` branch at 0x3400 targets 0x33ac, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.

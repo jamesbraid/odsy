@@ -572,7 +572,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x18874 targets 0x188c0, is taken when a3 == at(=0x2), and falls through when a3 != at(=0x2).
   The `beql` branch at 0x18890 targets 0x18884, is taken when a0(=([[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+36616] | a3)) == 0, and falls through when a0(=([[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+36616] | a3)) != 0; its branch-likely delay slot `nop` at 0x18894 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x1889c targets 0x18908, is taken when (v0(=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+36616]) & s7(=a3)) == 0, and falls through when (v0(=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+36616]) & s7(=a3)) != 0.
-  The `beq` branch at 0x188d8 targets 0x188f8 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x188d8 targets 0x188f8 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x188ec targets 0x18954, is taken when v0(=ret(mutex_spintrylock)) == 0, and falls through when v0(=ret(mutex_spintrylock)) != 0.
   The `beq` branch at 0x18900 targets 0x18880 and is always taken.
   The `beq` branch at 0x1894c targets 0x188a8 and is always taken.
@@ -727,8 +727,8 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x1ed64 targets 0x1ee58 and is always taken.
   The `bne` branch at 0x1ede0 targets 0x1ed74, is taken when a3(?) < 0x40 (signed), and falls through when a3(?) >= 0x40 (signed).
   The `beq` branch at 0x1ede8 targets 0x1ee6c, is taken when s3(?) == 0, and falls through when s3(?) != 0.
-  The `beq` branch at 0x1ee34 targets 0x1ee50 and is never taken: its operands are equal constants, so execution always falls through.
-  The `bne` branch at 0x1ee48 targets 0x1ee20 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1ee34 targets 0x1ee50 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `bne` branch at 0x1ee48 targets 0x1ee20 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1ee50 targets 0x1ee78, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0x1ee58 targets 0x1ed6c, is taken when s3(?) != 0, and falls through when s3(?) == 0.
   The `beq` branch at 0x1ee64 targets 0x1ed6c and is always taken.
