@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	input
 binaries	276	0	270	2	156	0	0	0	6	0	97.8	97.8	97.8	97.8			90.0	20	2026-11-02		0			
-functions	106592	0	5592	147	2854	66323	100991	9	0	0	5.2	100.0	100.0	5.2			100.0	15	2026-11-02		1371	482	3798	
-functions (distinct names)	18949	0	2266	86	2251	14485	16680	3	0	0	12.0	100.0	100.0	12.0							89			
+functions	106592	0	5592	147	2854	66326	100994	6	0	0	5.2	100.0	100.0	5.2			100.0	15	2026-11-02		1371	482	3798	
+functions (distinct names)	18949	0	2266	86	2251	14487	16682	1	0	0	12.0	100.0	100.0	12.0							89			
 mmio	67	0	67	0	67	0	0	0	0	0	100.0	100.0	100.0	100.0	56		87.5	8	2026-11-01		0			
 tokens	270	0	256	42	256	0	1	0	0	13	94.8	100.0	100.0	99.6			45.0	20	2026-11-01		0			
 ioctls	91	0	91	0	85	0	0	0	0	0	100.0	100.0	100.0	100.0			73.3	15	2026-10-29		0			
@@ -142,9 +142,9 @@ functions in usr/cpu/sysgen/IP35boot/rrm.o	72	0	70	0	70	0	2	0	0	0	97.2	100.0	100
 functions in usr/cpu/sysgen/IP35boot/tport.a(tport.o)	22	0	22	0	22	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/diags/compositor/bin/sting	323	0	322	8	322	0	1	0	0	0	99.7	100.0	100.0	99.7							0	0	0	
 functions in usr/gfx/STINGRAY/bin/cmp_flash	26	0	26	0	26	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
-functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	24	3	20	2909	2911	1	0	0	0.8	100.0	100.0	0.8							0	0	0	
-functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	5	0	5	3804	3805	1	0	0	0.1	100.0	100.0	0.1							0	0	1124	
-functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	0	3804	3810	1	0	0	0.0	100.0	100.0	0.0							0	0	1124	
+functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	24	3	20	2910	2912	0	0	0	0.8	100.0	100.0	0.8							0	0	0	
+functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	5	0	5	3805	3806	0	0	0	0.1	100.0	100.0	0.1							0	0	1124	
+functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	0	3805	3811	0	0	0	0.0	100.0	100.0	0.0							0	0	1124	
 functions in usr/gfx/arch/IP30ODSY/libGL.so	671	0	70	0	69	600	601	0	0	0	10.4	100.0	100.0	10.4							0	0	0	
 functions in usr/gfx/arch/IP30ODSY/libGLcore.so	5169	0	139	1	138	2785	5030	0	0	0	2.7	100.0	100.0	2.7							92	37	72	
 functions in usr/gfx/arch/IP30ODSY32/libGL.so	673	0	0	0	0	601	672	1	0	0	0.0	99.9	100.0	0.0							0	0	0	
