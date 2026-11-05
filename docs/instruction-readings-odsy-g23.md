@@ -4045,7 +4045,7 @@ Skipped 5,598 understood and 46,048 located rows because targets were limited to
   3 such `lbu` accesses load 1 byte from [a0+8] +0x8, including `lbu` at 0x100aae9c, `lbu` at 0x100ab0b8, `lbu` at 0x100ab10c.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x100aaec0, `sw` at 0x100aaf2c, `sw` at 0x100ab010.
   35 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100aaf1c, `lw` at 0x100aaf5c, `lw` at 0x100aaf80.
-  4 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x100aaf74, `lw` at 0x100aaf74, `lw` at 0x100ab660.
+  3 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x100aaf74, `lw` at 0x100ab660, `lw` at 0x100ab6a0.
   The `lw` at 0x100aaf78 loads 4 bytes from a0 (arg0 at entry) +0x4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x100aaf94, `lw` at 0x100aaf98.
   2 such `lbu` accesses load 1 byte from [a0+8] +0x9, including `lbu` at 0x100aafe4, `lbu` at 0x100ab0b4.
@@ -5861,7 +5861,7 @@ Skipped 5,598 understood and 46,048 located rows because targets were limited to
   The `sw` at 0x1010c004 stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1010c04c loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x1010c064 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66f0) +0x0, including `lw` at 0x1010c078, `lw` at 0x1010c078.
+  The `lw` at 0x1010c078 loads 4 bytes from table(0x102c66f0) +0x0.
   The `lw` at 0x1010c07c loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x1010c080, `lw` at 0x1010c0f8.
   The `lw` at 0x1010c090 loads 4 bytes from table(0x102c66b0) +0x0.

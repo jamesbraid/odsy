@@ -28,7 +28,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0xb38 targets 0xad4 and is always taken.
   The `beq` branch at 0xb54 targets 0xad4 and is always taken.
   The `beq` branch at 0xb70 targets 0xad4 and is always taken.
-  The return at 0xae4 has v0 = one of ret(odsyCompositorRegRead), ret(odsyCompositorRegWrite), 0x0, 0xe.
+  The return at 0xae4 has v0 = one of ret(odsyCompositorRegRead), ?, 0x0, 0xe.
 - `gfP_OdsyI2CPassthrough` in `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)` at 0xb78 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_compositor.o)`.

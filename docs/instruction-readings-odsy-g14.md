@@ -2298,7 +2298,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `lbu` at 0x3e04 loads 1 byte from sym(.rodata) +0x434.
   9 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x3e08, `lbu` at 0x3e1c, `lbu` at 0x3e34.
   13 such `sb` accesses store 1 byte to ?, including `sb` at 0x3e18, `sb` at 0x3e30, `sb` at 0x3e64.
-  2 such `lbu` accesses load 1 byte from sym(.rodata) +0x436, including `lbu` at 0x3e24, `lbu` at 0x3e24.
+  The `lbu` at 0x3e24 loads 1 byte from sym(.rodata) +0x436.
   3 such `sdl` accesses store 8 bytes to ?, including `sdl` at 0x3e28, `sdl` at 0x3e74, `sdl` at 0x3e7c.
   3 such `sdr` accesses store 8 bytes to ?, including `sdr` at 0x3e2c, `sdr` at 0x3e78, `sdr` at 0x3e80.
   The `ld` at 0x3e38 loads 8 bytes from sym(.rodata) +0x420.

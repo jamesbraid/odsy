@@ -1049,7 +1049,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x1017764c targets 0x101776a8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0x10177694 targets 0x10177528, is taken when (a3(?) & a5(?)) != 0, and falls through when (a3(?) & a5(?)) == 0.
   The `bne` branch at 0x101776a0 targets 0x10177674, is taken when a2(?) != 0, and falls through when a2(?) == 0.
-  The return at 0x101776c4 has v0 = one of ?, [0x102cc090].
+  The return at 0x101776c4 has v0 = ?.
 
 - `SGetKeyboardMappingReply` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10179f30 (n32).
   Evidence grade: inferred.
@@ -4555,7 +4555,7 @@ Each entry records selected software behavior from its exact binary range. The r
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x1024c4f0-0x1024ceb0 (2496 bytes).
   It occupies 2496 bytes.
-  5 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x1024c50c, `lw` at 0x1024c54c, `lw` at 0x1024c6e8.
+  4 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x1024c50c, `lw` at 0x1024c54c, `lw` at 0x1024c6e8.
   The `lw` at 0x1024c52c loads 4 bytes from [0x102c5fd8] +0x0.
   The `lw` at 0x1024c530 loads 4 bytes from [[0x102c5fd8]] +0x24.
   59 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1024c560, `lw` at 0x1024c56c, `lw` at 0x1024c5d4.
@@ -4692,7 +4692,7 @@ Each entry records selected software behavior from its exact binary range. The r
   3 such `lw` accesses load 4 bytes from sym(inputInfo) +0xc, including `lw` at 0x1024de00, `lw` at 0x1024de40, `lw` at 0x1024dec8.
   82 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1024de10, `lw` at 0x1024de1c, `lw` at 0x1024de30.
   47 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1024de28, `sw` at 0x1024dee8, `sw` at 0x1024df64.
-  2 such `lw` accesses load 4 bytes from sym(inputInfo) +0x10, including `lw` at 0x1024de38, `lw` at 0x1024de38.
+  The `lw` at 0x1024de38 loads 4 bytes from sym(inputInfo) +0x10.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x18, including `lw` at 0x1024de7c, `lw` at 0x1024df28.
   The `lw` at 0x1024dea0 loads 4 bytes from sym(inputInfo) +0x8.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x78, including `lw` at 0x1024dfbc, `lw` at 0x1024e048, `lw` at 0x1024e3dc.
@@ -8951,7 +8951,7 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `lw` accesses load 4 bytes from sym(screen) +0x0, including `lw` at 0x1000f2b4, `lw` at 0x1000f2cc.
   2 such `lw` accesses load 4 bytes from sym(dpy) +0x0, including `lw` at 0x1000f2c0, `lw` at 0x1000f2d8.
   The `sb` at 0x1000f318 stores 1 byte to ret(?) +0x0.
-  3 such `lw` accesses load 4 bytes from sym(pipenum) +0x0, including `lw` at 0x1000f3dc, `lw` at 0x1000f3dc, `lw` at 0x1000f550.
+  2 such `lw` accesses load 4 bytes from sym(pipenum) +0x0, including `lw` at 0x1000f3dc, `lw` at 0x1000f550.
   4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1000f4d0, `lw` at 0x1000f4e4, `lw` at 0x1000f4e8.
   The `lbu` at 0x1000f4dc loads 1 byte from a1 (arg1 at entry) +0x10.
   The `jalr` at 0x1000f0e0 calls strstr with a0=a2 at entry (arg2), a1=one of 0x10042100, 0x10042108, a2=a2 at entry (arg2), a3=a3 at entry (arg3).

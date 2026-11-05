@@ -6135,9 +6135,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xdaeaa58 loads 4 bytes from a0 (arg0 at entry) +0x7860.
   The `lwc1` at 0xdaeaa64 loads 4 bytes from a0 (arg0 at entry) +0x1bc.
   The `lwc1` at 0xdaeaa68 loads 4 bytes from a0 (arg0 at entry) +0x7880.
-  2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0xc0, including `swc1` at 0xdaeaa9c, `swc1` at 0xdaeaa9c.
-  2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0xc4, including `swc1` at 0xdaeaaac, `swc1` at 0xdaeaaac.
-  2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0xc8, including `swc1` at 0xdaeaabc, `swc1` at 0xdaeaabc.
+  The `swc1` at 0xdaeaa9c stores 4 bytes to a0 (arg0 at entry) +0xc0.
+  The `swc1` at 0xdaeaaac stores 4 bytes to a0 (arg0 at entry) +0xc4.
+  The `swc1` at 0xdaeaabc stores 4 bytes to a0 (arg0 at entry) +0xc8.
   The `swc1` at 0xdaeaac4 stores 4 bytes to a0 (arg0 at entry) +0xcc.
   The `bltz` branch at 0xdaeaa80 targets 0xdaeaac8, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
   The `bne` branch at 0xdaeaa88 targets 0xdaeaad0, is taken when a3(?) != 0, and falls through when a3(?) == 0.
@@ -6175,12 +6175,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xdaeac30 loads 4 bytes from (a0 + one of 0x6e18, 0x6e40) +0x0.
   The `lwc1` at 0xdaeac54 loads 4 bytes from a0 (arg0 at entry) +0xdd4.
   The `lw` at 0xdaeac7c loads 4 bytes from (a0 + one of 0x6e10, 0x6e38) +0x0.
-  3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7858, including `lw` at 0xdaeaca8, `lw` at 0xdaeacf4, `lw` at 0xdaeacf4.
+  2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7858, including `lw` at 0xdaeaca8, `lw` at 0xdaeacf4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x785c, including `lw` at 0xdaeacb0, `lw` at 0xdaeacf8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7860, including `lw` at 0xdaeacb8, `lw` at 0xdaeacfc.
-  2 such `lw` accesses load 4 bytes from (a0 + one of 0x6e20, 0x6e48) +0x0, including `lw` at 0xdaead18, `lw` at 0xdaead18.
-  2 such `sw` accesses store 4 bytes to (a2 + one of 0x90, 0xa0) +0x0, including `sw` at 0xdaead28, `sw` at 0xdaead28.
-  2 such `sw` accesses store 4 bytes to (a2 + one of 0x94, 0xa4) +0x0, including `sw` at 0xdaead38, `sw` at 0xdaead38.
+  The `lw` at 0xdaead18 loads 4 bytes from (a0 + one of 0x6e20, 0x6e48) +0x0.
+  The `sw` at 0xdaead28 stores 4 bytes to (a2 + one of 0x90, 0xa0) +0x0.
+  The `sw` at 0xdaead38 stores 4 bytes to (a2 + one of 0x94, 0xa4) +0x0.
   The `sw` at 0xdaead3c stores 4 bytes to (a2 + one of 0x98, 0xa8) +0x0.
   The `sw` at 0xdaead40 stores 4 bytes to (a2 + one of 0x9c, 0xac) +0x0.
   The `bne` branch at 0xdaeab2c targets 0xdaeab74, is taken when a1 != 0, and falls through when a1 == 0.
@@ -6277,7 +6277,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xdaeb9d4 loads 4 bytes from a0 (arg0 at entry) +0x6c4.
   The `lwc1` at 0xdaeba08 loads 4 bytes from a0 (arg0 at entry) +0x6cc.
   The `swc1` at 0xdaeba1c stores 4 bytes to a1 (arg1 at entry) +0x80.
-  2 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0x84, including `swc1` at 0xdaeba24, `swc1` at 0xdaeba24.
+  The `swc1` at 0xdaeba24 stores 4 bytes to a1 (arg1 at entry) +0x84.
   The `sw` at 0xdaeba28 stores 4 bytes to a1 (arg1 at entry) +0x8c.
   The `swc1` at 0xdaeba30 stores 4 bytes to a1 (arg1 at entry) +0x88.
   The `bc1t` branch at 0xdaeb9dc targets 0xdaeba3c, is taken when f2 < f6 (c.lt.s at 0xdaeb9d0), and falls through when not (f2 < f6 (c.lt.s at 0xdaeb9d0)).

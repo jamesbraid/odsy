@@ -4351,7 +4351,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `bltz` branch at 0x11ec targets 0x1200, is taken when v0(=ret(elsc_system_reset)) < 0 (signed), and falls through when v0(=ret(elsc_system_reset)) >= 0 (signed).
   The `beq` branch at 0x1224 targets 0x11f0 and is always taken.
   The `beq` branch at 0x1230 targets 0x119c and is always taken.
-  The return at 0x11f8 has v0 = one of ret(elsc_system_reset), 0x6.
+  The return at 0x11f8 has v0 = one of ret(elsc_system_reset), ?.
 - `he_arcs_restart` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x1238 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.

@@ -8217,7 +8217,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0x10079d10 loads 4 bytes from abs 0x102c5cc4.
   The `lw` at 0x10079d20 loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x10079d38 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66b0) +0x0, including `lw` at 0x10079d4c, `lw` at 0x10079d4c.
+  The `lw` at 0x10079d4c loads 4 bytes from table(0x102c66b0) +0x0.
   The `lw` at 0x10079d50 loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10079d58, `lw` at 0x10079dac.
   4 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x10079d74, `sw` at 0x10079d9c, `sw` at 0x10079dc8.
@@ -12957,7 +12957,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0x10089c00 targets 0x10089bf0, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `bne` branch at 0x10089c30 targets 0x10089bf0, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `beq` branch at 0x10089c38 targets 0x10089c08 and is always taken.
-  The return at 0x10089c0c has v0 = one of ?, ret(sgiIterateDevices), ret(?).
+  The return at 0x10089c0c has v0 = one of ?, ret(?).
 
 - `ProcQueryBestSize` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10089c40 (n32).
   Evidence grade: inferred.
@@ -18866,7 +18866,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0x1009dc1c stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1009dc44 loads 4 bytes from table(0x102c61a0) +0x0.
   The `lw` at 0x1009dc88 loads 4 bytes from table(0x102c67a8) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66d0) +0x0, including `lw` at 0x1009dc94, `lw` at 0x1009dc94.
+  The `lw` at 0x1009dc94 loads 4 bytes from table(0x102c66d0) +0x0.
   The `lw` at 0x1009dc98 loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x1009dc9c loads 4 bytes from table(0x102c66f0) +0x0.
   The `lw` at 0x1009dca0 loads 4 bytes from table(0x102c66b0) +0x0.

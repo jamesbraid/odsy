@@ -254,7 +254,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `bne` branch at 0x7518 targets 0x7524, is taken when (v0(?) & 0x2) != 0, and falls through when (v0(?) & 0x2) == 0.
   The `beql` branch at 0x7530 targets 0x7524, is taken when v1(?) == 0, and falls through when v1(?) != 0; its branch-likely delay slot `nop` at 0x7534 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x7538 targets 0x757c and is always taken.
-  The `beq` branch at 0x7548 targets 0x7588, is taken when v0(?) >= v1(=[a1+8]) (unsigned), and falls through when v0(?) < v1(=[a1+8]) (unsigned).
+  The `beq` branch at 0x7548 targets 0x7588, is taken when v0(?) >= v1(?) (unsigned), and falls through when v0(?) < v1(?) (unsigned).
   The `bltz` branch at 0x7554 targets 0x7590, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
   The `beql` branch at 0x7574 targets 0x7568, is taken when v1(?) == 0, and falls through when v1(?) != 0; its branch-likely delay slot `nop` at 0x7578 runs only when taken and is annulled on fall-through.
   The return at 0x7580 has v0 = 0x0.
@@ -1436,7 +1436,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `sd` at 0xa0bc stores 8 bytes to sym(_assregs) +0x20.
   The `sd` at 0xa0d8 stores 8 bytes to sym(_assregs) +0x28.
   Calls assfail via direct with a0=sym(sr_desc+120), a1=sym(sr_desc+158), a2=0x0, a3=a3 at entry (arg3) (`j` at 0xa110).
-  Calls longway via direct with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`j` at 0xa114).
+  Calls longway via direct with a0=?, a1=?, a2=?, a3=a3 at entry (arg3) (`j` at 0xa114).
   The `bne` branch at 0x9c5c targets 0xa114, is taken when k0(?) < at(=0xc0000fbfe0000000) (unsigned), and falls through when k0(?) >= at(=0xc0000fbfe0000000) (unsigned).
   The `bltz` branch at 0x9c78 targets 0x9e18, is taken when k0(?) < 0 (signed), and falls through when k0(?) >= 0 (signed).
   The `beq` branch at 0x9c84 targets 0x9f54, is taken when k0(?) >= at(=0x20000000) (unsigned), and falls through when k0(?) < at(=0x20000000) (unsigned).

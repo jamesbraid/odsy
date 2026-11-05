@@ -4692,21 +4692,9 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `ld` at 0x12d24 loads 8 bytes from a0 (arg0 at entry) +0x3a0.
   The `ld` at 0x12d30 loads 8 bytes from a0 (arg0 at entry) +0x3c0.
   The `ld` at 0x12d3c loads 8 bytes from a0 (arg0 at entry) +0x3d0.
-  4 such `ld` accesses load 8 bytes from ?, including `ld` at 0x12d50, `ld` at 0x12e18, `ld` at 0x12e24.
-  The `ld` at 0x12d7c loads 8 bytes from a0 (arg0 at entry) +0x308.
-  The `ld` at 0x12d9c loads 8 bytes from a0 (arg0 at entry) +0x310.
-  The `ld` at 0x12da8 loads 8 bytes from a0 (arg0 at entry) +0x98.
-  The `ld` at 0x12db4 loads 8 bytes from a0 (arg0 at entry) +0x88.
+  12 such `ld` accesses load 8 bytes from ?, including `ld` at 0x12d50, `ld` at 0x12d7c, `ld` at 0x12d9c.
   7 such `ld` accesses load 8 bytes from abs 0x9200000001030100, including `ld` at 0x12db8, `ld` at 0x12df4, `ld` at 0x12e28.
-  The `sd` at 0x12dcc stores 8 bytes to a0 (arg0 at entry) +0x310.
-  The `ld` at 0x12dd0 loads 8 bytes from a0 (arg0 at entry) +0xa8.
-  The `sd` at 0x12dd8 stores 8 bytes to a0 (arg0 at entry) +0x320.
-  The `ld` at 0x12de4 loads 8 bytes from a0 (arg0 at entry) +0x90.
-  The `ld` at 0x12df0 loads 8 bytes from a0 (arg0 at entry) +0x80.
-  The `sd` at 0x12e08 stores 8 bytes to a0 (arg0 at entry) +0x308.
-  The `ld` at 0x12e0c loads 8 bytes from a0 (arg0 at entry) +0xa0.
-  The `sd` at 0x12e14 stores 8 bytes to a0 (arg0 at entry) +0x318.
-  2 such `sd` accesses store 8 bytes to ?, including `sd` at 0x12e3c, `sd` at 0x12e48.
+  6 such `sd` accesses store 8 bytes to ?, including `sd` at 0x12dcc, `sd` at 0x12dd8, `sd` at 0x12e08.
   The `ld` at 0x12e4c loads 8 bytes from a0 (arg0 at entry) +0x138.
   The `ld` at 0x12e60 loads 8 bytes from a0 (arg0 at entry) +0x130.
   The `sd` at 0x12e7c stores 8 bytes to a0 (arg0 at entry) +0x3b0.
@@ -4728,14 +4716,14 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `beq` branch at 0x12d58 targets 0x12e18, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0x12d60 targets 0x12d4c, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0x12d68 targets 0x12d74 and is always taken.
-  The `beq` branch at 0x12d70 targets 0x12ddc and is always taken.
-  The `beq` branch at 0x12d88 targets 0x12de4, is taken when a5(=[a0+776]:8) == 0, and falls through when a5(=[a0+776]:8) != 0.
-  The `beq` branch at 0x12d90 targets 0x12ddc and is never taken: its operands are equal constants, so execution always falls through.
-  The `bne` branch at 0x12da0 targets 0x12d70, is taken when a4(=[a0+784]:8) != 0, and falls through when a4(=[a0+784]:8) == 0.
-  The `beq` branch at 0x12dac targets 0x12d70, is taken when t0(=[a0+152]:8) == 0, and falls through when t0(=[a0+152]:8) != 0.
+  The `beq` branch at 0x12d70 targets 0x12ddc, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x12d88 targets 0x12de4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0x12d90 targets 0x12ddc, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `bne` branch at 0x12da0 targets 0x12d70, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `beq` branch at 0x12dac targets 0x12d70, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x12dc4 targets 0x12d70, is taken when a5(?) >= a7(=0x55d4a80) (unsigned), and falls through when a5(?) < a7(=0x55d4a80) (unsigned).
   The `beq` branch at 0x12dd4 targets 0x12d70 and is always taken.
-  The `beq` branch at 0x12de8 targets 0x12d90, is taken when t0(=[a0+144]:8) == 0, and falls through when t0(=[a0+144]:8) != 0.
+  The `beq` branch at 0x12de8 targets 0x12d90, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x12e00 targets 0x12d90, is taken when t3(?) >= a7(=0x55d4a80) (unsigned), and falls through when t3(?) < a7(=0x55d4a80) (unsigned).
   The `beq` branch at 0x12e10 targets 0x12d90 and is always taken.
   The `beq` branch at 0x12e1c targets 0x12d60, is taken when a5(?) == 0, and falls through when a5(?) != 0.

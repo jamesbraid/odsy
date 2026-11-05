@@ -213,7 +213,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x101853fc targets 0x1018524c and is always taken.
   The `beq` branch at 0x10185404 targets 0x101852c0 and is always taken.
   The `beq` branch at 0x1018540c targets 0x10185304 and is always taken.
-  The return at 0x10184b6c has v0 = one of ?, 0x1.
+  The return at 0x10184b6c has v0 = ?.
   The return at 0x10184e84 has v0 = 0x0.
   The return at 0x10184eb0 has v0 = one of ?, -0x1, 0x0.
   The return at 0x10185100 has v0 = 0x0.
