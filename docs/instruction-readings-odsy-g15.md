@@ -1435,7 +1435,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `sd` at 0xa0a0 stores 8 bytes to sym(_assregs) +0x18.
   The `sd` at 0xa0bc stores 8 bytes to sym(_assregs) +0x20.
   The `sd` at 0xa0d8 stores 8 bytes to sym(_assregs) +0x28.
-  Calls assfail via direct with a0=sym(sr_desc+120), a1=sym(sr_desc+158), a2=0x0, a3=a3 at entry (arg3) (`j` at 0xa110).
+  Calls assfail via direct with a0=sym(.data)+904, a1=sym(.data)+923, a2=0x0, a3=a3 at entry (arg3) (`j` at 0xa110).
   Calls longway via direct with a0=?, a1=?, a2=?, a3=a3 at entry (arg3) (`j` at 0xa114).
   The `bne` branch at 0x9c5c targets 0xa114, is taken when k0(?) < at(=0xc0000fbfe0000000) (unsigned), and falls through when k0(?) >= at(=0xc0000fbfe0000000) (unsigned).
   The `bltz` branch at 0x9c78 targets 0x9e18, is taken when k0(?) < 0 (signed), and falls through when k0(?) >= 0 (signed).
@@ -1498,7 +1498,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `sd` at 0xa0a0 stores 8 bytes to sym(_assregs) +0x18.
   The `sd` at 0xa0bc stores 8 bytes to sym(_assregs) +0x20.
   The `sd` at 0xa0d8 stores 8 bytes to sym(_assregs) +0x28.
-  Calls assfail via direct with a0=sym(sr_desc+120), a1=sym(sr_desc+158), a2=0x0, a3=a3 at entry (arg3) (`j` at 0xa110).
+  Calls assfail via direct with a0=sym(.data)+904, a1=sym(.data)+923, a2=0x0, a3=a3 at entry (arg3) (`j` at 0xa110).
   The `beq` branch at 0xa080 targets 0xa088 and is always taken.
   The instructions from 0xa118 to 0xa118 are not reached by any path from the entry, and their branches are not listed.
 - `update_ust_i` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0xa11c (n64).
@@ -1656,7 +1656,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0xa67c-0xa69c (32 bytes).
   It occupies 32 bytes.
-  The `jal` at 0xa694 calls cmn_err with a0=0x0, a1=sym(sr_desc+184), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0xa694 calls cmn_err with a0=0x0, a1=sym(.data)+936, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
 - `get_fpc_csr` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0xa6a0 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
@@ -2195,8 +2195,8 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0xb7cc-0xb84c (128 bytes).
   It occupies 128 bytes.
-  The `lwu` at 0xb80c loads 4 bytes from sym(.data) +0x780.
-  The `beq` branch at 0xb800 targets 0xb844, is taken when a1(=sym(sr_desc+232)) == a2(=sym(sr_desc+344)), and falls through when a1(=sym(sr_desc+232)) != a2(=sym(sr_desc+344)).
+  The `lwu` at 0xb80c loads 4 bytes from sym(.data) +0x3c0.
+  The `beq` branch at 0xb800 targets 0xb844, is taken when a1(=sym(.data)+960) == a2(=sym(.data)+1016), and falls through when a1(=sym(.data)+960) != a2(=sym(.data)+1016).
   The `beq` branch at 0xb814 targets 0xb82c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0xb824 targets 0xb814 and is always taken.
   The `beq` branch at 0xb83c targets 0xb7e8 and is always taken.

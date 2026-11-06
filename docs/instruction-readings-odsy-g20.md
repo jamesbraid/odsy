@@ -3829,7 +3829,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x34c34 calls set_ktext_source [0x34da4] with a0=[sym(master_nasid)]:2, a1=[sym(master_nasid)]:2, a2=?, a3=?.
   The `jal` at 0x34c84 calls copy_kernel [0x34d0c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x34c90 calls set_ktext_source [0x34da4] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x34cfc calls cmn_err with a0=0x0, a1=sym(.rodata)+55744, a2=?, a3=?, a4=sym(.rodata)+45952, a5=[[([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8+34176]:8, a6=sym(_erodata), a7=[[([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8+34184]:8.
+  The `jal` at 0x34cfc calls cmn_err with a0=0x0, a1=sym(.rodata)+55744, a2=?, a3=?, a4=sym(.rodata)+55744, a5=[[([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8+34176]:8, a6=sym(_erodata), a7=[[([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8+34184]:8.
   The `bne` branch at 0x34c20 targets 0x34ce4, is taken when a3(?) < a2(?) (unsigned), and falls through when a3(?) >= a2(?) (unsigned).
   The `bne` branch at 0x34c4c targets 0x34cbc, is taken when s3(=a0) < 0x2 (signed), and falls through when s3(=a0) >= 0x2 (signed).
   The `beq` branch at 0x34c78 targets 0x34c8c, is taken when (t8(?) & t9(?)) == 0, and falls through when (t8(?) & t9(?)) != 0.
@@ -3920,7 +3920,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `sw` at 0x37584 stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `ld` at 0x3759c loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `sd` at 0x375a4 stores 8 bytes to a2 (arg2 at entry) +0x0.
-  The `jal` at 0x375c8 calls cmn_err with a0=0x0, a1=sym(.data)+41056, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0x375c8 calls cmn_err with a0=0x0, a1=sym(.data)+20528, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0x37518 targets 0x3752c, is taken when t2(=[-0x3fe0]:8) == 0, and falls through when t2(=[-0x3fe0]:8) != 0.
   The `beq` branch at 0x37524 targets 0x37530 and is always taken.
   The `bne` branch at 0x37534 targets 0x37550, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).
@@ -3952,7 +3952,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `ld` at 0x376b4 loads 8 bytes from a2 (arg2 at entry) +0x0.
   The `sd` at 0x376bc stores 8 bytes to a0 (arg0 at entry) +0x0.
   The `lw` at 0x376f8 loads 4 bytes from abs 0x9600000000000000.
-  The `jal` at 0x376e0 calls cmn_err with a0=0x0, a1=sym(.data)+41082, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0x376e0 calls cmn_err with a0=0x0, a1=sym(.data)+20541, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0x37630 targets 0x37644, is taken when t2(=[-0x3fe0]:8) != 0, and falls through when t2(=[-0x3fe0]:8) == 0.
   The `beq` branch at 0x3763c targets 0x37648 and is always taken.
   The `bne` branch at 0x3764c targets 0x37668, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).

@@ -322,7 +322,7 @@ Each entry summarizes selected non-stack accesses, calls with argument slots, co
   The `lh` at 0xc0f0 loads 2 bytes from a0 (arg0 at entry) +0x0.
   The `lw` at 0xc108 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `ld` at 0xc120 loads 8 bytes from a0 (arg0 at entry) +0x0.
-  The `jal` at 0xc144 calls cmn_err with a0=0x0, a1=sym(sr_desc+344), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0xc144 calls cmn_err with a0=0x0, a1=sym(.data)+1016, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xc0d0 targets 0xc0e4, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).
   The `beq` branch at 0xc0dc targets 0xc14c and is always taken.
   The `bne` branch at 0xc0e8 targets 0xc0fc, is taken when a1 != at(=0x2), and falls through when a1 == at(=0x2).
@@ -357,7 +357,7 @@ Each entry summarizes selected non-stack accesses, calls with argument slots, co
   The `sw` at 0xc258 stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `ld` at 0xc270 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `sd` at 0xc278 stores 8 bytes to a2 (arg2 at entry) +0x0.
-  The `jal` at 0xc29c calls cmn_err with a0=0x0, a1=sym(sr_desc+362), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0xc29c calls cmn_err with a0=0x0, a1=sym(.data)+1025, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0xc1ec targets 0xc200, is taken when t2(=[-0x3fe0]:8) == 0, and falls through when t2(=[-0x3fe0]:8) != 0.
   The `beq` branch at 0xc1f8 targets 0xc204 and is always taken.
   The `bne` branch at 0xc208 targets 0xc224, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).
@@ -392,7 +392,7 @@ Each entry summarizes selected non-stack accesses, calls with argument slots, co
   The `sw` at 0xc39c stores 4 bytes to a0 (arg0 at entry) +0x0.
   The `sd` at 0xc3b4 stores 8 bytes to a0 (arg0 at entry) +0x0.
   The `lw` at 0xc410 loads 4 bytes from abs 0x9000000000000000.
-  The `jal` at 0xc3d8 calls cmn_err with a0=0x0, a1=sym(sr_desc+388), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0xc3d8 calls cmn_err with a0=0x0, a1=sym(.data)+1038, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xc364 targets 0xc378, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).
   The `beq` branch at 0xc370 targets 0xc3e0 and is always taken.
   The `bne` branch at 0xc37c targets 0xc390, is taken when a1 != at(=0x2), and falls through when a1 == at(=0x2).
@@ -427,7 +427,7 @@ Each entry summarizes selected non-stack accesses, calls with argument slots, co
   The `ld` at 0xc518 loads 8 bytes from a2 (arg2 at entry) +0x0.
   The `sd` at 0xc520 stores 8 bytes to a0 (arg0 at entry) +0x0.
   The `lw` at 0xc57c loads 4 bytes from abs 0x9000000000000000.
-  The `jal` at 0xc544 calls cmn_err with a0=0x0, a1=sym(sr_desc+408), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0xc544 calls cmn_err with a0=0x0, a1=sym(.data)+1048, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xc4b0 targets 0xc4cc, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).
   The `beq` branch at 0xc4c4 targets 0xc54c and is always taken.
   The `bne` branch at 0xc4d0 targets 0xc4ec, is taken when a1 != at(=0x2), and falls through when a1 == at(=0x2).
@@ -455,7 +455,7 @@ Each entry summarizes selected non-stack accesses, calls with argument slots, co
   The `lb` at 0xc634 loads 1 byte from a0 (arg0 at entry) +0x0.
   The `lh` at 0xc64c loads 2 bytes from a0 (arg0 at entry) +0x0.
   The `lw` at 0xc664 loads 4 bytes from a0 (arg0 at entry) +0x0.
-  The `jal` at 0xc688 calls cmn_err with a0=0x0, a1=sym(sr_desc+436), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0xc688 calls cmn_err with a0=0x0, a1=sym(.data)+1062, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xc62c targets 0xc640, is taken when a1 != at(=0x1), and falls through when a1 == at(=0x1).
   The `beq` branch at 0xc638 targets 0xc690 and is always taken.
   The `bne` branch at 0xc644 targets 0xc658, is taken when a1 != at(=0x2), and falls through when a1 == at(=0x2).
@@ -625,7 +625,7 @@ Each entry summarizes selected non-stack accesses, calls with argument slots, co
   Range: 0xcc54-0xd070 (1052 bytes).
   It occupies 1052 bytes.
   The `ld` at 0xcc58 loads 8 bytes from abs 0xffffffffffffc3c0.
-  Calls assfail via direct with a0=sym(sr_desc+1192), a1=sym(exc_values+18), a2=0x0, a3=a3 at entry (arg3) (`j` at 0xcc88).
+  Calls assfail via direct with a0=sym(.data)+1440, a1=sym(.data)+1453, a2=0x0, a3=a3 at entry (arg3) (`j` at 0xcc88).
   The instructions from 0xcc90 to 0xd06c are not reached by any path from the entry, and their branches are not listed.
 - `ecommon` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0xd070 (n64).
   Evidence grade: inferred.

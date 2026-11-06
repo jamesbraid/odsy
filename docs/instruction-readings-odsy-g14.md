@@ -1453,7 +1453,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x1940-0x1af4 (436 bytes).
   It occupies 436 bytes.
-  Calls .text+13072 via reloc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x1984).
+  Calls .text+6536 via reloc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x1984).
   The instructions from 0x198c to 0x1af0 are not reached by any path from the entry, and their branches are not listed.
 - `proc1` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x1adc (n64).
   Evidence grade: inferred.

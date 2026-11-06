@@ -1098,7 +1098,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x11230-0x113dc (428 bytes).
   It occupies 428 bytes.
-  The `ld` at 0x11250 loads 8 bytes from (sym(.rodata)+8848 + (a1 << 0x3)) +0x0.
+  The `ld` at 0x11250 loads 8 bytes from (sym(.rodata)+4424 + (a1 << 0x3)) +0x0.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x11254).
   The instructions from 0x1125c to 0x113d8 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0x11254 uses a jump table whose successors are unresolved.
@@ -1107,8 +1107,8 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x113e0-0x116fc (796 bytes).
   It occupies 796 bytes.
-  The `ld` at 0x11408 loads 8 bytes from table(sym(.rodata)+9360) +0x0.
-  The `ld` at 0x11430 loads 8 bytes from (sym(.rodata)+9616 + (a1 << 0x3)) +0x0.
+  The `ld` at 0x11408 loads 8 bytes from table(sym(.rodata)+4680) +0x0.
+  The `ld` at 0x11430 loads 8 bytes from (sym(.rodata)+4808 + (a1 << 0x3)) +0x0.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x11434).
   The `bne` branch at 0x113e0 targets 0x11414, is taken when a2 != 0, and falls through when a2 == 0.
   The instructions from 0x1143c to 0x116f8 are not reached by any path from the entry, and their branches are not listed.
@@ -1137,9 +1137,9 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Calls ecommon via direct with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`j` at 0x11770).
   Calls ecommon via direct with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`j` at 0x11808).
   Calls ecommon via direct with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`j` at 0x1184c).
-  The `jal` at 0x11918 calls printf with a0=sym(cache_desc+456), a1=?, a2=sp, a3=?.
-  The `jal` at 0x1193c calls printf with a0=sym(scache_data_ecc+144), a1=ra at entry, a2=[-0x3fb1]:1, a3=?.
-  The `jal` at 0x11970 calls panic with a0=sym(scache_data_ecc+184), a1=?, a2=?, a3=?.
+  The `jal` at 0x11918 calls printf with a0=sym(.data)+7600, a1=?, a2=sp, a3=?.
+  The `jal` at 0x1193c calls printf with a0=sym(.data)+7908, a1=ra at entry, a2=[-0x3fb1]:1, a3=?.
+  The `jal` at 0x11970 calls panic with a0=sym(.data)+7928, a1=?, a2=?, a3=?.
   Calls _baduk via direct with a0=?, a1=?, a2=?, a3=? (`j` at 0x11978).
   The `beq` branch at 0x11704 targets 0x11810, is taken when k0(=[-0x3fb1]:1) == 0, and falls through when k0(=[-0x3fb1]:1) != 0.
   The `beq` branch at 0x1170c targets 0x117a8, is taken when k0(=[-0x3fb1]:1-1) == 0, and falls through when k0(=[-0x3fb1]:1-1) != 0.
@@ -1184,9 +1184,9 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lb` at 0x11904 loads 1 byte from abs 0xffffffffffffc04f.
   The `ld` at 0x1190c loads 8 bytes from abs 0xffffffffffffc3c0.
   The `sb` at 0x11910 stores 1 byte to abs 0xffffffffffffc04f.
-  The `jal` at 0x11918 calls printf with a0=sym(scache_data_ecc+14), a1=?, a2=sp, a3=?.
-  The `jal` at 0x1193c calls printf with a0=sym(scache_data_ecc+144), a1=ra at entry, a2=[-0x3fb1]:1, a3=?.
-  The `jal` at 0x11970 calls panic with a0=sym(scache_data_ecc+184), a1=?, a2=?, a3=?.
+  The `jal` at 0x11918 calls printf with a0=sym(.data)+7843, a1=?, a2=sp, a3=?.
+  The `jal` at 0x1193c calls printf with a0=sym(.data)+7908, a1=ra at entry, a2=[-0x3fb1]:1, a3=?.
+  The `jal` at 0x11970 calls panic with a0=sym(.data)+7928, a1=?, a2=?, a3=?.
   Calls _baduk via direct with a0=?, a1=?, a2=?, a3=? (`j` at 0x11978).
   The `beq` branch at 0x118d8 targets 0x118e0 and is always taken.
 - `_cvtd_s` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x11980 (n64).
@@ -1620,7 +1620,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x13780-0x137a0 (32 bytes).
   It occupies 32 bytes.
-  The `jal` at 0x13798 calls cmn_err with a0=0x0, a1=sym(.data)+16128, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0x13798 calls cmn_err with a0=0x0, a1=sym(.data)+8064, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
 - `slave_loop` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x13800 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
@@ -2335,7 +2335,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x16390-0x166bc (812 bytes).
   It occupies 812 bytes.
-  The `ld` at 0x163b0 loads 8 bytes from (sym(.rodata)+22080 + (a0 << 0x3)) +0x0.
+  The `ld` at 0x163b0 loads 8 bytes from (sym(.rodata)+11040 + (a0 << 0x3)) +0x0.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x163b4).
   The instructions from 0x163bc to 0x166b8 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0x163b4 uses a jump table whose successors are unresolved.
@@ -2432,8 +2432,8 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x169b0-0x16e0c (1116 bytes).
   It occupies 1116 bytes.
-  The `ld` at 0x169d8 loads 8 bytes from table(sym(.rodata)+22592) +0x0.
-  The `ld` at 0x16a00 loads 8 bytes from (sym(.rodata)+22848 + (a0 << 0x3)) +0x0.
+  The `ld` at 0x169d8 loads 8 bytes from table(sym(.rodata)+11296) +0x0.
+  The `ld` at 0x16a00 loads 8 bytes from (sym(.rodata)+11424 + (a0 << 0x3)) +0x0.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x16a04).
   The `bne` branch at 0x169b0 targets 0x169e4, is taken when a1 != 0, and falls through when a1 == 0.
   The instructions from 0x16a0c to 0x16e08 are not reached by any path from the entry, and their branches are not listed.
@@ -2703,7 +2703,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `sd` at 0x17d2c stores 8 bytes to ?.
   The `jal` at 0x17ca8 calls kmem_zalloc with a0=0x1000, a1=0x900, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x17cbc calls ecc_cleanRegion [0x17c48] with a0=ret(kmem_zalloc), a1=0x1000, a2=?, a3=?.
-  The `jal` at 0x17d4c calls cmn_err with a0=0x0, a1=sym(.rodata)+11680, a2=sym(.rodata)+23360, a3=?.
+  The `jal` at 0x17d4c calls cmn_err with a0=0x0, a1=sym(.rodata)+11680, a2=sym(.rodata)+11680, a3=?.
   The `beq` branch at 0x17cb0 targets 0x17d30, is taken when v0(=ret(kmem_zalloc)) == 0, and falls through when v0(=ret(kmem_zalloc)) != 0.
   The `beq` branch at 0x17d54 targets 0x17cbc and is always taken.
   The return at 0x17d28 has v0 = ?.
@@ -2842,7 +2842,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lw` at 0x18548 loads 4 bytes from a2 (arg2 at entry) +0x18.
   The `ld` at 0x1854c loads 8 bytes from a2 (arg2 at entry) +0x0.
   The `jal` at 0x1856c calls ecc_display [0x17890] with a0=0x14, a1=a0 at entry (arg0), a2=[a2+24], a3=[a2]:8, a4=a2+8.
-  The `jal` at 0x1859c calls cmn_err with a0=0x10, a1=sym(.rodata)+11680, a2=a0 at entry (arg0), a3=a1+952, a4=sym(.rodata)+23360.
+  The `jal` at 0x1859c calls cmn_err with a0=0x10, a1=sym(.rodata)+11680, a2=a0 at entry (arg0), a3=a1+952, a4=sym(.rodata)+11680.
   The return at 0x185ac has v0 = ret(cmn_err).
 - `ecc_log` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x185b4 (n64).
   Evidence grade: inferred.
@@ -2943,7 +2943,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
   Range: 0x18a34-0x18a74 (64 bytes).
   It occupies 64 bytes.
-  The `jal` at 0x18a58 calls cmn_err with a0=0x5, a1=sym(.rodata)+11680, a2=sym(.rodata)+23360, a3=a3 at entry (arg3).
+  The `jal` at 0x18a58 calls cmn_err with a0=0x5, a1=sym(.rodata)+11680, a2=sym(.rodata)+11680, a3=a3 at entry (arg3).
   The `jal` at 0x18a60 calls sthread_exit with a0=?, a1=?, a2=?, a3=?.
   The return at 0x18a6c has v0 = ret(sthread_exit).
 - `dumptlb` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x18a74 (n64).
@@ -3130,7 +3130,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   Calls exception_exit via direct with a0=a0 at entry (arg0), a1=?, a2=?, a3=[-0x3fe8]:8 (`j` at 0x18ee8).
   Calls exception_exit via direct with a0=a0 at entry (arg0), a1=[-0x3fe8]:8, a2=[-0x3ba0]:8, a3=a3 at entry (arg3) (`j` at 0x18ef0).
   Calls VEC_trap via direct with a0=a0 at entry (arg0), a1=0x8c, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`j` at 0x18ef8).
-  The `jal` at 0x18f20 calls cmn_err with a0=0x0, a1=sym(.data)+31904, a2=?, a3=?.
+  The `jal` at 0x18f20 calls cmn_err with a0=0x0, a1=sym(.data)+15952, a2=?, a3=?.
   The `beq` branch at 0x18bc4 targets 0x18f00, is taken when (s0 & 0x18) == 0, and falls through when (s0 & 0x18) != 0.
   The `bne` branch at 0x18bdc targets 0x18ef8, is taken when a1(?) != at(=0x1), and falls through when a1(?) == at(=0x1).
   The `beq` branch at 0x18c04 targets 0x18ef0, is taken when a2(=[-0x3ba0]:8) == a1(=[-0x3fe8]:8), and falls through when a2(=[-0x3ba0]:8) != a1(=[-0x3fe8]:8).
