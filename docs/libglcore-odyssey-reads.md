@@ -4101,9 +4101,22 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdyGetFromHardware` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 256 bytes
   - **Established effects.** Its stores to absolute address `0x10000` include one of `0x4c0` through `0x4c3`, the word loaded through argument 0 at `+0x192e0` and offset `+0x7c` incremented by one, and `0x10a5a` (`ld` at 0x321979c; `lw` at 0x32197c0; `addiu` at 0x32197d4; `sw` at 0x3219800, 0x3219804, 0x321980c). It also stores the word at argument 0 `+0x19304` to that address (`lw` at 0x32197a4, `sw` at 0x3219810).
   - The `beq` at 0x3219824 exits when the reloaded word at the indirect `+0x7c` location equals the incremented value; otherwise execution falls through to a halfword comparison (`lw` at 0x3219820; `jr` at 0x3219868; `lhu` at 0x321982c). The `bne` at 0x3219860 loops when its two operands differ, with both compared values Unknown in the facts report. The hardware role of the absolute address and the broader purpose of this routine are Unknown.
-- `__glOdyHardAccum24` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 472 bytes
-  - **Established effects.** It loads a pointer from absolute `0x1020` and tests the byte at that pointer `+0x144b9` (`ld` at 0x31e9d88, `lbu` at 0x31e9d9c). When the `beqz` at 0x31e9dbc is taken because the byte is zero, it calls `initBuffersForAccum` (`bgezall` at 0x31e9f0c); it then calls `initAccumGfxImages` and `initScratchBufAccum` (`bgezall` at 0x31e9dcc, `bgezall` at 0x31e9ddc). The `beqz` at 0x31e9de4 exits when the latter returns zero (`jr` at 0x31e9ee0).
-  - When that `beqz` falls through for a nonzero result, the routine clears bit `0x100000` in the word at the loaded pointer `+0xb9f4` (`lw` at 0x31e9dec, `lui` at 0x31e9df0, `nor` at 0x31e9dfc, `and` at 0x31e9e00, `sw` at 0x31e9e04). The roles of that word and the absolute pointer slot, and the broader purpose of this accumulation path, are Unknown.
+- `__glOdyHardAccum24` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x31e9d80
+  The `lbu` at 0x31e9d9c reads a byte from [0x1020]:8 +0x144b9.
+  The `lw` at 0x31e9dec reads a word from [0x1020]:8 +0xb9f4.
+  The `sw` at 0x31e9e04 stores a word at [0x1020]:8 +0xb9f4.
+  The `sw` at 0x31e9e34 stores a word at absolute 0x1030 with value 0x2.
+  The `sw` at 0x31e9e40 stores a word at [0x1020]:8 +0x14048 with value [[0x1020]:8+82204].
+  The `bgezall` at 0x31e9dcc calls `initAccumGfxImages` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x31e9ddc calls `initScratchBufAccum` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x31e9ef4 calls `hardLoadAccumulate24` with a0=a0 at entry (arg0), a1=0xffffffffffefffff, a2=unknown, a3=unknown, a4=0x100, a7=0x104; fp f13=unknown.
+  The `bgezall` at 0x31e9f0c calls `initBuffersForAccum` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x31e9f20 calls `hardMult24` with a0=0x102, a1=0xffffffffffefffff, a2=unknown, a3=unknown, a4=0x100, a5=0x101, a6=0x103, a7=0x104; fp f12=unknown on paths where the `beq` at 0x31e9e94 is taken.
+  The `bgezall` at 0x31e9f34 calls `hardAdd24` with a0=0x102, a1=0xffffffffffefffff, a2=unknown, a3=unknown, a4=0x100, a5=0x101, a6=0x103, a7=0x104; fp f12=unknown on paths where the `beq` at 0x31e9e9c is taken.
+  The `bgezall` at 0x31e9f48 calls `hardReturn24` with a0=0x102, a1=0xffffffffffefffff, a2=unknown, a3=unknown, a4=0x100, a5=0x101, a7=0x104; fp f12=unknown on paths where the `beq` at 0x31e9e88 is taken.
+  The instructions from 0x31e9ee8 to 0x31e9ee8 are not reached by any path from the entry, and their branches are not listed.
+  The `jr` at 0x31e9ec4 returns v0=unknown.
+  The `jr` at 0x31e9ee0 returns v0=unknown.
 - `LoseCurrent` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 420 bytes
   - **Established effects.** The `bne` at 0x3200310 returns zero when the word at argument 0 `+0xdd4` differs from `0x1c00` (`lw` at 0x32002f4, `addiu` at 0x32002f8, `move` at 0x3200480, `jr` at 0x320048c). If that branch falls through, the `beq` at 0x3200320 also returns zero when the word at absolute `0x1030` is one (`lw` at 0x3200318; `addiu` at 0x320031c; `jr` at 0x320048c).
   - Otherwise it calls `__glLoseCurrentBuffers` with argument 1 zero (`jalr` at 0x320032c, `move` at 0x3200330), copies the word at `0x1030` to argument 0 `+0xdd0` (`lw` at 0x3200338, `sw` at 0x3200340), and calls `FastDispatchInstall` while clearing the doubleword at absolute `0x1020` in the delay slot (`bgezall` at 0x3200348, `sd` at 0x320034c). The roles of those absolute locations and the broader purpose of this routine are Unknown.
@@ -4144,9 +4157,31 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdyim_FullScreen` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
   - **Established effects.** It loads a doubleword from absolute 0x1020 (`ld` at 0x321c6e8). The `beqz` takes the zero-entry-argument-1 path, which clears the word at that value +0x18e78; fall-through writes 1 there (`beqz` at 0x321c6f4; `sw` at 0x321c760, 0x321c700; `addiu` at 0x321c6fc).
   - Both paths call `__glOdysseyIoctl` with the loaded value, 0x3f1 and entry sp -0x30 as the first three arguments (`daddiu` at 0x321c73c; `addiu` at 0x321c740; `jalr` at 0x321c74c). The field, request and routine's wider roles are Unknown.
-- `__glOdyim_IglooInterfaceSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 300 bytes
-  - **Established effects.** The `beq` selects a call to `__glOdyim_FullScreen` when entry argument 0 equals 0x819e (`dli` at 0x321c7a4; `beq` at 0x321c7a8; `bgezall` at 0x321c860). That call receives the word at entry argument 1 and the byte at argument 1 +0x7 as arguments 0 and 1 (`lw` at 0x321c864; `lbu` at 0x321c85c).
-  - The next `beq` selects `__glOdyim_lmcolor` when entry argument 0 equals 0x81a3 (`dli` at 0x321c7ac; `beq` at 0x321c7b0; `bgezall` at 0x321c870). Its argument 0 is the byte at entry argument 1 +0x3 (`lbu` at 0x321c874). The selector and routine's wider roles are Unknown.
+- `__glOdyim_IglooInterfaceSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x321c770
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x321c778).
+  A word is read from `a1 (arg1 at entry) +0x0` (`lw` at 0x321c7e4).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x321c7f4).
+  There are 2 word stores to `[0x1020]:8 +0x9e88`, including `sw` at 0x321c808, 0x321c898.
+  A doubleword is read from `[0x1020]:8 +0x48f8` (`ld` at 0x321c80c).
+  A byte is read from `a1 (arg1 at entry) +0x7` (`lbu` at 0x321c85c).
+  A byte is read from `a1 (arg1 at entry) +0x3` (`lbu` at 0x321c874).
+  The `beq` at 0x321c794 branches to 0x321c7e4 when `a0 == at(=0x81a1)` and falls through when `a0 != at(=0x81a1)`.
+  The `beq` at 0x321c7a0 branches to 0x321c83c when `a0 == v1(=0x81a0)` and falls through when `a0 != v1(=0x81a0)`.
+  The `beq` at 0x321c7a8 branches to 0x321c854 when `a0 == a1(=0x819e)` and falls through when `a0 != a1(=0x819e)`.
+  The `beq` at 0x321c7b0 branches to 0x321c870 when `a0 == a2(=0x81a3)` and falls through when `a0 != a2(=0x81a3)`.
+  The `beq` at 0x321c7bc branches to 0x321c7d8 when `a0 == a4(=0x819f)` and falls through when `a0 != a4(=0x819f)`.
+  The `beq` at 0x321c7c4 branches to 0x321c828 when `a0 == a5(=0x81a2)` and falls through when `a0 != a5(=0x81a2)`.
+  The `beq` at 0x321c7f0 branches to 0x321c880 when `a6(=[a1]) == 0` and falls through when `a6(=[a1]) != 0`.
+  The `beq` at 0x321c804 branches to 0x321c7d4 when `(a2(=([[0x1020]:8+40584] | 0x2)) & 0x1) == 0` and falls through when `(a2(=([[0x1020]:8+40584] | 0x2)) & 0x1) != 0`.
+  The `bne` at 0x321c810 branches to 0x321c7d4 when `a5(=[[0x1020]:8+18680]:8) != a6(=0x3301ad0)` and falls through when `a5(=[[0x1020]:8+18680]:8) == a6(=0x3301ad0)`.
+  The `jalr` at 0x321c7cc calls `__glSetError` with `a0=0x500, a1=0x819e, a2=0x81a3, a3=[0x1020]:8, a4=0x819f, a5=0x81a2`.
+  The `jalr` at 0x321c818 calls `__glClampAndScaleColor` with `a0=[0x1020]:8, a1=[[0x1020]:8+40584], a2=([[0x1020]:8+40584] | 0x2), a3=[0x1020]:8, a5=[[0x1020]:8+18680]:8, a6=0x3301ad0`.
+  The `jalr` at 0x321c82c calls `__glOdysseyInitIgloo` with `a0=[0x1020]:8, a1=0x819e, a2=0x81a3, a3=[0x1020]:8, a4=0x819f, a5=0x81a2`.
+  The `bgezall` at 0x321c844 calls `__glOdyim_Swaptmesh` with `a0=a0 at entry (arg0), a1=0x819e, a2=a2 at entry (arg2), a3=[0x1020]:8, a4=a1 at entry (arg1), a5=0x81a2`.
+  The `bgezall` at 0x321c860 calls `__glOdyim_FullScreen` with `a0=[a1], a1=[a1+7]:1, a2=0x81a3, a3=[0x1020]:8, a4=a1 at entry (arg1), a5=0x81a2`.
+  The `bgezall` at 0x321c870 calls `__glOdyim_lmcolor` with `a0=[a1+3]:1, a1=0x819e, a2=0x81a3, a3=[0x1020]:8, a4=a1 at entry (arg1), a5=0x81a2`.
+  At `jr` at 0x321c7dc, the return value is `unknown`.
+  At `jr` at 0x321c894, the return value is `0x17a748`.
 - `__glOdyim_ListParameterfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 236 bytes
   - **Established effects.** If the word at absolute 0x1030 equals 1, `beq` takes the path calling `__glSetError` with 0x502 (`lw` at 0x3206e68; `addiu` at 0x3206e70, 0x3206f40; `beq` at 0x3206e88; `jalr` at 0x3206f3c). When that branch falls through and the next `beq` falls through because entry argument 1 differs from 0x8182, the routine calls `__glSetError` with 0x500 (`dli` at 0x3206e90; `beq` at 0x3206e94; `jalr` at 0x3206e9c; `addiu` at 0x3206ea0).
   - On the matching selector path, `beqz` falls through when entry argument 0 is nonzero, reaching `__glNamesLockData` (`beqz` at 0x3206eac; `jalr` at 0x3206ec0). A zero return takes the following `beqz` past the floating-point load and store (`beqz` at 0x3206ec8; `lwc1` at 0x3206ed0; `swc1` at 0x3206f0c). On fall-through it stores a floating-point word at the return value +0x48 in the delay slot of the call to `__glNamesUnlockData` (`jalr` at 0x3206f08; `swc1` at 0x3206f0c). The field, absolute word and routine's wider roles are Unknown.
@@ -4162,18 +4197,66 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdyim_IglooVertex2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 320 bytes
   - **Established effects.** The `beqz` at 0x326f674 takes the path to `__glOdyim_Vertex2d` when its operand is zero (`jalr` at 0x326f6e8); that operand's source is Unknown in the facts output. The `beq` at 0x326f684 selects `__glOdyim_Vertex2d_smallw` when the operand equals two (`addiu` at 0x326f670, `jalr` at 0x326f73c).
   - The `beq` at 0x326f658 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x326f708). When reached, `beq` at 0x326f69c takes the `AfterIgloo` path if another Unknown value equals 3 (`bgezall` at 0x326f728). The role of this dispatch remains Unknown.
-- `__glOdyim_IglooVertex2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Established effects.** When the `beqz` at 0x326f7ac takes its zero-operand path, the routine calls `__glOdyim_Vertex2dv` with entry argument 0 (`jalr` at 0x326f814). If that branch falls through and the `beq` at 0x326f7b4 is taken for operand one, the same call follows (`addiu` at 0x326f7b0). The operand's source is Unknown in the facts output.
-  - The `beq` at 0x326f790 takes the path calling `BeforeIgloo` when an Unknown value equals 3 (`bgezall` at 0x326f830). On reaching `beq` at 0x326f7d4, equality between 3 and another Unknown value selects `AfterIgloo` (`bgezall` at 0x326f84c). The hardware role of this vector dispatch is Unknown.
+- `__glOdyim_IglooVertex2dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326f760
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x326f760).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x326f774).
+  A word is read from `unknown base` (`lw` at 0x326f7a4).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x326f7f0).
+  The `beq` at 0x326f790 branches to 0x326f824 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x326f7ac branches to 0x326f810 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x326f7b4 branches to 0x326f814 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x326f7bc branches to 0x326f85c when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x326f7c4 branches to 0x326f7f0 when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x326f7d4 branches to 0x326f848 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x326f7f8 branches to 0x326f86c when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x326f800 calls `__glOdyim_Vertex2dv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x326f814 calls `__glOdyim_Vertex2dv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x326f830 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x326f84c calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x326f85c calls `__glOdyim_Vertex2dv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x326f870 calls `__glOdyim_Vertex2dv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  At `jr` at 0x326f7e8, the return value is `unknown`.
 - `__glOdyim_IglooVertex2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 320 bytes
   - **Established effects.** After the `beq` at 0x326f8ec selects its operand-three path (`addiu` at 0x326f898), the `bgez` at 0x326f920 selects `__glOdyim_Vertex2f_mag_line0` when its shifted operand is nonnegative (`jalr` at 0x326f9b0). On the negative fall-through it calls `__glOdyim_Vertex2f_mag` (`jalr` at 0x326f930); the operand's role is Unknown.
   - The taken `beq` at 0x326f8b8 calls `BeforeIgloo` when an Unknown value equals 3 (`bgezall` at 0x326f968). When reached, `beq` at 0x326f8fc selects `AfterIgloo` for equality between 3 and another Unknown value (`bgezall` at 0x326f988). The broader purpose of this float dispatch is Unknown.
-- `__glOdyim_IglooVertex2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Established effects.** The `beq` at 0x326fa1c takes the path to `__glOdyim_Vertex2fv_smallw` when its otherwise Unknown operand equals two (`addiu` at 0x326fa08, `jalr` at 0x326fac0). If that branch falls through, the `beq` at 0x326fa24 tests the operand against three (`addiu` at 0x326f9d8).
-  - On its taken path, the `bgez` at 0x326fa54 selects `__glOdyim_Vertex2fv_mag_line0` for a nonnegative shifted value and falls through to `__glOdyim_Vertex2fv_mag` for a negative value (`jalr` at 0x326fad0, `jalr` at 0x326fa60). The shifted value's role and the vector routine's broader hardware effect are Unknown.
-- `__glOdyim_IglooVertex2i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 296 bytes
-  - **Established effects.** The `beqz` at 0x326fb2c takes the `__glOdyim_Vertex2i` path for a zero operand (`jalr` at 0x326fb90); the facts output does not resolve the operand's source. The subsequent `beq` at 0x326fb3c instead takes the `__glOdyim_Vertex2i_smallw` path for operand two (`addiu` at 0x326fb28, `jalr` at 0x326fbe4).
-  - The `beq` at 0x326fb10 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x326fbb0). When reached, `beq` at 0x326fb54 selects `AfterIgloo` if another Unknown value equals 3 (`bgezall` at 0x326fbd4). The integer dispatch's broader role is Unknown.
+- `__glOdyim_IglooVertex2fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326f9c0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x326f9c0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x326f9d4).
+  A word is read from `unknown base` (`lw` at 0x326fa04).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x326fa4c).
+  The `beq` at 0x326f9f0 branches to 0x326fa84 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x326fa0c branches to 0x326fa70 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x326fa14 branches to 0x326fa74 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x326fa1c branches to 0x326fac0 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x326fa24 branches to 0x326fa4c when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x326fa34 branches to 0x326faa8 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x326fa54 branches to 0x326fad0 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x326fa60 calls `__glOdyim_Vertex2fv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x326fa74 calls `__glOdyim_Vertex2fv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x326fa90 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x326fab0 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x326fac0 calls `__glOdyim_Vertex2fv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x326fad0 calls `__glOdyim_Vertex2fv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  At `jr` at 0x326fa44, the return value is `unknown`.
+- `__glOdyim_IglooVertex2i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326fae0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x326fae0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x326faf4).
+  The base for the word load is unknown (`lw` at 0x326fb24).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x326fb6c).
+  The `beq` at 0x326fb10 branches to 0x326fba0 when `a5(=0x3) == at(unknown)` and falls through when `a5(=0x3) != at(unknown)`.
+  The `beq` at 0x326fb2c branches to 0x326fb8c when `a3(unknown) == 0` and falls through when `a3(unknown) != 0`.
+  The `beq` at 0x326fb34 branches to 0x326fb90 when `a3(unknown) == a4(=0x1)` and falls through when `a3(unknown) != a4(=0x1)`.
+  The `beq` at 0x326fb3c branches to 0x326fbe4 when `a3(unknown) == a6(=0x2)` and falls through when `a3(unknown) != a6(=0x2)`.
+  The `beq` at 0x326fb44 branches to 0x326fb6c when `a3(unknown) == a5(=0x3)` and falls through when `a3(unknown) != a5(=0x3)`.
+  The `beq` at 0x326fb54 branches to 0x326fbcc when `a5(=0x3) == a7(unknown)` and falls through when `a5(=0x3) != a7(unknown)`.
+  The `bgez` at 0x326fb74 branches to 0x326fbf4 when `t0(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `t0(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x326fb7c calls `__glOdyim_Vertex2i_mag` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `jalr` at 0x326fb90 calls `__glOdyim_Vertex2i` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `bgezall` at 0x326fbb0 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8, a5=0x3`.
+  The `bgezall` at 0x326fbd4 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a5=0x3`.
+  The `jalr` at 0x326fbe4 calls `__glOdyim_Vertex2i_smallw` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `jalr` at 0x326fbf8 calls `__glOdyim_Vertex2i_mag_line0` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  At `jr` at 0x326fb64, the returned value is unknown.
 - `__glOdyle_TexSubImage3DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 452 bytes
 
   **Established effects.** It loads the doubleword at absolute 0x1020 and accesses a word at offset 0x594 from that value before and after an indirect call (`ld` at 0x3205700; `lw` at 0x320571c; `sw` at 0x320578c; `sw` at 0x320585c). The call target is loaded from absolute 0x16b8 (`ld` at 0x3205818; `jalr` at 0x320581c). The target, the word’s hardware role and the broader effect of this subimage routine are Unknown.
@@ -4205,21 +4288,85 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 ## 64-bit IP30 library: vertex and texture span paths
 
-- `__glOdyim_IglooVertex2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Observed:** The `beqz` at 0x326fc5c takes the path to `__glOdyim_Vertex2iv` for zero (`jalr` at 0x326fcc8); the facts output leaves that operand's source Unknown. When the subsequent `beq` at 0x326fc6c is reached and taken for operand two, the routine calls `__glOdyim_Vertex2iv_smallw` (`addiu` at 0x326fc58, `jalr` at 0x326fd10).
-  - The `beq` at 0x326fc40 takes the `BeforeIgloo` path when its Unknown operand equals 3 (`bgezall` at 0x326fce4). When reached, `beq` at 0x326fc84 selects `AfterIgloo` if its Unknown operand equals 3 (`bgezall` at 0x326fd00). The role of this dispatch remains Unknown.
-- `__glOdyim_IglooVertex2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 296 bytes
-  - **Observed:** When reached, the `beq` at 0x326fd94 takes its operand-three path (`addiu` at 0x326fd48); on that path `bgez` at 0x326fdc4 selects `__glOdyim_Vertex2s_mag_line0` for a nonnegative shifted value, and falls through to `__glOdyim_Vertex2s_mag` for a negative one (`jalr` at 0x326fe48, `jalr` at 0x326fdd0). Both operand roles are Unknown.
-  - The `beq` at 0x326fd60 takes the `BeforeIgloo` path when its Unknown operand equals 3 (`bgezall` at 0x326fe04). If reached, `beq` at 0x326fda4 selects `AfterIgloo` when its Unknown operand equals 3 (`bgezall` at 0x326fe28). The broader function of these calls is Unknown.
-- `__glOdyim_IglooVertex2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Observed:** On a zero operand, the taken `beqz` at 0x326feac leads to `__glOdyim_Vertex2sv`, passing entry argument 0 (`jalr` at 0x326ff14). The facts output does not resolve that operand's source. On reaching it with operand two, the taken `beq` at 0x326febc selects `__glOdyim_Vertex2sv_smallw` (`addiu` at 0x326fea8, `jalr` at 0x326ff60).
-  - The taken `beq` at 0x326fe90 reaches `BeforeIgloo` when its Unknown operand equals 3 (`bgezall` at 0x326ff30). On reaching `beq` at 0x326fed4, equality between its Unknown operand and 3 selects `AfterIgloo` (`bgezall` at 0x326ff50). The purpose of this vertex dispatch is Unknown.
+- `__glOdyim_IglooVertex2iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326fc10
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x326fc10).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x326fc24).
+  A word is read from `unknown base` (`lw` at 0x326fc54).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x326fca0).
+  The `beq` at 0x326fc40 branches to 0x326fcd8 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x326fc5c branches to 0x326fcc4 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x326fc64 branches to 0x326fcc8 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x326fc6c branches to 0x326fd10 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x326fc74 branches to 0x326fca0 when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x326fc84 branches to 0x326fcfc when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x326fca8 branches to 0x326fd20 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x326fcb4 calls `__glOdyim_Vertex2iv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x326fcc8 calls `__glOdyim_Vertex2iv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x326fce4 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x326fd00 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x326fd10 calls `__glOdyim_Vertex2iv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x326fd20 calls `__glOdyim_Vertex2iv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  At `jr` at 0x326fc98, the return value is `unknown`.
+- `__glOdyim_IglooVertex2s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326fd30
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x326fd30).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x326fd44).
+  The `lw` at 0x326fd74 loads a word from an unknown base.
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x326fdbc).
+  The `beq` at 0x326fd60 branches to 0x326fdf4 when `a5(=0x3) == at(unknown)` and falls through when `a5(=0x3) != at(unknown)`.
+  The `beq` at 0x326fd7c branches to 0x326fde0 when `a3(unknown) == 0` and falls through when `a3(unknown) != 0`.
+  The `beq` at 0x326fd84 branches to 0x326fde4 when `a3(unknown) == a4(=0x1)` and falls through when `a3(unknown) != a4(=0x1)`.
+  The `beq` at 0x326fd8c branches to 0x326fe38 when `a3(unknown) == a6(=0x2)` and falls through when `a3(unknown) != a6(=0x2)`.
+  The `beq` at 0x326fd94 branches to 0x326fdbc when `a3(unknown) == a5(=0x3)` and falls through when `a3(unknown) != a5(=0x3)`.
+  The `beq` at 0x326fda4 branches to 0x326fe20 when `a5(=0x3) == a7(unknown)` and falls through when `a5(=0x3) != a7(unknown)`.
+  The `bgez` at 0x326fdc4 branches to 0x326fe48 when `t0(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `t0(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x326fdd0 calls `__glOdyim_Vertex2s_mag` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `jalr` at 0x326fde4 calls `__glOdyim_Vertex2s` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `bgezall` at 0x326fe04 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8, a5=0x3`.
+  The `bgezall` at 0x326fe28 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a5=0x3`.
+  The `jalr` at 0x326fe38 calls `__glOdyim_Vertex2s_smallw` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `jalr` at 0x326fe48 calls `__glOdyim_Vertex2s_mag_line0` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x1, a5=0x3, a6=0x2`.
+  The `jr` at 0x326fdb4 returns an unknown value.
+- `__glOdyim_IglooVertex2sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326fe60
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x326fe60).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x326fe74).
+  A word is read from `unknown base` (`lw` at 0x326fea4).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x326feec).
+  The `beq` at 0x326fe90 branches to 0x326ff24 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x326feac branches to 0x326ff10 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x326feb4 branches to 0x326ff14 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x326febc branches to 0x326ff60 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x326fec4 branches to 0x326feec when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x326fed4 branches to 0x326ff48 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x326fef4 branches to 0x326ff70 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x326ff00 calls `__glOdyim_Vertex2sv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x326ff14 calls `__glOdyim_Vertex2sv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x326ff30 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x326ff50 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x326ff60 calls `__glOdyim_Vertex2sv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x326ff70 calls `__glOdyim_Vertex2sv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  At `jr` at 0x326fee4, the return value is `unknown`.
 - `__glOdyim_IglooVertex3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 348 bytes
   - **Observed:** A zero operand takes the `beqz` at 0x326ffd8 to `__glOdyim_Vertex3d` (`jalr` at 0x3270050); its source is Unknown in the facts output. When reached, the `beq` at 0x326ffe8 selects `__glOdyim_Vertex3d_smallw` for operand two (`addiu` at 0x326ffd4, `jalr` at 0x32700b0).
   - The `beq` at 0x326ffbc takes the `BeforeIgloo` path when its Unknown operand equals 3 (`bgezall` at 0x3270074). The later `beq` at 0x3270000, when reached, selects `AfterIgloo` when its Unknown operand equals 3 (`bgezall` at 0x3270098). The hardware effect of this dispatch is Unknown.
-- `__glOdyim_IglooVertex3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Observed:** On reaching it, the `beq` at 0x3270144 takes its operand-three path (`addiu` at 0x32700f8). There the `bgez` at 0x3270174 selects `__glOdyim_Vertex3dv_mag_line0` if a shifted value is nonnegative, otherwise falling through to `__glOdyim_Vertex3dv_mag` (`jalr` at 0x32701f0, `jalr` at 0x3270180). The roles of both values are Unknown.
-  - The `beq` at 0x3270110 takes the `BeforeIgloo` path when its Unknown operand equals 3 (`bgezall` at 0x32701b0). If execution reaches `beq` at 0x3270154, equality between its Unknown operand and 3 selects `AfterIgloo` (`bgezall` at 0x32701d0). The role of this dispatch is Unknown.
+- `__glOdyim_IglooVertex3dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32700e0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x32700e0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x32700f4).
+  The word loaded by `lw` at 0x3270124 has an unknown base.
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x327016c).
+  The `beq` at 0x3270110 branches to 0x32701a4 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x327012c branches to 0x3270190 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3270134 branches to 0x3270194 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x327013c branches to 0x32701e0 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3270144 branches to 0x327016c when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x3270154 branches to 0x32701c8 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x3270174 branches to 0x32701f0 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270180 calls `__glOdyim_Vertex3dv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x3270194 calls `__glOdyim_Vertex3dv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x32701b0 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x32701d0 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x32701e0 calls `__glOdyim_Vertex3dv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x32701f0 calls `__glOdyim_Vertex3dv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The return register is unknown at `jr` at 0x3270164.
 - `__glTextureSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 280 bytes
 
   **Established effects.** The `bltz` at 0x3300570 skips the loop when the word at entry argument 0 plus 0x9740 minus 1 is negative (`lw` at 0x330054c; `addiu` at 0x330055c). On fall-through, the loop calls an unknown target loaded from entry argument 0 plus 0x4ce8 (`ld` at 0x3300598; `jalr` at 0x33005b0). The `bne` at 0x33005e4 repeats when its tool-reported unknown value differs from -1. The indirect target’s hardware role and this span routine’s wider purpose are Unknown.
@@ -4251,18 +4398,82 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdyim_IglooVertex3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 348 bytes
   - **Established effects.** A zero Unknown operand takes `beqz` at 0x3270258 to the `__glOdyim_Vertex3f` call (`jalr` at 0x32702cc). If the preceding selector tests fall through, `beq` at 0x3270268 takes the `__glOdyim_Vertex3f_smallw` path when its Unknown operand equals 2 (`addiu` at 0x3270254; `jalr` at 0x3270330).
   - `beq` at 0x327023c takes the `BeforeIgloo` call path when an Unknown value equals 3 (`bgezall` at 0x32702f0). On reaching `beq` at 0x3270280, equality between 3 and another Unknown value takes the `AfterIgloo` path (`bgezall` at 0x3270318). The hardware effects and wider role of this dispatch are Unknown.
-- `__glOdyim_IglooVertex3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Established effects.** On reaching `beq` at 0x32703c4, an Unknown operand equal to 3 takes the path to `bgez` at 0x32703f4 (`addiu` at 0x3270378). That branch selects `__glOdyim_Vertex3fv_mag_line0` for a nonnegative shifted value and falls through to `__glOdyim_Vertex3fv_mag` for a negative value (`jalr` at 0x3270470, 0x32703fc). The shifted value's role is Unknown.
-  - An Unknown value equal to 3 takes `beq` at 0x3270390 to `BeforeIgloo` (`bgezall` at 0x327042c). When reached, `beq` at 0x32703d4 takes the `AfterIgloo` path if another Unknown value equals 3 (`bgezall` at 0x327044c). The wider purpose and hardware effects of these calls are Unknown.
-- `__glOdyim_IglooVertex3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 304 bytes
-  - **Established effects.** On reaching `beq` at 0x32704dc, an Unknown operand equal to 2 takes the `__glOdyim_Vertex3i_smallw` call path (`addiu` at 0x32704c8; `jalr` at 0x3270590). That call passes entry arguments 0 through 2 (`jalr` at 0x3270590).
-  - `beq` at 0x32704b0 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x3270558). When reached, `beq` at 0x32704f4 selects `AfterIgloo` if another Unknown value equals 3 (`bgezall` at 0x3270580). The wider role and hardware effect of this integer dispatch are Unknown.
-- `__glOdyim_IglooVertex3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Established effects.** A zero Unknown operand takes `beqz` at 0x32705fc toward `__glOdyim_Vertex3iv` (`jalr` at 0x3270668). If that test falls through, `beq` at 0x3270604 selects the same call when the operand equals 1 (`addiu` at 0x3270600; `jalr` at 0x3270668).
-  - An Unknown value equal to 3 takes `beq` at 0x32705e0 to `BeforeIgloo` (`bgezall` at 0x3270684). On reaching `beq` at 0x3270624, equality between 3 and another Unknown value takes the `AfterIgloo` path (`bgezall` at 0x32706a0). The hardware effects and wider purpose of this vector dispatch are Unknown.
-- `__glOdyim_IglooVertex3s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 304 bytes
-  - **Established effects.** On reaching `beq` at 0x3270734, an Unknown operand equal to 3 takes the path to `bgez` at 0x3270764 (`addiu` at 0x32706e8). That branch selects `__glOdyim_Vertex3s_mag_line0` for a nonnegative shifted value and falls through to `__glOdyim_Vertex3s_mag` for a negative value (`jalr` at 0x32707f0, 0x3270770). The shifted value's role is Unknown.
-  - `beq` at 0x3270700 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x32707a8). When reached, `beq` at 0x3270744 selects `AfterIgloo` if another Unknown value equals 3 (`bgezall` at 0x32707d0). The wider role and hardware effect of this short-integer dispatch are Unknown.
+- `__glOdyim_IglooVertex3fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270360
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270360).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270374).
+  A word is loaded through an unknown base (`lw` at 0x32703a4).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x32703ec).
+  The `beq` at 0x3270390 branches to 0x3270420 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x32703ac branches to 0x327040c when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x32703b4 branches to 0x3270410 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x32703bc branches to 0x327045c when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x32703c4 branches to 0x32703ec when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x32703d4 branches to 0x3270444 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x32703f4 branches to 0x327046c when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x32703fc calls `__glOdyim_Vertex3fv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x3270410 calls `__glOdyim_Vertex3fv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x327042c calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x327044c calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x327045c calls `__glOdyim_Vertex3fv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x3270470 calls `__glOdyim_Vertex3fv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The value returned at `jr` at 0x32703e4 is unknown.
+- `__glOdyim_IglooVertex3i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270480
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270480).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270494).
+  The `lw` at 0x32704c4 reads a word through an unknown base.
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x327050c).
+  The `beq` at 0x32704b0 branches to 0x3270544 when `a6(=0x3) == at(unknown)` and falls through when `a6(=0x3) != at(unknown)`.
+  The `beq` at 0x32704cc branches to 0x3270530 when `a4(unknown) == 0` and falls through when `a4(unknown) != 0`.
+  The `beq` at 0x32704d4 branches to 0x3270534 when `a4(unknown) == a5(=0x1)` and falls through when `a4(unknown) != a5(=0x1)`.
+  The `beq` at 0x32704dc branches to 0x3270590 when `a4(unknown) == a7(=0x2)` and falls through when `a4(unknown) != a7(=0x2)`.
+  The `beq` at 0x32704e4 branches to 0x327050c when `a4(unknown) == a6(=0x3)` and falls through when `a4(unknown) != a6(=0x3)`.
+  The `beq` at 0x32704f4 branches to 0x3270578 when `a6(=0x3) == t0(unknown)` and falls through when `a6(=0x3) != t0(unknown)`.
+  The `bgez` at 0x3270514 branches to 0x32705a0 when `t1(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `t1(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270520 calls `__glOdyim_Vertex3i_mag` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `jalr` at 0x3270534 calls `__glOdyim_Vertex3i` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `bgezall` at 0x3270558 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8, a6=0x3`.
+  The `bgezall` at 0x3270580 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x3`.
+  The `jalr` at 0x3270590 calls `__glOdyim_Vertex3i_smallw` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `jalr` at 0x32705a0 calls `__glOdyim_Vertex3i_mag_line0` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The return value at `jr` at 0x3270504 is unknown.
+- `__glOdyim_IglooVertex3iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32705b0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x32705b0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x32705c4).
+  The base of the word load is unknown (`lw` at 0x32705f4).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x3270640).
+  The `beq` at 0x32705e0 branches to 0x3270678 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x32705fc branches to 0x3270664 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3270604 branches to 0x3270668 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x327060c branches to 0x32706b0 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3270614 branches to 0x3270640 when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x3270624 branches to 0x327069c when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x3270648 branches to 0x32706c0 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270654 calls `__glOdyim_Vertex3iv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x3270668 calls `__glOdyim_Vertex3iv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3270684 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x32706a0 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x32706b0 calls `__glOdyim_Vertex3iv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x32706c0 calls `__glOdyim_Vertex3iv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  At the exit `jr` at 0x3270638, the return value is unknown.
+- `__glOdyim_IglooVertex3s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32706d0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x32706d0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x32706e4).
+  A word load has an unknown base (`lw` at 0x3270714).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x327075c).
+  The `beq` at 0x3270700 branches to 0x3270794 when `a6(=0x3) == at(unknown)` and falls through when `a6(=0x3) != at(unknown)`.
+  The `beq` at 0x327071c branches to 0x3270780 when `a4(unknown) == 0` and falls through when `a4(unknown) != 0`.
+  The `beq` at 0x3270724 branches to 0x3270784 when `a4(unknown) == a5(=0x1)` and falls through when `a4(unknown) != a5(=0x1)`.
+  The `beq` at 0x327072c branches to 0x32707e0 when `a4(unknown) == a7(=0x2)` and falls through when `a4(unknown) != a7(=0x2)`.
+  The `beq` at 0x3270734 branches to 0x327075c when `a4(unknown) == a6(=0x3)` and falls through when `a4(unknown) != a6(=0x3)`.
+  The `beq` at 0x3270744 branches to 0x32707c8 when `a6(=0x3) == t0(unknown)` and falls through when `a6(=0x3) != t0(unknown)`.
+  The `bgez` at 0x3270764 branches to 0x32707f0 when `t1(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `t1(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270770 calls `__glOdyim_Vertex3s_mag` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `jalr` at 0x3270784 calls `__glOdyim_Vertex3s` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `bgezall` at 0x32707a8 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8, a6=0x3`.
+  The `bgezall` at 0x32707d0 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x3`.
+  The `jalr` at 0x32707e0 calls `__glOdyim_Vertex3s_smallw` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `jalr` at 0x32707f0 calls `__glOdyim_Vertex3s_mag_line0` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=0x1, a6=0x3, a7=0x2`.
+  The `jr` at 0x3270754 returns an unknown value.
 - `__glim_GenTexturesEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 184 bytes
 
   **Established effects.** When the word at absolute 0x1030 equals 1, `beq` at 0x3326fd0 takes the path calling `__glSetError` with 0x502 (`lw` at 0x3326fb0; `jalr` at 0x3327048). Otherwise, `bltz` at 0x3326fd8 selects an error call with 0x501 for negative entry argument 0 (`jalr` at 0x3327034). On reaching `bnez` at 0x3326fe8, entry argument 1 being nonzero takes the path to `__glNamesGenNames` (`jalr` at 0x3327020). The absolute word’s hardware meaning and this name-generation path’s wider role are Unknown.
@@ -4281,9 +4492,15 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdyim_GetClipPlane` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 228 bytes
   - **Established effects.** The `beq` is taken when absolute word 0x1030 equals 1 and calls `__glSetError` with 0x502 (`lw` at 0x3219698; `beq` at 0x32196b8; `jalr` at 0x3219764). Otherwise `bltz` is taken when entry argument 0 minus 12288 is negative as a signed value and calls `__glSetError` with 0x500 (`bltz` at 0x32196c4; `jalr` at 0x3219750).
   - Another path loads four words from addresses calculated from the doubleword at [0x1020]:8 +0x7d8 and entry argument 0 (`ld` at 0x32196d4, 0x32196ec, 0x3219704, 0x321971c). It converts them to double precision and writes doublewords at entry argument 1 +0, +8, +0x10 and +0x18 (`lwc1` at 0x32196e0, 0x32196f8, 0x3219710, 0x3219728; `cvt.d.s` at 0x32196e4, 0x32196fc, 0x3219714, 0x3219730; `sdc1` at 0x32196e8, 0x3219700, 0x3219718, 0x321973c). The source and destination fields and this routine's broader role remain Unknown.
-- `__glOdyim_ClipPlane` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 192 bytes
-  - **Established effects.** A `beq` taken for absolute word 0x1030 equal to 1 calls `__glSetError` with 0x502 (`lw` at 0x3278418; `beq` at 0x3278438; `jalr` at 0x32784c0). On fall-through, `bnez` at 0x3278444 is taken when entry argument 0 is unsigned less than 0x3000 and calls `__glSetError` with 0x500 (`bnez` at 0x3278444; `jalr` at 0x32784ac).
-  - A later path calls `__glim_ClipPlane` with the first two entry arguments (`jalr` at 0x3278474). It then sets mask 0x10 in a word whose address hostfacts reports as `table(0x18e58)` and writes 2 to absolute 0x1030 (`lw` at 0x327848c; `ori` at 0x3278498; `sw` at 0x327849c, 0x32784a8). The table field and the broader role of this clipping routine are Unknown.
+- `__glOdyim_ClipPlane` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3278410
+  The `lw` at 0x3278418 reads a word from absolute 0x1030.
+  The `sw` at 0x32784a8 stores a word at absolute 0x1030 with value 0x2.
+  The `jalr` at 0x3278458 calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=unknown, a3=[0x1020]:8 on paths where the `bne` at 0x327844c falls through.
+  The `jalr` at 0x3278474 calls `__glim_ClipPlane` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=[0x1020]:8 on paths where the `bne` at 0x327844c is taken.
+  The `jalr` at 0x32784ac calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=unknown, a3=[0x1020]:8 on paths where the `bne` at 0x3278444 is taken.
+  The `jalr` at 0x32784c0 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8 on paths where the `beq` at 0x3278438 is taken.
+  The `jr` at 0x3278468 returns v0=ret(__glSetError).
+  The `jr` at 0x32784a4 returns v0=ret(__glim_ClipPlane).
 - `__glOdysseyClipToPlaneObj` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 576 bytes
   - **Established effects.** `blez` is taken to a zero return when entry argument 2 is signed less than or equal to zero (`blez` at 0x3281f70; `jr` at 0x328212c). On its fall-through, the body includes two indirect calls whose targets hostfacts cannot resolve (`jalr` at 0x3282048, 0x3282094). Their roles and the wider clipping effect are Unknown.
 - `__glOdysseySoftClipCopyMaterialOneSided` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
@@ -4295,21 +4512,71 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 ## 64-bit IP30 library: vertex and texture modulation paths
 
-- `__glOdyim_IglooVertex3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 288 bytes
-  - **Observed:** The `beqz` at 0x327084c takes the zero-operand path to `__glOdyim_Vertex3sv` (`jalr` at 0x32708b4). If reached and taken for operand two, the `beq` at 0x327085c selects `__glOdyim_Vertex3sv_smallw` (`addiu` at 0x3270848, `jalr` at 0x3270900). The operand's source is Unknown in the facts output.
-  - `beq` at 0x3270830 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x32708d0). On reaching `beq` at 0x3270874, its taken path calls `AfterIgloo` when another Unknown value equals 3 (`bgezall` at 0x32708f0). The wider role of this vertex dispatch remains Unknown.
+- `__glOdyim_IglooVertex3sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270800
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270800).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270814).
+  The word read at an unknown base uses `lw` at 0x3270844.
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x327088c).
+  The `beq` at 0x3270830 branches to 0x32708c4 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x327084c branches to 0x32708b0 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3270854 branches to 0x32708b4 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x327085c branches to 0x3270900 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3270864 branches to 0x327088c when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x3270874 branches to 0x32708e8 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x3270894 branches to 0x3270910 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x32708a0 calls `__glOdyim_Vertex3sv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x32708b4 calls `__glOdyim_Vertex3sv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x32708d0 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `bgezall` at 0x32708f0 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x3270900 calls `__glOdyim_Vertex3sv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `jalr` at 0x3270910 calls `__glOdyim_Vertex3sv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  At `jr` at 0x3270884, the value returned is unknown.
 - `__glOdyim_IglooVertex4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 380 bytes
   - **Observed:** A zero operand takes the `beqz` at 0x327097c to `__glOdyim_Vertex4d` (`jalr` at 0x3270a5c). On reaching it, `beq` at 0x3270984 takes the operand-one path to `__glOdyim_Vertex4d_smallw`; if it falls through, the `beq` at 0x327098c takes the same path for operand two (`addiu` at 0x3270980, `addiu` at 0x3270978, `jalr` at 0x3270a00). The operand's source is Unknown in the facts output.
   - An Unknown value equal to 3 takes `beq` at 0x3270960 to `BeforeIgloo` (`bgezall` at 0x3270a28). If execution reaches `beq` at 0x32709a4, another Unknown value equal to 3 takes its `AfterIgloo` path (`bgezall` at 0x3270a70). The broader purpose of this double-precision dispatch is Unknown.
-- `__glOdyim_IglooVertex4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 292 bytes
-  - **Observed:** The `beqz` at 0x3270aec selects `__glOdyim_Vertex4dv` for a zero operand (`jalr` at 0x3270b8c). On reaching it, `beq` at 0x3270af4 selects `__glOdyim_Vertex4dv_smallw` for one; if it falls through, `beq` at 0x3270afc selects the same call for two (`addiu` at 0x3270af0, `addiu` at 0x3270ae8, `jalr` at 0x3270b54). The source of this operand is Unknown in the facts output.
-  - `beq` at 0x3270ad0 takes the `BeforeIgloo` path for an Unknown value equal to 3 (`bgezall` at 0x3270b70). When reached, `beq` at 0x3270b14 takes the `AfterIgloo` path for another Unknown value equal to 3 (`bgezall` at 0x3270ba0). The wider role of this vector dispatch and its hardware effects are Unknown.
+- `__glOdyim_IglooVertex4dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270aa0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270aa0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270ab4).
+  A word load has an unknown base (`lw` at 0x3270ae4).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x3270b30).
+  The `beq` at 0x3270ad0 branches to 0x3270b64 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x3270aec branches to 0x3270b88 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3270af4 branches to 0x3270b54 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x3270afc branches to 0x3270b54 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3270b04 branches to 0x3270b30 when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x3270b14 branches to 0x3270b9c when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x3270b38 branches to 0x3270bb0 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270b40 calls `__glOdyim_Vertex4dv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x3270b54 calls `__glOdyim_Vertex4dv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3270b70 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `jalr` at 0x3270b8c calls `__glOdyim_Vertex4dv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3270ba0 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x3270bb4 calls `__glOdyim_Vertex4dv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jr` at 0x3270b28 returns an unknown value.
+  The instructions from 0x3270b50 to 0x3270b50 are not reached by any path from the entry, and their branches are not listed.
 - `__glOdyim_IglooVertex4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 380 bytes
   - **Observed:** When its Unknown operand is zero, the taken `beqz` at 0x3270c2c leads to `__glOdyim_Vertex4f` (`jalr` at 0x3270d0c). On reaching `beq` at 0x3270c34, an operand equal to one takes the `__glOdyim_Vertex4f_smallw` path; if it falls through, `beq` at 0x3270c3c takes that path for two (`addiu` at 0x3270c30, `addiu` at 0x3270c28, `jalr` at 0x3270cb0).
   - `beq` at 0x3270c10 takes the path to `BeforeIgloo` when an Unknown value equals 3 (`bgezall` at 0x3270cd8). If reached, `beq` at 0x3270c54 selects `AfterIgloo` when another Unknown value equals 3 (`bgezall` at 0x3270d20). The wider role of the float-vertex dispatch is Unknown.
-- `__glOdyim_IglooVertex4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 292 bytes
-  - **Observed:** On reaching it, `beq` at 0x3270da4 selects `__glOdyim_Vertex4fv_smallw` when its Unknown operand equals one; if it falls through, `beq` at 0x3270dac takes the same path for two (`addiu` at 0x3270da0, `addiu` at 0x3270d98, `jalr` at 0x3270e04). The `beqz` at 0x3270d9c selects `__glOdyim_Vertex4fv` when that operand is zero (`jalr` at 0x3270e3c).
-  - An Unknown value equal to 3 takes `beq` at 0x3270d80 to `BeforeIgloo` (`bgezall` at 0x3270e20). On reaching `beq` at 0x3270dc4, equality between 3 and another Unknown value selects `AfterIgloo` (`bgezall` at 0x3270e54). The wider effect of this vector entry is Unknown.
+- `__glOdyim_IglooVertex4fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270d50
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270d50).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270d64).
+  A word is read through an unknown base (`lw` at 0x3270d94).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x3270ddc).
+  The `beq` at 0x3270d80 branches to 0x3270e14 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x3270d9c branches to 0x3270e38 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3270da4 branches to 0x3270e04 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x3270dac branches to 0x3270e04 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3270db4 branches to 0x3270ddc when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x3270dc4 branches to 0x3270e4c when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x3270de4 branches to 0x3270e64 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270df0 calls `__glOdyim_Vertex4fv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x3270e04 calls `__glOdyim_Vertex4fv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3270e20 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `jalr` at 0x3270e3c calls `__glOdyim_Vertex4fv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3270e54 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x3270e64 calls `__glOdyim_Vertex4fv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The exit value is unknown (`jr` at 0x3270dd4).
+  The instructions from 0x3270e00 to 0x3270e00 are not reached by any path from the entry, and their branches are not listed.
 - `__glTextureModulateL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
 
   **Established effects.** It multiplies the floating-point words at entry argument 1 offsets 0, 4 and 8 by words loaded from entry argument 2 plus 0xc, writing the products back to those three argument 1 locations (`lwc1` at 0x331d260; `lwc1` at 0x331d264; `mul.s` at 0x331d26c; `swc1` at 0x331d270; `lwc1` at 0x331d268; `lwc1` at 0x331d274; `mul.s` at 0x331d27c; `swc1` at 0x331d280; `lwc1` at 0x331d278; `lwc1` at 0x331d284; `mul.s` at 0x331d288; `swc1` at 0x331d290). The hardware roles of these operands and the wider purpose of the routine are Unknown.
@@ -4339,18 +4606,86 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 ## 64-bit IP30 library: vertex and clip checks
 
-- `__glOdyim_IglooVertex4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 316 bytes
-  - **Established effects.** When reached, `beqz` at 0x3270ecc takes the `__glOdyim_Vertex4i` call path if its operand is zero (`jalr` at 0x3270f84). If that branch falls through, `beq` at 0x3270ed4 selects `__glOdyim_Vertex4i_smallw` for operand 1; after another fall-through, `beq` at 0x3270edc selects the same call for 2 (`addiu` at 0x3270ed0, 0x3270ec8; `jalr` at 0x3270f34). The facts report leaves that operand Unknown.
-  - The initial `beq` at 0x3270eb0 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x3270f5c). When reached, `beq` at 0x3270ef4 takes the `AfterIgloo` path when another Unknown value equals 3 (`bgezall` at 0x3270f9c). The effects of these paths and the wider role of the integer vertex routine are Unknown.
-- `__glOdyim_IglooVertex4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 292 bytes
-  - **Established effects.** On reaching `beqz` at 0x327100c, a zero operand selects the `__glOdyim_Vertex4iv` call (`jalr` at 0x32710b0). If it falls through, `beq` at 0x3271014 selects `__glOdyim_Vertex4iv_smallw` for 1; a further fall-through reaches `beq` at 0x327101c, which selects that call for 2 (`addiu` at 0x3271010, 0x3271008; `jalr` at 0x3271078). The selector value is Unknown in the facts report.
-  - An Unknown value equal to 3 takes `beq` at 0x3270ff0 to `BeforeIgloo` (`bgezall` at 0x3271094). The later `beq` at 0x3271034, when reached, takes the `AfterIgloo` path when an Unknown value equals 3 (`bgezall` at 0x32710c4). The hardware effects and broader purpose of this vector entry are Unknown.
-- `__glOdyim_IglooVertex4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 316 bytes
-  - **Established effects.** A zero operand takes `beqz` at 0x327113c to the `__glOdyim_Vertex4s` call (`jalr` at 0x32711f4). If that branch falls through, `beq` at 0x3271144 selects `__glOdyim_Vertex4s_smallw` for 1; if it too falls through, `beq` at 0x327114c selects the same call for 2 (`addiu` at 0x3271140, 0x3271138; `jalr` at 0x32711a4). Hostfacts leaves the tested operand Unknown.
-  - `beq` at 0x3271120 reaches `BeforeIgloo` when an Unknown value equals 3 (`bgezall` at 0x32711cc). On reaching `beq` at 0x3271164, another Unknown value equal to 3 takes the `AfterIgloo` path (`bgezall` at 0x327120c). The short-integer entry's wider role and the hardware consequences of these calls are Unknown.
-- `__glOdyim_IglooVertex4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 292 bytes
-  - **Established effects.** When reached, `beqz` at 0x327127c selects the `__glOdyim_Vertex4sv` call for zero (`jalr` at 0x327131c). If it falls through, `beq` at 0x3271284 takes the `__glOdyim_Vertex4sv_smallw` path for 1; the subsequent `beq` at 0x327128c selects that call for 2 when reached (`addiu` at 0x3271280, 0x3271278; `jalr` at 0x32712e4). The operand itself remains Unknown in the facts report.
-  - The initial `beq` at 0x3271260 takes the `BeforeIgloo` path when an Unknown value equals 3 (`bgezall` at 0x3271300). When reached, `beq` at 0x32712a4 selects `AfterIgloo` when another Unknown value equals 3 (`bgezall` at 0x3271334). The effects of those calls and the wider role of this short-vector entry are Unknown.
+- `__glOdyim_IglooVertex4i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270e80
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270e80).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270e94).
+  A word is loaded through an unknown base (`lw` at 0x3270ec4).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x3270f0c).
+  The `beq` at 0x3270eb0 branches to 0x3270f44 when `a7(=0x3) == at(unknown)` and falls through when `a7(=0x3) != at(unknown)`.
+  The `beq` at 0x3270ecc branches to 0x3270f80 when `a5(unknown) == 0` and falls through when `a5(unknown) != 0`.
+  The `beq` at 0x3270ed4 branches to 0x3270f34 when `a5(unknown) == a6(=0x1)` and falls through when `a5(unknown) != a6(=0x1)`.
+  The `beq` at 0x3270edc branches to 0x3270f34 when `a5(unknown) == t0(=0x2)` and falls through when `a5(unknown) != t0(=0x2)`.
+  The `beq` at 0x3270ee4 branches to 0x3270f0c when `a5(unknown) == a7(=0x3)` and falls through when `a5(unknown) != a7(=0x3)`.
+  The `beq` at 0x3270ef4 branches to 0x3270f94 when `a7(=0x3) == t1(unknown)` and falls through when `a7(=0x3) != t1(unknown)`.
+  The `bgez` at 0x3270f14 branches to 0x3270fac when `t2(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `t2(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3270f20 calls `__glOdyim_Vertex4i_mag` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The `jalr` at 0x3270f34 calls `__glOdyim_Vertex4i_smallw` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The `bgezall` at 0x3270f5c calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[0x1020]:8, a7=0x3`.
+  The `jalr` at 0x3270f84 calls `__glOdyim_Vertex4i` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The `bgezall` at 0x3270f9c calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=0x3`.
+  The `jalr` at 0x3270fac calls `__glOdyim_Vertex4i_mag_line0` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The return at `jr` at 0x3270f04 is unknown.
+  The instructions from 0x3270f30 to 0x3270f30 are not reached by any path from the entry, and their branches are not listed.
+- `__glOdyim_IglooVertex4iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3270fc0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3270fc0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3270fd4).
+  The `lw` at 0x3271004 reads a word; the base is unknown.
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x3271050).
+  The `beq` at 0x3270ff0 branches to 0x3271088 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x327100c branches to 0x32710ac when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3271014 branches to 0x3271078 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x327101c branches to 0x3271078 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3271024 branches to 0x3271050 when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x3271034 branches to 0x32710c0 when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x3271058 branches to 0x32710d4 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3271064 calls `__glOdyim_Vertex4iv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x3271078 calls `__glOdyim_Vertex4iv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3271094 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `jalr` at 0x32710b0 calls `__glOdyim_Vertex4iv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x32710c4 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x32710d4 calls `__glOdyim_Vertex4iv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  An unknown value is returned at `jr` at 0x3271048.
+  The instructions from 0x3271074 to 0x3271074 are not reached by any path from the entry, and their branches are not listed.
+- `__glOdyim_IglooVertex4s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32710f0
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x32710f0).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3271104).
+  The base of the word load is unknown (`lw` at 0x3271134).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x327117c).
+  The `beq` at 0x3271120 branches to 0x32711b4 when `a7(=0x3) == at(unknown)` and falls through when `a7(=0x3) != at(unknown)`.
+  The `beq` at 0x327113c branches to 0x32711f0 when `a5(unknown) == 0` and falls through when `a5(unknown) != 0`.
+  The `beq` at 0x3271144 branches to 0x32711a4 when `a5(unknown) == a6(=0x1)` and falls through when `a5(unknown) != a6(=0x1)`.
+  The `beq` at 0x327114c branches to 0x32711a4 when `a5(unknown) == t0(=0x2)` and falls through when `a5(unknown) != t0(=0x2)`.
+  The `beq` at 0x3271154 branches to 0x327117c when `a5(unknown) == a7(=0x3)` and falls through when `a5(unknown) != a7(=0x3)`.
+  The `beq` at 0x3271164 branches to 0x3271204 when `a7(=0x3) == t1(unknown)` and falls through when `a7(=0x3) != t1(unknown)`.
+  The `bgez` at 0x3271184 branches to 0x327121c when `t2(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `t2(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x3271190 calls `__glOdyim_Vertex4s_mag` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The `jalr` at 0x32711a4 calls `__glOdyim_Vertex4s_smallw` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The `bgezall` at 0x32711cc calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[0x1020]:8, a7=0x3`.
+  The `jalr` at 0x32711f4 calls `__glOdyim_Vertex4s` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  The `bgezall` at 0x327120c calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=0x3`.
+  The `jalr` at 0x327121c calls `__glOdyim_Vertex4s_mag_line0` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x1, a7=0x3`.
+  At `jr` at 0x3271174, the value returned is unknown.
+  The instructions from 0x32711a0 to 0x32711a0 are not reached by any path from the entry, and their branches are not listed.
+- `__glOdyim_IglooVertex4sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3271230
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3271230).
+  A word is read from `[0x1020]:8 +0x9e88` (`lw` at 0x3271244).
+  A word is loaded from an unknown base (`lw` at 0x3271274).
+  A word is read from `[0x1020]:8 +0x9ec0` (`lw` at 0x32712bc).
+  The `beq` at 0x3271260 branches to 0x32712f4 when `a4(=0x3) == at(unknown)` and falls through when `a4(=0x3) != at(unknown)`.
+  The `beq` at 0x327127c branches to 0x3271318 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x3271284 branches to 0x32712e4 when `a2(unknown) == a3(=0x1)` and falls through when `a2(unknown) != a3(=0x1)`.
+  The `beq` at 0x327128c branches to 0x32712e4 when `a2(unknown) == a5(=0x2)` and falls through when `a2(unknown) != a5(=0x2)`.
+  The `beq` at 0x3271294 branches to 0x32712bc when `a2(unknown) == a4(=0x3)` and falls through when `a2(unknown) != a4(=0x3)`.
+  The `beq` at 0x32712a4 branches to 0x327132c when `a4(=0x3) == a6(unknown)` and falls through when `a4(=0x3) != a6(unknown)`.
+  The `bgez` at 0x32712c4 branches to 0x3271344 when `a7(=([[0x1020]:8+40640] << 0x29)) >= 0 (signed)` and falls through when `a7(=([[0x1020]:8+40640] << 0x29)) < 0 (signed)`.
+  The `jalr` at 0x32712d0 calls `__glOdyim_Vertex4sv_mag` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The `jalr` at 0x32712e4 calls `__glOdyim_Vertex4sv_smallw` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3271300 calls `BeforeIgloo` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x3`.
+  The `jalr` at 0x327131c calls `__glOdyim_Vertex4sv` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2`.
+  The `bgezall` at 0x3271334 calls `AfterIgloo` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3`.
+  The `jalr` at 0x3271344 calls `__glOdyim_Vertex4sv_mag_line0` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x1, a4=0x3, a5=0x2, a7=([[0x1020]:8+40640] << 0x29)`.
+  The value at the return is unknown (`jr` at 0x32712b4).
+  The instructions from 0x32712e0 to 0x32712e0 are not reached by any path from the entry, and their branches are not listed.
 - `__glOdyim_EvalPoint2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
   - **Established effects.** It loads a doubleword from absolute `0x1020`, then reads a word at the loaded value plus `0x8b0` (`ld` at 0x320a390; `lw` at 0x320a398). The `bne` at 0x320a3b4 is taken when that word differs from entry argument 0; on equality it falls through and copies the floating-point word loaded at `+0x8a8` (`lwc1` at 0x320a3a8; `mov.s` at 0x320a3c0).
   - It next loads the word at the same base plus `0x8c0` (`lw` at 0x320a3dc); the `bne` at 0x320a3e8 is taken when it differs from entry argument 1. Both branch paths reach `__glOdysseyDoEvalCoord2`, called with the loaded doubleword as argument 0 (`bgezall` at 0x320a41c; `move` at 0x320a420). The fields' hardware meanings and the evaluation routine's wider role remain Unknown.
@@ -4491,7 +4826,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** Entry 0x32ed430. The `beqz` at 0x32ed44c is taken when entry argument 2 is greater than or equal to argument 1 unsigned, leading to `__gllc_DrawElements` with entry arguments 0, 3, 4, and 5 as its arguments 0 through 3 (`bgezall` at 0x32ed474). The fall-through calls `__gllc_InvalidValue` with the doubleword loaded from absolute address 0x1020 as argument 0 (`ld` at 0x32ed45c; `jalr` at 0x32ed458). The effects of the selected callee paths and the range routine’s broader role are Unknown.
 - `__glDrawBitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 268 bytes
   **Established effects.** Entry 0x32c0980. The `blez` at 0x32c09c8 takes a path to an unknown callee when signed entry argument 1 is nonpositive; that call receives entry argument 0, entry stack pointer minus 96, and zero as its first three arguments (`jalr` at 0x32c0a7c). When the `blez` at 0x32c09c8 and 0x32c09d0 both fall through, `__glImageSize` receives entry arguments 1 and 2 followed by 0x1900 and 0x1a00 (`jalr` at 0x32c09e8). The routine then calls `__glFillImage` with entry arguments 0 through 2, 0x1900, 0x1a00, entry argument 7, and an unknown callee's return (`jalr` at 0x32c0a24). The bitmap routine’s overall role and the hardware effect of these calls are Unknown.
-- `__glFastDrawBitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c0a90, 336 bytes
+- `__glFastDrawBitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 336 bytes at address 0x32c0a90
+  Entry address: 0x32c0a90
   **Established effects.** Entry 0x32c0a90. It reads the word at entry argument 0 +0x5a4 (`lw` at 0x32c0ac0); the `beq` at 0x32c0ae0 is taken when that word equals 1, leading to an unknown callee with entry argument 0, entry stack pointer minus 96, and entry argument 7 as its first three arguments (`jalr` at 0x32c0bd0). When reached, if the `blez` instructions at 0x32c0b00 and 0x32c0b08 both fall through, the routine calls `__glImageSize` with entry arguments 1 and 2 followed by 0x1900 and 0x1a00 (`jalr` at 0x32c0b20), then calls `__glFillImage` (`jalr` at 0x32c0b5c). The fast bitmap routine’s overall role and the hardware effect of its calls are Unknown.
 - `__glce_AreTexturesResidentEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 80 bytes
 
