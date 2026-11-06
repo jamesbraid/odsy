@@ -2607,6 +2607,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** Entry `a2` is saved as a stack word (`sw` at 0x3216ae0). `beq` at 0x3216aec selects a path to `__glOdyim_FragmentLightivSGIX` when entry `a1` equals 0x1205, falling through when unequal (`bgezall` at 0x3216b38).
   The other equality branches include tests for 0x1208 and 0x1209 (`beq` at 0x3216b08, 0x3216b14). If all five selector branches fall through, `__glSetError` is called with 0x500 (`beq` at 0x3216aec, 0x3216af8, 0x3216b00, 0x3216b08, 0x3216b14; `jalr` at 0x3216b1c). The routine’s broader role and hardware effect are unknown.
 - `__glOdyim_FragmentColorMaterialSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3218c00
+  **Established effects.** `beq` at 0x3218c28 branches to `__glSetError` with 0x502 when the word at process address 0x1030 equals 1 and falls through otherwise (`lw` at 0x3218c08; `jalr` at 0x3218ce0). When reached, `beq` at 0x3218c70 takes the store path when entry `a1` equals 0x1200 and falls through when unequal.
+  On that store path the function writes arguments 0 and 1 to +0x18a18 and +0x18a1c of the doubleword read from process address 0x1020 (`ld` at 0x3218c0c; `sw` at 0x3218cb4, 0x3218cb8). It sets bit 0x80 in the word at +0x18e58 and writes 2 to process address 0x1030 (`lw` at 0x3218cbc; `ori` at 0x3218cc8; `sw` at 0x3218ccc, 0x3218cd8). The fields’ hardware effects and the routine’s broader role are unknown.
   The `lw` at 0x3218c08 reads a word from absolute 0x1030.
   The `sw` at 0x3218cd8 stores a word at absolute 0x1030 with value 0x2.
   The `jalr` at 0x3218c5c calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=0x404, a3=[0x1020]:8, a4=0x405, a5=0x408, a6=0x1200.
@@ -8863,6 +8865,7 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glim_BlendColorEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfd30
   **Established effects.** The `beq` falls through when the word at 0x1030 differs from 1 (`lw` at 0x32bfd30, `addiu` at 0x32bfd34, `beq` at 0x32bfd4c). On that path, floating-point words of unknown value are stored at offsets 0x844, 0x840, 0x83c and 0x838 of the doubleword loaded from 0x1020 (`ld` at 0x32bfd3c, `swc1` at 0x32bfdac, `swc1` at 0x32bfdb0, `swc1` at 0x32bfdb4, `swc1` at 0x32bfdc0). The broader purpose of these stored values is unknown.
 - `__glim_PolygonOffsetEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32bfdf0
+  **Established effects.** A word at 0x1030 is compared with 1; if it differs, the `beq` falls through (`lw` at 0x32bfdf0, `addiu` at 0x32bfdf4, `beq` at 0x32bfe0c). That path stores entry registers `f13` and `f12` at offsets 0x2a8 and 0x2a4 of the doubleword loaded from 0x1020, respectively (`ld` at 0x32bfdfc, `swc1` at 0x32bfe14, `swc1` at 0x32bfe18). The effect of these two values on later operations is unknown.
   A word is read from `absolute address 0x1030` (`lw` at 0x32bfdf0).
   A doubleword is read from `absolute address 0x1020` (`ld` at 0x32bfdfc).
   A word is stored to `[0x1020]:8 +0x2a8` (`swc1` at 0x32bfe14).
