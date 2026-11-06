@@ -189,7 +189,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0x101c7440 stores 4 bytes to a0 (arg0 at entry) +0x48.
   The `jalr` at 0x101c7428 calls strlen with a0=0x1028f570, a1=0x10223ac0, a2=0x102d0000, a3=0x100fe4f0, a4=[a0+72], a5=0x10166f80.
   The `jal` at 0x101c7434 calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101c7448 calls strcpy with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x101c7448 calls strcpy with a0=ret(Xalloc), a1=0x1028f570, a2=?, a3=?.
   The `beq` branch at 0x101c73c8 targets 0x101c7408, is taken when v0(=[0x102c5d44]) == 0, and falls through when v0(=[0x102c5d44]) != 0.
   The `beq` branch at 0x101c73f0 targets 0x101c7418, is taken when a4(=[a0+72]) == 0, and falls through when a4(=[a0+72]) != 0.
   The `beq` branch at 0x101c7410 targets 0x101c73d8 and is always taken.
@@ -250,16 +250,20 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 580 bytes.
   The `lw` at 0x101e0190 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x101e01a0 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x101e01b8 loads 4 bytes from [a0+8] +0x4.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x101e01b8, `lw` at 0x101e0284.
   The `lw` at 0x101e01bc loads 4 bytes from a0 (arg0 at entry) +0x30.
   The `lw` at 0x101e01c8 loads 4 bytes from a0 (arg0 at entry) +0x74.
   The `lw` at 0x101e01dc loads 4 bytes from a0 (arg0 at entry) +0x2c.
   The `lbu` at 0x101e020c loads 1 byte from ret(SecurityLookupIDByClass) +0x0.
   The `lbu` at 0x101e0218 loads 1 byte from ?.
-  8 such `lh` accesses load 2 bytes from ?, including `lh` at 0x101e0228, `lh` at 0x101e0238, `lh` at 0x101e0248.
-  4 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x101e022c, `lhu` at 0x101e0234, `lhu` at 0x101e02ec.
-  9 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101e0244, `lw` at 0x101e0284, `lw` at 0x101e02a4.
+  3 such `lh` accesses load 2 bytes from [a0+8] +0x8, including `lh` at 0x101e0228, `lh` at 0x101e02dc, `lh` at 0x101e02f0.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0xc, including `lhu` at 0x101e022c, `lhu` at 0x101e02ec.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0xe, including `lhu` at 0x101e0234, `lhu` at 0x101e0300.
+  3 such `lh` accesses load 2 bytes from [a0+8] +0xa, including `lh` at 0x101e0238, `lh` at 0x101e02e4, `lh` at 0x101e02fc.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101e0244, `lw` at 0x101e02d4, `lw` at 0x101e0334.
+  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x101e0248, `lh` at 0x101e0258.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x101e0290, `sw` at 0x101e03a8.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x10, including `lw` at 0x101e02a4, `lw` at 0x101e0364, `lw` at 0x101e039c.
   The `sw` at 0x101e02d8 stores 4 bytes to ret(Xalloc) +0x0.
   The `sh` at 0x101e02e0 stores 2 bytes to ret(Xalloc) +0x4.
   The `sh` at 0x101e02e8 stores 2 bytes to ret(Xalloc) +0x6.
@@ -275,16 +279,19 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0x101e0328 stores 2 bytes to ret(Xalloc) +0xa.
   The `lh` at 0x101e032c loads 2 bytes from ret(Xalloc) +0x8.
   The `sh` at 0x101e0330 stores 2 bytes to ret(Xalloc) +0x1c.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x101e0354, `sw` at 0x101e0358, `sw` at 0x101e0360.
+  The `sw` at 0x101e0354 stores 4 bytes to ret(Xalloc) +0x28.
+  The `sw` at 0x101e0358 stores 4 bytes to ret(Xalloc) +0x14.
+  The `sw` at 0x101e0360 stores 4 bytes to ret(Xalloc) +0x10.
   The `lw` at 0x101e036c loads 4 bytes from sym(RT_SGICapInterest) +0x0.
   The `lw` at 0x101e0380 loads 4 bytes from a0 (arg0 at entry) +0x28.
+  The `lw` at 0x101e03b8 loads 4 bytes from ret(Xalloc) +0x10.
   The `jal` at 0x101e01f4 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x0.
-  The `jal` at 0x101e02a0 calls LegalNewID [0x101557b0] with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
+  The `jal` at 0x101e02a0 calls LegalNewID [0x101557b0] with a0=[[a0+8]+16], a1=a0 at entry (arg0), a2=?, a3=?, a5=[[a0+8]+10]:2, a7=[[a0+8]+14]:2.
   The `jal` at 0x101e02b4 calls Xalloc [0x1020aeb0] with a0=0x2c, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101e0340 calls (unknown callee) with a0=ret(Xalloc)+4, a1=0x1, a2=?, a3=?.
-  The `jal` at 0x101e0368 calls AddResource [0x1010ec30] with a0=?, a1=[sym(RT_SGICapInterest)], a2=?, a3=?.
-  The `jal` at 0x101e03b4 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x101e03c0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x101e0340 calls (unknown callee) with a0=ret(Xalloc)+4, a1=0x1, a2=[[a0+8]+8]:2, a3=?.
+  The `jal` at 0x101e0368 calls AddResource [0x1010ec30] with a0=[[a0+8]+16], a1=[sym(RT_SGICapInterest)], a2=ret(Xalloc), a3=?.
+  The `jal` at 0x101e03b4 calls Xfree [0x101fc9c0] with a0=[ret(Xalloc)+16], a1=?, a2=?, a3=?.
+  The `jal` at 0x101e03c0 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `beq` branch at 0x101e019c targets 0x101e01b8, is taken when at(=[a0+72]) == v0(=0x5), and falls through when at(=[a0+72]) != v0(=0x5).
   The `bne` branch at 0x101e01c0 targets 0x101e01e0, is taken when v1(=[a0+48]) != a1(=[[a0+8]+4]), and falls through when v1(=[a0+48]) == a1(=[[a0+8]+4]).
   The `bne` branch at 0x101e01cc targets 0x101e01e4, is taken when a2(=[a0+116]) != 0, and falls through when a2(=[a0+116]) == 0.
@@ -292,9 +299,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x101e0200 targets 0x101e027c, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
   The `beq` branch at 0x101e0210 targets 0x101e0384, is taken when a3(=[ret(SecurityLookupIDByClass)]:1) == a4(=0x2), and falls through when a3(=[ret(SecurityLookupIDByClass)]:1) != a4(=0x2).
   The `bne` branch at 0x101e021c targets 0x101e0274, is taken when a5(?) != 0, and falls through when a5(?) == 0.
-  The `bltz` branch at 0x101e023c targets 0x101e026c, is taken when t0(?) < 0 (signed), and falls through when t0(?) >= 0 (signed).
-  The `bne` branch at 0x101e0254 targets 0x101e026c, is taken when t2(?) < t8(?) (signed), and falls through when t2(?) >= t8(?) (signed).
-  The `bltz` branch at 0x101e025c targets 0x101e026c, is taken when a5(?) < 0 (signed), and falls through when a5(?) >= 0 (signed).
+  The `bltz` branch at 0x101e023c targets 0x101e026c, is taken when t0(=[[a0+8]+8]:2) < 0 (signed), and falls through when t0(=[[a0+8]+8]:2) >= 0 (signed).
+  The `bne` branch at 0x101e0254 targets 0x101e026c, is taken when t2(?) < t8(=([[a0+8]+8]:2 + [[a0+8]+12]:2)) (signed), and falls through when t2(?) >= t8(=([[a0+8]+8]:2 + [[a0+8]+12]:2)) (signed).
+  The `bltz` branch at 0x101e025c targets 0x101e026c, is taken when a5(=[[a0+8]+10]:2) < 0 (signed), and falls through when a5(=[[a0+8]+10]:2) >= 0 (signed).
   The `beq` branch at 0x101e0264 targets 0x101e0294, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0x101e026c targets 0x101e01b0 and is always taken.
   The `beq` branch at 0x101e028c targets 0x101e01b0 and is always taken.
@@ -393,8 +400,8 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x1022ad60, `lw` at 0x1022b97c.
   The `lw` at 0x1022ad6c loads 4 bytes from [a0+4] +0x4.
   9 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x10, including `lw` at 0x1022ad88, `lw` at 0x1022ae9c, `lw` at 0x1022afd4.
-  50 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1022ae38, `sw` at 0x1022ae50, `sw` at 0x1022ae54.
-  45 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1022af0c, `lw` at 0x1022af28, `lw` at 0x1022b23c.
+  34 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1022ae38, `sw` at 0x1022ae50, `sw` at 0x1022ae54.
+  37 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1022af0c, `lw` at 0x1022af28, `lw` at 0x1022b23c.
   The `sb` at 0x1022af98 stores 1 byte to a0 (arg0 at entry) +0x11.
   The `lbu` at 0x1022b0e0 loads 1 byte from (a2 + ([a2+12] << 0x2)) +0x2a.
   The `lbu` at 0x1022b0f4 loads 1 byte from (a2 + ([a2+12] << 0x2)) +0x2b.
@@ -404,19 +411,30 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0x1022b35c stores 4 bytes to ret(Xalloc) +0x24.
   The `sh` at 0x1022b36c stores 2 bytes to ret(Xalloc) +0x2a.
   The `sw` at 0x1022b370 stores 4 bytes to ret(Xalloc) +0x0.
-  The `lw` at 0x1022b378 loads 4 bytes from ret(Xalloc) +0x2c.
+  2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x2c, including `lw` at 0x1022b378, `lw` at 0x1022b934.
   The `sh` at 0x1022b384 stores 2 bytes to ret(Xalloc) +0x28.
-  The `sw` at 0x1022b394 stores 4 bytes to ret(Xalloc) +0x2c.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x2c, including `sw` at 0x1022b394, `sw` at 0x1022b970.
+  The `lw` at 0x1022b3b4 loads 4 bytes from ret(Xalloc) +0x24.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x1022b3d4, `lw` at 0x1022b974.
   5 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1022b3e0, `lh` at 0x1022b5ec, `lh` at 0x1022b5fc.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x8, including `sw` at 0x1022b48c, `sw` at 0x1022b494.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x10, including `sw` at 0x1022b4c4, `sw` at 0x1022b4c8.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x20, including `sw` at 0x1022b4f4, `sw` at 0x1022b4f8.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x18, including `sw` at 0x1022b524, `sw` at 0x1022b528.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x1c, including `sw` at 0x1022b554, `sw` at 0x1022b558.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0xc, including `sw` at 0x1022b56c, `sw` at 0x1022b9a0.
+  3 such `lw` accesses load 4 bytes from ret(Xalloc) +0xc, including `lw` at 0x1022b5c4, `lw` at 0x1022b5e8, `lw` at 0x1022b5f8.
   4 such `sh` accesses store 2 bytes to ?, including `sh` at 0x1022b5f4, `sh` at 0x1022b604, `sh` at 0x1022b7dc.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x14, including `sw` at 0x1022b75c, `sw` at 0x1022b930.
+  3 such `lw` accesses load 4 bytes from ret(Xalloc) +0x14, including `lw` at 0x1022b7ac, `lw` at 0x1022b7d0, `lw` at 0x1022b7e0.
+  The `sw` at 0x1022b978 stores 4 bytes to ret(Xalloc) +0x4.
   The `sw` at 0x1022b984 stores 4 bytes to a0 (arg0 at entry) +0x8.
   The `jal` at 0x1022ad14 calls RecordSanityCheckRegisterClients..IJG [0x100aa7c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1022ad78 calls RecordCanonicalizeClientSpecifiers..GJG [0x100fce70] with a0=a2+20, a1=sp-52, a2=?, a3=?.
   The `jalr` at 0x1022adfc calls bzero with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1022aed8 calls RecordConvertRangesToIntervals..KJG [0x10216510] with a0=?, a1=(a2 + ([a2+12] << 0x2))+20, a2=[a2+16], a3=0x0, a4=0x0, a5=0x0.
   The `jal` at 0x1022af18 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1022af44 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1022af44 calls Xfree [0x101fc9c0] with a0=ret(RecordCanonicalizeClientSpecifiers..GJG), a1=?, a2=a2+20, a3=?.
   The `jal` at 0x1022af84 calls RecordFlushReplyBuffer..GIG [0x101ea420] with a0=a0 at entry (arg0), a1=0x0, a2=0x0, a3=0x0, a4=0x0.
   The `jal` at 0x1022afd8 calls RecordConvertRangesToIntervals..KJG [0x10216510] with a0=?, a1=(a2 + ([a2+12] << 0x2))+20, a2=[a2+16], a3=0x4, a5=sp-44.
   The `jal` at 0x1022b004 calls RecordConvertRangesToIntervals..KJG [0x10216510] with a0=?, a1=(a2 + ([a2+12] << 0x2))+20, a2=[a2+16], a3=0x2, a4=0x0, a5=0x0.
@@ -433,22 +451,22 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x1022b548 calls RecordCreateSet [0x102754d0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1022b6e0 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1022b8cc calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a4=one of 0x0, 0x1.
-  The `jal` at 0x1022b98c calls RecordInstallHooks..AJG [0x100fd1d0] with a0=?, a1=0x0, a2=?, a3=?, a4=a0 at entry (arg0), a5=[a0+4], a6=[a0+8].
+  The `jal` at 0x1022b98c calls RecordInstallHooks..AJG [0x100fd1d0] with a0=ret(Xalloc), a1=0x0, a2=?, a3=?, a4=a0 at entry (arg0), a5=[a0+4], a6=[a0+8].
   The `beq` branch at 0x1022ad1c targets 0x1022ad3c, is taken when v0(=ret(RecordSanityCheckRegisterClients..IJG)) == 0, and falls through when v0(=ret(RecordSanityCheckRegisterClients..IJG)) != 0.
   The `bne` branch at 0x1022ad48 targets 0x1022af74, is taken when a0(=[a2+8]:1) != a1(=[a0+17]:1), and falls through when a0(=[a2+8]:1) == a1(=[a0+17]:1).
   The `beq` branch at 0x1022ad54 targets 0x1022afa4, is taken when at(=[a2+12]) == 0, and falls through when at(=[a2+12]) != 0.
   The `beq` branch at 0x1022ad64 targets 0x1022af9c, is taken when v0(=[a0+4]) == 0, and falls through when v0(=[a0+4]) != 0.
   The `beq` branch at 0x1022ad80 targets 0x1022af54, is taken when v0(=ret(RecordCanonicalizeClientSpecifiers..GJG)) == 0, and falls through when v0(=ret(RecordCanonicalizeClientSpecifiers..GJG)) != 0.
   The `bne` branch at 0x1022adb8 targets 0x1022adf4, is taken when sp(?) != 0, and falls through when sp(?) == 0.
-  The `bne` branch at 0x1022adcc targets 0x1022af40, is taken when s2(?) != a2(?), and falls through when s2(?) == a2(?).
-  The `blez` branch at 0x1022ae08 targets 0x1022ae9c, is taken when a4(?) <= 0 (signed), and falls through when a4(?) > 0 (signed).
-  The `beq` branch at 0x1022ae24 targets 0x1022ae3c, is taken when (a3(?) & 0x7) == 0, and falls through when (a3(?) & 0x7) != 0.
+  The `bne` branch at 0x1022adcc targets 0x1022af40, is taken when s2(=ret(RecordCanonicalizeClientSpecifiers..GJG)) != a2(=a2+20), and falls through when s2(=ret(RecordCanonicalizeClientSpecifiers..GJG)) == a2(=a2+20).
+  The `blez` branch at 0x1022ae08 targets 0x1022ae9c, is taken when a4(=([a2+16] + [a2+16])+5) <= 0 (signed), and falls through when a4(=([a2+16] + [a2+16])+5) > 0 (signed).
+  The `beq` branch at 0x1022ae24 targets 0x1022ae3c, is taken when (a3(=([a2+16] + [a2+16])+5) & 0x7) == 0, and falls through when (a3(=([a2+16] + [a2+16])+5) & 0x7) != 0.
   The `bne` branch at 0x1022ae34 targets 0x1022ae2c, is taken when a2(?) != 0, and falls through when a2(?) == 0.
   The `beq` branch at 0x1022ae40 targets 0x1022ae9c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0x1022ae48 targets 0x1022b9b4, is taken when t9(?) != 0, and falls through when t9(?) == 0.
   The `bne` branch at 0x1022ae7c targets 0x1022ae5c, is taken when at(?) != v0(?), and falls through when at(?) == v0(?).
   The `beq` branch at 0x1022aee0 targets 0x1022afc0, is taken when v0(=ret(RecordConvertRangesToIntervals..KJG)) == 0, and falls through when v0(=ret(RecordConvertRangesToIntervals..KJG)) != 0.
-  The `blez` branch at 0x1022aeec targets 0x1022af30, is taken when t9(?) <= 0 (signed), and falls through when t9(?) > 0 (signed).
+  The `blez` branch at 0x1022aeec targets 0x1022af30, is taken when t9(=([a2+16] + [a2+16])+5) <= 0 (signed), and falls through when t9(=([a2+16] + [a2+16])+5) > 0 (signed).
   The `beq` branch at 0x1022af10 targets 0x1022af20, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bnel` branch at 0x1022af24 targets 0x1022af10, is taken when s0(?) != s2(?), and falls through when s0(?) == s2(?); its branch-likely delay slot `lw a0,4(s0)` at 0x1022af28 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x1022af38 targets 0x1022adc8 and is always taken.
@@ -473,7 +491,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bnel` branch at 0x1022b15c targets 0x1022b11c, is taken when a1(?) != a2(?), and falls through when a1(?) == a2(?); its branch-likely delay slot `lbu t0,22(a1)` at 0x1022b160 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x1022b17c targets 0x1022b1ac, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x1022b1b0 targets 0x1022b1e4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `blez` branch at 0x1022b1e4 targets 0x1022b33c, is taken when t1(?) <= 0 (signed), and falls through when t1(?) > 0 (signed).
+  The `blez` branch at 0x1022b1e4 targets 0x1022b33c, is taken when t1(=([a2+16] + [a2+16])+5) <= 0 (signed), and falls through when t1(=([a2+16] + [a2+16])+5) > 0 (signed).
   The `beq` branch at 0x1022b200 targets 0x1022b23c and is always taken.
   The `beq` branch at 0x1022b234 targets 0x1022b33c, is taken when t2(?) == s2(?), and falls through when t2(?) != s2(?).
   The `beq` branch at 0x1022b240 targets 0x1022b230, is taken when t0(?) == 0, and falls through when t0(?) != 0.
@@ -611,13 +629,14 @@ Each entry records selected software behavior from its exact binary range. The r
   3 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x10260bf8, `lw` at 0x10260c74, `lw` at 0x10260c98.
   2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10260c38, `lw` at 0x10260c50.
   The `sw` at 0x10260c58 stores 4 bytes to a0 (arg0 at entry) +0x18.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10260cec, `lw` at 0x10260cf8, `lw` at 0x10260d04.
+  The `lw` at 0x10260cec loads 4 bytes from ret(SecurityLookupIDByType) +0x8.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10260cf8, `lw` at 0x10260d04, `lw` at 0x10260d20.
   The `lh` at 0x10260cfc loads 2 bytes from ?.
   The `jal` at 0x10260c34 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=[0x102cc0b0], a3=0x0.
   The `jal` at 0x10260c78 calls RecordSanityCheckClientSpecifiers..FJG [0x10178010] with a0=[a0+8]+12, a1=[[a0+8]+8], a2=0x0, a3=?.
-  The `jal` at 0x10260ca0 calls RecordCanonicalizeClientSpecifiers..GJG [0x100fce70] with a0=?, a1=sp-64, a2=0x0, a3=[[a0+8]+8].
+  The `jal` at 0x10260ca0 calls RecordCanonicalizeClientSpecifiers..GJG [0x100fce70] with a0=[a0+8]+12, a1=sp-64, a2=0x0, a3=[[a0+8]+8].
   The `jal` at 0x10260d4c calls RecordDeleteClientFromRCAP..CJG [0x1006c520] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10260d80 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10260d80 calls Xfree [0x101fc9c0] with a0=ret(RecordCanonicalizeClientSpecifiers..GJG), a1=?, a2=?, a3=?.
   The `bne` branch at 0x10260bf0 targets 0x10260c5c, is taken when v0(=[a0+72]) < 0x3 (unsigned), and falls through when v0(=[a0+72]) >= 0x3 (unsigned).
   The `beq` branch at 0x10260c08 targets 0x10260c20, is taken when v1(=([a0+72] << 0x2)-12) == a1(=([[a0+8]+8] << 0x2)), and falls through when v1(=([a0+72] << 0x2)-12) != a1(=([[a0+8]+8] << 0x2)).
   The `bne` branch at 0x10260c40 targets 0x10260c6c, is taken when v0(=ret(SecurityLookupIDByType)) != 0, and falls through when v0(=ret(SecurityLookupIDByType)) == 0.
@@ -629,14 +648,14 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x10260ccc targets 0x10260cec and is always taken.
   The `bne` branch at 0x10260cd4 targets 0x10260d4c, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x10260ce4 targets 0x10260d60, is taken when s1(?) >= t0(?) (signed), and falls through when s1(?) < t0(?) (signed).
-  The `beq` branch at 0x10260cf0 targets 0x10260cdc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x10260cf0 targets 0x10260cdc, is taken when a0(=[ret(SecurityLookupIDByType)+8]) == 0, and falls through when a0(=[ret(SecurityLookupIDByType)+8]) != 0.
   The `blez` branch at 0x10260d08 targets 0x10260d38, is taken when a5(?) <= 0 (signed), and falls through when a5(?) > 0 (signed).
   The `beq` branch at 0x10260d28 targets 0x10260cd4, is taken when t1(?) == a7(?), and falls through when t1(?) != a7(?).
   The `bne` branch at 0x10260d30 targets 0x10260d20, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `bne` branch at 0x10260d3c targets 0x10260cfc, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x10260d44 targets 0x10260ce0 and is always taken.
   The `beq` branch at 0x10260d58 targets 0x10260cdc and is always taken.
-  The `bne` branch at 0x10260d6c targets 0x10260d7c, is taken when t2(?) != t3(?), and falls through when t2(?) == t3(?).
+  The `bne` branch at 0x10260d6c targets 0x10260d7c, is taken when t2(=ret(RecordCanonicalizeClientSpecifiers..GJG)) != t3(=[a0+8]+12), and falls through when t2(=ret(RecordCanonicalizeClientSpecifiers..GJG)) == t3(=[a0+8]+12).
   The `beq` branch at 0x10260d74 targets 0x10260c14 and is always taken.
   The `beq` branch at 0x10260d88 targets 0x10260d74 and is always taken.
   The `beq` branch at 0x10260d90 targets 0x10260c14 and is always taken.
@@ -2163,7 +2182,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda66200 targets 0xda66390 and is always taken.
   The `bc1fl` branch at 0xda66210 targets 0xda66238, is taken when (condition not analyzed), and falls through when (condition not analyzed); its branch-likely delay slot `lw t5,112(sp)` at 0xda66214 runs only when taken and is annulled on fall-through.
   The `bc1tl` branch at 0xda6622c targets 0xda66340, is taken when f20 < f28 (c.lt.s at 0xda66224), and falls through when not (f20 < f28 (c.lt.s at 0xda66224)); its branch-likely delay slot `nor t7,s3,zero` at 0xda66230 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xda6623c targets 0xda66334, is taken when (t5(?) & 0x8000) == 0, and falls through when (t5(?) & 0x8000) != 0; its branch-likely delay slot `c.eq.s $f20,$f28` at 0xda66240 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda6623c targets 0xda66334, is taken when (t5(=[a0+30492]) & 0x8000) == 0, and falls through when (t5(=[a0+30492]) & 0x8000) != 0; its branch-likely delay slot `c.eq.s $f20,$f28` at 0xda66240 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xda6624c targets 0xda66264, is taken when not (f0(=[a0+3540]) < f24 (c.lt.s at 0xda66244)), and falls through when f0(=[a0+3540]) < f24 (c.lt.s at 0xda66244); its branch-likely delay slot `lwc1 $f18,30056(s0)` at 0xda66250 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda66258 targets 0xda66268 and is always taken.
   The `beq` branch at 0xda662e0 targets 0xda662f0, is taken when (a0(=[a0+480]:2) & t2(?)) == 0, and falls through when (a0(=[a0+480]:2) & t2(?)) != 0.
@@ -2398,9 +2417,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda694cc calls __glSetError [0xda4b3d8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
   The `jalr` at 0xda694e4 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
   The `jalr` at 0xda69500 calls __glImageSize [0xda5d858] with a0=a2 at entry (arg2), a1=0x1, a2=a3 at entry (arg3), a3=?.
-  The `jalr` at 0xda69524 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xda6959c calls __glFillImage [0xda5e57c] with a0=?, a1=a2 at entry (arg2), a2=0x1, a3=a3 at entry (arg3).
-  The `jalr` at 0xda695b4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xda690e4, a3=?.
+  The `jalr` at 0xda69524 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xda6959c calls __glFillImage [0xda5e57c] with a0=[0x1010], a1=a2 at entry (arg2), a2=0x1, a3=a3 at entry (arg3).
+  The `jalr` at 0xda695b4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda690e4, a3=?.
   The `beq` branch at 0xda69234 targets 0xda69254, is taken when a0 == at(=0x8010), and falls through when a0 != at(=0x8010).
   The `beq` branch at 0xda6924c targets 0xda695c0 and is always taken.
   The `bltz` branch at 0xda6925c targets 0xda69278, is taken when t8(=a2) < 0 (signed), and falls through when t8(=a2) >= 0 (signed).
@@ -2518,9 +2537,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda699a4 calls __glSetError [0xda4b3d8] with a0=0x502, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xda699bc calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xda699d8 calls __glImageSize [0xda5d858] with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=?, a3=?.
-  The `jalr` at 0xda699fc calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xda69a7c calls __glFillImage [0xda5e57c] with a0=?, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=?.
-  The `jalr` at 0xda69a94 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xda695d0, a3=?.
+  The `jalr` at 0xda699fc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xda69a7c calls __glFillImage [0xda5e57c] with a0=[0x1010], a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=?.
+  The `jalr` at 0xda69a94 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda695d0, a3=?.
   The `beq` branch at 0xda69728 targets 0xda69748, is taken when a0 == at(=0x8011), and falls through when a0 != at(=0x8011).
   The `beq` branch at 0xda69740 targets 0xda69aa0 and is always taken.
   The `bltz` branch at 0xda69750 targets 0xda69760, is taken when t8(=a2) < 0 (signed), and falls through when t8(=a2) >= 0 (signed).
@@ -2636,10 +2655,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda69ebc calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xda69ed8 calls __glImageSize [0xda5d858] with a0=a2 at entry (arg2), a1=0x1, a2=?, a3=?.
   The `jalr` at 0xda69ef8 calls __glImageSize [0xda5d858] with a0=0x1, a1=a3 at entry (arg3), a2=?, a3=?.
-  The `jalr` at 0xda69f30 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=?, a2=-0x4, a3=?.
-  The `jalr` at 0xda69fbc calls __glFillImage [0xda5e57c] with a0=?, a1=a2 at entry (arg2), a2=0x1, a3=?.
-  The `jalr` at 0xda6a00c calls __glFillImage [0xda5e57c] with a0=?, a1=0x1, a2=a3 at entry (arg3), a3=?.
-  The `jalr` at 0xda6a024 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xda69ab0, a3=?.
+  The `jalr` at 0xda69f30 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=?, a2=-0x4, a3=?.
+  The `jalr` at 0xda69fbc calls __glFillImage [0xda5e57c] with a0=[0x1010], a1=a2 at entry (arg2), a2=0x1, a3=?.
+  The `jalr` at 0xda6a00c calls __glFillImage [0xda5e57c] with a0=[0x1010], a1=0x1, a2=a3 at entry (arg3), a3=?.
+  The `jalr` at 0xda6a024 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda69ab0, a3=?.
   The `beq` branch at 0xda69c28 targets 0xda69c48, is taken when a0 == at(=0x8012), and falls through when a0 != at(=0x8012).
   The `beq` branch at 0xda69c40 targets 0xda6a030 and is always taken.
   The `bltz` branch at 0xda69c50 targets 0xda69c60, is taken when t8(=a2) < 0 (signed), and falls through when t8(=a2) >= 0 (signed).
@@ -2710,7 +2729,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xda6a3c0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda6a3d0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda6a3a4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xda6a3d8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda6a24c, a3=?.
+  The `jalr` at 0xda6a3d8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda6a24c, a3=[0x1010].
   The `beq` branch at 0xda6a2b8 targets 0xda6a398, is taken when t7(=a0-32884) >= 0x6 (unsigned), and falls through when t7(=a0-32884) < 0x6 (unsigned).
   The `beq` branch at 0xda6a2f0 targets 0xda6a3e4 and is always taken.
   The `beq` branch at 0xda6a30c targets 0xda6a3e4 and is always taken.
@@ -3055,12 +3074,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda6d948 loads 4 bytes from ret(prevLeaf) +0x4.
   The `jalr` at 0xda6d818 calls nextLeaf [0xda6d33c] with a0=a2 at entry (arg2), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda6d894 calls deleteLeaf [0xda6cd9c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(nextLeaf), a3=?.
-  The `jalr` at 0xda6d8b4 calls mergeLeaves [0xda6d408] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda6d8d4 calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda6d8b4 calls mergeLeaves [0xda6d408] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=ret(nextLeaf), a3=?.
+  The `jalr` at 0xda6d8d4 calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(nextLeaf), a3=?.
   The `jalr` at 0xda6d8f0 calls prevLeaf [0xda6d148] with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
   The `jalr` at 0xda6d96c calls deleteLeaf [0xda6cd9c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(prevLeaf), a3=?.
-  The `jalr` at 0xda6d98c calls mergeLeaves [0xda6d408] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda6d9ac calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda6d98c calls mergeLeaves [0xda6d408] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=ret(prevLeaf), a3=?.
+  The `jalr` at 0xda6d9ac calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(prevLeaf), a3=?.
   The `beq` branch at 0xda6d824 targets 0xda6d8e4, is taken when v0(=ret(nextLeaf)) == 0, and falls through when v0(=ret(nextLeaf)) != 0.
   The `bne` branch at 0xda6d838 targets 0xda6d8e4, is taken when t6(=[ret(nextLeaf)+4]) != t8(=[a2+8]+1), and falls through when t6(=[ret(nextLeaf)+4]) == t8(=[a2+8]+1).
   The `bnel` branch at 0xda6d844 targets 0xda6d85c, is taken when v1(=[a2+12]) != 0, and falls through when v1(=[a2+12]) == 0; its branch-likely delay slot `lw t0,12(v0)` at 0xda6d848 runs only when taken and is annulled on fall-through.
@@ -3121,7 +3140,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda6dd90 calls resizeLeaf [0xda6cfc0] with a0=a0 at entry (arg0), a1=ret(findLeaf), a2=[ret(findLeaf)+4], a3=?.
   The `jalr` at 0xda6ddb8 calls allocLeaf [0xda6c564] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[ret(findLeaf)+4], a3=[ret(findLeaf)+8].
   The `jalr` at 0xda6ddf4 calls resizeLeaf [0xda6cfc0] with a0=a0 at entry (arg0), a1=ret(findLeaf), a2=[ret(findLeaf)+4], a3=?.
-  The `jalr` at 0xda6de14 calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda6de14 calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=?.
   The `jalr` at 0xda6de3c calls allocLeaf [0xda6c564] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xda6de68 calls allocLeafData [0xda6c3e8] with a0=a0 at entry (arg0), a1=ret(allocLeaf), a2=?, a3=?.
   The `jalr` at 0xda6de88 calls insertLeaf [0xda6ca94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=?.
@@ -3178,9 +3197,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xda6eb38 stores 4 bytes to ret(firstLeaf) +0x4.
   4 such `sw` accesses store 4 bytes to ret(allocLeaf) +0x4, including `sw` at 0xda6eb5c, `sw` at 0xda6ec98, `sw` at 0xda6ece8.
   4 such `sw` accesses store 4 bytes to ret(allocLeaf) +0x8, including `sw` at 0xda6eb64, `sw` at 0xda6ec94, `sw` at 0xda6ecf0.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda6ebb0, `lw` at 0xda6ebcc, `lw` at 0xda6ec10.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda6ebb0, `lw` at 0xda6ebcc, `lw` at 0xda6ecc4.
   2 such `lw` accesses load 4 bytes from ret(nextLeaf) +0x4, including `lw` at 0xda6ebb4, `lw` at 0xda6ec54.
-  The `lw` at 0xda6ebdc loads 4 bytes from ret(nextLeaf) +0xc.
+  2 such `lw` accesses load 4 bytes from ret(nextLeaf) +0xc, including `lw` at 0xda6ebdc, `lw` at 0xda6ec10.
   2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda6ebe4, `sw` at 0xda6ed48.
   The `sw` at 0xda6ec60 stores 4 bytes to ret(nextLeaf) +0x4.
   The `jalr` at 0xda6eac4 calls fixMemoryProblem [0xda6c230] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -3212,7 +3231,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda6ebc4 targets 0xda6ecb8, is taken when a2(?) < s1(=a2) (unsigned), and falls through when a2(?) >= s1(=a2) (unsigned).
   The `bnel` branch at 0xda6ebd8 targets 0xda6ec4c, is taken when t5(?) != 0, and falls through when t5(?) == 0; its branch-likely delay slot `lw t8,12(v0)` at 0xda6ebdc runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda6ec08 targets 0xda6ec40, is taken when s1(=a2) != a2(?), and falls through when s1(=a2) == a2(?).
-  The `bne` branch at 0xda6ec18 targets 0xda6ec40, is taken when t7(?) != 0, and falls through when t7(?) == 0.
+  The `bne` branch at 0xda6ec18 targets 0xda6ec40, is taken when t7(=[ret(nextLeaf)+12]) != 0, and falls through when t7(=[ret(nextLeaf)+12]) == 0.
   The `beq` branch at 0xda6ec40 targets 0xda6edbc and is always taken.
   The `bne` branch at 0xda6ec4c targets 0xda6ec64, is taken when t8(=[ret(nextLeaf)+12]) != 0, and falls through when t8(=[ret(nextLeaf)+12]) == 0.
   The `beq` branch at 0xda6ec5c targets 0xda6edbc and is always taken.
@@ -3458,22 +3477,22 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beql` branch at 0xda71fd4 targets 0xda71fe8, is taken when 0 >= v1(=[a0+3220]:1) (unsigned), and falls through when 0 < v1(=[a0+3220]:1) (unsigned); its branch-likely delay slot `sb v1,28272(s0)` at 0xda71fd8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda7200c targets 0xda72384, is taken when (v1(=[a0+11812]) & 0x21) == 0, and falls through when (v1(=[a0+11812]) & 0x21) != 0.
   The `beq` branch at 0xda72020 targets 0xda72108, is taken when t3(=[a0+28272]:1) == 0, and falls through when t3(=[a0+28272]:1) != 0.
-  The `bgez` branch at 0xda7202c targets 0xda72064, is taken when t4(?) >= 0 (signed), and falls through when t4(?) < 0 (signed).
+  The `bgez` branch at 0xda7202c targets 0xda72064, is taken when t4(=([a0+1792] << 0xd)) >= 0 (signed), and falls through when t4(=([a0+1792] << 0xd)) < 0 (signed).
   The `beq` branch at 0xda72040 targets 0xda72058, is taken when v1(=[a0+1984]) == a0(=0x2400), and falls through when v1(=[a0+1984]) != a0(=0x2400).
   The `beql` branch at 0xda72048 targets 0xda72064, is taken when v1(=[a0+1984]) == a1(=0x2402), and falls through when v1(=[a0+1984]) != a1(=0x2402); its branch-likely delay slot `ori a3,a3,0x18` at 0xda7204c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda72050 targets 0xda72068 and is always taken.
   The `beq` branch at 0xda72058 targets 0xda72064 and is always taken.
-  The `bgez` branch at 0xda72068 targets 0xda7209c, is taken when t5(?) >= 0 (signed), and falls through when t5(?) < 0 (signed).
+  The `bgez` branch at 0xda72068 targets 0xda7209c, is taken when t5(=([a0+1792] << 0xc)) >= 0 (signed), and falls through when t5(=([a0+1792] << 0xc)) < 0 (signed).
   The `beq` branch at 0xda72078 targets 0xda72090, is taken when v1(=[a0+2108]) == a0(=0x2400), and falls through when v1(=[a0+2108]) != a0(=0x2400).
   The `beql` branch at 0xda72080 targets 0xda7209c, is taken when v1(=[a0+2108]) == a1(=0x2402), and falls through when v1(=[a0+2108]) != a1(=0x2402); its branch-likely delay slot `ori a3,a3,0x18` at 0xda72084 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda72088 targets 0xda720a0 and is always taken.
   The `beq` branch at 0xda72090 targets 0xda7209c and is always taken.
-  The `bgez` branch at 0xda720a0 targets 0xda720d4, is taken when t6(?) >= 0 (signed), and falls through when t6(?) < 0 (signed).
+  The `bgez` branch at 0xda720a0 targets 0xda720d4, is taken when t6(=([a0+1792] << 0xb)) >= 0 (signed), and falls through when t6(=([a0+1792] << 0xb)) < 0 (signed).
   The `beq` branch at 0xda720b0 targets 0xda720c8, is taken when v1(=[a0+2232]) == a0(=0x2400), and falls through when v1(=[a0+2232]) != a0(=0x2400).
   The `beql` branch at 0xda720b8 targets 0xda720d4, is taken when v1(=[a0+2232]) == a1(=0x2402), and falls through when v1(=[a0+2232]) != a1(=0x2402); its branch-likely delay slot `ori a3,a3,0x18` at 0xda720bc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda720c0 targets 0xda720d4 and is always taken.
   The `beq` branch at 0xda720c8 targets 0xda720d4 and is always taken.
-  The `bgez` branch at 0xda720d4 targets 0xda72108, is taken when t7(?) >= 0 (signed), and falls through when t7(?) < 0 (signed).
+  The `bgez` branch at 0xda720d4 targets 0xda72108, is taken when t7(=([a0+1792] << 0xa)) >= 0 (signed), and falls through when t7(=([a0+1792] << 0xa)) < 0 (signed).
   The `beq` branch at 0xda720e4 targets 0xda720fc, is taken when v1(=[a0+2356]) == a0(=0x2400), and falls through when v1(=[a0+2356]) != a0(=0x2400).
   The `beql` branch at 0xda720ec targets 0xda72108, is taken when v1(=[a0+2356]) == a1(=0x2402), and falls through when v1(=[a0+2356]) != a1(=0x2402); its branch-likely delay slot `ori a3,a3,0x18` at 0xda720f0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda720f4 targets 0xda72108 and is always taken.
@@ -3677,7 +3696,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda73ea8 loads 4 bytes from [[a2+280]+31284] +0xe4c.
   6 such `sw` accesses store 4 bytes to [a2+280] +0x7720, including `sw` at 0xda73ec4, `sw` at 0xda75298, `sw` at 0xda756f0.
   The `sw` at 0xda73ed4 stores 4 bytes to [a2+280] +0x7748.
-  4 such `sb` accesses store 1 byte to ?, including `sb` at 0xda73fb0, `sb` at 0xda743e4, `sb` at 0xda74868.
+  4 such `sb` accesses store 1 byte to a2 (arg2 at entry) +0x104, including `sb` at 0xda73fb0, `sb` at 0xda743e4, `sb` at 0xda74868.
   4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda7403c, `lw` at 0xda74498, `lw` at 0xda748f4.
   16 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda74110, `lwc1` at 0xda7411c, `lwc1` at 0xda74124.
   4 such `lw` accesses load 4 bytes from [a2+280] +0x3124, including `lw` at 0xda7422c, `lw` at 0xda74684, `lw` at 0xda74ae0.
@@ -3759,7 +3778,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xda75a84 stores 4 bytes to [a2+280] +0x7600.
   The `sw` at 0xda75a94 stores 4 bytes to [a2+280] +0x7610.
   The `sw` at 0xda75aa4 stores 4 bytes to [a2+280] +0x7614.
-  The `jalr` at 0xda73fb4 calls Coverage [0xda736f8] with a0=?, a1=sp-65908, a2=sp-65912, a3=?.
+  The `jalr` at 0xda73fb4 calls Coverage [0xda736f8] with a0=a2+176, a1=sp-65908, a2=sp-65912, a3=a2+240.
   The `jalr` at 0xda74084 calls FindP [0xda73654] with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
   The `jalr` at 0xda740b4 calls FindP [0xda73654] with a0=a2+16, a1=?, a2=?, a3=?.
   The `jalr` at 0xda740d8 calls FindP [0xda73654] with a0=a2+32, a1=?, a2=?, a3=?.
@@ -3775,7 +3794,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda742a8 calls __glBuildAntiAliasIndex [0xda724a0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda742f0 calls FindP [0xda73654] with a0=a2+64, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74390 calls (unknown callee) with a0=[[a2+280]+11816], a1=sp-65976, a2=?, a3=?.
-  The `jalr` at 0xda743e8 calls Coverage [0xda736f8] with a0=?, a1=sp-65908, a2=sp-65912, a3=?.
+  The `jalr` at 0xda743e8 calls Coverage [0xda736f8] with a0=a2+176, a1=sp-65908, a2=sp-65912, a3=a2+240.
   The `jalr` at 0xda744e0 calls FindP [0xda73654] with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
   The `jalr` at 0xda74510 calls FindP [0xda73654] with a0=a2+16, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74534 calls FindP [0xda73654] with a0=a2+32, a1=?, a2=?, a3=?.
@@ -3791,7 +3810,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda746fc calls __glBuildAntiAliasIndex [0xda724a0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74744 calls FindP [0xda73654] with a0=a2+64, a1=?, a2=?, a3=?.
   The `jalr` at 0xda747e4 calls (unknown callee) with a0=[[a2+280]+11816], a1=sp-65976, a2=?, a3=?.
-  The `jalr` at 0xda7486c calls Coverage [0xda736f8] with a0=?, a1=sp-65908, a2=sp-65912, a3=?.
+  The `jalr` at 0xda7486c calls Coverage [0xda736f8] with a0=a2+176, a1=sp-65908, a2=sp-65912, a3=a2+240.
   The `jalr` at 0xda7493c calls FindP [0xda73654] with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
   The `jalr` at 0xda7496c calls FindP [0xda73654] with a0=a2+16, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74990 calls FindP [0xda73654] with a0=a2+32, a1=?, a2=?, a3=?.
@@ -3807,7 +3826,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda74b58 calls __glBuildAntiAliasIndex [0xda724a0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74ba0 calls FindP [0xda73654] with a0=a2+64, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74c40 calls (unknown callee) with a0=[[a2+280]+11816], a1=sp-65976, a2=?, a3=?.
-  The `jalr` at 0xda74c9c calls Coverage [0xda736f8] with a0=?, a1=sp-65908, a2=sp-65912, a3=?.
+  The `jalr` at 0xda74c9c calls Coverage [0xda736f8] with a0=a2+176, a1=sp-65908, a2=sp-65912, a3=a2+240.
   The `jalr` at 0xda74d90 calls FindP [0xda73654] with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
   The `jalr` at 0xda74dc0 calls FindP [0xda73654] with a0=a2+16, a1=?, a2=?, a3=?.
   The `jalr` at 0xda74de4 calls FindP [0xda73654] with a0=a2+32, a1=?, a2=?, a3=?.
@@ -3829,7 +3848,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beql` branch at 0xda73e84 targets 0xda73ecc, is taken when (v1(=[[a2+280]+30492]) & 0x4) == 0, and falls through when (v1(=[[a2+280]+30492]) & 0x4) != 0; its branch-likely delay slot `lw t1,11816(s6)` at 0xda73e88 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda73ee8 targets 0xda75a6c, is taken when a0 >= t2(=a1) (signed), and falls through when a0 < t2(=a1) (signed).
   The `bc1t` branch at 0xda73fd8 targets 0xda743a4, is taken when f0(=ret(Coverage)) == f4 (c.eq.s at 0xda73fc8), and falls through when not (f0(=ret(Coverage)) == f4 (c.eq.s at 0xda73fc8)).
-  The `beql` branch at 0xda73fec targets 0xda74060, is taken when (t2(?) & 0x10) == 0, and falls through when (t2(?) & 0x10) != 0; its branch-likely delay slot `lw t8,160(sp)` at 0xda73ff0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda73fec targets 0xda74060, is taken when (t2(=[[a2+280]+30492]) & 0x10) == 0, and falls through when (t2(=[[a2+280]+30492]) & 0x10) != 0; its branch-likely delay slot `lw t8,160(sp)` at 0xda73ff0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda73ff4 targets 0xda74024, is taken when t3(?) == 0, and falls through when t3(?) != 0.
   The `beq` branch at 0xda7401c targets 0xda74034 and is always taken.
   The `beq` branch at 0xda74054 targets 0xda7439c, is taken when (t2(?) & t5(?)) == 0, and falls through when (t2(?) & t5(?)) != 0.
@@ -3850,9 +3869,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda7439c targets 0xda73f80 and is always taken.
   The `bc1f` branch at 0xda7440c targets 0xda74424, is taken when not (f0(=ret(Coverage)) == f8 (c.eq.s at 0xda743fc)), and falls through when f0(=ret(Coverage)) == f8 (c.eq.s at 0xda743fc).
   The `beq` branch at 0xda7441c targets 0xda747f8 and is always taken.
-  The `bc1fl` branch at 0xda74430 targets 0xda74444, is taken when not (f0 == f10 (c.eq.s at 0xda74424)), and falls through when f0 == f10 (c.eq.s at 0xda74424); its branch-likely delay slot `lw t3,776(t3)` at 0xda74434 runs only when taken and is annulled on fall-through.
+  The `bc1fl` branch at 0xda74430 targets 0xda74444, is taken when not (f0 == f10(=[[a2+280]+3544]) (c.eq.s at 0xda74424)), and falls through when f0 == f10(=[[a2+280]+3544]) (c.eq.s at 0xda74424); its branch-likely delay slot `lw t3,776(t3)` at 0xda74434 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda74438 targets 0xda747f8 and is always taken.
-  The `beql` branch at 0xda74448 targets 0xda744bc, is taken when (t3(?) & 0x10) == 0, and falls through when (t3(?) & 0x10) != 0; its branch-likely delay slot `lw t9,160(sp)` at 0xda7444c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda74448 targets 0xda744bc, is taken when (t3(=[[a2+280]+30492]) & 0x10) == 0, and falls through when (t3(=[[a2+280]+30492]) & 0x10) != 0; its branch-likely delay slot `lw t9,160(sp)` at 0xda7444c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda74450 targets 0xda74480, is taken when t4(?) == 0, and falls through when t4(?) != 0.
   The `beq` branch at 0xda74478 targets 0xda74490 and is always taken.
   The `beq` branch at 0xda744b0 targets 0xda747f0, is taken when (t3(?) & t7(?)) == 0, and falls through when (t3(?) & t7(?)) != 0.
@@ -3874,7 +3893,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda74814 targets 0xda74824, is taken when t1(?) >= t4(?) (signed), and falls through when t1(?) < t4(?) (signed).
   The `bnel` branch at 0xda7482c targets 0xda750ac, is taken when t5(?) != at(=0x1), and falls through when t5(?) == at(=0x1); its branch-likely delay slot `lw t7,448(sp)` at 0xda74830 runs only when taken and is annulled on fall-through.
   The `bc1t` branch at 0xda74890 targets 0xda74c54, is taken when f0(=ret(Coverage)) == f18 (c.eq.s at 0xda74880), and falls through when not (f0(=ret(Coverage)) == f18 (c.eq.s at 0xda74880)).
-  The `beql` branch at 0xda748a4 targets 0xda74918, is taken when (t2(?) & 0x10) == 0, and falls through when (t2(?) & 0x10) != 0; its branch-likely delay slot `lw t6,160(sp)` at 0xda748a8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda748a4 targets 0xda74918, is taken when (t2(=[[a2+280]+30492]) & 0x10) == 0, and falls through when (t2(=[[a2+280]+30492]) & 0x10) != 0; its branch-likely delay slot `lw t6,160(sp)` at 0xda748a8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda748ac targets 0xda748dc, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The `beq` branch at 0xda748d4 targets 0xda748ec and is always taken.
   The `beq` branch at 0xda7490c targets 0xda74c4c, is taken when (t2(?) & t1(?)) == 0, and falls through when (t2(?) & t1(?)) != 0.
@@ -3895,9 +3914,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda74c4c targets 0xda74838 and is always taken.
   The `bc1f` branch at 0xda74cc0 targets 0xda74cd4, is taken when not (f0(=ret(Coverage)) == f6 (c.eq.s at 0xda74cb0)), and falls through when f0(=ret(Coverage)) == f6 (c.eq.s at 0xda74cb0).
   The `beq` branch at 0xda74ccc targets 0xda750a8 and is always taken.
-  The `bc1fl` branch at 0xda74ce0 targets 0xda74cf4, is taken when not (f0 == f8 (c.eq.s at 0xda74cd4)), and falls through when f0 == f8 (c.eq.s at 0xda74cd4); its branch-likely delay slot `lw t3,776(t3)` at 0xda74ce4 runs only when taken and is annulled on fall-through.
+  The `bc1fl` branch at 0xda74ce0 targets 0xda74cf4, is taken when not (f0 == f8(=[[a2+280]+3544]) (c.eq.s at 0xda74cd4)), and falls through when f0 == f8(=[[a2+280]+3544]) (c.eq.s at 0xda74cd4); its branch-likely delay slot `lw t3,776(t3)` at 0xda74ce4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda74ce8 targets 0xda750a8 and is always taken.
-  The `beql` branch at 0xda74cf8 targets 0xda74d6c, is taken when (t3(?) & 0x10) == 0, and falls through when (t3(?) & 0x10) != 0; its branch-likely delay slot `lw t5,160(sp)` at 0xda74cfc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda74cf8 targets 0xda74d6c, is taken when (t3(=[[a2+280]+30492]) & 0x10) == 0, and falls through when (t3(=[[a2+280]+30492]) & 0x10) != 0; its branch-likely delay slot `lw t5,160(sp)` at 0xda74cfc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda74d00 targets 0xda74d30, is taken when t2(?) == 0, and falls through when t2(?) != 0.
   The `beq` branch at 0xda74d28 targets 0xda74d40 and is always taken.
   The `beq` branch at 0xda74d60 targets 0xda750a0, is taken when (t3(?) & t6(?)) == 0, and falls through when (t3(?) & t6(?)) != 0.
@@ -3932,8 +3951,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda752f4 targets 0xda75374, is taken when t4(?) == at(=-0x1), and falls through when t4(?) != at(=-0x1).
   The `beq` branch at 0xda752fc targets 0xda75374, is taken when t1(?) == at(=-0x1), and falls through when t1(?) != at(=-0x1).
   The `blez` branch at 0xda75308 targets 0xda75374, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
-  The `bnel` branch at 0xda75330 targets 0xda75378, is taken when t3(?) < t5(?) (signed), and falls through when t3(?) >= t5(?) (signed); its branch-likely delay slot `lui a2,0x1` at 0xda75334 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xda75348 targets 0xda75378, is taken when t3(?) >= t6(?) (signed), and falls through when t3(?) < t6(?) (signed); its branch-likely delay slot `lui a2,0x1` at 0xda7534c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda75330 targets 0xda75378, is taken when t3(?) < t5(=[[a2+280]+29760]) (signed), and falls through when t3(?) >= t5(=[[a2+280]+29760]) (signed); its branch-likely delay slot `lui a2,0x1` at 0xda75334 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda75348 targets 0xda75378, is taken when t3(?) >= t6(=[[a2+280]+29768]) (signed), and falls through when t3(?) < t6(=[[a2+280]+29768]) (signed); its branch-likely delay slot `lui a2,0x1` at 0xda7534c runs only when taken and is annulled on fall-through.
   The `bgez` branch at 0xda75398 targets 0xda753d8, is taken when a2(?) >= 0 (signed), and falls through when a2(?) < 0 (signed).
   The `beq` branch at 0xda753d0 targets 0xda75400 and is always taken.
   The `bgez` branch at 0xda75434 targets 0xda75734, is taken when a1(?) >= 0 (signed), and falls through when a1(?) < 0 (signed).
@@ -4036,12 +4055,12 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0x76cc, including `swc1` at 0xda75d74, `swc1` at 0xda76150.
   2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0x76e0, including `swc1` at 0xda75d7c, `swc1` at 0xda76158.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x700, including `lw` at 0xda75dd0, `lw` at 0xda761ac.
-  2 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x76b8, including `lwc1` at 0xda75de0, `lwc1` at 0xda761bc.
-  6 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda75e10, `sw` at 0xda75ee4, `sw` at 0xda75ee8.
-  4 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda75e14, `lwc1` at 0xda75e1c, `lwc1` at 0xda761f0.
-  2 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x76b4, including `lwc1` at 0xda75e24, `lwc1` at 0xda76200.
+  4 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x76b8, including `lwc1` at 0xda75de0, `lwc1` at 0xda75e14, `lwc1` at 0xda761bc.
+  4 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x7634, including `sw` at 0xda75e10, `sw` at 0xda75ec0, `sw` at 0xda761ec.
+  4 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x76b4, including `lwc1` at 0xda75e1c, `lwc1` at 0xda75e24, `lwc1` at 0xda761f8.
   2 such `lwc1` accesses load 4 bytes from a1 (arg1 at entry) +0x88, including `lwc1` at 0xda75e28, `lwc1` at 0xda76204.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x7634, including `sw` at 0xda75ec0, `sw` at 0xda7629c.
+  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x76a4, including `sw` at 0xda75ee4, `sw` at 0xda762c0.
+  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x76a8, including `sw` at 0xda75ee8, `sw` at 0xda762c4.
   2 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x7718, including `lwc1` at 0xda75ef8, `lwc1` at 0xda762d4.
   2 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x7714, including `lwc1` at 0xda75efc, `lwc1` at 0xda762d8.
   2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0x765c, including `swc1` at 0xda75f1c, `swc1` at 0xda762f8.
@@ -4063,7 +4082,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda75e9c targets 0xda75ebc and is always taken.
   The `beq` branch at 0xda75ea4 targets 0xda75ebc and is always taken.
   The `bltz` branch at 0xda75eb4 targets 0xda75ea4, is taken when t7(?) < 0 (signed), and falls through when t7(?) >= 0 (signed).
-  The `beq` branch at 0xda75ef0 targets 0xda76308, is taken when (t0(?) & 0x1000) == 0, and falls through when (t0(?) & 0x1000) != 0.
+  The `beq` branch at 0xda75ef0 targets 0xda76308, is taken when (t0(=[a0+30492]) & 0x1000) == 0, and falls through when (t0(=[a0+30492]) & 0x1000) != 0.
   The `beq` branch at 0xda75f28 targets 0xda76308 and is always taken.
   The `beq` branch at 0xda75f30 targets 0xda7615c, is taken when t4(?) == 0, and falls through when t4(?) != 0.
   The `beq` branch at 0xda75f3c targets 0xda76024, is taken when (t0(=[a0+30492]) & 0x2) == 0, and falls through when (t0(=[a0+30492]) & 0x2) != 0.
@@ -4078,7 +4097,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda76278 targets 0xda76298 and is always taken.
   The `beq` branch at 0xda76280 targets 0xda76298 and is always taken.
   The `bltz` branch at 0xda76290 targets 0xda76280, is taken when t3(?) < 0 (signed), and falls through when t3(?) >= 0 (signed).
-  The `beq` branch at 0xda762cc targets 0xda76308, is taken when (t0(?) & 0x1000) == 0, and falls through when (t0(?) & 0x1000) != 0.
+  The `beq` branch at 0xda762cc targets 0xda76308, is taken when (t0(=[a0+30492]) & 0x1000) == 0, and falls through when (t0(=[a0+30492]) & 0x1000) != 0.
   The return at 0xda76318 has v0 = ?.
   The instructions from 0xda75e20 to 0xda75e20 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda75eac to 0xda75eac are not reached by any path from the entry, and their branches are not listed.
@@ -4111,17 +4130,24 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda7656c loads 4 bytes from a2 (arg2 at entry) +0x8.
   The `lw` at 0xda765c4 loads 4 bytes from a0 (arg0 at entry) +0x774.
   2 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x8, including `lw` at 0xda7665c, `lw` at 0xda76d28.
-  23 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda76664, `lwc1` at 0xda7666c, `lwc1` at 0xda766b8.
+  4 such `lwc1` accesses load 4 bytes from [a1+8] +0x0, including `lwc1` at 0xda76664, `lwc1` at 0xda7678c, `lwc1` at 0xda76d2c.
   4 such `lwc1` accesses load 4 bytes from [a3+8] +0x0, including `lwc1` at 0xda76668, `lwc1` at 0xda7679c, `lwc1` at 0xda76d34.
+  4 such `lwc1` accesses load 4 bytes from [a2+8] +0x0, including `lwc1` at 0xda7666c, `lwc1` at 0xda76794, `lwc1` at 0xda76d3c.
   2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0x7684, including `swc1` at 0xda7669c, `swc1` at 0xda76d70.
   2 such `swc1` accesses store 4 bytes to a0 (arg0 at entry) +0x7694, including `swc1` at 0xda766b4, `swc1` at 0xda76d88.
-  The `lwc1` at 0xda766bc loads 4 bytes from [a3+8] +0x4.
+  2 such `lwc1` accesses load 4 bytes from [a1+8] +0x4, including `lwc1` at 0xda766b8, `lwc1` at 0xda767b8.
+  2 such `lwc1` accesses load 4 bytes from [a3+8] +0x4, including `lwc1` at 0xda766bc, `lwc1` at 0xda767d8.
+  2 such `lwc1` accesses load 4 bytes from [a2+8] +0x4, including `lwc1` at 0xda766c0, `lwc1` at 0xda767c8.
   The `swc1` at 0xda766e0 stores 4 bytes to a0 (arg0 at entry) +0x7688.
   The `swc1` at 0xda766f8 stores 4 bytes to a0 (arg0 at entry) +0x7698.
-  The `lwc1` at 0xda76700 loads 4 bytes from [a3+8] +0x8.
+  2 such `lwc1` accesses load 4 bytes from [a1+8] +0x8, including `lwc1` at 0xda766fc, `lwc1` at 0xda767fc.
+  2 such `lwc1` accesses load 4 bytes from [a3+8] +0x8, including `lwc1` at 0xda76700, `lwc1` at 0xda7681c.
+  2 such `lwc1` accesses load 4 bytes from [a2+8] +0x8, including `lwc1` at 0xda76704, `lwc1` at 0xda7680c.
   The `swc1` at 0xda76724 stores 4 bytes to a0 (arg0 at entry) +0x768c.
   The `swc1` at 0xda7673c stores 4 bytes to a0 (arg0 at entry) +0x769c.
-  The `lwc1` at 0xda76740 loads 4 bytes from [a3+8] +0xc.
+  2 such `lwc1` accesses load 4 bytes from [a3+8] +0xc, including `lwc1` at 0xda76740, `lwc1` at 0xda76860.
+  2 such `lwc1` accesses load 4 bytes from [a1+8] +0xc, including `lwc1` at 0xda7674c, `lwc1` at 0xda76840.
+  2 such `lwc1` accesses load 4 bytes from [a2+8] +0xc, including `lwc1` at 0xda76750, `lwc1` at 0xda76850.
   The `swc1` at 0xda76770 stores 4 bytes to a0 (arg0 at entry) +0x7690.
   The `swc1` at 0xda76788 stores 4 bytes to a0 (arg0 at entry) +0x76a0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x6de0, including `lw` at 0xda76884, `lw` at 0xda76dbc.
@@ -4188,12 +4214,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda7682c calls FindPlaneEquation [0xda73574] with a0=sp-396, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda76870 calls FindPlaneEquation [0xda73574] with a0=sp-380, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda76a74 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+30192, a2=?, a3=?; fp f12=[a1+140], f14=[a2+140].
-  The `jalr` at 0xda76ad8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda76b3c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda76be4 calls FindPlaneEquation [0xda73574] with a0=sp-348, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda76c34 calls FindPlaneEquation [0xda73574] with a0=sp-332, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda76c84 calls FindPlaneEquation [0xda73574] with a0=sp-316, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda76cd4 calls FindPlaneEquation [0xda73574] with a0=sp-300, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0xda76ad8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+30192, a2=?, a3=?; fp f12=[a1+140], f14=[a2+140].
+  The `jalr` at 0xda76b3c calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+30192, a2=?, a3=?; fp f14=[a2+140].
+  The `jalr` at 0xda76be4 calls FindPlaneEquation [0xda73574] with a0=sp-348, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=[a1+140], f14=[a2+140].
+  The `jalr` at 0xda76c34 calls FindPlaneEquation [0xda73574] with a0=sp-332, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=[a1+140], f14=[a2+140].
+  The `jalr` at 0xda76c84 calls FindPlaneEquation [0xda73574] with a0=sp-316, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=[a1+140], f14=[a2+140].
+  The `jalr` at 0xda76cd4 calls FindPlaneEquation [0xda73574] with a0=sp-300, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=[a1+140], f14=[a2+140].
   The `jalr` at 0xda76d0c calls FindPlaneEquation [0xda73574] with a0=sp-284, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda76da8 calls FindPlaneEquation [0xda73574] with a0=sp-428, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda76e60 calls FindPlaneEquation [0xda73574] with a0=sp-364, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -4202,25 +4228,25 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda76ee0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=?, a3=?.
   The `jalr` at 0xda76f5c calls FindPlaneEquation [0xda73574] with a0=sp-268, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda77008 calls __glSnapXLeft [0xda78300] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?; fp f14=[a1+132].
-  The `jalr` at 0xda77054 calls SetInitialParameters [0xda75af0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda77054 calls SetInitialParameters [0xda75af0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+8], a3=?.
   The `jalr` at 0xda77094 calls __glSnapXRight [0xda78488] with a0=a0+30192, a1=?, a2=?, a3=?.
   The `jalr` at 0xda770b4 calls FillAASubTriangle [0xda73cc8] with a0=?, a1=?, a2=sp-428, a3=?.
   The `jalr` at 0xda7710c calls __glSnapXRight [0xda78488] with a0=a0+30192, a1=?, a2=?, a3=?.
   The `jalr` at 0xda7712c calls FillAASubTriangle [0xda73cc8] with a0=?, a1=?, a2=sp-428, a3=?.
   The `jalr` at 0xda77178 calls __glSnapXRight [0xda78488] with a0=a0+30192, a1=?, a2=?, a3=?; fp f14=[a1+132].
   The `jalr` at 0xda771c0 calls __glSnapXLeft [0xda78300] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda77208 calls SetInitialParameters [0xda75af0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda77208 calls SetInitialParameters [0xda75af0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+8], a3=?.
   The `jalr` at 0xda77228 calls FillAASubTriangle [0xda73cc8] with a0=?, a1=?, a2=sp-428, a3=?.
   The `jalr` at 0xda77284 calls __glSnapXLeft [0xda78300] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda772cc calls SetInitialParameters [0xda75af0] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda772cc calls SetInitialParameters [0xda75af0] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=[a2+8], a3=?.
   The `jalr` at 0xda772ec calls FillAASubTriangle [0xda73cc8] with a0=?, a1=?, a2=sp-428, a3=?.
   The `bc1tl` branch at 0xda76534 targets 0xda772fc, is taken when f0 == f8 (c.eq.s at 0xda7652c), and falls through when not (f0 == f8 (c.eq.s at 0xda7652c)); its branch-likely delay slot `lw ra,60(sp)` at 0xda76538 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda765d0 targets 0xda765e0, is taken when t9(=[a0+1908]) != at(=0x1102), and falls through when t9(=[a0+1908]) == at(=0x1102).
   The `beq` branch at 0xda765d8 targets 0xda765e0 and is always taken.
-  The `beq` branch at 0xda7664c targets 0xda76d20, is taken when (t1(?) & 0x1) == 0, and falls through when (t1(?) & 0x1) != 0.
+  The `beq` branch at 0xda7664c targets 0xda76d20, is taken when (t1(=[a0+30492]) & 0x1) == 0, and falls through when (t1(=[a0+30492]) & 0x1) != 0.
   The `beq` branch at 0xda76654 targets 0xda76884, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0xda7687c targets 0xda768ac and is always taken.
-  The `beql` branch at 0xda768b0 targets 0xda76dd0, is taken when (t1(?) & 0x8) == 0, and falls through when (t1(?) & 0x8) != 0; its branch-likely delay slot `andi t8,t1,0x4000` at 0xda768b4 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda768b0 targets 0xda76dd0, is taken when (t1(=[a0+30492]) & 0x8) == 0, and falls through when (t1(=[a0+30492]) & 0x8) != 0; its branch-likely delay slot `andi t8,t1,0x4000` at 0xda768b4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda76d18 targets 0xda76dcc and is always taken.
   The `beq` branch at 0xda76d20 targets 0xda76dbc, is taken when t4(?) == 0, and falls through when t4(?) != 0.
   The `beq` branch at 0xda76db4 targets 0xda76dcc and is always taken.
@@ -4425,8 +4451,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda77ed0 targets 0xda77f14, is taken when (t1(=[a0+30492]) & 0x4) == 0, and falls through when (t1(=[a0+30492]) & 0x4) != 0.
   The `beq` branch at 0xda77f30 targets 0xda782d4, is taken when s1(=a1) >= t7(=a2) (signed), and falls through when s1(=a1) < t7(=a2) (signed).
   The `blez` branch at 0xda77f40 targets 0xda77fd8, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
-  The `bne` branch at 0xda77f4c targets 0xda77fd8, is taken when s1(?) < t9(?) (signed), and falls through when s1(?) >= t9(?) (signed).
-  The `beql` branch at 0xda77f58 targets 0xda77fdc, is taken when s1(?) >= t8(?) (signed), and falls through when s1(?) < t8(?) (signed); its branch-likely delay slot `lw t6,112(sp)` at 0xda77f5c runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda77f4c targets 0xda77fd8, is taken when s1(?) < t9(=[a0+29760]) (signed), and falls through when s1(?) >= t9(=[a0+29760]) (signed).
+  The `beql` branch at 0xda77f58 targets 0xda77fdc, is taken when s1(?) >= t8(=[a0+29768]) (signed), and falls through when s1(?) < t8(=[a0+29768]) (signed); its branch-likely delay slot `lw t6,112(sp)` at 0xda77f5c runs only when taken and is annulled on fall-through.
   The `bgez` branch at 0xda77fe8 targets 0xda78000, is taken when t0(?) >= 0 (signed), and falls through when t0(?) < 0 (signed).
   The `beq` branch at 0xda77ff8 targets 0xda78004 and is always taken.
   The `bgez` branch at 0xda78004 targets 0xda7816c, is taken when v1(?) >= 0 (signed), and falls through when v1(?) < 0 (signed).
@@ -4503,9 +4529,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xda78674 loads 4 bytes from a2 (arg2 at entry) +0x88.
   The `swc1` at 0xda78694 stores 4 bytes to a0 (arg0 at entry) +0x76b8.
   The `swc1` at 0xda786b4 stores 4 bytes to a0 (arg0 at entry) +0x76b4.
-  The `swc1` at 0xda786c8 stores 4 bytes to ?.
+  The `swc1` at 0xda786c8 stores 4 bytes to a0 (arg0 at entry) +0x7750.
   The `jalr` at 0xda786b8 calls __glComputePolygonOffset [0xda785a4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=[a0+30244], f14=[a0+30248].
-  The return at 0xda786d4 has v0 = ?.
+  The return at 0xda786d4 has v0 = a0+30192.
 
 - `__glPolygonOffsetZ` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda786dc (o32).
   Evidence grade: inferred.
@@ -4640,23 +4666,23 @@ Each entry records selected software behavior from its exact binary range. The r
   5 such `lwc1` accesses load 4 bytes from a1 (arg1 at entry) +0x80, including `lwc1` at 0xda79968, `lwc1` at 0xda799dc, `lwc1` at 0xda79a24.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x75fc, including `lw` at 0xda799c0, `lw` at 0xda79b78, `lw` at 0xda79c3c.
   The `jalr` at 0xda79660 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+30192, a2=?, a3=?; fp f12=[a2+140], f14=[a3+140].
-  The `jalr` at 0xda796c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda79728 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda796c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+30192, a2=?, a3=?; fp f12=[a2+140].
+  The `jalr` at 0xda79728 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+30192, a2=?, a3=?; fp f12=[a2+140], f14=[a3+140].
   The `jalr` at 0xda79898 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xda798b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?.
   The `jalr` at 0xda798c8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=?, a3=?.
   The `jalr` at 0xda799b8 calls __glSnapXLeft [0xda78300] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?; fp f14=[a1+132].
-  The `jalr` at 0xda79a04 calls SetInitialParameters [0xda78934] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda79a04 calls SetInitialParameters [0xda78934] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+8], a3=?.
   The `jalr` at 0xda79a44 calls __glSnapXRight [0xda78488] with a0=a0+30192, a1=?, a2=?, a3=?.
   The `jalr` at 0xda79a64 calls FillSubTriangle [0xda77de0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xda79abc calls __glSnapXRight [0xda78488] with a0=a0+30192, a1=?, a2=?, a3=?.
   The `jalr` at 0xda79adc calls FillSubTriangle [0xda77de0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xda79b28 calls __glSnapXRight [0xda78488] with a0=a0+30192, a1=?, a2=?, a3=?; fp f14=[a1+132].
   The `jalr` at 0xda79b70 calls __glSnapXLeft [0xda78300] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda79bb8 calls SetInitialParameters [0xda78934] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda79bb8 calls SetInitialParameters [0xda78934] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+8], a3=?.
   The `jalr` at 0xda79bd8 calls FillSubTriangle [0xda77de0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xda79c34 calls __glSnapXLeft [0xda78300] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda79c7c calls SetInitialParameters [0xda78934] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda79c7c calls SetInitialParameters [0xda78934] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=[a2+8], a3=?.
   The `jalr` at 0xda79c9c calls FillSubTriangle [0xda77de0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0xda79330 targets 0xda79794, is taken when (v1(=[a0+30492]) & 0x1) == 0, and falls through when (v1(=[a0+30492]) & 0x1) != 0.
   The `beql` branch at 0xda79338 targets 0xda79470, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `lw t8,28128(s0)` at 0xda7933c runs only when taken and is annulled on fall-through.
@@ -4686,10 +4712,9 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 296 bytes.
   The `lw` at 0xda79cec loads 4 bytes from a0 (arg0 at entry) +0x6de0.
   The `lw` at 0xda79cfc loads 4 bytes from a1 (arg1 at entry) +0xb0.
-  The `lw` at 0xda79d00 loads 4 bytes from [a0+28128] +0x8.
+  3 such `lw` accesses load 4 bytes from [a0+28128] +0x8, including `lw` at 0xda79d00, `lw` at 0xda79d38, `lw` at 0xda79d58.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x312c, including `lw` at 0xda79d0c, `lw` at 0xda79d1c, `lw` at 0xda79d3c.
   The `lw` at 0xda79d30 loads 4 bytes from a2 (arg2 at entry) +0xb0.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda79d38, `lw` at 0xda79d58.
   The `lw` at 0xda79d50 loads 4 bytes from a3 (arg3 at entry) +0xb0.
   The `lw` at 0xda79d5c loads 4 bytes from a1 (arg1 at entry) +0x8.
   The `lw` at 0xda79d6c loads 4 bytes from a2 (arg2 at entry) +0x8.
@@ -4699,8 +4724,8 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x8, including `sw` at 0xda79d94, `sw` at 0xda79dcc.
   The `lw` at 0xda79da8 loads 4 bytes from a0 (arg0 at entry) +0x2f6c.
   The `jalr` at 0xda79d14 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-16, a2=[[a0+28128]+8], a3=[a1+176].
-  The `jalr` at 0xda79d34 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-32, a2=?, a3=[a2+176].
-  The `jalr` at 0xda79d54 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-48, a2=?, a3=[a3+176].
+  The `jalr` at 0xda79d34 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-32, a2=[[a0+28128]+8], a3=[a2+176].
+  The `jalr` at 0xda79d54 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-48, a2=[[a0+28128]+8], a3=[a3+176].
   The `jalr` at 0xda79dac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The return at 0xda79de4 has v0 = ret(?).
 
@@ -4809,7 +4834,7 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x31c8, including `sw` at 0xda7a7c0, `sw` at 0xda7a7d8.
   The `sw` at 0xda7a7c4 stores 4 bytes to a0 (arg0 at entry) +0x32a8.
   The `sw` at 0xda7a7c8 stores 4 bytes to a0 (arg0 at entry) +0x3368.
-  The `sb` at 0xda7a7d0 stores 1 byte to ?.
+  The `sb` at 0xda7a7d0 stores 1 byte to a0 (arg0 at entry) +0x3298.
   The `jalr` at 0xda7a734 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+12768, a2=0x4f, a3=a1 at entry (arg1).
   The `bne` branch at 0xda7a708 targets 0xda7a7d4, is taken when t7(=a0+27936) != a1, and falls through when t7(=a0+27936) == a1.
   The `bne` branch at 0xda7a77c targets 0xda7a760, is taken when t3(?) != t5(=a1), and falls through when t3(?) == t5(=a1).
@@ -4827,10 +4852,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda7e854 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda7e874 loads 4 bytes from [0x1010] +0x2e40.
   2 such `sw` accesses store 4 bytes to abs 0x1018, including `sw` at 0xda7e888, `sw` at 0xda7e8e8.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda7e890, `lw` at 0xda7e898.
+  The `lw` at 0xda7e890 loads 4 bytes from [0x1010] +0x17f4.
+  The `lw` at 0xda7e898 loads 4 bytes from [[0x1010]+6132] +0x1c.
   The `lw` at 0xda7e8f0 loads 4 bytes from ([0x1010] + (a0 << 0x2)) +0x2f34.
   The `jalr` at 0xda7e87c calls (unknown callee) with a0=[0x1010], a1=[0x1010], a2=a0 at entry (arg0), a3=a3 at entry (arg3).
-  The `jalr` at 0xda7e89c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda7e89c calls (unknown callee) with a0=a0 at entry (arg0), a1=[0x1010], a2=?, a3=?.
   The `jalr` at 0xda7e8b4 calls __glSetError [0xda4b3d8] with a0=0x502, a1=[0x1010], a2=a0 at entry (arg0), a3=a3 at entry (arg3).
   The `jalr` at 0xda7e8d4 calls __glSetError [0xda4b3d8] with a0=0x500, a1=[0x1010], a2=a0 at entry (arg0), a3=a3 at entry (arg3).
   The `jalr` at 0xda7e8f8 calls (unknown callee) with a0=[0x1010], a1=[0x1010], a2=a0 at entry (arg0), a3=a3 at entry (arg3).
@@ -4902,31 +4928,42 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda7fd64 loads 4 bytes from a0 (arg0 at entry) +0x2ecc.
   2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x1c4, including `sb` at 0xda7fd80, `sb` at 0xda7fd8c.
   The `lw` at 0xda7fd84 loads 4 bytes from a0 (arg0 at entry) +0xd0.
-  12 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda7fd90, `sw` at 0xda7fd98, `sw` at 0xda7fda0.
+  The `sw` at 0xda7fd90 stores 4 bytes to a0 (arg0 at entry) +0x110.
   The `lw` at 0xda7fd94 loads 4 bytes from a0 (arg0 at entry) +0xd4.
+  The `sw` at 0xda7fd98 stores 4 bytes to a0 (arg0 at entry) +0x114.
   The `lw` at 0xda7fd9c loads 4 bytes from a0 (arg0 at entry) +0xd8.
+  The `sw` at 0xda7fda0 stores 4 bytes to a0 (arg0 at entry) +0x118.
   The `lw` at 0xda7fda4 loads 4 bytes from a0 (arg0 at entry) +0xdc.
+  The `sw` at 0xda7fda8 stores 4 bytes to a0 (arg0 at entry) +0x11c.
   The `lbu` at 0xda7fdac loads 1 byte from a0 (arg0 at entry) +0xc94.
   The `lwc1` at 0xda7fdb4 loads 4 bytes from a0 (arg0 at entry) +0x1c0.
   The `lw` at 0xda7fdb8 loads 4 bytes from a0 (arg0 at entry) +0xc0.
+  The `sw` at 0xda7fdbc stores 4 bytes to a0 (arg0 at entry) +0x180.
   The `lw` at 0xda7fdc0 loads 4 bytes from a0 (arg0 at entry) +0xc4.
+  The `sw` at 0xda7fdc4 stores 4 bytes to a0 (arg0 at entry) +0x184.
   The `lw` at 0xda7fdc8 loads 4 bytes from a0 (arg0 at entry) +0xc8.
+  The `sw` at 0xda7fdcc stores 4 bytes to a0 (arg0 at entry) +0x188.
   The `lw` at 0xda7fdd0 loads 4 bytes from a0 (arg0 at entry) +0xcc.
-  The `swc1` at 0xda7fde0 stores 4 bytes to ?.
+  The `sw` at 0xda7fdd8 stores 4 bytes to a0 (arg0 at entry) +0x18c.
+  The `swc1` at 0xda7fde0 stores 4 bytes to a0 (arg0 at entry) +0x180.
   The `lw` at 0xda7fde4 loads 4 bytes from a0 (arg0 at entry) +0xe0.
+  The `sw` at 0xda7fdec stores 4 bytes to a0 (arg0 at entry) +0x120.
   The `lw` at 0xda7fdf0 loads 4 bytes from a0 (arg0 at entry) +0xe4.
+  The `sw` at 0xda7fdf4 stores 4 bytes to a0 (arg0 at entry) +0x124.
   The `lw` at 0xda7fdf8 loads 4 bytes from a0 (arg0 at entry) +0xe8.
+  The `sw` at 0xda7fdfc stores 4 bytes to a0 (arg0 at entry) +0x128.
   The `lw` at 0xda7fe00 loads 4 bytes from a0 (arg0 at entry) +0xec.
+  The `sw` at 0xda7fe04 stores 4 bytes to a0 (arg0 at entry) +0x12c.
   The `lw` at 0xda7fe08 loads 4 bytes from a0 (arg0 at entry) +0x2f1c.
   The `lw` at 0xda7fe0c loads 4 bytes from a0 (arg0 at entry) +0x6de4.
   The `lw` at 0xda7fe14 loads 4 bytes from a0 (arg0 at entry) +0x2f24.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x2f1c, including `sw` at 0xda7fe20, `sw` at 0xda7fe54.
-  The `lw` at 0xda7fe28 loads 4 bytes from ?.
+  The `lw` at 0xda7fe28 loads 4 bytes from a0 (arg0 at entry) +0xfc.
   The `lw` at 0xda7fe3c loads 4 bytes from a0 (arg0 at entry) +0xc84.
   The `jalr` at 0xda7fd40 calls (unknown callee) with a0=a0+352, a1=a0+256, a2=[a0+29716]+176, a3=a3 at entry (arg3).
   The `jalr` at 0xda7fd68 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+240, a2=?, a3=?.
-  The `jalr` at 0xda7fe34 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=(((([a0+28132] | 0x10) | 0x8) | 0x4) | 0x1), a3=?.
-  The `jalr` at 0xda7fe60 calls __glSelectPoint [0xda8103c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda7fe34 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+240, a2=(((([a0+28132] | 0x10) | 0x8) | 0x4) | 0x1), a3=?.
+  The `jalr` at 0xda7fe60 calls __glSelectPoint [0xda8103c] with a0=a0 at entry (arg0), a1=a0+240, a2=?, a3=?.
   The `beq` branch at 0xda7fd74 targets 0xda7fd84, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0xda7fd7c targets 0xda7fe6c and is always taken.
   The `beql` branch at 0xda7fdb0 targets 0xda7fde0, is taken when t1(=[a0+3220]:1) == 0, and falls through when t1(=[a0+3220]:1) != 0; its branch-likely delay slot `lwc1 $f16,448(s0)` at 0xda7fdb4 runs only when taken and is annulled on fall-through.
@@ -4955,31 +4992,42 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda7fef8 loads 4 bytes from a0 (arg0 at entry) +0x2ed0.
   2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x1c4, including `sb` at 0xda7ff14, `sb` at 0xda7ff20.
   The `lw` at 0xda7ff18 loads 4 bytes from a0 (arg0 at entry) +0xd0.
-  12 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda7ff24, `sw` at 0xda7ff2c, `sw` at 0xda7ff34.
+  The `sw` at 0xda7ff24 stores 4 bytes to a0 (arg0 at entry) +0x110.
   The `lw` at 0xda7ff28 loads 4 bytes from a0 (arg0 at entry) +0xd4.
+  The `sw` at 0xda7ff2c stores 4 bytes to a0 (arg0 at entry) +0x114.
   The `lw` at 0xda7ff30 loads 4 bytes from a0 (arg0 at entry) +0xd8.
+  The `sw` at 0xda7ff34 stores 4 bytes to a0 (arg0 at entry) +0x118.
   The `lw` at 0xda7ff38 loads 4 bytes from a0 (arg0 at entry) +0xdc.
+  The `sw` at 0xda7ff3c stores 4 bytes to a0 (arg0 at entry) +0x11c.
   The `lbu` at 0xda7ff40 loads 1 byte from a0 (arg0 at entry) +0xc94.
   The `lwc1` at 0xda7ff48 loads 4 bytes from a0 (arg0 at entry) +0x1c0.
   The `lw` at 0xda7ff4c loads 4 bytes from a0 (arg0 at entry) +0xc0.
+  The `sw` at 0xda7ff50 stores 4 bytes to a0 (arg0 at entry) +0x180.
   The `lw` at 0xda7ff54 loads 4 bytes from a0 (arg0 at entry) +0xc4.
+  The `sw` at 0xda7ff58 stores 4 bytes to a0 (arg0 at entry) +0x184.
   The `lw` at 0xda7ff5c loads 4 bytes from a0 (arg0 at entry) +0xc8.
+  The `sw` at 0xda7ff60 stores 4 bytes to a0 (arg0 at entry) +0x188.
   The `lw` at 0xda7ff64 loads 4 bytes from a0 (arg0 at entry) +0xcc.
-  The `swc1` at 0xda7ff74 stores 4 bytes to ?.
+  The `sw` at 0xda7ff6c stores 4 bytes to a0 (arg0 at entry) +0x18c.
+  The `swc1` at 0xda7ff74 stores 4 bytes to a0 (arg0 at entry) +0x180.
   The `lw` at 0xda7ff78 loads 4 bytes from a0 (arg0 at entry) +0xe0.
+  The `sw` at 0xda7ff80 stores 4 bytes to a0 (arg0 at entry) +0x120.
   The `lw` at 0xda7ff84 loads 4 bytes from a0 (arg0 at entry) +0xe4.
+  The `sw` at 0xda7ff88 stores 4 bytes to a0 (arg0 at entry) +0x124.
   The `lw` at 0xda7ff8c loads 4 bytes from a0 (arg0 at entry) +0xe8.
+  The `sw` at 0xda7ff90 stores 4 bytes to a0 (arg0 at entry) +0x128.
   The `lw` at 0xda7ff94 loads 4 bytes from a0 (arg0 at entry) +0xec.
+  The `sw` at 0xda7ff98 stores 4 bytes to a0 (arg0 at entry) +0x12c.
   The `lw` at 0xda7ff9c loads 4 bytes from a0 (arg0 at entry) +0x2f1c.
   The `lw` at 0xda7ffa0 loads 4 bytes from a0 (arg0 at entry) +0x6de4.
   The `lw` at 0xda7ffa8 loads 4 bytes from a0 (arg0 at entry) +0x2f24.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x2f1c, including `sw` at 0xda7ffb4, `sw` at 0xda7ffe8.
-  The `lw` at 0xda7ffbc loads 4 bytes from ?.
+  The `lw` at 0xda7ffbc loads 4 bytes from a0 (arg0 at entry) +0xfc.
   The `lw` at 0xda7ffd0 loads 4 bytes from a0 (arg0 at entry) +0xc84.
   The `jalr` at 0xda7fed4 calls (unknown callee) with a0=a0+352, a1=a0+256, a2=[a0+29716]+176, a3=a3 at entry (arg3).
   The `jalr` at 0xda7fefc calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+240, a2=?, a3=?.
-  The `jalr` at 0xda7ffc8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=(((([a0+28132] | 0x10) | 0x8) | 0x4) | 0x1), a3=?.
-  The `jalr` at 0xda7fff4 calls __glSelectPoint [0xda8103c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda7ffc8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+240, a2=(((([a0+28132] | 0x10) | 0x8) | 0x4) | 0x1), a3=?.
+  The `jalr` at 0xda7fff4 calls __glSelectPoint [0xda8103c] with a0=a0 at entry (arg0), a1=a0+240, a2=?, a3=?.
   The `beq` branch at 0xda7ff08 targets 0xda7ff18, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0xda7ff10 targets 0xda80000 and is always taken.
   The `beql` branch at 0xda7ff44 targets 0xda7ff74, is taken when t1(=[a0+3220]:1) == 0, and falls through when t1(=[a0+3220]:1) != 0; its branch-likely delay slot `lwc1 $f16,448(s0)` at 0xda7ff48 runs only when taken and is annulled on fall-through.
@@ -5008,31 +5056,42 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda8008c loads 4 bytes from a0 (arg0 at entry) +0x2ed4.
   2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x1c4, including `sb` at 0xda800a8, `sb` at 0xda800b4.
   The `lw` at 0xda800ac loads 4 bytes from a0 (arg0 at entry) +0xd0.
-  12 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda800b8, `sw` at 0xda800c0, `sw` at 0xda800c8.
+  The `sw` at 0xda800b8 stores 4 bytes to a0 (arg0 at entry) +0x110.
   The `lw` at 0xda800bc loads 4 bytes from a0 (arg0 at entry) +0xd4.
+  The `sw` at 0xda800c0 stores 4 bytes to a0 (arg0 at entry) +0x114.
   The `lw` at 0xda800c4 loads 4 bytes from a0 (arg0 at entry) +0xd8.
+  The `sw` at 0xda800c8 stores 4 bytes to a0 (arg0 at entry) +0x118.
   The `lw` at 0xda800cc loads 4 bytes from a0 (arg0 at entry) +0xdc.
+  The `sw` at 0xda800d0 stores 4 bytes to a0 (arg0 at entry) +0x11c.
   The `lbu` at 0xda800d4 loads 1 byte from a0 (arg0 at entry) +0xc94.
   The `lwc1` at 0xda800dc loads 4 bytes from a0 (arg0 at entry) +0x1c0.
   The `lw` at 0xda800e0 loads 4 bytes from a0 (arg0 at entry) +0xc0.
+  The `sw` at 0xda800e4 stores 4 bytes to a0 (arg0 at entry) +0x180.
   The `lw` at 0xda800e8 loads 4 bytes from a0 (arg0 at entry) +0xc4.
+  The `sw` at 0xda800ec stores 4 bytes to a0 (arg0 at entry) +0x184.
   The `lw` at 0xda800f0 loads 4 bytes from a0 (arg0 at entry) +0xc8.
+  The `sw` at 0xda800f4 stores 4 bytes to a0 (arg0 at entry) +0x188.
   The `lw` at 0xda800f8 loads 4 bytes from a0 (arg0 at entry) +0xcc.
-  The `swc1` at 0xda80108 stores 4 bytes to ?.
+  The `sw` at 0xda80100 stores 4 bytes to a0 (arg0 at entry) +0x18c.
+  The `swc1` at 0xda80108 stores 4 bytes to a0 (arg0 at entry) +0x180.
   The `lw` at 0xda8010c loads 4 bytes from a0 (arg0 at entry) +0xe0.
+  The `sw` at 0xda80114 stores 4 bytes to a0 (arg0 at entry) +0x120.
   The `lw` at 0xda80118 loads 4 bytes from a0 (arg0 at entry) +0xe4.
+  The `sw` at 0xda8011c stores 4 bytes to a0 (arg0 at entry) +0x124.
   The `lw` at 0xda80120 loads 4 bytes from a0 (arg0 at entry) +0xe8.
+  The `sw` at 0xda80124 stores 4 bytes to a0 (arg0 at entry) +0x128.
   The `lw` at 0xda80128 loads 4 bytes from a0 (arg0 at entry) +0xec.
+  The `sw` at 0xda8012c stores 4 bytes to a0 (arg0 at entry) +0x12c.
   The `lw` at 0xda80130 loads 4 bytes from a0 (arg0 at entry) +0x2f1c.
   The `lw` at 0xda80134 loads 4 bytes from a0 (arg0 at entry) +0x6de4.
   The `lw` at 0xda8013c loads 4 bytes from a0 (arg0 at entry) +0x2f24.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x2f1c, including `sw` at 0xda80148, `sw` at 0xda8017c.
-  The `lw` at 0xda80150 loads 4 bytes from ?.
+  The `lw` at 0xda80150 loads 4 bytes from a0 (arg0 at entry) +0xfc.
   The `lw` at 0xda80164 loads 4 bytes from a0 (arg0 at entry) +0xc84.
   The `jalr` at 0xda80068 calls (unknown callee) with a0=a0+352, a1=a0+256, a2=[a0+29716]+176, a3=a3 at entry (arg3).
   The `jalr` at 0xda80090 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+240, a2=?, a3=?.
-  The `jalr` at 0xda8015c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=(((([a0+28132] | 0x10) | 0x8) | 0x4) | 0x1), a3=?.
-  The `jalr` at 0xda80188 calls __glSelectPoint [0xda8103c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda8015c calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+240, a2=(((([a0+28132] | 0x10) | 0x8) | 0x4) | 0x1), a3=?.
+  The `jalr` at 0xda80188 calls __glSelectPoint [0xda8103c] with a0=a0 at entry (arg0), a1=a0+240, a2=?, a3=?.
   The `beq` branch at 0xda8009c targets 0xda800ac, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0xda800a4 targets 0xda80194 and is always taken.
   The `beql` branch at 0xda800d8 targets 0xda80108, is taken when t1(=[a0+3220]:1) == 0, and falls through when t1(=[a0+3220]:1) != 0; its branch-likely delay slot `lwc1 $f16,448(s0)` at 0xda800dc runs only when taken and is annulled on fall-through.
@@ -5050,10 +5109,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda801d0 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda801f4 loads 4 bytes from [0x1010] +0x2e40.
   The `sw` at 0xda80214 stores 4 bytes to abs 0x1018.
-  The `lw` at 0xda8024c loads 4 bytes from ?.
+  The `lw` at 0xda8024c loads 4 bytes from [0x1010] +0x2f7c.
   The `jalr` at 0xda801f8 calls (unknown callee) with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda80220 calls __glSetError [0xda4b3d8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda8025c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda8025c calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
   The `beql` branch at 0xda801d8 targets 0xda80234, is taken when v0(=[0x1018]) == 0, and falls through when v0(=[0x1018]) != 0; its branch-likely delay slot `ldc1 $f16,72(sp)` at 0xda801dc runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda801e0 targets 0xda80218, is taken when v0(=[0x1018]) != at(=0x2), and falls through when v0(=[0x1018]) == at(=0x2).
   The `beq` branch at 0xda80210 targets 0xda80230 and is always taken.
@@ -5092,10 +5151,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda80380 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda8039c loads 4 bytes from [0x1010] +0x2e40.
   The `sw` at 0xda803b4 stores 4 bytes to abs 0x1018.
-  The `lw` at 0xda803e0 loads 4 bytes from ?.
+  The `lw` at 0xda803e0 loads 4 bytes from [0x1010] +0x2f7c.
   The `jalr` at 0xda803a0 calls (unknown callee) with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda803c0 calls __glSetError [0xda4b3d8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda803e8 calls (unknown callee) with a0=?, a1=f12 at entry, a2=f14 at entry, a3=a2 at entry (arg2).
+  The `jalr` at 0xda803e8 calls (unknown callee) with a0=[0x1010], a1=f12 at entry, a2=f14 at entry, a3=a2 at entry (arg2).
   The `beql` branch at 0xda80388 targets 0xda803d4, is taken when v0(=[0x1018]) == 0, and falls through when v0(=[0x1018]) != 0; its branch-likely delay slot `lwc1 $f4,60(sp)` at 0xda8038c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda80390 targets 0xda803b8, is taken when v0(=[0x1018]) != at(=0x2), and falls through when v0(=[0x1018]) == at(=0x2).
   The `beq` branch at 0xda803b0 targets 0xda803d0 and is always taken.
@@ -5440,7 +5499,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xda81b8c stores 4 bytes to ?.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xc, including `lw` at 0xda81ba0, `lw` at 0xda81bc4.
   The `jalr` at 0xda81bac calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda81bd0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda81bd0 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+28248], a2=?, a3=?.
   The `blez` branch at 0xda81b78 targets 0xda81bc4, is taken when s4(=[[a0+28248]]) <= 0 (signed), and falls through when s4(=[[a0+28248]]) > 0 (signed).
   The `bnel` branch at 0xda81b98 targets 0xda81bbc, is taken when t1(?) != 0, and falls through when t1(?) == 0; its branch-likely delay slot `addiu s1,s1,8` at 0xda81b9c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda81bbc targets 0xda81b80, is taken when s1(?) != s3(=([[a0+28248]] << 0x3)), and falls through when s1(?) == s3(=([[a0+28248]] << 0x3)).
@@ -5561,7 +5620,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda827d0 calls buildOpTable [0xda8233c] with a0=a0 at entry (arg0), a1=[a1+84], a2=[a0+1684], a3=?.
   The `bne` branch at 0xda8256c targets 0xda82608, is taken when v1(=[a1+72]) != 0, and falls through when v1(=[a1+72]) == 0.
   The `blez` branch at 0xda82618 targets 0xda8275c, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
-  The `beql` branch at 0xda8262c targets 0xda82750, is taken when t2(?) >= 0x8 (unsigned), and falls through when t2(?) < 0x8 (unsigned); its branch-likely delay slot `addiu a0,a0,1` at 0xda82630 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda8262c targets 0xda82750, is taken when t2(=[a0+1664]-512) >= 0x8 (unsigned), and falls through when t2(=[a0+1664]-512) < 0x8 (unsigned); its branch-likely delay slot `addiu a0,a0,1` at 0xda82630 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda82660 targets 0xda8274c and is always taken.
   The `beq` branch at 0xda82680 targets 0xda8274c and is always taken.
   The `beq` branch at 0xda826a4 targets 0xda8274c and is always taken.
@@ -5612,10 +5671,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda82ad4 loads 4 bytes from [a0] +0x7854.
   The `lbu` at 0xda82af0 loads 1 byte from ?.
   The `lw` at 0xda82b0c loads 4 bytes from [a0] +0x7a20.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda82b34, `lw` at 0xda82b50, `lw` at 0xda82b6c.
+  The `lw` at 0xda82b34 loads 4 bytes from [a0] +0x7a24.
+  The `lw` at 0xda82b50 loads 4 bytes from [a0] +0x7a2c.
+  The `lw` at 0xda82b6c loads 4 bytes from [a0] +0x317c.
   The `jalr` at 0xda82b14 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=[a1].
-  The `jalr` at 0xda82b3c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xda82b58 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda82b3c calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=[a1].
+  The `jalr` at 0xda82b58 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=[a1].
   The `jalr` at 0xda82b74 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `bnel` branch at 0xda82a94 targets 0xda82b84, is taken when a3(=[a1]) < t8(=[[a0]+29756]) (signed), and falls through when a3(=[a1]) >= t8(=[[a0]+29756]) (signed); its branch-likely delay slot `lw ra,28(sp)` at 0xda82a98 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda82aa4 targets 0xda82b84, is taken when a2(=[a1+4]) < t9(=[[a0]+29760]) (signed), and falls through when a2(=[a1+4]) >= t9(=[[a0]+29760]) (signed); its branch-likely delay slot `lw ra,28(sp)` at 0xda82aa8 runs only when taken and is annulled on fall-through.
@@ -5644,7 +5705,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lbu` at 0xda82c24 loads 1 byte from ?.
   The `lw` at 0xda82c30 loads 4 bytes from a1 (arg1 at entry) +0x8.
   The `lw` at 0xda82c38 loads 4 bytes from [a0] +0x7aa8.
-  The `lw` at 0xda82c58 loads 4 bytes from ?.
+  The `lw` at 0xda82c58 loads 4 bytes from [a0] +0x317c.
   The `jalr` at 0xda82c44 calls (unknown callee) with a0=[a0]+31284, a1=[a1], a2=[a1+4], a3=[a1+8].
   The `jalr` at 0xda82c64 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `bnel` branch at 0xda82bcc targets 0xda82c74, is taken when t7(=[a1]) < t9(=[[a0]+29756]) (signed), and falls through when t7(=[a1]) >= t9(=[[a0]+29756]) (signed); its branch-likely delay slot `lw ra,28(sp)` at 0xda82bd0 runs only when taken and is annulled on fall-through.
@@ -5675,10 +5736,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda82d88 loads 4 bytes from [a0] +0x7a2c.
   The `lw` at 0xda82d9c loads 4 bytes from [a0] +0x317c.
   The `jalr` at 0xda82d10 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=a1 at entry (arg1).
-  The `jalr` at 0xda82d30 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=?, a3=?.
-  The `jalr` at 0xda82d58 calls (unknown callee) with a0=[a0]+31284, a1=[a1], a2=?, a3=[a1+8].
-  The `jalr` at 0xda82d78 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=?, a3=?.
-  The `jalr` at 0xda82d94 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=?, a3=?.
+  The `jalr` at 0xda82d30 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=?.
+  The `jalr` at 0xda82d58 calls (unknown callee) with a0=[a0]+31284, a1=[a1], a2=[a1+4], a3=[a1+8].
+  The `jalr` at 0xda82d78 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=?.
+  The `jalr` at 0xda82d94 calls (unknown callee) with a0=[a0]+31164, a1=[a1], a2=[a1+4], a3=?.
   The `jalr` at 0xda82da8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `bnel` branch at 0xda82cc4 targets 0xda82db8, is taken when s1(=[a1]) < t7(=[[a0]+29756]) (signed), and falls through when s1(=[a1]) >= t7(=[[a0]+29756]) (signed); its branch-likely delay slot `lw ra,36(sp)` at 0xda82cc8 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda82cd4 targets 0xda82db8, is taken when a2(=[a1+4]) < t8(=[[a0]+29760]) (signed), and falls through when a2(=[a1+4]) >= t8(=[[a0]+29760]) (signed); its branch-likely delay slot `lw ra,36(sp)` at 0xda82cd8 runs only when taken and is annulled on fall-through.
@@ -5903,8 +5964,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xda834d0 loads 4 bytes from abs 0xdaf3d58.
   The `lwc1` at 0xda834e8 loads 4 bytes from abs 0xdaf3d5c.
   The `sw` at 0xda83594 stores 4 bytes to [0x1010] +0x17c0.
-  The `sw` at 0xda835fc stores 4 bytes to ?.
-  The `swc1` at 0xda83608 stores 4 bytes to ?.
+  The `sw` at 0xda835fc stores 4 bytes to [0x1010] +0x17b8.
+  The `swc1` at 0xda83608 stores 4 bytes to [0x1010] +0x17bc.
   The `jalr` at 0xda8347c calls __glSetError [0xda4b3d8] with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda83504 calls __glSetError [0xda4b3d8] with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda835bc calls __glSetError [0xda4b3d8] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -5962,9 +6023,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda83754 loads 4 bytes from [a0+4] +0x0.
   The `lw` at 0xda83758 loads 4 bytes from [a0+8] +0x0.
   The `lw` at 0xda8375c loads 4 bytes from [a0+12] +0x0.
-  12 such `sb` accesses store 1 byte to ?, including `sb` at 0xda83830, `sb` at 0xda8385c, `sb` at 0xda838b0.
-  77 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda838a4, `lw` at 0xda83a04, `lw` at 0xda83a0c.
-  31 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda838c0, `sw` at 0xda838d8, `sw` at 0xda838f4.
+  2 such `sb` accesses store 1 byte to [0x1010] +0x17e4, including `sb` at 0xda83830, `sb` at 0xda8385c.
+  3 such `lw` accesses load 4 bytes from [0x1010] +0x17c0, including `lw` at 0xda838a4, `lw` at 0xda83a04, `lw` at 0xda83a0c.
+  4 such `sb` accesses store 1 byte to ?, including `sb` at 0xda838b0, `sb` at 0xda838e4, `sb` at 0xda83918.
+  8 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda838c0, `sw` at 0xda838d8, `sw` at 0xda838f4.
+  6 such `sb` accesses store 1 byte to [0x1010] +0x17e5, including `sb` at 0xda83a48, `sb` at 0xda841ec, `sb` at 0xda84a6c.
+  4 such `sw` accesses store 4 bytes to [0x1010] +0x17c4, including `sw` at 0xda83a50, `sw` at 0xda841fc, `sw` at 0xda84a74.
   3 such `lwc1` accesses load 4 bytes from [a0] +0x4, including `lwc1` at 0xda83a54, `lwc1` at 0xda84aac, `lwc1` at 0xda8538c.
   4 such `lwc1` accesses load 4 bytes from [a0] +0x8, including `lwc1` at 0xda83a64, `lwc1` at 0xda84200, `lwc1` at 0xda84ac0.
   3 such `lwc1` accesses load 4 bytes from [a0] +0xc, including `lwc1` at 0xda83a74, `lwc1` at 0xda84210, `lwc1` at 0xda84a78.
@@ -5976,6 +6040,7 @@ Each entry records selected software behavior from its exact binary range. The r
   3 such `lwc1` accesses load 4 bytes from [a0+8] +0xc, including `lwc1` at 0xda83ae8, `lwc1` at 0xda842d8, `lwc1` at 0xda84b38.
   96 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda83afc, `lwc1` at 0xda83b10, `lwc1` at 0xda83b24.
   The `lw` at 0xda83b64 loads 4 bytes from [a0] +0x28.
+  63 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda83b74, `lw` at 0xda83b80, `lw` at 0xda83b90.
   The `lw` at 0xda83b84 loads 4 bytes from [a0] +0x2c.
   The `lw` at 0xda83b94 loads 4 bytes from [a0] +0x30.
   The `lwc1` at 0xda83ba4 loads 4 bytes from [a0] +0x28.
@@ -5993,7 +6058,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xda83da0 loads 4 bytes from [a0+4] +0x34.
   The `lwc1` at 0xda83db0 loads 4 bytes from [a0+4] +0x38.
   The `lwc1` at 0xda83db8 loads 4 bytes from [a0+4] +0x3c.
+  4 such `sw` accesses store 4 bytes to [0x1010] +0x17c8, including `sw` at 0xda83e50, `sw` at 0xda84680, `sw` at 0xda84f1c.
   144 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xda83ea4, `swc1` at 0xda83eb0, `swc1` at 0xda83eb8.
+  4 such `sw` accesses store 4 bytes to [0x1010] +0x17d0, including `sw` at 0xda83f50, `sw` at 0xda84794, `sw` at 0xda85034.
+  4 such `sw` accesses store 4 bytes to [0x1010] +0x17d4, including `sw` at 0xda84050, `sw` at 0xda848a8, `sw` at 0xda8514c.
+  4 such `sw` accesses store 4 bytes to [0x1010] +0x17cc, including `sw` at 0xda8414c, `sw` at 0xda849b8, `sw` at 0xda85260.
   3 such `lwc1` accesses load 4 bytes from [a0] +0x10, including `lwc1` at 0xda84220, `lwc1` at 0xda84a88, `lwc1` at 0xda85328.
   The `lw` at 0xda84230 loads 4 bytes from [a0] +0x4.
   3 such `lwc1` accesses load 4 bytes from [a0+4] +0x10, including `lwc1` at 0xda84284, `lwc1` at 0xda84ae8, `lwc1` at 0xda853ac.
@@ -6001,19 +6070,28 @@ Each entry records selected software behavior from its exact binary range. The r
   3 such `lwc1` accesses load 4 bytes from [a0+8] +0x10, including `lwc1` at 0xda842e8, `lwc1` at 0xda84b4c, `lwc1` at 0xda85430.
   The `lw` at 0xda842f8 loads 4 bytes from [a0+8] +0x4.
   The `lw` at 0xda84358 loads 4 bytes from [a0] +0x38.
+  The `lw` at 0xda84364 loads 4 bytes from ([a0+4]+20 + ([[a0+4]]-1 << 0x4)) +0x4.
+  The `lw` at 0xda84370 loads 4 bytes from ([a0+4]+20 + ([[a0+4]]-1 << 0x4)) +0x8.
   The `lw` at 0xda84374 loads 4 bytes from [a0] +0x3c.
+  The `lw` at 0xda84380 loads 4 bytes from ([a0+4]+20 + ([[a0+4]]-1 << 0x4)) +0xc.
   The `lw` at 0xda84384 loads 4 bytes from [a0] +0x40.
   The `lwc1` at 0xda84394 loads 4 bytes from [a0] +0x38.
   The `lwc1` at 0xda843a4 loads 4 bytes from [a0] +0x3c.
   2 such `lwc1` accesses load 4 bytes from [a0] +0x40, including `lwc1` at 0xda843b0, `lwc1` at 0xda84c38.
   The `lw` at 0xda843b8 loads 4 bytes from [a0] +0x34.
   The `lw` at 0xda84418 loads 4 bytes from [a0+8] +0x48.
+  The `lw` at 0xda84424 loads 4 bytes from ([a0]+20 + ([[a0]]-1 << 0x4)) +0x4.
+  The `lw` at 0xda84430 loads 4 bytes from ([a0]+20 + ([[a0]]-1 << 0x4)) +0x8.
   The `lw` at 0xda84434 loads 4 bytes from [a0+8] +0x4c.
+  The `lw` at 0xda84440 loads 4 bytes from ([a0]+20 + ([[a0]]-1 << 0x4)) +0xc.
   The `lw` at 0xda84444 loads 4 bytes from [a0+8] +0x50.
   The `lwc1` at 0xda84454 loads 4 bytes from [a0+8] +0x48.
   The `lwc1` at 0xda84464 loads 4 bytes from [a0+8] +0x4c.
   The `lwc1` at 0xda8446c loads 4 bytes from [a0+8] +0x50.
   The `lw` at 0xda84474 loads 4 bytes from [a0+8] +0x44.
+  The `lw` at 0xda844d8 loads 4 bytes from ([a0+8]+20 + ([[a0+8]]-1 << 0x4)) +0x4.
+  The `lw` at 0xda844e4 loads 4 bytes from ([a0+8]+20 + ([[a0+8]]-1 << 0x4)) +0x8.
+  The `lw` at 0xda844f4 loads 4 bytes from ([a0+8]+20 + ([[a0+8]]-1 << 0x4)) +0xc.
   The `lw` at 0xda84584 loads 4 bytes from [a0+4] +0x48.
   The `lw` at 0xda84598 loads 4 bytes from [a0+4] +0x4c.
   The `lw` at 0xda845a8 loads 4 bytes from [a0+4] +0x50.
@@ -6076,7 +6154,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xda857a8 loads 4 bytes from [a0+4] +0x78.
   The `lw` at 0xda857b0 loads 4 bytes from [a0+4] +0x6c.
   The `lwc1` at 0xda857cc loads 4 bytes from [a0+4] +0x68.
-  The `lbu` at 0xda85d14 loads 1 byte from ?.
+  The `lw` at 0xda85ce4 loads 4 bytes from [0x1010] +0x17c8.
+  The `lw` at 0xda85d08 loads 4 bytes from [0x1010] +0x17d4.
+  The `lbu` at 0xda85d14 loads 1 byte from [0x1010] +0x17e4.
+  The `sw` at 0xda85e10 stores 4 bytes to [0x1010] +0x17dc.
+  The `sw` at 0xda85e14 stores 4 bytes to [0x1010] +0x17e0.
+  The `sw` at 0xda85e18 stores 4 bytes to [0x1010] +0x17d8.
   53 such `lb` accesses load 1 byte from ?, including `lb` at 0xda85e34, `lb` at 0xda85e38, `lb` at 0xda85e48.
   The `lw` at 0xda866ec loads 4 bytes from table(0xdaf3d60) +0x0.
   11 such `lw` accesses load 4 bytes from (sp-1540 + ([[0x1010]+6072] << 0x2)) +0x0, including `lw` at 0xda86744, `lw` at 0xda86778, `lw` at 0xda867dc.
@@ -6112,7 +6195,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda868cc calls DoRow [0xda8b43c] with a0=[[0x1010]+6072]-1, a1=sp-1540, a2=?, a3=?.
   The `jalr` at 0xda868fc calls DoRow [0xda8b43c] with a0=[[0x1010]+6072], a1=sp-1540, a2=?, a3=?.
   The `jalr` at 0xda8691c calls DoRender [0xda8f228] with a0=[[0x1010]+6072], a1=[(sp-1540 + ([[0x1010]+6072] << 0x2))]-1, a2=?, a3=?.
-  The `jalr` at 0xda869a8 calls DoRow [0xda8b43c] with a0=?, a1=sp-1540, a2=?, a3=?.
+  The `jalr` at 0xda869a8 calls DoRow [0xda8b43c] with a0=[[0x1010]+6072]-3, a1=sp-1540, a2=?, a3=?.
   The `jalr` at 0xda869dc calls DoRow [0xda8b43c] with a0=[[0x1010]+6072]-2, a1=sp-1540, a2=?, a3=?.
   The `jalr` at 0xda86a10 calls DoRow [0xda8b43c] with a0=[[0x1010]+6072]-1, a1=sp-1540, a2=?, a3=?.
   The `jalr` at 0xda86a40 calls DoRow [0xda8b43c] with a0=[[0x1010]+6072], a1=sp-1540, a2=?, a3=?.
@@ -6135,7 +6218,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda83814 targets 0xda83830, is taken when t6(?) != 0, and falls through when t6(?) == 0.
   The `bne` branch at 0xda8381c targets 0xda83830, is taken when t7(?) != 0, and falls through when t7(?) == 0.
   The `bne` branch at 0xda83824 targets 0xda83830, is taken when t8(?) != 0, and falls through when t8(?) == 0.
-  The `bgez` branch at 0xda83840 targets 0xda83860, is taken when t6(?) >= 0 (signed), and falls through when t6(?) < 0 (signed).
+  The `bgez` branch at 0xda83840 targets 0xda83860, is taken when t6(=[[a0+12]]-1) >= 0 (signed), and falls through when t6(=[[a0+12]]-1) < 0 (signed).
   The `beq` branch at 0xda83868 targets 0xda838a8, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `beq` branch at 0xda83870 targets 0xda838a8, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The `beq` branch at 0xda83878 targets 0xda838a8, is taken when t8(?) == 0, and falls through when t8(?) != 0.
@@ -6161,17 +6244,17 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bnel` branch at 0xda839e0 targets 0xda839f0, is taken when t7(?) != 0, and falls through when t7(?) == 0; its branch-likely delay slot `lw t8,1600(sp)` at 0xda839e4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda839f0 targets 0xda83a00, is taken when t8(?) != 0, and falls through when t8(?) == 0; its branch-likely delay slot `lw t9,1596(sp)` at 0xda839f4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83a00 targets 0xda83a10, is taken when t9(?) != 0, and falls through when t9(?) == 0; its branch-likely delay slot `lw a2,6080(t4)` at 0xda83a04 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xda83a18 targets 0xda83a4c, is taken when a2(?) == at(=0x2a21), and falls through when a2(?) != at(=0x2a21).
-  The `beq` branch at 0xda83a24 targets 0xda841f0, is taken when a2(?) == at(=0x2a23), and falls through when a2(?) != at(=0x2a23).
-  The `beq` branch at 0xda83a30 targets 0xda84a70, is taken when a2(?) == at(=0x2a27), and falls through when a2(?) != at(=0x2a27).
-  The `beq` branch at 0xda83a3c targets 0xda8531c, is taken when a2(?) == at(=0x2a29), and falls through when a2(?) != at(=0x2a29).
+  The `beq` branch at 0xda83a18 targets 0xda83a4c, is taken when a2(=[[0x1010]+6080]) == at(=0x2a21), and falls through when a2(=[[0x1010]+6080]) != at(=0x2a21).
+  The `beq` branch at 0xda83a24 targets 0xda841f0, is taken when a2(=[[0x1010]+6080]) == at(=0x2a23), and falls through when a2(=[[0x1010]+6080]) != at(=0x2a23).
+  The `beq` branch at 0xda83a30 targets 0xda84a70, is taken when a2(=[[0x1010]+6080]) == at(=0x2a27), and falls through when a2(=[[0x1010]+6080]) != at(=0x2a27).
+  The `beq` branch at 0xda83a3c targets 0xda8531c, is taken when a2(=[[0x1010]+6080]) == at(=0x2a29), and falls through when a2(=[[0x1010]+6080]) != at(=0x2a29).
   The `beq` branch at 0xda83a44 targets 0xda85ccc and is always taken.
-  The `bne` branch at 0xda83b50 targets 0xda83bd0, is taken when t6(?) < 0x3 (signed), and falls through when t6(?) >= 0x3 (signed).
+  The `bne` branch at 0xda83b50 targets 0xda83bd0, is taken when t6(=[[a0]]-1) < 0x3 (signed), and falls through when t6(=[[a0]]-1) >= 0x3 (signed).
   The `bnel` branch at 0xda83b78 targets 0xda83bd4, is taken when t6(?) != t7(=[[a0]+40]), and falls through when t6(?) == t7(=[[a0]+40]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda83b7c runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83b88 targets 0xda83bd4, is taken when t8(?) != t9(=[[a0]+44]), and falls through when t8(?) == t9(=[[a0]+44]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda83b8c runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83b9c targets 0xda83bd4, is taken when t6(?) != t7(=[[a0]+48]), and falls through when t6(?) == t7(=[[a0]+48]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda83ba0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda83bc8 targets 0xda83bf8 and is always taken.
-  The `bnel` branch at 0xda83c04 targets 0xda83c84, is taken when t9(?) < 0x4 (signed), and falls through when t9(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda83c08 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda83c04 targets 0xda83c84, is taken when t9(=[[a0+8]]-1) < 0x4 (signed), and falls through when t9(=[[a0+8]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda83c08 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83c2c targets 0xda83c84, is taken when t9(?) != t6(=[[a0+8]+52]), and falls through when t9(?) == t6(=[[a0+8]+52]); its branch-likely delay slot `addiu at,zero,-33` at 0xda83c30 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83c3c targets 0xda83c84, is taken when t7(?) != t8(=[[a0+8]+56]), and falls through when t7(?) == t8(=[[a0+8]+56]); its branch-likely delay slot `addiu at,zero,-33` at 0xda83c40 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83c50 targets 0xda83c84, is taken when t9(?) != t6(=[[a0+8]+60]), and falls through when t9(?) == t6(=[[a0+8]+60]); its branch-likely delay slot `addiu at,zero,-33` at 0xda83c54 runs only when taken and is annulled on fall-through.
@@ -6181,7 +6264,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bnel` branch at 0xda83ce0 targets 0xda83d28, is taken when t9(?) != t6(?), and falls through when t9(?) == t6(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda83ce4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83cf4 targets 0xda83d28, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda83cf8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda83d1c targets 0xda83d48 and is always taken.
-  The `bnel` branch at 0xda83d50 targets 0xda83dcc, is taken when t6(?) < 0x4 (signed), and falls through when t6(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-129` at 0xda83d54 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda83d50 targets 0xda83dcc, is taken when t6(=[[a0+4]]-1) < 0x4 (signed), and falls through when t6(=[[a0+4]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-129` at 0xda83d54 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83d74 targets 0xda83dcc, is taken when t9(?) != t6(=[[a0+4]+52]), and falls through when t9(?) == t6(=[[a0+4]+52]); its branch-likely delay slot `addiu at,zero,-129` at 0xda83d78 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83d84 targets 0xda83dcc, is taken when t7(?) != t8(=[[a0+4]+56]), and falls through when t7(?) == t8(=[[a0+4]+56]); its branch-likely delay slot `addiu at,zero,-129` at 0xda83d88 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda83d98 targets 0xda83dcc, is taken when t9(?) != t6(=[[a0+4]+60]), and falls through when t9(?) == t6(=[[a0+4]+60]); its branch-likely delay slot `addiu at,zero,-129` at 0xda83d9c runs only when taken and is annulled on fall-through.
@@ -6231,22 +6314,22 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda841c4 targets 0xda841e8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xda841e0 targets 0xda841cc, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0xda841e8 targets 0xda85ccc and is always taken.
-  The `bnel` branch at 0xda84348 targets 0xda843d8, is taken when t9(?) < 0x3 (signed), and falls through when t9(?) >= 0x3 (signed); its branch-likely delay slot `mtc1 zero,$f0` at 0xda8434c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda84368 targets 0xda843d8, is taken when t9(?) != t6(=[[a0]+56]), and falls through when t9(?) == t6(=[[a0]+56]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda8436c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda84378 targets 0xda843d8, is taken when t7(?) != t8(=[[a0]+60]), and falls through when t7(?) == t8(=[[a0]+60]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda8437c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda8438c targets 0xda843d8, is taken when t9(?) != t6(=[[a0]+64]), and falls through when t9(?) == t6(=[[a0]+64]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84390 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84348 targets 0xda843d8, is taken when t9(=[[a0]]-1) < 0x3 (signed), and falls through when t9(=[[a0]]-1) >= 0x3 (signed); its branch-likely delay slot `mtc1 zero,$f0` at 0xda8434c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84368 targets 0xda843d8, is taken when t9(=[([a0+4]+20 + ([[a0+4]]-1 << 0x4))+4]) != t6(=[[a0]+56]), and falls through when t9(=[([a0+4]+20 + ([[a0+4]]-1 << 0x4))+4]) == t6(=[[a0]+56]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda8436c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84378 targets 0xda843d8, is taken when t7(=[([a0+4]+20 + ([[a0+4]]-1 << 0x4))+8]) != t8(=[[a0]+60]), and falls through when t7(=[([a0+4]+20 + ([[a0+4]]-1 << 0x4))+8]) == t8(=[[a0]+60]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda8437c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda8438c targets 0xda843d8, is taken when t9(=[([a0+4]+20 + ([[a0+4]]-1 << 0x4))+12]) != t6(=[[a0]+64]), and falls through when t9(=[([a0+4]+20 + ([[a0+4]]-1 << 0x4))+12]) == t6(=[[a0]+64]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84390 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda843cc targets 0xda84400 and is always taken.
-  The `bnel` branch at 0xda84408 targets 0xda84494, is taken when t9(?) < 0x4 (signed), and falls through when t9(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda8440c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda84428 targets 0xda84494, is taken when t9(?) != t6(=[[a0+8]+72]), and falls through when t9(?) == t6(=[[a0+8]+72]); its branch-likely delay slot `addiu at,zero,-33` at 0xda8442c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda84438 targets 0xda84494, is taken when t7(?) != t8(=[[a0+8]+76]), and falls through when t7(?) == t8(=[[a0+8]+76]); its branch-likely delay slot `addiu at,zero,-33` at 0xda8443c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda8444c targets 0xda84494, is taken when t9(?) != t6(=[[a0+8]+80]), and falls through when t9(?) == t6(=[[a0+8]+80]); its branch-likely delay slot `addiu at,zero,-33` at 0xda84450 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84408 targets 0xda84494, is taken when t9(=[[a0+8]]-1) < 0x4 (signed), and falls through when t9(=[[a0+8]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda8440c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84428 targets 0xda84494, is taken when t9(=[([a0]+20 + ([[a0]]-1 << 0x4))+4]) != t6(=[[a0+8]+72]), and falls through when t9(=[([a0]+20 + ([[a0]]-1 << 0x4))+4]) == t6(=[[a0+8]+72]); its branch-likely delay slot `addiu at,zero,-33` at 0xda8442c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84438 targets 0xda84494, is taken when t7(=[([a0]+20 + ([[a0]]-1 << 0x4))+8]) != t8(=[[a0+8]+76]), and falls through when t7(=[([a0]+20 + ([[a0]]-1 << 0x4))+8]) == t8(=[[a0+8]+76]); its branch-likely delay slot `addiu at,zero,-33` at 0xda8443c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda8444c targets 0xda84494, is taken when t9(=[([a0]+20 + ([[a0]]-1 << 0x4))+12]) != t6(=[[a0+8]+80]), and falls through when t9(=[([a0]+20 + ([[a0]]-1 << 0x4))+12]) == t6(=[[a0+8]+80]); its branch-likely delay slot `addiu at,zero,-33` at 0xda84450 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda84488 targets 0xda844b8 and is always taken.
   The `bnel` branch at 0xda844bc targets 0xda84548, is taken when s5(?) < 0x3 (signed), and falls through when s5(?) >= 0x3 (signed); its branch-likely delay slot `addiu at,zero,-65` at 0xda844c0 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda844dc targets 0xda84548, is taken when t8(?) != t9(?), and falls through when t8(?) == t9(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda844e0 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda844ec targets 0xda84548, is taken when t6(?) != t7(?), and falls through when t6(?) == t7(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda844f0 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda84500 targets 0xda84548, is taken when t8(?) != t9(?), and falls through when t8(?) == t9(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda84504 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda844dc targets 0xda84548, is taken when t8(=[([a0+8]+20 + ([[a0+8]]-1 << 0x4))+4]) != t9(?), and falls through when t8(=[([a0+8]+20 + ([[a0+8]]-1 << 0x4))+4]) == t9(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda844e0 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda844ec targets 0xda84548, is taken when t6(=[([a0+8]+20 + ([[a0+8]]-1 << 0x4))+8]) != t7(?), and falls through when t6(=[([a0+8]+20 + ([[a0+8]]-1 << 0x4))+8]) == t7(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda844f0 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84500 targets 0xda84548, is taken when t8(=[([a0+8]+20 + ([[a0+8]]-1 << 0x4))+12]) != t9(?), and falls through when t8(=[([a0+8]+20 + ([[a0+8]]-1 << 0x4))+12]) == t9(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda84504 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda8453c targets 0xda8456c and is always taken.
-  The `bne` branch at 0xda84574 targets 0xda845f4, is taken when t8(?) < 0x4 (signed), and falls through when t8(?) >= 0x4 (signed).
+  The `bne` branch at 0xda84574 targets 0xda845f4, is taken when t8(=[[a0+4]]-1) < 0x4 (signed), and falls through when t8(=[[a0+4]]-1) >= 0x4 (signed).
   The `bnel` branch at 0xda8458c targets 0xda845f8, is taken when t7(?) != t8(=[[a0+4]+72]), and falls through when t7(?) == t8(=[[a0+4]+72]); its branch-likely delay slot `addiu at,zero,-129` at 0xda84590 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda8459c targets 0xda845f8, is taken when t9(?) != t6(=[[a0+4]+76]), and falls through when t9(?) == t6(=[[a0+4]+76]); its branch-likely delay slot `addiu at,zero,-129` at 0xda845a0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda845b0 targets 0xda845f8, is taken when t7(?) != t8(=[[a0+4]+80]), and falls through when t7(?) == t8(=[[a0+4]+80]); its branch-likely delay slot `addiu at,zero,-129` at 0xda845b4 runs only when taken and is annulled on fall-through.
@@ -6296,12 +6379,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda84a40 targets 0xda84a68, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xda84a60 targets 0xda84a48, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0xda84a68 targets 0xda85ccc and is always taken.
-  The `bnel` branch at 0xda84bc0 targets 0xda84c54, is taken when t6(?) < 0x3 (signed), and falls through when t6(?) >= 0x3 (signed); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84bc4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84bc0 targets 0xda84c54, is taken when t6(=[[a0]]-1) < 0x3 (signed), and falls through when t6(=[[a0]]-1) >= 0x3 (signed); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84bc4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84be8 targets 0xda84c54, is taken when t6(?) != t7(=[[a0]+72]), and falls through when t6(?) == t7(=[[a0]+72]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84bec runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84bf8 targets 0xda84c54, is taken when t8(?) != t9(=[[a0]+76]), and falls through when t8(?) == t9(=[[a0]+76]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84bfc runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84c0c targets 0xda84c54, is taken when t6(?) != t7(=[[a0]+80]), and falls through when t6(?) == t7(=[[a0]+80]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda84c10 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda84c48 targets 0xda84c80 and is always taken.
-  The `bnel` branch at 0xda84c88 targets 0xda84d18, is taken when t9(?) < 0x4 (signed), and falls through when t9(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda84c8c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84c88 targets 0xda84d18, is taken when t9(=[[a0+8]]-1) < 0x4 (signed), and falls through when t9(=[[a0+8]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda84c8c runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84cb0 targets 0xda84d18, is taken when t9(?) != t6(=[[a0+8]+92]), and falls through when t9(?) == t6(=[[a0+8]+92]); its branch-likely delay slot `addiu at,zero,-33` at 0xda84cb4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84cc0 targets 0xda84d18, is taken when t7(?) != t8(=[[a0+8]+96]), and falls through when t7(?) == t8(=[[a0+8]+96]); its branch-likely delay slot `addiu at,zero,-33` at 0xda84cc4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84cd4 targets 0xda84d18, is taken when t9(?) != t6(=[[a0+8]+100]), and falls through when t9(?) == t6(=[[a0+8]+100]); its branch-likely delay slot `addiu at,zero,-33` at 0xda84cd8 runs only when taken and is annulled on fall-through.
@@ -6311,7 +6394,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bnel` branch at 0xda84d7c targets 0xda84dd4, is taken when t9(?) != t6(?), and falls through when t9(?) == t6(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda84d80 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84d90 targets 0xda84dd4, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda84d94 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda84dc8 targets 0xda84dfc and is always taken.
-  The `bnel` branch at 0xda84e04 targets 0xda84e90, is taken when t6(?) < 0x4 (signed), and falls through when t6(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-129` at 0xda84e08 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda84e04 targets 0xda84e90, is taken when t6(=[[a0+4]]-1) < 0x4 (signed), and falls through when t6(=[[a0+4]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-129` at 0xda84e08 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84e28 targets 0xda84e90, is taken when t9(?) != t6(=[[a0+4]+92]), and falls through when t9(?) == t6(=[[a0+4]+92]); its branch-likely delay slot `addiu at,zero,-129` at 0xda84e2c runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84e38 targets 0xda84e90, is taken when t7(?) != t8(=[[a0+4]+96]), and falls through when t7(?) == t8(=[[a0+4]+96]); its branch-likely delay slot `addiu at,zero,-129` at 0xda84e3c runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda84e4c targets 0xda84e90, is taken when t9(?) != t6(=[[a0+4]+100]), and falls through when t9(?) == t6(=[[a0+4]+100]); its branch-likely delay slot `addiu at,zero,-129` at 0xda84e50 runs only when taken and is annulled on fall-through.
@@ -6361,12 +6444,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda852e8 targets 0xda85314, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xda8530c targets 0xda852f0, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0xda85314 targets 0xda85ccc and is always taken.
-  The `bnel` branch at 0xda854b4 targets 0xda8555c, is taken when t7(?) < 0x3 (signed), and falls through when t7(?) >= 0x3 (signed); its branch-likely delay slot `mtc1 zero,$f0` at 0xda854b8 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda854b4 targets 0xda8555c, is taken when t7(=[[a0]]-1) < 0x3 (signed), and falls through when t7(=[[a0]]-1) >= 0x3 (signed); its branch-likely delay slot `mtc1 zero,$f0` at 0xda854b8 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda854dc targets 0xda8555c, is taken when t7(?) != t8(=[[a0]+88]), and falls through when t7(?) == t8(=[[a0]+88]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda854e0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda854ec targets 0xda8555c, is taken when t9(?) != t6(=[[a0]+92]), and falls through when t9(?) == t6(=[[a0]+92]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda854f0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda85500 targets 0xda8555c, is taken when t7(?) != t8(=[[a0]+96]), and falls through when t7(?) == t8(=[[a0]+96]); its branch-likely delay slot `mtc1 zero,$f0` at 0xda85504 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda85550 targets 0xda8558c and is always taken.
-  The `bnel` branch at 0xda85594 targets 0xda85638, is taken when t7(?) < 0x4 (signed), and falls through when t7(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda85598 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda85594 targets 0xda85638, is taken when t7(=[[a0+8]]-1) < 0x4 (signed), and falls through when t7(=[[a0+8]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-33` at 0xda85598 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda855bc targets 0xda85638, is taken when t7(?) != t8(=[[a0+8]+112]), and falls through when t7(?) == t8(=[[a0+8]+112]); its branch-likely delay slot `addiu at,zero,-33` at 0xda855c0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda855cc targets 0xda85638, is taken when t9(?) != t6(=[[a0+8]+116]), and falls through when t9(?) == t6(=[[a0+8]+116]); its branch-likely delay slot `addiu at,zero,-33` at 0xda855d0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda855e0 targets 0xda85638, is taken when t7(?) != t8(=[[a0+8]+120]), and falls through when t7(?) == t8(=[[a0+8]+120]); its branch-likely delay slot `addiu at,zero,-33` at 0xda855e4 runs only when taken and is annulled on fall-through.
@@ -6376,7 +6459,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bnel` branch at 0xda856a0 targets 0xda8570c, is taken when t8(?) != t9(?), and falls through when t8(?) == t9(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda856a4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda856b4 targets 0xda8570c, is taken when t6(?) != t7(?), and falls through when t6(?) == t7(?); its branch-likely delay slot `addiu at,zero,-65` at 0xda856b8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda85700 targets 0xda85738 and is always taken.
-  The `bnel` branch at 0xda85740 targets 0xda857e0, is taken when t6(?) < 0x4 (signed), and falls through when t6(?) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-129` at 0xda85744 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda85740 targets 0xda857e0, is taken when t6(=[[a0+4]]-1) < 0x4 (signed), and falls through when t6(=[[a0+4]]-1) >= 0x4 (signed); its branch-likely delay slot `addiu at,zero,-129` at 0xda85744 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda85764 targets 0xda857e0, is taken when t9(?) != t6(=[[a0+4]+112]), and falls through when t9(?) == t6(=[[a0+4]+112]); its branch-likely delay slot `addiu at,zero,-129` at 0xda85768 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda85774 targets 0xda857e0, is taken when t7(?) != t8(=[[a0+4]+116]), and falls through when t7(?) == t8(=[[a0+4]+116]); its branch-likely delay slot `addiu at,zero,-129` at 0xda85778 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda85788 targets 0xda857e0, is taken when t9(?) != t6(=[[a0+4]+120]), and falls through when t9(?) == t6(=[[a0+4]+120]); its branch-likely delay slot `addiu at,zero,-129` at 0xda8578c runs only when taken and is annulled on fall-through.
@@ -6427,11 +6510,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda85cc0 targets 0xda85ca0, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `bnel` branch at 0xda85cd4 targets 0xda85e10, is taken when t8(?) != 0, and falls through when t8(?) == 0; its branch-likely delay slot `lw t6,1560(sp)` at 0xda85cd8 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda85cdc targets 0xda85e10, is taken when t9(?) != 0, and falls through when t9(?) == 0; its branch-likely delay slot `lw t6,1560(sp)` at 0xda85ce0 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda85cf0 targets 0xda85e10, is taken when v0(=0x1) != t6(?), and falls through when v0(=0x1) == t6(?); its branch-likely delay slot `lw t6,1560(sp)` at 0xda85cf4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda85cf0 targets 0xda85e10, is taken when v0(=0x1) != t6(=[[0x1010]+6088]), and falls through when v0(=0x1) == t6(=[[0x1010]+6088]); its branch-likely delay slot `lw t6,1560(sp)` at 0xda85cf4 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda85cf8 targets 0xda85e0c, is taken when t7(?) != 0, and falls through when t7(?) == 0.
   The `bnel` branch at 0xda85d00 targets 0xda85e10, is taken when t8(?) != 0, and falls through when t8(?) == 0; its branch-likely delay slot `lw t6,1560(sp)` at 0xda85d04 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda85d0c targets 0xda85e10, is taken when v0(=0x1) != t9(?), and falls through when v0(=0x1) == t9(?); its branch-likely delay slot `lw t6,1560(sp)` at 0xda85d10 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda85d20 targets 0xda85e0c, is taken when t6(?) != 0, and falls through when t6(?) == 0.
+  The `bnel` branch at 0xda85d0c targets 0xda85e10, is taken when v0(=0x1) != t9(=[[0x1010]+6100]), and falls through when v0(=0x1) == t9(=[[0x1010]+6100]); its branch-likely delay slot `lw t6,1560(sp)` at 0xda85d10 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda85d20 targets 0xda85e0c, is taken when t6(=[[0x1010]+6116]:1) != 0, and falls through when t6(=[[0x1010]+6116]:1) == 0.
   The `bltz` branch at 0xda85e2c targets 0xda86660, is taken when t7(?) < 0 (signed), and falls through when t7(?) >= 0 (signed).
   The `beq` branch at 0xda85e7c targets 0xda85e8c, is taken when (t0(?) & 0x10) == 0, and falls through when (t0(?) & 0x10) != 0.
   The `beq` branch at 0xda85e84 targets 0xda85e90 and is always taken.
@@ -6573,6 +6656,26 @@ Each entry records selected software behavior from its exact binary range. The r
   The instructions from 0xda85828 to 0xda85828 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda85958 to 0xda85958 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda85a88 to 0xda85a88 are not reached by any path from the entry, and their branches are not listed.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
+  The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
   The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
   The indirect jump at 0xda866f4 uses the jump table at 0xdaf3d60 with targets 0xda866fc, 0xda8671c, 0xda8679c, 0xda86860, 0xda8696c.
 
@@ -6974,28 +7077,26 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lbu` at 0xda8a830 loads 1 byte from [0xdb19930] +0x0.
   4 such `lw` accesses load 4 bytes from abs 0xdafb9d8, including `lw` at 0xda8a89c, `lw` at 0xda8a944, `lw` at 0xda8aa3c.
   2 such `lw` accesses load 4 bytes from abs 0xdb1a520, including `lw` at 0xda8aa64, `lw` at 0xda8aaf4.
-  10 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda8aac0, `sw` at 0xda8ab7c, `sw` at 0xda8aba8.
+  12 such `sw` accesses store 4 bytes to ?, including `sw` at 0xda8aac0, `sw` at 0xda8ab7c, `sw` at 0xda8aba8.
   2 such `lw` accesses load 4 bytes from abs 0xdb1a524, including `lw` at 0xda8ac64, `lw` at 0xda8acf0.
   2 such `lbu` accesses load 1 byte from abs 0xdb198f0, including `lbu` at 0xda8ae34, `lbu` at 0xda8af24.
   3 such `lw` accesses load 4 bytes from abs 0xdb1a518, including `lw` at 0xda8ae48, `lw` at 0xda8aec0, `lw` at 0xda8af28.
-  The `sw` at 0xda8ae9c stores 4 bytes to table(0xdb1a478) +0x0.
   2 such `lbu` accesses load 1 byte from abs 0xdb198f1, including `lbu` at 0xda8af9c, `lbu` at 0xda8b0ac.
   3 such `lw` accesses load 4 bytes from abs 0xdb1a51c, including `lw` at 0xda8afb0, `lw` at 0xda8b028, `lw` at 0xda8b0b0.
-  The `sw` at 0xda8b004 stores 4 bytes to table(0xdb1a4a0) +0x0.
   Calls (unknown callee) via register with a0=?, a1=?, a2=0xdb18c18, a3=0xdb184c0 (`jr` at 0xda88390).
   The `jalr` at 0xda88478 calls CopyRVertex [0xda86b68] with a0=[[0x1010]+6084], a1=?, a2=?, a3=?.
   The `jalr` at 0xda885e0 calls CopyVertex [0xda86ae0] with a0=[[0x1010]+6084], a1=?, a2=?, a3=?.
   The `jalr` at 0xda885fc calls bcopy with a0=?, a1=?, a2=0x2, a3=?.
-  The `jalr` at 0xda8873c calls CopyVertex [0xda86ae0] with a0=?, a1=a0 at entry (arg0), a2=table(0xdb18550), a3=?.
-  The `jalr` at 0xda88760 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=table(0xdb18550), a3=?.
-  The `jalr` at 0xda88788 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=table(0xdb185e0), a3=?.
-  The `jalr` at 0xda887b4 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=table(0xdb185e0), a3=?.
-  The `jalr` at 0xda887d8 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=table(0xdb184c0), a3=?.
+  The `jalr` at 0xda8873c calls CopyVertex [0xda86ae0] with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
+  The `jalr` at 0xda88760 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda88788 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda887b4 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda887d8 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda88808 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=0xdb185e0, a3=?.
-  The `jalr` at 0xda88834 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=table(0xdb18670), a3=?.
-  The `jalr` at 0xda88870 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=table(0xdb18550), a3=?.
-  Calls (unnamed) [0xda88b50] via register-constant with a0=?, a1=?, a2=?, a3=? (`jr` at 0xda88b48).
-  The `jalr` at 0xda8a790 calls DoInterpolate [0xda8ebb4] with a0=?, a1=[0xdb1a530], a2=?, a3=?.
+  The `jalr` at 0xda88834 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda88870 calls CopyVertex [0xda86ae0] with a0=?, a1=?, a2=?, a3=?.
+  Calls (unnamed) [0xda88b50] via register-constant with a0=?, a1=[[0x1010]+6112], a2=?, a3=? (`jr` at 0xda88b48).
+  The `jalr` at 0xda8a790 calls DoInterpolate [0xda8ebb4] with a0=[[0x1010]+6072], a1=[0xdb1a530], a2=?, a3=?.
   The `jalr` at 0xda8a884 calls PrepCreaseVertex [0xda87550] with a0=?, a1=?, a2=?, a3=0xdb198c8.
   The `jalr` at 0xda8a8f4 calls CreasePosition [0xda878f8] with a0=0x1, a1=?, a2=0xdb198c8, a3=?.
   The `jalr` at 0xda8a928 calls PrepSmoothVertex [0xda8727c] with a0=?, a1=?, a2=?, a3=?.
@@ -7005,7 +7106,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda8af84 calls ComputeNormal [0xda88098] with a0=[0xdb198f0]:1, a1=[0xdb1a518], a2=0xdb1a478, a3=?.
   The `jalr` at 0xda8b094 calls FinalPosition [0xda879dc] with a0=[0xdb198f1]:1, a1=?, a2=[0xdb1a51c], a3=0xdb1a4a0.
   The `jalr` at 0xda8b138 calls ComputeNormal [0xda88098] with a0=[0xdb198f1]:1, a1=[0xdb1a51c], a2=0xdb1a4a0, a3=?.
-  The `jalr` at 0xda8b194 calls DoInterpolateNormal [0xda8ee68] with a0=?, a1=[0xdb1a530], a2=?, a3=?.
+  The `jalr` at 0xda8b194 calls DoInterpolateNormal [0xda8ee68] with a0=[[0x1010]+6072], a1=[0xdb1a530], a2=?, a3=?.
   The `beq` branch at 0xda881f0 targets 0xda88280, is taken when v0(=[[0x1010]+6088]) >= 0x1 (unsigned), and falls through when v0(=[[0x1010]+6088]) < 0x1 (unsigned).
   The `bc1f` branch at 0xda88224 targets 0xda88230, is taken when not (f18(=[(a0 + (([[0x1010]+6084] << 0x2) << 0x2))]) == f4(=[(a0 + ((([[0x1010]+6084] << 0x2) + [[0x1010]+6084]) << 0x2))]) (c.eq.s at 0xda8821c)), and falls through when f18(=[(a0 + (([[0x1010]+6084] << 0x2) << 0x2))]) == f4(=[(a0 + ((([[0x1010]+6084] << 0x2) + [[0x1010]+6084]) << 0x2))]) (c.eq.s at 0xda8821c).
   The `beq` branch at 0xda88230 targets 0xda88280, is taken when s0(=one of 0x0, 0x1) == 0, and falls through when s0(=one of 0x0, 0x1) != 0.
@@ -7047,15 +7148,15 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda889e0 targets 0xda88a48, is taken when (t8(?) & 0x3) == 0, and falls through when (t8(?) & 0x3) != 0.
   The `bne` branch at 0xda88a34 targets 0xda88a18, is taken when a2(?) != t2(?), and falls through when a2(?) == t2(?).
   The `beql` branch at 0xda88a40 targets 0xda88ad8, is taken when t2(?) == t7(?), and falls through when t2(?) != t7(?); its branch-likely delay slot `or t2,zero,zero` at 0xda88a44 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda88acc targets 0xda88a84, is taken when v0(?) != a2(=table(0xdb19938)), and falls through when v0(?) == a2(=table(0xdb19938)).
-  The `bltz` branch at 0xda88ae4 targets 0xda8a498, is taken when t6(?) < 0 (signed), and falls through when t6(?) >= 0 (signed).
+  The `bne` branch at 0xda88acc targets 0xda88a84, is taken when v0(?) != a2(?), and falls through when v0(?) == a2(?).
+  The `bltz` branch at 0xda88ae4 targets 0xda8a498, is taken when t6(=[[0x1010]+6072]) < 0 (signed), and falls through when t6(=[[0x1010]+6072]) >= 0 (signed).
   The `beq` branch at 0xda88b2c targets 0xda88db4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0xda8a4c8 targets 0xda8a5d0, is taken when a3(?) >= a1(?) (signed), and falls through when a3(?) < a1(?) (signed).
   The `beq` branch at 0xda8a4d4 targets 0xda8a54c, is taken when (a2(?) & 0x3) == 0, and falls through when (a2(?) & 0x3) != 0.
   The `bne` branch at 0xda8a53c targets 0xda8a52c, is taken when a0(?) != t2(?), and falls through when a0(?) == t2(?).
   The `beql` branch at 0xda8a544 targets 0xda8a5d4, is taken when t2(?) == a1(?), and falls through when t2(?) != a1(?); its branch-likely delay slot `lwc1 $f18,400(sp)` at 0xda8a548 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda8a5c8 targets 0xda8a5a0, is taken when t2(?) != a1(?), and falls through when t2(?) == a1(?).
-  The `bc1tl` branch at 0xda8a5e4 targets 0xda8a7b0, is taken when f18 == f20 (c.eq.s at 0xda8a5dc), and falls through when not (f18 == f20 (c.eq.s at 0xda8a5dc)); its branch-likely delay slot `lw t7,368(sp)` at 0xda8a5e8 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xda8a5e4 targets 0xda8a7b0, is taken when f18(=[[0x1010]+6076]) == f20 (c.eq.s at 0xda8a5dc), and falls through when not (f18(=[[0x1010]+6076]) == f20 (c.eq.s at 0xda8a5dc)); its branch-likely delay slot `lw t7,368(sp)` at 0xda8a5e8 runs only when taken and is annulled on fall-through.
   The `blez` branch at 0xda8a614 targets 0xda8a780, is taken when t1(=entry(0xdafb9dc)-2) <= 0 (signed), and falls through when t1(=entry(0xdafb9dc)-2) > 0 (signed).
   The `blez` branch at 0xda8a62c targets 0xda8a770, is taken when a2(?) <= 0 (signed), and falls through when a2(?) > 0 (signed).
   The `beq` branch at 0xda8a650 targets 0xda8a6cc, is taken when (a2(?) & 0x1) == 0, and falls through when (a2(?) & 0x1) != 0.
@@ -7078,12 +7179,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda8a9a8 targets 0xda8a9dc, is taken when t6(?) != 0, and falls through when t6(?) == 0.
   The `beq` branch at 0xda8a9d4 targets 0xda8a9e8 and is always taken.
   The `bne` branch at 0xda8aa24 targets 0xda8a818, is taken when s6(?) != s1(?), and falls through when s6(?) == s1(?).
-  The `blez` branch at 0xda8aa38 targets 0xda8ac38, is taken when t6(?) <= 0 (signed), and falls through when t6(?) > 0 (signed).
-  The `beq` branch at 0xda8aa4c targets 0xda8aae0, is taken when (t6(?) & 0x3) == 0, and falls through when (t6(?) & 0x3) != 0.
+  The `blez` branch at 0xda8aa38 targets 0xda8ac38, is taken when t6(=[[0x1010]+6088]) <= 0 (signed), and falls through when t6(=[[0x1010]+6088]) > 0 (signed).
+  The `beq` branch at 0xda8aa4c targets 0xda8aae0, is taken when (t6(=[[0x1010]+6088]) & 0x3) == 0, and falls through when (t6(=[[0x1010]+6088]) & 0x3) != 0.
   The `bne` branch at 0xda8aa90 targets 0xda8aaa0, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xda8aa98 targets 0xda8aaa4 and is always taken.
   The `bne` branch at 0xda8aacc targets 0xda8aa90, is taken when a0(?) != s6(?), and falls through when a0(?) == s6(?).
-  The `beql` branch at 0xda8aad8 targets 0xda8ac38, is taken when s7(?) == t6(?), and falls through when s7(?) != t6(?); its branch-likely delay slot `or s7,zero,zero` at 0xda8aadc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xda8aad8 targets 0xda8ac38, is taken when s7(?) == t6(=[[0x1010]+6088]), and falls through when s7(?) != t6(=[[0x1010]+6088]); its branch-likely delay slot `or s7,zero,zero` at 0xda8aadc runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda8ab50 targets 0xda8ab60, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xda8ab58 targets 0xda8ab64 and is always taken.
   The `bne` branch at 0xda8ab78 targets 0xda8ab88, is taken when v0(?) != 0, and falls through when v0(?) == 0.
@@ -7092,13 +7193,13 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda8abac targets 0xda8abb8 and is always taken.
   The `bne` branch at 0xda8abd0 targets 0xda8abe0, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xda8abd8 targets 0xda8abe4 and is always taken.
-  The `bne` branch at 0xda8ac2c targets 0xda8ab50, is taken when s7(?) != t8(?), and falls through when s7(?) == t8(?).
-  The `blez` branch at 0xda8ac44 targets 0xda8ae2c, is taken when t9(?) <= 0 (signed), and falls through when t9(?) > 0 (signed).
+  The `bne` branch at 0xda8ac2c targets 0xda8ab50, is taken when s7(?) != t8(=[[0x1010]+6088]), and falls through when s7(?) == t8(=[[0x1010]+6088]).
+  The `blez` branch at 0xda8ac44 targets 0xda8ae2c, is taken when t9(=[[0x1010]+6092]) <= 0 (signed), and falls through when t9(=[[0x1010]+6092]) > 0 (signed).
   The `beq` branch at 0xda8ac4c targets 0xda8acdc, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0xda8ac8c targets 0xda8ac9c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xda8ac94 targets 0xda8aca0 and is always taken.
   The `bne` branch at 0xda8acc8 targets 0xda8ac8c, is taken when a0(?) != s6(?), and falls through when a0(?) == s6(?).
-  The `beq` branch at 0xda8acd4 targets 0xda8ae2c, is taken when s7(?) == t7(?), and falls through when s7(?) != t7(?).
+  The `beq` branch at 0xda8acd4 targets 0xda8ae2c, is taken when s7(?) == t7(=[[0x1010]+6092]), and falls through when s7(?) != t7(=[[0x1010]+6092]).
   The `bne` branch at 0xda8ad4c targets 0xda8ad5c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xda8ad54 targets 0xda8ad60 and is always taken.
   The `bne` branch at 0xda8ad78 targets 0xda8ad88, is taken when v0(?) != 0, and falls through when v0(?) == 0.
@@ -7107,7 +7208,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda8adac targets 0xda8adb8 and is always taken.
   The `bne` branch at 0xda8add0 targets 0xda8ade0, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xda8add8 targets 0xda8ade4 and is always taken.
-  The `bne` branch at 0xda8ae24 targets 0xda8ad4c, is taken when s7(?) != t6(?), and falls through when s7(?) == t6(?).
+  The `bne` branch at 0xda8ae24 targets 0xda8ad4c, is taken when s7(?) != t6(=[[0x1010]+6092]), and falls through when s7(?) == t6(=[[0x1010]+6092]).
   The `bne` branch at 0xda8ae38 targets 0xda8aeb4, is taken when s2(=[0xdb198f0]:1) != at(=0x3), and falls through when s2(=[0xdb198f0]:1) == at(=0x3).
   The `blez` branch at 0xda8ae4c targets 0xda8aeb4, is taken when s1(=[0xdb1a518]) <= 0 (signed), and falls through when s1(=[0xdb1a518]) > 0 (signed).
   The `bne` branch at 0xda8ae74 targets 0xda8aea4, is taken when t7(?) != at(=0x20), and falls through when t7(?) == at(=0x20).
@@ -7122,20 +7223,20 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beql` branch at 0xda8b02c targets 0xda8b0b8, is taken when t9(=[0xdafb9d8]) == 0, and falls through when t9(=[0xdafb9d8]) != 0; its branch-likely delay slot `lw t7,296(sp)` at 0xda8b030 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda8b0c0 targets 0xda8b108, is taken when t7(?) != 0, and falls through when t7(?) == 0.
   The `beq` branch at 0xda8b100 targets 0xda8b124 and is always taken.
-  The `bne` branch at 0xda8b168 targets 0xda8a7ec, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?).
-  The `bc1tl` branch at 0xda8b17c targets 0xda8b1a8, is taken when f10 == f20 (c.eq.s at 0xda8b174), and falls through when not (f10 == f20 (c.eq.s at 0xda8b174)); its branch-likely delay slot `lw t6,208(sp)` at 0xda8b180 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda8b168 targets 0xda8a7ec, is taken when t7(?) != t8(=one of 0x1, 0x2), and falls through when t7(?) == t8(=one of 0x1, 0x2).
+  The `bc1tl` branch at 0xda8b17c targets 0xda8b1a8, is taken when f10(=[[0x1010]+6076]) == f20 (c.eq.s at 0xda8b174), and falls through when not (f10(=[[0x1010]+6076]) == f20 (c.eq.s at 0xda8b174)); its branch-likely delay slot `lw t6,208(sp)` at 0xda8b180 runs only when taken and is annulled on fall-through.
   The `blez` branch at 0xda8b1a8 targets 0xda8b2ac, is taken when t6(?) <= 0 (signed), and falls through when t6(?) > 0 (signed).
   The `beq` branch at 0xda8b1b0 targets 0xda8b21c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xda8b208 targets 0xda8b1ec, is taken when a2(?) != t2(?), and falls through when a2(?) == t2(?).
   The `beql` branch at 0xda8b214 targets 0xda8b2b0, is taken when t2(?) == t6(?), and falls through when t2(?) != t6(?); its branch-likely delay slot `lw v0,388(sp)` at 0xda8b218 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda8b2a4 targets 0xda8b25c, is taken when v0(?) != a2(=table(0xdb19938)), and falls through when v0(?) == a2(=table(0xdb19938)).
-  The `beq` branch at 0xda8b2bc targets 0xda8b354, is taken when v0(?) >= 0x1 (unsigned), and falls through when v0(?) < 0x1 (unsigned).
+  The `bne` branch at 0xda8b2a4 targets 0xda8b25c, is taken when v0(?) != a2(?), and falls through when v0(?) == a2(?).
+  The `beq` branch at 0xda8b2bc targets 0xda8b354, is taken when v0(=[[0x1010]+6096]) >= 0x1 (unsigned), and falls through when v0(=[[0x1010]+6096]) < 0x1 (unsigned).
   The `bc1f` branch at 0xda8b2f8 targets 0xda8b304, is taken when not (f8 == f10 (c.eq.s at 0xda8b2f0)), and falls through when f8 == f10 (c.eq.s at 0xda8b2f0).
   The `beq` branch at 0xda8b304 targets 0xda8b354, is taken when s0(=one of 0x0, 0x1) == 0, and falls through when s0(=one of 0x0, 0x1) != 0.
   The `bc1f` branch at 0xda8b320 targets 0xda8b32c, is taken when not (f16 == f18 (c.eq.s at 0xda8b318)), and falls through when f16 == f18 (c.eq.s at 0xda8b318).
   The `beq` branch at 0xda8b32c targets 0xda8b354, is taken when s0(=one of 0x0, 0x1) == 0, and falls through when s0(=one of 0x0, 0x1) != 0.
   The `bc1f` branch at 0xda8b348 targets 0xda8b354, is taken when not (f4 == f6 (c.eq.s at 0xda8b340)), and falls through when f4 == f6 (c.eq.s at 0xda8b340).
-  The `beq` branch at 0xda8b36c targets 0xda8b404, is taken when v0(?) >= 0x1 (unsigned), and falls through when v0(?) < 0x1 (unsigned).
+  The `beq` branch at 0xda8b36c targets 0xda8b404, is taken when v0(=[[0x1010]+6100]) >= 0x1 (unsigned), and falls through when v0(=[[0x1010]+6100]) < 0x1 (unsigned).
   The `bc1f` branch at 0xda8b3a8 targets 0xda8b3b4, is taken when not (f8 == f10 (c.eq.s at 0xda8b3a0)), and falls through when f8 == f10 (c.eq.s at 0xda8b3a0).
   The `beql` branch at 0xda8b3b4 targets 0xda8b408, is taken when s0(=one of 0x0, 0x1) == 0, and falls through when s0(=one of 0x0, 0x1) != 0; its branch-likely delay slot `lw ra,92(sp)` at 0xda8b3b8 runs only when taken and is annulled on fall-through.
   The `bc1f` branch at 0xda8b3d0 targets 0xda8b3dc, is taken when not (f16 == f18 (c.eq.s at 0xda8b3c8)), and falls through when f16 == f18 (c.eq.s at 0xda8b3c8).
@@ -7158,7 +7259,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda8b484 loads 4 bytes from [0x1010] +0x17c4.
   The `lw` at 0xda8b490 loads 4 bytes from [0x1010] +0x17d4.
   The `lw` at 0xda8b494 loads 4 bytes from [0x1010] +0x17d0.
-  5 such `lw` accesses load 4 bytes from (a1 + (a0 << 0x2)) +0x0, including `lw` at 0xda8b4a0, `lw` at 0xda8bb24, `lw` at 0xda8bc9c.
+  8 such `lw` accesses load 4 bytes from (a1 + (a0 << 0x2)) +0x0, including `lw` at 0xda8b4a0, `lw` at 0xda8bb24, `lw` at 0xda8bc9c.
   The `lbu` at 0xda8b4a8 loads 1 byte from [0x1010] +0x17e5.
   The `sw` at 0xda8b4b0 stores 4 bytes to (a1 + (a0 << 0x2)) +0x0.
   14 such `lw` accesses load 4 bytes from abs 0xdb19930, including `lw` at 0xda8b4b4, `lw` at 0xda8c228, `lw` at 0xda8c458.
@@ -7205,7 +7306,7 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `sw` accesses store 4 bytes to table(0xdb1a4f0) +0x0, including `sw` at 0xda8ba28, `sw` at 0xda8cc6c.
   2 such `sw` accesses store 4 bytes to abs 0xdb1a51c, including `sw` at 0xda8ba34, `sw` at 0xda8cc78.
   12 such `lw` accesses load 4 bytes from (a1 + (a0 << 0x2)) -0x4, including `lw` at 0xda8ba38, `lw` at 0xda8ba98, `lw` at 0xda8bae0.
-  The `lw` at 0xda8bfb8 loads 4 bytes from table(0xdafb9dc) +0x0.
+  4 such `lw` accesses load 4 bytes from table(0xdafb9dc) +0x0, including `lw` at 0xda8bfb8, `lw` at 0xda8d62c, `lw` at 0xda8d868.
   The `lw` at 0xda8bfbc loads 4 bytes from table(0xdafb9d8) +0x0.
   The `lbu` at 0xda8c070 loads 1 byte from abs 0xdb198f8.
   The `lbu` at 0xda8c088 loads 1 byte from abs 0xdb19918.
@@ -7215,7 +7316,7 @@ Each entry records selected software behavior from its exact binary range. The r
   8 such `lbu` accesses load 1 byte from abs 0xdb198f3, including `lbu` at 0xda8c20c, `lbu` at 0xda8c480, `lbu` at 0xda8c590.
   The `lbu` at 0xda8c410 loads 1 byte from abs 0xdb198f7.
   3 such `lw` accesses load 4 bytes from abs 0xdb1a518, including `lw` at 0xda8cc90, `lw` at 0xda8cd14, `lw` at 0xda8ce54.
-  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda8ccc0, `lw` at 0xda8ccd8, `lw` at 0xda8cd70.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda8ccc0, `lw` at 0xda8ccd8, `lw` at 0xda8cd70.
   3 such `lw` accesses load 4 bytes from abs 0xdb1a51c, including `lw` at 0xda8cd40, `lw` at 0xda8cdc0, `lw` at 0xda8cf6c.
   The `lbu` at 0xda8ce44 loads 1 byte from table(0xdb19900) +0x0.
   The `lw` at 0xda8ce50 loads 4 bytes from abs 0xdb1a520.
@@ -7253,7 +7354,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda8d370 calls UpdateSmoothVertex [0xda872f0] with a0=[[0x1010]+6084], a1=0x6, a2=0xdb198c8, a3=?.
   The `jalr` at 0xda8d3e4 calls PrepCreaseVertex [0xda87550] with a0=?, a1=?, a2=?, a3=0xdb198c8.
   The `jalr` at 0xda8d420 calls UpdateCreaseVertex [0xda87560] with a0=[[0x1010]+6084], a1=0xdb198c8, a2=?, a3=?.
-  The `jalr` at 0xda8d448 calls PrepSmoothVertex [0xda8727c] with a0=[[0x1010]+6084], a1=?, a2=?, a3=?.
+  The `jalr` at 0xda8d448 calls PrepSmoothVertex [0xda8727c] with a0=[[0x1010]+6084], a1=entry(0xdafb9d8)-2, a2=?, a3=?.
   The `jalr` at 0xda8d488 calls UpdateSmoothVertex [0xda872f0] with a0=[[0x1010]+6084], a1=0x6, a2=0xdb198c8, a3=?.
   The `jalr` at 0xda8d54c calls PrepCreaseVertex [0xda87550] with a0=?, a1=?, a2=?, a3=0xdb198c8.
   The `jalr` at 0xda8d56c calls UpdateCreaseVertex [0xda87560] with a0=[[0x1010]+6084], a1=0xdb198c8, a2=?, a3=?.
@@ -7336,17 +7437,17 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda8c040 targets 0xda8c054 and is always taken.
   The `bne` branch at 0xda8c05c targets 0xda8c07c, is taken when t6(=a0) != at(=0x1), and falls through when t6(=a0) == at(=0x1).
   The `beq` branch at 0xda8c074 targets 0xda8c090 and is always taken.
-  The `beq` branch at 0xda8c0f0 targets 0xda8c138, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0xda8c0f0 targets 0xda8c138, is taken when v0(=[[0x1010]+6100]) == 0, and falls through when v0(=[[0x1010]+6100]) != 0.
   The `bne` branch at 0xda8c0f8 targets 0xda8c138, is taken when s2(=[[0x1010]+6117]:1) != 0, and falls through when s2(=[[0x1010]+6117]:1) == 0.
   The `beq` branch at 0xda8c130 targets 0xda8c1ac and is always taken.
   The `beql` branch at 0xda8c138 targets 0xda8c190, is taken when t7(?) == 0, and falls through when t7(?) != 0; its branch-likely delay slot `lw t9,280(sp)` at 0xda8c13c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda8c140 targets 0xda8c190, is taken when v0(?) != 0, and falls through when v0(?) == 0; its branch-likely delay slot `lw t9,280(sp)` at 0xda8c144 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda8c140 targets 0xda8c190, is taken when v0(=[[0x1010]+6100]) != 0, and falls through when v0(=[[0x1010]+6100]) == 0; its branch-likely delay slot `lw t9,280(sp)` at 0xda8c144 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda8c158 targets 0xda8c190, is taken when t9(=[0xdb1a52c]) != 0, and falls through when t9(=[0xdb1a52c]) == 0; its branch-likely delay slot `lw t9,280(sp)` at 0xda8c15c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda8c184 targets 0xda8c1ac and is always taken.
-  The `bne` branch at 0xda8c1bc targets 0xda8c1cc, is taken when t6(?) != t9(=0xdafb9e0), and falls through when t6(?) == t9(=0xdafb9e0).
+  The `bne` branch at 0xda8c1bc targets 0xda8c1cc, is taken when t6(=table(0xdafb9dc)) != t9(=0xdafb9e0), and falls through when t6(=table(0xdafb9dc)) == t9(=0xdafb9e0).
   The `beq` branch at 0xda8c1c4 targets 0xda8c1d0 and is always taken.
-  The `bne` branch at 0xda8c258 targets 0xda8da00, is taken when t7(?) < 0x2 (signed), and falls through when t7(?) >= 0x2 (signed).
-  The `bne` branch at 0xda8c340 targets 0xda8c298, is taken when s2(?) != t8(?), and falls through when s2(?) == t8(?).
+  The `bne` branch at 0xda8c258 targets 0xda8da00, is taken when t7(=entry(0xdafb9d8)-3) < 0x2 (signed), and falls through when t7(=entry(0xdafb9d8)-3) >= 0x2 (signed).
+  The `bne` branch at 0xda8c340 targets 0xda8c298, is taken when s2(?) != t8(=entry(0xdafb9d8)-3), and falls through when s2(?) == t8(=entry(0xdafb9d8)-3).
   The `beq` branch at 0xda8c348 targets 0xda8da04 and is always taken.
   The `bne` branch at 0xda8c354 targets 0xda8d204, is taken when t9(=[(a1 + (a0 << 0x2))]+3) != v0(=entry(0xdafb9dc)), and falls through when t9(=[(a1 + (a0 << 0x2))]+3) == v0(=entry(0xdafb9dc)).
   The `beq` branch at 0xda8c35c targets 0xda8c3a0, is taken when t0(=[[0x1010]+6096]) == 0, and falls through when t0(=[[0x1010]+6096]) != 0.
@@ -7358,28 +7459,28 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bnel` branch at 0xda8c460 targets 0xda8c62c, is taken when t7(=[[0xdb19930]+3]:1) != at(=0x20), and falls through when t7(=[[0xdb19930]+3]:1) == at(=0x20); its branch-likely delay slot `lw v0,128(sp)` at 0xda8c464 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda8c474 targets 0xda8c484, is taken when t6(=a0) != at(=0x1), and falls through when t6(=a0) == at(=0x1).
   The `beq` branch at 0xda8c47c targets 0xda8c488 and is always taken.
-  The `bne` branch at 0xda8c4e8 targets 0xda8c778, is taken when t7(?) < 0x3 (signed), and falls through when t7(?) >= 0x3 (signed).
-  The `bne` branch at 0xda8c580 targets 0xda8c594, is taken when t6(?) != v0(?), and falls through when t6(?) == v0(?).
+  The `bne` branch at 0xda8c4e8 targets 0xda8c778, is taken when t7(=entry(0xdafb9d8)-2) < 0x3 (signed), and falls through when t7(=entry(0xdafb9d8)-2) >= 0x3 (signed).
+  The `bne` branch at 0xda8c580 targets 0xda8c594, is taken when t6(=entry(0xdafb9dc)) != v0(?), and falls through when t6(=entry(0xdafb9dc)) == v0(?).
   The `beq` branch at 0xda8c58c targets 0xda8c598 and is always taken.
-  The `bne` branch at 0xda8c618 targets 0xda8c528, is taken when s2(?) != t9(?), and falls through when s2(?) == t9(?).
+  The `bne` branch at 0xda8c618 targets 0xda8c528, is taken when s2(?) != t9(=entry(0xdafb9d8)-2), and falls through when s2(?) == t9(=entry(0xdafb9d8)-2).
   The `beq` branch at 0xda8c620 targets 0xda8c778 and is always taken.
-  The `bne` branch at 0xda8c67c targets 0xda8c778, is taken when t7(?) < 0x3 (signed), and falls through when t7(?) >= 0x3 (signed).
-  The `bne` branch at 0xda8c770 targets 0xda8c6b8, is taken when s2(?) != t7(?), and falls through when s2(?) == t7(?).
-  The `beq` branch at 0xda8c7f0 targets 0xda8c814, is taken when (t8(?) & 0x80) == 0, and falls through when (t8(?) & 0x80) != 0.
-  The `blez` branch at 0xda8c81c targets 0xda8c9a4, is taken when t8(?) <= 0 (signed), and falls through when t8(?) > 0 (signed).
+  The `bne` branch at 0xda8c67c targets 0xda8c778, is taken when t7(=entry(0xdafb9d8)-2) < 0x3 (signed), and falls through when t7(=entry(0xdafb9d8)-2) >= 0x3 (signed).
+  The `bne` branch at 0xda8c770 targets 0xda8c6b8, is taken when s2(?) != t7(=entry(0xdafb9d8)-2), and falls through when s2(?) == t7(=entry(0xdafb9d8)-2).
+  The `beq` branch at 0xda8c7f0 targets 0xda8c814, is taken when (t8(=[[0x1010]+6112]) & 0x80) == 0, and falls through when (t8(=[[0x1010]+6112]) & 0x80) != 0.
+  The `blez` branch at 0xda8c81c targets 0xda8c9a4, is taken when t8(=[[0x1010]+6096]) <= 0 (signed), and falls through when t8(=[[0x1010]+6096]) > 0 (signed).
   The `beq` branch at 0xda8c824 targets 0xda8c8ac, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xda8c898 targets 0xda8c874, is taken when a2(?) != s2(?), and falls through when a2(?) == s2(?).
-  The `beql` branch at 0xda8c8a4 targets 0xda8c9a4, is taken when s3(?) == t6(?), and falls through when s3(?) != t6(?); its branch-likely delay slot `or s3,zero,zero` at 0xda8c8a8 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda8c998 targets 0xda8c94c, is taken when s3(?) != t5(?), and falls through when s3(?) == t5(?).
+  The `beql` branch at 0xda8c8a4 targets 0xda8c9a4, is taken when s3(?) == t6(=[[0x1010]+6096]), and falls through when s3(?) != t6(=[[0x1010]+6096]); its branch-likely delay slot `or s3,zero,zero` at 0xda8c8a8 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda8c998 targets 0xda8c94c, is taken when s3(?) != t5(=[[0x1010]+6096]), and falls through when s3(?) == t5(=[[0x1010]+6096]).
   The `beq` branch at 0xda8c9b8 targets 0xda8c9f4, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `bne` branch at 0xda8c9d4 targets 0xda8c9f4, is taken when t7(=[0xdb1a528]) != 0, and falls through when t7(=[0xdb1a528]) == 0.
-  The `beq` branch at 0xda8ca74 targets 0xda8caa0, is taken when (t8(?) & 0x200) == 0, and falls through when (t8(?) & 0x200) != 0.
-  The `blez` branch at 0xda8caa8 targets 0xda8cc10, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
-  The `beq` branch at 0xda8cac4 targets 0xda8cb34, is taken when (v1(?) & 0x3) == 0, and falls through when (v1(?) & 0x3) != 0.
+  The `beq` branch at 0xda8ca74 targets 0xda8caa0, is taken when (t8(=[[0x1010]+6112]) & 0x200) == 0, and falls through when (t8(=[[0x1010]+6112]) & 0x200) != 0.
+  The `blez` branch at 0xda8caa8 targets 0xda8cc10, is taken when v1(=[[0x1010]+6100]) <= 0 (signed), and falls through when v1(=[[0x1010]+6100]) > 0 (signed).
+  The `beq` branch at 0xda8cac4 targets 0xda8cb34, is taken when (v1(=[[0x1010]+6100]) & 0x3) == 0, and falls through when (v1(=[[0x1010]+6100]) & 0x3) != 0.
   The `bne` branch at 0xda8cb20 targets 0xda8cafc, is taken when a2(?) != s2(?), and falls through when a2(?) == s2(?).
-  The `beql` branch at 0xda8cb2c targets 0xda8cc10, is taken when s3(?) == t7(?), and falls through when s3(?) != t7(?); its branch-likely delay slot `lw v1,308(sp)` at 0xda8cb30 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda8cc04 targets 0xda8cbb8, is taken when s3(?) != t5(?), and falls through when s3(?) == t5(?).
-  The `beq` branch at 0xda8cc20 targets 0xda8cc70, is taken when (t7(?) & 0x400) == 0, and falls through when (t7(?) & 0x400) != 0.
+  The `beql` branch at 0xda8cb2c targets 0xda8cc10, is taken when s3(?) == t7(=[[0x1010]+6100]), and falls through when s3(?) != t7(=[[0x1010]+6100]); its branch-likely delay slot `lw v1,308(sp)` at 0xda8cb30 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda8cc04 targets 0xda8cbb8, is taken when s3(?) != t5(=[[0x1010]+6100]), and falls through when s3(?) == t5(=[[0x1010]+6100]).
+  The `beq` branch at 0xda8cc20 targets 0xda8cc70, is taken when (t7(=[[0x1010]+6112]) & 0x400) == 0, and falls through when (t7(=[[0x1010]+6112]) & 0x400) != 0.
   The `bne` branch at 0xda8cc38 targets 0xda8cc70, is taken when t9(=[0xdb1a52c]) != 0, and falls through when t9(=[0xdb1a52c]) == 0.
   The `bnel` branch at 0xda8cc88 targets 0xda8ccfc, is taken when s5(=[0xdb198f2]:1) != at(=0x3), and falls through when s5(=[0xdb198f2]:1) == at(=0x3); its branch-likely delay slot `lw t6,116(sp)` at 0xda8cc8c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xda8cca0 targets 0xda8ccf8, is taken when a1(=[0xdb1a518]) < 0x2 (signed), and falls through when a1(=[0xdb1a518]) >= 0x2 (signed).
@@ -7389,26 +7490,26 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda8cd50 targets 0xda8cda4, is taken when a1(=[0xdb1a51c]) < 0x2 (signed), and falls through when a1(=[0xdb1a51c]) >= 0x2 (signed).
   The `bne` branch at 0xda8cd7c targets 0xda8cd9c, is taken when a1(=0x20) != t8(?), and falls through when a1(=0x20) == t8(?).
   The `bne` branch at 0xda8cd9c targets 0xda8cd70, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `blez` branch at 0xda8cdf8 targets 0xda8cf08, is taken when t7(?) <= 0 (signed), and falls through when t7(?) > 0 (signed).
+  The `blez` branch at 0xda8cdf8 targets 0xda8cf08, is taken when t7(=[[0x1010]+6096]) <= 0 (signed), and falls through when t7(=[[0x1010]+6096]) > 0 (signed).
   The `bne` branch at 0xda8ce2c targets 0xda8ce48, is taken when s3(?) != at(=0x1), and falls through when s3(?) == at(=0x1).
   The `beq` branch at 0xda8ce40 targets 0xda8ce50 and is always taken.
   The `bne` branch at 0xda8ce88 targets 0xda8ce94, is taken when t7(=[0xdb1a518]+1) != 0, and falls through when t7(=[0xdb1a518]+1) == 0.
   The `bne` branch at 0xda8ce98 targets 0xda8ceac, is taken when t7(=[0xdb1a518]+1) != at(=-0x1), and falls through when t7(=[0xdb1a518]+1) == at(=-0x1).
   The `bne` branch at 0xda8cea0 targets 0xda8ceac, is taken when t9(?) != at(=0xffffffff80000000), and falls through when t9(?) == at(=0xffffffff80000000).
-  The `bne` branch at 0xda8cefc targets 0xda8ce28, is taken when s2(?) != t8(?), and falls through when s2(?) == t8(?).
-  The `blez` branch at 0xda8cf14 targets 0xda8d01c, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
+  The `bne` branch at 0xda8cefc targets 0xda8ce28, is taken when s2(?) != t8(=[[0x1010]+6096]), and falls through when s2(?) == t8(=[[0x1010]+6096]).
+  The `blez` branch at 0xda8cf14 targets 0xda8d01c, is taken when v0(=[[0x1010]+6100]) <= 0 (signed), and falls through when v0(=[[0x1010]+6100]) > 0 (signed).
   The `bne` branch at 0xda8cf44 targets 0xda8cf60, is taken when s3(?) != at(=0x1), and falls through when s3(?) == at(=0x1).
   The `beq` branch at 0xda8cf58 targets 0xda8cf68 and is always taken.
   The `bne` branch at 0xda8cfa0 targets 0xda8cfac, is taken when t6(=[0xdb1a51c]+1) != 0, and falls through when t6(=[0xdb1a51c]+1) == 0.
   The `bne` branch at 0xda8cfb0 targets 0xda8cfc4, is taken when t6(=[0xdb1a51c]+1) != at(=-0x1), and falls through when t6(=[0xdb1a51c]+1) == at(=-0x1).
   The `bne` branch at 0xda8cfb8 targets 0xda8cfc4, is taken when t7(?) != at(=0xffffffff80000000), and falls through when t7(?) == at(=0xffffffff80000000).
-  The `bne` branch at 0xda8d010 targets 0xda8cf40, is taken when s2(?) != t9(?), and falls through when s2(?) == t9(?).
+  The `bne` branch at 0xda8d010 targets 0xda8cf40, is taken when s2(?) != t9(=[[0x1010]+6100]), and falls through when s2(?) == t9(=[[0x1010]+6100]).
   The `beql` branch at 0xda8d020 targets 0xda8da04, is taken when t8(?) == 0, and falls through when t8(?) != 0; its branch-likely delay slot `lw ra,84(sp)` at 0xda8d024 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda8d034 targets 0xda8da04, is taken when t7(=[[0xdb19930]+10]:1) != 0, and falls through when t7(=[[0xdb19930]+10]:1) == 0; its branch-likely delay slot `lw ra,84(sp)` at 0xda8d038 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xda8d03c targets 0xda8d07c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0xda8d03c targets 0xda8d07c, is taken when v0(=[[0x1010]+6100]) == 0, and falls through when v0(=[[0x1010]+6100]) != 0.
   The `beq` branch at 0xda8d074 targets 0xda8d154 and is always taken.
   The `beql` branch at 0xda8d080 targets 0xda8d13c, is taken when t6(?) == 0, and falls through when t6(?) != 0; its branch-likely delay slot `lw t8,276(sp)` at 0xda8d084 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda8d088 targets 0xda8d13c, is taken when v0(?) != 0, and falls through when v0(?) == 0; its branch-likely delay slot `lw t8,276(sp)` at 0xda8d08c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda8d088 targets 0xda8d13c, is taken when v0(=[[0x1010]+6100]) != 0, and falls through when v0(=[[0x1010]+6100]) == 0; its branch-likely delay slot `lw t8,276(sp)` at 0xda8d08c runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xda8d0a0 targets 0xda8d13c, is taken when t8(=[0xdb1a52c]) != 0, and falls through when t8(=[0xdb1a52c]) == 0; its branch-likely delay slot `lw t8,276(sp)` at 0xda8d0a4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda8d130 targets 0xda8d154 and is always taken.
   The `blez` branch at 0xda8d154 targets 0xda8da00, is taken when s8(=[[0x1010]+6084]) <= 0 (signed), and falls through when s8(=[[0x1010]+6084]) > 0 (signed).
@@ -7421,33 +7522,33 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda8d214 targets 0xda8d220, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `beq` branch at 0xda8d220 targets 0xda8d5e8, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `blez` branch at 0xda8d238 targets 0xda8d2b8, is taken when t9(=entry(0xdafb9d8)-1) <= 0 (signed), and falls through when t9(=entry(0xdafb9d8)-1) > 0 (signed).
-  The `bne` branch at 0xda8d2a4 targets 0xda8d24c, is taken when s2(?) != t6(?), and falls through when s2(?) == t6(?).
+  The `bne` branch at 0xda8d2a4 targets 0xda8d24c, is taken when s2(?) != t6(=entry(0xdafb9d8)-1), and falls through when s2(?) == t6(=entry(0xdafb9d8)-1).
   The `bne` branch at 0xda8d2c4 targets 0xda8d328, is taken when t2(=0x20) != t7(=[[0xdb19930]+1]:1), and falls through when t2(=0x20) == t7(=[[0xdb19930]+1]:1).
   The `beq` branch at 0xda8d320 targets 0xda8d37c and is always taken.
   The `bne` branch at 0xda8d3a4 targets 0xda8d430, is taken when s7(=0x20) != t6(=[[0xdb19930]+2]:1), and falls through when s7(=0x20) == t6(=[[0xdb19930]+2]:1).
   The `beq` branch at 0xda8d428 targets 0xda8d49c and is always taken.
-  The `bne` branch at 0xda8d4a0 targets 0xda8da00, is taken when s1(?) < 0x3 (signed), and falls through when s1(?) >= 0x3 (signed).
-  The `bgez` branch at 0xda8d4c8 targets 0xda8d4d4, is taken when s0(?) >= 0 (signed), and falls through when s0(?) < 0 (signed).
-  The `bne` branch at 0xda8d4e4 targets 0xda8d57c, is taken when t6(?) != t7(?), and falls through when t6(?) == t7(?).
+  The `bne` branch at 0xda8d4a0 targets 0xda8da00, is taken when s1(=entry(0xdafb9d8)-2) < 0x3 (signed), and falls through when s1(=entry(0xdafb9d8)-2) >= 0x3 (signed).
+  The `bgez` branch at 0xda8d4c8 targets 0xda8d4d4, is taken when s0(=[(a1 + (a0 << 0x2))]+2) >= 0 (signed), and falls through when s0(=[(a1 + (a0 << 0x2))]+2) < 0 (signed).
+  The `bne` branch at 0xda8d4e4 targets 0xda8d57c, is taken when t6(=entry(0xdafb9d8)-1) != t7(?), and falls through when t6(=entry(0xdafb9d8)-1) == t7(?).
   The `bne` branch at 0xda8d4f4 targets 0xda8d57c, is taken when s7(=0x20) != t8(=[[0xdb19930]+28]:1), and falls through when s7(=0x20) == t8(=[[0xdb19930]+28]:1).
   The `beq` branch at 0xda8d574 targets 0xda8d5cc and is always taken.
-  The `bne` branch at 0xda8d5d8 targets 0xda8d4d8, is taken when s2(?) != s1(?), and falls through when s2(?) == s1(?).
+  The `bne` branch at 0xda8d5d8 targets 0xda8d4d8, is taken when s2(?) != s1(=entry(0xdafb9d8)-2), and falls through when s2(?) == s1(=entry(0xdafb9d8)-2).
   The `beq` branch at 0xda8d5e0 targets 0xda8da04 and is always taken.
-  The `bne` branch at 0xda8d638 targets 0xda8d64c, is taken when t8(?) != t6(?), and falls through when t8(?) == t6(?).
+  The `bne` branch at 0xda8d638 targets 0xda8d64c, is taken when t8(=[(a1 + (a0 << 0x2))]+3) != t6(=entry(0xdafb9dc)), and falls through when t8(=[(a1 + (a0 << 0x2))]+3) == t6(=entry(0xdafb9dc)).
   The `beq` branch at 0xda8d644 targets 0xda8d650 and is always taken.
-  The `bne` branch at 0xda8d6b0 targets 0xda8d858, is taken when t6(?) < 0x3 (signed), and falls through when t6(?) >= 0x3 (signed).
+  The `bne` branch at 0xda8d6b0 targets 0xda8d858, is taken when t6(=entry(0xdafb9d8)-1) < 0x3 (signed), and falls through when t6(=entry(0xdafb9d8)-1) >= 0x3 (signed).
   The `bnel` branch at 0xda8d710 targets 0xda8d790, is taken when t6(=[[0xdb19930]+28]:1) != at(=0x20), and falls through when t6(=[[0xdb19930]+28]:1) == at(=0x20); its branch-likely delay slot `addu t9,t1,s1` at 0xda8d714 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda8d728 targets 0xda8d78c, is taken when t7(?) != t9(?), and falls through when t7(?) == t9(?).
+  The `bne` branch at 0xda8d728 targets 0xda8d78c, is taken when t7(=entry(0xdafb9dc)+1) != t9(?), and falls through when t7(=entry(0xdafb9dc)+1) == t9(?).
   The `bne` branch at 0xda8d730 targets 0xda8d744, is taken when s3(?) != s6(=0x2), and falls through when s3(?) == s6(=0x2).
   The `beq` branch at 0xda8d73c targets 0xda8d748 and is always taken.
   The `beq` branch at 0xda8d784 targets 0xda8d7b0 and is always taken.
-  The `beql` branch at 0xda8d7b8 targets 0xda8d820, is taken when s3(?) >= t8(?) (signed), and falls through when s3(?) < t8(?) (signed); its branch-likely delay slot `lw t9,132(sp)` at 0xda8d7bc runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda8d840 targets 0xda8d6ec, is taken when s2(?) != t8(?), and falls through when s2(?) == t8(?).
-  The `bne` branch at 0xda8d874 targets 0xda8d888, is taken when t9(?) != t6(?), and falls through when t9(?) == t6(?).
+  The `beql` branch at 0xda8d7b8 targets 0xda8d820, is taken when s3(?) >= t8(=entry(0xdafb9d8)-2) (signed), and falls through when s3(?) < t8(=entry(0xdafb9d8)-2) (signed); its branch-likely delay slot `lw t9,132(sp)` at 0xda8d7bc runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda8d840 targets 0xda8d6ec, is taken when s2(?) != t8(=entry(0xdafb9d8)-1), and falls through when s2(?) == t8(=entry(0xdafb9d8)-1).
+  The `bne` branch at 0xda8d874 targets 0xda8d888, is taken when t9(=[(a1 + (a0 << 0x2))]+3) != t6(=entry(0xdafb9dc)), and falls through when t9(=[(a1 + (a0 << 0x2))]+3) == t6(=entry(0xdafb9dc)).
   The `beq` branch at 0xda8d880 targets 0xda8d88c and is always taken.
-  The `bne` branch at 0xda8d93c targets 0xda8d9b4, is taken when t7(?) != t6(?), and falls through when t7(?) == t6(?).
+  The `bne` branch at 0xda8d93c targets 0xda8d9b4, is taken when t7(=[(a1 + (a0 << 0x2))]+3) != t6(=entry(0xdafb9dc)), and falls through when t7(=[(a1 + (a0 << 0x2))]+3) == t6(=entry(0xdafb9dc)).
   The `beq` branch at 0xda8d9ac targets 0xda8da00 and is always taken.
-  The return at 0xda8da28 has v0 = ?.
+  The return at 0xda8da28 has v0 = one of ?, [[0x1010]+6100].
   The instructions from 0xda8b4ec to 0xda8b4ec are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda8ba7c to 0xda8ba7c are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda8ba8c to 0xda8ba94 are not reached by any path from the entry, and their branches are not listed.
@@ -7585,16 +7686,16 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda8e528 targets 0xda8e54c, is taken when t7(?) != 0, and falls through when t7(?) == 0.
   The `beq` branch at 0xda8e544 targets 0xda8e558 and is always taken.
   The `bne` branch at 0xda8e580 targets 0xda8e3dc, is taken when s1(?) != s7(?), and falls through when s1(?) == s7(?).
-  The `blez` branch at 0xda8e594 targets 0xda8e6e8, is taken when t6(?) <= 0 (signed), and falls through when t6(?) > 0 (signed).
-  The `beq` branch at 0xda8e5d0 targets 0xda8e638, is taken when (t6(?) & 0x3) == 0, and falls through when (t6(?) & 0x3) != 0.
+  The `blez` branch at 0xda8e594 targets 0xda8e6e8, is taken when t6(=[[0x1010]+6096]) <= 0 (signed), and falls through when t6(=[[0x1010]+6096]) > 0 (signed).
+  The `beq` branch at 0xda8e5d0 targets 0xda8e638, is taken when (t6(=[[0x1010]+6096]) & 0x3) == 0, and falls through when (t6(=[[0x1010]+6096]) & 0x3) != 0.
   The `bne` branch at 0xda8e624 targets 0xda8e610, is taken when a0(?) != s1(?), and falls through when a0(?) == s1(?).
-  The `beql` branch at 0xda8e630 targets 0xda8e6e8, is taken when s0(?) == t5(?), and falls through when s0(?) != t5(?); its branch-likely delay slot `or s0,zero,zero` at 0xda8e634 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xda8e6dc targets 0xda8e6b8, is taken when s0(?) != t3(?), and falls through when s0(?) == t3(?).
-  The `blez` branch at 0xda8e6f4 targets 0xda8e84c, is taken when t9(?) <= 0 (signed), and falls through when t9(?) > 0 (signed).
-  The `beq` branch at 0xda8e724 targets 0xda8e790, is taken when (t9(?) & 0x3) == 0, and falls through when (t9(?) & 0x3) != 0.
+  The `beql` branch at 0xda8e630 targets 0xda8e6e8, is taken when s0(?) == t5(=[[0x1010]+6096]), and falls through when s0(?) != t5(=[[0x1010]+6096]); its branch-likely delay slot `or s0,zero,zero` at 0xda8e634 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda8e6dc targets 0xda8e6b8, is taken when s0(?) != t3(=[[0x1010]+6096]), and falls through when s0(?) == t3(=[[0x1010]+6096]).
+  The `blez` branch at 0xda8e6f4 targets 0xda8e84c, is taken when t9(=[[0x1010]+6100]) <= 0 (signed), and falls through when t9(=[[0x1010]+6100]) > 0 (signed).
+  The `beq` branch at 0xda8e724 targets 0xda8e790, is taken when (t9(=[[0x1010]+6100]) & 0x3) == 0, and falls through when (t9(=[[0x1010]+6100]) & 0x3) != 0.
   The `bne` branch at 0xda8e77c targets 0xda8e768, is taken when a0(?) != s1(?), and falls through when a0(?) == s1(?).
-  The `beq` branch at 0xda8e788 targets 0xda8e84c, is taken when s0(?) == t5(?), and falls through when s0(?) != t5(?).
-  The `bne` branch at 0xda8e844 targets 0xda8e820, is taken when s0(?) != t3(?), and falls through when s0(?) == t3(?).
+  The `beq` branch at 0xda8e788 targets 0xda8e84c, is taken when s0(?) == t5(=[[0x1010]+6100]), and falls through when s0(?) != t5(=[[0x1010]+6100]).
+  The `bne` branch at 0xda8e844 targets 0xda8e820, is taken when s0(?) != t3(=[[0x1010]+6100]), and falls through when s0(?) == t3(=[[0x1010]+6100]).
   The `bne` branch at 0xda8e858 targets 0xda8e8cc, is taken when t8(=[0xdb198f0]:1) != at(=0x3), and falls through when t8(=[0xdb198f0]:1) == at(=0x3).
   The `blez` branch at 0xda8e86c targets 0xda8e8cc, is taken when s2(=[0xdb1a518]) <= 0 (signed), and falls through when s2(=[0xdb1a518]) > 0 (signed).
   The `bne` branch at 0xda8e894 targets 0xda8e8bc, is taken when t5(?) != at(=0x20), and falls through when t5(?) == at(=0x20).
@@ -7609,8 +7710,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda8ea24 targets 0xda8ea98, is taken when t7(=[0xdafb9d8]) == 0, and falls through when t7(=[0xdafb9d8]) != 0.
   The `bne` branch at 0xda8eaa4 targets 0xda8eae8, is taken when t6(?) != 0, and falls through when t6(?) == 0.
   The `beq` branch at 0xda8eae0 targets 0xda8eb00 and is always taken.
-  The `bne` branch at 0xda8eb44 targets 0xda8daf8, is taken when t8(?) != t6(?), and falls through when t8(?) == t6(?).
-  The `bc1tl` branch at 0xda8eb60 targets 0xda8eb88, is taken when f10 == f16 (c.eq.s at 0xda8eb58), and falls through when not (f10 == f16 (c.eq.s at 0xda8eb58)); its branch-likely delay slot `lw ra,68(sp)` at 0xda8eb64 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xda8eb44 targets 0xda8daf8, is taken when t8(?) != t6(=one of 0x1, 0x2), and falls through when t8(?) == t6(=one of 0x1, 0x2).
+  The `bc1tl` branch at 0xda8eb60 targets 0xda8eb88, is taken when f10(=[[0x1010]+6076]) == f16 (c.eq.s at 0xda8eb58), and falls through when not (f10(=[[0x1010]+6076]) == f16 (c.eq.s at 0xda8eb58)); its branch-likely delay slot `lw ra,68(sp)` at 0xda8eb64 runs only when taken and is annulled on fall-through.
   The return at 0xda8ebac has v0 = one of ?, ret(DoInterpolateNormal).
   The instructions from 0xda8db68 to 0xda8db68 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda8db78 to 0xda8db80 are not reached by any path from the entry, and their branches are not listed.
@@ -7624,6 +7725,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The instructions from 0xda8de50 to 0xda8de58 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda8deb8 to 0xda8deb8 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda8dec8 to 0xda8ded0 are not reached by any path from the entry, and their branches are not listed.
+  The indirect jump at 0xda8db20 uses the jump table at 0xdaf3dd8 with targets 0xda8db28, 0xda8dc04, 0xda8dca4, 0xda8dd14, 0xda8ddb4.
+  The indirect jump at 0xda8db20 uses the jump table at 0xdaf3dd8 with targets 0xda8db28, 0xda8dc04, 0xda8dca4, 0xda8dd14, 0xda8ddb4.
+  The indirect jump at 0xda8db20 uses the jump table at 0xdaf3dd8 with targets 0xda8db28, 0xda8dc04, 0xda8dca4, 0xda8dd14, 0xda8ddb4.
+  The indirect jump at 0xda8db20 uses the jump table at 0xdaf3dd8 with targets 0xda8db28, 0xda8dc04, 0xda8dca4, 0xda8dd14, 0xda8ddb4.
   The indirect jump at 0xda8db20 uses the jump table at 0xdaf3dd8 with targets 0xda8db28, 0xda8dc04, 0xda8dca4, 0xda8dd14, 0xda8ddb4.
   The indirect jump at 0xda8db20 uses the jump table at 0xdaf3dd8 with targets 0xda8db28, 0xda8dc04, 0xda8dca4, 0xda8dd14, 0xda8ddb4.
 
@@ -7924,13 +8029,13 @@ Each entry records selected software behavior from its exact binary range. The r
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x18, including `lw` at 0xda981e4, `lw` at 0xda982ac, `lw` at 0xda982b4.
   4 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x60, including `lw` at 0xda98304, `lw` at 0xda98334, `lw` at 0xda98360.
   The `lw` at 0xda983ac loads 4 bytes from a1 (arg1 at entry) +0x40.
-  The `lwc1` at 0xda983b4 loads 4 bytes from ?.
+  The `lwc1` at 0xda983b4 loads 4 bytes from [a0] +0xdd8.
   The `lw` at 0xda983f8 loads 4 bytes from table(0xdaf40ac) +0x0.
   8 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xda98448, `swc1` at 0xda98490, `swc1` at 0xda984d4.
   The `jalr` at 0xda980c4 calls floor with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f14=[[a0]+3540].
   The `jalr` at 0xda9813c calls floor with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f14=[[a0]+3540].
-  The `jalr` at 0xda981f8 calls floor with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xda9825c calls floor with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda981f8 calls floor with a0=?, a1=?, a2=?, a3=?; fp f14=[[a0]+3540].
+  The `jalr` at 0xda9825c calls floor with a0=?, a1=?, a2=?, a3=?; fp f14=[[a0]+3540].
   The `jalr` at 0xda982d4 calls __glFrac [0xdad5810] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda982ec calls __glFrac [0xdad5810] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda9831c calls (unknown callee) with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=0x0, a3=?.
@@ -7965,6 +8070,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The instructions from 0xda98240 to 0xda98240 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda985c8 to 0xda985c8 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0xda98400 uses the jump table at 0xdaf40ac with targets 0xda98580, 0xda984d8, 0xda98494, 0xda9844c, 0xda98408.
+  The indirect jump at 0xda98400 uses the jump table at 0xdaf40ac with targets 0xda98580, 0xda984d8, 0xda98494, 0xda9844c, 0xda98408.
+  The indirect jump at 0xda98400 uses the jump table at 0xdaf40ac with targets 0xda98580, 0xda984d8, 0xda98494, 0xda9844c, 0xda98408.
 
 - `__glLinearFilter3` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda98624 (o32).
   Evidence grade: inferred.
@@ -7983,7 +8090,7 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xc, including `lw` at 0xda988d4, `lw` at 0xda989b4.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x1c, including `lw` at 0xda988fc, `lw` at 0xda989d8, `lw` at 0xda989e0.
   8 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x60, including `lw` at 0xda98a4c, `lw` at 0xda98a78, `lw` at 0xda98aa4.
-  The `lwc1` at 0xda98ba8 loads 4 bytes from ?.
+  The `lwc1` at 0xda98ba8 loads 4 bytes from [a0] +0xdd8.
   The `lw` at 0xda98bc8 loads 4 bytes from a1 (arg1 at entry) +0x40.
   The `lw` at 0xda98c04 loads 4 bytes from table(0xdaf40c0) +0x0.
   8 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xda98cb4, `swc1` at 0xda98d5c, `swc1` at 0xda98e00.
@@ -8040,6 +8147,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The instructions from 0xda98834 to 0xda98834 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda98964 to 0xda98964 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0xda98c0c uses the jump table at 0xdaf40c0 with targets 0xda98fec, 0xda98e04, 0xda98d60, 0xda98cb8, 0xda98c14.
+  The indirect jump at 0xda98c0c uses the jump table at 0xdaf40c0 with targets 0xda98fec, 0xda98e04, 0xda98d60, 0xda98cb8, 0xda98c14.
+  The indirect jump at 0xda98c0c uses the jump table at 0xdaf40c0 with targets 0xda98fec, 0xda98e04, 0xda98d60, 0xda98cb8, 0xda98c14.
+  The indirect jump at 0xda98c0c uses the jump table at 0xdaf40c0 with targets 0xda98fec, 0xda98e04, 0xda98d60, 0xda98cb8, 0xda98c14.
 
 - `__glFilter4Func` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda99148 (o32).
   Evidence grade: inferred.
@@ -8087,7 +8197,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda996a0 loads 4 bytes from a0 (arg0 at entry) +0xec.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xe4, including `lw` at 0xda996c8, `lw` at 0xda99700, `lw` at 0xda99754.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x114, including `lw` at 0xda996e4, `lw` at 0xda99734, `lw` at 0xda9976c.
-  The `lwc1` at 0xda997ac loads 4 bytes from ?.
+  The `lwc1` at 0xda997ac loads 4 bytes from [a0] +0xdd8.
   The `lw` at 0xda997b0 loads 4 bytes from [a0+228] +0x40.
   The `lw` at 0xda997f0 loads 4 bytes from table(0xdaf40f0) +0x0.
   8 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xda99818, `swc1` at 0xda99838, `swc1` at 0xda99854.
@@ -8116,12 +8226,12 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda99920 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lwc1` at 0xda99930 loads 4 bytes from a1 (arg1 at entry) +0x20.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xda99934, `lw` at 0xda99afc.
-  The `lwc1` at 0xda99944 loads 4 bytes from [a0] +0xdd4.
+  3 such `lwc1` accesses load 4 bytes from [a0] +0xdd4, including `lwc1` at 0xda99944, `lwc1` at 0xda99d64, `lwc1` at 0xda99df0.
   The `lw` at 0xda99974 loads 4 bytes from a1 (arg1 at entry) +0x14.
   3 such `lwc1` accesses load 4 bytes from a1 (arg1 at entry) +0x24, including `lwc1` at 0xda99b08, `lwc1` at 0xda99b38, `lwc1` at 0xda99b40.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0xda99b48, `lw` at 0xda99cf8.
   The `lw` at 0xda99b80 loads 4 bytes from a1 (arg1 at entry) +0x18.
-  10 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda99d64, `lwc1` at 0xda99d9c, `lwc1` at 0xda99dac.
+  8 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda99d9c, `lwc1` at 0xda99dac, `lwc1` at 0xda99db0.
   16 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x60, including `lw` at 0xda99e64, `lw` at 0xda99e80, `lw` at 0xda99eac.
   The `lw` at 0xda9a104 loads 4 bytes from a1 (arg1 at entry) +0x40.
   The `lw` at 0xda9a158 loads 4 bytes from table(0xdaf4104) +0x0.
@@ -8188,6 +8298,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The instructions from 0xda99c60 to 0xda99c60 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda9a8d8 to 0xda9a8d8 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0xda9a160 uses the jump table at 0xdaf4104 with targets 0xda9a7d0, 0xda9a478, 0xda9a374, 0xda9a26c, 0xda9a168.
+  The indirect jump at 0xda9a160 uses the jump table at 0xdaf4104 with targets 0xda9a7d0, 0xda9a478, 0xda9a374, 0xda9a26c, 0xda9a168.
+  The indirect jump at 0xda9a160 uses the jump table at 0xdaf4104 with targets 0xda9a7d0, 0xda9a478, 0xda9a374, 0xda9a26c, 0xda9a168.
 
 - `__glFilter4Func1` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda9a9fc (o32).
   Evidence grade: inferred.
@@ -8197,9 +8309,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xda9aa24 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lwc1` at 0xda9aa34 loads 4 bytes from a1 (arg1 at entry) +0x20.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xda9aa38, `lw` at 0xda9ac08.
-  The `lwc1` at 0xda9aa48 loads 4 bytes from [a0] +0xdd4.
+  2 such `lwc1` accesses load 4 bytes from [a0] +0xdd4, including `lwc1` at 0xda9aa48, `lwc1` at 0xda9ac74.
   The `lw` at 0xda9aa78 loads 4 bytes from a1 (arg1 at entry) +0x14.
-  5 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda9ac74, `lwc1` at 0xda9acc4, `lwc1` at 0xda9acc8.
+  4 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda9acc4, `lwc1` at 0xda9acc8, `lwc1` at 0xda9accc.
   4 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x60, including `lw` at 0xda9acec, `lw` at 0xda9ad08, `lw` at 0xda9ad34.
   The `lw` at 0xda9ad7c loads 4 bytes from a1 (arg1 at entry) +0x40.
   The `lw` at 0xda9adcc loads 4 bytes from table(0xdaf4118) +0x0.
@@ -8234,6 +8346,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xda9af44 targets 0xda9af7c and is always taken.
   The return at 0xda9af8c has v0 = one of [a1+64], ?.
   The instructions from 0xda9ab70 to 0xda9ab70 are not reached by any path from the entry, and their branches are not listed.
+  The indirect jump at 0xda9add4 uses the jump table at 0xdaf4118 with targets 0xda9af14, 0xda9ae7c, 0xda9ae48, 0xda9ae10, 0xda9addc.
   The indirect jump at 0xda9add4 uses the jump table at 0xdaf4118 with targets 0xda9af14, 0xda9ae7c, 0xda9ae48, 0xda9ae10, 0xda9addc.
 
 - `__GL_TEXENV_CLAMP` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda9b540 (o32).
@@ -8346,11 +8459,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdab138c stores 4 bytes to [[0x1010]+12744] +0x1c.
   The `lw` at 0xdab1394 loads 4 bytes from [[0x1010]+29716] +0xf8.
   The `lw` at 0xdab13a4 loads 4 bytes from [0x1010] +0x2ecc.
-  The `sw` at 0xdab13c4 stores 4 bytes to ?.
+  The `sw` at 0xdab13c4 stores 4 bytes to [[0x1010]+12744] +0x4.
   The `lw` at 0xdab13c8 loads 4 bytes from [0x1010] +0x2ec8.
   The `jalr` at 0xdab139c calls (unknown callee) with a0=[[0x1010]+12744]+112, a1=[[0x1010]+12744]+16, a2=[[0x1010]+29716]+176, a3=[[0x1010]+12744].
-  The `jalr` at 0xdab13b0 calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `jalr` at 0xdab13cc calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab13b0 calls (unknown callee) with a0=[0x1010], a1=[[0x1010]+12744], a2=?, a3=?.
+  The `jalr` at 0xdab13cc calls (unknown callee) with a0=[0x1010], a1=[[0x1010]+12744], a2=?, a3=?.
   The return at 0xdab13e0 has v0 = ret(?).
 - `__glim_Vertex3fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab13e8 (o32).
   Evidence grade: inferred.
@@ -8373,11 +8486,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdab1444 stores 4 bytes to [[0x1010]+12744] +0x1c.
   The `lw` at 0xdab144c loads 4 bytes from [[0x1010]+29716] +0xfc.
   The `lw` at 0xdab145c loads 4 bytes from [0x1010] +0x2ed0.
-  The `sw` at 0xdab147c stores 4 bytes to ?.
+  The `sw` at 0xdab147c stores 4 bytes to [[0x1010]+12744] +0x4.
   The `lw` at 0xdab1480 loads 4 bytes from [0x1010] +0x2ec8.
   The `jalr` at 0xdab1454 calls (unknown callee) with a0=[[0x1010]+12744]+112, a1=[[0x1010]+12744]+16, a2=[[0x1010]+29716]+176, a3=[[0x1010]+12744]; fp f12=[a0+8].
-  The `jalr` at 0xdab1468 calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `jalr` at 0xdab1484 calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab1468 calls (unknown callee) with a0=[0x1010], a1=[[0x1010]+12744], a2=?, a3=?.
+  The `jalr` at 0xdab1484 calls (unknown callee) with a0=[0x1010], a1=[[0x1010]+12744], a2=?, a3=?.
   The return at 0xdab1498 has v0 = ret(?).
 
 - `__glim_Vertex4fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab14a0 (o32).
@@ -8401,11 +8514,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdab14f4 stores 4 bytes to [[0x1010]+12744] +0xc.
   The `lw` at 0xdab14fc loads 4 bytes from [[0x1010]+29716] +0x100.
   The `lw` at 0xdab1510 loads 4 bytes from [0x1010] +0x2ed4.
-  The `sw` at 0xdab1530 stores 4 bytes to ?.
+  The `sw` at 0xdab1530 stores 4 bytes to [[0x1010]+12744] +0x4.
   The `lw` at 0xdab1534 loads 4 bytes from [0x1010] +0x2ec8.
   The `jalr` at 0xdab1508 calls (unknown callee) with a0=[[0x1010]+12744]+112, a1=[[0x1010]+12744]+16, a2=[[0x1010]+29716]+176, a3=[[0x1010]+12744]; fp f12=[a0+8], f14=[a0+12].
-  The `jalr` at 0xdab151c calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `jalr` at 0xdab1538 calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab151c calls (unknown callee) with a0=[0x1010], a1=[[0x1010]+12744], a2=?, a3=?.
+  The `jalr` at 0xdab1538 calls (unknown callee) with a0=[0x1010], a1=[[0x1010]+12744], a2=?, a3=?.
   The return at 0xdab154c has v0 = ret(?).
 
 - `__glim_Vertex2f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab1554 (o32).
@@ -8756,19 +8869,19 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdab2170 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xdab21a4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xdab1f28 targets 0xdab1f54, is taken when (t9(=[[0x1010]+5416]) & 0x1) == 0, and falls through when (t9(=[[0x1010]+5416]) & 0x1) != 0.
-  The `beql` branch at 0xdab1f5c targets 0xdab1f8c, is taken when (t4(?) & 0x2) == 0, and falls through when (t4(?) & 0x2) != 0; its branch-likely delay slot `lw t0,3612(s0)` at 0xdab1f60 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab1f5c targets 0xdab1f8c, is taken when (t4(=[[0x1010]+5416]) & 0x2) == 0, and falls through when (t4(=[[0x1010]+5416]) & 0x2) != 0; its branch-likely delay slot `lw t0,3612(s0)` at 0xdab1f60 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xdab1f94 targets 0xdab1fd4, is taken when t0(=[[0x1010]+3612]) != at(=0x1), and falls through when t0(=[[0x1010]+3612]) == at(=0x1).
-  The `beql` branch at 0xdab1fa4 targets 0xdab20b0, is taken when (t2(?) & 0x4) == 0, and falls through when (t2(?) & 0x4) != 0; its branch-likely delay slot `lw t8,48(sp)` at 0xdab1fa8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab1fa4 targets 0xdab20b0, is taken when (t2(=[[0x1010]+5416]) & 0x4) == 0, and falls through when (t2(=[[0x1010]+5416]) & 0x4) != 0; its branch-likely delay slot `lw t8,48(sp)` at 0xdab1fa8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab1fcc targets 0xdab20ac and is always taken.
   The `beql` branch at 0xdab1fd4 targets 0xdab2008, is taken when t6(?) == 0, and falls through when t6(?) != 0; its branch-likely delay slot `lw t1,44(sp)` at 0xdab1fd8 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab200c targets 0xdab2040, is taken when (t1(?) & 0x2) == 0, and falls through when (t1(?) & 0x2) != 0; its branch-likely delay slot `lw t6,44(sp)` at 0xdab2010 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab2044 targets 0xdab2078, is taken when (t6(?) & 0x4) == 0, and falls through when (t6(?) & 0x4) != 0; its branch-likely delay slot `lw t4,44(sp)` at 0xdab2048 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab207c targets 0xdab20b0, is taken when (t4(?) & 0x8) == 0, and falls through when (t4(?) & 0x8) != 0; its branch-likely delay slot `lw t8,48(sp)` at 0xdab2080 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab20b4 targets 0xdab20e4, is taken when (t8(?) & 0x8) == 0, and falls through when (t8(?) & 0x8) != 0; its branch-likely delay slot `lw t3,48(sp)` at 0xdab20b8 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab20e8 targets 0xdab2118, is taken when (t3(?) & 0x10) == 0, and falls through when (t3(?) & 0x10) != 0; its branch-likely delay slot `lw t0,40(sp)` at 0xdab20ec runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab211c targets 0xdab214c, is taken when (t0(?) & 0x1) == 0, and falls through when (t0(?) & 0x1) != 0; its branch-likely delay slot `lw t5,40(sp)` at 0xdab2120 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab2150 targets 0xdab2180, is taken when (t5(?) & 0x2) == 0, and falls through when (t5(?) & 0x2) != 0; its branch-likely delay slot `lw t1,48(sp)` at 0xdab2154 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab2184 targets 0xdab21b4, is taken when (t1(?) & 0x20) == 0, and falls through when (t1(?) & 0x20) != 0; its branch-likely delay slot `lw ra,36(sp)` at 0xdab2188 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab200c targets 0xdab2040, is taken when (t1(=[[0x1010]+5408]) & 0x2) == 0, and falls through when (t1(=[[0x1010]+5408]) & 0x2) != 0; its branch-likely delay slot `lw t6,44(sp)` at 0xdab2010 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2044 targets 0xdab2078, is taken when (t6(=[[0x1010]+5408]) & 0x4) == 0, and falls through when (t6(=[[0x1010]+5408]) & 0x4) != 0; its branch-likely delay slot `lw t4,44(sp)` at 0xdab2048 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab207c targets 0xdab20b0, is taken when (t4(=[[0x1010]+5408]) & 0x8) == 0, and falls through when (t4(=[[0x1010]+5408]) & 0x8) != 0; its branch-likely delay slot `lw t8,48(sp)` at 0xdab2080 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab20b4 targets 0xdab20e4, is taken when (t8(=[[0x1010]+5416]) & 0x8) == 0, and falls through when (t8(=[[0x1010]+5416]) & 0x8) != 0; its branch-likely delay slot `lw t3,48(sp)` at 0xdab20b8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab20e8 targets 0xdab2118, is taken when (t3(=[[0x1010]+5416]) & 0x10) == 0, and falls through when (t3(=[[0x1010]+5416]) & 0x10) != 0; its branch-likely delay slot `lw t0,40(sp)` at 0xdab20ec runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab211c targets 0xdab214c, is taken when (t0(=[[0x1010]+5412]) & 0x1) == 0, and falls through when (t0(=[[0x1010]+5412]) & 0x1) != 0; its branch-likely delay slot `lw t5,40(sp)` at 0xdab2120 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2150 targets 0xdab2180, is taken when (t5(=[[0x1010]+5412]) & 0x2) == 0, and falls through when (t5(=[[0x1010]+5412]) & 0x2) != 0; its branch-likely delay slot `lw t1,48(sp)` at 0xdab2154 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2184 targets 0xdab21b4, is taken when (t1(=[[0x1010]+5416]) & 0x20) == 0, and falls through when (t1(=[[0x1010]+5416]) & 0x20) != 0; its branch-likely delay slot `lw ra,36(sp)` at 0xdab2188 runs only when taken and is annulled on fall-through.
   The return at 0xdab21bc has v0 = one of ?, ret(?).
 - `__glim_DrawArraysEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab21c4 (o32).
   Evidence grade: inferred.
@@ -9203,7 +9316,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdab406c calls (unknown callee) with a0=[a0+29712]+88, a1=?, a2=?, a3=?.
   The `jalr` at 0xdab4080 calls (unknown callee) with a0=[a0+29712]+176, a1=?, a2=?, a3=?.
   The `jalr` at 0xdab4098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+29712], a2=?, a3=?.
-  The `jalr` at 0xdab40ac calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab40ac calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+29712]+88, a2=?, a3=?.
   The `jalr` at 0xdab40c4 calls (unknown callee) with a0=[a0+29720], a1=?, a2=?, a3=?.
   The `jalr` at 0xdab40d8 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+29720], a2=?, a3=?.
   The `jalr` at 0xdab40f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+29716]+176, a2=?, a3=?.
@@ -9212,7 +9325,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdab4134 calls (unknown callee) with a0=[a0+29740], a1=?, a2=?, a3=?.
   The `jalr` at 0xdab4148 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+29740], a2=?, a3=?.
   The `blez` branch at 0xdab4158 targets 0xdab41e4, is taken when s2(=([a0+3600] << 0x1)+12) <= 0 (signed), and falls through when s2(=([a0+3600] << 0x1)+12) > 0 (signed).
-  The `beq` branch at 0xdab416c targets 0xdab4198, is taken when (a2(?) & 0x3) == 0, and falls through when (a2(?) & 0x3) != 0.
+  The `beq` branch at 0xdab416c targets 0xdab4198, is taken when (a2(=([a0+3600] << 0x1)+12) & 0x3) == 0, and falls through when (a2(=([a0+3600] << 0x1)+12) & 0x3) != 0.
   The `bne` branch at 0xdab4188 targets 0xdab4178, is taken when a1(?) != a0(?), and falls through when a1(?) == a0(?).
   The `beql` branch at 0xdab4190 targets 0xdab41e8, is taken when a0(?) == s2(=([a0+3600] << 0x1)+12), and falls through when a0(?) != s2(=([a0+3600] << 0x1)+12); its branch-likely delay slot `lwc1 $f8,3544(s0)` at 0xdab4194 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xdab41dc targets 0xdab419c, is taken when a0(?) != s2(=([a0+3600] << 0x1)+12), and falls through when a0(?) == s2(=([a0+3600] << 0x1)+12).
@@ -9465,7 +9578,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdab7114 calls __glFindWindowSize [0xda4b780] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xdab7138 calls __glSoftResetContext [0xda4a498] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xdab7164 calls (unknown callee) with a0=0x0, a1=0x0, a2=[a0+3700], a3=[a0+3704].
-  The `jalr` at 0xdab7188 calls (unknown callee) with a0=0x0, a1=0x0, a2=?, a3=?.
+  The `jalr` at 0xdab7188 calls (unknown callee) with a0=0x0, a1=0x0, a2=[a0+3700], a3=[a0+3704].
   The `jalr` at 0xdab71a4 calls ApplyViewport [0xdab6a48] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xdab71b8 calls __glContextSetColorScales [0xda4a0c4] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xdab71cc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -9478,13 +9591,13 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0xdab7190 targets 0xdab71b0 and is always taken.
   The `beql` branch at 0xdab71dc targets 0xdab7244, is taken when t1(=[0x1048]) == 0, and falls through when t1(=[0x1048]) != 0; its branch-likely delay slot `lw t9,4988(s0)` at 0xdab71e0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab71f0 targets 0xdab7238, is taken when t3(=[a0+4988]) == 0, and falls through when t3(=[a0+4988]) != 0.
-  The `bne` branch at 0xdab7224 targets 0xdab7208, is taken when t4(?) != t8(?), and falls through when t4(?) == t8(?).
+  The `bne` branch at 0xdab7224 targets 0xdab7208, is taken when t4(?) != t8(=a0+8020), and falls through when t4(?) == t8(=a0+8020).
   The `beq` branch at 0xdab7230 targets 0xdab72cc and is always taken.
   The `beq` branch at 0xdab7238 targets 0xdab72cc and is always taken.
   The `beql` branch at 0xdab7248 targets 0xdab7294, is taken when t9(=[a0+4988]) == 0, and falls through when t9(=[a0+4988]) != 0; its branch-likely delay slot `addiu t9,zero,4176` at 0xdab724c runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xdab727c targets 0xdab7260, is taken when t3(?) != t5(?), and falls through when t3(?) == t5(?).
+  The `bne` branch at 0xdab727c targets 0xdab7260, is taken when t3(?) != t5(=a0+8020), and falls through when t3(?) == t5(=a0+8020).
   The `beq` branch at 0xdab7288 targets 0xdab72cc and is always taken.
-  The `bne` branch at 0xdab72bc targets 0xdab72a0, is taken when t6(?) != t1(?), and falls through when t6(?) == t1(?).
+  The `bne` branch at 0xdab72bc targets 0xdab72a0, is taken when t6(?) != t1(=a0+9916), and falls through when t6(?) == t1(=a0+9916).
   The return at 0xdab72f4 has v0 = 0x1.
   The instructions from 0xdab7240 to 0xdab7240 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xdab7290 to 0xdab7290 are not reached by any path from the entry, and their branches are not listed.
@@ -9843,10 +9956,13 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdab9964 loads 4 bytes from ret(__glLookUpTexture) +0xe4.
   The `lw` at 0xdab9970 loads 4 bytes from [ret(__glLookUpTexture)+228] +0x40.
   The `lw` at 0xdab9994 loads 4 bytes from [ret(__glLookUpTexture)+228] +0x38.
-  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdab99a4, `lw` at 0xdab99b4, `lw` at 0xdab99d4.
+  4 such `lw` accesses load 4 bytes from ret(__glLookUpTextureParams) +0xc, including `lw` at 0xdab99a4, `lw` at 0xdab99d4, `lw` at 0xdab9a04.
+  4 such `lw` accesses load 4 bytes from ret(__glLookUpTextureParams) +0x10, including `lw` at 0xdab99b4, `lw` at 0xdab99e4, `lw` at 0xdab9a10.
   The `lw` at 0xdab9a68 loads 4 bytes from a0 (arg0 at entry) +0x778.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x760, including `lw` at 0xdab9ac8, `lw` at 0xdab9b54, `lw` at 0xdab9bb4.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x2ff8, including `sw` at 0xdab9bcc, `sw` at 0xdab9c0c.
+  The `lw` at 0xdab9bd4 loads 4 bytes from [a0+11816] +0xb8.
+  The `lw` at 0xdab9be4 loads 4 bytes from [a0+11816] +0xbc.
   The `sw` at 0xdab9bf8 stores 4 bytes to a0 (arg0 at entry) +0x2ffc.
   The `jalr` at 0xdab9940 calls __glLookUpTextureParams [0xda911c0] with a0=a0 at entry (arg0), a1=0xde1, a2=?, a3=[a0+1792].
   The `jalr` at 0xdab995c calls __glLookUpTexture [0xda9125c] with a0=a0 at entry (arg0), a1=0xde1, a2=?, a3=?.
@@ -9876,29 +9992,29 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bltz` branch at 0xdab991c targets 0xdab9a54, is taken when t8(=([a0+1792] << 0x1)) < 0 (signed), and falls through when t8(=([a0+1792] << 0x1)) >= 0 (signed).
   The `bne` branch at 0xdab998c targets 0xdab9a54, is taken when t9(=[[ret(__glLookUpTexture)+228]+64]) != at(=0x1907), and falls through when t9(=[[ret(__glLookUpTexture)+228]+64]) == at(=0x1907).
   The `bnel` branch at 0xdab999c targets 0xdab9a58, is taken when t4(=[[ret(__glLookUpTexture)+228]+56]) != 0, and falls through when t4(=[[ret(__glLookUpTexture)+228]+56]) == 0; its branch-likely delay slot `addiu v1,v1,4` at 0xdab99a0 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xdab99ac targets 0xdab99dc, is taken when v0(?) != at(=0x2702), and falls through when v0(?) == at(=0x2702); its branch-likely delay slot `addiu at,zero,9987` at 0xdab99b0 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xdab99bc targets 0xdab99dc, is taken when t5(?) != at(=0x2601), and falls through when t5(?) == at(=0x2601); its branch-likely delay slot `addiu at,zero,9987` at 0xdab99c0 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xdab99dc targets 0xdab9a08, is taken when v0(?) != at(=0x2703), and falls through when v0(?) == at(=0x2703).
-  The `bne` branch at 0xdab99ec targets 0xdab9a08, is taken when t8(?) != at(=0x2601), and falls through when t8(?) == at(=0x2601).
-  The `bne` branch at 0xdab9a08 targets 0xdab9a30, is taken when a0(=0x2600) != v0(?), and falls through when a0(=0x2600) == v0(?).
-  The `bne` branch at 0xdab9a14 targets 0xdab9a30, is taken when a0(=0x2600) != t5(?), and falls through when a0(=0x2600) == t5(?).
-  The `bnel` branch at 0xdab9a30 targets 0xdab9a58, is taken when v0(?) != at(=0x2700), and falls through when v0(?) == at(=0x2700); its branch-likely delay slot `addiu v1,v1,4` at 0xdab9a34 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xdab9a3c targets 0xdab9a58, is taken when a0(=0x2600) != t8(?), and falls through when a0(=0x2600) == t8(?); its branch-likely delay slot `addiu v1,v1,4` at 0xdab9a40 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xdab9a60 targets 0xdab9aa4, is taken when (t0(?) & 0x1000) == 0, and falls through when (t0(?) & 0x1000) != 0.
+  The `bnel` branch at 0xdab99ac targets 0xdab99dc, is taken when v0(=[ret(__glLookUpTextureParams)+12]) != at(=0x2702), and falls through when v0(=[ret(__glLookUpTextureParams)+12]) == at(=0x2702); its branch-likely delay slot `addiu at,zero,9987` at 0xdab99b0 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xdab99bc targets 0xdab99dc, is taken when t5(=[ret(__glLookUpTextureParams)+16]) != at(=0x2601), and falls through when t5(=[ret(__glLookUpTextureParams)+16]) == at(=0x2601); its branch-likely delay slot `addiu at,zero,9987` at 0xdab99c0 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xdab99dc targets 0xdab9a08, is taken when v0(=[ret(__glLookUpTextureParams)+12]) != at(=0x2703), and falls through when v0(=[ret(__glLookUpTextureParams)+12]) == at(=0x2703).
+  The `bne` branch at 0xdab99ec targets 0xdab9a08, is taken when t8(=[ret(__glLookUpTextureParams)+16]) != at(=0x2601), and falls through when t8(=[ret(__glLookUpTextureParams)+16]) == at(=0x2601).
+  The `bne` branch at 0xdab9a08 targets 0xdab9a30, is taken when a0(=0x2600) != v0(=[ret(__glLookUpTextureParams)+12]), and falls through when a0(=0x2600) == v0(=[ret(__glLookUpTextureParams)+12]).
+  The `bne` branch at 0xdab9a14 targets 0xdab9a30, is taken when a0(=0x2600) != t5(=[ret(__glLookUpTextureParams)+16]), and falls through when a0(=0x2600) == t5(=[ret(__glLookUpTextureParams)+16]).
+  The `bnel` branch at 0xdab9a30 targets 0xdab9a58, is taken when v0(=[ret(__glLookUpTextureParams)+12]) != at(=0x2700), and falls through when v0(=[ret(__glLookUpTextureParams)+12]) == at(=0x2700); its branch-likely delay slot `addiu v1,v1,4` at 0xdab9a34 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xdab9a3c targets 0xdab9a58, is taken when a0(=0x2600) != t8(=[ret(__glLookUpTextureParams)+16]), and falls through when a0(=0x2600) == t8(=[ret(__glLookUpTextureParams)+16]); its branch-likely delay slot `addiu v1,v1,4` at 0xdab9a40 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xdab9a60 targets 0xdab9aa4, is taken when (t0(=[a0+30492]) & 0x1000) == 0, and falls through when (t0(=[a0+30492]) & 0x1000) != 0.
   The `bne` branch at 0xdab9a70 targets 0xdab9a8c, is taken when t6(=[a0+1912]) != at(=0x1102), and falls through when t6(=[a0+1912]) == at(=0x1102).
   The `beq` branch at 0xdab9a84 targets 0xdab9a9c and is always taken.
   The `beq` branch at 0xdab9aa4 targets 0xdab9ac4, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `beql` branch at 0xdab9ac4 targets 0xdab9bb8, is taken when t1(?) == 0, and falls through when t1(?) != 0; its branch-likely delay slot `lw t6,1888(s0)` at 0xdab9ac8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab9acc targets 0xdab9b50, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The `beq` branch at 0xdab9ae8 targets 0xdab9b34, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `bgez` branch at 0xdab9af4 targets 0xdab9b18, is taken when t4(?) >= 0 (signed), and falls through when t4(?) < 0 (signed).
+  The `bgez` branch at 0xdab9af4 targets 0xdab9b18, is taken when t4(=([a0+30492] << 0xd)) >= 0 (signed), and falls through when t4(=([a0+30492] << 0xd)) < 0 (signed).
   The `beq` branch at 0xdab9b10 targets 0xdab9bb4 and is always taken.
   The `beq` branch at 0xdab9b2c targets 0xdab9bb4 and is always taken.
   The `beq` branch at 0xdab9b48 targets 0xdab9bb4 and is always taken.
   The `beql` branch at 0xdab9b50 targets 0xdab9bb8, is taken when v0(?) == 0, and falls through when v0(?) != 0; its branch-likely delay slot `lw t6,1888(s0)` at 0xdab9b54 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xdab9b64 targets 0xdab9b78, is taken when t5(=[a0+1632]) != at(=0x200), and falls through when t5(=[a0+1632]) == at(=0x200).
   The `beq` branch at 0xdab9b70 targets 0xdab9c14 and is always taken.
-  The `bgez` branch at 0xdab9b78 targets 0xdab9b9c, is taken when t7(?) >= 0 (signed), and falls through when t7(?) < 0 (signed).
+  The `bgez` branch at 0xdab9b78 targets 0xdab9b9c, is taken when t7(=([a0+30492] << 0xd)) >= 0 (signed), and falls through when t7(=([a0+30492] << 0xd)) < 0 (signed).
   The `beq` branch at 0xdab9b94 targets 0xdab9bb4 and is always taken.
   The `bne` branch at 0xdab9bc0 targets 0xdab9bd4, is taken when t6(=[a0+1888]) != at(=0x408), and falls through when t6(=[a0+1888]) == at(=0x408).
   The `beq` branch at 0xdab9bf4 targets 0xdab9c08, is taken when t3(?) == 0, and falls through when t3(?) != 0.
@@ -9942,7 +10058,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdab9d84 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdab9d90 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdab9d68 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdab9d98 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac59c0, a3=?.
+  The `jalr` at 0xdab9d98 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac59c0, a3=?.
   The `beq` branch at 0xdab9d78 targets 0xdab9da4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdab9dac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -9956,10 +10072,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdab9e0c stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `sb` at 0xdab9e14 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xdab9e1c stores 1 byte to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdab9e20 loads 4 bytes from ?.
-  The `sw` at 0xdab9e28 stores 4 bytes to ?.
+  The `lw` at 0xdab9e20 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdab9e28 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdab9de4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdab9e30 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5a00, a3=?.
+  The `jalr` at 0xdab9e30 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5a00, a3=?.
   The `beq` branch at 0xdab9df4 targets 0xdab9e3c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdab9e44 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -9976,10 +10092,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdab9eac stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `lb` at 0xdab9eb0 loads 1 byte from a0 (arg0 at entry) +0x2.
   The `sb` at 0xdab9eb4 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdab9eb8 loads 4 bytes from ?.
-  The `sw` at 0xdab9ec0 stores 4 bytes to ?.
+  The `lw` at 0xdab9eb8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdab9ec0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdab9e78 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdab9ec8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5a00, a3=a0 at entry (arg0).
+  The `jalr` at 0xdab9ec8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5a00, a3=a0 at entry (arg0).
   The `beq` branch at 0xdab9e8c targets 0xdab9ed4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdab9edc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -9994,10 +10110,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdab9f40 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdab9f48 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdab9f50 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdab9f54 loads 4 bytes from ?.
-  The `sw` at 0xdab9f5c stores 4 bytes to ?.
+  The `lw` at 0xdab9f54 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdab9f5c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdab9f10 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdab9f64 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5a3c, a3=?.
+  The `jalr` at 0xdab9f64 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5a3c, a3=?.
   The `beq` branch at 0xdab9f20 targets 0xdab9f70, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdab9f78 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10015,10 +10131,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdab9fe8 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `ldc1` at 0xdab9fec loads 8 bytes from a0 (arg0 at entry) +0x10.
   The `sdc1` at 0xdab9ff0 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdab9ff4 loads 4 bytes from ?.
-  The `sw` at 0xdab9ffc stores 4 bytes to ?.
+  The `lw` at 0xdab9ff4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdab9ffc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdab9fac calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba004 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5a3c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba004 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5a3c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdab9fc0 targets 0xdaba010, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba018 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10032,10 +10148,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdaba078 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdaba080 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdaba088 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdaba08c loads 4 bytes from ?.
-  The `sw` at 0xdaba094 stores 4 bytes to ?.
+  The `lw` at 0xdaba08c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba094 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba050 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba09c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5a78, a3=?.
+  The `jalr` at 0xdaba09c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5a78, a3=?.
   The `beq` branch at 0xdaba060 targets 0xdaba0a8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba0b0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10052,10 +10168,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdaba118 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lwc1` at 0xdaba11c loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `swc1` at 0xdaba120 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdaba124 loads 4 bytes from ?.
-  The `sw` at 0xdaba12c stores 4 bytes to ?.
+  The `lw` at 0xdaba124 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba12c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba0e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba134 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5a78, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba134 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5a78, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba0f8 targets 0xdaba140, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba148 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10069,10 +10185,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdaba1a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdaba1b0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdaba1b8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdaba1bc loads 4 bytes from ?.
-  The `sw` at 0xdaba1c4 stores 4 bytes to ?.
+  The `lw` at 0xdaba1bc loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba1c4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba180 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba1cc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5ab4, a3=?.
+  The `jalr` at 0xdaba1cc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5ab4, a3=?.
   The `beq` branch at 0xdaba190 targets 0xdaba1d8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba1e0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10089,10 +10205,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdaba248 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lw` at 0xdaba24c loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `sw` at 0xdaba250 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdaba254 loads 4 bytes from ?.
-  The `sw` at 0xdaba25c stores 4 bytes to ?.
+  The `lw` at 0xdaba254 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba25c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba214 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba264 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5ab4, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba264 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5ab4, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba228 targets 0xdaba270, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba278 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10106,10 +10222,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdaba2d8 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdaba2e0 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdaba2e8 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdaba2ec loads 4 bytes from ?.
-  The `sw` at 0xdaba2f4 stores 4 bytes to ?.
+  The `lw` at 0xdaba2ec loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba2f4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba2b0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba2fc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5af0, a3=?.
+  The `jalr` at 0xdaba2fc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5af0, a3=?.
   The `beq` branch at 0xdaba2c0 targets 0xdaba308, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba310 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10126,10 +10242,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdaba378 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `lh` at 0xdaba37c loads 2 bytes from a0 (arg0 at entry) +0x4.
   The `sh` at 0xdaba380 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdaba384 loads 4 bytes from ?.
-  The `sw` at 0xdaba38c stores 4 bytes to ?.
+  The `lw` at 0xdaba384 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba38c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba344 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba394 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5af0, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba394 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5af0, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba358 targets 0xdaba3a0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba3a8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10143,10 +10259,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdaba408 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `sb` at 0xdaba410 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xdaba418 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdaba41c loads 4 bytes from ?.
-  The `sw` at 0xdaba424 stores 4 bytes to ?.
+  The `lw` at 0xdaba41c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba424 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba3e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba42c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5b2c, a3=?.
+  The `jalr` at 0xdaba42c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5b2c, a3=?.
   The `beq` branch at 0xdaba3f0 targets 0xdaba438, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba440 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10163,10 +10279,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdaba4a8 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `lbu` at 0xdaba4ac loads 1 byte from a0 (arg0 at entry) +0x2.
   The `sb` at 0xdaba4b0 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdaba4b4 loads 4 bytes from ?.
-  The `sw` at 0xdaba4bc stores 4 bytes to ?.
+  The `lw` at 0xdaba4b4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba4bc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba474 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba4c4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5b2c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba4c4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5b2c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba488 targets 0xdaba4d0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba4d8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10180,10 +10296,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdaba538 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdaba540 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdaba548 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdaba54c loads 4 bytes from ?.
-  The `sw` at 0xdaba554 stores 4 bytes to ?.
+  The `lw` at 0xdaba54c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba554 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba510 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba55c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5b68, a3=?.
+  The `jalr` at 0xdaba55c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5b68, a3=?.
   The `beq` branch at 0xdaba520 targets 0xdaba568, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba570 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Color3uiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdaba578 (o32).
@@ -10199,10 +10315,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdaba5d8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lw` at 0xdaba5dc loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `sw` at 0xdaba5e0 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdaba5e4 loads 4 bytes from ?.
-  The `sw` at 0xdaba5ec stores 4 bytes to ?.
+  The `lw` at 0xdaba5e4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba5ec stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba5a4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba5f4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5b68, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba5f4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5b68, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba5b8 targets 0xdaba600, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba608 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10216,10 +10332,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdaba668 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdaba670 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdaba678 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdaba67c loads 4 bytes from ?.
-  The `sw` at 0xdaba684 stores 4 bytes to ?.
+  The `lw` at 0xdaba67c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba684 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba640 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba68c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5ba4, a3=?.
+  The `jalr` at 0xdaba68c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5ba4, a3=?.
   The `beq` branch at 0xdaba650 targets 0xdaba698, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba6a0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10236,10 +10352,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdaba708 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `lhu` at 0xdaba70c loads 2 bytes from a0 (arg0 at entry) +0x4.
   The `sh` at 0xdaba710 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdaba714 loads 4 bytes from ?.
-  The `sw` at 0xdaba71c stores 4 bytes to ?.
+  The `lw` at 0xdaba714 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba71c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba6d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba724 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5ba4, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba724 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5ba4, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba6e8 targets 0xdaba730, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba738 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10254,10 +10370,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdaba7a4 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xdaba7ac stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `sb` at 0xdaba7b4 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
-  The `lw` at 0xdaba7b8 loads 4 bytes from ?.
-  The `sw` at 0xdaba7c0 stores 4 bytes to ?.
+  The `lw` at 0xdaba7b8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba7c0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba774 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba7c8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5be0, a3=?.
+  The `jalr` at 0xdaba7c8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5be0, a3=?.
   The `beq` branch at 0xdaba784 targets 0xdaba7d4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba7dc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10276,10 +10392,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdaba84c stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `lb` at 0xdaba850 loads 1 byte from a0 (arg0 at entry) +0x3.
   The `sb` at 0xdaba854 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
-  The `lw` at 0xdaba858 loads 4 bytes from ?.
-  The `sw` at 0xdaba860 stores 4 bytes to ?.
+  The `lw` at 0xdaba858 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba860 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba810 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba868 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5be0, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba868 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5be0, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba824 targets 0xdaba874, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba87c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10295,10 +10411,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdaba8e8 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdaba8f0 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xdaba8f8 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdaba8fc loads 4 bytes from ?.
-  The `sw` at 0xdaba904 stores 4 bytes to ?.
+  The `lw` at 0xdaba8fc loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba904 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba8b0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdaba90c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5c1c, a3=?.
+  The `jalr` at 0xdaba90c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5c1c, a3=?.
   The `beq` branch at 0xdaba8c0 targets 0xdaba918, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba920 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10318,10 +10434,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdaba998 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `ldc1` at 0xdaba99c loads 8 bytes from a0 (arg0 at entry) +0x18.
   The `sdc1` at 0xdaba9a0 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdaba9a4 loads 4 bytes from ?.
-  The `sw` at 0xdaba9ac stores 4 bytes to ?.
+  The `lw` at 0xdaba9a4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdaba9ac stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdaba954 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdaba9b4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5c1c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdaba9b4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5c1c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdaba968 targets 0xdaba9c0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdaba9c8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10336,10 +10452,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabaa34 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabaa3c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdabaa44 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabaa48 loads 4 bytes from ?.
-  The `sw` at 0xdabaa50 stores 4 bytes to ?.
+  The `lw` at 0xdabaa48 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabaa50 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabaa04 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabaa58 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5c58, a3=?.
+  The `jalr` at 0xdabaa58 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5c58, a3=?.
   The `beq` branch at 0xdabaa14 targets 0xdabaa64, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabaa6c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10358,10 +10474,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabaadc stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lwc1` at 0xdabaae0 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `swc1` at 0xdabaae4 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabaae8 loads 4 bytes from ?.
-  The `sw` at 0xdabaaf0 stores 4 bytes to ?.
+  The `lw` at 0xdabaae8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabaaf0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabaaa0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabaaf8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5c58, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabaaf8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5c58, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabaab4 targets 0xdabab04, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabab0c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10376,10 +10492,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabab78 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabab80 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdabab88 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabab8c loads 4 bytes from ?.
-  The `sw` at 0xdabab94 stores 4 bytes to ?.
+  The `lw` at 0xdabab8c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabab94 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabab48 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabab9c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5c94, a3=?.
+  The `jalr` at 0xdabab9c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5c94, a3=?.
   The `beq` branch at 0xdabab58 targets 0xdababa8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdababb0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10398,10 +10514,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabac20 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lw` at 0xdabac24 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `sw` at 0xdabac28 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabac2c loads 4 bytes from ?.
-  The `sw` at 0xdabac34 stores 4 bytes to ?.
+  The `lw` at 0xdabac2c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabac34 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdababe4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabac3c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5c94, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabac3c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5c94, a3=a0 at entry (arg0).
   The `beq` branch at 0xdababf8 targets 0xdabac48, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabac50 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10416,10 +10532,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabacbc stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabacc4 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sh` at 0xdabaccc stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabacd0 loads 4 bytes from ?.
-  The `sw` at 0xdabacd8 stores 4 bytes to ?.
+  The `lw` at 0xdabacd0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabacd8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabac8c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabace0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5cd0, a3=?.
+  The `jalr` at 0xdabace0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5cd0, a3=?.
   The `beq` branch at 0xdabac9c targets 0xdabacec, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabacf4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10438,10 +10554,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabad64 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lh` at 0xdabad68 loads 2 bytes from a0 (arg0 at entry) +0x6.
   The `sh` at 0xdabad6c stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabad70 loads 4 bytes from ?.
-  The `sw` at 0xdabad78 stores 4 bytes to ?.
+  The `lw` at 0xdabad70 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabad78 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabad28 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabad80 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5cd0, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabad80 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5cd0, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabad3c targets 0xdabad8c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabad94 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10456,10 +10572,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabae00 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xdabae08 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `sb` at 0xdabae10 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
-  The `lw` at 0xdabae14 loads 4 bytes from ?.
-  The `sw` at 0xdabae1c stores 4 bytes to ?.
+  The `lw` at 0xdabae14 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabae1c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabadd0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabae24 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5d0c, a3=?.
+  The `jalr` at 0xdabae24 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5d0c, a3=?.
   The `beq` branch at 0xdabade0 targets 0xdabae30, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabae38 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10478,10 +10594,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabaea8 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `lbu` at 0xdabaeac loads 1 byte from a0 (arg0 at entry) +0x3.
   The `sb` at 0xdabaeb0 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
-  The `lw` at 0xdabaeb4 loads 4 bytes from ?.
-  The `sw` at 0xdabaebc stores 4 bytes to ?.
+  The `lw` at 0xdabaeb4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabaebc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabae6c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabaec4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5d0c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabaec4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5d0c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabae80 targets 0xdabaed0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabaed8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10496,10 +10612,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabaf44 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabaf4c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdabaf54 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabaf58 loads 4 bytes from ?.
-  The `sw` at 0xdabaf60 stores 4 bytes to ?.
+  The `lw` at 0xdabaf58 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabaf60 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabaf14 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabaf68 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5d48, a3=?.
+  The `jalr` at 0xdabaf68 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5d48, a3=?.
   The `beq` branch at 0xdabaf24 targets 0xdabaf74, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabaf7c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10518,10 +10634,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabafec stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lw` at 0xdabaff0 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `sw` at 0xdabaff4 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabaff8 loads 4 bytes from ?.
-  The `sw` at 0xdabb000 stores 4 bytes to ?.
+  The `lw` at 0xdabaff8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb000 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabafb0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabb008 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5d48, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabb008 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5d48, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabafc4 targets 0xdabb014, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb01c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10536,10 +10652,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb088 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabb090 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sh` at 0xdabb098 stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabb09c loads 4 bytes from ?.
-  The `sw` at 0xdabb0a4 stores 4 bytes to ?.
+  The `lw` at 0xdabb09c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb0a4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb058 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb0ac calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5d84, a3=?.
+  The `jalr` at 0xdabb0ac calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5d84, a3=?.
   The `beq` branch at 0xdabb068 targets 0xdabb0b8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb0c0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10558,10 +10674,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb130 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lhu` at 0xdabb134 loads 2 bytes from a0 (arg0 at entry) +0x6.
   The `sh` at 0xdabb138 stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabb13c loads 4 bytes from ?.
-  The `sw` at 0xdabb144 stores 4 bytes to ?.
+  The `lw` at 0xdabb13c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb144 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb0f4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabb14c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5d84, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabb14c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5d84, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabb108 targets 0xdabb158, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb160 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10574,7 +10690,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb1ac stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sb` at 0xdabb1b8 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabb190 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb1c0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5dc0, a3=?.
+  The `jalr` at 0xdabb1c0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5dc0, a3=?.
   The `beq` branch at 0xdabb1a0 targets 0xdabb1cc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb1d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10588,7 +10704,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lbu` at 0xdabb22c loads 1 byte from a0 (arg0 at entry) +0x0.
   The `sb` at 0xdabb230 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabb204 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb238 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5dc0, a3=?.
+  The `jalr` at 0xdabb238 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5dc0, a3=?.
   The `beq` branch at 0xdabb214 targets 0xdabb244, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb24c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10600,7 +10716,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdabb264 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdabb294 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdabb278 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb2a0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5dfc, a3=?.
+  The `jalr` at 0xdabb2a0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5dfc, a3=?.
   The `beq` branch at 0xdabb288 targets 0xdabb2ac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb2b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10613,10 +10729,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb304 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sb` at 0xdabb308 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `sdc1` at 0xdabb314 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb318 loads 4 bytes from ?.
-  The `sw` at 0xdabb320 stores 4 bytes to ?.
+  The `lw` at 0xdabb318 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb320 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb2e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb328 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5e34, a3=?.
+  The `jalr` at 0xdabb328 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5e34, a3=?.
   The `beq` branch at 0xdabb2f4 targets 0xdabb334, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb33c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10630,10 +10746,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabb390 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `ldc1` at 0xdabb39c loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `sdc1` at 0xdabb3a0 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb3a4 loads 4 bytes from ?.
-  The `sw` at 0xdabb3ac stores 4 bytes to ?.
+  The `lw` at 0xdabb3a4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb3ac stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb36c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb3b4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5e34, a3=?.
+  The `jalr` at 0xdabb3b4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5e34, a3=?.
   The `beq` branch at 0xdabb37c targets 0xdabb3c0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb3c8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10645,10 +10761,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdabb3e4 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdabb414 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdabb420 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb424 loads 4 bytes from ?.
-  The `sw` at 0xdabb42c stores 4 bytes to ?.
+  The `lw` at 0xdabb424 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb42c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb3f8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb434 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5e70, a3=?.
+  The `jalr` at 0xdabb434 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5e70, a3=?.
   The `beq` branch at 0xdabb408 targets 0xdabb440, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb448 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Indexfv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdabb450 (o32).
@@ -10660,10 +10776,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb494 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `lwc1` at 0xdabb4a0 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `swc1` at 0xdabb4a4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb4a8 loads 4 bytes from ?.
-  The `sw` at 0xdabb4b0 stores 4 bytes to ?.
+  The `lw` at 0xdabb4a8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb4b0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb478 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb4b8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5e70, a3=?.
+  The `jalr` at 0xdabb4b8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5e70, a3=?.
   The `beq` branch at 0xdabb488 targets 0xdabb4c4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb4cc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10675,10 +10791,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdabb4ec loads 4 bytes from abs 0x1010.
   The `sh` at 0xdabb518 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabb524 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb528 loads 4 bytes from ?.
-  The `sw` at 0xdabb530 stores 4 bytes to ?.
+  The `lw` at 0xdabb528 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb530 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb4fc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb538 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5eac, a3=?.
+  The `jalr` at 0xdabb538 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5eac, a3=?.
   The `beq` branch at 0xdabb50c targets 0xdabb544, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb54c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10691,10 +10807,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb598 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `lw` at 0xdabb5a4 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `sw` at 0xdabb5a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb5ac loads 4 bytes from ?.
-  The `sw` at 0xdabb5b4 stores 4 bytes to ?.
+  The `lw` at 0xdabb5ac loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb5b4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb57c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb5bc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5eac, a3=?.
+  The `jalr` at 0xdabb5bc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5eac, a3=?.
   The `beq` branch at 0xdabb58c targets 0xdabb5c8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb5d0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10706,10 +10822,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdabb5f0 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdabb61c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sh` at 0xdabb628 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb62c loads 4 bytes from ?.
-  The `sw` at 0xdabb634 stores 4 bytes to ?.
+  The `lw` at 0xdabb62c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb634 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb600 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb63c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5ee8, a3=?.
+  The `jalr` at 0xdabb63c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5ee8, a3=?.
   The `beq` branch at 0xdabb610 targets 0xdabb648, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb650 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10722,10 +10838,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabb69c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `lh` at 0xdabb6a8 loads 2 bytes from a0 (arg0 at entry) +0x0.
   The `sh` at 0xdabb6ac stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdabb6b0 loads 4 bytes from ?.
-  The `sw` at 0xdabb6b8 stores 4 bytes to ?.
+  The `lw` at 0xdabb6b0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb6b8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb680 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb6c0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5ee8, a3=?.
+  The `jalr` at 0xdabb6c0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5ee8, a3=?.
   The `beq` branch at 0xdabb690 targets 0xdabb6cc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb6d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10739,10 +10855,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabb734 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `sb` at 0xdabb73c stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xdabb744 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdabb748 loads 4 bytes from ?.
-  The `sw` at 0xdabb750 stores 4 bytes to ?.
+  The `lw` at 0xdabb748 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb750 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb70c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb758 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5f24, a3=?.
+  The `jalr` at 0xdabb758 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5f24, a3=?.
   The `beq` branch at 0xdabb71c targets 0xdabb764, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb76c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10759,10 +10875,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabb7d4 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `lb` at 0xdabb7d8 loads 1 byte from a0 (arg0 at entry) +0x2.
   The `sb` at 0xdabb7dc stores 1 byte to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdabb7e0 loads 4 bytes from ?.
-  The `sw` at 0xdabb7e8 stores 4 bytes to ?.
+  The `lw` at 0xdabb7e0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb7e8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb7a0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabb7f0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5f24, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabb7f0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5f24, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabb7b4 targets 0xdabb7fc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb804 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10777,10 +10893,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabb868 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdabb870 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdabb878 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdabb87c loads 4 bytes from ?.
-  The `sw` at 0xdabb884 stores 4 bytes to ?.
+  The `lw` at 0xdabb87c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb884 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb838 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb88c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5f60, a3=?.
+  The `jalr` at 0xdabb88c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5f60, a3=?.
   The `beq` branch at 0xdabb848 targets 0xdabb898, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb8a0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10798,10 +10914,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabb910 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `ldc1` at 0xdabb914 loads 8 bytes from a0 (arg0 at entry) +0x10.
   The `sdc1` at 0xdabb918 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdabb91c loads 4 bytes from ?.
-  The `sw` at 0xdabb924 stores 4 bytes to ?.
+  The `lw` at 0xdabb91c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb924 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb8d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabb92c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5f60, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabb92c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5f60, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabb8e8 targets 0xdabb938, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb940 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10815,10 +10931,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabb9a0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdabb9a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabb9b0 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabb9b4 loads 4 bytes from ?.
-  The `sw` at 0xdabb9bc stores 4 bytes to ?.
+  The `lw` at 0xdabb9b4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabb9bc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabb978 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabb9c4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5f9c, a3=?.
+  The `jalr` at 0xdabb9c4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5f9c, a3=?.
   The `beq` branch at 0xdabb988 targets 0xdabb9d0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabb9d8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10835,10 +10951,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabba40 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lwc1` at 0xdabba44 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `swc1` at 0xdabba48 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabba4c loads 4 bytes from ?.
-  The `sw` at 0xdabba54 stores 4 bytes to ?.
+  The `lw` at 0xdabba4c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabba54 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabba0c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabba5c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5f9c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabba5c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5f9c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabba20 targets 0xdabba68, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabba70 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10852,10 +10968,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabbad0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabbad8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabbae0 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabbae4 loads 4 bytes from ?.
-  The `sw` at 0xdabbaec stores 4 bytes to ?.
+  The `lw` at 0xdabbae4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbaec stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbaa8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbaf4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5fd8, a3=?.
+  The `jalr` at 0xdabbaf4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5fd8, a3=?.
   The `beq` branch at 0xdabbab8 targets 0xdabbb00, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbb08 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10872,10 +10988,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabbb70 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lw` at 0xdabbb74 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `sw` at 0xdabbb78 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabbb7c loads 4 bytes from ?.
-  The `sw` at 0xdabbb84 stores 4 bytes to ?.
+  The `lw` at 0xdabbb7c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbb84 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbb3c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabbb8c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac5fd8, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabbb8c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac5fd8, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabbb50 targets 0xdabbb98, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbba0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10889,10 +11005,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabbc00 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdabbc08 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabbc10 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabbc14 loads 4 bytes from ?.
-  The `sw` at 0xdabbc1c stores 4 bytes to ?.
+  The `lw` at 0xdabbc14 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbc1c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbbd8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbc24 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6014, a3=?.
+  The `jalr` at 0xdabbc24 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6014, a3=?.
   The `beq` branch at 0xdabbbe8 targets 0xdabbc30, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbc38 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10909,10 +11025,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabbca0 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `lh` at 0xdabbca4 loads 2 bytes from a0 (arg0 at entry) +0x4.
   The `sh` at 0xdabbca8 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabbcac loads 4 bytes from ?.
-  The `sw` at 0xdabbcb4 stores 4 bytes to ?.
+  The `lw` at 0xdabbcac loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbcb4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbc6c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabbcbc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6014, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabbcbc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6014, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabbc80 targets 0xdabbcc8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbcd0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10926,10 +11042,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabbd28 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `sdc1` at 0xdabbd34 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdabbd3c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabbd40 loads 4 bytes from ?.
-  The `sw` at 0xdabbd48 stores 4 bytes to ?.
+  The `lw` at 0xdabbd40 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbd48 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbd04 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbd50 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6050, a3=?.
+  The `jalr` at 0xdabbd50 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6050, a3=?.
   The `beq` branch at 0xdabbd14 targets 0xdabbd5c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbd64 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10945,10 +11061,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabbdc8 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `ldc1` at 0xdabbdcc loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `sdc1` at 0xdabbdd0 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabbdd4 loads 4 bytes from ?.
-  The `sw` at 0xdabbddc stores 4 bytes to ?.
+  The `lw` at 0xdabbdd4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbddc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbd94 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbde4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6050, a3=?.
+  The `jalr` at 0xdabbde4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6050, a3=?.
   The `beq` branch at 0xdabbda8 targets 0xdabbdf0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbdf8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10961,10 +11077,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabbe48 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdabbe54 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdabbe5c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabbe60 loads 4 bytes from ?.
-  The `sw` at 0xdabbe68 stores 4 bytes to ?.
+  The `lw` at 0xdabbe60 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbe68 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbe2c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbe70 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac608c, a3=?.
+  The `jalr` at 0xdabbe70 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac608c, a3=?.
   The `beq` branch at 0xdabbe3c targets 0xdabbe7c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbe84 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10979,10 +11095,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabbee0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `lwc1` at 0xdabbee4 loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `swc1` at 0xdabbee8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabbeec loads 4 bytes from ?.
-  The `sw` at 0xdabbef4 stores 4 bytes to ?.
+  The `lw` at 0xdabbeec loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbef4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbeb4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbefc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac608c, a3=?.
+  The `jalr` at 0xdabbefc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac608c, a3=?.
   The `beq` branch at 0xdabbec8 targets 0xdabbf08, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbf10 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -10995,10 +11111,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabbf60 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabbf6c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabbf74 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabbf78 loads 4 bytes from ?.
-  The `sw` at 0xdabbf80 stores 4 bytes to ?.
+  The `lw` at 0xdabbf78 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabbf80 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbf44 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabbf88 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac60c8, a3=?.
+  The `jalr` at 0xdabbf88 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac60c8, a3=?.
   The `beq` branch at 0xdabbf54 targets 0xdabbf94, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabbf9c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11013,10 +11129,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabbff8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `lw` at 0xdabbffc loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `sw` at 0xdabc000 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabc004 loads 4 bytes from ?.
-  The `sw` at 0xdabc00c stores 4 bytes to ?.
+  The `lw` at 0xdabc004 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc00c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabbfcc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc014 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac60c8, a3=?.
+  The `jalr` at 0xdabc014 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac60c8, a3=?.
   The `beq` branch at 0xdabbfe0 targets 0xdabc020, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc028 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11029,10 +11145,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabc078 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sh` at 0xdabc084 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdabc08c stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdabc090 loads 4 bytes from ?.
-  The `sw` at 0xdabc098 stores 4 bytes to ?.
+  The `lw` at 0xdabc090 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc098 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc05c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc0a0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6104, a3=?.
+  The `jalr` at 0xdabc0a0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6104, a3=?.
   The `beq` branch at 0xdabc06c targets 0xdabc0ac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc0b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11047,10 +11163,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabc110 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `lh` at 0xdabc114 loads 2 bytes from a0 (arg0 at entry) +0x2.
   The `sh` at 0xdabc118 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdabc11c loads 4 bytes from ?.
-  The `sw` at 0xdabc124 stores 4 bytes to ?.
+  The `lw` at 0xdabc11c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc124 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc0e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc12c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6104, a3=?.
+  The `jalr` at 0xdabc12c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6104, a3=?.
   The `beq` branch at 0xdabc0f8 targets 0xdabc138, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc140 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11065,10 +11181,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabc1a4 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdabc1ac stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdabc1b4 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdabc1b8 loads 4 bytes from ?.
-  The `sw` at 0xdabc1c0 stores 4 bytes to ?.
+  The `lw` at 0xdabc1b8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc1c0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc174 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc1c8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6140, a3=?.
+  The `jalr` at 0xdabc1c8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6140, a3=?.
   The `beq` branch at 0xdabc184 targets 0xdabc1d4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc1dc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11086,10 +11202,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabc24c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `ldc1` at 0xdabc250 loads 8 bytes from a0 (arg0 at entry) +0x10.
   The `sdc1` at 0xdabc254 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdabc258 loads 4 bytes from ?.
-  The `sw` at 0xdabc260 stores 4 bytes to ?.
+  The `lw` at 0xdabc258 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc260 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc210 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc268 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6140, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc268 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6140, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc224 targets 0xdabc274, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc27c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_RasterPos3f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdabc284 (o32).
@@ -11102,10 +11218,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabc2dc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdabc2e4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabc2ec stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabc2f0 loads 4 bytes from ?.
-  The `sw` at 0xdabc2f8 stores 4 bytes to ?.
+  The `lw` at 0xdabc2f0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc2f8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc2b4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc300 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac617c, a3=?.
+  The `jalr` at 0xdabc300 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac617c, a3=?.
   The `beq` branch at 0xdabc2c4 targets 0xdabc30c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc314 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11122,10 +11238,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabc37c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lwc1` at 0xdabc380 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `swc1` at 0xdabc384 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabc388 loads 4 bytes from ?.
-  The `sw` at 0xdabc390 stores 4 bytes to ?.
+  The `lw` at 0xdabc388 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc390 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc348 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc398 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac617c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc398 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac617c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc35c targets 0xdabc3a4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc3ac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11139,10 +11255,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabc40c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabc414 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabc41c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabc420 loads 4 bytes from ?.
-  The `sw` at 0xdabc428 stores 4 bytes to ?.
+  The `lw` at 0xdabc420 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc428 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc3e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc430 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac61b8, a3=?.
+  The `jalr` at 0xdabc430 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac61b8, a3=?.
   The `beq` branch at 0xdabc3f4 targets 0xdabc43c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc444 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11159,10 +11275,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabc4ac stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lw` at 0xdabc4b0 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `sw` at 0xdabc4b4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabc4b8 loads 4 bytes from ?.
-  The `sw` at 0xdabc4c0 stores 4 bytes to ?.
+  The `lw` at 0xdabc4b8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc4c0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc478 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc4c8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac61b8, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc4c8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac61b8, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc48c targets 0xdabc4d4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc4dc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11176,10 +11292,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabc53c stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdabc544 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabc54c stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabc550 loads 4 bytes from ?.
-  The `sw` at 0xdabc558 stores 4 bytes to ?.
+  The `lw` at 0xdabc550 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc558 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc514 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc560 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac61f4, a3=?.
+  The `jalr` at 0xdabc560 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac61f4, a3=?.
   The `beq` branch at 0xdabc524 targets 0xdabc56c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc574 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11196,10 +11312,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabc5dc stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `lh` at 0xdabc5e0 loads 2 bytes from a0 (arg0 at entry) +0x4.
   The `sh` at 0xdabc5e4 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabc5e8 loads 4 bytes from ?.
-  The `sw` at 0xdabc5f0 stores 4 bytes to ?.
+  The `lw` at 0xdabc5e8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc5f0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc5a8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc5f8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac61f4, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc5f8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac61f4, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc5bc targets 0xdabc604, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc60c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11215,10 +11331,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabc678 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdabc680 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xdabc688 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdabc68c loads 4 bytes from ?.
-  The `sw` at 0xdabc694 stores 4 bytes to ?.
+  The `lw` at 0xdabc68c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc694 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc640 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc69c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6230, a3=?.
+  The `jalr` at 0xdabc69c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6230, a3=?.
   The `beq` branch at 0xdabc650 targets 0xdabc6a8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc6b0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11238,10 +11354,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabc728 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `ldc1` at 0xdabc72c loads 8 bytes from a0 (arg0 at entry) +0x18.
   The `sdc1` at 0xdabc730 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdabc734 loads 4 bytes from ?.
-  The `sw` at 0xdabc73c stores 4 bytes to ?.
+  The `lw` at 0xdabc734 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc73c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc6e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc744 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6230, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc744 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6230, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc6f8 targets 0xdabc750, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc758 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11256,10 +11372,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabc7c4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabc7cc stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdabc7d4 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabc7d8 loads 4 bytes from ?.
-  The `sw` at 0xdabc7e0 stores 4 bytes to ?.
+  The `lw` at 0xdabc7d8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc7e0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc794 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc7e8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac626c, a3=?.
+  The `jalr` at 0xdabc7e8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac626c, a3=?.
   The `beq` branch at 0xdabc7a4 targets 0xdabc7f4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc7fc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11278,10 +11394,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabc86c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lwc1` at 0xdabc870 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `swc1` at 0xdabc874 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabc878 loads 4 bytes from ?.
-  The `sw` at 0xdabc880 stores 4 bytes to ?.
+  The `lw` at 0xdabc878 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc880 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc830 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc888 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac626c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc888 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac626c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc844 targets 0xdabc894, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc89c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11296,10 +11412,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabc908 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabc910 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdabc918 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabc91c loads 4 bytes from ?.
-  The `sw` at 0xdabc924 stores 4 bytes to ?.
+  The `lw` at 0xdabc91c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc924 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc8d8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabc92c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac62a8, a3=?.
+  The `jalr` at 0xdabc92c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac62a8, a3=?.
   The `beq` branch at 0xdabc8e8 targets 0xdabc938, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc940 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11318,10 +11434,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabc9b0 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lw` at 0xdabc9b4 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `sw` at 0xdabc9b8 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabc9bc loads 4 bytes from ?.
-  The `sw` at 0xdabc9c4 stores 4 bytes to ?.
+  The `lw` at 0xdabc9bc loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabc9c4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabc974 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabc9cc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac62a8, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabc9cc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac62a8, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabc988 targets 0xdabc9d8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabc9e0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11336,10 +11452,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabca4c stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabca54 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sh` at 0xdabca5c stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabca60 loads 4 bytes from ?.
-  The `sw` at 0xdabca68 stores 4 bytes to ?.
+  The `lw` at 0xdabca60 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabca68 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabca1c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabca70 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac62e4, a3=?.
+  The `jalr` at 0xdabca70 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac62e4, a3=?.
   The `beq` branch at 0xdabca2c targets 0xdabca7c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabca84 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11358,10 +11474,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabcaf4 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lh` at 0xdabcaf8 loads 2 bytes from a0 (arg0 at entry) +0x6.
   The `sh` at 0xdabcafc stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabcb00 loads 4 bytes from ?.
-  The `sw` at 0xdabcb08 stores 4 bytes to ?.
+  The `lw` at 0xdabcb00 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabcb08 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcab8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabcb10 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac62e4, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabcb10 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac62e4, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabcacc targets 0xdabcb1c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcb24 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11377,10 +11493,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabcb90 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdabcb98 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xdabcba0 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdabcba4 loads 4 bytes from ?.
-  The `sw` at 0xdabcbac stores 4 bytes to ?.
+  The `lw` at 0xdabcba4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabcbac stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcb58 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabcbb4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6320, a3=?.
+  The `jalr` at 0xdabcbb4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6320, a3=?.
   The `beq` branch at 0xdabcb68 targets 0xdabcbc0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcbc8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11400,10 +11516,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabcc44 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `ldc1` at 0xdabcc48 loads 8 bytes from a1 (arg1 at entry) +0x8.
   The `sdc1` at 0xdabcc4c stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdabcc50 loads 4 bytes from ?.
-  The `sw` at 0xdabcc58 stores 4 bytes to ?.
+  The `lw` at 0xdabcc50 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabcc58 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcbfc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabcc60 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6320, a3=a1 at entry (arg1).
+  The `jalr` at 0xdabcc60 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6320, a3=a1 at entry (arg1).
   The `beq` branch at 0xdabcc14 targets 0xdabcc6c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcc74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11418,10 +11534,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabcce0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabcce8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdabccf0 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabccf4 loads 4 bytes from ?.
-  The `sw` at 0xdabccfc stores 4 bytes to ?.
+  The `lw` at 0xdabccf4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabccfc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabccb0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabcd04 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6360, a3=?.
+  The `jalr` at 0xdabcd04 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6360, a3=?.
   The `beq` branch at 0xdabccc0 targets 0xdabcd10, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcd18 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11440,10 +11556,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabcd8c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lwc1` at 0xdabcd90 loads 4 bytes from a1 (arg1 at entry) +0x4.
   The `swc1` at 0xdabcd94 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabcd98 loads 4 bytes from ?.
-  The `sw` at 0xdabcda0 stores 4 bytes to ?.
+  The `lw` at 0xdabcd98 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabcda0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcd4c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabcda8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6360, a3=a1 at entry (arg1).
+  The `jalr` at 0xdabcda8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6360, a3=a1 at entry (arg1).
   The `beq` branch at 0xdabcd64 targets 0xdabcdb4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcdbc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11458,10 +11574,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabce28 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabce30 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdabce38 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabce3c loads 4 bytes from ?.
-  The `sw` at 0xdabce44 stores 4 bytes to ?.
+  The `lw` at 0xdabce3c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabce44 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcdf8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabce4c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac63a0, a3=?.
+  The `jalr` at 0xdabce4c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac63a0, a3=?.
   The `beq` branch at 0xdabce08 targets 0xdabce58, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabce60 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11480,10 +11596,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabced4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lw` at 0xdabced8 loads 4 bytes from a1 (arg1 at entry) +0x4.
   The `sw` at 0xdabcedc stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabcee0 loads 4 bytes from ?.
-  The `sw` at 0xdabcee8 stores 4 bytes to ?.
+  The `lw` at 0xdabcee0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabcee8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabce94 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabcef0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac63a0, a3=a1 at entry (arg1).
+  The `jalr` at 0xdabcef0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac63a0, a3=a1 at entry (arg1).
   The `beq` branch at 0xdabceac targets 0xdabcefc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcf04 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11498,10 +11614,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabcf70 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabcf78 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sh` at 0xdabcf80 stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabcf84 loads 4 bytes from ?.
-  The `sw` at 0xdabcf8c stores 4 bytes to ?.
+  The `lw` at 0xdabcf84 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabcf8c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcf40 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabcf94 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac63e0, a3=?.
+  The `jalr` at 0xdabcf94 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac63e0, a3=?.
   The `beq` branch at 0xdabcf50 targets 0xdabcfa0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabcfa8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11520,10 +11636,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabd01c stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lh` at 0xdabd020 loads 2 bytes from a1 (arg1 at entry) +0x2.
   The `sh` at 0xdabd024 stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabd028 loads 4 bytes from ?.
-  The `sw` at 0xdabd030 stores 4 bytes to ?.
+  The `lw` at 0xdabd028 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabd030 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabcfdc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabd038 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac63e0, a3=a1 at entry (arg1).
+  The `jalr` at 0xdabd038 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac63e0, a3=a1 at entry (arg1).
   The `beq` branch at 0xdabcff4 targets 0xdabd044, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabd04c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11537,10 +11653,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdabe318 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `sdc1` at 0xdabe324 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdabe32c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabe330 loads 4 bytes from ?.
-  The `sw` at 0xdabe338 stores 4 bytes to ?.
+  The `lw` at 0xdabe330 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe338 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe2f4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe340 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac67e0, a3=?.
+  The `jalr` at 0xdabe340 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac67e0, a3=?.
   The `beq` branch at 0xdabe304 targets 0xdabe34c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe354 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11556,10 +11672,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabe3b8 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `ldc1` at 0xdabe3bc loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `sdc1` at 0xdabe3c0 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabe3c4 loads 4 bytes from ?.
-  The `sw` at 0xdabe3cc stores 4 bytes to ?.
+  The `lw` at 0xdabe3c4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe3cc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe384 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe3d4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac67e0, a3=?.
+  The `jalr` at 0xdabe3d4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac67e0, a3=?.
   The `beq` branch at 0xdabe398 targets 0xdabe3e0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe3e8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11572,10 +11688,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabe438 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdabe444 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdabe44c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabe450 loads 4 bytes from ?.
-  The `sw` at 0xdabe458 stores 4 bytes to ?.
+  The `lw` at 0xdabe450 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe458 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe41c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe460 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac681c, a3=?.
+  The `jalr` at 0xdabe460 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac681c, a3=?.
   The `beq` branch at 0xdabe42c targets 0xdabe46c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe474 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11590,10 +11706,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabe4d0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `lwc1` at 0xdabe4d4 loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `swc1` at 0xdabe4d8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabe4dc loads 4 bytes from ?.
-  The `sw` at 0xdabe4e4 stores 4 bytes to ?.
+  The `lw` at 0xdabe4dc loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe4e4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe4a4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe4ec calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac681c, a3=?.
+  The `jalr` at 0xdabe4ec calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac681c, a3=?.
   The `beq` branch at 0xdabe4b8 targets 0xdabe4f8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe500 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11606,10 +11722,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabe550 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabe55c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabe564 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabe568 loads 4 bytes from ?.
-  The `sw` at 0xdabe570 stores 4 bytes to ?.
+  The `lw` at 0xdabe568 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe570 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe534 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe578 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6858, a3=?.
+  The `jalr` at 0xdabe578 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6858, a3=?.
   The `beq` branch at 0xdabe544 targets 0xdabe584, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe58c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11624,10 +11740,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabe5e8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `lw` at 0xdabe5ec loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `sw` at 0xdabe5f0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabe5f4 loads 4 bytes from ?.
-  The `sw` at 0xdabe5fc stores 4 bytes to ?.
+  The `lw` at 0xdabe5f4 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe5fc stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe5bc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe604 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6858, a3=?.
+  The `jalr` at 0xdabe604 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6858, a3=?.
   The `beq` branch at 0xdabe5d0 targets 0xdabe610, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe618 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11640,10 +11756,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabe668 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sh` at 0xdabe674 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdabe67c stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdabe680 loads 4 bytes from ?.
-  The `sw` at 0xdabe688 stores 4 bytes to ?.
+  The `lw` at 0xdabe680 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe688 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe64c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe690 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6894, a3=?.
+  The `jalr` at 0xdabe690 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6894, a3=?.
   The `beq` branch at 0xdabe65c targets 0xdabe69c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe6a4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11658,10 +11774,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabe700 stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `lh` at 0xdabe704 loads 2 bytes from a0 (arg0 at entry) +0x2.
   The `sh` at 0xdabe708 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
-  The `lw` at 0xdabe70c loads 4 bytes from ?.
-  The `sw` at 0xdabe714 stores 4 bytes to ?.
+  The `lw` at 0xdabe70c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe714 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe6d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe71c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6894, a3=?.
+  The `jalr` at 0xdabe71c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6894, a3=?.
   The `beq` branch at 0xdabe6e8 targets 0xdabe728, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe730 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11676,10 +11792,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabe794 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdabe79c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdabe7a4 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdabe7a8 loads 4 bytes from ?.
-  The `sw` at 0xdabe7b0 stores 4 bytes to ?.
+  The `lw` at 0xdabe7a8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe7b0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe764 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe7b8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac68d0, a3=?.
+  The `jalr` at 0xdabe7b8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac68d0, a3=?.
   The `beq` branch at 0xdabe774 targets 0xdabe7c4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe7cc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11697,10 +11813,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabe83c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `ldc1` at 0xdabe840 loads 8 bytes from a0 (arg0 at entry) +0x10.
   The `sdc1` at 0xdabe844 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
-  The `lw` at 0xdabe848 loads 4 bytes from ?.
-  The `sw` at 0xdabe850 stores 4 bytes to ?.
+  The `lw` at 0xdabe848 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe850 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe800 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabe858 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac68d0, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabe858 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac68d0, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabe814 targets 0xdabe864, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe86c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11714,10 +11830,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabe8cc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdabe8d4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabe8dc stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabe8e0 loads 4 bytes from ?.
-  The `sw` at 0xdabe8e8 stores 4 bytes to ?.
+  The `lw` at 0xdabe8e0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe8e8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe8a4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabe8f0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac690c, a3=?.
+  The `jalr` at 0xdabe8f0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac690c, a3=?.
   The `beq` branch at 0xdabe8b4 targets 0xdabe8fc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe904 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11734,10 +11850,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabe96c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lwc1` at 0xdabe970 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `swc1` at 0xdabe974 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabe978 loads 4 bytes from ?.
-  The `sw` at 0xdabe980 stores 4 bytes to ?.
+  The `lw` at 0xdabe978 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabe980 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe938 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabe988 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac690c, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabe988 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac690c, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabe94c targets 0xdabe994, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabe99c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11751,10 +11867,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabe9fc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabea04 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabea0c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabea10 loads 4 bytes from ?.
-  The `sw` at 0xdabea18 stores 4 bytes to ?.
+  The `lw` at 0xdabea10 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabea18 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabe9d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabea20 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6948, a3=?.
+  The `jalr` at 0xdabea20 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6948, a3=?.
   The `beq` branch at 0xdabe9e4 targets 0xdabea2c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabea34 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11771,10 +11887,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabea9c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lw` at 0xdabeaa0 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `sw` at 0xdabeaa4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
-  The `lw` at 0xdabeaa8 loads 4 bytes from ?.
-  The `sw` at 0xdabeab0 stores 4 bytes to ?.
+  The `lw` at 0xdabeaa8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabeab0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabea68 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabeab8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6948, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabeab8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6948, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabea7c targets 0xdabeac4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabeacc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11788,10 +11904,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabeb2c stores 2 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdabeb34 stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabeb3c stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabeb40 loads 4 bytes from ?.
-  The `sw` at 0xdabeb48 stores 4 bytes to ?.
+  The `lw` at 0xdabeb40 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabeb48 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabeb04 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabeb50 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6984, a3=?.
+  The `jalr` at 0xdabeb50 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6984, a3=?.
   The `beq` branch at 0xdabeb14 targets 0xdabeb5c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabeb64 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11808,10 +11924,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabebcc stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `lh` at 0xdabebd0 loads 2 bytes from a0 (arg0 at entry) +0x4.
   The `sh` at 0xdabebd4 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
-  The `lw` at 0xdabebd8 loads 4 bytes from ?.
-  The `sw` at 0xdabebe0 stores 4 bytes to ?.
+  The `lw` at 0xdabebd8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabebe0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabeb98 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabebe8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6984, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabebe8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6984, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabebac targets 0xdabebf4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabebfc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11827,10 +11943,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabec68 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdabec70 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xdabec78 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdabec7c loads 4 bytes from ?.
-  The `sw` at 0xdabec84 stores 4 bytes to ?.
+  The `lw` at 0xdabec7c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabec84 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabec30 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabec8c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac69c0, a3=?.
+  The `jalr` at 0xdabec8c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac69c0, a3=?.
   The `beq` branch at 0xdabec40 targets 0xdabec98, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabeca0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11850,10 +11966,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdabed18 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `ldc1` at 0xdabed1c loads 8 bytes from a0 (arg0 at entry) +0x18.
   The `sdc1` at 0xdabed20 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
-  The `lw` at 0xdabed24 loads 4 bytes from ?.
-  The `sw` at 0xdabed2c stores 4 bytes to ?.
+  The `lw` at 0xdabed24 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabed2c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabecd4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabed34 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac69c0, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabed34 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac69c0, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabece8 targets 0xdabed40, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabed48 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11868,10 +11984,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabedb4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdabedbc stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdabedc4 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabedc8 loads 4 bytes from ?.
-  The `sw` at 0xdabedd0 stores 4 bytes to ?.
+  The `lw` at 0xdabedc8 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabedd0 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabed84 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabedd8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac69fc, a3=?.
+  The `jalr` at 0xdabedd8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac69fc, a3=?.
   The `beq` branch at 0xdabed94 targets 0xdabede4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabedec has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11890,10 +12006,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdabee5c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lwc1` at 0xdabee60 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `swc1` at 0xdabee64 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabee68 loads 4 bytes from ?.
-  The `sw` at 0xdabee70 stores 4 bytes to ?.
+  The `lw` at 0xdabee68 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabee70 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabee20 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabee78 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac69fc, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabee78 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac69fc, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabee34 targets 0xdabee84, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabee8c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11908,10 +12024,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabeef8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdabef00 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdabef08 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabef0c loads 4 bytes from ?.
-  The `sw` at 0xdabef14 stores 4 bytes to ?.
+  The `lw` at 0xdabef0c loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabef14 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabeec8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabef1c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6a38, a3=?.
+  The `jalr` at 0xdabef1c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6a38, a3=?.
   The `beq` branch at 0xdabeed8 targets 0xdabef28, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabef30 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11930,10 +12046,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabefa0 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `lw` at 0xdabefa4 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `sw` at 0xdabefa8 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
-  The `lw` at 0xdabefac loads 4 bytes from ?.
-  The `sw` at 0xdabefb4 stores 4 bytes to ?.
+  The `lw` at 0xdabefac loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabefb4 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabef64 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabefbc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6a38, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabefbc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6a38, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabef78 targets 0xdabefc8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabefd0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11948,10 +12064,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf03c stores 2 bytes to ret(__glDlistAllocOp2) +0x12.
   The `sh` at 0xdabf044 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sh` at 0xdabf04c stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabf050 loads 4 bytes from ?.
-  The `sw` at 0xdabf058 stores 4 bytes to ?.
+  The `lw` at 0xdabf050 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabf058 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabf00c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf060 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6a74, a3=?.
+  The `jalr` at 0xdabf060 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6a74, a3=?.
   The `beq` branch at 0xdabf01c targets 0xdabf06c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf074 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11970,10 +12086,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf0e4 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `lh` at 0xdabf0e8 loads 2 bytes from a0 (arg0 at entry) +0x6.
   The `sh` at 0xdabf0ec stores 2 bytes to ret(__glDlistAllocOp2) +0x16.
-  The `lw` at 0xdabf0f0 loads 4 bytes from ?.
-  The `sw` at 0xdabf0f8 stores 4 bytes to ?.
+  The `lw` at 0xdabf0f0 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdabf0f8 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdabf0a8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdabf100 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6a74, a3=a0 at entry (arg0).
+  The `jalr` at 0xdabf100 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6a74, a3=a0 at entry (arg0).
   The `beq` branch at 0xdabf0bc targets 0xdabf10c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf114 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -11995,7 +12111,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `ldc1` at 0xdabf19c loads 8 bytes from a1 (arg1 at entry) +0x18.
   The `sdc1` at 0xdabf1a0 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xdabf14c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x28, a2=a2 at entry (arg2), a3=a1 at entry (arg1).
-  The `jalr` at 0xdabf1a8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6ab0, a3=a1 at entry (arg1).
+  The `jalr` at 0xdabf1a8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6ab0, a3=a1 at entry (arg1).
   The `beq` branch at 0xdabf160 targets 0xdabf1b4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf1bc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12009,7 +12125,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabf218 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabf220 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabf1f0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf228 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6af4, a3=?.
+  The `jalr` at 0xdabf228 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6af4, a3=?.
   The `beq` branch at 0xdabf200 targets 0xdabf234, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf23c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12022,7 +12138,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf288 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabf294 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabf26c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf29c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6b3c, a3=?.
+  The `jalr` at 0xdabf29c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6b3c, a3=?.
   The `beq` branch at 0xdabf27c targets 0xdabf2a8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf2b0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12036,7 +12152,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabf30c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdabf314 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabf2e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf31c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6b7c, a3=?.
+  The `jalr` at 0xdabf31c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6b7c, a3=?.
   The `beq` branch at 0xdabf2f4 targets 0xdabf328, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf330 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Fogfv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdabf338 (o32).
@@ -12048,10 +12164,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf3b0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabf3bc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabf360 calls __glFogfv_size [0xda810f0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf37c calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glFogfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf398 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glFogfv_size) << 0x2)+4, a2=(ret(__glFogfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf3cc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdabf3e8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac6bc4, a3=?.
+  The `jalr` at 0xdabf37c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFogfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf398 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFogfv_size) << 0x2)+4, a2=(ret(__glFogfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf3cc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glFogfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf3e8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6bc4, a3=?.
   The `bgez` branch at 0xdabf36c targets 0xdabf38c, is taken when a2(=(ret(__glFogfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFogfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdabf384 targets 0xdabf3f4 and is always taken.
   The `beq` branch at 0xdabf3a4 targets 0xdabf3f4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -12067,7 +12183,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabf458 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabf460 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabf430 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf468 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6c2c, a3=?.
+  The `jalr` at 0xdabf468 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6c2c, a3=?.
   The `beq` branch at 0xdabf440 targets 0xdabf474, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf47c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12080,10 +12196,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf4fc stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabf508 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabf4ac calls __glFogiv_size [0xda81080] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf4c8 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glFogiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf4e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glFogiv_size) << 0x2)+4, a2=(ret(__glFogiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf518 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdabf534 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac6c74, a3=?.
+  The `jalr` at 0xdabf4c8 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFogiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf4e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFogiv_size) << 0x2)+4, a2=(ret(__glFogiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf518 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glFogiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf534 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6c74, a3=?.
   The `bgez` branch at 0xdabf4b8 targets 0xdabf4d8, is taken when a2(=(ret(__glFogiv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFogiv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdabf4d0 targets 0xdabf540 and is always taken.
   The `beq` branch at 0xdabf4f0 targets 0xdabf540, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -12098,7 +12214,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf594 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabf5a0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabf578 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf5a8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6cdc, a3=?.
+  The `jalr` at 0xdabf5a8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6cdc, a3=?.
   The `beq` branch at 0xdabf588 targets 0xdabf5b4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf5bc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12112,7 +12228,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabf618 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabf620 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabf5f0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf628 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6d1c, a3=?.
+  The `jalr` at 0xdabf628 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6d1c, a3=?.
   The `beq` branch at 0xdabf600 targets 0xdabf634, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabf63c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12123,7 +12239,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 132 bytes.
   The `lw` at 0xdabf658 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xdabf674 calls __glLightfv_size [0xda81124] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf690 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabf690 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xdabf6ac calls __gllc_Lightfv [0xdabf6c8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xdabf680 targets 0xdabf6a0, is taken when v0(=ret(__glLightfv_size)) == at(=0x1), and falls through when v0(=ret(__glLightfv_size)) != at(=0x1).
   The `beq` branch at 0xdabf698 targets 0xdabf6b8 and is always taken.
@@ -12139,10 +12255,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabf754 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabf75c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabf6f8 calls __glLightfv_size [0xda81124] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf714 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glLightfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf730 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glLightfv_size) << 0x2)+8, a2=(ret(__glLightfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf76c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdabf788 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac6d64, a3=?.
+  The `jalr` at 0xdabf714 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glLightfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf730 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glLightfv_size) << 0x2)+8, a2=(ret(__glLightfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf76c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glLightfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf788 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6d64, a3=?.
   The `bgez` branch at 0xdabf704 targets 0xdabf724, is taken when a2(=(ret(__glLightfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdabf71c targets 0xdabf794 and is always taken.
   The `beq` branch at 0xdabf73c targets 0xdabf794, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -12155,7 +12271,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 132 bytes.
   The `lw` at 0xdabf7b8 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xdabf7d4 calls __glLightiv_size [0xda811b4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf7f0 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabf7f0 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xdabf80c calls __gllc_Lightiv [0xdabf828] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xdabf7e0 targets 0xdabf800, is taken when v0(=ret(__glLightiv_size)) == at(=0x1), and falls through when v0(=ret(__glLightiv_size)) != at(=0x1).
   The `beq` branch at 0xdabf7f8 targets 0xdabf818 and is always taken.
@@ -12171,10 +12287,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabf8b4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdabf8bc stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabf858 calls __glLightiv_size [0xda811b4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf874 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glLightiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf890 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glLightiv_size) << 0x2)+8, a2=(ret(__glLightiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf8cc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdabf8e8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac6dd0, a3=?.
+  The `jalr` at 0xdabf874 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glLightiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf890 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glLightiv_size) << 0x2)+8, a2=(ret(__glLightiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf8cc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glLightiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf8e8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6dd0, a3=?.
   The `bgez` branch at 0xdabf864 targets 0xdabf884, is taken when a2(=(ret(__glLightiv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightiv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdabf87c targets 0xdabf8f4 and is always taken.
   The `beq` branch at 0xdabf89c targets 0xdabf8f4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -12187,7 +12303,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 124 bytes.
   The `lw` at 0xdabf918 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xdabf92c calls __glLightModelfv_size [0xda811e8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf948 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabf948 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xdabf964 calls __gllc_LightModelfv [0xdabf980] with a0=a0 at entry (arg0), a1=sp+4, a2=?, a3=?.
   The `beq` branch at 0xdabf938 targets 0xdabf958, is taken when v0(=ret(__glLightModelfv_size)) == at(=0x1), and falls through when v0(=ret(__glLightModelfv_size)) != at(=0x1).
   The `beq` branch at 0xdabf950 targets 0xdabf970 and is always taken.
@@ -12202,10 +12318,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabf9f8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabfa04 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabf9a8 calls __glLightModelfv_size [0xda811e8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabf9c4 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabf9e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glLightModelfv_size) << 0x2)+4, a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabfa14 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdabfa30 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac6e3c, a3=?.
+  The `jalr` at 0xdabf9c4 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabf9e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glLightModelfv_size) << 0x2)+4, a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabfa14 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabfa30 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6e3c, a3=?.
   The `bgez` branch at 0xdabf9b4 targets 0xdabf9d4, is taken when a2(=(ret(__glLightModelfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightModelfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdabf9cc targets 0xdabfa3c and is always taken.
   The `beq` branch at 0xdabf9ec targets 0xdabfa3c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -12218,7 +12334,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 124 bytes.
   The `lw` at 0xdabfa60 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xdabfa74 calls __glLightModeliv_size [0xda8123c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabfa90 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabfa90 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xdabfaac calls __gllc_LightModeliv [0xdabfac8] with a0=a0 at entry (arg0), a1=sp+4, a2=?, a3=?.
   The `beq` branch at 0xdabfa80 targets 0xdabfaa0, is taken when v0(=ret(__glLightModeliv_size)) == at(=0x1), and falls through when v0(=ret(__glLightModeliv_size)) != at(=0x1).
   The `beq` branch at 0xdabfa98 targets 0xdabfab8 and is always taken.
@@ -12233,10 +12349,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabfb40 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdabfb4c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabfaf0 calls __glLightModeliv_size [0xda8123c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabfb0c calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabfb28 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glLightModeliv_size) << 0x2)+4, a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabfb5c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdabfb78 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac6ea4, a3=?.
+  The `jalr` at 0xdabfb0c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabfb28 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glLightModeliv_size) << 0x2)+4, a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabfb5c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabfb78 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6ea4, a3=?.
   The `bgez` branch at 0xdabfafc targets 0xdabfb1c, is taken when a2(=(ret(__glLightModeliv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightModeliv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdabfb14 targets 0xdabfb84 and is always taken.
   The `beq` branch at 0xdabfb34 targets 0xdabfb84, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -12252,7 +12368,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdabfbe8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdabfbf0 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdabfbc0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabfbf8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6f0c, a3=?.
+  The `jalr` at 0xdabfbf8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6f0c, a3=?.
   The `beq` branch at 0xdabfbd0 targets 0xdabfc04, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabfc0c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12265,7 +12381,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdabfc58 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdabfc64 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdabfc3c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabfc6c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac6f54, a3=?.
+  The `jalr` at 0xdabfc6c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6f54, a3=?.
   The `beq` branch at 0xdabfc4c targets 0xdabfc78, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdabfc80 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12276,7 +12392,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 132 bytes.
   The `lw` at 0xdabfc9c loads 4 bytes from abs 0x1010.
   The `jalr` at 0xdabfcb8 calls __glMaterialfv_size [0xda81270] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabfcd4 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabfcd4 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xdabfcf0 calls __gllc_Materialfv [0xdabfd0c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xdabfcc4 targets 0xdabfce4, is taken when v0(=ret(__glMaterialfv_size)) == at(=0x1), and falls through when v0(=ret(__glMaterialfv_size)) != at(=0x1).
   The `beq` branch at 0xdabfcdc targets 0xdabfcfc and is always taken.
@@ -12299,8 +12415,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdabfd70 calls __glMaterialfv_size [0xda81270] with a0=a1 at entry (arg1), a1=ret(__glErrorCheckMaterial), a2=?, a3=?.
   The `jalr` at 0xdabfd8c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glMaterialfv_size) << 0x2), a3=?.
   The `jalr` at 0xdabfda8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glMaterialfv_size) << 0x2)+8, a2=(ret(__glMaterialfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabfde4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdabfe0c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=?, a2=0xdac6f94, a3=?.
+  The `jalr` at 0xdabfde4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glMaterialfv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabfe0c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac6f94, a3=?.
   The `beq` branch at 0xdabfd48 targets 0xdabfd68, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdabfd60 targets 0xdabfe18 and is always taken.
   The `bgez` branch at 0xdabfd7c targets 0xdabfd9c, is taken when a2(=(ret(__glMaterialfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glMaterialfv_size) << 0x2)) < 0 (signed).
@@ -12315,7 +12431,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 132 bytes.
   The `lw` at 0xdabfe40 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xdabfe5c calls __glMaterialiv_size [0xda812f4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdabfe78 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabfe78 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xdabfe94 calls __gllc_Materialiv [0xdabfeb0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xdabfe68 targets 0xdabfe88, is taken when v0(=ret(__glMaterialiv_size)) == at(=0x1), and falls through when v0(=ret(__glMaterialiv_size)) != at(=0x1).
   The `beq` branch at 0xdabfe80 targets 0xdabfea0 and is always taken.
@@ -12338,8 +12454,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdabff28 calls __glMaterialiv_size [0xda812f4] with a0=a1 at entry (arg1), a1=ret(__glErrorCheckMaterial), a2=?, a3=?.
   The `jalr` at 0xdabff44 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glMaterialiv_size) << 0x2), a3=?.
   The `jalr` at 0xdabff60 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glMaterialiv_size) << 0x2)+8, a2=(ret(__glMaterialiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdabff9c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdabffc4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=?, a2=0xdac7000, a3=?.
+  The `jalr` at 0xdabff9c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glMaterialiv_size) << 0x2), a3=?.
+  The `jalr` at 0xdabffc4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7000, a3=?.
   The `beq` branch at 0xdabff00 targets 0xdabff20, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdabff18 targets 0xdabffd0 and is always taken.
   The `bgez` branch at 0xdabff34 targets 0xdabff54, is taken when a2(=(ret(__glMaterialiv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glMaterialiv_size) << 0x2)) < 0 (signed).
@@ -12356,7 +12472,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac0028 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdac0034 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac000c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac003c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac706c, a3=?.
+  The `jalr` at 0xdac003c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac706c, a3=?.
   The `beq` branch at 0xdac001c targets 0xdac0048, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0050 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12370,7 +12486,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac00ac stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac00b4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac0084 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac00bc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac70ac, a3=?.
+  The `jalr` at 0xdac00bc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac70ac, a3=?.
   The `beq` branch at 0xdac0094 targets 0xdac00c8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac00d0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12386,7 +12502,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac0144 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdac014c stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xdac010c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0154 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac70f4, a3=?.
+  The `jalr` at 0xdac0154 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac70f4, a3=?.
   The `beq` branch at 0xdac011c targets 0xdac0160, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0168 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12399,7 +12515,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac01b4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac01c0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac0198 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac01c8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7144, a3=?.
+  The `jalr` at 0xdac01c8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7144, a3=?.
   The `beq` branch at 0xdac01a8 targets 0xdac01d4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac01dc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12411,7 +12527,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac0ba0 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac0bd0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac0bb4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0bdc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7478, a3=?.
+  The `jalr` at 0xdac0bdc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7478, a3=?.
   The `beq` branch at 0xdac0bc4 targets 0xdac0be8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0bf0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12424,7 +12540,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac0c3c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac0c48 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac0c20 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0c50 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac74b0, a3=?.
+  The `jalr` at 0xdac0c50 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac74b0, a3=?.
   The `beq` branch at 0xdac0c30 targets 0xdac0c5c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0c64 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PassThrough` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac0c6c (o32).
@@ -12436,7 +12552,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac0cb0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdac0cbc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac0c94 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0cc4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac74f0, a3=?.
+  The `jalr` at 0xdac0cc4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac74f0, a3=?.
   The `beq` branch at 0xdac0ca4 targets 0xdac0cd0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0cd8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12448,7 +12564,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac0cf0 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac0d20 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac0d04 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0d2c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7530, a3=?.
+  The `jalr` at 0xdac0d2c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7530, a3=?.
   The `beq` branch at 0xdac0d14 targets 0xdac0d38, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0d40 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12461,7 +12577,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac0d8c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac0d98 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac0d70 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0da0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7568, a3=?.
+  The `jalr` at 0xdac0da0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7568, a3=?.
   The `beq` branch at 0xdac0d80 targets 0xdac0dac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0db4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12474,7 +12590,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac0e74 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac0e80 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac0e58 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0e88 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac75e8, a3=?.
+  The `jalr` at 0xdac0e88 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac75e8, a3=?.
   The `beq` branch at 0xdac0e68 targets 0xdac0e94, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0e9c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12490,7 +12606,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac0f10 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdac0f18 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xdac0ed8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0f20 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7628, a3=?.
+  The `jalr` at 0xdac0f20 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7628, a3=?.
   The `beq` branch at 0xdac0ee8 targets 0xdac0f2c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0f34 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12503,7 +12619,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac0f80 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdac0f8c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac0f64 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac0f94 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7674, a3=?.
+  The `jalr` at 0xdac0f94 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7674, a3=?.
   The `beq` branch at 0xdac0f74 targets 0xdac0fa0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac0fa8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12519,7 +12635,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac101c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdac1024 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xdac0fe4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac102c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac76b4, a3=?.
+  The `jalr` at 0xdac102c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac76b4, a3=?.
   The `beq` branch at 0xdac0ff4 targets 0xdac1038, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1040 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12535,7 +12651,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdac1218 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `sb` at 0xdac1220 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
   The `jalr` at 0xdac11e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1228 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac77c0, a3=?.
+  The `jalr` at 0xdac1228 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac77c0, a3=?.
   The `beq` branch at 0xdac11f0 targets 0xdac1234, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac123c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12548,7 +12664,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac12fc stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac1308 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac12e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1310 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7850, a3=?.
+  The `jalr` at 0xdac1310 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7850, a3=?.
   The `beq` branch at 0xdac12f0 targets 0xdac131c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1324 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12562,7 +12678,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1380 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac1388 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac1358 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1390 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7890, a3=?.
+  The `jalr` at 0xdac1390 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7890, a3=?.
   The `beq` branch at 0xdac1368 targets 0xdac139c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac13a4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12574,7 +12690,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac13bc loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac13ec stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac13d0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac13f8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac78d8, a3=?.
+  The `jalr` at 0xdac13f8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac78d8, a3=?.
   The `beq` branch at 0xdac13e0 targets 0xdac1404, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac140c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12587,7 +12703,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac1458 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac1464 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac143c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac146c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7910, a3=?.
+  The `jalr` at 0xdac146c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7910, a3=?.
   The `beq` branch at 0xdac144c targets 0xdac1478, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1480 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12603,7 +12719,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac14f0 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdac14f8 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac14b8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1500 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7950, a3=?.
+  The `jalr` at 0xdac1500 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7950, a3=?.
   The `beq` branch at 0xdac14c8 targets 0xdac150c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1514 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12618,7 +12734,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac157c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdac1584 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac154c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac158c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac79a4, a3=?.
+  The `jalr` at 0xdac158c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac79a4, a3=?.
   The `beq` branch at 0xdac155c targets 0xdac1598, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac15a0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12637,7 +12753,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac1628 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xdac1630 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xdac15d8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x28, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1638 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac79f0, a3=?.
+  The `jalr` at 0xdac1638 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac79f0, a3=?.
   The `beq` branch at 0xdac15e8 targets 0xdac1644, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac164c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12655,7 +12771,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac16d0 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `swc1` at 0xdac16d8 stores 4 bytes to ret(__glDlistAllocOp2) +0x24.
   The `jalr` at 0xdac1688 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac16e0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7a5c, a3=?.
+  The `jalr` at 0xdac16e0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7a5c, a3=?.
   The `beq` branch at 0xdac1698 targets 0xdac16ec, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac16f4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12669,7 +12785,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdac1748 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `sdc1` at 0xdac1754 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac1724 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac175c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7abc, a3=?.
+  The `jalr` at 0xdac175c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7abc, a3=?.
   The `beq` branch at 0xdac1734 targets 0xdac1768, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1770 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -12684,7 +12800,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `ldc1` at 0xdac17d0 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `sdc1` at 0xdac17d4 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac17a0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac17dc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7abc, a3=?.
+  The `jalr` at 0xdac17dc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7abc, a3=?.
   The `beq` branch at 0xdac17b0 targets 0xdac17e8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac17f0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 

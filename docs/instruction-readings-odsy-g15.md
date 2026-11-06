@@ -775,7 +775,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x7eb0 calls splprof with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x7ef0 calls _get_count with a0=?, a1=?, a2=?, a3=[0xffffffffaff20000]:8.
   The `jal` at 0x7f60 calls _get_count with a0=?, a1=?, a2=?, a3=[0xffffffffaff20000]:8+12500.
-  The `jal` at 0x7f6c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x7f6c calls splx with a0=ret(splprof), a1=?, a2=?, a3=?.
   The `beq` branch at 0x7e9c targets 0x7eac, is taken when v0(=[sym(pclk_freq)]) == 0, and falls through when v0(=[sym(pclk_freq)]) != 0.
   The `bne` branch at 0x7ec4 targets 0x7ef0, is taken when s1(=[0xffffffffaff20000]:8) != a3(=[0xffffffffaff20000]:8), and falls through when s1(=[0xffffffffaff20000]:8) == a3(=[0xffffffffaff20000]:8).
   The `bne` branch at 0x7ed0 targets 0x7ef0, is taken when s1(=[0xffffffffaff20000]:8) != a3(=[0xffffffffaff20000]:8), and falls through when s1(=[0xffffffffaff20000]:8) == a3(=[0xffffffffaff20000]:8).
@@ -1077,7 +1077,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x8e88 calls slow_ioc3_sio with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x8eb4 calls flushbus with a0=0x30, a1=0xa, a2=?, a3=?.
   The `jal` at 0x8ebc calls restore_ioc3_sio with a0=ret(slow_ioc3_sio), a1=?, a2=?, a3=?.
-  The `jal` at 0x8ecc calls mutex_spinunlock with a0=sym(ip30clocklock), a1=?, a2=?, a3=?.
+  The `jal` at 0x8ecc calls mutex_spinunlock with a0=sym(ip30clocklock), a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The return at 0x8ed8 has v0 = ret(mutex_spinunlock).
 - `cpu_soft_powerdown` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x8ee0 (n64).
   Evidence grade: inferred.
@@ -1144,8 +1144,8 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x9104 calls mutex_spinlock_spl with a0=sym(ip30clocklock), a1=sym(splprof), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1).
   The `jal` at 0x9114 calls slow_ioc3_sio with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x91ec calls nvchecksum [0x9020] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x9208 calls restore_ioc3_sio with a0=?, a1=?, a2=0xf, a3=?.
-  The `jal` at 0x921c calls mutex_spinunlock with a0=sym(ip30clocklock), a1=?, a2=?, a3=?.
+  The `jal` at 0x9208 calls restore_ioc3_sio with a0=ret(slow_ioc3_sio), a1=?, a2=0xf, a3=?.
+  The `jal` at 0x921c calls mutex_spinunlock with a0=sym(ip30clocklock), a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `beq` branch at 0x90ec targets 0x922c, is taken when at(=(a0 + a1)) >= 0xf3 (signed), and falls through when at(=(a0 + a1)) < 0xf3 (signed).
   The `beq` branch at 0x9140 targets 0x9150, is taken when s0(=a0+14) >= 0x80 (signed), and falls through when s0(=a0+14) < 0x80 (signed).
   The `bne` branch at 0x9154 targets 0x9198, is taken when a2(?) != 0, and falls through when a2(?) == 0.
@@ -1169,7 +1169,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x926c calls strcmp with a0=sym(.rodata)+2064, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x9284 calls strcmp with a0=a0 at entry (arg0), a1=sym(.rodata)+2064, a2=?, a3=?.
   The `jal` at 0x92a4 calls strcmp with a0=sym(.bss)+560, a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x931c calls ip30_set_an_nvram with a0=[sym(.bss)+600], a1=?, a2=a1 at entry (arg1), a3=?, a6=0x22b.
+  The `jal` at 0x931c calls ip30_set_an_nvram with a0=[sym(.bss)+600], a1=?, a2=a1 at entry (arg1), a3=?, a5=(ret(strlen) << 0x0), a6=0x22b.
   The `beq` branch at 0x9274 targets 0x92dc, is taken when v0(=ret(strcmp)) == 0, and falls through when v0(=ret(strcmp)) != 0.
   The `beq` branch at 0x928c targets 0x932c, is taken when v0(=ret(strcmp)) == 0, and falls through when v0(=ret(strcmp)) != 0.
   The `beq` branch at 0x9298 targets 0x92c4, is taken when a2(=[sym(.bss)+604]) == 0, and falls through when a2(=[sym(.bss)+604]) != 0.
@@ -1177,10 +1177,10 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `bne` branch at 0x92b8 targets 0x92a0, is taken when a3(=[sym(.bss)+652]) != 0, and falls through when a3(=[sym(.bss)+652]) == 0.
   The `beq` branch at 0x92dc targets 0x92c4 and is always taken.
   The `beq` branch at 0x92f0 targets 0x9350, is taken when a0(=[sym(.bss)+600]) == a6(=0x22b), and falls through when a0(=[sym(.bss)+600]) != a6(=0x22b).
-  The `bne` branch at 0x9304 targets 0x9348, is taken when v0(=[sym(.bss)+604]) < a5(?) (signed), and falls through when v0(=[sym(.bss)+604]) >= a5(?) (signed).
+  The `bne` branch at 0x9304 targets 0x9348, is taken when v0(=[sym(.bss)+604]) < a5(=(ret(strlen) << 0x0)) (signed), and falls through when v0(=[sym(.bss)+604]) >= a5(=(ret(strlen) << 0x0)) (signed).
   The `beq` branch at 0x930c targets 0x9318, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x9324 targets 0x92c4 and is always taken.
-  The `beq` branch at 0x9338 targets 0x9298, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x9338 targets 0x9298, is taken when a2(=(ret(strlen) << 0x0)) == 0, and falls through when a2(=(ret(strlen) << 0x0)) != 0.
   The `beq` branch at 0x9340 targets 0x92c8 and is always taken.
   The `beq` branch at 0x9348 targets 0x92c4 and is always taken.
   The `beq` branch at 0x9350 targets 0x92c4 and is always taken.
@@ -1197,7 +1197,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x9398 calls mutex_spinlock_spl with a0=sym(ip30clocklock), a1=sym(splprof), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1).
   The `jal` at 0x93a0 calls slow_ioc3_sio with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x948c calls restore_ioc3_sio with a0=ret(slow_ioc3_sio), a1=?, a2=0x900000001f6a0000, a3=?, a6=0x900000001f6c0000.
-  The `jal` at 0x949c calls mutex_spinunlock with a0=sym(ip30clocklock), a1=?, a2=?, a3=?.
+  The `jal` at 0x949c calls mutex_spinunlock with a0=sym(ip30clocklock), a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `beq` branch at 0x9380 targets 0x94ac, is taken when at(=(a0 + a1)) >= 0xf3 (signed), and falls through when at(=(a0 + a1)) < 0xf3 (signed).
   The `beq` branch at 0x93d4 targets 0x93e4, is taken when s0(=a0+14) >= 0x80 (signed), and falls through when s0(=a0+14) < 0x80 (signed).
   The `bne` branch at 0x93e8 targets 0x94c4, is taken when a7(?) != 0, and falls through when a7(?) == 0.
@@ -1509,7 +1509,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0xa124 calls spl7 with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0xa12c calls update_ust with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xa138 calls splx with a0=ret(spl7), a1=?, a2=?, a3=?.
-  The return at 0xa14c has v0 = ?.
+  The return at 0xa14c has v0 = ret(update_ust).
 - `get_ust_nano` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0xa154 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
@@ -1539,7 +1539,7 @@ Each entry records selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0xa1c4 calls spl7 with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0xa1cc calls update_ust with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xa1dc calls splx with a0=ret(spl7), a1=?, a2=?, a3=?.
-  The return at 0xa1f0 has v0 = ?.
+  The return at 0xa1f0 has v0 = [sym(ust_val)]:8.
 - `nano_to_ust` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0xa1f8 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.

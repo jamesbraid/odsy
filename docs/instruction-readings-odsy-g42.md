@@ -182,8 +182,8 @@ Each entry records selected software behavior from its exact binary range. These
   The `jalr` at 0xda5539c calls __glOdysseyImageDescribeWindow [0xda75b60] with a0=a0+72912, a1=0x1, a2=?, a3=?.
   The `jalr` at 0xda553a8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bltz` branch at 0xda553c4 targets 0xda55408, is taken when a1(=[a0+1688]) < 0 (signed), and falls through when a1(=[a0+1688]) >= 0 (signed).
-  The `bltz` branch at 0xda553d4 targets 0xda55408, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
-  The `bne` branch at 0xda553e8 targets 0xda55408, is taken when v0(?) < v1(?) (signed), and falls through when v0(?) >= v1(?) (signed).
+  The `bltz` branch at 0xda553d4 targets 0xda55408, is taken when at(=[a0+1692]) < 0 (signed), and falls through when at(=[a0+1692]) >= 0 (signed).
+  The `bne` branch at 0xda553e8 targets 0xda55408, is taken when v0(=[a0+3692]) < v1(=([a0+1696] + [a0+1688])) (signed), and falls through when v0(=[a0+3692]) >= v1(=([a0+1696] + [a0+1688])) (signed).
   The `bne` branch at 0xda553f0 targets 0xda55408, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0xda553f8 targets 0xda55424, is taken when a0(=[a0+29668]:1) == a2(=0x1), and falls through when a0(=[a0+29668]:1) != a2(=0x1).
   The `beq` branch at 0xda55400 targets 0xda55414 and is always taken.
@@ -370,8 +370,8 @@ Each entry records selected software behavior from its exact binary range. These
   The `jalr` at 0xda5539c calls __glOdysseyImageDescribeWindow [0xda75b60] with a0=a0+72912, a1=0x1, a2=?, a3=?.
   The `jalr` at 0xda553a8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bltz` branch at 0xda553c4 targets 0xda55408, is taken when a1(=[a0+1688]) < 0 (signed), and falls through when a1(=[a0+1688]) >= 0 (signed).
-  The `bltz` branch at 0xda553d4 targets 0xda55408, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
-  The `bne` branch at 0xda553e8 targets 0xda55408, is taken when v0(?) < v1(?) (signed), and falls through when v0(?) >= v1(?) (signed).
+  The `bltz` branch at 0xda553d4 targets 0xda55408, is taken when at(=[a0+1692]) < 0 (signed), and falls through when at(=[a0+1692]) >= 0 (signed).
+  The `bne` branch at 0xda553e8 targets 0xda55408, is taken when v0(=[a0+3692]) < v1(=([a0+1696] + [a0+1688])) (signed), and falls through when v0(=[a0+3692]) >= v1(=([a0+1696] + [a0+1688])) (signed).
   The `bne` branch at 0xda553f0 targets 0xda55408, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0xda553f8 targets 0xda55424, is taken when a0(=[a0+29668]:1) == a2(=0x1), and falls through when a0(=[a0+29668]:1) != a2(=0x1).
   The `beq` branch at 0xda55400 targets 0xda55414 and is always taken.

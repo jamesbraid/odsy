@@ -1267,7 +1267,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x1001e960 calls __ct__9EZWrapperGP10_WidgetRec [0x1001f820] with a0=ret(__nw__9EZWrapperSGUi), a1=a0 at entry (arg0), a2=?, a3=?.
   The `beq` branch at 0x1001e944 targets 0x1001e97c, is taken when v0(=ret(__nw__9EZWrapperSGUi)) == 0, and falls through when v0(=ret(__nw__9EZWrapperSGUi)) != 0.
   The `beq` branch at 0x1001e974 targets 0x1001e980 and is always taken.
-  The return at 0x1001e9a8 has v0 = one of ?, 0x0.
+  The return at 0x1001e9a8 has v0 = one of ret(__nw__9EZWrapperSGUi), 0x0.
   The instructions from 0x1001e9b0 to 0x1001e9c0 are not reached by any path from the entry, and their branches are not listed.
 - `CommaListToVkNameList__GPCc` in `usr/bin/X11/xsetmon` at 0x1001e9d0 (n32).
   Evidence grade: inferred.
@@ -1604,7 +1604,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002022c calls XtIsSubclass with a0=[a0], a1=[sym(xmLabelGadgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020248 calls XmStringCreateLocalized with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x10020270 calls XtVaSetValues with a0=[a0], a1=-0x7, a2=ret(XmStringCreateLocalized), a3=0x0.
-  The `jalr` at 0x10020280 calls XmStringFree with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020280 calls XmStringFree with a0=ret(XmStringCreateLocalized), a1=?, a2=?, a3=?.
   The `jalr` at 0x100202a4 calls XtIsSubclass with a0=[a0], a1=[sym(xmScrollBarWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x100202cc calls XtIsSubclass with a0=[a0], a1=[sym(xmScaleWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x100202fc calls XtIsSubclass with a0=[a0], a1=[sym(sgThumbWheelWidgetClass)], a2=?, a3=?.
@@ -1616,13 +1616,13 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x100203dc calls XtIsSubclass with a0=[a0], a1=[sym(xmListWidgetClass)], a2=?, a3=?.
   The `jal` at 0x100203f8 calls CommaListToVkNameList__GPCc [0x1001e9d0] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x10020410 calls __opPPUc__10VkNameListCGv with a0=ret(CommaListToVkNameList__GPCc), a1=?, a2=?, a3=?.
-  The `jal` at 0x1002042c calls (unnamed) [0x1001ebd0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10020458 calls XtVaSetValues with a0=[a0], a1=-0x84, a2=?, a3=-0x74, a4=ret(0x1001ebd0), a5=0x0.
-  The `jal` at 0x10020470 calls (unnamed) [0x1001ebd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1002042c calls (unnamed) [0x1001ebd0] with a0=ret(CommaListToVkNameList__GPCc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020458 calls XtVaSetValues with a0=[a0], a1=-0x84, a2=ret(__opPPUc__10VkNameListCGv), a3=-0x74, a4=ret(0x1001ebd0), a5=0x0.
+  The `jal` at 0x10020470 calls (unnamed) [0x1001ebd0] with a0=ret(CommaListToVkNameList__GPCc), a1=?, a2=?, a3=?.
   The `jalr` at 0x100204a4 calls XmStringFree with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100204c4 calls (unnamed) [0x1001ebd0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100204e8 calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100204fc calls __dt__10VkNameListGv with a0=?, a1=0x3, a2=?, a3=?.
+  The `jal` at 0x100204c4 calls (unnamed) [0x1001ebd0] with a0=ret(CommaListToVkNameList__GPCc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100204e8 calls XtFree with a0=ret(__opPPUc__10VkNameListCGv), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100204fc calls __dt__10VkNameListGv with a0=ret(CommaListToVkNameList__GPCc), a1=0x3, a2=?, a3=?.
   The `bne` branch at 0x10020210 targets 0x10020240, is taken when v0(=ret(XtIsSubclass)) != 0, and falls through when v0(=ret(XtIsSubclass)) == 0.
   The `beq` branch at 0x10020238 targets 0x10020290, is taken when v0(=ret(XtIsSubclass)) == 0, and falls through when v0(=ret(XtIsSubclass)) != 0.
   The `beq` branch at 0x10020288 targets 0x10020504 and is always taken.
@@ -1635,7 +1635,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x100203a0 targets 0x100203c8, is taken when v0(=ret(XtIsSubclass)) == 0, and falls through when v0(=ret(XtIsSubclass)) != 0.
   The `beq` branch at 0x100203c0 targets 0x10020504 and is always taken.
   The `beq` branch at 0x100203e8 targets 0x10020504, is taken when v0(=ret(XtIsSubclass)) == 0, and falls through when v0(=ret(XtIsSubclass)) != 0.
-  The `beq` branch at 0x10020484 targets 0x100204e0, is taken when ra(?) >= v0(=ret(0x1001ebd0)) (signed), and falls through when ra(?) < v0(=ret(0x1001ebd0)) (signed).
+  The `beq` branch at 0x10020484 targets 0x100204e0, is taken when ra(=0x0) >= v0(=ret(0x1001ebd0)) (signed), and falls through when ra(=0x0) < v0(=ret(0x1001ebd0)) (signed).
   The `bne` branch at 0x100204d8 targets 0x1002048c, is taken when at(?) < v0(=ret(0x1001ebd0)) (signed), and falls through when at(?) >= v0(=ret(0x1001ebd0)) (signed).
   The `beq` branch at 0x1002050c targets 0x10020514 and is always taken.
   The return at 0x10020524 has v0 = a0.
@@ -1715,9 +1715,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x100209c4 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
   The `jal` at 0x100209d8 calls getstring__9EZWrapperGv [0x10021c90] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
   The `jal` at 0x100209f4 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10020a10 calls VkFormat__GPCce with a0=0x100519e0, a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x10020a10 calls VkFormat__GPCce with a0=0x100519e0, a1=ret(getstring__9EZWrapperGv), a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10020a28 calls __as__9EZWrapperGPCc [0x100201d0] with a0=?, a1=ret(VkFormat__GPCce), a2=?, a3=?.
-  The `jalr` at 0x10020a38 calls XtFree with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020a38 calls XtFree with a0=ret(getstring__9EZWrapperGv), a1=?, a2=?, a3=?.
   The `jalr` at 0x10020a5c calls XtIsSubclass with a0=[a0], a1=[sym(xmScrollBarWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020a84 calls XtIsSubclass with a0=[a0], a1=[sym(xmScaleWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020ab4 calls XtIsSubclass with a0=[a0], a1=[sym(sgThumbWheelWidgetClass)], a2=?, a3=?.
@@ -1787,9 +1787,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x10020ec0 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
   The `jal` at 0x10020ed4 calls getstring__9EZWrapperGv [0x10021c90] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
   The `jal` at 0x10020ef0 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10020f14 calls VkFormat__GPCce with a0=0x100519e8, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020f14 calls VkFormat__GPCce with a0=0x100519e8, a1=ret(getstring__9EZWrapperGv), a2=?, a3=?.
   The `jal` at 0x10020f2c calls __as__9EZWrapperGPCc [0x100201d0] with a0=?, a1=ret(VkFormat__GPCce), a2=?, a3=?.
-  The `jalr` at 0x10020f3c calls XtFree with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020f3c calls XtFree with a0=ret(getstring__9EZWrapperGv), a1=?, a2=?, a3=?.
   The `jalr` at 0x10020f60 calls XtIsSubclass with a0=[a0], a1=[sym(xmScrollBarWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020f88 calls XtIsSubclass with a0=[a0], a1=[sym(xmScaleWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020fb8 calls XtIsSubclass with a0=[a0], a1=[sym(sgThumbWheelWidgetClass)], a2=?, a3=?.
@@ -1957,7 +1957,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10021b6c calls XtIsSubclass with a0=[a0], a1=[sym(xmTextFieldWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10021b8c calls XmTextGetString with a0=[a0], a1=?, a2=?, a3=?.
   The `jalr` at 0x10021ba4 calls atoi with a0=ret(XmTextGetString), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10021bbc calls XtFree with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021bbc calls XtFree with a0=ret(XmTextGetString), a1=?, a2=?, a3=?.
   The `jalr` at 0x10021bf0 calls XtIsSubclass with a0=[a0], a1=[sym(xmListWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10021c18 calls XmListGetSelectedPos with a0=[a0], a1=sp-76, a2=sp-72, a3=?.
   The `bne` branch at 0x100218fc targets 0x1002192c, is taken when v0(=ret(XtIsSubclass)) != 0, and falls through when v0(=ret(XtIsSubclass)) == 0.
@@ -1984,7 +1984,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x10021c44 targets 0x10021c6c and is always taken.
   The `beq` branch at 0x10021c54 targets 0x10021c6c and is always taken.
   The `beq` branch at 0x10021c64 targets 0x10021c6c and is always taken.
-  The return at 0x10021c7c has v0 = one of ?, 0x0, -0x1.
+  The return at 0x10021c7c has v0 = one of ?, 0x0, ret(atoi), -0x1.
   The instructions from 0x1002195c to 0x10021960 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x10021a6c to 0x10021a70 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x10021acc to 0x10021ad0 are not reached by any path from the entry, and their branches are not listed.
@@ -2185,7 +2185,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10023428 calls __nw__GUi with a0=0x3c, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10023450 calls __ct__28CombinationContentsListClassGPCcP10_WidgetRec [0x10042360] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10023434 targets 0x1002346c, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10023464 has v0 = ?.
+  The return at 0x10023464 has v0 = ret(__nw__GUi).
   The return at 0x10023478 has v0 = 0x0.
 - `__ct__18GainControlClassUIGPCcP10_WidgetRec` in `usr/bin/X11/xsetmon` at 0x10023480 (n32).
   Evidence grade: inferred.
@@ -2291,7 +2291,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x10023c40 calls (unnamed) [0x1002d620] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[[a0]].
   The `jal` at 0x10023c78 calls (unnamed) [0x1002d620] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[[a0]].
   The `jal` at 0x10023cb4 calls (unnamed) [0x1002d620] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10023cc8 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?, a5=[[a0]].
+  The `jalr` at 0x10023cc8 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?, a5=[[a0]].
   The `blez` branch at 0x1002382c targets 0x1002390c, is taken when a5(=[[a0]]) <= 0 (signed), and falls through when a5(=[[a0]]) > 0 (signed).
   The `beq` branch at 0x10023848 targets 0x10023874 and is always taken.
   The `beq` branch at 0x1002386c targets 0x1002390c, is taken when s4(?) >= a5(=[[a0]]) (signed), and falls through when s4(?) < a5(=[[a0]]) (signed).
@@ -2334,7 +2334,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x10023d44 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10023d58 calls appendText__17TextErrorMessagerGPc [0x1002cbb0] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10023d68 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10023d68 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x10023d78 has v0 = ret(__dl__GPv).
 - `doFinishScalarDrag__21GammaMapEditorClassUIGP10_WidgetRecP7_XEvent` in `usr/bin/X11/xsetmon` at 0x10023d80 (n32).
   Evidence grade: inferred.
@@ -2350,7 +2350,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10023db8 calls __nw__GUi with a0=0x30, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10023de0 calls __ct__21AboutXsetmonFormClassGPCcP10_WidgetRec [0x10028cb0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10023dc4 targets 0x10023dfc, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10023df4 has v0 = ?.
+  The return at 0x10023df4 has v0 = ret(__nw__GUi).
   The return at 0x10023e08 has v0 = 0x0.
 - `doOptionMap__12GammaClassUIGP18GammaMapDescriptor` in `usr/bin/X11/xsetmon` at 0x10023e10 (n32).
   Evidence grade: inferred.
@@ -2366,7 +2366,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10023e48 calls __nw__GUi with a0=0x3c, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10023e70 calls __ct__16GainControlClassGPCcP10_WidgetRec [0x1003ed80] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10023e54 targets 0x10023e8c, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10023e84 has v0 = ?.
+  The return at 0x10023e84 has v0 = ret(__nw__GUi).
   The return at 0x10023e98 has v0 = 0x0.
 - `__dt__16AboutDialogClassGv` in `usr/bin/X11/xsetmon` at 0x10023ea0 (n32).
   Evidence grade: inferred.
@@ -2507,7 +2507,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x10024500 calls __ct__13GammaEditUndoGP19GammaMapEditorClass [0x1002e2e0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x10024520 calls getTheUndoManager__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10024538 calls VkGetResource__GPCcT1 with a0=0x100459b0, a1=0x100459b0, a2=?, a3=?.
-  The `jalr` at 0x10024550 calls add__17VkMenuUndoManagerGPCcPGP10_WidgetRecPvT2_vPv with a0=?, a1=ret(VkGetResource__GPCcT1), a2=sym(vPerformUndo__13GammaEditUndoSGPvT1), a3=?.
+  The `jalr` at 0x10024550 calls add__17VkMenuUndoManagerGPCcPGP10_WidgetRecPvT2_vPv with a0=ret(getTheUndoManager__Gv), a1=ret(VkGetResource__GPCcT1), a2=sym(vPerformUndo__13GammaEditUndoSGPvT1), a3=?.
   The `jal` at 0x10024560 calls vGammaScalarChanged__19GammaMapEditorClassGf [0x10026610] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?; fp f13=[a0+132].
   The `beq` branch at 0x100244d0 targets 0x10024568, is taken when at(=[a0+104]) == 0, and falls through when at(=[a0+104]) != 0.
   The `beq` branch at 0x100244ec targets 0x10024518, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
@@ -2729,7 +2729,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0x10024e0c targets 0x10024e2c, is taken when v0(=ret(__nw__GUi)) != 0, and falls through when v0(=ret(__nw__GUi)) == 0.
   The `beq` branch at 0x10024e50 targets 0x10024e1c and is always taken.
   The return at 0x10024df4 has v0 = [0x10051e24].
-  The return at 0x10024e24 has v0 = one of 0x0, ?.
+  The return at 0x10024e24 has v0 = one of 0x0, ret(__nw__GUi).
 - `expose__19GammaMapEditorClassGP10_WidgetRecPv` in `usr/bin/X11/xsetmon` at 0x10024e60 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/bin/X11/xsetmon`.
@@ -2744,7 +2744,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x10024ec4 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10024ed8 calls appendText__17TextErrorMessagerGPc [0x1002cbb0] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10024ee8 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10024ee8 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x10024ef8 has v0 = ret(__dl__GPv).
 - `doOptionSyncSourceExternal__21ServerInfoFormClassUIGP10_WidgetRecPv` in `usr/bin/X11/xsetmon` at 0x10024f70 (n32).
   Evidence grade: inferred.
@@ -3353,7 +3353,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x10027654 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10027668 calls appendText__17TextErrorMessagerGPc [0x1002cbb0] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10027678 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10027678 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x10027688 has v0 = ret(__dl__GPv).
 - `doToggleExternalLock__21ServerInfoFormClassUIGP10_WidgetRecPv` in `usr/bin/X11/xsetmon` at 0x100276d0 (n32).
   Evidence grade: inferred.
@@ -3380,7 +3380,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10027828 calls __nw__GUi with a0=0x164, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10027850 calls __ct__19StatisticsFormClassGPCcP10_WidgetRec [0x100422c0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10027834 targets 0x1002786c, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10027864 has v0 = ?.
+  The return at 0x10027864 has v0 = ret(__nw__GUi).
   The return at 0x10027878 has v0 = 0x0.
 - `populateGainWithChannel__16ChannelFormClassGiPC17XSGIvcChannelInfo` in `usr/bin/X11/xsetmon` at 0x10027880 (n32).
   Evidence grade: inferred.
@@ -4027,7 +4027,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10029718 calls __nw__GUi with a0=0x44, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10029740 calls __ct__20GammaAssignmentClassGPCcP10_WidgetRec [0x1003ea40] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10029724 targets 0x1002975c, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10029754 has v0 = ?.
+  The return at 0x10029754 has v0 = ret(__nw__GUi).
   The return at 0x10029768 has v0 = 0x0.
 - `__dt__7MMatrixGv` in `usr/bin/X11/xsetmon` at 0x10029770 (n32).
   Evidence grade: inferred.
@@ -4115,8 +4115,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10029bf0 calls XmToggleButtonSetState with a0=ret(XtVaCreateManagedWidget), a1=0x1, a2=0x0, a3=?.
   The `jalr` at 0x10029c10 calls XtVaCreateManagedWidget with a0=0x100490b8, a1=[sym(xmToggleButtonWidgetClass)], a2=ret(XmCreateRadioBox), a3=0x0.
   The `jalr` at 0x10029c28 calls XmStringCreateLtoR with a0=[a0+92], a1=sym(_XmStrings)+12544, a2=?, a3=?.
-  The `jalr` at 0x10029c58 calls XtVaCreateManagedWidget with a0=0x100490c8, a1=[sym(xmLabelWidgetClass)], a2=?, a3=-0x7, a4=ret(XmStringCreateLtoR), a5=0x0.
-  The return at 0x10029c70 has v0 = ?.
+  The `jalr` at 0x10029c58 calls XtVaCreateManagedWidget with a0=0x100490c8, a1=[sym(xmLabelWidgetClass)], a2=ret(XtVaCreateManagedWidget), a3=-0x7, a4=ret(XmStringCreateLtoR), a5=0x0.
+  The return at 0x10029c70 has v0 = ret(createDialog__15VkGenericDialogGP10_WidgetRec).
 - `loadData__19ServerInfoFormClassGP8__file_s` in `usr/bin/X11/xsetmon` at 0x10029c80 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/bin/X11/xsetmon`.
@@ -4216,7 +4216,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002a454 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002a464 calls strlen with a0=[a0+164], a1=?, a2=?, a3=?.
   The `jalr` at 0x1002a474 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002a48c calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=[a0+164], a3=?.
+  The `jalr` at 0x1002a48c calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=[a0+164], a3=?.
   The `jalr` at 0x1002a4ac calls getTheQuestionDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
   The `jalr` at 0x1002a4e0 calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x1002a4f8 calls checkPriv__7xsetmonGv [0x10041490] with a0=[sym(xsetmonApp)], a1=?, a2=?, a3=?.
@@ -4227,7 +4227,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002a570 calls VkGetResource__GPCcT1 with a0=0x100449f8, a1=0x100449f8, a2=?, a3=?.
   The `jalr` at 0x1002a5a0 calls (unknown callee) with a0=([[ret(getTheWarningDialog__Gv)+8]+264] + ret(getTheWarningDialog__Gv)), a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002a5ac calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002a5bc calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002a5bc calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1002a40c targets 0x1002a5c4, is taken when (v0(=ret(XmListGetSelectedPos)) & 0xff) == 0, and falls through when (v0(=ret(XmListGetSelectedPos)) & 0xff) != 0.
   The `beq` branch at 0x1002a4a0 targets 0x1002a5a8, is taken when a1(=[[sym(xsetmonApp)]+132]:1) == 0, and falls through when a1(=[[sym(xsetmonApp)]+132]:1) != 0.
   The `beq` branch at 0x1002a4e8 targets 0x1002a5ac, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -4361,7 +4361,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0x1002ab80 loads 4 bytes from a0 (arg0 at entry) +0x3c.
   The `jalr` at 0x1002ab3c calls XtWindow with a0=[a0+36], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x1002ab4c calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002ab88 calls XDrawString with a0=?, a1=?, a2=[a0+60], a3=?, a5=a1 at entry (arg1), a6=ret(strlen), a7=[a0+148]:2.
+  The `jalr` at 0x1002ab88 calls XDrawString with a0=[[sym(xsetmonApp)]+108], a1=ret(XtWindow), a2=[a0+60], a3=?, a5=a1 at entry (arg1), a6=ret(strlen), a7=[a0+148]:2.
   The return at 0x1002aba0 has v0 = ret(XDrawString).
 - `__dt__12MyTabbedDeckGv` in `usr/bin/X11/xsetmon` at 0x1002abb0 (n32).
   Evidence grade: inferred.
@@ -4435,7 +4435,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0x1002ae10 loads 4 bytes from a0 (arg0 at entry) +0xb0.
   The `jal` at 0x1002adc0 calls vClearScreen__19GammaMapEditorClassCGv [0x1002de60] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x1002addc calls XtWindow with a0=[a0+36], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002adfc calls XDrawLines with a0=?, a1=ret(XtWindow), a2=[a0+64], a3=[a0+156], a4=[a0+84], a5=0x0.
+  The `jalr` at 0x1002adfc calls XDrawLines with a0=[[sym(xsetmonApp)]+108], a1=ret(XtWindow), a2=[a0+64], a3=[a0+156], a4=[a0+84], a5=0x0.
   The `jal` at 0x1002ae3c calls vDrawSpline__19GammaMapEditorClassCGv [0x10034750] with a0=a0 at entry (arg0), a1=[a0+176], a2=[a0+180], a3=?.
   The `beq` branch at 0x1002adac targets 0x1002ae2c, is taken when v0(=[a0+156]) == 0, and falls through when v0(=[a0+156]) != 0.
   The `beq` branch at 0x1002adb4 targets 0x1002adc8, is taken when a1 == 0, and falls through when a1 != 0.
@@ -4458,7 +4458,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002ae88 calls __nw__GUi with a0=0xc4, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1002aeb0 calls __ct__19GammaMapEditorClassGPCcP10_WidgetRec [0x1002ec70] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1002ae94 targets 0x1002aecc, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x1002aec4 has v0 = ?.
+  The return at 0x1002aec4 has v0 = ret(__nw__GUi).
   The return at 0x1002aed8 has v0 = 0x0.
 - `className__16ChannelFormClassGv` in `usr/bin/X11/xsetmon` at 0x1002aee0 (n32).
   Evidence grade: inferred.
@@ -4631,17 +4631,17 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002b994 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002b9a4 calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002b9b4 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002b9cc calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x1002b9cc calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=?.
   The `jalr` at 0x1002b9e8 calls getTheInfoDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
   The `jalr` at 0x1002ba1c calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
-  The `jalr` at 0x1002ba34 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002ba34 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002ba58 calls VkGetResource__GPCcT1 with a0=0x10045ed8, a1=0x10045ed8, a2=?, a3=?.
   The `jalr` at 0x1002ba6c calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002ba7c calls strlen with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002ba7c calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002ba8c calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002ba9c calls strlen with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002bab4 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002bad0 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x1002ba9c calls strlen with a0=ret(strerror), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002bab4 calls __nwa__GUi with a0=(ret(strlen) + (ret(strlen) + ret(strlen)))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002bad0 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=ret(strerror).
   The `jalr` at 0x1002baf0 calls getTheInfoDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
   The `jalr` at 0x1002bb24 calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002bb30 calls __dl__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -4780,11 +4780,11 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002c0f8 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c128 calls VkGetResource__GPCcT1 with a0=0x10045eb0, a1=0x10045eb0, a2=?, a3=?.
   The `jalr` at 0x1002c13c calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c14c calls strlen with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002c14c calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c15c calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c16c calls strlen with a0=ret(strerror), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c184 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c1a0 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=ret(strerror).
+  The `jalr` at 0x1002c184 calls __nwa__GUi with a0=(ret(strlen) + (ret(strlen) + ret(strlen)))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002c1a0 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=ret(strerror).
   The `jalr` at 0x1002c1ac calls getTheInfoDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c1e0 calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002c1ec calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -4792,7 +4792,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002c218 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c228 calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c238 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c250 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x1002c250 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=?.
   The `jalr` at 0x1002c25c calls getTheQuestionDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c28c calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002c2a0 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -4849,7 +4849,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002c798 calls __nw__GUi with a0=0xf8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1002c7c0 calls __ct__27FormatCombinationListsClassGPCcP10_WidgetRec [0x10026d00] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1002c7a4 targets 0x1002c7dc, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x1002c7d4 has v0 = ?.
+  The return at 0x1002c7d4 has v0 = ret(__nw__GUi).
   The return at 0x1002c7e8 has v0 = 0x0.
 - `appendText__17TextErrorMessagerGPc` in `usr/bin/X11/xsetmon` at 0x1002cbb0 (n32).
   Evidence grade: inferred.
@@ -5118,8 +5118,8 @@ Each entry records selected software behavior from its exact binary range. The r
   Range: 0x1002d7e0-0x1002da14 (564 bytes).
   It occupies 564 bytes.
   The `lw` at 0x1002d814 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1002d828, `lw` at 0x1002d91c, `lw` at 0x1002d9dc.
-  The `lw` at 0x1002d84c loads 4 bytes from table(0x10051b00) +0x0.
+  The `lw` at 0x1002d828 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from table(0x10051b00) +0x0, including `lw` at 0x1002d84c, `lw` at 0x1002d91c.
   The `sw` at 0x1002d858 stores 4 bytes to a0 (arg0 at entry) +0xa8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xa8, including `lw` at 0x1002d878, `lw` at 0x1002d8a4.
   4 such `lw` accesses load 4 bytes from sym(xsetmonApp) +0x0, including `lw` at 0x1002d8ac, `lw` at 0x1002d908, `lw` at 0x1002d928.
@@ -5131,23 +5131,26 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0x1002d948 loads 4 bytes from [[sym(xsetmonApp)]+312] +0x84.
   The `lw` at 0x1002d968 loads 4 bytes from sym(requestErrCatched) +0x0.
   The `sw` at 0x1002d9a4 stores 4 bytes to sym(requestErrCatched) +0x0.
+  The `lw` at 0x1002d9dc loads 4 bytes from ret(getTheWarningDialog__Gv) +0x8.
+  The `lw` at 0x1002d9ec loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x110.
+  The `lw` at 0x1002d9f8 loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x108.
   The `jalr` at 0x1002d810 calls XmListGetSelectedPos with a0=[a0+72], a1=sp-96, a2=sp-92, a3=a3 at entry (arg3).
   The `jalr` at 0x1002d854 calls VkGetResource__GPCcT1 with a0=0x10044a70, a1=0x10044a70, a2=?, a3=?.
   The `jalr` at 0x1002d864 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002d874 calls strlen with a0=[a0+168], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d888 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d8a0 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=[a0+168], a3=?.
+  The `jalr` at 0x1002d888 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002d8a0 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=[a0+168], a3=?.
   The `jalr` at 0x1002d8c0 calls getTheQuestionDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
-  The `jalr` at 0x1002d8f0 calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=?, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x1002d8f0 calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x1002d904 calls checkPriv__7xsetmonGv [0x10041490] with a0=[sym(xsetmonApp)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d918 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002d918 calls atoi with a0=entry(0x10051b00), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002d944 calls XSGIvcSetPlatformParameter with a0=[[sym(xsetmonApp)]+312], a1=[[[sym(xsetmonApp)]+312]+132], a2=0x0, a3=0x0, a4=sp-88, a5=0x20.
   The `jalr` at 0x1002d95c calls XSync with a0=[[sym(xsetmonApp)]+312], a1=0x0, a2=?, a3=?.
   The `jalr` at 0x1002d978 calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d984 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002d984 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002d9b8 calls getTheWarningDialog__Gv with a0=?, a1=[sym(requestErrCatched)], a2=?, a3=?.
   The `jalr` at 0x1002d9d0 calls VkGetResource__GPCcT1 with a0=0x100449f8, a1=0x100449f8, a2=?, a3=?.
-  The `jalr` at 0x1002da04 calls (unknown callee) with a0=?, a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x1002da04 calls (unknown callee) with a0=([[ret(getTheWarningDialog__Gv)+8]+264] + ret(getTheWarningDialog__Gv)), a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `beq` branch at 0x1002d81c targets 0x1002d9a8, is taken when (v0(=ret(XmListGetSelectedPos)) & 0xff) == 0, and falls through when (v0(=ret(XmListGetSelectedPos)) & 0xff) != 0.
   The `beq` branch at 0x1002d8b4 targets 0x1002d974, is taken when a1(=[[sym(xsetmonApp)]+132]:1) == 0, and falls through when a1(=[[sym(xsetmonApp)]+132]:1) != 0.
   The `beq` branch at 0x1002d8f8 targets 0x1002d974, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -5402,19 +5405,19 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002e3dc calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultMasterTabbedDeckClassResources__21MasterTabbedDeckClass), a3=?.
   The `jalr` at 0x1002e3ec calls __nw__GUi with a0=0x40, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002e410 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=0x1, a2=?, a3=0x0.
-  The `jal` at 0x1002e428 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=?, a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x1002e428 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=ret(__nw__GUi), a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x1002e45c calls (unknown callee) with a0=([[[a0+44]+8]+36] + [a0+44]), a1=[a0+44], a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1002e46c calls __nw__GUi with a0=0x7c, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002e490 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=0x1.
-  The `jal` at 0x1002e4a8 calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=?, a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x1002e4a8 calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=ret(__nw__GUi), a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x1002e4dc calls (unknown callee) with a0=([[[a0+48]+8]+36] + [a0+48]), a1=[a0+48], a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1002e4ec calls __nw__GUi with a0=0x108, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002e510 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=0x1.
-  The `jal` at 0x1002e528 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=?, a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x1002e528 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=ret(__nw__GUi), a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x1002e55c calls (unknown callee) with a0=([[[a0+52]+8]+36] + [a0+52]), a1=[a0+52], a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1002e574 calls __nw__GUi with a0=0x78, a1=?, a2=?, a3=a0 at entry (arg0).
   The `jalr` at 0x1002e598 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=0x0, a4=0x1.
-  The `jal` at 0x1002e5b0 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=?, a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x1002e5b0 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=ret(__nw__GUi), a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jal` at 0x1002e5dc calls setTabbedDeckParent__10GammaClassGP21MasterTabbedDeckClass [0x10042a30] with a0=[a0+56], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x1002e5f8 calls (unknown callee) with a0=([[[a0+56]+8]+36] + [a0+56]), a1=[a0+56], a2=?, a3=?.
   The `jalr` at 0x1002e620 calls (unknown callee) with a0=([[[a0+56]+8]+48] + [a0+56]), a1=[a0+56], a2=[a0+64]:1, a3=?, a4=a0 at entry (arg0).
@@ -5503,7 +5506,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1002e998 calls __nw__GUi with a0=0x78, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1002e9c0 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1002e9a4 targets 0x1002e9dc, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x1002e9d4 has v0 = ?.
+  The return at 0x1002e9d4 has v0 = ret(__nw__GUi).
   The return at 0x1002e9e8 has v0 = 0x0.
 - `combinationSelected__29FormatCombinationListsClassUIGP10_WidgetRecPv` in `usr/bin/X11/xsetmon` at 0x1002ea40 (n32).
   Evidence grade: inferred.
@@ -5518,7 +5521,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x1002ea74 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1002ea88 calls appendText__22ScrollingErrorMessagerGPc [0x10027c70] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x1002ea98 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002ea98 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x1002eaa8 has v0 = ret(__dl__GPv).
 - `loadData__10GammaClassGP8__file_s` in `usr/bin/X11/xsetmon` at 0x1002eab0 (n32).
   Evidence grade: inferred.
@@ -5933,7 +5936,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lh` at 0x10030f50 loads 2 bytes from a1 (arg1 at entry) +0x2.
   The `lh` at 0x10030f60 loads 2 bytes from a1 (arg1 at entry) +0x0.
   The `jalr` at 0x10030f48 calls XtWindow with a0=[a0+36], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x10030f74 calls XFillRectangle with a0=?, a1=ret(XtWindow), a2=a2 at entry (arg2), a3=[a1]:2-2, a4=[a1+2]:2-2, a5=0x5, a6=0x5.
+  The `jalr` at 0x10030f74 calls XFillRectangle with a0=[[sym(xsetmonApp)]+108], a1=ret(XtWindow), a2=a2 at entry (arg2), a3=[a1]:2-2, a4=[a1+2]:2-2, a5=0x5, a6=0x5.
   The return at 0x10030f88 has v0 = ret(XFillRectangle).
 - `__ct__21SetmonMasterFormClassGPCcP10_WidgetRec` in `usr/bin/X11/xsetmon` at 0x10030fd0 (n32).
   Evidence grade: inferred.
@@ -5983,7 +5986,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x10031174 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10031188 calls appendText__22ScrollingErrorMessagerGPc [0x10027c70] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10031198 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10031198 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x100311a8 has v0 = ret(__dl__GPv).
 - `__dt__12GammaClassUIGv` in `usr/bin/X11/xsetmon` at 0x100311b0 (n32).
   Evidence grade: inferred.
@@ -6125,13 +6128,13 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x10031854 calls registerChild__12MyTabbedDeckGP11VkComponentPCc [0x10041ed0] with a0=a0 at entry (arg0), a1=[a0+52], a2=0x10045de8, a3=?.
   The `jal` at 0x1003186c calls registerChild__12MyTabbedDeckGP11VkComponentPCc [0x10041ed0] with a0=a0 at entry (arg0), a1=[a0+56], a2=0x10045e00, a3=?.
   The `jalr` at 0x10031898 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=0x1.
-  The `jal` at 0x100318b0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=?, a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x100318b0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=ret(__nw__GUi), a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x100318d4 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x100318ec calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=?, a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x100318ec calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=ret(__nw__GUi), a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x10031910 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10031928 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=?, a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x10031928 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=ret(__nw__GUi), a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x1003194c calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10031964 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=?, a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x10031964 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=ret(__nw__GUi), a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x10031980 calls getenv with a0=0x10051708, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100319a0 calls VkGetResource__GPCcT1 with a0=0x10045f00, a1=0x10045f00, a2=?, a3=?.
   The `jalr` at 0x100319b4 calls sprintf with a0=sp-1104, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
@@ -6144,7 +6147,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x10031564 targets 0x1003197c, is taken when a1 == 0, and falls through when a1 != 0.
   The `beq` branch at 0x10031570 targets 0x10031980, is taken when v0(=[a1]:1) == 0, and falls through when v0(=[a1]:1) != 0.
   The `beq` branch at 0x10031598 targets 0x10031a10, is taken when v0(=ret(XOpenDisplay)) == 0, and falls through when v0(=ret(XOpenDisplay)) != 0.
-  The `beq` branch at 0x100315d0 targets 0x10031994, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x100315d0 targets 0x10031994, is taken when a1(=ret(XSGIvcQueryVersion)) == 0, and falls through when a1(=ret(XSGIvcQueryVersion)) != 0.
   The `beq` branch at 0x100315d8 targets 0x10031990, is taken when v0(=ret(XSGIvcQueryScreenGammaMaps)) == 0, and falls through when v0(=ret(XSGIvcQueryScreenGammaMaps)) != 0.
   The `beq` branch at 0x10031640 targets 0x10031660, is taken when v0(=[a0+44]) == 0, and falls through when v0(=[a0+44]) != 0.
   The `beq` branch at 0x10031664 targets 0x10031684, is taken when v0(=[a0+48]) == 0, and falls through when v0(=[a0+48]) != 0.
@@ -6286,7 +6289,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10032650 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=-0x42, a2=0x1, a3=-0x66, a4=0x1, a5=-0x46, a6=0x1, a7=-0x67.
   The `jalr` at 0x1003265c calls baseWidget__11VkComponentCGv with a0=[a0+36], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003266c calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10032734 calls XtVaSetValues with a0=?, a1=-0x42, a2=0x1, a3=-0x66, a4=0x1, a5=-0x46, a6=0x3, a7=-0xa5.
+  The `jalr` at 0x10032734 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=-0x42, a2=0x1, a3=-0x66, a4=0x1, a5=-0x46, a6=0x3, a7=-0xa5.
   The `jalr` at 0x10032774 calls (unknown callee) with a0=([[[a0+36]+8]+48] + [a0+36]), a1=[a0+36], a2=?, a3=?.
   The `jalr` at 0x10032780 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=?.
   The `jalr` at 0x10032798 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=-0x2e1, a2=0x32, a3=0x0.
@@ -6626,7 +6629,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x10033f84 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10033f98 calls appendText__17TextErrorMessagerGPc [0x1002cbb0] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10033fa8 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10033fa8 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x10033fb8 has v0 = ret(__dl__GPv).
 - `__as__7MMatrixGRC7MMatrix` in `usr/bin/X11/xsetmon` at 0x10033fc0 (n32).
   Evidence grade: inferred.
@@ -7067,7 +7070,7 @@ Each entry records selected software behavior from its exact binary range. The r
   Range: 0x10036f50-0x10037178 (552 bytes).
   It occupies 552 bytes.
   The `lw` at 0x10036f84 loads 4 bytes from a0 (arg0 at entry) +0x4c.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10036f94, `lw` at 0x10037140, `lw` at 0x10037150.
+  The `lw` at 0x10036f94 loads 4 bytes from ?.
   The `lw` at 0x10036fb8 loads 4 bytes from table(0x10051af8) +0x0.
   The `sw` at 0x10036fc4 stores 4 bytes to a0 (arg0 at entry) +0xac.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xac, including `lw` at 0x10036fe4, `lw` at 0x10037010.
@@ -7080,22 +7083,25 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0x100370a8 loads 4 bytes from [[sym(xsetmonApp)]+312] +0x84.
   The `lw` at 0x100370c8 loads 4 bytes from sym(requestErrCatched) +0x0.
   The `sw` at 0x10037104 stores 4 bytes to sym(requestErrCatched) +0x0.
+  The `lw` at 0x10037140 loads 4 bytes from ret(getTheWarningDialog__Gv) +0x8.
+  The `lw` at 0x10037150 loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x110.
+  The `lw` at 0x1003715c loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x108.
   The `jalr` at 0x10036f80 calls XmListGetSelectedPos with a0=[a0+76], a1=sp-96, a2=sp-92, a3=a3 at entry (arg3).
   The `jalr` at 0x10036fc0 calls VkGetResource__GPCcT1 with a0=0x10044a88, a1=0x10044a88, a2=?, a3=?.
   The `jalr` at 0x10036fd0 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x10036fe0 calls strlen with a0=[a0+172], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10036ff4 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003700c calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=[a0+172], a3=?.
+  The `jalr` at 0x10036ff4 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1003700c calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=[a0+172], a3=?.
   The `jalr` at 0x1003702c calls getTheQuestionDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
-  The `jalr` at 0x1003705c calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=?, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x1003705c calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x10037070 calls checkPriv__7xsetmonGv [0x10041490] with a0=[sym(xsetmonApp)], a1=?, a2=?, a3=?.
   The `jalr` at 0x100370a4 calls XSGIvcSetPlatformParameter with a0=[[sym(xsetmonApp)]+312], a1=[[[sym(xsetmonApp)]+312]+132], a2=0x0, a3=0x1, a4=sp-88, a5=0x20.
   The `jalr` at 0x100370bc calls XSync with a0=[[sym(xsetmonApp)]+312], a1=0x0, a2=?, a3=?.
   The `jalr` at 0x100370d8 calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100370e4 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100370e4 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `jalr` at 0x1003711c calls getTheWarningDialog__Gv with a0=?, a1=[sym(requestErrCatched)], a2=?, a3=?.
   The `jalr` at 0x10037134 calls VkGetResource__GPCcT1 with a0=0x100449f8, a1=0x100449f8, a2=?, a3=?.
-  The `jalr` at 0x10037168 calls (unknown callee) with a0=?, a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x10037168 calls (unknown callee) with a0=([[ret(getTheWarningDialog__Gv)+8]+264] + ret(getTheWarningDialog__Gv)), a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `beq` branch at 0x10036f8c targets 0x10037108, is taken when (v0(=ret(XmListGetSelectedPos)) & 0xff) == 0, and falls through when (v0(=ret(XmListGetSelectedPos)) & 0xff) != 0.
   The `beq` branch at 0x10037020 targets 0x100370d4, is taken when a1(=[[sym(xsetmonApp)]+132]:1) == 0, and falls through when a1(=[[sym(xsetmonApp)]+132]:1) != 0.
   The `beq` branch at 0x10037064 targets 0x100370d4, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -7551,10 +7557,13 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `sb` accesses store 1 byte to ?, including `sb` at 0x10038524, `sb` at 0x1003863c.
   The `lbu` at 0x10038528 loads 1 byte from [sym(xsetmonApp)] +0xc8.
   The `lw` at 0x1003854c loads 4 bytes from abs 0x1004cf60.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1003856c, `lw` at 0x1003858c, `lw` at 0x100385ac.
+  The `lw` at 0x1003856c loads 4 bytes from abs 0x1004cf64.
+  The `lw` at 0x1003858c loads 4 bytes from abs 0x1004cf68.
+  The `lw` at 0x100385ac loads 4 bytes from abs 0x1004cf6c.
   The `lw` at 0x100385dc loads 4 bytes from [sym(xsetmonApp)] +0x98.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xb0, including `lw` at 0x1003864c, `lw` at 0x1003867c, `lw` at 0x100388a4.
   The `lw` at 0x10038660 loads 4 bytes from a0 (arg0 at entry) +0xb4.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10038670, `lw` at 0x100386c0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xb8, including `lw` at 0x10038694, `lw` at 0x100386cc.
   The `lw` at 0x100386b0 loads 4 bytes from a0 (arg0 at entry) +0xbc.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xc4, including `lw` at 0x10038710, `lw` at 0x1003873c, `lw` at 0x10038944.
@@ -7574,9 +7583,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x100384e8 calls fread with a0=sp-112, a1=0x4, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x10038508 calls fread with a0=sp-104, a1=?, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x10038548 calls strcmp with a0=sp-104, a1=[0x1004cf60], a2=?, a3=?.
-  The `jalr` at 0x10038568 calls strcmp with a0=sp-104, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10038588 calls strcmp with a0=sp-104, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100385a8 calls strcmp with a0=sp-104, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10038568 calls strcmp with a0=sp-104, a1=[0x1004cf64], a2=?, a3=?.
+  The `jalr` at 0x10038588 calls strcmp with a0=sp-104, a1=[0x1004cf68], a2=?, a3=?.
+  The `jalr` at 0x100385a8 calls strcmp with a0=sp-104, a1=[0x1004cf6c], a2=?, a3=?.
   The `jalr` at 0x100385cc calls fread with a0=sp-64, a1=0x4, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x100385fc calls fread with a0=sp-112, a1=0x4, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x10038610 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
@@ -8165,7 +8174,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1003b824 calls baseWidget__10VkMenuItemCGv with a0=[a0+100], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003b834 calls baseWidget__10VkMenuItemCGv with a0=[a0+100], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003b844 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003b86c calls XtVaSetValues with a0=[a0+52], a1=-0x76, a2=ret(baseWidget__10VkMenuItemCGv), a3=-0xa5, a5=-0x116, a6=ret(baseWidget__11VkComponentCGv), a7=0x0.
+  The `jalr` at 0x1003b86c calls XtVaSetValues with a0=[a0+52], a1=-0x76, a2=ret(baseWidget__10VkMenuItemCGv), a3=-0xa5, a4=ret(baseWidget__10VkMenuItemCGv), a5=-0x116, a6=ret(baseWidget__11VkComponentCGv), a7=0x0.
   The `jalr` at 0x1003b87c calls baseWidget__10VkMenuItemCGv with a0=[a0+100], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003b920 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=-0x42, a2=0x3, a3=-0x66, a4=0x0, a5=-0x46, a6=0x1, a7=-0x67.
   The `jalr` at 0x1003b92c calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=?.
@@ -8322,7 +8331,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1003cd08 calls __nw__GUi with a0=0x108, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1003cd30 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1003cd14 targets 0x1003cd4c, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x1003cd44 has v0 = ?.
+  The return at 0x1003cd44 has v0 = ret(__nw__GUi).
   The return at 0x1003cd58 has v0 = 0x0.
 - `allocGC__21GammaMapEditorClassUIGv` in `usr/bin/X11/xsetmon` at 0x1003cd60 (n32).
   Evidence grade: inferred.
@@ -8637,7 +8646,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1003df08 calls __nw__GUi with a0=0x7c, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1003df30 calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1003df14 targets 0x1003df4c, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x1003df44 has v0 = ?.
+  The return at 0x1003df44 has v0 = ret(__nw__GUi).
   The return at 0x1003df58 has v0 = 0x0.
 - `getTheTargetPromptDialog__Gv` in `usr/bin/X11/xsetmon` at 0x1003df60 (n32).
   Evidence grade: inferred.
@@ -8650,7 +8659,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0x1003df9c targets 0x1003dfbc, is taken when v0(=ret(__nw__GUi)) != 0, and falls through when v0(=ret(__nw__GUi)) == 0.
   The `beq` branch at 0x1003dfe0 targets 0x1003dfac and is always taken.
   The return at 0x1003df84 has v0 = [0x10051e20].
-  The return at 0x1003dfb4 has v0 = one of 0x0, ?.
+  The return at 0x1003dfb4 has v0 = one of 0x0, ret(__nw__GUi).
 - `loadSettingsFile__21MasterTabbedDeckClassGP10_WidgetRecPv` in `usr/bin/X11/xsetmon` at 0x1003dff0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/bin/X11/xsetmon`.
@@ -8687,7 +8696,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x1003e0d4 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1003e0e8 calls appendText__22ScrollingErrorMessagerGPc [0x10027c70] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x1003e0f8 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1003e0f8 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x1003e108 has v0 = ret(__dl__GPv).
 - `doDownloadCombinationButtonCallback__29FormatCombinationListsClassUISGP10_WidgetRecPvT2` in `usr/bin/X11/xsetmon` at 0x1003e110 (n32).
   Evidence grade: inferred.
@@ -9036,7 +9045,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x1003f0a8 calls __nw__GUi with a0=0x40, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1003f0d0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1003f0b4 targets 0x1003f0ec, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x1003f0e4 has v0 = ?.
+  The return at 0x1003f0e4 has v0 = ret(__nw__GUi).
   The return at 0x1003f0f8 has v0 = 0x0.
 - `__ct__23SetmonMasterFormClassUIGPCcP10_WidgetRec` in `usr/bin/X11/xsetmon` at 0x1003f100 (n32).
   Evidence grade: inferred.
@@ -9338,7 +9347,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x100415c4 calls VkGetResource__GPCcT1 with a0=0x10043cc0, a1=0x10043cc0, a2=?, a3=?.
   The `jalr` at 0x100415d4 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x100415e0 calls __nwa__GUi with a0=ret(strlen)+256, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100415f8 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=sp-568, a3=?.
+  The `jalr` at 0x100415f8 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=sp-568, a3=?.
   The `jalr` at 0x10041604 calls getTheInfoDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10041638 calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x10041644 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -9537,8 +9546,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x100420cc calls XtVaCreateManagedWidget with a0=0x10051900, a1=[sym(xmFrameWidgetClass)], a2=ret(XtVaCreateManagedWidget), a3=-0xa7, a4=0x5, a5=-0x23, a6=0x2, a7=0x0.
   The `jalr` at 0x100420f0 calls XtVaCreateManagedWidget with a0=0x10048ff0, a1=[sym(xmRowColumnWidgetClass)], a2=ret(XtVaCreateManagedWidget), a3=0x0.
   The `jalr` at 0x10042114 calls XtVaCreateManagedWidget with a0=0x10049000, a1=[sym(xmLabelWidgetClass)], a2=ret(XtVaCreateManagedWidget), a3=0x0.
-  The `jalr` at 0x10042130 calls XtVaCreateManagedWidget with a0=0x10051908, a1=[sym(xmTextFieldWidgetClass)], a2=?, a3=0x0.
-  The return at 0x1004214c has v0 = ?.
+  The `jalr` at 0x10042130 calls XtVaCreateManagedWidget with a0=0x10051908, a1=[sym(xmTextFieldWidgetClass)], a2=ret(XtVaCreateManagedWidget), a3=0x0.
+  The return at 0x1004214c has v0 = ret(createDialog__15VkGenericDialogGP10_WidgetRec).
 - `setToggleGammaPoints__19GammaMapEditorClassGP10_WidgetRecPv` in `usr/bin/X11/xsetmon` at 0x10042200 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/bin/X11/xsetmon`.
@@ -9557,7 +9566,7 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 96 bytes.
   The `jalr` at 0x10042284 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10042298 calls appendText__22ScrollingErrorMessagerGPc [0x10027c70] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x100422a8 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100422a8 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x100422b8 has v0 = ret(__dl__GPv).
 - `__ct__19StatisticsFormClassGPCcP10_WidgetRec` in `usr/bin/X11/xsetmon` at 0x100422c0 (n32).
   Evidence grade: inferred.
@@ -9727,7 +9736,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10042ac0 calls flush__GR7ostream with a0=ret(endl__GR7ostream), a1=?, a2=?, a3=?.
   The `jalr` at 0x10042ae0 calls __ls__7ostreamGPCc with a0=sym(cerr), a1=0x10051918, a2=?, a3=?.
   The `jalr` at 0x10042af0 calls XtName with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10042b00 calls __ls__7ostreamGPCc with a0=?, a1=ret(XtName), a2=?, a3=?.
+  The `jalr` at 0x10042b00 calls __ls__7ostreamGPCc with a0=ret(__ls__7ostreamGPCc), a1=ret(XtName), a2=?, a3=?.
   The `bne` branch at 0x10042aa8 targets 0x10042ad8, is taken when s0(=a0) != 0, and falls through when s0(=a0) == 0.
   The `beq` branch at 0x10042b08 targets 0x10042ab0 and is always taken.
   The return at 0x10042ad0 has v0 = ret(flush__GR7ostream).
@@ -9821,7 +9830,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x10042f68 calls __nw__GUi with a0=0x3c, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10042f90 calls __ct__17SyncSelectorFrameGPCcP10_WidgetRec [0x100379d0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10042f74 targets 0x10042fac, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10042fa4 has v0 = ?.
+  The return at 0x10042fa4 has v0 = ret(__nw__GUi).
   The return at 0x10042fb8 has v0 = 0x0.
 - `__ct__16ChannelFormClassGPCc` in `usr/bin/X11/xsetmon` at 0x10042fc0 (n32).
   Evidence grade: inferred.
@@ -9893,33 +9902,60 @@ Each entry records selected software behavior from its exact binary range. The r
   Range: 0x1005f7c0-0x1005fa40 (640 bytes).
   It occupies 640 bytes.
   The `lw` at 0x1005f7c4 loads 4 bytes from a0 (arg0 at entry) +0x24.
-  16 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1005f814, `lw` at 0x1005f818, `lw` at 0x1005f824.
+  The `lw` at 0x1005f814 loads 4 bytes from [a0+36] +0x1c.
+  The `lw` at 0x1005f818 loads 4 bytes from [[a0+36]+28] +0x0.
+  The `lw` at 0x1005f824 loads 4 bytes from [[a0+36]+28] +0x4.
+  The `lw` at 0x1005f830 loads 4 bytes from [[a0+36]+28] +0xf0.
+  The `lw` at 0x1005f83c loads 4 bytes from [[a0+36]+28] +0x8.
+  The `lw` at 0x1005f848 loads 4 bytes from [[a0+36]+28] +0xc.
+  The `lw` at 0x1005f854 loads 4 bytes from [[a0+36]+28] +0x10.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0xc, including `lw` at 0x1005f864, `lw` at 0x1005f8d4.
-  15 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1005f894, `sw` at 0x1005f8dc, `sw` at 0x1005f8e8.
+  The `lw` at 0x1005f884 loads 4 bytes from [a0+36] +0x24.
+  The `lw` at 0x1005f890 loads 4 bytes from [[a0+36]+36] +0x0.
+  3 such `sw` accesses store 4 bytes to [[a0+36]+28] +0x4, including `sw` at 0x1005f894, `sw` at 0x1005f8dc, `sw` at 0x1005f8f0.
+  The `lw` at 0x1005f8a8 loads 4 bytes from [[a0+36]+28] +0x14.
+  The `lw` at 0x1005f8b4 loads 4 bytes from [[a0+36]+28] +0x18.
+  The `lw` at 0x1005f8c0 loads 4 bytes from [[a0+36]+28] +0x20.
+  The `sw` at 0x1005f8e8 stores 4 bytes to [[a0+36]+28] +0x0.
+  The `sw` at 0x1005f8f8 stores 4 bytes to [[a0+36]+28] +0xf0.
+  The `sw` at 0x1005f900 stores 4 bytes to [[a0+36]+28] +0x8.
+  The `sw` at 0x1005f908 stores 4 bytes to [[a0+36]+28] +0xc.
+  The `sw` at 0x1005f910 stores 4 bytes to [[a0+36]+28] +0x10.
+  The `lw` at 0x1005f924 loads 4 bytes from [[a0+36]+28] +0x64.
+  The `lw` at 0x1005f930 loads 4 bytes from [[a0+36]+28] +0x68.
+  The `lw` at 0x1005f93c loads 4 bytes from [[a0+36]+28] +0x6c.
+  The `lw` at 0x1005f948 loads 4 bytes from [[a0+36]+28] +0x70.
+  The `sw` at 0x1005f970 stores 4 bytes to [[a0+36]+28] +0x70.
+  The `sw` at 0x1005f994 stores 4 bytes to [[a0+36]+28] +0x14.
+  The `sw` at 0x1005f9b8 stores 4 bytes to [[a0+36]+28] +0x18.
+  The `sw` at 0x1005f9dc stores 4 bytes to [[a0+36]+28] +0x20.
+  The `sw` at 0x1005f9fc stores 4 bytes to [[a0+36]+28] +0x64.
+  The `sw` at 0x1005fa1c stores 4 bytes to [[a0+36]+28] +0x68.
+  The `sw` at 0x1005fa3c stores 4 bytes to [[a0+36]+28] +0x6c.
   The `jal` at 0x1005f7dc calls SrvXkbAllocNames [0x100fe690] with a0=[a0+36], a1=0x3fff, a2=0x0, a3=0x0.
   The `jal` at 0x1005f808 calls MakeAtom [0x10238200] with a0=0x1029ae78, a1=0x7, a2=0x1, a3=ret(SrvXkbAllocNames).
-  The `jal` at 0x1005f918 calls initIndicatorNames..ABF [0x1023bb10] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1005f960 calls MakeAtom [0x10238200] with a0=0x1028fed0, a1=0x7, a2=0x1, a3=?.
-  The `jal` at 0x1005f984 calls MakeAtom [0x10238200] with a0=0x1029ae80, a1=0x7, a2=0x1, a3=?, a4=[a1+12].
-  The `jal` at 0x1005f9a8 calls MakeAtom [0x10238200] with a0=0x1029adc0, a1=0x3, a2=0x1, a3=?.
-  The `jal` at 0x1005f9cc calls MakeAtom [0x10238200] with a0=0x1029ae88, a1=0xa, a2=0x1, a3=?.
-  The `jal` at 0x1005f9ec calls MakeAtom [0x10238200] with a0=0x1029ae20, a1=0x9, a2=0x1, a3=?.
-  The `jal` at 0x1005fa0c calls MakeAtom [0x10238200] with a0=0x1029ae30, a1=0x8, a2=0x1, a3=?.
-  The `jal` at 0x1005fa2c calls MakeAtom [0x10238200] with a0=0x1029ae60, a1=0xb, a2=0x1, a3=?.
+  The `jal` at 0x1005f918 calls initIndicatorNames..ABF [0x1023bb10] with a0=[a0+36], a1=?, a2=?, a3=[[a0+36]+28].
+  The `jal` at 0x1005f960 calls MakeAtom [0x10238200] with a0=0x1028fed0, a1=0x7, a2=0x1, a3=[[a0+36]+28].
+  The `jal` at 0x1005f984 calls MakeAtom [0x10238200] with a0=0x1029ae80, a1=0x7, a2=0x1, a3=[[a0+36]+28], a4=[a1+12], a6=[[[a0+36]+28]+20], a7=[[[a0+36]+28]+12].
+  The `jal` at 0x1005f9a8 calls MakeAtom [0x10238200] with a0=0x1029adc0, a1=0x3, a2=0x1, a3=[[a0+36]+28], a7=[[[a0+36]+28]+24].
+  The `jal` at 0x1005f9cc calls MakeAtom [0x10238200] with a0=0x1029ae88, a1=0xa, a2=0x1, a3=[[a0+36]+28].
+  The `jal` at 0x1005f9ec calls MakeAtom [0x10238200] with a0=0x1029ae20, a1=0x9, a2=0x1, a3=[[a0+36]+28].
+  The `jal` at 0x1005fa0c calls MakeAtom [0x10238200] with a0=0x1029ae30, a1=0x8, a2=0x1, a3=[[a0+36]+28].
+  The `jal` at 0x1005fa2c calls MakeAtom [0x10238200] with a0=0x1029ae60, a1=0xb, a2=0x1, a3=[[a0+36]+28].
   The `beq` branch at 0x1005f7e4 targets 0x1005f7f8, is taken when v0(=ret(SrvXkbAllocNames)) == 0, and falls through when v0(=ret(SrvXkbAllocNames)) != 0.
-  The `beq` branch at 0x1005f81c targets 0x1005f8e0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x1005f828 targets 0x1005f8ec, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x1005f834 targets 0x1005f8f4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `beq` branch at 0x1005f840 targets 0x1005f8fc, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x1005f84c targets 0x1005f904, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `beq` branch at 0x1005f858 targets 0x1005f90c, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x1005f81c targets 0x1005f8e0, is taken when a1(=[[[a0+36]+28]]) == 0, and falls through when a1(=[[[a0+36]+28]]) != 0.
+  The `beq` branch at 0x1005f828 targets 0x1005f8ec, is taken when a4(=[[[a0+36]+28]+4]) == 0, and falls through when a4(=[[[a0+36]+28]+4]) != 0.
+  The `beq` branch at 0x1005f834 targets 0x1005f8f4, is taken when a5(=[[[a0+36]+28]+240]) == 0, and falls through when a5(=[[[a0+36]+28]+240]) != 0.
+  The `beq` branch at 0x1005f840 targets 0x1005f8fc, is taken when a6(=[[[a0+36]+28]+8]) == 0, and falls through when a6(=[[[a0+36]+28]+8]) != 0.
+  The `beq` branch at 0x1005f84c targets 0x1005f904, is taken when a7(=[[[a0+36]+28]+12]) == 0, and falls through when a7(=[[[a0+36]+28]+12]) != 0.
+  The `beq` branch at 0x1005f858 targets 0x1005f90c, is taken when t0(=[[[a0+36]+28]+16]) == 0, and falls through when t0(=[[[a0+36]+28]+16]) != 0.
   The `beq` branch at 0x1005f86c targets 0x1005f8a8, is taken when (a4(=[a1+12]) & 0x40) == 0, and falls through when (a4(=[a1+12]) & 0x40) != 0.
   The `beq` branch at 0x1005f874 targets 0x1005f914, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x1005f87c targets 0x1005f914, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x1005f888 targets 0x1005f8d8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x1005f8ac targets 0x1005f974, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x1005f8b8 targets 0x1005f998, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `beq` branch at 0x1005f8c4 targets 0x1005f9bc, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x1005f888 targets 0x1005f8d8, is taken when a4(=[[a0+36]+36]) == 0, and falls through when a4(=[[a0+36]+36]) != 0.
+  The `beq` branch at 0x1005f8ac targets 0x1005f974, is taken when a6(=[[[a0+36]+28]+20]) == 0, and falls through when a6(=[[[a0+36]+28]+20]) != 0.
+  The `beq` branch at 0x1005f8b8 targets 0x1005f998, is taken when a7(=[[[a0+36]+28]+24]) == 0, and falls through when a7(=[[[a0+36]+28]+24]) != 0.
+  The `beq` branch at 0x1005f8c4 targets 0x1005f9bc, is taken when t0(=[[[a0+36]+28]+32]) == 0, and falls through when t0(=[[[a0+36]+28]+32]) != 0.
   The `beq` branch at 0x1005f8d0 targets 0x1005f870 and is always taken.
   The `beq` branch at 0x1005f8d8 targets 0x1005f898 and is always taken.
   The `beq` branch at 0x1005f8e4 targets 0x1005f824 and is always taken.
@@ -9928,10 +9964,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x1005f8fc targets 0x1005f848 and is always taken.
   The `beq` branch at 0x1005f904 targets 0x1005f854 and is always taken.
   The `beq` branch at 0x1005f90c targets 0x1005f860 and is always taken.
-  The `beq` branch at 0x1005f928 targets 0x1005f9e0, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x1005f934 targets 0x1005fa00, is taken when t9(?) == 0, and falls through when t9(?) != 0.
-  The `beq` branch at 0x1005f940 targets 0x1005fa20, is taken when ra(?) == 0, and falls through when ra(?) != 0.
-  The `bne` branch at 0x1005f94c targets 0x1005f880, is taken when at(?) != 0, and falls through when at(?) == 0.
+  The `beq` branch at 0x1005f928 targets 0x1005f9e0, is taken when t8(=[[[a0+36]+28]+100]) == 0, and falls through when t8(=[[[a0+36]+28]+100]) != 0.
+  The `beq` branch at 0x1005f934 targets 0x1005fa00, is taken when t9(=[[[a0+36]+28]+104]) == 0, and falls through when t9(=[[[a0+36]+28]+104]) != 0.
+  The `beq` branch at 0x1005f940 targets 0x1005fa20, is taken when ra(=[[[a0+36]+28]+108]) == 0, and falls through when ra(=[[[a0+36]+28]+108]) != 0.
+  The `bne` branch at 0x1005f94c targets 0x1005f880, is taken when at(=[[[a0+36]+28]+112]) != 0, and falls through when at(=[[[a0+36]+28]+112]) == 0.
   The `beq` branch at 0x1005f96c targets 0x1005f880 and is always taken.
   The `beq` branch at 0x1005f990 targets 0x1005f8b4 and is always taken.
   The `beq` branch at 0x1005f9b4 targets 0x1005f8c0 and is always taken.
@@ -10264,35 +10300,35 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0x10060d4c stores 1 byte to a1 (arg1 at entry) +0x8.
   The `lbu` at 0x10060e78 loads 1 byte from a1 (arg1 at entry) +0x0.
   The `lw` at 0x10060e90 loads 4 bytes from a1 (arg1 at entry) +0x4.
-  The `jalr` at 0x10060c70 calls (unknown callee) with a0=?, a1=sp-152, a2=?, a3=?, a4=0x0, a6=[0x102c7268].
-  The `jalr` at 0x10060d1c calls (unknown callee) with a0=?, a1=?, a2=a1 at entry (arg1), a3=0x20.
-  The `jalr` at 0x10060d60 calls times with a0=sp-168, a1=?, a2=?, a3=?, a4=0x0, a6=0x0.
-  The `jalr` at 0x10060db4 calls memmove with a0=?, a1=a1 at entry (arg1), a2=0x20, a3=0x1, a6=table(0x102c5d40).
-  The `jal` at 0x10060dec calls AllocateOutputBuffer [0x100c1f40] with a0=?, a1=?, a2=[0x102c727c], a3=?, a4=[0x102c727c].
-  The `jalr` at 0x10060f10 calls (unknown callee) with a0=?, a1=sp-152, a2=?, a3=?, a4=0x0, a6=[0x102c7268].
-  The `jal` at 0x10060f38 calls sgiCheckCloneBuffer..NM [0x1011fef0] with a0=?, a1=?, a2=ret(AllocateOutputBuffer), a3=?.
-  The `jalr` at 0x10060f64 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10060c70 calls (unknown callee) with a0=0x102c7268, a1=sp-152, a2=?, a3=?, a4=0x0, a6=[0x102c7268], a7=one of 0x0, 0x1.
+  The `jalr` at 0x10060d1c calls (unknown callee) with a0=?, a1=?, a2=a1 at entry (arg1), a3=0x20, a7=one of 0x0, 0x1.
+  The `jalr` at 0x10060d60 calls times with a0=sp-168, a1=?, a2=?, a3=?, a4=0x0, a6=0x0, a7=one of 0x0, 0x1.
+  The `jalr` at 0x10060db4 calls memmove with a0=?, a1=a1 at entry (arg1), a2=0x20, a3=0x1, a6=table(0x102c5d40), a7=one of 0x0, 0x1.
+  The `jal` at 0x10060dec calls AllocateOutputBuffer [0x100c1f40] with a0=?, a1=?, a2=[0x102c727c], a3=?, a4=[0x102c727c], a6=0x0, a7=one of 0x0, 0x1.
+  The `jalr` at 0x10060f10 calls (unknown callee) with a0=0x102c7268, a1=sp-152, a2=?, a3=?, a4=0x0, a6=[0x102c7268], a7=one of 0x0, 0x1.
+  The `jal` at 0x10060f38 calls sgiCheckCloneBuffer..NM [0x1011fef0] with a0=?, a1=?, a2=ret(AllocateOutputBuffer), a3=?, a7=one of 0x0, 0x1.
+  The `jalr` at 0x10060f64 calls (unknown callee) with a0=?, a1=?, a2=ret(AllocateOutputBuffer), a3=?, a7=one of 0x0, 0x1.
   The `jalr` at 0x10060f7c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10060f84 calls _XSERVTransFreeConnInfo [0x100d3a20] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0x10060ac8 targets 0x10060be4, is taken when s0(=[a0+188]) == 0, and falls through when s0(=[a0+188]) != 0.
   The `beq` branch at 0x10060af0 targets 0x10060b1c and is always taken.
-  The `beq` branch at 0x10060af8 targets 0x10060bfc, is taken when s2(?) == 0, and falls through when s2(?) != 0.
+  The `beq` branch at 0x10060af8 targets 0x10060bfc, is taken when s2(=one of 0x0, 0x1) == 0, and falls through when s2(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10060b14 targets 0x10060be4, is taken when s0(?) == 0, and falls through when s0(?) != 0.
   The `bne` branch at 0x10060b24 targets 0x10060b10, is taken when ra(?) != 0, and falls through when ra(?) == 0.
   The `beq` branch at 0x10060b34 targets 0x10060b10, is taken when a2(?) == s3(=0x102cc150), and falls through when a2(?) != s3(=0x102cc150).
   The `beq` branch at 0x10060b3c targets 0x10060b10, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x10060b48 targets 0x10060b10, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x10060b50 targets 0x10060d30, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x10060b50 targets 0x10060d30, is taken when a7(=one of 0x0, 0x1) == 0, and falls through when a7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10060b80 targets 0x10060bb0, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `bne` branch at 0x10060bbc targets 0x10060af8, is taken when a2(?) != 0, and falls through when a2(?) == 0.
   The `beq` branch at 0x10060bc4 targets 0x10060de0, is taken when a4(=[0x102c727c]) == 0, and falls through when a4(=[0x102c727c]) != 0.
-  The `bne` branch at 0x10060bd4 targets 0x10060af8, is taken when a6(?) != 0, and falls through when a6(?) == 0.
+  The `bne` branch at 0x10060bd4 targets 0x10060af8, is taken when a6(=one of 0x0, 0x1) != 0, and falls through when a6(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10060bdc targets 0x10060af8 and is always taken.
   The `beq` branch at 0x10060c08 targets 0x10060c90, is taken when t8(=[0x102c7268]) == 0, and falls through when t8(=[0x102c7268]) != 0.
   The `beq` branch at 0x10060c28 targets 0x10060e68, is taken when t1(?) == 0, and falls through when t1(?) != 0.
-  The `beq` branch at 0x10060c3c targets 0x10060c90, is taken when t8(?) == 0, and falls through when t8(?) != 0.
+  The `beq` branch at 0x10060c3c targets 0x10060c90 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10060c48 targets 0x10060c90, is taken when a6(=[0x102c7268]) == 0, and falls through when a6(=[0x102c7268]) != 0.
-  The `beq` branch at 0x10060cdc targets 0x10060d88, is taken when t9(?) >= at(?) (signed), and falls through when t9(?) < at(?) (signed).
+  The `beq` branch at 0x10060cdc targets 0x10060d88, is taken when t9(?) >= at(=table(0x20)) (signed), and falls through when t9(?) < at(=table(0x20)) (signed).
   The `beq` branch at 0x10060d00 targets 0x10060e14, is taken when at(=[0x102c6750]:8) == 0, and falls through when at(=[0x102c6750]:8) != 0.
   The `beq` branch at 0x10060d28 targets 0x10060b00 and is always taken.
   The `beq` branch at 0x10060d80 targets 0x10060b58 and is always taken.
@@ -10306,7 +10342,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0x10060e70 targets 0x10060c90, is taken when t2(?) != t3(=0x2), and falls through when t2(?) == t3(=0x2).
   The `bne` branch at 0x10060e80 targets 0x10060c90, is taken when t8(=0x1) != t9(=[a1]:1), and falls through when t8(=0x1) == t9(=[a1]:1).
   The `beq` branch at 0x10060e8c targets 0x10060ec4, is taken when ra(?) == 0, and falls through when ra(?) != 0.
-  The `beq` branch at 0x10060edc targets 0x10060c90, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x10060edc targets 0x10060c90 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10060ee8 targets 0x10060c90, is taken when a6(=[0x102c7268]) == 0, and falls through when a6(=[0x102c7268]) != 0.
   The `beq` branch at 0x10060f2c targets 0x10060c90 and is always taken.
   The `beq` branch at 0x10060f54 targets 0x10060fa4, is taken when a0(?) == 0, and falls through when a0(?) != 0.
@@ -10319,52 +10355,60 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 4296 bytes.
   The `lw` at 0x10060fc0 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10060fd0 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lbu` at 0x10060ff0 loads 1 byte from [a0+8] +0x14.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x14, including `lbu` at 0x10060ff0, `lbu` at 0x10061118.
   5 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10061028, `sw` at 0x100612b0, `sw` at 0x100612dc.
-  The `lw` at 0x1006103c loads 4 bytes from [a0+8] +0x4.
+  4 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1006103c, `lw` at 0x1006106c, `lw` at 0x1006116c.
   The `lw` at 0x10061048 loads 4 bytes from sym(XRC_DRAWABLE) +0x0.
   The `lw` at 0x10061058 loads 4 bytes from sym(XRT_PIXMAP) +0x0.
-  The `lw` at 0x1006105c loads 4 bytes from ret(SecurityLookupIDByClass) +0x80.
-  55 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1006106c, `lw` at 0x100610dc, `lw` at 0x100610ec.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByClass) +0x80, including `lw` at 0x1006105c, `lw` at 0x10061148.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x30, including `lw` at 0x10061070, `lw` at 0x100611fc.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x74, including `lw` at 0x10061080, `lw` at 0x10061208.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2c, including `lw` at 0x1006108c, `lw` at 0x1006200c.
   The `lbu` at 0x100610b4 loads 1 byte from ret(SecurityLookupIDByClass) +0x0.
-  The `lw` at 0x100610fc loads 4 bytes from ret(SecurityLookupIDByType) +0x14.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x18, including `lw` at 0x100610dc, `lw` at 0x100612d0.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x1c, including `lw` at 0x100610ec, `lw` at 0x10061620, `lw` at 0x1006167c.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x14, including `lw` at 0x100610fc, `lw` at 0x10061624.
   The `lw` at 0x1006110c loads 4 bytes from ret(SecurityLookupIDByType) +0x10.
-  21 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10061118, `lbu` at 0x10061484, `lbu` at 0x10061524.
-  5 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10061124, `lhu` at 0x10061130, `lhu` at 0x10061350.
-  18 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1006112c, `lh` at 0x10061134, `lh` at 0x100612ec.
+  The `lw` at 0x1006111c loads 4 bytes from [a0+8] +0x10.
+  The `lhu` at 0x10061124 loads 2 bytes from [a0+8] +0xc.
+  The `lh` at 0x1006112c loads 2 bytes from [a0+8] +0xa.
+  The `lhu` at 0x10061130 loads 2 bytes from [a0+8] +0xe.
+  The `lh` at 0x10061134 loads 2 bytes from [a0+8] +0x8.
   The `lw` at 0x10061144 loads 4 bytes from sym(XRT_WINDOW) +0x0.
   The `lw` at 0x10061160 loads 4 bytes from sym(WindowTable) +0x0.
   The `lw` at 0x10061168 loads 4 bytes from [sym(WindowTable)] +0x0.
   The `lw` at 0x10061170 loads 4 bytes from [[sym(WindowTable)]] +0x4.
+  42 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100611f8, `lw` at 0x10061234, `lw` at 0x10061240.
   4 such `lw` accesses load 4 bytes from sym(panoramiXdataPtr) +0x0, including `lw` at 0x100612e8, `lw` at 0x10061754, `lw` at 0x10061a40.
+  16 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100612ec, `lh` at 0x10061324, `lh` at 0x10061748.
   2 such `lw` accesses load 4 bytes from [sym(panoramiXdataPtr)] +0x10, including `lw` at 0x100612f0, `lw` at 0x10061e50.
   2 such `lw` accesses load 4 bytes from [sym(panoramiXdataPtr)] +0x14, including `lw` at 0x10061320, `lw` at 0x10061e64.
+  3 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10061350, `lhu` at 0x10061370, `lhu` at 0x1006139c.
   The `lw` at 0x10061430 loads 4 bytes from a0 (arg0 at entry) +0x78.
   2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10061480, `sw` at 0x10062014.
+  20 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10061484, `lbu` at 0x10061524, `lbu` at 0x1006153c.
   The `lw` at 0x1006151c loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `ld` at 0x10061560 loads 8 bytes from abs 0x1028cdf0.
   The `lw` at 0x10061568 loads 4 bytes from sym(PixmapWidthPaddingInfo) +0xc.
   The `lw` at 0x10061574 loads 4 bytes from sym(PixmapWidthPaddingInfo) +0x10.
   The `lw` at 0x10061578 loads 4 bytes from sym(PixmapWidthPaddingInfo) +0x14.
   The `ld` at 0x100615b4 loads 8 bytes from abs 0x1028cdf8.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0xc, including `lw` at 0x10061800, `lw` at 0x10061e98.
   2 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x100619ec, `lw` at 0x10061ba0.
   The `lw` at 0x10061bc0 loads 4 bytes from sym(Must_have_memory) +0x0.
   10 such `sb` accesses store 1 byte to ?, including `sb` at 0x10061c44, `sb` at 0x10061c6c, `sb` at 0x10061c7c.
   The `lw` at 0x10061ef0 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lw` at 0x10061fb4 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x10061044 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=[sym(XRC_DRAWABLE)], a3=0x2.
-  The `jal` at 0x100610a4 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=?, a2=0x40000000, a3=0x0.
-  The `jal` at 0x100610d8 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=?, a2=[0x102ca988], a3=0x0.
-  The `jal` at 0x100613e4 calls ProcShmGetImage..BFE [0x101925c0] with a0=a0 at entry (arg0), a1=?, a2=[sym(XRT_PIXMAP)], a3=[ret(SecurityLookupIDByClass)+128].
+  The `jal` at 0x100610a4 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x0.
+  The `jal` at 0x100610d8 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+24], a2=[0x102ca988], a3=0x0.
+  The `jal` at 0x100613e4 calls ProcShmGetImage..BFE [0x101925c0] with a0=a0 at entry (arg0), a1=[a0+8], a2=[sym(XRT_PIXMAP)], a3=[ret(SecurityLookupIDByClass)+128].
   The `jalr` at 0x10061450 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=0x0, a5=0x3fffff, a6=sym(clientTable).
-  The `jalr` at 0x10061780 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10061780 calls (unknown callee) with a0=?, a1=?, a2=?, a3=[[a0+8]+12]:2, a4=[[a0+8]+14]:2, a5=[[a0+8]+20]:1.
   The `jal` at 0x10061794 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100617a4 calls (unknown callee) with a0=sp-432, a1=?, a2=?, a3=?.
   The `jalr` at 0x100617b4 calls (unknown callee) with a0=sp-416, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10061858 calls (unknown callee) with a0=sp-432, a1=sp-440, a2=0x1, a3=?.
+  The `jalr` at 0x10061858 calls (unknown callee) with a0=sp-432, a1=sp-440, a2=0x1, a3=[ret(SecurityLookupIDByType)+12], a4=[[a0+8]+8]:2, a5=[[a0+8]+10]:2.
   The `jalr` at 0x10061870 calls (unknown callee) with a0=sp-416, a1=0x0, a2=0x1, a3=?.
   The `jalr` at 0x100618ec calls (unknown callee) with a0=sp-432, a1=sp-432, a2=sp-416, a3=?.
   The `jalr` at 0x100618fc calls (unknown callee) with a0=sp-432, a1=?, a2=?, a3=?.
@@ -10373,34 +10417,34 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0x100619d8 calls __libc_lockmalloc with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100619e4 calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100619fc calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10061a80 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10061a80 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a5=[[a0+8]+20]:1.
   The `jalr` at 0x10061b0c calls memcpy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10061bac calls realloc [0x101a0420] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10061bcc calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10061bcc calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=?, a3=?.
   The `jalr` at 0x10061dcc calls memcpy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10061e24 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10061eac calls XineramaGetImageData [0x10108270] with a0=sp-544, a1=?, a2=?, a3=?.
+  The `jal` at 0x10061eac calls XineramaGetImageData [0x10108270] with a0=sp-544, a1=[[a0+8]+8]:2, a2=[[a0+8]+10]:2, a3=[[a0+8]+12]:2, a4=[[a0+8]+14]:2, a5=[[a0+8]+20]:1, a6=[[a0+8]+16], a7=([ret(SecurityLookupIDByType)+12] + [[a0+8]+28]).
   The `jal` at 0x10061fa4 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-480, a3=?.
   The `beq` branch at 0x10060fcc targets 0x10060ff0, is taken when at(=0x8) == v0(=[a0+72]), and falls through when at(=0x8) != v0(=[a0+72]).
   The `beq` branch at 0x10061000 targets 0x1006102c, is taken when v1(=0x1) == a1(=[[a0+8]+20]:1), and falls through when v1(=0x1) != a1(=[[a0+8]+20]:1).
   The `beq` branch at 0x1006100c targets 0x10061030, is taken when a1(=[[a0+8]+20]:1) == a0(=0x2), and falls through when a1(=[[a0+8]+20]:1) != a0(=0x2).
   The `beq` branch at 0x1006104c targets 0x100612b4, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
   The `beq` branch at 0x10061060 targets 0x100613e4, is taken when a2(=[sym(XRT_PIXMAP)]) == a3(=[ret(SecurityLookupIDByClass)+128]), and falls through when a2(=[sym(XRT_PIXMAP)]) != a3(=[ret(SecurityLookupIDByClass)+128]).
-  The `bne` branch at 0x10061074 targets 0x10061098, is taken when a3(=[a0+48]) != a1(?), and falls through when a3(=[a0+48]) == a1(?).
+  The `bne` branch at 0x10061074 targets 0x10061098, is taken when a3(=[a0+48]) != a1(=[[a0+8]+4]), and falls through when a3(=[a0+48]) == a1(=[[a0+8]+4]).
   The `bne` branch at 0x10061084 targets 0x10061098, is taken when a4(=[a0+116]) != 0, and falls through when a4(=[a0+116]) == 0.
   The `beq` branch at 0x10061090 targets 0x100610c4 and is always taken.
   The `beq` branch at 0x100610ac targets 0x100613bc, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
   The `beq` branch at 0x100610bc targets 0x100613dc, is taken when a6(=[ret(SecurityLookupIDByClass)]:1) == a7(=0x2), and falls through when a6(=[ret(SecurityLookupIDByClass)]:1) != a7(=0x2).
   The `beq` branch at 0x100610e0 targets 0x100612c0, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `bne` branch at 0x100610f4 targets 0x100612a0, is taken when (t3(?) & 0x3) != 0, and falls through when (t3(?) & 0x3) == 0.
-  The `bne` branch at 0x10061104 targets 0x100612a0, is taken when t8(=[ret(SecurityLookupIDByType)+20]) < t3(?) (unsigned), and falls through when t8(=[ret(SecurityLookupIDByType)+20]) >= t3(?) (unsigned).
+  The `bne` branch at 0x100610f4 targets 0x100612a0, is taken when (t3(=[[a0+8]+28]) & 0x3) != 0, and falls through when (t3(=[[a0+8]+28]) & 0x3) == 0.
+  The `bne` branch at 0x10061104 targets 0x100612a0, is taken when t8(=[ret(SecurityLookupIDByType)+20]) < t3(=[[a0+8]+28]) (unsigned), and falls through when t8(=[ret(SecurityLookupIDByType)+20]) >= t3(=[[a0+8]+28]) (unsigned).
   The `beq` branch at 0x10061110 targets 0x100614cc, is taken when t9(=[ret(SecurityLookupIDByType)+16]) == 0, and falls through when t9(=[ret(SecurityLookupIDByType)+16]) != 0.
-  The `bne` branch at 0x10061154 targets 0x100612e0, is taken when ra(=[sym(XRT_WINDOW)]) != at(?), and falls through when ra(=[sym(XRT_WINDOW)]) == at(?).
-  The `bne` branch at 0x10061174 targets 0x100612e0, is taken when a1(=[[[sym(WindowTable)]]+4]) != a2(?), and falls through when a1(=[[[sym(WindowTable)]]+4]) == a2(?).
-  The `bltz` branch at 0x10061180 targets 0x100614c4, is taken when a2(?) < 0 (signed), and falls through when a2(?) >= 0 (signed).
-  The `bne` branch at 0x1006119c targets 0x100614c4, is taken when a4(=[0x102c5f60]) < a5(?) (signed), and falls through when a4(=[0x102c5f60]) >= a5(?) (signed).
-  The `bltz` branch at 0x100611a4 targets 0x100614c4, is taken when a7(?) < 0 (signed), and falls through when a7(?) >= 0 (signed).
-  The `bne` branch at 0x100611bc targets 0x100614c4, is taken when t0(=[0x102c5f64]) < t1(?) (signed), and falls through when t0(=[0x102c5f64]) >= t1(?) (signed).
+  The `bne` branch at 0x10061154 targets 0x100612e0, is taken when ra(=[sym(XRT_WINDOW)]) != at(=[ret(SecurityLookupIDByClass)+128]), and falls through when ra(=[sym(XRT_WINDOW)]) == at(=[ret(SecurityLookupIDByClass)+128]).
+  The `bne` branch at 0x10061174 targets 0x100612e0, is taken when a1(=[[[sym(WindowTable)]]+4]) != a2(=[[a0+8]+4]), and falls through when a1(=[[[sym(WindowTable)]]+4]) == a2(=[[a0+8]+4]).
+  The `bltz` branch at 0x10061180 targets 0x100614c4, is taken when a2(=[[a0+8]+8]:2) < 0 (signed), and falls through when a2(=[[a0+8]+8]:2) >= 0 (signed).
+  The `bne` branch at 0x1006119c targets 0x100614c4, is taken when a4(=[0x102c5f60]) < a5(=([[a0+8]+8]:2 + [[a0+8]+12]:2)) (signed), and falls through when a4(=[0x102c5f60]) >= a5(=([[a0+8]+8]:2 + [[a0+8]+12]:2)) (signed).
+  The `bltz` branch at 0x100611a4 targets 0x100614c4, is taken when a7(=[[a0+8]+10]:2) < 0 (signed), and falls through when a7(=[[a0+8]+10]:2) >= 0 (signed).
+  The `bne` branch at 0x100611bc targets 0x100614c4, is taken when t0(=[0x102c5f64]) < t1(=([[a0+8]+10]:2 + [[a0+8]+14]:2)) (signed), and falls through when t0(=[0x102c5f64]) >= t1(=([[a0+8]+10]:2 + [[a0+8]+14]:2)) (signed).
   The `bne` branch at 0x100611d0 targets 0x100614d4, is taken when a7(=[0x102c5f1c]) < 0x2 (signed), and falls through when a7(=[0x102c5f1c]) >= 0x2 (signed).
   The `bne` branch at 0x10061200 targets 0x10061214, is taken when t0(=[a0+48]) != a1(?), and falls through when t0(=[a0+48]) == a1(?).
   The `beq` branch at 0x1006120c targets 0x1006200c, is taken when t1(=[a0+116]) == 0, and falls through when t1(=[a0+116]) != 0.
@@ -10418,10 +10462,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0x10061318 targets 0x100613b4, is taken when t8(=[0x102c5f60]) < t9(?) (signed), and falls through when t8(=[0x102c5f60]) >= t9(?) (signed).
   The `bltz` branch at 0x10061334 targets 0x100613b4, is taken when a7(?) < 0 (signed), and falls through when a7(?) >= 0 (signed).
   The `bne` branch at 0x10061348 targets 0x100613b4, is taken when t1(=[0x102c5f64]) < t3(?) (signed), and falls through when t1(=[0x102c5f64]) >= t3(?) (signed).
-  The `bne` branch at 0x10061360 targets 0x100613b4, is taken when t8(?) < t3(?) (signed), and falls through when t8(?) >= t3(?) (signed).
-  The `bne` branch at 0x10061380 targets 0x100613b4, is taken when t0(?) < t1(?) (signed), and falls through when t0(?) >= t1(?) (signed).
-  The `bne` branch at 0x1006138c targets 0x100613b4, is taken when t1(?) < t3(?) (signed), and falls through when t1(?) >= t3(?) (signed).
-  The `beq` branch at 0x100613ac targets 0x100611c8, is taken when t3(?) >= t8(?) (signed), and falls through when t3(?) < t8(?) (signed).
+  The `bne` branch at 0x10061360 targets 0x100613b4, is taken when t8(=[[a0+8]+8]:2) < t3(?) (signed), and falls through when t8(=[[a0+8]+8]:2) >= t3(?) (signed).
+  The `bne` branch at 0x10061380 targets 0x100613b4, is taken when t0(?) < t1(=([[a0+8]+8]:2 + [[a0+8]+12]:2)) (signed), and falls through when t0(?) >= t1(=([[a0+8]+8]:2 + [[a0+8]+12]:2)) (signed).
+  The `bne` branch at 0x1006138c targets 0x100613b4, is taken when t1(=[[a0+8]+10]:2) < t3(?) (signed), and falls through when t1(=[[a0+8]+10]:2) >= t3(?) (signed).
+  The `beq` branch at 0x100613ac targets 0x100611c8, is taken when t3(?) >= t8(=([[a0+8]+10]:2 + [[a0+8]+14]:2)) (signed), and falls through when t3(?) < t8(=([[a0+8]+10]:2 + [[a0+8]+14]:2)) (signed).
   The `beq` branch at 0x100613b4 targets 0x10060fe0 and is always taken.
   The `beq` branch at 0x100613dc targets 0x10060fe0 and is always taken.
   The `beq` branch at 0x100613ec targets 0x10060fe0 and is always taken.
@@ -10441,20 +10485,20 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beq` branch at 0x100614dc targets 0x100614ec, is taken when a7(?) == 0, and falls through when a7(?) != 0.
   The `beq` branch at 0x100614e4 targets 0x10061504 and is always taken.
   The `beq` branch at 0x100614f8 targets 0x100614f0, is taken when t3(?) == 0, and falls through when t3(?) != 0.
-  The `beq` branch at 0x10061538 targets 0x10062030, is taken when t0(?) == t1(=0x2), and falls through when t0(?) != t1(=0x2).
-  The `beq` branch at 0x10061630 targets 0x10061644, is taken when at(?) >= v1(?) (unsigned), and falls through when at(?) < v1(?) (unsigned).
+  The `beq` branch at 0x10061538 targets 0x10062030, is taken when t0(=[[a0+8]+20]:1) == t1(=0x2), and falls through when t0(=[[a0+8]+20]:1) != t1(=0x2).
+  The `beq` branch at 0x10061630 targets 0x10061644, is taken when at(=[ret(SecurityLookupIDByType)+20]) >= v1(?) (unsigned), and falls through when at(=[ret(SecurityLookupIDByType)+20]) < v1(?) (unsigned).
   The `beq` branch at 0x1006163c targets 0x10060fe0 and is always taken.
   The `beq` branch at 0x10061664 targets 0x10061ed4, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x10061678 targets 0x10061e80, is taken when t8(?) == t9(=0x2), and falls through when t8(?) != t9(=0x2).
+  The `beq` branch at 0x10061678 targets 0x10061e80, is taken when t8(=[[a0+8]+20]:1) == t9(=0x2), and falls through when t8(=[[a0+8]+20]:1) != t9(=0x2).
   The `beq` branch at 0x100616a8 targets 0x10061ed4, is taken when ra(?) == 0, and falls through when ra(?) != 0.
   The `beq` branch at 0x100616e4 targets 0x100617dc and is always taken.
   The `beq` branch at 0x10061704 targets 0x1006127c and is always taken.
   The `beq` branch at 0x10061728 targets 0x1006127c and is always taken.
   The `beq` branch at 0x1006178c targets 0x1006179c, is taken when ra(?) == 0, and falls through when ra(?) != 0.
   The `beq` branch at 0x100617d4 targets 0x10061ed4, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x100617e8 targets 0x100617d0, is taken when (v1(?) & a0(?)) == 0, and falls through when (v1(?) & a0(?)) != 0.
-  The `beq` branch at 0x10061828 targets 0x10061e44, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10061880 targets 0x10061e3c, is taken when ra(?) == at(=0x1), and falls through when ra(?) != at(=0x1).
+  The `beq` branch at 0x100617e8 targets 0x100617d0, is taken when (v1(=[[a0+8]+16]) & a0(?)) == 0, and falls through when (v1(=[[a0+8]+16]) & a0(?)) != 0.
+  The `beq` branch at 0x10061828 targets 0x10061e44, is taken when a1(=one of 0x0, 0x1) == 0, and falls through when a1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x10061880 targets 0x10061e3c, is taken when ra(=[[a0+8]+20]:1) == at(=0x1), and falls through when ra(=[[a0+8]+20]:1) != at(=0x1).
   The `blez` branch at 0x10061894 targets 0x1006179c, is taken when v1(=[0x102c5f1c]) <= 0 (signed), and falls through when v1(=[0x102c5f1c]) > 0 (signed).
   The `beq` branch at 0x100618d0 targets 0x10061948 and is always taken.
   The `beq` branch at 0x10061904 targets 0x1006178c, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -10799,10 +10843,10 @@ Each entry records selected software behavior from its exact binary range. The r
   2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10062bc0, `lw` at 0x10062bcc.
   The `lw` at 0x10062bf0 loads 4 bytes from a0 (arg0 at entry) +0x14.
   The `lw` at 0x10062c1c loads 4 bytes from table(0x102ca580) +0x0.
-  The `sdl` at 0x10062c44 stores 8 bytes to ?.
-  The `sdr` at 0x10062c48 stores 8 bytes to ?.
-  The `swl` at 0x10062c4c stores 4 bytes to ?.
-  The `swr` at 0x10062c50 stores 4 bytes to ?.
+  The `sdl` at 0x10062c44 stores 8 bytes to table(0x102ca580) +0x0.
+  The `sdr` at 0x10062c48 stores 8 bytes to table(0x102ca587) +0x0.
+  The `swl` at 0x10062c4c stores 4 bytes to table(0x102ca588) +0x0.
+  The `swr` at 0x10062c50 stores 4 bytes to table(0x102ca58b) +0x0.
   The `sw` at 0x10062c58 stores 4 bytes to a0 (arg0 at entry) +0x14.
   The `sw` at 0x10062c60 stores 4 bytes to a0 (arg0 at entry) +0x10.
   The `sw` at 0x10062c64 stores 4 bytes to a0 (arg0 at entry) +0x18.
@@ -10839,7 +10883,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lbu` at 0x10062d84 loads 1 byte from [[a0+36]+12] +0x1.
   The `jal` at 0x10062cf4 calls XkbFindSrvLedInfo [0x10242bc0] with a0=[a0+40], a1=0x300, a2=0x400, a3=0x0.
   The `jal` at 0x10062d14 calls XkbFindSrvLedInfo [0x10242bc0] with a0=[a0+40], a1=0x300, a2=0x400, a3=0x0.
-  The `jal` at 0x10062d30 calls XkbUpdateLedAutoState [0x1013e4b0] with a0=?, a1=ret(XkbFindSrvLedInfo), a2=?, a3=0x0, a4=0x0, a5=a3 at entry (arg3).
+  The `jal` at 0x10062d30 calls XkbUpdateLedAutoState [0x1013e4b0] with a0=[a0+40], a1=ret(XkbFindSrvLedInfo), a2=[ret(XkbFindSrvLedInfo)+64], a3=0x0, a4=0x0, a5=a3 at entry (arg3).
   The `jal` at 0x10062d3c calls XkbUpdateAllDeviceIndicators [0x10183c30] with a0=0x0, a1=a3 at entry (arg3), a2=?, a3=?.
   The `jal` at 0x10062dc0 calls XkbSendControlsNotify [0x101ba680] with a0=[a0+40], a1=sp-80, a2=[[[a0+36]+12]+1]:1, a3=a3 at entry (arg3), a5=[[[a0+36]+12]+12], a6=0xffffffff80000000.
   The `beq` branch at 0x10062cb8 targets 0x10062d5c, is taken when a7(?) == a5(=[[[a0+36]+12]+12]), and falls through when a7(?) != a5(=[[[a0+36]+12]+12]).
@@ -10879,10 +10923,14 @@ Each entry records selected software behavior from its exact binary range. The r
   It occupies 648 bytes.
   The `lw` at 0x10062f08 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10062f18 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x10062f4c loads 4 bytes from [a0+8] +0x4.
-  19 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10062f60, `lw` at 0x10062f68, `lw` at 0x10062fa0.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10062f4c, `lw` at 0x10063098, `lw` at 0x10063108.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x10062f60, `lw` at 0x100630a0, `lw` at 0x10063110.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0xc, including `lw` at 0x10062f68, `lw` at 0x100630a8, `lw` at 0x10063124.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x10, including `lw` at 0x10062fa0, `lw` at 0x100630b8.
   The `lw` at 0x10062fd0 loads 4 bytes from [0x102c609c] +0x0.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10062fe4, `lw` at 0x10063000, `lw` at 0x10063030.
   The `lw` at 0x10063040 loads 4 bytes from a0 (arg0 at entry) +0x78.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x14, including `lw` at 0x10063088, `lw` at 0x10063100.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x28, including `lw` at 0x100630e4, `lw` at 0x1006314c.
   The `lw` at 0x10063160 loads 4 bytes from [0x102c609c] +0xc.
   The `sw` at 0x10063184 stores 4 bytes to a0 (arg0 at entry) +0x18.
@@ -10892,20 +10940,20 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jal` at 0x10063138 calls TryClientEvents [0x10136730] with a0=a0 at entry (arg0), a1=sp-80, a2=0x1, a3=0x0, a4=0x0, a5=0x0.
   The `beq` branch at 0x10062f20 targets 0x10062f38, is taken when v0(=[a0+72]) == v1(=0x6), and falls through when v0(=[a0+72]) != v1(=0x6).
   The `beq` branch at 0x10062f54 targets 0x10063158, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x10062f6c targets 0x10062f98, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0x10062f6c targets 0x10062f98, is taken when a5(=[[a0+8]+8]) == 0, and falls through when a5(=[[a0+8]+8]) != 0.
   The `bne` branch at 0x10062f78 targets 0x10062f98, is taken when v1(?) != 0, and falls through when v1(?) == 0.
-  The `beq` branch at 0x10062f80 targets 0x10062f9c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0x10062f80 targets 0x10062f9c, is taken when v0(=[[a0+8]+12]) == 0, and falls through when v0(=[[a0+8]+12]) != 0.
   The `bne` branch at 0x10062f88 targets 0x10062f9c, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x10062f90 targets 0x10062f9c and is always taken.
-  The `beq` branch at 0x10062fa4 targets 0x10062fbc, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x10062fa4 targets 0x10062fbc, is taken when a7(=[[a0+8]+16]) == 0, and falls through when a7(=[[a0+8]+16]) != 0.
   The `beq` branch at 0x10062fac targets 0x10062fb8, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0x10062fbc targets 0x10063178, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `blez` branch at 0x10062fc4 targets 0x100630f0, is taken when a6(=[0x102c60a0]) <= 0 (signed), and falls through when a6(=[0x102c60a0]) > 0 (signed).
-  The `beq` branch at 0x10062fd4 targets 0x10063160, is taken when t0(=[[0x102c609c]]) == a5(?), and falls through when t0(=[[0x102c609c]]) != a5(?).
+  The `beq` branch at 0x10062fd4 targets 0x10063160, is taken when t0(=[[0x102c609c]]) == a5(=[[a0+8]+8]), and falls through when t0(=[[0x102c609c]]) != a5(=[[a0+8]+8]).
   The `beq` branch at 0x10062fdc targets 0x10062ff0 and is always taken.
-  The `beq` branch at 0x10062fe8 targets 0x1006301c, is taken when t1(?) == a5(?), and falls through when t1(?) != a5(?).
+  The `beq` branch at 0x10062fe8 targets 0x1006301c, is taken when t1(?) == a5(=[[a0+8]+8]), and falls through when t1(?) != a5(=[[a0+8]+8]).
   The `beq` branch at 0x10062ff8 targets 0x1006301c, is taken when a4(?) >= a6(=[0x102c60a0]) (signed), and falls through when a4(?) < a6(=[0x102c60a0]) (signed).
-  The `beq` branch at 0x10063004 targets 0x10063018, is taken when t3(?) == a5(?), and falls through when t3(?) != a5(?).
+  The `beq` branch at 0x10063004 targets 0x10063018, is taken when t3(?) == a5(=[[a0+8]+8]), and falls through when t3(?) != a5(=[[a0+8]+8]).
   The `bne` branch at 0x10063014 targets 0x10062fe4, is taken when a4(?) < a6(=[0x102c60a0]) (signed), and falls through when a4(?) >= a6(=[0x102c60a0]) (signed).
   The `beq` branch at 0x10063020 targets 0x100630f0, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x10063034 targets 0x100630f4, is taken when t1(?) == 0, and falls through when t1(?) != 0.
@@ -11086,7 +11134,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0x10063d5c stores 4 bytes to ([a1+436] + ([0x102cf2c4] << 0x2)) +0x0.
   The `lw` at 0x10063d60 loads 4 bytes from a1 (arg1 at entry) +0x98.
   The `jalr` at 0x10063d34 calls (unknown callee) with a0=[[([a1+436] + ([0x102cf2c4] << 0x2))]+56], a1=a1 at entry (arg1), a2=[[([a1+436] + ([0x102cf2c4] << 0x2))]+24], a3=[[([a1+436] + ([0x102cf2c4] << 0x2))]+56], a4=[([a1+436] + ([0x102cf2c4] << 0x2))], a5=[[([a1+436] + ([0x102cf2c4] << 0x2))]+16], a6=[[([a1+436] + ([0x102cf2c4] << 0x2))]+12], a7=[[([a1+436] + ([0x102cf2c4] << 0x2))]+8].
-  The `jal` at 0x10063d44 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10063d44 calls Xfree [0x101fc9c0] with a0=[([a1+436] + ([0x102cf2c4] << 0x2))], a1=?, a2=?, a3=?, a4=[([a1+436] + ([0x102cf2c4] << 0x2))].
   The `jalr` at 0x10063d68 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a7=([a1+436] + ([0x102cf2c4] << 0x2)).
   The `beq` branch at 0x10063d24 targets 0x10063d40, is taken when a3(=[[([a1+436] + ([0x102cf2c4] << 0x2))]+56]) == 0, and falls through when a3(=[[([a1+436] + ([0x102cf2c4] << 0x2))]+56]) != 0.
   The return at 0x10063d7c has v0 = ret(?).
@@ -11176,7 +11224,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0x10064acc stores 4 bytes to sym(currentTime) +0x4.
   The `sw` at 0x10064adc stores 4 bytes to sym(currentTime) +0x0.
   The `jalr` at 0x10064a2c calls times with a0=sp-56, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x10064af0 calls ProcessInputEvents [0x100e9680] with a0=?, a1=?, a2=[sym(checkForInput)], a3=[sym(checkForInput)+4], a4=sym(currentTime), a5=(((ret(times) << 0x2) + ret(times)) << 0x1), a6=[sym(currentTime)]:8.
+  The `jal` at 0x10064af0 calls ProcessInputEvents [0x100e9680] with a0=?, a1=?, a2=[sym(checkForInput)], a3=[sym(checkForInput)+4], a4=sym(currentTime), a5=(((ret(times) << 0x2) + ret(times)) << 0x1), a6=[sym(currentTime)]:8, a7=[sym(currentTime)]+1.
   The `beq` branch at 0x10064a68 targets 0x10064a78, is taken when a5(=(((ret(times) << 0x2) + ret(times)) << 0x1)) >= v0(=[sym(currentTime)+4]) (unsigned), and falls through when a5(=(((ret(times) << 0x2) + ret(times)) << 0x1)) < v0(=[sym(currentTime)+4]) (unsigned).
   The `bne` branch at 0x10064a78 targets 0x10064aec, is taken when t0(=[[sym(checkForInput)]]) != t1(=[[sym(checkForInput)+4]]), and falls through when t0(=[[sym(checkForInput)]]) == t1(=[[sym(checkForInput)+4]]).
   The `bne` branch at 0x10064aa8 targets 0x10064ae0, is taken when t1(?) < a1(?) (unsigned), and falls through when t1(?) >= a1(?) (unsigned).

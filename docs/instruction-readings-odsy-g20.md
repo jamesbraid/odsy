@@ -563,8 +563,8 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `sc` at 0x1888c stores 4 bytes to [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8 +0x8f08.
   The `lh` at 0x18928 loads 2 bytes from [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8 +0x861a.
   The `ld` at 0x18948 loads 8 bytes from (a0 << 0x21) -0x6dfffffffe17ff00.
-  The `jal` at 0x188e0 calls mutex_spintrylock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x188f8 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x188e0 calls mutex_spintrylock with a0=[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+34372, a1=?, a2=?, a3=?.
+  The `jal` at 0x188f8 calls mutex_spinunlock with a0=[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+34372, a1=ret(mutex_spintrylock), a2=[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+34372, a3=?.
   The `jalr` at 0x1890c calls (unknown callee) with a0=a1 at entry (arg1), a1=sym(.rodata)+28464, a2=?, a3=?.
   The `jalr` at 0x18924 calls (unknown callee) with a0=a1 at entry (arg1), a1=sym(.rodata)+28464, a2=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a0 + a0))]:2 << 0x3))]:8+34330]:2, a3=?.
   The `jal` at 0x18944 calls show_ni_port_error with a0=[(a0 << 0x21)-7926335344140091136]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
@@ -748,7 +748,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `ld` at 0x1f0d0 loads 8 bytes from [(sym(pdaindr) + (a0 << 0x4))+8]:8 +0x5b0.
   The `jal` at 0x1ef2c calls mutex_spinlock_spl with a0=?, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1eff0 calls strncpy with a0=?, a1=a5 at entry (arg5), a2=?, a3=?.
-  The `jal` at 0x1f030 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1f030 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `jal` at 0x1f078 calls strlen with a0=a5 at entry (arg5), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1eef4 targets 0x1f0d4, is taken when t2(=[(sym(pdaindr) + (a0 << 0x4))+8]:8) == 0, and falls through when t2(=[(sym(pdaindr) + (a0 << 0x4))+8]:8) != 0.
   The `beq` branch at 0x1ef08 targets 0x1ef18, is taken when a1 >= 0x40 (signed), and falls through when a1 < 0x40 (signed).
@@ -806,7 +806,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   It occupies 792 bytes.
   3 such `ld` accesses load 8 bytes from ?, including `ld` at 0x1f1cc, `ld` at 0x1f34c, `ld` at 0x1f460.
   5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1f1f0, `lw` at 0x1f2c0, `lw` at 0x1f378.
-  5 such `sd` accesses store 8 bytes to ?, including `sd` at 0x1f23c, `sd` at 0x1f25c, `sd` at 0x1f27c.
+  4 such `sd` accesses store 8 bytes to ?, including `sd` at 0x1f23c, `sd` at 0x1f25c, `sd` at 0x1f27c.
   2 such `sh` accesses store 2 bytes to ?, including `sh` at 0x1f29c, `sh` at 0x1f418.
   2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1f2d0, `sw` at 0x1f380.
   4 such `ld` accesses load 8 bytes from (sym(pdaindr) + (a0 << 0x4)) +0x8, including `ld` at 0x1f2d4, `ld` at 0x1f360, `ld` at 0x1f388.
@@ -817,9 +817,10 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `ld` at 0x1f350 loads 8 bytes from (([(sym(compact_to_nasid_node) + ([[(sym(pdaindr) + (a0 << 0x4))+8]:8+1066]:2 + [[(sym(pdaindr) + (a0 << 0x4))+8]:8+1066]:2))]:2 << 0x21) + one of 0x9200000001800098, 0x9200000001a00098) +0x0.
   The `ll` at 0x1f3e8 loads 4 bytes from ?.
   The `sc` at 0x1f3f0 stores 4 bytes to ?.
+  The `sd` at 0x1f464 stores 8 bytes to table(0x9200000001800000) +0x0.
   The `jal` at 0x1f1bc calls intr_get_ptrs [0x1f12c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36, a3=sp-160, a4=sp-152, a5=sp-144.
   The `jal` at 0x1f1d0 calls mutex_spinlock_spl with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1f208 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1f208 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `jal` at 0x1f44c calls intr_thread_setup [0x2179c] with a0=?, a1=[[(sym(pdaindr) + (a0 << 0x4))+8]:8+1066]:2, a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=0x200, a5=a0 at entry (arg0), a7=(((a1 << 0x3) + a1) << 0x3).
   The `beq` branch at 0x1f1fc targets 0x1f224, is taken when (a1(?) & 0x2) == 0, and falls through when (a1(?) & 0x2) != 0.
   The `beq` branch at 0x1f224 targets 0x1f204, is taken when a1(?) == 0, and falls through when a1(?) != 0.
@@ -908,7 +909,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `lbu` at 0x1f918 loads 1 byte from [table(sym(pdaindr))+8]:8 +0x528.
   The `ld` at 0x1f934 loads 8 bytes from abs 0xffffffffffffc400.
   The `ld` at 0x1f944 loads 8 bytes from [-0x3c00]:8 +0x0.
-  The `ld` at 0x1f958 loads 8 bytes from ?.
+  The `ld` at 0x1f958 loads 8 bytes from ((a0 << 0x3) + [[-0x3c00]:8]:8) +0x0.
   2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1f974, `lw` at 0x1f978.
   The `jal` at 0x1f8d0 calls cnode_slice_to_cpuid with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1f8e8 calls cpu_enabled with a0=?, a1=?, a2=?, a3=?.
@@ -999,7 +1000,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x1fe14 calls hwgraph_vertex_unref with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1fe80 calls intr_unreserve_level with a0=?, a1=[a6], a2=?, a3=?.
   The `jal` at 0x1fe94 calls cmn_err with a0=0x4, a1=sym(.rodata)+43384, a2=a4 at entry (arg4), a3=a4 at entry (arg4).
-  The `jal` at 0x1fed4 calls physmem_select_neighbor_node with a0=?, a1=?, a2=sp-120, a3=sym(intr_cnode_seen), a4=sp-376, a5=sp-384.
+  The `jal` at 0x1fed4 calls physmem_select_neighbor_node with a0=[-0x3bd6]:2, a1=?, a2=sp-120, a3=sym(intr_cnode_seen), a4=sp-376, a5=sp-384.
   The `jal` at 0x1ff18 calls intr_bit_reserve_test [0x1fbdc] with a0=-0x1, a1=?, a2=?, a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5), a7=a6 at entry (arg6).
   The `jal` at 0x1ff58 calls intr_unreserve_level with a0=?, a1=[a6], a2=?, a3=?.
   The `jal` at 0x1ff84 calls cmn_err with a0=0x4, a1=sym(.rodata)+43384, a2=a4 at entry (arg4), a3=a4 at entry (arg4).
@@ -1024,7 +1025,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x1fe68 targets 0x1fcf8 and is always taken.
   The `beq` branch at 0x1fe70 targets 0x1fcf8 and is always taken.
   The `beq` branch at 0x1fe78 targets 0x1fcf8 and is always taken.
-  The `blez` branch at 0x1fea4 targets 0x1ffa0, is taken when s8(?) <= 0 (signed), and falls through when s8(?) > 0 (signed).
+  The `blez` branch at 0x1fea4 targets 0x1ffa0, is taken when s8(=ret(physmem_maxradius)) <= 0 (signed), and falls through when s8(=ret(physmem_maxradius)) > 0 (signed).
   The `beq` branch at 0x1feac targets 0x1fec0 and is always taken.
   The `bne` branch at 0x1febc targets 0x1ffa0, is taken when t9(?) != 0, and falls through when t9(?) == 0.
   The `beq` branch at 0x1fedc targets 0x1feb4, is taken when v0(=ret(physmem_select_neighbor_node)) == 0, and falls through when v0(=ret(physmem_select_neighbor_node)) != 0.
@@ -1247,9 +1248,11 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `ld` at 0x212bc loads 8 bytes from abs 0xffffffffffffc400.
   The `ld` at 0x212c8 loads 8 bytes from [-0x3c00]:8 +0x0.
   The `ld` at 0x212e4 loads 8 bytes from ([[-0x3c00]:8]:8 + (a0 << 0x3)) +0x0.
-  3 such `ld` accesses load 8 bytes from ?, including `ld` at 0x21364, `ld` at 0x21388, `ld` at 0x213a8.
+  The `ld` at 0x21364 loads 8 bytes from (([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) + one of 0x9200000001800098, 0x92000000018000a0, 0x9200000001a00098, 0x9200000001a000a0) +0x0.
+  The `ld` at 0x21388 loads 8 bytes from (([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) + one of 0x92000000018000a8, 0x92000000018000b0, 0x9200000001a000a8, 0x9200000001a000b0) +0x0.
+  The `ld` at 0x213a8 loads 8 bytes from (([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) + one of 0x92000000018000b8, 0x92000000018000c0, 0x9200000001a000b8, 0x9200000001a000c0) +0x0.
   6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x213cc, `lw` at 0x213e8, `lw` at 0x213ec.
-  The `jalr` at 0x213c4 calls (unknown callee) with a0=sym(.rodata)+43384, a1=a0 at entry (arg0), a2=?, a3=?, a5=one of 0x98, 0xa0, 0x200098, 0x2000a0.
+  The `jalr` at 0x213c4 calls (unknown callee) with a0=sym(.rodata)+43384, a1=a0 at entry (arg0), a2=?, a3=?, a4=(([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) + one of 0x9200000001800098, 0x92000000018000a0, 0x9200000001a00098, 0x9200000001a000a0), a5=one of 0x98, 0xa0, 0x200098, 0x2000a0.
   The `jalr` at 0x213dc calls (unknown callee) with a0=sym(.rodata)+43384, a1=?, a2=?, a3=?.
   The `jalr` at 0x213f0 calls (unknown callee) with a0=sym(.rodata)+43384, a1=?, a2=?, a3=?.
   The `jalr` at 0x21404 calls (unknown callee) with a0=sym(.rodata)+43384, a1=?, a2=?, a3=?.
@@ -1406,7 +1409,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `sw` at 0x22a78 stores 4 bytes to a0 (arg0 at entry) +0x0.
   The `jal` at 0x22a7c calls hub_intr_disconnect with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+44].
   The `jal` at 0x22a94 calls kmem_free with a0=a0 at entry (arg0), a1=0x30, a2=?, a3=[a0+44].
-  The `jal` at 0x22aa4 calls intr_unreserve_level with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x22aa4 calls intr_unreserve_level with a0=[a0+36]:2, a1=[a0+40], a2=?, a3=?.
   The `beq` branch at 0x22a64 targets 0x22a88, is taken when (a3(=[a0+44]) & 0x4) == 0, and falls through when (a3(=[a0+44]) & 0x4) != 0.
   The `beq` branch at 0x22a8c targets 0x22a9c, is taken when (a3(=[a0+44]) & 0x1) == 0, and falls through when (a3(=[a0+44]) & 0x1) != 0.
   The return at 0x22ab0 has v0 = ret(intr_unreserve_level).
@@ -1438,7 +1441,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `ld` at 0x22b50 loads 8 bytes from a0 (arg0 at entry) +0x18.
   The `lw` at 0x22b70 loads 4 bytes from a0 (arg0 at entry) +0x2c.
   The `sw` at 0x22b84 stores 4 bytes to a0 (arg0 at entry) +0x2c.
-  The `jal` at 0x22b68 calls intr_disconnect_level with a0=[a0+36]:2, a1=?, a2=?, a3=?.
+  The `jal` at 0x22b68 calls intr_disconnect_level with a0=[a0+36]:2, a1=[a0+40], a2=?, a3=?.
   The `jalr` at 0x22b94 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+40], a2=a2 at entry (arg2), a3=[a0+24]:8.
   The `bne` branch at 0x22b60 targets 0x22b94, is taken when a3(=[a0+24]:8) != 0, and falls through when a3(=[a0+24]:8) == 0.
   The `beq` branch at 0x22b9c targets 0x22b68 and is always taken.
@@ -1589,7 +1592,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `bne` branch at 0x2ac90 targets 0x2ae10, is taken when (at(=[-0x3d80]:8) & 0x20) != 0, and falls through when (at(=[-0x3d80]:8) & 0x20) == 0.
   The `bne` branch at 0x2acec targets 0x2adf8, is taken when v1(=[-0x3ac4]) != a0(?), and falls through when v1(=[-0x3ac4]) == a0(?).
   The `beq` branch at 0x2ad00 targets 0x2ad4c, is taken when a1(=[[-0x3bf8]:8+15448]) == a2(=0x1), and falls through when a1(=[[-0x3bf8]:8+15448]) != a2(=0x1).
-  The `bne` branch at 0x2ad40 targets 0x2adf8, is taken when a5(?) != v0(=ret(cnode_subnode_to_cpu)), and falls through when a5(?) == v0(=ret(cnode_subnode_to_cpu)).
+  The `bne` branch at 0x2ad40 targets 0x2adf8, is taken when a5(=[-0x3bd8]:2) != v0(=ret(cnode_subnode_to_cpu)), and falls through when a5(=[-0x3bd8]:2) == v0(=ret(cnode_subnode_to_cpu)).
   The `beq` branch at 0x2ada0 targets 0x2adf0, is taken when a2(=[[-0x3bf8]:8+15440]:8) >= a5(=[0x9200000001030100]:8) (unsigned), and falls through when a2(=[[-0x3bf8]:8+15440]:8) < a5(=[0x9200000001030100]:8) (unsigned).
   The `bne` branch at 0x2ae00 targets 0x2ae30, is taken when (t2(=[-0x3d80]:8) & 0x20) != 0, and falls through when (t2(=[-0x3d80]:8) & 0x20) == 0.
   The `beq` branch at 0x2ae28 targets 0x2ac98 and is always taken.
@@ -1638,7 +1641,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2b01c calls print_hub_error with a0=a0 at entry (arg0), a1=[a0+72]:8, a2=?, a3=0x10.
   The `bne` branch at 0x2afe8 targets 0x2affc, is taken when v0(=ret(hub_xtalk_link_up)) != 0, and falls through when v0(=ret(hub_xtalk_link_up)) == 0.
   The `beq` branch at 0x2aff4 targets 0x2b030 and is always taken.
-  The return at 0x2b044 has v0 = one of ret(print_hub_error), ?.
+  The return at 0x2b044 has v0 = one of ret(print_hub_error), (ret(print_hub_error) + (ret(print_hub_error) + ret(print_hub_error))).
 - `capture_hub_stats` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x2b04c (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
@@ -1698,10 +1701,10 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `sh` at 0x2b274 stores 2 bytes to a1 (arg1 at entry) +0x87cc.
   The `ld` at 0x2b278 loads 8 bytes from abs 0x9200000001030100.
   The `sd` at 0x2b280 stores 8 bytes to a1 (arg1 at entry) +0x87d0.
-  The `ld` at 0x2b288 loads 8 bytes from table(0x9200000001e80000) +0x0.
+  The `ld` at 0x2b288 loads 8 bytes from ([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) -0x6dfffffffe180000.
   The `sd` at 0x2b290 stores 8 bytes to a1 (arg1 at entry) +0x87e8.
-  The `sd` at 0x2b294 stores 8 bytes to table(0x9200000001c00130) +0x0.
-  The `ld` at 0x2b298 loads 8 bytes from table(0x9200000001e80120) +0x0.
+  The `sd` at 0x2b294 stores 8 bytes to ([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) -0x6dfffffffe3ffed0.
+  The `ld` at 0x2b298 loads 8 bytes from ([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21) -0x6dfffffffe17fee0.
   The `ld` at 0x2b29c loads 8 bytes from abs 0x9200000001604200.
   The `sw` at 0x2b2dc stores 4 bytes to a1 (arg1 at entry) +0x8848.
   The `sd` at 0x2b2e4 stores 8 bytes to a1 (arg1 at entry) +0x87e0.
@@ -1711,7 +1714,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `sb` at 0x2b31c stores 1 byte to a1 (arg1 at entry) +0x8830.
   The `ld` at 0x2b354 loads 8 bytes from a1 (arg1 at entry) +0x8838.
   The `jal` at 0x2b244 calls bzero with a0=a1+34760, a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x2b2e8 calls kmem_alloc_node with a0=0x50, a1=0x1, a2=a0 at entry (arg0), a3=?, a5=0xc8, a6=0x3b9aca00, a7=table(0x9200000001c00000).
+  The `jal` at 0x2b2e8 calls kmem_alloc_node with a0=0x50, a1=0x1, a2=a0 at entry (arg0), a3=?, a5=0xc8, a6=0x3b9aca00, a7=([(sym(compact_to_nasid_node) + (a0 + a0))]:2 << 0x21)+0x9200000001c00000.
   The `jal` at 0x2b30c calls sprintf with a0=?, a1=sym(.rodata)+46952, a2=[a1+34330]:2, a3=?, a4=sym(.rodata)+46952.
   The `jal` at 0x2b344 calls assfail with a0=sym(.rodata)+46952, a1=sym(.rodata)+46952, a2=0x116, a3=?.
   The `beq` branch at 0x2b2fc targets 0x2b338, is taken when v0(=ret(kmem_alloc_node)) == 0, and falls through when v0(=ret(kmem_alloc_node)) != 0.
@@ -1868,14 +1871,12 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   Range: 0x2ba58-0x2bb68 (272 bytes).
   It occupies 272 bytes.
   3 such `ld` accesses load 8 bytes from abs 0xffffffffffffc400, including `ld` at 0x2ba94, `ld` at 0x2bb00, `ld` at 0x2bb34.
-  The `lh` at 0x2baa4 loads 2 bytes from (sym(nasid_to_compact_node) + (a2 + a2)) +0x0.
+  2 such `lh` accesses load 2 bytes from (sym(nasid_to_compact_node) + (a2 + a2)) +0x0, including `lh` at 0x2baa4, `lh` at 0x2bb04.
   3 such `ld` accesses load 8 bytes from [-0x3c00]:8 +0x0, including `ld` at 0x2baa8, `ld` at 0x2bb08, `ld` at 0x2bb3c.
-  The `ld` at 0x2bab8 loads 8 bytes from ([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a2 + a2))]:2 << 0x3)) +0x0.
+  2 such `ld` accesses load 8 bytes from ([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a2 + a2))]:2 << 0x3)) +0x0, including `ld` at 0x2bab8, `ld` at 0x2bb14.
   The `lh` at 0x2bad8 loads 2 bytes from [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a2 + a2))]:2 << 0x3))]:8 +0x861a.
-  The `lh` at 0x2bb04 loads 2 bytes from ?.
-  The `ld` at 0x2bb14 loads 8 bytes from ?.
-  The `ld` at 0x2bb20 loads 8 bytes from table(0x8850) +0x0.
-  The `sw` at 0x2bb30 stores 4 bytes to entry(0x8850) +0x0.
+  The `ld` at 0x2bb20 loads 8 bytes from [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a2 + a2))]:2 << 0x3))]:8 +0x8850.
+  The `sw` at 0x2bb30 stores 4 bytes to [[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a2 + a2))]:2 << 0x3))]:8+34896]:8 +0x0.
   The `lh` at 0x2bb38 loads 2 bytes from abs 0xffffffffffffc42a.
   The `ld` at 0x2bb48 loads 8 bytes from ([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3)) +0x0.
   The `lh` at 0x2bb5c loads 2 bytes from [([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8 +0x8596.
@@ -1883,7 +1884,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2bad4 calls cmn_err with a0=0x404, a1=sym(.rodata)+47160, a2=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a2 + a2))]:2 << 0x3))]:8+34330]:2, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=(a2 + a2).
   The `jal` at 0x2bae4 calls cmn_err with a0=0x404, a1=sym(.rodata)+47160, a2=?, a3=?.
   The `jal` at 0x2baec calls get_nasid with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2bb58 calls intr_disconnect_level with a0=[[([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8+34198]:2, a1=0x7d, a2=([-0x3bd6]:2 << 0x3), a3=?.
+  The `jal` at 0x2bb58 calls intr_disconnect_level with a0=[[([[-0x3c00]:8]:8 + ([-0x3bd6]:2 << 0x3))]:8+34198]:2, a1=0x7d, a2=([-0x3bd6]:2 << 0x3), a3=?, a6=(sym(nasid_to_compact_node) + (a2 + a2)).
   The `beq` branch at 0x2ba6c targets 0x2ba7c, is taken when at(=[sym(sbe_mfr_override)]) == 0, and falls through when at(=[sym(sbe_mfr_override)]) != 0.
   The `beq` branch at 0x2baf8 targets 0x2bb34, is taken when a2 == v0(=ret(get_nasid)), and falls through when a2 != v0(=ret(get_nasid)).
   The `beq` branch at 0x2bb2c targets 0x2ba74 and is always taken.
@@ -1895,14 +1896,13 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   Range: 0x2bb68-0x2c500 (2456 bytes).
   It occupies 2456 bytes.
   5 such `ld` accesses load 8 bytes from abs 0xffffffffffffc400, including `ld` at 0x2bba8, `ld` at 0x2c038, `ld` at 0x2c13c.
-  6 such `lh` accesses load 2 bytes from ?, including `lh` at 0x2bbb0, `lh` at 0x2c03c, `lh` at 0x2c140.
+  9 such `lh` accesses load 2 bytes from ?, including `lh` at 0x2bbb0, `lh` at 0x2c03c, `lh` at 0x2c06c.
   5 such `ld` accesses load 8 bytes from [-0x3c00]:8 +0x0, including `ld` at 0x2bbb4, `ld` at 0x2c040, `ld` at 0x2c144.
   16 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2bbc0, `ld` at 0x2bbcc, `ld` at 0x2bbe8.
   26 such `lw` accesses load 4 bytes from ?, including `lw` at 0x2bbd0, `lw` at 0x2bcf4, `lw` at 0x2bd1c.
   The `ld` at 0x2bcc4 loads 8 bytes from sym(.rodata) +0xba00.
   The `lw` at 0x2bcc8 loads 4 bytes from sym(.rodata) +0xba08.
   23 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2bd08, `sw` at 0x2bd18, `sw` at 0x2bd2c.
-  3 such `lh` accesses load 2 bytes from table(0x861a) +0x0, including `lh` at 0x2c06c, `lh` at 0x2c174, `lh` at 0x2c4d8.
   The `sh` at 0x2c268 stores 2 bytes to ?.
   The `ll` at 0x2c3bc loads 4 bytes from ?.
   The `sc` at 0x2c3c8 stores 4 bytes to ?.
@@ -1914,16 +1914,16 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2bf80 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=sym(.rodata)+47160, a2=?, a3=?.
   The `jal` at 0x2bfe8 calls mdir_xlate_syndrome with a0=sp-224, a1=one of 0x1, 0x2, a2=?, a3=?.
   The `jal` at 0x2c014 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=?, a2=?, a3=sp-224, a4=sym(.rodata)+47160.
-  The `jalr` at 0x2c02c calls (unknown callee) with a0=sp-224, a1=?, a2=?, a3=?.
-  The `jal` at 0x2c068 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=entry(0x861a), a2=?, a3=sp-224.
+  The `jalr` at 0x2c02c calls (unknown callee) with a0=sp-224, a1=?, a2=ret(mdir_xlate_syndrome), a3=?.
+  The `jal` at 0x2c068 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=?, a2=?, a3=sp-224.
   The `jal` at 0x2c070 calls memory_present with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2c080 calls page_ispoison with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2c090 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=?, a2=?, a3=?.
   The `jal` at 0x2c0b8 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=sym(.rodata)+47160, a2=?, a3=?.
   The `jal` at 0x2c0f4 calls mdir_xlate_syndrome with a0=sp-224, a1=0x0, a2=?, a3=?.
   The `jal` at 0x2c120 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=?, a2=sp-224, a3=sym(.rodata)+47160.
-  The `jal` at 0x2c130 calls mdir_xlate_addr_mem with a0=sp-224, a1=?, a2=?, a3=?.
-  The `jal` at 0x2c170 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=entry(0x861a), a2=?, a3=sp-224.
+  The `jal` at 0x2c130 calls mdir_xlate_addr_mem with a0=sp-224, a1=?, a2=ret(mdir_xlate_syndrome), a3=?.
+  The `jal` at 0x2c170 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=?, a2=?, a3=sp-224.
   The `jal` at 0x2c188 calls memory_present with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2c198 calls page_ispoison with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2c1a8 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=?, a2=?, a3=?.
@@ -1943,9 +1943,9 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2c408 calls bank_fatal [0x2ba58] with a0=?, a1=sp-224, a2=?, a3=?, a6=0x10.
   The `jal` at 0x2c428 calls sbe_printf [0x2b9e0] with a0=sym(.rodata)+47160, a1=0x3ffffffe, a2=?, a3=?.
   The `jal` at 0x2c438 calls cmn_err with a0=0x0, a1=sym(.rodata)+47160, a2=?, a3=?.
-  The `jal` at 0x2c464 calls cmn_err with a0=0x4, a1=sym(.rodata)+47160, a2=sym(.rodata)+47160, a3=?, a7=-0x1.
+  The `jal` at 0x2c464 calls cmn_err with a0=0x4, a1=sym(.rodata)+47160, a2=sym(.rodata)+47160, a3=?, a6=ret(mdir_xlate_syndrome), a7=-0x1.
   The `jal` at 0x2c498 calls cmn_err with a0=0x4, a1=sym(.rodata)+47160, a2=?, a3=?, a4=sym(.rodata)+47160.
-  The `jal` at 0x2c4d4 calls cmn_err with a0=0x4, a1=sym(.rodata)+47160, a2=entry(0x861a), a3=?, a4=sp-224.
+  The `jal` at 0x2c4d4 calls cmn_err with a0=0x4, a1=sym(.rodata)+47160, a2=?, a3=?, a4=sp-224.
   The `jal` at 0x2c4e4 calls cmn_err with a0=0x10, a1=sym(.rodata)+47160, a2=?, a3=?.
   The `beq` branch at 0x2bb94 targets 0x2bc94, is taken when a0 == 0, and falls through when a0 != 0.
   The `bne` branch at 0x2bbd4 targets 0x2bc68, is taken when at(?) != 0, and falls through when at(?) == 0.
@@ -2007,7 +2007,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x2c0a0 targets 0x2c0b4, is taken when s7(=a0) == 0, and falls through when s7(=a0) != 0.
   The `beq` branch at 0x2c0ac targets 0x2c0b8 and is always taken.
   The `bltz` branch at 0x2c108 targets 0x2c2c8, is taken when ra(?) < 0 (signed), and falls through when ra(?) >= 0 (signed).
-  The `beq` branch at 0x2c180 targets 0x2c448, is taken when a6(?) == a7(=-0x1), and falls through when a6(?) != a7(=-0x1).
+  The `beq` branch at 0x2c180 targets 0x2c448, is taken when a6(=ret(mdir_xlate_syndrome)) == a7(=-0x1), and falls through when a6(=ret(mdir_xlate_syndrome)) != a7(=-0x1).
   The `beq` branch at 0x2c190 targets 0x2c2ec, is taken when v0(=ret(memory_present)) == 0, and falls through when v0(=ret(memory_present)) != 0.
   The `beq` branch at 0x2c1a0 targets 0x2c208, is taken when v0(=ret(page_ispoison)) == 0, and falls through when v0(=ret(page_ispoison)) != 0.
   The `beq` branch at 0x2c1b0 targets 0x2bce8 and is always taken.
@@ -2224,7 +2224,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2cc64 calls intr_unreserve_level with a0=a1 at entry (arg1), a1=[([a0+72]:8 + (a1 << 0x2))]:1, a2=?, a3=?.
   The `jal` at 0x2cc8c calls mutex_spinunlock with a0=a0+68, a1=ret(mutex_spinlock), a2=-0x1, a3=([a0+72]:8 + (a1 << 0x2)), a4=([a0+72]:8 + (a1 << 0x2)).
   The `jal` at 0x2ccb8 calls mutex_spinunlock with a0=a0+68, a1=ret(mutex_spinlock), a2=?, a3=?.
-  The `jal` at 0x2ccd4 calls cmn_err with a0=0x0, a1=sym(.rodata)+48512, a2=?, a3=[a0+64].
+  The `jal` at 0x2ccd4 calls cmn_err with a0=0x0, a1=sym(.rodata)+48512, a2=[([a0+72]:8 + (a1 << 0x2))]:1, a3=[a0+64].
   The `beq` branch at 0x2cc1c targets 0x2ccb4, is taken when (a5(?) & a7(?)) == 0, and falls through when (a5(?) & a7(?)) != 0.
   The `beq` branch at 0x2cc50 targets 0x2ccc8, is taken when v0(=ret(intr_disconnect_level)) == a3(=-0x1), and falls through when v0(=ret(intr_disconnect_level)) != a3(=-0x1).
   The `beq` branch at 0x2ccc0 targets 0x2cc98 and is always taken.
@@ -2243,7 +2243,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2cd14 calls intrgroup_unjoin with a0=a0 at entry (arg0), a1=?, a2=?, a3=[sym(maxcpus)].
   The `jal` at 0x2cd60 calls kmem_free with a0=[a0+72]:8, a1=([sym(maxcpus)] << 0x2), a2=?, a3=[sym(maxcpus)].
   The `jal` at 0x2cd74 calls mutex_spinlock with a0=sym(.bss)+45120, a1=?, a2=?, a3=?.
-  The `jal` at 0x2cda8 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=table(sym(.bss)+45120).
+  The `jal` at 0x2cda8 calls mutex_spinunlock with a0=sym(.bss)+45120, a1=ret(mutex_spinlock), a2=?, a3=table(sym(.bss)+45120).
   The `blez` branch at 0x2ccfc targets 0x2cdc4, is taken when a3(=[sym(maxcpus)]) <= 0 (signed), and falls through when a3(=[sym(maxcpus)]) > 0 (signed).
   The `beq` branch at 0x2cd08 targets 0x2cd30 and is always taken.
   The `beq` branch at 0x2cd28 targets 0x2cd60, is taken when s0(?) >= a3(=[sym(maxcpus)]) (signed), and falls through when s0(?) < a3(=[sym(maxcpus)]) (signed).
@@ -2740,8 +2740,8 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2eba0 calls nvram_dict_init with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2eba8 calls get_nvreg with a0=0x36c4, a1=?, a2=?, a3=?.
   The `jal` at 0x2ebd0 calls get_nvreg with a0=((a1 << 0x2)+14021 << 0x0), a1=?, a2=?, a3=?.
-  The `jal` at 0x2ebfc calls set_nvreg with a0=?, a1=[a0+1]:1, a2=?, a3=?.
-  The `jal` at 0x2ec08 calls set_nvreg with a0=?, a1=[a0+2]:1, a2=?, a3=?.
+  The `jal` at 0x2ebfc calls set_nvreg with a0=((a1 << 0x2)+14021 << 0x0), a1=[a0+1]:1, a2=?, a3=?.
+  The `jal` at 0x2ec08 calls set_nvreg with a0=((a1 << 0x2)+14022 << 0x0), a1=[a0+2]:1, a2=?, a3=?.
   The `jal` at 0x2ec14 calls set_nvreg with a0=((a1 << 0x2)+14023 << 0x0), a1=[a0+3]:1, a2=?, a3=?.
   The `jal` at 0x2ec1c calls update_checksum with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2ec40 calls get_nvreg with a0=((a1 << 0x2)+14022 << 0x0), a1=0xff, a2=((a1 << 0x2)+14022 << 0x0), a3=?.
@@ -2765,8 +2765,8 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2eca0 calls get_nvreg with a0=0x36c3, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x2ecb4 calls nvram_dict_init with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2ecf0 calls get_nvreg with a0=((a1 << 0x2)+14021 << 0x0), a1=-0x1, a2=?, a3=?.
-  The `jal` at 0x2ed04 calls get_nvreg with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2ed14 calls get_nvreg with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2ed04 calls get_nvreg with a0=((a1 << 0x2)+14022 << 0x0), a1=?, a2=?, a3=?.
+  The `jal` at 0x2ed14 calls get_nvreg with a0=((a1 << 0x2)+14023 << 0x0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x2ecac targets 0x2ecc0, is taken when v0(=ret(get_nvreg)) == at(=0xda), and falls through when v0(=ret(get_nvreg)) != at(=0xda).
   The `beq` branch at 0x2ecc0 targets 0x2ecd0, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `bne` branch at 0x2ecc8 targets 0x2ece8, is taken when s0(=a0) != 0, and falls through when s0(=a0) == 0.
@@ -2780,8 +2780,8 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x2ed34 calls get_nvreg with a0=0x36c3, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x2ed50 calls get_nvreg with a0=0x36c4, a1=?, a2=?, a3=?.
   The `jal` at 0x2ed78 calls set_nvreg with a0=((a0 << 0x2)+14021 << 0x0), a1=0xff, a2=?, a3=?.
-  The `jal` at 0x2ed8c calls set_nvreg with a0=?, a1=0xff, a2=?, a3=?.
-  The `jal` at 0x2eda0 calls set_nvreg with a0=?, a1=0xff, a2=?, a3=?.
+  The `jal` at 0x2ed8c calls set_nvreg with a0=((a0 << 0x2)+14022 << 0x0), a1=0xff, a2=?, a3=?.
+  The `jal` at 0x2eda0 calls set_nvreg with a0=((a0 << 0x2)+14023 << 0x0), a1=0xff, a2=?, a3=?.
   The `jal` at 0x2edb4 calls set_nvreg with a0=0x36c4, a1=?, a2=?, a3=?.
   The `jal` at 0x2edbc calls update_checksum with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0x2ed40 targets 0x2ed50, is taken when v0(=ret(get_nvreg)) == at(=0xda), and falls through when v0(=ret(get_nvreg)) != at(=0xda).
@@ -3039,7 +3039,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3237c calls klhwg_invent_alloc with a0=a1 at entry (arg1), a1=0x46, a2=0x5c, a3=?.
   The `jal` at 0x323ec calls hwgraph_info_add_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=ret(klhwg_invent_alloc), a3=?.
   The `jal` at 0x32400 calls hwgraph_info_export_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=0x24, a3=?.
-  The `jal` at 0x32410 calls hwgraph_info_add_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=?, a3=?.
+  The `jal` at 0x32410 calls hwgraph_info_add_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=ret(klhwg_invent_alloc), a3=?.
   The `jal` at 0x32420 calls hwgraph_info_export_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=0x5c, a3=?.
   The `jal` at 0x32448 calls cmn_err with a0=0x4, a1=sym(.rodata)+51152, a2=[a2+28], a3=a0 at entry (arg0), a4=[a2+56]:2, a5=[a2+56]:2, a6=a3 at entry (arg3), a7=a2 at entry (arg2).
   The `beq` branch at 0x3236c targets 0x32428, is taken when v0(=ret(klhwg_invent_alloc)) == 0, and falls through when v0(=ret(klhwg_invent_alloc)) != 0.
@@ -3098,7 +3098,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x325ac calls klhwg_invent_alloc with a0=a1 at entry (arg1), a1=0x3, a2=0x50, a3=a3 at entry (arg3).
   The `jal` at 0x32600 calls ip27log_getenv with a0=a4 at entry (arg4), a1=sym(.rodata)+51152, a2=sp-144, a3=0x0, a4=0x0.
   The `jal` at 0x32624 calls ip27log_getenv with a0=a4 at entry (arg4), a1=sym(.rodata)+51152, a2=sp-128, a3=0x0, a4=0x0.
-  The `jal` at 0x326fc calls strchr with a0=sp-144, a1=?, a2=?, a3=[a2+1]:1.
+  The `jal` at 0x326fc calls strchr with a0=sp-144, a1=?, a2=?, a3=[a2+1]:1, a7=ret(ip27log_getenv).
   The `jal` at 0x32754 calls hwgraph_info_add_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=ret(klhwg_invent_alloc), a3=?.
   The `jal` at 0x3276c calls hwgraph_info_export_LBL with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=0x50, a3=?.
   The `beq` branch at 0x325c8 targets 0x32774, is taken when v0(=ret(klhwg_invent_alloc)) == 0, and falls through when v0(=ret(klhwg_invent_alloc)) != 0.
@@ -3113,7 +3113,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x326d8 targets 0x32648 and is always taken.
   The `beq` branch at 0x326e0 targets 0x326d0, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x326ec targets 0x326cc and is always taken.
-  The `bltz` branch at 0x326f4 targets 0x3272c, is taken when a7(?) < 0 (signed), and falls through when a7(?) >= 0 (signed).
+  The `bltz` branch at 0x326f4 targets 0x3272c, is taken when a7(=ret(ip27log_getenv)) < 0 (signed), and falls through when a7(=ret(ip27log_getenv)) >= 0 (signed).
   The `beq` branch at 0x32704 targets 0x3272c, is taken when v0(=ret(strchr)) == 0, and falls through when v0(=ret(strchr)) != 0.
   The `beq` branch at 0x32714 targets 0x32724, is taken when a3(=0x30) == a2(?), and falls through when a3(=0x30) != a2(?).
   The `beq` branch at 0x32724 targets 0x32660 and is always taken.
@@ -3128,13 +3128,12 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   It occupies 212 bytes.
   2 such `ld` accesses load 8 bytes from abs 0xffffffffffffc400, including `ld` at 0x327f4, `ld` at 0x3283c.
   2 such `ld` accesses load 8 bytes from [-0x3c00]:8 +0x0, including `ld` at 0x327f8, `ld` at 0x32844.
-  The `ld` at 0x3280c loads 8 bytes from ([[-0x3c00]:8]:8 + (a2 << 0x3)) +0x0.
-  The `ld` at 0x32854 loads 8 bytes from ?.
+  2 such `ld` accesses load 8 bytes from ([[-0x3c00]:8]:8 + (a2 << 0x3)) +0x0, including `ld` at 0x3280c, `ld` at 0x32854.
   The `jal` at 0x327e0 calls hwgraph_path_add with a0=a0 at entry (arg0), a1=sym(.rodata)+51152, a2=sp-48, a3=a3 at entry (arg3).
   The `jal` at 0x327ec calls device_master_set with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x32820 calls hwgraph_info_add_LBL with a0=?, a1=sym(.rodata)+51152, a2=[([[-0x3c00]:8]:8 + (a2 << 0x3))]:8+34760, a3=0x87c8.
   The `jal` at 0x32834 calls klhwg_hub_invent_info with a0=?, a1=a2 at entry (arg2), a2=a1 at entry (arg1), a3=?.
-  The `jal` at 0x32850 calls init_hub_stats with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
+  The `jal` at 0x32850 calls init_hub_stats with a0=a2 at entry (arg2), a1=[([[-0x3c00]:8]:8 + (a2 << 0x3))]:8, a2=(a2 << 0x3), a3=?.
   The `jal` at 0x3285c calls sndrv_attach with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x32880 calls cmn_err with a0=0x4, a1=sym(.rodata)+51152, a2=?, a3=ret(hwgraph_info_add_LBL).
   The `bne` branch at 0x32828 targets 0x32870, is taken when v0(=ret(hwgraph_info_add_LBL)) != 0, and falls through when v0(=ret(hwgraph_info_add_LBL)) == 0.
@@ -3149,7 +3148,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `lbu` at 0x328c0 loads 1 byte from a2 (arg2 at entry) +0x18.
   The `jal` at 0x328d8 calls sprintf with a0=sp-176, a1=sym(.rodata)+51152, a2=sym(.rodata)+51152, a3=sym(.rodata)+51152, a4=[a2+24]:1+97.
   The `jal` at 0x328e8 calls hwgraph_path_add with a0=a0 at entry (arg0), a1=sp-176, a2=sp-56, a3=?.
-  The `jal` at 0x328f4 calls mark_cpuvertex_as_cpu with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x328f4 calls mark_cpuvertex_as_cpu with a0=?, a1=[a2+30]:2, a2=?, a3=?.
   The `jal` at 0x32900 calls device_master_set with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x32914 calls klhwg_disabled_cpu_invent_info with a0=?, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0x328b8 targets 0x3291c, is taken when at(=[a2+30]:2) == v0(=-0x1), and falls through when at(=[a2+30]:2) != v0(=-0x1).
@@ -3230,7 +3229,8 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x32d1c, `ld` at 0x32d74.
   The `lh` at 0x32d24 loads 2 bytes from ?.
   The `ld` at 0x32d4c loads 8 bytes from [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + ([a1+58]:2 + [a1+58]:2))]:2 << 0x3))]:8 +0x8620.
-  2 such `sh` accesses store 2 bytes to ?, including `sh` at 0x32d8c, `sh` at 0x32d98.
+  The `sh` at 0x32d8c stores 2 bytes to ret(kmem_zalloc) +0x8.
+  The `sh` at 0x32d98 stores 2 bytes to ret(kmem_zalloc) +0x0.
   The `jal` at 0x32b90 calls printf with a0=sym(.rodata)+51152, a1=[a1+58]:2, a2=[a1+56]:2, a3=a2 at entry (arg2).
   The `jal` at 0x32bc4 calls kmem_alloc with a0=0x450, a1=0x1, a2=?, a3=?.
   The `jal` at 0x32be4 calls hub_widget_id with a0=[a1+58]:2, a1=?, a2=?, a3=?.
@@ -3254,22 +3254,23 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `lbu` at 0x32dbc loads 1 byte from a2 (arg2 at entry) +0x9.
   The `ld` at 0x32e2c loads 8 bytes from (a1 << 0x21) -0x6fffffffcc000000.
   The `lbu` at 0x32eb4 loads 1 byte from ?.
-  3 such `lh` accesses load 2 bytes from ?, including `lh` at 0x32ec4, `lh` at 0x32ee0, `lh` at 0x32f48.
+  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x32ec4, `lh` at 0x32ee0.
   4 such `ld` accesses load 8 bytes from abs 0xffffffffffffc400, including `ld` at 0x32f00, `ld` at 0x32f2c, `ld` at 0x32f44.
   4 such `ld` accesses load 8 bytes from [-0x3c00]:8 +0x0, including `ld` at 0x32f04, `ld` at 0x32f30, `ld` at 0x32f4c.
-  3 such `ld` accesses load 8 bytes from ?, including `ld` at 0x32f10, `ld` at 0x32f38, `ld` at 0x32f58.
-  The `sw` at 0x32f18 stores 4 bytes to table(0x85fc) +0x0.
-  The `lw` at 0x32f1c loads 4 bytes from table(0x8c80) +0x0.
-  2 such `sh` accesses store 2 bytes to table(0x8600) +0x0, including `sh` at 0x32f40, `sh` at 0x32f64.
-  The `lh` at 0x32f74 loads 2 bytes from (sym(nasid_to_compact_node) + (a1 + a1)) +0x0.
-  The `ld` at 0x32f84 loads 8 bytes from ([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3)) +0x0.
+  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x32f10, `ld` at 0x32f38.
+  The `sw` at 0x32f18 stores 4 bytes to ?.
+  The `lw` at 0x32f1c loads 4 bytes from ?.
+  The `sh` at 0x32f40 stores 2 bytes to ?.
+  2 such `lh` accesses load 2 bytes from (sym(nasid_to_compact_node) + (a1 + a1)) +0x0, including `lh` at 0x32f48, `lh` at 0x32f74.
+  2 such `ld` accesses load 8 bytes from ([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3)) +0x0, including `ld` at 0x32f58, `ld` at 0x32f84.
+  The `sh` at 0x32f64 stores 2 bytes to [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8 +0x8600.
   The `lw` at 0x32f90 loads 4 bytes from [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8 +0x8c80.
   The `jal` at 0x32e00 calls find_component with a0=a2 at entry (arg2), a1=0x0, a2=0x4, a3=a3 at entry (arg3).
   The `jal` at 0x32e10 calls hwgraph_vertex_create with a0=sp-80, a1=?, a2=?, a3=?.
   The `jal` at 0x32e18 calls xswitch_vertex_init with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x32e54 calls iobrick_module_get_nasid with a0=a1 at entry (arg1), a1=0x8, a2=sym(nasid_to_compact_node), a3=(sym(nasid_to_compact_node) + (a1 + a1)).
   The `jal` at 0x32e70 calls iobrick_register with a0=?, a1=?, a2=-0x1, a3=?.
-  The `jal` at 0x32e8c calls hwgraph_edge_add with a0=entry(0x8c80), a1=?, a2=sym(.rodata)+51152, a3=?, a7=entry(0x8c80).
+  The `jal` at 0x32e8c calls hwgraph_edge_add with a0=?, a1=?, a2=sym(.rodata)+51152, a3=?.
   The `jal` at 0x32ee4 calls is_specified with a0=sym(arg_maxnodes), a1=sym(.rodata)+51152, a2=?, a3=-0x1.
   The `jal` at 0x32f9c calls hwgraph_edge_add with a0=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8+35968], a1=?, a2=sym(.rodata)+51152, a3=(sym(nasid_to_compact_node) + (a1 + a1)).
   The `jal` at 0x32fac calls elsc_module_get_nasid with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
@@ -3658,9 +3659,9 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `lw` at 0x34334 loads 4 bytes from ?.
   The `jal` at 0x34210 calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=sym(.rodata)+51152, a3=?.
   The `jal` at 0x34238 calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?.
-  The `jal` at 0x3428c calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?.
-  The `jal` at 0x342a8 calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?.
-  The `jal` at 0x342c4 calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?.
+  The `jal` at 0x3428c calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?, a6=a0-1.
+  The `jal` at 0x342a8 calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?, a6=a0-1.
+  The `jal` at 0x342c4 calls cmn_err with a0=0x6, a1=sym(.rodata)+51152, a2=?, a3=?, a6=a0-1.
   The `jal` at 0x34314 calls chk_for_pebrick with a0=?, a1=0x9600000000000000, a2=0xffffffffff, a3=?, a6=0x9000000034000000.
   The `jal` at 0x34350 calls find_lboard with a0=?, a1=0x11, a2=?, a3=?.
   The `jal` at 0x3435c calls board_to_path with a0=ret(find_lboard), a1=sp-176, a2=?, a3=?.
@@ -3671,7 +3672,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `bne` branch at 0x34228 targets 0x341e0, is taken when s0(?) < s1(=a0) (signed), and falls through when s0(?) >= s1(=a0) (signed).
   The `bgtz` branch at 0x34240 targets 0x342d4, is taken when s1(=a0) > 0 (signed), and falls through when s1(=a0) <= 0 (signed).
   The `bne` branch at 0x34270 targets 0x3429c, is taken when a3(?) != a4(?), and falls through when a3(?) == a4(?).
-  The `bne` branch at 0x34278 targets 0x3421c, is taken when a6(?) != s0(?), and falls through when a6(?) == s0(?).
+  The `bne` branch at 0x34278 targets 0x3421c, is taken when a6(=a0-1) != s0(?), and falls through when a6(=a0-1) == s0(?).
   The `beq` branch at 0x34294 targets 0x3421c and is always taken.
   The `beq` branch at 0x3429c targets 0x342b8, is taken when a2(?) == a5(?), and falls through when a2(?) != a5(?).
   The `beq` branch at 0x342b0 targets 0x342cc and is always taken.
@@ -3879,7 +3880,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x34f18 calls kvtophys with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0x34e6c targets 0x34f64, is taken when a7(=[sym(master_nasid)]:2) == a5(=[(sym(compact_to_nasid_node) + (a0 + a0))]:2), and falls through when a7(=[sym(master_nasid)]:2) != a5(=[(sym(compact_to_nasid_node) + (a0 + a0))]:2).
   The `beq` branch at 0x34e88 targets 0x34f6c, is taken when (a4(=entry(sym(ktext_repmask))) & a7(?)) == 0, and falls through when (a4(=entry(sym(ktext_repmask))) & a7(?)) != 0.
-  The `bne` branch at 0x34f3c targets 0x34f58, is taken when a0(?) < a1(?) (unsigned), and falls through when a0(?) >= a1(?) (unsigned).
+  The `bne` branch at 0x34f3c targets 0x34f58, is taken when a0(?) < a1(=ret(kvtophys)) (unsigned), and falls through when a0(?) >= a1(=ret(kvtophys)) (unsigned).
   The `bne` branch at 0x34f44 targets 0x34f5c, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x34f50 targets 0x34f5c and is always taken.
   The `beq` branch at 0x34f64 targets 0x34f5c and is always taken.
@@ -3992,7 +3993,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `ld` at 0x37988 loads 8 bytes from ([(sym(compact_to_nasid_node) + ([a3+14]:2 + [a3+14]:2))]:2 << 0x21) -0x6dfffffffe800000.
   The `jal` at 0x379b0 calls cmn_err with a0=0x4, a1=sym(.rodata)+56232, a2=?, a3=[(sym(compact_to_nasid_node) + ([a3+14]:2 + [a3+14]:2))]:2, a4=[a3+14]:2, a5=[(sym(compact_to_nasid_node) + ([a3+12]:2 + [a3+12]:2))]:2, a6=[a3+12]:2.
   The `jal` at 0x379bc calls kl_panic with a0=sym(.rodata)+56232, a1=?, a2=?, a3=?.
-  The `jal` at 0x379e0 calls cmn_err with a0=0x4, a1=sym(.rodata)+56232, a2=[a3+16]:8, a3=?, a4=[a3+14]:2, a6=[a3+12]:2.
+  The `jal` at 0x379e0 calls cmn_err with a0=0x4, a1=sym(.rodata)+56232, a2=[a3+16]:8, a3=[(sym(compact_to_nasid_node) + ([a3+14]:2 + [a3+14]:2))]:2, a4=[a3+14]:2, a5=[(sym(compact_to_nasid_node) + ([a3+12]:2 + [a3+12]:2))]:2, a6=[a3+12]:2.
   The `jal` at 0x379ec calls kl_panic with a0=sym(.rodata)+56232, a1=?, a2=?, a3=?.
   The `beq` branch at 0x3790c targets 0x37934, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0x37918 targets 0x37934, is taken when a2 == at(=0x2), and falls through when a2 != at(=0x2).
@@ -4016,11 +4017,11 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `lw` at 0x37a74 loads 4 bytes from [([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8 +0x8640.
   The `jal` at 0x37a38 calls error_state_get with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=0x7.
   The `jal` at 0x37a7c calls error_state_set with a0=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8+34368], a1=ret(error_state_get), a2=[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8, a3=([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3), a4=(a1 + a1).
-  The `jal` at 0x37aac calls xtalk_error_handler with a0=?, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4).
-  The `jal` at 0x37ad4 calls error_state_set with a0=a0 at entry (arg0), a1=0x1, a2=?, a3=?, a5=0x7, a7=0x9.
+  The `jal` at 0x37aac calls xtalk_error_handler with a0=[[([[-0x3c00]:8]:8 + ([(sym(nasid_to_compact_node) + (a1 + a1))]:2 << 0x3))]:8+34368], a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4).
+  The `jal` at 0x37ad4 calls error_state_set with a0=a0 at entry (arg0), a1=0x1, a2=?, a3=?, a5=0x7, a6=ret(error_state_get), a7=0x9.
   The `beq` branch at 0x37a30 targets 0x37ab8, is taken when (at(=[(a1 << 0x21)-7926335344142712344]:8) & 0x11) == 0, and falls through when (at(=[(a1 << 0x21)-7926335344142712344]:8) & 0x11) != 0.
   The `beq` branch at 0x37a90 targets 0x37acc, is taken when v0(=ret(error_state_set)) == a5(=0x7), and falls through when v0(=ret(error_state_set)) != a5(=0x7).
-  The `beq` branch at 0x37a98 targets 0x37ad4, is taken when a6(?) == t0(=0x3), and falls through when a6(?) != t0(=0x3).
+  The `beq` branch at 0x37a98 targets 0x37ad4, is taken when a6(=ret(error_state_get)) == t0(=0x3), and falls through when a6(=ret(error_state_get)) != t0(=0x3).
   The `beq` branch at 0x37acc targets 0x37abc and is always taken.
   The `beq` branch at 0x37adc targets 0x37aa4 and is always taken.
   The return at 0x37ac4 has v0 = one of ?, 0x9.
@@ -4319,7 +4320,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3900c calls master_node_get with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x3904c calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x390e8 calls hub_setup_prb with a0=entry(sym(compact_to_nasid_node)), a1=a1 at entry (arg1), a2=0x3, a3=0x2.
-  The `jal` at 0x390f0 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x390f0 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x3912c calls assfail with a0=sym(.rodata)+56232, a1=sym(.rodata)+56232, a2=0x40d, a3=?.
   The `beq` branch at 0x39038 targets 0x390f8, is taken when a0(?) == at(=-0x1), and falls through when a0(?) != at(=-0x1).
   The `beq` branch at 0x39070 targets 0x3913c and is always taken.
@@ -4457,7 +4458,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   It occupies 400 bytes.
   3 such `lh` accesses load 2 bytes from abs 0xffffffffffffc428, including `lh` at 0x3b210, `lh` at 0x3b2ec, `lh` at 0x3b350.
   The `lw` at 0x3b224 loads 4 bytes from (([-0x3bd8]:2 << 0x3) + sym(l2_sbe_counter)) +0x4.
-  The `sd` at 0x3b320 stores 8 bytes to ?.
+  The `sd` at 0x3b320 stores 8 bytes to (([-0x3bd8]:2 << 0x3) + sym(l2_sbe_counter)) +0x1000.
   The `jal` at 0x3b234 calls r1nkperf_data_register_get with a0=[(([-0x3bd8]:2 << 0x3) + sym(l2_sbe_counter))+4], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x3b250 calls r1nkperf_control_register_set with a0=[(([-0x3bd8]:2 << 0x3) + sym(l2_sbe_counter))+4], a1=0x100, a2=?, a3=?.
   The `jal` at 0x3b25c calls r1nkperf_data_register_set with a0=[(([-0x3bd8]:2 << 0x3) + sym(l2_sbe_counter))+4], a1=0x0, a2=?, a3=?.
@@ -4467,7 +4468,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3b2b4 calls scache_data_bit_error with a0=ret(l2_cache_check), a1=?, a2=sym(.rodata)+62392, a3=?.
   The `jal` at 0x3b2d8 calls cmn_err_tag with a0=0x167, a1=0x14, a2=sym(.rodata)+62392, a3=ret(l2_cache_check).
   The `jal` at 0x3b2f0 calls scache_data_bit_location with a0=ret(scache_data_bit_error), a1=[-0x3bd8]:2, a2=sp-96, a3=?.
-  The `jal` at 0x3b30c calls cmn_err_tag with a0=0x167, a1=0x14, a2=sym(.rodata)+62392, a3=?, a4=sp-96.
+  The `jal` at 0x3b30c calls cmn_err_tag with a0=0x167, a1=0x14, a2=sym(.rodata)+62392, a3=ret(scache_data_bit_error), a4=sp-96.
   The `jal` at 0x3b334 calls r1nkperf_control_register_get with a0=0x0, a1=?, a2=?, a3=?.
   The `jal` at 0x3b340 calls scache_data_bit_error with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3b354 calls scache_data_bit_location with a0=ret(scache_data_bit_error), a1=[-0x3bd8]:2, a2=sp-96, a3=?.
@@ -4706,15 +4707,16 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `sd` at 0x3d574 stores 8 bytes to ret(bte_init) +0x60.
   The `ld` at 0x3d580 loads 8 bytes from [-0x3c00]:8 +0x8ef8.
   The `ld` at 0x3d588 loads 8 bytes from [[-0x3c00]:8+36600]:8 +0x58.
-  The `sd` at 0x3d58c stores 8 bytes to ret(bte_init) +0x58.
-  3 such `sd` accesses store 8 bytes to ?, including `sd` at 0x3d5d8, `sd` at 0x3d628, `sd` at 0x3d650.
+  2 such `sd` accesses store 8 bytes to ret(bte_init) +0x58, including `sd` at 0x3d58c, `sd` at 0x3d650.
+  The `sd` at 0x3d5d8 stores 8 bytes to ret(bte_init) +0x8.
+  The `sd` at 0x3d628 stores 8 bytes to ret(bte_init) +0x10.
   The `jal` at 0x3d4f8 calls kmem_zalloc_node with a0=0x70, a1=0x1, a2=[-0x3bd6]:2, a3=?.
   The `jal` at 0x3d538 calls kmem_zalloc_node with a0=0x300, a1=0x901, a2=[-0x3bd6]:2, a3=?.
-  The `jal` at 0x3d550 calls bte_init [0x3d1d8] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3d550 calls bte_init [0x3d1d8] with a0=ret(kmem_zalloc_node), a1=ret(kmem_zalloc_node), a2=?, a3=?.
   The `jal` at 0x3d598 calls kmem_zalloc_node with a0=0x4000, a1=0x901, a2=[-0x3bd6]:2, a3=?.
   The `jal` at 0x3d5e4 calls kmem_alloc_node with a0=0x4000, a1=0x901, a2=[-0x3bd6]:2, a3=?.
   The `jal` at 0x3d634 calls kmem_zalloc_node with a0=0x4, a1=0x1, a2=[-0x3bd6]:2, a3=?.
-  The `jal` at 0x3d64c calls spinlock_init with a0=ret(kmem_zalloc_node), a1=sym(.rodata)+64800, a2=?, a3=?.
+  The `jal` at 0x3d64c calls spinlock_init with a0=ret(kmem_zalloc_node), a1=sym(.rodata)+64800, a2=?, a3=?, a6=ret(bte_init).
   The `jal` at 0x3d668 calls assfail with a0=sym(.rodata)+64800, a1=sym(.rodata)+64800, a2=0x14c, a3=?.
   The `jal` at 0x3d684 calls assfail with a0=sym(.rodata)+64800, a1=sym(.rodata)+64800, a2=0x156, a3=?.
   The `jal` at 0x3d6a0 calls assfail with a0=sym(.rodata)+64800, a1=sym(.rodata)+64800, a2=0x12d, a3=?.
@@ -4878,7 +4880,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3dc98 calls splx with a0=[a1], a1=?, a2=?, a3=?.
   The `jal` at 0x3dca0 calls us_delay with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x3dca8 calls splhi with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3dcb4 calls nested_spintrylock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3dcb4 calls nested_spintrylock with a0=a0+60, a1=?, a2=?, a3=?.
   The `jal` at 0x3dccc calls splx with a0=[a1], a1=?, a2=?, a3=?.
   The `jal` at 0x3dcd4 calls us_delay with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x3dcdc calls splhi with a0=?, a1=?, a2=?, a3=?.
@@ -4941,7 +4943,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3dfd8 calls nested_spinunlock with a0=entry(0x8ef8)+60, a1=?, a2=?, a3=?.
   The `jal` at 0x3dfe0 calls splx with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3e028 calls splhi with a0=-0x1, a1=?, a2=?, a3=[0x9200000001030100]:8, a4=[entry(0x8ef8)+64]+1.
-  The `jal` at 0x3e038 calls bte_error_handler with a0=?, a1=sp-464, a2=?, a3=?.
+  The `jal` at 0x3e038 calls bte_error_handler with a0=entry(0x8ef8)+32, a1=sp-464, a2=?, a3=?.
   The `jal` at 0x3e050 calls poison_state_clear with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3e158 calls splhi with a0=-0x1, a1=?, a2=[entry(0x8ef8)+80], a3=?, a4=[entry(0x8ef8)+80]+1.
   The `jal` at 0x3e168 calls bte_notification_war [0x3dbbc] with a0=entry(0x8ef8), a1=sp-464, a2=?, a3=?.
@@ -4949,7 +4951,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3e1f4 calls nested_spinunlock with a0=entry(0x8ef8)+60, a1=?, a2=?, a3=?, a6=[entry(0x8ef8)+80], a7=0x1.
   The `jal` at 0x3e1fc calls splx with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3e224 calls splhi with a0=-0x1, a1=?, a2=?, a3=?.
-  The `jal` at 0x3e234 calls bte_error_handler with a0=?, a1=sp-464, a2=?, a3=?.
+  The `jal` at 0x3e234 calls bte_error_handler with a0=entry(0x8ef8)+32, a1=sp-464, a2=?, a3=?.
   The `jal` at 0x3e240 calls nested_spinunlock with a0=entry(0x8ef8)+60, a1=?, a2=?, a3=?.
   The `jal` at 0x3e248 calls splx with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3e260 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
@@ -4982,7 +4984,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x3e020 targets 0x3e070, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x3e048 targets 0x3e05c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0x3e064 targets 0x3e1f4, is taken when a6(=[entry(0x8ef8)+80]) != 0, and falls through when a6(=[entry(0x8ef8)+80]) == 0.
-  The `beq` branch at 0x3e070 targets 0x3e1e4, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x3e070 targets 0x3e1e4, is taken when t0(=one of 0x0, 0x1) == 0, and falls through when t0(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x3e0a0 targets 0x3e0b4, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `bne` branch at 0x3e0ac targets 0x3e0c4, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0x3e0b4 targets 0x3e0cc, is taken when t3(?) == 0, and falls through when t3(?) != 0.
@@ -5004,7 +5006,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `bne` branch at 0x3e1c4 targets 0x3e004, is taken when a0(=-0x1) != t2(?), and falls through when a0(=-0x1) == t2(?).
   The `bne` branch at 0x3e1d4 targets 0x3e1a4, is taken when t3(=[0x9200000001030100]:8) < a2(=([entry(0x8ef8)+104] + [0x9200000001030100]:8)) (unsigned), and falls through when t3(=[0x9200000001030100]:8) >= a2(=([entry(0x8ef8)+104] + [0x9200000001030100]:8)) (unsigned).
   The `beq` branch at 0x3e1dc targets 0x3e004 and is always taken.
-  The `bne` branch at 0x3e1e4 targets 0x3e07c, is taken when t8(?) != 0, and falls through when t8(?) == 0.
+  The `bne` branch at 0x3e1e4 targets 0x3e07c, is taken when t8(=one of 0x0, 0x1) != 0, and falls through when t8(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x3e1ec targets 0x3e2e4 and is always taken.
   The `beq` branch at 0x3e204 targets 0x3dd90 and is always taken.
   The `bne` branch at 0x3e20c targets 0x3df00, is taken when s4(?) != 0, and falls through when s4(?) == 0.
@@ -5017,7 +5019,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x3e2cc targets 0x3e2dc, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0x3e2dc targets 0x3dd90 and is always taken.
   The `beq` branch at 0x3e2f8 targets 0x3dd90 and is always taken.
-  The return at 0x3ddb8 has v0 = one of 0x6, 0x1, 0x0, ?, (ret(bte_error_handler) << 0x0).
+  The return at 0x3ddb8 has v0 = one of 0x6, 0x1, 0x0, ret(bte_error_handler), (ret(bte_error_handler) << 0x0).
 - `bte_acquire_buffer` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x3e300 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
@@ -5026,9 +5028,10 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `lh` at 0x3e32c loads 2 bytes from table(sym(nasid_to_compact_node)) +0x0.
   The `lbu` at 0x3e37c loads 1 byte from ((entry(sym(nasid_to_compact_node)) << 0x2) + sym(.bss)+55512) +0x1000.
   The `lbu` at 0x3e398 loads 1 byte from ?.
-  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x3e3b4, `ld` at 0x3e450.
+  The `ld` at 0x3e3b4 loads 8 bytes from ?.
   The `ld` at 0x3e42c loads 8 bytes from table(sym(.bss)+55512) +0x0.
   The `sb` at 0x3e448 stores 1 byte to ?.
+  The `ld` at 0x3e450 loads 8 bytes from (sym(.bss)+55512 + ((entry(sym(nasid_to_compact_node)) << 0x2) << 0x3)) +0x0.
   The `jal` at 0x3e374 calls mutex_spinlock with a0=((entry(sym(nasid_to_compact_node)) << 0x2) + sym(.bss)+55512)+4608, a1=?, a2=?, a3=?.
   The `jal` at 0x3e3c4 calls mutex_spinunlock with a0=((entry(sym(nasid_to_compact_node)) << 0x2) + sym(.bss)+55512)+4608, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x3e384 targets 0x3e44c, is taken when t8(=[((entry(sym(nasid_to_compact_node)) << 0x2) + sym(.bss)+55512)+4096]:1) == 0, and falls through when t8(=[((entry(sym(nasid_to_compact_node)) << 0x2) + sym(.bss)+55512)+4096]:1) != 0.
@@ -5043,7 +5046,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `beq` branch at 0x3e430 targets 0x3e3a4, is taken when v1(=entry(sym(.bss)+55512)) == 0, and falls through when v1(=entry(sym(.bss)+55512)) != 0.
   The `beq` branch at 0x3e438 targets 0x3e3c4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x3e444 targets 0x3e3c4 and is always taken.
-  The `beq` branch at 0x3e454 targets 0x3e38c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x3e454 targets 0x3e38c, is taken when a2(=[(sym(.bss)+55512 + ((entry(sym(nasid_to_compact_node)) << 0x2) << 0x3))]:8) == 0, and falls through when a2(=[(sym(.bss)+55512 + ((entry(sym(nasid_to_compact_node)) << 0x2) << 0x3))]:8) != 0.
   The `beq` branch at 0x3e45c targets 0x3e440 and is always taken.
   The return at 0x3e40c has v0 = one of -0x1, ?.
   The instructions from 0x3e414 to 0x3e414 are not reached by any path from the entry, and their branches are not listed.
@@ -5054,7 +5057,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   It occupies 96 bytes.
   The `sb` at 0x3e4b0 stores 1 byte to (a0 + sym(.bss)+55512) +0x1000.
   The `jal` at 0x3e494 calls mutex_spinlock with a0=table(sym(.bss)+55512)+4608, a1=?, a2=?, a3=a3 at entry (arg3).
-  The `jal` at 0x3e4ac calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=(a0 + sym(.bss)+55512).
+  The `jal` at 0x3e4ac calls mutex_spinunlock with a0=table(sym(.bss)+55512)+4608, a1=ret(mutex_spinlock), a2=?, a3=(a0 + sym(.bss)+55512).
   The return at 0x3e4bc has v0 = ret(mutex_spinunlock).
 - `bte_pull` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x3e4c4 (n64).
   Evidence grade: inferred.
@@ -5193,7 +5196,7 @@ Skipped 44,688 located rows and 5,579 understood rows because they already have 
   The `jal` at 0x3ed08 calls get_slice with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3ed10 calls get_nasid with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3ed3c calls is_buserror with a0=[a0+16]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0x3ed50 calls setsr with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3ed50 calls setsr with a0=ret(getsr), a1=?, a2=?, a3=?.
   The `jal` at 0x3ed58 calls mutex_unlock with a0=sym(probe_sema), a1=?, a2=?, a3=?.
   The `jal` at 0x3ed7c calls _wbadaddr_val with a0=[a0+16]:8, a1=[a0+4], a2=[a0+24]:8, a3=0x3, a4=[a0].
   The `beq` branch at 0x3ece4 targets 0x3ed74, is taken when a4(=[a0]) == at(=0x1), and falls through when a4(=[a0]) != at(=0x1).

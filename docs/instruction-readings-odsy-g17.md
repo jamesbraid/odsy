@@ -502,7 +502,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `ld` at 0xfac0 loads 8 bytes from abs 0xffffffffffffc460.
   The `lw` at 0xfaf0 loads 4 bytes from [-0x3fe8]:8 +0x538.
   The `jal` at 0xfa84 calls splhi with a0=?, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[-0x3fe8]:8.
-  The `jal` at 0xfaac calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xfaac calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0xfacc calls getsr with a0=?, a1=[-0x3ba0]:8, a2=?, a3=[-0x3fe8]:8.
   The `jal` at 0xfad8 calls setsr with a0=(ret(getsr) | 0x20000000), a1=?, a2=?, a3=?.
   The `jal` at 0xfae0 calls set_fpc_csr with a0=?, a1=?, a2=?, a3=?.
@@ -1830,7 +1830,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `sd` at 0x144dc stores 8 bytes to abs 0xffffffffaff10020.
   The `ld` at 0x1491c loads 8 bytes from a0 (arg0 at entry) +0x120.
   The `lw` at 0x14bb0 loads 4 bytes from (([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_ptime)) +0x0.
-  The `lw` at 0x14bbc loads 4 bytes from (([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_count)) +0x0.
+  2 such `lw` accesses load 4 bytes from (([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_count)) +0x0, including `lw` at 0x14bbc, `lw` at 0x15af0.
   The `sw` at 0x14bd0 stores 4 bytes to (([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_count)) +0x0.
   2 such `lw` accesses load 4 bytes from table(sym(real_data_eccsyns)) +0x0, including `lw` at 0x14e18, `lw` at 0x159a0.
   2 such `lbu` accesses load 1 byte from table(sym(real_data_eccsyns)) +0x4, including `lbu` at 0x14ec8, `lbu` at 0x14ecc.
@@ -1841,8 +1841,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lld` at 0x14f50 loads 8 bytes from ?.
   The `scd` at 0x14f5c stores 8 bytes to ?.
   The `ld` at 0x159bc loads 8 bytes from (sym(etstrings) + (entry(sym(real_data_eccsyns)) << 0x3)) +0x0.
-  The `lw` at 0x15af0 loads 4 bytes from ?.
-  The `sw` at 0x15b08 stores 4 bytes to ?.
+  The `sw` at 0x15b08 stores 4 bytes to (([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_ptime)) +0x0.
   The `jal` at 0x13ebc calls compare_and_swap_int with a0=sym(heart_error_cpumap), a1=[sym(heart_error_cpumap)], a2=?, a3=?.
   The `jal` at 0x14160 calls heart_intr with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x141c0 calls heart_paddr_to_port with a0=?, a1=sp-832, a2=sp-824, a3=?.
@@ -1855,13 +1854,13 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x146a8 calls heart_error_refine with a0=sym(.rodata)+5064, a1=one of 0x9, 0xa, a2=?, a3=sp-808, a5=0x1000000.
   The `jal` at 0x146c4 calls hem_add_ioe [0x13bb4] with a0=sp-808, a1=?, a2=?, a3=?.
   The `jal` at 0x14780 calls tlb_to_phys [0x162e8] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1480c calls heart_error_refine with a0=sym(.rodata)+5064, a1=0x5, a2=?, a3=sp-808.
+  The `jal` at 0x1480c calls heart_error_refine with a0=sym(.rodata)+5064, a1=0x5, a2=?, a3=sp-808, a5=([0x9000000018000090]:8 << 0x0), a7=0x0.
   The `jal` at 0x1486c calls hem_add_ioe [0x13bb4] with a0=sp-808, a1=?, a2=?, a3=?.
   The `jal` at 0x14900 calls us_delay with a0=0x5, a1=?, a2=?, a3=?.
-  The `jal` at 0x14954 calls is_in_main_memory with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x14954 calls is_in_main_memory with a0=?, a1=?, a2=?, a3=?, a6=one of 0x0, 0x1.
   The `jal` at 0x14974 calls ldst_addr with a0=a0 at entry (arg0), a1=(([-0x3c60]:2 << 0x3) + sym(_heart_mode)), a2=a2 at entry (arg2), a3=?, a4=[a0+280]:8, a6=0x18, a7=0x1c.
   The `jal` at 0x149c4 calls heart_error_refine with a0=sym(.rodata)+5064, a1=one of 0x5, 0x6, a2=?, a3=sp-808.
-  The `jal` at 0x14e80 calls log_dimmerr with a0=?, a1=?, a2=?, a3=?, a7=one of 0x0, 0x1.
+  The `jal` at 0x14e80 calls log_dimmerr with a0=?, a1=?, a2=?, a3=[0xffffffffaff000a0]:8, a7=one of 0x0, 0x1.
   The `jal` at 0x14f78 calls __dcache_wb_inval with a0=?, a1=0x8, a2=?, a3=?, a6=table(sym(real_data_eccsyns)).
   The `jal` at 0x14fb8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x14fe0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
@@ -1870,27 +1869,27 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x15050 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15074 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15098 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
-  The `jal` at 0x150b8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x150b8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00000]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x150d4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x15110 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
+  The `jal` at 0x15110 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=one of 0x0, 0x1.
   The `jal` at 0x15130 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=a0 at entry (arg0).
   The `jal` at 0x15150 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=a1 at entry (arg1).
   The `jal` at 0x1516c calls hem_add_sync [0x13ae0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x15180 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
-  The `jal` at 0x1519c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x1519c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00000]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x151b8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x151d0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x151e8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x151fc calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
+  The `jal` at 0x151d0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff000a8]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x151e8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00090]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x151fc calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00088]:8.
   The `jal` at 0x15214 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000060]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x1522c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15244 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x1525c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x15274 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x1528c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x152a4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x152bc calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x152d0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
+  The `jal` at 0x15274 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000090]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x1528c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000070]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x152a4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000078]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x152bc calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00098]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x152d0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff000a0]:8.
   The `jal` at 0x152ec calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x1530c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x1532c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
@@ -1899,7 +1898,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x1538c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x153ac calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x153cc calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x153e8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x153e8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00000]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15404 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x1541c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000060]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15464 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
@@ -1941,19 +1940,19 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x15928 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15930 calls hem_add_ioe [0x13bb4] with a0=sp-808, a1=?, a2=?, a3=?.
   The `jal` at 0x159b8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=sym(.rodata)+5064, a4=[(sym(etstrings) + (entry(sym(real_data_eccsyns)) << 0x3))]:8, a5=sym(.rodata)+5064, a6=(entry(sym(real_data_eccsyns)) << 0x3).
-  The `jal` at 0x159d0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x159e4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
+  The `jal` at 0x159d0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00098]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x159e4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff000a0]:8.
   The `jal` at 0x15a08 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=sym(.rodata)+5064.
   The `jal` at 0x15a24 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15a3c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15a5c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=0x3ffffffff.
-  The `jal` at 0x15a88 calls hem_add_sync [0x13ae0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x15a88 calls hem_add_sync [0x13ae0] with a0=?, a1=?, a2=?, a3=?, a6=one of 0x0, 0x1.
   The `jal` at 0x15ab8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[sym(time)], a4=sym(heart_SysCorErr_count).
   The `jal` at 0x15ad4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x15aec calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
-  The `jal` at 0x15b68 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a7=0x10000.
+  The `jal` at 0x15aec calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[(([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_count))].
+  The `jal` at 0x15b68 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a6=one of 0x0, 0x1, a7=0x10000.
   The `jal` at 0x15b84 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x15b9c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x15b9c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff000a8]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15bb0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15bc4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15c04 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=sym(.rodata)+5064.
@@ -1972,8 +1971,8 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x15ef4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15f10 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15f28 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000060]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x15f40 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x15f58 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x15f40 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000070]:8, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x15f58 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0x9000000018000078]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x15f74 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15f88 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x15fa4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
@@ -1988,13 +1987,13 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x160a8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[sym(.sdata)+244].
   The `jal` at 0x160cc calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x160e0 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[sym(.sdata)+252].
-  The `jal` at 0x16160 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
+  The `jal` at 0x16160 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a6=one of 0x0, 0x1.
   The `jal` at 0x1617c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x16194 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x16194 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00098]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x161b4 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=0x3ffffffff.
   The `jal` at 0x161f8 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a5=[-0x3c60]:2+4.
   The `jal` at 0x16214 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff10040]:8, a4=sym(h_mode_trig_tbl).
-  The `jal` at 0x1622c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?, a4=sym(h_mode_trig_tbl).
+  The `jal` at 0x1622c calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=[0xffffffffaff00098]:8, a4=sym(h_mode_trig_tbl).
   The `jal` at 0x16240 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x16254 calls cmn_err with a0=0x6, a1=sym(.rodata)+5064, a2=sym(.rodata)+5064, a3=?.
   The `jal` at 0x16284 calls hem_add_sync [0x13ae0] with a0=?, a1=?, a2=?, a3=?.
@@ -2036,14 +2035,14 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x14234 targets 0x14258, is taken when v0(=ret(heart_error_refine)) == 0, and falls through when v0(=ret(heart_error_refine)) != 0.
   The `beq` branch at 0x14240 targets 0x154cc, is taken when v0(=ret(heart_error_refine)) == a2(=0x9), and falls through when v0(=ret(heart_error_refine)) != a2(=0x9).
   The `beq` branch at 0x1426c targets 0x145dc, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `beq` branch at 0x14274 targets 0x142cc, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x14274 targets 0x142cc, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
   The `bltz` branch at 0x14280 targets 0x142bc, is taken when a0(?) < 0 (signed), and falls through when a0(?) >= 0 (signed).
   The `beq` branch at 0x1428c targets 0x142b8, is taken when a0(?) >= 0x10 (signed), and falls through when a0(?) < 0x10 (signed).
   The `beq` branch at 0x14298 targets 0x1436c, is taken when t0(=a1) == 0, and falls through when t0(=a1) != 0.
   The `bne` branch at 0x142a8 targets 0x14374, is taken when s5(=a0) != 0, and falls through when s5(=a0) == 0.
   The `beq` branch at 0x142b0 targets 0x14388 and is always taken.
   The `beq` branch at 0x142bc targets 0x14954, is taken when a0(?) == t2(=0xfe), and falls through when a0(?) != t2(=0xfe).
-  The `bne` branch at 0x142c4 targets 0x15454, is taken when t3(?) != 0, and falls through when t3(?) == 0.
+  The `bne` branch at 0x142c4 targets 0x15454, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x142d0 targets 0x14414, is taken when t8(=0x1) == t9(=a2), and falls through when t8(=0x1) != t9(=a2).
   The `beq` branch at 0x142d8 targets 0x14414, is taken when ra(=[sym(kdebug)]:2) == 0, and falls through when ra(=[sym(kdebug)]:2) != 0.
   The `bne` branch at 0x142e0 targets 0x150f8, is taken when s2(?) != 0, and falls through when s2(?) == 0.
@@ -2057,7 +2056,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x143f4 targets 0x154b4, is taken when v0(=ret(heart_error_refine)) == t1(=0x9), and falls through when v0(=ret(heart_error_refine)) != t1(=0x9).
   The `bne` branch at 0x1440c targets 0x142d4, is taken when t2(=0x1) != t3(=a2), and falls through when t2(=0x1) == t3(=a2).
   The `beq` branch at 0x14414 targets 0x142e8, is taken when s2(?) == 0, and falls through when s2(?) != 0.
-  The `beq` branch at 0x14420 targets 0x142e8, is taken when t8(?) == 0, and falls through when t8(?) != 0.
+  The `beq` branch at 0x14420 targets 0x142e8, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x14428 targets 0x155b4 and is always taken.
   The `beq` branch at 0x1444c targets 0x14458, is taken when (t9(?) & ra(=0x4f00000)) == 0, and falls through when (t9(?) & ra(=0x4f00000)) != 0.
   The `beq` branch at 0x1445c targets 0x14468, is taken when s3(?) == 0, and falls through when s3(?) != 0.
@@ -2071,7 +2070,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beql` branch at 0x14538 targets 0x1452c, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `nop` at 0x1453c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x14558 targets 0x13eac and is always taken.
   The `beq` branch at 0x14560 targets 0x1457c, is taken when s5(=a0) == 0, and falls through when s5(=a0) != 0.
-  The `beq` branch at 0x14598 targets 0x141d4, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x14598 targets 0x141d4, is taken when t0(=one of 0x0, 0x1) == 0, and falls through when t0(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x145a4 targets 0x141d4, is taken when a5(?) != a4(?), and falls through when a5(?) == a4(?).
   The `beq` branch at 0x145d4 targets 0x141ec and is always taken.
   The `beq` branch at 0x145e8 targets 0x146f8, is taken when (a5(=0x4f00000) & a0(?)) == 0, and falls through when (a5(=0x4f00000) & a0(?)) != 0.
@@ -2085,7 +2084,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `bne` branch at 0x146ec targets 0x14274, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0x146f8 targets 0x148b0, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x14710 targets 0x148a0, is taken when s6(=[-0x3c60]:2) != a4(?), and falls through when s6(=[-0x3c60]:2) == a4(?).
-  The `beq` branch at 0x1471c targets 0x1489c, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x1471c targets 0x1489c, is taken when a7(=one of 0x0, 0x1) == 0, and falls through when a7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x14738 targets 0x14794, is taken when t0(=a1) == 0, and falls through when t0(=a1) != 0.
   The `bne` branch at 0x14748 targets 0x1479c, is taken when s5(=a0) != 0, and falls through when s5(=a0) == 0.
   The `beq` branch at 0x14750 targets 0x147b0 and is always taken.
@@ -2119,21 +2118,21 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x149e0 targets 0x14de0, is taken when (s3(?) & v0(?)) == 0, and falls through when (s3(?) & v0(?)) != 0.
   The `bne` branch at 0x149f4 targets 0x14274, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x14a00 targets 0x14b84, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x14a24 targets 0x14df4, is taken when (v0(?) & a2(=0x200000000000)) == 0, and falls through when (v0(?) & a2(=0x200000000000)) != 0.
+  The `beq` branch at 0x14a24 targets 0x14df4, is taken when (v0(=[0xffffffffaff00098]:8) & a2(=0x200000000000)) == 0, and falls through when (v0(=[0xffffffffaff00098]:8) & a2(=0x200000000000)) != 0.
   The `bne` branch at 0x14a2c targets 0x14b24, is taken when s6(=[-0x3c60]:2) != v0(?), and falls through when s6(=[-0x3c60]:2) == v0(?).
   The `beq` branch at 0x14a44 targets 0x14b28, is taken when (v0(?) & s1(?)) == 0, and falls through when (v0(?) & s1(?)) != 0.
   The `beq` branch at 0x14a50 targets 0x14b28, is taken when (s1(?) & 0x1) == 0, and falls through when (s1(?) & 0x1) != 0.
-  The `bne` branch at 0x14a60 targets 0x14b2c, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x14a60 targets 0x14b2c, is taken when a2(=one of 0x0, 0x1) != 0, and falls through when a2(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x14a68 targets 0x14b40 and is always taken.
   The `beq` branch at 0x14a70 targets 0x14010 and is always taken.
   The `beq` branch at 0x14a78 targets 0x14a94, is taken when s5(=a0) == 0, and falls through when s5(=a0) != 0.
-  The `beq` branch at 0x14ac0 targets 0x14988, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x14ac0 targets 0x14988, is taken when a2(=one of 0x0, 0x1) == 0, and falls through when a2(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x14acc targets 0x14988, is taken when a0(?) != a4(?), and falls through when a0(?) == a4(?).
   The `beq` branch at 0x14b1c targets 0x149a0 and is always taken.
-  The `beq` branch at 0x14b28 targets 0x14b3c, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x14b28 targets 0x14b3c, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x14b34 targets 0x14e94, is taken when t2(?) == t3(=0xfe), and falls through when t2(?) != t3(=0xfe).
-  The `beq` branch at 0x14b50 targets 0x14e04, is taken when (a5(?) & a6(=0x40000000000)) == 0, and falls through when (a5(?) & a6(=0x40000000000)) != 0.
-  The `beq` branch at 0x14b60 targets 0x15950, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0x14b50 targets 0x14e04, is taken when (a5(=[0xffffffffaff00098]:8) & a6(=0x40000000000)) == 0, and falls through when (a5(=[0xffffffffaff00098]:8) & a6(=0x40000000000)) != 0.
+  The `beq` branch at 0x14b60 targets 0x15950, is taken when v0(=one of 0x0, 0x1) == 0, and falls through when v0(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x14b78 targets 0x14274, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `beq` branch at 0x14b90 targets 0x14bec, is taken when (v0(?) & s1(?)) == 0, and falls through when (v0(?) & s1(?)) != 0.
   The `beq` branch at 0x14bcc targets 0x15aac, is taken when a0(=[(([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_ptime))]) >= a3(=[sym(time)]) (signed), and falls through when a0(=[(([-0x3c60]:2 << 0x2) + sym(heart_SysCorErr_ptime))]) < a3(=[sym(time)]) (signed).
@@ -2186,7 +2185,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x15084 targets 0x150a0, is taken when (a2(?) & s8(?)) == 0, and falls through when (a2(?) & s8(?)) != 0.
   The `beq` branch at 0x150e8 targets 0x15744, is taken when (s1(?) & a3(?)) == 0, and falls through when (s1(?) & a3(?)) != 0.
   The `beq` branch at 0x150f0 targets 0x140dc and is always taken.
-  The `beq` branch at 0x150fc targets 0x15178, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x150fc targets 0x15178, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x15118 targets 0x1513c, is taken when s5(=a0) == 0, and falls through when s5(=a0) != 0.
   The `beq` branch at 0x1513c targets 0x1515c, is taken when a3(=a1) == 0, and falls through when a3(=a1) != 0.
   The `beq` branch at 0x152d8 targets 0x142e8 and is always taken.
@@ -2200,7 +2199,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `bne` branch at 0x15430 targets 0x140fc, is taken when (s4(=[0x9000000018000060]:8) & s3(?)) != 0, and falls through when (s4(=[0x9000000018000060]:8) & s3(?)) == 0.
   The `bne` branch at 0x15444 targets 0x14100, is taken when (s1(?) & t8(=0xfffffffffffeffff)) != 0, and falls through when (s1(?) & t8(=0xfffffffffffeffff)) == 0.
   The `beq` branch at 0x1544c targets 0x14274 and is always taken.
-  The `beq` branch at 0x1548c targets 0x142c8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x1548c targets 0x142c8, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x154ac targets 0x142cc and is always taken.
   The `beq` branch at 0x154c4 targets 0x143fc and is always taken.
   The `beq` branch at 0x154e0 targets 0x15500, is taken when a2(?) == 0, and falls through when a2(?) != 0.
@@ -2226,7 +2225,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x1575c targets 0x156f8 and is always taken.
   The `beq` branch at 0x15764 targets 0x15708 and is always taken.
   The `beq` branch at 0x15770 targets 0x15718 and is always taken.
-  The `beq` branch at 0x157ac targets 0x142cc, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x157ac targets 0x142cc, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x157d0 targets 0x142cc and is always taken.
   The `bne` branch at 0x1584c targets 0x1588c, is taken when (v0(?) & 0x3) != 0, and falls through when (v0(?) & 0x3) == 0.
   The `beq` branch at 0x15858 targets 0x158a8 and is always taken.
@@ -2245,20 +2244,20 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `bne` branch at 0x15974 targets 0x15aa0, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x159f0 targets 0x15a18, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x15a10 targets 0x15a2c and is always taken.
-  The `beq` branch at 0x15a68 targets 0x15a90, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `beq` branch at 0x15a70 targets 0x15a90, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x15a68 targets 0x15a90, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x15a70 targets 0x15a90, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x15a90 targets 0x14b64 and is always taken.
   The `beq` branch at 0x15a98 targets 0x1597c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x15aa4 targets 0x15984 and is always taken.
   The `beq` branch at 0x15b04 targets 0x14bd4 and is always taken.
-  The `beq` branch at 0x15b24 targets 0x15b50, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x15b24 targets 0x15b50, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x15b38 targets 0x15b50, is taken when a0(?) != a1(?), and falls through when a0(?) == a1(?).
   The `beq` branch at 0x15b48 targets 0x15b58 and is always taken.
-  The `bgez` branch at 0x15bd8 targets 0x15c54, is taken when a0(?) >= 0 (signed), and falls through when a0(?) < 0 (signed).
+  The `bgez` branch at 0x15bd8 targets 0x15c54, is taken when a0(=([0xffffffffaff000a8]:8 << 0x29)) >= 0 (signed), and falls through when a0(=([0xffffffffaff000a8]:8 << 0x29)) < 0 (signed).
   The `beq` branch at 0x15be8 targets 0x15c64, is taken when a4(=sym(.rodata)+5064) == 0, and falls through when a4(=sym(.rodata)+5064) != 0.
   The `beq` branch at 0x15bf0 targets 0x15c6c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x15c10 targets 0x15c40, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x15c1c targets 0x15c3c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0x15c10 targets 0x15c40, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x15c1c targets 0x15c3c, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x15c4c targets 0x14c0c and is always taken.
   The `bne` branch at 0x15c5c targets 0x15bf0, is taken when t0(=sym(.rodata)+5064) != 0, and falls through when t0(=sym(.rodata)+5064) == 0.
   The `bne` branch at 0x15c64 targets 0x15bf8, is taken when v0(?) != 0, and falls through when v0(?) == 0.
@@ -2274,28 +2273,28 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `bltz` branch at 0x15dc4 targets 0x162c4, is taken when a7(?) < 0 (signed), and falls through when a7(?) >= 0 (signed).
   The `bltz` branch at 0x15dd8 targets 0x162cc, is taken when t0(?) < 0 (signed), and falls through when t0(?) >= 0 (signed).
   The `beq` branch at 0x15e1c targets 0x14c48 and is always taken.
-  The `beq` branch at 0x15e48 targets 0x15e68, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x15e48 targets 0x15e68, is taken when t2(=one of 0x0, 0x1) == 0, and falls through when t2(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x15e54 targets 0x15e68, is taken when ra(?) != t3(?), and falls through when ra(?) == t3(?).
   The `beq` branch at 0x15e60 targets 0x15e6c and is always taken.
   The `beq` branch at 0x15e98 targets 0x15eb8, is taken when (a4(?) & 0x4) == 0, and falls through when (a4(?) & 0x4) != 0.
   The `beq` branch at 0x15ebc targets 0x15edc, is taken when (a2(?) & 0x2) == 0, and falls through when (a2(?) & 0x2) != 0.
   The `beq` branch at 0x15ee0 targets 0x15f00, is taken when (a2(?) & 0x1) == 0, and falls through when (a2(?) & 0x1) != 0.
-  The `beq` branch at 0x15fb0 targets 0x14d8c, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x15fb8 targets 0x14d8c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0x15fb0 targets 0x14d8c, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x15fb8 targets 0x14d8c, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x15fd8 targets 0x14d8c and is always taken.
   The `beq` branch at 0x16010 targets 0x14d30 and is always taken.
   The `beq` branch at 0x16048 targets 0x14c80 and is always taken.
   The `beq` branch at 0x16080 targets 0x14ca8 and is always taken.
   The `beq` branch at 0x160b8 targets 0x14cd0 and is always taken.
   The `beq` branch at 0x160f0 targets 0x14cfc and is always taken.
-  The `beq` branch at 0x16104 targets 0x161cc, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x16104 targets 0x161cc, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x16120 targets 0x162d8, is taken when v1(?) != a0(=0xfe), and falls through when v1(?) == a0(=0xfe).
   The `bne` branch at 0x16130 targets 0x16140, is taken when s6(=[-0x3c60]:2) != a1(?), and falls through when s6(=[-0x3c60]:2) == a1(?).
   The `bne` branch at 0x1613c targets 0x161e4, is taken when a4(?) != a3(?), and falls through when a4(?) == a3(?).
   The `beq` branch at 0x16148 targets 0x161e8 and is always taken.
   The `beq` branch at 0x161c4 targets 0x14270 and is always taken.
-  The `beq` branch at 0x16260 targets 0x16290, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x1626c targets 0x1628c, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x16260 targets 0x16290, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x1626c targets 0x1628c, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1629c targets 0x14dbc, is taken when s1(?) >= 0x1 (unsigned), and falls through when s1(?) < 0x1 (unsigned).
   The `beq` branch at 0x162a4 targets 0x14274 and is always taken.
   The `beq` branch at 0x162ac targets 0x15d94 and is always taken.
@@ -2528,7 +2527,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lw` at 0x17278 loads 4 bytes from ((a0 << 0x2) + sym(EXP_SHIFT)) +0x0.
   The `ld` at 0x17288 loads 8 bytes from ((a0 << 0x3) + sym(FRAC_MASK)) +0x0.
   The `lw` at 0x17290 loads 4 bytes from ((a0 << 0x2) + sym(EXP_MASK)) +0x0.
-  The `ld` at 0x172cc loads 8 bytes from ?.
+  The `ld` at 0x172cc loads 8 bytes from ((a0 << 0x3) + sym(SIGNBIT)) +0x0.
   The `jal` at 0x172a8 calls screen_nan_sd with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a5=a1 at entry (arg1), a6=sym(EXP_MASK).
   The `jal` at 0x172dc calls fpstore_sd with a0=a0 at entry (arg0), a1=?, a2=?, a3=sym(SIGNBIT).
   The `jal` at 0x172e4 calls store_fpcsr with a0=?, a1=?, a2=?, a3=?.
@@ -2543,7 +2542,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lw` at 0x17314 loads 4 bytes from ((a0 << 0x2) + sym(EXP_SHIFT)) +0x0.
   The `ld` at 0x17324 loads 8 bytes from ((a0 << 0x3) + sym(FRAC_MASK)) +0x0.
   The `lw` at 0x1732c loads 4 bytes from ((a0 << 0x2) + sym(EXP_MASK)) +0x0.
-  The `ld` at 0x1736c loads 8 bytes from ?.
+  The `ld` at 0x1736c loads 8 bytes from ((a0 << 0x3) + sym(SIGNBIT)) +0x0.
   The `jal` at 0x17344 calls screen_nan_sd with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a5=a1 at entry (arg1), a6=sym(EXP_MASK).
   The `jal` at 0x17374 calls fpstore_sd with a0=a0 at entry (arg0), a1=?, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x1737c calls store_fpcsr with a0=?, a1=?, a2=?, a3=?.
@@ -2762,10 +2761,10 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `ld` at 0x18308 loads 8 bytes from abs 0xffffffffaff00098.
   The `jal` at 0x17eb0 calls cer_to_hex with a0=sym(.rodata)+11680, a1=([a1+24] << 0x0), a2=0x0, a3=a3 at entry (arg3), a5=0x0.
   The `jal` at 0x17f94 calls ecc_cacheOp [0x17838] with a0=0x4, a1=?, a2=?, a3=?.
-  The `jal` at 0x17fe0 calls ecc_cacheOp [0x17838] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x17fe0 calls ecc_cacheOp [0x17838] with a0=0x0, a1=table(0xa800000000000000), a2=?, a3=?.
   The `jal` at 0x17ff0 calls ecc_cacheOp [0x17838] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x18000 calls ecc_force_cache_line_invalid with a0=?, a1=0x0, a2=0x0, a3=?.
-  The `jal` at 0x18010 calls ecc_force_cache_line_invalid with a0=?, a1=0x1, a2=0x0, a3=?.
+  The `jal` at 0x18000 calls ecc_force_cache_line_invalid with a0=table(0xa800000000000000), a1=0x0, a2=0x0, a3=?.
+  The `jal` at 0x18010 calls ecc_force_cache_line_invalid with a0=table(0xa800000000000000), a1=0x1, a2=0x0, a3=?.
   The `jal` at 0x180b0 calls ecc_cacheOp [0x17838] with a0=0x13, a1=?, a2=?, a3=?.
   The `jal` at 0x1818c calls ecc_cacheOp [0x17838] with a0=0x1, a1=?, a2=0x3, a3=?.
   The `jal` at 0x181bc calls ecc_cacheOp [0x17838] with a0=0x5, a1=?, a2=?, a3=?.
@@ -2773,7 +2772,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x1841c calls sprintf with a0=sym(cacheErr_frames), a1=sym(.rodata)+11680, a2=?, a3=ret(maddr_to_dimm).
   The `jal` at 0x18480 calls ecc_cacheOp [0x17838] with a0=0x7, a1=?, a2=?, a3=?.
   The `jal` at 0x184a4 calls ecc_cacheOp [0x17838] with a0=0x3, a1=?, a2=0x3, a3=?.
-  The `jal` at 0x184b4 calls ecc_force_cache_line_invalid with a0=?, a1=?, a2=0x3, a3=?.
+  The `jal` at 0x184b4 calls ecc_force_cache_line_invalid with a0=table(0xa800000000000000), a1=?, a2=0x3, a3=?.
   The `bgez` branch at 0x17e8c targets 0x17ec0, is taken when at(=([a1+24] << 0x22)) >= 0 (signed), and falls through when at(=([a1+24] << 0x22)) < 0 (signed).
   The `beq` branch at 0x17eb8 targets 0x180c8 and is always taken.
   The `beq` branch at 0x17ed4 targets 0x17f28, is taken when t8(=[a1+572]) == t9(?), and falls through when t8(=[a1+572]) != t9(?).
@@ -3220,7 +3219,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `bltz` branch at 0x1925c targets 0x1926c, is taken when a2(=[a0+24]) < 0 (signed), and falls through when a2(=[a0+24]) >= 0 (signed).
   The `beq` branch at 0x19264 targets 0x19208 and is always taken.
   The `beq` branch at 0x1926c targets 0x19264 and is always taken.
-  The return at 0x19140 has v0 = one of 0x16, 0x10, ?, 0x1, 0x0.
+  The return at 0x19140 has v0 = one of 0x16, 0x10, ret(hwperf_get_access), 0x1, ret(r1nk_perf_init_counters), 0x0.
 - `hwperf_disable_sys_counters` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x19274 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
@@ -3284,12 +3283,12 @@ Routines with an exact binary/member/routine entry already documented were skipp
   3 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x478, including `ld` at 0x19414, `ld` at 0x19498, `ld` at 0x19524.
   The `ld` at 0x1944c loads 8 bytes from a0 (arg0 at entry) +0x318.
   The `sd` at 0x19460 stores 8 bytes to a0 (arg0 at entry) +0x478.
-  The `ld` at 0x194a8 loads 8 bytes from ?.
+  The `ld` at 0x194a8 loads 8 bytes from [a0+792]:8 +0xa8.
   The `lw` at 0x194b4 loads 4 bytes from ret(hwperf_cpu_monitor_info_alloc) +0x4.
   The `lh` at 0x194b8 loads 2 bytes from ret(hwperf_cpu_monitor_info_alloc) +0x0.
   The `sw` at 0x194c4 stores 4 bytes to ret(hwperf_cpu_monitor_info_alloc) +0x4.
   The `sh` at 0x194d0 stores 2 bytes to ret(hwperf_cpu_monitor_info_alloc) +0x0.
-  The `sd` at 0x194d4 stores 8 bytes to ?.
+  The `sd` at 0x194d4 stores 8 bytes to [a0+792]:8 +0xa8.
   The `jal` at 0x19478 calls hwperf_cpu_monitor_info_alloc [0x1a720] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x19490 calls mutex_bitlock with a0=[a0+792]:8+148, a1=0x1, a2=?, a3=?.
   The `jal` at 0x194d8 calls mutex_bitunlock with a0=[a0+792]:8+148, a1=0x1, a2=ret(mutex_bitlock), a3=?.
@@ -3300,7 +3299,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x1946c targets 0x194e8, is taken when s0(=one of 0x0, 0x1) == 0, and falls through when s0(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x19484 targets 0x19474, is taken when v0(=ret(hwperf_cpu_monitor_info_alloc)) == 0, and falls through when v0(=ret(hwperf_cpu_monitor_info_alloc)) != 0.
   The `bne` branch at 0x194a0 targets 0x1946c, is taken when t8(=[a0+1144]:8) != 0, and falls through when t8(=[a0+1144]:8) == 0.
-  The `bne` branch at 0x194ac targets 0x19460, is taken when t9(?) != 0, and falls through when t9(?) == 0.
+  The `bne` branch at 0x194ac targets 0x19460, is taken when t9(=[[a0+792]:8+168]:8) != 0, and falls through when t9(=[[a0+792]:8+168]:8) == 0.
   The `beq` branch at 0x194e0 targets 0x19468 and is always taken.
   The `beq` branch at 0x194f4 targets 0x19508, is taken when s1(?) == 0, and falls through when s1(?) != 0.
   The `beq` branch at 0x19520 targets 0x1942c and is always taken.
@@ -3392,7 +3391,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `sw` at 0x19868 stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `jal` at 0x197dc calls mutex_lock with a0=a0+32, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x197e4 calls hwperf_read_counters with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x19864 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x19864 calls mutex_unlock with a0=a0+32, a1=?, a2=?, a3=?.
   The `blez` branch at 0x197f4 targets 0x1985c, is taken when at(=[a0+112]:2) <= 0 (signed), and falls through when at(=[a0+112]:2) > 0 (signed).
   The `beq` branch at 0x1981c targets 0x1983c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x19854 targets 0x19810, is taken when a3(?) < t1(=[a0+112]:2) (signed), and falls through when a3(?) >= t1(=[a0+112]:2) (signed).
@@ -3493,8 +3492,9 @@ Routines with an exact binary/member/routine entry already documented were skipp
   It occupies 192 bytes.
   The `ld` at 0x19bcc loads 8 bytes from a0 (arg0 at entry) +0x478.
   The `lh` at 0x19bf0 loads 2 bytes from [a0+1144]:8 +0x0.
-  The `lh` at 0x19c1c loads 2 bytes from ?.
-  2 such `sh` accesses store 2 bytes to ?, including `sh` at 0x19c28, `sh` at 0x19c30.
+  The `lh` at 0x19c1c loads 2 bytes from ret(cpumon_alloc) +0x0.
+  The `sh` at 0x19c28 stores 2 bytes to ret(cpumon_alloc) +0x16.
+  The `sh` at 0x19c30 stores 2 bytes to ret(cpumon_alloc) +0x0.
   The `ll` at 0x19c48 loads 4 bytes from sym(pdaindr) +0xf30.
   The `sc` at 0x19c54 stores 4 bytes to sym(pdaindr) +0xf30.
   The `jal` at 0x19be8 calls mutex_lock with a0=[a0+1144]:8+32, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -3519,16 +3519,16 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `sw` at 0x19ce0 stores 4 bytes to [-0x3928]:8 +0x18.
   The `ld` at 0x19cf0 loads 8 bytes from abs 0xffffffffffffc6d0.
   The `sd` at 0x19cfc stores 8 bytes to abs 0xffffffffffffc6d8.
-  The `lh` at 0x19d04 loads 2 bytes from ?.
-  The `sh` at 0x19d1c stores 2 bytes to ?.
+  The `lh` at 0x19d04 loads 2 bytes from [-0x3930]:8 +0x0.
+  The `sh` at 0x19d1c stores 2 bytes to [-0x3930]:8 +0x0.
   The `lh` at 0x19d2c loads 2 bytes from abs 0xffffffffffffc3a0.
   The `ll` at 0x19d40 loads 4 bytes from sym(processor_enabled) +0x110.
   The `sc` at 0x19d48 stores 4 bytes to sym(processor_enabled) +0x110.
   The `jal` at 0x19ca8 calls splhi with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x19ce4 calls r1nk_perf_update_counters with a0=[-0x3928]:8, a1=[[-0x3928]:8]:2, a2=-0x9, a3=?.
   The `jal` at 0x19cf8 calls hwperf_copy_cmp with a0=a0 at entry (arg0), a1=[-0x3930]:8, a2=?, a3=?.
-  The `jal` at 0x19d18 calls r1nk_perf_start_counters with a0=?, a1=?, a2=?, a3=?, a4=-0x3.
-  The `jal` at 0x19d20 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x19d18 calls r1nk_perf_start_counters with a0=[-0x3930]:8, a1=[-0x3930]:8, a2=?, a3=?, a4=-0x3.
+  The `jal` at 0x19d20 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `beq` branch at 0x19cb4 targets 0x19cec, is taken when a0(=[-0x3928]:8) == 0, and falls through when a0(=[-0x3928]:8) != 0.
   The `beq` branch at 0x19cc4 targets 0x19ce4, is taken when (a1(=[[-0x3928]:8]:2) & 0x8) == 0, and falls through when (a1(=[[-0x3928]:8]:2) & 0x8) != 0.
   The `beql` branch at 0x19d4c targets 0x19d40, is taken when (a5(=[sym(.sbss)+272]) & a7(?)) == 0, and falls through when (a5(=[sym(.sbss)+272]) & a7(?)) != 0; its branch-likely delay slot `nop` at 0x19d50 runs only when taken and is annulled on fall-through.
@@ -3545,7 +3545,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `ll` at 0x19e2c loads 4 bytes from sym(pdaindr) +0xf30.
   The `sc` at 0x19e38 stores 4 bytes to sym(pdaindr) +0xf30.
   The `jal` at 0x19d78 calls mutex_spinlock with a0=sym(.bss)+3888, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x19dbc calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=one of 0x2, 0x8, a7=sym(.bss)+3888.
+  The `jal` at 0x19dbc calls mutex_spinunlock with a0=sym(.bss)+3888, a1=ret(mutex_spinlock), a2=?, a3=?, a5=one of 0x2, 0x8, a7=sym(.bss)+3888.
   The `beq` branch at 0x19da0 targets 0x19dd8, is taken when (s0(=a1) & 0x8) == 0, and falls through when (s0(=a1) & 0x8) != 0.
   The `beq` branch at 0x19da8 targets 0x19df0, is taken when a4(=[sym(.bss)+3900]:2) == a5(=0x2), and falls through when a4(=[sym(.bss)+3900]:2) != a5(=0x2).
   The `beq` branch at 0x19db0 targets 0x19e0c, is taken when a4(=[sym(.bss)+3900]:2) == a6(=0x1), and falls through when a4(=[sym(.bss)+3900]:2) != a6(=0x1).
@@ -3569,7 +3569,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lh` at 0x19f28 loads 2 bytes from ?.
   The `jal` at 0x19e8c calls nano_delay with a0=sp-48, a1=a1 at entry (arg1), a2=[a0]:2, a3=a3 at entry (arg3).
   The `jal` at 0x19efc calls cpu_enabled with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x19f40 calls nano_delay with a0=sp-48, a1=?, a2=?, a3=-0x1.
+  The `jal` at 0x19f40 calls nano_delay with a0=sp-48, a1=?, a2=?, a3=-0x1, a4=one of 0x0, 0x1.
   The `jal` at 0x19f78 calls assfail with a0=sym(.rodata)+12728, a1=sym(.rodata)+12728, a2=0x378, a3=?.
   The `jal` at 0x19f90 calls assfail with a0=sym(.rodata)+12728, a1=sym(.rodata)+12728, a2=0x384, a3=-0x1.
   The `jal` at 0x19fa4 calls assfail with a0=sym(.rodata)+12728, a1=sym(.rodata)+12728, a2=0x389, a3=?, a4=sym(.rodata)+12728.
@@ -3584,7 +3584,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `beq` branch at 0x19f08 targets 0x19ee8, is taken when v0(=ret(cpu_enabled)) == 0, and falls through when v0(=ret(cpu_enabled)) != 0.
   The `beq` branch at 0x19f20 targets 0x19eec, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x19f2c targets 0x19eec, is taken when a2(?) == a3(=-0x1), and falls through when a2(?) != a3(=-0x1).
-  The `bne` branch at 0x19f38 targets 0x19ed8, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x19f38 targets 0x19ed8, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x19f4c targets 0x19ed8 and is always taken.
   The `beq` branch at 0x19f54 targets 0x19ea0 and is always taken.
   The `bne` branch at 0x19f5c targets 0x19ea0, is taken when a3(?) != 0, and falls through when a3(?) == 0.
@@ -4520,7 +4520,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `jal` at 0x22c0 calls promlog_get with a0=sp-368, a1=sp-120, a2=sp-104, a3=?.
   The `jal` at 0x22d8 calls strncmp with a0=sp-104, a1=sym(.rodata)+584, a2=0x2f, a3=?.
   The `jal` at 0x22e8 calls promlog_next with a0=sp-368, a1=0x3, a2=?, a3=?.
-  The `jal` at 0x2304 calls sprintf with a0=a2 at entry (arg2), a1=sym(.rodata)+304, a2=?, a3=?.
+  The `jal` at 0x2304 calls sprintf with a0=a2 at entry (arg2), a1=sym(.rodata)+304, a2=[[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+35968], a3=?.
   The `jal` at 0x230c calls strlen with a0=a2 at entry (arg2), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x21a4 targets 0x22f8, is taken when v0(=ret(ip27log_setup)) < 0 (signed), and falls through when v0(=ret(ip27log_setup)) >= 0 (signed).
   The `beq` branch at 0x21ac targets 0x2294, is taken when s0(=a1) == 0, and falls through when s0(=a1) != 0.
@@ -4690,7 +4690,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lbu` at 0x2914 loads 1 byte from a0 (arg0 at entry) +0x6.
   2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x29b4, `lhu` at 0x29c4.
   The `jal` at 0x28ac calls read_rr_reg with a0=[a0+4]:2, a1=[a0+504]:2, a2=(a1 + a1)-1, a3=?, a4=sp-336.
-  The `jal` at 0x28d0 calls read_rr_reg with a0=[a0+4]:2, a1=[a0+504]:2, a2=?, a3=sp-80, a4=sp-336.
+  The `jal` at 0x28d0 calls read_rr_reg with a0=[a0+4]:2, a1=[a0+504]:2, a2=(a1 + a1)-2, a3=sp-80, a4=sp-336.
   The `jal` at 0x28e4 calls mutex_spinlock with a0=a0+572, a1=?, a2=?, a3=?.
   The `jal` at 0x2904 calls router_decode_port_errors with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x292c calls mutex_spinunlock with a0=a0+572, a1=?, a2=?, a3=[a0+7]:1.
@@ -5105,7 +5105,7 @@ Routines with an exact binary/member/routine entry already documented were skipp
   The `lbu` at 0x3ff0 loads 1 byte from ?.
   The `jal` at 0x3ebc calls find_first_component with a0=a0 at entry (arg0), a1=0x9, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x4004 calls vector_concat with a0=?, a1=a3 at entry (arg3), a2=?, a3=?, a4=0x30.
-  The `jal` at 0x401c calls try_router [0x3e98] with a0=?, a1=a1 at entry (arg1), a2=?, a3=ret(vector_concat).
+  The `jal` at 0x401c calls try_router [0x3e98] with a0=?, a1=a1 at entry (arg1), a2=a2-1, a3=ret(vector_concat).
   The `jal` at 0x4084 calls vector_concat with a0=?, a1=a3 at entry (arg3), a2=?, a3=?, a4=0x30, a7=0x0.
   The `beq` branch at 0x3ee8 targets 0x4094, is taken when v0(=ret(find_first_component)) == 0, and falls through when v0(=ret(find_first_component)) != 0.
   The `beq` branch at 0x3f24 targets 0x3f3c and is always taken.

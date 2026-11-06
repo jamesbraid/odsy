@@ -258,7 +258,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad19f8 calls __glFragmentLightModelivSGIX_size [0xda8176c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad1a10 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad1a2c calls __glSPDlalloc [0xd976680] with a0=(ret(__glFragmentLightModelivSGIX_size) << 0x2)+4, a1=0x10b, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad1a54 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdad1a54 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad1a04 targets 0xdad1a20, is taken when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad1a18 targets 0xdad1a60 and is always taken.
   The `beq` branch at 0xdad1a38 targets 0xdad1a60, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -289,7 +289,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad1b2c calls __glFragmentMaterialfvSGIX_size [0xda81584] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xdad1b44 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad1b60 calls __glSPDlalloc [0xd976680] with a0=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)+8, a1=0x10d, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad1b90 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad1b90 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
   The `beq` branch at 0xdad1b08 targets 0xdad1b24, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdad1b1c targets 0xdad1b9c and is always taken.
   The `bgez` branch at 0xdad1b38 targets 0xdad1b54, is taken when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) < 0 (signed).
@@ -322,7 +322,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad1c7c calls __glFragmentMaterialivSGIX_size [0xda815f8] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xdad1c94 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad1cb0 calls __glSPDlalloc [0xd976680] with a0=(ret(__glFragmentMaterialivSGIX_size) << 0x2)+8, a1=0x10f, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad1ce0 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad1ce0 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
   The `beq` branch at 0xdad1c58 targets 0xdad1c74, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdad1c6c targets 0xdad1cec and is always taken.
   The `bgez` branch at 0xdad1c88 targets 0xdad1ca4, is taken when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) < 0 (signed).
@@ -2936,9 +2936,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdad685c loads 4 bytes from t0 +0x1050.
   The `lw` at 0xdad6864 loads 4 bytes from ([0x1010] + t0) +0x17f8.
   3 such `sw` accesses store 4 bytes to t0 +0x1050, including `sw` at 0xdad686c, `sw` at 0xdad6914, `sw` at 0xdad6934.
-  The `lw` at 0xdad6878 loads 4 bytes from (entry(0x2b8fc) + t0) +0x0.
+  2 such `lw` accesses load 4 bytes from (entry(0x2b8fc) + t0) +0x0, including `lw` at 0xdad6878, `lw` at 0xdad6920.
   The `lw` at 0xdad690c loads 4 bytes from ([0x1010] + t0) +0x26c0.
-  The `lw` at 0xdad6920 loads 4 bytes from ?.
   The `bal` at 0xdad6840 calls __glce_common_listable+160 [0xdad6848] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad6880 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xdad6928 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).

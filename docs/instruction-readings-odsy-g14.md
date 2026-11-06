@@ -115,13 +115,14 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `ld` at 0x25b4 loads 8 bytes from ret(gthread_find) +0x18.
   17 such `ld` accesses load 8 bytes from ?, including `ld` at 0x25d8, `ld` at 0x25e4, `ld` at 0x2600.
   2 such `ld` accesses load 8 bytes from entry(sym(GfxDev)) +0x18, including `ld` at 0x2604, `ld` at 0x2778.
-  5 such `sd` accesses store 8 bytes to ?, including `sd` at 0x2608, `sd` at 0x2704, `sd` at 0x2780.
+  4 such `sd` accesses store 8 bytes to ?, including `sd` at 0x2608, `sd` at 0x2780, `sd` at 0x2914.
   The `lw` at 0x2618 loads 4 bytes from entry(sym(GfxDev)) +0x4.
   2 such `lw` accesses load 4 bytes from ret(gthread_find) +0x8, including `lw` at 0x2684, `lw` at 0x27d0.
   The `sd` at 0x26a8 stores 8 bytes to [ret(gthread_find)+16]:8 +0x18.
   4 such `ld` accesses load 8 bytes from ret(gthread_find) +0x0, including `ld` at 0x26c0, `ld` at 0x29c0, `ld` at 0x29d4.
   The `lw` at 0x26dc loads 4 bytes from entry(sym(GfxDev)) +0x38.
   The `sw` at 0x26f0 stores 4 bytes to entry(sym(GfxDev)) +0x38.
+  The `sd` at 0x2704 stores 8 bytes to table(sym(GfxDev)) +0x0.
   The `sw` at 0x2824 stores 4 bytes to ?.
   2 such `sd` accesses store 8 bytes to entry(sym(GfxDev)) +0x18, including `sd` at 0x28bc, `sd` at 0x290c.
   2 such `sd` accesses store 8 bytes to entry(sym(GfxDev)) +0x10, including `sd` at 0x28c0, `sd` at 0x2904.
@@ -164,7 +165,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x2878 calls gthread_find with a0=[entry(sym(GfxDev))+16]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x28cc calls gthread_attach_list with a0=ret(gthread_create), a1=0x0, a2=?, a3=?.
   The `jal` at 0x28e0 calls setgfxsched_thread with a0=ret(curthreadhandle), a1=?, a2=?, a3=[ret(gthread_create)+16]:8.
-  The `jal` at 0x28f4 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x28f4 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x2938 calls GfxListWriterLock with a0=[ret(gthread_find)+16]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x2954 calls GfxListWriterUnlock with a0=[ret(gthread_find)+16]:8, a1=ret(GfxListWriterLock), a2=?, a3=?.
   The `jal` at 0x297c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
@@ -359,13 +360,14 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `ld` at 0x25b4 loads 8 bytes from ret(gthread_find) +0x18.
   17 such `ld` accesses load 8 bytes from ?, including `ld` at 0x25d8, `ld` at 0x25e4, `ld` at 0x2600.
   2 such `ld` accesses load 8 bytes from entry(sym(GfxDev)) +0x18, including `ld` at 0x2604, `ld` at 0x2778.
-  5 such `sd` accesses store 8 bytes to ?, including `sd` at 0x2608, `sd` at 0x2704, `sd` at 0x2780.
+  4 such `sd` accesses store 8 bytes to ?, including `sd` at 0x2608, `sd` at 0x2780, `sd` at 0x2914.
   The `lw` at 0x2618 loads 4 bytes from entry(sym(GfxDev)) +0x4.
   2 such `lw` accesses load 4 bytes from ret(gthread_find) +0x8, including `lw` at 0x2684, `lw` at 0x27d0.
   The `sd` at 0x26a8 stores 8 bytes to [ret(gthread_find)+16]:8 +0x18.
   4 such `ld` accesses load 8 bytes from ret(gthread_find) +0x0, including `ld` at 0x26c0, `ld` at 0x29c0, `ld` at 0x29d4.
   The `lw` at 0x26dc loads 4 bytes from entry(sym(GfxDev)) +0x38.
   The `sw` at 0x26f0 stores 4 bytes to entry(sym(GfxDev)) +0x38.
+  The `sd` at 0x2704 stores 8 bytes to table(sym(GfxDev)) +0x0.
   The `sw` at 0x2824 stores 4 bytes to ?.
   2 such `sd` accesses store 8 bytes to entry(sym(GfxDev)) +0x18, including `sd` at 0x28bc, `sd` at 0x290c.
   2 such `sd` accesses store 8 bytes to entry(sym(GfxDev)) +0x10, including `sd` at 0x28c0, `sd` at 0x2904.
@@ -408,7 +410,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x2878 calls gthread_find with a0=[entry(sym(GfxDev))+16]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x28cc calls gthread_attach_list with a0=ret(gthread_create), a1=0x0, a2=?, a3=?.
   The `jal` at 0x28e0 calls setgfxsched_thread with a0=ret(curthreadhandle), a1=?, a2=?, a3=[ret(gthread_create)+16]:8.
-  The `jal` at 0x28f4 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x28f4 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x2938 calls GfxListWriterLock with a0=[ret(gthread_find)+16]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x2954 calls GfxListWriterUnlock with a0=[ret(gthread_find)+16]:8, a1=ret(GfxListWriterLock), a2=?, a3=?.
   The `jal` at 0x297c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
@@ -1894,7 +1896,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x2de8 calls spinlock_init with a0=[(sym(pdaindr) + (ret(getcpuid) << 0x4))+8]:8+1180, a1=sym(.rodata)+120, a2=?, a3=?.
   The `jal` at 0x2df0 calls tlbinfo_init with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2df8 calls clkstart with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2e04 calls mutex_spinunlock with a0=sym(bootlck), a1=?, a2=?, a3=?.
+  The `jal` at 0x2e04 calls mutex_spinunlock with a0=sym(bootlck), a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2e18 calls ecc_init with a0=?, a1=?, a2=?, a3=-0x11.
   The `jal` at 0x2e20 calls joinrunq with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2e28 calls init_mfhi_war with a0=?, a1=?, a2=?, a3=?.
@@ -2223,7 +2225,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jalr` at 0x3b1c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x3b40 calls getcause with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3c04 calls ip30_intr_maint with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3c44 calls check_delay_tlbflush with a0=0x1, a1=?, a2=?, a3=?.
+  The `jal` at 0x3c44 calls check_delay_tlbflush with a0=0x1, a1=?, a2=?, a3=?, a5=one of 0x0, 0x1.
   The `jal` at 0x3c6c calls splx with a0=ret(splprof), a1=?, a2=?, a3=?.
   The `jal` at 0x3c7c calls check_delay_tlbflush with a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x3ca0 calls log_tstamp_event with a0=0x65, a1=0x66, a2=0x0, a3=0x0, a4=0x0.
@@ -2251,7 +2253,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `beq` branch at 0x3be8 targets 0x3ab8, is taken when a5(=[-0x3a9c]) == 0, and falls through when a5(=[-0x3a9c]) != 0.
   The `beq` branch at 0x3bf0 targets 0x3ab8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x3bfc targets 0x3ab8 and is always taken.
-  The `beq` branch at 0x3c2c targets 0x3c4c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0x3c2c targets 0x3c4c, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x3c3c targets 0x3c4c, is taken when (a6(=[-0x3fb8]) & 0x10) == 0, and falls through when (a6(=[-0x3fb8]) & 0x10) != 0.
   The `bne` branch at 0x3c54 targets 0x3c90, is taken when (a7(=[-0x3d80]:8) & 0x20) != 0, and falls through when (a7(=[-0x3d80]:8) & 0x20) == 0.
   The `beq` branch at 0x3c74 targets 0x3ac8 and is always taken.
@@ -2401,7 +2403,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   It occupies 140 bytes.
   The `sw` at 0x41b0 stores 4 bytes to [sym(.sdata)+72]:8 +0x0.
   The `jal` at 0x4150 calls splhi with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x416c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x416c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x41b4 calls timeout with a0=sym(stop_bell), a1=0x0, a2=?, a3=0x100000, a4=[sym(.sdata)+72]:8.
   The `blez` branch at 0x4148 targets 0x4184, is taken when a2 <= 0 (signed), and falls through when a2 > 0 (signed).
   The `beq` branch at 0x4164 targets 0x418c, is taken when v0(=[sym(.sbss)+48]) == 0, and falls through when v0(=[sym(.sbss)+48]) != 0.
@@ -2601,7 +2603,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `sc` at 0x4afc stores 4 bytes to abs 0xffffffffffffc540.
   The `lw` at 0x4b08 loads 4 bytes from abs 0xffffffffffffc540.
   The `jal` at 0x4ae0 calls splprof with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x4b14 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x4b14 calls splx with a0=ret(splprof), a1=?, a2=?, a3=?.
   The `jal` at 0x4b28 calls startkgclock with a0=[-0x3ac0]+1, a1=-0x3ac0, a2=[-0x3ac0]+1, a3=?.
   The `beql` branch at 0x4b00 targets 0x4af0, is taken when a2(=[-0x3ac0]+1) == 0, and falls through when a2(=[-0x3ac0]+1) != 0; its branch-likely delay slot `nop` at 0x4b04 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x4b0c targets 0x4b28, is taken when at(=[-0x3ac0]) == v1(=0x1), and falls through when at(=[-0x3ac0]) != v1(=0x1).
@@ -2617,7 +2619,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `sc` at 0x4b64 stores 4 bytes to abs 0xffffffffffffc540.
   The `lh` at 0x4b7c loads 2 bytes from abs 0xffffffffffffc3a0.
   The `jal` at 0x4b40 calls splprof with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x4b94 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x4b94 calls splx with a0=ret(splprof), a1=?, a2=?, a3=?.
   The `jal` at 0x4ba8 calls slowkgclock with a0=[sym(audioclock)], a1=[-0x3ac0]-1, a2=[-0x3ac0]-1, a3=[-0x3c60]:2, a4=[sym(master_procid)]:2.
   The `beq` branch at 0x4b50 targets 0x4b94, is taken when at(=[-0x3ac0]) == 0, and falls through when at(=[-0x3ac0]) != 0.
   The `beql` branch at 0x4b68 targets 0x4b58, is taken when a2(=[-0x3ac0]-1) == 0, and falls through when a2(=[-0x3ac0]-1) != 0; its branch-likely delay slot `nop` at 0x4b6c runs only when taken and is annulled on fall-through.
@@ -2936,7 +2938,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x57c0 calls cmn_err with a0=0x0, a1=sym(.rodata)+1104, a2=?, a3=?.
   The `beq` branch at 0x57a4 targets 0x57b8, is taken when v0(=ret(dotimeout)) == 0, and falls through when v0(=ret(dotimeout)) != 0.
   The `beq` branch at 0x57c8 targets 0x57ac and is always taken.
-  The return at 0x57b0 has v0 = one of ret(dotimeout), ?.
+  The return at 0x57b0 has v0 = ret(dotimeout).
 - `fast_timeout_nothrd` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x57d0 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
@@ -2947,7 +2949,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x5834 calls cmn_err with a0=0x0, a1=sym(.rodata)+1104, a2=?, a3=?.
   The `beq` branch at 0x5818 targets 0x582c, is taken when v0(=ret(dotimeout)) == 0, and falls through when v0(=ret(dotimeout)) != 0.
   The `beq` branch at 0x583c targets 0x5820 and is always taken.
-  The return at 0x5824 has v0 = one of ret(dotimeout), ?.
+  The return at 0x5824 has v0 = ret(dotimeout).
 - `callout_time_to_hz` in `usr/cpu/sysgen/IP30boot/kernel.o` at 0x5844 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP30boot/kernel.o`.
@@ -2979,7 +2981,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x5994 calls timein_entry_ithrd with a0=a0 at entry (arg0), a1=[a0+24]:8, a2=ret(mutex_spinlock_spl), a3=?.
   The `jal` at 0x59a8 calls mutex_spinunlock with a0=a0+8, a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `jal` at 0x59b8 calls mutex_spinlock_spl with a0=a0+8, a1=sym(splprof), a2=?, a3=?.
-  The `jal` at 0x59c4 calls sv_broadcast with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x59c4 calls sv_broadcast with a0=a0+112, a1=?, a2=?, a3=?.
   The `jal` at 0x59d0 calls mutex_spinunlock with a0=a0+8, a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `beq` branch at 0x58c0 targets 0x5914 and is always taken.
   The `beq` branch at 0x58d8 targets 0x5990, is taken when (v0(=[[a0+24]:8+70]:2) & 0x2) == 0, and falls through when (v0(=[[a0+24]:8+70]:2) & 0x2) != 0.
@@ -3071,7 +3073,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x5d04 calls splprof with a0=?, a1=0xf0000, a2=?, a3=a3 at entry (arg3).
   The `jal` at 0x5d0c calls __nanotime [0x5eb0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x5d1c calls nested_spinlock with a0=sym(timelock), a1=?, a2=?, a3=?.
-  The `jal` at 0x5dc4 calls mutex_spinunlock with a0=sym(timelock), a1=?, a2=[sym(.sbss)+100]+1, a3=?.
+  The `jal` at 0x5dc4 calls mutex_spinunlock with a0=sym(timelock), a1=ret(splprof), a2=[sym(.sbss)+100]+1, a3=?.
   The `jal` at 0x5e24 calls splprof with a0=a0 at entry (arg0), a1=0xf0000, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x5e2c calls __nanotime [0x5eb0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x5e38 calls nested_spinlock with a0=sym(timelock), a1=?, a2=?, a3=?.
@@ -3133,7 +3135,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jal` at 0x60e0 calls splprof with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x6204 calls mutex_spinlock_spl with a0=sym(timelock), a1=sym(splprof), a2=?, a3=?, a7=0x3b9aca00.
   The `jal` at 0x6224 calls mutex_spinunlock with a0=sym(timelock), a1=ret(mutex_spinlock_spl), a2=?, a3=?, a4=[a0].
-  The `jal` at 0x622c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x622c calls splx with a0=ret(splprof), a1=?, a2=?, a3=?.
   The `bne` branch at 0x6120 targets 0x60f4, is taken when t8(=[sym(.sbss)+100]) != t9(=[sym(.sbss)+96]), and falls through when t8(=[sym(.sbss)+100]) == t9(=[sym(.sbss)+96]).
   The `beq` branch at 0x6144 targets 0x6170, is taken when a4(=[0xffffffffaff20000]:8) >= at(=([sym(adjtime_delta)]:8 + [sym(adjtime_RTC)]:8)) (unsigned), and falls through when a4(=[0xffffffffaff20000]:8) < at(=([sym(adjtime_delta)]:8 + [sym(adjtime_RTC)]:8)) (unsigned).
   The `beq` branch at 0x614c targets 0x6170, is taken when a5(=[sym(adjtime_delta)]:8) == 0, and falls through when a5(=[sym(adjtime_delta)]:8) != 0.

@@ -5005,11 +5005,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdae8358 loads 4 bytes from a0 (arg0 at entry) +0x3364.
   The `sw` at 0xdae835c stores 4 bytes to a0 (arg0 at entry) +0x2ee4.
   The `lbu` at 0xdae8370 loads 1 byte from a0 (arg0 at entry) +0x3358.
-  The `sb` at 0xdae8374 stores 1 byte to a0 (arg0 at entry) +0x3358.
+  2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x3358, including `sb` at 0xdae8374, `sb` at 0xdae83b0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2f60, including `lw` at 0xdae8378, `lw` at 0xdae83ac.
-  The `sb` at 0xdae83b0 stores 1 byte to ?.
   The `jalr` at 0xdae8390 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a0+12768, a3=a0+12960.
-  Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=? (`jr` at 0xdae83bc).
+  Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a0+12960, a3=a0+13152 (`jr` at 0xdae83bc).
   The `jalr` at 0xdae83f4 calls __glDoPolygonClip [0xda77908] with a0=a0 at entry (arg0), a1=sp-24, a2=0x4, a3=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156])).
   The `bne` branch at 0xdae836c targets 0xdae83c4, is taken when t6(=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156]))) != 0, and falls through when t6(=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156]))) == 0.
   The `bne` branch at 0xdae83d0 targets 0xdae8400, is taken when (t9(?) & v1(?)) != 0, and falls through when (t9(?) & v1(?)) == 0.

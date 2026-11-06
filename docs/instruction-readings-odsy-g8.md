@@ -74,7 +74,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x680 loads 4 bytes from a3 (arg3 at entry) +0x0.
   The `jal` at 0x62c calls mutex_spinlock with a0=sym(odsy_hpipe_state_lock), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x658 calls copyout with a0=[sym(OdsyHpipeState)]:8+4360, a1=a2 at entry (arg2), a2=0x184, a3=[sym(OdsyHpipeState)]:8.
-  The `jal` at 0x670 calls mutex_spinunlock with a0=sym(odsy_hpipe_state_lock), a1=?, a2=?, a3=?.
+  The `jal` at 0x670 calls mutex_spinunlock with a0=sym(odsy_hpipe_state_lock), a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x690 calls odsy_hpipe_discover with a0=?, a1=?, a2=?, a3=[sym(OdsyHpipeState)]:8.
   The `beq` branch at 0x63c targets 0x690, is taken when a3(=[sym(OdsyHpipeState)]:8) == 0, and falls through when a3(=[sym(OdsyHpipeState)]:8) != 0.
   The `beq` branch at 0x648 targets 0x690, is taken when at(=[[sym(OdsyHpipeState)]:8]) == 0, and falls through when at(=[[sym(OdsyHpipeState)]:8]) != 0.
@@ -251,7 +251,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x38c calls bzero with a0=ret(kmem_alloc), a1=0x20, a2=?, a3=?.
   The `bne` branch at 0x374 targets 0x388, is taken when v0(=ret(kmem_alloc)) != 0, and falls through when v0(=ret(kmem_alloc)) == 0.
   The `beq` branch at 0x398 targets 0x380 and is always taken.
-  The return at 0x380 has v0 = one of 0x0, ?.
+  The return at 0x380 has v0 = one of 0x0, ret(kmem_alloc).
 - `OdsyAllocSpecificCSetId` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)` at 0x3a0 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
@@ -636,15 +636,15 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xc18 calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8.
   The `jal` at 0xc28 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xc38 calls mutex_spinlock with a0=a0+10272, a1=[a0+22304], a2=?, a3=[a0+736]:8+0x400000, a4=0x3a02400100000000.
-  The `jal` at 0xc58 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
+  The `jal` at 0xc58 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
   The `jal` at 0xc64 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0xc74 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xc74 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0xc84 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
   The `jal` at 0xd88 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
   The `jal` at 0xd98 calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8.
-  The `jal` at 0xda4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
-  The `jal` at 0xdb4 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xec0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
+  The `jal` at 0xda4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0xdb4 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xec0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
   The `jal` at 0xee0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?, a4=-0x2.
   The `beq` branch at 0x74c targets 0xaa0, is taken when s3(=[a1+8]) == at(=0x20), and falls through when s3(=[a1+8]) != at(=0x20).
   The `beq` branch at 0x754 targets 0xb74, is taken when s3(=[a1+8]) == v1(=0x10), and falls through when s3(=[a1+8]) != v1(=0x10).
@@ -697,7 +697,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0xef4 loads 8 bytes from a0 (arg0 at entry) +0x20.
   4 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0xf88, `sw` at 0xfb0, `sw` at 0xfd4.
   The `jal` at 0xf1c calls copyin with a0=a2 at entry (arg2), a1=sp-128, a2=0x30, a3=a3 at entry (arg3).
-  The `jal` at 0xf60 calls odsyConfigFb with a0=?, a1=sp-128, a2=?, a3=?, a5=0x8, a6=0x10.
+  The `jal` at 0xf60 calls odsyConfigFb with a0=[a0+32]:8, a1=sp-128, a2=?, a3=?, a5=0x8, a6=0x10.
   The `jal` at 0xf74 calls copyout with a0=sp-128, a1=a2 at entry (arg2), a2=0x30, a3=?.
   The `jal` at 0xfa4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?, a5=0x8.
   The `jal` at 0xfc8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?, a5=0x8.
@@ -712,7 +712,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0xfb8 targets 0xf8c and is always taken.
   The `beq` branch at 0xfdc targets 0xf8c and is always taken.
   The `beq` branch at 0x1000 targets 0xf8c and is always taken.
-  The return at 0xf90 has v0 = one of ?, -0x1, 0xe.
+  The return at 0xf90 has v0 = one of ret(odsyConfigFb), -0x1, 0xe.
 - `gf_OdsyPositionCursor` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)` at 0x1008 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
@@ -733,10 +733,10 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lhu` at 0x11f4 loads 2 bytes from a0 (arg0 at entry) +0x2ca.
   The `jal` at 0x10b0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10c0 calls cpsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x10d8 calls mutex_spinunlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x10d8 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x10e8 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x110c calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1240 calls mutex_spinunlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x110c calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x1240 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x1020 targets 0x11f4, is taken when at(=[a0+718]:2) == v0(=0x2), and falls through when at(=[a0+718]:2) != v0(=0x2).
   The `beq` branch at 0x1090 targets 0x1210, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0x10c8 targets 0x122c, is taken when v0(=ret(cpsema)) == 0, and falls through when v0(=ret(cpsema)) != 0.
@@ -762,66 +762,65 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   21 such `sw` accesses store 4 bytes to [a0+32]:8 +0x55f0, including `sw` at 0x1318, `sw` at 0x14d4, `sw` at 0x1510.
   3 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x1350, `sw` at 0x1828, `sw` at 0x18ec.
   10 such `ld` accesses load 8 bytes from [a0+32]:8 +0x2828, including `ld` at 0x13a0, `ld` at 0x1524, `ld` at 0x1598.
-  7 such `sd` accesses store 8 bytes to table(0x400000) +0x0, including `sd` at 0x1404, `sd` at 0x1698, `sd` at 0x1a50.
+  27 such `sd` accesses store 8 bytes to [[a0+32]:8+736]:8 +0x400000, including `sd` at 0x1404, `sd` at 0x14dc, `sd` at 0x1518.
   20 such `lw` accesses load 4 bytes from [a0+32]:8 +0x55f0, including `lw` at 0x148c, `lw` at 0x14e4, `lw` at 0x1534.
   10 such `lhu` accesses load 2 bytes from [a0+32]:8 +0x2830, including `lhu` at 0x1490, `lhu` at 0x14e0, `lhu` at 0x1700.
-  20 such `sd` accesses store 8 bytes to [[a0+32]:8+736]:8 +0x400000, including `sd` at 0x14dc, `sd` at 0x1518, `sd` at 0x1530.
   5 such `sd` accesses store 8 bytes to [a0+32]:8 +0x2828, including `sd` at 0x1564, `sd` at 0x17d4, `sd` at 0x19f0.
   3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x16c8, `lw` at 0x1ae0, `lw` at 0x1db8.
   The `jal` at 0x12a4 calls copyin with a0=a2 at entry (arg2), a1=sp-1040, a2=0x28, a3=a3 at entry (arg3).
   The `jal` at 0x12ec calls gf_OdsyPositionCursor with a0=[a0+32]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1314 calls odsy_poll_dfifo_level with a0=?, a1=0xf, a2=?, a3=?.
+  The `jal` at 0x1314 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xf, a2=?, a3=?.
   The `jal` at 0x1374 calls copyin with a0=?, a1=sp-1000, a2=0x3c, a3=?.
   The `jal` at 0x1398 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
-  The `jal` at 0x13b4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=[[a0+32]:8+10280]:8, a3=?, a5=[a0+32]:8+10256.
+  The `jal` at 0x13b4 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=[[a0+32]:8+10280]:8, a3=?, a5=[a0+32]:8+10256.
   The `jal` at 0x13c0 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x13d0 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x13d0 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x1428 calls copyin with a0=?, a1=sp-928, a2=0x200, a3=?.
   The `jal` at 0x1450 calls psema with a0=[a0+32]:8+10256, a1=0x19, a2=[[a0+32]:8+22304], a3=?.
   The `jal` at 0x1468 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=[[a0+32]:8+10280]:8, a3=?, a5=[a0+32]:8+10256.
-  The `jal` at 0x1474 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1484 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x157c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=0x400000, a6=-0x2.
+  The `jal` at 0x1474 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1484 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x157c calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=0x400000, a6=-0x2.
   The `jal` at 0x1590 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
-  The `jal` at 0x15b0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+32]:8+10280]:8.
+  The `jal` at 0x15b0 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+32]:8+10280]:8.
   The `jal` at 0x15bc calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x15cc calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x15e0 calls odsy_poll_dfifo_level with a0=?, a1=0x7, a2=?, a3=?.
-  The `jal` at 0x1624 calls odsy_poll_dfifo_level with a0=?, a1=0xf, a2=?, a3=?.
+  The `jal` at 0x15cc calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x15e0 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0x7, a2=?, a3=?.
+  The `jal` at 0x1624 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xf, a2=?, a3=?.
   The `jal` at 0x1654 calls copyin with a0=?, a1=sp-416, a2=0x100, a3=?.
   The `jal` at 0x16d8 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+32]:8+10280]:8.
-  The `jal` at 0x16e4 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x16f4 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x17ec calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=-0x2.
+  The `jal` at 0x16e4 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x16f4 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x17ec calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=-0x2.
   The `jal` at 0x180c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x1830 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
-  The `jal` at 0x1850 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1850 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x185c calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x186c calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1880 calls odsy_poll_dfifo_level with a0=?, a1=0xf, a2=?, a3=?.
-  The `jal` at 0x18b0 calls odsy_poll_dfifo_level with a0=?, a1=0xf, a2=?, a3=?.
+  The `jal` at 0x186c calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x1880 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xf, a2=?, a3=?.
+  The `jal` at 0x18b0 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xf, a2=?, a3=?.
   The `jal` at 0x18f4 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x1900 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1910 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1a08 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=-0x2.
+  The `jal` at 0x1900 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1910 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1a08 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=-0x2.
   The `jal` at 0x1af4 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?, a4=[[a0+32]:8+22304].
-  The `jal` at 0x1b14 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1b14 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1b20 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x1b30 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1b4c calls odsy_poll_dfifo_level with a0=?, a1=0x0, a2=?, a3=0xffffffff, a5=0xffffffff00000000, a7=sp-928.
+  The `jal` at 0x1b30 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x1b4c calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0x0, a2=?, a3=0xffffffff, a5=0xffffffff00000000, a7=sp-928.
   The `jal` at 0x1b8c calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x1b98 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1ba8 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1ca8 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=-0x2.
-  The `jal` at 0x1dd4 calls odsy_poll_dfifo_level with a0=?, a1=0x0, a2=?, a3=?, a5=0xffffffff00000000, a6=0xffffffff, a7=0x400000.
+  The `jal` at 0x1b98 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1ba8 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1ca8 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=-0x2.
+  The `jal` at 0x1dd4 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0x0, a2=?, a3=?, a5=0xffffffff00000000, a6=0xffffffff, a7=0x400000.
   The `jal` at 0x1e04 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=a3 at entry (arg3), a3=?.
-  The `jal` at 0x1e24 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1e24 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1e30 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x1e40 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1e40 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x1e64 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x1e70 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1e80 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1f80 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a7=([[a0+32]:8+22000] | 0x2).
+  The `jal` at 0x1e70 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x1e80 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1f80 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a7=([[a0+32]:8+22000] | 0x2).
   The `bne` branch at 0x12ac targets 0x17fc, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
   The `beq` branch at 0x12b8 targets 0x12d4, is taken when (v0(?) & 0x1) == 0, and falls through when (v0(?) & 0x1) != 0.
   The `beq` branch at 0x12d8 targets 0x12f4, is taken when (v0(?) & 0x2) == 0, and falls through when (v0(?) & 0x2) != 0.
@@ -935,7 +934,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x2008 loads 8 bytes from a0 (arg0 at entry) +0x20.
   2 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x2044, `sw` at 0x206c.
   The `jal` at 0x202c calls copyin with a0=a2 at entry (arg2), a1=sp-64, a2=0x4, a3=a3 at entry (arg3).
-  The `jal` at 0x203c calls odsyBlankScreen with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x203c calls odsyBlankScreen with a0=[a0+32]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x2060 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `bne` branch at 0x2034 targets 0x2058, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
   The `beq` branch at 0x2074 targets 0x204c and is always taken.
@@ -952,8 +951,8 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x5698, including `sw` at 0x20d8, `sw` at 0x213c, `sw` at 0x2190.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x5694, including `lw` at 0x2198, `lw` at 0x21fc, `lw` at 0x2330.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x5694, including `sw` at 0x21ac, `sw` at 0x220c, `sw` at 0x233c.
-  2 such `lw` accesses load 4 bytes from table(0x233604) +0x0, including `lw` at 0x21d8, `lw` at 0x2300.
-  8 such `sd` accesses store 8 bytes to table(0x400000) +0x0, including `sd` at 0x21f8, `sd` at 0x221c, `sd` at 0x2230.
+  2 such `lw` accesses load 4 bytes from [a0+736]:8 +0x233604, including `lw` at 0x21d8, `lw` at 0x2300.
+  32 such `sd` accesses store 8 bytes to [a0+736]:8 +0x400000, including `sd` at 0x21f8, `sd` at 0x221c, `sd` at 0x2230.
   3 such `lwu` accesses load 4 bytes from a0 (arg0 at entry) +0x5698, including `lwu` at 0x2204, `lwu` at 0x2334, `lwu` at 0x23c4.
   3 such `lwu` accesses load 4 bytes from a0 (arg0 at entry) +0x5694, including `lwu` at 0x2220, `lwu` at 0x2350, `lwu` at 0x23e4.
   12 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x2828, including `ld` at 0x2254, `ld` at 0x237c, `ld` at 0x2410.
@@ -961,69 +960,68 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   24 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x55f0, including `lw` at 0x25c8, `lw` at 0x261c, `lw` at 0x2670.
   12 such `lhu` accesses load 2 bytes from a0 (arg0 at entry) +0x2830, including `lhu` at 0x25cc, `lhu` at 0x2628, `lhu` at 0x27a4.
   24 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x55f0, including `sw` at 0x25f8, `sw` at 0x2648, `sw` at 0x269c.
-  24 such `sd` accesses store 8 bytes to [a0+736]:8 +0x400000, including `sd` at 0x2618, `sd` at 0x2654, `sd` at 0x266c.
   6 such `sd` accesses store 8 bytes to a0 (arg0 at entry) +0x2828, including `sd` at 0x26ac, `sd` at 0x2884, `sd` at 0x2998.
   The `jal` at 0x20e0 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x2144 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x21a8 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xe, a2=?, a3=?, a6=-0x21.
   The `jal` at 0x224c calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?, a4=0xffffffff.
-  The `jal` at 0x2268 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2268 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2274 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2284 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2284 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x22a8 calls odsy_i2cDDCRegRead with a0=a0+22216, a1=0x0, a2=sp-78, a3=0x17, a4=[a0+298]:2.
-  The `jal` at 0x22c4 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x22c4 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=?, a3=?.
   The `jal` at 0x22e0 calls psema with a0=a0+10256, a1=0x19, a2=a1 at entry (arg1), a3=?, a4=-0x21.
   The `jal` at 0x2374 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+22304].
-  The `jal` at 0x2394 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2394 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x23a0 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x23b0 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2408 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=table(0x400000), a4=0x3920c00100000000.
-  The `jal` at 0x2428 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x23b0 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x2408 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+736]:8+0x400000, a4=0x3920c00100000000.
+  The `jal` at 0x2428 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2434 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2444 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2444 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2458 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+22304].
-  The `jal` at 0x2474 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=a0+10256.
+  The `jal` at 0x2474 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=a0+10256.
   The `jal` at 0x2480 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2490 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2490 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x24a4 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
-  The `jal` at 0x24c0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8.
+  The `jal` at 0x24c0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8.
   The `jal` at 0x24cc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x24dc calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x24dc calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x24f4 calls vsema with a0=a0+10256, a1=a0+10256, a2=?, a3=?.
-  The `jal` at 0x2500 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2500 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2514 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=0x3920c00100000000, a4=0xffffffff.
-  The `jal` at 0x2534 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2534 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2540 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2550 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2550 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2574 calls odsy_i2cDDCRegRead with a0=a0+22216, a1=0x0, a2=sp-80, a3=0x17.
-  The `jal` at 0x2590 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=?, a3=-0xf.
+  The `jal` at 0x2590 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=?, a3=-0xf.
   The `jal` at 0x25b0 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?, a4=[a0+22304].
-  The `jal` at 0x25c0 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x26c4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x25c0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x26c4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x26e8 calls odsy_i2cDDCRegRead with a0=a0+22216, a1=0x0, a2=sp-79, a3=0x17, a4=[a0+298]:2.
-  The `jal` at 0x2704 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x2704 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=?, a3=?.
   The `jal` at 0x2720 calls psema with a0=a0+10256, a1=0x19, a2=a1 at entry (arg1), a3=?, a4=-0x21.
   The `jal` at 0x2738 calls vsema with a0=a0+10256, a1=?, a2=?, a3=a0+10256.
-  The `jal` at 0x2744 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2744 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x275c calls vsema with a0=a0+10256, a1=?, a2=?, a3=?, a4=[a0+10280]:8.
-  The `jal` at 0x2768 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2768 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x277c calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x2788 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2798 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x289c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
-  The `jal` at 0x28ac calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x29b0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2788 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2798 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x289c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x28ac calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x29b0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x29cc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a1 at entry (arg1), a3=0x2.
-  The `jal` at 0x29e0 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2aec calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=[a0+22000], a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0x29e0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2aec calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=[a0+22000], a3=?, a6=([a0+22000] | 0x2).
   The `jal` at 0x2b00 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x2b0c calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2b0c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2b20 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x2b2c calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2b3c calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2c48 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=[a0+22000], a3=?, a6=([a0+22000] | 0x2).
-  The `jal` at 0x2c58 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2d64 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=[a0+22000], a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0x2b2c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2b3c calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2c48 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=[a0+22000], a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0x2c58 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2d64 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=[a0+22000], a3=?, a6=([a0+22000] | 0x2).
   The `beq` branch at 0x209c targets 0x2114, is taken when a1 == 0, and falls through when a1 != 0.
   The `beq` branch at 0x20a4 targets 0x2168, is taken when a2(=a1) == v1(=0x1), and falls through when a2(=a1) != v1(=0x1).
   The `bne` branch at 0x20ac targets 0x29c0, is taken when a2(=a1) != a3(=0x2), and falls through when a2(=a1) == a3(=0x2).
@@ -1255,7 +1253,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   8 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x5720, including `lw` at 0x3360, `lw` at 0x3398, `lw` at 0x3504.
   The `lw` at 0x33b8 loads 4 bytes from a1 (arg1 at entry) +0xd0.
   The `lw` at 0x33e4 loads 4 bytes from [a0+736]:8 +0x233804.
-  47 such `sd` accesses store 8 bytes to [a0+736]:8 +0x400000, including `sd` at 0x33f0, `sd` at 0x344c, `sd` at 0x34fc.
+  64 such `sd` accesses store 8 bytes to [a0+736]:8 +0x400000, including `sd` at 0x33f0, `sd` at 0x344c, `sd` at 0x34fc.
   The `lw` at 0x33fc loads 4 bytes from a1 (arg1 at entry) +0xd8.
   The `lw` at 0x3400 loads 4 bytes from a1 (arg1 at entry) +0xd4.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x124, including `lw` at 0x3450, `lw` at 0x38f8, `lw` at 0x4a78.
@@ -1277,7 +1275,6 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sw` at 0x34b4 stores 4 bytes to a0 (arg0 at entry) +0x290c.
   The `lw` at 0x34c4 loads 4 bytes from a1 (arg1 at entry) +0xf0.
   The `sw` at 0x34d0 stores 4 bytes to a0 (arg0 at entry) +0x2910.
-  The `sd` at 0x35ac stores 8 bytes to table(0x400000) +0x0.
   8 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x2828, including `ld` at 0x35f8, `ld` at 0x3754, `ld` at 0x37d8.
   The `lw` at 0x365c loads 4 bytes from a1 (arg1 at entry) +0x7c.
   The `lw` at 0x3660 loads 4 bytes from a1 (arg1 at entry) +0x74.
@@ -1291,7 +1288,6 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   8 such `lhu` accesses load 2 bytes from a0 (arg0 at entry) +0x2830, including `lhu` at 0x36c0, `lhu` at 0x371c, `lhu` at 0x3b40.
   17 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x55f0, including `sw` at 0x36ec, `sw` at 0x373c, `sw` at 0x3790.
   4 such `sd` accesses store 8 bytes to a0 (arg0 at entry) +0x2828, including `sd` at 0x379c, `sd` at 0x3c24, `sd` at 0x4cdc.
-  16 such `sd` accesses store 8 bytes to ?, including `sd` at 0x395c, `sd` at 0x3b28, `sd` at 0x3cb4.
   4 such `lh` accesses load 2 bytes from ?, including `lh` at 0x39a0, `lh` at 0x3cf8, `lh` at 0x3fdc.
   The `lw` at 0x3d98 loads 4 bytes from a1 (arg1 at entry) +0x8.
   The `ld` at 0x3da0 loads 8 bytes from a1 (arg1 at entry) +0x0.
@@ -1334,75 +1330,75 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lbu` at 0x4acc loads 1 byte from a1 (arg1 at entry) +0xf3.
   The `lbu` at 0x4b48 loads 1 byte from a1 (arg1 at entry) +0xe3.
   The `jal` at 0x3380 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x3524 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?.
+  The `jal` at 0x3524 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?, a6=one of 0x0, 0x5.
   The `jal` at 0x3538 calls odsy_usdelay with a0=a0 at entry (arg0), a1=0x186a0, a2=?, a3=?.
   The `jal` at 0x354c calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xd, a2=?, a3=?.
-  The `jal` at 0x35a8 calls bzero with a0=sp-4976, a1=0x200, a2=?, a3=0x3920400100000001, a4=table(0x400000), a6=[a0+736]:8+0x400000, a7=0x39c0000100000000.
+  The `jal` at 0x35a8 calls bzero with a0=sp-4976, a1=0x200, a2=?, a3=0x3920400100000001, a4=[a0+736]:8+0x400000, a6=[a0+736]:8+0x400000, a7=0x39c0000100000000.
   The `jal` at 0x35b4 calls bzero with a0=sp-4464, a1=0x1000, a2=?, a3=?.
   The `jal` at 0x35f0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=[a0+22304], a3=?.
-  The `jal` at 0x360c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x360c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3618 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x3628 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3628 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x363c calls psema with a0=a0+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x3698 calls vsema with a0=a0+10256, a1=a0+10256, a2=?, a3=?.
-  The `jal` at 0x36a4 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x36b4 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x37b4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
+  The `jal` at 0x36a4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x36b4 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x37b4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
   The `jal` at 0x37d0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=[a0+736]:8+0x400000, a3=?, a6=one of 0x0, 0x5, a7=one of 0x1, 0x4.
-  The `jal` at 0x37f0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x37f0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x37fc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x380c calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3830 calls odsy_i2cPLLRegWrite with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x384c calls odsy_i2cPLLRegWrite with a0=?, a1=0x2, a2=?, a3=?.
-  The `jal` at 0x3868 calls odsy_i2cPLLRegWrite with a0=?, a1=0x3, a2=?, a3=?.
-  The `jal` at 0x3888 calls odsy_i2cPLLRegWrite with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x38a8 calls odsy_i2cPLLRegWrite with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x38c8 calls odsy_i2cPLLRegWrite with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x38e8 calls odsy_i2cPLLRegWrite with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x390c calls odsy_i2cPLLRegWrite with a0=?, a1=0x8, a2=0x5a, a3=[a0+292].
+  The `jal` at 0x380c calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x3830 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?.
+  The `jal` at 0x384c calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x2, a2=?, a3=?.
+  The `jal` at 0x3868 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x3, a2=?, a3=?.
+  The `jal` at 0x3888 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?.
+  The `jal` at 0x38a8 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?.
+  The `jal` at 0x38c8 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?.
+  The `jal` at 0x38e8 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=?, a2=?, a3=?.
+  The `jal` at 0x390c calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x8, a2=0x5a, a3=[a0+292].
   The `jal` at 0x3920 calls psema with a0=a0+10256, a1=0x19, a2=[a0+22304], a3=?.
   The `jal` at 0x3a94 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x3ac8 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x3ad4 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3b34 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3c3c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=-0x2.
-  The `jal` at 0x3c54 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x3df0 calls odsy_poll_dfifo_level with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x3ad4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x3b34 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x3c3c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=-0x2.
+  The `jal` at 0x3c54 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=0x0.
+  The `jal` at 0x3df0 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x3e28 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=0x800.
-  The `jal` at 0x3f1c calls odsy_poll_dfifo_level with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x3f1c calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x40f8 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x4124 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xf, a2=?, a3=?.
   The `jal` at 0x41e4 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x4358 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x3, a2=?, a3=?.
   The `jal` at 0x4550 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x1, a2=0x3960400100000000, a3=?, a4=0x400000, a5=0xffffffff.
   The `jal` at 0x4740 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xf, a2=?, a3=?.
-  The `jal` at 0x47d8 calls odsy_poll_dfifo_level with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x47d8 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x4804 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x4960 calls odsy_poll_dfifo_level with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x4960 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=0x0.
   The `jal` at 0x4998 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xf, a2=?, a3=?.
-  The `jal` at 0x4aa0 calls odsy_i2cPLLRegWrite with a0=?, a1=0x1, a2=[a1+235]:1, a3=?, a4=[a1+220].
-  The `jal` at 0x4ab4 calls odsy_i2cPLLRegWrite with a0=?, a1=0x2, a2=[a1+239]:1, a3=?.
-  The `jal` at 0x4ac8 calls odsy_i2cPLLRegWrite with a0=?, a1=0x6, a2=[a1+243]:1, a3=?.
+  The `jal` at 0x4aa0 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x1, a2=[a1+235]:1, a3=?, a4=[a1+220].
+  The `jal` at 0x4ab4 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x2, a2=[a1+239]:1, a3=?.
+  The `jal` at 0x4ac8 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x6, a2=[a1+243]:1, a3=?.
   The `jal` at 0x4adc calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+22304].
-  The `jal` at 0x4afc calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
+  The `jal` at 0x4afc calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
   The `jal` at 0x4b08 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x4b18 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x4b18 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x4b2c calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?.
-  The `jal` at 0x4b44 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=[a1+227]:1, a3=?, a4=[a1+220].
-  The `jal` at 0x4b5c calls odsy_i2cPLLRegWrite with a0=?, a1=0x7, a2=?, a3=?.
+  The `jal` at 0x4b44 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=[a1+227]:1, a3=?, a4=[a1+220].
+  The `jal` at 0x4b5c calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x7, a2=?, a3=?.
   The `jal` at 0x4b6c calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8.
-  The `jal` at 0x4b78 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x4b78 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x4b88 calls mutex_spinlock with a0=a0+10272, a1=?, a2=0x39f3000100000000, a3=[a0+22304].
-  The `jal` at 0x4ba8 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
+  The `jal` at 0x4ba8 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
   The `jal` at 0x4bb4 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x4bc4 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4bdc calls odsy_LoadDCD2Regs with a0=a1 at entry (arg1), a1=?, a2=0x3, a3=?.
-  The `jal` at 0x4bec calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4cf8 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
+  The `jal` at 0x4bc4 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x4bdc calls odsy_LoadDCD2Regs with a0=a1 at entry (arg1), a1=a0+22216, a2=0x3, a3=?.
+  The `jal` at 0x4bec calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x4cf8 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
   The `jal` at 0x4d08 calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8.
-  The `jal` at 0x4d14 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4d24 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4e30 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
+  The `jal` at 0x4d14 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x4d24 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x4e30 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
   The `beq` branch at 0x3374 targets 0x3638, is taken when at(=[a0+22304]) == 0, and falls through when at(=[a0+22304]) != 0.
   The `beq` branch at 0x3390 targets 0x33b4, is taken when v0(=ret(odsy_poll_dfifo_level)) == 0, and falls through when v0(=ret(odsy_poll_dfifo_level)) != 0.
   The `beq` branch at 0x339c targets 0x35ec, is taken when a2(=[a0+22304]) == 0, and falls through when a2(=[a0+22304]) != 0.
@@ -1511,7 +1507,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x40bc targets 0x4864, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0x40c4 targets 0x4898, is taken when a2(?) == t2(=0x1), and falls through when a2(?) != t2(=0x1).
   The `beq` branch at 0x40cc targets 0x48a4, is taken when a3(?) == t3(=0x2), and falls through when a3(?) != t3(=0x2).
-  The `blez` branch at 0x40dc targets 0x42f4, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
+  The `blez` branch at 0x40dc targets 0x42f4, is taken when at(=[a1+24]) <= 0 (signed), and falls through when at(=[a1+24]) > 0 (signed).
   The `beq` branch at 0x40e4 targets 0x4270 and is always taken.
   The `beq` branch at 0x40ec targets 0x3f0c and is always taken.
   The `bne` branch at 0x4110 targets 0x3398, is taken when v0(=ret(odsy_poll_dfifo_level)) != 0, and falls through when v0(=ret(odsy_poll_dfifo_level)) == 0.
@@ -1600,14 +1596,14 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   It occupies 324 bytes.
   3 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x20, including `ld` at 0x4e48, `ld` at 0x4ec0, `ld` at 0x4ee4.
   5 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x4e8c, `sw` at 0x4edc, `sw` at 0x4f24.
-  The `ld` at 0x4ea4 loads 8 bytes from ?.
+  The `ld` at 0x4ea4 loads 8 bytes from [a0+32]:8 +0x2d0.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x4ec4, `lw` at 0x4ee8.
   2 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x4ed8, `sw` at 0x4ef0.
   The `lw` at 0x4f04 loads 4 bytes from a3 (arg3 at entry) +0x0.
   The `jal` at 0x4e68 calls copyin with a0=a2 at entry (arg2), a1=sp-384, a2=0x138, a3=a3 at entry (arg3).
   The `jal` at 0x4e78 calls odsy_copyin_frame_line_tables with a0=sp-384, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x4eb0 calls RRM_CheckValidFault with a0=a0 at entry (arg0), a1=sym(.rodata), a2=?, a3=ret(odsy_copyin_frame_line_tables).
-  The `jal` at 0x4ed4 calls odsyLoadTimingTable with a0=?, a1=sp-384, a2=[[a0+32]:8+80]+1, a3=[a0+32]:8.
+  The `jal` at 0x4ed4 calls odsyLoadTimingTable with a0=[a0+32]:8, a1=sp-384, a2=[[a0+32]:8+80]+1, a3=[a0+32]:8.
   The `jal` at 0x4ef4 calls kern_free with a0=?, a1=?, a2=?, a3=?, a4=[[a0+32]:8+80]-1, a5=[a0+32]:8.
   The `jal` at 0x4efc calls kern_free with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x4f10 calls kern_free with a0=?, a1=?, a2=?, a3=a0 at entry (arg0).
@@ -1618,7 +1614,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x4f68 calls kern_free with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0x4e70 targets 0x4f34, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
   The `beq` branch at 0x4e84 targets 0x4ea0, is taken when v0(=ret(odsy_copyin_frame_line_tables)) == 0, and falls through when v0(=ret(odsy_copyin_frame_line_tables)) != 0.
-  The `beq` branch at 0x4ea8 targets 0x4f54, is taken when v1(?) == 0, and falls through when v1(?) != 0.
+  The `beq` branch at 0x4ea8 targets 0x4f54, is taken when v1(=[[a0+32]:8+720]:8) == 0, and falls through when v1(=[[a0+32]:8+720]:8) != 0.
   The `bltz` branch at 0x4eb8 targets 0x4f10, is taken when v0(=ret(RRM_CheckValidFault)) < 0 (signed), and falls through when v0(=ret(RRM_CheckValidFault)) >= 0 (signed).
   The `beq` branch at 0x4f08 targets 0x4e94 and is always taken.
   The `beq` branch at 0x4f2c targets 0x4e94 and is always taken.
@@ -1646,22 +1642,22 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `sd` accesses store 8 bytes to [a0+32]:8 +0x2828, including `sd` at 0x5224, `sd` at 0x535c.
   The `jal` at 0x4fb0 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xe, a2=?, a3=?.
   The `jal` at 0x5064 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?, a4=-0x2.
-  The `jal` at 0x5080 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x5080 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x508c calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x509c calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x509c calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x50b0 calls psema with a0=[a0+32]:8+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x50c8 calls vsema with a0=[a0+32]:8+10256, a1=[a0+32]:8+10256, a2=?, a3=?.
-  The `jal` at 0x50d4 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x50d4 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x50ec calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=([[a0+32]:8+22164] | 0x20000), a3=?, a4=[[a0+32]:8+22304].
-  The `jal` at 0x510c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=[[a0+32]:8+10280]:8, a3=?, a4=[a0+32]:8+10256.
+  The `jal` at 0x510c calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=[[a0+32]:8+10280]:8, a3=?, a4=[a0+32]:8+10256.
   The `jal` at 0x5118 calls odsy_poll_dfifo_level with a0=[[a0+32]:8+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x5128 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x5138 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x523c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x5128 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x5138 calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x523c calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x5250 calls vsema with a0=[a0+32]:8+10256, a1=?, a2=[[a0+32]:8+10280]:8, a3=?, a4=[a0+32]:8+10256.
-  The `jal` at 0x525c calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x526c calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x5378 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[[a0+32]:8+22000], a6=([[a0+32]:8+22000] | 0x2).
+  The `jal` at 0x525c calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x526c calls mutex_spinlock with a0=[a0+32]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x5378 calls mutex_spinunlock with a0=[a0+32]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[[a0+32]:8+22000], a6=([[a0+32]:8+22000] | 0x2).
   The `beq` branch at 0x4fa4 targets 0x50ac, is taken when at(=[[a0+32]:8+22304]) == 0, and falls through when at(=[[a0+32]:8+22304]) != 0.
   The `beq` branch at 0x4fbc targets 0x4fec, is taken when v0(=ret(odsy_poll_dfifo_level)) == 0, and falls through when v0(=ret(odsy_poll_dfifo_level)) != 0.
   The `beq` branch at 0x4fc8 targets 0x5060, is taken when v1(=[[a0+32]:8+22304]) == 0, and falls through when v1(=[[a0+32]:8+22304]) != 0.
@@ -1691,7 +1687,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x5388 loads 8 bytes from a0 (arg0 at entry) +0x20.
   2 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x53dc, `sw` at 0x5414.
   The `jal` at 0x53b4 calls copyin with a0=a2 at entry (arg2), a1=sp-128, a2=0x30, a3=a3 at entry (arg3).
-  The `jal` at 0x53c8 calls odsy_i2c_cmd with a0=?, a1=sp-128, a2=a2 at entry (arg2), a3=?.
+  The `jal` at 0x53c8 calls odsy_i2c_cmd with a0=[a0+32]:8, a1=sp-128, a2=a2 at entry (arg2), a3=?.
   The `jal` at 0x5404 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `bne` branch at 0x53bc targets 0x53f8, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
   The `bltz` branch at 0x53d0 targets 0x53f0, is taken when v0(=ret(odsy_i2c_cmd)) < 0 (signed), and falls through when v0(=ret(odsy_i2c_cmd)) >= 0 (signed).
@@ -1706,7 +1702,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x5424 loads 8 bytes from a0 (arg0 at entry) +0x20.
   2 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x5460, `sw` at 0x5488.
   The `jal` at 0x5448 calls copyin with a0=a2 at entry (arg2), a1=sp-64, a2=0x4, a3=a3 at entry (arg3).
-  The `jal` at 0x5458 calls odsySetDACGain with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x5458 calls odsySetDACGain with a0=[a0+32]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x547c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `bne` branch at 0x5450 targets 0x5474, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
   The `beq` branch at 0x5490 targets 0x5468 and is always taken.
@@ -1718,32 +1714,31 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   It occupies 984 bytes.
   12 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x2e0, including `ld` at 0x54a0, `ld` at 0x557c, `ld` at 0x55a8.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x5720, including `lw` at 0x54a4, `lw` at 0x54dc, `lw` at 0x5538.
-  The `lw` at 0x550c loads 4 bytes from table(0x233604) +0x0.
-  The `sd` at 0x5534 stores 8 bytes to table(0x400000) +0x0.
+  The `lw` at 0x550c loads 4 bytes from [a0+736]:8 +0x233604.
+  9 such `sd` accesses store 8 bytes to [a0+736]:8 +0x400000, including `sd` at 0x5534, `sd` at 0x567c, `sd` at 0x56b8.
   4 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x2828, including `ld` at 0x5558, `ld` at 0x55c0, `ld` at 0x56c4.
   8 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x55f0, including `lw` at 0x562c, `lw` at 0x5680, `lw` at 0x56d8.
   4 such `lhu` accesses load 2 bytes from a0 (arg0 at entry) +0x2830, including `lhu` at 0x5630, `lhu` at 0x568c, `lhu` at 0x5764.
   8 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x55f0, including `sw` at 0x565c, `sw` at 0x56ac, `sw` at 0x5700.
-  8 such `sd` accesses store 8 bytes to [a0+736]:8 +0x400000, including `sd` at 0x567c, `sd` at 0x56b8, `sd` at 0x56d4.
   2 such `sd` accesses store 8 bytes to a0 (arg0 at entry) +0x2828, including `sd` at 0x570c, `sd` at 0x5848.
   The `jal` at 0x54c4 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xe, a2=?, a3=?.
   The `jal` at 0x5550 calls mutex_spinlock with a0=a0+10272, a1=?, a2=[a0+22304], a3=?.
-  The `jal` at 0x556c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
+  The `jal` at 0x556c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
   The `jal` at 0x5578 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x5588 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x5588 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x559c calls psema with a0=a0+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x55b8 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=table(0x400000).
-  The `jal` at 0x55d4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=a0+10256, a3=?.
+  The `jal` at 0x55b8 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+736]:8+0x400000.
+  The `jal` at 0x55d4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=a0+10256, a3=?.
   The `jal` at 0x55e0 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x55f0 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x55f0 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x5608 calls vsema with a0=a0+10256, a1=a0+10256, a2=?, a3=[a0+10280]:8.
-  The `jal` at 0x5614 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x5624 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x5724 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
+  The `jal` at 0x5614 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x5624 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x5724 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=([a0+22000] | 0x2).
   The `jal` at 0x573c calls vsema with a0=a0+10256, a1=?, a2=a0+10256, a3=?.
-  The `jal` at 0x5748 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x5758 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x5860 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=-0x2.
+  The `jal` at 0x5748 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x5758 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x5860 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=-0x2.
   The `beq` branch at 0x54b8 targets 0x5598, is taken when at(=[a0+22304]) == 0, and falls through when at(=[a0+22304]) != 0.
   The `beq` branch at 0x54d4 targets 0x54f4, is taken when v0(=ret(odsy_poll_dfifo_level)) == 0, and falls through when v0(=ret(odsy_poll_dfifo_level)) != 0.
   The `beq` branch at 0x54e0 targets 0x554c, is taken when a2(=[a0+22304]) == 0, and falls through when a2(=[a0+22304]) != 0.
@@ -1827,7 +1822,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2a0 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x3b8 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3d8 calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=ret(splhi), a2=?, a3=([a0+48] | 0x2).
-  The `jal` at 0x3e8 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3e8 calls splx with a0=ret(splhi), a1=ret(splhi), a2=?, a3=?.
   The `jal` at 0x490 calls gfx_flow_attach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x4a0 calls gfx_flow_credit_tnum_get with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=[[a0+32]:8+10404].
   The `bne` branch at 0xf4 targets 0xc0, is taken when v0(?) < 0x4 (signed), and falls through when v0(?) >= 0x4 (signed).
@@ -1943,7 +1938,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x94c loads 8 bytes from a1 (arg1 at entry) +0x78.
   The `lw` at 0x978 loads 4 bytes from a3 (arg3 at entry) +0x0.
   The `jal` at 0x904 calls RRM_CheckValidFault with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x934 calls copyin with a0=a2 at entry (arg2), a1=?, a2=0x10, a3=?, a5=0xe.
+  The `jal` at 0x934 calls copyin with a0=a2 at entry (arg2), a1=[[a0+72]:8+112]:8+48, a2=0x10, a3=?, a5=0xe.
   The `jal` at 0x954 calls gf_OdsyValidateClip with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=[a1+120]:8+96.
   The `jal` at 0x9a4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=a1 at entry (arg1).
   The `bltz` branch at 0x910 targets 0x98c, is taken when v0(=ret(RRM_CheckValidFault)) < 0 (signed), and falls through when v0(=ret(RRM_CheckValidFault)) >= 0 (signed).
@@ -1993,9 +1988,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x12c loads 8 bytes from [a1+112]:8 +0x70.
   8 such `ld` accesses load 8 bytes from [a0+32]:8 +0x2d0, including `ld` at 0x154, `ld` at 0x1f0, `ld` at 0x228.
   7 such `ld` accesses load 8 bytes from [a0+32]:8 +0x2e0, including `ld` at 0x15c, `ld` at 0x20c, `ld` at 0x21c.
-  The `sw` at 0x194 stores 4 bytes to ?.
-  The `sd` at 0x1a0 stores 8 bytes to table(0x118000) +0x0.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1a8, `lw` at 0x31c.
+  The `sw` at 0x194 stores 4 bytes to [[a1+112]:8+112]:8 +0x8fc.
+  The `sd` at 0x1a0 stores 8 bytes to [[a0+32]:8+736]:8 +0x118000.
+  2 such `lw` accesses load 4 bytes from [[a1+112]:8+112]:8 +0x8fc, including `lw` at 0x1a8, `lw` at 0x31c.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x30, including `lw` at 0x1e0, `lw` at 0x350, `lw` at 0x3d8.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x30, including `sw` at 0x1ec, `sw` at 0x35c, `sw` at 0x3e0.
   3 such `sw` accesses store 4 bytes to [a0+32]:8 +0x28a8, including `sw` at 0x214, `sw` at 0x384, `sw` at 0x4c0.
@@ -2012,20 +2007,20 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xf8 calls RRM_CheckValidFault with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x160 calls odsy_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=?, a4=a2 at entry (arg2), a5=[[a0+32]:8+736]:8.
   The `jal` at 0x19c calls timeout with a0=sym(odsy_ctxsw_timeout), a1=[a0+32]:8, a2=0x5dc, a3=?.
-  The `jal` at 0x1b4 calls untimeout with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1b4 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
   The `jal` at 0x1d4 calls splhi with a0=?, a1=?, a2=?, a3=?, a5=[[a0+32]:8+728].
   The `jal` at 0x1fc calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?.
   The `jal` at 0x22c calls gfx_flow_detach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=0x1, a3=[[a0+32]:8+736]:8.
-  The `jal` at 0x23c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x23c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jalr` at 0x2ac calls (unknown callee) with a0=[a0+32]:8, a1=[[a0+32]:8+8]:8, a2=[[a0+32]:8+8]:8, a3=[[a0+32]:8+8]:8, a4=a2 at entry (arg2).
   The `jal` at 0x310 calls us_delay with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x348 calls splhi with a0=?, a1=?, a2=?, a3=?, a5=[[a0+32]:8+728].
   The `jal` at 0x36c calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?.
   The `jal` at 0x39c calls gfx_flow_detach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x3ac calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3ac calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x3d0 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x3f4 calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?, a5=([a0+48] | 0x2).
-  The `jal` at 0x404 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x404 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x428 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x45c calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=?, a4=a2 at entry (arg2).
   The `jal` at 0x480 calls gfx_flow_attach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?.
@@ -2037,7 +2032,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x11c targets 0x264, is taken when s2(=a1) == 0, and falls through when s2(=a1) != 0.
   The `bne` branch at 0x130 targets 0x154, is taken when a5(=[a1+112]:8) != 0, and falls through when a5(=[a1+112]:8) == 0.
   The `beq` branch at 0x16c targets 0x3d0, is taken when v0(=ret(odsy_flow_am_i_attached)) == 0, and falls through when v0(=ret(odsy_flow_am_i_attached)) != 0.
-  The `beq` branch at 0x1ac targets 0x2fc, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x1ac targets 0x2fc, is taken when a4(=[[[a1+112]:8+112]:8+2300]) == 0, and falls through when a4(=[[[a1+112]:8+112]:8+2300]) != 0.
   The `beq` branch at 0x1c4 targets 0x33c, is taken when a5(=[[a0+32]:8+728]) == 0, and falls through when a5(=[[a0+32]:8+728]) != 0.
   The `beq` branch at 0x1cc targets 0x248, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0x1f4 targets 0x238, is taken when a1(=[[a0+32]:8+720]:8) == 0, and falls through when a1(=[[a0+32]:8+720]:8) != 0.
@@ -2047,7 +2042,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x2d4 targets 0x14c and is always taken.
   The `beq` branch at 0x2f4 targets 0x14c and is always taken.
   The `bne` branch at 0x300 targets 0x1b4, is taken when a5(=[[a0+32]:8+728]) != 0, and falls through when a5(=[[a0+32]:8+728]) == 0.
-  The `bne` branch at 0x320 targets 0x334, is taken when at(?) != 0, and falls through when at(?) == 0.
+  The `bne` branch at 0x320 targets 0x334, is taken when at(=[[[a1+112]:8+112]:8+2300]) != 0, and falls through when at(=[[[a1+112]:8+112]:8+2300]) == 0.
   The `beq` branch at 0x32c targets 0x30c, is taken when v1(=[[a0+32]:8+728]) == 0, and falls through when v1(=[[a0+32]:8+728]) != 0.
   The `beq` branch at 0x334 targets 0x1b4 and is always taken.
   The `beq` branch at 0x340 targets 0x3b8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
@@ -2082,7 +2077,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   3 such `sw` accesses store 4 bytes to [a0+736]:8 +0x107c, including `sw` at 0x5ec, `sw` at 0x6f0, `sw` at 0xa4c.
   2 such `lw` accesses load 4 bytes from [a0+736]:8 +0x106c, including `lw` at 0x5f4, `lw` at 0x6f8.
   3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x65c, `sw` at 0x834, `sw` at 0x86c.
-  The `sd` at 0x670 stores 8 bytes to table(0x118000) +0x0.
+  The `sd` at 0x670 stores 8 bytes to [a0+736]:8 +0x118000.
   6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x674, `lw` at 0x794, `lw` at 0x8d4.
   The `sw` at 0x73c stores 4 bytes to a0 (arg0 at entry) +0x28b0.
   The `sw` at 0x74c stores 4 bytes to a0 (arg0 at entry) +0x28ac.
@@ -2091,7 +2086,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sw` at 0x76c stores 4 bytes to [a0+736]:8 +0x400c.
   The `lhu` at 0x770 loads 2 bytes from a2 (arg2 at entry) +0x4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2dc, including `lw` at 0x7a0, `lw` at 0x838.
-  19 such `sw` accesses store 4 bytes to table(0x110000) +0x0, including `sw` at 0x7e8, `sw` at 0x7f0, `sw` at 0x7f8.
+  19 such `sw` accesses store 4 bytes to [a0+736]:8 +0x110000, including `sw` at 0x7e8, `sw` at 0x7f0, `sw` at 0x7f8.
   2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x860, `ld` at 0x96c.
   The `sw` at 0x874 stores 4 bytes to a0 (arg0 at entry) +0x2dc.
   The `lw` at 0xa10 loads 4 bytes from a0 (arg0 at entry) +0x28a4.
@@ -2103,21 +2098,21 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x5a8 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x5d0 calls gfx_flow_am_i_attached with a0=[a0+720]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x600 calls gfx_flow_detach_me with a0=[a0+720]:8, a1=[a0+72]:8, a2=?, a3=?.
-  The `jal` at 0x610 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x610 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x61c calls gfx_waitc_off with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x66c calls timeout with a0=sym(odsy_ctxsw_timeout), a1=a0 at entry (arg0), a2=0x5dc, a3=?, a4=table(0x118000), a5=0x70000000000.
-  The `jal` at 0x680 calls untimeout with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x66c calls timeout with a0=sym(odsy_ctxsw_timeout), a1=a0 at entry (arg0), a2=0x5dc, a3=?, a4=[a0+736]:8+0x118000, a5=0x70000000000, a6=[a0+736]:8.
+  The `jal` at 0x680 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
   The `jal` at 0x6b0 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x6d4 calls gfx_flow_am_i_attached with a0=[a0+720]:8, a1=?, a2=?, a3=-0x3.
   The `jal` at 0x704 calls gfx_flow_detach_me with a0=[a0+720]:8, a1=[a0+72]:8, a2=?, a3=?, a4=[[a0+736]:8+4204], a5=0x1, a6=[a0+736]:8.
-  The `jal` at 0x714 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x714 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x720 calls gfx_waitc_off with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x734 calls kvtophys with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x768 calls odsyMMvalidatePcxSwap with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a7=[a0+10416].
   The `jal` at 0x78c calls gf_OdsyValidateClip with a0=[a2+64]:8, a1=a2 at entry (arg2), a2=0x0, a3=0x0.
   The `jal` at 0x878 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x898 calls gfx_flow_am_i_attached with a0=[a0+720]:8, a1=ret(splhi), a2=?, a3=([[a0+72]:8+48] | 0x2).
-  The `jal` at 0x8a8 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x8a8 calls splx with a0=ret(splhi), a1=ret(splhi), a2=?, a3=?.
   The `jal` at 0x8cc calls us_delay with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x990 calls odsyDownloadUcode with a0=a0 at entry (arg0), a1=?, a2=?, a3=0x1, a4=[a0+72]:8, a5=0x10443.
   The `jal` at 0x9a4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -2823,14 +2818,14 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x3b6c loads 4 bytes from ((a2 << 0x5) + [a1+96]:8) +0x2afc.
   2 such `lw` accesses load 4 bytes from ((a2 << 0x5) + [a1+96]:8) +0x2af8, including `lw` at 0x3b78, `lw` at 0x3bc0.
   The `sw` at 0x3bc8 stores 4 bytes to [a1+96]:8 +0x2b38.
-  9 such `sw` accesses store 4 bytes to table(0x110000) +0x0, including `sw` at 0x3bd8, `sw` at 0x3c04, `sw` at 0x3c0c.
+  9 such `sw` accesses store 4 bytes to [a0+736]:8 +0x110000, including `sw` at 0x3bd8, `sw` at 0x3c04, `sw` at 0x3c0c.
   The `lw` at 0x3be0 loads 4 bytes from ?.
   The `lw` at 0x3c18 loads 4 bytes from ((a2 << 0x5) + [a1+96]:8) +0x2aec.
   The `lw` at 0x3c34 loads 4 bytes from ((a2 << 0x5) + [a1+96]:8) +0x2ae0.
   The `lw` at 0x3c50 loads 4 bytes from ((a2 << 0x5) + [a1+96]:8) +0x2ae4.
   The `lw` at 0x3c74 loads 4 bytes from ((a2 << 0x5) + [a1+96]:8) +0x2ae8.
   The `jal` at 0x3b14 calls odsyDownloadUcode with a0=a0 at entry (arg0), a1=[[a1+96]:8+11064], a2=?, a3=0x1, a4=[a0+72]:8.
-  The `jal` at 0x3b58 calls odsyDownloadUcode with a0=a0 at entry (arg0), a1=0x738, a2=[((a2 << 0x5) + [a1+96]:8)+10996], a3=?, a4=[a0+72]:8.
+  The `jal` at 0x3b58 calls odsyDownloadUcode with a0=a0 at entry (arg0), a1=0x738, a2=[((a2 << 0x5) + [a1+96]:8)+10996], a3=?, a4=[a0+72]:8, a5=[[a1+96]:8+11060].
   The `jal` at 0x3b80 calls odsyDownloadUcode with a0=a0 at entry (arg0), a1=[((a2 << 0x5) + [a1+96]:8)+11000], a2=[((a2 << 0x5) + [a1+96]:8)+11004], a3=0x1, a4=[a0+72]:8.
   The `jal` at 0x3cd0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=0x2.
   The `jal` at 0x3cd8 calls curproc with a0=?, a1=?, a2=?, a3=?.
@@ -2854,7 +2849,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x3af4 targets 0x3b0c and is always taken.
   The `bne` branch at 0x3b1c targets 0x3d38, is taken when v0(=ret(odsyDownloadUcode)) != 0, and falls through when v0(=ret(odsyDownloadUcode)) == 0.
   The `beq` branch at 0x3b24 targets 0x3b6c, is taken when s0(=[((a2 << 0x5) + [a1+96]:8)+10996]) == 0, and falls through when s0(=[((a2 << 0x5) + [a1+96]:8)+10996]) != 0.
-  The `beq` branch at 0x3b2c targets 0x3b6c, is taken when s0(=[((a2 << 0x5) + [a1+96]:8)+10996]) == a5(?), and falls through when s0(=[((a2 << 0x5) + [a1+96]:8)+10996]) != a5(?).
+  The `beq` branch at 0x3b2c targets 0x3b6c, is taken when s0(=[((a2 << 0x5) + [a1+96]:8)+10996]) == a5(=[[a1+96]:8+11060]), and falls through when s0(=[((a2 << 0x5) + [a1+96]:8)+10996]) != a5(=[[a1+96]:8+11060]).
   The `bne` branch at 0x3b40 targets 0x3b4c, is taken when a0(?) < 0xc8 (unsigned), and falls through when a0(?) >= 0xc8 (unsigned).
   The `bne` branch at 0x3b60 targets 0x3db4, is taken when v0(=ret(odsyDownloadUcode)) != 0, and falls through when v0(=ret(odsyDownloadUcode)) == 0.
   The `bne` branch at 0x3ba4 targets 0x3d7c, is taken when v0(=ret(odsyDownloadUcode)) != 0, and falls through when v0(=ret(odsyDownloadUcode)) == 0.
@@ -2958,7 +2953,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x4620 loads 4 bytes from [a1+96]:8 +0x2adc.
   The `lw` at 0x464c loads 4 bytes from ((a5 << 0x2) + [a1+96]:8) +0x2b20.
   3 such `lw` accesses load 4 bytes from ((a5 << 0x2) + [a1+112]:8) +0x100, including `lw` at 0x4658, `lw` at 0x46a0, `lw` at 0x46c8.
-  2 such `sw` accesses store 4 bytes to table(0x110000) +0x0, including `sw` at 0x469c, `sw` at 0x46c4.
+  2 such `sw` accesses store 4 bytes to [a0+736]:8 +0x110000, including `sw` at 0x469c, `sw` at 0x46c4.
   The `lw` at 0x46c0 loads 4 bytes from ?.
   The `jal` at 0x4610 calls odsyRestoreVB with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=((a5 << 0x3) + [a1+112]:8)+140, a3=[a4]:8, a4=a2 at entry (arg2).
   The `jal` at 0x4648 calls odsySetProgram with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[((a5 << 0x2) + [a1+96]:8)+11040], a3=?, a6=[[a1+96]:8+10972].
@@ -3139,15 +3134,15 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x514c, `lw` at 0x5210.
   2 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x5154, `sw` at 0x5218.
   The `lw` at 0x5158 loads 4 bytes from [a0+32]:8 +0x28e8.
-  The `ld` at 0x516c loads 8 bytes from ?.
+  The `ld` at 0x516c loads 8 bytes from [[a0+72]:8+112]:8 +0x70.
   The `sw` at 0x5180 stores 4 bytes to ?.
-  The `sd` at 0x51dc stores 8 bytes to table(0x110000) +0x0.
+  The `sd` at 0x51dc stores 8 bytes to [[a0+32]:8+736]:8 +0x110000.
   2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x51e4, `lw` at 0x5260.
   The `lw` at 0x521c loads 4 bytes from a3 (arg3 at entry) +0x0.
   The `jal` at 0x5124 calls copyin with a0=a2 at entry (arg2), a1=sp-128, a2=0x4, a3=?, a4=[[a0+72]:8+112]:8.
   The `jal` at 0x5134 calls RRM_CheckValidFault with a0=a0 at entry (arg0), a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x51d8 calls timeout with a0=sym(odsy_glget_timeout), a1=[a0+32]:8, a2=0x5dc, a3=?, a4=0x1, a5=0x2.
-  The `jal` at 0x51f0 calls untimeout with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x51d8 calls timeout with a0=sym(odsy_glget_timeout), a1=[a0+32]:8, a2=0x5dc, a3=[[a0+32]:8+736]:8, a4=0x1, a5=0x2.
+  The `jal` at 0x51f0 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
   The `jal` at 0x5254 calls us_delay with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x52c0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x52dc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=?, a4=[[a0+72]:8+112]:8.
@@ -3248,7 +3243,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x264 targets 0x2e8, is taken when v0(=ret(odsy_i2c_sendbyte)) != 0, and falls through when v0(=ret(odsy_i2c_sendbyte)) == 0.
   The `beq` branch at 0x278 targets 0x2b4, is taken when a4(=a3-1) == 0, and falls through when a4(=a3-1) != 0.
   The `bne` branch at 0x29c targets 0x2e8, is taken when v0(=ret(odsy_i2c_sendbyte)) != 0, and falls through when v0(=ret(odsy_i2c_sendbyte)) == 0.
-  The `bne` branch at 0x2ac targets 0x284, is taken when s1(?) < a4(?) (unsigned), and falls through when s1(?) >= a4(?) (unsigned).
+  The `bne` branch at 0x2ac targets 0x284, is taken when s1(?) < a4(=a3-1) (unsigned), and falls through when s1(?) >= a4(=a3-1) (unsigned).
   The `bne` branch at 0x2d4 targets 0x2e8, is taken when v0(=ret(odsy_i2c_sendbyte)) != 0, and falls through when v0(=ret(odsy_i2c_sendbyte)) == 0.
   The `beq` branch at 0x2e0 targets 0x300 and is always taken.
   The return at 0x300 has v0 = one of 0x0, 0x1.
@@ -3271,7 +3266,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x37c targets 0x400, is taken when v0(=ret(odsy_i2c_long_recvbyte)) != 0, and falls through when v0(=ret(odsy_i2c_long_recvbyte)) == 0.
   The `bne` branch at 0x394 targets 0x3d8, is taken when a4(=a3-1) < 0x2 (signed), and falls through when a4(=a3-1) >= 0x2 (signed).
   The `bne` branch at 0x3b8 targets 0x400, is taken when v0(=ret(odsy_i2c_short_recvbyte)) != 0, and falls through when v0(=ret(odsy_i2c_short_recvbyte)) == 0.
-  The `bne` branch at 0x3cc targets 0x3a4, is taken when a6(?) < a4(?) (signed), and falls through when a6(?) >= a4(?) (signed).
+  The `bne` branch at 0x3cc targets 0x3a4, is taken when a6(?) < a4(=a3-1) (signed), and falls through when a6(?) >= a4(=a3-1) (signed).
   The `bne` branch at 0x3ec targets 0x400, is taken when v0(=ret(odsy_i2c_long_recvbyte)) != 0, and falls through when v0(=ret(odsy_i2c_long_recvbyte)) == 0.
   The `beq` branch at 0x3f8 targets 0x414 and is always taken.
   The return at 0x414 has v0 = one of 0x0, 0x1.
@@ -3327,7 +3322,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x848 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x85c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x88c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
-  The `jal` at 0x89c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x89c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x8b0 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=[[a0+16]:8+22304], a3=[a0+16]:8, a4=[a0]:8.
   The `jal` at 0x8c4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=0xffffffff, a2=?, a3=[a0+16]:8, a5=0xffffffff00000000, a6=0x30000001, a7=0xfffffffffffeffff.
   The `jal` at 0x8e0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
@@ -3341,19 +3336,19 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xa94 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0xaa8 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=[a0]:8, a3=[a0+16]:8.
   The `jal` at 0xab8 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[a0+16]:8.
-  The `jal` at 0xac8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xac8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xad8 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=[a0+16]:8.
   The `jal` at 0xaf4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
   The `jal` at 0xb04 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0xb18 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0xb28 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
-  The `jal` at 0xb38 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xb38 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xb48 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[a0+16]:8.
-  The `jal` at 0xb58 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xb58 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xb6c calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0xc9c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0xcac calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[a0+16]:8.
-  The `jal` at 0xcbc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xcbc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xd24 calls odsy_usdelay with a0=[a0+16]:8, a1=0xa, a2=?, a3=[a0+16]:8.
   The `jal` at 0xd3c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xf, a2=?, a3=[a0+16]:8.
   The `jal` at 0xd58 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=[a0+16]:8.
@@ -3365,7 +3360,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xef0 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x1020 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x1030 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
-  The `jal` at 0x1040 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1040 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1054 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=([[a0]:8] | 0x10000), a3=[a0+16]:8.
   The `jal` at 0x1068 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x1198 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
@@ -3380,9 +3375,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x13c8 calls odsy_i2c_long_recvbyte with a0=a0 at entry (arg0), a1=0x1, a2=0x0, a3=a1+2.
   The `jal` at 0x13e8 calls odsy_i2c_short_recvbyte with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1418 calls odsy_i2c_long_recvbyte with a0=a0 at entry (arg0), a1=0x0, a2=0x1, a3=?.
-  The `jal` at 0x1428 calls odsy_validate_ddc_data with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1428 calls odsy_validate_ddc_data with a0=a1+2, a1=?, a2=?, a3=?.
   The `jal` at 0x144c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[a0+16]:8.
-  The `jal` at 0x145c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x145c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x146c calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=[a0+16]:8.
   The `jal` at 0x1488 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
   The `jal` at 0x1498 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -3391,9 +3386,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x14d4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x1604 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x1614 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
-  The `jal` at 0x1624 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1624 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1634 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
-  The `jal` at 0x1644 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1644 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1654 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=[[a0+16]:8+22304], a3=[a0+16]:8, a4=[[a0+16]:8+736]:8+0x400000.
   The `jal` at 0x1670 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
   The `jal` at 0x1680 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -3403,7 +3398,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x17ec calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x191c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x192c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=[a0+16]:8.
-  The `jal` at 0x193c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x193c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1950 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x1a80 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `beq` branch at 0x460 targets 0x75c, is taken when at(=[[a0+16]:8+22304]) == 0, and falls through when at(=[[a0+16]:8+22304]) != 0.
@@ -3737,27 +3732,27 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   It occupies 2284 bytes.
   The `lhu` at 0x21e4 loads 2 bytes from a1 (arg1 at entry) +0x2.
   The `lw` at 0x2200 loads 4 bytes from a1 (arg1 at entry) +0x8.
-  The `lw` at 0x2268 loads 4 bytes from (a0 + one of 0x56bc, 0x56e4) +0x0.
-  The `ld` at 0x2270 loads 8 bytes from (a0 + one of 0x56b0, 0x56d8) +0x0.
-  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x22a8, `ld` at 0x22d0.
-  The `lw` at 0x22c8 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from (a0 + one of 0x56bc, 0x56e4) +0x0, including `lw` at 0x2268, `lw` at 0x22c8.
+  2 such `ld` accesses load 8 bytes from (a0 + one of 0x56b0, 0x56d8) +0x0, including `ld` at 0x2270, `ld` at 0x22d0.
+  The `ld` at 0x22a8 loads 8 bytes from (([a1+2]:2 << 0x3) + sym(.rodata)) +0x0.
   The `jal` at 0x2284 calls mutex_lock with a0=?, a1=0x19, a2=a2 at entry (arg2), a3=0x0, a6=[a1+2]:2, a7=0x0.
-  Calls (unknown callee) via register with a0=a1 at entry (arg1), a1=?, a2=?, a3=?, a5=sym(.rodata) (`jr` at 0x22ac).
-  The `jal` at 0x22d4 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?, a5=sym(.rodata).
+  Calls (unknown callee) via register with a0=a1 at entry (arg1), a1=?, a2=?, a3=(([a1+2]:2 << 0x3) + sym(.rodata)), a4=[(([a1+2]:2 << 0x3) + sym(.rodata))]:8, a5=sym(.rodata) (`jr` at 0x22ac).
+  The `jal` at 0x22d4 calls mutex_unlock with a0=?, a1=?, a2=?, a3=(([a1+2]:2 << 0x3) + sym(.rodata)), a5=sym(.rodata).
   The `jal` at 0x22f8 calls mutex_lock with a0=?, a1=0x19, a2=a2 at entry (arg2), a3=0x0, a6=[a1+2]:2, a7=0x0.
-  The `jal` at 0x2308 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?, a5=sym(.rodata).
+  The `jal` at 0x2308 calls mutex_unlock with a0=?, a1=?, a2=?, a3=(([a1+2]:2 << 0x3) + sym(.rodata)), a5=sym(.rodata).
   The `beq` branch at 0x2220 targets 0x22e8, is taken when v0(=[a1+8]) == 0, and falls through when v0(=[a1+8]) != 0.
   The `bne` branch at 0x2228 targets 0x22b4, is taken when v0(=[a1+8]) != at(=0x1), and falls through when v0(=[a1+8]) == at(=0x1).
   The `beq` branch at 0x2274 targets 0x22f0, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0x22a0 targets 0x22c4, is taken when a3(?) >= 0xd (unsigned), and falls through when a3(?) < 0xd (unsigned).
+  The `beq` branch at 0x22a0 targets 0x22c4, is taken when a3(=[a1+2]:2) >= 0xd (unsigned), and falls through when a3(=[a1+2]:2) < 0xd (unsigned).
   The `beq` branch at 0x22cc targets 0x2308, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0x22e0 targets 0x22b4 and is always taken.
   The `beq` branch at 0x22e8 targets 0x2234 and is always taken.
   The `beq` branch at 0x2300 targets 0x2290 and is always taken.
   The `beq` branch at 0x2310 targets 0x22e0 and is always taken.
-  The return at 0x22b4 has v0 = one of -0x16, ?.
+  The return at 0x22b4 has v0 = one of -0x16, 0x0.
   The instructions from 0x22bc to 0x22c0 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x2318 to 0x2acc are not reached by any path from the entry, and their branches are not listed.
+  The indirect jump at 0x22ac uses a jump table whose successors are unresolved.
 - `odsy_Probe2AB` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)` at 0x2ad0 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
@@ -3782,7 +3777,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2ce0 calls odsy_2abGetReply with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-256, a3=?.
   The `jal` at 0x2d10 calls odsy_usdelay with a0=[a0+16]:8, a1=[sym(.sdata)+32], a2=?, a3=?.
   The `jal` at 0x2d20 calls odsy_usdelay with a0=[a0+16]:8, a1=[sym(.sdata)+32], a2=?, a3=0xe1.
-  The `jal` at 0x2d3c calls bcopy with a0=sp-248, a1=?, a2=?, a3=?.
+  The `jal` at 0x2d3c calls bcopy with a0=sp-248, a1=sym(odsy_i2cRcvBuf), a2=?, a3=?.
   The `jal` at 0x2d60 calls odsy_2abSendCmd with a0=a0 at entry (arg0), a1=?, a2=sym(odsy_i2cRcvBuf), a3=0x1.
   The `jal` at 0x2dc4 calls strncmp with a0=?, a1=sp-248, a2=0x13, a3=?.
   The `beq` branch at 0x2b20 targets 0x2b5c and is always taken.
@@ -3907,7 +3902,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x33c4 calls odsy_i2cFixupAfterErr with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x33e4 calls odsy_usdelay with a0=[a0+16]:8, a1=[sym(.sdata)+24], a2=?, a3=?.
   The `beq` branch at 0x3220 targets 0x3254, is taken when v0(=ret(odsy_i2c_becomeSlaveRecv)) == 0, and falls through when v0(=ret(odsy_i2c_becomeSlaveRecv)) != 0.
-  The `beq` branch at 0x3244 targets 0x32b4, is taken when at(?) == v1(=0x2), and falls through when at(?) != v1(=0x2).
+  The `beq` branch at 0x3244 targets 0x32b4, is taken when at(=ret(odsy_i2c_becomeSlaveRecv)) == v1(=0x2), and falls through when at(=ret(odsy_i2c_becomeSlaveRecv)) != v1(=0x2).
   The `beq` branch at 0x325c targets 0x327c, is taken when (v0(?) & 0x1) == 0, and falls through when (v0(?) & 0x1) != 0.
   The `beq` branch at 0x3274 targets 0x324c and is always taken.
   The `beq` branch at 0x3294 targets 0x32bc, is taken when v0(=ret(odsy_i2c_slave_recvbyte)) == 0, and falls through when v0(=ret(odsy_i2c_slave_recvbyte)) != 0.
@@ -4055,7 +4050,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x5b0 targets 0x44c and is always taken.
   The `beq` branch at 0x5d8 targets 0x534 and is always taken.
   The `beq` branch at 0x5f8 targets 0x448 and is always taken.
-  The return at 0x534 has v0 = one of ?, 0x1.
+  The return at 0x534 has v0 = one of 0x0, 0x1.
   The instructions from 0x588 to 0x588 are not reached by any path from the entry, and their branches are not listed.
 - `gfP_OdsyDIAGallocScanbuf` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_diag.o)` at 0x0 (n64).
   Evidence grade: inferred.
@@ -4072,22 +4067,24 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sd` at 0xe8 stores 8 bytes to [a0+32]:8 +0x5610.
   3 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x114, `sw` at 0x1e4, `sw` at 0x210.
   3 such `lw` accesses load 4 bytes from [a0+32]:8 +0x5620, including `lw` at 0x118, `lw` at 0x174, `lw` at 0x188.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x160, `sw` at 0x170, `sw` at 0x184.
+  The `sw` at 0x160 stores 4 bytes to ?.
+  The `sw` at 0x170 stores 4 bytes to ret(ddv_getaddr) +0x5c.
+  The `sw` at 0x184 stores 4 bytes to ret(ddv_getaddr) +0x4060.
   The `jal` at 0x28 calls copyin with a0=a2 at entry (arg2), a1=sp-128, a2=0x18, a3=a3 at entry (arg3).
   The `jal` at 0x3c calls mutex_lock with a0=[a0+32]:8+22008, a1=0x19, a2=?, a3=?.
-  The `jal` at 0x54 calls mutex_unlock with a0=?, a1=0x8100, a2=?, a3=?.
+  The `jal` at 0x54 calls mutex_unlock with a0=[a0+32]:8+22008, a1=0x8100, a2=?, a3=?.
   The `jal` at 0x6c calls kmem_alloc with a0=?, a1=0x8100, a2=?, a3=?.
   The `jal` at 0x94 calls odsyMapPages with a0=0x0, a1=0x0, a2=ret(kmem_alloc), a3=?, a4=0x0, a5=0x0, a6=[a0+32]:8+22040.
   The `jal` at 0xa4 calls kmem_free with a0=[[a0+32]:8+22024]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0xb0 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xd0 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xb0 calls mutex_unlock with a0=[a0+32]:8+22008, a1=?, a2=?, a3=?.
+  The `jal` at 0xd0 calls mutex_unlock with a0=[a0+32]:8+22008, a1=?, a2=?, a3=?.
   The `jal` at 0xd8 calls ddv_getaddr with a0=[[a0+32]:8+22040]:8, a1=?, a2=?, a3=?.
   The `jal` at 0xe4 calls ddv_getaddr with a0=[[a0+32]:8+22040]:8, a1=?, a2=?, a3=?.
   The `jal` at 0xf0 calls kvtophys with a0=[[a0+32]:8+22024]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x104 calls copyout with a0=sp-128, a1=a2 at entry (arg2), a2=0x18, a3=?.
-  The `jal` at 0x140 calls printf with a0=sym(.rodata), a1=?, a2=[[a0+32]:8+22048], a3=?.
-  The `jal` at 0x190 calls dki_dcache_wb with a0=?, a1=[[a0+32]:8+22048], a2=?, a3=?.
-  The `jal` at 0x1ac calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x140 calls printf with a0=sym(.rodata), a1=ret(ddv_getaddr), a2=[[a0+32]:8+22048], a3=?.
+  The `jal` at 0x190 calls dki_dcache_wb with a0=ret(ddv_getaddr), a1=[[a0+32]:8+22048], a2=?, a3=?.
+  The `jal` at 0x1ac calls mutex_unlock with a0=[a0+32]:8+22008, a1=?, a2=?, a3=?.
   The `jal` at 0x1c8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x1f4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `bne` branch at 0x30 targets 0x1c0, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
@@ -4141,13 +4138,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   3 such `sd` accesses store 8 bytes to ?, including `sd` at 0x498, `sd` at 0x4a0, `sd` at 0x4bc.
   The `jal` at 0x2d8 calls copyin with a0=a2 at entry (arg2), a1=sp-224, a2=0x50, a3=a3 at entry (arg3).
   The `jal` at 0x2ec calls mutex_lock with a0=[a0+32]:8+22064, a1=0x19, a2=?, a3=?.
-  The `jal` at 0x308 calls mutex_unlock with a0=?, a1=?, a2=?, a3=0x10000.
+  The `jal` at 0x308 calls mutex_unlock with a0=[a0+32]:8+22064, a1=?, a2=?, a3=0x10000.
   The `jal` at 0x33c calls odsyMapPages with a0=0x0, a1=0x0, a2=[[a0+32]:8+752]:8, a3=0x10000, a4=0x0, a5=0x0, a6=[a0+32]:8+22152.
   The `jal` at 0x39c calls odsyMapPages with a0=0x0, a1=0x0, a2=?, a3=0x4000, a4=0x0, a5=0x0.
-  The `jal` at 0x3f0 calls odsyUnmapPages with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x404 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3f0 calls odsyUnmapPages with a0=[a0+32]:8+22152, a1=?, a2=?, a3=?.
+  The `jal` at 0x404 calls mutex_unlock with a0=[a0+32]:8+22064, a1=?, a2=?, a3=?.
   The `jal` at 0x424 calls odsyUnmapPages with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x444 calls mutex_unlock with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
+  The `jal` at 0x444 calls mutex_unlock with a0=[a0+32]:8+22064, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x44c calls ddv_getaddr with a0=[[a0+32]:8+22152]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x484 calls ddv_getaddr with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x4c8 calls copyout with a0=sp-224, a1=a2 at entry (arg2), a2=0x50, a3=?.
@@ -4250,7 +4247,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x7c8 calls odsyInitPfRgn with a0=[a0+32]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x7e0 calls copyout with a0=sp-112, a1=a2 at entry (arg2), a2=0x18, a3=[[a0+32]:8+10320]:8.
   The `jal` at 0x808 calls odsyDestroyPfRgn with a0=[a0+32]:8, a1=?, a2=?, a3=?, a5=[[a0+32]:8+10312]:8.
-  The `jal` at 0x814 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x814 calls mutex_unlock with a0=[a0+32]:8+10336, a1=?, a2=?, a3=?.
   The `jal` at 0x82c calls odsyDestroyPfRgn with a0=[a0+32]:8, a1=?, a2=?, a3=?, a5=[[a0+32]:8+10312]:8.
   The `jal` at 0x8e8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?, a4=0x5.
   The `jal` at 0x918 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -4384,7 +4381,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x388 calls kmem_free with a0=[a0]:8, a1=[a0+8], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x3b8 calls kmem_zalloc with a0=?, a1=0x8800, a2=?, a3=?.
   The `jal` at 0x3dc calls bcopy with a0=a0+56, a1=ret(kmem_zalloc), a2=0x20, a3=?.
-  The `jal` at 0x3f8 calls generatePageTable with a0=?, a1=[a0+32]:8, a2=[a0+40]:8, a3=[a0]:8+32, a4=0x0.
+  The `jal` at 0x3f8 calls generatePageTable with a0=a0+56, a1=[a0+32]:8, a2=[a0+40]:8, a3=[a0]:8+32, a4=0x0.
   The `jal` at 0x41c calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=?.
   The `beq` branch at 0x374 targets 0x398, is taken when v0(=[a0]:8) == 0, and falls through when v0(=[a0]:8) != 0.
   The `beq` branch at 0x380 targets 0x398, is taken when a1(=[a0+8]) == 0, and falls through when a1(=[a0+8]) != 0.
@@ -4468,23 +4465,23 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   4 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x948, `lw` at 0x988, `lw` at 0xa28.
   3 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x954, `sw` at 0x990, `sw` at 0xa30.
   The `lw` at 0x99c loads 4 bytes from a3 (arg3 at entry) +0x0.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x9a4, `lw` at 0x9f8.
-  The `sw` at 0x9b0 stores 4 bytes to ?.
+  2 such `lw` accesses load 4 bytes from [[a0+32]:8+736]:8 +0x1014, including `lw` at 0x9a4, `lw` at 0x9f8.
+  The `sw` at 0x9b0 stores 4 bytes to [[a0+32]:8+736]:8 +0x1014.
   3 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0xa40, `sw` at 0xa90, `sw` at 0xab4.
   The `sd` at 0xa5c stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0xa64, `lw` at 0xa7c.
   The `jal` at 0x908 calls RRM_CheckValidFault with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=a2 at entry (arg2).
   The `jal` at 0x928 calls copyin with a0=a2 at entry (arg2), a1=sp-160, a2=0x30, a3=?, a6=a2 at entry (arg2).
   The `jal` at 0x970 calls odsy_NewDmaRegion with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?, a4=-0x1, a5=0x1, a6=sp-148, a7=a3 at entry (arg3).
-  The `jal` at 0x9bc calls odsy_DmaRegion_DoTransfer with a0=[a0+32]:8, a1=ret(odsy_NewDmaRegion), a2=?, a3=?, a7=-0x801.
-  The `jal` at 0x9ec calls DmaFinishedPollDelay with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xa1c calls odsy_DeleteDmaRegion with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x9bc calls odsy_DmaRegion_DoTransfer with a0=[a0+32]:8, a1=ret(odsy_NewDmaRegion), a2=?, a3=?, a6=[[a0+32]:8+736]:8, a7=-0x801.
+  The `jal` at 0x9ec calls DmaFinishedPollDelay with a0=[[a0+32]:8+736]:8, a1=?, a2=?, a3=?.
+  The `jal` at 0xa1c calls odsy_DeleteDmaRegion with a0=ret(odsy_NewDmaRegion), a1=?, a2=?, a3=?.
   The `jal` at 0xa50 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?.
   The `jal` at 0xa70 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0xaa8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0xac8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0xadc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0xae4 calls odsy_teardown with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xae4 calls odsy_teardown with a0=[a0+32]:8, a1=?, a2=?, a3=?.
   The `beq` branch at 0x8fc targets 0x920, is taken when a1 == 0, and falls through when a1 != 0.
   The `bltz` branch at 0x918 targets 0xa90, is taken when v0(=ret(RRM_CheckValidFault)) < 0 (signed), and falls through when v0(=ret(RRM_CheckValidFault)) >= 0 (signed).
   The `bne` branch at 0x930 targets 0xaa0, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
@@ -4492,7 +4489,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x97c targets 0x9a0, is taken when v0(=ret(odsy_NewDmaRegion)) != 0, and falls through when v0(=ret(odsy_NewDmaRegion)) == 0.
   The `beq` branch at 0x998 targets 0xa44 and is always taken.
   The `bne` branch at 0x9c4 targets 0xac4, is taken when v0(=ret(odsy_DmaRegion_DoTransfer)) != 0, and falls through when v0(=ret(odsy_DmaRegion_DoTransfer)) == 0.
-  The `bne` branch at 0x9d0 targets 0xa10, is taken when at(?) != 0, and falls through when at(?) == 0.
+  The `bne` branch at 0x9d0 targets 0xa10 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x9e0 targets 0xa14, is taken when a2(?) >= 0x28 (signed), and falls through when a2(?) < 0x28 (signed).
   The `beq` branch at 0xa08 targets 0x9d8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xa14 targets 0xad8, is taken when a5(?) == 0, and falls through when a5(?) != 0.
@@ -4517,12 +4514,12 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `ld` accesses load 8 bytes from a2 (arg2 at entry) +0x90, including `ld` at 0xb6c, `ld` at 0xc54.
   The `ld` at 0xb70 loads 8 bytes from [a2+144]:8 +0x78.
   The `lw` at 0xb78 loads 4 bytes from [[a2+144]:8+120]:8 +0x8c.
-  51 such `sw` accesses store 4 bytes to table(0x110000) +0x0, including `sw` at 0xba4, `sw` at 0xba8, `sw` at 0x1174.
+  51 such `sw` accesses store 4 bytes to [a0+736]:8 +0x110000, including `sw` at 0xba4, `sw` at 0xba8, `sw` at 0x1174.
   3 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x28, including `lw` at 0xbcc, `lw` at 0x1008, `lw` at 0x1408.
   2 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x38, including `lw` at 0xbd0, `lw` at 0x143c.
   The `sd` at 0xbdc stores 8 bytes to a3 (arg3 at entry) +0x48.
   The `lw` at 0xbec loads 4 bytes from a0 (arg0 at entry) +0x118.
-  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0xc04, `lw` at 0xe9c, `lw` at 0x1178.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xc04, `lw` at 0xe9c.
   The `lw` at 0xc2c loads 4 bytes from a2 (arg2 at entry) +0x0.
   The `lw` at 0xc38 loads 4 bytes from a3 (arg3 at entry) +0x1c.
   The `ld` at 0xc58 loads 8 bytes from [a2+144]:8 +0x80.
@@ -4538,32 +4535,32 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sw` at 0xea8 stores 4 bytes to ?.
   The `sw` at 0xff0 stores 4 bytes to a3 (arg3 at entry) +0x20.
   The `lw` at 0x1030 loads 4 bytes from a3 (arg3 at entry) +0x30.
+  2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b4c, including `lw` at 0x1178, `lw` at 0x15d8.
+  2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b50, including `lw` at 0x1180, `lw` at 0x15e0.
+  2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b54, including `lw` at 0x1188, `lw` at 0x15e8.
+  2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b58, including `lw` at 0x11b0, `lw` at 0x15f0.
+  2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b64, including `lw` at 0x11d4, `lw` at 0x1608.
+  2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b70, including `lw` at 0x120c, `lw` at 0x1628.
   The `ld` at 0x12d4 loads 8 bytes from a3 (arg3 at entry) +0x48.
   The `lwu` at 0x13bc loads 4 bytes from a2 (arg2 at entry) +0x28.
-  2 such `sd` accesses store 8 bytes to table(0x110000) +0x0, including `sd` at 0x13d0, `sd` at 0x1554.
+  2 such `sd` accesses store 8 bytes to [a0+736]:8 +0x110000, including `sd` at 0x13d0, `sd` at 0x1554.
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x2c, including `lw` at 0x13d8, `lw` at 0x1560.
   The `lw` at 0x140c loads 4 bytes from [[a2+144]:8+120]:8 +0x70.
   The `lw` at 0x1424 loads 4 bytes from [[a2+144]:8+120]:8 +0x74.
   The `sw` at 0x1460 stores 4 bytes to a3 (arg3 at entry) +0x38.
   The `lw` at 0x1508 loads 4 bytes from [a2+96]:8 +0x1cb8.
   The `sw` at 0x1550 stores 4 bytes to [a2+96]:8 +0x1cb8.
-  The `lw` at 0x15d8 loads 4 bytes from [a2+96]:8 +0x1b4c.
-  The `lw` at 0x15e0 loads 4 bytes from [a2+96]:8 +0x1b50.
-  The `lw` at 0x15e8 loads 4 bytes from [a2+96]:8 +0x1b54.
-  The `lw` at 0x15f0 loads 4 bytes from [a2+96]:8 +0x1b58.
   2 such `lw` accesses load 4 bytes from [a2+96]:8 +0x1b5c, including `lw` at 0x15f8, `lw` at 0x1610.
-  The `lw` at 0x1608 loads 4 bytes from [a2+96]:8 +0x1b64.
-  The `lw` at 0x1628 loads 4 bytes from [a2+96]:8 +0x1b70.
   The `lw` at 0x1714 loads 4 bytes from a0 (arg0 at entry) +0x5700.
   The `jal` at 0xb48 calls useracc with a0=[a3+16]:8, a1=[a3+24], a2=0x110, a3=0x0.
-  The `jal` at 0x127c calls odsyDMAOp with a0=a2 at entry (arg2), a1=a0 at entry (arg0), a2=0x0, a3=?, a5=sp-384, a6=sp-360.
-  The `jal` at 0x14a4 calls odsyDMAOp with a0=a2 at entry (arg2), a1=a0 at entry (arg0), a2=0x0, a3=?, a5=sp-384, a6=a3+28, a7=a3+72.
-  The `jal` at 0x15a4 calls unuseracc with a0=?, a1=?, a2=0x110, a3=-0x2.
-  The `jal` at 0x1690 calls odsyDMAOp with a0=a2 at entry (arg2), a1=a0 at entry (arg0), a2=0x0, a3=?, a5=sp-384, a6=a3+28, a7=a3+72.
+  The `jal` at 0x127c calls odsyDMAOp with a0=a2 at entry (arg2), a1=a0 at entry (arg0), a2=0x0, a3=?, a5=sp-384, a6=sp-360, a7=a3+72.
+  The `jal` at 0x14a4 calls odsyDMAOp with a0=a2 at entry (arg2), a1=a0 at entry (arg0), a2=0x0, a3=[a3+16]:8, a4=[a3+24], a5=sp-384, a6=a3+28, a7=a3+72.
+  The `jal` at 0x15a4 calls unuseracc with a0=[a3+16]:8, a1=[a3+24], a2=0x110, a3=-0x2.
+  The `jal` at 0x1690 calls odsyDMAOp with a0=a2 at entry (arg2), a1=a0 at entry (arg0), a2=0x0, a3=[a3+16]:8, a4=[a3+24], a5=sp-384, a6=a3+28, a7=a3+72.
   The `jal` at 0x16cc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=-0x2, a7=0xffffffffcf80a92f.
   The `jal` at 0x1730 calls odsyDMAWait with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=0x1, a3=sp-376, a4=0xd0a, a5=([a0+22272] | 0x8000), a6=0x10a5a, a7=0x10444.
-  The `jal` at 0x1744 calls unuseracc with a0=?, a1=?, a2=0x110, a3=?.
-  The `jal` at 0x1788 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
+  The `jal` at 0x1744 calls unuseracc with a0=[a3+16]:8, a1=[a3+24], a2=0x110, a3=?.
+  The `jal` at 0x1788 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=[a3+16]:8, a3=([a3+16]:8 + [a3+24])-1, a4=[a3+24].
   The `bne` branch at 0xb50 targets 0x1758, is taken when v0(=ret(useracc)) != 0, and falls through when v0(=ret(useracc)) == 0.
   The `beq` branch at 0xb64 targets 0xb80, is taken when (v0(=[a3+60]) & 0x10) == 0, and falls through when (v0(=[a3+60]) & 0x10) != 0.
   The `beq` branch at 0xb7c targets 0x13f0, is taken when v1(=[[[a2+144]:8+120]:8+140]) == 0, and falls through when v1(=[[[a2+144]:8+120]:8+140]) != 0.
@@ -4620,7 +4617,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x132c targets 0x1250 and is always taken.
   The `beq` branch at 0x1334 targets 0x1108 and is always taken.
   The `beq` branch at 0x133c targets 0x1174 and is always taken.
-  The `beq` branch at 0x136c targets 0x13e0, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x136c targets 0x13e0, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
   The `bltz` branch at 0x13f8 targets 0xb80, is taken when a2(?) < 0 (signed), and falls through when a2(?) >= 0 (signed).
   The `bltz` branch at 0x1400 targets 0xb84, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
   The `bne` branch at 0x141c targets 0xb84, is taken when a5(=[[[a2+144]:8+120]:8+112]) < a6(?) (signed), and falls through when a5(=[[[a2+144]:8+120]:8+112]) >= a6(?) (signed).
@@ -4641,7 +4638,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x16b8 targets 0x13e0 and is always taken.
   The `beq` branch at 0x1750 targets 0x13e8 and is always taken.
   The `beq` branch at 0x1794 targets 0x13e8 and is always taken.
-  The return at 0x13e8 has v0 = one of ret(odsyDMAOp), 0x0, ?, 0xc.
+  The return at 0x13e8 has v0 = one of ret(odsyDMAOp), 0x0, 0xc.
 - `odsyDMAOp` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)` at 0x179c (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
@@ -4770,45 +4767,45 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0xdd8, including `ld` at 0x1f20, `ld` at 0x2124.
   2 such `lw` accesses load 4 bytes from ret(OdsyNextCSetElem) +0x0, including `lw` at 0x1fc0, `lw` at 0x200c.
   2 such `sd` accesses store 8 bytes to a3 (arg3 at entry) +0x0, including `sd` at 0x1fe0, `sd` at 0x21d8.
-  The `lw` at 0x2018 loads 4 bytes from ret(OdsyNextCSetElem) +0x28.
+  2 such `lw` accesses load 4 bytes from ret(OdsyNextCSetElem) +0x28, including `lw` at 0x2018, `lw` at 0x2044.
   The `ld` at 0x2028 loads 8 bytes from ret(OdsyNextCSetElem) +0x38.
   The `ld` at 0x2034 loads 8 bytes from ret(OdsyNextCSetElem) +0x30.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x2044, `lw` at 0x216c.
   The `lw` at 0x2114 loads 4 bytes from a0 (arg0 at entry) +0x9d0.
   The `ld` at 0x2120 loads 8 bytes from (([a0+2512] << 0x3) + a0) +0x9d8.
   The `ld` at 0x2128 loads 8 bytes from [(([a0+2512] << 0x3) + a0)+2520]:8 +0x40.
   2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2148, `ld` at 0x2150.
+  The `lw` at 0x216c loads 4 bytes from ?.
   The `jal` at 0x1ef0 calls ddi_mutex_lock with a0=a0+2472, a1=-0x1, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x1f4c calls mutex_unlock with a0=?, a1=?, a2=[a0+3544]:8, a3=[a3]:8.
-  The `jal` at 0x1f94 calls ddi_mutex_lock with a0=?, a1=-0x1, a2=?, a3=?.
+  The `jal` at 0x1f4c calls mutex_unlock with a0=a0+2472, a1=?, a2=[a0+3544]:8, a3=[a3]:8.
+  The `jal` at 0x1f94 calls ddi_mutex_lock with a0=a0+2472, a1=-0x1, a2=?, a3=?.
   The `jal` at 0x1fa4 calls OdsyInitCSetCursor with a0=a1+312, a1=?, a2=?, a3=?.
-  The `jal` at 0x1fac calls OdsyNextCSetElem with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1fc4 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1fe8 calls sv_destroy with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1ff4 calls kmem_free with a0=?, a1=0x48, a2=?, a3=?.
-  The `jal` at 0x1ffc calls OdsyNextCSetElem with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1fac calls OdsyNextCSetElem with a0=a1+312, a1=?, a2=?, a3=?.
+  The `jal` at 0x1fc4 calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
+  The `jal` at 0x1fe8 calls sv_destroy with a0=ret(OdsyNextCSetElem)+24, a1=?, a2=?, a3=?.
+  The `jal` at 0x1ff4 calls kmem_free with a0=ret(OdsyNextCSetElem), a1=0x48, a2=?, a3=?.
+  The `jal` at 0x1ffc calls OdsyNextCSetElem with a0=a1+312, a1=?, a2=?, a3=?.
   The `jal` at 0x2030 calls unuseracc with a0=[ret(OdsyNextCSetElem)+48]:8, a1=[ret(OdsyNextCSetElem)+56]:8, a2=0x110, a3=?, a4=[ret(OdsyNextCSetElem)], a5=[ret(OdsyNextCSetElem)+40].
-  The `jal` at 0x2040 calls OdsyDeallocCSetId with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x207c calls mutex_unlock with a0=?, a1=?, a2=[a0+3544]:8, a3=[a3]:8.
+  The `jal` at 0x2040 calls OdsyDeallocCSetId with a0=a1+312, a1=[ret(OdsyNextCSetElem)+40], a2=?, a3=?.
+  The `jal` at 0x207c calls mutex_unlock with a0=a0+2472, a1=?, a2=[a0+3544]:8, a3=[a3]:8, a5=0x0.
   The `jal` at 0x209c calls timeout with a0=sym(odsy_dmawait_harmless_timeout), a1=a0 at entry (arg0), a2=0x5dc, a3=a3 at entry (arg3), a4=a2 at entry (arg2), a5=-0x1.
   The `jal` at 0x20a8 calls hold_nonfatalsig with a0=sp-176, a1=?, a2=?, a3=?.
-  The `jal` at 0x20bc calls ddi_sv_wait_sig with a0=a0+2488, a1=?, a2=0x0, a3=?.
+  The `jal` at 0x20bc calls ddi_sv_wait_sig with a0=a0+2488, a1=a0+2472, a2=0x0, a3=?.
   The `jal` at 0x20c8 calls release_nonfatalsig with a0=sp-176, a1=?, a2=?, a3=?.
-  The `jal` at 0x20d0 calls untimeout with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x20d0 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
   The `jal` at 0x2160 calls timeout with a0=sym(odsy_dmawait_timeout), a1=a0 at entry (arg0), a2=0x5dc, a3=[a3]:8, a4=a0 at entry (arg0), a6=[a0+2512], a7=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8.
   The `jal` at 0x2180 calls hold_nonfatalsig with a0=sp-176, a1=?, a2=?, a3=?, a5=ret(timeout).
-  The `jal` at 0x2194 calls ddi_sv_wait_sig with a0=?, a1=?, a2=0x0, a3=?.
+  The `jal` at 0x2194 calls ddi_sv_wait_sig with a0=?, a1=a0+2472, a2=0x0, a3=?.
   The `jal` at 0x21a0 calls release_nonfatalsig with a0=sp-176, a1=?, a2=?, a3=?.
-  The `jal` at 0x21a8 calls untimeout with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x21dc calls mutex_unlock with a0=?, a1=?, a2=a0 at entry (arg0), a3=[a3]:8, a4=a2 at entry (arg2), a5=-0x1.
+  The `jal` at 0x21a8 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
+  The `jal` at 0x21dc calls mutex_unlock with a0=a0+2472, a1=?, a2=a0 at entry (arg0), a3=[a3]:8, a4=a2 at entry (arg2), a5=-0x1.
   The `jal` at 0x21f8 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?, a5=ret(timeout).
-  The `jal` at 0x2200 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x221c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=[a3]:8.
-  The `jal` at 0x2224 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2240 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=[a0+3544]:8, a3=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8, a6=[a0+2512], a7=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8.
-  The `jal` at 0x2248 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2200 calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
+  The `jal` at 0x221c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=[a3]:8, a4=one of 0x0, 0x1.
+  The `jal` at 0x2224 calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
+  The `jal` at 0x2240 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=[a0+3544]:8, a3=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8, a4=one of 0x0, 0x1, a6=[a0+2512], a7=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8.
+  The `jal` at 0x2248 calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
   The `jal` at 0x2264 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=[a3]:8, a4=a0 at entry (arg0), a6=[a0+2512], a7=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8.
-  The `jal` at 0x226c calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x226c calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
   The `beq` branch at 0x1ed0 targets 0x1ee0, is taken when at(=[a0+728]) == 0, and falls through when at(=[a0+728]) != 0.
   The `beq` branch at 0x1f08 targets 0x2094, is taken when a4(=a2) == 0, and falls through when a4(=a2) != 0.
   The `beq` branch at 0x1f14 targets 0x21dc, is taken when a5(=-0x1) == a3(=[a3]:8), and falls through when a5(=-0x1) != a3(=[a3]:8).
@@ -4818,7 +4815,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x1f64 targets 0x1f80 and is always taken.
   The `beq` branch at 0x1f6c targets 0x1f78, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0x1f74 targets 0x207c, is taken when a4(?) != 0, and falls through when a4(?) == 0.
-  The `beq` branch at 0x1f84 targets 0x2050, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x1f84 targets 0x2050, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1f8c targets 0x1fd0, is taken when v1(=a1) == 0, and falls through when v1(=a1) != 0.
   The `beq` branch at 0x1fb4 targets 0x1fc4, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.
   The `beq` branch at 0x1fbc targets 0x2010 and is always taken.
@@ -4827,18 +4824,18 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x2010 targets 0x1ffc, is taken when a4(=[ret(OdsyNextCSetElem)]) != 0, and falls through when a4(=[ret(OdsyNextCSetElem)]) == 0.
   The `beq` branch at 0x201c targets 0x1fe4, is taken when a5(=[ret(OdsyNextCSetElem)+40]) == at(=-0x1), and falls through when a5(=[ret(OdsyNextCSetElem)+40]) != at(=-0x1).
   The `beq` branch at 0x2048 targets 0x1fe8 and is always taken.
-  The `bne` branch at 0x2054 targets 0x1f8c, is taken when a4(?) != 0, and falls through when a4(?) == 0.
-  The `bne` branch at 0x206c targets 0x20fc, is taken when a3(=[a3]:8) < a2(?) (unsigned), and falls through when a3(=[a3]:8) >= a2(?) (unsigned).
+  The `bne` branch at 0x2054 targets 0x1f8c, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x206c targets 0x20fc, is taken when a3(=[a3]:8) < a2(=[a0+3544]:8) (unsigned), and falls through when a3(=[a3]:8) >= a2(=[a0+3544]:8) (unsigned).
   The `beq` branch at 0x2074 targets 0x2108 and is always taken.
   The `beq` branch at 0x208c targets 0x1f78 and is always taken.
-  The `beq` branch at 0x20dc targets 0x20f4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x20dc targets 0x20f4, is taken when a4(=ret(ddi_sv_wait_sig)) == 0, and falls through when a4(=ret(ddi_sv_wait_sig)) != 0.
   The `beq` branch at 0x20ec targets 0x21f0, is taken when a5(=[a0+728]) == 0, and falls through when a5(=[a0+728]) != 0.
   The `beq` branch at 0x20f4 targets 0x1ed8 and is always taken.
   The `beq` branch at 0x210c targets 0x2210, is taken when v0(?) >= 0x80 (unsigned), and falls through when v0(?) < 0x80 (unsigned).
   The `bne` branch at 0x212c targets 0x2238, is taken when a2(=[a0+3544]:8) != a7(=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8), and falls through when a2(=[a0+3544]:8) == a7(=[[(([a0+2512] << 0x3) + a0)+2520]:8+64]:8).
   The `bne` branch at 0x2154 targets 0x225c, is taken when a3(=[a3]:8) != a2(?), and falls through when a3(=[a3]:8) == a2(?).
   The `beq` branch at 0x2178 targets 0x21f8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x21b4 targets 0x21c8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x21b4 targets 0x21c8, is taken when a4(=ret(ddi_sv_wait_sig)) == 0, and falls through when a4(=ret(ddi_sv_wait_sig)) != 0.
   The `beq` branch at 0x21c4 targets 0x1f88, is taken when a5(=[a0+728]) == 0, and falls through when a5(=[a0+728]) != 0.
   The `beq` branch at 0x21d4 targets 0x1ed8 and is always taken.
   The `beq` branch at 0x21e8 targets 0x1ed8 and is always taken.
@@ -4883,8 +4880,8 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2430 calls sv_destroy with a0=[(([a0+2512] << 0x3) + a0)+2520]:8+24, a1=?, a2=?, a3=?.
   The `jal` at 0x243c calls kmem_free with a0=[(([a0+2512] << 0x3) + a0)+2520]:8, a1=0x48, a2=?, a3=?.
   The `jal` at 0x244c calls sv_broadcast with a0=a0+2488, a1=?, a2=?, a3=?.
-  The `jal` at 0x2470 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x24a0 calls mutex_unlock with a0=?, a1=?, a2=0x2000000000000000, a3=0x7f, a4=-0x1.
+  The `jal` at 0x2470 calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
+  The `jal` at 0x24a0 calls mutex_unlock with a0=a0+2472, a1=?, a2=0x2000000000000000, a3=0x7f, a4=-0x1.
   The `jal` at 0x24c4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x24e0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x24f8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -4934,7 +4931,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x25f8 calls kmem_free with a0=[ret(OdsyNextCSetElem)+8]:8, a1=[ret(OdsyNextCSetElem)+16], a2=?, a3=?.
   The `jal` at 0x260c calls unuseracc with a0=[ret(OdsyNextCSetElem)+48]:8, a1=[ret(OdsyNextCSetElem)+56]:8, a2=0x110, a3=?.
   The `jal` at 0x2628 calls OdsyDestroyCSet with a0=a1+312, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x2634 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2634 calls mutex_unlock with a0=a0+2472, a1=?, a2=?, a3=?.
   The `jal` at 0x264c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `beq` branch at 0x25b0 targets 0x261c, is taken when v0(=ret(OdsyNextCSetElem)) == 0, and falls through when v0(=ret(OdsyNextCSetElem)) != 0.
   The `beq` branch at 0x25b8 targets 0x25e0 and is always taken.
@@ -4956,7 +4953,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x2688 loads 8 bytes from a0 (arg0 at entry) +0x48.
   The `ld` at 0x268c loads 8 bytes from [a0+72]:8 +0x70.
   The `jal` at 0x26a8 calls copyin with a0=a2 at entry (arg2), a1=sp-96, a2=0x8, a3=?.
-  The `jal` at 0x26c0 calls odsyDMAWait with a0=?, a1=?, a2=0x1, a3=sp-96.
+  The `jal` at 0x26c0 calls odsyDMAWait with a0=[a0+32]:8, a1=[[a0+72]:8+112]:8, a2=0x1, a3=sp-96.
   The `jal` at 0x26ec calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=a3 at entry (arg3).
   The `jal` at 0x270c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=?.
   The `jal` at 0x2734 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -5043,7 +5040,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x98 loads 8 bytes from a0 (arg0 at entry) +0x2918.
   The `jal` at 0x78 calls mraccessf with a0=a0+10528, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0xa0 calls odsyHashLookup with a0=[a0+10520]:8, a1=?, a2=a1 at entry (arg1), a3=?.
-  The `jal` at 0xac calls mrunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xac calls mrunlock with a0=a0+10528, a1=?, a2=?, a3=?.
   The return at 0xc0 has v0 = ret(odsyHashLookup).
 - `odsyCreateDrawable` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)` at 0xc8 (n64).
   Evidence grade: inferred.
@@ -5078,16 +5075,19 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x1d0 loads 8 bytes from a0 (arg0 at entry) +0x2918.
   4 such `lw` accesses load 4 bytes from (a1 + one of 0x160, 0x190) +0x0, including `lw` at 0x1dc, `lw` at 0x20c, `lw` at 0x2b8.
   3 such `sw` accesses store 4 bytes to (a1 + one of 0x160, 0x190) +0x0, including `sw` at 0x1ec, `sw` at 0x2c0, `sw` at 0x2e4.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1f8, `lw` at 0x244, `lw` at 0x258.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x200, `sw` at 0x284, `sw` at 0x380.
-  10 such `ld` accesses load 8 bytes from ?, including `ld` at 0x22c, `ld` at 0x23c, `ld` at 0x254.
+  The `lw` at 0x1f8 loads 4 bytes from ret(odsyHashLookup) +0x20.
+  The `sw` at 0x200 stores 4 bytes to ret(odsyHashLookup) +0x20.
+  The `ld` at 0x22c loads 8 bytes from ret(odsyHashLookup) +0x18.
   The `sw` at 0x238 stores 4 bytes to (a1 + one of 0x168, 0x198) +0x0.
+  9 such `ld` accesses load 8 bytes from ?, including `ld` at 0x23c, `ld` at 0x254, `ld` at 0x260.
+  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x244, `lw` at 0x258, `lw` at 0x338.
   The `sb` at 0x248 stores 1 byte to (a1 + one of 0x18b, 0x1bb) +0x0.
   The `sh` at 0x250 stores 2 bytes to (a1 + one of 0x188, 0x1b8) +0x0.
   2 such `sw` accesses store 4 bytes to (a1 + one of 0x16c, 0x19c) +0x0, including `sw` at 0x25c, `sw` at 0x33c.
   4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x264, `lbu` at 0x344, `lbu` at 0x388.
   2 such `sw` accesses store 4 bytes to (a1 + one of 0x170, 0x1a0) +0x0, including `sw` at 0x268, `sw` at 0x358.
   2 such `sb` accesses store 1 byte to (a1 + one of 0x18a, 0x1ba) +0x0, including `sb` at 0x26c, `sb` at 0x348.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x284, `sw` at 0x380.
   The `lw` at 0x28c loads 4 bytes from (a1 + one of 0x16c, 0x19c) +0x0.
   The `lw` at 0x2a8 loads 4 bytes from a1 (arg1 at entry) +0x44.
   The `sw` at 0x2b4 stores 4 bytes to a1 (arg1 at entry) +0x44.
@@ -5111,7 +5111,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x1d4 targets 0x204, is taken when v0(=ret(odsyHashLookup)) == 0, and falls through when v0(=ret(odsyHashLookup)) != 0.
   The `beq` branch at 0x1f0 targets 0x3a0, is taken when v0(=ret(mrtrypromote)) == 0, and falls through when v0(=ret(mrtrypromote)) != 0.
   The `beq` branch at 0x224 targets 0x318, is taken when (at(?) & 0x4) == 0, and falls through when (at(?) & 0x4) != 0.
-  The `beq` branch at 0x230 targets 0x3bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x230 targets 0x3bc, is taken when a0(=[ret(odsyHashLookup)+24]:8) == 0, and falls through when a0(=[ret(odsyHashLookup)+24]:8) != 0.
   The `beq` branch at 0x24c targets 0x334, is taken when (a4(=a3) & 0x2) == 0, and falls through when (a4(=a3) & 0x2) != 0.
   The `bne` branch at 0x280 targets 0x270, is taken when v0(?) < 0x4 (signed), and falls through when v0(?) >= 0x4 (signed).
   The `beq` branch at 0x2a0 targets 0x320, is taken when a4(=a2) == a5(=0x1), and falls through when a4(=a2) != a5(=0x1).
@@ -5302,11 +5302,11 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xae4 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xb0c calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=?.
   The `jal` at 0xb3c calls gfx_flow_detach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=0x1, a3=[[a0+32]:8+736]:8.
-  The `jal` at 0xb4c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xb4c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0xb64 calls copyout with a0=sp-208, a1=a2 at entry (arg2), a2=0x50, a3=?.
   The `jal` at 0xba4 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xbc4 calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=ret(splhi), a2=?, a3=?, a5=([a0+48] | 0x2).
-  The `jal` at 0xbd4 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xbd4 calls splx with a0=ret(splhi), a1=ret(splhi), a2=?, a3=?.
   The `jal` at 0xbe8 calls gfx_flow_attach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0xbf8 calls gfx_flow_credit_tnum_get with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=?, a6=[[a0+32]:8+10404].
   The `jal` at 0xc4c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -5430,7 +5430,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   It occupies 64 bytes.
   The `jal` at 0xa8 calls splhi with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0xb4 calls gfx_flow_am_i_attached with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0xc0 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xc0 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The return at 0xd4 has v0 = ret(gfx_flow_am_i_attached).
 - `odsyHiwaterInterrupt` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)` at 0xdc (n64).
   Evidence grade: inferred.
@@ -5450,10 +5450,12 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x1c8 loads 4 bytes from [[a0+72]:8+32]:8 +0x50.
   The `sw` at 0x1d8 stores 4 bytes to [[a0+72]:8+32]:8 +0x50.
   The `sw` at 0x1ec stores 4 bytes to a0 (arg0 at entry) +0x78.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1f4, `sw` at 0x218, `sw` at 0x234.
+  The `sw` at 0x1f4 stores 4 bytes to [a0+736]:8 +0x101c.
   The `lw` at 0x200 loads 4 bytes from [a0+736]:8 +0x1064.
+  The `sw` at 0x218 stores 4 bytes to [a0+736]:8 +0x1014.
   The `lw` at 0x21c loads 4 bytes from a0 (arg0 at entry) +0x2890.
   The `sw` at 0x228 stores 4 bytes to a0 (arg0 at entry) +0x2890.
+  The `sw` at 0x234 stores 4 bytes to [a0+736]:8 +0x1034.
   The `lw` at 0x250 loads 4 bytes from ([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)) +0x1c.
   The `sw` at 0x25c stores 4 bytes to ([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)) +0x1c.
   The `jal` at 0x100 calls mutex_spinlock with a0=a0+22260, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -5466,12 +5468,12 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1ac calls gfx_waitf_off with a0=?, a1=?, a2=?, a3=?, a4=[([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5))+24]+1, a5=([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)), a6=([-0x3c60]:2 << 0x5).
   The `jal` at 0x1d4 calls force_resched with a0=?, a1=?, a2=?, a3=?, a7=[[[a0+72]:8+32]:8+80]+1.
   The `jal` at 0x1e8 calls odsyFifoTimer with a0=a0 at entry (arg0), a1=0x1, a2=?, a3=?.
-  The `jal` at 0x230 calls mutex_spinunlock with a0=a0+22260, a1=?, a2=?, a3=?.
+  The `jal` at 0x230 calls mutex_spinunlock with a0=a0+22260, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x258 calls gfx_waitf_off with a0=[([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5))+28]+1, a1=([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)), a2=([-0x3c60]:2 << 0x5), a3=?.
-  The `jal` at 0x26c calls mutex_spinunlock with a0=a0+22260, a1=?, a2=?, a3=?.
+  The `jal` at 0x26c calls mutex_spinunlock with a0=a0+22260, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x284 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=[a0+728], a3=?.
   The `jal` at 0x28c calls heart_flow_control_disable with a0=ret(gfx_flow_pipe_head), a1=?, a2=?, a3=?.
-  The `jal` at 0x29c calls mutex_spinunlock with a0=a0+22260, a1=?, a2=?, a3=?.
+  The `jal` at 0x29c calls mutex_spinunlock with a0=a0+22260, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x118 targets 0x140, is taken when v0(=[a0+104]) == 0, and falls through when v0(=[a0+104]) != 0.
   The `bne` branch at 0x14c targets 0x27c, is taken when a2(=[a0+728]) != 0, and falls through when a2(=[a0+728]) == 0.
   The `beq` branch at 0x178 targets 0x240, is taken when s1(=ret(gfx_flow_credit_count_get)) >= v0(=ret(gfx_flow_credit_bias_get)) (unsigned), and falls through when s1(=ret(gfx_flow_credit_count_get)) < v0(=ret(gfx_flow_credit_bias_get)) (unsigned).
@@ -5497,7 +5499,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sw` at 0x304 stores 4 bytes to a0 (arg0 at entry) +0x68.
   The `jal` at 0x2c4 calls odsyFifoTimer with a0=a0 at entry (arg0), a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x2fc calls mutex_spinlock with a0=a0+22260, a1=-0x201, a2=?, a3=?.
-  The `jal` at 0x310 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x310 calls mutex_spinunlock with a0=a0+22260, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x318 calls force_resched with a0=?, a1=?, a2=?, a3=?.
   The return at 0x324 has v0 = ret(force_resched).
 - `odsyFifoTimer` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)` at 0x32c (n64).
@@ -5561,7 +5563,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1d0 calls odsy_usdelay with a0=[a0+16]:8, a1=0xa, a2=?, a3=?, a5=[a0+16]:8.
   The `jal` at 0x1e8 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xe, a2=?, a3=?, a5=[a0+16]:8.
   The `jal` at 0x214 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
-  The `jal` at 0x224 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x224 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x234 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a5=[a0+16]:8.
   The `jal` at 0x250 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
   The `jal` at 0x260 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -5575,7 +5577,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x414 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a5=[a0+16]:8.
   The `jal` at 0x520 calls odsy_i2c_xfer_done_loop with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0]:8, a6=-0x101.
   The `jal` at 0x540 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
-  The `jal` at 0x550 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x550 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x560 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=[[a0+16]:8+22304], a5=[a0+16]:8.
   The `jal` at 0x57c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
   The `jal` at 0x58c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -5583,20 +5585,20 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x5b4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x6e0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=[a0+16]:8, a6=-0x2.
   The `jal` at 0x6f0 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
-  The `jal` at 0x700 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x700 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x710 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=[[a0+16]:8+736]:8+0x400000, a5=[a0+16]:8.
   The `jal` at 0x72c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
   The `jal` at 0x73c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x750 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x764 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=[[a0+16]:8+22304], a5=[a0+16]:8.
   The `jal` at 0x774 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
-  The `jal` at 0x784 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x784 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x798 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x8c4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=[a0+16]:8, a6=-0x2.
   The `jal` at 0x8d8 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0xa04 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=[a0+16]:8, a6=-0x2.
   The `jal` at 0xa14 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
-  The `jal` at 0xa24 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xa24 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xa34 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=[[a0+16]:8+736]:8+0x400000, a5=[a0+16]:8.
   The `jal` at 0xa50 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
   The `jal` at 0xa60 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -5605,7 +5607,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xaa4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0xbd0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=[a0+16]:8, a6=-0x2.
   The `jal` at 0xbe0 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a5=[a0+16]:8.
-  The `jal` at 0xbf0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xbf0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xc04 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0xd30 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=[a0+16]:8, a6=-0x2.
   The `beq` branch at 0x1c targets 0x14c, is taken when at(=[[a0+16]:8+22304]) == 0, and falls through when at(=[[a0+16]:8+22304]) != 0.
@@ -5705,7 +5707,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xe78 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a0+16]:8.
   The `jal` at 0xea0 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xf, a2=?, a3=?, a4=[a0+16]:8.
   The `jal` at 0xecc calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a4=[a0+16]:8.
-  The `jal` at 0xedc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xedc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xef0 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x1018 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `jal` at 0x1028 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=[[a0+16]:8+22304], a3=?, a4=[a0+16]:8.
@@ -5718,9 +5720,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1118 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x112c calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=[[a0+16]:8+22304], a3=[a0]:8, a4=[a0+16]:8.
   The `jal` at 0x113c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x114c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x114c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1164 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x1174 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1174 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1188 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x12b4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `jal` at 0x12c8 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
@@ -5730,7 +5732,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1430 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x1444 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x1454 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x1464 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1464 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1478 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x15a4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `beq` branch at 0xd54 targets 0xe74, is taken when at(=[[a0+16]:8+22304]) == 0, and falls through when at(=[[a0+16]:8+22304]) != 0.
@@ -5808,7 +5810,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x174c calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a4=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x1770 calls odsy_i2c_recv_ack with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1788 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x1798 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1798 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x17c4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x18ec calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=one of 0x400000, 0x7960400100000000, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x18fc calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=[[a0+16]:8+736]:8+0x400000, a6=[a0+16]:8.
@@ -5816,7 +5818,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1928 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x193c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x194c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x195c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x195c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1970 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x1a9c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `beq` branch at 0x15d8 targets 0x15f0, is taken when v0(=ret(odsy_i2c_busy_high_loop)) == 0, and falls through when v0(=ret(odsy_i2c_busy_high_loop)) != 0.
@@ -5893,7 +5895,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1ce8 calls odsy_i2c_short_recvbyte with a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=?, a3=?.
   The `jal` at 0x1d24 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xf, a2=?, a3=?, a6=[a0+16]:8.
   The `jal` at 0x1d50 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a6=[a0+16]:8.
-  The `jal` at 0x1d60 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1d60 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1d70 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a5=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x1d8c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x1d9c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -5906,7 +5908,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1f3c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x1f50 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a4=[[a0+16]:8+22304], a5=-0x101, a6=[a0+16]:8.
   The `jal` at 0x1fe0 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x1ff0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x1ff0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2000 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x201c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x202c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -5914,20 +5916,20 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2054 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x217c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=one of 0x400000, 0x7960400100000000, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x218c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x219c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x219c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x21dc calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=0x400000, a5=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x21f8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x2208 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x221c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2230 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a5=a2 at entry (arg2), a6=[a0+16]:8.
   The `jal` at 0x2240 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x2250 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2250 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2264 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x238c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x23a0 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x24cc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x24dc calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a5=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x24ec calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x24ec calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x24fc calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=a2 at entry (arg2), a6=[a0+16]:8.
   The `jal` at 0x2518 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x2528 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -5935,7 +5937,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2550 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x267c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x268c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x269c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x269c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x26b0 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x27dc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `beq` branch at 0x1b34 targets 0x1c70, is taken when at(=[[a0+16]:8+22304]) == 0, and falls through when at(=[[a0+16]:8+22304]) != 0.
@@ -6006,7 +6008,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x26d4 targets 0x2758, is taken when 0 >= a3(?) (unsigned), and falls through when 0 < a3(?) (unsigned).
   The `beq` branch at 0x276c targets 0x27ac, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x27e4 targets 0x253c and is always taken.
-  The return at 0x1b68 has v0 = one of 0x3, ?.
+  The return at 0x1b68 has v0 = one of 0x3, ret(odsy_i2c_short_recvbyte).
 - `odsy_i2c_becomeSlaveRecv` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)` at 0x27ec (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
@@ -6041,7 +6043,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2998 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a6=[a0+16]:8.
   The `jal` at 0x2a18 calls odsy_i2c_xfer_done_loop with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x2a3c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a6=[a0+16]:8.
-  The `jal` at 0x2a4c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2a4c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2a70 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a5=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x2a8c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x2a9c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -6054,11 +6056,11 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2c3c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2c50 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a4=0xfffffffffe03ffff, a5=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x2ca0 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a5=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x2cb0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2cb0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2cc4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x2dec calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=one of 0x400000, 0x7960400100000000, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x2dfc calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x2e0c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2e0c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2e1c calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a5=[[a0+16]:8+736]:8+0x400000, a6=[a0+16]:8.
   The `jal` at 0x2e38 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x2e48 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -6066,7 +6068,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2e70 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x2f98 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `jal` at 0x2fd0 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x2fe0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2fe0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2ff4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x3120 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a6=[a0+16]:8, a7=-0x2.
   The `beq` branch at 0x2810 targets 0x2828, is taken when v0(=ret(odsy_i2c_busy_high_loop)) == 0, and falls through when v0(=ret(odsy_i2c_busy_high_loop)) != 0.
@@ -6154,7 +6156,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x32cc calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xf, a2=?, a3=?, a6=[a0+16]:8.
   The `jal` at 0x32f4 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[[a0+16]:8+22304], a6=[a0+16]:8, a7=[a0]:8.
   The `jal` at 0x339c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a6=[a0+16]:8.
-  The `jal` at 0x33ac calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x33ac calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x33c0 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x34ec calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x34fc calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=[a0+8]:8, a6=[a0+16]:8.
@@ -6167,19 +6169,19 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x35c4 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x35d8 calls psema with a0=[a0+16]:8+10256, a1=0x19, a2=?, a3=?, a4=[[a0+16]:8+22304], a6=[a0+16]:8.
   The `jal` at 0x35e8 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a6=[a0+16]:8.
-  The `jal` at 0x35f8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x35f8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3608 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?, a4=[a0+8]:8, a5=(([a0+26]:2 + [a0+26]:2) << 0x2), a6=[a0+16]:8.
   The `jal` at 0x3624 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
   The `jal` at 0x3634 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x3648 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x3658 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a6=[a0+16]:8.
-  The `jal` at 0x3668 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x3668 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x367c calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x37a8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x37bc calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x38ec calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x38fc calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[[a0+16]:8+10280]:8, a6=[a0+16]:8.
-  The `jal` at 0x390c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x390c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3920 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x3a50 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `beq` branch at 0x3160 targets 0x316c, is taken when at(?) == a1, and falls through when at(?) != a1.
@@ -6269,7 +6271,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x3c10 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x3d3c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x3d50 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x3d60 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x3d60 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3d74 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x3ea4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `beq` branch at 0x3a80 targets 0x3b34, is taken when s1(?) >= 0x1f4 (unsigned), and falls through when s1(?) < 0x1f4 (unsigned).
@@ -6333,7 +6335,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x406c calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x4198 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x41ac calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x41bc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x41bc calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x41d0 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x4300 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `beq` branch at 0x3ed4 targets 0x3f90, is taken when s1(?) >= 0x1f4 (unsigned), and falls through when s1(?) < 0x1f4 (unsigned).
@@ -6393,11 +6395,11 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x4488 calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
   The `jal` at 0x449c calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x44b0 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a4=[a0+16]:8.
-  The `jal` at 0x44c0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x44c0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x44d4 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x4604 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `jal` at 0x4618 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x4628 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x4628 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x463c calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x476c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=-0x2, a5=([[a0+16]:8+22000] | 0x2), a6=[a0+16]:8.
   The `beq` branch at 0x433c targets 0x43e8, is taken when at(?) == s1(=a1), and falls through when at(?) != s1(=a1).
@@ -6455,22 +6457,22 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x2828, including `sd` at 0x4a60, `sd` at 0x4b88.
   The `jal` at 0x47d0 calls odsy_poll_dfifo_level with a0=[a1+736]:8, a1=0xe, a2=?, a3=?.
   The `jal` at 0x48b0 calls mutex_spinlock with a0=a1+10272, a1=?, a2=?, a3=?, a4=[a1+22304].
-  The `jal` at 0x48cc calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x48cc calls mutex_spinunlock with a0=a1+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x48d8 calls odsy_poll_dfifo_level with a0=[a1+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x48e8 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x48e8 calls vsema with a0=a1+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x48fc calls psema with a0=a1+10256, a1=0x19, a2=a2 at entry (arg2), a3=[a1+22304].
   The `jal` at 0x4914 calls vsema with a0=a1+10256, a1=a1+10256, a2=?, a3=?.
-  The `jal` at 0x4920 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x4920 calls mutex_spinunlock with a0=a1+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x4934 calls mutex_spinlock with a0=a1+10272, a1=?, a2=?, a3=[a0+8]:8, a4=0x220000.
-  The `jal` at 0x4954 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a1+10280]:8, a4=a1+10256.
+  The `jal` at 0x4954 calls mutex_spinunlock with a0=a1+10272, a1=ret(mutex_spinlock), a2=?, a3=[a1+10280]:8, a4=a1+10256.
   The `jal` at 0x4960 calls odsy_poll_dfifo_level with a0=[a1+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x4970 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4980 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4a78 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=0x400000, a3=?, a5=-0x2.
+  The `jal` at 0x4970 calls vsema with a0=a1+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x4980 calls mutex_spinlock with a0=a1+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x4a78 calls mutex_spinunlock with a0=a1+10272, a1=ret(mutex_spinlock), a2=0x400000, a3=?, a5=-0x2.
   The `jal` at 0x4a8c calls vsema with a0=a1+10256, a1=?, a2=?, a3=[a1+10280]:8, a4=a1+10256.
-  The `jal` at 0x4a98 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4aa8 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4ba0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=0x400000, a3=?, a5=-0x2.
+  The `jal` at 0x4a98 calls mutex_spinunlock with a0=a1+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x4aa8 calls mutex_spinlock with a0=a1+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x4ba0 calls mutex_spinunlock with a0=a1+10272, a1=ret(mutex_spinlock), a2=0x400000, a3=?, a5=-0x2.
   The `bltz` branch at 0x4790 targets 0x47fc, is taken when a2 < 0 (signed), and falls through when a2 >= 0 (signed).
   The `beq` branch at 0x4798 targets 0x47fc, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0x47a0 targets 0x4808, is taken when a2 == 0, and falls through when a2 != 0.
@@ -6545,7 +6547,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x4e80 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x4fa4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `jal` at 0x4fb8 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=[[a0+16]:8+10280]:8, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x4fc8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x4fc8 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x5030 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=[[a0+16]:8+736]:8+0x400000, a3=?, a4=[a0+16]:8.
   The `jal` at 0x504c calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+16]:8.
   The `jal` at 0x505c calls odsy_poll_dfifo_level with a0=[[a0+16]:8+736]:8, a1=0xc, a2=?, a3=?.
@@ -6553,15 +6555,15 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x5084 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x51b0 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `jal` at 0x51c4 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=[[a0+16]:8+10280]:8, a4=[a0+16]:8.
-  The `jal` at 0x51d4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x51d4 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x51e8 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x5314 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `jal` at 0x5324 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x5334 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x5334 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x5348 calls mutex_spinlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
   The `jal` at 0x5474 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+16]:8, a4=[a0+16]:8, a5=-0x2.
   The `jal` at 0x5484 calls vsema with a0=[a0+16]:8+10256, a1=?, a2=?, a3=?, a4=[a0+16]:8.
-  The `jal` at 0x5494 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x5494 calls mutex_spinunlock with a0=[a0+16]:8+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x4c0c targets 0x4d8c, is taken when at(=[[a0+16]:8+22304]) == 0, and falls through when at(=[[a0+16]:8+22304]) != 0.
   The `beq` branch at 0x4c28 targets 0x4c48, is taken when v0(=ret(odsy_poll_dfifo_level)) == 0, and falls through when v0(=ret(odsy_poll_dfifo_level)) != 0.
   The `beq` branch at 0x4c34 targets 0x4d40, is taken when at(=[[a0+16]:8+22304]) == 0, and falls through when at(=[[a0+16]:8+22304]) != 0.
@@ -6799,7 +6801,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xaf8 calls vsema with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xb0c calls psema with a0=?, a1=0x19, a2=?, a3=?.
   The `jal` at 0xb20 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xb2c calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xb2c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xb3c calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xc38 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=0x400000, a7=-0x2.
   The `jal` at 0xc50 calls mutex_spinlock with a0=?, a1=a1 at entry (arg1), a2=?, a3=?.
@@ -6810,7 +6812,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xcd4 calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=0x4.
   The `jal` at 0xcf0 calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=0x80, a4=0x20.
   The `jal` at 0xd08 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xd14 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xd14 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xd44 calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0xd5c calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xe54 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=0x400000, a7=-0x2.
@@ -6926,7 +6928,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0xfdc calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100c calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?.
   The `jal` at 0x103c calls gfx_flow_detach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?, a4=[[[a0+32]:8+736]:8+4204], a5=[[a0+32]:8+736]:8.
-  The `jal` at 0x1054 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1054 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1078 calls gfx_flow_dealloc with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?.
   The `jal` at 0x10e8 calls odsyInitCfifo with a0=[[a0+32]:8+702]:2, a1=0x1, a2=[[a0+32]:8+736]:8, a3=?.
   The `jal` at 0x10fc calls gfx_flow_dealloc with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=?.
@@ -6942,20 +6944,20 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x11f4 calls odsyInitInterrupts with a0=[[a0+32]:8+702]:2, a1=?, a2=?, a3=?.
   The `jal` at 0x11fc calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1220 calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?.
-  The `jal` at 0x1230 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1230 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1238 calls odsyZeroOut with a0=[a0+32]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x1240 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1268 calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+720]:8, a2=?, a3=?.
   The `jal` at 0x1294 calls gfx_flow_detach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=[[a0+32]:8+736]:8, a3=?.
-  The `jal` at 0x12a0 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x12a0 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1304 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=[[a0+32]:8+4640], a3=?, a5=[a0+32]:8.
   The `jal` at 0x1324 calls us_delay with a0=0x2, a1=?, a2=?, a3=?, a5=[a0+32]:8.
   The `jal` at 0x1348 calls gfx_flow_attach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x1358 calls gfx_flow_credit_tnum_get with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x13ac calls cmn_err with a0=0x4, a1=sym(.rodata), a2=[[a0+32]:8+4640], a3=?.
-  The `jal` at 0x13c0 calls init_sema with a0=?, a1=0x0, a2=0x0, a3=-0x1.
-  The `jal` at 0x13d0 calls timeout with a0=sym(odsy_init_ddrncount_timeout), a1=?, a2=0x1f4, a3=?.
-  The `jal` at 0x13dc calls psema with a0=?, a1=0x19, a2=?, a3=?.
+  The `jal` at 0x13c0 calls init_sema with a0=[a0+32]:8+4624, a1=0x0, a2=0x0, a3=-0x1.
+  The `jal` at 0x13d0 calls timeout with a0=sym(odsy_init_ddrncount_timeout), a1=[a0+32]:8+4624, a2=0x1f4, a3=?.
+  The `jal` at 0x13dc calls psema with a0=[a0+32]:8+4624, a1=0x19, a2=?, a3=?.
   The `bne` branch at 0xf98 targets 0x1394, is taken when a2(=[[a0+32]:8+4640]) != 0, and falls through when a2(=[[a0+32]:8+4640]) == 0.
   The `bne` branch at 0xfa4 targets 0x1300, is taken when at(=[[a0+32]:8+72]:8) != s7(=a0), and falls through when at(=[[a0+32]:8+72]:8) == s7(=a0).
   The `beq` branch at 0xfd4 targets 0x1064, is taken when (v1(=[a0+48]) & 0x3) == 0, and falls through when (v1(=[a0+48]) & 0x3) != 0.
@@ -7017,15 +7019,16 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x149c loads 4 bytes from a0 (arg0 at entry) +0x56f0.
   The `ld` at 0x14a4 loads 8 bytes from a0 (arg0 at entry) +0x2e0.
   The `lw` at 0x14ac loads 4 bytes from [a0+736]:8 +0x24.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x14d8, `sw` at 0x1510.
+  The `sw` at 0x14d8 stores 4 bytes to [a0+736]:8 +0x24.
   The `lw` at 0x14dc loads 4 bytes from a0 (arg0 at entry) +0x2c0.
   The `lw` at 0x14f0 loads 4 bytes from table(0x900000001000010c) +0x0.
   The `sw` at 0x1504 stores 4 bytes to table(0x9000000010000134) +0x0.
+  The `sw` at 0x1510 stores 4 bytes to table(0x900000001000010c) +0x0.
   The `jal` at 0x14bc calls xwidget_reset with a0=[a0+22256], a1=a1 at entry (arg1), a2=[a0+22256], a3=a3 at entry (arg3).
   The `jal` at 0x1500 calls odsy_usdelay with a0=a0 at entry (arg0), a1=0x2710, a2=table(0x9000000010000000), a3=entry(0x900000001000010c).
   The `beq` branch at 0x14b4 targets 0x14dc, is taken when a2(=[a0+22256]) == 0, and falls through when a2(=[a0+22256]) != 0.
   The `beq` branch at 0x1514 targets 0x14c8 and is always taken.
-  The return at 0x14d4 has v0 = ?.
+  The return at 0x14d4 has v0 = [[a0+736]:8+36].
 - `odsyLowLevelReset` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)` at 0x151c (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
@@ -7036,11 +7039,11 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x156c loads 4 bytes from abs 0x900000001000007c.
   The `sw` at 0x1584 stores 4 bytes to abs 0x900000001000007c.
   3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1590, `lw` at 0x15c0, `lw` at 0x15d0.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1598, `sw` at 0x174c.
+  The `sw` at 0x1598 stores 4 bytes to ?.
   The `lw` at 0x1600 loads 4 bytes from abs 0x9000000010000024.
   2 such `sw` accesses store 4 bytes to abs 0x9000000010000024, including `sw` at 0x164c, `sw` at 0x1754.
   The `lw` at 0x1650 loads 4 bytes from table(0x900000001000010c) +0x0.
-  The `sw` at 0x1708 stores 4 bytes to table(0x900000001000010c) +0x0.
+  2 such `sw` accesses store 4 bytes to table(0x900000001000010c) +0x0, including `sw` at 0x1708, `sw` at 0x174c.
   6 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x2888, including `sw` at 0x1710, `sw` at 0x1728, `sw` at 0x173c.
   6 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x2e0, including `ld` at 0x171c, `ld` at 0x1758, `ld` at 0x1764.
   3 such `sw` accesses store 4 bytes to [a0+736]:8 +0x100c, including `sw` at 0x1734, `sw` at 0x17c4, `sw` at 0x17d8.
@@ -7118,7 +7121,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lhu` at 0x1da8 loads 2 bytes from ?.
   The `jal` at 0x1c7c calls splhi with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1ca0 calls gfx_flow_am_i_attached with a0=?, a1=ret(splhi), a2=?, a3=?.
-  The `jal` at 0x1cb0 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1cb0 calls splx with a0=ret(splhi), a1=ret(splhi), a2=?, a3=?.
   The `jal` at 0x1d28 calls odsy_usdelay with a0=?, a1=0x7d0, a2=0x6b300005e50, a3=0x6b100000100, a4=0x6b000000000, a5=0xfffffff, a6=0x10854.
   The `jal` at 0x1df4 calls splhi with a0=0x5, a1=0x40008000, a2=0x7f03b9aca00, a3=table(0x110000), a4=sym(flag_desc).
   The `jal` at 0x1e1c calls gfx_flow_am_i_attached with a0=?, a1=?, a2=?, a3=?.
@@ -7234,77 +7237,77 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x26a8 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xb, a2=0x30000001, a3=?, a7=0xffffffff.
   The `jal` at 0x26fc calls odsyBlankScreen with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
   The `jal` at 0x2730 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?, a5=[a0+22304].
-  The `jal` at 0x274c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8.
+  The `jal` at 0x274c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8.
   The `jal` at 0x2758 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2768 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2768 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x277c calls psema with a0=a0+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x278c calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x288c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
+  The `jal` at 0x278c calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x288c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=a0+10272, a3=?, a5=-0x2.
   The `jal` at 0x28a4 calls vsema with a0=a0+10256, a1=a0+10256, a2=?, a3=?, a4=[a0+10280]:8.
-  The `jal` at 0x28b0 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x28b0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x28c4 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[[a0+736]:8+2302996], a4=[[a0+736]:8+2303004], a5=[a0+22304].
-  The `jal` at 0x28e4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8, a4=a0+10256.
+  The `jal` at 0x28e4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8, a4=a0+10256.
   The `jal` at 0x28f0 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2900 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2900 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2914 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?, a4=[a0+22304].
-  The `jal` at 0x2950 calls odsy_i2cDDCRegRead with a0=?, a1=0x0, a2=sp-254, a3=?.
-  The `jal` at 0x2980 calls odsy_i2cDDCRegRead with a0=?, a1=0x7, a2=sp-255, a3=?.
+  The `jal` at 0x2950 calls odsy_i2cDDCRegRead with a0=a0+22216, a1=0x0, a2=sp-254, a3=?.
+  The `jal` at 0x2980 calls odsy_i2cDDCRegRead with a0=a0+22216, a1=0x7, a2=sp-255, a3=?.
   The `jal` at 0x29a0 calls add_to_inventory with a0=0x11, a1=0x3, a2=0x0, a3=0x0, a4=0x0.
   The `jal` at 0x29bc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xe, a2=?, a3=?.
-  The `jal` at 0x29e8 calls odsy_i2cProbe2b with a0=?, a1=a0+308, a2=?, a3=?, a4=[a0+298]:2, a5=0x400, a6=0x500.
-  The `jal` at 0x2a1c calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=0x3a00800100000000, a5=[a0+22304].
-  The `jal` at 0x2a3c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8.
+  The `jal` at 0x29e8 calls odsy_i2cProbe2b with a0=a0+22176, a1=a0+308, a2=?, a3=?, a4=[a0+298]:2, a5=0x400, a6=0x500.
+  The `jal` at 0x2a1c calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=0x3a00800100000000, a4=0x0, a5=[a0+22304].
+  The `jal` at 0x2a3c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8.
   The `jal` at 0x2a48 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2a58 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2a58 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2a74 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?, a5=[a0+22304].
-  The `jal` at 0x2a94 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2a94 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2aa0 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2ab0 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2ac4 calls odsy_DCDResetDone with a0=?, a1=?, a2=?, a3=?, a4=[a0+298]:2, a5=0x400, a6=0x500.
-  The `jal` at 0x2ae8 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=0x10, a3=0x1f, a5=0x400, a6=0x500.
-  The `jal` at 0x2af8 calls odsy_i2cDDCRegRead with a0=?, a1=0x5, a2=sp-256, a3=?.
-  The `jal` at 0x2b10 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=0x20, a3=?.
-  The `jal` at 0x2b28 calls odsy_i2cPLLRegWrite with a0=?, a1=0x0, a2=0x30, a3=?.
+  The `jal` at 0x2ab0 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0x2ac4 calls odsy_DCDResetDone with a0=a0+22216, a1=?, a2=?, a3=?, a4=[a0+298]:2, a5=0x400, a6=0x500.
+  The `jal` at 0x2ae8 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=0x10, a3=0x1f, a5=0x400, a6=0x500.
+  The `jal` at 0x2af8 calls odsy_i2cDDCRegRead with a0=a0+22216, a1=0x5, a2=sp-256, a3=?.
+  The `jal` at 0x2b10 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=0x20, a3=?.
+  The `jal` at 0x2b28 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=0x30, a3=?.
   The `jal` at 0x2b44 calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8, a4=a0+10256.
-  The `jal` at 0x2b50 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2b50 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2b64 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?, a5=[a0+22304].
   The `jal` at 0x2bac calls odsyLoadTimingTable with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x2bbc calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2cbc calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0x2bbc calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2cbc calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
   The `jal` at 0x2cdc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=0x30000001, a3=?, a7=0xffffffff.
   The `jal` at 0x2d18 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?, a5=[a0+22304].
   The `jal` at 0x2d28 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x2d34 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2d34 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2d58 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=0x30000001, a3=?, a7=0xffffffff.
   The `jal` at 0x2d94 calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x2da8 calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x2db8 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2eb8 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0x2db8 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x2eb8 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
   The `jal` at 0x2ed0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+736]:8+0x400000, a4=0x400000.
-  The `jal` at 0x2ef0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x2ef0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2efc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2f0c calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2f0c calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2f20 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?, a5=[a0+22304].
-  The `jal` at 0x2f44 calls odsy_i2cPLLRegWrite with a0=?, a1=0x5, a2=?, a3=-0x21, a4=[a0+438]:2.
-  The `jal` at 0x2f50 calls odsy_i2cProbe2b with a0=?, a1=a0+438, a2=?, a3=?.
-  The `jal` at 0x2f70 calls odsy_i2cPLLRegWrite with a0=?, a1=0x5, a2=?, a3=?.
-  The `jal` at 0x2f7c calls odsy_i2cProbe2b with a0=?, a1=a0+568, a2=?, a3=?.
+  The `jal` at 0x2f44 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x5, a2=?, a3=-0x21, a4=[a0+438]:2.
+  The `jal` at 0x2f50 calls odsy_i2cProbe2b with a0=a0+22216, a1=a0+438, a2=?, a3=?.
+  The `jal` at 0x2f70 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x5, a2=?, a3=?.
+  The `jal` at 0x2f7c calls odsy_i2cProbe2b with a0=a0+22216, a1=a0+568, a2=?, a3=?.
   The `jal` at 0x2f90 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?, a4=0x3a00c00100000000.
-  The `jal` at 0x2fb0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8, a4=a0+10256.
+  The `jal` at 0x2fb0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8, a4=a0+10256.
   The `jal` at 0x2fbc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x2fcc calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2fcc calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x2fdc calls vsema with a0=a0+10256, a1=?, a2=?, a3=?, a4=[a0+10280]:8.
-  The `jal` at 0x2fe8 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2fe8 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x2ff8 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0x3004 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3014 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3114 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
-  The `jal` at 0x3124 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x322c calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8, a5=-0x2.
+  The `jal` at 0x3004 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x3014 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x3114 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
+  The `jal` at 0x3124 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x322c calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8, a5=-0x2.
   The `jal` at 0x323c calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8, a4=a0+10256.
-  The `jal` at 0x3248 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3258 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3360 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8, a5=-0x2.
+  The `jal` at 0x3248 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x3258 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x3360 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=[a0+10280]:8, a5=-0x2.
   The `beq` branch at 0x2424 targets 0x2778, is taken when at(=[a0+22304]) == 0, and falls through when at(=[a0+22304]) != 0.
   The `bne` branch at 0x243c targets 0x270c, is taken when v0(=ret(odsy_poll_dfifo_level)) != 0, and falls through when v0(=ret(odsy_poll_dfifo_level)) == 0.
   The `bne` branch at 0x2460 targets 0x2458, is taken when a0(?) < 0x4 (signed), and falls through when a0(?) >= 0x4 (signed).
@@ -7407,10 +7410,10 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
   Range: 0x3370-0x3498 (296 bytes).
   It occupies 296 bytes.
-  The `ld` at 0x337c loads 8 bytes from ((a0 << 0x3) + sym(flag_desc)) +0x7210.
-  6 such `sd` accesses store 8 bytes to ?, including `sd` at 0x33ac, `sd` at 0x33d0, `sd` at 0x3400.
+  2 such `ld` accesses load 8 bytes from ((a0 << 0x3) + sym(flag_desc)) +0x7210, including `ld` at 0x337c, `ld` at 0x346c.
+  5 such `sd` accesses store 8 bytes to ?, including `sd` at 0x33ac, `sd` at 0x33d0, `sd` at 0x3400.
   The `sw` at 0x33c8 stores 4 bytes to ?.
-  The `ld` at 0x346c loads 8 bytes from ?.
+  The `sd` at 0x3494 stores 8 bytes to ((a0 << 0x3) + sym(flag_desc)) +0x7210.
   The `jal` at 0x3458 calls printf with a0=sym(.rodata), a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x347c calls kmem_zalloc with a0=0x20000, a1=0x8800, a2=sym(flag_desc), a3=a3 at entry (arg3).
   The `beq` branch at 0x3388 targets 0x3470, is taken when v0(=[((a0 << 0x3) + sym(flag_desc))+29200]:8) == 0, and falls through when v0(=[((a0 << 0x3) + sym(flag_desc))+29200]:8) != 0.
@@ -7461,12 +7464,12 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `lw` accesses load 4 bytes from [a0+736]:8 +0x44, including `lw` at 0x24, `lw` at 0x10c.
   The `lw` at 0x30 loads 4 bytes from ([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)) +0x10.
   The `sw` at 0x48 stores 4 bytes to ([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)) +0x10.
-  The `sw` at 0xa8 stores 4 bytes to ?.
+  The `sw` at 0xa8 stores 4 bytes to [a0+736]:8 +0x44.
   The `lw` at 0x100 loads 4 bytes from [a0+736]:8 +0x1c.
   The `jal` at 0x70 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=([-0x3c60]:2 << 0x5), a5=a0 at entry (arg0).
   The `jal` at 0x8c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=([-0x3c60]:2 << 0x5), a5=a0 at entry (arg0).
   The `jal` at 0xbc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=([-0x3c60]:2 << 0x5), a5=a0 at entry (arg0).
-  The `jal` at 0xe0 calls cmn_err with a0=0x0, a1=sym(.rodata), a2=?, a3=one of 0x0, 0x1.
+  The `jal` at 0xe0 calls cmn_err with a0=0x0, a1=sym(.rodata), a2=[[a0+736]:8+68], a3=one of 0x0, 0x1.
   The `jal` at 0x108 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=[[a0+736]:8+28], a3=[[a0+736]:8+68], a5=a0 at entry (arg0).
   The `bne` branch at 0x44 targets 0xb4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `bne` branch at 0x58 targets 0xf0, is taken when at(?) != 0, and falls through when at(?) == 0.
@@ -7488,7 +7491,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x140 loads 4 bytes from [a0+736]:8 +0x1034.
   The `lw` at 0x158 loads 4 bytes from ([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)) +0x10.
   The `sw` at 0x164 stores 4 bytes to ([sym(gfxinfo)]:8 + ([-0x3c60]:2 << 0x5)) +0x10.
-  The `sw` at 0x294 stores 4 bytes to ?.
+  The `sw` at 0x294 stores 4 bytes to [a0+736]:8 +0x101c.
   The `lw` at 0x49c loads 4 bytes from a0 (arg0 at entry) +0x56fc.
   The `sw` at 0x4a8 stores 4 bytes to a0 (arg0 at entry) +0x56fc.
   The `jal` at 0x16c calls odsyLowaterInterrupt with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -7538,7 +7541,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x264 targets 0x4d0, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `bne` branch at 0x26c targets 0x4ec, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `bne` branch at 0x274 targets 0x508, is taken when v1(?) != 0, and falls through when v1(?) == 0.
-  The `bne` branch at 0x288 targets 0x2a0, is taken when (a1(?) & at(=0x39f02587)) != 0, and falls through when (a1(?) & at(=0x39f02587)) == 0.
+  The `bne` branch at 0x288 targets 0x2a0, is taken when (a1(=[[a0+736]:8+4116]) & at(=0x39f02587)) != 0, and falls through when (a1(=[[a0+736]:8+4116]) & at(=0x39f02587)) == 0.
   The `beq` branch at 0x298 targets 0x2b8 and is always taken.
   The `beq` branch at 0x2d0 targets 0x188 and is always taken.
   The `beq` branch at 0x2ec targets 0x1b4 and is always taken.
@@ -7563,7 +7566,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x500 targets 0x270 and is always taken.
   The `beq` branch at 0x51c targets 0x278 and is always taken.
   The `beq` branch at 0x52c targets 0x4b8 and is always taken.
-  The return at 0x2b8 has v0 = one of ?, ret(odsy_teardown).
+  The return at 0x2b8 has v0 = one of [a0+736]:8, ret(odsy_teardown).
 - `odsyDmaInterrupt` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)` at 0x534 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o)`.
@@ -7623,61 +7626,61 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x788 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x80c calls rrmGenlockNotify with a0=[a0]:8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x81c calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
-  The `jal` at 0x838 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0x838 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x844 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x854 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x854 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x868 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x880 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x7, a2=?, a3=?.
   The `jal` at 0x894 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x0, a2=0x11, a3=?.
   The `jal` at 0x8a8 calls odsy_i2cPLLRegWrite with a0=a0+22216, a1=0x7, a2=?, a3=?.
   The `jal` at 0x904 calls psema with a0=a0+10256, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x924 calls mutex_spinlock with a0=a0+10272, a1=[a0+22304], a2=?, a3=?.
-  The `jal` at 0x940 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=a0+10256, a3=?.
+  The `jal` at 0x940 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=a0+10256, a3=?.
   The `jal` at 0x94c calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x95c calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x95c calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x978 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?.
   The `jal` at 0x99c calls mutex_spinlock with a0=a0+10272, a1=[a0+22304], a2=?, a3=?.
-  The `jal` at 0x9b8 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
+  The `jal` at 0x9b8 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=[a0+10280]:8.
   The `jal` at 0x9c4 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0x9d4 calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x9d4 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0x9fc calls odsy_i2cPLLRegRead with a0=a0+22216, a1=0x7, a2=sp-144, a3=?.
   The `jal` at 0xa14 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?.
   The `jal` at 0xa24 calls psema with a0=a0+10256, a1=0x19, a2=?, a3=?.
-  The `jal` at 0xa34 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xb34 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
+  The `jal` at 0xa34 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xb34 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a4=a0+10272, a5=-0x2.
   The `jal` at 0xb48 calls vsema with a0=a0+10256, a1=?, a2=a0+10256, a3=?.
-  The `jal` at 0xb54 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xb54 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xb6c calls vsema with a0=a0+10256, a1=?, a2=?, a3=[a0+10280]:8.
-  The `jal` at 0xb78 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xb78 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xb94 calls vsema with a0=a0+10256, a1=a0+10256, a2=?, a3=?.
-  The `jal` at 0xba0 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xba0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xbb0 calls mutex_spinlock with a0=a0+10272, a1=?, a2=0x3920400100000000, a3=[a0+22304].
-  The `jal` at 0xbd0 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0xbd0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xbdc calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0xbec calls vsema with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xbec calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
   The `jal` at 0xc04 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=[a0+736]:8+0x400000.
-  The `jal` at 0xc24 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=a0+10256, a3=?.
+  The `jal` at 0xc24 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=a0+10256, a3=?.
   The `jal` at 0xc30 calls odsy_poll_dfifo_level with a0=[a0+736]:8, a1=0xc, a2=?, a3=?.
-  The `jal` at 0xc40 calls vsema with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xc54 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xd54 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
-  The `jal` at 0xd64 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xe64 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0xc40 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
+  The `jal` at 0xc54 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xd54 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
+  The `jal` at 0xd64 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xe64 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a6=([a0+22000] | 0x2).
   The `jal` at 0xe88 calls cmn_err with a0=0x1, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0xe98 calls vsema with a0=a0+10256, a1=?, a2=?, a3=?.
-  The `jal` at 0xea4 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xea4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xeb4 calls vsema with a0=a0+10256, a1=?, a2=a0+10256, a3=?.
-  The `jal` at 0xec0 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xed4 calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xfdc calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
-  The `jal` at 0xfec calls mutex_spinlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10f4 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
+  The `jal` at 0xec0 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?.
+  The `jal` at 0xed4 calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0xfdc calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
+  The `jal` at 0xfec calls mutex_spinlock with a0=a0+10272, a1=?, a2=?, a3=?.
+  The `jal` at 0x10f4 calls mutex_spinunlock with a0=a0+10272, a1=ret(mutex_spinlock), a2=?, a3=?, a5=-0x2.
   The `beq` branch at 0x5e8 targets 0x8fc, is taken when a1(=[a0+22304]) == 0, and falls through when a1(=[a0+22304]) != 0.
   The `beq` branch at 0x600 targets 0x91c, is taken when a1(=[a0+22304]) == 0, and falls through when a1(=[a0+22304]) != 0.
   The `beq` branch at 0x60c targets 0xe74, is taken when (s2(=[[a0+736]:8+2309740]) & 0x1) == 0, and falls through when (s2(=[[a0+736]:8+2309740]) & 0x1) != 0.
   The `beq` branch at 0x620 targets 0x970, is taken when a1(=[a0+22304]) == 0, and falls through when a1(=[a0+22304]) != 0.
   The `beq` branch at 0x630 targets 0x990, is taken when a1(=[a0+22304]) == 0, and falls through when a1(=[a0+22304]) != 0.
-  The `beq` branch at 0x63c targets 0x7cc, is taken when (v0(?) & 0x40) == 0, and falls through when (v0(?) & 0x40) != 0.
+  The `beq` branch at 0x63c targets 0x7cc, is taken when (v0(=[[a0+736]:8+2309732]) & 0x40) == 0, and falls through when (v0(=[[a0+736]:8+2309732]) & 0x40) != 0.
   The `blez` branch at 0x648 targets 0x9e8, is taken when a2(=[a0+292]) <= 0 (signed), and falls through when a2(=[a0+292]) > 0 (signed).
   The `beq` branch at 0x654 targets 0x720, is taken when (s2(=[[a0+736]:8+2309740]) & 0x2) == 0, and falls through when (s2(=[[a0+736]:8+2309740]) & 0x2) != 0.
   The `blez` branch at 0x674 targets 0x864, is taken when a2(=[a0+292]) <= 0 (signed), and falls through when a2(=[a0+292]) > 0 (signed).
@@ -7740,7 +7743,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x100c targets 0x108c, is taken when 0 >= a4(?) (unsigned), and falls through when 0 < a4(?) (unsigned).
   The `beq` branch at 0x10a0 targets 0x10dc, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x10fc targets 0xc40 and is always taken.
-  The return at 0x7d8 has v0 = one of ?, ret(vsema), ret(mutex_spinunlock).
+  The return at 0x7d8 has v0 = one of [[a0+736]:8+2309732], ?, ret(vsema), ret(mutex_spinunlock).
 - `gf_OdsyMapGfx` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` at 0x0 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
@@ -7771,7 +7774,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1ac calls v_mapkvsegment with a0=[a0+40]:8, a1=ret(ddv_getaddr)+245760, a2=[[a0+32]:8+736]:8+0x400000, a3=0x1, a4=0x2.
   The `jal` at 0x1c8 calls splhi with a0=?, a1=?, a2=?, a3=0x1.
   The `jal` at 0x1ec calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=ret(splhi), a2=?, a3=?.
-  The `jal` at 0x200 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x200 calls splx with a0=ret(splhi), a1=ret(splhi), a2=?, a3=?.
   The `jal` at 0x240 calls gfx_flow_attach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x250 calls gfx_flow_credit_tnum_get with a0=[[a0+32]:8+720]:8, a1=[[a0+32]:8+10404], a2=?, a3=?.
   The `beq` branch at 0x9c targets 0x1b8, is taken when (at(=[a0+48]) & 0x20) == 0, and falls through when (at(=[a0+48]) & 0x20) != 0.
@@ -7801,7 +7804,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2cc calls splhi with a0=?, a1=[a0+48], a2=?, a3=?.
   The `jal` at 0x2f0 calls gfx_flow_am_i_attached with a0=[[a0+32]:8+720]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x320 calls gfx_flow_detach_me with a0=[[a0+32]:8+720]:8, a1=a0 at entry (arg0), a2=0x1, a3=[[a0+32]:8+736]:8.
-  The `jal` at 0x32c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x32c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x348 calls splx with a0=ret(splhi), a1=[a0+48], a2=?, a3=?.
   The `jal` at 0x370 calls curthreadhandle with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x378 calls gthread_find with a0=ret(curthreadhandle), a1=?, a2=?, a3=?.
@@ -7853,7 +7856,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x538 loads 8 bytes from a0 (arg0 at entry) +0x68.
   The `jal` at 0x4a4 calls pte_cachebits with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x4c0 calls useracc with a0=a2 at entry (arg2), a1=0x2b78, a2=0x111, a3=0x0.
-  The `jal` at 0x4d8 calls maputokv with a0=a2 at entry (arg2), a1=0x2b78, a2=?, a3=?.
+  The `jal` at 0x4d8 calls maputokv with a0=a2 at entry (arg2), a1=0x2b78, a2=(ret(pte_cachebits) | 0x7), a3=?.
   The `jal` at 0x51c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x540 calls unuseracc with a0=[a0+104]:8, a1=0x2b78, a2=0x111, a3=?.
   The `jal` at 0x554 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -7861,7 +7864,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x4e4 targets 0x534, is taken when v0(=ret(maputokv)) == 0, and falls through when v0(=ret(maputokv)) != 0.
   The `beq` branch at 0x52c targets 0x500 and is always taken.
   The `beq` branch at 0x568 targets 0x500 and is always taken.
-  The return at 0x504 has v0 = one of 0x0, ?, 0x16.
+  The return at 0x504 has v0 = one of 0x0, ret(useracc), 0x16.
 - `odsyUnpinAndUnmapGctxRegions` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` at 0x570 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
@@ -7983,16 +7986,16 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x928 calls ddv_lock with a0=[a6]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x94c calls ddv_mappages with a0=[a6]:8, a1=0x0, a2=a2 at entry (arg2), a3=?.
   The `jal` at 0x96c calls ddv_unlock with a0=[a6]:8, a1=?, a2=?, a3=?, a4=a1 at entry (arg1).
-  The `jal` at 0x988 calls gfxdd_munmap with a0=[a6]:8, a1=?, a2=?, a3=?.
+  The `jal` at 0x988 calls gfxdd_munmap with a0=[a6]:8, a1=?, a2=?, a3=?, a4=ret(ddv_mappages).
   The `jal` at 0x9a8 calls ddv_getaddr with a0=[a6]:8, a1=?, a2=?, a3=?, a4=a1 at entry (arg1).
   The `beq` branch at 0x910 targets 0x924, is taken when v0(=ret(gfxdd_mmap_mem_ex)) == 0, and falls through when v0(=ret(gfxdd_mmap_mem_ex)) != 0.
   The `beq` branch at 0x958 targets 0x968, is taken when a4(=a1) == 0, and falls through when a4(=a1) != 0.
   The `beq` branch at 0x964 targets 0x9a4, is taken when at(=ret(ddv_mappages)) == 0, and falls through when at(=ret(ddv_mappages)) != 0.
-  The `beq` branch at 0x97c targets 0x99c, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x97c targets 0x99c, is taken when a4(=ret(ddv_mappages)) == 0, and falls through when a4(=ret(ddv_mappages)) != 0.
   The `beq` branch at 0x994 targets 0x91c and is always taken.
   The `beq` branch at 0x99c targets 0x91c and is always taken.
   The `beq` branch at 0x9b4 targets 0x968 and is always taken.
-  The return at 0x91c has v0 = one of 0xc, ?, 0x0.
+  The return at 0x91c has v0 = one of 0xc, ret(ddv_mappages), 0x0.
 - `odsyUnmapPages` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)` at 0x9bc (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_map.o)`.
@@ -8200,16 +8203,20 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x818 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `ld` at 0x81c loads 8 bytes from [a0]:8 +0x8.
   11 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x828, `sw` at 0x854, `sw` at 0x93c.
-  The `sd` at 0x864 stores 8 bytes to ret(odsyGctxFromRnid) +0x98.
-  The `sw` at 0x87c stores 4 bytes to ret(odsyGctxFromRnid) +0xa0.
+  2 such `sd` accesses store 8 bytes to ret(odsyGctxFromRnid) +0x98, including `sd` at 0x864, `sd` at 0x964.
+  2 such `sw` accesses store 4 bytes to ret(odsyGctxFromRnid) +0xa0, including `sw` at 0x87c, `sw` at 0x968.
   The `ld` at 0x8c8 loads 8 bytes from [a0+32]:8 +0x48.
   7 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x8d4, `lw` at 0x920, `lw` at 0x98c.
   6 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x8dc, `sw` at 0x928, `sw` at 0x994.
   The `ld` at 0x908 loads 8 bytes from ret(odsyGctxFromRnid) +0x98.
-  The `sd` at 0x964 stores 8 bytes to ?.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x968, `sw` at 0x978, `sw` at 0x9a8.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x96c, `lw` at 0x99c, `lw` at 0x9b0.
-  7 such `ld` accesses load 8 bytes from ?, including `ld` at 0x970, `ld` at 0x980, `ld` at 0x9b8.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x96c, `lw` at 0xb58.
+  6 such `ld` accesses load 8 bytes from ?, including `ld` at 0x970, `ld` at 0x980, `ld` at 0x9c4.
+  The `sw` at 0x978 stores 4 bytes to ?.
+  The `lw` at 0x99c loads 4 bytes from ret(odsyGctxFromRnid) +0xa4.
+  The `sw` at 0x9a8 stores 4 bytes to ret(odsyGctxFromRnid) +0x1d4.
+  The `lw` at 0x9b0 loads 4 bytes from ret(odsyGctxFromRnid) +0xa0.
+  The `ld` at 0x9b8 loads 8 bytes from ret(odsyGctxFromRnid) +0x78.
+  The `lw` at 0x9ec loads 4 bytes from [a0+32]:8 +0x2834.
   The `sd` at 0xa20 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0xa28, `lw` at 0xa44.
   The `lw` at 0xaa8 loads 4 bytes from a3 (arg3 at entry) +0x0.
@@ -8219,13 +8226,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x878 calls OdsyInitCSet with a0=ret(odsyGctxFromRnid)+184, a1=0x4, a2=?, a3=ret(odsyPinAndMapGctxSwShadowRgn), a5=-0x1.
   The `jal` at 0x884 calls OdsyInitCSet with a0=ret(odsyGctxFromRnid)+224, a1=0x4, a2=?, a3=?.
   The `jal` at 0x890 calls OdsyInitCSet with a0=ret(odsyGctxFromRnid)+264, a1=0x4, a2=?, a3=?.
-  The `jal` at 0x8a8 calls OdsyAllocSpecificCSetId with a0=?, a1=?, a2=0x1, a3=?.
-  The `jal` at 0x8f4 calls odsyGctxFromRnid with a0=?, a1=?, a2=?, a3=?, a5=[[a0+32]:8+80]+1.
-  The `jal` at 0x948 calls OdsyAllocCSetId with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x9f4 calls copyout with a0=sp-192, a1=a2 at entry (arg2), a2=0x48, a3=ret(OdsyAllocCSetId), a4=-0x1.
+  The `jal` at 0x8a8 calls OdsyAllocSpecificCSetId with a0=ret(odsyGctxFromRnid)+184, a1=0x0, a2=0x1, a3=?.
+  The `jal` at 0x8f4 calls odsyGctxFromRnid with a0=?, a1=[a0+32]:8, a2=?, a3=?, a5=[[a0+32]:8+80]+1.
+  The `jal` at 0x948 calls OdsyAllocCSetId with a0=?, a1=ret(odsyGctxFromRnid), a2=?, a3=?.
+  The `jal` at 0x9f4 calls copyout with a0=sp-192, a1=a2 at entry (arg2), a2=0x48, a3=ret(OdsyAllocCSetId), a4=-0x1, a5=[[a0+32]:8+10292].
   The `jal` at 0xa10 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a4=a0 at entry (arg0).
   The `jal` at 0xa34 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
-  The `jal` at 0xa64 calls odsy_mm_sg_new with a0=a0 at entry (arg0), a1=?, a2=a3 at entry (arg3), a3=?, a5=[[a0+32]:8+80]+1.
+  The `jal` at 0xa64 calls odsy_mm_sg_new with a0=a0 at entry (arg0), a1=[a0+32]:8+744, a2=a3 at entry (arg3), a3=?, a5=[[a0+32]:8+80]+1.
   The `jal` at 0xa94 calls copyout with a0=sp-192, a1=a2 at entry (arg2), a2=0x48, a3=[[a0+32]:8+80]-1, a4=[a0+32]:8.
   The `jal` at 0xab0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0xad8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?, a5=a0 at entry (arg0).
@@ -8241,7 +8248,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x820 targets 0xaf4, is taken when a4(=[[a0]:8+8]:8) != a5(=a0), and falls through when a4(=[[a0]:8+8]:8) == a5(=a0).
   The `beq` branch at 0x84c targets 0x864, is taken when v0(=ret(odsyPinAndMapGctxSwShadowRgn)) == 0, and falls through when v0(=ret(odsyPinAndMapGctxSwShadowRgn)) != 0.
   The `beq` branch at 0x85c targets 0x82c and is always taken.
-  The `beq` branch at 0x8b8 targets 0x8a0, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x8b8 targets 0x8a0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x8cc targets 0xa10, is taken when v1(=[[a0+32]:8+72]:8) != a4(=a0), and falls through when v1(=[[a0+32]:8+72]:8) == a4(=a0).
   The `beq` branch at 0x8e4 targets 0xa58, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x8ec targets 0xa5c, is taken when at(=-0x1) == a3(?), and falls through when at(=-0x1) != a3(?).
@@ -8360,13 +8367,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sd` at 0x1040 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1048, `lw` at 0x1060.
   The `jal` at 0xee4 calls copyin with a0=a2 at entry (arg2), a1=sp-208, a2=0x48, a3=a3 at entry (arg3), a6=0x0, a7=0x0.
-  The `jal` at 0xf34 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?, a5=-0x1.
+  The `jal` at 0xf34 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a5=-0x1.
   The `jal` at 0xfd0 calls odsy_mm_obj_destroy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100c calls copyout with a0=sp-208, a1=a2 at entry (arg2), a2=0x48, a3=?, a6=[[a0+32]:8+80]-1, a7=[a0+32]:8.
   The `jal` at 0x1034 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a4=[[a0+32]:8+72]:8.
   The `jal` at 0x1054 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
-  The `jal` at 0x107c calls odsy_mm_grp_new with a0=[[a0+72]:8+112]:8, a1=?, a2=sp-208, a3=?, a5=-0x1.
-  The `jal` at 0x10c4 calls odsy_mm_obj_new with a0=?, a1=?, a2=?, a3=sp-196.
+  The `jal` at 0x107c calls odsy_mm_grp_new with a0=[[a0+72]:8+112]:8, a1=[[[a0+72]:8+112]:8+152]:8, a2=sp-208, a3=?, a5=-0x1.
+  The `jal` at 0x10c4 calls odsy_mm_obj_new with a0=[[[a0+72]:8+112]:8+152]:8, a1=?, a2=?, a3=sp-196, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
   The `jal` at 0x1108 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x0, a7=0x0.
   The `jal` at 0x1138 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x0, a7=0x0.
   The `jal` at 0x1168 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -8391,14 +8398,14 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0xfa8 targets 0xfd0, is taken when at(?) != v1(?), and falls through when at(?) == v1(?).
   The `bne` branch at 0xfb8 targets 0xfd0, is taken when a4(?) != a5(?), and falls through when a4(?) == a5(?).
   The `beq` branch at 0xfc8 targets 0xfdc, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
-  The `beq` branch at 0xfe8 targets 0x10a0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0xfe8 targets 0x10a0 and is always taken.
   The `bne` branch at 0x101c targets 0x11b8, is taken when v0(=ret(copyout)) != 0, and falls through when v0(=ret(copyout)) == 0.
   The `beq` branch at 0x104c targets 0xf14, is taken when at(=[[a0+32]:8+104]) == 0, and falls through when at(=[[a0+32]:8+104]) != 0.
   The `bne` branch at 0x1064 targets 0x1054, is taken when v1(=[[a0+32]:8+104]) != 0, and falls through when v1(=[[a0+32]:8+104]) == 0.
   The `beq` branch at 0x106c targets 0xf18 and is always taken.
   The `beq` branch at 0x1088 targets 0x1208, is taken when v0(=ret(odsy_mm_grp_new)) == 0, and falls through when v0(=ret(odsy_mm_grp_new)) != 0.
-  The `bne` branch at 0x1094 targets 0xff0, is taken when a4(?) != 0, and falls through when a4(?) == 0.
-  The `bne` branch at 0x10a0 targets 0xff0, is taken when a5(?) != 0, and falls through when a5(?) == 0.
+  The `bne` branch at 0x1094 targets 0xff0, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x10a0 targets 0xff0, is taken when a5(=one of 0x0, 0x1) != 0, and falls through when a5(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0x10ac targets 0xff0, is taken when s3(?) != 0, and falls through when s3(?) == 0.
   The `bne` branch at 0x10cc targets 0xff0, is taken when v0(=ret(odsy_mm_obj_new)) != 0, and falls through when v0(=ret(odsy_mm_obj_new)) == 0.
   The `beq` branch at 0x10d8 targets 0x122c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
@@ -8425,19 +8432,19 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   4 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x129c, `lw` at 0x130c, `lw` at 0x1370.
   3 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x12a8, `sw` at 0x1314, `sw` at 0x1384.
   The `ld` at 0x12e4 loads 8 bytes from ?.
-  The `lw` at 0x12fc loads 4 bytes from ?.
+  The `lw` at 0x12fc loads 4 bytes from ret(OdsyLookupCSetId) +0x90.
   The `sd` at 0x1340 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1348, `lw` at 0x1360.
   6 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x1398, `sw` at 0x13e0, `sw` at 0x143c.
   The `jal` at 0x127c calls copyin with a0=a2 at entry (arg2), a1=sp-160, a2=0x48, a3=a3 at entry (arg3), a4=[[[a0+72]:8+112]:8+152]:8.
-  The `jal` at 0x12b0 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x12b0 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?.
   The `jal` at 0x12f0 calls odsy_mm_obj_destroy with a0=?, a1=ret(OdsyLookupCSetId), a2=?, a3=?.
   The `jal` at 0x1334 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a5=[[a0+32]:8+72]:8.
   The `jal` at 0x1354 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x13a8 calls copyout with a0=sp-160, a1=a2 at entry (arg2), a2=0x48, a3=?.
   The `jal` at 0x13c4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x13e4 calls odsy_mm_grp_destroy with a0=ret(OdsyLookupCSetId), a1=ret(OdsyLookupCSetId), a2=?, a3=?.
-  The `jal` at 0x13f8 calls odsy_mm_grp_destroy with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x13f8 calls odsy_mm_grp_destroy with a0=ret(OdsyLookupCSetId), a1=?, a2=?, a3=?, a4=[ret(OdsyLookupCSetId)+144].
   The `jal` at 0x1420 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1450 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[[[a0+72]:8+112]:8+152]:8.
   The `jal` at 0x147c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -8450,7 +8457,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x12cc targets 0x13e4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x12dc targets 0x149c, is taken when a2(?) >= 0x10 (signed), and falls through when a2(?) < 0x10 (signed).
   The `beq` branch at 0x12e8 targets 0x1308, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x1300 targets 0x13f4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x1300 targets 0x13f4, is taken when a4(=[ret(OdsyLookupCSetId)+144]) == 0, and falls through when a4(=[ret(OdsyLookupCSetId)+144]) != 0.
   The `beq` branch at 0x131c targets 0x139c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x134c targets 0x129c, is taken when at(=[[a0+32]:8+104]) == 0, and falls through when at(=[[a0+32]:8+104]) != 0.
   The `bne` branch at 0x1364 targets 0x1354, is taken when v1(=[[a0+32]:8+104]) != 0, and falls through when v1(=[[a0+32]:8+104]) == 0.
@@ -8495,8 +8502,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x1624 loads 4 bytes from ret(OdsyFindMatchingCSetElem) +0x0.
   2 such `lw` accesses load 4 bytes from ret(OdsyFindMatchingCSetElem) +0x4, including `lw` at 0x1628, `lw` at 0x1644.
   The `sw` at 0x1640 stores 4 bytes to ?.
-  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x1658, `ld` at 0x1690.
+  The `ld` at 0x1658 loads 8 bytes from ?.
   The `lw` at 0x1664 loads 4 bytes from ?.
+  The `ld` at 0x1690 loads 8 bytes from [[[[a0+72]:8+112]:8+152]:8+8]:8 +0x0.
   The `lw` at 0x16c4 loads 4 bytes from a3 (arg3 at entry) +0x0.
   The `sd` at 0x16e8 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x16f0, `lw` at 0x1708.
@@ -8505,7 +8513,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x15b4 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a5=[[a0+32]:8+80]+1.
   The `jal` at 0x15cc calls OdsyLookupCSetId with a0=ret(OdsyLookupCSetId)+160, a1=[[[a0+72]:8+112]:8+160], a2=?, a3=?.
   The `jal` at 0x15fc calls OdsyFindMatchingCSetElem with a0=ret(OdsyLookupCSetId), a1=sp-104, a2=sym(CoresidRangeFinder), a3=?.
-  The `jal` at 0x168c calls timeout with a0=sym(odsy_mm_mkres_timeout), a1=?, a2=0x5dc, a3=?.
+  The `jal` at 0x168c calls timeout with a0=sym(odsy_mm_mkres_timeout), a1=[[[[[a0+72]:8+112]:8+152]:8+8]:8]:8, a2=0x5dc, a3=?.
   The `jal` at 0x1698 calls odsy_mm_commit with a0=ret(OdsyFindMatchingCSetElem), a1=?, a2=?, a3=?.
   The `jal` at 0x16a8 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
   The `jal` at 0x16dc calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a4=[[a0+32]:8+72]:8.
@@ -8605,9 +8613,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x1998 loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x19a0 loads 4 bytes from a1 (arg1 at entry) +0xa0.
   2 such `lh` accesses load 2 bytes from a0 (arg0 at entry) +0x0, including `lh` at 0x19c4, `lh` at 0x19d0.
-  The `lw` at 0x19e0 loads 4 bytes from ?.
+  The `lw` at 0x19e0 loads 4 bytes from [a0+8]:8 +0x0.
   The `jal` at 0x19a4 calls OdsyLookupCSetId with a0=[a0+8]:8+160, a1=[a1+160], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x19e8 calls OdsyFindMatchingCSetElem with a0=ret(OdsyLookupCSetId), a1=sp-64, a2=sym(CoresidSubRangeFinder), a3=?, a4=[a0]:2, a5=[a0]:2.
+  The `jal` at 0x19e8 calls OdsyFindMatchingCSetElem with a0=ret(OdsyLookupCSetId), a1=sp-64, a2=sym(CoresidSubRangeFinder), a3=[[a0+8]:8], a4=[a0]:2, a5=[a0]:2.
   The `bne` branch at 0x19ac targets 0x19c0, is taken when v0(=ret(OdsyLookupCSetId)) != 0, and falls through when v0(=ret(OdsyLookupCSetId)) == 0.
   The `beq` branch at 0x19f0 targets 0x1a00, is taken when v0(=ret(OdsyFindMatchingCSetElem)) == 0, and falls through when v0(=ret(OdsyFindMatchingCSetElem)) != 0.
   The `beq` branch at 0x19f8 targets 0x19b8 and is always taken.
@@ -8646,7 +8654,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1c34, `lw` at 0x1c4c.
   The `sb` at 0x1e34 stores 1 byte to ?.
   The `jal` at 0x1abc calls copyin with a0=a2 at entry (arg2), a1=sp-240, a2=0x28, a3=a3 at entry (arg3), a4=0x0, a7=0x0.
-  The `jal` at 0x1b38 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?, a4=[a0+32]:8.
+  The `jal` at 0x1b38 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a4=[a0+32]:8.
   The `jal` at 0x1b70 calls copyout with a0=sp-240, a1=a2 at entry (arg2), a2=0x28, a3=?, a7=[[a0+32]:8+80]-1.
   The `jal` at 0x1bac calls OdsyLookupCSetId with a0=ret(OdsyLookupCSetId)+160, a1=[[[a0+72]:8+112]:8+160], a2=?, a3=?, a5=ret(OdsyLookupCSetId).
   The `jal` at 0x1bf0 calls OdsyFindMatchingCSetElem with a0=?, a1=sp-200, a2=sym(CoresidRangeFinder), a3=?.
@@ -8654,16 +8662,16 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1c40 calls us_delay with a0=0x2, a1=?, a2=?, a3=?, a4=[a0+32]:8.
   The `jal` at 0x1c64 calls kmem_alloc with a0=0x28, a1=0x0, a2=?, a3=?, a4=ret(OdsyLookupCSetId).
   The `jal` at 0x1c94 calls OdsyInitCSet with a0=ret(kmem_alloc), a1=0x2, a2=?, a3=?, a4=ret(kmem_alloc).
-  The `jal` at 0x1ca8 calls OdsyAllocSpecificCSetId with a0=?, a1=[[[a0+72]:8+112]:8+160], a2=?, a3=?.
+  The `jal` at 0x1ca8 calls OdsyAllocSpecificCSetId with a0=ret(OdsyLookupCSetId)+160, a1=[[[a0+72]:8+112]:8+160], a2=ret(kmem_alloc), a3=?.
   The `jal` at 0x1ce4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x1d18 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a7=0x0.
   The `jal` at 0x1d48 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a7=0x0.
   The `jal` at 0x1d78 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x1d9c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x1dd0 calls odsy_mm_cores_new with a0=[[a0+72]:8+112]:8, a1=?, a2=?, a3=?, a5=[[a0+72]:8+112]:8+184, a6=sp-240.
-  The `jal` at 0x1e04 calls cmn_err with a0=0x7, a1=sym(.rodata), a2=?, a3=?, a5=-0x1.
-  The `jal` at 0x1e10 calls OdsyDestroyCSet with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1e3c calls kmem_free with a0=?, a1=0x28, a2=?, a3=?.
+  The `jal` at 0x1dd0 calls odsy_mm_cores_new with a0=[[a0+72]:8+112]:8, a1=ret(OdsyLookupCSetId), a2=?, a3=?, a5=[[a0+72]:8+112]:8+184, a6=sp-240.
+  The `jal` at 0x1e04 calls cmn_err with a0=0x7, a1=sym(.rodata), a2=?, a3=?, a4=ret(kmem_alloc), a5=-0x1.
+  The `jal` at 0x1e10 calls OdsyDestroyCSet with a0=ret(kmem_alloc), a1=0x0, a2=?, a3=?.
+  The `jal` at 0x1e3c calls kmem_free with a0=ret(kmem_alloc), a1=0x28, a2=?, a3=?.
   The `beq` branch at 0x1a80 targets 0x1d00, is taken when s3(=[[a0+72]:8+112]:8) == 0, and falls through when s3(=[[a0+72]:8+112]:8) != 0.
   The `beq` branch at 0x1aa8 targets 0x1d34, is taken when at(=[[[a0+72]:8+112]:8+152]:8) == 0, and falls through when at(=[[[a0+72]:8+112]:8+152]:8) != 0.
   The `bne` branch at 0x1ac4 targets 0x1d64, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
@@ -8676,10 +8684,10 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x1b44 targets 0x1b98, is taken when v0(=ret(OdsyLookupCSetId)) != 0, and falls through when v0(=ret(OdsyLookupCSetId)) == 0.
   The `bne` branch at 0x1b80 targets 0x1d94, is taken when v0(=ret(copyout)) != 0, and falls through when v0(=ret(copyout)) == 0.
   The `beq` branch at 0x1bb4 targets 0x1c60, is taken when v0(=ret(OdsyLookupCSetId)) == 0, and falls through when v0(=ret(OdsyLookupCSetId)) != 0.
-  The `bne` branch at 0x1bc0 targets 0x1b54, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `bne` branch at 0x1bc8 targets 0x1b54, is taken when v1(?) != 0, and falls through when v1(?) == 0.
+  The `bne` branch at 0x1bc0 targets 0x1b54, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x1bc8 targets 0x1b54, is taken when v1(=one of 0x0, 0x1) != 0, and falls through when v1(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1bf8 targets 0x1db8, is taken when v0(=ret(OdsyFindMatchingCSetElem)) == 0, and falls through when v0(=ret(OdsyFindMatchingCSetElem)) != 0.
-  The `bne` branch at 0x1c00 targets 0x1b54, is taken when a6(?) != 0, and falls through when a6(?) == 0.
+  The `bne` branch at 0x1c00 targets 0x1b54, is taken when a6(=one of 0x0, 0x1) != 0, and falls through when a6(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1c14 targets 0x1b54 and is always taken.
   The `beq` branch at 0x1c38 targets 0x1b28, is taken when a5(=[[a0+32]:8+104]) == 0, and falls through when a5(=[[a0+32]:8+104]) != 0.
   The `bne` branch at 0x1c50 targets 0x1c40, is taken when at(=[[a0+32]:8+104]) != 0, and falls through when at(=[[a0+32]:8+104]) == 0.
@@ -8716,23 +8724,26 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   8 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x1fa4, `sw` at 0x2000, `sw` at 0x22e0.
   The `sd` at 0x1fcc stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1fd4, `lw` at 0x1fec.
-  8 such `ld` accesses load 8 bytes from ?, including `ld` at 0x202c, `ld` at 0x2138, `ld` at 0x2160.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x2050, `lw` at 0x211c, `lw` at 0x2384.
+  6 such `ld` accesses load 8 bytes from ?, including `ld` at 0x202c, `ld` at 0x2174, `ld` at 0x21a0.
+  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x2050, `lw` at 0x2384, `lw` at 0x23a4.
   The `lw` at 0x20ec loads 4 bytes from ([[a0+72]:8+112]:8 + one of 0x160, 0x190) +0x0.
+  The `lw` at 0x211c loads 4 bytes from ([[a0+72]:8+112]:8 + one of 0x164, 0x194) +0x0.
+  The `ld` at 0x2138 loads 8 bytes from [[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8 +0x2918.
+  The `ld` at 0x2160 loads 8 bytes from ret(odsyHashLookup) +0x18.
   The `sb` at 0x2204 stores 1 byte to ?.
   The `lh` at 0x2594 loads 2 bytes from ?.
   The `jal` at 0x1ef0 calls copyin with a0=a2 at entry (arg2), a1=sp-304, a2=0x50, a3=a3 at entry (arg3), a4=0x0, a5=0x0.
   The `jal` at 0x1f30 calls RRM_CheckValidFault with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a7=[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8.
   The `jal` at 0x1fc0 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a6=-0x2.
   The `jal` at 0x1fe0 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
-  The `jal` at 0x2110 calls mraccessf with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x2140 calls odsyHashLookup with a0=?, a1=?, a2=?, a3=0xd.
-  The `jal` at 0x214c calls mrunlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x21c8 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?, a6=-0x4.
+  The `jal` at 0x2110 calls mraccessf with a0=[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8+10528, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x2140 calls odsyHashLookup with a0=[[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8+10520]:8, a1=?, a2=?, a3=0xd.
+  The `jal` at 0x214c calls mrunlock with a0=[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8+10528, a1=?, a2=?, a3=?.
+  The `jal` at 0x21c8 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a6=-0x4.
   The `jal` at 0x2228 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x2378 calls odsyMMvalidatePcxSwap with a0=?, a1=[[a0+72]:8+112]:8, a2=0x0, a3=?, a7=-0x4.
-  The `jal` at 0x241c calls odsyDMAOps with a0=?, a1=a0 at entry (arg0), a2=[[a0+72]:8+112]:8, a3=sp-304.
-  The `jal` at 0x245c calls odsyDMAWait with a0=?, a1=[[a0+72]:8+112]:8, a2=0x1, a3=sp-232, a7=[[a0+32]:8+80]-1.
+  The `jal` at 0x2378 calls odsyMMvalidatePcxSwap with a0=[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8, a1=[[a0+72]:8+112]:8, a2=0x0, a3=?, a7=-0x4.
+  The `jal` at 0x241c calls odsyDMAOps with a0=[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8, a1=a0 at entry (arg0), a2=[[a0+72]:8+112]:8, a3=sp-304.
+  The `jal` at 0x245c calls odsyDMAWait with a0=[[[[[a0+72]:8+112]:8+144]:8+64]:8+32]:8, a1=[[a0+72]:8+112]:8, a2=0x1, a3=sp-232, a7=[[a0+32]:8+80]-1.
   The `jal` at 0x2474 calls copyout with a0=sp-304, a1=a2 at entry (arg2), a2=0x50, a3=?.
   The `jal` at 0x24bc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a5=0x0.
   The `jal` at 0x24f0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a5=0x0.
@@ -8760,20 +8771,20 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x2040 targets 0x223c, is taken when v0(=-0x3) == s2(?), and falls through when v0(=-0x3) != s2(?).
   The `beq` branch at 0x2048 targets 0x2240, is taken when s2(?) == a7(=-0x4), and falls through when s2(?) != a7(=-0x4).
   The `beq` branch at 0x2058 targets 0x2370, is taken when (at(?) & 0x1) == 0, and falls through when (at(?) & 0x1) != 0.
-  The `beq` branch at 0x2068 targets 0x2308, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `bne` branch at 0x2074 targets 0x1f84, is taken when a7(?) != 0, and falls through when a7(?) == 0.
-  The `bne` branch at 0x207c targets 0x1f84, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `bne` branch at 0x2084 targets 0x1f84, is taken when v1(?) != 0, and falls through when v1(?) == 0.
+  The `beq` branch at 0x2068 targets 0x2308, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `bne` branch at 0x2074 targets 0x1f84, is taken when a7(=one of 0x0, 0x1) != 0, and falls through when a7(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x207c targets 0x1f84, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x2084 targets 0x1f84, is taken when v1(=one of 0x0, 0x1) != 0, and falls through when v1(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x2090 targets 0x2498, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x20d4 targets 0x23c0, is taken when a6(?) >= a7(?) (unsigned), and falls through when a6(?) < a7(?) (unsigned).
   The `beq` branch at 0x20dc targets 0x1f84 and is always taken.
   The `beq` branch at 0x20e4 targets 0x21bc, is taken when v0(=-0x3) == s2(?), and falls through when v0(=-0x3) != s2(?).
   The `beq` branch at 0x20f4 targets 0x2300, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
   The `beq` branch at 0x20fc targets 0x2188, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x2158 targets 0x22cc, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x2164 targets 0x22cc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x2158 targets 0x22cc, is taken when v0(=ret(odsyHashLookup)) == 0, and falls through when v0(=ret(odsyHashLookup)) != 0.
+  The `beq` branch at 0x2164 targets 0x22cc, is taken when a0(=[ret(odsyHashLookup)+24]:8) == 0, and falls through when a0(=[ret(odsyHashLookup)+24]:8) != 0.
   The `beq` branch at 0x2180 targets 0x21a8 and is always taken.
-  The `bne` branch at 0x21ac targets 0x1f84, is taken when v1(?) != 0, and falls through when v1(?) == 0.
+  The `bne` branch at 0x21ac targets 0x1f84, is taken when v1(=one of 0x0, 0x1) != 0, and falls through when v1(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x21b4 targets 0x220c and is always taken.
   The `beq` branch at 0x21bc targets 0x20ec and is always taken.
   The `bne` branch at 0x21d0 targets 0x21e0, is taken when v0(=ret(OdsyLookupCSetId)) != 0, and falls through when v0(=ret(OdsyLookupCSetId)) == 0.
@@ -8835,10 +8846,10 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x2694 calls OdsyLookupCSetId with a0=a1+224, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x26ac calls timeout with a0=sym(odsy_mm_ctxsw_timeout), a1=a0 at entry (arg0), a2=0x5dc, a3=?.
   The `jal` at 0x26c0 calls OdsyInitCSetCursor with a0=a1+184, a1=?, a2=?, a3=?.
-  The `jal` at 0x26c8 calls OdsyNextCSetElem with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x26c8 calls OdsyNextCSetElem with a0=a1+184, a1=?, a2=?, a3=?.
   The `jal` at 0x26e0 calls odsy_mm_commit with a0=ret(OdsyNextCSetElem), a1=0x1, a2=[[ret(OdsyNextCSetElem)+40]:8+6]:2, a3=[ret(OdsyNextCSetElem)+64].
-  The `jal` at 0x26e8 calls OdsyNextCSetElem with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2724 calls untimeout with a0=?, a1=0x1, a2=?, a3=?.
+  The `jal` at 0x26e8 calls OdsyNextCSetElem with a0=a1+184, a1=?, a2=?, a3=?.
+  The `jal` at 0x2724 calls untimeout with a0=ret(timeout), a1=0x1, a2=?, a3=?.
   The `beq` branch at 0x2654 targets 0x2680, is taken when at(=[a1]) == 0, and falls through when at(=[a1]) != 0.
   The `beq` branch at 0x2660 targets 0x2680, is taken when v1(=[a1+152]:8) == 0, and falls through when v1(=[a1+152]:8) != 0.
   The `beq` branch at 0x266c targets 0x2688 and is always taken.
@@ -8915,7 +8926,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   Range: 0x2944-0x2a64 (288 bytes).
   It occupies 288 bytes.
   The `sw` at 0x298c stores 4 bytes to ret(kmem_alloc) +0x10.
-  The `sd` at 0x2990 stores 8 bytes to ret(kmem_alloc) +0x0.
+  2 such `sd` accesses store 8 bytes to ret(kmem_alloc) +0x0, including `sd` at 0x2990, `sd` at 0x2a14.
   The `sd` at 0x299c stores 8 bytes to ret(kmem_alloc) +0x8.
   2 such `sw` accesses store 4 bytes to ret(kmem_alloc) +0x14, including `sw` at 0x29a8, `sw` at 0x29e8.
   The `sw` at 0x29c4 stores 4 bytes to ret(kmem_alloc) +0xa0.
@@ -8923,7 +8934,6 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sd` at 0x29d0 stores 8 bytes to ret(kmem_alloc) +0x90.
   The `lw` at 0x2a04 loads 4 bytes from ret(odsy_mm_find_current_as) +0x4.
   The `sw` at 0x2a10 stores 4 bytes to ret(odsy_mm_find_current_as) +0x4.
-  The `sd` at 0x2a14 stores 8 bytes to ?.
   The `jal` at 0x295c calls kmem_alloc with a0=0xa8, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x29a4 calls OdsyInitCSet with a0=ret(kmem_alloc)+24, a1=0x4, a2=?, a3=?.
   The `jal` at 0x29b0 calls OdsyInitCSet with a0=ret(kmem_alloc)+64, a1=0x4, a2=?, a3=?.
@@ -8931,7 +8941,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x29d4 calls OdsyAllocCSetId with a0=a1+1488, a1=ret(kmem_alloc), a2=?, a3=?.
   The `jal` at 0x29ec calls odsy_mm_find_current_as with a0=a1 at entry (arg1), a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x2a2c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x2a34 calls odsy_mm_sg_destroy with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x2a34 calls odsy_mm_sg_destroy with a0=ret(kmem_alloc), a1=?, a2=?, a3=?.
   The `jal` at 0x2a54 calls cmn_err with a0=0x5, a1=sym(.rodata), a2=?, a3=?.
   The `bne` branch at 0x2970 targets 0x298c, is taken when v0(=ret(kmem_alloc)) != 0, and falls through when v0(=ret(kmem_alloc)) == 0.
   The `beq` branch at 0x29e0 targets 0x2a20, is taken when v0(=ret(OdsyAllocCSetId)) == v1(=-0x1), and falls through when v0(=ret(OdsyAllocCSetId)) != v1(=-0x1).
@@ -8939,7 +8949,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x2a18 targets 0x2984 and is always taken.
   The `beq` branch at 0x2a40 targets 0x2984 and is always taken.
   The `beq` branch at 0x2a5c targets 0x2a34 and is always taken.
-  The return at 0x2984 has v0 = one of 0x0, ?.
+  The return at 0x2984 has v0 = one of 0x0, ret(kmem_alloc).
 - `odsy_mm_sg_destroy` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` at 0x2a64 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
@@ -9054,9 +9064,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x2e8c loads 8 bytes from [[[a0+8]:8+8]:8+8]:8 +0x0.
   2 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x50, including `ld` at 0x2e90, `ld` at 0x2ec0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x58, including `lw` at 0x2ea0, `lw` at 0x2eb8.
-  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2ea4, `ld` at 0x2f30.
-  The `lw` at 0x2ea8 loads 4 bytes from ?.
-  The `sd` at 0x2eb4 stores 8 bytes to ?.
+  The `ld` at 0x2ea4 loads 8 bytes from [[[a0+8]:8+8]:8+8]:8 +0x6b0.
+  The `lw` at 0x2ea8 loads 4 bytes from [[[a0+8]:8+8]:8+8]:8 +0x6b8.
+  The `sd` at 0x2eb4 stores 8 bytes to [[[a0+8]:8+8]:8+8]:8 +0x6b0.
   The `sw` at 0x2ec4 stores 4 bytes to a0 (arg0 at entry) +0x58.
   The `sd` at 0x2ec8 stores 8 bytes to a0 (arg0 at entry) +0x50.
   The `lh` at 0x2ecc loads 2 bytes from a0 (arg0 at entry) +0x0.
@@ -9064,7 +9074,8 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x2ef0 loads 4 bytes from [a0+8]:8 +0x90.
   The `sw` at 0x2ef8 stores 4 bytes to [a0+8]:8 +0x90.
   The `sb` at 0x2f10 stores 1 byte to ?.
-  The `sw` at 0x2f48 stores 4 bytes to ?.
+  The `ld` at 0x2f30 loads 8 bytes from [[[a0+8]:8+8]:8+8]:8 +0x6a8.
+  The `sw` at 0x2f48 stores 4 bytes to [[[a0+8]:8+8]:8+8]:8 +0x6b8.
   The `jal` at 0x2e4c calls odsy_mm_decommit with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a0+64], a3=a3 at entry (arg3).
   The `jal` at 0x2e68 calls odsy_mm_release with a0=a0 at entry (arg0), a1=?, a2=[a0+64], a3=?.
   The `jal` at 0x2e88 calls odsyDMAWait with a0=[[[[a0+8]:8+8]:8+8]:8]:8, a1=0x0, a2=0x1, a3=a0+96.
@@ -9073,10 +9084,10 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x2e40 targets 0x2e5c, is taken when (a2(=[a0+64]) & 0x8) == 0, and falls through when (a2(=[a0+64]) & 0x8) != 0.
   The `beq` branch at 0x2e60 targets 0x2e70, is taken when (a2(=[a0+64]) & 0x4) == 0, and falls through when (a2(=[a0+64]) & 0x4) != 0.
   The `beq` branch at 0x2e98 targets 0x2ecc, is taken when a1(=[a0+80]:8) == 0, and falls through when a1(=[a0+80]:8) != 0.
-  The `beq` branch at 0x2eb0 targets 0x2f30, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x2eb0 targets 0x2f30, is taken when at(=[[[[a0+8]:8+8]:8+8]:8+1720]) == 0, and falls through when at(=[[[[a0+8]:8+8]:8+8]:8+1720]) != 0.
   The `beq` branch at 0x2ed8 targets 0x2efc, is taken when a0(=[a0]:2) == at(=-0x1), and falls through when a0(=[a0]:2) != at(=-0x1).
   The `bne` branch at 0x2f0c targets 0x2f00, is taken when a0(?) < 0x88 (unsigned), and falls through when a0(?) >= 0x88 (unsigned).
-  The `bne` branch at 0x2f38 targets 0x2eb8, is taken when v1(?) < a0(?) (signed), and falls through when v1(?) >= a0(?) (signed).
+  The `bne` branch at 0x2f38 targets 0x2eb8, is taken when v1(=[[[[a0+8]:8+8]:8+8]:8+1704]:8) < a0(?) (signed), and falls through when v1(=[[[[a0+8]:8+8]:8+8]:8+1704]:8) >= a0(?) (signed).
   The `beq` branch at 0x2f44 targets 0x2eb8 and is always taken.
   The return at 0x2f28 has v0 = ret(kmem_free).
 - `odsy_mm_sg_remove_grp` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` at 0x2f4c (n64).
@@ -9111,9 +9122,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x3014 calls OdsyLookupCSetId with a0=a0+104, a1=?, a2=?, a3=?.
   The `jal` at 0x303c calls kmem_alloc with a0=0x20, a1=0x0, a2=?, a3=?.
   The `jal` at 0x3050 calls kmem_alloc with a0=0x4000, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x3068 calls OdsyAllocSpecificCSetId with a0=?, a1=?, a2=ret(kmem_alloc), a3=?.
+  The `jal` at 0x3068 calls OdsyAllocSpecificCSetId with a0=a0+104, a1=?, a2=ret(kmem_alloc), a3=?.
   The `jal` at 0x3088 calls MapKernelRegionIntoUserSpace with a0=ret(kmem_alloc), a1=0x1, a2=?, a3=?, a4=-0x1, a5=0x4000.
-  The `jal` at 0x3108 calls OdsyDeallocCSetId with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3108 calls OdsyDeallocCSetId with a0=a0+64, a1=?, a2=?, a3=?, a4=one of 0x0, 0x1.
   The `jal` at 0x3188 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x31a4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x31c0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -9126,13 +9137,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x3058 targets 0x31b8, is taken when v0(=ret(kmem_alloc)) == 0, and falls through when v0(=ret(kmem_alloc)) != 0.
   The `beq` branch at 0x3074 targets 0x31d4, is taken when v0(=ret(OdsyAllocSpecificCSetId)) == a4(=-0x1), and falls through when v0(=ret(OdsyAllocSpecificCSetId)) != a4(=-0x1).
   The `bne` branch at 0x3090 targets 0x31f0, is taken when v0(=ret(MapKernelRegionIntoUserSpace)) != 0, and falls through when v0(=ret(MapKernelRegionIntoUserSpace)) == 0.
-  The `beq` branch at 0x30d8 targets 0x313c, is taken when s1(?) == 0, and falls through when s1(?) != 0.
+  The `beq` branch at 0x30d8 targets 0x313c, is taken when s1(=one of 0x0, 0x1) == 0, and falls through when s1(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x30f4 targets 0x3118, is taken when at(?) == v1(=-0x1), and falls through when at(?) != v1(=-0x1).
   The `beq` branch at 0x3134 targets 0x311c and is always taken.
-  The `bne` branch at 0x313c targets 0x30e0, is taken when a4(?) != 0, and falls through when a4(?) == 0.
-  The `bne` branch at 0x3144 targets 0x30e0, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `bne` branch at 0x314c targets 0x30e0, is taken when v1(?) != 0, and falls through when v1(?) == 0.
-  The `bne` branch at 0x3154 targets 0x30e0, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0x313c targets 0x30e0, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x3144 targets 0x30e0, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x314c targets 0x30e0, is taken when v1(=one of 0x0, 0x1) != 0, and falls through when v1(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x3154 targets 0x30e0, is taken when a3(=one of 0x0, 0x1) != 0, and falls through when a3(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x3178 targets 0x311c and is always taken.
   The `beq` branch at 0x3194 targets 0x30d4 and is always taken.
   The `beq` branch at 0x31b0 targets 0x30cc and is always taken.
@@ -9261,39 +9272,44 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sd` at 0x3644 stores 8 bytes to ret(kmem_alloc) +0x38.
   The `sw` at 0x3648 stores 4 bytes to ret(kmem_alloc) +0x4.
   The `sd` at 0x364c stores 8 bytes to ret(kmem_alloc) +0x10.
-  The `sd` at 0x3650 stores 8 bytes to ret(kmem_alloc) +0x8.
+  2 such `sd` accesses store 8 bytes to ret(kmem_alloc) +0x8, including `sd` at 0x3650, `sd` at 0x371c.
   The `sw` at 0x3658 stores 4 bytes to ret(kmem_alloc) +0x0.
-  The `lw` at 0x36a8 loads 4 bytes from ret(kmem_alloc) +0x30.
-  4 such `sd` accesses store 8 bytes to ?, including `sd` at 0x371c, `sd` at 0x3734, `sd` at 0x3830.
-  6 such `ld` accesses load 8 bytes from ?, including `ld` at 0x3774, `ld` at 0x37ac, `ld` at 0x3824.
+  2 such `lw` accesses load 4 bytes from ret(kmem_alloc) +0x30, including `lw` at 0x36a8, `lw` at 0x3838.
+  The `sd` at 0x3734 stores 8 bytes to ret(kmem_alloc) +0x18.
+  3 such `ld` accesses load 8 bytes from ret(kmem_alloc) +0x8, including `ld` at 0x3774, `ld` at 0x391c, `ld` at 0x3940.
   The `sw` at 0x3790 stores 4 bytes to ?.
   The `lw` at 0x379c loads 4 bytes from a6 (arg6 at entry) +0x0.
   The `sh` at 0x37a0 stores 2 bytes to a6 (arg6 at entry) +0x20.
   The `sw` at 0x37a8 stores 4 bytes to a6 (arg6 at entry) +0x0.
+  The `ld` at 0x37ac loads 8 bytes from ret(kmem_alloc) +0x10.
   The `sd` at 0x37b0 stores 8 bytes to a6 (arg6 at entry) +0x18.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x3820, `lw` at 0x3838.
-  The `sh` at 0x3834 stores 2 bytes to ?.
+  The `lw` at 0x3820 loads 4 bytes from ret(kmem_alloc) +0x18.
+  The `ld` at 0x3824 loads 8 bytes from [[a1+8]:8+8]:8 +0x8.
+  The `sd` at 0x3830 stores 8 bytes to ret(kmem_alloc) +0x20.
+  The `sh` at 0x3834 stores 2 bytes to ([[[a1+8]:8+8]:8+8]:8 + ([ret(kmem_alloc)+24] + [ret(kmem_alloc)+24])) +0x0.
+  The `ld` at 0x383c loads 8 bytes from ?.
+  The `sd` at 0x3854 stores 8 bytes to ret(kmem_alloc) +0x28.
   3 such `sb` accesses store 1 byte to ?, including `sb` at 0x38d4, `sb` at 0x3930, `sb` at 0x3960.
   The `jal` at 0x35f8 calls kmem_alloc with a0=0x48, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x3660 calls OdsyAllocCSetId with a0=a5 at entry (arg5), a1=ret(kmem_alloc), a2=a2 at entry (arg2), a3=a4 at entry (arg4), a4=-0x1.
   The `jal` at 0x367c calls OdsyAllocCSetId with a0=a4 at entry (arg4), a1=ret(kmem_alloc), a2=?, a3=?, a7=-0x1.
-  The `jal` at 0x3694 calls OdsyAlloc32kSlot with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3694 calls OdsyAlloc32kSlot with a0=[[[a1+8]:8+8]:8]:8+6112, a1=?, a2=?, a3=?.
   The `jal` at 0x36c4 calls OdsyLookupCSetId with a0=a0+224, a1=?, a2=?, a3=?, a7=-0x1.
   The `jal` at 0x36ec calls kmem_alloc with a0=0x20, a1=0x0, a2=ret(OdsyLookupCSetId), a3=?.
   The `jal` at 0x3700 calls bzero with a0=ret(kmem_alloc), a1=0x20, a2=?, a3=?.
   The `jal` at 0x370c calls kmem_alloc with a0=0x4000, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x3730 calls OdsyAllocSpecificCSetId with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3754 calls MapKernelRegionIntoUserSpace with a0=?, a1=0x3, a2=?, a3=?.
-  The `jal` at 0x3804 calls odsy_mm_cores_destroy with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x3850 calls bzero with a0=?, a1=0x10, a2=?, a3=?.
+  The `jal` at 0x3730 calls OdsyAllocSpecificCSetId with a0=a0+224, a1=?, a2=ret(kmem_alloc), a3=?.
+  The `jal` at 0x3754 calls MapKernelRegionIntoUserSpace with a0=ret(kmem_alloc), a1=0x3, a2=ret(kmem_alloc), a3=?.
+  The `jal` at 0x3804 calls odsy_mm_cores_destroy with a0=ret(kmem_alloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x3850 calls bzero with a0=?, a1=0x10, a2=?, a3=?, a4=([[[a1+8]:8+8]:8+8]:8 + ([ret(kmem_alloc)+24] + [ret(kmem_alloc)+24])), a5=([ret(kmem_alloc)+24] + [ret(kmem_alloc)+24]).
   The `jal` at 0x386c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=ret(OdsyLookupCSetId), a3=?.
   The `jal` at 0x3890 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x38b0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x38dc calls kmem_free with a0=?, a1=0x20, a2=?, a3=0x25.
-  The `jal` at 0x38fc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x3908 calls OdsyDeallocCSetId with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x393c calls kmem_free with a0=?, a1=0x4000, a2=?, a3=0x27.
-  The `jal` at 0x3968 calls kmem_free with a0=?, a1=0x20, a2=?, a3=0x29.
+  The `jal` at 0x38dc calls kmem_free with a0=ret(kmem_alloc), a1=0x20, a2=?, a3=0x25.
+  The `jal` at 0x38fc calls cmn_err with a0=0x4, a1=sym(.rodata), a2=ret(kmem_alloc), a3=?.
+  The `jal` at 0x3908 calls OdsyDeallocCSetId with a0=a0+224, a1=?, a2=?, a3=?.
+  The `jal` at 0x393c calls kmem_free with a0=[ret(kmem_alloc)+8]:8, a1=0x4000, a2=?, a3=0x27.
+  The `jal` at 0x3968 calls kmem_free with a0=ret(kmem_alloc), a1=0x20, a2=?, a3=0x29.
   The `bne` branch at 0x360c targets 0x3620, is taken when s0(=ret(kmem_alloc)) != 0, and falls through when s0(=ret(kmem_alloc)) == 0.
   The `beq` branch at 0x366c targets 0x3804, is taken when v0(=ret(OdsyAllocCSetId)) == a7(=-0x1), and falls through when v0(=ret(OdsyAllocCSetId)) != a7(=-0x1).
   The `beq` branch at 0x3688 targets 0x3800, is taken when v0(=ret(OdsyAllocCSetId)) == t0(=-0x1), and falls through when v0(=ret(OdsyAllocCSetId)) != t0(=-0x1).
@@ -9306,11 +9322,11 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x375c targets 0x38f4, is taken when v0(=ret(MapKernelRegionIntoUserSpace)) != 0, and falls through when v0(=ret(MapKernelRegionIntoUserSpace)) == 0.
   The `bne` branch at 0x3768 targets 0x3798, is taken when a7(?) != 0, and falls through when a7(?) == 0.
   The `bne` branch at 0x378c targets 0x3774, is taken when v0(?) < 0x2 (signed), and falls through when v0(?) >= 0x2 (signed).
-  The `bne` branch at 0x37dc targets 0x3800, is taken when t0(?) != 0, and falls through when t0(?) == 0.
-  The `bne` branch at 0x37e4 targets 0x3804, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `bne` branch at 0x37ec targets 0x3800, is taken when v1(?) != 0, and falls through when v1(?) == 0.
+  The `bne` branch at 0x37dc targets 0x3800, is taken when t0(=one of 0x0, 0x1) != 0, and falls through when t0(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x37e4 targets 0x3804, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x37ec targets 0x3800, is taken when v1(=one of 0x0, 0x1) != 0, and falls through when v1(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0x37f4 targets 0x3800, is taken when a7(?) != 0, and falls through when a7(?) == 0.
-  The `beq` branch at 0x37fc targets 0x3818, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x37fc targets 0x3818, is taken when t0(=one of 0x0, 0x1) == 0, and falls through when t0(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x3810 targets 0x3618 and is always taken.
   The `beq` branch at 0x385c targets 0x3618 and is always taken.
   The `beq` branch at 0x387c targets 0x37cc and is always taken.
@@ -9320,7 +9336,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x392c targets 0x3918, is taken when a1(?) < 0x4000 (signed), and falls through when a1(?) >= 0x4000 (signed).
   The `bne` branch at 0x395c targets 0x394c, is taken when a1(?) < 0x20 (unsigned), and falls through when a1(?) >= 0x20 (unsigned).
   The `beq` branch at 0x3978 targets 0x37b4 and is always taken.
-  The return at 0x3618 has v0 = one of 0x0, ?.
+  The return at 0x3618 has v0 = one of 0x0, ret(kmem_alloc).
 - `SetupDMAParams` in `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` at 0x3980 (n64).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)`.
@@ -9495,14 +9511,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x58, including `sw` at 0x4080, `sw` at 0x4460.
   2 such `sd` accesses store 8 bytes to [[[a0+8]:8+8]:8+8]:8 +0x6b0, including `sd` at 0x4088, `sd` at 0x4444.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x4c, including `sw` at 0x40dc, `sw` at 0x42a4, `sw` at 0x4464.
-  54 such `sw` accesses store 4 bytes to table(0x110000) +0x0, including `sw` at 0x40e0, `sw` at 0x40e8, `sw` at 0x40f0.
+  73 such `sw` accesses store 4 bytes to [[[[[a0+8]:8+8]:8+8]:8]:8+736]:8 +0x110000, including `sw` at 0x40e0, `sw` at 0x40e8, `sw` at 0x40f0.
   The `lbu` at 0x4184 loads 1 byte from a0 (arg0 at entry) +0x11.
   The `lw` at 0x4188 loads 4 bytes from a0 (arg0 at entry) +0x30.
   The `lw` at 0x4194 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `lw` at 0x41ac loads 4 bytes from a0 (arg0 at entry) +0x38.
   The `lw` at 0x427c loads 4 bytes from a0 (arg0 at entry) +0x68.
   The `sw` at 0x4288 stores 4 bytes to a0 (arg0 at entry) +0x68.
-  19 such `sw` accesses store 4 bytes to ?, including `sw` at 0x42bc, `sw` at 0x42c8, `sw` at 0x42d0.
   The `ld` at 0x4434 loads 8 bytes from [[[a0+8]:8+8]:8+8]:8 +0x6a8.
   The `jal` at 0x4004 calls odsy_mm_jettison_freerun_backing_store with a0=[[[a0+8]:8+8]:8+8]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x4044 calls odsy_mm_B_warn with a0=[[[a0+8]:8+8]:8+8]:8, a1=?, a2=?, a3=?.
@@ -9544,11 +9559,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x44b4 loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `ld` at 0x44bc loads 8 bytes from [a0+8]:8 +0x8.
   The `ld` at 0x44c0 loads 8 bytes from [[a0+8]:8+8]:8 +0x8.
-  The `lw` at 0x44c4 loads 4 bytes from [[[a0+8]:8+8]:8+8]:8 +0x69c.
-  The `sw` at 0x44e4 stores 4 bytes to [[[a0+8]:8+8]:8+8]:8 +0x69c.
+  2 such `lw` accesses load 4 bytes from [[[a0+8]:8+8]:8+8]:8 +0x69c, including `lw` at 0x44c4, `lw` at 0x4520.
+  2 such `sw` accesses store 4 bytes to [[[a0+8]:8+8]:8+8]:8 +0x69c, including `sw` at 0x44e4, `sw` at 0x4528.
   The `lbu` at 0x44e8 loads 1 byte from a0 (arg0 at entry) +0x10.
-  The `lw` at 0x4520 loads 4 bytes from ?.
-  The `sw` at 0x4528 stores 4 bytes to ?.
   The `lw` at 0x4570 loads 4 bytes from a0 (arg0 at entry) +0x40.
   The `sw` at 0x4584 stores 4 bytes to a0 (arg0 at entry) +0x40.
   3 such `ld` accesses load 8 bytes from ret(OdsyNextCSetElem) +0x28, including `ld` at 0x45d0, `ld` at 0x45dc, `ld` at 0x45e8.
@@ -9556,9 +9569,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sh` at 0x45e0 stores 2 bytes to [ret(OdsyNextCSetElem)+40]:8 +0x0.
   The `sw` at 0x45fc stores 4 bytes to ret(OdsyNextCSetElem) +0x40.
   The `jal` at 0x454c calls odsy_mm_reserve_pbuffer with a0=a0 at entry (arg0), a1=0x4, a2=0x6, a3=?.
-  The `jal` at 0x4580 calls OdsyInitCSetCursor with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x4588 calls OdsyNextCSetElem with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x45a4 calls OdsyNextCSetElem with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x4580 calls OdsyInitCSetCursor with a0=[a0+8]:8+160, a1=?, a2=?, a3=?.
+  The `jal` at 0x4588 calls OdsyNextCSetElem with a0=[a0+8]:8+160, a1=?, a2=?, a3=?.
+  The `jal` at 0x45a4 calls OdsyNextCSetElem with a0=[a0+8]:8+160, a1=?, a2=?, a3=?.
   The `jal` at 0x45b4 calls OdsyInitCSetCursor with a0=ret(OdsyNextCSetElem), a1=?, a2=?, a3=?.
   The `jal` at 0x45bc calls OdsyNextCSetElem with a0=ret(OdsyNextCSetElem), a1=?, a2=?, a3=?.
   The `jal` at 0x45f8 calls OdsyNextCSetElem with a0=ret(OdsyNextCSetElem), a1=[ret(OdsyNextCSetElem)+40]:8, a2=[ret(OdsyNextCSetElem)+40]:8, a3=[ret(OdsyNextCSetElem)+40]:8.

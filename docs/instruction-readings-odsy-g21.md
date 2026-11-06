@@ -213,19 +213,19 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   2 such `lh` accesses load 2 bytes from [((a1 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8ca0, including `lh` at 0x42150, `lh` at 0x42180.
   The `lw` at 0x42220 loads 4 bytes from [((a1 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8cbc.
   The `sw` at 0x42228 stores 4 bytes to [((a1 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8cbc.
-  The `ld` at 0x42264 loads 8 bytes from table(sym(pdaindr)) +0x8.
-  The `sb` at 0x42274 stores 1 byte to [table(sym(pdaindr))+8]:8 +0x7b0.
+  The `ld` at 0x42264 loads 8 bytes from (sym(pdaindr) + ([[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4)) +0x8.
+  The `sb` at 0x42274 stores 1 byte to [(sym(pdaindr) + ([[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4))+8]:8 +0x7b0.
   The `jal` at 0x420c0 calls printf with a0=sym(.rodata)+65872, a1=[a0], a2=a2 at entry (arg2), a3=?, a5=0xfffffffff800f800.
   The `jal` at 0x420fc calls mutex_lock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36008, a1=0x19, a2=a2 at entry (arg2), a3=?, a5=0xfffffffff800f800.
-  The `jal` at 0x42114 calls mutex_unlock with a0=?, a1=0x200, a2=?, a3=?.
+  The `jal` at 0x42114 calls mutex_unlock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36008, a1=0x200, a2=?, a3=?.
   The `jal` at 0x4212c calls bzero with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36032, a1=0x200, a2=?, a3=?.
   The `jal` at 0x421e8 calls mutex_spinlock with a0=sym(iop_lock), a1=?, a2=?, a3=?, a5=[a0].
   The `jal` at 0x42230 calls mutex_spinunlock with a0=sym(iop_lock), a1=ret(mutex_spinlock), a2=[sym(iop_mode)]:2, a3=?, a6=[sym(iop_cnt)]+1, a7=0x4.
   The `jal` at 0x42244 calls io_perf_start_count with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36000, a1=?, a2=?, a3=?, a6=([[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36002]:2 | 0x1).
-  The `jal` at 0x4224c calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x42280 calls mutex_unlock with a0=?, a1=?, a2=0x1, a3=a2 at entry (arg2), a5=[a0].
+  The `jal` at 0x4224c calls mutex_unlock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36008, a1=?, a2=?, a3=?.
+  The `jal` at 0x42280 calls mutex_unlock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36008, a1=?, a2=0x1, a3=a2 at entry (arg2), a5=[a0].
   The `jal` at 0x42290 calls mutex_spinunlock with a0=sym(iop_lock), a1=ret(mutex_spinlock), a2=[sym(iop_mode)]:2, a3=?, a5=[sym(iop_cnt)], a6=[sym(iop_cnt)]+1, a7=0x4.
-  The `jal` at 0x42298 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x42298 calls mutex_unlock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+36008, a1=?, a2=?, a3=?.
   The `beq` branch at 0x42068 targets 0x420e4, is taken when a1 >= at(=[sym(maxnodes)]) (signed), and falls through when a1 < at(=[sym(maxnodes)]) (signed).
   The `bltz` branch at 0x42070 targets 0x420e4, is taken when a1 < 0 (signed), and falls through when a1 >= 0 (signed).
   The `beq` branch at 0x42078 targets 0x420e4, is taken when a1 == s1(=-0x1), and falls through when a1 != s1(=-0x1).
@@ -265,8 +265,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0x4238c loads 4 bytes from [((a0 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8cbc.
   The `sw` at 0x42394 stores 4 bytes to [((a0 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8cbc.
   The `sh` at 0x423b8 stores 2 bytes to [((a0 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8ca2.
-  The `ld` at 0x423dc loads 8 bytes from table(sym(pdaindr)) +0x8.
-  The `sb` at 0x423e4 stores 1 byte to [table(sym(pdaindr))+8]:8 +0x7b0.
+  The `ld` at 0x423dc loads 8 bytes from (sym(pdaindr) + ([[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4)) +0x8.
+  The `sb` at 0x423e4 stores 1 byte to [(sym(pdaindr) + ([[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4))+8]:8 +0x7b0.
   The `jal` at 0x42328 calls mutex_lock with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+36008, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=-0x1.
   The `jal` at 0x4234c calls mutex_spinlock with a0=sym(iop_lock), a1=?, a2=?, a3=?.
   The `jal` at 0x4239c calls mutex_spinunlock with a0=sym(iop_lock), a1=ret(mutex_spinlock), a2=?, a3=?, a4=[sym(iop_mode)]:2.
@@ -316,7 +316,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0x4252c targets 0x4249c and is always taken.
   The `beq` branch at 0x42534 targets 0x4249c and is always taken.
   The `beq` branch at 0x4254c targets 0x4249c and is always taken.
-  The return at 0x424a4 has v0 = one of 0x10, 0x0, 0x1, ?.
+  The return at 0x424a4 has v0 = one of 0x10, 0x0, 0x1, ret(io_perf_turnon_node).
 - `io_perf_disable` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x42554 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
@@ -443,9 +443,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   2 such `sw` accesses store 4 bytes to a2 (arg2 at entry) +0x0, including `sw` at 0x42a0c, `sw` at 0x42a48.
   The `lw` at 0x42a40 loads 4 bytes from [([[-0x3c00]:8]:8 + (a0 << 0x3))]:8 +0x8cbc.
   The `jal` at 0x429d4 calls mutex_lock with a0=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+36008, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a0 at entry (arg0), a6=0x16.
-  The `jal` at 0x42a10 calls mutex_unlock with a0=?, a1=[sym(global_iop_mon+28)], a2=?, a3=?.
+  The `jal` at 0x42a10 calls mutex_unlock with a0=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+36008, a1=[sym(global_iop_mon+28)], a2=?, a3=?.
   The `jal` at 0x42a50 calls io_perf_get_ctrl with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a0 at entry (arg0), a6=0x16.
-  The `jal` at 0x42a60 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x42a60 calls mutex_unlock with a0=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+36008, a1=?, a2=?, a3=?.
   The `beq` branch at 0x42994 targets 0x42a4c, is taken when a0 == at(=-0x1), and falls through when a0 != at(=-0x1).
   The `beq` branch at 0x429a0 targets 0x42a38, is taken when a0 >= v0(=[sym(maxnodes)]) (signed), and falls through when a0 < v0(=[sym(maxnodes)]) (signed).
   The `bltz` branch at 0x429a8 targets 0x42a38, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
@@ -555,8 +555,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sw` at 0x42e94 stores 4 bytes to [((a1 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x866c.
   The `ld` at 0x42edc loads 8 bytes from ?.
   The `sd` at 0x42ee8 stores 8 bytes to ?.
-  The `ld` at 0x42f20 loads 8 bytes from table(sym(pdaindr)) +0x8.
-  The `sb` at 0x42f30 stores 1 byte to [table(sym(pdaindr))+8]:8 +0x52a.
+  The `ld` at 0x42f20 loads 8 bytes from (sym(pdaindr) + ([[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4)) +0x8.
+  The `sb` at 0x42f30 stores 1 byte to [(sym(pdaindr) + ([[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4))+8]:8 +0x52a.
   The `jal` at 0x42d90 calls mutex_lock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34392, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8, a6=[[-0x3c00]:8]:8.
   The `jal` at 0x42da8 calls mutex_unlock with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34392, a1=0x150, a2=?, a3=?.
   The `jal` at 0x42dd4 calls bzero with a0=[((a1 << 0x3) + [[-0x3c00]:8]:8)]:8+34416, a1=0x150, a2=?, a3=?.
@@ -601,16 +601,16 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0x4303c loads 4 bytes from [((a0 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x866c.
   The `sw` at 0x43044 stores 4 bytes to [((a0 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x866c.
   The `sh` at 0x43064 stores 2 bytes to [((a0 << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8652.
-  The `ld` at 0x43088 loads 8 bytes from table(sym(pdaindr)) +0x8.
-  The `sb` at 0x43090 stores 1 byte to [table(sym(pdaindr))+8]:8 +0x52a.
+  The `ld` at 0x43088 loads 8 bytes from (sym(pdaindr) + ([[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4)) +0x8.
+  The `sb` at 0x43090 stores 1 byte to [(sym(pdaindr) + ([[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34198]:2 << 0x4))+8]:8 +0x52a.
   The `jal` at 0x42fe0 calls mutex_lock with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34392, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=-0x1.
   The `jal` at 0x43004 calls mutex_spinlock with a0=sym(mdp_lock), a1=?, a2=?, a3=?.
   The `jal` at 0x43048 calls mutex_spinunlock with a0=sym(mdp_lock), a1=ret(mutex_spinlock), a2=?, a3=?, a4=[sym(mdp_cnt)], a5=[sym(mdp_mode)]:2.
   The `jal` at 0x43060 calls md_perf_stop_count with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34384, a1=?, a2=?, a3=?.
   The `jal` at 0x43068 calls md_perf_update_count with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34384, a1=?, a2=?, a3=?.
-  The `jal` at 0x43070 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x430a4 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x430bc calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x43070 calls mutex_unlock with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34392, a1=?, a2=?, a3=?.
+  The `jal` at 0x430a4 calls mutex_unlock with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34392, a1=?, a2=?, a3=?.
+  The `jal` at 0x430bc calls mutex_unlock with a0=[((a0 << 0x3) + [[-0x3c00]:8]:8)]:8+34392, a1=?, a2=?, a3=?.
   The `beq` branch at 0x42f8c targets 0x43094, is taken when a0 >= at(=[sym(maxnodes)]) (signed), and falls through when a0 < at(=[sym(maxnodes)]) (signed).
   The `bltz` branch at 0x42f94 targets 0x43094, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
   The `beq` branch at 0x42f9c targets 0x43094, is taken when a0 == a4(=-0x1), and falls through when a0 != a4(=-0x1).
@@ -652,7 +652,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0x431d8 targets 0x43130 and is always taken.
   The `beq` branch at 0x431e0 targets 0x43130 and is always taken.
   The `beq` branch at 0x431f8 targets 0x43130 and is always taken.
-  The return at 0x4313c has v0 = one of 0x10, 0x0, 0x1, ?.
+  The return at 0x4313c has v0 = one of 0x10, 0x0, 0x1, ret(md_perf_turnon_node).
 - `md_perf_disable` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x43200 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
@@ -742,10 +742,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `ld` at 0x43580 loads 8 bytes from abs 0xffffffffffffc400.
   The `ld` at 0x43584 loads 8 bytes from [-0x3c00]:8 +0x0.
   The `ld` at 0x43590 loads 8 bytes from ([[-0x3c00]:8]:8 + (a0 << 0x3)) +0x0.
-  The `lh` at 0x435b0 loads 2 bytes from ?.
+  The `lh` at 0x435b0 loads 2 bytes from [([[-0x3c00]:8]:8 + (a0 << 0x3))]:8 +0x8652.
   The `lw` at 0x435c4 loads 4 bytes from sym(.bss) +0xf0cc.
   2 such `sw` accesses store 4 bytes to a2 (arg2 at entry) +0x0, including `sw` at 0x435c8, `sw` at 0x435fc.
-  The `lw` at 0x435f4 loads 4 bytes from ?.
+  The `lw` at 0x435f4 loads 4 bytes from [([[-0x3c00]:8]:8 + (a0 << 0x3))]:8 +0x866c.
   The `jal` at 0x43560 calls bzero with a0=a1 at entry (arg1), a1=0x150, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x435a4 calls md_perf_transfer_values with a0=a1 at entry (arg1), a1=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+34416, a2=0x8650, a3=?.
   The `jal` at 0x43604 calls md_perf_get_count with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -788,9 +788,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   2 such `sw` accesses store 4 bytes to a2 (arg2 at entry) +0x0, including `sw` at 0x43730, `sw` at 0x4376c.
   The `lw` at 0x43764 loads 4 bytes from [([[-0x3c00]:8]:8 + (a0 << 0x3))]:8 +0x866c.
   The `jal` at 0x436f8 calls mutex_lock with a0=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+34392, a1=0x19, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a0 at entry (arg0), a6=0x16.
-  The `jal` at 0x43734 calls mutex_unlock with a0=?, a1=[sym(global_mdp_mon+28)], a2=?, a3=?.
+  The `jal` at 0x43734 calls mutex_unlock with a0=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+34392, a1=[sym(global_mdp_mon+28)], a2=?, a3=?.
   The `jal` at 0x43774 calls md_perf_get_ctrl with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a0 at entry (arg0), a6=0x16.
-  The `jal` at 0x43784 calls mutex_unlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x43784 calls mutex_unlock with a0=[([[-0x3c00]:8]:8 + (a0 << 0x3))]:8+34392, a1=?, a2=?, a3=?.
   The `beq` branch at 0x436b8 targets 0x43770, is taken when a0 == at(=-0x1), and falls through when a0 != at(=-0x1).
   The `beq` branch at 0x436c4 targets 0x4375c, is taken when a0 >= v0(=[sym(maxnodes)]) (signed), and falls through when a0 < v0(=[sym(maxnodes)]) (signed).
   The `bltz` branch at 0x436cc targets 0x4375c, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
@@ -992,14 +992,14 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd8da054, `lw` at 0xd8da06c.
   The `lw` at 0xd8da058 loads 4 bytes from [a0+1232] +0x4.
   The `jalr` at 0xd8d9e78 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xd8d9eac calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=?.
+  The `jalr` at 0xd8d9eac calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=0x0.
   The `jalr` at 0xd8d9ec4 calls __glXAddDrawableInterest with a0=ret(?), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8d9ef0 calls __glXPostError with a0=a0 at entry (arg0), a1=0xb, a2=0x1b, a3=0x0.
   The `jalr` at 0xd8d9f50 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=?.
   The `jalr` at 0xd8d9f90 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=?.
   The `jalr` at 0xd8da060 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8da07c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8da090 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8da090 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
   The `bne` branch at 0xd8d9e8c targets 0xd8d9e9c, is taken when v0(=ret(__glXSetupForCommand)) != 0, and falls through when v0(=ret(__glXSetupForCommand)) == 0.
   The `beq` branch at 0xd8d9e94 targets 0xd8da0a0 and is always taken.
   The `bne` branch at 0xd8d9ed8 targets 0xd8d9f04, is taken when v0(=ret(__glXAddDrawableInterest)) != 0, and falls through when v0(=ret(__glXAddDrawableInterest)) == 0.
@@ -1014,14 +1014,14 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `bne` branch at 0xd8da044 targets 0xd8da024, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beql` branch at 0xd8da050 targets 0xd8da070, is taken when v0(=[a0+1232]) == 0, and falls through when v0(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd8da054 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8da074 targets 0xd8da088, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0.
-  The return at 0xd8da0ac has v0 = one of 0x0, ?.
+  The return at 0xd8da0ac has v0 = one of 0x0, ret(?).
 - `glXDestroyPbuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd8da0b4 (o32).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so`.
   Range: 0xd8da0b4-0xd8da220 (364 bytes).
   It occupies 364 bytes.
-  The `lw` at 0xd8da11c loads 4 bytes from ?.
-  The `sw` at 0xd8da128 stores 4 bytes to ?.
+  The `lw` at 0xd8da11c loads 4 bytes from ret(__glXAddDrawableInterest) +0x14.
+  The `sw` at 0xd8da128 stores 4 bytes to ret(__glXAddDrawableInterest) +0x0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4d0, including `lw` at 0xd8da13c, `lw` at 0xd8da1d0.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x6c, including `lw` at 0xd8da148, `lw` at 0xd8da160, `lw` at 0xd8da18c.
   The `lw` at 0xd8da14c loads 4 bytes from [a0+1232] +0x0.
@@ -1039,13 +1039,13 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xd8da0d8 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd8da0f4 calls __glXAddDrawableInterest with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8da10c calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8da134 calls __glXFreeDrawablePrivate with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8da134 calls __glXFreeDrawablePrivate with a0=ret(__glXAddDrawableInterest), a1=ret(__glXAddDrawableInterest), a2=?, a3=?.
   The `jalr` at 0xd8da154 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8da180 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8da1e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x1c, a2=?, a3=?.
   The `jalr` at 0xd8da200 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0xd8da0e4 targets 0xd8da20c, is taken when v0(=ret(__glXSetupForCommand)) == 0, and falls through when v0(=ret(__glXSetupForCommand)) != 0.
-  The `bne` branch at 0xd8da120 targets 0xd8da12c, is taken when t6(?) != 0, and falls through when t6(?) == 0.
+  The `bne` branch at 0xd8da120 targets 0xd8da12c, is taken when t6(=[ret(__glXAddDrawableInterest)+20]) != 0, and falls through when t6(=[ret(__glXAddDrawableInterest)+20]) == 0.
   The `beql` branch at 0xd8da144 targets 0xd8da164, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw a0,108(s0)` at 0xd8da148 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd8da170 targets 0xd8da194, is taken when t7(=[a0+112]) >= t8(=[a0+108]+8) (unsigned), and falls through when t7(=[a0+112]) < t8(=[a0+108]+8) (unsigned); its branch-likely delay slot `sw a0,100(s0)` at 0xd8da174 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd8da1d4 targets 0xd8da1f4, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd8da1d8 runs only when taken and is annulled on fall-through.
@@ -1338,17 +1338,19 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdab5864 loads 4 bytes from [a0+91308] +0x8.
   The `lw` at 0xdab5894 loads 4 bytes from a0 (arg0 at entry) +0x164b0.
   The `lw` at 0xdab5898 loads 4 bytes from [a0+91312] +0x8.
-  The `lw` at 0xdab58a0 loads 4 bytes from a0 (arg0 at entry) +0x164b4.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdab58c0, `lw` at 0xdab58c4, `lw` at 0xdab58cc.
+  2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x164b4, including `lw` at 0xdab58a0, `lw` at 0xdab58c0.
+  The `lw` at 0xdab58c4 loads 4 bytes from [a0+91316] +0x8.
+  2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x164b8, including `lw` at 0xdab58cc, `lw` at 0xdab58ec.
+  The `lw` at 0xdab58f0 loads 4 bytes from [a0+91320] +0x8.
   The `jalr` at 0xdab587c calls __glNamesUnlockData [0xdb3e144] with a0=a0 at entry (arg0), a1=[a0+91308], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdab58b0 calls __glNamesUnlockData [0xdb3e144] with a0=a0 at entry (arg0), a1=[a0+91312], a2=?, a3=?.
-  The `jalr` at 0xdab58dc calls __glNamesUnlockData [0xdb3e144] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xdab5904 calls __glNamesUnlockData [0xdb3e144] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab58dc calls __glNamesUnlockData [0xdb3e144] with a0=a0 at entry (arg0), a1=[a0+91316], a2=?, a3=?.
+  The `jalr` at 0xdab5904 calls __glNamesUnlockData [0xdb3e144] with a0=a0 at entry (arg0), a1=[a0+91320], a2=?, a3=?.
   The `beql` branch at 0xdab5868 targets 0xdab588c, is taken when t7(=[[a0+91308]+8]) == 0, and falls through when t7(=[[a0+91308]+8]) != 0; its branch-likely delay slot `lui at,0x1` at 0xdab586c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xdab589c targets 0xdab58c4, is taken when t8(=[[a0+91312]+8]) == 0, and falls through when t8(=[[a0+91312]+8]) != 0; its branch-likely delay slot `lw a1,8(v0)` at 0xdab58a0 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab58c8 targets 0xdab58f0, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `lw a1,12(v0)` at 0xdab58cc runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab58f4 targets 0xdab5914, is taken when t0(?) == 0, and falls through when t0(?) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xdab58f8 runs only when taken and is annulled on fall-through.
-  The return at 0xdab591c has v0 = one of ?, ret(__glNamesUnlockData).
+  The `beql` branch at 0xdab58c8 targets 0xdab58f0, is taken when t9(=[[a0+91316]+8]) == 0, and falls through when t9(=[[a0+91316]+8]) != 0; its branch-likely delay slot `lw a1,12(v0)` at 0xdab58cc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab58f4 targets 0xdab5914, is taken when t0(=[[a0+91320]+8]) == 0, and falls through when t0(=[[a0+91320]+8]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xdab58f8 runs only when taken and is annulled on fall-through.
+  The return at 0xdab591c has v0 = one of a0+91308, ret(__glNamesUnlockData).
 - `__glOdysseyGetCurrentTexture` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab5aa0 (o32).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so`.
@@ -1389,9 +1391,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xdab628c calls ceilf with a0=?, a1=one of 0x0, 0x1, a2=?, a3=?.
   The `jalr` at 0xdab634c calls __glOdysseyImageLogBase2 [0xdaa6250] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xdab639c calls memset with a0=sp-80, a1=0x0, a2=0x28, a3=?.
-  The `jalr` at 0xdab6550 calls __glOdysseyDestroyPMObjGroup [0xdaac74c] with a0=?, a1=?, a2=a1 at entry (arg1), a3=?.
-  The `jalr` at 0xdab6578 calls __glOdysseyDestroyPMObj [0xdaac868] with a0=?, a1=?, a2=a1 at entry (arg1), a3=?.
-  The `jalr` at 0xdab659c calls __glOdysseyCreatePMObj [0xdaac57c] with a0=?, a1=sp-80, a2=?, a3=a1 at entry (arg1).
+  The `jalr` at 0xdab6550 calls __glOdysseyDestroyPMObjGroup [0xdaac74c] with a0=[0x1010], a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xdab6578 calls __glOdysseyDestroyPMObj [0xdaac868] with a0=[0x1010], a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xdab659c calls __glOdysseyCreatePMObj [0xdaac57c] with a0=[0x1010], a1=sp-80, a2=?, a3=a1 at entry (arg1).
   The `jalr` at 0xdab65e0 calls memset with a0=?, a1=0x0, a2=0x44, a3=?.
   The `jalr` at 0xdab65fc calls __glSetError [0xdb1ac34] with a0=0x505, a1=?, a2=?, a3=?.
   The `jalr` at 0xdab6688 calls CalcPixelModePixelFormat [0xdab60a4] with a0=?, a1=?, a2=?, a3=?.
@@ -1463,19 +1465,29 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdab698c loads 4 bytes from [0x1010] +0x4b4.
   The `lw` at 0xdab69a8 loads 4 bytes from [0x1010] +0x4b0.
   The `lw` at 0xdab69cc loads 4 bytes from [0x1010] +0x4ac.
-  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdab6a58, `lw` at 0xdab6a6c, `lw` at 0xdab6a78.
+  The `lw` at 0xdab6a58 loads 4 bytes from ret(__glOdysseyGetCurrentTexture) +0x534.
+  The `lw` at 0xdab6a6c loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5a4.
+  The `lw` at 0xdab6a78 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5b4.
+  The `lw` at 0xdab6a80 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5b8.
+  The `lw` at 0xdab6a88 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5a0.
+  3 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x59c, including `lw` at 0xdab6a94, `lw` at 0xdab6aa0, `lw` at 0xdab6c08.
+  2 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x598, including `lw` at 0xdab6aac, `lw` at 0xdab6ae4.
   4 such `lw` accesses load 4 bytes from [0x1010] +0x7b7c, including `lw` at 0xdab6ac4, `lw` at 0xdab6afc, `lw` at 0xdab6b00.
+  The `lw` at 0xdab6ad4 loads 4 bytes from [0x1010] +0x11c94.
   7 such `sw` accesses store 4 bytes to [0x1010] +0x7b7c, including `sw` at 0xdab6ae0, `sw` at 0xdab6b2c, `sw` at 0xdab6b58.
   2 such `lbu` accesses load 1 byte from [0x1010] +0x9d7, including `lbu` at 0xdab6b04, `lbu` at 0xdab6ba0.
   The `lbu` at 0xdab6b34 loads 1 byte from [0x1010] +0x9d4.
   The `lbu` at 0xdab6b60 loads 1 byte from [0x1010] +0x9d5.
   The `lbu` at 0xdab6b7c loads 1 byte from [0x1010] +0x9d6.
+  The `lw` at 0xdab6be4 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5a8.
   The `lw` at 0xdab6d38 loads 4 bytes from [0x1010] +0x4b8.
+  The `lw` at 0xdab6df0 loads 4 bytes from [0x1010] +0x168d0.
   The `sw` at 0xdab6df8 stores 4 bytes to [0x1010] +0x168d0.
   The `sw` at 0xdab6dfc stores 4 bytes to abs 0x1018.
   The `lw` at 0xdab6e00 loads 4 bytes from [0x1010] +0x2d44.
   The `sw` at 0xdab6e04 stores 4 bytes to [0x1010] +0x2d44.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xdab6e0c, `sw` at 0xdab6e14.
+  The `sw` at 0xdab6e0c stores 4 bytes to (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5ac.
+  The `sw` at 0xdab6e14 stores 4 bytes to ret(__glOdysseyGetCurrentTexture) +0x544.
   The `jalr` at 0xdab67fc calls __glOdysseyTextureDeactivate [0xdab8908] with a0=[0x1010], a1=[[0x1010]+91328], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdab6820 calls __glOdysseyGetCurrentTexture [0xdab5aa0] with a0=[0x1010], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0xdab68bc calls __glSetError [0xdb1ac34] with a0=0x502, a1=?, a2=?, a3=?.
@@ -1483,7 +1495,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xdab6904 calls __glSpecElementsPerGroup [0xdaf8340] with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=?, a3=?.
   The `jalr` at 0xdab691c calls __glSpecBytesPerElement [0xdaf8444] with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
   The `jalr` at 0xdab6a2c calls memset with a0=sp-112, a1=0x0, a2=0x38, a3=?.
-  The `jalr` at 0xdab6aa8 calls GetImageFmtEnumFromBuzzTexFormat [0xdab5b58] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab6aa8 calls GetImageFmtEnumFromBuzzTexFormat [0xdab5b58] with a0=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432], a1=?, a2=?, a3=?.
   The `jalr` at 0xdab6bf4 calls __glOdysseyImageXfer [0xda6af2c] with a0=sp-112, a1=sp-56, a2=sp-128, a3=0x0.
   The `jalr` at 0xdab6c78 calls ceilf with a0=sp-112, a1=sp-56, a2=sp-128, a3=?.
   The `jalr` at 0xdab6da8 calls __glOdysseyImageXfer [0xda6af2c] with a0=sp-112, a1=sp-56, a2=sp-128, a3=0x0.
@@ -1505,8 +1517,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xdab699c targets 0xdab69a8 and is always taken.
   The `bgez` branch at 0xdab69b4 targets 0xdab69c8, is taken when t6(=[[0x1010]+1200]) >= 0 (signed), and falls through when t6(=[[0x1010]+1200]) < 0 (signed).
   The `bgez` branch at 0xdab69d8 targets 0xdab69ec, is taken when t7(=[[0x1010]+1196]) >= 0 (signed), and falls through when t7(=[[0x1010]+1196]) < 0 (signed).
-  The `beq` branch at 0xdab6af0 targets 0xdab6b00, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `bnel` branch at 0xdab6af8 targets 0xdab6b34, is taken when s0(?) != at(=0x8), and falls through when s0(?) == at(=0x8); its branch-likely delay slot `lw t7,31612(s2)` at 0xdab6afc runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xdab6af0 targets 0xdab6b00, is taken when s0(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) == 0, and falls through when s0(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) != 0.
+  The `bnel` branch at 0xdab6af8 targets 0xdab6b34, is taken when s0(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) != at(=0x8), and falls through when s0(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) == at(=0x8); its branch-likely delay slot `lw t7,31612(s2)` at 0xdab6afc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab6b28 targets 0xdab6b5c and is always taken.
   The `beql` branch at 0xdab6be0 targets 0xdab6c08, is taken when t2(=a0) == at(=0x806f), and falls through when t2(=a0) != at(=0x806f); its branch-likely delay slot `lw t3,16(v1)` at 0xdab6be4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab6bfc targets 0xdab6dd4 and is always taken.
@@ -1536,23 +1548,33 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdab6e84 loads 4 bytes from [0x1010] +0x164c0.
   The `sw` at 0xdab6eb0 stores 4 bytes to [0x1010] +0x164c0.
   4 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5c0, including `lw` at 0xdab6ee4, `lw` at 0xdab6f14, `lw` at 0xdab6f28.
-  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdab6fec, `lw` at 0xdab7000, `lw` at 0xdab700c.
+  The `lw` at 0xdab6fec loads 4 bytes from ret(__glOdysseyGetCurrentTexture) +0x534.
+  The `lw` at 0xdab7000 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5a4.
+  The `lw` at 0xdab700c loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5b4.
+  The `lw` at 0xdab7014 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5b8.
+  The `lw` at 0xdab701c loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5a0.
+  3 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x59c, including `lw` at 0xdab7024, `lw` at 0xdab702c, `lw` at 0xdab7180.
+  2 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x598, including `lw` at 0xdab7038, `lw` at 0xdab7074.
+  The `lw` at 0xdab7060 loads 4 bytes from [0x1010] +0x11c94.
   4 such `lw` accesses load 4 bytes from [0x1010] +0x7b7c, including `lw` at 0xdab706c, `lw` at 0xdab7090, `lw` at 0xdab7094.
   7 such `sw` accesses store 4 bytes to [0x1010] +0x7b7c, including `sw` at 0xdab7070, `sw` at 0xdab70c0, `sw` at 0xdab70ec.
   2 such `lbu` accesses load 1 byte from [0x1010] +0x9d7, including `lbu` at 0xdab7098, `lbu` at 0xdab7134.
   The `lbu` at 0xdab70c8 loads 1 byte from [0x1010] +0x9d4.
   The `lbu` at 0xdab70f4 loads 1 byte from [0x1010] +0x9d5.
   The `lbu` at 0xdab7110 loads 1 byte from [0x1010] +0x9d6.
+  The `lw` at 0xdab717c loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5a8.
+  The `lw` at 0xdab71f8 loads 4 bytes from [0x1010] +0x168d0.
   The `sw` at 0xdab7208 stores 4 bytes to [0x1010] +0x168d0.
   The `sw` at 0xdab720c stores 4 bytes to abs 0x1018.
   The `lw` at 0xdab7210 loads 4 bytes from [0x1010] +0x2d44.
   The `sw` at 0xdab7214 stores 4 bytes to [0x1010] +0x2d44.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xdab7218, `sw` at 0xdab7220.
+  The `sw` at 0xdab7218 stores 4 bytes to (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x5ac.
+  The `sw` at 0xdab7220 stores 4 bytes to ret(__glOdysseyGetCurrentTexture) +0x544.
   The `jalr` at 0xdab6e9c calls __glOdysseyTextureDeactivate [0xdab8908] with a0=[0x1010], a1=[[0x1010]+91328], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdab6ec0 calls __glOdysseyGetCurrentTexture [0xdab5aa0] with a0=[0x1010], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0xdab6f58 calls __glSetError [0xdb1ac34] with a0=0x502, a1=?, a2=?, a3=?.
   The `jalr` at 0xdab6fc0 calls memset with a0=sp-56, a1=0x0, a2=0x38, a3=?.
-  The `jalr` at 0xdab7040 calls GetImageFmtEnumFromBuzzTexFormat [0xdab5b58] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xdab7040 calls GetImageFmtEnumFromBuzzTexFormat [0xdab5b58] with a0=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432], a1=?, a2=?, a3=?.
   The `jalr` at 0xdab71d4 calls __glOdysseyImageXfer [0xda6af2c] with a0=sp-56, a1=[0x1010]+72912, a2=sp-72, a3=0x0.
   The `beql` branch at 0xdab6e74 targets 0xdab7228, is taken when t8(?) == 0, and falls through when t8(?) != 0; its branch-likely delay slot `lw ra,36(sp)` at 0xdab6e78 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab6e88 targets 0xdab6eb4, is taken when a1(=[[0x1010]+91328]) == 0, and falls through when a1(=[[0x1010]+91328]) != 0.
@@ -1562,8 +1584,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `bne` branch at 0xdab6f0c targets 0xdab6f50, is taken when v0(=a0) != at(=0x806f), and falls through when v0(=a0) == at(=0x806f).
   The `beq` branch at 0xdab6f48 targets 0xdab6f68 and is always taken.
   The `beq` branch at 0xdab6f60 targets 0xdab7224 and is always taken.
-  The `beq` branch at 0xdab7080 targets 0xdab7094, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `bnel` branch at 0xdab708c targets 0xdab70c8, is taken when v1(?) != at(=0x8), and falls through when v1(?) == at(=0x8); its branch-likely delay slot `lw t5,31612(s0)` at 0xdab7090 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xdab7080 targets 0xdab7094, is taken when v1(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) == 0, and falls through when v1(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) != 0.
+  The `bnel` branch at 0xdab708c targets 0xdab70c8, is taken when v1(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) != at(=0x8), and falls through when v1(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1432]) == at(=0x8); its branch-likely delay slot `lw t5,31612(s0)` at 0xdab7090 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdab70bc targets 0xdab70f0 and is always taken.
   The `bne` branch at 0xdab7174 targets 0xdab71b8, is taken when t6(=a0) != at(=0x806f), and falls through when t6(=a0) == at(=0x806f).
   The return at 0xdab7230 has v0 = ?.
@@ -1575,17 +1597,18 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   It occupies 712 bytes.
   The `lw` at 0xdabec3c loads 4 bytes from abs 0x1018.
   The `lw` at 0xdabec44 loads 4 bytes from abs 0x1010.
-  The `lw` at 0xdabed14 loads 4 bytes from [0x1010] +0x164bc.
+  2 such `lw` accesses load 4 bytes from [0x1010] +0x164bc, including `lw` at 0xdabed14, `lw` at 0xdabedc0.
   The `lw` at 0xdabed3c loads 4 bytes from [0x1010] +0x0.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdabedc0, `lw` at 0xdabedd4, `lw` at 0xdabede4.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0xdabede0, `sw` at 0xdabee54, `sw` at 0xdabee68.
-  The `lw` at 0xdabee18 loads 4 bytes from table(0x164ac) +0x0.
-  The `lw` at 0xdabee24 loads 4 bytes from entry(0x164ac) +0x8.
-  The `sw` at 0xdabee2c stores 4 bytes to table(0x164ac) +0x0.
+  The `lw` at 0xdabedd4 loads 4 bytes from ret(?) +0x0.
+  The `sw` at 0xdabede0 stores 4 bytes to ret(?) +0x0.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdabede4, `lw` at 0xdabee18, `lw` at 0xdabee24.
+  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0xdabee2c, `sw` at 0xdabee54, `sw` at 0xdabee68.
+  The `lw` at 0xdabee6c loads 4 bytes from [0x1010] +0x168d4.
   The `sw` at 0xdabee7c stores 4 bytes to [0x1010] +0x168d4.
   The `sw` at 0xdabee84 stores 4 bytes to abs 0x1018.
   The `lw` at 0xdabee88 loads 4 bytes from [0x1010] +0x2d44.
   The `sw` at 0xdabee8c stores 4 bytes to [0x1010] +0x2d44.
+  The `lw` at 0xdabee90 loads 4 bytes from [0x1010] +0x164c0.
   The `sw` at 0xdabeec4 stores 4 bytes to [0x1010] +0x164c0.
   The `jalr` at 0xdabec58 calls __glSetError [0xdb1ac34] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdabecc0 calls __glSetError [0xdb1ac34] with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -1593,10 +1616,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xdabed48 calls (unknown callee) with a0=[0x1010], a1=0x9d8, a2=?, a3=?.
   The `jalr` at 0xdabed68 calls __glSetError [0xdb1ac34] with a0=0x505, a1=?, a2=?, a3=ret(?).
   The `jalr` at 0xdabed9c calls InitTextureObject [0xdab53e0] with a0=ret(?), a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=ret(?).
-  The `jalr` at 0xdabedbc calls __glNamesNewData [0xdb3d17c] with a0=[0x1010], a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xdabedbc calls __glNamesNewData [0xdb3d17c] with a0=[0x1010], a1=[[0x1010]+91324], a2=a1 at entry (arg1), a3=ret(?).
   The `jalr` at 0xdabedf8 calls __glSetError [0xdb1ac34] with a0=0x502, a1=?, a2=?, a3=?.
-  The `jalr` at 0xdabee3c calls __glNamesUnlockData [0xdb3e144] with a0=[0x1010], a1=entry(0x164ac), a2=?, a3=?.
-  The `jalr` at 0xdabeeb0 calls __glOdysseyTextureDeactivate [0xdab8908] with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabee3c calls __glNamesUnlockData [0xdb3e144] with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabeeb0 calls __glOdysseyTextureDeactivate [0xdab8908] with a0=[0x1010], a1=[[0x1010]+91328], a2=?, a3=?.
   The `bne` branch at 0xdabec48 targets 0xdabec68, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xdabec60 targets 0xdabeec8 and is always taken.
   The `beq` branch at 0xdabec6c targets 0xdabec98, is taken when t7(=a0) == at(=0xde0), and falls through when t7(=a0) != at(=0xde0).
@@ -1618,10 +1641,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xdabeddc targets 0xdabee08 and is always taken.
   The `beql` branch at 0xdabede8 targets 0xdabee0c, is taken when t3(=a0) == t4(?), and falls through when t3(=a0) != t4(?); its branch-likely delay slot `sll t5,t0,0x2` at 0xdabedec runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xdabee00 targets 0xdabeec8 and is always taken.
-  The `beql` branch at 0xdabee28 targets 0xdabee58, is taken when t6(=[entry(0x164ac)+8]) == 0, and falls through when t6(=[entry(0x164ac)+8]) != 0; its branch-likely delay slot `sw a3,25772(v1)` at 0xdabee2c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdabee94 targets 0xdabeecc, is taken when a1(?) == 0, and falls through when a1(?) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xdabee98 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdabee9c targets 0xdabeecc, is taken when a3(?) == a1(?), and falls through when a3(?) != a1(?); its branch-likely delay slot `lw ra,28(sp)` at 0xdabeea0 runs only when taken and is annulled on fall-through.
-  The return at 0xdabeed4 has v0 = ?.
+  The `beql` branch at 0xdabee28 targets 0xdabee58, is taken when t6(?) == 0, and falls through when t6(?) != 0; its branch-likely delay slot `sw a3,25772(v1)` at 0xdabee2c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdabee94 targets 0xdabeecc, is taken when a1(=[[0x1010]+91328]) == 0, and falls through when a1(=[[0x1010]+91328]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xdabee98 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdabee9c targets 0xdabeecc, is taken when a3(?) == a1(=[[0x1010]+91328]), and falls through when a3(?) != a1(=[[0x1010]+91328]); its branch-likely delay slot `lw ra,28(sp)` at 0xdabeea0 runs only when taken and is annulled on fall-through.
+  The return at 0xdabeed4 has v0 = one of [0x1010]+65536, ?.
 - `__glOdyim_DeleteTextures` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdabeedc (o32).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so`.
@@ -1662,7 +1685,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xdabf0b0 targets 0xdabf0c4 and is always taken.
   The `bne` branch at 0xdabf0bc targets 0xdabf01c, is taken when s0(?) != s3(=0x4), and falls through when s0(?) == s3(=0x4).
   The `beq` branch at 0xdabf0c4 targets 0xdabf0ec, is taken when s5(?) == v0(?), and falls through when s5(?) != v0(?).
-  The `bnel` branch at 0xdabf0f8 targets 0xdabefa0, is taken when s4(?) != t1(?), and falls through when s4(?) == t1(?); its branch-likely delay slot `lw a1,25792(s7)` at 0xdabf0fc runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xdabf0f8 targets 0xdabefa0, is taken when s4(?) != t1(=((a0 << 0x2) + a1)), and falls through when s4(?) == t1(=((a0 << 0x2) + a1)); its branch-likely delay slot `lw a1,25792(s7)` at 0xdabf0fc runs only when taken and is annulled on fall-through.
   The return at 0xdabf168 has v0 = one of ret(__glSetError), ret(__glNamesDeleteRange).
   The instructions from 0xdabf0b8 to 0xdabf0b8 are not reached by any path from the entry, and their branches are not listed.
 - `__glOdyim_GenTextures` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdabf170 (o32).
@@ -1753,7 +1776,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdabf660 loads 4 bytes from [0x1010] +0x164bc.
   The `jalr` at 0xdabf630 calls __glSetError [0xdb1ac34] with a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=[0x1010].
   The `jalr` at 0xdabf664 calls __glNamesLockData [0xdb3d700] with a0=[0x1010], a1=[[0x1010]+91324], a2=a0 at entry (arg0), a3=[0x1010].
-  The `jalr` at 0xdabf68c calls __glNamesUnlockData [0xdb3e144] with a0=?, a1=ret(__glNamesLockData), a2=?, a3=?.
+  The `jalr` at 0xdabf68c calls __glNamesUnlockData [0xdb3e144] with a0=[0x1010], a1=ret(__glNamesLockData), a2=?, a3=[0x1010].
   The `bne` branch at 0xdabf620 targets 0xdabf644, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xdabf63c targets 0xdabf69c and is always taken.
   The `bne` branch at 0xdabf644 targets 0xdabf654, is taken when a2(=a0) != 0, and falls through when a2(=a0) == 0.
@@ -1790,8 +1813,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdadf3b8 loads 4 bytes from a0 (arg0 at entry) +0xc.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xdadf3d0, `lw` at 0xdadf42c, `lw` at 0xdadf460.
   7 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x1c, including `lw` at 0xdadf3d4, `lw` at 0xdadf430, `lw` at 0xdadf464.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdadf3f4, `lw` at 0xdadf448, `lw` at 0xdadf450.
+  The `lw` at 0xdadf3f4 loads 4 bytes from [0x1010] +0x8.
   The `sw` at 0xdadf420 stores 4 bytes to a0 (arg0 at entry) +0x1c.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xdadf448, `lw` at 0xdadf450, `lw` at 0xdadf458.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0xdadf480, `lw` at 0xdadf4b0.
   7 such `sw` accesses store 4 bytes to ?, including `sw` at 0xdadf484, `sw` at 0xdadf48c, `sw` at 0xdadf490.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x18, including `lw` at 0xdadf4c0, `lw` at 0xdadf4d0.
@@ -1802,14 +1826,14 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sw` at 0xdadf52c stores 4 bytes to a0 (arg0 at entry) +0xc.
   The `sw` at 0xdadf538 stores 4 bytes to a0 (arg0 at entry) +0x10.
   The `jalr` at 0xdadf38c calls (unknown callee) with a0=?, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdadf3fc calls (unknown callee) with a0=?, a1=[a0+28], a2=?, a3=a0 at entry (arg0).
+  The `jalr` at 0xdadf3fc calls (unknown callee) with a0=[0x1010], a1=[a0+28], a2=?, a3=a0 at entry (arg0).
   The `bne` branch at 0xdadf3a0 targets 0xdadf3b0, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0xdadf3a8 targets 0xdadf53c and is always taken.
   The `bne` branch at 0xdadf41c targets 0xdadf42c, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0xdadf424 targets 0xdadf53c and is always taken.
-  The `bnel` branch at 0xdadf47c targets 0xdadf4b4, is taken when t0(?) < v0(=[a0+4]) (signed), and falls through when t0(?) >= v0(=[a0+4]) (signed); its branch-likely delay slot `lw t5,20(a3)` at 0xdadf480 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xdadf47c targets 0xdadf4b4, is taken when t0(=([a0+4] + a1)) < v0(=[a0+4]) (signed), and falls through when t0(=([a0+4] + a1)) >= v0(=[a0+4]) (signed); its branch-likely delay slot `lw t5,20(a3)` at 0xdadf480 runs only when taken and is annulled on fall-through.
   The `bltz` branch at 0xdadf488 targets 0xdadf494, is taken when a0(?) < 0 (signed), and falls through when a0(?) >= 0 (signed).
-  The `beq` branch at 0xdadf4a4 targets 0xdadf484, is taken when t0(?) >= v0(?) (signed), and falls through when t0(?) < v0(?) (signed).
+  The `beq` branch at 0xdadf4a4 targets 0xdadf484, is taken when t0(=([a0+4] + a1)) >= v0(?) (signed), and falls through when t0(=([a0+4] + a1)) < v0(?) (signed).
   The `beql` branch at 0xdadf4b4 targets 0xdadf514, is taken when t5(=[a0+20]) == 0, and falls through when t5(=[a0+20]) != 0; its branch-likely delay slot `lw t6,4(a3)` at 0xdadf4b8 runs only when taken and is annulled on fall-through.
   The return at 0xdadf544 has v0 = one of -0x1, 0x0.
 - `__glim_DrawBuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb0ab58 (o32).
@@ -2156,10 +2180,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   It occupies 176 bytes.
   The `lw` at 0xdb74c70 loads 4 bytes from abs 0x1010.
   The `lw` at 0xdb74c80 loads 4 bytes from abs 0x1018.
-  The `lw` at 0xdb74cec loads 4 bytes from ?.
+  The `lw` at 0xdb74cec loads 4 bytes from [0x1010] +0x6da0.
   The `jalr` at 0xdb74c98 calls __glSetError [0xdb1ac34] with a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a1 at entry (arg1).
   The `jalr` at 0xdb74cbc calls __glSetError [0xdb1ac34] with a0=0x501, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a1 at entry (arg1).
-  The `jalr` at 0xdb74ce8 calls __glNamesGenNames [0xdb3e9f4] with a0=?, a1=?, a2=a0 at entry (arg0), a3=a1 at entry (arg1).
+  The `jalr` at 0xdb74ce8 calls __glNamesGenNames [0xdb3e9f4] with a0=[0x1010], a1=[[0x1010]+28064], a2=a0 at entry (arg0), a3=a1 at entry (arg1).
   The `bne` branch at 0xdb74c88 targets 0xdb74ca8, is taken when t7(=[0x1018]) != at(=0x1), and falls through when t7(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xdb74ca0 targets 0xdb74cf4 and is always taken.
   The `bgez` branch at 0xdb74ca8 targets 0xdb74cd0, is taken when a2(=a0) >= 0 (signed), and falls through when a2(=a0) < 0 (signed).
@@ -2175,12 +2199,12 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdb751cc loads 4 bytes from abs 0x1010.
   The `lw` at 0xdb751e8 loads 4 bytes from [0x1010] +0x2d60.
   2 such `sw` accesses store 4 bytes to abs 0x1018, including `sw` at 0xdb75208, `sw` at 0xdb75294.
-  The `lw` at 0xdb75298 loads 4 bytes from ?.
-  The `sw` at 0xdb752a4 stores 4 bytes to ?.
+  The `lw` at 0xdb75298 loads 4 bytes from [0x1010] +0x2d44.
+  The `sw` at 0xdb752a4 stores 4 bytes to [0x1010] +0x2d44.
   The `jalr` at 0xdb751f0 calls (unknown callee) with a0=[0x1010], a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=[0x1010].
   The `jalr` at 0xdb75214 calls __glSetError [0xdb1ac34] with a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=[0x1010].
-  The `jalr` at 0xdb75268 calls __glSetError [0xdb1ac34] with a0=0x500, a1=?, a2=a0 at entry (arg0), a3=?.
-  The `jalr` at 0xdb75284 calls __glBindTexture [0xdb74f58] with a0=?, a1=one of 0x0, 0x1, 0x2, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xdb75268 calls __glSetError [0xdb1ac34] with a0=0x500, a1=?, a2=a0 at entry (arg0), a3=[0x1010].
+  The `jalr` at 0xdb75284 calls __glBindTexture [0xdb74f58] with a0=[0x1010], a1=one of 0x0, 0x1, 0x2, a2=a1 at entry (arg1), a3=[0x1010].
   The `beq` branch at 0xdb751d0 targets 0xdb75224, is taken when v0(=[0x1018]) == 0, and falls through when v0(=[0x1018]) != 0.
   The `bne` branch at 0xdb751d8 targets 0xdb7520c, is taken when v0(=[0x1018]) != at(=0x2), and falls through when v0(=[0x1018]) == at(=0x2).
   The `beq` branch at 0xdb75204 targets 0xdb75224 and is always taken.
@@ -2240,7 +2264,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdb756fc loads 4 bytes from [0x1010] +0x6da0.
   The `jalr` at 0xdb756d4 calls __glSetError [0xdb1ac34] with a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=[0x1010].
   The `jalr` at 0xdb75704 calls __glNamesLockData [0xdb3d700] with a0=[0x1010], a1=[[0x1010]+28064], a2=a0 at entry (arg0), a3=[0x1010].
-  The `jalr` at 0xdb7572c calls __glNamesUnlockData [0xdb3e144] with a0=?, a1=ret(__glNamesLockData), a2=?, a3=?.
+  The `jalr` at 0xdb7572c calls __glNamesUnlockData [0xdb3e144] with a0=[0x1010], a1=ret(__glNamesLockData), a2=?, a3=[0x1010].
   The `bne` branch at 0xdb756c4 targets 0xdb756e8, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xdb756e0 targets 0xdb7573c and is always taken.
   The `bne` branch at 0xdb756e8 targets 0xdb756f8, is taken when a2(=a0) != 0, and falls through when a2(=a0) == 0.
@@ -2294,7 +2318,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sh` at 0xdb90610 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdb9061c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdb905f4 calls __glDlistAllocOp2 [0xdadacf0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb90624 calls __glDlistAppendOp [0xdadad88] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdb96db8, a3=?.
+  The `jalr` at 0xdb90624 calls __glDlistAppendOp [0xdadad88] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb96db8, a3=?.
   The `beq` branch at 0xdb90604 targets 0xdb90630, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdb90638 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_BindTextureEXT` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb92eac (o32).
@@ -2307,7 +2331,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sw` at 0xdb92f00 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdb92f08 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdb92ed8 calls __glDlistAllocOp2 [0xdadacf0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb92f10 calls __glDlistAppendOp [0xdadad88] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdb98220, a3=?.
+  The `jalr` at 0xdb92f10 calls __glDlistAppendOp [0xdadad88] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb98220, a3=?.
   The `beq` branch at 0xdb92ee8 targets 0xdb92f1c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdb92f24 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PrioritizeTexturesEXT` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb92f2c (o32).
@@ -2322,8 +2346,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xdb92f8c calls __gllc_InvalidValue [0xdadb250] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdb92fa8 calls __glDlistAllocOp2 [0xdadacf0] with a0=[0x1010], a1=((a0 << 0x2) + (a0 << 0x2))+4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdb92fdc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=?.
-  The `jalr` at 0xdb92ffc calls memcpy with a0=?, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=?.
-  The `jalr` at 0xdb93018 calls __glDlistAppendOp [0xdadad88] with a0=[0x1010], a1=?, a2=0xdb98268, a3=?.
+  The `jalr` at 0xdb92ffc calls memcpy with a0=(ret(__glDlistAllocOp2) + (a0 << 0x2))+20, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=ret(__glDlistAllocOp2).
+  The `jalr` at 0xdb93018 calls __glDlistAppendOp [0xdadad88] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb98268, a3=?.
   The `bgez` branch at 0xdb92f5c targets 0xdb92f7c, is taken when s0(=(a0 << 0x2)) >= 0 (signed), and falls through when s0(=(a0 << 0x2)) < 0 (signed).
   The `beq` branch at 0xdb92f74 targets 0xdb93024 and is always taken.
   The `bgez` branch at 0xdb92f7c targets 0xdb92f9c, is taken when s0(=(a0 << 0x2)) >= 0 (signed), and falls through when s0(=(a0 << 0x2)) < 0 (signed).
@@ -2342,7 +2366,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sb` at 0xdb95190 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `sb` at 0xdb95198 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
   The `jalr` at 0xdb95158 calls __glDlistAllocOp2 [0xdadacf0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb951a0 calls __glDlistAppendOp [0xdadad88] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdb9938c, a3=?.
+  The `jalr` at 0xdb951a0 calls __glDlistAppendOp [0xdadad88] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb9938c, a3=?.
   The `beq` branch at 0xdb95168 targets 0xdb951ac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdb951b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__glle_DrawBuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb96db8 (o32).
@@ -2372,7 +2396,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdb98284 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lw` at 0xdb98288 loads 4 bytes from abs 0x13a0.
   The `jalr` at 0xdb982a8 calls (unknown callee) with a0=[a0], a1=a0+4, a2=(a0 + ([a0] << 0x2))+4, a3=a0 at entry (arg0).
-  The return at 0xdb982c4 has v0 = ?.
+  The return at 0xdb982c4 has v0 = (a0 + (([a0] << 0x2) + ([a0] << 0x2))+4).
 - `__glle_TextureColorMaskSGIS` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb9938c (o32).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so`.
@@ -2411,8 +2435,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   It occupies 168 bytes.
   The `sw` at 0xdb9fd38 stores 4 bytes to ret(__glSPDlalloc) +0x0.
   The `jalr` at 0xdb9fd18 calls __glSPDlalloc [0xda5278c] with a0=((a0 << 0x2) + (a0 << 0x2))+4, a1=0xd5, a2=a2 at entry (arg2), a3=(a0 << 0x2).
-  The `jalr` at 0xdb9fd48 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdb9fd68 calls memcpy with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdb9fd48 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=(a0 << 0x2).
+  The `jalr` at 0xdb9fd68 calls memcpy with a0=(ret(__glSPDlalloc) + (a0 << 0x2))+4, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=?.
   The `beq` branch at 0xdb9fd24 targets 0xdb9fd74, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
   The return at 0xdb9fd7c has v0 = one of ret(__glSPDlalloc), ret(memcpy).
 - `__glsplc_TextureColorMaskSGIS` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba1564 (o32).
@@ -2694,7 +2718,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xd8cc634 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
   The `jalr` at 0xd8cc760 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
   The `jalr` at 0xd8cc774 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8cc780 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8cc780 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8cc7cc calls _XFlush with a0=a0 at entry (arg0), a1=[a0+108], a2=?, a3=?.
   The `jalr` at 0xd8cc7f0 calls __glXPostError with a0=a0 at entry (arg0), a1=0xb, a2=0x1b, a3=0x0.
   The `beq` branch at 0xd8cc574 targets 0xd8cc7a8, is taken when (v0(=ret(__glXSetupForCommand)) & 0xff) == 0, and falls through when (v0(=ret(__glXSetupForCommand)) & 0xff) != 0.
@@ -2717,7 +2741,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xd8cc754 targets 0xd8cc768, is taken when a2(=[a0+1232]) == 0, and falls through when a2(=[a0+1232]) != 0.
   The `beq` branch at 0xd8cc76c targets 0xd8cc77c, is taken when t9(=[a0+124]) == 0, and falls through when t9(=[a0+124]) != 0.
   The `beq` branch at 0xd8cc7d8 targets 0xd8cc65c and is always taken.
-  The return at 0xd8cc7a0 has v0 = ?.
+  The return at 0xd8cc7a0 has v0 = ret(?).
   The return at 0xd8cc7c0 has v0 = 0x0.
   The return at 0xd8cc810 has v0 = 0x0.
 - `glXDestroyPbuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8cc818 (n32).
@@ -2901,10 +2925,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xdabbd74 calls __glSetError [0xdb11f10] with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x2, a5=0xde1.
   The `jalr` at 0xdabbe04 calls __glNamesLockData [0xdb38050] with a0=[0x1010], a1=[[0x1010]+91324], a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=one of 0x2, 0xde0, a5=0xde1.
   The `jalr` at 0xdabbe50 calls __glNamesUnlockData [0xdb38c70] with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `bgezall` at 0xdabbec4 calls (unnamed) [0xdab5590] with a0=[0x1010], a1=[[0x1010]+91328], a2=?, a3=?, a4=0x116200.
+  The `bgezall` at 0xdabbec4 calls __glOdysseyTextureDeactivate [0xdab5590] with a0=[0x1010], a1=[[0x1010]+91328], a2=?, a3=?, a4=0x116200.
   The `jalr` at 0xdabbefc calls (unknown callee) with a0=[0x1010], a1=0x9d8, a2=?, a3=?.
-  The `jalr` at 0xdabbf24 calls (unnamed) [0xdab25e0] with a0=ret(?), a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=?, a4=ret(?).
-  The `jalr` at 0xdabbf44 calls __glNamesNewData [0xdb37aa0] with a0=[0x1010], a1=[[0x1010]+91324], a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xdabbf24 calls InitTextureObject [0xdab25e0] with a0=ret(?), a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=?, a4=ret(?).
+  The `jalr` at 0xdabbf44 calls __glNamesNewData [0xdb37aa0] with a0=[0x1010], a1=[[0x1010]+91324], a2=a1 at entry (arg1), a3=ret(?).
   The `jalr` at 0xdabbf78 calls __glSetError [0xdb11f10] with a0=0x502, a1=?, a2=?, a3=?.
   The `jalr` at 0xdabbfa4 calls __glSetError [0xdb11f10] with a0=0x505, a1=?, a2=?, a3=?, a4=ret(?).
   The `jalr` at 0xdabbfd0 calls __glSetError [0xdb11f10] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0xde0, a5=0xde1.
@@ -2928,7 +2952,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xdabbf54 targets 0xdabbff4, is taken when (v0(=ret(__glNamesNewData)) & 0xff) == 0, and falls through when (v0(=ret(__glNamesNewData)) & 0xff) != 0.
   The `beq` branch at 0xdabbf64 targets 0xdabbe2c and is always taken.
   The return at 0xdabbd90 has v0 = ret(__glSetError).
-  The return at 0xdabbeb0 has v0 = one of ?, ret(0xdab5590).
+  The return at 0xdabbeb0 has v0 = one of ?, ret(__glOdysseyTextureDeactivate).
   The return at 0xdabbf94 has v0 = ret(__glSetError).
   The return at 0xdabbfc0 has v0 = ret(__glSetError).
   The return at 0xdabbfec has v0 = ret(__glSetError).
@@ -2954,10 +2978,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdabc21c loads 4 bytes from [0x1010] +0x168d4.
   The `sw` at 0xdabc228 stores 4 bytes to [0x1010] +0x168d4.
   The `jalr` at 0xdabc0b0 calls __glNamesUnlockData [0xdb38c70] with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `jalr` at 0xdabc188 calls __glNamesDeleteRange [0xdb391d0] with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `bgezall` at 0xdabc1a4 calls (unnamed) [0xdab5590] with a0=[0x1010], a1=[[0x1010]+91328], a2=?, a3=?.
-  The `jalr` at 0xdabc1d0 calls __glNamesDeleteRange [0xdb391d0] with a0=[0x1010], a1=?, a2=?, a3=?.
-  The `jalr` at 0xdabc20c calls __glNamesDeleteRange [0xdb391d0] with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xdabc188 calls __glNamesDeleteRange [0xdb391d0] with a0=[0x1010], a1=[[0x1010]+91324], a2=?, a3=?.
+  The `bgezall` at 0xdabc1a4 calls __glOdysseyTextureDeactivate [0xdab5590] with a0=[0x1010], a1=[[0x1010]+91328], a2=?, a3=?.
+  The `jalr` at 0xdabc1d0 calls __glNamesDeleteRange [0xdb391d0] with a0=[0x1010], a1=[[0x1010]+91324], a2=?, a3=?.
+  The `jalr` at 0xdabc20c calls __glNamesDeleteRange [0xdb391d0] with a0=[0x1010], a1=[[0x1010]+91324], a2=?, a3=?.
   The `jalr` at 0xdabc258 calls __glSetError [0xdb11f10] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdabc278 calls __glSetError [0xdb11f10] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0xdabc040 targets 0xdabc270, is taken when at(=[0x1018]) == v0(=0x1), and falls through when at(=[0x1018]) != v0(=0x1).
@@ -3271,8 +3295,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   It occupies 232 bytes.
   The `lw` at 0xdb6c55c loads 4 bytes from abs 0x1018.
   The `lw` at 0xdb6c578 loads 4 bytes from abs 0x1010.
-  The `lw` at 0xdb6c5c4 loads 4 bytes from ?.
-  The `jalr` at 0xdb6c5c0 calls __glNamesGenNames [0xdb39730] with a0=?, a1=?, a2=a0 at entry (arg0), a3=a1 at entry (arg1).
+  The `lw` at 0xdb6c5c4 loads 4 bytes from [0x1010] +0x6da0.
+  The `jalr` at 0xdb6c5c0 calls __glNamesGenNames [0xdb39730] with a0=[0x1010], a1=[[0x1010]+28064], a2=a0 at entry (arg0), a3=a1 at entry (arg1), a5=[0x1010].
   The `jalr` at 0xdb6c5fc calls __glSetError [0xdb11f10] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1010].
   The `jalr` at 0xdb6c618 calls __glSetError [0xdb11f10] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1010].
   The `beq` branch at 0xdb6c57c targets 0xdb6c610, is taken when at(=[0x1018]) == v0(=0x1), and falls through when at(=[0x1018]) != v0(=0x1).
@@ -3293,12 +3317,12 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdb6cb18 loads 4 bytes from abs 0x1018.
   The `lw` at 0xdb6cb78 loads 4 bytes from [0x1010] +0x2d60.
   2 such `sw` accesses store 4 bytes to abs 0x1018, including `sw` at 0xdb6cb84, `sw` at 0xdb6cbec.
-  The `lw` at 0xdb6cbf8 loads 4 bytes from ?.
-  The `sw` at 0xdb6cc0c stores 4 bytes to ?.
+  The `lw` at 0xdb6cbf8 loads 4 bytes from [0x1010] +0x2d44.
+  The `sw` at 0xdb6cc0c stores 4 bytes to [0x1010] +0x2d44.
   The `jalr` at 0xdb6cb54 calls __glSetError [0xdb11f10] with a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[0x1018].
   The `jalr` at 0xdb6cb7c calls (unknown callee) with a0=[0x1010], a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[0x1018].
   The `jalr` at 0xdb6cbb8 calls __glSetError [0xdb11f10] with a0=0x500, a1=0x2, a2=a1 at entry (arg1), a3=?.
-  The `bgezall` at 0xdb6cbdc calls __glBindTexture [0xdb6c8b0] with a0=?, a1=one of 0x0, 0x1, 0x2, a2=a1 at entry (arg1), a3=?.
+  The `bgezall` at 0xdb6cbdc calls __glBindTexture [0xdb6c8b0] with a0=[0x1010], a1=one of 0x0, 0x1, 0x2, a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0xdb6cb38 targets 0xdb6cb90, is taken when a4(=[0x1018]) == 0, and falls through when a4(=[0x1018]) != 0.
   The `beq` branch at 0xdb6cb48 targets 0xdb6cb70, is taken when a4(=[0x1018]) == v0(=0x2), and falls through when a4(=[0x1018]) != v0(=0x2).
   The `beq` branch at 0xdb6cb9c targets 0xdb6cc10, is taken when s0(=a0) == at(=0xde0), and falls through when s0(=a0) != at(=0xde0).
@@ -3411,7 +3435,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sh` at 0xdb87ff8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdb88008 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdb87fcc calls __glDlistAllocOp2 [0xdad5f00] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb88004 calls __glDlistAppendOp [0xdad5f90] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdb8f170, a3=a0 at entry (arg0).
+  The `jalr` at 0xdb88004 calls __glDlistAppendOp [0xdad5f90] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb8f170, a3=a0 at entry (arg0).
   The `bne` branch at 0xdb87fd4 targets 0xdb87fe8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The return at 0xdb87fe0 has v0 = ret(__glDlistAllocOp2).
   The return at 0xdb88014 has v0 = ret(__glDlistAppendOp).
@@ -3425,7 +3449,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sw` at 0xdb8ad48 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdb8ad54 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdb8ad10 calls __glDlistAllocOp2 [0xdad5f00] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb8ad50 calls __glDlistAppendOp [0xdad5f90] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdb907c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
+  The `jalr` at 0xdb8ad50 calls __glDlistAppendOp [0xdad5f90] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb907c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
   The `bne` branch at 0xdb8ad18 targets 0xdb8ad2c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The return at 0xdb8ad24 has v0 = ret(__glDlistAllocOp2).
   The return at 0xdb8ad60 has v0 = ret(__glDlistAppendOp).
@@ -3438,9 +3462,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sw` at 0xdb8adf4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sh` at 0xdb8ae00 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdb8adb8 calls __glDlistAllocOp2 [0xdad5f00] with a0=[0x1010], a1=((a0 << 0x2) + (a0 << 0x2))+4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb8adfc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=0xd5, a4=ret(__glDlistAllocOp2).
-  The `jalr` at 0xdb8ae1c calls memcpy with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdb8ae30 calls __glDlistAppendOp [0xdad5f90] with a0=[0x1010], a1=?, a2=0xdb90810, a3=?.
+  The `jalr` at 0xdb8adfc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=0xd5, a4=ret(__glDlistAllocOp2).
+  The `jalr` at 0xdb8ae1c calls memcpy with a0=((a0 << 0x2) + ret(__glDlistAllocOp2))+20, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=ret(__glDlistAllocOp2).
+  The `jalr` at 0xdb8ae30 calls __glDlistAppendOp [0xdad5f90] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb90810, a3=?.
   The `jalr` at 0xdb8ae54 calls __gllc_InvalidValue [0xdad6500] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bltz` branch at 0xdb8ad9c targets 0xdb8ae50, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
   The `bne` branch at 0xdb8adc4 targets 0xdb8ade0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -3459,7 +3483,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sb` at 0xdb8d3e0 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xdb8d3ec stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdb8d398 calls __glDlistAllocOp2 [0xdad5f00] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdb8d3e8 calls __glDlistAppendOp [0xdad5f90] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdb919c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3).
+  The `jalr` at 0xdb8d3e8 calls __glDlistAppendOp [0xdad5f90] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdb919c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3).
   The `bne` branch at 0xdb8d3a0 targets 0xdb8d3b4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The return at 0xdb8d3ac has v0 = ret(__glDlistAllocOp2).
   The return at 0xdb8d3f8 has v0 = ret(__glDlistAppendOp).
@@ -3490,7 +3514,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdb90828 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lw` at 0xdb90830 loads 4 bytes from abs 0x13a0.
   The `jalr` at 0xdb90850 calls (unknown callee) with a0=[a0], a1=a0+4, a2=(a0 + ([a0] << 0x2))+4, a3=([a0] << 0x2), a4=0x517f8.
-  The return at 0xdb90878 has v0 = ?.
+  The return at 0xdb90878 has v0 = ((([a0] << 0x2) + ([a0] << 0x2)) + a0)+4.
 - `__glle_TextureColorMaskSGIS` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdb919c0 (n32).
   Evidence grade: inferred.
   Exact binary: `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so`.
@@ -3531,8 +3555,8 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   It occupies 168 bytes.
   The `sw` at 0xdb995b4 stores 4 bytes to ret(__glSPDlalloc) +0x0.
   The `jalr` at 0xdb99578 calls __glSPDlalloc [0xda60f00] with a0=((a0 << 0x2) + (a0 << 0x2))+4, a1=0xd5, a2=a2 at entry (arg2), a3=0x48ac8.
-  The `jalr` at 0xdb995b0 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?, a4=a0 at entry (arg0), a5=ret(__glSPDlalloc).
-  The `jalr` at 0xdb995d0 calls memcpy with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdb995b0 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=?, a4=a0 at entry (arg0), a5=ret(__glSPDlalloc).
+  The `jalr` at 0xdb995d0 calls memcpy with a0=((a0 << 0x2) + ret(__glSPDlalloc))+4, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=ret(__glSPDlalloc).
   The `bne` branch at 0xdb99580 targets 0xdb99598, is taken when v0(=ret(__glSPDlalloc)) != 0, and falls through when v0(=ret(__glSPDlalloc)) == 0.
   The return at 0xdb99590 has v0 = ret(__glSPDlalloc).
   The return at 0xdb995e0 has v0 = ret(memcpy).
@@ -3558,9 +3582,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdba1a40 loads 4 bytes from abs 0x1010.
   The `lw` at 0xdba1a50 loads 4 bytes from [0x1010] +0x18f0.
   3 such `sw` accesses store 4 bytes to abs 0x1150, including `sw` at 0xdba1a5c, `sw` at 0xdba1a74, `sw` at 0xdba1a84.
-  The `lw` at 0xdba1a68 loads 4 bytes from ?.
+  The `lw` at 0xdba1a68 loads 4 bytes from [0x1010] +0x2728.
   The `jalr` at 0xdba1a58 calls glDrawBuffer with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdba1a70 calls glDrawBuffer with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xdba1a70 calls glDrawBuffer with a0=a0 at entry (arg0), a1=[[0x1010]+10024], a2=?, a3=?.
   The return at 0xdba1a8c has v0 = ret(glDrawBuffer).
 - `__glce_AreTexturesResidentEXT` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdba5c80 (n32).
   Evidence grade: inferred.
@@ -3582,9 +3606,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdba5cf4 loads 4 bytes from abs 0x1010.
   The `lw` at 0xdba5d04 loads 4 bytes from [0x1010] +0x1b30.
   3 such `sw` accesses store 4 bytes to abs 0x1390, including `sw` at 0xdba5d10, `sw` at 0xdba5d2c, `sw` at 0xdba5d3c.
-  The `lw` at 0xdba5d20 loads 4 bytes from ?.
+  The `lw` at 0xdba5d20 loads 4 bytes from [0x1010] +0x2968.
   The `jalr` at 0xdba5d0c calls glBindTextureEXT with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdba5d28 calls glBindTextureEXT with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdba5d28 calls glBindTextureEXT with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[[0x1010]+10600], a3=?.
   The return at 0xdba5d44 has v0 = ret(glBindTextureEXT).
 - `__glce_DeleteTexturesEXT` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdba5d50 (n32).
   Evidence grade: inferred.
@@ -3628,9 +3652,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdba5e68 loads 4 bytes from abs 0x1010.
   The `lw` at 0xdba5e78 loads 4 bytes from [0x1010] +0x1b40.
   3 such `sw` accesses store 4 bytes to abs 0x13a0, including `sw` at 0xdba5e84, `sw` at 0xdba5ea4, `sw` at 0xdba5eb4.
-  The `lw` at 0xdba5e98 loads 4 bytes from ?.
+  The `lw` at 0xdba5e98 loads 4 bytes from [0x1010] +0x2978.
   The `jalr` at 0xdba5e80 calls glPrioritizeTexturesEXT with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdba5ea0 calls glPrioritizeTexturesEXT with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
+  The `jalr` at 0xdba5ea0 calls glPrioritizeTexturesEXT with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[[0x1010]+10616].
   The return at 0xdba5ebc has v0 = ret(glPrioritizeTexturesEXT).
 - `__glce_TextureColorMaskSGIS` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdba8d20 (n32).
   Evidence grade: inferred.
@@ -3641,9 +3665,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xdba8d4c loads 4 bytes from abs 0x1010.
   The `lw` at 0xdba8d5c loads 4 bytes from [0x1010] +0x1ccc.
   3 such `sw` accesses store 4 bytes to abs 0x152c, including `sw` at 0xdba8d68, `sw` at 0xdba8d8c, `sw` at 0xdba8d9c.
-  The `lw` at 0xdba8d80 loads 4 bytes from ?.
+  The `lw` at 0xdba8d80 loads 4 bytes from [0x1010] +0x2b04.
   The `jalr` at 0xdba8d64 calls glTextureColorMaskSGIS with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdba8d88 calls glTextureColorMaskSGIS with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0xdba8d88 calls glTextureColorMaskSGIS with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[[0x1010]+11012].
   The return at 0xdba8da4 has v0 = ret(glTextureColorMaskSGIS).
 - `glDrawBuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbaccb0 (n32).
   Evidence grade: inferred.
@@ -3864,7 +3888,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xcf90438 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+2408]:8, a3=?.
   The `jalr` at 0xcf90570 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+2408]:8, a3=?.
   The `jalr` at 0xcf90584 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xcf90590 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xcf90590 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
   The `jalr` at 0xcf905dc calls _XFlush with a0=a0 at entry (arg0), a1=[a0+176]:8, a2=?, a3=?.
   The `jalr` at 0xcf90600 calls __glXPostError with a0=a0 at entry (arg0), a1=0xb, a2=0x1b, a3=0x0.
   The `beq` branch at 0xcf90374 targets 0xcf905b8, is taken when (v0(=ret(__glXSetupForCommand)) & 0xff) == 0, and falls through when (v0(=ret(__glXSetupForCommand)) & 0xff) != 0.
@@ -3887,7 +3911,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xcf90564 targets 0xcf90578, is taken when a2(=[a0+2408]:8) == 0, and falls through when a2(=[a0+2408]:8) != 0.
   The `beq` branch at 0xcf9057c targets 0xcf9058c, is taken when t9(=[a0+208]:8) == 0, and falls through when t9(=[a0+208]:8) != 0.
   The `beq` branch at 0xcf905e8 targets 0xcf90460 and is always taken.
-  The return at 0xcf905b0 has v0 = ?.
+  The return at 0xcf905b0 has v0 = ret(?).
   The return at 0xcf905d0 has v0 = 0x0.
   The return at 0xcf90620 has v0 = 0x0.
 - `glXDestroyPbuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so` at 0xcf90628 (n64).
@@ -4284,13 +4308,13 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xb398bd0 calls ceilf with a0=?, a1=?, a2=?, a3=?; fp f13=0x3d800000.
   The `jalr` at 0xb398c18 calls ceilf with a0=?, a1=?, a2=?, a3=?; fp f13=0x3d800000.
   The `jalr` at 0xb398c58 calls memset with a0=sp-260, a1=0x0, a2=0x28, a3=?.
-  The `jalr` at 0xb398d8c calls __glOdysseyDestroyPMObjGroup [0xb38f4d0] with a0=?, a1=?, a2=?, a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
-  The `jalr` at 0xb398dac calls __glOdysseyCreatePMObj [0xb38f2f0] with a0=?, a1=sp-260, a2=?, a3=a1 at entry (arg1), a7=(a1 << 0x4).
+  The `jalr` at 0xb398d8c calls __glOdysseyDestroyPMObjGroup [0xb38f4d0] with a0=[0x1020]:8, a1=?, a2=?, a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
+  The `jalr` at 0xb398dac calls __glOdysseyCreatePMObj [0xb38f2f0] with a0=[0x1020]:8, a1=sp-260, a2=?, a3=a1 at entry (arg1), a7=(a1 << 0x4).
   The `bgezall` at 0xb398e2c calls CalcPixelModePixelFormat [0xb398ae0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xb398f20 calls __glOdysseyImageLogBase2 [0xb38a9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xb398fa0 calls __glSetError [0xb3f83f0] with a0=0x505, a1=?, a2=?, a3=?.
   The `jalr` at 0xb39903c calls memset with a0=((((a1 << 0x4) + a1) << 0x2) + ret(__glOdysseyGetCurrentTexture))+1456, a1=0x0, a2=0x44, a3=?.
-  The `jalr` at 0xb399058 calls __glOdysseyDestroyPMObj [0xb38f620] with a0=?, a1=?, a2=a1 at entry (arg1), a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
+  The `jalr` at 0xb399058 calls __glOdysseyDestroyPMObj [0xb38f620] with a0=[0x1020]:8, a1=?, a2=a1 at entry (arg1), a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
   The `beq` branch at 0xb398c40 targets 0xb398f1c, is taken when s0(=a4) >= 0x2 (signed), and falls through when s0(=a4) < 0x2 (signed).
   The `beq` branch at 0xb398c94 targets 0xb398f38, is taken when s3(=a5) == 0, and falls through when s3(=a5) != 0.
   The `beq` branch at 0xb398cc8 targets 0xb398f48, is taken when s6(=0x8063) == s4(=a0), and falls through when s6(=0x8063) != s4(=a0).
@@ -4448,23 +4472,25 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xb3a1398 loads 4 bytes from abs 0x1030.
   The `ld` at 0xb3a13b4 loads 8 bytes from abs 0x1020.
   2 such `ld` accesses load 8 bytes from [0x1020]:8 +0x18b40, including `ld` at 0xb3a1478, `ld` at 0xb3a15c0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xb3a148c, `lw` at 0xb3a14b8, `lw` at 0xb3a14dc.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xb3a148c, `lw` at 0xb3a14b8, `lw` at 0xb3a14dc.
   The `ld` at 0xb3a14b4 loads 8 bytes from ?.
   The `sd` at 0xb3a14d4 stores 8 bytes to ?.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xb3a14e8, `sw` at 0xb3a15e4.
+  The `sw` at 0xb3a14e8 stores 4 bytes to ?.
   The `lw` at 0xb3a14ec loads 4 bytes from [0x1020]:8 +0x18fe0.
   The `sw` at 0xb3a14f4 stores 4 bytes to [0x1020]:8 +0x18fe0.
   The `sw` at 0xb3a14fc stores 4 bytes to abs 0x1030.
   The `ld` at 0xb3a1500 loads 8 bytes from [0x1020]:8 +0x18b48.
   The `sd` at 0xb3a1544 stores 8 bytes to [0x1020]:8 +0x18b48.
   The `ld` at 0xb3a1568 loads 8 bytes from [0x1020]:8 +0x0.
+  The `lw` at 0xb3a15d8 loads 4 bytes from ret(?) +0x0.
+  The `sw` at 0xb3a15e4 stores 4 bytes to ret(?) +0x0.
   The `jalr` at 0xb3a13e4 calls __glSetError [0xb3f83f0] with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x2, a5=0xde1.
   The `jalr` at 0xb3a1474 calls __glNamesLockData [0xb41f600] with a0=[0x1020]:8, a1=[[0x1020]:8+101184]:8, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=one of 0x2, 0xde0, a5=0xde1.
   The `jalr` at 0xb3a14c8 calls __glNamesUnlockData [0xb420260] with a0=[0x1020]:8, a1=?, a2=?, a3=?.
   The `bgezall` at 0xb3a153c calls __glOdysseyTextureDeactivate [0xb39ac40] with a0=[0x1020]:8, a1=[[0x1020]:8+101192]:8, a2=?, a3=?, a4=0x116200.
   The `jalr` at 0xb3a1574 calls (unknown callee) with a0=[0x1020]:8, a1=0x9f0, a2=?, a3=?.
   The `jalr` at 0xb3a159c calls InitTextureObject [0xb397c50] with a0=ret(?), a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=?, a4=ret(?).
-  The `jalr` at 0xb3a15bc calls __glNamesNewData [0xb41f060] with a0=[0x1020]:8, a1=[[0x1020]:8+101184]:8, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xb3a15bc calls __glNamesNewData [0xb41f060] with a0=[0x1020]:8, a1=[[0x1020]:8+101184]:8, a2=a1 at entry (arg1), a3=ret(?).
   The `jalr` at 0xb3a15f4 calls __glSetError [0xb3f83f0] with a0=0x502, a1=?, a2=?, a3=?.
   The `jalr` at 0xb3a1620 calls __glSetError [0xb3f83f0] with a0=0x505, a1=?, a2=?, a3=?, a4=ret(?).
   The `jalr` at 0xb3a164c calls __glSetError [0xb3f83f0] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0xde0, a5=0xde1.
@@ -4515,10 +4541,10 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `lw` at 0xb3a189c loads 4 bytes from [0x1020]:8 +0x18fe0.
   The `sw` at 0xb3a18a8 stores 4 bytes to [0x1020]:8 +0x18fe0.
   The `jalr` at 0xb3a1730 calls __glNamesUnlockData [0xb420260] with a0=[0x1020]:8, a1=?, a2=?, a3=?.
-  The `jalr` at 0xb3a1808 calls __glNamesDeleteRange [0xb4207c0] with a0=[0x1020]:8, a1=?, a2=?, a3=?.
+  The `jalr` at 0xb3a1808 calls __glNamesDeleteRange [0xb4207c0] with a0=[0x1020]:8, a1=[[0x1020]:8+101184]:8, a2=?, a3=?.
   The `bgezall` at 0xb3a1824 calls __glOdysseyTextureDeactivate [0xb39ac40] with a0=[0x1020]:8, a1=[[0x1020]:8+101192]:8, a2=?, a3=?.
-  The `jalr` at 0xb3a1850 calls __glNamesDeleteRange [0xb4207c0] with a0=[0x1020]:8, a1=?, a2=?, a3=?.
-  The `jalr` at 0xb3a188c calls __glNamesDeleteRange [0xb4207c0] with a0=[0x1020]:8, a1=?, a2=?, a3=?.
+  The `jalr` at 0xb3a1850 calls __glNamesDeleteRange [0xb4207c0] with a0=[0x1020]:8, a1=[[0x1020]:8+101184]:8, a2=?, a3=?.
+  The `jalr` at 0xb3a188c calls __glNamesDeleteRange [0xb4207c0] with a0=[0x1020]:8, a1=[[0x1020]:8+101184]:8, a2=?, a3=?.
   The `jalr` at 0xb3a18d8 calls __glSetError [0xb3f83f0] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xb3a18f8 calls __glSetError [0xb3f83f0] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0xb3a16c0 targets 0xb3a18f0, is taken when at(=[0x1030]) == v0(=0x1), and falls through when at(=[0x1030]) != v0(=0x1).
@@ -4667,7 +4693,7 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `ld` at 0xb3c0c54 loads 8 bytes from a0 (arg0 at entry) +0x28.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xb3c0c94, `lw` at 0xb3c0ce8, `lw` at 0xb3c0e10.
   The `lw` at 0xb3c0c9c loads 4 bytes from a0 (arg0 at entry) +0x10.
-  The `ld` at 0xb3c0cb0 loads 8 bytes from ?.
+  The `ld` at 0xb3c0cb0 loads 8 bytes from [0x1020]:8 +0x10.
   5 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x20, including `ld` at 0xb3c0cc0, `ld` at 0xb3c0dbc, `ld` at 0xb3c0dd4.
   The `sd` at 0xb3c0cd8 stores 8 bytes to a0 (arg0 at entry) +0x20.
   The `lw` at 0xb3c0d14 loads 4 bytes from ?.
@@ -4681,16 +4707,16 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `sd` at 0xb3c0e30 stores 8 bytes to a0 (arg0 at entry) +0x8.
   The `sw` at 0xb3c0e3c stores 4 bytes to a0 (arg0 at entry) +0x14.
   The `jalr` at 0xb3c0c68 calls (unknown callee) with a0=?, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xb3c0cd0 calls (unknown callee) with a0=?, a1=[a0+32]:8, a2=?, a3=?, a4=a1 at entry (arg1), a5=[a0].
+  The `jalr` at 0xb3c0cd0 calls (unknown callee) with a0=[0x1020]:8, a1=[a0+32]:8, a2=?, a3=?, a4=a1 at entry (arg1), a5=[a0].
   The `bne` branch at 0xb3c0c70 targets 0xb3c0c8c, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0xb3c0ce0 targets 0xb3c0e4c, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
-  The `bne` branch at 0xb3c0d10 targets 0xb3c0dac, is taken when a0(?) < a1(=[a0+4]) (signed), and falls through when a0(?) >= a1(=[a0+4]) (signed).
+  The `bne` branch at 0xb3c0d10 targets 0xb3c0dac, is taken when a0(=([a0+4] + a1)) < a1(=[a0+4]) (signed), and falls through when a0(=([a0+4] + a1)) >= a1(=[a0+4]) (signed).
   The `beq` branch at 0xb3c0d28 targets 0xb3c0d54, is taken when (t0(?) & 0x1) == 0, and falls through when (t0(?) & 0x1) != 0.
   The `bltz` branch at 0xb3c0d34 targets 0xb3c0d44, is taken when a5(=-0x1) < 0 (signed), and falls through when a5(=-0x1) >= 0 (signed).
   The `beq` branch at 0xb3c0d54 targets 0xb3c0dac, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bltz` branch at 0xb3c0d68 targets 0xb3c0d78, is taken when a5(?) < 0 (signed), and falls through when a5(?) >= 0 (signed).
   The `bltz` branch at 0xb3c0d88 targets 0xb3c0d98, is taken when a3(?) < 0 (signed), and falls through when a3(?) >= 0 (signed).
-  The `bne` branch at 0xb3c0da4 targets 0xb3c0d60, is taken when a6(?) != a1(?), and falls through when a6(?) == a1(?).
+  The `bne` branch at 0xb3c0da4 targets 0xb3c0d60, is taken when a6(=([a0+4] + a1)+1) != a1(?), and falls through when a6(=([a0+4] + a1)+1) == a1(?).
   The `beq` branch at 0xb3c0db4 targets 0xb3c0e10, is taken when v1(=[a0+24]) == 0, and falls through when v1(=[a0+24]) != 0.
   The return at 0xb3c0c84 has v0 = -0x1.
   The return at 0xb3c0e44 has v0 = 0x0.

@@ -305,7 +305,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xee4a2dc loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `jalr` at 0xee4a2c0 calls t1_BoxPath with a0=[sym(t1_Identity)], a1=?, a2=?, a3=[a0+20]:2, a4=[a0+22]:2, a5=0x22e24.
   The `jalr` at 0xee4a2f0 calls t1_PathSegment with a0=0x15, a1=([a0+4] + ([a0+20]:2 << 0x10)), a2=([a0+8] + ([a0+22]:2 << 0x10)), a3=([a0+22]:2 << 0x10), a4=([a0+20]:2 << 0x10).
-  The `jalr` at 0xee4a304 calls t1_Join with a0=ret(t1_PathSegment), a1=?, a2=?, a3=?.
+  The `jalr` at 0xee4a304 calls t1_Join with a0=ret(t1_PathSegment), a1=ret(t1_BoxPath), a2=?, a3=?.
   The return at 0xee4a314 has v0 = ret(t1_Join).
 - `__GLconvolutionParameter` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda4c974 (o32).
   Evidence grade: inferred.
@@ -469,7 +469,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac183c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xdac1848 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac1820 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1850 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7af8, a3=?.
+  The `jalr` at 0xdac1850 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7af8, a3=?.
   The `beq` branch at 0xdac1830 targets 0xdac185c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1864 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalCoord1fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac186c (o32).
@@ -482,7 +482,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xdac18bc loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `swc1` at 0xdac18c0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac1894 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac18c8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7af8, a3=?.
+  The `jalr` at 0xdac18c8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7af8, a3=?.
   The `beq` branch at 0xdac18a4 targets 0xdac18d4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac18dc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalCoord2d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac18e4 (o32).
@@ -496,7 +496,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac1940 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdac1948 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac1910 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1950 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7b34, a3=?.
+  The `jalr` at 0xdac1950 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7b34, a3=?.
   The `beq` branch at 0xdac1920 targets 0xdac195c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1964 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalCoord2dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac196c (o32).
@@ -512,7 +512,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `ldc1` at 0xdac19cc loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `sdc1` at 0xdac19d0 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac1994 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac19d8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7b34, a3=?.
+  The `jalr` at 0xdac19d8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7b34, a3=?.
   The `beq` branch at 0xdac19a8 targets 0xdac19e4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac19ec has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalCoord2f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac19f4 (o32).
@@ -525,7 +525,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac1a48 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac1a50 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac1a20 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1a58 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7b70, a3=?.
+  The `jalr` at 0xdac1a58 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7b70, a3=?.
   The `beq` branch at 0xdac1a30 targets 0xdac1a64, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1a6c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalCoord2fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1a74 (o32).
@@ -540,7 +540,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lwc1` at 0xdac1acc loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `swc1` at 0xdac1ad0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac1a9c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1ad8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7b70, a3=?.
+  The `jalr` at 0xdac1ad8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7b70, a3=?.
   The `beq` branch at 0xdac1ab0 targets 0xdac1ae4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1aec has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalMesh1` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1af4 (o32).
@@ -554,7 +554,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1b54 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdac1b5c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac1b24 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1b64 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7bac, a3=?.
+  The `jalr` at 0xdac1b64 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7bac, a3=?.
   The `beq` branch at 0xdac1b34 targets 0xdac1b70, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1b78 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalPoint1` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1b80 (o32).
@@ -566,7 +566,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac1bc4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac1bd0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac1ba8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1bd8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7bf8, a3=?.
+  The `jalr` at 0xdac1bd8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7bf8, a3=?.
   The `beq` branch at 0xdac1bb8 targets 0xdac1be4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1bec has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalMesh2` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1bf4 (o32).
@@ -582,7 +582,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1c68 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `sw` at 0xdac1c70 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xdac1c28 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1c78 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7c38, a3=?.
+  The `jalr` at 0xdac1c78 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7c38, a3=?.
   The `beq` branch at 0xdac1c38 targets 0xdac1c84, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1c8c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_EvalPoint2` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1c94 (o32).
@@ -595,7 +595,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1ce8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac1cf0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac1cc0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1cf8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7c90, a3=?.
+  The `jalr` at 0xdac1cf8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7c90, a3=?.
   The `beq` branch at 0xdac1cd0 targets 0xdac1d04, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1d0c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_AlphaFunc` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1d14 (o32).
@@ -608,7 +608,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1d68 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac1d70 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac1d40 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1d78 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7cd8, a3=?.
+  The `jalr` at 0xdac1d78 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7cd8, a3=?.
   The `beq` branch at 0xdac1d50 targets 0xdac1d84, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1d8c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_LogicOp` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1e14 (o32).
@@ -620,7 +620,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac1e58 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac1e64 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac1e3c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1e6c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7d68, a3=?.
+  The `jalr` at 0xdac1e6c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7d68, a3=?.
   The `beq` branch at 0xdac1e4c targets 0xdac1e78, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1e80 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_StencilFunc` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1e88 (o32).
@@ -634,7 +634,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1ee8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdac1ef0 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac1eb8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1ef8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7da8, a3=?.
+  The `jalr` at 0xdac1ef8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7da8, a3=?.
   The `beq` branch at 0xdac1ec8 targets 0xdac1f04, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1f0c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_StencilOp` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1f14 (o32).
@@ -648,7 +648,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac1f74 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdac1f7c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac1f44 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1f84 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7df4, a3=?.
+  The `jalr` at 0xdac1f84 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7df4, a3=?.
   The `beq` branch at 0xdac1f54 targets 0xdac1f90, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac1f98 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_DepthFunc` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac1fa0 (o32).
@@ -660,7 +660,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac1fe4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac1ff0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac1fc8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac1ff8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac7e40, a3=?.
+  The `jalr` at 0xdac1ff8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac7e40, a3=?.
   The `beq` branch at 0xdac1fd8 targets 0xdac2004, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac200c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_DepthRange` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac250c (o32).
@@ -674,7 +674,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac2568 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xdac2570 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac2538 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2578 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8100, a3=?.
+  The `jalr` at 0xdac2578 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8100, a3=?.
   The `beq` branch at 0xdac2548 targets 0xdac2584, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac258c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Frustum` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2594 (o32).
@@ -692,7 +692,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac2610 stores 8 bytes to ret(__glDlistAllocOp2) +0x30.
   The `sdc1` at 0xdac2618 stores 8 bytes to ret(__glDlistAllocOp2) +0x38.
   The `jalr` at 0xdac25c0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2620 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8144, a3=?.
+  The `jalr` at 0xdac2620 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8144, a3=?.
   The `beq` branch at 0xdac25d0 targets 0xdac262c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2634 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_LoadIdentity` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac263c (o32).
@@ -703,7 +703,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac264c loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac267c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac2660 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2688 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac81a8, a3=?.
+  The `jalr` at 0xdac2688 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac81a8, a3=?.
   The `beq` branch at 0xdac2670 targets 0xdac2694, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac269c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_MatrixMode` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac27bc (o32).
@@ -715,7 +715,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac2800 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac280c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac27e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2814 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8258, a3=?.
+  The `jalr` at 0xdac2814 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8258, a3=?.
   The `beq` branch at 0xdac27f4 targets 0xdac2820, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2828 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_MultMatrixf` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2830 (o32).
@@ -727,7 +727,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac286c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac2858 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdac2880 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=?.
-  The `jalr` at 0xdac289c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac8298, a3=?.
+  The `jalr` at 0xdac289c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8298, a3=?.
   The `beq` branch at 0xdac2860 targets 0xdac28a8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac28b0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_MultMatrixd` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac28b8 (o32).
@@ -740,7 +740,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sb` at 0xdac28fc stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `jalr` at 0xdac28e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdac2910 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=?.
-  The `jalr` at 0xdac292c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac82d4, a3=?.
+  The `jalr` at 0xdac292c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac82d4, a3=?.
   The `beq` branch at 0xdac28e8 targets 0xdac2938, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2940 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Ortho` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2948 (o32).
@@ -758,7 +758,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac29c4 stores 8 bytes to ret(__glDlistAllocOp2) +0x30.
   The `sdc1` at 0xdac29cc stores 8 bytes to ret(__glDlistAllocOp2) +0x38.
   The `jalr` at 0xdac2974 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac29d4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8310, a3=?.
+  The `jalr` at 0xdac29d4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8310, a3=?.
   The `beq` branch at 0xdac2984 targets 0xdac29e0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac29e8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PopMatrix` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac29f0 (o32).
@@ -769,7 +769,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac2a00 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac2a30 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac2a14 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2a3c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8374, a3=?.
+  The `jalr` at 0xdac2a3c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8374, a3=?.
   The `beq` branch at 0xdac2a24 targets 0xdac2a48, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2a50 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PushMatrix` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2a58 (o32).
@@ -780,7 +780,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac2a68 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac2a98 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac2a7c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2aa4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac83ac, a3=?.
+  The `jalr` at 0xdac2aa4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac83ac, a3=?.
   The `beq` branch at 0xdac2a8c targets 0xdac2ab0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2ab8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Rotated` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2ac0 (o32).
@@ -796,7 +796,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac2b2c stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xdac2b34 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xdac2aec calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2b3c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac83e4, a3=?.
+  The `jalr` at 0xdac2b3c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac83e4, a3=?.
   The `beq` branch at 0xdac2afc targets 0xdac2b48, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2b50 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Rotatef` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2b58 (o32).
@@ -811,7 +811,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac2bc4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdac2bcc stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xdac2b8c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2bd4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8438, a3=?.
+  The `jalr` at 0xdac2bd4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8438, a3=?.
   The `beq` branch at 0xdac2b9c targets 0xdac2be0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2be8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Scaled` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2bf0 (o32).
@@ -826,7 +826,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac2c54 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdac2c5c stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xdac2c1c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2c64 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8484, a3=?.
+  The `jalr` at 0xdac2c64 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8484, a3=?.
   The `beq` branch at 0xdac2c2c targets 0xdac2c70, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2c78 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Scalef` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2c80 (o32).
@@ -840,7 +840,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac2ce0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdac2ce8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac2cb0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2cf0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac84d0, a3=?.
+  The `jalr` at 0xdac2cf0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac84d0, a3=?.
   The `beq` branch at 0xdac2cc0 targets 0xdac2cfc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2d04 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Translated` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2d0c (o32).
@@ -855,7 +855,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sdc1` at 0xdac2d70 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xdac2d78 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xdac2d38 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2d80 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8518, a3=?.
+  The `jalr` at 0xdac2d80 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8518, a3=?.
   The `beq` branch at 0xdac2d48 targets 0xdac2d8c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2d94 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Translatef` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2d9c (o32).
@@ -869,7 +869,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac2dfc stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdac2e04 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac2dcc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2e0c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8564, a3=?.
+  The `jalr` at 0xdac2e0c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8564, a3=?.
   The `beq` branch at 0xdac2ddc targets 0xdac2e18, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2e20 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Viewport` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2e28 (o32).
@@ -884,7 +884,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac2e94 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xdac2e9c stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xdac2e5c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2ea4 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac85ac, a3=?.
+  The `jalr` at 0xdac2ea4 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac85ac, a3=?.
   The `beq` branch at 0xdac2e6c targets 0xdac2eb0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2eb8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_BlendColorEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2ec0 (o32).
@@ -899,7 +899,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac2f2c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xdac2f34 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xdac2ef4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2f3c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac85fc, a3=?.
+  The `jalr` at 0xdac2f3c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac85fc, a3=?.
   The `beq` branch at 0xdac2f04 targets 0xdac2f48, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2f50 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_BlendEquationEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2f58 (o32).
@@ -911,7 +911,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac2f9c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac2fa8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac2f80 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac2fb0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8648, a3=?.
+  The `jalr` at 0xdac2fb0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8648, a3=?.
   The `beq` branch at 0xdac2f90 targets 0xdac2fbc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac2fc4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PolygonOffsetEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac2fcc (o32).
@@ -924,7 +924,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac3020 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac3028 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac2ff8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3030 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8688, a3=?.
+  The `jalr` at 0xdac3030 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8688, a3=?.
   The `beq` branch at 0xdac3008 targets 0xdac303c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3044 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_ConvolutionParameterfEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac304c (o32).
@@ -938,7 +938,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac30ac stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdac30b4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac307c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac30bc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac86cc, a3=?.
+  The `jalr` at 0xdac30bc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac86cc, a3=?.
   The `beq` branch at 0xdac308c targets 0xdac30c8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac30d0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_ConvolutionParameterfvEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac30d8 (o32).
@@ -951,10 +951,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac3164 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac316c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac3108 calls __glConvolutionParameterfvEXT_size [0xda4d1b4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3124 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xdac3140 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glConvolutionParameterfvEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xdac317c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac3198 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac8718, a3=?.
+  The `jalr` at 0xdac3124 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xdac3140 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glConvolutionParameterfvEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xdac317c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xdac3198 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8718, a3=?.
   The `bgez` branch at 0xdac3114 targets 0xdac3134, is taken when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac312c targets 0xdac31a4 and is always taken.
   The `beq` branch at 0xdac314c targets 0xdac31a4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -970,7 +970,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac3214 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdac321c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac31e4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3224 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8784, a3=?.
+  The `jalr` at 0xdac3224 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8784, a3=?.
   The `beq` branch at 0xdac31f4 targets 0xdac3230, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3238 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_ConvolutionParameterivEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3240 (o32).
@@ -983,10 +983,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac32cc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac32d4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac3270 calls __glConvolutionParameterivEXT_size [0xda4d1f8] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac328c calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xdac32a8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glConvolutionParameterivEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xdac32e4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac3300 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac87d0, a3=?.
+  The `jalr` at 0xdac328c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xdac32a8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glConvolutionParameterivEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xdac32e4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xdac3300 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac87d0, a3=?.
   The `bgez` branch at 0xdac327c targets 0xdac329c, is taken when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac3294 targets 0xdac330c and is always taken.
   The `beq` branch at 0xdac32b4 targets 0xdac330c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1006,7 +1006,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac3500 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac34a8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
   The `jalr` at 0xdac34c4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=?.
-  The `jalr` at 0xdac350c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac88f4, a3=?.
+  The `jalr` at 0xdac350c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac88f4, a3=?.
   The `bne` branch at 0xdac3498 targets 0xdac34b8, is taken when a0 != at(=0x8025), and falls through when a0 == at(=0x8025).
   The `beq` branch at 0xdac34b0 targets 0xdac3518 and is always taken.
   The `beq` branch at 0xdac34d4 targets 0xdac3518, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1022,7 +1022,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac3588 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sb` at 0xdac3590 stores 1 byte to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac3558 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3598 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8944, a3=?.
+  The `jalr` at 0xdac3598 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8944, a3=?.
   The `beq` branch at 0xdac3568 targets 0xdac35a4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac35ac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PolygonOffset` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3bb0 (o32).
@@ -1035,7 +1035,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac3c04 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac3c0c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac3bdc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3c14 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8ce4, a3=?.
+  The `jalr` at 0xdac3c14 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8ce4, a3=?.
   The `beq` branch at 0xdac3bec targets 0xdac3c20, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3c28 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Indexub` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3c30 (o32).
@@ -1046,10 +1046,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac3c48 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac3c74 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sb` at 0xdac3c80 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdac3c84 loads 4 bytes from ?.
-  The `sw` at 0xdac3c8c stores 4 bytes to ?.
+  The `lw` at 0xdac3c84 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdac3c8c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdac3c58 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3c94 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8d28, a3=?.
+  The `jalr` at 0xdac3c94 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8d28, a3=?.
   The `beq` branch at 0xdac3c68 targets 0xdac3ca0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3ca8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_Indexubv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3cb0 (o32).
@@ -1061,10 +1061,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac3cf4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `lbu` at 0xdac3d00 loads 1 byte from a0 (arg0 at entry) +0x0.
   The `sb` at 0xdac3d04 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xdac3d08 loads 4 bytes from ?.
-  The `sw` at 0xdac3d10 stores 4 bytes to ?.
+  The `lw` at 0xdac3d08 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xdac3d10 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xdac3cd8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3d18 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8d28, a3=?.
+  The `jalr` at 0xdac3d18 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8d28, a3=?.
   The `beq` branch at 0xdac3ce8 targets 0xdac3d24, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3d2c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_SampleMaskSGIS` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3d34 (o32).
@@ -1077,7 +1077,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `swc1` at 0xdac3d88 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sb` at 0xdac3d90 stores 1 byte to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac3d60 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3d98 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8d64, a3=?.
+  The `jalr` at 0xdac3d98 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8d64, a3=?.
   The `beq` branch at 0xdac3d70 targets 0xdac3da4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3dac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_SamplePatternSGIS` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3db4 (o32).
@@ -1089,7 +1089,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac3df8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac3e04 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac3ddc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac3e0c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac8da8, a3=?.
+  The `jalr` at 0xdac3e0c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8da8, a3=?.
   The `beq` branch at 0xdac3dec targets 0xdac3e18, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac3e20 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_DetailTexFuncSGIS` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac3e90 (o32).
@@ -1103,8 +1103,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac3f10 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac3ec8 calls __gllc_InvalidValue [0xda0ba00] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xdac3ee8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(a1 << 0x3)+8, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xdac3f20 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac3f3c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac8e20, a3=?.
+  The `jalr` at 0xdac3f20 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=?.
+  The `jalr` at 0xdac3f3c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8e20, a3=?.
   The `bgez` branch at 0xdac3eb8 targets 0xdac3ed8, is taken when v0(=(a1 << 0x3)) >= 0 (signed), and falls through when v0(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xdac3ed0 targets 0xdac3f48 and is always taken.
   The `beq` branch at 0xdac3ef0 targets 0xdac3f48, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1120,8 +1120,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac3fd8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac3f90 calls __gllc_InvalidValue [0xda0ba00] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xdac3fb0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(a1 << 0x3)+8, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xdac3fe8 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac4004 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac8e78, a3=?.
+  The `jalr` at 0xdac3fe8 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=?.
+  The `jalr` at 0xdac4004 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac8e78, a3=?.
   The `bgez` branch at 0xdac3f80 targets 0xdac3fa0, is taken when v0(=(a1 << 0x3)) >= 0 (signed), and falls through when v0(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xdac3f98 targets 0xdac4010 and is always taken.
   The `beq` branch at 0xdac3fb8 targets 0xdac4010, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1136,7 +1136,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac4340 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac4348 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac4318 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4350 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9040, a3=?.
+  The `jalr` at 0xdac4350 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9040, a3=?.
   The `beq` branch at 0xdac4328 targets 0xdac435c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4364 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_SpriteParameterfvSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac436c (o32).
@@ -1148,10 +1148,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac43e4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac43f0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4394 calls __glSpriteParameterfvSGIX_size [0xda81380] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac43b0 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac43cc calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glSpriteParameterfvSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac4400 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdac441c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac9088, a3=?.
+  The `jalr` at 0xdac43b0 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac43cc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glSpriteParameterfvSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac4400 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac441c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9088, a3=?.
   The `bgez` branch at 0xdac43a0 targets 0xdac43c0, is taken when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac43b8 targets 0xdac4428 and is always taken.
   The `beq` branch at 0xdac43d8 targets 0xdac4428, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1166,7 +1166,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac448c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac4494 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac4464 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac449c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac90f0, a3=?.
+  The `jalr` at 0xdac449c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac90f0, a3=?.
   The `beq` branch at 0xdac4474 targets 0xdac44a8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac44b0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_SpriteParameterivSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac44b8 (o32).
@@ -1178,10 +1178,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4530 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac453c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac44e0 calls __glSpriteParameterivSGIX_size [0xda813c4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac44fc calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac4518 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glSpriteParameterivSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac454c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdac4568 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac9138, a3=?.
+  The `jalr` at 0xdac44fc calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac4518 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glSpriteParameterivSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac454c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac4568 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9138, a3=?.
   The `bgez` branch at 0xdac44ec targets 0xdac450c, is taken when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac4504 targets 0xdac4574 and is always taken.
   The `beq` branch at 0xdac4524 targets 0xdac4574, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1196,7 +1196,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac46ac stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac46b4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac4684 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac46bc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac91fc, a3=?.
+  The `jalr` at 0xdac46bc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac91fc, a3=?.
   The `beq` branch at 0xdac4694 targets 0xdac46c8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac46d0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_PointParameterfvSGIS` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac46d8 (o32).
@@ -1208,10 +1208,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4750 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac475c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4700 calls __glPointParameterfvSGIS_size [0xda813f8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac471c calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xdac4738 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glPointParameterfvSGIS_size) << 0x2)+4, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xdac476c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdac4788 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac9244, a3=?.
+  The `jalr` at 0xdac471c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
+  The `jalr` at 0xdac4738 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glPointParameterfvSGIS_size) << 0x2)+4, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
+  The `jalr` at 0xdac476c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
+  The `jalr` at 0xdac4788 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9244, a3=?.
   The `bgez` branch at 0xdac470c targets 0xdac472c, is taken when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac4724 targets 0xdac4794 and is always taken.
   The `beq` branch at 0xdac4744 targets 0xdac4794, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1226,8 +1226,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac481c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac47d8 calls __gllc_InvalidValue [0xda0ba00] with a0=[0x1010], a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=[0x1010].
   The `jalr` at 0xdac47f8 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(a0 << 0x3)+4, a2=(a0 << 0x3), a3=[0x1010].
-  The `jalr` at 0xdac482c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdac4848 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac92ac, a3=?.
+  The `jalr` at 0xdac482c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=?.
+  The `jalr` at 0xdac4848 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac92ac, a3=?.
   The `bgez` branch at 0xdac47c8 targets 0xdac47e8, is taken when a2(=(a0 << 0x3)) >= 0 (signed), and falls through when a2(=(a0 << 0x3)) < 0 (signed).
   The `beq` branch at 0xdac47e0 targets 0xdac4854 and is always taken.
   The `beq` branch at 0xdac4804 targets 0xdac4854, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1240,7 +1240,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `lw` at 0xdac48e8 loads 4 bytes from abs 0x1010.
   The `sh` at 0xdac4918 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xdac48fc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4924 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9340, a3=?.
+  The `jalr` at 0xdac4924 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9340, a3=?.
   The `beq` branch at 0xdac490c targets 0xdac4930, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4938 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_StopInstrumentsSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4940 (o32).
@@ -1252,7 +1252,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4984 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac4990 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4968 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4998 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9378, a3=?.
+  The `jalr` at 0xdac4998 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9378, a3=?.
   The `beq` branch at 0xdac4978 targets 0xdac49a4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac49ac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_ReferencePlaneSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac49b4 (o32).
@@ -1272,7 +1272,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `ldc1` at 0xdac4a28 loads 8 bytes from a0 (arg0 at entry) +0x18.
   The `sdc1` at 0xdac4a2c stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xdac49e0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xdac4a34 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac93b8, a3=a0 at entry (arg0).
+  The `jalr` at 0xdac4a34 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac93b8, a3=a0 at entry (arg0).
   The `beq` branch at 0xdac49f4 targets 0xdac4a40, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4a48 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FrameZoomSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4a50 (o32).
@@ -1284,7 +1284,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4a94 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac4aa0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4a78 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4aa8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac93f4, a3=?.
+  The `jalr` at 0xdac4aa8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac93f4, a3=?.
   The `beq` branch at 0xdac4a88 targets 0xdac4ab4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4abc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_DeformSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4ac4 (o32).
@@ -1296,7 +1296,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4b08 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac4b14 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4aec calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4b1c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9434, a3=?.
+  The `jalr` at 0xdac4b1c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9434, a3=?.
   The `beq` branch at 0xdac4afc targets 0xdac4b28, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4b30 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_LoadIdentityDeformationMapSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4b38 (o32).
@@ -1308,7 +1308,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4b7c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac4b88 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4b60 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4b90 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9474, a3=?.
+  The `jalr` at 0xdac4b90 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9474, a3=?.
   The `beq` branch at 0xdac4b70 targets 0xdac4b9c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4ba4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_AsyncMarkerSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4ee4 (o32).
@@ -1320,7 +1320,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac4f28 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac4f34 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac4f0c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4f3c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac966c, a3=?.
+  The `jalr` at 0xdac4f3c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac966c, a3=?.
   The `beq` branch at 0xdac4f1c targets 0xdac4f48, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4f50 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentColorMaterialSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4f58 (o32).
@@ -1333,7 +1333,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac4fac stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac4fb4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac4f84 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac4fbc calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac96ac, a3=?.
+  The `jalr` at 0xdac4fbc calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac96ac, a3=?.
   The `beq` branch at 0xdac4f94 targets 0xdac4fc8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac4fd0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentLightfSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac4fd8 (o32).
@@ -1347,7 +1347,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac5038 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdac5040 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac5008 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac5048 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac96f4, a3=?.
+  The `jalr` at 0xdac5048 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac96f4, a3=?.
   The `beq` branch at 0xdac5018 targets 0xdac5054, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac505c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentLightfvSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac5064 (o32).
@@ -1360,10 +1360,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac50f0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac50f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac5094 calls __glFragmentLightfvSGIX_size [0xda8162c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac50b0 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac50cc calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glFragmentLightfvSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac5108 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac5124 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac9740, a3=?.
+  The `jalr` at 0xdac50b0 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac50cc calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFragmentLightfvSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5108 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5124 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9740, a3=?.
   The `bgez` branch at 0xdac50a0 targets 0xdac50c0, is taken when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac50b8 targets 0xdac5130 and is always taken.
   The `beq` branch at 0xdac50d8 targets 0xdac5130, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1379,7 +1379,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac51a0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdac51a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac5170 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac51b0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac97ac, a3=?.
+  The `jalr` at 0xdac51b0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac97ac, a3=?.
   The `beq` branch at 0xdac5180 targets 0xdac51bc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac51c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentLightivSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac51cc (o32).
@@ -1392,10 +1392,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac5258 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac5260 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac51fc calls __glFragmentLightivSGIX_size [0xda816e4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac5218 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac5234 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glFragmentLightivSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac5270 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac528c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac97f8, a3=?.
+  The `jalr` at 0xdac5218 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5234 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFragmentLightivSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5270 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac528c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac97f8, a3=?.
   The `bgez` branch at 0xdac5208 targets 0xdac5228, is taken when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac5220 targets 0xdac5298 and is always taken.
   The `beq` branch at 0xdac5240 targets 0xdac5298, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1410,7 +1410,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac52fc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xdac5304 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac52d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac530c calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9864, a3=?.
+  The `jalr` at 0xdac530c calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9864, a3=?.
   The `beq` branch at 0xdac52e4 targets 0xdac5318, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac5320 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentLightModelfvSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac5328 (o32).
@@ -1422,10 +1422,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac53a0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac53ac stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac5350 calls __glFragmentLightModelfvSGIX_size [0xda81718] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac536c calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac5388 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac53bc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdac53d8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac98ac, a3=?.
+  The `jalr` at 0xdac536c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5388 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac53bc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac53d8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac98ac, a3=?.
   The `bgez` branch at 0xdac535c targets 0xdac537c, is taken when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac5374 targets 0xdac53e4 and is always taken.
   The `beq` branch at 0xdac5394 targets 0xdac53e4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1440,7 +1440,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac5448 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac5450 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac5420 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac5458 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9914, a3=?.
+  The `jalr` at 0xdac5458 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9914, a3=?.
   The `beq` branch at 0xdac5430 targets 0xdac5464, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac546c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentLightModelivSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac5474 (o32).
@@ -1452,10 +1452,10 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sh` at 0xdac54ec stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xdac54f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xdac549c calls __glFragmentLightModelivSGIX_size [0xda8176c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac54b8 calls __gllc_InvalidEnum [0xda0ba64] with a0=?, a1=?, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac54d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=?, a1=(ret(__glFragmentLightModelivSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac5508 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xdac5524 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=?, a2=0xdac995c, a3=?.
+  The `jalr` at 0xdac54b8 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac54d4 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFragmentLightModelivSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5508 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5524 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac995c, a3=?.
   The `bgez` branch at 0xdac54a8 targets 0xdac54c8, is taken when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdac54c0 targets 0xdac5530 and is always taken.
   The `beq` branch at 0xdac54e0 targets 0xdac5530, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1471,7 +1471,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac55a0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xdac55a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac5570 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac55b0 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac99c4, a3=?.
+  The `jalr` at 0xdac55b0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac99c4, a3=?.
   The `beq` branch at 0xdac5580 targets 0xdac55bc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac55c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentMaterialfvSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac55cc (o32).
@@ -1489,8 +1489,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdac5630 calls __glFragmentMaterialfvSGIX_size [0xda81584] with a0=a1 at entry (arg1), a1=ret(__glErrorCheckMaterial), a2=?, a3=?.
   The `jalr` at 0xdac564c calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdac5668 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)+8, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac56a4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac56c0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=?, a2=0xdac9a10, a3=?.
+  The `jalr` at 0xdac56a4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac56c0 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9a10, a3=?.
   The `beq` branch at 0xdac5608 targets 0xdac5628, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdac5620 targets 0xdac56cc and is always taken.
   The `bgez` branch at 0xdac563c targets 0xdac565c, is taken when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) < 0 (signed).
@@ -1508,7 +1508,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac5740 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xdac5748 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xdac5710 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac5750 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9a7c, a3=?.
+  The `jalr` at 0xdac5750 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9a7c, a3=?.
   The `beq` branch at 0xdac5720 targets 0xdac575c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac5764 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__gllc_FragmentMaterialivSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac576c (o32).
@@ -1526,8 +1526,8 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdac57e4 calls __glFragmentMaterialivSGIX_size [0xda815f8] with a0=a1 at entry (arg1), a1=ret(__glErrorCheckMaterial), a2=?, a3=?.
   The `jalr` at 0xdac5800 calls __gllc_InvalidEnum [0xda0ba64] with a0=[0x1010], a1=?, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdac581c calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=(ret(__glFragmentMaterialivSGIX_size) << 0x2)+8, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdac5858 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xdac5874 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=?, a2=0xdac9ac8, a3=?.
+  The `jalr` at 0xdac5858 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xdac5874 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9ac8, a3=?.
   The `beq` branch at 0xdac57bc targets 0xdac57dc, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdac57d4 targets 0xdac5880 and is always taken.
   The `bgez` branch at 0xdac57f0 targets 0xdac5810, is taken when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) < 0 (signed).
@@ -1544,7 +1544,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdac58e8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xdac58f0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xdac58c0 calls __glDlistAllocOp2 [0xda0b4a0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xdac58f8 calls __glDlistAppendOp [0xda0b538] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xdac9b34, a3=?.
+  The `jalr` at 0xdac58f8 calls __glDlistAppendOp [0xda0b538] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xdac9b34, a3=?.
   The `beq` branch at 0xdac58d0 targets 0xdac5904, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xdac590c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 - `__glle_ListBase` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac59c0 (o32).
@@ -4667,7 +4667,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacd3a4 calls __glFogfv_size [0xda810f0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdacd3bc calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFogfv_size) << 0x2), a3=?.
   The `jalr` at 0xdacd3d8 calls __glSPDlalloc [0xd976680] with a0=(ret(__glFogfv_size) << 0x2)+4, a1=0x50, a2=(ret(__glFogfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacd400 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdacd400 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glFogfv_size) << 0x2), a3=?.
   The `bgez` branch at 0xdacd3b0 targets 0xdacd3cc, is taken when a2(=(ret(__glFogfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFogfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdacd3c4 targets 0xdacd40c and is always taken.
   The `beq` branch at 0xdacd3e4 targets 0xdacd40c, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -4691,7 +4691,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacd494 calls __glFogiv_size [0xda81080] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdacd4ac calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFogiv_size) << 0x2), a3=?.
   The `jalr` at 0xdacd4c8 calls __glSPDlalloc [0xd976680] with a0=(ret(__glFogiv_size) << 0x2)+4, a1=0x52, a2=(ret(__glFogiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacd4f0 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdacd4f0 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glFogiv_size) << 0x2), a3=?.
   The `bgez` branch at 0xdacd4a0 targets 0xdacd4bc, is taken when a2(=(ret(__glFogiv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFogiv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdacd4b4 targets 0xdacd4fc and is always taken.
   The `beq` branch at 0xdacd4d4 targets 0xdacd4fc, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -4736,7 +4736,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacd650 calls __glLightfv_size [0xda81124] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdacd668 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glLightfv_size) << 0x2), a3=?.
   The `jalr` at 0xdacd684 calls __glSPDlalloc [0xd976680] with a0=(ret(__glLightfv_size) << 0x2)+8, a1=0x56, a2=(ret(__glLightfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacd6b4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdacd6b4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glLightfv_size) << 0x2), a3=?.
   The `bgez` branch at 0xdacd65c targets 0xdacd678, is taken when a2(=(ret(__glLightfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdacd670 targets 0xdacd6c0 and is always taken.
   The `beq` branch at 0xdacd690 targets 0xdacd6c0, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -4762,7 +4762,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacd770 calls __glLightiv_size [0xda811b4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdacd788 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glLightiv_size) << 0x2), a3=?.
   The `jalr` at 0xdacd7a4 calls __glSPDlalloc [0xd976680] with a0=(ret(__glLightiv_size) << 0x2)+8, a1=0x58, a2=(ret(__glLightiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacd7d4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdacd7d4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glLightiv_size) << 0x2), a3=?.
   The `bgez` branch at 0xdacd77c targets 0xdacd798, is taken when a2(=(ret(__glLightiv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightiv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdacd790 targets 0xdacd7e0 and is always taken.
   The `beq` branch at 0xdacd7b0 targets 0xdacd7e0, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -4787,7 +4787,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacd880 calls __glLightModelfv_size [0xda811e8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdacd898 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
   The `jalr` at 0xdacd8b4 calls __glSPDlalloc [0xd976680] with a0=(ret(__glLightModelfv_size) << 0x2)+4, a1=0x5a, a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacd8dc calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdacd8dc calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glLightModelfv_size) << 0x2), a3=?.
   The `bgez` branch at 0xdacd88c targets 0xdacd8a8, is taken when a2(=(ret(__glLightModelfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightModelfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdacd8a0 targets 0xdacd8e8 and is always taken.
   The `beq` branch at 0xdacd8c0 targets 0xdacd8e8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -4812,7 +4812,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacd988 calls __glLightModeliv_size [0xda8123c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdacd9a0 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
   The `jalr` at 0xdacd9bc calls __glSPDlalloc [0xd976680] with a0=(ret(__glLightModeliv_size) << 0x2)+4, a1=0x5c, a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacd9e4 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdacd9e4 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glLightModeliv_size) << 0x2), a3=?.
   The `bgez` branch at 0xdacd994 targets 0xdacd9b0, is taken when a2(=(ret(__glLightModeliv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glLightModeliv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdacd9a8 targets 0xdacd9f0 and is always taken.
   The `beq` branch at 0xdacd9c8 targets 0xdacd9f0, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -4860,7 +4860,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacdb74 calls __glMaterialfv_size [0xda81270] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xdacdb8c calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glMaterialfv_size) << 0x2), a3=?.
   The `jalr` at 0xdacdba8 calls __glSPDlalloc [0xd976680] with a0=(ret(__glMaterialfv_size) << 0x2)+8, a1=0x60, a2=(ret(__glMaterialfv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacdbd8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdacdbd8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glMaterialfv_size) << 0x2), a3=?.
   The `beq` branch at 0xdacdb50 targets 0xdacdb6c, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdacdb64 targets 0xdacdbe4 and is always taken.
   The `bgez` branch at 0xdacdb80 targets 0xdacdb9c, is taken when a2(=(ret(__glMaterialfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glMaterialfv_size) << 0x2)) < 0 (signed).
@@ -4891,7 +4891,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdacdcd8 calls __glMaterialiv_size [0xda812f4] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xdacdcf0 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glMaterialiv_size) << 0x2), a3=?.
   The `jalr` at 0xdacdd0c calls __glSPDlalloc [0xd976680] with a0=(ret(__glMaterialiv_size) << 0x2)+8, a1=0x62, a2=(ret(__glMaterialiv_size) << 0x2), a3=?.
-  The `jalr` at 0xdacdd3c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdacdd3c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glMaterialiv_size) << 0x2), a3=?.
   The `beq` branch at 0xdacdcb4 targets 0xdacdcd0, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xdacdcc8 targets 0xdacdd48 and is always taken.
   The `bgez` branch at 0xdacdce4 targets 0xdacdd00, is taken when a2(=(ret(__glMaterialiv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glMaterialiv_size) << 0x2)) < 0 (signed).
@@ -5557,7 +5557,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad0058 calls __glConvolutionParameterfvEXT_size [0xda4d1b4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad0070 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
   The `jalr` at 0xdad008c calls __glSPDlalloc [0xd976680] with a0=(ret(__glConvolutionParameterfvEXT_size) << 0x2)+8, a1=0xc6, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xdad00bc calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad00bc calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad0064 targets 0xdad0080, is taken when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad0078 targets 0xdad00c8 and is always taken.
   The `beq` branch at 0xdad0098 targets 0xdad00c8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5583,7 +5583,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad0164 calls __glConvolutionParameterivEXT_size [0xda4d1f8] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad017c calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
   The `jalr` at 0xdad0198 calls __glSPDlalloc [0xd976680] with a0=(ret(__glConvolutionParameterivEXT_size) << 0x2)+8, a1=0xc8, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xdad01c8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad01c8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad0170 targets 0xdad018c, is taken when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad0184 targets 0xdad01d4 and is always taken.
   The `beq` branch at 0xdad01a4 targets 0xdad01d4, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5752,7 +5752,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdad0a7c stores 4 bytes to ret(__glSPDlalloc) +0x4.
   The `jalr` at 0xdad0a38 calls __glsplc_InvalidValue [0xda0cb20] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=(a1 << 0x3).
   The `jalr` at 0xdad0a54 calls __glSPDlalloc [0xd976680] with a0=(a1 << 0x3)+8, a1=0xe1, a2=a2 at entry (arg2), a3=(a1 << 0x3).
-  The `jalr` at 0xdad0a88 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad0a88 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=(a1 << 0x3).
   The `bgez` branch at 0xdad0a2c targets 0xdad0a48, is taken when a3(=(a1 << 0x3)) >= 0 (signed), and falls through when a3(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xdad0a40 targets 0xdad0a94 and is always taken.
   The `beq` branch at 0xdad0a60 targets 0xdad0a94, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5766,7 +5766,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdad0b18 stores 4 bytes to ret(__glSPDlalloc) +0x4.
   The `jalr` at 0xdad0ad4 calls __glsplc_InvalidValue [0xda0cb20] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=(a1 << 0x3).
   The `jalr` at 0xdad0af0 calls __glSPDlalloc [0xd976680] with a0=(a1 << 0x3)+8, a1=0xe2, a2=a2 at entry (arg2), a3=(a1 << 0x3).
-  The `jalr` at 0xdad0b24 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad0b24 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=(a1 << 0x3).
   The `bgez` branch at 0xdad0ac8 targets 0xdad0ae4, is taken when a3(=(a1 << 0x3)) >= 0 (signed), and falls through when a3(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xdad0adc targets 0xdad0b30 and is always taken.
   The `beq` branch at 0xdad0afc targets 0xdad0b30, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5790,7 +5790,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad0dcc calls __glSpriteParameterfvSGIX_size [0xda81380] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad0de4 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad0e00 calls __glSPDlalloc [0xd976680] with a0=(ret(__glSpriteParameterfvSGIX_size) << 0x2)+4, a1=0xeb, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad0e28 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdad0e28 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad0dd8 targets 0xdad0df4, is taken when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad0dec targets 0xdad0e34 and is always taken.
   The `beq` branch at 0xdad0e0c targets 0xdad0e34, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5814,7 +5814,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad0ebc calls __glSpriteParameterivSGIX_size [0xda813c4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad0ed4 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad0ef0 calls __glSPDlalloc [0xd976680] with a0=(ret(__glSpriteParameterivSGIX_size) << 0x2)+4, a1=0xed, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad0f18 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdad0f18 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad0ec8 targets 0xdad0ee4, is taken when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad0edc targets 0xdad0f24 and is always taken.
   The `beq` branch at 0xdad0efc targets 0xdad0f24, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5838,7 +5838,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad1050 calls __glPointParameterfvSGIS_size [0xda813f8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad1068 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
   The `jalr` at 0xdad1084 calls __glSPDlalloc [0xd976680] with a0=(ret(__glPointParameterfvSGIS_size) << 0x2)+4, a1=0xf0, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xdad10ac calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdad10ac calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad105c targets 0xdad1078, is taken when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad1070 targets 0xdad10b8 and is always taken.
   The `beq` branch at 0xdad1090 targets 0xdad10b8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5851,7 +5851,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `sw` at 0xdad112c stores 4 bytes to ret(__glSPDlalloc) +0x0.
   The `jalr` at 0xdad10f4 calls __glsplc_InvalidValue [0xda0cb20] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=a0 at entry (arg0).
   The `jalr` at 0xdad1114 calls __glSPDlalloc [0xd976680] with a0=(a0 << 0x3)+4, a1=0xf1, a2=(a0 << 0x3), a3=a0 at entry (arg0).
-  The `jalr` at 0xdad113c calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=a0 at entry (arg0).
+  The `jalr` at 0xdad113c calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=a0 at entry (arg0).
   The `bgez` branch at 0xdad10e8 targets 0xdad1104, is taken when a2(=(a0 << 0x3)) >= 0 (signed), and falls through when a2(=(a0 << 0x3)) < 0 (signed).
   The `beq` branch at 0xdad10fc targets 0xdad1148 and is always taken.
   The `beq` branch at 0xdad1124 targets 0xdad1148, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5955,7 +5955,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad1704 calls __glFragmentLightfvSGIX_size [0xda8162c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad171c calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad1738 calls __glSPDlalloc [0xd976680] with a0=(ret(__glFragmentLightfvSGIX_size) << 0x2)+8, a1=0x105, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad1768 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad1768 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad1710 targets 0xdad172c, is taken when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad1724 targets 0xdad1774 and is always taken.
   The `beq` branch at 0xdad1744 targets 0xdad1774, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -5981,7 +5981,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad1810 calls __glFragmentLightivSGIX_size [0xda816e4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad1828 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad1844 calls __glSPDlalloc [0xd976680] with a0=(ret(__glFragmentLightivSGIX_size) << 0x2)+8, a1=0x107, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad1874 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xdad1874 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad181c targets 0xdad1838, is taken when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad1830 targets 0xdad1880 and is always taken.
   The `beq` branch at 0xdad1850 targets 0xdad1880, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -6005,7 +6005,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xdad1908 calls __glFragmentLightModelfvSGIX_size [0xda81718] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xdad1920 calls __glsplc_InvalidEnum [0xda0cb60] with a0=?, a1=?, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xdad193c calls __glSPDlalloc [0xd976680] with a0=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)+4, a1=0x109, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xdad1964 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xdad1964 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xdad1914 targets 0xdad1930, is taken when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xdad1928 targets 0xdad1970 and is always taken.
   The `beq` branch at 0xdad1948 targets 0xdad1970, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
