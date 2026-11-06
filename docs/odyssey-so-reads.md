@@ -3757,76 +3757,146 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   The return value is unknown (`jr` at 0x1620ff4).
 ## X drawing and backing-store helpers
 
-- `miBSFillPolygon..ODB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163fd70):
-  **Established effects; role unknown.** When register `a3` is
-  nonzero, the `bnez` at 0x163fe20 takes the path to `memmove` (`jalr` at
-  0x163ff08). At that call `a1` is the original sixth argument and `a2` is
-  register `a4` shifted left two bits (`jalr` at 0x163ff08). It subsequently calls
-  an unknown function with the original first four arguments (`jalr` at
-  0x163ff50). The 6.5.30m N32 body occupies 604 bytes.
-- `miCreateBSPixmap..LFB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x166f6f0):
-  **Established effects; role unknown.** The routine loads the pointer at
-  first argument +0x74 and reads a byte at its +0x15 (`lw` at 0x166f6fc,
-  `lbu` at 0x166f704). A value of 4 takes the `beq` at 0x166f720 directly
-  to the return path (`jr` at 0x166f840). Other paths include a call to
-  `miBSClearBackingStore..IEB` with the original first argument (`jalr` at
-  0x166f868), then a call to `miSendExposures` with that argument and the
-  first call's result (`jalr` at 0x166f888). The 6.5.30m N32 routine
-  occupies 612 bytes.
-- `miBSExposeCopy..MFB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16a03f0):
-  **Established effects; hardware effect unknown.** It first calls an
-  unresolved function with the original fourth argument in `a0` (`jalr` at
-  0x16a043c). A zero result takes the `beqz` at 0x16a045c to the return
-  path (`jr` at 0x16a05d4). One later path calls `GetScratchGC`, then
-  passes its result to `CopyGC` and `FreeScratchGC` (`jalr` at 0x16a05ec,
-  `jalr` at 0x16a062c, `jalr` at 0x16a0670). Its broader role is unknown;
-  the 6.5.30m N32 body occupies 668 bytes.
-- `miCheckSubSaveUnder..OAB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171f1c0):
-  **Established effects; role unknown.** It reads first argument +0x24
-  (`lw` at 0x171f1d4); a zero word takes the `beqz` at 0x171f1e4 to an
-  alternate path. Its calls include recursive calls to this routine with a
-  stack address and the original third argument, respectively, in `a2`
-  (`bgezall` at 0x171f28c, `bgezall` at 0x171f420). Another indirect
-  callback receives the original first argument and 0x40 (`jalr` at
-  0x171f3c4); its target is unknown. The 6.5.30m N32 routine occupies
-  696 bytes.
-- `miGetPlane..IBB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15655a0):
-  **Established effects; role unknown.** A nonzero `a6` takes
-  the `bnez` at 0x15655e4 past an `Xalloc` call (`jalr` at 0x1565608).
-  If it falls through, the `bnez` at 0x1565614 takes the subsequent path
-  when the allocation result is nonzero; a zero result returns zero (`move`
-  at 0x1565628, `jr` at 0x1565634). Another path calls an unknown function
-  with the original first argument and `a4` set to 1 (`jalr` at 0x156573c).
-  The allocation size and hardware effect are unknown. The 6.5.30m N32
-  routine occupies 700 bytes.
-- `cfb16UnnaturalTileFS` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1662bf0):
-  **Established.** A zero word at argument 1 + 0x14 (`lw` at 0x1662c0c)
-  takes the `beqz` at 0x1662c2c to the return path. Otherwise it reads the pointer held at argument 1 + 0x20 (`lw` at 0x1662c38), and its halfword at +0xc (`lhu` at 0x1662c44). The `beqz` at 0x1662c60 is taken when
-  bit 0 of that halfword is clear (`andi` at 0x1662c54). A later path calls
-  `miClipSpans` with original arguments 3, 4 and 2 as call arguments 1, 2
-  and 3 (`jalr` at 0x1662d88). Role unknown.
-- `miResizeBackingStore..NEB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163a040):
-  **Established.** It reads a pointer at argument 0 + 0x74 and then a word
-  through that pointer (`lw` at 0x163a050, `lw` at 0x163a058). The `beqz`
-  at 0x163a068 takes the return path when that word is zero. A different
-  path calls `GetScratchGC` (`jalr` at 0x163a190). The `bnez` at 0x163a198
-  takes the branch for a nonzero result, leading to calls of `ValidateGC`
-  and `FreeScratchGC` (`jalr` at 0x163a224, `jalr` at 0x163a268). The
-  routine's role remains unknown.
-- `cfbGetImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15f4200):
-  **Established.** The `beqz` at 0x15f4228 takes the return path if
-  argument 3 is zero. Otherwise the `beqz` at 0x15f4230 takes that path
-  if argument 4 is zero. When both are nonzero, it reads the byte at
-  argument 0 + 3 (`lbu` at 0x15f4238); the `beq` at 0x15f4240 selects a
-  call of `mfbGetImage` when the byte is 1 (`jalr` at 0x15f4434). Its
-  other calls include `GetScratchPixmapHeader` and `cfbDoBitblt` (`jalr`
-  at 0x15f4374, `jalr` at 0x15f4408). Role unknown.
-- `miBSPolyPoint..JDB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1668cd0):
-  **Established.** The `bnez` at 0x1668d78 is taken when argument 2 is
-  nonzero. That path calls `memmove`, with original argument 4 as its
-  second argument and argument 3 shifted left two bits as its third
-  (`jalr` at 0x1668e68). Afterward the routine makes an indirect call with original arguments 0
-  through 3 in the first four argument registers (`jalr` at 0x1668eac). The target and routine's role are unknown.
+- `miBSFillPolygon..ODB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x163fd70
+  It loads words from `a1 (arg1 at entry) +0x44` and `a0 (arg0 at entry) +0x74` (`lw` at 0x163fd74, 0x163fd8c).
+  It stores words to `a1 (arg1 at entry) +0x48` and `a1 (arg1 at entry) +0x44` (`sw` at 0x163fddc, 0x163fdf0).
+  The `beq` at 0x163fe08 branches to 0x163ff8c when unknown `sp` is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x163fe08, the `bne` at 0x163fe20 branches to 0x163fef4 when `a3 != 0` and falls through when `a3 == 0`.
+  The `jalr` at 0x163ff08 calls `memmove` with `a0=unknown`, `a1=a5 at entry (arg5)`, `a2=(a4 << 0x2)`, `a3=a3 at entry (arg3)`, `a7=[[([a1+76] + ([0x173f728] << 0x2))]+16]` on the taken arm of `bne` at 0x163fe20.
+  The `jalr` at 0x163ff50 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x163fe08.
+  The `jalr` at 0x163ff78 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x163fe08.
+  It returns 0x1738d48 (`jr` at 0x163ffc4).
+- `miCreateBSPixmap..LFB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x166f6f0
+  It loads a word from `a0 (arg0 at entry) +0x74` (`lw` at 0x166f6fc).
+  It loads a byte from `[a0+116] +0x15` (`lbu` at 0x166f704).
+  The `beq` at 0x166f720 branches to 0x166f82c when `a6(=0x4) == v0(=[[a0+116]+21]:1)` and falls through when they differ.
+  The `beq` at 0x166f754 branches to 0x166f8b8 when `ra(=[[a0+116]]) == 0` and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x166f754 or the taken arm of `bne` at 0x166f8fc, it stores byte `0x5` to `[a0+116] +0x15` (`sb` at 0x166f768).
+  The `beq` at 0x166f870 branches to 0x166f7c4 when `v0(=ret(miBSClearBackingStore..IEB)) == 0` and falls through when it is nonzero.
+  The `jalr` at 0x166f748 calls (unknown callee) with `a0=[a0+116]+8`, `a1=a1 at entry (arg1)`, `a2=[a0+16]`, `a3=a3 at entry (arg3)`, `a5=0x3`, `a6=0x4`.
+  The `jalr` at 0x166f868 calls `miBSClearBackingStore..IEB` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x166f888 calls `miSendExposures` with `a0=a0 at entry (arg0)`, `a1=ret(miBSClearBackingStore..IEB)`, `a2=[a0+8]:2`, `a3=[a0+10]:2` on the fall-through of `beq` at 0x166f870.
+  The `jalr` at 0x166f898 calls (unknown callee) with `a0=ret(miBSClearBackingStore..IEB)`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x166f870.
+  The `jalr` at 0x166f8f0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=[a0+2]:1`, `a4=[ret(?)]:2`, `a5=[ret(?)+2]:2`, `a6=[ret(?)]:2` on the taken arm of `beq` at 0x166f754.
+  The `jalr` at 0x166f930 calls (unknown callee) with `a0=[a0+108]`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x166f7d8.
+  The `jalr` at 0x166f944 calls (unknown callee) with `a0=[[a0+116]+24]`, `a1=[[a0+116]+22]:1`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x166f808.
+  At 0x166f824 and 0x166f840, the return value is unknown (`jr` at 0x166f824, 0x166f840).
+- `miBSExposeCopy..MFB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16a03f0
+  A word is loaded from `a2 (arg2 at entry) +0x0` (`lw` at 0x16a040c).
+  The `beq` at 0x16a045c branches to 0x16a05a8 when `v0(=ret(unknown)) == 0` and falls through when `v0(=ret(unknown)) != 0`.
+  The `beq` at 0x16a0470 branches to 0x16a05a8 when `v0(=[[a0+116]+21]:1) == a0(=0x1)` and falls through when `v0(=[[a0+116]+21]:1) != a0(=0x1)`.
+  The `beq` at 0x16a0478 branches to 0x16a05ac when `v0(=[[a0+116]+21]:1) == t8(=0x4)` and falls through when `v0(=[[a0+116]+21]:1) != t8(=0x4)`.
+  The `beq` at 0x16a04e8 branches to 0x16a05dc when `s8(unknown) == 0` and falls through when `s8(unknown) != 0`.
+  The `beq` at 0x16a04f4 branches to 0x16a05e8 when `v0(=[[a0+116]+21]:1) == a1(=0x2)` and falls through when `v0(=[[a0+116]+21]:1) != a1(=0x2)`.
+  The `beq` at 0x16a0500 branches to 0x16a05e8 when `v0(=[[a0+116]+21]:1) == t9(=0x3)` and falls through when `v0(=[[a0+116]+21]:1) != t9(=0x3)`.
+  The `beq` at 0x16a0510 branches to 0x16a0680 when `a3(unknown) == 0` and falls through when `a3(unknown) != 0`.
+  The `beq` at 0x16a05f4 branches to 0x16a0598 when `v0(=ret(GetScratchGC)) == 0` and falls through when `v0(=ret(GetScratchGC)) != 0`.
+  The `jalr` at 0x16a043c calls (unknown callee) with `a0=a3 at entry (arg3)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`.
+  The `jalr` at 0x16a0490 calls (unknown callee) with `a0=sp-208`, `a1=0x0`, `a2=0x0`, `a3=unknown` on the fall-through of `beq` at 0x16a0478.
+  The `jalr` at 0x16a04a8 calls (unknown callee) with `a0=sp-208`, `a1=a3 at entry (arg3)`, `a2=[a0+116]+8`, `a3=unknown` on the fall-through of `beq` at 0x16a0478.
+  The `jalr` at 0x16a04c0 calls (unknown callee) with `a0=a3 at entry (arg3)`, `a1=a3 at entry (arg3)`, `a2=sp-208`, `a3=unknown` on the fall-through of `beq` at 0x16a0478.
+  The `jalr` at 0x16a0584 calls (unknown callee) with `a0=[[a0+116]]`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=unknown`.
+  The `jalr` at 0x16a05a0 calls (unknown callee) with `a0=sp-208`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x16a05ec calls `GetScratchGC` with `a0=[a1+2]:1`, `a1=[a1+16]`, `a2=0x5`, `a3=unknown`.
+  The `jalr` at 0x16a062c calls `CopyGC` with `a0=a2 at entry (arg2)`, `a1=ret(GetScratchGC)`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x16a0620.
+  The `jalr` at 0x16a0664 calls `miBSFillVirtualBits..KEB` with `a0=a1 at entry (arg1)`, `a1=ret(GetScratchGC)`, `a2=sp-208`, `a3=unknown`, `a5=[[a0+116]+22]:1`, `a6=([[a0+116]+24] << 0x20)`.
+  The `jalr` at 0x16a0670 calls `FreeScratchGC` with `a0=ret(GetScratchGC)`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The instructions from 0x16a05e4 to 0x16a05e4 are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x16a05d4).
+- `miCheckSubSaveUnder..OAB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x171f1c0
+  Words are loaded from `a0 (arg0 at entry) +0x24` and `+0x10` (`lw` at 0x171f1d4, 0x171f1d8).
+  A word is stored at `a0 (arg0 at entry) +0x7c` (`sw` at 0x171f3bc).
+  The `beq` at 0x171f1e4 branches to 0x171f334 when `s0(=[a0+36]) == 0` and falls through when `s0(=[a0+36]) != 0`.
+  The `bne` at 0x171f1ec branches to 0x171f21c when `s0(=[a0+36]) != a1` and falls through when `s0(=[a0+36]) == a1`.
+  The `beq` at 0x171f268 branches to 0x171f44c when `s3(=one of 0x0, 0x1) == 0` and falls through when `s3(=one of 0x0, 0x1) != 0`.
+  The `beq` at 0x171f2dc branches to 0x171f2f4 when `s3(=one of 0x0, 0x1) == 0` and falls through when `s3(=one of 0x0, 0x1) != 0`.
+  The `bltz` at 0x171f300 branches to 0x171f340 when `a7(=([a0+124] << 0x15)) < 0 (signed)` and falls through when `a7(=([a0+124] << 0x15)) >= 0 (signed)`.
+  The `bltz` at 0x171f30c branches to 0x171f3e0 when `t0(=([a0+124] << 0x7)) < 0 (signed)` and falls through when `t0(=([a0+124] << 0x7)) >= 0 (signed)`.
+  The `beq` at 0x171f370 branches to 0x171f414 when `v0(=ret(unknown)) == 0` and falls through when `v0(=ret(unknown)) != 0`.
+  The `beq` at 0x171f394 branches to 0x171f414 when `v0(=ret(unknown)) == 0` and falls through when `v0(=ret(unknown)) != 0`.
+  The `jalr` at 0x171f240 calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x171f278 calls (unknown callee) with `a0=sp-80`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x171f268.
+  The `bgezall` at 0x171f28c calls `miCheckSubSaveUnder..OAB` with `a0=unknown`, `a1=unknown`, `a2=sp-80`, `a3=unknown`.
+  The `jalr` at 0x171f2e8 calls (unknown callee) with `a0=sp-80`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a6=a0 at entry (arg0)`.
+  The `jalr` at 0x171f368 calls (unknown callee) with `a0=a0+84`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a5=[a0+124]`, `a6=[a0+104]`.
+  The `jalr` at 0x171f37c calls (unknown callee) with `a0=a0+84`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a5=a0 at entry (arg0)` on the fall-through of `beq` at 0x171f370.
+  The `jalr` at 0x171f38c calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=ret(?)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x171f3c4 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=0x40`, `a2=unknown`, `a3=unknown`, `a5=[a0+124]`, `a6=([a0+124] | 0x1000000)` on the fall-through of `bltz` at 0x171f3a8.
+  The `bgezall` at 0x171f420 calls `miCheckSubSaveUnder..OAB` with `a0=unknown`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=unknown` on the taken arm of `beq` at 0x171f260.
+  The `jalr` at 0x171f43c calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x171f458 calls (unknown callee) with `a0=sp-80`, `a1=0x0`, `a2=0x0`, `a3=unknown`.
+  The instructions from 0x171f208 to 0x171f20c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x171f410 to 0x171f410 are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x171f32c).
+- `miGetPlane..IBB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15655a0
+  It loads halfwords from `a0 (arg0 at entry) +0x8` and `a0 (arg0 at entry) +0xa` (`lh` at 0x15655c4, 0x15655d0).
+  The `bne` at 0x15655e4 branches to 0x156563c when `a6 != 0` and falls through when `a6 == 0`.
+  On the fall-through of `bne` at 0x15655e4, the `bne` at 0x1565614 branches to 0x156563c when `v0(=ret(Xalloc)) != 0` and falls through when it is zero.
+  The `blez` at 0x15656dc branches to 0x1565810 when `t3(=a5) <= 0` signed and falls through when it is positive.
+  The instructions from 0x156570c to 0x156570c are not reached by any path from the entry, and their branches are not listed.
+  The `jalr` at 0x1565608 calls `Xalloc` with `a0=unknown`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `bne` at 0x15655e4.
+  The `jalr` at 0x156566c calls `bzero` with `a0=unknown`, `a1=unknown`, `a2=[a0+3]:1`, `a3=unknown`, `a4=a5 at entry (arg5)`.
+  The `jalr` at 0x156573c calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=sp-164`, `a3=sp-172`, `a4=0x1`, `a5=sp-160`.
+  The `jalr` at 0x15657e8 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=sp-164`, `a3=sp-172`, `a4=0x1`.
+  On the fall-through of `bne` at 0x1565614, it returns 0x0 (`jr` at 0x1565634).
+- `cfb16UnnaturalTileFS` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1662bf0
+  It loads a word from a1 (arg1 at entry) +0x14 (`lw` at 0x1662c0c).
+  It loads a word from a1 (arg1 at entry) +0x4c (`lw` at 0x1662c34).
+  It loads a word from a1 (arg1 at entry) +0x20 (`lw` at 0x1662c38).
+  The branch is taken when t0(=[a1+20]) == 0 to 0x1662d50 and falls through when t0(=[a1+20]) != 0 (`beq` at 0x1662c2c).
+  The branch is taken when (v1(=[[a1+32]+12]:2) & 0x1) == 0 to 0x1662ddc and falls through when (v1(=[[a1+32]+12]:2) & 0x1) != 0 (`beq` at 0x1662c60).
+  The instructions from 0x1662c98 to 0x1662c9c are not reached by any path from the entry, and their branches are not listed.
+  The `jalr` at 0x1662d88 calls miClipSpans with a0=[[([a1+76] + ([0x173f524] << 0x2))]+8], a1=a3 at entry (arg3), a2=a4 at entry (arg4), a3=a2 at entry (arg2), a6=a5 at entry (arg5).
+  The `jalr` at 0x1662dcc calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(miClipSpans), a2=unknown, a3=unknown, a4=[a1+32], a5=([a0+8]:2 + [a1+40]:2), a6=([a0+10]:2 + [a1+42]:2), a7=[a1+5]:1.
+  The return value is unknown (`jr` at 0x1662d68).
+- `miResizeBackingStore..NEB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x163a040
+  A word is loaded from `a0 (arg0 at entry) +0x74` (`lw` at 0x163a050).
+  A word is loaded from `[a0+116] +0x0` (`lw` at 0x163a058).
+  The `beq` at 0x163a068 branches to 0x163a1cc when `s1(=[[a0+116]]) == 0` and falls through when `s1(=[[a0+116]]) != 0`.
+  The `bne` at 0x163a0b4 branches to 0x163a0c0 when `a1(unknown) != a4(=[[[a0+116]]+12]:2)` and falls through when `a1(unknown) == a4(=[[[a0+116]]+12]:2)`.
+  The `beq` at 0x163a0bc branches to 0x163a128 when `a2(unknown) == a7(=[[[a0+116]]+14]:2)` and falls through when `a2(unknown) != a7(=[[[a0+116]]+14]:2)`.
+  The `bne` at 0x163a0c8 branches to 0x163a1e4 when `a7(=a3) != 0` and falls through when `a7(=a3) == 0`.
+  The `beq` at 0x163a128 branches to 0x163a210 when `s0(unknown) == 0` and falls through when `s0(unknown) != 0`.
+  The `bne` at 0x163a198 branches to 0x163a21c when `v0(=ret(GetScratchGC)) != 0` and falls through when `v0(=ret(GetScratchGC)) == 0`.
+  The `bne` at 0x163a200 branches to 0x163a128 when `v0(=ret(unknown)) != 0` and falls through when `v0(=ret(unknown)) == 0`.
+  The `bne` at 0x163a208 branches to 0x163a12c when `v0(=ret(unknown)) != 0` and falls through when `v0(=ret(unknown)) == 0`.
+  The `jalr` at 0x163a080 calls (unknown callee) with `a0=[a0+116]+8`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x163a068.
+  The `jalr` at 0x163a100 calls (unknown callee) with `a0=[[a0+116]]`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x163a190 calls `GetScratchGC` with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x163a1f0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=[a0+2]:1`, `a4=[[[a0+116]]+12]:2`, `a5=[ret(?)]:2`, `a6=ret(?)`, `a7=a3 at entry (arg3)` on the taken arm of `bne` at 0x163a0c8.
+  The `jalr` at 0x163a224 calls `ValidateGC` with `a0=unknown`, `a1=ret(GetScratchGC)`, `a2=unknown`, `a3=unknown` on the taken arm of `bne` at 0x163a198.
+  The `jalr` at 0x163a25c calls (unknown callee) with `a0=[[a0+116]]`, `a1=unknown`, `a2=unknown`, `a3=0x0`, `a4=0x0`, `a5=[[[a0+116]]+12]:2`, `a6=[[[a0+116]]+14]:2` on the taken arm of `bne` at 0x163a198.
+  The `jalr` at 0x163a268 calls `FreeScratchGC` with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `bne` at 0x163a198.
+  The return value is unknown (`jr` at 0x163a1dc).
+- `cfbGetImage` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15f4200
+  It loads a byte from a0 (arg0 at entry) +0x3 (`lbu` at 0x15f4238).
+  A word comes from a0 (arg0 at entry) +0x10 (`lw` at 0x15f4244).
+  The branch is taken when a3 == 0 to 0x15f428c and falls through when a3 != 0 (`beq` at 0x15f4228).
+  The branch is taken when a4 == 0 to 0x15f428c and falls through when a4 != 0 (`beq` at 0x15f4230).
+  The branch is taken when a4(=[a0+3]:1) == at(=0x1) to 0x15f4430 and falls through when a4(=[a0+3]:1) != at(=0x1) (`beq` at 0x15f4240).
+  The branch is taken when a5 == t2(=0x2) to 0x15f4330 and falls through when a5 != t2(=0x2) (`beq` at 0x15f4250).
+  The `jalr` at 0x15f427c calls GetScratchPixmapHeader with a0=[a0+16], a1=a3 at entry (arg3), a2=a4 at entry (arg4), a3=0x1, a4=0x1, a6=a7 at entry (arg7).
+  The `jalr` at 0x15f42e4 calls (unknown callee) with a0=sp-112, a1=sp-120, a2=0x1, a3=unknown, a7=([a0+10]:2 + a2).
+  The `jalr` at 0x15f4308 calls cfbCopyPlane8to1 with a0=a0 at entry (arg0), a1=unknown, a2=0x3, a3=sp-112, a4=sp-128, a5=-0x1.
+  The `jalr` at 0x15f4314 calls (unknown callee) with a0=sp-112, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15f4320 calls FreeScratchPixmapHeader with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15f4374 calls GetScratchPixmapHeader with a0=[a0+16], a1=a3 at entry (arg3), a2=a4 at entry (arg4), a3=[a0+2]:1, a4=[a0+3]:1, a6=a7 at entry (arg7).
+  The `jalr` at 0x15f43a8 calls bzero with a0=a7 at entry (arg7), a1=unknown, a2=unknown, a3=unknown, a4=0xff, a5=[ret(GetScratchPixmapHeader)+28].
+  The `jalr` at 0x15f43ec calls (unknown callee) with a0=sp-112, a1=sp-120, a2=0x1, a3=unknown, a6=([a0+10]:2 + a2), a7=a2 at entry (arg2).
+  The `jalr` at 0x15f4408 calls cfbDoBitblt with a0=a0 at entry (arg0), a1=unknown, a2=sp-112, a3=sp-128, a4=a6 at entry (arg6).
+  The `jalr` at 0x15f4414 calls (unknown callee) with a0=sp-112, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15f4420 calls FreeScratchPixmapHeader with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15f4434 calls mfbGetImage with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The return value is unknown (`jr` at 0x15f42a0).
+- `miBSPolyPoint..JDB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1668cd0
+  It loads a word from `a0 (arg0 at entry) +0x74` (`lw` at 0x1668cec).
+  It stores words to `a1 (arg1 at entry) +0x48` and `a1 (arg1 at entry) +0x44` (`sw` at 0x1668d38, 0x1668d4c).
+  The `beq` at 0x1668d64 branches to 0x1668ee0 when the unknown value in `sp` is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x1668d64, the `bne` at 0x1668d78 branches to 0x1668e54 when `a2 != 0` and falls through when `a2 == 0`.
+  The `jalr` at 0x1668e68 calls `memmove` with `a0=unknown`, `a1=a4 at entry (arg4)`, `a2=(a3 << 0x2)`, `a3=a3 at entry (arg3)`, `a6=[[([a1+76] + ([0x173f728] << 0x2))]+16]`, `a7=a4 at entry (arg4)` on the taken arm of `bne` at 0x1668d78.
+  The `jalr` at 0x1668eac calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x1668d64.
+  The `jalr` at 0x1668ed0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x1668d64.
+  It returns 0x1738d48 (`jr` at 0x1668f18).
 - `miBSPolylines..KDB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16cd670):
   **Established.** It saves the word at argument 1 + 0x44 (`lw` at
   0x16cd6ac) and replaces that location with a word from an indexed
@@ -3835,71 +3905,91 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   A subsequent path calls two unresolved indirect targets (`jalr` at
   0x16cd84c, `jalr` at 0x16cd870), then puts the saved word back at
   argument 1 + 0x44 (`sw` at 0x16cd8a0). Role unknown.
-- `miBSAllocate..LEB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1632d30):
-  **Established.** The 6.5.30m N32 routine reads a byte through the first
-  argument's +0x10 pointer at offset +0x24 (`lw` at 0x1632d30, `lbu` at
-  0x1632d38). The `beqz` at 0x1632d48 takes the return path when that byte
-  is zero. Otherwise `beqz` at 0x1632d58 selects an allocation path if the
-  first argument's +0x74 word is zero (`lw` at 0x1632d50). That path calls
-  `Xalloc` with 0x1c bytes (`jalr` at 0x1632f50); `beqz` at 0x1632f58
-  returns when the allocation result is zero.
-
-  Other calls include `miTileVirtualBS..KFB` and `miSendExposures` (`jalr`
-  at 0x1632f24, `jalr` at 0x1632f3c). The first argument of each is the
-  routine's original argument (`jalr` at 0x1632f24, `jalr` at 0x1632f3c).
-  The routine's role and these calls' hardware effects are unknown.
-- `miRectsToRegion` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16cbab0):
-  **Established.** The 6.5.30m N32 function first calls `miRegionCreate`
-  with zero in its first two argument registers (`jalr` at 0x16cbae8). The
-  `beqz` at 0x16cbaf8 takes a path returning that call's result when the
-  original first argument is zero (`jr` at 0x16cbd40). Otherwise the `bne`
-  at 0x16cbb00 selects a separate path when the original first argument is
-  not 1.
-
-  One path reads signed halfwords at second argument +0 and +2 and unsigned
-  halfwords at +4 and +6 (`lh` at 0x16cbb0c, `lh` at 0x16cbb28, `lhu` at
-  0x16cbb08, `lhu` at 0x16cbb1c). Other calls include `Xalloc` and
-  `miRegionValidate` (`jalr` at 0x16cbb8c, `jalr` at 0x16cbc60). Their
-  hardware effects and the role of this routine are unknown.
-- `miBSPolyArc..NDB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x160c080):
-  **Established.** The 6.5.30m N32 code reads the second argument's +0x4c
-  word (`lw` at 0x160c0b4) and uses an index to select an object (`lw` at
-  0x160c0b0, `lw` at 0x160c0c8). It copies that object's +0x10 and +0x14
-  words to second argument +0x48 and +0x44 respectively (`lw` at
-  0x160c0e8, `sw` at 0x160c0f4, `lw` at 0x160c100, `sw` at 0x160c108).
-
-  A `blez` at 0x160c140 takes a separate path when the original third
-  argument is nonpositive, interpreted as signed. The routine's indirect
-  calls include one that receives the original first four arguments
-  (`jalr` at 0x160c25c). The facts tool does not identify its target, and
-  its hardware effects and this routine's role are unknown.
-- `miBSPolyFillArc..AEB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x163bcf0):
-  **Established.** In the 6.5.30m N32 body, the second argument's +0x4c
-  array is indexed by a separately loaded value to select an object (`lw`
-  at 0x163bd24, `lw` at 0x163bd20, `lw` at 0x163bd38). The routine writes
-  that object's +0x10 word to second argument +0x48 (`lw` at 0x163bd58,
-  `sw` at 0x163bd64) and its +0x14 word to second argument +0x44 (`lw` at
-  0x163bd70, `sw` at 0x163bd78).
-
-  The `blez` at 0x163bdb0 takes a separate path for a signed nonpositive
-  third argument. An indirect call on that path receives the original first
-  four entry arguments (`jalr` at 0x163becc). Its target and hardware
-  effects and the routine's role are unknown.
-- `miUnion` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15c0cc0):
-  **Established.** The 6.5.30m N32 routine's `beq` at 0x15c0cec selects a
-  call to `miRegionCopy` when the second and third entry arguments are
-  equal (`jalr` at 0x15c0ee0). Otherwise it reads the word at +8 of the
-  second argument (`lw` at 0x15c0cf4). If that pointer is nonzero, the
-  `beqz` at 0x15c0cf8 falls through to read the word at +4 through it
-  (`lw` at 0x15c0d00). The `beqz` at 0x15c0d04 takes a separate path if
-  that word is zero.
-
-  Other calls include `miRegionOp..IAB` with the original first three
-  arguments (`jalr` at 0x15c0db0). The routine also stores halfwords through
-  its first argument on one path (`sh` at 0x15c0dd0, `sh` at 0x15c0de4,
-  `sh` at 0x15c0e00, `sh` at 0x15c0e20). The role and hardware effects
-  of this routine are unknown.
-
+- `miBSAllocate..LEB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1632d30
+  A word is read from `a0 (arg0 at entry) +0x10` (`lw` at 0x1632d30).
+  A byte is read from `[a0+16] +0x24` (`lbu` at 0x1632d38).
+  It loads a word from `a0 (arg0 at entry) +0x74` (`lw` at 0x1632d50).
+  A zero word is stored through an unknown base (`sw` at 0x1632dd8).
+  On the taken arm of `bltz` at 0x1632f18, the value 0x3 is stored as a byte through an unknown base (`sb` at 0x1632fec).
+  The `beq` at 0x1632d48 branches to 0x1632e20 when `at(=[[a0+16]+36]:1) == 0` and falls through when `at(=[[a0+16]+36]:1) != 0`.
+  The `beq` at 0x1632d58 branches to 0x1632f4c when `v1(=[a0+116]) == 0` and falls through when `v1(=[a0+116]) != 0`.
+  The `bltz` at 0x1632d74 branches to 0x1632e24 when `a2(=([a0+124] << 0x15)) < 0 (signed)` and falls through when `a2(=([a0+124] << 0x15)) >= 0 (signed)`.
+  The `beq` at 0x1632dd4 branches to 0x1632fb8 when `at(unknown) == v0(=0x3)` and falls through when `at(unknown) != v0(=0x3)`.
+  The `bltz` at 0x1632f18 branches to 0x1632fe4 when `ra(=([a0+124] << 0x15)) < 0 (signed)` and falls through when `ra(=([a0+124] << 0x15)) >= 0 (signed)`.
+  The `beq` at 0x1632f58 branches to 0x1632e20 when `v0(=ret(Xalloc)) == 0` and falls through when `v0(=ret(Xalloc)) != 0`.
+  The `jalr` at 0x1632d90 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=([a0+124] << 0x15)`, `a3=unknown`.
+  The `jalr` at 0x1632db8 calls (unknown callee) with `a0=[[a0+116]]`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1632e98 calls (unknown callee) with `a0=unknown`, `a1=a0+44`, `a2=sp-80`, `a3=unknown`, `a5=0x2`, `a6=([a0+124] << 0x15)`.
+  The `jalr` at 0x1632eb8 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1632ee0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=[[a0+120]+40]`, `a3=unknown`.
+  The `jalr` at 0x1632f08 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=[[a0+120]+44]`, `a3=unknown`.
+  The `jalr` at 0x1632f24 calls `miTileVirtualBS..KFB` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1632f3c calls `miSendExposures` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=0x0`, `a3=0x0`.
+  The `jalr` at 0x1632f50 calls `Xalloc` with `a0=0x1c`, `a1=[a0+16]`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x1632d58.
+  The `jalr` at 0x1632f84 calls (unknown callee) with `a0=ret(Xalloc)+8`, `a1=0x0`, `a2=0x1`, `a3=unknown`, `a5=ret(Xalloc)` on the fall-through of `beq` at 0x1632f58.
+  The `jalr` at 0x1632fc4 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x1632dd4.
+  The v0 return is unknown at both return sites (`jr` at 0x1632e18, 0x1632e2c).
+- `miRectsToRegion` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16cbab0
+  The `jalr` at 0x16cbae8 calls `miRegionCreate [0x15c9160]` with a0=0x0, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  `beq` at 0x16cbaf8 is taken to 0x16cbd2c when entry a0 is zero and falls through when it is nonzero (`beq` at 0x16cbaf8).
+  On the fall-through of `beq` at 0x16cbaf8, `bne` at 0x16cbb00 is taken to 0x16cbb7c when entry a0 differs from 0x1 and falls through when equal (`bne` at 0x16cbb00).
+  On the fall-through of `bne` at 0x16cbb00, halfwords are read from entry a1 +0x4, +0x0 and +0x6 (`lhu` at 0x16cbb08; `lh` at 0x16cbb0c; `lhu` at 0x16cbb1c).
+  On that path, `beq` at 0x16cbb3c is taken to 0x16cbb6c when unknown a2 equals [a1]:2 and falls through when they differ (`beq` at 0x16cbb3c).
+  On the fall-through of `beq` at 0x16cbb3c, `beq` at 0x16cbb50 is taken to 0x16cbb6c when unknown a5 equals [a1+2]:2 and falls through when they differ (`beq` at 0x16cbb50).
+  On the fall-through of `beq` at 0x16cbb50, a word 0x0 is stored at ret(miRegionCreate) +0x8 (`sw` at 0x16cbb58).
+  On that path, four halfword stores to ret(miRegionCreate) include +0x6, +0x4 and +0x2 (`sh` at 0x16cbb5c, 0x16cbb60, 0x16cbb64).
+  The `jalr` at 0x16cbb8c calls `Xalloc` with a0=(a0 << 0x3)+8, a1=0x7fff, a2=unknown, a3=unknown, a4=0x1, a5=sym(Must_have_memory) on the taken path of `bne` at 0x16cbb00.
+  Its delay slot stores 0x1 as a word at sym(Must_have_memory) +0x0 (`sw` at 0x16cbb90).
+  On the taken path of `bne` at 0x16cbb00, `blez` at 0x16cbbac is taken to 0x16cbc28 when entry a0 is at most zero signed and falls through when it is greater than zero (`blez` at 0x16cbbac).
+  On paths reaching `beq` at 0x16cbc28, it is taken to 0x16cbd48 when unknown t9 equals ret(Xalloc)+8 and falls through when they differ (`beq` at 0x16cbc28).
+  The `jalr` at 0x16cbd4c calls `Xfree` with a0=ret(Xalloc), a1=unknown, a2=ret(Xalloc)+8, a3=unknown on the taken path of `beq` at 0x16cbc28.
+  On the fall-through of `beq` at 0x16cbc28, `beq` at 0x16cbc48 is taken to 0x16cbc88 when entry a2 equals 0x12 and falls through when it differs (`beq` at 0x16cbc48).
+  The `jalr` at 0x16cbc60 calls `miRegionValidate [0x16024c0]` with a0=ret(miRegionCreate), a1=sp-112, a2=ret(Xalloc)+8, a3=unknown on the fall-through of `beq` at 0x16cbc48.
+  The instructions from 0x16cbcd8 to 0x16cbcdc are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is ret(miRegionCreate) (`jr` at 0x16cbb74, 0x16cbc80, 0x16cbd40).
+- `miBSPolyArc..NDB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x160c080
+  A word is read from `a0 (arg0 at entry) +0x74` (`lw` at 0x160c098).
+  A word is read from `a1 (arg1 at entry) +0x4c` (`lw` at 0x160c0b4).
+  Words are stored at `a1 (arg1 at entry) +0x48` and `+0x44` (`sw` at 0x160c0f4, 0x160c108).
+  On the fall-through of `beq` at 0x160c120, words are stored at `a1 (arg1 at entry) +0x48` and `+0x44` (`sw` at 0x160c29c, 0x160c2a0).
+  The `beq` at 0x160c120 branches to 0x160c2c4 when `sp(unknown) == 0` and falls through when `sp(unknown) != 0`.
+  The `blez` at 0x160c140 branches to 0x160c24c when `s1(=a2) <= 0 (signed)` and falls through when `s1(=a2) > 0 (signed)`.
+  The `bne` at 0x160c148 branches to 0x160c308 when `t1(unknown) != 0` and falls through when `t1(unknown) == 0`.
+  The `jalr` at 0x160c25c calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a7=a0 at entry (arg0)` on the fall-through of `beq` at 0x160c120.
+  The `jalr` at 0x160c27c calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=unknown` on the fall-through of `beq` at 0x160c120.
+  The return values include 0x1738d48 and an unknown value (`jr` at 0x160c2bc, 0x160c2f4).
+- `miBSPolyFillArc..AEB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x163bcf0
+  A word is read from `a0 (arg0 at entry) +0x74` (`lw` at 0x163bd08).
+  A word is read from `a1 (arg1 at entry) +0x4c` (`lw` at 0x163bd24).
+  Words are stored at `a1 (arg1 at entry) +0x48` and `+0x44` (`sw` at 0x163bd64, 0x163bd78).
+  On the fall-through of `beq` at 0x163bd90, words are stored at `a1 (arg1 at entry) +0x48` and `+0x44` (`sw` at 0x163bf0c, 0x163bf10).
+  The `beq` at 0x163bd90 branches to 0x163bf34 when `sp(unknown) == 0` and falls through when `sp(unknown) != 0`.
+  The `blez` at 0x163bdb0 branches to 0x163bebc when `s1(=a2) <= 0 (signed)` and falls through when `s1(=a2) > 0 (signed)`.
+  The `bne` at 0x163bdb8 branches to 0x163bf78 when `t1(unknown) != 0` and falls through when `t1(unknown) == 0`.
+  The `jalr` at 0x163becc calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a7=a0 at entry (arg0)` on the fall-through of `beq` at 0x163bd90.
+  The `jalr` at 0x163beec calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=unknown` on the fall-through of `beq` at 0x163bd90.
+  The return values include 0x1738d48 and an unknown value (`jr` at 0x163bf2c, 0x163bf64).
+- `miUnion` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15c0cc0
+  A word is loaded from `a1 (arg1 at entry) +0x8` (`lw` at 0x15c0cf4).
+  Another word is loaded from `a2 (arg2 at entry) +0x8` (`lw` at 0x15c0d0c).
+  On the fall-through of `beq` at 0x15c0db8, halfwords are stored to `a0 (arg0 at entry) +0x0`, `+0x2`, `+0x4` and `+0x6` (`sh` at 0x15c0dd0, 0x15c0de4, 0x15c0e00, 0x15c0e20).
+  The `beq` at 0x15c0cec branches to 0x15c0edc when `a1 == a2` and falls through when `a1 != a2`.
+  The `beq` at 0x15c0cf8 branches to 0x15c0d0c when `v0(=[a1+8]) == 0` and falls through when `v0(=[a1+8]) != 0`.
+  The `beq` at 0x15c0d04 branches to 0x15c0e44 when `v1(=[[a1+8]+4]) == 0` and falls through when `v1(=[[a1+8]+4]) != 0`.
+  The `beq` at 0x15c0d10 branches to 0x15c0d24 when `a0(=[a2+8]) == 0` and falls through when `a0(=[a2+8]) != 0`.
+  The `beq` at 0x15c0d1c branches to 0x15c0ec4 when `a1(=[[a2+8]+4]) == 0` and falls through when `a1(=[[a2+8]+4]) != 0`.
+  The `bne` at 0x15c0d80 branches to 0x15c0f48 when `s2(=a0) != s1(=a2)` and falls through when `s2(=a0) == s1(=a2)`.
+  The `beq` at 0x15c0db8 branches to 0x15c0ef8 when `v0(=ret(miRegionOp..IAB)) == 0` and falls through when `v0(=ret(miRegionOp..IAB)) != 0`.
+  The `bne` at 0x15c0e44 branches to 0x15c0f0c when `a0 != a2` and falls through when `a0 == a2`.
+  The `bne` at 0x15c0ec4 branches to 0x15c0f28 when `s2(=a0) != s0(=a1)` and falls through when `s2(=a0) == s0(=a1)`.
+  The `bne` at 0x15c0eac branches to 0x15c0f68 when `s2(=a0) != s0(=a1)` and falls through when `s2(=a0) == s0(=a1)`.
+  The `jalr` at 0x15c0db0 calls `miRegionOp..IAB` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=0x16c0420`, `a4=0x1`, `a5=0x1`, `a6=sp-48`.
+  The `jalr` at 0x15c0ee0 calls `miRegionCopy` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x15c0cec.
+  The `jalr` at 0x15c0f10 calls `miRegionCopy` with `a0=a0 at entry (arg0)`, `a1=a2 at entry (arg2)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `bne` at 0x15c0e44.
+  The `jalr` at 0x15c0f30 calls `miRegionCopy` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `bne` at 0x15c0ec4.
+  The `jalr` at 0x15c0f50 calls `miRegionCopy` with `a0=a0 at entry (arg0)`, `a1=a2 at entry (arg2)`, `a2=[a2+2]:2`, `a3=unknown`, `a4=[a2]:2`, `a5=[a1+2]:2`, `a7=[a1+4]:2` on the taken arm of `bne` at 0x15c0d80.
+  The `jalr` at 0x15c0f70 calls `miRegionCopy` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=[a1+2]:2`, `a3=a3 at entry (arg3)`, `a5=[a2+2]:2` on the taken arm of `bne` at 0x15c0eac.
+  The return values include 0x1 and an unknown value (`jr` at 0x15c0e28, 0x15c0e3c, 0x15c0e5c).
 ## X image, span and screen initialization routines
 
 - `miComputeCompositeClip` (`usr/lib/X11/dyDDX/odyssey.so`, 716 bytes):
