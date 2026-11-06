@@ -25167,3 +25167,1512 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Its call delay slot stores that loaded doubleword at 0x1ad8 (`sd` at 0x3364820).
   It restores the original doubleword at 0x1ad8 (`sd` at 0x336482c).
   It returns the call result in v0 (`jr` at 0x3364834).
+
+- `__glSPInterpret` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33681a4
+  It loads doublewords from entry a0 +0x0 and +0x8 (`ld` at 0x33681b4, 0x33681b8).
+  The `jalr` at 0x33681bc calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `jalr` at 0x33681d0 calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `jalr` at 0x33681e4 calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `jalr` at 0x33681f8 calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `jalr` at 0x336820c calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `jalr` at 0x3368220 calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `jalr` at 0x3368234 calls (unknown callee) with a0 = unknown, a1 = unknown, a2 = unknown and a3 = unknown.
+  The `beq` at 0x3368244 is always taken to 0x33681bc; its delay slot loads a doubleword from an unknown base (`ld` at 0x3368248).
+
+- `__glsple_Sentinel` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x336824c
+  It returns with v0 unknown (`jr` at 0x3368258).
+
+- `glEdgeFlagv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x10e0 (`ld` at 0x33682d8).
+  The `jr` at 0x33682dc calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glEnd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x10e8 (`ld` at 0x33682e4).
+  The `jr` at 0x33682e8 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glRasterPos2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1e40 (`ld` at 0x33682f0).
+  The `jr` at 0x33682f4 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glRasterPos2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1e48 (`ld` at 0x33682fc).
+  The `jr` at 0x3368300 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glRasterPos2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1e50 (`ld` at 0x3368308).
+  The `jr` at 0x336830c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glRasterPos2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1e58 (`ld` at 0x3368314).
+  The `jr` at 0x3368318 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+
+- `glRasterPos2i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1e60 (`ld` at 0x3368320).
+  The `jr` at 0x3368324 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+
+- `glRasterPos2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1e68 (`ld` at 0x336832c).
+  The `jr` at 0x3368330 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+
+- `glRasterPos2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1e70 (`ld` at 0x3368338).
+  The `jr` at 0x336833c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+
+- `glRasterPos2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x1e78 (`ld` at 0x3368344).
+  The `jr` at 0x3368348 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+
+- `glRasterPos3d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1e80 into t9 (`ld` at 0x3368350).
+  The `jr` at 0x3368354 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos3dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1e88 into t9 (`ld` at 0x336835c).
+  The `jr` at 0x3368360 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos3f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1e90 into t9 (`ld` at 0x3368368).
+  The `jr` at 0x336836c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos3fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1e98 into t9 (`ld` at 0x3368374).
+  The `jr` at 0x3368378 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos3i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1ea0 into t9 (`ld` at 0x3368380).
+  The `jr` at 0x3368384 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glNewList` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1090 into t9 (`ld` at 0x3368260).
+  The `jr` at 0x3368264 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEndList` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The absolute address 0x1098 supplies a doubleword to t9 (`ld` at 0x336826c).
+  The `jr` at 0x3368270 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glCallList` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives a doubleword from absolute 0x10a0 (`ld` at 0x3368278).
+  The `jr` at 0x336827c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glCallLists` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x10a8, a doubleword is read into t9 (`ld` at 0x3368284).
+  The `jr` at 0x3368288 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glDeleteLists` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A load into t9 reads the doubleword at absolute 0x10b0 (`ld` at 0x3368290).
+  The `jr` at 0x3368294 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGenLists` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load places a doubleword from absolute 0x10b8 in t9 (`ld` at 0x336829c).
+  The `jr` at 0x33682a0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glListBase` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x10c0, a doubleword is read into t9 (`ld` at 0x33682a8).
+  The `jr` at 0x33682ac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glBegin` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads t9 with a doubleword from absolute 0x10c8 (`ld` at 0x33682b4).
+  The `jr` at 0x33682b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glBitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword from absolute 0x10d0 is loaded into t9 (`ld` at 0x33682c0).
+  The `jr` at 0x33682c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEdgeFlag` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads a doubleword at absolute 0x10d8 into t9 (`ld` at 0x33682cc).
+  The `jr` at 0x33682d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRasterPos3iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1ea8 into t9 (`ld` at 0x336838c).
+  The `jr` at 0x3368390 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos3s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1eb0 into t9 (`ld` at 0x3368398).
+  The `jr` at 0x336839c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos3sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1eb8 into t9 (`ld` at 0x33683a4).
+  The `jr` at 0x33683a8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos4d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1ec0 into t9 (`ld` at 0x33683b0).
+  The `jr` at 0x33683b4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos4dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1ec8 into t9 (`ld` at 0x33683bc).
+  The `jr` at 0x33683c0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRasterPos4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1ed0 into t9 (`ld` at 0x33683c8).
+  The `jr` at 0x33683cc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRasterPos4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x1ed8 is loaded into t9 (`ld` at 0x33683d4).
+  The `jr` at 0x33683d8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRasterPos4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load into t9 reads a doubleword at absolute 0x1ee0 (`ld` at 0x33683e0).
+  The `jr` at 0x33683e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRasterPos4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x1ee8, a doubleword is read into t9 (`ld` at 0x33683ec).
+  The `jr` at 0x33683f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRasterPos4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives a doubleword from absolute 0x1ef0 (`ld` at 0x33683f8).
+  The `jr` at 0x33683fc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRasterPos4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads the doubleword at absolute 0x1ef8 into t9 (`ld` at 0x3368404).
+  The `jr` at 0x3368408 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRectdv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The absolute address 0x1f08 supplies a doubleword to t9 (`ld` at 0x336841c).
+  The `jr` at 0x3368420 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRectfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x1f18, a doubleword is loaded into t9 (`ld` at 0x3368434).
+  The `jr` at 0x3368438 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRecti` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The t9 register receives a doubleword from absolute 0x1f20 (`ld` at 0x3368440).
+  The `jr` at 0x3368444 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRectiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword read from absolute 0x1f28 sets t9 (`ld` at 0x336844c).
+  The `jr` at 0x3368450 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glRects` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1f30 (`ld` at 0x3368458).
+  The `jr` at 0x336845c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glRectsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x1f38 (`ld` at 0x3368464).
+  The `jr` at 0x3368468 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glCullFace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1100 (`ld` at 0x3368488).
+  The `jr` at 0x336848c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glFogf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1108 (`ld` at 0x3368494).
+  The `jr` at 0x3368498 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glFogfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1110 (`ld` at 0x33684a0).
+  The `jr` at 0x33684a4 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glFogi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1118 (`ld` at 0x33684ac).
+  The `jr` at 0x33684b0 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glFogiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1120 (`ld` at 0x33684b8).
+  The `jr` at 0x33684bc calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glFrontFace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1128 (`ld` at 0x33684c4).
+  The `jr` at 0x33684c8 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glHint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1130 (`ld` at 0x33684d0).
+  The `jr` at 0x33684d4 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glLineStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x1178 (`ld` at 0x336853c).
+  The `jr` at 0x3368540 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glLineWidth` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1180 into t9 (`ld` at 0x3368548).
+  The `jr` at 0x336854c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glPointSize` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x11a8 into t9 (`ld` at 0x3368584).
+  The `jr` at 0x3368588 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glPolygonMode` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x11b0 into t9 (`ld` at 0x3368590).
+  The `jr` at 0x3368594 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glPolygonStipple` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x11b8 into t9 (`ld` at 0x336859c).
+  The `jr` at 0x33685a0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glShadeModel` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x11c8 into t9 (`ld` at 0x33685b4).
+  The `jr` at 0x33685b8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glInitNames` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1268 into t9 (`ld` at 0x33686a4).
+  The `jr` at 0x33686a8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glLoadName` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1270 into t9 (`ld` at 0x33686b0).
+  The `jr` at 0x33686b4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glPassThrough` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1278 into t9 (`ld` at 0x33686bc).
+  The `jr` at 0x33686c0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glPopName` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1280 into t9 (`ld` at 0x33686c8).
+  The `jr` at 0x33686cc calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glPushName` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1288 into t9 (`ld` at 0x33686d4).
+  The `jr` at 0x33686d8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glColorMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load reads a doubleword at absolute 0x12d0 into t9 (`ld` at 0x3368740).
+  The `jr` at 0x3368744 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glIndexMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At the absolute address 0x12e0, a doubleword is loaded into t9 (`ld` at 0x3368758).
+  The `jr` at 0x336875c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glAccum` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives the doubleword at absolute 0x12e8 (`ld` at 0x3368764).
+  The `jr` at 0x3368768 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glDisable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword at absolute 0x12f0 is loaded into t9 (`ld` at 0x3368770).
+  The `jr` at 0x3368774 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEnable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword load uses absolute 0x12f8 and writes t9 (`ld` at 0x336877c).
+  The `jr` at 0x3368780 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFinish` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads t9 as a doubleword from absolute 0x1300 (`ld` at 0x3368788).
+  The `jr` at 0x336878c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPopAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x1310 is loaded into t9 (`ld` at 0x33687a0).
+  The `jr` at 0x33687a4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPushAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x1318, a doubleword load supplies t9 (`ld` at 0x33687ac).
+  The `jr` at 0x33687b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glMap1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads a doubleword at absolute 0x1320 into t9 (`ld` at 0x33687b8).
+  The `jr` at 0x33687bc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glMap1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives the doubleword loaded from absolute 0x1328 (`ld` at 0x33687c4).
+  The `jr` at 0x33687c8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEvalCoord2d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1380 into t9 (`ld` at 0x3368848).
+  The `jr` at 0x336884c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glEvalCoord2dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1388 into t9 (`ld` at 0x3368854).
+  The `jr` at 0x3368858 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glEvalCoord2f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1390 into t9 (`ld` at 0x3368860).
+  The `jr` at 0x3368864 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glEvalCoord2fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1398 into t9 (`ld` at 0x336886c).
+  The `jr` at 0x3368870 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glEvalMesh1` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x13a0 into t9 (`ld` at 0x3368878).
+  The `jr` at 0x336887c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glMap2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1330 (`ld` at 0x33687d0).
+  The `jr` at 0x33687d4 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glMap2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x1338 (`ld` at 0x33687dc).
+  The `jr` at 0x33687e0 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glMapGrid1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1340 (`ld` at 0x33687e8).
+  The `jr` at 0x33687ec calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glMapGrid1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1348 (`ld` at 0x33687f4).
+  The `jr` at 0x33687f8 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glMapGrid2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1350 (`ld` at 0x3368800).
+  The `jr` at 0x3368804 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glMapGrid2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1358 (`ld` at 0x336880c).
+  The `jr` at 0x3368810 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEvalCoord1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1360 (`ld` at 0x3368818).
+  The `jr` at 0x336881c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEvalCoord1dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1368 (`ld` at 0x3368824).
+  The `jr` at 0x3368828 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEvalCoord1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1370 (`ld` at 0x3368830).
+  The `jr` at 0x3368834 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEvalCoord1fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x1378 (`ld` at 0x336883c).
+  The `jr` at 0x3368840 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEvalPoint1` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x13a8 into t9 (`ld` at 0x3368884).
+  The `jr` at 0x3368888 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glEvalMesh2` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x13b0 into t9 (`ld` at 0x3368890).
+  The `jr` at 0x3368894 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glEvalPoint2` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x13b8 into t9 (`ld` at 0x336889c).
+  The `jr` at 0x33688a0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glAlphaFunc` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x13c0 into t9 (`ld` at 0x33688a8).
+  The `jr` at 0x33688ac calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glLogicOp` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x13d0 into t9 (`ld` at 0x33688c0).
+  The `jr` at 0x33688c4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glGetBooleanv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1450 into t9 (`ld` at 0x3368980).
+  The `jr` at 0x3368984 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetDoublev` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x1460 is loaded into t9 (`ld` at 0x3368998).
+  The `jr` at 0x336899c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetError` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load into t9 reads a doubleword at absolute 0x1468 (`ld` at 0x33689a4).
+  The `jr` at 0x33689a8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetFloatv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Absolute 0x1470 supplies a doubleword to t9 (`ld` at 0x33689b0).
+  The `jr` at 0x33689b4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetIntegerv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine reads a doubleword at absolute 0x1478 into t9 (`ld` at 0x33689bc).
+  The `jr` at 0x33689c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetMapdv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The t9 register receives a doubleword from absolute 0x1490 (`ld` at 0x33689e0).
+  The `jr` at 0x33689e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Absolute 0x1498 supplies a doubleword to t9 (`ld` at 0x33689ec).
+  The `jr` at 0x33689f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetMapiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load reads a doubleword at absolute 0x14a0 into t9 (`ld` at 0x33689f8).
+  The `jr` at 0x33689fc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetPolygonStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x14d0, the routine reads a doubleword into t9 (`ld` at 0x3368a40).
+  The `jr` at 0x3368a44 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetString` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x14d8 is loaded into t9 (`ld` at 0x3368a4c).
+  The `jr` at 0x3368a50 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glLoadIdentity` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1550 (`ld` at 0x3368b00).
+  The `jr` at 0x3368b04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3, as a tail call.
+
+- `glMatrixMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1568 (`ld` at 0x3368b24).
+  The `jr` at 0x3368b28 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3, as a tail call.
+
+- `glMultMatrixf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1570 (`ld` at 0x3368b30).
+  The `jr` at 0x3368b34 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3, as a tail call.
+
+- `glMultMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1578 (`ld` at 0x3368b3c).
+  The `jr` at 0x3368b40 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3, as a tail call.
+
+- `glOrtho` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x1580 (`ld` at 0x3368b48).
+  The `jr` at 0x3368b4c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3, as a tail call.
+
+- `glGetTexLevelParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1520 (`ld` at 0x3368ab8).
+  The `jr` at 0x3368abc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetTexLevelParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x1528 (`ld` at 0x3368ac4).
+  The `jr` at 0x3368ac8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glIsEnabled` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1530 (`ld` at 0x3368ad0).
+  The `jr` at 0x3368ad4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glIsList` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1538 (`ld` at 0x3368adc).
+  The `jr` at 0x3368ae0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFrustum` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1548 (`ld` at 0x3368af4).
+  The `jr` at 0x3368af8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPopMatrix` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1588 into t9 (`ld` at 0x3368b54).
+  The `jr` at 0x3368b58 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glPushMatrix` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1590 into t9 (`ld` at 0x3368b60).
+  The `jr` at 0x3368b64 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRotated` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1598 into t9 (`ld` at 0x3368b6c).
+  The `jr` at 0x3368b70 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glRotatef` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x15a0 into t9 (`ld` at 0x3368b78).
+  The `jr` at 0x3368b7c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glScaled` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x15a8 into t9 (`ld` at 0x3368b84).
+  The `jr` at 0x3368b88 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glScalef` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x15b0 into t9 (`ld` at 0x3368b90).
+  The `jr` at 0x3368b94 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glTranslated` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x15b8 into t9 (`ld` at 0x3368b9c).
+  The `jr` at 0x3368ba0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glTranslatef` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x15c0 into t9 (`ld` at 0x3368ba8).
+  The `jr` at 0x3368bac calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glPolygonOffsetEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x15e0 into t9 (`ld` at 0x3368bd8).
+  The `jr` at 0x3368bdc calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glTexSubImage1D` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x15e8 into t9 (`ld` at 0x3368be4).
+  The `jr` at 0x3368be8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+
+- `glTexSubImage2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x15f0 into t9 (`ld` at 0x3368bf0).
+  The `jr` at 0x3368bf4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionFilter1D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x15f8 is read into t9 (`ld` at 0x3368bfc).
+  The `jr` at 0x3368c00 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionFilter2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives the doubleword from absolute 0x1600 (`ld` at 0x3368c08).
+  The `jr` at 0x3368c0c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionParameterf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load into t9 reads a doubleword at absolute 0x1608 (`ld` at 0x3368c14).
+  The `jr` at 0x3368c18 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  From absolute 0x1610, the routine loads a doubleword into t9 (`ld` at 0x3368c20).
+  The `jr` at 0x3368c24 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionParameteri` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x1618 (`ld` at 0x3368c2c).
+  The `jr` at 0x3368c30 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glConvolutionParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1620 (`ld` at 0x3368c38).
+  The `jr` at 0x3368c3c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glGetConvolutionFilterEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1638 (`ld` at 0x3368c5c).
+  The `jr` at 0x3368c60 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glGetConvolutionParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1640 (`ld` at 0x3368c68).
+  The `jr` at 0x3368c6c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glGetConvolutionParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1648 (`ld` at 0x3368c74).
+  The `jr` at 0x3368c78 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 (tail call).
+
+- `glGetSeparableFilterEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1650 (`ld` at 0x3368c80).
+  The `jr` at 0x3368c84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glSeparableFilter2D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1658 (`ld` at 0x3368c8c).
+  The `jr` at 0x3368c90 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetHistogramEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1660 into t9 (`ld` at 0x3368c98).
+  The `jr` at 0x3368c9c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glGetHistogramParameterfvEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1668 into t9 (`ld` at 0x3368ca4).
+  The `jr` at 0x3368ca8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glGetHistogramParameterivEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1670 into t9 (`ld` at 0x3368cb0).
+  The `jr` at 0x3368cb4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glGetMinmaxEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1678 into t9 (`ld` at 0x3368cbc).
+  The `jr` at 0x3368cc0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glGetMinmaxParameterfvEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1680 into t9 (`ld` at 0x3368cc8).
+  The `jr` at 0x3368ccc calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glGetMinmaxParameterivEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1688 into t9 (`ld` at 0x3368cd4).
+  The `jr` at 0x3368cd8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glHistogram` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1690 into t9 (`ld` at 0x3368ce0).
+  The `jr` at 0x3368ce4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glMinmax` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1698 into t9 (`ld` at 0x3368cec).
+  The `jr` at 0x3368cf0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+
+- `glTexSubImage2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x15f0 is read into t9 (`ld` at 0x3368bf0).
+  The `jr` at 0x3368bf4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A load places the doubleword at absolute 0x15f8 in t9 (`ld` at 0x3368bfc).
+  The `jr` at 0x3368c00 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  From absolute 0x1600, the routine loads a doubleword into t9 (`ld` at 0x3368c08).
+  The `jr` at 0x3368c0c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionParameterfEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads the doubleword at absolute 0x1608 into t9 (`ld` at 0x3368c14).
+  The `jr` at 0x3368c18 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glTexSubImage1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x15e8, a doubleword load sets t9 (`ld` at 0x3368be4).
+  The `jr` at 0x3368be8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glConvolutionParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1610 (`ld` at 0x3368c20).
+  The `jr` at 0x3368c24 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glConvolutionParameteriEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x1618 (`ld` at 0x3368c2c).
+  The `jr` at 0x3368c30 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glConvolutionParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1620 (`ld` at 0x3368c38).
+  The `jr` at 0x3368c3c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glSeparableFilter2DEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368c8c
+  A doubleword is loaded from absolute 0x1658 into t9 (`ld` at 0x3368c8c).
+  The `jr` at 0x3368c90 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glHistogramEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368ce0
+  It reads a doubleword at absolute 0x1690 into t9 (`ld` at 0x3368ce0).
+  The `jr` at 0x3368ce4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glResetHistogram` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load reads a doubleword from absolute 0x16a0 into t9 (`ld` at 0x3368cf8).
+  The `jr` at 0x3368cfc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glResetHistogramEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  From absolute 0x16a0, t9 receives a doubleword (`ld` at 0x3368cf8).
+  The `jr` at 0x3368cfc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glResetMinmax` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword at absolute 0x16a8 is loaded into t9 (`ld` at 0x3368d04).
+  The `jr` at 0x3368d08 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glResetMinmaxEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The absolute address 0x16a8 supplies a doubleword to t9 (`ld` at 0x3368d04).
+  The `jr` at 0x3368d08 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glTexSubImage3D` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives a doubleword from absolute 0x16b8 (`ld` at 0x3368d1c).
+  The `jr` at 0x3368d20 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glTexSubImage3DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x16b8 is read into t9 (`ld` at 0x3368d1c).
+  The `jr` at 0x3368d20 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glArrayElement` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads t9 from absolute 0x16c0 as a doubleword (`ld` at 0x3368d28).
+  The `jr` at 0x3368d2c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glArrayElementEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword from absolute 0x16c0 enters t9 (`ld` at 0x3368d28).
+  The `jr` at 0x3368d2c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glColorPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  From absolute 0x16c8, it loads a doubleword into t9 (`ld` at 0x3368d34).
+  The `jr` at 0x3368d38 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glEdgeFlagPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x16d8, a doubleword load sets t9 (`ld` at 0x3368d4c).
+  The `jr` at 0x3368d50 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetPointerv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x16e0 (`ld` at 0x3368d58).
+  The `jr` at 0x3368d5c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; the call is a tail transfer.
+
+- `glGetPointervEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x16e0 (`ld` at 0x3368d58).
+  The `jr` at 0x3368d5c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; the call is a tail transfer.
+
+- `glIndexPointerEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x16e8 (`ld` at 0x3368d64).
+  The `jr` at 0x3368d68 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; the call is a tail transfer.
+
+- `glColorPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1760 (`ld` at 0x3368e18).
+  The `jr` at 0x3368e1c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; the call is a tail transfer.
+
+- `glDisableClientState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1768 (`ld` at 0x3368e24).
+  The `jr` at 0x3368e28 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; the call is a tail transfer.
+
+- `glEdgeFlagPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1778 (`ld` at 0x3368e3c).
+  The `jr` at 0x3368e40 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glEnableClientState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1780 (`ld` at 0x3368e48).
+  The `jr` at 0x3368e4c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glIndexPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1788 (`ld` at 0x3368e54).
+  The `jr` at 0x3368e58 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glInterleavedArrays` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1790 (`ld` at 0x3368e60).
+  The `jr` at 0x3368e64 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glPolygonOffset` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x17b0 (`ld` at 0x3368e90).
+  The `jr` at 0x3368e94 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glPopClientAttrib` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x17b8 into t9 (`ld` at 0x3368e9c).
+  The `jr` at 0x3368ea0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPushClientAttrib` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x17c0 into t9 (`ld` at 0x3368ea8).
+  The `jr` at 0x3368eac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glSampleMaskSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x17c8 into t9 (`ld` at 0x3368eb4).
+  The `jr` at 0x3368eb8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glSamplePatternSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x17d0 into t9 (`ld` at 0x3368ec0).
+  The `jr` at 0x3368ec4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetDetailTexFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x17e8 into t9 (`ld` at 0x3368ee4).
+  The `jr` at 0x3368ee8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetSharpenTexFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x17f8 into t9 (`ld` at 0x3368efc).
+  The `jr` at 0x3368f00 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glTexSubImage4DSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1840 into t9 (`ld` at 0x3368f68).
+  The `jr` at 0x3368f6c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glSpriteParameterfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1850 into t9 (`ld` at 0x3368f80).
+  The `jr` at 0x3368f84 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glSpriteParameterfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1858 into t9 (`ld` at 0x3368f8c).
+  The `jr` at 0x3368f90 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glSpriteParameteriSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1860 into t9 (`ld` at 0x3368f98).
+  The `jr` at 0x3368f9c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glSpriteParameterivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1868 into t9 (`ld` at 0x3368fa4).
+  The `jr` at 0x3368fa8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPointParameterfEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x1880 is loaded into t9 (`ld` at 0x3368fc8).
+  The `jr` at 0x3368fcc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPointParameterfSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Register t9 receives a doubleword from absolute 0x1880 (`ld` at 0x3368fc8).
+  The `jr` at 0x3368fcc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPointParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load into t9 reads a doubleword from absolute 0x1888 (`ld` at 0x3368fd4).
+  The `jr` at 0x3368fd8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPointParameterfvSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword at absolute 0x1888 is read into t9 (`ld` at 0x3368fd4).
+  The `jr` at 0x3368fd8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFogFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The doubleword at absolute 0x1890 is read into t9 (`ld` at 0x3368fe0).
+  The `jr` at 0x3368fe4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetInstrumentsSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads t9 from absolute 0x1898 as a doubleword (`ld` at 0x3368fec).
+  The `jr` at 0x3368ff0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPollInstrumentsSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Absolute 0x18a8 supplies a doubleword to t9 (`ld` at 0x3369004).
+  The `jr` at 0x3369008 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glReadInstrumentsSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x18b0 into t9 (`ld` at 0x3369010).
+  The `jr` at 0x3369014 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glStartInstrumentsSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load at absolute 0x18b8 sets t9 (`ld` at 0x336901c).
+  The `jr` at 0x3369020 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glStopInstrumentsSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x18c0 (`ld` at 0x3369028).
+  The `jr` at 0x336902c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+
+- `glReferencePlaneSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x18d0 (`ld` at 0x3369040).
+  The `jr` at 0x3369044 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+
+- `glFrameZoomSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x18d8 (`ld` at 0x336904c).
+  The `jr` at 0x3369050 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+
+- `glIglooInterfaceSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x18e0 (`ld` at 0x3369058).
+  The `jr` at 0x336905c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+
+- `glDeformationMap3dSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x18e8 (`ld` at 0x3369064).
+  The `jr` at 0x3369068 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+
+- `glDeformationMap3fSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x18f0 (`ld` at 0x3369070).
+  The `jr` at 0x3369074 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glDeformSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x18f8 (`ld` at 0x336907c).
+  The `jr` at 0x3369080 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glLoadIdentityDeformationMapSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1900 (`ld` at 0x3369088).
+  The `jr` at 0x336908c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetListParameterfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1908 (`ld` at 0x3369094).
+  The `jr` at 0x3369098 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetListParameterivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x1910 (`ld` at 0x33690a0).
+  The `jr` at 0x33690a4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glListParameterfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1918 into t9 (`ld` at 0x33690ac).
+  The `jr` at 0x33690b0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glListParameterfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1920 into t9 (`ld` at 0x33690b8).
+  The `jr` at 0x33690bc calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glListParameteriSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1928 into t9 (`ld` at 0x33690c4).
+  The `jr` at 0x33690c8 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glListParameterivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1930 into t9 (`ld` at 0x33690d0).
+  The `jr` at 0x33690d4 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glGetFogFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1950 into t9 (`ld` at 0x3369100).
+  The `jr` at 0x3369104 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glAsyncMarkerSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1988 into t9 (`ld` at 0x3369154).
+  The `jr` at 0x3369158 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFinishAsyncSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1990 into t9 (`ld` at 0x3369160).
+  The `jr` at 0x3369164 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glPollAsyncSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1998 into t9 (`ld` at 0x336916c).
+  The `jr` at 0x3369170 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGenAsyncMarkersSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x19a0 into t9 (`ld` at 0x3369178).
+  The `jr` at 0x336917c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glColorSubTable` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1938 into t9 (`ld` at 0x33690dc).
+  The `jr` at 0x33690e0 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2 and a3=entry a3.
+
+- `glDeleteAsyncMarkersSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load reads a doubleword from absolute 0x19a8 into t9 (`ld` at 0x3369184).
+  The `jr` at 0x3369188 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glIsAsyncMarkerSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x19b0, a doubleword is fetched into t9 (`ld` at 0x3369190).
+  The `jr` at 0x3369194 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFragmentLightModelfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Absolute 0x19e8 supplies a doubleword to t9 (`ld` at 0x33691e4).
+  The `jr` at 0x33691e8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFragmentLightModeliSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The t9 register receives a doubleword from absolute 0x19f0 (`ld` at 0x33691f0).
+  The `jr` at 0x33691f4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFragmentLightModelivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword from absolute 0x19f8 is read into t9 (`ld` at 0x33691fc).
+  The `jr` at 0x3369200 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetFragmentLightivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is loaded from absolute 0x1a28 (`ld` at 0x3369244).
+  The `jr` at 0x3369248 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetFragmentMaterialfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The entry reads a doubleword at absolute 0x1a30 (`ld` at 0x3369250).
+  The `jr` at 0x3369254 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetFragmentMaterialivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It fetches a doubleword from absolute 0x1a38 (`ld` at 0x336925c).
+  The `jr` at 0x3369260 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glLightEnviSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  One doubleword comes from absolute 0x1a40 (`ld` at 0x3369268).
+  The `jr` at 0x336926c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glAreTexturesResident` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The routine loads a doubleword at absolute 0x1a58 (`ld` at 0x336928c).
+  The `jr` at 0x3369290 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glDeleteTextures` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword load reads absolute 0x1a60 (`ld` at 0x3369298).
+  The `jr` at 0x336929c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGenTextures` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The body reads a doubleword at absolute 0x1a68 (`ld` at 0x33692a4).
+  The `jr` at 0x33692a8 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glIsTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It loads a doubleword from absolute 0x1a70 (`ld` at 0x33692b0).
+  The `jr` at 0x33692b4 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetConvolutionFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  A doubleword is read at absolute 0x1a90 (`ld` at 0x33692e0).
+  The `jr` at 0x33692e4 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetConvolutionParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction loads a doubleword from absolute 0x1a98 (`ld` at 0x33692ec).
+  The `jr` at 0x33692f0 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glFragmentMaterialfSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The load reads a doubleword from absolute 0x1a00 into t9 (`ld` at 0x3369208).
+  The `jr` at 0x336920c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFragmentMaterialfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  It reads a doubleword at absolute 0x1a08 into t9 (`ld` at 0x3369214).
+  The `jr` at 0x3369218 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFragmentMaterialiSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  At absolute 0x1a10, the load reads a doubleword into t9 (`ld` at 0x3369220).
+  The `jr` at 0x3369224 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glFragmentMaterialivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  The instruction reads a doubleword from absolute 0x1a18 into t9 (`ld` at 0x336922c).
+  The `jr` at 0x3369230 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetFragmentLightfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  From absolute 0x1a20, a doubleword is loaded into t9 (`ld` at 0x3369238).
+  The `jr` at 0x336923c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+
+- `glGetConvolutionParameteriv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1aa0 into t9 (`ld` at 0x33692f8).
+  The `jr` at 0x33692fc calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 in a tail transfer.
+
+- `glGetSeparableFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1aa8 into t9 (`ld` at 0x3369304).
+  The `jr` at 0x3369308 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 in a tail transfer.
+
+- `glGetHistogram` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1ab0 into t9 (`ld` at 0x3369310).
+  The `jr` at 0x3369314 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 in a tail transfer.
+
+- `glGetHistogramParameterfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1ab8 into t9 (`ld` at 0x336931c).
+  The `jr` at 0x3369320 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 in a tail transfer.
+
+- `glGetHistogramParameteriv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1ac0 into t9 (`ld` at 0x3369328).
+  The `jr` at 0x336932c calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 in a tail transfer.
+
+- `glGetMinmax` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1ac8 into t9 (`ld` at 0x3369334).
+  The `jr` at 0x3369338 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetMinmaxParameterfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1ad0 into t9 (`ld` at 0x3369340).
+  The `jr` at 0x3369344 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glGetMinmaxParameteriv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1ad8 into t9 (`ld` at 0x336934c).
+  The `jr` at 0x3369350 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+
+- `glColor3b` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1ba0 into t9 (`ld` at 0x3374000).
+  The `jr` at 0x3374004 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337400c to 0x337407c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3bv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1ba8 into t9 (`ld` at 0x3374080).
+  The `jr` at 0x3374084 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337408c to 0x33740fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The load reads a doubleword at absolute 0x1bb0 into t9 (`ld` at 0x3374100).
+  The `jr` at 0x3374104 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337410c to 0x337417c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  At absolute 0x1bb8, a doubleword is read into t9 (`ld` at 0x3374180).
+  The `jr` at 0x3374184 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337418c to 0x33741fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  Register t9 receives the doubleword at absolute 0x1bc0 (`ld` at 0x3374200).
+  The `jr` at 0x3374204 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337420c to 0x337427c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  Absolute 0x1bc8 supplies a doubleword to t9 (`ld` at 0x3374280).
+  The `jr` at 0x3374284 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337428c to 0x33742fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The doubleword at absolute 0x1bd0 is loaded into t9 (`ld` at 0x3374300).
+  The `jr` at 0x3374304 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337430c to 0x337437c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The doubleword at absolute 0x1bd8 is read into t9 (`ld` at 0x3374380).
+  The `jr` at 0x3374384 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337438c to 0x33743fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  At absolute 0x1be0, it reads a doubleword into t9 (`ld` at 0x3374400).
+  The `jr` at 0x3374404 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337440c to 0x337447c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  Register t9 receives the doubleword read at absolute 0x1be8 (`ld` at 0x3374480).
+  The `jr` at 0x3374484 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337448c to 0x33744fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3ub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  It loads t9 from the doubleword at absolute 0x1bf0 (`ld` at 0x3374500).
+  The `jr` at 0x3374504 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337450c to 0x337457c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3ubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The load places the doubleword at absolute 0x1bf8 in t9 (`ld` at 0x3374580).
+  The `jr` at 0x3374584 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337458c to 0x33745fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3ui` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is loaded from absolute 0x1c00 (`ld` at 0x3374600).
+  The `jr` at 0x3374604 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337460c to 0x337467c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The entry reads a doubleword at absolute 0x1c08 (`ld` at 0x3374680).
+  The `jr` at 0x3374684 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337468c to 0x33746fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  It fetches a doubleword from absolute 0x1c10 (`ld` at 0x3374700).
+  The `jr` at 0x3374704 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337470c to 0x337477c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor3usv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  One doubleword comes from absolute 0x1c18 (`ld` at 0x3374780).
+  The `jr` at 0x3374784 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337478c to 0x33747fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The routine loads a doubleword at absolute 0x1c20 (`ld` at 0x3374800).
+  The `jr` at 0x3374804 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337480c to 0x337487c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword load reads absolute 0x1c28 (`ld` at 0x3374880).
+  The `jr` at 0x3374884 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337488c to 0x33748fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The body reads a doubleword at absolute 0x1c30 (`ld` at 0x3374900).
+  The `jr` at 0x3374904 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337490c to 0x337497c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  It loads a doubleword from absolute 0x1c38 (`ld` at 0x3374980).
+  The `jr` at 0x3374984 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337498c to 0x33749fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is read at absolute 0x1c40 (`ld` at 0x3374a00).
+  The `jr` at 0x3374a04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x3374a0c to 0x3374a7c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The instruction loads a doubleword from absolute 0x1c48 (`ld` at 0x3374a80).
+  The `jr` at 0x3374a84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x3374a8c to 0x3374afc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1c50 into t9 (`ld` at 0x3374b00).
+  The `jr` at 0x3374b04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+  The instructions from 0x3374b0c to 0x3374b7c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1c58 into t9 (`ld` at 0x3374b80).
+  The `jr` at 0x3374b84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+  The instructions from 0x3374b8c to 0x3374bfc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1c60 into t9 (`ld` at 0x3374c00).
+  The `jr` at 0x3374c04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+  The instructions from 0x3374c0c to 0x3374c7c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1c68 into t9 (`ld` at 0x3374c80).
+  The `jr` at 0x3374c84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+  The instructions from 0x3374c8c to 0x3374cfc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4ub` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1c70 into t9 (`ld` at 0x3374d00).
+  The `jr` at 0x3374d04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail transfer.
+  The instructions from 0x3374d0c to 0x3374d7c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4ubv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1c78 into t9 (`ld` at 0x3374d80).
+  The `jr` at 0x3374d84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+  The instructions from 0x3374d8c to 0x3374dfc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4ui` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads a doubleword from absolute 0x1c80 into t9 (`ld` at 0x3374e00).
+  The `jr` at 0x3374e04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+  The instructions from 0x3374e0c to 0x3374e7c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4uiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is loaded from absolute 0x1c88 into t9 (`ld` at 0x3374e80).
+  The `jr` at 0x3374e84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+  The instructions from 0x3374e8c to 0x3374efc are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4us` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1c90 into t9 (`ld` at 0x3374f00).
+  The `jr` at 0x3374f04 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+  The instructions from 0x3374f0c to 0x3374f7c are not reached by any path from the entry, and their branches are not listed.
+
+- `glColor4usv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The entry reads a doubleword from absolute 0x1c98 into t9 (`ld` at 0x3374f80).
+  The `jr` at 0x3374f84 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3 as a tail call.
+  The instructions from 0x3374f8c to 0x3374ffc are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is loaded from absolute 0x1ca0 into t9 (`ld` at 0x3375000).
+  The `jr` at 0x3375004 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337500c to 0x337507c are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexdv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The routine loads a doubleword at absolute 0x1ca8 into t9 (`ld` at 0x3375080).
+  The `jr` at 0x3375084 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337508c to 0x33750fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword read uses absolute 0x1cb0 and writes t9 (`ld` at 0x3375100).
+  The `jr` at 0x3375104 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337510c to 0x337517c are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The value in t9 is loaded as a doubleword from absolute 0x1cb8 (`ld` at 0x3375180).
+  The `jr` at 0x3375184 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337518c to 0x33751fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword at absolute 0x1cc0 is loaded into t9 (`ld` at 0x3375200).
+  The `jr` at 0x3375204 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337520c to 0x337527c are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The load reads a doubleword at absolute 0x1cc8 into t9 (`ld` at 0x3375280).
+  The `jr` at 0x3375284 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337528c to 0x33752fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  At absolute 0x1cd0, a doubleword is loaded into t9 (`ld` at 0x3375300).
+  The `jr` at 0x3375304 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337530c to 0x337537c are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is fetched from absolute 0x1cd8 into t9 (`ld` at 0x3375380).
+  The `jr` at 0x3375384 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337538c to 0x33753fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The absolute address 0x1cf8 supplies a doubleword to t9 (`ld` at 0x3375480).
+  The `jr` at 0x3375484 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337548c to 0x33754fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The instruction reads a doubleword from absolute 0x1d00 into t9 (`ld` at 0x3375500).
+  The `jr` at 0x3375504 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x337550c to 0x337557c are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is loaded from absolute 0x1d08 (`ld` at 0x3375580).
+  The `jr` at 0x3375584 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337558c to 0x33755fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The entry reads a doubleword at absolute 0x1d10 (`ld` at 0x3375600).
+  The `jr` at 0x3375604 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337560c to 0x337567c are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  It fetches a doubleword from absolute 0x1d18 (`ld` at 0x3375680).
+  The `jr` at 0x3375684 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337568c to 0x33756fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  One doubleword comes from absolute 0x1d20 (`ld` at 0x3375700).
+  The `jr` at 0x3375704 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337570c to 0x337577c are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The routine loads a doubleword at absolute 0x1d28 (`ld` at 0x3375780).
+  The `jr` at 0x3375784 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337578c to 0x33757fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glMinmaxEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368cec
+  The doubleword at absolute 0x1698 is loaded into t9 (`ld` at 0x3368cec).
+  The `jr` at 0x3368cf0 calls (unknown callee) with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3 as a tail call.
+
+- `glNormal3s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword load reads absolute 0x1d30 (`ld` at 0x3375800).
+  The `jr` at 0x3375804 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337580c to 0x337587c are not reached by any path from the entry, and their branches are not listed.
+
+- `glNormal3sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  The body reads a doubleword at absolute 0x1d38 (`ld` at 0x3375880).
+  The `jr` at 0x3375884 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337588c to 0x33758fc are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  It loads a doubleword from absolute 0x1ce0 (`ld` at 0x3378100).
+  The `jr` at 0x3378104 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337810c to 0x337817c are not reached by any path from the entry, and their branches are not listed.
+
+- `glIndexubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is read at absolute 0x1ce8 (`ld` at 0x3378180).
+  The `jr` at 0x3378184 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The instructions from 0x337818c to 0x33781fc are not reached by any path from the entry, and their branches are not listed.
+
+- `__glComputeLineRho` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 304 bytes
+  It loads doublewords from entry a0 +0x9608 and +0x9610 (`ld` at 0x3325168, 0x332516c).
+  Six word loads from the doubleword at entry a0 +0x9608 include offsets at +0x3c, +0x88 and +0x8c (`lwc1` at 0x3325170, 0x332517c, 0x3325184).
+  Six word loads from the doubleword at entry a0 +0x9610 include offsets +0x94, +0x3c and +0x88 (`lwc1` at 0x3325174, 0x3325178, 0x3325180).
+  A word is read from entry a0 +0xf2c (`lwc1` at 0x33251d0).
+  The routine loads a doubleword at entry a0 +0x8da0 (`ld` at 0x33251d8).
+  A doubleword is loaded at +0xe8 from the doubleword at entry a0 +0x8da0 (`ld` at 0x33251dc).
+  Three word loads from that latter doubleword include offsets +0x28, +0x24 and +0x2c (`lwc1` at 0x33251ec, 0x332520c, 0x3325240).
+  A word is read at +0xf0 from the doubleword at entry a0 +0x8da0 (`lw` at 0x3325228).
+  The `bne` at 0x3325244 is taken to 0x3325288 when that word is signed less than 0x3, and falls through when it is at least 0x3.
+  The integer value returned in v0 is unknown (`jr` at 0x3325280, 0x3325288).
+
+- `Resize` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32cd740
+  The `jalr` at 0x32cd764 calls `__glResizeBuffer` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  It stores byte 0x1 at entry a0 +0x90 (`sb` at 0x32cd778).
+  It returns 0x1 in v0 (`jr` at 0x32cd780).
+
+- `__glle_Nop` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It returns entry a0 in v0 (`jr` at 0x32cdda0).
+
+- `__glNopPolygonRho` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3324ff0
+  The return delay slot moves zero into f0 (`mtc1` at 0x3324ff4).
+  Its v0 return value is unknown (`jr` at 0x3324ff0).
+
+- `__glNopLineRho` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3325150
+  Zero is moved into f0 in the return delay slot (`mtc1` at 0x3325154).
+  The v0 value returned is unknown (`jr` at 0x3325150).
+
+- `__glProcessHistogramArguments` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32dc180
+  On the fall-through of `bne` at 0x32dc208, three word stores write 0x0 to entry a2 at +0x0, +0x4 and +0x8 (`sw` at 0x32dc214, 0x32dc218, 0x32dc21c).
+  That path writes 0x1906 to entry a3 +0x0 (`sw` at 0x32dc234).
+  On the fall-through of `bne` at 0x32dc1e4, three word stores write 0x20 to entry a2 at +0x0, +0x4 and +0x8 (`sw` at 0x32dc2fc, 0x32dc300, 0x32dc304).
+  The `bltz` at 0x32dc238 is taken to 0x32dc2d4 when entry a0 is negative signed and falls through when it is nonnegative.
+  The v0 return values include 0x501, 0x0, 0x8031 and 0x500 (`jr` at 0x32dc2d4, 0x32dc28c, 0x32dc2dc, 0x32dc440).
+
+- `__glCheckConvolutionFilterArgs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32ca880
+  The `bltz` at 0x32ca894 is taken to 0x32cae34 when entry a2 is negative signed and falls through when it is nonnegative.
+  On that fall-through, `bltz` at 0x32ca89c is taken to 0x32cae34 when entry a3 is negative signed and falls through when it is nonnegative.
+  The following nine calls occur only after both `bltz` at 0x32ca894 and `bltz` at 0x32ca89c fall through.
+  The `bgezall` at 0x32caa8c calls `__glSetError` with a0=0x502, a1=entry a1, a2=entry a2, a3=entry a3, a6=0x1907, a7=0x80e0.
+  The `bgezall` at 0x32caaec calls `__glSetError` with a0=0x502, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cab30 calls `__glSetError` with a0=0x500, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cabb8 calls `__glSetError` with a0=0x500, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cacc8 calls `__glSetError` with a0=0x501, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cacec calls `__glSetError` with a0=0x500, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cad2c calls `__glSetError` with a0=0x501, a1=unknown, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cad44 calls `__glSetError` with a0=0x501, a1=unknown, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cae18 calls `__glSetError` with a0=0x500, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bgezall` at 0x32cae38 calls `__glSetError` with a0=0x501, a1=entry a1, a2=entry a2, a3=entry a3; this call follows the taken arm of `bltz` at 0x32ca894 or the taken arm of `bltz` at 0x32ca89c.
+  The v0 return values are 0x1 at 0x32cab74 and 0x0 at 0x32caaa0, 0x32cab00, 0x32cab44, 0x32cab80, 0x32cabcc, 0x32cad00, 0x32cad58, 0x32cae2c and 0x32cae4c (`jr` at 0x32cab74, 0x32caaa0, 0x32cab00, 0x32cab44, 0x32cab80, 0x32cabcc, 0x32cad00, 0x32cad58, 0x32cae2c, 0x32cae4c).
+
+- `__glDoGet` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32d83b0
+  A word is read at absolute 0x1030 (`lw` at 0x32d83bc), and a doubleword at absolute 0x1020 (`ld` at 0x32d83c0).
+  The `beq` at 0x32d83dc takes 0x32d8b44 when the word at 0x1030 equals 0x1 and falls through when it differs.
+  On the fall-through of `beq` at 0x32d83dc, `bne` at 0x32d83e8 takes 0x32d8460 when entry a0 is less than 0xd33 unsigned and falls through when it is at least 0xd33.
+  On that fall-through, `beq` at 0x32d83f4 takes 0x32d84cc when entry a0 is at least 0xd34 unsigned and falls through when it is less.
+  On the fall-through of `beq` at 0x32d83f4, a word is read at +0xff0 from the doubleword loaded at 0x1020 (`lw` at 0x32d8408).
+  The `bgezall` at 0x32d8558 calls `__glConvertResult` with a0=the doubleword loaded at 0x1020, a1=0x6, a2=entry sp-0x4e8, a3=entry a2, a4=entry a1, a6=entry sp-0x4e8, a7=entry sp plus one of -0x6e0, -0x6dc, -0x6d8 or -0x6d0, on paths taking the `bne` at 0x32d8448.
+  The `bgezall` at 0x32d8600 calls `__glConvertResult` with a0=the doubleword loaded at 0x1020, a1=0x3, a2=entry sp-0x6e0, a3=entry a2, a4=entry a1, a6=entry sp-0x4e8, a7=entry sp plus one of -0x6e0, -0x6dc, -0x6d8 or -0x6d0, on paths taking the `bne` at 0x32d8428.
+  The `bgezall` at 0x32d86a4 calls `__glConvertResult` with a0=the doubleword loaded at 0x1020, a1=0x0, a2=entry sp-0x1c8, a3=entry a2, a4=entry a1, a6=entry sp-0x4e8, a7=entry sp plus one of -0x6e0, -0x6dc, -0x6d8 or -0x6d0, on paths taking the `bne` at 0x32d8430.
+  The `bgezall` at 0x32d8708 calls `__glConvertResult` with a0=the doubleword loaded at 0x1020, a1=0x4, a2=entry sp-0x550, a3=entry a2, a4=entry a1, a6=entry sp-0x4e8, a7=entry sp plus one of -0x6e0, -0x6dc, -0x6d8 or -0x6d0, on paths taking the `bne` at 0x32d8438.
+  The `jalr` at 0x32d8740 calls `__glim_IsEnabled` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a2, a4=entry a1, a7=entry sp-0x54f, on paths reaching 0x32d8730, including the taken `bne` at 0x32d8574.
+  The `bgezall` at 0x32d8784 calls `__glConvertResult` with a0=the doubleword loaded at 0x1020, a1=0x5, a2=entry sp-0x358, a3=entry a2, a4=entry a1, a6=entry sp-0x4e8, a7=entry sp plus one of -0x6e0, -0x6dc, -0x6d8 or -0x6d0, on paths taking the `bne` at 0x32d8440.
+  The `jalr` at 0x32d8b48 calls `__glSetError` with a0=0x502, a1=entry a1, a2=entry a2, a3=entry a2, a4=entry a1, on the taken arm of `beq` at 0x32d83dc.
+  The `jalr` at 0x32d9480 calls `__glSetError` with a0=0x500, a1=unknown, a2=unknown, a3=entry a2, a4=entry a1, on paths reaching 0x32d9480, including the taken `beq` at 0x32d88bc.
+  The `bgezall` at 0x32da400 calls `__glUnScaleColorf` with a0=the doubleword loaded at 0x1020, a1=entry sp-0x358, a2=the doubleword loaded at 0x1020 plus 0x674, a3=entry a2, a4=entry a1, on the fall-through of `bne` at 0x32da3ec.
+  The `jalr` at 0x32da94c calls `__glLookUpTextureTexobjs` with a0=the doubleword loaded at 0x1020, a1=0xde1, a2=unknown, a3=entry a2, a4=entry a1, on paths taking `beq` at 0x32d8ba0.
+  The `jalr` at 0x32db320 calls `__glLookUpTextureTexobjs` with a0=the doubleword loaded at 0x1020, a1=0xde0, a2=unknown, a3=entry a2, a4=entry a1, on the fall-through of `bne` at 0x32db310.
+  The `jalr` at 0x32db438 calls `__glLookUpTextureTexobjs` with a0=the doubleword loaded at 0x1020, a1=0x806f, a2=unknown, a3=entry a2, a4=entry a1, on the fall-through of `bne` at 0x32db428.
+  The v0 value at the return is unknown (`jr` at 0x32d8458).
+
+- `feedback` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A word is read from entry a0 +0x1484 (`lw` at 0x32d2f68).
+  The `beq` at 0x32d2f80 is taken to 0x32d3184 when that word equals 0x600 and falls through when it differs.
+  On paths reaching `beq` at 0x32d2fe0, it is taken to 0x32d3290 when the word at entry a1 +0x0 masked with 0x4 is zero and falls through when nonzero (`lw` at 0x32d2fd8; `andi` at 0x32d2fdc).
+  The `bgezall` at 0x32d2fec calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=[a1+0x38]; the call is after either arm of `beq` at 0x32d2fe0.
+  The `bgezall` at 0x32d2ffc calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=[a1+0x3c]; the call is after either arm of `beq` at 0x32d2fe0.
+  The `bgezall` at 0x32d300c calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=[a1+0x40]; the call is after either arm of `beq` at 0x32d2fe0.
+  The `bgezall` at 0x32d301c calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=[a1+0x44]; the call is after either arm of `beq` at 0x32d2fe0.
+  The `bgezall` at 0x32d306c calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=[a1+0x8]:8, a4=[a0+0xde4]:1, a5=a0+0x10000; the call is on the fall-through of `beq` at 0x32d304c.
+  The `bgezall` at 0x32d308c calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d304c.
+  The `bgezall` at 0x32d30ac calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d304c.
+  The `bgezall` at 0x32d30cc calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d304c.
+  The `bgezall` at 0x32d30f0 calls `__glFeedbackTag` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; fp f14=[a0+0xfb8]; the call is after a taken `beq` at 0x32d2f90, 0x32d2f98 or 0x32d2fa0.
+  The `bgezall` at 0x32d3128 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f14=[a0+0xfc0]; the call is on the fall-through of `beq` at 0x32d3104.
+  The `bgezall` at 0x32d3158 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is after either arm of `beq` at 0x32d3104.
+  The `bgezall` at 0x32d3174 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=[a1+0x8]:8, a4=[a0+0xde4]:1; fp f13=[[a1+0x8]:8]; the call is on the taken arm of `beq` at 0x32d304c.
+  The `bgezall` at 0x32d3190 calls `__glFeedbackTag` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; fp f14=[a0+0xfb8]; the call is on the taken arm of `beq` at 0x32d2f80.
+  The `bgezall` at 0x32d31cc calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f14=[a0+0xfc0]; the call is on the fall-through of `beq` at 0x32d31a8.
+  The `bgezall` at 0x32d31e8 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is on the taken arm of `beq` at 0x32d3104.
+  The `bgezall` at 0x32d3208 calls `__glFeedbackTag` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3; fp f14=[a0+0xfb8]; the call is on the taken arm of `beq` at 0x32d2fa8.
+  The `bgezall` at 0x32d3240 calls `__glFeedbackTag` with a0=entry a0, a1=[a0+0xfdc], a2=unknown, a3=unknown; fp f14=[a0+0xfc0]; the call is on the fall-through of `beq` at 0x32d321c.
+  The `bgezall` at 0x32d3270 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is after either arm of `beq` at 0x32d321c.
+  The `bgezall` at 0x32d3280 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=[a1+0x84]; the call is after either arm of `beq` at 0x32d321c.
+  The `jalr` at 0x32d32a8 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=([a0+0x8ce0] | 0x4), a3=unknown; the call is on the taken arm of `beq` at 0x32d2fe0.
+  The `bgezall` at 0x32d32c0 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is on the taken arm of `beq` at 0x32d31a8.
+  The `bgezall` at 0x32d32d8 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; the call is on the taken arm of `beq` at 0x32d321c.
+  The v0 return is unknown (`jr` at 0x32d3038).
+
+- `__glFeedbackTriangle` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads words at entry a3 +0x88 and +0x8c (`lwc1` at 0x32d3550, 0x32d3554).
+  Words are read at +0x8c from entry a2 and entry a1 (`lwc1` at 0x32d3558, 0x32d355c).
+  A byte is loaded from entry a0 +0x986d (`lbu` at 0x32d35b4).
+  After either arm of `beq` at 0x32d3608, doublewords are stored at +0x8 from entry a1, a2 and a3 (`sd` at 0x32d3638, 0x32d3644, 0x32d364c).
+  On the fall-through of `beq` at 0x32d36ec, entry a1 +0x98 is stored at entry a1 +0x8 (`sd` at 0x32d36f4).
+  The `jalr` at 0x32d3670 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d365c.
+  The `jalr` at 0x32d3698 calls (unknown callee) with a0=entry a0, a1=entry a2, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d3684.
+  The `jalr` at 0x32d36c0 calls (unknown callee) with a0=entry a0, a1=entry a3, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d36ac.
+  The `jalr` at 0x32d37a4 calls (unknown callee) with a0=entry a0, a1=[a0+0x8cd8]:8, a2=unknown, a3=unknown, a6=[[a0+0x8cd8]:8+0x8]:8, a7=[[a0+0x8cd8]:8+0x8]:8; the call is on the fall-through of `beq` at 0x32d3794.
+  The `bgezall` at 0x32d37c4 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=0x44e02000; the call is on the fall-through of `beq` at 0x32d37b8.
+  The `bgezall` at 0x32d37dc calls `feedback` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d37b8.
+  The `bgezall` at 0x32d37fc calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=0x44e02000; the call is on the fall-through of `beq` at 0x32d37ec.
+  The `bgezall` at 0x32d380c calls `feedback` with a0=entry a0, a1=entry a2, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d37ec.
+  The `bgezall` at 0x32d3828 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown, a7=a1+0x98; fp f13=0x44e02000; the call is on the fall-through of `beq` at 0x32d3818.
+  The `bgezall` at 0x32d3838 calls `feedback` with a0=entry a0, a1=entry a3, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d3818.
+  The `bgezall` at 0x32d38a4 calls `__glFeedbackTag` with a0=entry a0, a1=[a0+0x95a0]:1, a2=0x2, a3=unknown; fp f13=0x44e04000; the call is on the fall-through of `beq` at 0x32d3898.
+  The `bgezall` at 0x32d38bc calls `feedback` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d388c.
+  The `bgezall` at 0x32d38cc calls `feedback` with a0=entry a0, a1=entry a2, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d388c.
+  The `bgezall` at 0x32d38f4 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=0x44e04000; the call is on the fall-through of `beq` at 0x32d38e8.
+  The `bgezall` at 0x32d3904 calls `feedback` with a0=entry a0, a1=entry a2, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d38dc.
+  The `bgezall` at 0x32d3914 calls `feedback` with a0=entry a0, a1=entry a3, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d38dc.
+  The `bgezall` at 0x32d3938 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown, a7=a1+0x98; fp f13=0x44e04000; the call is on the fall-through of `beq` at 0x32d392c.
+  The `bgezall` at 0x32d3948 calls `feedback` with a0=entry a0, a1=entry a3, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d3920.
+  The `bgezall` at 0x32d3958 calls `feedback` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown; the call is on the fall-through of `beq` at 0x32d3920.
+  The `bgezall` at 0x32d3970 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=0x2, a3=unknown, a7=a1+0x98; fp f13=0x44e06000; the call is on the taken arm of `beq` at 0x32d36ec.
+  The `bgezall` at 0x32d3980 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=0x40400000; the call is on the taken arm of `beq` at 0x32d36ec.
+  The `bgezall` at 0x32d3998 calls `feedback` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown; the call is on the taken arm of `beq` at 0x32d36ec.
+  The `bgezall` at 0x32d39a8 calls `feedback` with a0=entry a0, a1=entry a2, a2=unknown, a3=unknown; the call is on the taken arm of `beq` at 0x32d36ec.
+  The `bgezall` at 0x32d39b8 calls `feedback` with a0=entry a0, a1=entry a3, a2=unknown, a3=unknown; the call is on the taken arm of `beq` at 0x32d36ec.
+  The `bgezall` at 0x32d39e0 calls `__glFeedbackTag` with a0=entry a0, a1=[a0+0x95a0]:1, a2=0x2, a3=unknown; fp f13=0x44e0e000; the call is on the taken arm of `beq` at 0x32d3898.
+  The `bgezall` at 0x32d3a00 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown; fp f13=0x44e0e000; the call is on the taken arm of `beq` at 0x32d38e8.
+  The `bgezall` at 0x32d3a20 calls `__glFeedbackTag` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown, a7=a1+0x98; fp f13=0x44e0e000; the call is on the taken arm of `beq` at 0x32d392c.
+  At `jr` at 0x32d3738, v0 is unknown; at `jr` at 0x32d3870, v0 is the doubleword loaded from entry a0 +0x8cd8 (`ld` at 0x32d3860).
+
+- `glBinormal3fSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  At return, v0 is unknown (`jr` at 0x3306410).
+
+- `glBinormal3fvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The value returned in v0 is unknown (`jr` at 0x3306420).
+
+- `glBinormal3iSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  An unknown v0 is returned (`jr` at 0x3306430).
+
+- `glBinormal3ivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  On return, the value of v0 is unknown (`jr` at 0x3306440).
+
+- `glBinormal3sSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The returned v0 value is unknown (`jr` at 0x3306450).
+
+- `glBinormal3svSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The value returned in v0 is unknown (`jr` at 0x3306460).
+
+- `glNurbsKnots1dSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  At return, v0 is unknown (`jr` at 0x33065c0).
+
+- `glNurbsKnots1fSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The routine returns with an unknown v0 (`jr` at 0x33065d0).
+
+- `glNurbsKnots2dSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The `jr` at 0x33065e0 returns with v0 unknown.
+
+- `glNurbsKnots2fSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  At the `jr` at 0x33065f0, v0 is unknown.
+
+- `glSubdivPatchParameterfSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The value in v0 at return is unknown (`jr` at 0x3306660).
+
+- `glSubdivPatchParameteriSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  Its integer return value is unknown (`jr` at 0x3306670).
+
+- `glSubdivPatchSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  The `jr` at 0x3306680 returns an unknown value in v0.
+
+- `__glInitLineData` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1208 bytes
+  The entry a2 and a1 values are stored as doublewords at +0x9610 and +0x9608 from entry a0 (`sd` at 0x32e24b8 and 0x32e24bc).
+  A word is read at +0x28c from entry a0 (`lw` at 0x32e24c0).
+  Zero is stored as a word at +0x95ac from entry a0 (`sw` at 0x32e24c4).
+  That loaded word is stored at +0x9604 from entry a0 (`sw` at 0x32e24c8).
+  `bc1f` at 0x32e2518 targets 0x32e25fc when FP condition code 0 is false and falls through when it is true.
+  On the fall-through of `bc1f` at 0x32e2518, `beq` at 0x32e2520 targets 0x32e2848 when unknown a6 is zero and falls through when it is nonzero.
+  The v0 return is 0xb4a08 at two returns and is unknown on at least one path at the other (`jr` at 0x32e2720, 0x32e2838, 0x32e2830).
+
+- `__glInitAALineData` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1268 bytes
+  Entry a2 and a1 are stored as doublewords at +0x9610 and +0x9608 from entry a0 (`sd` at 0x32e2df8 and 0x32e2dfc).
+  A word is read at +0x8c from entry a1 (`lwc1` at 0x32e2e00).
+  A word is read at +0x88 from entry a2 (`lwc1` at 0x32e2e08).
+  A word is stored at +0x9618 from entry a0 (`swc1` at 0x32e2e40).
+  `bc1f` at 0x32e2e80 targets 0x32e2f34 when FP condition code 0 is false and falls through when it is true.
+  On the fall-through of `bc1f` at 0x32e2e80, `beq` at 0x32e2e8c targets 0x32e319c when unknown a4 is zero and falls through when it is nonzero.
+  The `jalr` at 0x32e2ef4 calls `ceilf` with a0=0x1, a1=a1 at entry (arg1), a2=unknown, a3=a3 at entry (arg3); after either `bc1f` at 0x32e2e9c falls through or `bc1f` at 0x32e31b0 falls through.
+  The `jalr` at 0x32e2f1c calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; after either `bc1f` at 0x32e2e9c falls through or `bc1f` at 0x32e31b0 falls through.
+  The `jalr` at 0x32e2fa8 calls `ceilf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=-0x1, a3=a3 at entry (arg3); after either `bc1f` at 0x32e2f50 falls through or `bc1f` at 0x32e31d8 falls through.
+  The `jalr` at 0x32e2fd4 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; after either `bc1f` at 0x32e2f50 falls through or `bc1f` at 0x32e31d8 falls through.
+  The `jalr` at 0x32e30c4 calls `ceilf` with a0=0x1, a1=a1 at entry (arg1), a2=unknown, a3=a3 at entry (arg3); after either `bc1f` at 0x32e2e9c is taken or `bc1f` at 0x32e2f50 is taken.
+  The `jalr` at 0x32e30ec calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; after either `bc1f` at 0x32e2e9c is taken or `bc1f` at 0x32e2f50 is taken.
+  The `jalr` at 0x32e3260 calls `ceilf` with a0=unknown, a1=a1 at entry (arg1), a2=-0x1, a3=a3 at entry (arg3); after `bc1f` at 0x32e31b0 is taken, `bc1f` at 0x32e31f8 is taken, or `bc1t` at 0x32e3204 falls through.
+  The `jalr` at 0x32e328c calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; after `bc1f` at 0x32e31b0 is taken, `bc1f` at 0x32e31f8 is taken, or `bc1t` at 0x32e3204 falls through.
+  The v0 return is the `ceilf` result at 0x32e3184 and unknown at the other returns; f0 is the `ceilf` result at 0x32e3068 and 0x32e3184 (`jr` at 0x32e3068, 0x32e3184, 0x32e32cc).
+
+- `StoreLESS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc580).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc584).
+  A word is loaded from entry a0 +0x28 (`lw` at 0x32cc588).
+  A doubleword is loaded from entry a0 +0x18 (`ld` at 0x32cc598).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc5a4, 0x32cc5b8, 0x32cc5c0).
+  A word is read from an unknown address (`lw` at 0x32cc5cc).
+  `beq` at 0x32cc5d8 targets 0x32cc5e8 when a5 (unknown value) >= at (unknown value) (unsigned) and falls through when a5 (unknown value) < at (unknown value) (unsigned).
+  On the fall-through of `beq` at 0x32cc5d8, a word is stored at an unknown address (`sw` at 0x32cc5e4).
+  On fall-through of `beq` at 0x32cc5d8, v0 is 0x1 at return; on the taken path it is 0x0 (`jr` at 0x32cc5e0, 0x32cc5e8).
+
+- `StoreLESS_s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc5f0).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc5f4).
+  A word is loaded from entry a0 +0x28 (`lw` at 0x32cc5f8).
+  A doubleword is loaded from entry a0 +0x18 (`ld` at 0x32cc608).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc614, 0x32cc628, 0x32cc630).
+  A word is read from an unknown address (`lw` at 0x32cc63c).
+  `beq` at 0x32cc648 targets 0x32cc658 when a5 (unknown value) >= at (unknown value) (signed) and falls through when a5 (unknown value) < at (unknown value) (signed).
+  On the fall-through of `beq` at 0x32cc648, a word is stored at an unknown address (`sw` at 0x32cc654).
+  On fall-through of `beq` at 0x32cc648, v0 is 0x1 at return; on the taken path it is 0x0 (`jr` at 0x32cc650, 0x32cc658).
+
+- `StoreEQUAL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 108 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc660).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc664).
+  A word is loaded from entry a0 +0x28 (`lw` at 0x32cc668).
+  A doubleword is loaded from entry a0 +0x18 (`ld` at 0x32cc674).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc680, 0x32cc69c, 0x32cc6a0).
+  A word is read from an unknown address (`lw` at 0x32cc6a8).
+  `bne` at 0x32cc6b4 targets 0x32cc6c4 when at (unknown value) != a5 (unknown value) and falls through when at (unknown value) == a5 (unknown value).
+  On the fall-through of `bne` at 0x32cc6b4, a word is stored at an unknown address (`sw` at 0x32cc6c0).
+  On fall-through of `bne` at 0x32cc6b4, v0 is 0x1 at return; on the taken path it is 0x0 (`jr` at 0x32cc6bc, 0x32cc6c4).
+
+- `StoreLEQUAL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc6d0).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc6d4).
+  A word is loaded from entry a0 +0x28 (`lw` at 0x32cc6d8).
+  A doubleword is loaded from entry a0 +0x18 (`ld` at 0x32cc6e4).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc6f0, 0x32cc70c, 0x32cc710).
+  A word is read from an unknown address (`lw` at 0x32cc718).
+  `bne` at 0x32cc728 targets 0x32cc738 when at (unknown value) < a5 (unknown value) (unsigned) and falls through when at (unknown value) >= a5 (unknown value) (unsigned).
+  On the fall-through of `bne` at 0x32cc728, a word is stored at an unknown address (`sw` at 0x32cc734).
+  On fall-through of `bne` at 0x32cc728, v0 is 0x1 at return; on the taken path it is 0x0 (`jr` at 0x32cc730, 0x32cc738).
+
+- `StoreLEQUAL_s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc740).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc744).
+  A word is loaded from entry a0 +0x28 (`lw` at 0x32cc748).
+  A doubleword is loaded from entry a0 +0x18 (`ld` at 0x32cc754).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc760, 0x32cc77c, 0x32cc780).
+  A word is read from an unknown address (`lw` at 0x32cc788).
+  `bne` at 0x32cc798 targets 0x32cc7a8 when at (unknown value) < a5 (unknown value) (signed) and falls through when at (unknown value) >= a5 (unknown value) (signed).
+  On the fall-through of `bne` at 0x32cc798, a word is stored at an unknown address (`sw` at 0x32cc7a4).
+  On fall-through of `bne` at 0x32cc798, v0 is 0x1 at return; on the taken path it is 0x0 (`jr` at 0x32cc7a0, 0x32cc7a8).
+
+- `StoreGREATER` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc7b0).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc7b4).
+  Entry a0 supplies a word at +0x28 (`lw` at 0x32cc7b8) and a doubleword at +0x18 (`ld` at 0x32cc7c4).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc7d0, 0x32cc7ec, 0x32cc7f0).
+  A word is read from an unknown address (`lw` at 0x32cc7f8).
+  `beq` at 0x32cc808 targets 0x32cc818 when at (unknown value) >= a5 (unknown value) (unsigned) and falls through when at (unknown value) < a5 (unknown value) (unsigned).
+  On the fall-through of `beq` at 0x32cc808, the return delay slot stores a word at an unknown address (`sw` at 0x32cc814).
+  The return value is 0x1 on the fall-through of `beq` at 0x32cc808 (`jr` at 0x32cc810) and 0x0 on its taken arm (`jr` at 0x32cc818).
+
+- `StoreGREATER_s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc820).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc824).
+  Entry a0 supplies a word at +0x28 (`lw` at 0x32cc828) and a doubleword at +0x18 (`ld` at 0x32cc834).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc840, 0x32cc85c, 0x32cc860).
+  A word is read from an unknown address (`lw` at 0x32cc868).
+  `beq` at 0x32cc878 targets 0x32cc888 when at (unknown value) >= a5 (unknown value) (signed) and falls through when at (unknown value) < a5 (unknown value) (signed).
+  On the fall-through of `beq` at 0x32cc878, the return delay slot stores a word at an unknown address (`sw` at 0x32cc884).
+  With `beq` at 0x32cc878 falling through, v0 returns 0x1 (`jr` at 0x32cc880); its taken arm returns 0x0 (`jr` at 0x32cc888).
+
+- `StoreNOTEQUAL` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 108 bytes
+  A doubleword is read at +0x0 from entry a0 (`ld` at 0x32cc890).
+  A word is read at +0xfb4 from that doubleword (`lw` at 0x32cc894).
+  Entry a0 supplies a word at +0x28 (`lw` at 0x32cc898) and a doubleword at +0x18 (`ld` at 0x32cc8a4).
+  Words are read at +0xfb0, +0x9d68 and +0x9d60 from the doubleword at entry a0 (`lw` at 0x32cc8b0, 0x32cc8cc, 0x32cc8d0).
+  A word is read from an unknown address (`lw` at 0x32cc8d8).
+  `beq` at 0x32cc8e4 targets 0x32cc8f4 when at (unknown value) == a5 (unknown value) and falls through when at (unknown value) != a5 (unknown value).
+  On the fall-through of `beq` at 0x32cc8e4, the return delay slot stores a word at an unknown address (`sw` at 0x32cc8f0).
+  The two returns give v0 = 0x1 if `beq` at 0x32cc8e4 falls through (`jr` at 0x32cc8ec) and 0x0 if it is taken (`jr` at 0x32cc8f4).
