@@ -12545,3 +12545,425 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   On fall-through of the `beqz` at 0x3356034, the `sw` at 0x3356050 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0.
   On fall-through of the `beqz` at 0x3356034, the `swc1` at 0x335605c stores entry `f14` as a floating-point word at the result of `__glSPDlalloc` +0x8 in the delay slot of the `jr` at 0x3356058.
   The `jr` at 0x3356058, 0x3356064 returns the result of `__glSPDlalloc` in `v0`.
+
+## 64-bit IP30 library: light state dispatch
+
+- `__glsplc_FragmentMaterialivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33565f0
+  A word is read at entry `a2` +0x0 (`lw` at 0x33565fc).
+  The `jalr` at 0x3356620 calls `__glErrorCheckMaterial [0x32ba7a0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beqz` at 0x3356628 is taken to 0x335664c when the return from `__glErrorCheckMaterial` is zero and falls through when it is nonzero.
+  The `jalr` at 0x3356634 calls `__glsplc_Error [0x328ccd0]` with a0=ret(__glErrorCheckMaterial), a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `beqz` at 0x3356628.
+  The `jalr` at 0x335664c calls `__glFragmentMaterialivSGIX_size [0x3304400]` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown, on the path taken by `beqz` at 0x3356628.
+  When `beqz` at 0x3356628 is taken, the `bltz` at 0x3356664 is taken to 0x33566b4 when the unknown `v1` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x3356678 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x10f, a2=unknown, a3=unknown, when `beqz` at 0x3356628 is taken and `bltz` at 0x3356664 falls through.
+  When `beqz` at 0x3356628 is taken and `bltz` at 0x3356664 falls through, the `beqz` at 0x3356680 is taken to 0x3356640 when the return from `__glSPDlalloc` is zero and falls through when it is nonzero.
+  The `jalr` at 0x33566a4 calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=a0 at entry (arg0), a4=a1 at entry (arg1), when `beqz` at 0x3356628 is taken, `bltz` at 0x3356664 falls through, and `beqz` at 0x3356680 falls through.
+  The `jalr` at 0x33566b8 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=-0x8, a1=unknown, a2=unknown, a3=unknown, when `beqz` at 0x3356628 and `bltz` at 0x3356664 are taken.
+  When `beqz` at 0x3356628 is taken and `bltz` at 0x3356664 and `beqz` at 0x3356680 fall through, entry `a1` is stored as a word at the return from `__glSPDlalloc` +0x4 (`beqz` at 0x3356628, 0x3356680; `bltz` at 0x3356664; `sw` at 0x335669c).
+  On the same taken `beqz` and fall-through `bltz` and `beqz` paths, entry `a0` is stored as a word at the return from `__glSPDlalloc` +0x0 (`beqz` at 0x3356628, 0x3356680; `bltz` at 0x3356664; `sw` at 0x33566a8; `jalr` at 0x33566a4).
+  At return `v0` is unknown (`jr` at 0x3356644).
+- `__glsplc_LightEnviSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33566d0
+  The `jalr` at 0x33566f8 calls `__glSPDlalloc [0x32087b0]` with a0=0x8, a1=0x110, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beqz` at 0x3356700 is taken to 0x3356724 when the return from `__glSPDlalloc` is zero and falls through when it is nonzero.
+  On the fall-through path of `beqz` at 0x3356700, entry `a1` is stored as a word at the return from `__glSPDlalloc` +0x4 (`sw` at 0x3356714).
+  On that fall-through path, entry `a0` is stored as a word at the return from `__glSPDlalloc` +0x0 (`sw` at 0x3356720; `jr` at 0x335671c).
+  At either return `v0` is the return from `__glSPDlalloc` (`jalr` at 0x33566f8; `jr` at 0x335671c, 0x3356728).
+- `__glce_ColorMaterial` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335b450
+  A doubleword is read at absolute address 0x10f8 (`ld` at 0x335b450).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335b46c).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1b48 (`ld` at 0x335b484).
+  The `jalr` at 0x335b48c calls `glColorMaterial` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores target absolute 0x10f8, including `sd` at 0x335b490, 0x335b4ac, 0x335b4c8; the first stores the doubleword read by `ld` at 0x335b484, while the other stored values are unknown (`jalr` at 0x335b48c, 0x335b4a8; `jr` at 0x335b4c4).
+  The `jalr` at 0x335b4a8 calls `glColorMaterial` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  At return `v0` is the return from `glColorMaterial` (`jalr` at 0x335b4a8; `jr` at 0x335b4c4).
+- `__glce_Lightf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335b860
+  A doubleword is read at absolute address 0x1138 (`ld` at 0x335b860).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335b880).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1b88 (`ld` at 0x335b898).
+  The `jalr` at 0x335b8a4 calls `glLightf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores target absolute 0x1138, including `sd` at 0x335b8a8, 0x335b8c8, 0x335b8e8; the first stores the doubleword read by `ld` at 0x335b898, while the other stored values are unknown (`jalr` at 0x335b8a4, 0x335b8c4; `jr` at 0x335b8e4).
+  The `jalr` at 0x335b8c4 calls `glLightf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  At return `v0` is the return from `glLightf` (`jalr` at 0x335b8c4; `jr` at 0x335b8e4).
+- `__glce_Lightfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335b8f0
+  A doubleword is read at absolute address 0x1140 (`ld` at 0x335b8f0).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335b910).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1b90 (`ld` at 0x335b928).
+  The `jalr` at 0x335b930 calls `glLightfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores target absolute 0x1140, including `sd` at 0x335b934, 0x335b954, 0x335b970; the first stores the doubleword read by `ld` at 0x335b928, while the other stored values are unknown (`jalr` at 0x335b930, 0x335b950; `jr` at 0x335b96c).
+  The `jalr` at 0x335b950 calls `glLightfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  At return `v0` is the return from `glLightfv` (`jalr` at 0x335b950; `jr` at 0x335b96c).
+- `__glce_Lighti` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335b980
+  A doubleword is read at absolute address 0x1148 (`ld` at 0x335b980).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335b9a0).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1b98 (`ld` at 0x335b9b8).
+  The `jalr` at 0x335b9c0 calls `glLighti` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores to absolute 0x1148 include `sd` at 0x335b9c4, 0x335b9e4, 0x335ba00; their delay-slot transfers are `jalr` at 0x335b9c0, 0x335b9e0 and `jr` at 0x335b9fc.
+  The first store writes the doubleword from the preceding nested load (`ld` at 0x335b9b8; `jalr` at 0x335b9c0; `sd` at 0x335b9c4).
+  A doubleword is read from an unknown base (`ld` at 0x335b9d8).
+  The `jalr` at 0x335b9e0 calls `glLighti` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  At return `v0` is the return from `glLighti` (`jalr` at 0x335b9e0; `jr` at 0x335b9fc).
+- `__glce_Lightiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335ba10
+  A doubleword is read at absolute address 0x1150 (`ld` at 0x335ba10).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335ba30).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1ba0 (`ld` at 0x335ba48).
+  The `jalr` at 0x335ba50 calls `glLightiv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores to absolute 0x1150 include `sd` at 0x335ba54, 0x335ba74, 0x335ba90; their delay-slot transfers are `jalr` at 0x335ba50, 0x335ba70 and `jr` at 0x335ba8c.
+  The first of those stores writes the value of the preceding nested load (`ld` at 0x335ba48; `jalr` at 0x335ba50; `sd` at 0x335ba54).
+  A doubleword is read from an unknown base (`ld` at 0x335ba68).
+  The `jalr` at 0x335ba70 calls `glLightiv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  At return `v0` is the return from `glLightiv` (`jalr` at 0x335ba70; `jr` at 0x335ba8c).
+- `__glce_LightModelf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335baa0
+  A doubleword is read at absolute address 0x1158 (`ld` at 0x335baa0).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335babc).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1ba8 (`ld` at 0x335bad4).
+  The `jalr` at 0x335bae0 calls `glLightModelf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores to absolute 0x1158 include `sd` at 0x335bae4, 0x335bb00, 0x335bb20; their delay-slot transfers are `jalr` at 0x335bae0, 0x335bafc and `jr` at 0x335bb1c.
+  The value from the nested load is written by the first store (`ld` at 0x335bad4; `jalr` at 0x335bae0; `sd` at 0x335bae4).
+  A doubleword is read from an unknown base (`ld` at 0x335baf0).
+  The `jalr` at 0x335bafc calls `glLightModelf` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  At return `v0` is the return from `glLightModelf` (`jalr` at 0x335bafc; `jr` at 0x335bb1c).
+- `__glce_LightModelfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335bb30
+  A doubleword is read at absolute address 0x1160 (`ld` at 0x335bb30).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335bb4c).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1bb0 (`ld` at 0x335bb64).
+  The `jalr` at 0x335bb6c calls `glLightModelfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores to absolute 0x1160 include `sd` at 0x335bb70, 0x335bb8c, 0x335bba8; their delay-slot transfers are `jalr` at 0x335bb6c, 0x335bb88 and `jr` at 0x335bba4.
+  The first doubleword store uses the value read by the nested load (`ld` at 0x335bb64; `jalr` at 0x335bb6c; `sd` at 0x335bb70).
+  A doubleword is read from an unknown base (`ld` at 0x335bb80).
+  The `jalr` at 0x335bb88 calls `glLightModelfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  At return `v0` is the return from `glLightModelfv` (`jalr` at 0x335bb88; `jr` at 0x335bba4).
+- `__glce_LightModeli` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335bbb0
+  A doubleword is read at absolute address 0x1168 (`ld` at 0x335bbb0).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x335bbcc).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x1bb8 (`ld` at 0x335bbe4).
+  The `jalr` at 0x335bbec calls `glLightModeli` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores to absolute 0x1168 include `sd` at 0x335bbf0, 0x335bc0c, 0x335bc28; their delay-slot transfers are `jalr` at 0x335bbec, 0x335bc08 and `jr` at 0x335bc24.
+  The nested load supplies the value of the first doubleword store (`ld` at 0x335bbe4; `jalr` at 0x335bbec; `sd` at 0x335bbf0).
+  A doubleword is read from an unknown base (`ld` at 0x335bc00).
+  The `jalr` at 0x335bc08 calls `glLightModeli` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  At return `v0` is the return from `glLightModeli` (`jalr` at 0x335bc08; `jr` at 0x335bc24).
+- `__glce_LightModeliv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335bc30
+  The `ld` at 0x335bc30 reads a doubleword at absolute 0x1170.
+  The `ld` at 0x335bc4c reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335bc64 reads a doubleword at the value read from 0x1020 +0x1bc0.
+  There are 3 doubleword stores at absolute 0x1170, including `sd` at 0x335bc70, 0x335bc8c, 0x335bca8.
+  A doubleword is read from an unknown base (`ld` at 0x335bc80).
+  The `jalr` at 0x335bc6c calls `glLightModeliv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335bc88 calls `glLightModeliv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jr` at 0x335bca4 returns the result of `glLightModeliv` in `v0`.
+- `__glce_Materialf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335bdb0
+  The `ld` at 0x335bdb0 reads a doubleword at absolute 0x1188.
+  The `ld` at 0x335bdd0 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335bde8 reads a doubleword at the value read from 0x1020 +0x1bd8.
+  There are 3 doubleword stores at absolute 0x1188, including `sd` at 0x335bdf8, 0x335be18, 0x335be38.
+  A doubleword is read from an unknown base (`ld` at 0x335be08).
+  The `jalr` at 0x335bdf4 calls `glMaterialf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335be14 calls `glMaterialf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jr` at 0x335be34 returns the result of `glMaterialf` in `v0`.
+- `__glce_Materialfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335be40
+  The `ld` at 0x335be40 reads a doubleword at absolute 0x1190.
+  The `ld` at 0x335be60 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335be78 reads a doubleword at the value read from 0x1020 +0x1be0.
+  There are 3 doubleword stores at absolute 0x1190, including `sd` at 0x335be84, 0x335bea4, 0x335bec0.
+  A doubleword is read from an unknown base (`ld` at 0x335be98).
+  The `jalr` at 0x335be80 calls `glMaterialfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335bea0 calls `glMaterialfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jr` at 0x335bebc returns the result of `glMaterialfv` in `v0`.
+- `__glce_Materiali` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335bed0
+  The `ld` at 0x335bed0 reads a doubleword at absolute 0x1198.
+  The `ld` at 0x335bef0 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335bf08 reads a doubleword at the value read from 0x1020 +0x1be8.
+  There are 3 doubleword stores at absolute 0x1198, including `sd` at 0x335bf14, 0x335bf34, 0x335bf50.
+  A doubleword is read from an unknown base (`ld` at 0x335bf28).
+  The `jalr` at 0x335bf10 calls `glMateriali` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335bf30 calls `glMateriali` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jr` at 0x335bf4c returns the result of `glMateriali` in `v0`.
+- `__glce_Materialiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335bf60
+  The `ld` at 0x335bf60 reads a doubleword at absolute 0x11a0.
+  The `ld` at 0x335bf80 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335bf98 reads a doubleword at the value read from 0x1020 +0x1bf0.
+  There are 3 doubleword stores at absolute 0x11a0, including `sd` at 0x335bfa4, 0x335bfc4, 0x335bfe0.
+  A doubleword is read from an unknown base (`ld` at 0x335bfb8).
+  The `jalr` at 0x335bfa0 calls `glMaterialiv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335bfc0 calls `glMaterialiv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jr` at 0x335bfdc returns the result of `glMaterialiv` in `v0`.
+
+## 64-bit IP30 library: fragment lighting dispatch
+
+- `__glce_FragmentLightfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363980
+  The `ld` at 0x3363980 loads a doubleword from abs 0x19c0.
+  The `ld` at 0x33639a0 loads a doubleword from abs 0x1020.
+  Two doublewords are loaded from absolute 0x3397308 (`ld` at 0x33639b0, 0x33639cc).
+  The `ld` at 0x33639b8 loads a doubleword from [0x1020]:8 +0x2410.
+  A doubleword is loaded from an unknown base (`ld` at 0x33639d8).
+  The `jalr` at 0x33639c4 calls `glFragmentLightfSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `sd` at 0x33639c8.
+  The `jalr` at 0x33639e4 calls `glFragmentLightfSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown; its delay slot is `sd` at 0x33639e8.
+  The `sd` at 0x33639c8, in the delay slot of the `jalr` at 0x33639c4, stores a doubleword with the doubleword read from the loaded value at +0x2410 at abs 0x19c0.
+  The `sd` at 0x33639e8, in the delay slot of the `jalr` at 0x33639e4, stores a doubleword with value unknown at abs 0x19c0.
+  The `sd` at 0x3363a08, in the delay slot of the `jr` at 0x3363a04, stores a doubleword with value unknown at abs 0x19c0.
+  The `jr` at 0x3363a04 returns v0 = ret(glFragmentLightfSGIX), produced by the `jalr` at 0x33639e4.
+- `__glce_FragmentLightfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363a10
+  The `ld` at 0x3363a10 loads a doubleword from abs 0x19c8.
+  The `ld` at 0x3363a30 loads a doubleword from abs 0x1020.
+  Two doublewords are loaded from absolute 0x3397310 (`ld` at 0x3363a40, 0x3363a5c).
+  The `ld` at 0x3363a48 loads a doubleword from [0x1020]:8 +0x2418.
+  A doubleword is loaded from an unknown base (`ld` at 0x3363a68).
+  The `jalr` at 0x3363a50 calls `glFragmentLightfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `sd` at 0x3363a54.
+  The `jalr` at 0x3363a70 calls `glFragmentLightfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown; its delay slot is `sd` at 0x3363a74.
+  The `sd` at 0x3363a54, in the delay slot of the `jalr` at 0x3363a50, stores a doubleword with the doubleword read from the loaded value at +0x2418 at abs 0x19c8.
+  The `sd` at 0x3363a74, in the delay slot of the `jalr` at 0x3363a70, stores a doubleword with value unknown at abs 0x19c8.
+  The `sd` at 0x3363a90, in the delay slot of the `jr` at 0x3363a8c, stores a doubleword with value unknown at abs 0x19c8.
+  The `jr` at 0x3363a8c returns v0 = ret(glFragmentLightfvSGIX), produced by the `jalr` at 0x3363a70.
+- `__glce_FragmentLightiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363aa0
+  The `ld` at 0x3363aa0 loads a doubleword from abs 0x19d0.
+  The `ld` at 0x3363ac0 loads a doubleword from abs 0x1020.
+  Two doublewords are loaded from absolute 0x3397318 (`ld` at 0x3363ad0, 0x3363aec).
+  The `ld` at 0x3363ad8 loads a doubleword from [0x1020]:8 +0x2420.
+  A doubleword is loaded from an unknown base (`ld` at 0x3363af8).
+  The `jalr` at 0x3363ae0 calls `glFragmentLightiSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `sd` at 0x3363ae4.
+  The `jalr` at 0x3363b00 calls `glFragmentLightiSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown; its delay slot is `sd` at 0x3363b04.
+  The `sd` at 0x3363ae4, in the delay slot of the `jalr` at 0x3363ae0, stores a doubleword with the doubleword read from the loaded value at +0x2420 at abs 0x19d0.
+  The `sd` at 0x3363b04, in the delay slot of the `jalr` at 0x3363b00, stores a doubleword with value unknown at abs 0x19d0.
+  The `sd` at 0x3363b20, in the delay slot of the `jr` at 0x3363b1c, stores a doubleword with value unknown at abs 0x19d0.
+  The `jr` at 0x3363b1c returns v0 = ret(glFragmentLightiSGIX), produced by the `jalr` at 0x3363b00.
+- `__glce_FragmentLightivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363b30
+  The `ld` at 0x3363b30 loads a doubleword from abs 0x19d8.
+  The `ld` at 0x3363b50 loads a doubleword from abs 0x1020.
+  Two doublewords are loaded from absolute 0x3397320 (`ld` at 0x3363b60, 0x3363b7c).
+  The `ld` at 0x3363b68 loads a doubleword from [0x1020]:8 +0x2428.
+  A doubleword is loaded from an unknown base (`ld` at 0x3363b88).
+  The `jalr` at 0x3363b70 calls `glFragmentLightivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `sd` at 0x3363b74.
+  The `jalr` at 0x3363b90 calls `glFragmentLightivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown; its delay slot is `sd` at 0x3363b94.
+  The `sd` at 0x3363b74, in the delay slot of the `jalr` at 0x3363b70, stores a doubleword with the doubleword read from the loaded value at +0x2428 at abs 0x19d8.
+  The `sd` at 0x3363b94, in the delay slot of the `jalr` at 0x3363b90, stores a doubleword with value unknown at abs 0x19d8.
+  The `sd` at 0x3363bb0, in the delay slot of the `jr` at 0x3363bac, stores a doubleword with value unknown at abs 0x19d8.
+  The `jr` at 0x3363bac returns v0 = ret(glFragmentLightivSGIX), produced by the `jalr` at 0x3363b90.
+- `__glce_FragmentLightModelfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363bc0
+  The `ld` at 0x3363bc0 loads a doubleword from abs 0x19e0.
+  The `ld` at 0x3363bdc loads a doubleword from abs 0x1020.
+  Two doublewords are loaded from absolute 0x3397328 (`ld` at 0x3363bec, 0x3363c08).
+  The `ld` at 0x3363bf4 loads a doubleword from [0x1020]:8 +0x2430.
+  A doubleword is loaded from an unknown base (`ld` at 0x3363c10).
+  The `jalr` at 0x3363c00 calls `glFragmentLightModelfSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `sd` at 0x3363c04.
+  The `jalr` at 0x3363c1c calls `glFragmentLightModelfSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown; its delay slot is `sd` at 0x3363c20.
+  The `sd` at 0x3363c04, in the delay slot of the `jalr` at 0x3363c00, stores a doubleword with the doubleword read from the loaded value at +0x2430 at abs 0x19e0.
+  The `sd` at 0x3363c20, in the delay slot of the `jalr` at 0x3363c1c, stores a doubleword with value unknown at abs 0x19e0.
+  The `sd` at 0x3363c40, in the delay slot of the `jr` at 0x3363c3c, stores a doubleword with value unknown at abs 0x19e0.
+  The `jr` at 0x3363c3c returns v0 = ret(glFragmentLightModelfSGIX), produced by the `jalr` at 0x3363c1c.
+- `__glce_FragmentLightModelfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363c50
+  The `ld` at 0x3363c50 loads a doubleword from abs 0x19e8.
+  The `ld` at 0x3363c6c loads a doubleword from abs 0x1020.
+  Two doubleword loads from absolute 0x3397330 include `ld` at 0x3363c7c, 0x3363c94.
+  The `ld` at 0x3363c84 loads a doubleword from the doubleword read at absolute 0x1020 plus 0x2438.
+  The `ld` at 0x3363ca0 loads a doubleword whose base is unknown.
+  The `jalr` at 0x3363c8c calls `glFragmentLightModelfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363ca8 calls `glFragmentLightModelfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x19e8 include `sd` at 0x3363c90, 0x3363cac, 0x3363cc8; the first stores the doubleword at +0x2438 of the doubleword read from absolute 0x1020 and the other values are unknown (`jalr` at 0x3363c8c, 0x3363ca8; `jr` at 0x3363cc4).
+  The `jr` at 0x3363cc4 returns v0 = ret(glFragmentLightModelfvSGIX), produced by the `jalr` at 0x3363ca8.
+- `__glce_FragmentLightModeliSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363cd0
+  The `ld` at 0x3363cd0 loads a doubleword from abs 0x19f0.
+  The `ld` at 0x3363cec loads a doubleword from abs 0x1020.
+  Two doubleword loads from absolute 0x3397338 include `ld` at 0x3363cfc, 0x3363d14.
+  The `ld` at 0x3363d04 loads a doubleword from the doubleword read at absolute 0x1020 plus 0x2440.
+  The `ld` at 0x3363d20 loads a doubleword whose base is unknown.
+  The `jalr` at 0x3363d0c calls `glFragmentLightModeliSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363d28 calls `glFragmentLightModeliSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x19f0 include `sd` at 0x3363d10, 0x3363d2c, 0x3363d48; the first stores the doubleword at +0x2440 of the doubleword read from absolute 0x1020 and the other values are unknown (`jalr` at 0x3363d0c, 0x3363d28; `jr` at 0x3363d44).
+  The `jr` at 0x3363d44 returns v0 = ret(glFragmentLightModeliSGIX), produced by the `jalr` at 0x3363d28.
+- `__glce_FragmentLightModelivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363d50
+  The `ld` at 0x3363d50 loads a doubleword from abs 0x19f8.
+  The `ld` at 0x3363d6c loads a doubleword from abs 0x1020.
+  Two doubleword loads from absolute 0x3397340 include `ld` at 0x3363d7c, 0x3363d94.
+  The `ld` at 0x3363d84 loads a doubleword from the doubleword read at absolute 0x1020 plus 0x2448.
+  The `ld` at 0x3363da0 loads a doubleword whose base is unknown.
+  The `jalr` at 0x3363d8c calls `glFragmentLightModelivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363da8 calls `glFragmentLightModelivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x19f8 include `sd` at 0x3363d90, 0x3363dac, 0x3363dc8; the first stores the doubleword at +0x2448 of the doubleword read from absolute 0x1020 and the other values are unknown (`jalr` at 0x3363d8c, 0x3363da8; `jr` at 0x3363dc4).
+  The `jr` at 0x3363dc4 returns v0 = ret(glFragmentLightModelivSGIX), produced by the `jalr` at 0x3363da8.
+- `__glce_FragmentMaterialfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363dd0
+  The `ld` at 0x3363dd0 loads a doubleword from abs 0x1a00.
+  The `ld` at 0x3363df0 loads a doubleword from abs 0x1020.
+  Two doubleword loads from absolute 0x3397348 include `ld` at 0x3363e00, 0x3363e1c.
+  The `ld` at 0x3363e08 loads a doubleword from the doubleword read at absolute 0x1020 plus 0x2450.
+  The `ld` at 0x3363e28 loads a doubleword whose base is unknown.
+  The `jalr` at 0x3363e14 calls `glFragmentMaterialfSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363e34 calls `glFragmentMaterialfSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1a00 include `sd` at 0x3363e18, 0x3363e38, 0x3363e58; the first stores the doubleword at +0x2450 of the doubleword read from absolute 0x1020 and the other values are unknown (`jalr` at 0x3363e14, 0x3363e34; `jr` at 0x3363e54).
+  The `jr` at 0x3363e54 returns v0 = ret(glFragmentMaterialfSGIX), produced by the `jalr` at 0x3363e34.
+- `__glce_FragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363e60
+  The `ld` at 0x3363e60 loads a doubleword from abs 0x1a08.
+  The `ld` at 0x3363e80 loads a doubleword from abs 0x1020.
+  Two doubleword loads from absolute 0x3397350 include `ld` at 0x3363e90, 0x3363eac.
+  The `ld` at 0x3363e98 loads a doubleword from the doubleword read at absolute 0x1020 plus 0x2458.
+  The `ld` at 0x3363eb8 loads a doubleword whose base is unknown.
+  The `jalr` at 0x3363ea0 calls `glFragmentMaterialfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363ec0 calls `glFragmentMaterialfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  Three doubleword stores to absolute 0x1a08 include `sd` at 0x3363ea4, 0x3363ec4, 0x3363ee0; the first stores the doubleword at +0x2458 of the doubleword read from absolute 0x1020 and the other values are unknown (`jalr` at 0x3363ea0, 0x3363ec0; `jr` at 0x3363edc).
+  The `jr` at 0x3363edc returns v0 = ret(glFragmentMaterialfvSGIX), produced by the `jalr` at 0x3363ec0.
+- `__glce_GetLightfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335eec0
+  The `ld` at 0x335eec8 reads a doubleword at absolute 0x1480.
+  The `ld` at 0x335eed0 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335eee8 reads a doubleword at the value read from 0x1020 +0x3c48.
+  The `jalr` at 0x335eeec calls `glGetLightfv` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  Two doubleword stores to absolute 0x1480 include `sd` at 0x335eef0, 0x335eefc; the first is in the delay slot of the `jalr` at 0x335eeec, and the second writes the initial doubleword read at 0x1480.
+  The `jr` at 0x335ef04 returns the result of `glGetLightfv` in `v0`.
+- `__glce_GetLightiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335ef10
+  The `ld` at 0x335ef18 reads a doubleword at absolute 0x1488.
+  The `ld` at 0x335ef20 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335ef38 reads a doubleword at the value read from 0x1020 +0x3c50.
+  The `jalr` at 0x335ef3c calls `glGetLightiv` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  Two doubleword stores to absolute 0x1488 include `sd` at 0x335ef40, 0x335ef4c; the first is in the delay slot of the `jalr` at 0x335ef3c, and the second writes the initial doubleword read at 0x1488.
+  The `jr` at 0x335ef54 returns the result of `glGetLightiv` in `v0`.
+- `__glce_GetMaterialfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335f050
+  The `ld` at 0x335f058 reads a doubleword at absolute 0x14a8.
+  The `ld` at 0x335f060 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335f078 reads a doubleword at the value read from 0x1020 +0x3c70.
+  The `jalr` at 0x335f07c calls `glGetMaterialfv` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  Two doubleword stores to absolute 0x14a8 include `sd` at 0x335f080, 0x335f08c; the first is in the delay slot of the `jalr` at 0x335f07c, and the second writes the initial doubleword read at 0x14a8.
+  The `jr` at 0x335f094 returns the result of `glGetMaterialfv` in `v0`.
+- `__glce_GetMaterialiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335f0a0
+  The `ld` at 0x335f0a8 reads a doubleword at absolute 0x14b0.
+  The `ld` at 0x335f0b0 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335f0c8 reads a doubleword at the value read from 0x1020 +0x3c78.
+  The `jalr` at 0x335f0cc calls `glGetMaterialiv` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  Two doubleword stores to absolute 0x14b0 include `sd` at 0x335f0d0, 0x335f0dc; the first is in the delay slot of the `jalr` at 0x335f0cc, and the second writes the initial doubleword read at 0x14b0.
+  The `jr` at 0x335f0e4 returns the result of `glGetMaterialiv` in `v0`.
+- `__glce_FragmentColorMaterialSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363900
+  The `ld` at 0x3363900 reads a doubleword at absolute 0x19b8.
+  The `ld` at 0x336391c reads a doubleword at absolute 0x1020.
+  The `ld` at 0x3363934 reads a doubleword at the value read from 0x1020 +0x2408.
+  The `jalr` at 0x336393c calls `glFragmentColorMaterialSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  Three doubleword stores to absolute 0x19b8 include `sd` at 0x3363940, 0x336395c, 0x3363978; they execute in the delay slots of `jalr` at 0x336393c, 0x3363958 and `jr` at 0x3363974, respectively.
+  The `ld` at 0x3363950 reads a doubleword from an unknown base.
+  The `jalr` at 0x3363958 calls `glFragmentColorMaterialSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jr` at 0x3363974 returns the result of `glFragmentColorMaterialSGIX` in `v0`.
+
+## 64-bit IP30 library: material and lighting entry dispatch
+
+- `__glce_FragmentMaterialiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363ef0
+  A doubleword is read at absolute address 0x1a10 (`ld` at 0x3363ef0).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x3363f10).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x2460 (`ld` at 0x3363f28).
+  The `jalr` at 0x3363f30 calls `glFragmentMaterialiSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363f50 calls `glFragmentMaterialiSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  A doubleword is read through an unknown base (`ld` at 0x3363f48).
+  There are 3 doubleword stores to absolute address 0x1a10, including `sd` at 0x3363f34, 0x3363f54, 0x3363f70; the first stores the doubleword read at +0x2460 of the doubleword at 0x1020, and the other two values are unknown (`jalr` at 0x3363f30; `jalr` at 0x3363f50; `jr` at 0x3363f6c).
+  At return `v0` is the return from `glFragmentMaterialiSGIX` (`jalr` at 0x3363f50; `jr` at 0x3363f6c).
+- `__glce_FragmentMaterialivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3363f80
+  A doubleword is read at absolute address 0x1a18 (`ld` at 0x3363f80).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x3363fa0).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x2468 (`ld` at 0x3363fb8).
+  The `jalr` at 0x3363fc0 calls `glFragmentMaterialivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363fe0 calls `glFragmentMaterialivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  A doubleword is read through an unknown base (`ld` at 0x3363fd8).
+  There are 3 doubleword stores to absolute address 0x1a18, including `sd` at 0x3363fc4, 0x3363fe4, 0x3364000; the first stores the doubleword read at +0x2468 of the doubleword at 0x1020, and the other two values are unknown (`jalr` at 0x3363fc0; `jalr` at 0x3363fe0; `jr` at 0x3363ffc).
+  At return `v0` is the return from `glFragmentMaterialivSGIX` (`jalr` at 0x3363fe0; `jr` at 0x3363ffc).
+- `__glce_GetFragmentLightfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364010
+  A doubleword is read at absolute address 0x1a20 (`ld` at 0x3364018).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x3364020).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x41e8 (`ld` at 0x3364038).
+  The `jalr` at 0x336403c calls `glGetFragmentLightfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  There are 2 doubleword stores to absolute address 0x1a20, including `sd` at 0x3364040, 0x336404c; the first stores the doubleword read at +0x41e8 of the doubleword at 0x1020, and the second stores the initially loaded value (`jalr` at 0x336403c).
+  At return `v0` is the return from `glGetFragmentLightfvSGIX` (`jalr` at 0x336403c; `jr` at 0x3364054).
+- `__glce_GetFragmentLightivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364060
+  A doubleword is read at absolute address 0x1a28 (`ld` at 0x3364068).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x3364070).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x41f0 (`ld` at 0x3364088).
+  The `jalr` at 0x336408c calls `glGetFragmentLightivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  There are 2 doubleword stores to absolute address 0x1a28, including `sd` at 0x3364090, 0x336409c; the first stores the doubleword read at +0x41f0 of the doubleword at 0x1020, and the second stores the initially loaded value (`jalr` at 0x336408c).
+  At return `v0` is the return from `glGetFragmentLightivSGIX` (`jalr` at 0x336408c; `jr` at 0x33640a4).
+- `__glce_GetFragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33640b0
+  A doubleword is read at absolute address 0x1a30 (`ld` at 0x33640b8).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x33640c0).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x41f8 (`ld` at 0x33640d8).
+  The `jalr` at 0x33640dc calls `glGetFragmentMaterialfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  There are 2 doubleword stores to absolute address 0x1a30, including `sd` at 0x33640e0, 0x33640ec; the first stores the doubleword read at +0x41f8 of the doubleword at 0x1020, and the second stores the initially loaded value (`jalr` at 0x33640dc).
+  At return `v0` is the return from `glGetFragmentMaterialfvSGIX` (`jalr` at 0x33640dc; `jr` at 0x33640f4).
+- `__glce_GetFragmentMaterialivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364100
+  A doubleword is read at absolute address 0x1a38 (`ld` at 0x3364108).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x3364110).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x4200 (`ld` at 0x3364128).
+  The `jalr` at 0x336412c calls `glGetFragmentMaterialivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  There are 2 doubleword stores to absolute address 0x1a38, including `sd` at 0x3364130, 0x336413c (`jalr` at 0x336412c).
+  At return `v0` is the return from `glGetFragmentMaterialivSGIX` (`jalr` at 0x336412c; `jr` at 0x3364144).
+- `__glce_LightEnviSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364150
+  A doubleword is read at absolute address 0x1a40 (`ld` at 0x3364150).
+  A doubleword is read at absolute address 0x1020 (`ld` at 0x336416c).
+  A doubleword is read at the doubleword at absolute address 0x1020 +0x2490 (`ld` at 0x3364184).
+  The `jalr` at 0x336418c calls `glLightEnviSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  A doubleword is read from an unknown base (`ld` at 0x33641a0).
+  The `jalr` at 0x33641a8 calls `glLightEnviSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  There are 3 doubleword stores to absolute address 0x1a40, including `sd` at 0x3364190, 0x33641ac, 0x33641c8 (`jalr` at 0x336418c; `jalr` at 0x33641a8; `jr` at 0x33641c4).
+  At return `v0` is the return from `glLightEnviSGIX` (`jalr` at 0x33641a8; `jr` at 0x33641c4).
+- `glColorMaterial` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x336847c
+  A doubleword is read at absolute address 0x10f8 (`ld` at 0x336847c).
+  The `jr` at 0x3368480 calls `(unknown callee)` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+- `glLightf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33684dc
+  A doubleword is read at absolute address 0x1138 (`ld` at 0x33684dc).
+  The `jr` at 0x33684e0 calls `(unknown callee)` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+- `glLightfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33684e8
+  A doubleword is read at absolute address 0x1140 (`ld` at 0x33684e8).
+  The `jr` at 0x33684ec calls `(unknown callee)` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+- `glGetLightfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33689c8
+  The `ld` at 0x33689c8 loads a doubleword from absolute address 0x1480.
+  The `jr` at 0x33689cc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glGetLightiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33689d4
+  The `ld` at 0x33689d4 loads a doubleword from absolute address 0x1488.
+  The `jr` at 0x33689d8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glGetMaterialfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368a04
+  The `ld` at 0x3368a04 loads a doubleword from absolute address 0x14a8.
+  The `jr` at 0x3368a08 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glGetMaterialiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368a10
+  The `ld` at 0x3368a10 loads a doubleword from absolute address 0x14b0.
+  The `jr` at 0x3368a14 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glFragmentColorMaterialSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x336919c
+  The `ld` at 0x336919c loads a doubleword from absolute address 0x19b8.
+  The `jr` at 0x33691a0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+
+## 64-bit IP30 library: light and material entry points
+
+- `glLighti` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33684f4
+  The `ld` at 0x33684f4 reads a doubleword at absolute 0x1148.
+  The `jr` at 0x33684f8 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glLightiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368500
+  A doubleword is read from absolute 0x1150 (`ld` at 0x3368500).
+  The `jr` at 0x3368504 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glLightModelf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x336850c
+  A doubleword at absolute 0x1158 is read by `ld` at 0x336850c.
+  The `jr` at 0x3368510 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glLightModelfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368518
+  The doubleword at 0x1160 is read by `ld` at 0x3368518.
+  The `jr` at 0x336851c calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glLightModeli` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368524
+  The absolute address 0x1168 is read as a doubleword (`ld` at 0x3368524).
+  The `jr` at 0x3368528 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glLightModeliv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368530
+  The `ld` at 0x3368530 reads a doubleword at absolute 0x1170.
+  The `jr` at 0x3368534 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glMaterialf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368554
+  A doubleword is read from absolute 0x1188 (`ld` at 0x3368554).
+  The `jr` at 0x3368558 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glMaterialfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368560
+  The entry reads the doubleword at 0x1190 (`ld` at 0x3368560).
+  The `jr` at 0x3368564 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glMateriali` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x336856c
+  The absolute address 0x1198 is read as a doubleword (`ld` at 0x336856c).
+  The `jr` at 0x3368570 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glMaterialiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368578
+  Its doubleword read uses absolute address 0x11a0 (`ld` at 0x3368578).
+  The `jr` at 0x336857c calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+- `glFragmentLightfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33691a8
+  The `ld` at 0x33691a8 loads a doubleword from absolute address 0x19c0.
+  The `jr` at 0x33691ac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glFragmentLightfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33691b4
+  The `ld` at 0x33691b4 loads a doubleword from absolute address 0x19c8.
+  The `jr` at 0x33691b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glFragmentLightiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33691c0
+  The `ld` at 0x33691c0 loads a doubleword from absolute address 0x19d0.
+  The `jr` at 0x33691c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glFragmentLightivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33691cc
+  The `ld` at 0x33691cc loads a doubleword from absolute address 0x19d8.
+  The `jr` at 0x33691d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
+- `glFragmentLightModelfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33691d8
+  The `ld` at 0x33691d8 loads a doubleword from absolute address 0x19e0.
+  The `jr` at 0x33691dc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) as a tail transfer.
