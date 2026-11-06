@@ -33013,3 +33013,1508 @@ A doubleword is loaded at entry a0 +0x0 (`ld` at 0x32ef510).
   One word-store source is 0xffffffffca80d035 at absolute 0x10000 (`sw` at 0x222c528).
   The `jalr` at 0x222c5e4 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=0xffffffffca80d035.
   Its return value `v0` is `ret(__glOdyim_Materialfv)` (`jr` at 0x222c66c).
+- `RGBSendUnclippedBmFmTN` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222c680
+  Role: unknown.
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x222c688).
+  It reads a byte at entry `a0 +0x198` (`lbu` at 0x222c698).
+  This routine contains 12 word-store sites at absolute 0x10000, including `sw` at 0x222c6ac, 0x222c6dc, 0x222c708.
+  A store writes a word from source 0xffffffffca80d035 to absolute 0x10000 (`sw` at 0x222c6ac).
+  The 43 floating-point word store sites at absolute 0x10000 include `swc1` at 0x222c6b8, 0x222c6c0, 0x222c6c8.
+  The `jalr` at 0x222c798 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=0xffffffffcc80d037, a4=0xffffffffca80d035, a5=a0+296.
+  At absolute 0x10000, the word-store source is 0xffffffffc680d02f (`sw` at 0x222c7a8).
+  The `jalr` at 0x222c864 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc680d02f.
+  At 0x222c918, `v0=ret(__glOdyim_Materialfv)` (`jr` at 0x222c918).
+- `RGBSendClippedFmN` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222c920
+  Role: unknown.
+  It loads a byte from entry `a0 +0xc0` (`lbu` at 0x222c92c).
+  It reads a doubleword at absolute 0x1020 (`ld` at 0x222c938).
+  It stores one of 0x2f00c02e and 0x3000c02e as a word at absolute 0x10000 (`sw` at 0x222c94c).
+  It loads a word at `[0x1020]:8 +0x688` (`lw` at 0x222c958).
+  The `beq` at 0x222c96c takes target 0x222ca28 when `a7=[[0x1020]:8+1672]` equals 0x81fa and falls through when it differs.
+  There are 11 word-store sites at absolute 0x10000, including `sw` at 0x222c94c, 0x222c974, 0x222c988.
+  The word store at absolute 0x10000 uses source 0xffffffffc680d02f (`sw` at 0x222c974).
+  The body includes 39 floating-point word store sites at absolute 0x10000, including `swc1` at 0x222c978, 0x222c97c, 0x222c980.
+  The return value `v0` is unknown (`jr` at 0x222ca20).
+- `RGBSendClippedFmTN` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222caa0
+  Role: unknown.
+  A byte load reads entry `a0 +0xc0` (`lbu` at 0x222caac).
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x222cab8).
+  It stores one of 0x2f00c02e and 0x3000c02e as a word at absolute 0x10000 (`sw` at 0x222cacc).
+  It loads a word at `[0x1020]:8 +0x688` (`lw` at 0x222cad8).
+  The `beq` at 0x222caec takes target 0x222cbd4 when `a7=[[0x1020]:8+1672]` equals 0x81fa and falls through when it differs.
+  Its listing contains 12 word-store sites at absolute 0x10000, including `sw` at 0x222cacc, 0x222caf4, 0x222cb08.
+  Source 0xffffffffc680d02f is used for a word store to absolute 0x10000 (`sw` at 0x222caf4).
+  Of 43 floating-point word store sites at absolute 0x10000, the sites include `swc1` at 0x222caf8, 0x222cafc, 0x222cb00.
+  At the return, `v0` is unknown (`jr` at 0x222cbcc).
+- `RGBSendUnclippedFmNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222d150
+  **Established.** The `beq` at 0x222d188 branches to 0x222d2f0 when `at(=[a0+408]:1) == 0` and falls through when `at(=[a0+408]:1) != 0` (`lbu` at 0x222d15c).
+  The `beq` at 0x222d194 branches to 0x222d268 when `t9(=[[0x1020]:8+101684]:1) == 0` and falls through when `t9(=[[0x1020]:8+101684]:1) != 0` (`lbu` at 0x222d190).
+  There are 11 word-store sites at absolute 0x10000, including `sw` at 0x222d1a0, 0x222d1cc, 0x222d1f8.
+  It has 39 floating-point word-store sites at absolute 0x10000, including `swc1` at 0x222d1a8, 0x222d1b0, 0x222d1b8.
+  The `jalr` at 0x222d25c calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101548], f13=[[0x1020]:8+101528], f14=[[0x1020]:8+101524], f15=[[0x1020]:8+101520], f16=[[0x1020]:8+101516]`.
+  The `jalr` at 0x222d3b4 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a5=0xffffffffc980d032, a6=0xffffffffc780d030, a7=0xffffffffc880d031; fp f12=[a0+248], f13=[a0+228], f14=[a0+224], f15=[a0+220], f16=[a0+216]`.
+  At return, `v0` is unknown (`jr` at 0x222d2e8).
+  Role: unknown.
+- `RGBSendUnclippedFmTNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222d3d0
+  **Established.** The `beq` at 0x222d408 branches to 0x222d59c when `at(=[a0+408]:1) == 0` and falls through when `at(=[a0+408]:1) != 0` (`lbu` at 0x222d3dc).
+  The `beq` at 0x222d414 branches to 0x222d4e8 when `t9(=[[0x1020]:8+101684]:1) == 0` and falls through when `t9(=[[0x1020]:8+101684]:1) != 0` (`lbu` at 0x222d410).
+  It contains 12 word-store sites at absolute 0x10000, including `sw` at 0x222d420, 0x222d44c, 0x222d478.
+  There are 43 floating-point word-store sites at absolute 0x10000, including `swc1` at 0x222d428, 0x222d430, 0x222d438.
+  The `jalr` at 0x222d4dc calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101548], f13=[[0x1020]:8+101528], f14=[[0x1020]:8+101524], f15=[[0x1020]:8+101520], f16=[[0x1020]:8+101516]`.
+  The `jalr` at 0x222d660 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a6=0xffffffffc980d032, a7=0xffffffffc780d030; fp f12=[a0+232], f13=[a0+260], f14=[a0+256], f15=[a0+252], f16=[a0+248], f17=[a0+228], f18=[a0+224], f19=[a0+220]`.
+  The returned `v0` is unknown (`jr` at 0x222d594).
+  Role: unknown.
+- `RGBSendUnclippedBmFmNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222d680
+  **Established.** The `beq` at 0x222d6b8 branches to 0x222d878 when `a2(=[a0+408]:1) == 0` and falls through when `a2(=[a0+408]:1) != 0` (`lbu` at 0x222d68c).
+  The `beq` at 0x222d6c4 branches to 0x222d950 when `t9(=[[0x1020]:8+101685]:1) == 0` and falls through when `t9(=[[0x1020]:8+101685]:1) != 0` (`lbu` at 0x222d6c0).
+  The body has 19 word-store sites at absolute 0x10000, including `sw` at 0x222d6d0, 0x222d6fc, 0x222d728.
+  It contains 71 floating-point word-store sites at absolute 0x10000, including `swc1` at 0x222d6d8, 0x222d6e0, 0x222d6e8.
+  The `jalr` at 0x222d78c calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101628], f13=[[0x1020]:8+101608], f14=[[0x1020]:8+101604], f15=[[0x1020]:8+101600], f16=[[0x1020]:8+101596]`.
+  The `jalr` at 0x222d864 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc680d02f; fp f17=[a0+280], f18=[a0+276], f19=[a0+272]`.
+  The `jalr` at 0x222d93c calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a5=0xffffffffcd80d038, a6=0xffffffffcb80d036, a7=0xffffffffcc80d037; fp f12=[a0+352], f13=[a0+348], f14=[a0+344], f15=[a0+324], f16=[a0+320], f17=[a0+316], f18=[a0+312], f19=[a0+340]`.
+  The `jalr` at 0x222da24 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc6800000; fp f12=[[0x1020]:8+101560], f13=[[0x1020]:8+101556], f14=[[0x1020]:8+101552], f15=[[0x1020]:8+101548], f16=[[0x1020]:8+101528], f17=[[0x1020]:8+101524], f18=[[0x1020]:8+101520], f19=[[0x1020]:8+101516]`.
+  Its return register `v0` is `0xffffffffc180cc19` (`jr` at 0x222dab0).
+  Role: unknown.
+- `RGBSendUnclippedBmFmTNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222dac0
+  **Established.** The `beq` at 0x222daf8 branches to 0x222dcbc when `a2(=[a0+408]:1) == 0` and falls through when `a2(=[a0+408]:1) != 0` (`lbu` at 0x222dacc).
+  The `beq` at 0x222db04 branches to 0x222dd94 when `t9(=[[0x1020]:8+101685]:1) == 0` and falls through when `t9(=[[0x1020]:8+101685]:1) != 0` (`lbu` at 0x222db00).
+  Its word accesses include 20 word-store sites at absolute 0x10000, including `sw` at 0x222db10, 0x222db3c, 0x222db68.
+  The body has 75 floating-point word-store sites at absolute 0x10000, including `swc1` at 0x222db18, 0x222db20, 0x222db28.
+  The `jalr` at 0x222dbcc calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101628], f13=[[0x1020]:8+101608], f14=[[0x1020]:8+101604], f15=[[0x1020]:8+101600], f16=[[0x1020]:8+101596]`.
+  The `jalr` at 0x222dca8 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc680d02f; fp f17=[a0+280], f18=[a0+276], f19=[a0+272]`.
+  The `jalr` at 0x222dd80 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a5=0xffffffffcd80d038, a6=0xffffffffcb80d036, a7=0xffffffffcc80d037; fp f12=[a0+352], f13=[a0+348], f14=[a0+344], f15=[a0+324], f16=[a0+320], f17=[a0+316], f18=[a0+312], f19=[a0+340]`.
+  The `jalr` at 0x222de68 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x404, a1=0x1601, a2=sp-64, a3=unknown; fp f12=[[0x1020]:8+101560], f13=[[0x1020]:8+101556], f14=[[0x1020]:8+101552], f15=[[0x1020]:8+101548], f16=[[0x1020]:8+101528], f17=[[0x1020]:8+101524], f18=[[0x1020]:8+101520], f19=[[0x1020]:8+101516]`.
+  On return, `v0` is `0xffffffffc380d025` (`jr` at 0x222df20).
+  Role: unknown.
+- `RGBSendClippedFmNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222df30
+  **Established.** The `beq` at 0x222df7c branches to 0x222e04c when `t0(=[[0x1020]:8+1672]) == t1(=0x81fa)` and falls through when `t0(=[[0x1020]:8+1672]) != t1(=0x81fa)` (`lw` at 0x222df68).
+  The listing has 11 word-store sites at absolute 0x10000, including `sw` at 0x222df5c, 0x222df84, 0x222df98.
+  The listing has 39 floating-point word-store sites at absolute 0x10000, including `swc1` at 0x222df88, 0x222df8c, 0x222df90.
+  The return value is unknown (`jr` at 0x222e044).
+  Role: unknown.
+- `RGBSendClippedFmTNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222e0c0
+  Role: unknown.
+  **Established:** It reads a byte at entry `a0 +0xc0` (`lbu` at 0x222e0cc).
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x222e0d8).
+  It stores one of 0x2f00c02e and 0x3000c02e as a word at absolute 0x10000 (`sw` at 0x222e0ec).
+  It reads a word at `[0x1020]:8 +0x688` (`lw` at 0x222e0f8).
+  The `beq` at 0x222e10c takes target 0x222e208 when `t0=[[0x1020]:8+1672]` equals 0x81fa and falls through when it differs.
+  A word-store site to absolute 0x10000 has source 0xffffffffc680d02f (`sw` at 0x222e114).
+  Source 0xffffffffc880d031 is written there as a word (`sw` at 0x222e128).
+  Its 43 floating-point word store sites at absolute 0x10000 include `swc1` at 0x222e118, 0x222e11c, 0x222e120.
+  It stores byte 0x1 at `[0x1020]:8 +0x18d34` (`sb` at 0x222e188).
+  The return value `v0` is unknown (`jr` at 0x222e200).
+- `RGBSendClippedBmFmNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222e280
+  Role: unknown.
+  **Established:** A byte load uses entry `a0 +0xc0` (`lbu` at 0x222e2ac).
+  A doubleword load uses absolute 0x1020 (`ld` at 0x222e2b8).
+  It stores a word whose value is one of 0x2f00c02e and 0x3000c02e at absolute 0x10000 (`sw` at 0x222e2cc).
+  The word at `[0x1020]:8 +0x688` is loaded (`lw` at 0x222e2d8).
+  The `beq` at 0x222e2ec takes target 0x222e41c when `t8=[[0x1020]:8+1672]` equals 0x81fa and falls through otherwise.
+  A word-store site to absolute 0x10000 has source 0xffffffffc680d02f (`sw` at 0x222e2f4).
+  Source 0xffffffffc880d031 is written there as a word (`sw` at 0x222e308).
+  The code has 71 floating-point word store sites at absolute 0x10000, including `swc1` at 0x222e2f8, 0x222e2fc, 0x222e300.
+  Byte 0x1 is stored at `[0x1020]:8 +0x18d35` (`sb` at 0x222e3c0).
+  A byte store writes 0x1 at `[0x1020]:8 +0x18d34` (`sb` at 0x222e3c8).
+  At return `v0` is unknown (`jr` at 0x222e414).
+- `RGBSendClippedBmFmTNFast` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222e500
+  Role: unknown.
+  **Established:** It loads a byte from entry `a0 +0xc0` (`lbu` at 0x222e52c).
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x222e538).
+  It stores a word with one of 0x2f00c02e and 0x3000c02e at absolute 0x10000 (`sw` at 0x222e54c).
+  It loads a word at `[0x1020]:8 +0x688` (`lw` at 0x222e558).
+  The `beq` at 0x222e56c takes target 0x222e6c8 when `t8=[[0x1020]:8+1672]` equals 0x81fa and falls through when it differs.
+  A word-store site to absolute 0x10000 has source 0xffffffffc680d02f (`sw` at 0x222e574).
+  Source 0xffffffffc880d031 is written there as a word (`sw` at 0x222e588).
+  The 75 floating-point word store sites at absolute 0x10000 include `swc1` at 0x222e578, 0x222e57c, 0x222e580.
+  Byte 0x1 is stored at `[0x1020]:8 +0x18d35` (`sb` at 0x222e640).
+  A byte store writes 0x1 at `[0x1020]:8 +0x18d34` (`sb` at 0x222e648).
+  Its return value `v0` is unknown (`jr` at 0x222e6c0).
+- `CISendClippedFmN` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222ebe0
+  Role: unknown.
+  **Established:** It reads a byte from entry `a0 +0xc0` (`lbu` at 0x222ebe4).
+  It writes one of 0x2f00c02e and 0x3000c02e as a word at absolute 0x10000 (`sw` at 0x222ec00).
+  Source 0xffffffffc680d02f goes to absolute 0x10000 as a word (`sw` at 0x222ec08).
+  A floating-point word load reads entry `a0 +0x98` (`lwc1` at 0x222ec0c).
+  The 23 floating-point word store sites at absolute 0x10000 include `swc1` at 0x222ec14, 0x222ec18, 0x222ec1c.
+  A word-store site there has source 0xffffffffc780d030 (`sw` at 0x222ec2c).
+  At return `v0` is 0xffffffff8080d005 (`jr` at 0x222ecc4).
+- `CISendClippedBmFmN` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x222ecd0
+  Role: unknown.
+  **Established:** The byte at entry `a0 +0xc0` is loaded (`lbu` at 0x222ecd4).
+  It stores one of 0x2f00c02e and 0x3000c02e as a word at absolute 0x10000 (`sw` at 0x222ecf0).
+  The word at absolute 0x10000 receives source 0xffffffffc680d02f (`sw` at 0x222ecf8).
+  It loads a floating-point word at entry `a0 +0x98` (`lwc1` at 0x222ecfc).
+  The body contains 39 floating-point word store sites at absolute 0x10000, including `swc1` at 0x222ed04, 0x222ed08, 0x222ed0c.
+  Another word-store site there has source 0xffffffffc780d030 (`sw` at 0x222ed1c).
+  The return value in `v0` is 0xffffffff8080d005 (`jr` at 0x222ee28).
+- `__glOdysseySendShadowVertex` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x22339c0
+  **Established effects.**
+  It reads a word at `(a1 + (a2 << 0x2)) +0x100` (`lw` at 0x22339d4).
+  The `jalr` at 0x2233a38 calls `printf` with a0=0x23321d0, a1=unknown, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0).
+  The `jalr` at 0x2233a68 calls (unknown callee) with a0=a0 at entry (arg0), a1=(a1 + (a2 << 0x4)), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0); fp f12=[(a1 + (a2 << 0x4))+768], f13=[(a1 + (a2 << 0x4))+772], f14=[(a1 + (a2 << 0x4))+776], f15=[(a1 + (a2 << 0x4))+780].
+  The `jalr` at 0x2233a8c calls (unknown callee) with a0=[(a1 + (a2 << 0x4))+768], a1=[(a1 + (a2 << 0x4))+772], a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0).
+  The `jalr` at 0x2233ab0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0); fp f12=[(a1 + (a2 << 0x4))+768], f13=[(a1 + (a2 << 0x4))+772].
+  The `jalr` at 0x2233ad8 calls (unknown callee) with a0=[(a1 + (a2 << 0x4))+768], a1=[(a1 + (a2 << 0x4))+772], a2=[(a1 + (a2 << 0x4))+776], a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0).
+  The `jalr` at 0x2233b00 calls (unknown callee) with a0=a0 at entry (arg0), a1=(a1 + (a2 << 0x4)), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0); fp f12=[(a1 + (a2 << 0x4))+768], f13=[(a1 + (a2 << 0x4))+772], f14=[(a1 + (a2 << 0x4))+776].
+  The `jalr` at 0x2233b2c calls (unknown callee) with a0=[(a1 + (a2 << 0x4))+768], a1=[(a1 + (a2 << 0x4))+772], a2=[(a1 + (a2 << 0x4))+776], a3=[(a1 + (a2 << 0x4))+780], a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0).
+  Its analyzed return leaves `v0` unknown (`jr` at 0x2233a48).
+  Role: unknown.
+- `__glOdysseyDrawPixels` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d2160
+  **Established effects.**
+  A word comes from entry `a0 +0x5b4` (`lw` at 0x21d21a8).
+  It stores a word with source value `[0x23378f8]` at entry `a0 +0x594` (`sw` at 0x21d2210).
+  The `bgezall` at 0x21d2278 calls `__glOdyim_DrawPixels` with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5).
+  At return `v0` holds the value returned by `__glOdyim_DrawPixels` (`jr` at 0x21d22f4).
+  Role: unknown.
+- `__glOdysseyUpdateRasterPos` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21caa00
+  **Established effects.**
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x21caa1c).
+  A return delay slot stores byte 0x0 at entry `a0 +0xcaa0` (`sb` at 0x21caaac; `jr` at 0x21caaa8).
+  The `bgezall` at 0x21caa40 calls `__glOdyGetFromHardware` with a0=a0 at entry (arg0), a1=0x3, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x21caa6c calls `__glOdyDecodeShadowFormat` with a0=unknown, a1=unknown, a2=0x1, a3=unknown.
+  The `bgezall` at 0x21caa88 calls `__glOdyDecodeShadowFormat` with a0=unknown, a1=unknown, a2=0x1, a3=unknown.
+  The `bgezall` at 0x21caac8 calls `__glOdyDecodeShadowFormat` with a0=unknown, a1=unknown, a2=0x1, a3=unknown.
+  The analyzed returns carry either the value returned by `__glOdyDecodeShadowFormat` or that returned by `__glOdyGetFromHardware` in `v0` (`jr` at 0x21caaa8, 0x21caab4).
+  Role: unknown.
+- `__glOdysseyRasterPosGeneral` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x220e970
+  **Established effects.**
+  It stores words 0x3cf8, 0x3cf9, 0x3cfa and 0x3cfb at absolute 0x10000 (`sw` at 0x220eb38, 0x220eb80, 0x220ebc8, 0x220ec10).
+  There are 64 word-store sites writing 0x0 at absolute 0x10000, including `sw` at 0x220eb3c, 0x220eb40, 0x220eb44.
+  The `jalr` at 0x220e9e8 calls (unknown callee) with a0=a0+528, a1=a0+432, a2=[a0+38056]:8+208, a3=a3 at entry (arg3), a4=[a0+38056]:8, a5=0x2, a6=0x10000, a7=0x3.
+  The `jalr` at 0x220ea08 calls `__glClipCheckAll` with a0=a0 at entry (arg0), a1=a0+408, a2=0x22e5c60, a3=a0 at entry (arg0).
+  The `jalr` at 0x220ea38 calls (unknown callee) with a0=a0+528, a1=a0+432, a2=[a0+38056]:8+208, a3=a3 at entry (arg3), a4=[a0+38056]:8, a5=0x2, a6=0x10000.
+  The `jalr` at 0x220ea58 calls `__glClipCheckAll` with a0=a0 at entry (arg0), a1=a0+408, a2=0x22e58b0, a3=a0 at entry (arg0).
+  The `jr` at 0x220eabc calls `__glSetError` with a0=0x502, a1=unknown, a2=[0x1030], a3=unknown, a4=[0x1020]:8+131072, a5=0x1, a6=[[0x1020]:8+101976], a7=0x2.
+  The `jalr` at 0x220ead0 calls (unknown callee) with a0=a0+528, a1=a0+432, a2=[a0+38056]:8+208, a3=a3 at entry (arg3), a4=[a0+38056]:8, a5=0x2, a6=0x10000, a7=0x3.
+  The `jalr` at 0x220eaf0 calls `__glClipCheckAll` with a0=a0 at entry (arg0), a1=a0+408, a2=0x22e5a80, a3=a0 at entry (arg0).
+  The `jalr` at 0x220eb20 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=[0x1030], a3=unknown, a4=[0x1020]:8+131072, a5=0x1, a6=[[0x1020]:8+101976].
+  The `jalr` at 0x220ed08 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=[a0+18688]:8.
+  The `jalr` at 0x220ed38 calls `__glSelectPoint` with a0=a0 at entry (arg0), a1=unknown, a2=[a0+3540], a3=unknown, a5=0x1c02.
+  The `jalr` at 0x220eec0 calls `__glOdysseyUpdateRasterPos` with a0=a0 at entry (arg0), a1=unknown, a2=[a0+3540], a3=unknown, a4=0x10000, a5=one of 0x1, 0x1c02.
+  The instructions from 0x220ea7c to 0x220ea7c are not reached by any path from the entry, and their branches are not listed.
+  At one analyzed return `v0` is unknown (`jr` at 0x220e9d4).
+  Role: unknown.
+- `RenderFunc_TextureColor` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d49f0
+  **Established:** It loads a doubleword at entry `a0 +0x60` (`ld` at 0x21d4a0c).
+  Another doubleword load reads entry `a0 +0x58` (`ld` at 0x21d4a20).
+  The `jalr` at 0x21d4a1c calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1`.
+  At 0x21d4a30, `v0` is 0x1 (`jr` at 0x21d4a30).
+  Role: unknown.
+- `RenderFunc_CopyColor` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d4ad0
+  **Established:** A doubleword load reads entry `a0 +0x60` (`ld` at 0x21d4aec).
+  The load at entry `a0 +0x58` is also a doubleword (`ld` at 0x21d4b04).
+  The `jalr` at 0x21d4b00 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x0, a4=0x1`.
+  At return, `v0` is 0x1 (`jr` at 0x21d4b14).
+  Role: unknown.
+- `RenderFunc_Lut` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d4bb0
+  **Established:** The reported accesses include 17 word-store sites to absolute 0x10000, including `sw` at 0x21d5048, 0x21d5050, 0x21d5058.
+  Five word-store sites target absolute 0x1030, including `sw` at 0x21d4e0c, 0x21d4e4c, 0x21d4f9c.
+  The `jalr` at 0x21d4e74 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a6=[a0+96]:8, a7=[0x1020]:8+45260`.
+  The `jalr` at 0x21d5010 calls `__glOdysseyOpenPMObjReference [0x220b780]` with `a0=[0x1020]:8, a1=unknown, a2=0x0, a3=0x0, a4=sp-2192, a5=0x1, a7=0xcaa8`.
+  The `jalr` at 0x21d50b4 calls `__glOdysseyClosePMObjReference [0x220bd70]` with `a0=[0x1020]:8, a1=unknown, a2=0x0, a3=0x0, a4=0x10046, a5=0xfa, a6=0x10443`.
+  The `jalr` at 0x21d5114 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a6=[a0+96]:8, a7=[[a0+88]:8+56]`.
+  The `jalr` at 0x21d5164 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a6=[a0+96]:8, a7=[0x1020]:8+45260`.
+  The `jalr` at 0x21d5184 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a6=[a0+96]:8, a7=[0x1020]:8+45260`.
+  The `jalr` at 0x21d51a4 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a6=[a0+96]:8, a7=[[a0+88]:8+56]`.
+  The `jalr` at 0x21d51cc calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d51fc calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The return at 0x21d4fc8 reports `v0=0x1`; those at 0x21d51e0 and 0x21d5210 report 0x0 (`jr` at 0x21d4fc8, 0x21d51e0, 0x21d5210).
+  Role: unknown.
+- `RenderFunc_Convolve` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d6620
+  **Established:** The `beq` at 0x21d67f8 branches to 0x21d6c78 when `v0(=[[0x1020]:8+81775]:1) == v1(=0x1)` and falls through when they differ (`lbu` at 0x21d67d8).
+  Sixteen reported word-store sites address absolute 0x1030, including `sw` at 0x21d6854, 0x21d6884, 0x21d68ac.
+  The `jalr` at 0x21d6830 calls `AddConvolutionBorders [0x21e2650]` with `a0=sp-232, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=[0x1020]:8+81224, a4=[0x1020]:8+81288, a5=[[0x1020]:8+45120], a6=[0x1020]:8, a7=[[0x1020]:8+47600]`.
+  The `jalr` at 0x21d6a48 calls `LoadTextureFilter [0x21e0cc0]` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d6a60 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[0x1020]:8+81288, a1=[0x1020]:8+81224, a2=sp-232, a3=0x0`.
+  The `jalr` at 0x21d6ab0 calls `ConvolutionDenormAndScale [0x21e0dd0]` with `a0=a0 at entry (arg0), a1=sp-232, a2=[0x1020]:8+81288, a3=unknown`.
+  The `jalr` at 0x21d6ad0 calls `ConvolutionClampToZero [0x21e1f10]` with `a0=a0 at entry (arg0), a1=sp-232, a2=sp-400, a3=[0x1020]:8+81288, a4=[0x1020]:8+81224`.
+  The `jalr` at 0x21d6d3c calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a5=([[0x1020]:8+101972] | 0x2), a7=0xfffffffffffdffff`.
+  Both returns report `v0=0x1` (`jr` at 0x21d6c70, 0x21d6eac).
+  Role: unknown.
+- `RenderFunc_FastConvolve` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d6ed0
+  **Established:** The `beq` at 0x21d70ac branches to 0x21d77c8 when `v1(=[[0x1020]:8+81775]:1) == a3(=0x1)` and falls through when they differ (`lbu` at 0x21d708c).
+  Its reported word accesses include 19 store sites to absolute 0x1030, including `sw` at 0x21d720c, 0x21d723c, 0x21d7264.
+  The `jalr` at 0x21d714c calls `ceilf` with `a0=[a1+8], a1=[a1+4], a2=a1 at entry (arg1), a3=[a1], a4=[[0x1020]:8+45112], a5=[[0x1020]:8+45248], a6=sp-296, a7=0xffffffffffefffff; fp f13=0x3fe0000000000000`.
+  The `jalr` at 0x21d7184 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f14=0x3fe0000000000000`.
+  The `jalr` at 0x21d71a0 calls `floorf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d71c0 calls `floorf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d7418 calls `LoadTextureFilter [0x21e0cc0]` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d7430 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=unknown, a1=[a0+88]:8, a2=sp-296, a3=0x0`.
+  The `jalr` at 0x21d7524 calls `__glOdysseyProgramTexFilter [0x21faa10]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d7574 calls `LoadTextureFilter [0x21e0cc0]` with `a0=a0 at entry (arg0), a1=[a0+24]-1, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d75cc calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=unknown, a2=sp-296, a3=0x1`.
+  The `jalr` at 0x21d778c calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=unknown, a2=sp-296, a3=0x1, a4=0x1`.
+  The `jalr` at 0x21d7898 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=[[0x1020]:8+45112], a5=[[0x1020]:8+45248], a7=0xffffffffffefffff`.
+  The `jalr` at 0x21d7a18 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a5=[[0x1020]:8+45248], a7=0xffffffffffefffff`.
+  Both return sites report `v0=0x1` (`jr` at 0x21d7774, 0x21d7a08).
+  Role: unknown.
+- `RenderFunc_PixelTexture` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e50f0
+  **Established effects.**
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x21e5100).
+  On one path it stores the words 0x10443, 0xfa and 0x10046 at absolute 0x10000 (`sw` at 0x21e5240, 0x21e5244, 0x21e5248).
+  A word 0x11453 is stored at absolute 0x10000 (`sw` at 0x21e5264).
+  The `jalr` at 0x21e53ac calls `__glOdysseyImageMovePixelsCopy` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a5=[0x1020]:8, a6=0x10000, a7=0x2.
+  The `jalr` at 0x21e5560 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1, a5=[0x1020]:8, a6=0x10000, a7=0x2.
+  At its analyzed return, `v0` is 0x1 (`jr` at 0x21e5550).
+  Role: unknown.
+- `RenderFunc_DownloadDepth` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e5610
+  **Established effects.**
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x21e5618).
+  Three word-store sites write 0x2 at absolute 0x1030, including `sw` at 0x21e5ac8, 0x21e5b4c, 0x21e5c58.
+  The `jalr` at 0x21e5820 calls `__glOdysseyImageConvertHostImage` with a0=sp-320, a1=sp-336, a2=[a0+88]:8, a3=sp-352, a4=a0+40, a5=a0+56, a6=0x0.
+  The `jalr` at 0x21e58b0 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e58d4 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e58f4 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e5914 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e5a08 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e5a30 calls `__glOdysseyImageZoomHostImage` with a0=sp-200, a1=sp-216, a2=sp-320, a3=sp-336.
+  The `jalr` at 0x21e5af4 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=sp-200, a2=sp-256, a3=0x1, a4=0x1.
+  The `jalr` at 0x21e5b0c calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e5b80 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e5c84 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=sp-320, a2=sp-256, a3=0x1, a4=0x1, a5=[[0x1020]:8+40784], a7=[a0+96]:8; fp f12=[a1+20].
+  The analyzed returns put 0x1 or 0x0 in `v0` (`jr` at 0x21e5b64, 0x21e5ba0).
+  Role: unknown.
+- `RenderFunc_DownloadStencil` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e5d60
+  **Established effects.**
+  A doubleword load reads absolute 0x1020 (`ld` at 0x21e5d68).
+  It has three word-store sites writing 0x2 at absolute 0x1030, including `sw` at 0x21e6240, 0x21e62cc, 0x21e63dc.
+  The `jalr` at 0x21e5f44 calls `__glOdysseyImageConvertHostImage` with a0=sp-328, a1=sp-344, a2=[a0+88]:8, a3=sp-360, a4=sp-368, a5=sp-364, a6=[a0+78]:1.
+  The `jalr` at 0x21e5fd4 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e5ff4 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e6018 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e6038 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e612c calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e6154 calls `__glOdysseyImageZoomHostImage` with a0=sp-208, a1=sp-224, a2=sp-328, a3=sp-344.
+  The `jalr` at 0x21e626c calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=sp-208, a2=sp-264, a3=0x1, a4=0x0.
+  The `jalr` at 0x21e6284 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e6308 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21e6408 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=sp-328, a2=sp-264, a3=0x1, a4=0x0, a5=0xffffffffff7fffff, a6=0xffffffffffbfffff.
+  The analyzed `v0` returns are 0x1 and 0x0 (`jr` at 0x21e62e4, 0x21e632c).
+  Role: unknown.
+- `RenderFunc_ReadbackDepth` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e64c0
+  **Established effects.**
+  It reads the doubleword at absolute 0x1020 (`ld` at 0x21e64cc).
+  The `jalr` at 0x21e6504 calls `__glOdysseyImageCalcXferReadParams` with a0=[[a0+96]:8+8], a1=[[a0+96]:8+12], a2=[a0+88]:8, a3=sp-208.
+  The `jalr` at 0x21e6670 calls `__glOdysseyImageMovePixelsDMAtoHost` with a0=sp-168, a1=[a0+88]:8, a2=sp-104, a3=[a0+96]:8, a5=sp-168, a6=0x1405.
+  The `bgezall` at 0x21e66f0 calls `__glOdysseyImageConvertHostImage` with a0=[a0+96]:8, a1=sp-64, a2=sp-168, a3=sp-184, a4=a0+40, a5=a0+56, a6=0x0.
+  Both analyzed returns have `v0` equal to 0x1 (`jr` at 0x21e6718, 0x21e6730).
+  Role: unknown.
+- `RenderFunc_ReadbackStencil` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e6900
+  **Established effects.**
+  The doubleword at absolute 0x1020 is loaded (`ld` at 0x21e6918).
+  The `jalr` at 0x21e6acc calls `__glOdysseyImageMovePixelsDMAtoHost` with a0=sp-168, a1=[a0+88]:8, a2=sp-104, a3=0x1901, a4=0x1, a5=0x1401.
+  The `bgezall` at 0x21e6b3c calls `__glOdysseyImageConvertHostImage` with a0=[a0+96]:8, a1=sp-64, a2=sp-168, a3=sp-184, a4=sp-192, a5=sp-188, a6=[a0+78]:1.
+  The `jalr` at 0x21e6ba8 calls `__glOdysseyImageMovePixelsDMAtoHost` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=0x1, a5=0x1401.
+  At both analyzed returns `v0` is 0x1 (`jr` at 0x21e6b60, 0x21e6b6c).
+  Role: unknown.
+- `RenderFunc_Convolve24BitMode` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d7a30
+  Role: unknown.
+  The body contains 33 word store sites of 0x2 at absolute 0x1030, including `sw` at 0x21d7c80, 0x21d7cb0, 0x21d7cd4.
+  The `jalr` at 0x21d7c60 calls `AddConvolutionBorders` with a0=sp-264, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=[0x1020]:8+81224, a4=[0x1020]:8+81288, a5=[[0x1020]:8+45252], a6=[0x1020]:8, a7=[[0x1020]:8+40780].
+  The `jalr` at 0x21d7eb8 calls `LoadTextureFilter` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21d7ed0 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-264, a3=0x0.
+  The `jalr` at 0x21d7fbc calls `LoadTextureFilter` with a0=a0 at entry (arg0), a1=[a0+24]-1, a2=unknown, a3=unknown, a4=[[0x1020]:8+40836].
+  The `jalr` at 0x21d7fd4 calls `__glOdysseyImageMovePixelsTexture` with a0=[0x1020]:8+81224, a1=unknown, a2=sp-264, a3=0x0.
+  The `jalr` at 0x21d8080 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=unknown, a2=sp-264, a3=0x0.
+  The `jalr` at 0x21d812c calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-264, a3=0x0, a4=([[0x1020]:8+101972] | 0x1), a6=((0xfff000 | [[0x1020]:8+40844]) | 0xfff).
+  The `jalr` at 0x21d81e8 calls `__glOdysseyProgramTexFilter` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21d821c calls `LoadTextureFilter` with a0=a0 at entry (arg0), a1=[a0+24]-1, a2=unknown, a3=(0x200000 | [[0x1020]:8+101972]), a5=[[0x1020]:8+47604].
+  The `jalr` at 0x21d8234 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=[a0+88]:8, a2=sp-264, a3=0x0.
+  The `jalr` at 0x21d82b0 calls `__glOdysseyProgramTexFilter` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21d82e4 calls `LoadTextureFilter` with a0=a0 at entry (arg0), a1=[a0+24]-1, a2=unknown, a3=unknown.
+  The `jalr` at 0x21d837c calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=unknown, a2=sp-264, a3=0x0.
+  The `jalr` at 0x21d8438 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=unknown, a2=sp-264, a3=0x0, a4=([[0x1020]:8+101972] | 0x1), a5=((0xfff000 | [[0x1020]:8+40844]) | 0xfff), a6=[[0x1020]:8+40844], a7=((0xfff000 | [[0x1020]:8+40840]) | 0xfff).
+  The `jalr` at 0x21d84e0 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-264, a3=0x0.
+  The `jalr` at 0x21d84fc calls `ConvolutionDenormAndScale` with a0=a0 at entry (arg0), a1=sp-264, a2=unknown, a3=unknown.
+  The `jalr` at 0x21d851c calls `ConvolutionClampToZero` with a0=a0 at entry (arg0), a1=sp-264, a2=sp-432, a3=unknown, a4=[0x1020]:8+81224.
+  The `jalr` at 0x21d8780 calls `__glOdysseyImageMovePixelsTexture` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a5=([[0x1020]:8+101972] | 0x2), a7=(0x200000 | [[0x1020]:8+101972]).
+  Both returns have `v0=0x1` (`jr` at 0x21d86bc, 0x21d88f4).
+- `RenderFunc_ConvolveResidue` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d97b0
+  Role: unknown.
+  This routine has 20 word store sites of 0x2 at absolute 0x1030, including `sw` at 0x21d9a84, 0x21d9b00, 0x21d9b28.
+  The `jalr` at 0x21d99c4 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=[[0x1020]:8+45112], a3=0x1, a4=0x1403, a5=0x1908, a6=[[0x1020]:8+82344], a7=[[0x1020]:8+82348].
+  The `jalr` at 0x21d9a3c calls `AddConvolutionBorders` with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=[0x1020]:8+81416, a4=[0x1020]:8+81480.
+  The `jalr` at 0x21d9cb0 calls `__glOdysseyImageMovePixelsDMAtoHost` with a0=unknown, a1=unknown, a2=sp-344, a3=unknown.
+  The `jalr` at 0x21d9d18 calls `__glOdysseyReconstructFromResidue` with a0=[[0x1020]:8+81656]:8, a1=[[0x1020]:8+81720]:8, a2=unknown, a3=unknown.
+  The `jalr` at 0x21d9e4c calls `__glOdysseyProgramTexFilter` with a0=unknown, a1=([[0x1020]:8+101972] | 0x2), a2=unknown, a3=0x4.
+  The `bgezall` at 0x21d9e88 calls `LoadTextureFilter` with a0=a0 at entry (arg0), a1=[a0+24]-1, a2=unknown, a3=0x21e0cc0, a4=([[0x1020]:8+101972] | 0x200), a5=((0x10000 | [[0x1020]:8+40996]) | 0x4000).
+  The `jalr` at 0x21d9ee8 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=unknown, a2=sp-344, a3=0x0.
+  The `jalr` at 0x21da090 calls `__glOdysseyImageMovePixelsTexture` with a0=unknown, a1=unknown, a2=a1 at entry (arg1), a3=0x0, a4=(0x38000 | [[0x1020]:8+101972]).
+  The `jalr` at 0x21da36c calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=unknown, a2=sp-344, a3=0x1, a4=0x1, a5=0x13f08.
+  The `jalr` at 0x21da388 calls (unknown callee) with a0=unknown, a1=[[0x1020]:8+81720]:8, a2=unknown, a3=unknown.
+  The `jalr` at 0x21da5f0 calls `__glOdysseyImageMovePixelsTexture` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x0.
+  The `jalr` at 0x21da774 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The returns at 0x21da50c and 0x21da75c have `v0=0x1`; the return at 0x21da794 has `v0=0x0` (`jr` at 0x21da50c, 0x21da75c, 0x21da794).
+- `RenderFunc_ScaleBiasGfx` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21ddc90
+  Role: unknown.
+  Its listing includes 4 word store sites of 0x2 at absolute 0x1030, including `sw` at 0x21dde1c, 0x21dde40, 0x21dde68.
+  The `jalr` at 0x21de1f0 calls `ceilf` with a0=sp-336, a1=sp-320, a2=[[0x1020]:8+40780], a3=unknown, a4=sp-248, a5=[[0x1020]:8+45244], a6=[[0x1020]:8+45112], a7=[[0x1020]:8+45136]; fp f19=[a1+4].
+  The `bgezall` at 0x21de230 calls `SetupScaleBiasForTexFilter` with a0=sp-336, a1=sp-320, a2=unknown, a3=unknown, a4=sp-248.
+  The `jalr` at 0x21de250 calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=unknown, a2=sp-304, a3=0x1, a4=0x1.
+  The `jalr` at 0x21de4a0 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-304, a3=0x1, a4=0x1.
+  The `bgezall` at 0x21de620 calls `SetupScaleBiasForTexFilter` with a0=sp-336, a1=sp-320, a2=unknown, a3=unknown, a4=sp-264.
+  The `bgezall` at 0x21de65c calls `SetupScaleBiasForTexFilter` with a0=sp-336, a1=sp-320, a2=[[0x1020]:8+40780], a3=unknown, a4=[[0x1020]:8+45248], a5=[[0x1020]:8+45244], a6=[[0x1020]:8+45112], a7=[[0x1020]:8+45136]; fp f15=[a1+12], f18=[a1+8], f19=[a1+4].
+  The `jalr` at 0x21de678 calls `__glOdysseyImageMovePixelsCopy` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1.
+  The `jalr` at 0x21de81c calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-304, a3=0x1, a4=0x1.
+  The `bgezall` at 0x21dea34 calls `SetupScaleBiasForTexFilter` with a0=sp-336, a1=sp-320, a2=unknown, a3=unknown, a4=sp-264.
+  The `jalr` at 0x21dea50 calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[a0+88]:8, a2=sp-304, a3=0x1, a4=0x0.
+  The `bgezall` at 0x21dea90 calls `SetupScaleBiasForTexFilter` with a0=sp-336, a1=sp-320, a2=unknown, a3=unknown, a4=sp-264.
+  The instructions from 0x21de48c to 0x21de48c are not reached by any path from the entry, and their branches are not listed.
+  The return value `v0` is 0x1 (`jr` at 0x21de804).
+- `RenderFunc_ScaleBias` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21da950
+  Role: unknown.
+  The body contains 4 word store sites of 0x2 at absolute 0x1030, including `sw` at 0x21dab28, 0x21dab4c, 0x21dab74.
+  The `jalr` at 0x21db168 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21db180 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db1a0 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db1b8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db1d0 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21db2d0 calls `SetupScaleBiasForTexFilter` with a0=sp-544, a1=sp-528, a2=unknown, a3=unknown, a4=sp-528, a5=sp-544.
+  The `jalr` at 0x21db348 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[a0+88]:8, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21db36c calls `__glOdysseyImageMovePixelsCopy` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x0, a4=0x1, a5=sp-544, a6=[0x1020]:8+131072, a7=[[0x1020]:8+45244]; fp f12=[a1+12], f15=[a1+8], f16=[a1+4], f17=[a1].
+  The `jalr` at 0x21db54c calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21db564 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db588 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db5a8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db5c8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21db6d0 calls `SetupScaleBiasForTexFilter` with a0=sp-544, a1=sp-528, a2=unknown, a3=unknown, a4=sp-528, a5=sp-544.
+  The `jalr` at 0x21db72c calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[a0+88]:8, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21db770 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[0x1020]:8+81224, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21db788 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db7a8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db7c8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db7e8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21db8d8 calls `SetupScaleBiasForTexFilter` with a0=sp-544, a1=sp-528, a2=unknown, a3=unknown, a5=sp-544.
+  The `jalr` at 0x21db934 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[a0+88]:8, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21db9cc calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[0x1020]:8+81224, a2=sp-352, a3=0x1, a4=0x1; fp f18=f26, f19=f26.
+  The `jalr` at 0x21db9e4 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21db9fc calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dba14 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dba2c calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21dbb28 calls `SetupScaleBiasForTexFilter` with a0=sp-544, a1=sp-528, a2=unknown, a3=unknown, a5=sp-544.
+  The `jalr` at 0x21dbb4c calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[a0+88]:8, a2=sp-352, a3=0x1, a4=0x1; fp f18=f26.
+  The `jalr` at 0x21dbb90 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a5=sp-544; fp f13=[[0x1020]:8+82352], f14=[a0+68], f15=[a0+64], f16=[a0+60], f17=[a0+56].
+  The `bgezall` at 0x21dbcb4 calls `SetupScaleBiasForTexFilter` with a0=sp-544, a1=sp-528, a2=unknown, a3=unknown, a4=sp-528.
+  The `jalr` at 0x21dbd18 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=unknown, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21dbe74 calls `ceilf` with a0=unknown, a1=sp-496, a2=[0x1020]:8, a3=0x40000, a4=sp-528, a5=sp-544, a6=[0x1020]:8+131072, a7=[[0x1020]:8+45244]; fp f13=[[0x1020]:8+82352], f15=[a1+8], f16=[a1+4], f17=[a1].
+  The `bgezall` at 0x21dbf84 calls `SetupScaleBiasForTexFilter` with a0=sp-544, a1=sp-528, a2=unknown, a3=unknown, a4=sp-528.
+  The `jalr` at 0x21dbff0 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=unknown, a2=sp-352, a3=0x1, a4=0x1.
+  The `jalr` at 0x21dc148 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[a0+88]:8, a2=sp-352, a3=0x1, a4=0x1.
+  The instructions from 0x21db358 to 0x21db358 are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x21dbbcc to 0x21dbbcc are not reached by any path from the entry, and their branches are not listed.
+  At return `v0` is 0x1 (`jr` at 0x21db510).
+- `RenderFunc_ScaleBiasForSignedTypes` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21dc160
+  Role: unknown.
+  The body contains 16 word store sites of 0x2 at absolute 0x1030, including `sw` at 0x21dc338, 0x21dc35c, 0x21dc380.
+  The `jalr` at 0x21dc9d4 calls `__glOdysseyImageMovePixelsCopy` with a0=([0x1020]:8 + one of 0x13d48, 0x13d88), a1=unknown, a2=sp-400, a3=0x1, a4=0x0.
+  The `jalr` at 0x21dc9ec calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dca10 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dca28 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dca40 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21dcb30 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=sp-592.
+  The `jalr` at 0x21dcb8c calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[a0+88]:8, a2=sp-400, a3=0x1, a4=0x0.
+  The `bgezall` at 0x21dcc20 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=unknown; fp f12=0x40000000, f13=0x39800000.
+  The `jalr` at 0x21dccc4 calls `__glOdysseyImageMovePixelsCopy` with a0=[a0+96]:8, a1=unknown, a2=sp-400, a3=0x1, a4=0x1, a5=0x2, a6=(0x10000 | [[0x1020]:8+101972]), a7=[[0x1020]:8+101972]; fp f14=[a1+28], f15=[a1+24], f16=[a1+20], f17=[a1+16].
+  The `jalr` at 0x21dcea4 calls `__glOdysseyImageMovePixelsCopy` with a0=([0x1020]:8 + one of 0x13d48, 0x13d88), a1=unknown, a2=sp-400, a3=0x1, a4=0x1, a5=0x1, a7=0x2; fp f18=f27, f19=f27.
+  The `jalr` at 0x21dcebc calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dcee8 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dcf08 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dcf28 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21dd020 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=sp-592.
+  The `jalr` at 0x21dd07c calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[a0+88]:8, a2=sp-400, a3=0x1, a4=0x1, a5=0x1, a7=0x2; fp f18=f27.
+  The `jalr` at 0x21dd0f0 calls `__glOdysseyImageMovePixelsCopy` with a0=([0x1020]:8 + one of 0x13d48, 0x13d88), a1=unknown, a2=sp-400, a3=0x1, a4=0x1; fp f13=f27, f14=f27.
+  The `jalr` at 0x21dd108 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dd128 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dd148 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dd168 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21dd260 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=sp-592.
+  The `jalr` at 0x21dd2bc calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[a0+88]:8, a2=sp-400, a3=0x1, a4=0x1; fp f13=f27.
+  The `jalr` at 0x21dd37c calls `__glOdysseyImageMovePixelsCopy` with a0=([0x1020]:8 + one of 0x13d48, 0x13d88), a1=unknown, a2=sp-400, a3=0x1, a4=0x1; fp f14=f27, f15=f27.
+  The `jalr` at 0x21dd394 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dd3ac calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dd3c4 calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `jalr` at 0x21dd3dc calls `powf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352].
+  The `bgezall` at 0x21dd4d8 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=sp-592.
+  The `jalr` at 0x21dd500 calls `__glOdysseyImageMovePixelsCopy` with a0=[0x1020]:8+81224, a1=[a0+88]:8, a2=sp-400, a3=0x1, a4=0x1.
+  The `jalr` at 0x21dd548 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=sp-592; fp f13=[[0x1020]:8+82352], f14=[a0+68], f15=[a0+64], f16=[a0+60], f17=[a0+56].
+  The `bgezall` at 0x21dd678 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=sp-576.
+  The `jalr` at 0x21dd6ec calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=unknown, a2=sp-400, a3=0x1, a4=0x1; fp f19=f27.
+  The `jalr` at 0x21dd850 calls `ceilf` with a0=unknown, a1=a1 at entry (arg1), a2=0x100000, a3=sp-592, a4=[[0x1020]:8+40780], a5=[0x1020]:8, a6=[[0x1020]:8+45248], a7=[[0x1020]:8+45244]; fp f13=[[0x1020]:8+82352], f14=[a1+8], f15=[a1+8], f16=[a1+4], f17=[a1].
+  The `bgezall` at 0x21dd974 calls `SetupScaleBiasForTexFilter` with a0=sp-592, a1=sp-576, a2=unknown, a3=sp-576.
+  The `jalr` at 0x21dd9f4 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=unknown, a2=sp-400, a3=0x1, a4=0x1; fp f15=f27, f16=f27.
+  The `jalr` at 0x21ddb54 calls `__glOdysseyImageMovePixelsCopy` with a0=unknown, a1=[a0+88]:8, a2=sp-400, a3=0x1, a4=0x1; fp f15=f27.
+  The instructions from 0x21dc96c to 0x21dc96c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x21dcb9c to 0x21dcb9c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x21dd58c to 0x21dd58c are not reached by any path from the entry, and their branches are not listed.
+  The return value `v0` is 0x1 (`jr` at 0x21dce38).
+- `RenderFunc_ColorZoom` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21ea0b0
+  Role: unknown.
+  It loads doublewords from entry `a0 +0x60` and `a0 +0x58` (`ld` at 0x21ea0cc, 0x21ea0e0).
+  The `jalr` at 0x21ea0dc calls `__glOdysseyImageMovePixelsTexture` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1.
+  Its return value `v0` is 0x1 (`jr` at 0x21ea0f0).
+- `RenderFunc_IndexZoom` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21ea190
+  Role: unknown.
+  It reads doublewords at entry `a0 +0x60` and `a0 +0x58` (`ld` at 0x21ea1ac, 0x21ea1c0).
+  The `jalr` at 0x21ea1bc calls `__glOdysseyImageMovePixelsTexture` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1.
+  At return `v0` is 0x1 (`jr` at 0x21ea1d0).
+- `RenderFunc_Interlace` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21ea280
+  Role: unknown.
+  It loads a doubleword at absolute 0x1020, then a word at `[0x1020]:8 +0x80c` (`ld` at 0x21ea280; `lw` at 0x21ea284).
+  The `bgez` at 0x21ea2ac takes target 0x21ea2c4 when `([[0x1020]:8+2060] << 0x2e)` is signed nonnegative and falls through when negative.
+  It stores one of 0x0 and 0x1 as a byte at `[a0+88]:8 +0xc` (`sb` at 0x21ea2d0).
+  It loads bytes at `[a0+96]:8 +0x8` and `[a0+96]:8 +0xa` (`lbu` at 0x21ea2e4, 0x21ea2ec).
+  It stores one of 0x0 and 0x1 as a byte at `[a0+96]:8 +0xc` (`sb` at 0x21ea2f4).
+  The `jalr` at 0x21ea300 calls `__glOdysseyImageMovePixelsTexture` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a5=[a0+96]:8, a6=one of 0x0, 0x1.
+  It stores byte 0x0 at `[a0+88]:8 +0xc` (`sb` at 0x21ea314).
+  It stores byte 0x0 at `[a0+96]:8 +0xc` in the return delay slot (`sb` at 0x21ea32c; `jr` at 0x21ea328).
+  The returned `v0` is 0x1 (`jr` at 0x21ea328).
+- `RenderFunc_IndexShiftOffset` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21ea420
+  Role: unknown.
+  It loads floating-point words at entry `a0 +0x28` and `a0 +0x38` (`lwc1` at 0x21ea420, 0x21ea42c).
+  Eight floating-point word loads use entry `a1` offsets from +0x0 through +0x1c, including `lwc1` at 0x21ea434, 0x21ea440, 0x21ea44c.
+  The `bgezall` at 0x21ea4c4 calls `__glOdysseyImageConvertHostImage` with a0=[a0+96]:8, a1=sp-40, a2=[a0+88]:8, a3=sp-56, a4=sp-64, a5=sp-60, a6=0x0.
+  The return value in `v0` is 0x1 (`jr` at 0x21ea4d8).
+- `__glOdysseyRenderFunc_DownloadColor` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e7f10
+  Role: unknown.
+  The body contains 9 word store sites of 0x2 at absolute 0x1030, including `sw` at 0x21e81b8, 0x21e81dc, 0x21e8200.
+  The `jalr` at 0x21e7fb8 calls `__glOdysseyImageCalcXferWriteParams` with a0=[[a0+88]:8+8], a1=[[a0+88]:8+12], a2=[[a0+96]:8+52], a3=sp-848.
+  The `bgezall` at 0x21e85b4 calls `SetupScaleBiasForTexFilter` with a0=sp-456, a1=sp-440, a2=[[0x1020]:8+45132], a3=[[0x1020]:8+45136], a4=sp-408, a5=[[0x1020]:8+45248], a6=[[0x1020]:8+45112], a7=[[0x1020]:8+45252]; fp f12=[a0+48], f13=[a0+52], f14=[a0+44].
+  The `jalr` at 0x21e85d4 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x0.
+  The `bgezall` at 0x21e8944 calls `SetupScaleBiasForTexFilter` with a0=sp-456, a1=sp-440, a2=[[0x1020]:8+45132], a3=[[0x1020]:8+45136], a4=sp-408, a5=[[0x1020]:8+45248], a6=[[0x1020]:8+45112], a7=[[0x1020]:8+45252]; fp f12=[a0+48], f13=[a0+52], f14=[a0+44].
+  The `jalr` at 0x21e8ef8 calls `SetupScaleBiasForTexFilter` with a0=sp-456, a1=sp-440, a2=[[0x1020]:8+45132], a3=[[0x1020]:8+45136], a4=sp-408, a5=[[0x1020]:8+45248], a6=[[0x1020]:8+45112], a7=[[0x1020]:8+45252]; fp f12=[a0+48], f13=[a0+52], f14=[a0+44].
+  The `jalr` at 0x21e8f14 calls `SetupScaleBiasForTexFilter` with a0=sp-456, a1=sp-440, a2=[[0x1020]:8+45132], a3=[[0x1020]:8+45136], a4=sp-408, a5=[[0x1020]:8+45248], a6=[[0x1020]:8+45112], a7=[[0x1020]:8+45252]; fp f12=[a0+48], f13=[a0+52], f14=[a0+44].
+  The `jalr` at 0x21e9074 calls `SetupScaleBiasForTexFilter` with a0=sp-648, a1=sp-632, a2=0xffffffffffefffff, a3=([[0x1020]:8+101972] | 0x200), a4=sp-600, a5=[[0x1020]:8+45244], a6=[[0x1020]:8+45252], a7=[[0x1020]:8+45248]; fp f12=[a0+44], f13=[a0+40], f14=[a0+48].
+  The `jalr` at 0x21e913c calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=unknown, a4=0x1, a6=one of 0x0, 0x1.
+  The `bgezall` at 0x21e92e8 calls `__glOdysseyImageCalcSuitableHostFormatForDownload` with a0=[[a0+88]:8+8], a1=[[a0+88]:8+12], a2=[[a0+96]:8+52], a3=sp-824, a4=sp-820, a5=0x1, a6=0x1102, a7=0x1900; fp f18=0x3f800000.
+  The `bgezall` at 0x21e9464 calls `__glOdysseyImageConvertHostImage` with a0=sp-752, a1=sp-768, a2=[a0+88]:8, a3=sp-784, a4=sp-816, a5=sp-800, a6=0x0, a7=[[0x1020]:8+51864]:8.
+  The `jalr` at 0x21e94e4 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=sp-752, a2=sp-688, a3=0x0, a4=0x1, a6=a1 at entry (arg1).
+  The `jalr` at 0x21e9708 calls `SetupScaleBiasForTexFilter` with a0=sp-648, a1=sp-632, a2=0xffffffffffefffff, a3=([[0x1020]:8+101972] | 0x200), a4=sp-600, a5=[[0x1020]:8+45244], a6=[[0x1020]:8+45252], a7=[[0x1020]:8+45248]; fp f12=[a0+44], f13=[a0+40], f14=[a0+48].
+  The `jalr` at 0x21e97f8 calls `SetupScaleBiasForTexFilter` with a0=sp-648, a1=sp-632, a2=0xffffffffffefffff, a3=([[0x1020]:8+101972] | 0x200), a4=sp-600, a5=[[0x1020]:8+45244], a6=[[0x1020]:8+45252], a7=[[0x1020]:8+45248]; fp f12=[a0+44], f13=[a0+40], f14=[a0+48].
+  The `jalr` at 0x21e9814 calls `SetupScaleBiasForTexFilter` with a0=sp-648, a1=sp-632, a2=0xffffffffffefffff, a3=([[0x1020]:8+101972] | 0x200), a4=sp-600, a5=[[0x1020]:8+45244], a6=[[0x1020]:8+45252], a7=[[0x1020]:8+45248]; fp f12=[a0+44], f13=[a0+40], f14=[a0+48].
+  The `jalr` at 0x21e9898 calls `__glOdysseyImageMovePixelsDMAtoGfx` with a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x0, a4=0x1, a5=0x1, a6=0x1102, a7=0x1900.
+  The instructions from 0x21e8f08 to 0x21e8f08 are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x21e9808 to 0x21e9808 are not reached by any path from the entry, and their branches are not listed.
+  The return at 0x21e873c has `v0=0x1`; the return at 0x21e9730 has `v0=0x0` (`jr` at 0x21e873c, 0x21e9730).
+- `__glOdysseyGetHardwareShadowTest` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x221daa0
+  **Established effects.**
+  The call delay slot loads a doubleword at absolute 0x1020 (`ld` at 0x221dac4; `bgezall` at 0x221dac0).
+  The `bgezall` at 0x221dac0 calls `__glOdysseyGetHardwareShadow` with a0=[0x1020]:8, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  At return, `v0` holds the value returned by `__glOdysseyGetHardwareShadow` (`jr` at 0x221dad0).
+  Role: unknown.
+- `__glOdysseyGetHardwareShadow` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x221dae0
+  **Established effects.**
+  The `bltz` at 0x221db10 takes target 0x221db24 when the signed return from `__glOdysseyIoctl` is negative and falls through when nonnegative.
+  It loads a doubleword at entry `a0 +0x28` (`ld` at 0x221db2c).
+  The `bgezall` at 0x221db08 calls `__glOdysseyIoctl` with a0=a0 at entry (arg0), a1=0x6f64000c, a2=a1 at entry (arg1), a3=a3 at entry (arg3).
+  The `jalr` at 0x221db34 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x232c788, a2=unknown, a3=unknown.
+  The analyzed `v0` return is unknown (`jr` at 0x221db1c).
+  Role: unknown.
+- `__glOdysseyFindWindowSize` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a9c80
+  **Established effects.**
+  It loads words at entry `a0 +0xfd8` and `a0 +0xfdc` (`lw` at 0x21a9ca0, 0x21a9ca8).
+  A byte is read at entry `a0 +0x1c4a5` (`lbu` at 0x21a9cb0).
+  On one path its return delay slot stores byte 0x1 at entry `a0 +0x144b8` (`sb` at 0x21a9dfc; `jr` at 0x21a9df8).
+  The `jalr` at 0x21a9ce0 calls `__glOdysseyIoctl` with a0=a0 at entry (arg0), a1=0x6f64000f, a2=sp-80, a3=a3 at entry (arg3).
+  The `jalr` at 0x21a9d04 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-56, a2=sp-52, a3=sp-64, a4=sp-60.
+  The `jalr` at 0x21a9d58 calls `__glChangeWindowSize` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, a6=[a0+4060].
+  The `jalr` at 0x21a9d8c calls `__glChangeReadWindowSize` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21a9dac calls `__glChangeWindowSize` with a0=a0 at entry (arg0), a1=[a0+1952], a2=[a0+1956], a3=unknown.
+  The `jalr` at 0x21a9e40 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-56, a2=sp-52, a3=sp-64, a4=sp-60.
+  The `jalr` at 0x21a9e5c calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-48, a2=sp-44, a3=unknown, a7=[a0+3872]:1.
+  The analyzed returns leave `v0` unknown (`jr` at 0x21a9df8, 0x21a9e08).
+  Role: unknown.
+- `__glOdyssey_CopyContext` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x219d020
+  **Established effects.**
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x219d024).
+  The `beq` at 0x219d03c takes target 0x219d054 when that doubleword equals entry `a1` and falls through when they differ.
+  The `bgezall` at 0x219d074 calls `PushAttributes` with a0=a2 at entry (arg2), a1=a0+101688, a2=a0+101696, a3=a3 at entry (arg3), a4=a0 at entry (arg0), a5=a2 at entry (arg2).
+  At either analyzed return, `v0` is 0x1 (`jr` at 0x219d04c, 0x219d088).
+  Role: unknown.
+- `__glOdysseyRenderBitmap` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a4bc0
+  **Established effects.**
+  It reads a byte from entry `a0 +0x274` (`lbu` at 0x21a4bc0).
+  The `beq` at 0x21a4be8 goes to 0x21a4c28 when the word at entry `a0 +0xdd4` equals 0x1c02 and falls through otherwise (`lw` at 0x21a4be0).
+  The `beq` at 0x21a4bf0 goes to 0x21a4c6c when that loaded word equals 0x1c01 and falls through otherwise.
+  It stores a word at entry `a0 +0x220` (`swc1` at 0x21a4c3c).
+  A return delay slot stores a word at entry `a0 +0x224` (`swc1` at 0x21a4c5c; `jr` at 0x21a4c58).
+  The `bgezall` at 0x21a4c14 calls `DrawBitmapUsingPolyStipple` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x1c00, a4=[a0+3540].
+  The `jalr` at 0x21a4c7c calls `__glFeedbackBitmap` with a0=a0 at entry (arg0), a1=a0+408, a2=a2 at entry (arg2), a3=0x1c00, a4=[a0+3540].
+  One analyzed return leaves `v0` unknown (`jr` at 0x21a4c58).
+  Role: unknown.
+- `RenderFunc_AcceptSignedDataFromHost` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21dec20
+  **Established:** A floating-point word is loaded from entry `a1` (`lwc1` at 0x21ded18).
+  The analyzer lists 17 word-store sites to absolute 0x10000, including `sw` at 0x21df054, 0x21df05c, 0x21df064.
+  The analyzer lists 5 word-store sites to absolute 0x1030, including `sw` at 0x21dee00, 0x21def78, 0x21df000.
+  The `jalr` at 0x21decd4 calls `ceil` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[[0x1020]:8+82348], a3=0x1, a4=sp-312; fp f13=0x3d800000`.
+  The `jalr` at 0x21def80 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=sp-312, a1=[a0+88]:8, a2=sp-248, a3=0x1, a4=0x0; fp f13=[a1+28], f14=[a1+24], f15=[a1+20], f16=[a1+16]`.
+  The `jalr` at 0x21df02c calls `__glOdysseyOpenPMObjReference [0x220b780]` with `a0=[0x1020]:8, a1=[[0x1020]:8+70420], a2=0x0, a3=0x0, a4=sp-320, a5=0x1`.
+  The `jalr` at 0x21df0c0 calls `__glOdysseyClosePMObjReference [0x220bd70]` with `a0=[0x1020]:8, a1=[[0x1020]:8+70420], a2=0x0, a3=0x0, a4=[[0x1020]:8+47980], a5=0x10842, a6=[[0x1020]:8+72476]`.
+  The `jalr` at 0x21df104 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=sp-312, a2=sp-208, a3=0x1, a4=0x1`.
+  The `jalr` at 0x21df15c calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21df198 calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The reported `v0` values at return include 0x1 at 0x21df150 (`jr` at 0x21df150), 0x0 at 0x21df18c (`jr` at 0x21df18c), 0x0 at 0x21df1c8 (`jr` at 0x21df1c8).
+  Role: unknown.
+- `RenderFunc_ColorMatrix` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21df570
+  **Established:** The `beq` at 0x21df60c branches to 0x21e0248 when `at(=[a0+77]:1) == 0` and falls through when nonzero (`lbu` at 0x21df5c0).
+  Its access report includes 17 word-store sites to absolute 0x10000, including `sw` at 0x21dfcdc, 0x21dfce4, 0x21dfcec.
+  Its access report includes 21 word-store sites to absolute 0x1030, including `sw` at 0x21df850, 0x21df90c, 0x21dfa2c.
+  The `jalr` at 0x21df69c calls `ceil` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown`.
+  The `jalr` at 0x21df744 calls `ceil` with `a0=sp-1168, a1=[[0x1020]:8+51832], a2=[[0x1020]:8+51828], a3=[[0x1020]:8+51824], a4=0xc; fp f13=0x3d800000`.
+  The `jalr` at 0x21df8a4 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=sp-1232, a1=[a0+88]:8, a2=sp-1072, a3=0x0, a5=[[0x1020]:8+45140], a6=[[0x1020]:8+45120], a7=[[0x1020]:8+45128]; fp f15=[a1+12], f16=[a1+8], f17=[a1+4], f18=[a1]`.
+  The `jalr` at 0x21dfb5c calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=sp-1168, a1=sp-1232, a2=sp-904, a3=0x0, a5=[a0+32]:8+624, a6=0x38000, a7=(0x38000 | [[0x1020]:8+101972])`.
+  The `jalr` at 0x21dfcb4 calls `__glOdysseyOpenPMObjReference [0x220b780]` with `a0=[0x1020]:8, a1=[[0x1020]:8+70420], a2=0x0, a3=0x0, a4=sp-864, a5=0x1`.
+  The `jalr` at 0x21dfd48 calls `__glOdysseyClosePMObjReference [0x220bd70]` with `a0=[0x1020]:8, a1=[[0x1020]:8+70420], a2=0x0, a3=0x0`.
+  The `jalr` at 0x21dfdc4 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=sp-1232, a1=sp-1168, a2=sp-856, a3=0x1, a4=0x0, a5=([[0x1020]:8+101972] | 0x4), a6=([[0x1020]:8+40784] | 0x40)`.
+  The `jalr` at 0x21dfe18 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=sp-1168, a2=sp-856, a3=0x1, a4=0x1, a5=([[0x1020]:8+101972] | 0x4), a6=([[0x1020]:8+40784] | 0x40)`.
+  The `jalr` at 0x21e0044 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=sp-1232, a2=sp-752, a3=0x1`.
+  The `jalr` at 0x21e005c calls `powf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352]`.
+  The `jalr` at 0x21e0140 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=sp-1232, a1=sp-1232, a2=sp-752, a3=0x1, a4=0x1`.
+  The `jalr` at 0x21e03e0 calls `ceil` with `a0=sp-616, a1=[[0x1020]:8+47600], a2=[[0x1020]:8+45140], a3=unknown, a7=[[0x1020]:8+44864]:8`.
+  The `jalr` at 0x21e0598 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=sp-584, a1=[a0+88]:8, a2=sp-520, a3=0x0, a4=[0x1020]:8+44856, a5=[[0x1020]:8+51840], a6=[[a0+32]:8+688], a7=(0x38000 | [[0x1020]:8+101972])`.
+  The `jalr` at 0x21e05f4 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=sp-520, a3=0x1, a4=[0x1020]:8+44856, a5=[[0x1020]:8+51840], a6=[[a0+32]:8+688], a7=(0x38000 | [[0x1020]:8+101972])`.
+  The `jalr` at 0x21e08f4 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=sp-584, a2=sp-520, a3=0x1`.
+  The `jalr` at 0x21e090c calls `powf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[0x1020]:8+82352]`.
+  The `jalr` at 0x21e09e0 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=sp-584, a1=sp-584, a2=sp-520, a3=0x1, a4=0x0`.
+  The `jalr` at 0x21e0b10 calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  Return-register results include 0x1 at 0x21e0240 (`jr` at 0x21e0240), 0x0 at 0x21e0ae0 (`jr` at 0x21e0ae0), 0x0 at 0x21e0b40 (`jr` at 0x21e0b40).
+  Role: unknown.
+- `RenderFunc_HistogramMinmax` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e4ca0
+  **Established:** A floating-point word load addresses entry `a1 +0xc` (`lwc1` at 0x21e4d00).
+  The `jalr` at 0x21e4db4 calls `__glOdysseyImageCalcXferReadParams [0x22035e0]` with `a0=0x0, a1=unknown, a2=[a0+88]:8, a3=sp-152`.
+  The `jalr` at 0x21e4dcc calls `__glSpecElementsPerGroup [0x2256d30]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e4ddc calls `__glSpecBytesPerElement [0x2256f00]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e4e48 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e4f04 calls `__glOdysseyImageMovePixelsDMAtoHost [0x21ffc10]` with `a0=sp-256, a1=[a0+88]:8, a2=sp-192, a3=unknown, a4=[a1+8], a5=[a1+4], a6=[a1]`.
+  The `jalr` at 0x21e4f24 calls `__glOdysseyHistogramMinMax [0x2206160]` with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, a5=ret(?)`.
+  The `jalr` at 0x21e4f44 calls (unknown callee) with `a0=[0x1020]:8, a1=ret(?), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e4f98 calls `__glOdysseyImageMovePixelsTexture [0x2200380]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1`.
+  The `jalr` at 0x21e5010 calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e5048 calls `__glOdysseyImageMovePixelsCopy [0x21fba30]` with `a0=[a0+96]:8, a1=[a0+88]:8, a2=a1 at entry (arg1), a3=0x1, a4=0x1`.
+  At the return sites, `v0` includes 0x1 at 0x21e4f78 (`jr` at 0x21e4f78), 0x1 at 0x21e4fbc (`jr` at 0x21e4fbc), 0x0 at 0x21e5034 (`jr` at 0x21e5034).
+  Role: unknown.
+- `RenderFunc_CopyDepth` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e6c60
+  **Established:** A doubleword load addresses entry `a0 +0x58` (`ld` at 0x21e6cfc).
+  The routine has 3 word-store sites to absolute 0x1030, including `sw` at 0x21e715c, 0x21e7234, 0x21e73d8.
+  The `jalr` at 0x21e6d04 calls `__glOdysseyImageCalcXferReadParams [0x22035e0]` with `a0=0x1902, a1=0x1405, a2=[a0+88]:8, a3=sp-464`.
+  The `jalr` at 0x21e6e68 calls `__glOdysseyImageMovePixelsDMAtoHost [0x21ffc10]` with `a0=sp-424, a1=[a0+88]:8, a2=sp-360, a3=unknown`.
+  The `jalr` at 0x21e6eec calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=[[0x1020]:8+82344], a3=[[0x1020]:8+82348], a4=0x1405`.
+  The `bgezall` at 0x21e6f2c calls `__glOdysseyImageConvertHostImage [0x21edf90]` with `a0=sp-320, a1=sp-440, a2=sp-424, a3=sp-440, a4=a0+40, a5=a0+56, a6=0x0`.
+  The `jalr` at 0x21e6f8c calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e6fb0 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e6fd0 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e6ff4 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e70ec calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7114 calls `__glOdysseyImageZoomHostImage [0x21f0460]` with `a0=sp-240, a1=sp-256, a2=sp-320, a3=sp-440`.
+  The `jalr` at 0x21e71f0 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=[a0+96]:8, a1=sp-240, a2=sp-176, a3=0x1, a4=0x1; fp f14=[a1+28], f15=[a1+24], f16=[a1+20], f17=[a1+16]`.
+  The `jalr` at 0x21e7208 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7260 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, a6=[a0+96]:8, a7=0x2`.
+  The `jalr` at 0x21e72ac calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e72e4 calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7470 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=[a0+96]:8, a1=sp-320, a2=sp-176, a3=0x1, a4=0x1, a6=[[0x1020]:8+40784], a7=[[0x1020]:8+40876]`.
+  Its return values include 0x1 at 0x21e7284 (`jr` at 0x21e7284), 0x0 at 0x21e72cc (`jr` at 0x21e72cc), 0x0 at 0x21e7304 (`jr` at 0x21e7304).
+  Role: unknown.
+- `RenderFunc_CopyStencil` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21e7540
+  **Established:** It reads a floating-point word from entry `a1 +0x8` (`lwc1` at 0x21e75dc).
+  The facts report contains 3 word-store sites to absolute 0x1030, including `sw` at 0x21e7a5c, 0x21e7b44, 0x21e7cac.
+  The `jalr` at 0x21e770c calls `__glOdysseyImageMovePixelsDMAtoHost [0x21ffc10]` with `a0=sp-432, a1=[a0+88]:8, a2=sp-368, a3=unknown`.
+  The `jalr` at 0x21e778c calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=[[0x1020]:8+82344], a3=[[0x1020]:8+82348], a4=0x1405, a5=0x1`.
+  The `bgezall` at 0x21e77d0 calls `__glOdysseyImageConvertHostImage [0x21edf90]` with `a0=sp-328, a1=sp-448, a2=sp-432, a3=sp-448, a4=a0+40, a5=a0+56, a6=[a0+78]:1`.
+  The `jalr` at 0x21e782c calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7850 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7874 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7898 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7994 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e79bc calls `__glOdysseyImageZoomHostImage [0x21f0460]` with `a0=sp-248, a1=sp-264, a2=sp-328, a3=sp-448`.
+  The `jalr` at 0x21e7af8 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=[a0+96]:8, a1=sp-248, a2=sp-184, a3=0x1, a4=0x0, a5=[0x1020]:8+131072; fp f14=[a1+28], f15=[a1+24], f16=[a1+20], f17=[a1+16]`.
+  The `jalr` at 0x21e7b10 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7b60 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7bb4 calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7bec calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21e7d48 calls `__glOdysseyImageMovePixelsDMAtoGfx [0x21fe0f0]` with `a0=[a0+96]:8, a1=sp-328, a2=sp-184, a3=0x1, a4=0x0, a5=[[0x1020]:8+40780]`.
+  The return sites report `v0` values of 0x1 at 0x21e7b8c (`jr` at 0x21e7b8c), 0x0 at 0x21e7bd4 (`jr` at 0x21e7bd4), 0x0 at 0x21e7c0c (`jr` at 0x21e7c0c).
+  Role: unknown.
+- `__glOdysseySetRealLerpEvenEven` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c2120
+  **Established:** The access report includes 64 word-store sites at offsets from entry `a0`, including `sw` at 0x21c2124, 0x21c2128, 0x21c212c.
+  Forty floating-point word-store sites also address offsets from entry `a0`, including `swc1` at 0x21c222c, 0x21c2230, 0x21c2234.
+  At return, `v0` is unknown and `f0` is 0x3f000000 (`jr` at 0x21c22d0).
+  Role: unknown.
+- `__glOdysseySetImaginaryLerpEvenEven` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c22e0
+  **Established:** The `beq` at 0x21c22e0 branches to 0x21c2498 when `a0 == 0` and falls through when `a0 != 0`.
+  The reported accesses include 64 word-store sites at offsets from entry `a0`, including `sw` at 0x21c22e8, 0x21c22ec, 0x21c22f0.
+  Forty floating-point word-store sites use entry `a0` as their base, including `swc1` at 0x21c23f0, 0x21c23f4, 0x21c23fc.
+  At both returns `v0` is unknown; the return at 0x21c2490 reports `f0=0x3f000000` (`jr` at 0x21c2490, 0x21c2498).
+  Role: unknown.
+- `__glOdysseySetRealLerpOddEven` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c24a0
+  **Established:** Its access list has 40 floating-point word-store sites at offsets from entry `a0`, including `swc1` at 0x21c24c0, 0x21c24d0, 0x21c24d8.
+  The `jalr` at 0x21c2544 calls `__rcis` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3f000000, f15=0x401921fb54442d18`.
+  Sixty-four word-store sites target offsets from entry `a0`, including `sw` at 0x21c2550, 0x21c2554, 0x21c2558.
+  The return reports `v0=ret(__rcis)` and `f0=ret(__rcis)` (`jr` at 0x21c26bc).
+  Role: unknown.
+- `__glOdysseySetImaginaryLerpOddEven` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c26d0
+  **Established:** The `beq` at 0x21c26d8 branches to 0x21c28ec when `a0 == 0` and falls through when `a0 != 0`.
+  There are 40 reported floating-point word stores at offsets from entry `a0`, including `swc1` at 0x21c26f8, 0x21c2708, 0x21c2710.
+  The `jalr` at 0x21c2778 calls `__rcis` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3f000000, f15=0x401921fb54442d18`.
+  The report also lists 64 word-store sites at offsets from entry `a0`, including `sw` at 0x21c2784, 0x21c2788, 0x21c278c.
+  Its return value is unknown (`jr` at 0x21c28f0).
+  Role: unknown.
+- `__glOdysseySetRealLerpEvenOdd` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c2900
+  **Established:** The access report lists 40 floating-point word-store sites at offsets from entry `a0`, including `swc1` at 0x21c2920, 0x21c2930, 0x21c2938.
+  The `jalr` at 0x21c29a4 calls `__rcis` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3f000000, f15=0x401921fb54442d18`.
+  Its 64 word-store sites at offsets from entry `a0` include `sw` at 0x21c29b0, 0x21c29b4, 0x21c29b8.
+  At the return, both `v0` and `f0` are reported as `ret(__rcis)` (`jr` at 0x21c2b1c).
+  Role: unknown.
+- `__glOdysseySetImaginaryLerpEvenOdd` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c2b30
+  Role: unknown.
+  The `beq` at 0x21c2b38 takes target 0x21c2d4c when entry `a0` is zero and falls through when it is nonzero.
+  The body contains 24 floating-point word-store sites writing the value 0x3f000000 through entry `a0`, including offsets +0x1fc, +0x168, and +0xd4 (`swc1` at 0x21c2b58, 0x21c2b68, 0x21c2b70).
+  The `jalr` at 0x21c2bd8 calls `__rcis` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3f000000, f15=0x401921fb54442d18.
+  Its 56 word-store sites writing the value 0x0 through entry `a0` include offsets +0x244, +0x1b0, and +0x11c (`sw` at 0x21c2be4, 0x21c2be8, 0x21c2bec).
+  At return `v0` is unknown (`jr` at 0x21c2d50).
+- `__glOdysseySetRealLerpOddOdd` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c2d60
+  Role: unknown.
+  Twenty-four floating-point word-store sites writing the value 0x3f000000 through entry `a0` include offsets +0x1fc, +0x168, and +0xd4 (`swc1` at 0x21c2d80, 0x21c2d90, 0x21c2d98).
+  The `jalr` at 0x21c2e04 calls `__rcis` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3f000000, f15=0x401921fb54442d18.
+  Forty word-store sites writing the value 0x0 through entry `a0` include offsets +0x244, +0x1b0, and +0x11c (`sw` at 0x21c2e10, 0x21c2e14, 0x21c2e18).
+  The value of `v0` at return is `ret(__rcis)` (`jr` at 0x21c2f7c).
+- `__glOdysseySetImaginaryLerpOddOdd` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c2f90
+  Role: unknown.
+  The `beq` at 0x21c2f98 takes target 0x21c31ac when entry `a0` equals zero and falls through otherwise.
+  Twenty-four floating-point word-store sites writing the value 0x3f000000 through entry `a0` include offsets +0x1fc, +0x168, and +0xd4 (`swc1` at 0x21c2fb8, 0x21c2fc8, 0x21c2fd0).
+  The `jalr` at 0x21c3038 calls `__rcis` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3f000000, f15=0x401921fb54442d18.
+  The 40 word-store sites writing the value 0x0 through entry `a0` include offsets +0x244, +0x1b0, and +0x11c (`sw` at 0x21c3044, 0x21c3048, 0x21c304c).
+  Its return value in `v0` is unknown (`jr` at 0x21c31b0).
+- `__glOdysseySetSkewLerp` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c31c0
+  Role: unknown.
+  The `jalr` at 0x21c31e8 calls `printf` with a0=0x2330e20, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The 192 word-store sites writing the value 0x0 through entry `a0` include offsets +0x7e4, +0x750, and +0x6bc (`sw` at 0x21c31f8, 0x21c31fc, 0x21c3200).
+  Forty floating-point word-store sites writing the value 0x3f000000 through entry `a0` include offsets +0x798, +0x704, and +0x670 (`swc1` at 0x21c3340, 0x21c3344, 0x21c3348).
+  The return value in `v0` is `ret(printf)` (`jr` at 0x21c38bc).
+- `__glOdysseyProgramFFTFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c38d0
+  Role: unknown.
+  It loads a doubleword at entry `a0 +0x20` (`ld` at 0x21c38dc).
+  The `beq` at 0x21c38f8 takes target 0x21c3a0c when entry `a1` equals 0x1 and falls through when it differs.
+  The `jalr` at 0x21c3904 calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8+1440, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+32]:8+1440.
+  The `jalr` at 0x21c3914 calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8+2160, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21c3920 calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21c3930 calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8+720, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3944 calls `__glOdysseySetRealLerpEvenEven` with a0=[a0+32]:8+1440, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3960 calls `__glOdysseySetRealLerpOddEven` with a0=[a0+32]:8+2160, a1=0x0, a2=0x2, a3=unknown.
+  The `bgezall` at 0x21c3978 calls `__glOdysseySetRealLerpEvenOdd` with a0=[a0+32]:8, a1=0x0, a2=0x2, a3=unknown.
+  The `bgezall` at 0x21c3998 calls `__glOdysseySetRealLerpOddOdd` with a0=[a0+32]:8+720, a1=0x0, a2=0x2, a3=unknown.
+  The `bgezall` at 0x21c39b0 calls `PackQuadLerpTree` with a0=[a0+32]:8, a1=0x0, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c39c4 calls `PackQuadLerpTree` with a0=[a0+32]:8+720, a1=0x1, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c39d8 calls `PackQuadLerpTree` with a0=[a0+32]:8+1440, a1=0x2, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c39ec calls `PackQuadLerpTree` with a0=[a0+32]:8+2160, a1=0x3, a2=unknown, a3=unknown.
+  The `jalr` at 0x21c3a10 calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8+1440, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+32]:8+1440.
+  The `jalr` at 0x21c3a20 calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8+2160, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21c3a2c calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21c3a3c calls `__glOdysseyInitLerpTree` with a0=[a0+32]:8+720, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3a50 calls `__glOdysseySetRealLerpEvenEven` with a0=[a0+32]:8+1440, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3a6c calls `__glOdysseySetRealLerpOddEven` with a0=[a0+32]:8+2160, a1=0x0, a2=0x2, a3=unknown.
+  The `bgezall` at 0x21c3a84 calls `__glOdysseySetRealLerpEvenOdd` with a0=[a0+32]:8, a1=0x0, a2=0x2, a3=unknown.
+  The `bgezall` at 0x21c3aa4 calls `__glOdysseySetRealLerpOddOdd` with a0=[a0+32]:8+720, a1=0x0, a2=0x2, a3=unknown.
+  The `bgezall` at 0x21c3abc calls `PackQuadLerpTree` with a0=[a0+32]:8, a1=0x0, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3ad0 calls `PackQuadLerpTree` with a0=[a0+32]:8+720, a1=0x1, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3ae4 calls `PackQuadLerpTree` with a0=[a0+32]:8+1440, a1=0x2, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3af8 calls `PackQuadLerpTree` with a0=[a0+32]:8+2160, a1=0x3, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3b08 calls `__glOdysseySetImaginaryLerpEvenEven` with a0=0x0, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21c3b20 calls `__glOdysseySetImaginaryLerpOddEven` with a0=0x0, a1=0x0, a2=0x0, a3=unknown.
+  The `bgezall` at 0x21c3b38 calls `__glOdysseySetImaginaryLerpEvenOdd` with a0=0x0, a1=0x0, a2=0x0, a3=unknown.
+  The `bgezall` at 0x21c3b50 calls `__glOdysseySetImaginaryLerpOddOdd` with a0=0x0, a1=0x0, a2=0x0, a3=unknown.
+  At return `v0` is unknown (`jr` at 0x21c3a04).
+- `__glOdysseyProgram1DOffsets` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f80c0
+  **Established effects.**
+  On one path it writes word 0x0 at entry `a0 +0xb50`, `a0 +0xb4c` and `a0 +0xb48` (`sw` at 0x21f8160, 0x21f8164, 0x21f816c).
+  The `jalr` at 0x21f80fc calls `floorf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3fe0000000000000.
+  At one analyzed return `v0` is 0x3 (`jr` at 0x21f8180).
+  Role: unknown.
+- `__glOdysseyProgram2DOffsets` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f8330
+  **Established effects.**
+  One path stores word 0x0 at entry `a0 +0xb50` (`sw` at 0x21f8360).
+  That path stores word -0x1 at entry `a0 +0xb4c`, `a0 +0xb48` and `a0 +0xb40` (`sw` at 0x21f8368, 0x21f8374, 0x21f837c).
+  It also stores word 0x1 at entry `a0 +0xb44` on that path (`sw` at 0x21f8370).
+  At the analyzed return at 0x21f8378, `v0` is unknown (`jr` at 0x21f8378).
+  Role: unknown.
+- `__glOdysseyProgramSepOffsets` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f8780
+  **Established effects.**
+  It stores word 0x0 on one path at entry `a0 +0xb50`, `a0 +0xb44` and `a0 +0xb40` (`sw` at 0x21f8838, 0x21f883c, 0x21f8844).
+  The `jalr` at 0x21f87b8 calls `floorf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3fe0000000000000.
+  At one analyzed return `v0` holds 0x3 (`jr` at 0x21f8858).
+  Role: unknown.
+- `__glOdysseyProgramTexFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21faa10
+  **Established effects.**
+  Three word stores write to entry `a0 +0xb5c`, `a0 +0xb58` and `a0 +0xb54` (`sw` at 0x21fab20, 0x21fab30, 0x21fab3c).
+  The `bgezall` at 0x21faa54 calls `ConvertToLerps` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x21faa60 calls `ConvertToLerps` with a0=a0+148, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21faa6c calls `ConvertToLerps` with a0=a0+296, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21faa78 calls `ConvertToLerps` with a0=a0+444, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21faa8c calls `PackLerpTree` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21fab60 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x21fab74 calls `ConvertToLerps` with a0=a0+720, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fab80 calls `ConvertToLerps` with a0=a0+868, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fab8c calls `ConvertToLerps` with a0=a0+1016, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fab98 calls `ConvertToLerps` with a0=a0+1164, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fabac calls `PackLerpTree` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x21fa010.
+  The `bgezall` at 0x21fabbc calls `ConvertToLerps` with a0=a0+1440, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fabc8 calls `ConvertToLerps` with a0=a0+1588, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fabd4 calls `ConvertToLerps` with a0=a0+1736, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fabe0 calls `ConvertToLerps` with a0=a0+1884, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fabf4 calls `PackLerpTree` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a5=0x21fa010.
+  The `bgezall` at 0x21fac04 calls `ConvertToLerps` with a0=a0+2160, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fac10 calls `ConvertToLerps` with a0=a0+2308, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fac1c calls `ConvertToLerps` with a0=a0+2456, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fac28 calls `ConvertToLerps` with a0=a0+2604, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fac3c calls `PackLerpTree` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x21fa010.
+  At one analyzed return `v0` is unknown (`jr` at 0x21fab44).
+  Role: unknown.
+- `__glOdysseyProgramConvolutionFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21fac50
+  **Established effects.**
+  It writes words at entry `a0 +0xb5c`, `a0 +0xb58` and `a0 +0xb54` (`sw` at 0x21fadb0, 0x21fadc0, 0x21fadcc).
+  The `bgezall` at 0x21facd8 calls `ConvertToLerps` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a1+24]-1, a5=[[0x1020]:8+81220], a6=[0x1020]:8, a7=0x1102.
+  The `bgezall` at 0x21face4 calls `ConvertToLerps` with a0=a0+148, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21facf0 calls `ConvertToLerps` with a0=a0+296, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21facfc calls `ConvertToLerps` with a0=a0+444, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fad0c calls `PackLerpTree` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fad30 calls `__glOdysseyProgram2DOffsets` with a0=a0 at entry (arg0), a1=unknown, a2=a2 at entry (arg2), a3=unknown.
+  The `jalr` at 0x21fadf0 calls `__glOdysseyImageLogBase2` with a0=([a1+24]-1 << 0x3), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a1+24]-1, a5=[[0x1020]:8+81220], a6=[0x1020]:8, a7=0x1102.
+  The `bgezall` at 0x21faee8 calls `PackLerpTreeResidue` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, a4=sp-256.
+  The `bgezall` at 0x21faf14 calls `__glOdyssey_ks_to_alphas` with a0=unknown, a1=sp-192, a2=sp-256, a3=unknown.
+  The `bgezall` at 0x21fafd0 calls `PackLerpTreeResidue` with a0=unknown, a1=0x3, a2=unknown, a3=unknown, a4=sp-256.
+  The `bgezall` at 0x21fb06c calls `PackLerpTreeResidue` with a0=unknown, a1=unknown, a2=0x21fa470, a3=unknown, a4=sp-256.
+  The `bgezall` at 0x21fb108 calls `PackLerpTreeResidue` with a0=unknown, a1=0x3, a2=unknown, a3=unknown, a4=sp-256.
+  The `bgezall` at 0x21fb128 calls `__glOdysseyProgram1DOffsets` with a0=a0 at entry (arg0), a1=unknown, a2=a2 at entry (arg2), a3=unknown.
+  The `jalr` at 0x21fb140 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a1+24]-1, a6=[0x1020]:8.
+  The analyzed return at 0x21fadd4 has unknown `v0` (`jr` at 0x21fadd4).
+  Role: unknown.
+- `__glOdysseyInitConvolutionState` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f26b0
+  Role: unknown.
+  The `jalr` at 0x21f2754 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3).
+  It loads a word from absolute 0x1030 and a doubleword from absolute 0x1020 (`lw` at 0x21f26b0; `ld` at 0x21f26bc).
+  The `beq` at 0x21f26cc takes target 0x21f274c when `v0=[0x1030]` equals 0x1 and falls through when it differs.
+  It stores byte 0x0 at `[0x1020]:8 +0x13f6f` and `[0x1020]:8 +0x13f54` (`sb` at 0x21f26dc, 0x21f26e4).
+  A word 0x1101 is stored at `[0x1020]:8 +0x13d44` (`sw` at 0x21f26f0).
+  Its returns include unknown `v0` for 0x21f2708 and 0x1101 for 0x21f271c (`jr` at 0x21f2708, 0x21f271c).
+- `__glOdysseyProgramGenericConvolutionFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21fb160
+  Role: unknown.
+  The `bgezall` at 0x21fb1d4 calls `ConvertToLerps` with a0=(a0 + (((((a2 << 0x3) + a2) << 0x2) + a2) << 0x2)), a1=a1 at entry (arg1), a2=0x1102, a3=[0x1020]:8, a4=0x1.
+  The `bgezall` at 0x21fb1e4 calls `PackLerpTree` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21fb2a4 calls `__glOdysseyImageLogBase2` with a0=([a1+24] << 0x3)-8, a1=a1 at entry (arg1), a2=0x1102, a3=[0x1020]:8, a4=0x1.
+  The `bgezall` at 0x21fb37c calls `PackLerpTreeResidue` with a0=a0 at entry (arg0), a1=sp-224, a2=unknown, a3=unknown.
+  The `bgezall` at 0x21fb3b0 calls `__glOdyssey_ks_to_alphas` with a0=unknown, a1=sp-160, a2=sp-224, a3=unknown.
+  The `bgezall` at 0x21fb46c calls `PackLerpTreeResidue` with a0=unknown, a1=sp-224, a2=0x3, a3=unknown.
+  The `bgezall` at 0x21fb508 calls `PackLerpTreeResidue` with a0=unknown, a1=sp-224, a2=unknown, a3=0x21fa470.
+  The `bgezall` at 0x21fb5a4 calls `PackLerpTreeResidue` with a0=unknown, a1=sp-224, a2=0x3, a3=unknown.
+  The `jalr` at 0x21fb5c0 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=0x1.
+  It loads a doubleword at absolute 0x1020 and a word at absolute 0x1030 (`ld` at 0x21fb160; `lw` at 0x21fb174).
+  Its returns include `v0=([a0+2884] << 0x10)` at 0x21fb280 and `v0=ret(__glSetError)` at 0x21fb28c (`jr` at 0x21fb280, 0x21fb28c).
+- `__glOdysseyInitLighting` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206600
+  Role: unknown.
+  It stores word 0xff at entry `a0 +0x18e60` and `a0 +0x18e5c` (`sw` at 0x2206618, 0x2206620).
+  It stores a word from source 0xffffffffc18093ff at absolute 0x10000 (`sw` at 0x2206630).
+  The body contains 51 floating-point word store sites at absolute 0x10000, including `swc1` at 0x2206634, 0x2206638, 0x2206648.
+  The `beq` at 0x22067e8 takes target 0x2206948 when `v0=[a0+3556]:1` is zero and falls through when nonzero.
+  At return `v0` is unknown (`jr` at 0x2206940).
+- `__glOdysseyInitLUTs` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2207f60
+  Role: unknown.
+  The `jalr` at 0x2207fb0 calls `memset` with a0=[0x1020]:8+51876, a1=0x0, a2=0x507c, a3=a3 at entry (arg3).
+  The `bgezall` at 0x2208038 calls `__glOdysseyCreatePMObj` with a0=[0x1020]:8, a1=sp-144, a2=unknown, a3=0x0.
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x2207f9c).
+  The `beq` at 0x2208048 takes target 0x2208094 when `(ret(__glOdysseyCreatePMObj) & 0xff)` is zero and falls through when nonzero.
+  Both returns have `v0=ret(__glOdysseyCreatePMObj)` (`jr` at 0x220808c, 0x22080c0).
+- `__glOdysseyInitKernel` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x220a940
+  Role: unknown.
+  The `jalr` at 0x220aa00 calls `getenv` with a0=0x232c028, a1=unknown, a2=a0+131072, a3=unknown, a5=one of -0x1, 0x10000.
+  The `jalr` at 0x220aa48 calls `__glOdysseyIoctl` with a0=a0 at entry (arg0), a1=0x6f640000, a2=sp-128, a3=unknown.
+  The `bgezall` at 0x220aad4 calls `InitCSet` with a0=a0+102824, a1=0x9, a2=unknown, a3=unknown.
+  The `bgezall` at 0x220ab18 calls `AllocSpecificCSetId` with a0=unknown, a1=unknown, a2=a0 at entry (arg0), a3=unknown.
+  The `jalr` at 0x220ab68 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x428, a2=unknown, a3=unknown.
+  The `jalr` at 0x220ab8c calls `__glNamesNewArray` with a0=a0 at entry (arg0), a1=0x1, a2=unknown, a3=unknown.
+  The `bgezall` at 0x220aba8 calls `InitCSet` with a0=unknown, a1=0x4, a2=unknown, a3=unknown.
+  The `jalr` at 0x220abc0 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  It loads a word at entry `a0 +0x9e9c` (`lw` at 0x220a960).
+  A doubleword load reads entry `a0 +0x19198` (`ld` at 0x220a970).
+  The return at 0x220ab38 has `v0=0x1`; the returns at 0x220aa70 and 0x220ab58 have `v0=0x0` (`jr` at 0x220ab38, 0x220aa70, 0x220ab58).
+- `__glOdysseyInitAccum` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2199f60
+  **Established:** The `beq` at 0x2199f98 branches to 0x2199fc0 when `a1(=[a1+3564]) == a2(=0x10)` and falls through when they differ (`lw` at 0x2199f8c).
+  The `beq` at 0x2199fa0 branches to 0x219a004 when `a1(=[a1+3564]) == v0(=0x18)` and falls through when they differ (`lw` at 0x2199f8c).
+  The `jalr` at 0x2199f84 calls `__glInitBuffer [0x22734c0]` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The reported `v0` values at return include 0x0 at 0x2199fb8 (`jr` at 0x2199fb8), 0x1 at 0x2199ffc (`jr` at 0x2199ffc).
+  Role: unknown.
+- `__glOdysseyInitCI` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a86b0
+  **Established:** The `beq` at 0x21a8764 branches to 0x21a8774 when `a1(=[a1+3588]) >= 0x20` signed and falls through when it is less (`lw` at 0x21a8744).
+  Nine doubleword-store sites target offsets from entry `a0`, including `sd` at 0x21a86f0, 0x21a86f4, 0x21a86f8.
+  Eight floating-point word-store sites address offsets from entry `a0`, including `swc1` at 0x21a8780, 0x21a8784, 0x21a8788.
+  The `jalr` at 0x21a86dc calls `__glInitBuffer [0x22734c0]` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The reported `v0` values at return include unknown at 0x21a87bc (`jr` at 0x21a87bc), unknown at 0x21a87d8 (`jr` at 0x21a87d8), unknown at 0x21a87f8 (`jr` at 0x21a87f8).
+  Role: unknown.
+- `__glOdysseyInitDefaultValues` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21ade10
+  **Established:** The `beq` at 0x21adeac branches to 0x21aeb74 when `at(=[a0+3556]:1) == 0` and falls through when nonzero (`lbu` at 0x21ade90).
+  The report lists 70 word-store sites to absolute 0x10000, including `sw` at 0x21ade6c, 0x21adef8, 0x21adf20.
+  Eight reported word-store sites address absolute 0x1030, including `sw` at 0x21ae0a4, 0x21ae0c4, 0x21ae0f8.
+  The `jalr` at 0x21ae2b8 calls `__glOdyim_DrawBuffer [0x219fc70]` with `a0=0x405, a1=unknown, a2=0x1, a3=[a0+48000], a4=-0x301, a6=[a0+3558]:1, a7=([a0+101972] | 0x2000)`.
+  The `jalr` at 0x21ae344 calls `__glOdysseyImageInit [0x21cc8a0]` with `a0=[a0+47628], a1=[a0+47624], a2=[a0+47620], a3=[a0+47616], a4=[a0+47612], a5=0x11453`.
+  The `jalr` at 0x21ae354 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb10, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae360 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb42, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae36c calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0x2a01, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae378 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0x2a02, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae384 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0x8037, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae390 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb44, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae39c calls `__glOdyim_CullFace [0x219f800]` with `a0=0x405, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae3a8 calls `__glOdyim_FrontFace [0x21a01f0]` with `a0=0x901, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae3b4 calls `__glOdyim_ShadeModel [0x21a1950]` with `a0=0x1d01, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae3c0 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0x8400, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae3d0 calls `__glOdyim_LightModeli [0x2206e20]` with `a0=0x81f8, a1=0x81f9, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae3e4 calls `__glOdyim_Fogfv [0x21c4de0]` with `a0=0xb66, a1=0x23510c8, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae3f4 calls `__glOdyim_Fogi [0x21c5700]` with `a0=0xb61, a1=0x0, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae414 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xc11, a1=unknown, a2=(([a0+40780] | 0x2000) | 0x2000000), a3=0x2000000`.
+  The `jalr` at 0x21ae420 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xbc0, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae42c calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb90, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae438 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb71, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae444 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xbe2, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae450 calls `__glOdyim_Enable [0x219ad80]` with `a0=0xbd0, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae45c calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xbf1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae468 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xbf2, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae48c calls `__glOdyim_ColorMask [0x219f5e0]` with `a0=0x1, a1=0x1, a2=0x1, a3=0x1`.
+  The `jalr` at 0x21ae498 calls `__glOdyim_DepthMask [0x219fa10]` with `a0=0x1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4a4 calls `__glOdyim_StencilMask [0x21a1b70]` with `a0=-0x1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4b0 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb60, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4bc calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xde0, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4c8 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xde1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4d4 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0x806f, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4e0 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0xb50, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae4f0 calls `__glOdyim_PolygonMode [0x21a15f0]` with `a0=0x408, a1=0x1b02, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae500 calls `__glOdyim_AlphaFunc [0x219efd0]` with `a0=0x207, a1=unknown, a2=unknown, a3=unknown; fp f13=f24`.
+  The `jalr` at 0x21ae514 calls `__glOdyim_StencilFunc [0x21a1a30]` with `a0=0x207, a1=0x0, a2=-0x1, a3=unknown`.
+  The `jalr` at 0x21ae528 calls `__glOdyim_StencilOp [0x21a1c90]` with `a0=0x1e00, a1=0x1e00, a2=0x1e00, a3=unknown`.
+  The `jalr` at 0x21ae534 calls `__glOdyim_DepthFunc [0x219f910]` with `a0=0x201, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae540 calls `__glOdyim_LogicOp [0x21a0570]` with `a0=0x1503, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae54c calls `__glOdyim_BlendEquationEXT [0x219f440]` with `a0=0x8006, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae55c calls `__glOdyim_BlendFunc [0x219f120]` with `a0=0x1, a1=0x0, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae574 calls `__glOdyim_BlendColorEXT [0x21a33d0]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f24, f13=f24, f14=f24, f15=f24`.
+  The `jalr` at 0x21ae598 calls `__glOdyim_LineStipple [0x21a0370]` with `a0=0x1, a1=0xffff, a2=unknown, a3=unknown, a5=0xffffffffff7fffff`.
+  The `jalr` at 0x21ae5a4 calls `__glOdyim_LineWidth [0x21a0480]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=0x3f800000`.
+  The `jalr` at 0x21ae5b0 calls `__glOdyim_PointSize [0x21a1500]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=0x3f800000`.
+  The `jalr` at 0x21ae5c8 calls `__glim_PolygonStipple [0x226b1d0]` with `a0=0x2330160, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae5d8 calls `__glOdyim_DepthRange [0x2229260]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=0x3ff0000000000000`.
+  The `jalr` at 0x21ae5e8 calls `__glOdyim_PolygonOffset [0x21a35b0]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f24, f13=f24`.
+  The `jalr` at 0x21ae5fc calls `__glOdyim_Color4fv [0x231f9c0]` with `a0=0x2330130, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae608 calls `__glOdyim_ScratchIndexi [0x2320180]` with `a0=0x1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae614 calls `__glOdyim_EdgeFlag [0x221e9b0]` with `a0=0x1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae620 calls `__glOdyim_Normal3fv [0x231ed80]` with `a0=0x23300e0, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae62c calls `__glOdyim_TexCoord4fv [0x231eb00]` with `a0=0x2330110, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae640 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x408, a1=0x1200, a2=0x2330140, a3=unknown`.
+  The `jalr` at 0x21ae654 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x408, a1=0x1201, a2=0x2330150, a3=unknown`.
+  The `jalr` at 0x21ae668 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x408, a1=0x1202, a2=0x2330110, a3=unknown`.
+  The `jalr` at 0x21ae67c calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x408, a1=0x1600, a2=0x2330110, a3=unknown`.
+  The `jalr` at 0x21ae690 calls `__glOdyim_Materialf [0x21a0cd0]` with `a0=0x408, a1=0x1601, a2=unknown, a3=unknown; fp f14=f24`.
+  The `jalr` at 0x21ae6a4 calls `__glOdyim_Materialfv [0x21a0ae0]` with `a0=0x408, a1=0x1603, a2=0x2330100, a3=unknown`.
+  The `jalr` at 0x21ae6b8 calls `__glOdyim_FragmentMaterialfvSGIX [0x21c84b0]` with `a0=0x408, a1=0x1200, a2=0x2330140, a3=unknown`.
+  The `jalr` at 0x21ae6cc calls `__glOdyim_FragmentMaterialfvSGIX [0x21c84b0]` with `a0=0x408, a1=0x1201, a2=0x2330150, a3=unknown`.
+  The `jalr` at 0x21ae6e0 calls `__glOdyim_FragmentMaterialfvSGIX [0x21c84b0]` with `a0=0x408, a1=0x1202, a2=0x2330110, a3=unknown`.
+  The `jalr` at 0x21ae6f4 calls `__glOdyim_FragmentMaterialfvSGIX [0x21c84b0]` with `a0=0x408, a1=0x1600, a2=0x2330110, a3=unknown`.
+  The `jalr` at 0x21ae708 calls `__glOdyim_FragmentMaterialfSGIX [0x21c85c0]` with `a0=0x408, a1=0x1601, a2=unknown, a3=unknown; fp f14=f24`.
+  The `jalr` at 0x21ae718 calls `__glOdyim_LightEnviSGIX [0x21c8d50]` with `a0=0x8407, a1=0x104, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae724 calls `__glOdyim_Disable [0x21a1ea0]` with `a0=0x8401, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae738 calls `__glOdyim_FragmentLightfvSGIX [0x21c5ee0]` with `a0=0x840c, a1=0x1200, a2=0x2330110, a3=unknown`.
+  The `jalr` at 0x21ae74c calls `__glOdyim_FragmentLightfvSGIX [0x21c5ee0]` with `a0=0x840c, a1=0x1201, a2=0x2330130, a3=unknown`.
+  The `jalr` at 0x21ae760 calls `__glOdyim_FragmentLightfvSGIX [0x21c5ee0]` with `a0=0x840c, a1=0x1202, a2=0x2330130, a3=unknown`.
+  The `jalr` at 0x21ae774 calls `__glOdyim_FragmentLightfvSGIX [0x21c5ee0]` with `a0=0x840c, a1=0x1203, a2=0x2330120, a3=unknown`.
+  The `jalr` at 0x21ae788 calls `__glOdyim_FragmentLightfvSGIX [0x21c5ee0]` with `a0=0x840c, a1=0x1204, a2=0x23300f0, a3=unknown`.
+  The `jalr` at 0x21ae79c calls `__glOdyim_FragmentLightfSGIX [0x21c6470]` with `a0=0x840c, a1=0x1205, a2=unknown, a3=unknown; fp f14=f24`.
+  The `jalr` at 0x21ae7b0 calls `__glOdyim_FragmentLightfSGIX [0x21c6470]` with `a0=0x840c, a1=0x1206, a2=unknown, a3=unknown; fp f14=0x43340000`.
+  The `jalr` at 0x21ae7c4 calls `__glOdyim_FragmentLightfSGIX [0x21c6470]` with `a0=0x840c, a1=0x1207, a2=unknown, a3=unknown; fp f14=0x3f800000`.
+  The `jalr` at 0x21ae7d8 calls `__glOdyim_FragmentLightfSGIX [0x21c6470]` with `a0=0x840c, a1=0x1208, a2=unknown, a3=unknown; fp f14=f24`.
+  The `jalr` at 0x21ae7ec calls `__glOdyim_FragmentLightfSGIX [0x21c6470]` with `a0=0x840c, a1=0x1209, a2=unknown, a3=unknown; fp f14=f24`.
+  The `jalr` at 0x21ae7fc calls `__glOdyim_FragmentLightModelfvSGIX [0x21c6b50]` with `a0=0x840a, a1=0x2330140, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae80c calls `__glOdyim_FragmentLightModeliSGIX [0x21c7100]` with `a0=0x8408, a1=0x0, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae81c calls `__glOdyim_FragmentLightModeliSGIX [0x21c7100]` with `a0=0x8409, a1=0x0, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae82c calls `__glOdyim_FragmentLightModeliSGIX [0x21c7100]` with `a0=0x840b, a1=0x1d01, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae998 calls `__glOdysseyInitLighting [0x2206600]` with `a0=a0 at entry (arg0), a1=unknown, a2=0x31008000, a3=unknown; fp f12=0x403504f3, f13=0xffffffffbf800000, f14=0x3f000000, f15=0x3f800000, f16=[a0+49984], f17=[a0+49980], f18=[a0+49976], f19=[a0+49972]`.
+  The `jalr` at 0x21ae9a4 calls `__glOdysseyInitFragmentLighting [0x21c8cf0]` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae9b0 calls `__glOdysseyInitFragmentMaterial [0x21c8d40]` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ae9bc calls `__glOdysseyTextureDriverInit [0x2213d80]` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21aeae8 calls `getenv` with `a0=0x23303d0, a1=[a0+47996], a2=0xffffff, a3=[a0+48000], a4=([a0+101972] | 0x200000), a5=0x200000, a7=0xfffffffffeffffff`.
+  The `jalr` at 0x21aeba0 calls `__glOdyim_DrawBuffer [0x219fc70]` with `a0=0x404, a1=unknown, a2=0x1, a3=[a0+48000], a4=-0x301, a6=[a0+3558]:1, a7=([a0+101972] | 0x2000)`.
+  The `jalr` at 0x21aebbc calls `__glOdyim_ColorMask [0x219f5e0]` with `a0=0x1, a1=0x1, a2=0x1, a3=0x1`.
+  The `jalr` at 0x21aebc8 calls `__glOdyim_IndexMask [0x21a02d0]` with `a0=-0x1, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21aebdc calls `__glOdyim_ScratchColor4fv [0x231fa00]` with `a0=0x2330130, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21aebe8 calls `__glOdyim_Indexi [0x2320140]` with `a0=0x1, a1=unknown, a2=unknown, a3=unknown`.
+  The reported `v0` values at return include 0x1 at 0x21aeb38 (`jr` at 0x21aeb38), 0x0 at 0x21aeb6c (`jr` at 0x21aeb6c).
+  Role: unknown.
+- `__glOdysseyInitLerpTree` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f0960
+  **Established:** Sixteen floating-point word-store sites target offsets from entry `a0`, including `swc1` at 0x21f09a0, 0x21f09a4, 0x21f09a8.
+  The `jalr` at 0x21f098c calls `memset` with `a0=a0 at entry (arg0), a1=0x0, a2=0x2d0, a3=a3 at entry (arg3)`.
+  The reported `v0` values at return include ret(memset) at 0x21f09e4 (`jr` at 0x21f09e4).
+  Role: unknown.
+- `__glOdysseySetCurrentFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f0a30
+  **Established:** The `beq` at 0x21f0a40 branches to 0x21f0aa8 when `a1 == v1(=0x1)` and falls through when they differ.
+  The `beq` at 0x21f0a4c branches to 0x21f0a7c when `a1 == v1(=0x2)` and falls through when they differ.
+  One doubleword store targets entry `a0 +0x3b0` (`sd` at 0x21f0a6c).
+  Another targets entry `a0 +0x13f70` (`sd` at 0x21f0a78).
+  The reported `v0` values at return include unknown at 0x21f0a74 (`jr` at 0x21f0a74), a0+1040 at 0x21f0aa0 (`jr` at 0x21f0aa0), unknown at 0x21f0adc (`jr` at 0x21f0adc).
+  Role: unknown.
+- `__glOdysseySetProgram` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x220e490
+  **Established effects.**
+  It reads a byte at entry `a0 +0x285e0` (`lbu` at 0x220e4a0).
+  On one path, a return delay slot stores word 0x298080c5 at absolute 0x10000 (`sw` at 0x220e4c0; `jr` at 0x220e4bc).
+  There are 31 word-store sites at absolute 0x10000, including `sw` at 0x220e4c0, 0x220e544, 0x220e564.
+  At one analyzed return, `v0` is 0x298080c5 (`jr` at 0x220e4bc).
+  Role: unknown.
+- `__glOdysseyInitRGB` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x220f2a0
+  **Established effects.**
+  It stores word 0x1 at entry `a0 +0xbc` and `a0 +0xa4` (`sw` at 0x220f2f8, 0x220f300).
+  The word at entry `a0 +0xb4` is set to 0x0 (`sw` at 0x220f2fc).
+  The `jalr` at 0x220f2c4 calls `__glInitBuffer` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  At the analyzed return, `v0` is 0x220f000 (`jr` at 0x220f388).
+  Role: unknown.
+- `__glOdysseyValidateTexGen` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x22139d0
+  **Established effects.**
+  A word is read at entry `a0 +0x808` (`lw` at 0x22139e8).
+  A return delay slot writes a word to absolute 0x10000 (`sw` at 0x2213b08; `jr` at 0x2213b04).
+  The `bgezall` at 0x2213a28 calls `updateTexGenCoord` with a0=a0 at entry (arg0), a1=a0+2248, a2=0x100, a3=a3 at entry (arg3), a4=0x10000.
+  The `bgezall` at 0x2213a50 calls `updateTexGenCoord` with a0=a0 at entry (arg0), a1=a0+2372, a2=0x104, a3=unknown.
+  The `bgezall` at 0x2213a74 calls `updateTexGenCoord` with a0=a0 at entry (arg0), a1=a0+2496, a2=0x108, a3=unknown.
+  The `bgezall` at 0x2213a98 calls `updateTexGenCoord` with a0=a0 at entry (arg0), a1=a0+2620, a2=0x10c, a3=unknown.
+  Its analyzed returns leave `v0` unknown (`jr` at 0x2213b04, 0x2213b10).
+  Role: unknown.
+- `__glOdysseyUpdateTransform` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x22271c0
+  **Established effects.**
+  It loads a byte at entry `a0 +0x1c490` (`lbu` at 0x22271e4).
+  One path stores byte 0x0 at entry `a0 +0x1c491` (`sb` at 0x222721c).
+  The `bgezall` at 0x22273e8 calls `__glOdysseyValidateDepthRangeNewXform` with a0=a0 at entry (arg0), a1=unknown, a2=one of 0x0, 0x1, a3=unknown.
+  The `jalr` at 0x2227474 calls `__glOdyim_PolygonOffsetEXT` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[a0+676].
+  The `jalr` at 0x2227550 calls `__glInvertTransposeMatrix` with a0=sp-184, a1=sp-288, a2=unknown, a3=a0+65536, a4=sp-288, a5=[a0+38056]:8+208, a6=[a0+38056]:8, a7=[[a0+38056]:8+208]:8.
+  The analyzed return leaves `v0` unknown (`jr` at 0x222741c).
+  Role: unknown.
+- `__glOdysseyValidateMatrixMV` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2227de0
+  **Established effects.**
+  It reads a doubleword at entry `a0 +0x94a8` (`ld` at 0x2227de8).
+  A word store to absolute 0x10000 has source value 0xffffffff9080bdc8 (`sw` at 0x2227ea4).
+  Sixteen word-store sites use `swc1` at absolute 0x10000, including `swc1` at 0x2227eac, 0x2227eb4, 0x2227ebc.
+  On return `v0` is 0x10000 (`jr` at 0x2227f48).
+  Role: unknown.
+- `__glOdyim_Enable` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x219ad80
+  **Established:** The `beq` at 0x219ad9c branches to 0x219b644 when `v0(=[0x1030]) == a5(=0x1)` and falls through when they differ (`lw` at 0x219ad80).
+  The access report includes 47 word-store sites to absolute 0x1030, including `sw` at 0x219af8c, 0x219b030, 0x219b08c.
+  The `jalr` at 0x219adfc calls `__glOdysseyFindWindowSize [0x21a9c80]` with `a0=[0x1020]:8, a1=unknown, a2=[0x1020]:8, a3=0x840f, a5=0x1`.
+  The `jalr` at 0x219afa4 calls `__glSetError [0x227a070]` with `a0=0x500, a1=unknown, a2=[0x1020]:8, a3=unknown`.
+  The `jalr` at 0x219b2d8 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=([[0x1020]:8+2056] | 0x4000), a3=[0x1020]:8, a5=0x1`.
+  The `jalr` at 0x219b2ec calls (unknown callee) with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x219b64c calls `__glSetError [0x227a070]` with `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a5=0x1`.
+  The `bgezall` at 0x219c11c calls `ValidateColorMaterial [0x219a780]` with `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=unknown, a4=([[0x1020]:8+2056] | 0x80)`.
+  At the return at 0x219af88, `v0` is `0x2` (`jr` at 0x219af88).
+  Role: unknown.
+- `__glOdyim_Materialfv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a0ae0
+  **Established:** It reads a floating-point word at entry `a2` (`lwc1` at 0x21a0ae0).
+  The `beq` at 0x21a0b30 branches to 0x21a0b58 when `v0(=ret(__glErrorCheckMaterial)) == 0` and falls through when nonzero.
+  The `jalr` at 0x21a0b28 calls `__glErrorCheckMaterial [0x226a7a0]` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x1a63d8; fp f14=[a2]`.
+  The `jalr` at 0x21a0b3c calls `__glSetError [0x227a070]` with `a0=ret(__glErrorCheckMaterial), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21a0b60 calls `__glim_Materialfv [0x226a880]` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown`.
+  The `bgezall` at 0x21a0bf8 calls `ApplyParameterF [0x21a0650]` with `a0=0x1, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a5=0x404`.
+  The `bgezall` at 0x21a0c14 calls `ApplyParameterF [0x21a0650]` with `a0=0x0, a1=unknown, a2=a2 at entry (arg2), a3=unknown`.
+  The `bgezall` at 0x21a0ca0 calls `ApplyParameterF [0x21a0650]` with `a0=0x1, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a5=0x404`.
+  The `bgezall` at 0x21a0cc0 calls `ApplyParameterF [0x21a0650]` with `a0=0x0, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a5=0x404`.
+  The return at 0x21a0b50, `v0` is unknown (`jr` at 0x21a0b50).
+  Role: unknown.
+- `__glOdyim_Materialiv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a1290
+  **Established:** A word load reads entry `a2` (`lw` at 0x21a12b4).
+  The `beq` at 0x21a12e8 branches to 0x21a130c when `v0(=ret(__glErrorCheckMaterial)) == 0` and falls through when nonzero.
+  The `jalr` at 0x21a12e0 calls `__glErrorCheckMaterial [0x226a7a0]` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a2], a4=0x1a5c28`.
+  The `jalr` at 0x21a12f0 calls `__glSetError [0x227a070]` with `a0=ret(__glErrorCheckMaterial), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21a1318 calls `__glim_Materialiv [0x226ad80]` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown`.
+  The `bgezall` at 0x21a13b0 calls `ApplyParameterI [0x21a0d30]` with `a0=0x1, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a4=0x1200, a5=0x404`.
+  The `bgezall` at 0x21a13cc calls `ApplyParameterI [0x21a0d30]` with `a0=0x0, a1=unknown, a2=a2 at entry (arg2), a3=unknown`.
+  The `bgezall` at 0x21a1468 calls `ApplyParameterI [0x21a0d30]` with `a0=0x1, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a4=0x1200, a5=0x404`.
+  The `bgezall` at 0x21a1484 calls `ApplyParameterI [0x21a0d30]` with `a0=0x0, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a4=0x1200, a5=0x404`.
+  Its return at 0x21a1304, `v0` is unknown (`jr` at 0x21a1304).
+  Role: unknown.
+- `__glOdyim_PointSize` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a1500
+  **Established:** The `beq` at 0x21a1524 branches to 0x21a15dc when `at(=[0x1030]) == a2(=0x1)` and falls through when they differ (`lw` at 0x21a1504).
+  A word store writes 2 to absolute 0x1030 (`sw` at 0x21a15b8).
+  The `jalr` at 0x21a15cc calls `__glSetError [0x227a070]` with `a0=0x501, a1=[0x1020]:8, a2=0x1, a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21a15e0 calls `__glSetError [0x227a070]` with `a0=0x502, a1=[0x1020]:8, a2=0x1, a3=a3 at entry (arg3)`.
+  The return at 0x21a15b4 reports `v0=0x1a59b8`; the return at 0x21a15c0 reports `v0=ret(__glSetError)` (`jr` at 0x21a15b4, 0x21a15c0).
+  Role: unknown.
+- `__glOdyim_PolygonMode` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a15f0
+  **Established:** The `beq` at 0x21a1618 branches to 0x21a1768 when `at(=[0x1030]) == v0(=0x1)` and falls through when they differ (`lw` at 0x21a15f8).
+  Six word-store sites target absolute 0x10000, including `sw` at 0x21a1714, 0x21a1718, 0x21a171c.
+  Three reported word-store sites address absolute 0x1030 (`sw` at 0x21a1654, 0x21a16a0, 0x21a1744).
+  The `jalr` at 0x21a1644 calls `__glSetError [0x227a070]` with `a0=0x500, a1=a1 at entry (arg1), a2=0x1b02, a3=[0x1020]:8, a4=0x1b00, a5=0x1b01, a7=0x2`.
+  The `jalr` at 0x21a1688 calls `__glSetError [0x227a070]` with `a0=0x500, a1=a1 at entry (arg1), a2=0x1b02, a3=[0x1020]:8, a6=0x10415`.
+  The `jalr` at 0x21a176c calls `__glSetError [0x227a070]` with `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a7=0x2`.
+  The return at 0x21a1730 reports `v0=-0xd`; the return at 0x21a173c reports `v0=ret(__glSetError)` (`jr` at 0x21a1730, 0x21a173c).
+  Role: unknown.
+- `__glOdyim_StencilFunc` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a1a30
+  Role: unknown.
+  The `jalr` at 0x21a1b48 calls `__glSetError` with a0=0x500, a1=unknown, a2=a2 at entry (arg2), a3=unknown, a4=[0x1020]:8.
+  The `jalr` at 0x21a1b5c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8.
+  It loads a word from absolute 0x1030 and a doubleword from absolute 0x1020 (`lw` at 0x21a1a38; `ld` at 0x21a1a3c).
+  The `beq` at 0x21a1a58 takes target 0x21a1b58 when `at=[0x1030]` equals 0x1 and falls through when it differs.
+  It stores entry `a0` as a word at `[0x1020]:8 +0x780` (`sw` at 0x21a1a88).
+  It stores an unknown halfword at `[0x1020]:8 +0x788` (`sh` at 0x21a1a98).
+  Its returns have `v0=0x1a5488` at 0x21a1b30 and `v0=ret(__glSetError)` at 0x21a1b3c (`jr` at 0x21a1b30, 0x21a1b3c).
+- `__glOdyim_StencilMask` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a1b70
+  Role: unknown.
+  The `jalr` at 0x21a1bec calls (unknown callee) with a0=[0x1020]:8, a1=0x23300a0, a2=unknown, a3=unknown, a4=0x1.
+  The `jalr` at 0x21a1c7c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a3 at entry (arg3), a4=0x1.
+  It loads a word at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x21a1b78; `ld` at 0x21a1b8c).
+  The `beq` at 0x21a1b98 takes target 0x21a1c70 when `v0=[0x1030]` equals 0x1 and falls through otherwise.
+  It stores an unknown halfword at `[0x1020]:8 +0x78a` (`sh` at 0x21a1bb4).
+  For the returns, `v0` is unknown at 0x21a1c5c and `v0=ret(__glSetError)` at 0x21a1c68 (`jr` at 0x21a1c5c, 0x21a1c68).
+- `__glOdyim_StencilOp` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a1c90
+  Role: unknown.
+  The `jalr` at 0x21a1cf8 calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x1e01, a4=[0x1020]:8, a5=0x5, a6=0x1e03, a7=0x1e00.
+  The `jalr` at 0x21a1d44 calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a4=[0x1020]:8, a6=0x5, a7=0x1e00.
+  The `jalr` at 0x21a1e2c calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x1e01, a4=[0x1020]:8, a7=0x5.
+  The `jalr` at 0x21a1e88 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8.
+  It reads a word at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x21a1c94; `ld` at 0x21a1c98).
+  The `beq` at 0x21a1cb0 takes target 0x21a1e84 when `at=[0x1030]` equals 0x1 and falls through when it differs.
+  At 0x21a1ddc the return value `v0` is `[0x1020]:8+131072`; at 0x21a1de8 it is `ret(__glSetError)` (`jr` at 0x21a1ddc, 0x21a1de8).
+- `__glOdyim_BlendColorEXT` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a33d0
+  Role: unknown.
+  The `jalr` at 0x21a35a0 calls `__glSetError` with a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  It loads a word from absolute 0x1030 and a doubleword from absolute 0x1020 (`lw` at 0x21a33d0; `ld` at 0x21a33dc).
+  The `beq` at 0x21a33ec takes target 0x21a3598 when `v0=[0x1030]` equals 0x1 and falls through otherwise.
+  It loads a floating-point word at `[0x1020]:8 +0xf2c` (`lwc1` at 0x21a340c).
+  It stores unknown floating-point words at `[0x1020]:8 +0x844`, `[0x1020]:8 +0x840`, and `[0x1020]:8 +0x83c` (`swc1` at 0x21a3464, 0x21a3478, 0x21a3484).
+  The returns have `v0=[0x1030]` at 0x21a3584 and `v0=ret(__glSetError)` at 0x21a3590 (`jr` at 0x21a3584, 0x21a3590).
+- `__glOdyim_Disable` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a1ea0
+  Established. The word at absolute 0x1030 is loaded (`lw` at 0x21a1ea0), as is the doubleword at absolute 0x1020 (`ld` at 0x21a1eac).
+  The `beq` at 0x21a1ebc takes target 0x21a2920 when the word loaded from 0x1030 equals 0x1, and falls through when it differs from 0x1.
+  The `bne` at 0x21a1ec8 takes target 0x21a1f40 when a0 is unsigned less than 0x3003, and falls through when a0 is unsigned greater than or equal to 0x3003.
+  A byte is loaded from `[0x1020]:8 +0x1c478` (`lbu` at 0x21a1f0c).
+  The `beq` at 0x21a1f10 takes target 0x21a21a0 when that byte is zero and falls through when it is nonzero.
+  A byte value 0x1 is stored at `[0x1020]:8 +0x1c484` (`sb` at 0x21a1f18).
+  A byte value 0x0 is stored at `[0x1020]:8 +0x1c478` (`sb` at 0x21a1f1c).
+  A word loaded from `[0x1020]:8 +0x18e58` is ORed with 0x400 and stored at the same offset (`lw` at 0x21a1f20; `sw` at 0x21a1f30).
+  A word value 0x2 is stored at absolute 0x1030 (`sw` at 0x21a1f3c).
+  A word is loaded from `[0x1020]:8 +0x808` (`lw` at 0x21a1fd0) and a word of unknown value is stored there (`sw` at 0x21a1fe4).
+  A word loaded from `[0x1020]:8 +0x18e58` is ORed with 0x120 and stored at the same offset (`lw` at 0x21a1fe8; `sw` at 0x21a1ff0).
+  The `jalr` at 0x21a2038 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, a5=0x1, a6=[0x1030], a7=0x400000.
+  The `jalr` at 0x21a2190 calls `__glSetError` with a0=0x500, a1=unknown, a2=[0x1020]:8, a3=unknown.
+  The `jalr` at 0x21a24ac calls (unknown callee) with a0=[0x1020]:8, a1=[0x1020]:8, a2=-0x4001, a3=unknown, a5=0x1.
+  The `jalr` at 0x21a24c0 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21a2928 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a5=0x1.
+  The `jalr` at 0x21a293c calls `__glSetError` with a0=0x502, a1=unknown, a2=unknown, a3=unknown, a5=0x1, a6=[0x1030], a7=0x400000.
+  The `jalr` at 0x21a33b4 calls `ValidateColorMaterial` with a0=[0x1020]:8, a1=0xb57, a2=unknown, a3=[0x1020]:8, a4=-0x81.
+  At the return at 0x21a1f38, v0 is unknown (`jr` at 0x21a1f38). Role: unknown.
+- `__glOdyim_PolygonOffset` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a35b0
+  **Established effects.**
+  It reads a word at absolute 0x1030 (`lw` at 0x21a35b4).
+  On one path a doubleword is loaded from absolute 0x1020 (`ld` at 0x21a35d8).
+  The `bgezall` at 0x21a35e4 calls `__glOdyim_PolygonOffsetEXT` with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x21a3600 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The analyzed `v0` return value is unknown (`jr` at 0x21a35f4).
+  Role: unknown.
+- `__glOdyim_PolygonOffsetEXT` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21a3610
+  **Established effects.**
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x21a361c).
+  The `beq` at 0x21a363c is taken to 0x21a3820 when the word at absolute 0x1030 equals 0x1 and falls through when it differs (`lw` at 0x21a3620).
+  It stores `f13` as a word at `[0x1020]:8 +0x2a8` (`swc1` at 0x21a3658).
+  A word from `f12` is stored at `[0x1020]:8 +0x2a4` (`swc1` at 0x21a3660).
+  The `jalr` at 0x21a3668 calls `__glInvertTransposeMatrix` with a0=sp-160, a1=[[0x1020]:8+38072]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  One path stores words 0x10443, 0xfa and 0x10046 at absolute 0x10000 (`sw` at 0x21a37e8, 0x21a37ec, 0x21a37f0).
+  A word 0x10458 is stored at absolute 0x10000 (`sw` at 0x21a37f8).
+  The `jalr` at 0x21a3828 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The analyzed returns carry either the value returned by `__glInvertTransposeMatrix` or that returned by `__glSetError` in `v0` (`jr` at 0x21a380c, 0x21a3818).
+  Role: unknown.
+- `__glOdyim_Fogf` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c5220
+  **Established effects.**
+  The `beq` at 0x21c523c is taken to 0x21c528c when entry `a0` equals 0xb61 and falls through when it differs.
+  The `beq` at 0x21c5248 goes to 0x21c5290 when entry `a0` equals 0xb62 and falls through otherwise.
+  The `beq` at 0x21c5254 goes to 0x21c5290 when entry `a0` equals 0xb63 and falls through otherwise.
+  The `beq` at 0x21c5260 selects 0x21c5290 when entry `a0` equals 0xb64 and falls through otherwise.
+  The `beq` at 0x21c526c selects 0x21c528c when entry `a0` equals 0xb65 and falls through otherwise.
+  The `jalr` at 0x21c5274 calls `__glSetError` with a0=0x500, a1=0xb63, a2=0xb64, a3=0xb65.
+  The `bgezall` at 0x21c5290 calls `__glOdyim_Fogfv` with a0=a0 at entry (arg0), a1=sp-8, a2=unknown, a3=unknown.
+  At the analyzed return `v0` is unknown (`jr` at 0x21c5284).
+  Role: unknown.
+- `__glOdyim_Fogfv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c4de0
+  **Established effects.**
+  It reads a word at absolute 0x1030 (`lw` at 0x21c4de8).
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x21c4dec).
+  Six word-store sites write 0x2 at absolute 0x1030, including `sw` at 0x21c4e4c, 0x21c4e5c, 0x21c4f0c.
+  The `jalr` at 0x21c4ea8 calls `__glSetError` with a0=0x500, a1=unknown, a2=a1 at entry (arg1), a3=unknown, a4=one of 0x1, 0x8199.
+  The `jalr` at 0x21c5034 calls `__glSetError` with a0=0x500, a1=0x2601, a2=a1 at entry (arg1), a3=0x800, a4=0x1, a6=0x801, a7=0x812a.
+  The `jalr` at 0x21c50c0 calls `__glClampColorf` with a0=[0x1020]:8, a1=[0x1020]:8+1852, a2=a1 at entry (arg1), a3=unknown, a4=0x1.
+  The `jalr` at 0x21c5200 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=0x1.
+  The `jalr` at 0x21c5210 calls `__glSetError` with a0=0x501, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=0x1.
+  The analyzed return at 0x21c4e9c leaves `v0` unknown (`jr` at 0x21c4e9c).
+  Role: unknown.
+- `__glOdyim_Fogiv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c52a0
+  **Established effects.**
+  A word is loaded at absolute 0x1030 (`lw` at 0x21c52a8).
+  It reads a doubleword at absolute 0x1020 (`ld` at 0x21c52ac).
+  There are six word-store sites writing 0x2 at absolute 0x1030, including `sw` at 0x21c5314, 0x21c5324, 0x21c53d0.
+  The `jalr` at 0x21c5370 calls `__glSetError` with a0=0x500, a1=unknown, a2=a1 at entry (arg1), a3=unknown, a4=one of 0x1, 0x8199.
+  The `jalr` at 0x21c550c calls `__glSetError` with a0=0x500, a1=0x2601, a2=a1 at entry (arg1), a3=0x800, a4=[a1], a5=0x801, a6=0x812a.
+  The `jalr` at 0x21c559c calls `__glClampColori` with a0=[0x1020]:8, a1=[0x1020]:8+1852, a2=a1 at entry (arg1), a3=unknown, a4=0x1.
+  The `jalr` at 0x21c56dc calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=0x1.
+  The `jalr` at 0x21c56f0 calls `__glSetError` with a0=0x501, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[a1], a7=0xb63.
+  At the analyzed return at 0x21c5364, `v0` is unknown (`jr` at 0x21c5364).
+  Role: unknown.
+- `__glOdyim_Lightfv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x22069f0
+  Established. The instruction reads a word from absolute 0x1030 (`lw` at 0x2206a04); a doubleword is read from absolute 0x1020 (`ld` at 0x2206a1c).
+  The `beq` at 0x2206a24 takes target 0x2206a68 when `[0x1030]` equals 0x1 and falls through when it does not.
+  The `jalr` at 0x2206a30 calls `__glim_Lightfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x2206a48 calls `dirtyLight` with a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=unknown.
+  The `jalr` at 0x2206a6c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The returned `v0` is unknown (`jr` at 0x2206a60). Role: unknown.
+- `__glOdyim_Lightf` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206a80
+  Established. One load reads a word from absolute 0x1030 (`lw` at 0x2206a94); a doubleword is read from absolute 0x1020 (`ld` at 0x2206aac).
+  The `beq` at 0x2206ab4 takes target 0x2206af8 when `[0x1030]` equals 0x1 and falls through when it does not.
+  The `jalr` at 0x2206ac0 calls `__glim_Lightf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x2206ad8 calls `dirtyLight` with a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=unknown.
+  The `jalr` at 0x2206afc calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  At return, `v0` is unknown (`jr` at 0x2206af0). Role: unknown.
+- `__glOdyim_Lightiv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206b10
+  Established. This path reads a word from absolute 0x1030 (`lw` at 0x2206b24); a doubleword is read from absolute 0x1020 (`ld` at 0x2206b3c).
+  The `beq` at 0x2206b44 takes target 0x2206b88 when `[0x1030]` equals 0x1 and falls through when it does not.
+  The `jalr` at 0x2206b50 calls `__glim_Lightiv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x2206b68 calls `dirtyLight` with a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=unknown.
+  The `jalr` at 0x2206b8c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The return value `v0` is unknown (`jr` at 0x2206b80). Role: unknown.
+- `__glOdyim_Lighti` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206ba0
+  Established. The word load reads a word from absolute 0x1030 (`lw` at 0x2206bb4); a doubleword is read from absolute 0x1020 (`ld` at 0x2206bcc).
+  The `beq` at 0x2206bd4 takes target 0x2206c18 when `[0x1030]` equals 0x1 and falls through when it does not.
+  The `jalr` at 0x2206be0 calls `__glim_Lighti` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bgezall` at 0x2206bf8 calls `dirtyLight` with a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=unknown.
+  The `jalr` at 0x2206c1c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The value returned in `v0` is unknown (`jr` at 0x2206c10). Role: unknown.
+- `__glOdyim_LightModelfv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206c30
+  Established. The routine reads a word at absolute 0x1030 (`lw` at 0x2206c3c) and a doubleword at absolute 0x1020 (`ld` at 0x2206c54).
+  The `beq` at 0x2206c5c takes target 0x2206ccc when `[0x1030]` equals 0x1, and falls through when it differs from 0x1.
+  The `jalr` at 0x2206c68 calls `__glim_LightModelfv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beq` at 0x2206c98 takes target 0x2206cbc when entry a0 equals 0xb53 and falls through when it differs from 0xb53.
+  Its delay slot stores a word value 0x2 at absolute 0x1030 on both paths (`sw` at 0x2206c9c).
+  A further word value 0x2 is stored at absolute 0x1030 (`sw` at 0x2206cb8).
+  The `jalr` at 0x2206cd0 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  At return, `v0` is unknown (`jr` at 0x2206cc4). Role: unknown.
+- `__glOdyim_Fogi` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c5700
+  **Established:** The `beq` at 0x21c571c branches to 0x21c576c when `a0 == at(=0xb61)` and falls through when they differ.
+  The `jalr` at 0x21c5754 calls `__glSetError [0x227a070]` with `a0=0x500, a1=0xb63, a2=0xb64, a3=0xb65`.
+  The `bgezall` at 0x21c5770 calls `__glOdyim_Fogiv [0x21c52a0]` with `a0=a0 at entry (arg0), a1=sp-4, a2=unknown, a3=unknown`.
+  The return at 0x21c5764 reports `v0` as unknown (`jr` at 0x21c5764).
+  Role: unknown.
+- `__glOdyim_FogFuncSGIS` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c5780
+  **Established:** The `beq` at 0x21c57b0 branches to 0x21c59c0 when `at(=[0x1030]) == v1(=0x1)` and falls through when they differ (`lw` at 0x21c5790).
+  The `blez` at 0x21c57b8 branches to 0x21c5990 when `v0(=a0) <= 0` signed and falls through when positive.
+  The `jalr` at 0x21c57f4 calls (unknown callee) with `a0=[0x1020]:8, a1=unknown, a2=[0x1020]:8+131072, a3=unknown`.
+  The `jalr` at 0x21c5860 calls (unknown callee) with `a0=[0x1020]:8, a1=ret(?), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21c5874 calls `__glSetError [0x227a070]` with `a0=0x501, a1=unknown, a2=unknown, a3=unknown`.
+  The `bgezall` at 0x21c5968 calls `FogFitCurve [0x21c44e0]` with `a0=unknown, a1=ret(?), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21c5978 calls (unknown callee) with `a0=[0x1020]:8, a1=ret(?), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21c5994 calls `__glSetError [0x227a070]` with `a0=0x501, a1=0x180000, a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21c59b0 calls `__glSetError [0x227a070]` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21c59c8 calls `__glSetError [0x227a070]` with `a0=0x502, a1=0x180000, a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The instructions from 0x21c58b8 to 0x21c58bc are not reached by any path from the entry, and their branches are not listed.
+  The return at 0x21c5888 reports `v0` as unknown (`jr` at 0x21c5888).
+  Role: unknown.
+- `__glOdyim_LightEnviSGIX` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21c8d50
+  **Established:** The `beq` at 0x21c8d78 branches to 0x21c8dfc when `at(=[0x1030]) == v0(=0x1)` and falls through when they differ (`lw` at 0x21c8d58).
+  A word store writes 2 to absolute 0x1030 (`sw` at 0x21c8df8).
+  The `jalr` at 0x21c8d8c calls `__glSetError [0x227a070]` with `a0=0x500, a1=a1 at entry (arg1), a2=0x8407, a3=[0x1020]:8, a5=0x1e01, a6=0x2100`.
+  The `jalr` at 0x21c8dc8 calls `__glSetError [0x227a070]` with `a0=0x500, a1=a1 at entry (arg1), a2=0x8407, a3=[0x1020]:8, a4=0x104, a5=0x1e01, a6=0x2100, a7=0x2`.
+  The `jalr` at 0x21c8e00 calls `__glSetError [0x227a070]` with `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a5=0x1e01, a6=0x2100`.
+  The return at 0x21c8d9c reports `v0=ret(__glSetError)`; the return at 0x21c8df4 reports `v0=0x1` (`jr` at 0x21c8d9c, 0x21c8df4).
+  Role: unknown.
+- `__glOdyim_ColorTableSGI` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d12a0
+  **Established:** The `beq` at 0x21d12dc branches to 0x21d1324 when `v0(=[0x1030]) == 0` and falls through when nonzero (`lw` at 0x21d12bc).
+  Four reported word-store sites target absolute 0x1030, including `sw` at 0x21d1320, 0x21d14a0, 0x21d1504.
+  The `jalr` at 0x21d12f4 calls `__glSetError [0x227a070]` with `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21d1318 calls (unknown callee) with `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21d133c calls `__glCheckColorTableArgs [0x2275f50]` with `a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=0x0, a4=a3 at entry (arg3), a5=a4 at entry (arg4)`.
+  The `jalr` at 0x21d1350 calls `__glSetError [0x227a070]` with `a0=ret(__glCheckColorTableArgs), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d13dc calls `__glSetError [0x227a070]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x501, a5=a2 at entry (arg2)`.
+  The `jalr` at 0x21d1494 calls (unknown callee) with `a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5), a7=0x0`.
+  The `jalr` at 0x21d14e8 calls (unknown callee) with `a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=0x0, a7=0x1`.
+  The `jalr` at 0x21d154c calls `__glSetError [0x227a070]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d156c calls `__glSpecElementsPerGroup [0x2256d30]` with `a0=a3 at entry (arg3), a1=a4 at entry (arg4), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d157c calls `__glSpecBytesPerElement [0x2256f00]` with `a0=a4 at entry (arg4), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d15d4 calls (unknown callee) with `a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=unknown, a4=a3 at entry (arg3), a5=a4 at entry (arg4), a7=0x0`.
+  The `jalr` at 0x21d1620 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x0, a1=0x2, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d1634 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x1, a1=0x2, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d1750 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x2, a1=0x2, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d1760 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x3, a1=0x80d2, a2=unknown, a3=unknown`.
+  The instructions from 0x21d142c to 0x21d142c are not reached by any path from the entry, and their branches are not listed.
+  The return at 0x21d1308 reports `v0` as unknown (`jr` at 0x21d1308).
+  Role: unknown.
+- `__glOdyim_ColorSubTable` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d1b10
+  **Established:** The `beq` at 0x21d1b48 branches to 0x21d1b8c when `v0(=[0x1030]) == 0` and falls through when nonzero (`lw` at 0x21d1b30).
+  Three word-store sites target absolute 0x1030 (`sw` at 0x21d1b88, 0x21d1c10, 0x21d1dac).
+  The `jalr` at 0x21d1b5c calls `__glSetError [0x227a070]` with `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21d1b80 calls (unknown callee) with `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21d1ba4 calls `__glCheckColorSubTableArgs [0x2276770]` with `a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4)`.
+  The `jalr` at 0x21d1bbc calls `__glSetError [0x227a070]` with `a0=ret(__glCheckColorSubTableArgs), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d1c04 calls (unknown callee) with `a0=unknown, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5), a7=0x0`.
+  The `jalr` at 0x21d1c68 calls `__glSetError [0x227a070]` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d1c7c calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x0, a1=0x80d1, a2=unknown, a3=unknown, a4=0x80d2`.
+  The `jalr` at 0x21d1c90 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x1, a1=0x80d1, a2=unknown, a3=unknown, a4=0x80d2`.
+  The `jalr` at 0x21d1db0 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x2, a1=0x80d1, a2=unknown, a3=unknown, a4=0x80d2`.
+  The `jalr` at 0x21d1dc0 calls `__glOdysseyStoreLUT [0x22080d0]` with `a0=0x3, a1=0x80d1, a2=a0 at entry (arg0), a3=unknown, a4=0x80d2`.
+  The return at 0x21d1b6c reports `v0` as unknown (`jr` at 0x21d1b6c).
+  Role: unknown.
+- `__glOdyim_LightModelf` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206ce0
+  **Established effects.**
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x2206ce0).
+  A return delay slot stores word 0x2 at absolute 0x1030 (`sw` at 0x2206d44; `jr` at 0x2206d40).
+  The `jalr` at 0x2206d10 calls `__glim_LightModelf` with a0=a0 at entry (arg0), a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x2206d58 calls `__glSetError` with a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The analyzed returns hold the values from `__glim_LightModelf` or `__glSetError` in `v0` (`jr` at 0x2206d40, 0x2206d4c).
+  Role: unknown.
+- `__glOdyim_LightModeliv` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206d70
+  **Established effects.**
+  The word at absolute 0x1030 is loaded (`lw` at 0x2206d7c).
+  Two word-store sites write 0x2 at absolute 0x1030 (`sw` at 0x2206ddc, 0x2206df8).
+  The `jalr` at 0x2206da8 calls `__glim_LightModeliv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x2206e10 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  At one analyzed return, `v0` contains the value returned by `__glim_LightModeliv` (`jr` at 0x2206df4).
+  Role: unknown.
+- `__glOdyim_LightModeli` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2206e20
+  **Established effects.**
+  A doubleword load reads absolute 0x1020 (`ld` at 0x2206e20).
+  On one path its return delay slot writes word 0x2 at absolute 0x1030 (`sw` at 0x2206e84; `jr` at 0x2206e80).
+  The `jalr` at 0x2206e50 calls `__glim_LightModeli` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3).
+  The `jalr` at 0x2206e98 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3).
+  The analyzed returns have `v0` equal to the value from `__glim_LightModeli` or `__glSetError` (`jr` at 0x2206e80, 0x2206e8c).
+  Role: unknown.
+- `__glOdyim_Scissor` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x22284d0
+  **Established effects.**
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x22284d0).
+  It also reads the word at absolute 0x1030 (`lw` at 0x22284d8).
+  The `jalr` at 0x2228500 calls `__glim_Scissor` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8.
+  The `jalr` at 0x2228514 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x2228530 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8.
+  The analyzed return value in `v0` is unknown (`jr` at 0x2228524).
+  Role: unknown.
+- `__glOdyim_Viewport` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x2228e40
+  **Established effects.**
+  It reads a doubleword at absolute 0x1020 (`ld` at 0x2228e40).
+  The word at absolute 0x1030 is read (`lw` at 0x2228e48).
+  One return delay slot writes word 0x2 at absolute 0x1030 (`sw` at 0x2228eb8; `jr` at 0x2228eb4).
+  The `jalr` at 0x2228e70 calls `__glim_Viewport` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8.
+  The `jalr` at 0x2228e84 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x2228ecc calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8.
+  At one analyzed return, `v0` is unknown (`jr` at 0x2228eb4).
+  Role: unknown.
+- `__glOdysseyConvolutionFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21cec70
+  **Established:** It stores entry a6 as a word at an unknown base (`sw` at 0x21cece8).
+  It loads a word at entry `a0 +0x5bc` (`lw` at 0x21cedcc).
+  Another word load uses entry `a0 +0x5b8` (`lw` at 0x21cedd4).
+  A further word load uses entry `a0 +0x5b4` (`lw` at 0x21ceddc).
+  It stores a word at entry `a0 +0x594` (`sw` at 0x21cee38).
+  A word store uses entry `a0 +0x598` (`sw` at 0x21cee40).
+  Another word store uses entry `a0 +0x59c` (`sw` at 0x21cee48).
+  The instructions from 0x21cf014 to 0x21cf01c are not reached by any path from the entry, and their branches are not listed.
+  The `jalr` at 0x21cecf8 calls (unknown callee) with `a0=a0 at entry (arg0), a1=0x790, a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21ceea8 calls `__glFillImage` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21cefac calls `__glSetError` with `a0=0x500, a1=0x80e0, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21ceff8 calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=unknown, a4=0x8000, a5=0x80e1`.
+  The `jalr` at 0x21cf1f4 calls `__glOdysseyCvtToRGBA` with `a0=unknown, a1=unknown, a2=unknown, a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21cf208 calls `__glOdysseyScaleBiasFilter` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf250 calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=0x1906, a4=0x1907, a5=0x1909, a6=0x190a, a7=0x8049`.
+  The `jalr` at 0x21cf2bc calls `__glOdysseyCvtToFloat` with `a0=unknown, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  The `jalr` at 0x21cf2e4 calls `__glOdysseyCvtToInternalFmt` with `a0=unknown, a1=unknown, a2=unknown, a3=0x1906, a4=0x1907`.
+  The `jalr` at 0x21cf300 calls (unknown callee) with `a0=a0 at entry (arg0), a1=ret(?), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf30c calls `__glOdysseyInitConvolutionState` with `a0=a6 at entry (arg6), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf324 calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf3ac calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf3e0 calls `__glOdysseyCvtToFloat` with `a0=unknown, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  The `jalr` at 0x21cf400 calls `__glOdysseyCvtToFloat` with `a0=unknown, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  The `jalr` at 0x21cf414 calls `__glSetError` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf48c calls `__glOdysseyCvtToFloat` with `a0=unknown, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  Its return value is unknown (`jr` at 0x21cf284).
+  Role: unknown.
+- `__glOdysseySeparableFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21cf4f0
+  **Established:** A doubleword load uses entry `a0 +0x4b8` (`ld` at 0x21cf54c).
+  The unknown call return is stored there as a doubleword (`sd` at 0x21cf564).
+  It stores entry a7 as a word at entry a0 +0x468 (`sw` at 0x21cf584).
+  `beq` at 0x21cf560 is taken to 0x21cf958 when the unknown call return is zero and falls through when it is nonzero.
+  It loads a word from entry `a0 +0x5bc` (`lw` at 0x21cf740).
+  Entry `a0 +0x5b8` supplies another word (`lw` at 0x21cf748).
+  A further word load uses entry `a0 +0x5b4` (`lw` at 0x21cf750).
+  The instruction at 0x21cfd3c is not reached by any path from the entry, and its branches are not listed.
+  The `jalr` at 0x21cf558 calls (unknown callee) with `a0=a0 at entry (arg0), a1=[a0+1208]:8, a2=((a2 + a1) << 0x4)+1936, a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21cf580 calls (unknown callee) with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf818 calls `__glFillImage` with `a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=0x1, a3=a3 at entry (arg3), a5=a6 at entry (arg6), a6=[a0+1208]:8`.
+  The `jalr` at 0x21cf83c calls `__glFillImage` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21cf948 calls `__glSetError` with `a0=0x500, a1=a0+1428, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf95c calls `__glSetError` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf974 calls (unknown callee) with `a0=a0 at entry (arg0), a1=ret(?), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cf9c4 calls `__glSetError` with `a0=0x500, a1=unknown, a2=[a0+1136], a3=unknown`.
+  The `jalr` at 0x21cfa2c calls `__glSetError` with `a0=0x500, a1=0x80e1, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cfa58 calls `__glOdysseyCvtToRGBA` with `a0=unknown, a1=(ret(?) + (((a2 + a1) << 0x2) << 0x2)), a2=(a2 + a1), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x21cfa70 calls `__glOdysseyScaleBiasFilter` with `a0=a0+1128, a1=(a2 + a1), a2=ret(?), a3=unknown`.
+  The `jalr` at 0x21cff20 calls `__glOdysseyCvtToFloat` with `a0=[a0+1208]:8, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  The `jalr` at 0x21cff70 calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21cff90 calls `__glOdysseyCvtToInternalFmt` with `a0=[a0+1208]:8, a1=unknown, a2=[a0+1136], a3=unknown`.
+  The `jalr` at 0x21cffac calls `__glOdysseyInitConvolutionState` with `a0=a7 at entry (arg7), a1=unknown, a2=0x1908, a3=0x4`.
+  The `jalr` at 0x21d0080 calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d00d8 calls `__glSetError` with `a0=0x500, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d0110 calls `__glOdysseyCvtToFloat` with `a0=[a0+1208]:8, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  The `jalr` at 0x21d0128 calls `__glSetError` with `a0=0x505, a1=a2 at entry (arg2), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d0148 calls `__glOdysseyCvtToFloat` with `a0=[a0+1208]:8, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  The `jalr` at 0x21d0224 calls `__glOdysseyCvtToFloat` with `a0=[a0+1208]:8, a1=ret(?), a2=unknown, a3=a4 at entry (arg4)`.
+  Its return value is unknown (`jr` at 0x21cf9ec).
+  Role: unknown.
+- `__glOdysseyGetSeparableFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d0290
+  **Established:** A word load uses entry `a0 +0x4ac` (`lw` at 0x21d0290).
+  Another reads entry `a0 +0x4a8` (`lw` at 0x21d0294).
+  The word at entry `a0 +0x474` is also loaded (`lw` at 0x21d029c).
+  A doubleword load reads entry `a0 +0x4b8` (`ld` at 0x21d02d0).
+  Two doubleword-store sites target that offset (`sd` at 0x21d02f0, 0x21d0300).
+  The `jalr` at 0x21d02ec calls `__glSlowPickGetSeparableFilter` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=[a0+1140]`.
+  It returns the value returned by `__glSlowPickGetSeparableFilter` (`jr` at 0x21d0308).
+  Role: unknown.
+- `__glOdysseyImageChainCreate` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d2820
+  **Established:** It loads a doubleword from absolute address 0x1020 (`ld` at 0x21d2838).
+  `beq` at 0x21d2864 is taken to 0x21d29d8 when the unknown call return is zero and falls through when it is nonzero.
+  A zero doubleword is stored at `ret(?) +0x18` (`sd` at 0x21d286c).
+  Another is stored at `ret(?) +0x10` (`sd` at 0x21d2870).
+  A zero doubleword goes to `ret(?) +0x8` (`sd` at 0x21d2878).
+  Zero is also stored as a doubleword at `ret(?) +0x0` (`sd` at 0x21d287c).
+  Entry `a0` is stored as a doubleword at `ret(?) +0x28` (`sd` at 0x21d2890).
+  Entry `a1` goes to `ret(?) +0x20` as a doubleword (`sd` at 0x21d289c).
+  `beq` at 0x21d28b8 is taken to 0x21d2c10 when the `ImageChainBuildChain` return masked with 0xff is zero and falls through when it is nonzero.
+  It has six store sites for byte 0x1 at +0x18 from the unknown call return, including `sb` at 0x21d2978, 0x21d29d4, 0x21d2a48.
+  The instructions from 0x21d28d8 to 0x21d28dc are not reached by any path from the entry, and their branches are not listed.
+  The `jalr` at 0x21d285c calls (unknown callee) with `a0=[0x1020]:8, a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `bgezall` at 0x21d2898 calls `ImageChainDetermineChainType` with `a0=ret(?), a1=a3 at entry (arg3), a2=unknown, a3=unknown`.
+  The `bgezall` at 0x21d28ac calls `ImageChainBuildChain` with `a0=ret(?), a1=a2 at entry (arg2), a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d29dc calls `__glSetError` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x21d2a7c calls `__glOdysseyImageCalcXferWriteParams` with `a0=[[[ret(?)+8]:8+88]:8+8], a1=[[[ret(?)+8]:8+88]:8+12], a2=[[[ret(?)+8]:8+96]:8+52], a3=sp-128`.
+  The `jalr` at 0x21d2be8 calls `__glOdysseyImageCalcXferReadParams` with `a0=[[[ret(?)+8]:8+96]:8+8], a1=[[[ret(?)+8]:8+96]:8+12], a2=[[ret(?)+8]:8+88]:8, a3=sp-104`.
+  The `bgezall` at 0x21d2c10 calls `__glOdysseyImageChainFree` with `a0=ret(?), a1=unknown, a2=unknown, a3=unknown`.
+  It returns an unknown call return or zero (`jr` at 0x21d2990, 0x21d29f8, 0x21d2c2c).
+  Role: unknown.
+- `__glOdysseyImageChainFree` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21d2d00
+  **Established:** It loads a doubleword from absolute address 0x1020 (`ld` at 0x21d2d00).
+  `beq` at 0x21d2d24 is taken to 0x21d2d80 when entry a0 is zero and falls through when it is nonzero.
+  A doubleword load reads entry `a0 +0x8` (`ld` at 0x21d2d2c).
+  A doubleword store targets that offset (`sd` at 0x21d2d48).
+  `beq` at 0x21d2d30 is taken to 0x21d2d64 when that loaded doubleword is zero and falls through when nonzero.
+  The `bgezall` at 0x21d2d54 calls `ImageChainOpFree` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  `bne` at 0x21d2d5c is taken to 0x21d2d40 when s0 is nonzero and falls through when s0 is zero; s0 is unknown.
+  Zero is stored as a word at entry `a0 +0x0` (`sw` at 0x21d2d64).
+  A zero doubleword goes to entry `a0 +0x8` (`sd` at 0x21d2d68).
+  Another zero doubleword goes to entry `a0 +0x10` (`sd` at 0x21d2d6c).
+  The `jalr` at 0x21d2d78 calls (unknown callee) with `a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=unknown`.
+  Its return value is unknown (`jr` at 0x21d2d90).
+  Role: unknown.
+- `__glOdysseyImageChainAddOpAcceptSignedDataFromHost` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21dead0
+  **Established effects.**
+  The `jalr` at 0x21deb08 calls `ImageChainOpCreate` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beq` at 0x21deb10 takes target 0x21debf4 when `ret(ImageChainOpCreate)` is zero and falls through when nonzero.
+  A word value 0x4 is stored at `ret(ImageChainOpCreate) +0x0` (`sw` at 0x21deb20).
+  A word loaded from a1 at entry +0x0 is stored at `ret(ImageChainOpCreate) +0x28` (`lwc1` at 0x21deb24; `swc1` at 0x21deb28).
+  A word from a2 at entry +0x0 is stored at `ret(ImageChainOpCreate) +0x38` (`lwc1` at 0x21deb2c; `swc1` at 0x21deb30).
+  The `beq` at 0x21deb50 takes target 0x21debe0 when entry a3 equals 0x190a and falls through otherwise.
+  The `beq` at 0x21deb5c takes target 0x21debe0 when entry a3 equals 0x1906 and falls through otherwise.
+  The `beq` at 0x21deb64 takes target 0x21debe0 when entry a3 equals 0x1908 and falls through otherwise.
+  A word value 0x1 is stored at `ret(ImageChainOpCreate) +0x14` (`sw` at 0x21deb84).
+  A doubleword value 0x21dec20 is stored at `ret(ImageChainOpCreate) +0x8` (`sd` at 0x21deba0).
+  A word loaded from `ret(ImageChainOpCreate) +0x10` is ORed with 0x1a and stored there (`lw` at 0x21deb98; `sw` at 0x21debb0).
+  The `jalr` at 0x21debb8 calls `ImageChainAddOp` with a0=a0 at entry (arg0), a1=ret(ImageChainOpCreate), a2=[a0+16]:8, a3=0x0, a4=0x21dec20.
+  The return at 0x21debd8 has v0=0x1; the return at 0x21dec0c has v0=0x0 (`jr` at 0x21debd8, 0x21dec0c). Role: unknown.
+- `__glOdysseyImageCalcSuitableHostFormatForDownload` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f03d0
+  Established. The `beq` at 0x21f03d0 takes target 0x21f0420 when entry a2 equals zero and falls through when nonzero.
+  The `beq` at 0x21f03dc takes target 0x21f0434 when a2 equals 0x3 and falls through when it differs.
+  The `beq` at 0x21f03e8 takes target 0x21f0448 when a2 equals 0x10 and falls through when it differs.
+  The `beq` at 0x21f03f4 takes target 0x21f040c when a2 equals 0x11 and falls through when it differs.
+  Five word-store sites target entry `a3 +0x0`, including `sw` at 0x21f0400, 0x21f0410, 0x21f0424.
+  Five more target entry `a4 +0x0`, including `sw` at 0x21f0408, 0x21f041c, 0x21f0430.
+  At a3 at entry +0x0, the word store writes 0x1908 (`sw` at 0x21f0400).
+  The word 0x1403 is stored at a4 at entry +0x0 (`sw` at 0x21f0408).
+  A store to a3 at entry +0x0 writes the word 0x1900 (`sw` at 0x21f0410).
+  The value 0x1906 is stored as a word through a3 at entry +0x0 (`sw` at 0x21f0424).
+  At a4 at entry +0x0, a word store uses 0x1401 (`sw` at 0x21f0430).
+  Each return has v0=0x1 (`jr` at 0x21f0404, 0x21f0418, 0x21f042c, 0x21f0440, 0x21f0458). Role: unknown.
+- `__glOdysseyImageZoomHostImage` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f0460
+  Established. Words are read from entry a2 +0xc and +0x8 (`lw` at 0x21f0484, 0x21f0494).
+  The `jalr` at 0x21f04b4 calls `__glSpecElementsPerGroup` with a0=[a2+8], a1=[a2+12], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x21f04c8 calls `__glSpecBytesPerElement` with a0=[a2+12], a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21f04e0 calls `__glSpecElementsPerGroup` with a0=[a0+8], a1=[a0+12], a2=unknown, a3=unknown.
+  The `jalr` at 0x21f04f4 calls `__glSpecBytesPerElement` with a0=[a0+12], a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21f0560 calls `ceilf` with a0=unknown, a1=unknown, a2=[a0+24], a3=unknown, a5=[a2+24], a7=[a2+16].
+  The `jalr` at 0x21f05b0 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  A word is loaded from an unknown base and stored at an unknown base (`lw` at 0x21f0824; `sw` at 0x21f0828).
+  A halfword is read from an unknown base and written to an unknown base (`lhu` at 0x21f0898; `sh` at 0x21f08a0).
+  A byte is loaded from an unknown base and stored at an unknown base (`lbu` at 0x21f08a4; `sb` at 0x21f08ac).
+  The instructions from 0x21f06c8 to 0x21f06cc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x21f07a4 to 0x21f07ac are not reached by any path from the entry, and their branches are not listed.
+  The return supplies v0=0x1 (`jr` at 0x21f08e0). Role: unknown.
+- `__glOdysseyScaleBiasFilter` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f2000
+  Established. Words are loaded from entry a0 +0x2c, +0x28, and +0x24 (`lwc1` at 0x21f2000, 0x21f2004, 0x21f2008).
+  The `blez` at 0x21f2028 takes target 0x21f214c when entry a1 is signed less than or equal to zero and falls through when greater than zero.
+  A word is loaded from entry a0 +0x10 (`lwc1` at 0x21f202c), in the delay slot on both paths.
+  The `beq` at 0x21f2030 takes target 0x21f2078 when a2 is zero and falls through when nonzero; its value is unknown.
+  A word is loaded from an unknown base (`lwc1` at 0x21f2038).
+  A word is stored to an unknown base (`swc1` at 0x21f205c).
+  The `bne` at 0x21f2070 takes target 0x21f2038 when a2 is nonzero and falls through when zero; its value is unknown.
+  Another word store to an unknown base runs in that branch's delay slot on both paths (`swc1` at 0x21f2074).
+  The `beq` at 0x21f2078 takes target 0x21f214c when at is zero and falls through when nonzero; its value is unknown.
+  The `bne` at 0x21f2144 takes target 0x21f2080 when entry a1 differs from a3 and falls through when equal; a3 is unknown.
+  A word is stored to an unknown base in its delay slot on both paths (`swc1` at 0x21f2148).
+  The return has unknown v0 (`jr` at 0x21f214c). Role: unknown.
+- `__glOdysseyImageConvertHostImage` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21edf90
+  Established. A doubleword is read at absolute 0x1020 (`ld` at 0x21edfc4).
+  The `jalr` at 0x21edff8 calls `__glSpecElementsPerGroup` with a0=[a2+8], a1=[a2+12], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x21ee014 calls `__glSpecBytesPerElement` with a0=[a2+12], a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21ee030 calls `__glSpecElementsPerGroup` with a0=[a0+8], a1=[a0+12], a2=unknown, a3=unknown.
+  The `jalr` at 0x21ee04c calls `__glSpecBytesPerElement` with a0=[a0+12], a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21ee0e4 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=[a0+24]; fp f14=0x41000000.
+  The `jalr` at 0x21ee15c calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f16=0x3f800000.
+  The `jalr` at 0x21ee59c calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=[a0+48]:8, a4=[a1], a6=[a1+4].
+  The `jalr` at 0x21ee5c8 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x21ee63c calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=[a0+48]:8, a4=[a1], a6=[a1+4].
+  The `jalr` at 0x21ee69c calls (unknown callee) with a0=[0x1020]:8, a1=sp-1008, a2=unknown, a3=unknown.
+  The `jalr` at 0x21ee6d8 calls (unknown callee) with a0=[0x1020]:8, a1=sp-1008, a2=unknown, a3=unknown.
+  The `jalr` at 0x21ee744 calls (unknown callee) with a0=[0x1020]:8, a1=ret(?), a2=unknown, a3=unknown.
+  The `bgezall` at 0x21eec38 calls `__glOdyUpdateDepthSpanInfo` with a0=[0x1020]:8, a1=sp-1008, a2=0x1, a3=unknown, a4=one of 0x0, 0x1.
+  The instructions from 0x21ee67c to 0x21ee67c are not reached by any path from the entry, and their branches are not listed.
+  At the return at 0x21ee5f0, v0=0x0; at 0x21ee770, v0=0x1; and at 0x21ee7b8, v0=0x0 (`jr` at 0x21ee5f0, 0x21ee770, 0x21ee7b8). Role: unknown.
+- `__glOdysseyDriverMakeCurrent` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x221e420
+  **Established effects.**
+  It loads a word at entry `a0 +0xe34` (`lw` at 0x221e430).
+  One path stores words at entry `a0 +0x19308` and `a0 +0x19314` (`sw` at 0x221e4b0, 0x221e4c8).
+  The `bgezall` at 0x221e498 calls `__glOdysseyIoctl` with a0=a0 at entry (arg0), a1=0x6f640008, a2=sp-112, a3=one of 0x0, 0x2.
+  The `jalr` at 0x221e65c calls (unknown callee) with a0=a0 at entry (arg0), a1=0x232c7e0, a2=unknown, a3=0x20000.
+  The analyzed `v0` returns are 0x1 and 0x0 (`jr` at 0x221e528, 0x221e674).
+  Role: unknown.
+- `__glOdysseyGetCurrentTexture` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x22140d0
+  **Established effects.**
+  The `bne` at 0x2214104 takes target 0x2214154 when entry `a1` differs from 0x8095 and falls through when equal.
+  A return delay slot loads the doubleword at entry `a0 +0x18870` (`ld` at 0x2214118; `jr` at 0x2214114).
+  At one analyzed return `v0` is 0x0 (`jr` at 0x2214154).
+  Role: unknown.
+- `__glOdysseyMap1DFilterToAlphas` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f71b0
+  **Established effects.**
+  It reads a word from absolute 0x1030 (`lw` at 0x21f71e4).
+  On one path it loads a doubleword at entry `a0 +0x20` (`ld` at 0x21f7278).
+  The `bgezall` at 0x21f732c calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=a2-1, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f740c calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=a2-1, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f7524 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f75f8 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f76e4 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=a2-1, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f77c4 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f78a0 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f7964 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a3 at entry (arg3).
+  The `bgezall` at 0x21f7a54 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=a2-1, a3=a3 at entry (arg3).
+  The `jalr` at 0x21f7a68 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The instructions from 0x21f7464 to 0x21f746c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x21f770c to 0x21f770c are not reached by any path from the entry, and their branches are not listed.
+  Its analyzed return value is unknown (`jr` at 0x21f7444).
+  Role: unknown.
+- `__glOdysseyMapSepFilterToAlphas` — `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x21f7a80
+  **Established effects.**
+  A path reads a doubleword at entry `a0 +0x20` (`ld` at 0x21f7b20).
+  The `bgezall` at 0x21f7bcc calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=(a2 + a3), a3=a4 at entry (arg4).
+  The `bgezall` at 0x21f7d14 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a4 at entry (arg4).
+  The `bgezall` at 0x21f7de8 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a4 at entry (arg4).
+  The `bgezall` at 0x21f7f04 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a4 at entry (arg4).
+  The `bgezall` at 0x21f7fe0 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a4 at entry (arg4).
+  The `bgezall` at 0x21f80a8 calls `__glOdysseyProgramConvolutionFilter` with a0=unknown, a1=a0 at entry (arg0), a2=unknown, a3=a4 at entry (arg4).
+  The instructions from 0x21f7e48 to 0x21f7e4c are not reached by any path from the entry, and their branches are not listed.
+  The analyzed return leaves `v0` unknown (`jr` at 0x21f7c18).
+  Role: unknown.
