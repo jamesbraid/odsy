@@ -999,21 +999,93 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - The word at argument 0 + 0xe34 is read (`lw` at 0x326e430). `blez` at 0x326e44c branches when it is signed nonpositive; when it falls through, 2 is stored in the stack record (`sw` at 0x326e458).
   - The routine calls `__glOdysseyIoctl` with argument 0, 0x6f640008, a stack address, and either 0 or 2 as the fourth argument (`bgezall` at 0x326e498). `bltz` at 0x326e4a0 takes the path to an indirect call if the returned value is signed negative and falls through if it is nonnegative.
   - The negative-result path calls an unknown callee (`jalr` at 0x326e65c); the purpose of that call and the routine’s overall role are unknown.
-- `__glOdysseyImageXfer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 956 bytes
-  **Established effects.**
-  - Calls include `__glOdysseyImageSaveUserBuzzRasterState` (`jalr` at 0x321d0b4), `__glOdysseyImageLoadBuzzRasterState` with first argument 0 (`jalr` at 0x321d0c4), and `__glOdysseyImageChainCreate` with the original first four arguments (`bgezall` at 0x321d0dc).
-  - `beqz` at 0x321d0e4 takes an alternate path when the chain creation result is zero and falls through when nonzero. On fall-through, `__glOdysseyImageTilingCreate` receives the original third argument, the chain result, and the original fifth argument (`jalr` at 0x321d0fc); `beqz` at 0x321d104 branches on a zero result and falls through on a nonzero result.
-  - An indirect call has an unknown callee and receives a stack address as its second argument (`jalr` at 0x321d1cc). `beqz` at 0x321d1dc takes the path calling `__glSetError` with 0x505 when the low byte of that result is zero, and falls through when nonzero (`jalr` at 0x321d330). The indirect callee’s purpose and the routine’s overall role are unknown.
-- `__glOdysseyImageMovePixelsDMAtoGfx` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 6932 bytes
-  **Established effects.**
-  - The routine calls `__glOdysseyOpenPMObjWriteReference`; its first argument is the doubleword read at process address 0x1020, the next two are words at original argument 0 + 0x10 and + 0x14, and the fourth is a stack address (`ld` at 0x324e120; `lw` at 0x324e600, 0x324e5d4; `jalr` at 0x324e61c). `beqz` at 0x324e628 takes a separate path when the low result byte is zero and falls through otherwise.
-  - `beqz` at 0x324e994 skips a group of stores when the word at +0xbb80 of the doubleword loaded from 0x1020 is zero and falls through when it is nonzero (`lw` at 0x324e948). On fall-through, it writes 0x10443, 0xfa and two copies of 0x10046 to process address 0x10000 (`sw` at 0x324e9a4, 0x324e9ac, 0x324e9b4, 0x324e9b8). A later store writes 0x11453 to that address (`sw` at 0x324e9e4).
-  - Calls also include `__glOdysseyClosePMObjWriteReference` (`jalr` at 0x324f060) and `__glOdysseyIoctl` with first argument the doubleword read at 0x1020, second argument 0x6f64000d and a stack address as the third (`jalr` at 0x324fbf4). The interpretation of these values and the routine’s overall role remain unknown.
-- `__glOdysseyImageMovePixelsDMAtoHost` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1892 bytes
-  **Established effects.**
-  - Calls include `__glOdysseyImageCalcXferReadParams`, with the words at argument 0 + 0x8 and + 0xc as its first two arguments, the original second argument as its third and a stack address as its fourth (`lw` at 0x324fcb8, 0x324fcac; `bgezall` at 0x324fd14).
-  - `__glOdysseyOpenPMObjReference` is called with the doubleword loaded at process address 0x1020 as its first argument and the words at original argument 1 + 0x10 and + 0x14 as the next two (`ld` at 0x324fc30; `lw` at 0x324ff68, 0x324ff3c; `jalr` at 0x324ff64). `beqz` at 0x324ff70 takes a separate path when the low byte of its result is zero and falls through otherwise.
-  - The routine calls `__glOdysseyReadFromPMObj` (`jalr` at 0x3250284). `beqz` at 0x3250290 takes a separate path when the low result byte is zero; when it falls through, the routine calls `__glOdysseyClosePMObjReference` (`jalr` at 0x32502a8). The object reference’s hardware effect and the routine’s overall role are unknown.
+- `__glOdysseyImageXfer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x321d050
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x321d06c).
+  A byte is loaded at +0xcaa0 from that doubleword (`lbu` at 0x321d088).
+  The `beq` at 0x321d0a8 is taken to 0x321d364 when that byte equals 0x1 and falls through when it differs (`beq` at 0x321d0a8).
+  The `jalr` at 0x321d0b4 calls `__glOdysseyImageSaveUserBuzzRasterState [0x3256240]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x321d0c4 calls `__glOdysseyImageLoadBuzzRasterState [0x32563c0]` with a0=0x0, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x321d0dc calls `__glOdysseyImageChainCreate [0x3222820]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beq` at 0x321d0e4 is taken to 0x321d3cc when ret(__glOdysseyImageChainCreate) == 0 and falls through when ret(__glOdysseyImageChainCreate) != 0 (`beq` at 0x321d0e4).
+  The `jalr` at 0x321d0fc calls `__glOdysseyImageTilingCreate [0x32544b0]` with a0=a2 at entry (arg2), a1=ret(__glOdysseyImageChainCreate), a2=a4 at entry (arg4), a3=unknown, when the `beq` at 0x321d0e4 falls through.
+  When the `beq` at 0x321d0e4 falls through, the `beq` at 0x321d104 is taken to 0x321d3e8 when ret(__glOdysseyImageTilingCreate) == 0 and falls through when ret(__glOdysseyImageTilingCreate) != 0 (`beq` at 0x321d104).
+  When the `beq` at 0x321d104 falls through, two words are loaded at +0x4 and +0x0 from ret(__glOdysseyImageTilingCreate) (`lw` at 0x321d10c, 0x321d110).
+  When the `beq` at 0x321d104 falls through, the `beq` at 0x321d120 is taken to 0x321d2d0 when s8(?) == 0 and falls through when s8(?) != 0 (`beq` at 0x321d120).
+  On paths where the `beq` at 0x321d120 falls through, the `beq` at 0x321d144 is taken to 0x321d2d0 when s8(?) == s4(?) and falls through when s8(?) != s4(?) (`beq` at 0x321d144).
+  The `jalr` at 0x321d1cc calls (unknown callee) with a0=unknown, a1=sp-160, a2=unknown, a3=unknown on paths where the `beq` at 0x321d120 falls through.
+  On paths where the `beq` at 0x321d120 falls through, the `beq` at 0x321d1dc is taken to 0x321d32c when (ret(?) & 0xff) == 0 and falls through when (ret(?) & 0xff) != 0 (`beq` at 0x321d1dc).
+  The `bgezall` at 0x321d2d4 calls `__glOdysseyImageChainFree [0x3222d00]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d120 or the `beq` at 0x321d144 is taken.
+  The `jalr` at 0x321d2e0 calls `__glOdysseyImageTilingFree [0x3255ae0]` with a0=ret(__glOdysseyImageTilingCreate), a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d120 or the `beq` at 0x321d144 is taken.
+  The `jalr` at 0x321d2ec calls `__glOdysseyImageLoadBuzzRasterState [0x32563c0]` with a0=0x1, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d120 or the `beq` at 0x321d144 is taken.
+  The `jalr` at 0x321d330 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d1dc is taken.
+  The `bgezall` at 0x321d33c calls `__glOdysseyImageChainFree [0x3222d00]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d1dc is taken.
+  The `jalr` at 0x321d348 calls `__glOdysseyImageTilingFree [0x3255ae0]` with a0=ret(__glOdysseyImageTilingCreate), a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d1dc is taken.
+  The `jalr` at 0x321d354 calls `__glOdysseyImageLoadBuzzRasterState [0x32563c0]` with a0=0x1, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d1dc is taken.
+  The `bgezall` at 0x321d3bc calls `__glOdysseyUpdateRasterPos [0x321aa00]` with a0=[0x1020]:8, a1=0x180000, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[a0+56], a6=[a0+10]:1 on paths where the `beq` at 0x321d0a8 is taken and the `bne` at 0x321d374 falls through.
+  The `jalr` at 0x321d3d0 calls `__glOdysseyImageLoadBuzzRasterState [0x32563c0]` with a0=0x1, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d0e4 is taken.
+  The `bgezall` at 0x321d3ec calls `__glOdysseyImageChainFree [0x3222d00]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d104 is taken.
+  The `jalr` at 0x321d3f8 calls `__glOdysseyImageLoadBuzzRasterState [0x32563c0]` with a0=0x1, a1=unknown, a2=unknown, a3=unknown when the `beq` at 0x321d104 is taken.
+  The instructions from 0x321d13c to 0x321d13c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x321d17c to 0x321d17c are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is ret(__glOdysseyImageLoadBuzzRasterState) (`jr` at 0x321d324).
+- `__glOdysseyImageMovePixelsDMAtoGfx` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x324e0f0
+  The routine occupies 6932 bytes. Role: unknown.
+  The branch is taken when t1(?) == 0 and falls through when t1(?) != 0 (target 0x324fab0; `beq` at 0x324e288).
+  When the `beq` at 0x324e8e8 falls through and the `beq` at 0x324e994 falls through, its word-store sites to absolute 0x10000 include `sw` at 0x324e9a4, 0x324e9ac, 0x324e9b4.
+  When the `beq` at 0x324e8e8 falls through, it stores 0x2 as a word to absolute 0x1030 (`sw` at 0x324eaac).
+  The `jalr` at 0x324e1b0 calls `ceilf` with a0=sp-736, a1=sp-768, a2=unknown, a3=unknown.
+  The `jalr` at 0x324e1d0 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x324e1f0 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x324e214 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x324e27c calls `__glOdysseyImageCalcXferWriteParams [0x3251bd0]` with a0=[a1+8], a1=[a1+12], a2=[a0+52], a3=sp-736, a5=[a0+12]:1.
+  The `jalr` at 0x324e2cc calls `__glSpecElementsPerGroup [0x32a6d30]` with a0=[a1+8], a1=[a1+12], a2=unknown, a3=unknown, on a path where the `beq` at 0x324e288 falls through.
+  The `jalr` at 0x324e2e0 calls `__glSpecBytesPerElement [0x32a6f00]` with a0=[a1+12], a1=unknown, a2=unknown, a3=unknown, on a path where the `beq` at 0x324e288 falls through.
+  The `jalr` at 0x324e348 calls `ceilf` with a0=unknown, a1=unknown, a2=[a1+16], a3=unknown, on a path where the `beq` at 0x324e288 falls through.
+  The `bgezall` at 0x324e51c calls `ImageCalcDmaFieldOffsets [0x3252f20]` with a0=[a0+44], a1=[a0+48], a2=unknown, a3=unknown, a4=sp-784, a5=sp-780, on a path where the `beq` at 0x324e288 falls through.
+  The `jalr` at 0x324e61c calls `__glOdysseyOpenPMObjWriteReference [0x325b9e0]` with a0=[0x1020]:8, a1=[a0+16], a2=[a0+20], a3=sp-776, a4=one of 0x0, 0x1, a6=[a1+48]:8, on a path where the `beq` at 0x324e524 falls through.
+  The `bgezall` at 0x324e828 calls `ImageToDmaHostPixelSize [0x32535c0]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=-0xe001, on a path where the `beq` at 0x324e628 falls through.
+  The `bgezall` at 0x324ea50 calls `__glOdysseyImageCalcPixelModeFields [0x3253450]` with a0=[0x1020]:8+47596, a1=a0 at entry (arg0), a2=unknown, a3=0x13c00, a4=0x10046, a5=0xfa, a6=0x10443, a7=[[0x1020]:8+47628], on a path where the `beq` at 0x324e8e8 falls through.
+  The `jalr` at 0x324eca0 calls `__glOdysseyValidateHardware [0x31fc4a0]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on a path where the `beq` at 0x324ec94 falls through.
+  The `bgezall` at 0x324ef54 calls `SendPixelsAsUserPIO [0x324d930]` with a0=unknown, a1=unknown, a2=sp-608, a3=0x324d930, a4=0xffffffff8080c800, a5=0xffffffffcf80a92f, a6=0xa, a7=0x14400; fp f12=[[0x1020]:8+47640], f13=[[0x1020]:8+47636], on a path where the `blez` at 0x324ee40 falls through.
+  The `jalr` at 0x324f060 calls `__glOdysseyClosePMObjWriteReference [0x325bc20]` with a0=unknown, a1=[a0+16], a2=[a0+20], a3=unknown, on a path where the `beq` at 0x324e628 falls through.
+  The `bgezall` at 0x324f4a0 calls `SendPixelsAsUserPIO [0x324d930]` with a0=unknown, a1=unknown, a2=sp-768, a3=0xffffffff8080c800, a4=0xa, a5=0x14400; fp f12=[[0x1020]:8+47652], f13=[[0x1020]:8+47648], f14=[[0x1020]:8+47644], f15=[[0x1020]:8+47640], f16=[[0x1020]:8+47636], on a path where the `beq` at 0x324ed3c is taken.
+  The `bgezall` at 0x324f658 calls `ImageUpdateRasterTokensForDrawable [0x32542e0]` with a0=unknown, a1=[0x1020]:8+40780, a2=[0x1020]:8+40836, a3=[0x1020]:8+40840, a4=[0x1020]:8+40844, a5=[0x1020]:8+40876, on a path where the `beq` at 0x324eb24 is taken.
+  The `bgezall` at 0x324f89c calls `SendPixelsAsUserPIO [0x324d930]` with a0=unknown, a1=unknown, a2=sp-576, a3=unknown, on a path where the `blez` at 0x324f708 falls through.
+  The `jalr` at 0x324fa50 calls `__glOdysseyAssignToPMObj [0x325b2a0]` with a0=[0x1020]:8, a1=[a0+16], a2=[a0+20], a3=unknown, a5=((one of 0x0, 0x10 | ([a0+52] << 0x10)) | one of 0x9, 0xb), a6=0x0, a7=sp-768, on a path where the `beq` at 0x324edbc is taken.
+  The `jalr` at 0x324fa70 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on a path where the `bne` at 0x324fa60 falls through.
+  The `jalr` at 0x324fa8c calls (unknown callee) with a0=[0x1020]:8, a1=0x3381830, a2=unknown, a3=unknown, on a path where the `beq` at 0x324e628 is taken.
+  The `jalr` at 0x324fa98 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on a path where the `beq` at 0x324e628 is taken.
+  The `jalr` at 0x324fab0 calls `__glSetError [0x32ca070]` with a0=0x501, a1=unknown, a2=unknown, a3=unknown, on a path where the `beq` at 0x324e288 is taken.
+  The `jalr` at 0x324fad4 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on a path where the `beq` at 0x324f06c is taken.
+  The `jalr` at 0x324fb50 calls `__glOdysseyAssignToPMObj [0x325b2a0]` with a0=[0x1020]:8, a1=[a0+16], a2=[a0+20], a3=unknown, a5=((one of 0x1, 0x3 | one of 0x0, 0x10) | (one of 0x0, 0x8 | ([a0+52] << 0x10))), a6=0x0, a7=sp-768, on a path where the `beq` at 0x324ed3c is taken.
+  The `jalr` at 0x324fb64 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on a path where the `bne` at 0x324fb5c falls through.
+  The `bgezall` at 0x324fb78 calls `__glOdysseyImageCalcOdyEyeSpaceRasterPosZ [0x3256580]` with a0=unknown, a1=unknown, a2=-0x1000, a3=unknown, a6=([[0x1020]:8+40780] << 0xf), on a path where the `bltz` at 0x324f688 is taken.
+  The `jalr` at 0x324fbf4 calls `__glOdysseyIoctl [0x326da60]` with a0=[0x1020]:8, a1=0x6f64000d, a2=sp-632, a3=unknown; fp f16=[[[0x1020]:8+416]:8], f19=[[[0x1020]:8+416]:8+4], on a path where the `bgez` at 0x324f600 is taken.
+  The return value is 0x2 at two exits (`jr` at 0x324f25c and `jr` at 0x324f9c4); at the other exit it is unknown (`jr` at 0x324f294).
+- `__glOdysseyImageMovePixelsDMAtoHost` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x324fc10
+  The `ld` at 0x324fc30 reads a doubleword from absolute 0x1020.
+  Words are loaded from a0 at entry (arg0) +0x8 and +0xc (`lw` at 0x324fcb8, 0x324fcac).
+  The `bgezall` at 0x324fd14 calls `__glOdysseyImageCalcXferReadParams [0x32535e0]` with a0=[a0+8], a1=[a0+12], a2=a1 at entry (arg1), a3=sp-264, a6=0x1472a8.
+  The `beq` at 0x324fd30 is taken to 0x3250344 when t2(?) == 0 and falls through when t2(?) != 0.
+  The `bgezall` at 0x324fdb8 calls `ImageCalcDmaFieldOffsets [0x3252f20]` with a0=[a1+44], a1=[a1+48], a2=one of 0x0, 0x1, a3=unknown, a4=sp-304, a5=sp-300 on the fall-through of `beq` at 0x324fd30.
+  On the fall-through of `beq` at 0x324fd30, the `beq` at 0x324fdc0 is taken to 0x32502bc when v0(=ret(ImageCalcDmaFieldOffsets)) == 0 and falls through when v0(=ret(ImageCalcDmaFieldOffsets)) != 0.
+  The `jalr` at 0x324fde8 calls `__glSpecElementsPerGroup [0x32a6d30]` with a0=[a0+8], a1=[a0+12], a2=unknown, a3=unknown on the fall-through of `beq` at 0x324fdc0.
+  The `jalr` at 0x324fdfc calls `__glSpecBytesPerElement [0x32a6f00]` with a0=[a0+12], a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x324fdc0.
+  On the fall-through of `beq` at 0x324fdc0, the `beq` at 0x324fe2c is taken to 0x324fe3c when a2(=[a0+24]) >= s3(?) unsigned and falls through when a2(=[a0+24]) < s3(?) unsigned.
+  On the fall-through of `beq` at 0x324fe2c, a word is stored at a0 at entry (arg0) +0x18 (`sw` at 0x324fe38).
+  The `jalr` at 0x324fe74 calls `ceilf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a5=[a0+16] on the fall-through of `beq` at 0x324fdc0.
+  The `jalr` at 0x324ff64 calls `__glOdysseyOpenPMObjReference [0x325b780]` with a0=[0x1020]:8, a1=[a1+16], a2=[a1+20], a3=[a1+20], a4=sp-240, a5=0x0 on the fall-through of `beq` at 0x324fdc0.
+  On the fall-through of `beq` at 0x324fdc0, the `beq` at 0x324ff70 is taken to 0x3250358 when (v0(=ret(__glOdysseyOpenPMObjReference)) & 0xff) == 0 and falls through when (v0(=ret(__glOdysseyOpenPMObjReference)) & 0xff) != 0.
+  The `bgezall` at 0x32501a0 calls `ImageToDmaHostPixelSize [0x32535c0]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=-0x8 on the fall-through of `beq` at 0x324ff70.
+  The `jalr` at 0x3250284 calls `__glOdysseyReadFromPMObj [0x325b3f0]` with a0=[0x1020]:8, a1=[a1+16], a2=[a1+20], a3=unknown, a5=one of 0x0, 0x2, a6=0x0, a7=sp-296 on the fall-through of `beq` at 0x324ff70.
+  On the fall-through of `beq` at 0x324ff70, the `beq` at 0x3250290 is taken to 0x3250320 when (v0(=ret(__glOdysseyReadFromPMObj)) & 0xff) == 0 and falls through when (v0(=ret(__glOdysseyReadFromPMObj)) & 0xff) != 0.
+  The `jalr` at 0x32502a8 calls `__glOdysseyClosePMObjReference [0x325bd70]` with a0=[0x1020]:8, a1=[a1+16], a2=[a1+20], a3=[a1+20] on the fall-through of `beq` at 0x3250290.
+  On the fall-through of `beq` at 0x3250290, the `beq` at 0x32502b4 is taken to 0x3250334 when (v0(=ret(__glOdysseyClosePMObjReference)) & 0xff) == 0 and falls through when (v0(=ret(__glOdysseyClosePMObjReference)) & 0xff) != 0.
+  The `jalr` at 0x3250324 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x3250290.
+  The `jalr` at 0x3250334 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x32502b4.
+  The `jalr` at 0x3250348 calls `__glSetError [0x32ca070]` with a0=0x501, a1=0x403, a2=unknown, a3=unknown on the taken arm of `beq` at 0x324fd30.
+  The `jalr` at 0x3250364 calls `__glSetError [0x32ca070]` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, a6=0x1fff0000 on the taken arm of `beq` at 0x324ff70.
+  The v0 return is unknown (`jr` at 0x32502d0).
 - `ImageCalcDmaFieldOffsets` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 604 bytes
 
   **Established effects.** When entry `a0` is zero, `beqz` at 0x3252f20 selects tests of entry `a1`. Values 1, 3 and 4 each take their respective `beq` branches to write zero to the words at entry `a4` and `a5` (`beq` at 0x3252f80; `beq` at 0x3252f88; `beq` at 0x3252f90; `sw` at 0x3253014; `sw` at 0x325301c). Another path calls `__glSetError` with argument 0x502 (`jalr` at 0x3252f9c). The output words and the routine's broader role remain Unknown.
@@ -1030,39 +1102,137 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** Entry `a1` values -3 or -4 take branches to return 1 (`beq` at 0x325bd88; `beq` at 0x325bd9c; `addiu` at 0x325bea8; `jr` at 0x325beb0). Otherwise it calls `LookupKnownGroup` with third argument 0 (`bgezall` at 0x325bdb0). The `beqz` at 0x325bdb8 returns zero if that call returns zero; on fall-through it calls `LookupCoresidRange` with fifth argument 0 (`bgezall` at 0x325bdd8). A zero range result takes `beqz` at 0x325bde4 to a zero return; a zero word at range +0x18 does likewise (`lw` at 0x325bdec; `beqz` at 0x325bdf0).
 
   On the nonzero path it clears the range word at +0x18 and a halfword at +0x6 of the pointer read from range +0x30 (`sw` at 0x325bdfc; `ld` at 0x325bdf8; `sh` at 0x325be00), and decrements the halfword at +0x4 of that pointer (`lhu` at 0x325be08; `addiu` at 0x325be10; `sh` at 0x325be14). It then writes 0x10a5a, the halfword from range +0x28, and the halfword at +0x4 of the range +0x30 pointer, in that order, to 0x10000 (`sw` at 0x325be78; `lhu` at 0x325be7c; `sw` at 0x325be80; `ld` at 0x325be84; `lhu` at 0x325be88; `sw` at 0x325be94). The routine role and the role of the destination are Unknown.
-- `__glOdysseySendShadowAttributes` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1904 bytes
-
-  **Established effects.** The routine reads a pointer from entry `a0 + 0x1ad8` and then another pointer at +0x100 (`ld` at 0x3283288; `ld` at 0x328329c). It calls the resulting unknown callee with first two arguments 0x404 and 0x1200, and makes another call to an unknown callee with 0x404 and 0x1201 (`jalr` at 0x32832bc; `jalr` at 0x32832e8). The unknown callees and the routine's broader role remain Unknown. A byte at entry `a0 + 0xde4` controls later dispatch (`lbu` at 0x3283460): `beqz` at 0x3283464 takes its branch when the byte is zero.
-
-## 64-bit IP30 library: image and texture paths
-
+- `__glOdysseySendShadowAttributes` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3283250
+  The `lw` at 0x328327c reads a word from an unknown base.
+  The `ld` at 0x3283288 reads a doubleword at a0 at entry (arg0) +0x1ad8.
+  The `ld` at 0x328329c reads a doubleword at [a0+6872]:8 +0x100.
+  The `beq` at 0x3283464 is taken to 0x32835d0 when [a0+3556]:1 == 0 and falls through when [a0+3556]:1 != 0.
+  When the `beq` at 0x3283464 falls through, the `beq` at 0x32834a0 is taken to 0x32834b4 when a4(?) >= 0xe (unsigned) and falls through when a4(?) < 0xe (unsigned).
+  When reached, the `beq` at 0x32834fc is taken to 0x3283510 when a3(?) >= 0x8 (unsigned) and falls through when a3(?) < 0x8 (unsigned).
+  The `jalr` at 0x32832bc calls (unknown callee) with a0=0x404, a1=0x1200, a2=unknown, a3=[a0+6872]:8, a4=0x113c68, a6=a1+132.
+  The `jalr` at 0x32832e8 calls (unknown callee) with a0=0x404, a1=0x1201, a2=unknown, a3=unknown.
+  The `jalr` at 0x3283314 calls (unknown callee) with a0=0x404, a1=0x1202, a2=unknown, a3=unknown.
+  The `jalr` at 0x3283340 calls (unknown callee) with a0=0x404, a1=0x1600, a2=unknown, a3=unknown.
+  The `jalr` at 0x3283378 calls (unknown callee) with a0=0x404, a1=0x1601, a2=sp-48, a3=unknown.
+  The `jalr` at 0x32833a4 calls (unknown callee) with a0=0x405, a1=0x1200, a2=unknown, a3=unknown.
+  The `jalr` at 0x32833d0 calls (unknown callee) with a0=0x405, a1=0x1201, a2=unknown, a3=unknown.
+  The `jalr` at 0x32833f8 calls (unknown callee) with a0=0x405, a1=0x1202, a2=unknown, a3=unknown.
+  The `jalr` at 0x3283420 calls (unknown callee) with a0=0x405, a1=0x1600, a2=unknown, a3=unknown.
+  The `jalr` at 0x3283458 calls (unknown callee) with a0=0x405, a1=0x1601, a2=sp-48, a3=unknown.
+  The `jalr` at 0x32834bc calls `printf` with a0=0x33820e0, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x32834a0 is taken.
+  The `jalr` at 0x3283518 calls `printf` with a0=0x3382160, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x32834fc is taken.
+  The `jalr` at 0x328356c calls `printf` with a0=0x3382188, a1=unknown, a2=0x16, a3=unknown, a6=0x17, a7=0x18 on paths where the `beq` at 0x3283560 falls through.
+  The `jalr` at 0x32835ac calls `printf` with a0=0x33821a8, a1=unknown, a2=0x10, a3=unknown on paths where the `beq` at 0x32835a0 falls through.
+  The `jalr` at 0x3283604 calls `printf` with a0=0x3382100, a1=unknown, a2=0x7, a3=unknown, a4=0x6 on paths where the `beq` at 0x32835f8 falls through.
+  The `jalr` at 0x328361c calls (unknown callee) with a0=0x0, a1=unknown, a2=0x10, a3=unknown on paths where the `beq` at 0x32835a0 is taken.
+  The `jalr` at 0x328363c calls (unknown callee) with a0=unknown, a1=unknown, a2=0x16, a3=unknown, a6=0x17, a7=0x18 on paths where the `beq` at 0x3283560 is taken.
+  The `jalr` at 0x3283654 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x328364c.
+  The `jalr` at 0x3283678 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x3283664.
+  The `jalr` at 0x328369c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x3283688.
+  The `jalr` at 0x32836bc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x32836ac.
+  The `jalr` at 0x32836dc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x32836cc.
+  The `jalr` at 0x32836f8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x32836ec.
+  The `jalr` at 0x3283714 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x3283708.
+  The `jalr` at 0x328372c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x3283508 selects 0x3283724.
+  The `jalr` at 0x328374c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x17 on paths where the `beq` at 0x3283548 is taken.
+  The `jalr` at 0x328376c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x17, a7=0x18 on paths where the `beq` at 0x3283550 is taken.
+  The `jalr` at 0x328378c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x328377c.
+  The `jalr` at 0x32837b0 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x328379c.
+  The `jalr` at 0x32837d4 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x32837c0.
+  The `jalr` at 0x32837f8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x32837e4.
+  The `jalr` at 0x328381c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x3283808.
+  The `jalr` at 0x3283840 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x328382c.
+  The `jalr` at 0x3283864 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x3283850.
+  The `jalr` at 0x3283888 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x3283874.
+  The `jalr` at 0x32838a8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x3283898.
+  The `jalr` at 0x32838c8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x32838b8.
+  The `jalr` at 0x32838e8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x32838d8.
+  The `jalr` at 0x3283908 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x32838f8.
+  The `jalr` at 0x3283928 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x3283918.
+  The `jalr` at 0x3283948 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a7=unknown on paths where the `jr` at 0x32834ac selects 0x3283938.
+  The `jalr` at 0x3283968 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x17, a7=0x18 on paths where the `beq` at 0x3283558 is taken.
+  The `jalr` at 0x3283980 calls (unknown callee) with a0=unknown, a1=unknown, a2=0x7, a3=unknown, a4=0x6 on paths where the `beq` at 0x32835f8 is taken.
+  The `jalr` at 0x3283998 calls (unknown callee) with a0=0x1, a1=unknown, a2=0x10, a3=unknown on paths where the `beq` at 0x3283598 is taken.
+  The `jalr` at 0x32839b0 calls (unknown callee) with a0=unknown, a1=unknown, a2=0x7, a3=unknown, a4=0x6 on paths where the `beq` at 0x32835f0 is taken.
+  The `jr` at 0x32835c8 returns unknown v0.
 - `__glOdysseyOpenPMObjWriteReference` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x325b9e0
-  **Established effects.** This 564-byte routine takes an alternate path when argument 1 equals -3 (`beq` at 0x325ba00). If argument 1 differs from -3 and equals -4, `beq` at 0x325ba18 is taken; that path copies the word at argument 0 + 0x1931c to argument 3 (`lw` at 0x325ba8c; `sw` at 0x325ba90).
-  When the branch is reached and `a4` is zero (its origin is not resolved there), `beqz` at 0x325ba94 takes a path with word writes to absolute 0x10000, including 0x10443, 0xfa, 0x10019, 0x10658 and 0x120000 (`sw` at 0x325baf8, 0x325bb00, 0x325bb14, 0x325bb50, 0x325bb5c); it also clears the word at argument 0 + 0xbb80 (`sw` at 0x325bb38). The hardware role of those words and the routine's broader role are Unknown.
-  The other lookup path calls `LookupKnownGroup` with argument 2 equal to 1 (`bgezall` at 0x325ba34); if its result is nonzero, `beqz` at 0x325ba44 falls through to `LookupCoresidRangeWithLevel`, passed that result and entry argument 2 (`bgezall` at 0x325ba60).
+  The `beq` at 0x325ba00 is taken to 0x325bab4 when a1 equals -0x3 and falls through when it differs.
+  On the fall-through of `beq` at 0x325ba00, `beq` at 0x325ba18 is taken to 0x325ba8c when a1 equals -0x4 and falls through when it differs.
+  The `bgezall` at 0x325ba34 calls `LookupKnownGroup [0x325bed0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3) on the fall-through of `beq` at 0x325ba18.
+  On that path, `beq` at 0x325ba44 is taken to 0x325bb60 when ret(LookupKnownGroup) equals 0 and falls through when it differs.
+  The `bgezall` at 0x325ba60 calls `LookupCoresidRangeWithLevel [0x325c250]` with a0=a0 at entry (arg0), a1=ret(LookupKnownGroup), a2=a2 at entry (arg2), a3=0x1 on the fall-through of `beq` at 0x325ba44.
+  On that fall-through path, a word is loaded from ret(LookupCoresidRangeWithLevel) +0x1c (`lw` at 0x325ba68).
+  On that path, `beq` at 0x325ba6c is taken to 0x325bb94 when [ret(LookupCoresidRangeWithLevel)+28] equals 0 and falls through when it differs.
+  When `beq` at 0x325ba18 is taken, a word is read at a0 (arg0 at entry) +0x1931c (`lw` at 0x325ba8c).
+  On that taken path, a word is stored at a3 (arg3 at entry) +0x0 (`sw` at 0x325ba90).
+  When reached, `beq` at 0x325ba94 is taken to 0x325baf4 when a4 equals 0 and falls through when it differs.
+  On the taken arm of `beq` at 0x325ba00, `beq` at 0x325bab4 is taken to 0x325bb68 when a2 equals 0 and falls through when it differs.
+  On the fall-through of `beq` at 0x325bab4, `beq` at 0x325babc is taken to 0x325bb80 when a2 equals 0x4 and falls through when it differs.
+  On the fall-through of `beq` at 0x325babc, `beq` at 0x325bac8 is taken to 0x325bbe4 when a2 equals 0x5 and falls through when it differs.
+  On the fall-through of `beq` at 0x325bac8, `beq` at 0x325bad0 is taken to 0x325bbfc when a2 equals 0x6 and falls through when it differs.
+  On the fall-through of `beq` at 0x325bad0, `bne` at 0x325bad8 is taken to 0x325ba94 when v0(=a2) differs from 0x7 and falls through when equal.
+  On the taken arm of `beq` at 0x325ba94, the routine has 17 word stores to absolute 0x10000, including `sw` at 0x325baf8, 0x325bb00, 0x325bb08.
+  On that taken path, zero is stored at a0 (arg0 at entry) +0xbb80 (`sw` at 0x325bb38).
+  The `bgezall` at 0x325bbac calls `OpenPipeMemReference [0x325b510]` with a0=a0 at entry (arg0), a1=unknown, a2=ret(LookupCoresidRangeWithLevel), a3=0x1 on the taken arm of `beq` at 0x325ba6c.
+  On that taken path, the call's delay slot stores 0x1 at ret(LookupCoresidRangeWithLevel) +0x1c (`sw` at 0x325bbb0).
+  The v0 return is 0x0 at `jr` at 0x325ba84 and unknown at `jr` at 0x325baac; on the latter return paths hostfacts reports 0x1, 0x0 or ret(OpenPipeMemReference).
 - `__glOdysseyClosePMObjWriteReference` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x325bc20
   **Established effects.** The 324-byte routine takes the same return path when argument 1 equals -3 (`beq` at 0x325bc38) or -4 (`beq` at 0x325bc48). Otherwise it calls `LookupKnownGroup` with argument 2 equal to zero (`bgezall` at 0x325bc5c); its zero result takes the return path (`beqz` at 0x325bc64).
   On the nonzero lookup path it calls `LookupCoresidRangeWithLevel` with the first result, entry argument 2 and argument 3 equal to zero (`bgezall` at 0x325bc80). When the word at the second result + 0x1c is nonzero, `beqz` at 0x325bc98 falls through (`lw` at 0x325bc88); the code clears that word (`sw` at 0x325bca8), loads the doubleword pointer from result + 0x30 (`ld` at 0x325bca4), clears a halfword at +0x6 of it (`sh` at 0x325bcac), and decrements the halfword at pointer + 0x4 (`lhu` at 0x325bcb4; `sh` at 0x325bcc0).
   The writes to absolute 0x10000 include 0x10a5a followed by two values loaded from the lookup result and its referenced object (`sw` at 0x325bd14, 0x325bd1c, 0x325bd30; `lhu` at 0x325bd18, 0x325bd24; `ld` at 0x325bd20); their hardware role and the routine's broader role are Unknown.
-- `__glOdysseySetDrawbuf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326e680, 808 bytes
+- `__glOdysseySetDrawbuf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 808 bytes at address 0x326e680
+  Entry address: 0x326e680
   **Established effects.** The routine occupies 808 bytes. It builds a stack word using arguments 1 through 4; `beqz` instructions at 0x326e6a4, 0x326e6b0, 0x326e6bc and 0x326e6c8 select the zero-argument paths, and the nonzero paths contribute bits 1, 2, 4 and 8 (`addiu` at 0x326e6ac; `ori` at 0x326e6b8, 0x326e6c4, 0x326e6d0).
   It calls `__glOdysseyIoctl` with entry argument 0, request 0x6f640009 and the stack address (`bgezall` at 0x326e6e8). A nonzero result makes `beqz` at 0x326e6f0 fall through to an unknown indirect callee (`jalr` at 0x326e704).
   Subsequent word writes to absolute 0x10000 include 0x10443, 0xfa and 0x10019 (`sw` at 0x326e714, 0x326e71c, 0x326e730); the code also clears argument 0 + 0xbb80 (`sw` at 0x326e754). The words' hardware effects and the routine's broader role are Unknown.
 - `__glOdysseySendShadowVertex` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32839c0
-  **Established effects.** In this 380-byte body, a word is read at argument 1 + (argument 2 shifted left by 2) + 0x100 (`lw` at 0x32839d4), then masked with 0x3ff (`andi` at 0x32839e4). If the masked value is zero, `beqz` at 0x32839f8 is taken to a path that loads a doubleword at argument 0 + 0x1ad8 (`ld` at 0x3283a78), then another at that pointer + 0xa70 (`ld` at 0x3283a80) and calls the unknown target (`jalr` at 0x3283a8c).
-  The remaining paths include other indirect calls and a call to `printf` (`jalr` at 0x3283a38); their effects and the routine's broader role are Unknown.
+  The branch is taken when (a4(=[(a1 + (a2 << 0x2))+256]) & 0x3ff) == 0 and falls through when (a4(=[(a1 + (a2 << 0x2))+256]) & 0x3ff) != 0 (target 0x3283a78; `beq` at 0x32839f8).
+  After the `beq` at 0x32839f8 falls through, the branch is taken when a4 (unknown) == t0(=0x1) and falls through when a4 (unknown) != t0(=0x1) (target 0x3283a9c; `beq` at 0x3283a04).
+  After the `beq` at 0x3283a04 falls through, the branch is taken when a4 (unknown) == t1(=0x2) and falls through when a4 (unknown) != t1(=0x2) (target 0x3283ac0; `beq` at 0x3283a0c).
+  After the `beq` at 0x3283a0c falls through, the branch is taken when a4 (unknown) == t2(=0x3) and falls through when a4 (unknown) != t2(=0x3) (target 0x3283ae8; `beq` at 0x3283a14).
+  After the `beq` at 0x3283a14 falls through, the branch is taken when a4 (unknown) == t3(=0x4) and falls through when a4 (unknown) != t3(=0x4) (target 0x3283b10; `beq` at 0x3283a1c).
+  After the `beq` at 0x3283a1c falls through, the branch is taken when a4 (unknown) == t8(=0x5) and falls through when a4 (unknown) != t8(=0x5) (target 0x3283a50; `beq` at 0x3283a24).
+  It loads a word from (a1 + (a2 << 0x2)) +0x100 (`lw` at 0x32839d4).
+  The `jalr` at 0x3283a38 calls `printf` with a0=0x33821d0, a1=unknown, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0) on a path where the `beq` at 0x3283a24 falls through.
+  The `jalr` at 0x3283a68 calls (unknown callee) with a0=a0 at entry (arg0), a1=(a1 + (a2 << 0x4)), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0); fp f12=[(a1 + (a2 << 0x4))+768], f13=[(a1 + (a2 << 0x4))+772], f14=[(a1 + (a2 << 0x4))+776], f15=[(a1 + (a2 << 0x4))+780] on a path where the `beq` at 0x3283a24 is taken.
+  The `jalr` at 0x3283a8c calls (unknown callee) with a0=[(a1 + (a2 << 0x4))+768], a1=[(a1 + (a2 << 0x4))+772], a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0) on a path where the `beq` at 0x32839f8 is taken.
+  The `jalr` at 0x3283ab0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0); fp f12=[(a1 + (a2 << 0x4))+768], f13=[(a1 + (a2 << 0x4))+772] on a path where the `beq` at 0x3283a04 is taken.
+  The `jalr` at 0x3283ad8 calls (unknown callee) with a0=[(a1 + (a2 << 0x4))+768], a1=[(a1 + (a2 << 0x4))+772], a2=[(a1 + (a2 << 0x4))+776], a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0) on a path where the `beq` at 0x3283a0c is taken.
+  The `jalr` at 0x3283b00 calls (unknown callee) with a0=a0 at entry (arg0), a1=(a1 + (a2 << 0x4)), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0); fp f12=[(a1 + (a2 << 0x4))+768], f13=[(a1 + (a2 << 0x4))+772], f14=[(a1 + (a2 << 0x4))+776] on a path where the `beq` at 0x3283a14 is taken.
+  The `jalr` at 0x3283b2c calls (unknown callee) with a0=[(a1 + (a2 << 0x4))+768], a1=[(a1 + (a2 << 0x4))+772], a2=[(a1 + (a2 << 0x4))+776], a3=[(a1 + (a2 << 0x4))+780], a5=a1 at entry (arg1), a6=a2 at entry (arg2), a7=a0 at entry (arg0) on a path where the `beq` at 0x3283a1c is taken.
+  The return value is unknown (`jr` at 0x3283a48).
 - `__glOdysseyGetBoardInfoRaw` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326e2b0
   **Established effects.** This 364-byte routine loads a doubleword from argument 0 + 0x40 (`ld` at 0x326e2c4) and calls the unknown target with entry argument 0 (`jalr` at 0x326e2d4). It then calls `__glOdysseyIoctl` with entry argument 0, request 0x66 and a stack address (`bgezall` at 0x326e2fc); the stack request includes the first call's result (`sw` at 0x326e300), and it also includes 0x24c (`sw` at 0x326e2f4).
   A negative ioctl result takes the branch to a second unknown indirect call (`bltz` at 0x326e304; `jalr` at 0x326e40c). If that call returns, both paths reach a doubleword store to argument 0 + 0x18f40 (`sd` at 0x326e330). The target, data and broader routine roles are Unknown.
-- `__glOdysseyImageInit` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1752 bytes
-  **Established effects.**
-  - After reading a doubleword at process address 0x1020 (`ld` at 0x321c8a8), it writes 0x8356 to offsets +0x141a4 and +0x141a0 and 0x40 to +0x141a8 of the loaded pointer (`sw` at 0x321c9ac, 0x321c9b8, 0x321ca4c).
-  - A call to `__glOdysseyCreatePMObj` receives that loaded pointer, a stack address, an unknown third argument and zero (`jalr` at 0x321cac8). The `bnez` at 0x321cad0 branches when that result is nonzero and falls through when it is zero. A second call to the same callee occurs on another path (`jalr` at 0x321cc04).
-  - When the `beqz` at 0x321cf00 takes its branch on a zero result from `__glOdysseyStoreLUT` (`jalr` at 0x321cef8), it stores byte 1 at +0xca40 of the pointer loaded from 0x1020 (`sb` at 0x321cf48). The fields and the routine's wider role remain Unknown.
-- `__glOdysseyImageClose` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 200 bytes
-  **Established effects.**
-  - It loads a doubleword at process address 0x1020 (`ld` at 0x321cf94), stores zero at +0xca54 and -1 at +0xca50 of that pointer (`sw` at 0x321cfb0, 0x321cfb4), and later stores a zero byte at +0xca40 (`sb` at 0x321d038).
-  - A doubleword at pointer +0xca60 is read (`ld` at 0x321cfc0). `beqz` at 0x321cfc4 skips an indirect call if that value is zero and falls through to the call when it is nonzero (`jalr` at 0x321cfd0); the callee is Unknown. The broader role of this routine is also unknown.
+- `__glOdysseyImageInit` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x321c8a0
+  It stores a word at `[0x1020]:8 +0x1404c` (`sw` at 0x321c92c).
+  It stores 0x8356 as a word at `[0x1020]:8 +0x141a4` (`sw` at 0x321c9ac).
+  The `jalr` at 0x321cac8 calls `__glOdysseyCreatePMObj` with a0=[0x1020]:8, a1=sp-128, a2=unknown, a3=0x0.
+  The `jalr` at 0x321cb40 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=[[0x1020]:8+82344], a3=[[0x1020]:8+82348].
+  The `jalr` at 0x321cb5c calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x321cc04 calls `__glOdysseyCreatePMObj` with a0=[0x1020]:8, a1=sp-128, a2=unknown, a3=0x0.
+  The `jalr` at 0x321cc74 calls (unknown callee) with a0=[0x1020]:8, a1=unknown, a2=[[0x1020]:8+82344], a3=[[0x1020]:8+82348].
+  The `jalr` at 0x321ccc8 calls `ceil` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=[[0x1020]:8+82348], a5=[[0x1020]:8+82344], a6=0x1; fp f13=0x3d800000.
+  The `jalr` at 0x321cdf0 calls `ceil` with a0=[[0x1020]:8+51856], a1=[[0x1020]:8+82348], a2=[[0x1020]:8+82344], a3=unknown, a4=0x1, a5=[[0x1020]:8+81264]:8, a6=[[0x1020]:8+81272]:8, a7=[[0x1020]:8+81280]:8.
+  The `jalr` at 0x321ceec calls `__glOdysseyInitLUTs` with a0=0x1908, a1=0x1403, a2=unknown, a3=[[0x1020]:8+81472]:8, a6=0xc, a7=0x2.
+  The `jalr` at 0x321cef8 calls `__glOdysseyStoreLUT` with a0=0x9, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x321cf68 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  At four exits v0 is `0x0` and at the fifth it is `0x1` (`jr` at 0x321cafc, 0x321cb84, 0x321cc38, 0x321cf2c, 0x321cf58).
+- `__glOdysseyImageClose` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x321cf80
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x321cf94).
+  Five zero-valued word stores use the doubleword loaded from 0x1020 as base, including `sw` at 0x321cfb0, 0x321cfb8, 0x321cff4.
+  Five word stores of -0x1 use that same base, including `sw` at 0x321cfb4, 0x321cfbc, 0x321cff8.
+  A doubleword is read at [0x1020]:8 +0xca60 (`ld` at 0x321cfc0).
+  The `beq` at 0x321cfc4 is taken to 0x321cfd8 when a1(=[[0x1020]:8+51808]:8) == 0 and falls through when a1(=[[0x1020]:8+51808]:8) != 0 (`beq` at 0x321cfc4).
+  The `jalr` at 0x321cfd0 calls (unknown callee) with a0=[0x1020]:8, a1=[[0x1020]:8+51808]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) when the `beq` at 0x321cfc4 falls through.
+  A doubleword is loaded at [0x1020]:8 +0xca68 (`ld` at 0x321cfd8).
+  The `beq` at 0x321cfdc is taken to 0x321cff4 when a1(=[[0x1020]:8+51816]:8) == 0 and falls through when a1(=[[0x1020]:8+51816]:8) != 0 (`beq` at 0x321cfdc).
+  The `jalr` at 0x321cfe8 calls (unknown callee) with a0=[0x1020]:8, a1=[[0x1020]:8+51816]:8, a2=unknown, a3=unknown when the `beq` at 0x321cfdc falls through.
+  The doubleword at [0x1020]:8 +0xca98 is read (`ld` at 0x321d00c).
+  The `beq` at 0x321d010 is taken to 0x321d028 when a1(=[[0x1020]:8+51864]:8) == 0 and falls through when a1(=[[0x1020]:8+51864]:8) != 0 (`beq` at 0x321d010).
+  The `jalr` at 0x321d01c calls (unknown callee) with a0=[0x1020]:8, a1=[[0x1020]:8+51864]:8, a2=unknown, a3=unknown when the `beq` at 0x321d010 falls through.
+  A zero byte is stored at [0x1020]:8 +0xca40 (`sb` at 0x321d038).
+  The `jr` at 0x321d040 returns 0x1 in v0.
 - `__glOdysseyImageCalcPixelModeFields` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 356 bytes
   **Established effects.**
   - The byte at entry `a1` + 0 is loaded (`lbu` at 0x3253454); `beqz` at 0x3253474 takes the alternate path when it is zero and falls through otherwise.
@@ -1075,40 +1245,115 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.**
   - The routine reads a doubleword from process address 0x1020 (`ld` at 0x3256240). Its word copies include +0x9f4c to +0x13fbc and +0xa01c to +0x13f94 relative to that pointer (`lw` at 0x3256274; `sw` at 0x3256278; `lw` at 0x325624c; `sw` at 0x32562a0).
   - A loop performs word loads and stores (`lw` at 0x325631c; `sw` at 0x3256328; `lw` at 0x3256330; `sw` at 0x325633c). `bgtz` at 0x3256338 repeats when the unknown `a1` value is signed positive and falls through otherwise. The copied fields and the routine's wider role remain Unknown.
-- `__glOdysseyTextureActivate` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1476 bytes
-
-  **Established effects.** The word at entry `a1 + 0x504` is tested against -1 (`lw` at 0x32665f0); `beq` at 0x3266608 returns zero when equal (`jr` at 0x3266b30). Otherwise it calls `__glOdysseyOpenPMObjReference` with the words at entry `a1 + 0x504` and `a1 + 0x64` as its second and third arguments (`lw` at 0x32665f0; `lw` at 0x3266614; `jalr` at 0x3266654). A zero result takes `beqz` at 0x326665c to `__glSetError` with 0x505 (`jalr` at 0x3266b40). On the nonzero path, it stores entry `a1` at entry `a0 + 0x18880` and the word from `a1 + 0x64` at `a0 + 0x18890` (`sd` at 0x3266678; `lw` at 0x326667c; `sw` at 0x3266684). The context-field meanings and the broader activation role are unknown.
+- `__glOdysseyTextureActivate` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32665f0
+  It stores entry a1 as a doubleword at entry a0 +0x18880 (`sd` at 0x3266678).
+  It stores a word at entry a0 +0xa330 (`sw` at 0x326694c).
+  It stores a word with value 0x2 at absolute address 0x1030 (`sw` at 0x3266974).
+  The `jalr` at 0x3266654 calls `__glOdysseyOpenPMObjReference` with a0=a0 at entry (arg0), a1=[a1+1284], a2=[a1+100], a3=unknown, a4=a1+1320, a5=0x1, a7=[a1+1284].
+  The `bgezall` at 0x32668c4 calls `ChooseSuitableBuzzTexModeBaseFmt` with a0=[a1+1384], a1=[a1+1408], a2=unknown, a3=unknown.
+  The `jalr` at 0x32669a4 calls `__glOdysseyOpenPMObjReference` with a0=a0 at entry (arg0), a1=unknown, a2=0x0, a3=unknown, a5=0x1.
+  The `bgezall` at 0x3266afc calls `ChooseSuitableBuzzTexModeBaseFmt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x3266b40 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x3266b80 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x3266b94 calls `__glOdysseyTextureDeactivate` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The instructions from 0x3266a18 to 0x3266a1c are not reached by any path from the entry, and their branches are not listed.
+  At 0x3266970 v0 is `0x1`; at the other three exits it is `0x0` (`jr` at 0x3266970, 0x3266b30, 0x3266b58, 0x3266bac).
 - `__glOdysseyTextureDeactivate` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 276 bytes
 
   **Established effects.** The routine calls `__glOdysseyClosePMObjReference` with the word at entry `a1 + 0x504` and words at entry `a0 + 0x18890` and `a0 + 0x18894` as its second through fourth arguments (`lw` at 0x3266bd0; `lw` at 0x3266be8; `lw` at 0x3266bf0; `jalr` at 0x3266bec). It clears the doubleword at entry `a0 + 0x18880` (`sd` at 0x3266bf4), then its stores of the low word of 0xffffffffdeadbeef include entry `a1 + 0x564` and `a1 + 0x528` (`sw` at 0x3266c04; `sw` at 0x3266c40).
 
   The pointer at entry `a0 + 0x18888` is tested next (`ld` at 0x3266c44); `beqz` at 0x3266c48 skips the second call when it is zero. Otherwise the code calls `__glOdysseyClosePMObjReference` again (`jalr` at 0x3266c5c), writes the low word of 0xffffffffbaadcade at the pointed object's +0x564 and +0x528 (`sw` at 0x3266c70; `sw` at 0x3266cac), and clears the doubleword at entry `a0 + 0x18888` (`sd` at 0x3266cb4). What these fields represent, and the broader role of this routine, are unknown.
-- `__glOdysseyValidateTexture` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1244 bytes
-
-  **Established effects.** The first call is `SetTexOffsetValues` with entry `a1` as its first argument (`bgezall` at 0x3266d7c). Three `beqz` tests branch to 0x3267074 when the respective words at entry `a1 + 0x584`, `a1 + 0x588`, and `a1 + 0x58c` are zero; each falls through for a nonzero word (`lw` at 0x3266ee4; `beqz` at 0x3266f20; `lw` at 0x3266f28; `beqz` at 0x3266f2c; `lw` at 0x3266f34; `beqz` at 0x3266f38). A separate store clears the word at entry `a1 + 0x18` (`sw` at 0x326707c). Another path calls `DoMipmapHack` with entry `a0` and `a1` (`bgezall` at 0x32671d4); when the result is zero, `beqz` at 0x32671dc takes the path storing 2 at `a1 + 0x18` (`sw` at 0x3267208). The field's meaning and the routine's broader role remain unknown.
-- `__glOdysseyValidateTextureState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1172 bytes
-
-  **Established effects.** It writes 2 to 0x1030 (`sw` at 0x3267248), then sets bit 0 of the word at entry `a0 + 0x4714` (`lw` at 0x3267264; `ori` at 0x3267278; `sw` at 0x3267280). When the pointer loaded from `a0 + 0x18880` is nonzero (`ld` at 0x32672e8), `beqz` at 0x3267314 falls through to `__glOdysseyTextureDeactivate` (`bgezall` at 0x3267328). The routine then calls `__glOdysseyTextureActivate` (`bgezall` at 0x326733c); its zero return takes `beqz` at 0x3267344 to a separate path.
-
-  On the nonzero-result path, stores include entry `a0 + 0xa024` and `a0 + 0xa014` (`sw` at 0x326736c; `sw` at 0x3267374); both stored values are unknown. A loop loads and stores words at unknown bases (`lw` at 0x326743c; `sw` at 0x3267444); `bgtz` at 0x32674d0 repeats while `a3` is signed greater than zero and falls through otherwise; the value of `a3` is unknown. The destination, the context fields, and the broader validation role remain unknown.
-- `__glOdysseyTextureDriverInit` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 468 bytes
-
-  **Established effects.** Calls to `InitTextureObject` include one with first argument entry `a0 + 0x144c0`, second 0, third 0xde0 (`bgezall` at 0x3263dc8), and another with first argument entry `a0 + 0x14e68`, second 0, third 0xde1 (`bgezall` at 0x3263de8). It stores entry `a0 + 0x144c0` at `a0 + 0x18858`, and clears doublewords at `a0 + 0x18888` and `a0 + 0x18880` (`sd` at 0x3263e94; `sd` at 0x3263ea8; `sd` at 0x3263eac).
-
-  The code copies a word from entry `a0 + 0x14584` to `a0 + 0xa02c` (`lw` at 0x3263f18; `sw` at 0x3263f1c), and another from `a0 + 0x1456c` to `a0 + 0xa014` (`lw` at 0x3263f00; `sw` at 0x3263f34). It writes 2 to 0x1030 twice, the second in the return delay slot (`sw` at 0x3263efc; `jr` at 0x3263f4c; `sw` at 0x3263f50). The meanings of these destinations and the broader initialization role are unknown.
-
+- `__glOdysseyValidateTexture` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3266d50
+  The `bgezall` at 0x3266d7c calls `SetTexOffsetValues` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  When the `beq` at 0x3266da8 falls through, an unknown word is stored at entry a1 +0xa8 (`sw` at 0x3266dc8).
+  When the `beq` at 0x3266dcc falls through, an unknown word is stored at entry a1 +0xbc (`sw` at 0x3266df4).
+  The `beq` at 0x3266f20 is taken to 0x3267074 when a5(=[a1+1412]) == 0 and falls through when a5(=[a1+1412]) != 0 (`beq` at 0x3266f20).
+  The `beq` at 0x3266f2c is taken to 0x3267074 when t1(=[a1+1416]) == 0 and falls through when t1(=[a1+1416]) != 0 (`beq` at 0x3266f2c).
+  The `beq` at 0x3266f38 is taken to 0x3267074 when t2(=[a1+1420]) == 0 and falls through when t2(=[a1+1420]) != 0 (`beq` at 0x3266f38).
+  The `bgezall` at 0x3266f68 calls `__glOdysseyTextureSetRWrap` with a0=a1 at entry (arg1), a1=0x2901, a2=[a1+100], a3=[a1+48], a5=[a1+1412], a7=[a1+176] when the `beq` at 0x3266f58 falls through.
+  When the `beq` at 0x3266f20, 0x3266f2c or 0x3266f38 is taken, zero is stored as a word at entry a1 +0x18 (`sw` at 0x326707c).
+  When the `beq` at 0x3267098 falls through, 0x1 is stored as a word at entry a1 +0x18 (`sw` at 0x32670a4).
+  The `bgezall` at 0x32670e0 calls `__glOdysseyTextureSetRWrap` with a0=a1 at entry (arg1), a1=[a1+44], a2=[a1+100], a3=[a1+48], a5=[a1+1412], a7=[a1+176] when the `beq` at 0x32670d4 falls through.
+  The `bgezall` at 0x3267180 calls `DoMipmapHack` with a0=a0 at entry (arg0), a1=[a0+100464]:8, a2=unknown, a3=[[a0+100464]:8+1412], a4=[[a0+100464]:8+1416], a5=0x3266420 when the `beq` at 0x3267124 falls through.
+  The `bgezall` at 0x3267198 calls `__glOdysseyTextureSetMagFilter` with a0=a1 at entry (arg1), a1=[a1+32], a2=unknown, a3=unknown when the `beq` at 0x3267188 falls through.
+  The `bgezall` at 0x32671d4 calls `DoMipmapHack` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown when the `beq` at 0x3267090 or 0x3267098 is taken.
+  The `beq` at 0x32671dc is taken to 0x3267200 when v0(=ret(DoMipmapHack)) == 0 and falls through when v0(=ret(DoMipmapHack)) != 0 (`beq` at 0x32671dc).
+  On the taken path, 0x2 is stored as a word at entry a1 +0x18 (`sw` at 0x3267208).
+  On that path, zero is stored as a word at entry a1 +0xd4 (`sw` at 0x3267214).
+  On that path, a word with value ([a1+168] | 0x4000) is stored at entry a1 +0xa8 (`sw` at 0x326721c).
+  The `jr` at 0x3267224 returns ret(DoMipmapHack) in v0; other returns have unknown v0 (`jr` at 0x3267088, 0x32670cc), 0x3260000 (`jr` at 0x32670b0), and ret(DoMipmapHack) (`jr` at 0x32671f8).
+- `__glOdysseyValidateTextureState` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3267230
+  A word with value 0x2 is stored at absolute 0x1030 (`sw` at 0x3267248).
+  A word with value ([a0+18196] | 0x1) is stored at entry a0 +0x4714 (`sw` at 0x3267280).
+  The `beq` at 0x326728c is taken to 0x3267678 when a0(=[[a0+100456]:8+24]) == s4(=0x2) and falls through when a0(=[[a0+100456]:8+24]) != s4(=0x2) (`beq` at 0x326728c).
+  The `beq` at 0x3267314 is taken to 0x3267334 when a1(=[a0+100480]:8) == 0 and falls through when a1(=[a0+100480]:8) != 0 (`beq` at 0x3267314).
+  The `bgezall` at 0x3267328 calls `__glOdysseyTextureDeactivate` with a0=a0 at entry (arg0), a1=[a0+100480]:8, a2=unknown, a3=0x20000, a5=-0xc01 when the `beq` at 0x3267314 falls through.
+  The `bgezall` at 0x326733c calls `__glOdysseyTextureActivate` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown after either arm of the `beq` at 0x3267314.
+  The `beq` at 0x3267344 is taken to 0x3267618 when v0(=ret(__glOdysseyTextureActivate)) == 0 and falls through when v0(=ret(__glOdysseyTextureActivate)) != 0 (`beq` at 0x3267344).
+  On the fall-through path, unknown words are stored at entry a0 +0xa024 (`sw` at 0x326736c) and entry a0 +0xa014 (`sw` at 0x3267374).
+  When the `beq` at 0x3267344 falls through, 0x2 is stored as a word at entry a0 +0xb038 (`sw` at 0x3267428).
+  When the `beq` at 0x3267344 falls through, an unknown word is stored at an unknown base (`sw` at 0x3267444).
+  The `bgtz` at 0x32674d0 is taken to 0x3267430 when a3 is unknown and > 0 (signed) and falls through when a3 is unknown and <= 0 (signed) (`bgtz` at 0x32674d0).
+  The `beq` at 0x3267544 is taken to 0x3267690 when a0(=[[a0+100448]:8+24]) == s4(=0x2) and falls through when a0(=[[a0+100448]:8+24]) != s4(=0x2) (`beq` at 0x3267544).
+  The `beq` at 0x32675b4 is taken to 0x32676a8 when a0(=[[a0+100440]:8+24]) == s4(=0x2) and falls through when a0(=[[a0+100440]:8+24]) != s4(=0x2) (`beq` at 0x32675b4).
+  The `bgezall` at 0x3267668 calls `__glOdysseyTextureDeactivate` with a0=a0 at entry (arg0), a1=[a0+100480]:8, a2=0x3266bc0, a3=unknown when the `beq` at 0x3267654 falls through.
+  The `bgezall` at 0x3267678 calls `__glOdysseyValidateTexture` with a0=a0 at entry (arg0), a1=[a0+100456]:8, a2=a2 at entry (arg2), a3=0x20000 when the `beq` at 0x326728c is taken.
+  The `bgezall` at 0x3267690 calls `__glOdysseyValidateTexture` with a0=a0 at entry (arg0), a1=[a0+100448]:8, a2=unknown, a3=0x20000 when the `beq` at 0x3267544 is taken.
+  The `bgezall` at 0x32676a8 calls `__glOdysseyValidateTexture` with a0=a0 at entry (arg0), a1=[a0+100440]:8, a2=unknown, a3=0x20000, a4=0x10000 when the `beq` at 0x32675b4 is taken.
+  The `jr` at 0x3267508 returns an unknown value in v0; at 0x3267524 v0 is unknown when the `beq` at 0x3267654 is taken and is ret(__glOdysseyTextureDeactivate) after the call at 0x3267668 (`jr` at 0x3267524).
+- `__glOdysseyTextureDriverInit` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3263d80
+  The `bgezall` at 0x3263dc8 calls `InitTextureObject` with a0=a0+83136, a1=0x0, a2=0xde0, a3=a3 at entry (arg3).
+  The `bgezall` at 0x3263de8 calls `InitTextureObject` with a0=a0+85608, a1=0x0, a2=0xde1, a3=unknown.
+  The `bgezall` at 0x3263e08 calls `InitTextureObject` with a0=a0+88080, a1=0x0, a2=0x806f, a3=unknown.
+  The `bgezall` at 0x3263e28 calls `InitTextureObject` with a0=a0+90552, a1=0x0, a2=0x8095, a3=unknown.
+  The `bgezall` at 0x3263e44 calls `InitTextureObject` with a0=a0+93024, a1=0x0, a2=0x8063, a3=unknown.
+  The `bgezall` at 0x3263e60 calls `InitTextureObject` with a0=a0+95496, a1=0x0, a2=0x8064, a3=unknown.
+  The `bgezall` at 0x3263e7c calls `InitTextureObject` with a0=a0+97968, a1=0x0, a2=0x8070, a3=unknown.
+  The value a0+83136 is stored as a doubleword at entry a0 +0x18858 (`sd` at 0x3263e94).
+  Zero doublewords are stored at entry a0 +0x18888 (`sd` at 0x3263ea8) and entry a0 +0x18880 (`sd` at 0x3263eac).
+  Zero words are stored at entry a0 +0xa010 (`sw` at 0x3263ec4), +0xa00c (`sw` at 0x3263ec8), +0xa008 (`sw` at 0x3263ed4), and +0xa004 (`sw` at 0x3263ed8).
+  A word with value ([a0+101972] | 0x100) is stored at entry a0 +0x18e54 (`sw` at 0x3263ef4).
+  The value 0x2 is stored as a word at absolute 0x1030 (`sw` at 0x3263efc, 0x3263f50).
+  The word at entry a0 +0x14584 is loaded (`lw` at 0x3263f18) and stored at entry a0 +0xa02c (`sw` at 0x3263f1c).
+  The word at entry a0 +0x1456c is loaded (`lw` at 0x3263f00) and stored at entry a0 +0xa014 (`sw` at 0x3263f34).
+  A word with value ([a0+101972] | 0x200) is stored at entry a0 +0x18e54 (`sw` at 0x3263f44).
+  The `jr` at 0x3263f4c returns ret(InitTextureObject) in v0.
 ## 64-bit IP30 library: texture and filter paths
 
 - `__glOdysseyTextureSetSWrap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
   **Established effects.** Entry `a1` equal to 0x2901 takes `beq` at 0x326a250 to store that value at entry `a0 + 0x24` (`sw` at 0x326a2d8). This path sets bit 0x200 in `a0 + 0xa8` (`lw` at 0x326a290; `ori` at 0x326a2b0; `sw` at 0x326a2b4), and writes words of unknown value at `a0 + 0xb0` and `a0 + 0xbc` (`sw` at 0x326a2c4; `sw` at 0x326a2d0). Another path tail-calls `__glSetError` with 0x500 (`jr` at 0x326a284). The field meanings and routine role are Unknown.
 - `__glOdysseyTextureSetTWrap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
   **Established effects.** For entry `a1` equal to 0x2901, `beq` at 0x326a300 takes a path that saves it at entry `a0 + 0x28` (`sw` at 0x326a388). The path sets bit 0x200 of `a0 + 0xa8` (`lw` at 0x326a340; `ori` at 0x326a360; `sw` at 0x326a364), and writes words of unknown value to `a0 + 0xb4` and `a0 + 0xbc` (`sw` at 0x326a374; `sw` at 0x326a380). A different path tail-calls `__glSetError` with 0x500 (`jr` at 0x326a334). The words' meanings and the routine's role are Unknown.
-- `__glOdysseyTextureSetRWrap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 192 bytes
-  **Established effects.** It reads the word at entry `a0 + 0x14` (`lw` at 0x326a3a0), saves entry `a1` at `a0 + 0x2c`, and stores an unknown value at `a0 + 0x30` (`sw` at 0x326a3bc; `sw` at 0x326a3cc). If the unknown `a3` value equals 0x2901, `beq` at 0x326a3c8 takes the branch to the common update. That update sets bit 0x200 in `a0 + 0xa8` (`lw` at 0x326a404; `ori` at 0x326a420; `sw` at 0x326a424), and writes words of unknown value to `a0 + 0xb8` and `a0 + 0xbc` (`sw` at 0x326a434; `sw` at 0x326a440). The field meanings and routine role are Unknown.
-- `__glOdysseyTextureSetMinFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 860 bytes
-  **Established effects.** `bnez` at 0x326a4cc selects a separate path for signed entry `a1` below 0x2701. On the fall-through path, `beqz` at 0x326a4d8 branches when signed `a1` is at least 0x2702. Its other path saves `a1` at entry `a0 + 0x1c` (`sw` at 0x326a4f0) and updates `a0 + 0xbc` (`sw` at 0x326a500). One continuation calls `__glOdysseyTextureSetMaxLOD` with entry `a0` and `a1` (`bgezall` at 0x326a524), writes 2 to `a0 + 0x18`, and sets bit 0x200 in `a0 + 0xa8` (`sw` at 0x326a538; `lw` at 0x326a52c; `ori` at 0x326a53c; `sw` at 0x326a540). The purpose of these fields and this routine is Unknown.
-- `__glOdysseyTextureSetMagFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 352 bytes
-  **Established effects.** Entry `a1` equal to 0x2600 takes `beq` at 0x326a838 to a path saving `a1` at entry `a0 + 0x20` (`sw` at 0x326a8d4) and writing an unknown word at `a0 + 0xbc` (`sw` at 0x326a8f4). On later paths, values 0x8097, 0x8098, or 0x8099 take their respective `beq` branches to call `__glOdysseyTextureSetMinFilter` with the word at `a0 + 0x1c` as its second argument (`beq` at 0x326a908; `beq` at 0x326a910; `beq` at 0x326a918; `bgezall` at 0x326a970; `lw` at 0x326a974). A continuation writes 2 to `a0 + 0x18` and sets bits 0x1200 in `a0 + 0xa8` (`sw` at 0x326a928; `lw` at 0x326a920; `ori` at 0x326a92c; `sw` at 0x326a930). The field meanings and routine role are Unknown.
+- `__glOdysseyTextureSetRWrap` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326a3a0
+  A word is loaded from entry a0 +0x14 (`lw` at 0x326a3a0).
+  Entry a1 is stored as a word at entry a0 +0x2c (`sw` at 0x326a3bc).
+  An unknown word is stored at entry a0 +0x30 (`sw` at 0x326a3cc).
+  The `beq` at 0x326a3c8 is taken to 0x326a444 when a3 is unknown and equal to 0x2901, and falls through when it is unknown and unequal to 0x2901 (`beq` at 0x326a3c8).
+  The `beq` at 0x326a3d4 is taken to 0x326a44c when a3 is unknown and equal to 0x2900, and falls through when it is unknown and unequal to 0x2900 (`beq` at 0x326a3d4).
+  The `beq` at 0x326a3e0 is taken to 0x326a458 when a3 is unknown and equal to 0x812f, and falls through when it is unknown and unequal to 0x812f (`beq` at 0x326a3e0).
+  The `beq` at 0x326a3ec is taken to 0x326a3fc when a3 is unknown and equal to 0x812d, and falls through when it is unknown and unequal to 0x812d (`beq` at 0x326a3ec).
+  The `jr` at 0x326a3f4 calls `__glSetError` with a0=0x500, a1=0x812f, a2=0x812d, a3=unknown, a5=-0x301 when the `beq` at 0x326a3ec falls through.
+  A word is stored at entry a0 +0xa8 with value ([a0+168] | 0x200) (`sw` at 0x326a424).
+  Unknown words are stored at entry a0 +0xb8 (`sw` at 0x326a434) and entry a0 +0xbc (`sw` at 0x326a440).
+  The `jr` at 0x326a43c returns an unknown value in v0.
+- `__glOdysseyTextureSetMinFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326a4c0
+  The `bne` at 0x326a4cc is taken to 0x326a56c when a1 < 0x2701 (signed) and falls through when a1 >= 0x2701 (signed) (`bne` at 0x326a4cc).
+  The `beq` at 0x326a4d8 is taken to 0x326a608 when a1 >= 0x2702 (signed) and falls through when a1 < 0x2702 (signed) (`beq` at 0x326a4d8).
+  On the fall-through path, entry a1 is stored as a word at entry a0 +0x1c (`sw` at 0x326a4f0).
+  The `beq` at 0x326a4fc is taken to 0x326a7a4 when a3(=0x832a) == v1(=[a0+32]) and falls through when a3(=0x832a) != v1(=[a0+32]) (`beq` at 0x326a4fc).
+  The `bgezall` at 0x326a524 calls `__glOdysseyTextureSetMaxLOD` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=-0xe1, a3=unknown after the `beq` at 0x326a650, 0x326a704, 0x326a760, 0x326a7b0, 0x326a7ec, 0x326a800 or 0x326a814 is taken, or when the `beq` at 0x326a504 falls through.
+  After the call at 0x326a524, 0x2 is stored as a word at entry a0 +0x18 (`sw` at 0x326a538).
+  On that path, a word with value ([a0+168] | 0x200) is stored at entry a0 +0xa8 (`sw` at 0x326a540).
+  The `jr` at 0x326a718 calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=unknown, a3=unknown when the `bne` at 0x326a658, 0x326a6cc, 0x326a728 or 0x326a768 is taken.
+  The `jr` at 0x326a548 returns 0x2 in v0; v0 is unknown at the other returns (`jr` at 0x326a564, 0x326a600).
+- `__glOdysseyTextureSetMagFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326a820
+  The `lw` at 0x326a89c reads a word from a0 at entry (arg0) +0xbc.
+  The `sw` at 0x326a8a0 stores a word at a0 at entry (arg0) +0x20 with value a1.
+  The `sw` at 0x326a928 stores a word at a0 at entry (arg0) +0x18 with value 0x2.
+  The `sw` at 0x326a930 stores a word at a0 at entry (arg0) +0xa8 with value ([a0+168] | 0x1200).
+  The `jr` at 0x326a894 calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=0x8099, a3=0x832a, a4=-0x1f, a6=0x2 on paths where the `beq` at 0x326a87c falls through.
+  The `bgezall` at 0x326a970 calls `__glOdysseyTextureSetMinFilter` with a0=a0 at entry (arg0), a1=[a0+28], a2=unknown, a3=unknown, a6=0x2.
+  The `jr` at 0x326a938 returns an unknown v0.
 - `__glOdysseyTextureSetDetailLevel` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326a980
   **Established effects.** This 88-byte routine tests signed entry `a1` with `bltz` at 0x326a980. When it falls through for a nonnegative value, it tail-calls `__glSetError` with 0x501 (`jr` at 0x326a988). When the branch is taken, it writes entry `a1` to entry `a0` + 0x48 (`sw` at 0x326a9b4), ORs 0x200 into the word at entry `a0` + 0xa8 (`lw` at 0x326a990; `sw` at 0x326a9c0), and stores a word whose value is unknown at entry `a0` + 0xac (`sw` at 0x326a9d4); the overall role of this detail-level routine remains Unknown.
 - `__glOdysseyTextureSetDetailMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326a9e0
@@ -1116,23 +1361,69 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   On the 0x2100 path it stores entry `a1` at entry `a0` + 0x4c (`sw` at 0x326a9fc), ORs 0x200 into the word at entry `a0` + 0xa8 (`lw` at 0x326aa00; `sw` at 0x326aa10), and ORs 0x80000000 into the word at entry `a0` + 0xac (`lw` at 0x326aa04; `sw` at 0x326aa1c). The meaning of these fields and the routine's broader role are unknown.
 - `__glOdysseyTextureSetMaxClamp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326aa50
   **Established effects.** This 72-byte routine has a path that stores the incoming `f14` value through entry `a1` (`swc1` at 0x326aa70), writes 2 at entry `a0` + 0x18 (`sw` at 0x326aa7c), and ORs 0x200 into the word at entry `a0` + 0xa8 (`lw` at 0x326aa74; `sw` at 0x326aa88). Another path tail-calls `__glSetError` with 0x501 (`jr` at 0x326aa90). The full floating-point-dependent path conditions, field meanings and the routine's wider role remain unknown.
-- `__glOdysseyTextureSetOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326c140
-  **Established effects.** The 668-byte routine tests entry `a2` against 0x1e01, 0x8062, 0x2100, 0x2101, 0xbe2 and 0x104 (`beq` at 0x326c158, 0x326c164, 0x326c170, 0x326c180, 0x326c188, 0x326c190). If all six branches fall through, it tail-calls `__glSetError` with 0x500 (`jr` at 0x326c1a4).
-  On the paths selected by 0x1e01 or 0x8062, it updates a word at entry `a0` + 0xa000 (`lw` at 0x326c210; `sw` at 0x326c220), writes entry `a2` to an unknown destination (`sw` at 0x326c24c), and sets 0x100 in the word at entry `a0` + 0x18e54 (`lw` at 0x326c360; `sw` at 0x326c36c). It also writes 2 to absolute 0x1030 (`sw` at 0x326c378). The updated word's value, the destinations' roles and the routine's wider role are unknown.
+- `__glOdysseyTextureSetOp` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x326c140
+  The `sw` at 0x326c1c4 stores a word at a0 at entry (arg0) +0xa000.
+  The `sw` at 0x326c36c stores a word at a0 at entry (arg0) +0x18e54 with value ([a0+101972] | 0x100).
+  The `sw` at 0x326c378 stores a word at absolute 0x1030 with value 0x2.
+  The `jr` at 0x326c1a4 calls `__glSetError` with a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0xbe2, a4=0x104, a7=(a1-8960 << 0x20) on paths where the `beq` at 0x326c190 falls through.
+  The `jalr` at 0x326c264 calls `floatTo12` with a0=[a0+2752]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a4=one of -0x8, 0x104; fp f12=[[a0+2752]:8+4] on paths where the `beq` at 0x326c248 falls through.
+  The `jalr` at 0x326c2a4 calls `floatTo12` with a0=unknown, a1=0x3264010, a2=[a0+2752]:8, a3=unknown, a5=[a0+40964], a6=(ret(floatTo12) << 0xc); fp f12=[[a0+2752]:8+8] on paths where the `beq` at 0x326c248 falls through.
+  The `jalr` at 0x326c2d4 calls `floatTo12` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x3264010, a5=[a0+2752]:8; fp f12=[[a0+2752]:8+12] on paths where the `beq` at 0x326c248 falls through.
+  The `jalr` at 0x326c314 calls `floatTo12` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[[a0+2752]:8+16] on paths where the `beq` at 0x326c248 falls through.
+  The `jr` at 0x326c374 returns v0=0x2.
 - `__glOdysseyTextureSetDetailTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x326cc60
   **Established effects.** This body occupies 448 bytes. It loads single-precision words from unknown addresses (`lwc1` at 0x326ccd0, 0x326ccf8, 0x326cd84) and calls `SetDetailEntry` with its first argument set to entry `a0` + 0x104 (`bgezall` at 0x326cd54). After that call, `beq` at 0x326cd60 is taken if `s3` equals 0x100 and falls through otherwise. The origin of `s3`, the floating-point values driving the other conditions and the routine's wider role are unknown.
 - `__glOdysseyProgramSepOffsets` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 468 bytes
   **Established effects.** `beqz` at 0x32487c4 branches when `s0` is zero and falls through otherwise; hostfacts expresses `s0` as `a1`. The next `beq` at 0x32487d0 branches when `s0` equals 1 and falls through otherwise.
   - The shared branch target stores zero words at argument 0 + 0xb50, +0xb44 and +0xb40 (`sw` at 0x3248870, 0x3248878, 0x324887c). It also calls `floorf` earlier (`jalr` at 0x32487b8). The roles of these fields and of the routine are unknown.
-- `__glOdysseyProgramFFTFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 656 bytes
-  **Established effects.** A doubleword is loaded from argument 0 + 0x20 (`ld` at 0x32138dc). `beq` at 0x32138f8 branches when `a1` equals 1 and falls through otherwise.
-  - On fall-through, calls to `__glOdysseyInitLerpTree` include calls with the loaded pointer + 0x5a0 and + 0x870 as first arguments (`jalr` at 0x3213904, 0x3213914). The broader role of this call sequence and the routine is unknown.
+- `__glOdysseyProgramFFTFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32138d0
+  A doubleword is loaded from `a0 (arg0 at entry) +0x20` (`ld` at 0x32138dc).
+  The `beq` at 0x32138f8 branches to 0x3213a0c when `a1 == at(=0x1)` and falls through when `a1 != at(=0x1)`.
+  The `jalr` at 0x3213904 calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8+1440`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=[a0+32]:8+1440` on the fall-through of `beq` at 0x32138f8.
+  The `jalr` at 0x3213914 calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8+2160`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `jalr` at 0x3213920 calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `jalr` at 0x3213930 calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8+720`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213944 calls `__glOdysseySetRealLerpEvenEven` with `a0=[a0+32]:8+1440`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213960 calls `__glOdysseySetRealLerpOddEven` with `a0=[a0+32]:8+2160`, `a1=0x0`, `a2=0x2`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213978 calls `__glOdysseySetRealLerpEvenOdd` with `a0=[a0+32]:8`, `a1=0x0`, `a2=0x2`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213998 calls `__glOdysseySetRealLerpOddOdd` with `a0=[a0+32]:8+720`, `a1=0x0`, `a2=0x2`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x32139b0 calls `PackQuadLerpTree` with `a0=[a0+32]:8`, `a1=0x0`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x32139c4 calls `PackQuadLerpTree` with `a0=[a0+32]:8+720`, `a1=0x1`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x32139d8 calls `PackQuadLerpTree` with `a0=[a0+32]:8+1440`, `a1=0x2`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `bgezall` at 0x32139ec calls `PackQuadLerpTree` with `a0=[a0+32]:8+2160`, `a1=0x3`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x32138f8.
+  The `jalr` at 0x3213a10 calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8+1440`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=[a0+32]:8+1440` on the taken arm of `beq` at 0x32138f8.
+  The `jalr` at 0x3213a20 calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8+2160`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `jalr` at 0x3213a2c calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `jalr` at 0x3213a3c calls `__glOdysseyInitLerpTree` with `a0=[a0+32]:8+720`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213a50 calls `__glOdysseySetRealLerpEvenEven` with `a0=[a0+32]:8+1440`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213a6c calls `__glOdysseySetRealLerpOddEven` with `a0=[a0+32]:8+2160`, `a1=0x0`, `a2=0x2`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213a84 calls `__glOdysseySetRealLerpEvenOdd` with `a0=[a0+32]:8`, `a1=0x0`, `a2=0x2`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213aa4 calls `__glOdysseySetRealLerpOddOdd` with `a0=[a0+32]:8+720`, `a1=0x0`, `a2=0x2`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213abc calls `PackQuadLerpTree` with `a0=[a0+32]:8`, `a1=0x0`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213ad0 calls `PackQuadLerpTree` with `a0=[a0+32]:8+720`, `a1=0x1`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213ae4 calls `PackQuadLerpTree` with `a0=[a0+32]:8+1440`, `a1=0x2`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213af8 calls `PackQuadLerpTree` with `a0=[a0+32]:8+2160`, `a1=0x3`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213b08 calls `__glOdysseySetImaginaryLerpEvenEven` with `a0=0x0`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213b20 calls `__glOdysseySetImaginaryLerpOddEven` with `a0=0x0`, `a1=0x0`, `a2=0x0`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213b38 calls `__glOdysseySetImaginaryLerpEvenOdd` with `a0=0x0`, `a1=0x0`, `a2=0x0`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The `bgezall` at 0x3213b50 calls `__glOdysseySetImaginaryLerpOddOdd` with `a0=0x0`, `a1=0x0`, `a2=0x0`, `a3=unknown` on the taken arm of `beq` at 0x32138f8.
+  The return value is unknown (`jr` at 0x3213a04).
 - `__glOdysseyImageLoadBuzzRasterState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 440 bytes
   **Established effects.** A doubleword is read from process address 0x1020 (`ld` at 0x32563c0). One copied word comes from either +0x13f78 or +0x1404c relative to that pointer (`lw` at 0x32563e0) and is stored at +0xa000 (`sw` at 0x32563e4).
   - A loop reads two words and separately stores two words, with the load bases, store bases and stored values unknown (`lw` at 0x32564bc; `sw` at 0x32564c8; `lw` at 0x32564d0; `sw` at 0x32564dc); `bgtz` at 0x32564d8 repeats when the tested value is signed positive and falls through otherwise. It ends with a word store of 2 to process address 0x1030 (`sw` at 0x3256574). The meaning of the copied state and the routine’s broader role are unknown.
-- `__glOdysseyMapSepFilterToAlphas` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1600 bytes
-  **Established effects.** `beq` at 0x3247acc branches when `a3` equals 2 and falls through otherwise. On fall-through, `beq` at 0x3247ad8 branches when `a3` equals 3 and falls through otherwise.
-  - One path calls `__glOdysseyProgramConvolutionFilter` with an unknown first argument, original argument 0 as its second, the symbolic expression `(a2 + a3)` as its third, and original argument 4 as its fourth (`bgezall` at 0x3247bcc). The calculation’s meaning and the routine’s broader role are unknown.
+- `__glOdysseyMapSepFilterToAlphas` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3247a80
+  Words are stored through unknown bases (`swc1` at 0x3247b30, 0x3247b40, 0x3247b54).
+  The `beq` at 0x3247acc branches to 0x3247c20 when `a3 == at(=0x2)` and falls through when `a3 != at(=0x2)`.
+  The `beq` at 0x3247ad8 branches to 0x3247e00 when `a3 == v1(=0x3)` and falls through when `a3 != v1(=0x3)`.
+  The `beq` at 0x3247aec branches to 0x3247be8 when `a6(unknown) == 0` and falls through when `a6(unknown) != 0`.
+  The `bgezall` at 0x3247bcc calls `__glOdysseyProgramConvolutionFilter` with `a0=unknown`, `a1=a0 at entry (arg0)`, `a2=(a2 + a3)`, `a3=a4 at entry (arg4)`.
+  The `bgezall` at 0x3247d14 calls `__glOdysseyProgramConvolutionFilter` with `a0=unknown`, `a1=a0 at entry (arg0)`, `a2=unknown`, `a3=a4 at entry (arg4)`.
+  The `bgezall` at 0x3247de8 calls `__glOdysseyProgramConvolutionFilter` with `a0=unknown`, `a1=a0 at entry (arg0)`, `a2=unknown`, `a3=a4 at entry (arg4)`.
+  The `bgezall` at 0x3247f04 calls `__glOdysseyProgramConvolutionFilter` with `a0=unknown`, `a1=a0 at entry (arg0)`, `a2=unknown`, `a3=a4 at entry (arg4)`.
+  The `bgezall` at 0x3247fe0 calls `__glOdysseyProgramConvolutionFilter` with `a0=unknown`, `a1=a0 at entry (arg0)`, `a2=unknown`, `a3=a4 at entry (arg4)`.
+  The `bgezall` at 0x32480a8 calls `__glOdysseyProgramConvolutionFilter` with `a0=unknown`, `a1=a0 at entry (arg0)`, `a2=unknown`, `a3=a4 at entry (arg4)`.
+  The instructions from 0x3247e48 to 0x3247e4c are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x3247c18).
 - `__glOdysseyScaleBiasFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 340 bytes
   **Established effects.** It reads floating-point words from argument 0, including offsets +0x2c and +0x18 (`lwc1` at 0x3242000, 0x3242014). `blez` at 0x3242028 takes the return path when `a1` is signed nonpositive and falls through when it is positive.
   - One loop reads floating-point words from unknown addresses (`lwc1` at 0x3242038, 0x324203c, 0x3242040, 0x3242048), executes multiply-add instructions (`madd.s` at 0x3242044, 0x324204c, 0x3242054), and writes floating-point words to unknown addresses (`swc1` at 0x324205c, 0x3242064, 0x3242068, 0x3242074). The values and addresses are Unknown. `bnez` at 0x3242070 repeats when its tested value is nonzero and falls through when it is zero.
@@ -1140,27 +1431,96 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 ## 64-bit IP30 library: context and program paths
 
-- `__glOdysseyClear` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f8e30
-  **Established effects.** This 2008-byte body reads argument 0 + 0xbb80 (`lw` at 0x31f9024); when that word is nonzero, `beqz` at 0x31f904c falls through to clear it (`sw` at 0x31f9054) and write 0x10443, 0xfa and two 0x10046 words to absolute 0x10000 (`sw` at 0x31f905c, 0x31f9064, 0x31f906c, 0x31f9070). It next writes 0x10420 and the word at argument 0 + 0x9f80 to 0x10000 (`sw` at 0x31f907c; `lw` at 0x31f9080; `sw` at 0x31f9084).
-  One path calls `__glOdysseyIoctl` with request 0x6f64000e and a stack address (`jalr` at 0x31f92dc); `beqz` at 0x31f92ec is taken if the result is zero. Another path writes 0x14400, 7, 0x8f80a944 and 0x14001 to absolute 0x10000 (`sw` at 0x31f9358, 0x31f9360, 0x31f9370, 0x31f93d4). These command lists are partial; their hardware effects and the routine’s broader role are Unknown.
+- `__glOdysseyClear` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x31f8e30
+  The `lw` at 0x31f8e48 reads a word from a0 at entry (arg0) +0x9f4c.
+  The `sw` at 0x31f8ef0 stores a word at a0 at entry (arg0) +0x18e54 with value ([a0+101972] | 0x2).
+  The `sw` at 0x31f8ef8 stores a word at absolute 0x1030 with value 0x2.
+  The `sw` at 0x31f905c stores a word at absolute 0x10000 with value 0x10443.
+  The `sw` at 0x31f9064 stores a word at absolute 0x10000 with value 0xfa.
+  The `sw` at 0x31f906c stores a word at absolute 0x10000 with value 0x10046.
+  The `bgezall` at 0x31f9258 calls `__glOdysseyValidateHardware` with a0=a0 at entry (arg0), a1=-0x4, a2=(0x200000 | [a0+101972]), a3=one of 0x0, 0x1, a4=0x200000, a5=0xffffffffff7fffff, a7=one of 0xffffffff80000000, 0xfa on paths where the `beq` at 0x31f9250 falls through.
+  The `jalr` at 0x31f92dc calls `__glOdysseyIoctl` with a0=a0 at entry (arg0), a1=0x6f64000e, a2=sp-320, a3=a1 at entry (arg1), a4=(a5 + a7), a5=(a4 + a6) on paths where the `beq` at 0x31f9268 falls through.
+  The `bgezall` at 0x31f9328 calls `__glOdysseyValidateHardware` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, a6=[a0+101972], a7=(0x200000 | [a0+101972]) on paths where the `beq` at 0x31f9320 falls through.
+  The `jr` at 0x31f9548 returns v0=[a0+48000].
+  The `jr` at 0x31f9588 returns v0=[a0+48000].
 - `__glOdysseyValidateHardware` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31fc4a0
   **Established effects.** The body occupies 5028 bytes. It reads argument 0 + 0xbb80 (`lw` at 0x31fc4a8); if nonzero, `beqz` at 0x31fc4b4 falls through to clear that word (`sw` at 0x31fc4bc) and write 0x10443, 0xfa and two 0x10046 words to absolute 0x10000 (`sw` at 0x31fc4c4, 0x31fc4cc, 0x31fc4d4, 0x31fc4d8).
   It reads argument 0 + 0x18e54 (`lw` at 0x31fc4b8); `beqz` at 0x31fc4e0 falls through when bit 1 is set. That path writes 0x10404 and the word at argument 0 + 0x9f4c to 0x10000 (`sw` at 0x31fc520; `lw` at 0x31fc524; `sw` at 0x31fc528). The roles of the routine, these words and the destination are Unknown.
 - `__glOdysseyAsyncDropMarker` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31ea390
   **Established effects.** The 500-byte body reads the word at argument 0 + 0x820 (`lw` at 0x31ea390) and combines it with argument 1 (`and` at 0x31ea39c). In the path reached by `beq` at 0x31ea3a8, the compared value is unknown and equals 2; the code decrements the word at argument 0 + 0x285c4 (`lw` at 0x31ea440; `sw` at 0x31ea44c) and reads argument 0 + 0x285d0 (`lwu` at 0x31ea444).
   At the later `beqz` at 0x31ea450, the tested value is the word at argument 0 + 0x285d0: zero takes the branch, and nonzero falls through. Its delay slot clears that word on either path (`sw` at 0x31ea454). Later stores include a doubleword to an unknown destination (`sd` at 0x31ea4c8). The roles of the routine, field and destination are Unknown.
-- `__glOdysseyProgramTexFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 572 bytes
-  - **Established effects.** The word at process address 0x1030 is read (`lw` at 0x324aa1c). `beq` at 0x324aa3c branches when it equals 1 and falls through otherwise; the taken path calls `__glSetError` with first argument 0x502 (`jalr` at 0x324ab60).
-  - On the fall-through path, calls to `ConvertToLerps` include calls with original argument 0 and with argument 0 + 0x94 as their first arguments (`bgezall` at 0x324aa54, 0x324aa60). It also calls `PackLerpTree` (`bgezall` at 0x324aa8c). The routine's broader role and the resulting fields' meanings are unknown.
-- `__glOdysseyProgramConvolutionFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1296 bytes
-  - **Established effects.** The word at process address 0x1030 is read (`lw` at 0x324ac60). `beq` at 0x324ac80 branches when it equals 1 and falls through otherwise; the taken path calls `__glSetError` with first argument 0x502 (`jalr` at 0x324b140).
-  - Calls include `ConvertToLerps` with the original first four arguments (`bgezall` at 0x324acd8), `__glOdysseyProgram2DOffsets` with the original first and third arguments and an unknown second argument (`bgezall` at 0x324ad30), and `__glOdysseyProgram1DOffsets` with the same known argument positions (`bgezall` at 0x324b128). The broader routine role, the effects of these calls on the board and the resulting fields' meanings are unknown.
-- `__glOdysseyProgramGenericConvolutionFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1136 bytes
-  - **Established effects.** The routine reads the word at process address 0x1030 (`lw` at 0x324b174). `beq` at 0x324b194 takes the path calling `__glSetError` with first argument 0x502 when the word equals 1, and falls through otherwise (`jalr` at 0x324b5c0).
-  - When `beq` at 0x324b1c4 falls through because the compared word differs from 0x1102, it calls `ConvertToLerps` with a calculated first argument and the original second argument (`bgezall` at 0x324b1d4), then calls `PackLerpTree` with the original first argument (`bgezall` at 0x324b1e4). The routine's broader role and how the calculated values are used remain unknown.
-- `__glOdysseyProgram1DOffsets` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 616 bytes
-  - **Established effects.** `beqz` at 0x3248108 branches when argument 1 is zero and falls through when nonzero; on fall-through, `beq` at 0x3248110 branches when argument 1 equals 1 and falls through otherwise.
-  - In one path, `beq` at 0x324819c is taken when its unknown tested value equals 1 and falls through when it does not. The taken path stores zero words at argument 0 + 0xb50, +0xb4c, +0xb44, +0xb48 and +0xb40 (`sw` at 0x3248244, 0x3248248, 0x324824c, 0x3248250, 0x3248258). The routine's overall role and the five fields' meanings are unknown.
+- `__glOdysseyProgramTexFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x324aa10
+  Words are stored at `a0 (arg0 at entry) +0xb5c`, `+0xb58` and `+0xb54` (`sw` at 0x324ab20, 0x324ab30, 0x324ab3c).
+  The `beq` at 0x324aa3c branches to 0x324ab58 when `at(=[0x1030]) == v0(=0x1)` and falls through when `at(=[0x1030]) != v0(=0x1)`.
+  The `beq` at 0x324aaac branches to 0x324ab70 when unknown `t9` equals `ra(=0x1102)` and falls through when they differ.
+  The `bgezall` at 0x324aa54 calls `ConvertToLerps` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x324aa3c.
+  The `bgezall` at 0x324aa60 calls `ConvertToLerps` with `a0=a0+148`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324aa3c.
+  The `bgezall` at 0x324aa6c calls `ConvertToLerps` with `a0=a0+296`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324aa3c.
+  The `bgezall` at 0x324aa78 calls `ConvertToLerps` with `a0=a0+444`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324aa3c.
+  The `bgezall` at 0x324aa8c calls `PackLerpTree` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324aa3c.
+  The `jalr` at 0x324ab60 calls `__glSetError` with `a0=0x502`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x324aa3c.
+  The `bgezall` at 0x324ab74 calls `ConvertToLerps` with `a0=a0+720`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ab80 calls `ConvertToLerps` with `a0=a0+868`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ab8c calls `ConvertToLerps` with `a0=a0+1016`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ab98 calls `ConvertToLerps` with `a0=a0+1164`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324abac calls `PackLerpTree` with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a4=0x324a010` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324abbc calls `ConvertToLerps` with `a0=a0+1440`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324abc8 calls `ConvertToLerps` with `a0=a0+1588`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324abd4 calls `ConvertToLerps` with `a0=a0+1736`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324abe0 calls `ConvertToLerps` with `a0=a0+1884`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324abf4 calls `PackLerpTree` with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a5=0x324a010` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ac04 calls `ConvertToLerps` with `a0=a0+2160`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ac10 calls `ConvertToLerps` with `a0=a0+2308`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ac1c calls `ConvertToLerps` with `a0=a0+2456`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ac28 calls `ConvertToLerps` with `a0=a0+2604`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324aaac.
+  The `bgezall` at 0x324ac3c calls `PackLerpTree` with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a6=0x324a010` on the taken arm of `beq` at 0x324aaac.
+  The return value is unknown (`jr` at 0x324ab44).
+- `__glOdysseyProgramConvolutionFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x324ac50
+  Words are stored at `a0 (arg0 at entry) +0xb5c`, `+0xb58` and `+0xb54` (`sw` at 0x324adb0, 0x324adc0, 0x324adcc).
+  The `beq` at 0x324ac80 branches to 0x324b138 when `at(=[0x1030]) == v0(=0x1)` and falls through when `at(=[0x1030]) != v0(=0x1)`.
+  The `beq` at 0x324acc8 branches to 0x324ade8 when `a5(=[[0x1020]:8+81220]) == a7(=0x1102)` and falls through when `a5(=[[0x1020]:8+81220]) != a7(=0x1102)`.
+  The `beq` at 0x324ad18 branches to 0x324b118 when `a0(=a3) == 0` and falls through when `a0(=a3) != 0`.
+  The `beq` at 0x324ad20 branches to 0x324b118 when `a0(=a3) == ra(=0x8010)` and falls through when `a0(=a3) != ra(=0x8010)`.
+  The `bgezall` at 0x324acd8 calls `ConvertToLerps` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=[a1+24]-1`, `a5=[[0x1020]:8+81220]`, `a6=[0x1020]:8`, `a7=0x1102` on the fall-through of `beq` at 0x324acc8.
+  The `bgezall` at 0x324ace4 calls `ConvertToLerps` with `a0=a0+148`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324acc8.
+  The `bgezall` at 0x324acf0 calls `ConvertToLerps` with `a0=a0+296`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324acc8.
+  The `bgezall` at 0x324acfc calls `ConvertToLerps` with `a0=a0+444`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324acc8.
+  The `bgezall` at 0x324ad0c calls `PackLerpTree` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324acc8.
+  The `bgezall` at 0x324ad30 calls `__glOdysseyProgram2DOffsets` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=unknown` on the fall-through of `beq` at 0x324ad20.
+  The `jalr` at 0x324adf0 calls `__glOdysseyImageLogBase2` with `a0=([a1+24]-1 << 0x3)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=[a1+24]-1`, `a5=[[0x1020]:8+81220]`, `a6=[0x1020]:8`, `a7=0x1102` on the taken arm of `beq` at 0x324acc8.
+  The `bgezall` at 0x324aee8 calls `PackLerpTreeResidue` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a4=sp-256` on the taken arm of `beq` at 0x324acc8.
+  The `bgezall` at 0x324af14 calls `__glOdyssey_ks_to_alphas` with `a0=unknown`, `a1=sp-192`, `a2=sp-256`, `a3=unknown` on the taken arm of `beq` at 0x324acc8.
+  The `bgezall` at 0x324afd0 calls `PackLerpTreeResidue` with `a0=unknown`, `a1=0x3`, `a2=unknown`, `a3=unknown`, `a4=sp-256` on the taken arm of `beq` at 0x324acc8.
+  The `bgezall` at 0x324b06c calls `PackLerpTreeResidue` with `a0=unknown`, `a1=unknown`, `a2=0x324a470`, `a3=unknown`, `a4=sp-256` on the taken arm of `beq` at 0x324acc8.
+  The `bgezall` at 0x324b108 calls `PackLerpTreeResidue` with `a0=unknown`, `a1=0x3`, `a2=unknown`, `a3=unknown`, `a4=sp-256` on the taken arm of `beq` at 0x324acc8.
+  The `bgezall` at 0x324b128 calls `__glOdysseyProgram1DOffsets` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=unknown`.
+  The `jalr` at 0x324b140 calls `__glSetError` with `a0=0x502`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=[a1+24]-1`, `a6=[0x1020]:8` on the taken arm of `beq` at 0x324ac80.
+  The return value is unknown (`jr` at 0x324add4).
+- `__glOdysseyProgramGenericConvolutionFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x324b160
+  Words are stored at `a0 (arg0 at entry) +0xb54`, `+0xb5c` and `+0xb58` (`sw` at 0x324b260, 0x324b270, 0x324b278).
+  The `beq` at 0x324b194 branches to 0x324b5b4 when `at(=[0x1030]) == a4(=0x1)` and falls through when `at(=[0x1030]) != a4(=0x1)`.
+  The `beq` at 0x324b1c4 branches to 0x324b294 when `v1(=[[0x1020]:8+81220]) == a2(=0x1102)` and falls through when `v1(=[[0x1020]:8+81220]) != a2(=0x1102)`.
+  The `beq` at 0x324b3b8 branches to 0x324b2ec when `s0(=a2) == 0` and falls through when `s0(=a2) != 0`.
+  The `beq` at 0x324b3c4 branches to 0x324b47c when `s0(=a2) == a0(=0x1)` and falls through when `s0(=a2) != a0(=0x1)`.
+  The `beq` at 0x324b3d0 branches to 0x324b518 when `s0(=a2) == a1(=0x2)` and falls through when `s0(=a2) != a1(=0x2)`.
+  The `bgezall` at 0x324b1d4 calls `ConvertToLerps` with `a0=(a0 + (((((a2 << 0x3) + a2) << 0x2) + a2) << 0x2))`, `a1=a1 at entry (arg1)`, `a2=0x1102`, `a3=[0x1020]:8`, `a4=0x1` on the fall-through of `beq` at 0x324b1c4.
+  The `bgezall` at 0x324b1e4 calls `PackLerpTree` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x324b1c4.
+  The `jalr` at 0x324b2a4 calls `__glOdysseyImageLogBase2` with `a0=([a1+24] << 0x3)-8`, `a1=a1 at entry (arg1)`, `a2=0x1102`, `a3=[0x1020]:8`, `a4=0x1` on the taken arm of `beq` at 0x324b1c4.
+  The `bgezall` at 0x324b37c calls `PackLerpTreeResidue` with `a0=a0 at entry (arg0)`, `a1=sp-224`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x324b1c4.
+  The `bgezall` at 0x324b3b0 calls `__glOdyssey_ks_to_alphas` with `a0=unknown`, `a1=sp-160`, `a2=sp-224`, `a3=unknown` on the taken arm of `beq` at 0x324b1c4.
+  The `bgezall` at 0x324b46c calls `PackLerpTreeResidue` with `a0=unknown`, `a1=sp-224`, `a2=0x3`, `a3=unknown` on the taken arm of `beq` at 0x324b1c4.
+  The `bgezall` at 0x324b508 calls `PackLerpTreeResidue` with `a0=unknown`, `a1=sp-224`, `a2=unknown`, `a3=0x324a470` on the taken arm of `beq` at 0x324b1c4.
+  The `bgezall` at 0x324b5a4 calls `PackLerpTreeResidue` with `a0=unknown`, `a1=sp-224`, `a2=0x3`, `a3=unknown` on the taken arm of `beq` at 0x324b1c4.
+  The `jalr` at 0x324b5c0 calls `__glSetError` with `a0=0x502`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=[0x1020]:8`, `a4=0x1` on the taken arm of `beq` at 0x324b194.
+  The return at `0x324b28c` is `ret(__glSetError)` (`jr` at 0x324b28c).
+- `__glOdysseyProgram1DOffsets` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32480c0
+  The `sw` at 0x3248160 stores a word at a0 at entry (arg0) +0xb50 with value 0x0.
+  The `sw` at 0x3248164 stores a word at a0 at entry (arg0) +0xb4c with value 0x0.
+  The `sw` at 0x324816c stores a word at a0 at entry (arg0) +0xb48 with value 0x0.
+  The `jalr` at 0x32480fc calls `floorf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=0x3fe0000000000000.
+  The `jr` at 0x3248180 returns v0=0x3.
+  The `jr` at 0x32481c0 returns an unknown v0.
+  The `jr` at 0x3248238 returns v0=a0.
 - `__glOdysseyProgram2DOffsets` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1104 bytes
   - **Established effects.** `beqz` at 0x324834c takes the direct path when argument 1 is at least 0xe as an unsigned value and falls through when it is less. On the direct path, it stores zero at argument 0 + 0xb50, -1 at +0xb4c, 1 at +0xb44, -1 at +0xb48 and -1 at +0xb40 (`sw` at 0x3248360, 0x3248368, 0x3248370, 0x3248374, 0x324837c). The broader role of this routine and the meanings of the stored fields are unknown.
   - The fall-through path jumps through a table (`jr` at 0x3248358); the table includes entries leading to the same store sequence and to other paths.
