@@ -254,7 +254,7 @@ In this section and the four after it, **established** means the decompilation w
 ## Pixel-buffer and hyperpipe routines
 
 - `odsyAllocatePbuffer` (`usr/lib/X11/dyDDX/odyssey.so`, 0x166d8f0, 1388 bytes): **established.**
-  Allocates the board memory behind a GLX pixel buffer and attaches a drawable to it (argument: the pixel-buffer record; result 1, or 0 after any failure, which also releases the group). The record supplies the screen at +0x10, the buffer id word at +4 (`lw` at 0x166dda4), width at +0xc and height at +0xe. It builds a 72-byte memory-allocation request (layout in `docs/opengl.md`): -1 at +0 and +4 (no group yet), object type 0, and a description with byte 0 = 3, byte 1 = 2 shifted left by a size code, sizes at description +16 and +20 equal to the width and height and +24 equal to 1. The size code comes from a table in the board-private record: the entry at +0x50 selected by the GLX window private's word at +0x48 minus the screen record's word at +0x24 when the buffer has no window with a visual, otherwise the 0x44-byte entry at +0x4c selected by the visual (word +0xc of the entry). Byte 15 is 1 when the GLX private's word at +0x54 is 0x18. The request goes out as `ioctl(descriptor, 0x6f640001, block)` at 0x166db30 (kernel `gfP_OdsyMMalloc`); a failure prints "Unable to allocate pbuffer depth %d width %d height %d" (the depth printed is always 16), and a returned group of -1 prints "ODSY_MM_ALLOC didn't fail but we got back an invalid handle". When the reply flag word (+52) has bit 1 set, its value at +56 is stored in the 0x2e80-byte region that `odsyKernInit` made, in the table at region +0x2c00 at the index in the reply halfword at +64. If the GLX private's byte at +0x50 is nonzero and byte 15 is 1, the request is repeated for object types 3 and 4 with byte 1 set to 8, which adds two further objects to the same group (the loop at 0x166daf0; a failure releases the group with `ioctl 0x6f640002`). It then queries slots 0 to 6 of the group (`ioctl 0x6f640004`, "Failed ODSY_MM_QUERY (group) ioctl") and, when reply flag bit 4 is set, stores the reply's value in the region table at +0x2b80 at the index in the reply halfword at +0x20. The reply halfwords at +0x10 and +0x12 locate a 16-byte record in that table (chunk number the upper 6 bits, record the lower 10, 0x166dcc4 to 0x166dcf0): its halfword at +4 is set to the entry of the table at region +0x2b7c plus 1 and its halfword at +6 to 1, and after a `sync` (0x166dd14) the group's slots 0 to 6 are made resident (`ioctl 0x6f640003`, "Failed MakeResident"). The last request, `ioctl 0x6f64002a` with the buffer id and the group, associates the buffer with a drawable ("ODSY_PBUF_ASSOC failed: '%s'" with `strerror`). The kernel entry points and their numbers are in `docs/ioctls.md`.
+  Allocates the board memory behind a GLX pixel buffer and attaches a drawable to it (argument: the pixel-buffer record; result 1, or 0 after any failure, which also releases the group). The record supplies the screen at +0x10, the buffer id word at +4 (`lw` at 0x166dda4), width at +0xc and height at +0xe. It builds a 72-byte memory-allocation request (layout in `docs/opengl.md`): -1 at +0 and +4 (no group yet), object type 0, and a description with byte 0 = 3, byte 1 = 2 shifted left by a size code, sizes at description +16 and +20 equal to the width and height and +24 equal to 1. The size code comes from a table in the board-private record: the entry at +0x50 selected by the GLX window private's word at +0x48 minus the screen record's word at +0x24 when the buffer has no window with a visual, otherwise the 0x44-byte entry at +0x4c selected by the visual (word +0xc of the entry). Byte 15 is 1 when the GLX private's word at +0x54 is 0x18. The request goes out as `ioctl(descriptor, 0x6f640001, block)` at 0x166db30 (kernel `gfP_OdsyMMalloc`); a failure prints "Unable to allocate pbuffer depth %d width %d height %d" (the depth printed is always 16), and a returned group of -1 prints "ODSY_MM_ALLOC didn't fail but we got back an invalid handle". When the reply flag word (+52) has bit 1 set, its value at +56 is stored in the 0x2e80-byte region that `odsyKernInit` made, in the table at region +0x2c00 at the index in the reply halfword at +64. If the GLX private's byte at +0x50 is nonzero and byte 15 is 1, the request is repeated for object types 3 and 4 with byte 1 set to 8, which adds two further objects to the same group (the loop at 0x166daf0; a failure releases the group with `ioctl 0x6f640002`). It then queries slots 0 to 6 of the group (`ioctl 0x6f640004`, "Failed ODSY_MM_QUERY (group) ioctl") and, when reply flag bit 4 is set, stores the reply's value in the region table at +0x2b80 at the index in the halfword 0x20 bytes into the reply (`lhu` at 0x166dcb4). The reply halfwords at +0x10 and +0x12 locate a 16-byte record in that table (chunk number the upper 6 bits, record the lower 10, 0x166dcc4 to 0x166dcf0): the halfword 4 bytes into it is set to the entry of the table at region +0x2b7c plus 1 (`sh` at 0x166dd04) and the halfword 6 bytes into it to 1 (`sh` at 0x166dd0c), and after a `sync` (0x166dd14) the group's slots 0 to 6 are made resident (`ioctl 0x6f640003`, "Failed MakeResident"). The last request, `ioctl 0x6f64002a` with the buffer id and the group, associates the buffer with a drawable ("ODSY_PBUF_ASSOC failed: '%s'" with `strerror`). The kernel entry points and their numbers are in `docs/ioctls.md`.
 - `odsyQueryHyperpipeConfig` (`usr/lib/X11/dyDDX/odyssey.so`, 0x165f7f0, 444 bytes): **established.**
   Fetches the current display-pipe configuration of a screen from the kernel and caches each pipe's name (arguments: screen number, configuration id, a pointer for the pipe count; result a pointer to the module's table of pipe records, or 0 with the count 0). If the compositors have not been opened (`odsyCompositorFDsOpen` zero) and `odsyQueryCompositors..DC` finds some, `odsyProgramCompositors..GC` runs first (0x165f964 to 0x165f980). It sends the 524-byte configuration block with the id at +8 as `ioctl(descriptor, 0x6f640011, block)` (kernel `gfP_OdsyHPgetConfig`), the descriptor being the word at +100 of the structure behind the screen's record in `screenInfo`. A nonzero result stores 0 in the count. On success the count (the first word of the reply) is stored through the third argument, then for every pipe (16-byte entries from block +0xc) the entry's words at +0x10, +0x0c and +0x14 are copied into the module's pipe table (stride 0x5c) and the board-information request `ioctl(descriptor, 0x66, {entry word at +0x18, buffer, 0x28})` fills a 40-byte buffer whose name is copied with `strcpy` into the 0x54-byte name records (the loop at 0x165f8e0 to 0x165f954); a result of -1 calls `perror`, stores 0 and returns 0.
 - `odsyQueryHyperpipeNetwork` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1665e00, 712 bytes): **established.**
@@ -265,7 +265,7 @@ In this section and the four after it, **established** means the decompilation w
 ## Platform parameter routines
 
 - `odsySetPltParam` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1685800, 1204 bytes): **established.**
-  Applies one platform parameter that a client (`setmon`, the compositor tools) sends to the X module (arguments: screen, unused, parameter id, data size, data pointer; result 0, or 2 for a bad id or size). The id indexes a 0x5d-entry jump table at 0x172a6e0 (an id of 0x5d or more, or any id whose entry is the default, prints "odsySetPltParam: Unknown paramId = 0x%x" and returns 2); the entries I decoded are these, and every other id below 0x5d takes the default. Ids 0 and 1 need a size of 0x20 and call `odsySetFBConfig..KD` with the data. Id 2 needs size 4 and sends the video timing generator control request `ioctl(descriptor, 0x6f640020, {2, value})` ("odsyEnableVTG: ODSY_BRDMGR_VTG_CONTROL Failed"). Id 3 needs at least 4 bytes: it stores the first word at +0x88 of the board-private record and, when that word is nonzero, copies the string that follows into the record at +0x8c and calls `odsyReadPFDArgs..LD` on it. Id 6 needs size 0xc and sends the data through `odsyCmpIoctl` as a compositor register write ("odsy compositor write: ioctl failed."), and id 7 needs size 0xc and only stores its first byte, second byte and halfword at +8 into the record's +0x80, +0x81 and +0x82 (the compositor read request that `odsyQryPltParam` completes). Id 8 needs size 0x30 and passes the data unchanged as a two-wire command to `ioctl 0x6f640021` (kernel `gfP_OdsyBRDMGRi2ccmd`); a negative result prints the command and returns 2, and a nonzero status word at +0xc in the reply prints "status = %d" and returns 2. Ids 9 and 0x5b build a 48-byte two-wire command in the stack from the data and send it with `ioctl 0x6f640021`: id 9 needs size 0x38 and sends command 4 with the word at +0 copied into the command's word at +8 and the low halfword of the word at +4 copied into its halfword at +0, the data pointer set to +9, the count taken from the byte at +0x31 and the low halfword of the word at +0x34 copied as well; id 0x5b needs size 0xa8 and sends command 0x10 with a byte count of four times the first word, the low byte of the word at +4 as the command's byte at +6 and the data pointer set to +8 ("odsy I2C sendbytes platform param: ioctl failed"). Id 0xc needs size 4 and stores its word in the module's word at 0x173aa10; id 0x5c does nothing and returns 0. The names of ids 6 to 9 and 0x5b to 0x5c follow `docs/vpro-tool-functions.md` where its callers are read; the commands' meaning on the wire is **inferred** from the compositor routines in this file.
+  Applies one platform parameter that a client (`setmon`, the compositor tools) sends to the X module (arguments: screen, unused, parameter id, data size, data pointer; result 0, or 2 for a bad id or size). The id indexes a 0x5d-entry jump table at 0x172a6e0 (an id of 0x5d or more, or any id whose entry is the default, prints "odsySetPltParam: Unknown paramId = 0x%x" and returns 2); the entries I decoded are these, and every other id below 0x5d takes the default. Ids 0 and 1 need a size of 0x20 and call `odsySetFBConfig..KD` with the data. Id 2 needs size 4 and sends the video timing generator control request `ioctl(descriptor, 0x6f640020, {2, value})` ("odsyEnableVTG: ODSY_BRDMGR_VTG_CONTROL Failed"). Id 3 needs at least 4 bytes: it stores the first word at +0x88 of the board-private record and, when that word is nonzero, copies the string that follows into the record at +0x8c and calls `odsyReadPFDArgs..LD` on it. Id 6 needs size 0xc and sends the data through `odsyCmpIoctl` as a compositor register write ("odsy compositor write: ioctl failed."), and id 7 needs size 0xc and only stores its first byte, second byte and halfword 8 bytes in (`lhu` at 0x1685a68) into the record's +0x80, +0x81 and +0x82 (the compositor read request that `odsyQryPltParam` completes). Id 8 needs size 0x30 and passes the data unchanged as a two-wire command to `ioctl 0x6f640021` (kernel `gfP_OdsyBRDMGRi2ccmd`); a negative result prints the command and returns 2, and a nonzero status word at +0xc in the reply prints "status = %d" and returns 2. Ids 9 and 0x5b build a 48-byte two-wire command in the stack from the data and send it with `ioctl 0x6f640021`: id 9 needs size 0x38 and sends command 4 with the word at +0 copied into the command's word 8 bytes in and the low halfword of the word at +4 copied into the command's first halfword, the data pointer set to +9, the count taken from the byte at +0x31 and the low halfword of the word at +0x34 copied as well; id 0x5b needs size 0xa8 and sends command 0x10 with a byte count of four times the first word, the low byte of the word at +4 as the command's byte at +6 and the data pointer set to +8 ("odsy I2C sendbytes platform param: ioctl failed"). Id 0xc needs size 4 and stores its word in the module's word at 0x173aa10; id 0x5c does nothing and returns 0. The names of ids 6 to 9 and 0x5b to 0x5c follow `docs/vpro-tool-functions.md` where its callers are read; the commands' meaning on the wire is **inferred** from the compositor routines in this file.
 - `odsyQryPltParam` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15f3e10, 888 bytes): **established.**
   Answers one platform parameter query (arguments: screen, unused, parameter id, data size, data pointer; result 0, or 2 for a failed request, a bad size or an unknown id). For ids 0 and 1 it needs a size of 0x20 and fills the block with the frame-buffer depth from the module's table `bufferDepths` indexed by the board-private record's word at +0x10, the record's word at +0x14, and six floats made from the unsigned words at record +0x20 to +0x34, each multiplied by 2^-20 (the constant at rodata 0x172e164 is 0x35800000); I read the six as 12.20 fixed-point per-screen values (**inferred**; this routine does not name them). Id 7 needs size 0xc: it copies the record's three values at +0x80, +0x81 and +0x82 into the block and runs `odsyCmpIoctl` on it, the read half of the compositor register access ("odsy compositor read: ioctl failed."). Id 10 needs size 0x38 and sends command 3 as a two-wire read (`ioctl 0x6f640021`, "odsy I2C recvbytes platform param: ioctl failed"). Id 0x1f needs size 0xa4 and sends command 0xf with a one-word reply buffer at +4; the reply word is stored at +0 of the data, or 0 on a failure ("odsy I2C vbob platform param: ioctl failed"). Any other id prints "odsyQueryPlatformParam: Unknown paramId = 0x%x" and returns 2; a wrong size prints "odsyQryPltParam: Illegal dataSize = 0x%x".
 
@@ -379,7 +379,7 @@ The resource-manager client keeps one record per screen (the screen-private slot
 - `SetReservedID` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1719690, 1612 bytes): **established** (whole listing 0x1719690 to 0x1719cd8).
   Turns a display identifier into a reserved one and re-homes the windows that were on it (arguments: screen, identifier; no result). It first takes every window off the entry's list: the loop at 0x171976c saves the list head in a stack array, calls the screen record's procedure at +0x20 with (window, 0, 0) when the window record's flag byte at +6 has bit 3 set (halfword bit 11), unlinks it from its present entry with the common sequence and sets its identifier word to -1. Then the entry's two mode words (+0xa0, +0xa4) are replaced by the words at +0xb0 and +0xb4 of the same entry, the screen record's procedure at +0x2c is called with (screen, identifier) (its job is **unknown**: it is called through a table slot the module does not name here), and the entry's flags get bit 1 set. Each saved window is then given a new identifier by what is `FindFreeID`'s logic written inline: a class-1 window on a screen whose flag word has bit 0 set takes the identifier equal to the identifier count; a window that has no identifier, or whose entry has flag bit 2, takes the first entry of its class with bit 0 clear and no windows (`AssignID..FG`), or else a reserved unused entry that it clears (only when the record's word +0x30 is nonzero), or else `StealID` (0x17198e4 and 0x1719af0). If the entry's old flags had bit 4 set (0x10) that bit is ORed into the flags of the window's new entry and the procedure at +0x20 is called with (window, 8, 1) (0x17198ec to 0x1719930).
 - `FindFreeCID` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15b8810, 2628 bytes): **established** (whole listing 0x15b8810 to 0x15b9244 and its tail blocks; the three assignment blocks differ only in which entry they use).
-  Gives a window a clip identifier, the analogue of `FindFreeID` for the screen record's second table (argument: window; no result). The clip-identifier table is at +0x94 of the screen record (0x1c-byte entries: list head, list tail, flag halfword at +8, class halfword at +0xa, window count at +0xc), the count is at +4 and a round-robin cursor at +0x88; the window record keeps its clip identifier at +0x18, its list links at +0x3c (previous) and +0x40 (next) and its on-list flag as bit 6 (0x40) of its first halfword. A screen procedure at +0x5c is called with the window; when it returns 0 the window takes the identifier equal to the count (word at +4) and the routine returns (0x15b886c, 0x15b904c). Otherwise a window that already has an identifier whose entry has flag bit 2 clear keeps it. Else it scans the entries other than the window's own for one of the window's class (or, for a class-1 window, any entry when the screen flag word has bit 1 set) with flag bit 0 clear: the first one with no windows is taken at once (the old entry is left by the unlink, which keeps bit 0, adds 4 for a reserved entry, sets 2 when the list is not empty and 4 when its head and tail differ), the window is appended to the entry's list, its on-list flag is set, the count is raised and 2 ORed into the flags (6 when the count reaches 2). An entry in use is remembered as a victim when the byte at +4 of its head window's record differs from the byte at +6. Without a free entry, the last victim (or, with no victim, the entry that the round-robin cursor reaches after it is incremented and wrapped to 1 when it passes the count) is cleared: its head window gets the screen procedure at +0x20 with (window, 2, 0), is unlinked and put on entry 0's list with clip identifier 0, and the requesting window is unlinked from its own entry and appended to the victim's (0x15b8958 to 0x15b9244). That the head-window bytes at +4 and +6 are a pending-versus-current state is **inferred**.
+  Gives a window a clip identifier, the analogue of `FindFreeID` for the screen record's second table (argument: window; no result). The clip-identifier table is at +0x94 of the screen record (0x1c-byte entries: list head, list tail, flag halfword at +8, class halfword at +0xa, window count at +0xc), the count is at +4 and a round-robin cursor at +0x88; the window record keeps its clip identifier at +0x18, its list links at +0x3c (previous) and +0x40 (next) and its on-list flag as bit 6 (0x40) of its first halfword. A screen procedure at +0x5c is called with the window; when it returns 0 the window takes the identifier equal to the count (word at +4) and the routine returns (0x15b886c, 0x15b904c). Otherwise a window that already has an identifier whose entry has flag bit 2 clear keeps it. Else it scans the entries other than the window's own for one of the window's class (or, for a class-1 window, any entry when the screen flag word has bit 1 set) with flag bit 0 clear: the first one with no windows is taken at once (the old entry is left by the unlink, which keeps bit 0, adds 4 for a reserved entry, sets 2 when the list is not empty and 4 when its head and tail differ), the window is appended to the entry's list, its on-list flag is set, the count is raised and 2 ORed into the flags (6 when the count reaches 2). An entry in use is remembered as a victim when the byte 4 bytes into its head window's record (`lbu` at 0x15b892c) differs from the byte 6 bytes into it (`lbu` at 0x15b8930). Without a free entry, the last victim (or, with no victim, the entry that the round-robin cursor reaches after it is incremented and wrapped to 1 when it passes the count) is cleared: its head window gets the screen procedure at +0x20 with (window, 2, 0), is unlinked and put on entry 0's list with clip identifier 0, and the requesting window is unlinked from its own entry and appended to the victim's (0x15b8958 to 0x15b9244). That the head-window bytes at +4 and +6 are a pending-versus-current state is **inferred**.
 
 ## Empty and constant-result routines of the shared X code
 
@@ -1019,7 +1019,7 @@ Each of these loops was executed over random words with a small interpreter of t
 - `odsyReadPFDArgs..LD` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16e7820, 936 bytes): **inferred** (from the decompilation; the ten symbol names were read from rodata).
   Reads the ten pixel-format limit values from a symbol-database file (arguments: screen, file name; result 0, or 10 when the file cannot be opened). A name that starts with "/" is the path (truncated to 1023 bytes); any other name is copied (at most 511 bytes), ".vfo" is appended unless it already contains it, and `odsyMakeFileName..EB` builds the path under "/usr/gfx/ucode/ODSY/vof". `SDBreadOpenDatabase` opens it (failure prints "odsyReadPFDArgs: failed to open %s"). Ten scalars are then read in this order into the board record at +0x10c, +0x110, +0x114, +0x118, +0x11c, +0x120, +0x124, +0x128, +0x12c and +0x130: ODY_GEN_lPFD, ODY_GEN_hPFD, ODY_GEN_lPFD_HI, ODY_GEN_hPFD_HI, ODY_GEN_lPFD_LO, ODY_GEN_hPFD_LO, ODY_GEN_lPSD, ODY_GEN_hPSD, ODY_GEN_lHMASK and ODY_GEN_hHMASK (rodata 0x172c508 to 0x172c630). The first missing symbol prints "odsyGetScalar: unable to find %s" and stops the reading, but the result stays 0; the database is closed on every path.
 - `odsyNewGCOps..E` (`usr/lib/X11/dyDDX/odyssey.so`, 0x166d410, 1244 bytes): **inferred** (from the decompilation; the default table was read from rodata).
-  Builds and caches a drawing-operation table for a graphics context (arguments: context, cache index). It allocates 0x54 bytes (21 words) and copies the default table from rodata 0x172adb0: fill-spans `nfbFillSpans`, set-spans, put-image, copy-area, copy-plane, `odsyPolyPnt`, `miWideLine`, `miPolySegment`, `miPolyRectangle`, `odsyPolyArc`, `odsyFillPolygon`, `nfbPolyFillRect`, `miPolyFillArc`, the four text entries, `odsyImageGlyphBlt`, `miPolyGlyphBlt`, `miPushPixels` and a zero. The context state word at +0x10 gives the fill style in bits 24 and 25 and the line style in bits 30 and 31. For a zero-width line (halfword +6): a solid line with solid fill takes `odsyLineSS` (polyline), `odsySegmentSS` (segments) and `odsyZeroPolyArc`; a solid line with other fill takes `miZeroLine`, `miPolySegment` and `miZeroPolyArc`; a dashed line with solid fill takes `odsyLineSD` and `odsySegmentSD`, or `nfbLineSD` and `miPolySegment` when the byte at +4 of the context's private record is 0; a dashed line with another fill takes `miZeroDashLine` and `miPolySegment`, with `miZeroPolyArc` for arcs in all dashed cases. A wide dashed line takes `odsyWideDash`. Solid fill sets fill-spans to `odsySolidFillSpans`, fill-polygon to `odsyFillPolygonSolid`, poly-fill-rect to `odsyPolyFillRectSolid` and poly-glyph to `odsyPolyGlyphBlt`. When the font (context +0x2c) has bit 14 of its word +0xc set and the sum of its halfwords at +0x44 and +0x46 is at most 16, its width (+0x16 minus +0x20) of 6, 8 or 9 selects the `odsyImageGlyphBltTE6`, `TE8` or `TE9` image routine and, for solid fill, the matching `odsyPolyGlyphBltTE` routine. Stippled and opaque-stippled fills with a stipple pixmap (context +0x24) of at most 32 by 32 take `odsyPolyFillRectStippled`, or `odsyPolyFillRectStippled32x32` and `odsyFillPolygonStippled` when it is exactly 32 wide and its height is a power of two. The table is stored in `odsyGCOpsCache` at the index.
+  Builds and caches a drawing-operation table for a graphics context (arguments: context, cache index). It allocates 0x54 bytes (21 words) and copies the default table from rodata 0x172adb0: fill-spans `nfbFillSpans`, set-spans, put-image, copy-area, copy-plane, `odsyPolyPnt`, `miWideLine`, `miPolySegment`, `miPolyRectangle`, `odsyPolyArc`, `odsyFillPolygon`, `nfbPolyFillRect`, `miPolyFillArc`, the four text entries, `odsyImageGlyphBlt`, `miPolyGlyphBlt`, `miPushPixels` and a zero. The context state word at +0x10 gives the fill style in bits 24 and 25 and the line style in bits 30 and 31. For a zero-width line (halfword +6): a solid line with solid fill takes `odsyLineSS` (polyline), `odsySegmentSS` (segments) and `odsyZeroPolyArc`; a solid line with other fill takes `miZeroLine`, `miPolySegment` and `miZeroPolyArc`; a dashed line with solid fill takes `odsyLineSD` and `odsySegmentSD`, or `nfbLineSD` and `miPolySegment` when the byte 4 bytes into the context's private record is 0 (`lbu` at 0x166d7f8); a dashed line with another fill takes `miZeroDashLine` and `miPolySegment`, with `miZeroPolyArc` for arcs in all dashed cases. A wide dashed line takes `odsyWideDash`. Solid fill sets fill-spans to `odsySolidFillSpans`, fill-polygon to `odsyFillPolygonSolid`, poly-fill-rect to `odsyPolyFillRectSolid` and poly-glyph to `odsyPolyGlyphBlt`. When the font (context +0x2c) has bit 14 of its word +0xc set and the sum of its halfwords at +0x44 and +0x46 is at most 16, its width (+0x16 minus +0x20) of 6, 8 or 9 selects the `odsyImageGlyphBltTE6`, `TE8` or `TE9` image routine and, for solid fill, the matching `odsyPolyGlyphBltTE` routine. Stippled and opaque-stippled fills with a stipple pixmap (context +0x24) of at most 32 by 32 take `odsyPolyFillRectStippled`, or `odsyPolyFillRectStippled32x32` and `odsyFillPolygonStippled` when it is exactly 32 wide and its height is a power of two. The table is stored in `odsyGCOpsCache` at the index.
 
 ## Rectangle copy, window copy and circle routines of the 2D layer
 
@@ -2004,236 +2004,354 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   at 0x16867b8). The following values include the words from B + 0x2b40 and
   B + 0x2b44, each sent through that pointer (`lw` at 0x16867c0, `sw` at
   0x16867c4, `lw` at 0x16867cc, `sw` at 0x16867d0). Role unknown. Its calls include `ErrorF` (`jalr` at 0x16862fc).
-- `odsyFillPolygonStippled` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16d5630):
-  **Established.** The routine loads a halfword from offset 0xe of the
-  pointer at entry register `a1` + 0x24 (`lw` at 0x16d5654, `lhu` at 0x16d5704).
-  When the comparison is reached and that halfword is not 0x20, the `beq`
-  at 0x16d5780 falls through to `odsyGrowBitmap` (`jalr` at 0x16d57a0).
-  A zero return takes the `beqz` at 0x16d57c0 to a tail call of
-  `miFillPolygon` (`jr` at 0x16d796c). If the return is nonzero, the branch
-  falls through and the routine subtracts one from the word at offset 0x18
-  of the original pointer (`lw` at 0x16d57c8, `addiu` at 0x16d57cc,
-  `sw` at 0x16d57d4). That store is in the delay slot of the `beqz` at
-  0x16d57d0, which takes the branch when the decremented value is zero.
-
-  On the path where the `beq` at 0x16d5838 falls through because its
-  compared values differ, it writes 0x10443, 0xfa, 0x10046, 0x10046 and
-  0x10019 in that order through the pointer loaded from the selected
-  structure (`lw` at 0x16d5848, `sw` at 0x16d5854, `sw` at 0x16d5860,
-  `sw` at 0x16d586c, `sw` at 0x16d5874, `sw` at 0x16d5880). Role unknown.
-- `odsyCopySDRAM..AB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16ed8a0):
-  **Established.** The N32 routine occupies 13844 bytes. It obtains a pointer P by indexing an array reached through the seventh
-  argument (`lw` at 0x16ed8c4, `lw` at 0x16ed8cc, `lw` at 0x16ed8dc,
-  `lw` at 0x16ed8f4). It obtains a separate state pointer B through
-  `buzz_regionsp` and the index reached from P+0x5c (`lw` at 0x16ed8f8,
-  `lw` at 0x16ed904, `lw` at 0x16ed914, `lw` at 0x16ed930). The purpose
-  of the word it clears at B+0x84 is unknown (`sw` at 0x16ed938).
-
-  On the path comparing four halfwords in P, the `bne` at 0x16ed974 is
-  taken when P+0x6c differs from P+0x60 (`lh` at 0x16ed968, `lh` at
-  0x16ed964). If it falls through, the `bne` at 0x16ed984 takes its branch
-  when P+0x70 differs from P+0x64 (`lh` at 0x16ed980, `lh` at 0x16ed970).
-  Its fall-through reaches the `bne` at 0x16ed994, taken when P+0x6e
-  differs from P+0x62 (`lh` at 0x16ed990, `lh` at 0x16ed988). If that
-  falls through, the `bne` at 0x16ed9a4 is taken when P+0x72 differs
-  from P+0x66 (`lh` at 0x16ed9a0, `lh` at 0x16ed998). A taken comparison
-  reaches stores that update those four cached halfwords (`sh` at 0x16ed9d0,
-  `sh` at 0x16ed9d4, `sh` at 0x16ed9d8, `sh` at 0x16ed9e4). The resulting
-  path also writes words at B+0x2b40 and B+0x2b44 (`sw` at 0x16ed9ec,
-  `sw` at 0x16eda0c), and writes 0 and 0xffffff at B+0x2b5c and B+0x2b58
-  respectively (`sw` at 0x16eda10, `sw` at 0x16eda24).
-
-  On that update path, the `beqz` at 0x16eda40 skips the following four
-  stores when its tested register is zero; the tool cannot resolve that
-  register's value at the branch. On fall-through the four words 0x10443,
-  0xfa, 0x10046, 0x10046 go through the pointer loaded from P (`lw` at
-  0x16eda50, `sw` at 0x16eda54, `sw` at 0x16eda5c, `sw` at 0x16eda64,
-  `sw` at 0x16eda6c). The next word through that pointer is 0x1204b (`sw`
-  at 0x16eda80). This is a partial list of the emitted words, not a complete
-  command stream.
-
-  A loop-path test takes the `blez` at 0x16ee3f4 when register `a1`
-  is nonpositive, and falls through when it is positive; its origin is
-  not resolved at that branch. The routine's
-  calls include `odsyCopyRectBody` (`jalr` at 0x16ee868). The hardware's
-  interpretation of these words and the routine's role are unknown.
-- `odsyWideDash` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16cf3d0):
-  **Established.** The N32 routine occupies 25176 bytes. It obtains a
-  pointer P by indexing the array reached through the first argument (`lw`
-  at 0x16cf3d0, `lw` at 0x16cf464, `lw` at 0x16cf418, `lw` at 0x16cf470).
-  On this path it obtains a separate state pointer B by indexing
-  `buzz_regionsp` with the value reached through P+0x5c (`lw` at 0x16cf480,
-  `lw` at 0x16cf490, `lw` at 0x16cf494, `lw` at 0x16cf4ac). The `beqz`
-  at 0x16cf4b8 takes the return path when the fourth argument is zero and
-  falls through otherwise. Its delay-slot store clears B+0x84 on both paths
-  (`sw` at 0x16cf4bc). The meaning of that state word is unknown.
-
-  On a later path, `beqz` at 0x16cfa74 skips the next four output stores
-  when its tested register is zero; the facts tool cannot resolve that
-  register's value at the branch. Otherwise the routine clears B+0x1cb8
-  (`sw` at 0x16cfa7c) and writes 0x10443, 0xfa, 0x10046 and 0x10046 through
-  the pointer loaded from P (`lw` at 0x16cfa80, `sw` at 0x16cfa8c, `sw` at
-  0x16cfa98, `sw` at 0x16cfaa4, `sw` at 0x16cfaac). The common continuation
-  writes 0x1204b through that pointer (`sw` at 0x16cfabc). Subsequent words
-  include values read from B+0x2b40 and B+0x2b44 (`lw` at 0x16cfac4, `sw`
-  at 0x16cfac8, `lw` at 0x16cfad0, `sw` at 0x16cfad4); this is not the
-  complete output sequence. The board's interpretation is unknown.
-
-  The routine's calls include `miWideDash` (`jalr` at 0x16d00f4), with its
-  first four arguments equal to the first four arguments passed to this
-  routine. Its other `miWideDash` call sites include `jalr` at 0x16d0518,
-  `jalr` at 0x16d1a6c and `jalr` at 0x16d1b2c.
-- `odsyCopyRectSingleBuffer..F` (`usr/lib/X11/dyDDX/odyssey.so`,
-  0x16bada0): **Established effects; role unknown.** The `beqz` at
-  0x16bae04 takes the alternate path when the word loaded from the fifth
-  argument at +0x78 is zero (`lw` at 0x16badc8). On a later path, it writes
-  0x1204b through a loaded pointer (`sw` at 0x16bb0f4), followed by words
-  from a separately selected record, including the words at offsets 0x2b40
-  and 0x2b44 (`lw` at 0x16bb0fc, `sw` at 0x16bb100, `lw` at 0x16bb108,
-  `sw` at 0x16bb10c). Calls include `odsyCopyRectBody` with the original
-  first argument, a stack pointer, the original fifth argument and another
-  stack pointer (`jalr` at 0x16be548). These are selected effects from the
-  6.5.30m N32 routine, which occupies 16200 bytes.
-- `odsyDoBitBltSS..BB` (`usr/lib/X11/dyDDX/odyssey.so`, 0x17142a0):
-  **Established effects; role unknown.** One output path writes the words
-  0x10443, 0xfa, 0x10046, 0x10046 and 0x10019 through the same loaded
-  pointer (`sw` at 0x171477c, `sw` at 0x171478c, `sw` at 0x1714798,
-  `sw` at 0x17147a0, `sw` at 0x17147ac). The routine also calls
-  `odsyCopySDRAM..AB` at four sites: their `a3`, `a4` and `a5` arguments
-  are respectively 0, 0, 3 (`jalr` at 0x1716054); 0, 4, 3 (`jalr` at
-  0x1716078); 1, 0, 0 (`jalr` at 0x17160a8); and 0, 0, 2 (`jalr` at
-  0x17160d4). The 6.5.30m N32 routine occupies 7748 bytes. These are
-  selected effects; the output sequence and paths are not exhaustive.
-- `nfbGetImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x156ef10):
-  **Established.** The `beqz` at 0x156ef6c bypasses the following dispatch
-  when the first byte of argument 0 is zero (`lbu` at 0x156ef4c). Otherwise
-  the routine reads the byte at argument 0 + 3 (`lbu` at 0x156ef78). The
-  taken `beq` at 0x156ef80 selects `mfbGetImage` for value 1 (`jalr` at
-  0x156f63c), and the taken `beq` at 0x156ef8c selects `cfbGetImage` for
-  value 8 (`jalr` at 0x156f64c). Values 16 and 32 select `cfb16GetImage`
-  and `cfb32GetImage` through the taken `beq` at 0x156ef98
-  and `beq` at 0x156efa4 (`jalr` at 0x156f670, `jalr` at 0x156f62c). If none of
-  these comparisons is taken it calls `FatalError` (`jalr` at 0x156efb0).
-  When the dispatch is bypassed, the `beq` at 0x156f00c takes a separate
-  path if argument 5 is 2. Role unknown.
-- `nfbPutImage` (`usr/lib/X11/dyDDX/odyssey.so`, 0x171d350):
-  **Established.** The `beqz` at 0x171d388 takes the return path if
-  argument 5 is zero; otherwise the `beqz` at 0x171d390 takes the return
-  path if argument 6 is zero. The later `beqz` at 0x171d3a8 selects a path
-  calling `nfbPutPlane..PG` when the tested value is zero (`jalr` at
-  0x171d7e0). Its fall-through reaches the `beq` at 0x171d3b0, which
-  selects another call of `nfbPutPlane..PG` when the tested value is 1
-  (`jalr` at 0x171d83c). On the latter call, argument 2 is the byte at
-  argument 1 + 4 (`lbu` at 0x171d814). The source of the tested value is
-  unknown. The value 2 instead takes the `beq` at 0x171d3c0 to a path
-  with an indirect call whose target is unknown (`jalr` at 0x171d420).
-  Role unknown.
-- `nfbCopyArea` (`usr/lib/X11/dyDDX/odyssey.so`, 0x169c770):
-  **Established.** A zero argument 5 takes the `beqz` at 0x169c7b8 to a
-  path returning zero (`move` at 0x169cd94). If argument 5 is nonzero, a
-  zero argument 6 takes the `beqz` at 0x169c7c0 to the same return path.
-  On a later dispatch path it reads the byte at argument 2 + 4 (`lbu` at
-  0x169d044). The `bnez` at 0x169d04c is taken when that byte is less
-  than 9, and the selected path calls `cfbCopyArea` (`jalr` at 0x169d2d8).
-  Other calls include `miCopyArea` (`jalr` at 0x169d11c) and
-  `nfbDoBitBltSS` (`jalr` at 0x169d1b0). Role unknown.
-- `nfbReadDisplay` (`usr/lib/X11/dyDDX/odyssey.so`, 0x1694d50):
-  **Established.** The `beq` at 0x1694db4 takes a return-0x11 path when the
-  loaded index is -1 (`lw` at 0x1694d94, `addiu` at 0x1694d9c, `addiu` at
-  0x169568c). If the indexed pointer is zero, `beqz` at 0x1694dcc takes the
-  same return path (`lw` at 0x1694dc8). With that pointer nonzero, `beqz`
-  at 0x1694dd8 also takes it when the word read through the pointer is zero
-  (`lw` at 0x1694dd4). On a later path the routine calls `Xalloc` (`jalr`
-  at 0x1695cf4); the allocation size is unknown. The
-  hardware effect and broader role are unknown. Its 6.5.30m N32 body occupies
-  5452 bytes.
-- `nfbSetStereoMode` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15933e0):
-  **Established.** It compares the fourth argument with a word at +0xdc of
-  the object reached through the first argument's +0x74 pointer (`lw` at
-  0x15933e0, `lw` at 0x15933e8). The `beq` at 0x1593408 returns zero
-  when they match (`move` at 0x1593438). If they differ and that word is
-  zero, the `beqz` at 0x1593410 takes the path which saves words from the
-  first argument's offsets +0xd8, +0xdc and +0xe0 into the pointed object's
-  offsets +0xe4, +0xe8 and +0xec, respectively (`lw` at 0x1593454, `sw` at
-  0x1593458, `lw` at 0x159345c, `sw` at 0x1593464, `lw` at 0x1593468,
-  `sw` at 0x159346c), provided the fourth argument is nonzero: the `beqz`
-  at 0x159344c otherwise takes the alternate path. Role unknown beyond these
-  state updates. The 6.5.30m N32 routine occupies 1880 bytes.
-- `nfbStereoValidateSwapbuf..FJ` (`usr/lib/X11/dyDDX/odyssey.so`,
-  0x1618720): **Established.** It loads a word from the selected private
-  record at offset +0x34 (`lw` at 0x1618758). When that word is nonzero,
-  the `bnez` at 0x1618768 takes the path that calls the function pointer
-  loaded from offset +0xf4 of the object reached via the first argument's
-  +0x10 and then +0x74 pointers (`lw` at 0x161875c, `lw` at 0x1618894,
-  `lw` at 0x1618898, `jalr` at 0x161889c). The callback receives the
-  original first three arguments (`jalr` at 0x161889c). Another path makes
-  an indirect call with `a2` 0, `a3` 3 and `a4` -1 (`jalr` at 0x1618870).
-  The first callback's target and the routine's broader role are unknown.
-  Its 6.5.30m N32 body occupies 700 bytes.
-- `nfbSetDidFlags` (`usr/lib/X11/dyDDX/odyssey.so`, 0x167bcb0):
-  **Established.** In the 6.5.30m N32 build, it indexes the first argument's
-  +0x84 array using `nfbWindowPrivateIndex` to obtain P (`lw` at 0x167bcb0,
-  `lw` at 0x167bcbc, `lw` at 0x167bcc8). It calls `nfbComputeDidFlag..IG`
-  with the first argument, P, and the word reached through first argument
-  +0x10 then +0x74; the fourth call argument is unknown (`lw` at 0x167bd08,
-  `lw` at 0x167bd1c, `jalr` at 0x167bd18).
-
-  The `beqz` at 0x167bd2c takes a path that writes P+0x20 when
-  the first argument's word at +0x24 is zero (`lw` at 0x167bd20, `lw` at
-  0x167be9c, `sw` at 0x167beb0). The stored value is unresolved by the
-  facts tool. A later `beqz` at
-  0x167be14 reaches that same path when its tested register is zero, but
-  the facts tool does not resolve that register. When it falls through,
-  the routine sets bit 3 at P+0x20 (`lw` at 0x167be1c, `ori` at 0x167be24,
-  `sw` at 0x167be28). The private field's role is unknown.
-- `nfbStereoDrawCID..EJ` (`usr/lib/X11/dyDDX/odyssey.so`, 0x16d92f0):
-  **Established.** The 6.5.30m N32 code indexes the array at the first
-  argument's +0x84 using `nfbWindowPrivateIndex` to obtain P (`lw` at
-  0x16d930c, `lw` at 0x16d9310, `lw` at 0x16d9324). Its `beqz` at
-  0x16d9340 takes the zero path when P+0x34 is zero (`lw` at 0x16d932c).
-  On the nonzero path the `beq` at 0x16d9364 selects a separate path when
-  the word at [[argument 0 +0x10] +0x74] +0xdc equals 1 (`lw` at
-  0x16d9330, `lw` at 0x16d933c, `lw` at 0x16d9358).
-
-  One path copies P+0x34 to P+0x38 (`lw` at 0x16d9390, `sw` at 0x16d9394);
-  another stores 1 at P+0x38 (`sw` at 0x16d950c). Its indirect calls
-  include an unknown callback at `jalr` at 0x16d93f0 with the entry second
-  argument as its second argument; the facts tool leaves the fourth call
-  argument unknown. The field and callbacks' roles remain unknown.
-- `nfbInitHWCmapArrays` (`usr/lib/X11/dyDDX/odyssey.so`, 0x170eda0):
-  **Established.** The 6.5.30m N32 routine tests its first argument as a
-  signed value: the `blez` at 0x170edbc takes the nonpositive path. That
-  path sets `s0` to zero (`move` at 0x170f940) before the
-  common path stores a value in `odsyNumHWCmaps` (`sw` at 0x170ef84). The
-  facts tool does not resolve the stored value at that joined path.
-  The routine calls `Xalloc` (`jalr` at 0x170ef8c); the facts tool does not
-  resolve its requested size. Its result is stored in `odsyHWCmaps` (`sw` at 0x170ef98, in the
-  delay slot of `bne` at 0x170ef94). The branch falls
-  through on zero, which leads to a zero return (`move` at 0x170efa8, `jr`
-  at 0x170efb4).
-
-  After a nonzero first result it calls `Xalloc` again (`jalr` at
-  0x170efc8), storing the result in `odsyCmapGroups` (`sw` at 0x170efd8).
-  The `beqz` at 0x170efd4 takes the path that passes the pointer loaded from `odsyHWCmaps` to
-  `Xfree` when the second result is zero (`lw` at 0x170f94c, `jalr` at
-  0x170f948). The
-  table contents and any board effects are not established by these facts.
-- `nfbUninstallHWColormap` (`usr/lib/X11/dyDDX/odyssey.so`, 0x170fed0):
-  **Established.** In the 6.5.30m N32 routine the `beqz` at 0x170ff3c
-  takes the return path if the word at argument +0x44 is zero (`lw` at
-  0x170ff0c). Otherwise it loads the word through that pointer (`lw` at
-  0x170ff44); the `bltz` at 0x170ff48 takes the return path if it is
-  negative. Later the `beq` at 0x1710010 takes the return path when the
-  word at argument +8 equals the word reached through argument +0xc and
-  then +0x1c (`lw` at 0x1710008, `lw` at 0x1710004, `lw` at 0x171000c).
-
-  On the fall-through path it calls `LookupIDByType` with that latter word
-  and 6 (`jalr` at 0x171001c). Before calling `WalkTree` it writes -1 to the
-  word pointed to by argument +0x44 (`sw` at 0x17100cc). The `WalkTree`
-  call passes the word at argument +0xc, `TellLostMap`, and the address
-  argument +8 as its first three arguments (`jalr` at 0x17100d4). Any callback effects on
-  hardware are unknown.
-
+- `odsyFillPolygonStippled` — `usr/lib/X11/dyDDX/odyssey.so` — 0x16d5630
+  The routine occupies 11116 bytes.
+  It loads words from a1 at entry +0x10 and +0x24 (`lw` at 0x16d564c, 0x16d5654).
+  It writes the word 0x1043f to `[[([[a0+16]+436] + ([0x173935c] << 0x2))]]` +0x0 (`sw` at 0x16d60ec).
+  The `beq` at 0x16d5780 is taken to 0x16d57ec when `[[a1+36]+14]:2` equals 0x20 and falls through when it differs.
+  The `jalr` at 0x16d57a0 calls `odsyGrowBitmap` with a0=[a1+36], a1=unknown, a2=a2 at entry (arg2), a3=[[[a0+16]+116]+80], a4=[[a1+36]+12]:2 on the fall-through of `beq` at 0x16d5780.
+  The `beq` at 0x16d57c0 is taken to 0x16d792c when the return from `odsyGrowBitmap` is zero and falls through when it is nonzero.
+  The `jr` at 0x16d796c calls `miFillPolygon` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the taken arm of `beq` at 0x16d57c0 as a tail call.
+  The `beq` at 0x16d57d0 is taken to 0x16d7974 when `[[a1+36]+24]-1` is zero and falls through when it is nonzero.
+  The `jalr` at 0x16d797c calls `Xfree` with a0=[a1+36], a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x16d57d0.
+  The `beq` at 0x16d5768 is taken to 0x16d5780 when a2 equals 0x2 and falls through when it differs.
+  The `beq` at 0x16d5774 is taken to 0x16d6790 when a4 at entry is at least 0x4 signed and falls through when it is below 0x4 signed.
+  The `jr` at 0x16d67c8 calls `miFillPolygon` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the taken path of the `beq` at 0x16d5774 as a tail call.
+  The `beq` at 0x16d5c38 is taken to 0x16d5d10 when unknown at is at least 0xc unsigned and falls through when it is below 0xc unsigned.
+  The `jalr` at 0x16d5d30 calls `ErrorF` with a0=0x172ae60, a1=unknown, a2=0x80000, a3=0x1, a7=-0x8001 on the taken arm of `beq` at 0x16d5c38.
+  The instructions from 0x16d62f8 to 0x16d62fc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16d665c to 0x16d665c are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is unknown (`jr` at 0x16d5c7c).
+  At the other return v0 is `[a1+36]` (`jr` at 0x16d5cac).
+- `odsyCopySDRAM..AB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16ed8a0
+  The following initial-entry facts apply if all earlier instructions complete without an intervening exception, handler re-entry or external transfer, and the cited instruction executes and completes.
+  In that context, two word loads from a6 at entry (arg6) include +0x84 (`lw` at 0x16ed8c0) and +0x10 (`lw` at 0x16ed8c4).
+  In that context, a zero word is stored through an unknown base (`sw` at 0x16ed938).
+  In that context, `beq` at 0x16ed950 is taken to 0x16f0d28 when unknown at is zero and falls through when at is nonzero.
+  If each executes and completes, three zero-word stores have unknown bases (`sw` at 0x16eda10, 0x16eda14, 0x16eda18).
+  If the instructions execute in order and complete without an intervening exception, re-entry or control transfer, `lui` at 0x16eda1c and `ori` at 0x16eda20 precede three word stores of 0xffffff through unknown bases (`sw` at 0x16eda24, 0x16eda28, 0x16eda2c).
+  If the instructions execute in order and complete without an intervening exception, re-entry or control transfer, `addiu` at 0x16ee294 precedes a word store of 0x12f through an unknown base (`sw` at 0x16ee298).
+  The calls include the two sites below, conditional on each link instruction executing, its delay slot completing and the taken transfer completing; their execution is not established.
+  The `jalr` at 0x16ee868 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16efe28 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The target and internal, return or external-tail classification are unknown for each of the indirect transfers (`jr` at 0x16f0ce0, 0x16f0d14).
+  Dynamic callee-list completeness and return behavior are not established.
+  Role: unknown.
+- `odsyWideDash` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16cf3d0
+  The routine occupies 0x6258 bytes.
+  For the following initial-entry facts, each preceding instruction and the cited instruction must execute and complete without exception, re-entry or external transfer.
+  Under that condition, it loads a word from `a0 (arg0 at entry) +0x10` (`lw` at 0x16cf3d0).
+  Under that condition, it loads a word from `a1 (arg1 at entry) +0x4c` (`lw` at 0x16cf3f8).
+  Under that condition, it loads a word from `a0 (arg0 at entry) +0x84` (`lw` at 0x16cf410).
+  Under that condition, the branch to 0x16d0018 is taken when `t8` is zero and falls through when `t8` is nonzero; the value is unknown (`beq` at 0x16cf458).
+  If the instruction executes and completes, it stores the word 0x0 through an unknown base (`sw` at 0x16cfa7c).
+  If the sequence from 0x16cfa84 through 0x16cfa8c executes uninterrupted and completes, it stores the word 0x10443 through an unknown base (`sw` at 0x16cfa8c).
+  If the sequence from 0x16cfa94 through 0x16cfa98 executes uninterrupted and completes, it stores the word 0xfa through an unknown base (`sw` at 0x16cfa98).
+  If the sequence from 0x16cfa84 through 0x16cfaac executes uninterrupted and completes, two stores write the word 0x10046 through unknown bases (`sw` at 0x16cfaa4, 0x16cfaac).
+  If the sequence from 0x16cfab4 through 0x16cfabc executes uninterrupted and completes, it stores the word 0x1204b through an unknown base (`sw` at 0x16cfabc).
+  The calls include the following sites, conditional on the link instruction, delay slot and transfer completing.
+  The `jalr` at 0x16cfbe0 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d00f4 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d013c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d0518 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d076c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d0c28 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d19e4 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d1a6c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d1aa0 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d1b2c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16d3d4c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The non-link indirect transfers have unknown targets and unclassified roles (`jr` at 0x16d0010, 0x16d0120, 0x16d0c0c, 0x16d0fa8, 0x16d140c).
+  No return or unreachable range is proved.
+  Role: unknown.
+- `odsyCopyRectSingleBuffer..F` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16bada0
+  The routine occupies 16200 bytes.
+  If entry and the preceding instructions complete without exception, re-entry or external transfer, three word loads use a4 at entry (arg4) +0x78, +0x10 and +0x84, respectively (`lw` at 0x16badc8, 0x16badcc, 0x16badd4).
+  In the same initial context, an unsigned byte load uses a4 at entry (arg4) +0x2 (`lbu` at 0x16badd8).
+  In that context, a word load uses the value loaded from a4 at entry (arg4) +0x10 plus 0x74 (`lw` at 0x16badcc, 0x16bade4).
+  In that initial context, the `beq` at 0x16bae04 is taken to 0x16be4e0 when the value loaded by `lw` at 0x16badc8 is zero and falls through when that loaded value is nonzero.
+  If each instruction from 0x16bb068 through 0x16bb0a8 executes in order and completes without exception, re-entry or control transfer, three word stores write 0xffffff to unknown bases (`sw` at 0x16bb090, 0x16bb098, 0x16bb0a8).
+  If the instructions at 0x16bb8a8 and 0x16bb8ac execute in order and complete without exception, re-entry or control transfer, a word store writes 0x12f to an unknown base (`sw` at 0x16bb8ac).
+  If they execute and complete, three word stores write zero to unknown bases (`sw` at 0x16bb08c, 0x16bb094, 0x16bb09c).
+  The linked transfers include those below; each is conditional on the instruction, transfer and delay slot completing.
+  The `jalr` at 0x16bb62c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16bcd48 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16bd118 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16bd228 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16be4f0 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16be548 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jalr` at 0x16be5cc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown, f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The `jr` at 0x16bb5d4 has an unknown target and an unclassified transfer role.
+  The `jr` at 0x16bca28 has an unknown target and an unclassified transfer role.
+  The `jr` at 0x16bca54 has an unknown target and an unclassified transfer role.
+  No return or unreachable range is proved by this analysis.
+  Role: unknown.
+- `odsyDoBitBltSS..BB` — `usr/lib/X11/dyDDX/odyssey.so` — 0x17142a0
+  The routine occupies 7748 bytes.
+  It loads words from a0 at entry +0x10 and +0x84 (`lw` at 0x17142b4, 0x17142d0).
+  It stores the word 0x10443 to `[[([[a0+16]+436] + ([0x173935c] << 0x2))]]` +0x0 (`sw` at 0x171477c).
+  The `bne` at 0x1714540 is taken to 0x1714b34 when `[[([a0+132] + ([0x1739358] << 0x2))]+20]` is below 0xc unsigned, and falls through when it is at least 0xc unsigned.
+  The `jalr` at 0x1714568 calls `ErrorF` with a0=0x172ae60, a1=[[([a0+132] + ([0x1739358] << 0x2))]+20], a2=0x7, a3=([[([a0+132] + ([0x1739358] << 0x2))]+20] << 0x2), a5=0x3, a6=[([[a0+16]+436] + ([0x173935c] << 0x2))] on the fall-through of `bne` at 0x1714540.
+  The `beq` at 0x1715ffc is taken to 0x1716088 when 0x7 equals `[[([a0+132] + ([0x1739358] << 0x2))]+20]` and falls through when they differ.
+  The `beq` at 0x171601c is taken to 0x17160b8 when unknown a1 equals 0x8 and falls through when it differs.
+  The `bne` at 0x171602c is taken to 0x1714598 when unknown a1 differs from 0x10 and falls through when it equals 0x10.
+  The `jalr` at 0x1714598 calls `ErrorF` with a0=0x172b708, a1=unknown, a2=0x172acc0, a3=0x10, a5=one of -0x71, 0x10443 on the taken arm of `bne` at 0x171602c.
+  The `jalr` at 0x1716054 calls `odsyCopySDRAM..AB` with a0=unknown, a1=unknown, a2=unknown, a3=0x0, a4=0x0, a5=0x3, a6=a0 at entry (arg0) on the fall-through of the `bne` at 0x171602c.
+  The `jalr` at 0x1716078 calls `odsyCopySDRAM..AB` with a0=unknown, a1=unknown, a2=unknown, a3=0x0, a4=0x4, a5=0x3, a6=a0 at entry (arg0) on the fall-through of `bne` at 0x171602c.
+  The `jalr` at 0x17160a8 calls `odsyCopySDRAM..AB` with a0=unknown, a1=unknown, a2=unknown, a3=0x1, a4=0x0, a5=0x0, a6=a0 at entry (arg0) on the taken path of the `beq` at 0x1715ffc.
+  The `jalr` at 0x17160d4 calls `odsyCopySDRAM..AB` with a0=unknown, a1=unknown, a2=unknown, a3=0x0, a4=0x0, a5=0x2, a6=a0 at entry (arg0) on the taken path of the `beq` at 0x171601c.
+  The return value is unknown (`jr` at 0x17145c0).
+- `nfbGetImage` in `usr/lib/X11/dyDDX/odyssey.so` at 0x156ef10
+  A byte is read from a0 at entry (arg0) +0x0 (`lbu` at 0x156ef4c).
+  The `beq` at 0x156ef6c branches to 0x156efb8 when `[a0]:1` is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x156ef6c, a byte is read from a0 at entry (arg0) +0x3 (`lbu` at 0x156ef78).
+  On that fall-through, the `beq` at 0x156ef80 branches to 0x156f63c when `[a0+3]:1` equals 0x1 and falls through when it differs.
+  On the fall-through of `beq` at 0x156ef80, the `beq` at 0x156ef8c branches to 0x156f64c when `[a0+3]:1` equals 0x8 and falls through when it differs.
+  On the fall-through of `beq` at 0x156ef8c, the `beq` at 0x156ef98 branches to 0x156f670 when `[a0+3]:1` equals 0x10 and falls through when it differs.
+  On the fall-through of `beq` at 0x156ef98, the `beq` at 0x156efa4 branches to 0x156f624 when `[a0+3]:1` equals 0x20 and falls through when it differs.
+  The `jalr` at 0x156efb0 calls `FatalError` with a0=0x172f5a8, a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the fall-through of `beq` at 0x156efa4.
+  On paths reaching 0x156efb8, the `beq` at 0x156f00c branches to 0x156f4b4 when a5 at entry (arg5) equals 0x2 and falls through when it differs.
+  The `jalr` at 0x156f018 calls `ffs` with a0=a6 at entry (arg6), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x156f00c.
+  The `jalr` at 0x156f060 calls `bzero` with a0=a7 at entry (arg7), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x156f00c.
+  On that fall-through, the `beq` at 0x156f090 branches to 0x156f5f0 when a4 at entry (arg4) is zero and falls through when it is nonzero.
+  The `jalr` at 0x156f124 calls (unknown callee) with a0=sp-176, a1=unknown, a2=unknown, a3=a0 at entry (arg0) on paths where `beq` at 0x156f090 falls through.
+  The `jalr` at 0x156f504 calls (unknown callee) with a0=sp-176, a1=a7 at entry (arg7), a2=unknown, a3=a0 at entry (arg0) on the taken arm of `beq` at 0x156f00c.
+  On paths where `beq` at 0x156f090 falls through, `beq` at 0x156f150 branches to 0x156f274 when 0x8 equals `[a0+3]:1` and falls through when they differ.
+  On paths through the fall-through of `beq` at 0x156f090 and the fall-through of `beq` at 0x156f150, `beq` at 0x156f158 branches to 0x156f390 when 0x10 equals `[a0+3]:1` and falls through when they differ.
+  On paths through the fall-through of `beq` at 0x156f158, `beq` at 0x156f170 branches to 0x156f1f4 when unknown a6 is zero and falls through when it is nonzero.
+  On paths through the taken arm of `beq` at 0x156f150, `beq` at 0x156f290 branches to 0x156f314 when unknown a6 is zero and falls through when it is nonzero.
+  On paths through the taken arm of `beq` at 0x156f158, `beq` at 0x156f3b0 branches to 0x156f434 when unknown a6 is zero and falls through when it is nonzero.
+  On paths through the fall-through of `beq` at 0x156f158 and the fall-through of `beq` at 0x156f170, two word stores use unknown bases, including `sw` at 0x156f1b4, 0x156f1ec.
+  On paths through the taken arm of `beq` at 0x156f150 and the fall-through of `beq` at 0x156f290, two word stores use unknown bases, including `sw` at 0x156f2d4, 0x156f30c.
+  On paths through the taken arm of `beq` at 0x156f158 and the fall-through of `beq` at 0x156f3b0, two word stores use unknown bases, including `sw` at 0x156f3f4, 0x156f42c.
+  The `jalr` at 0x156f62c calls `cfb32GetImage [0x162e940]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the taken arm of `beq` at 0x156efa4.
+  The `jalr` at 0x156f63c calls `mfbGetImage [0x159fbb0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the taken arm of `beq` at 0x156ef80.
+  The `jalr` at 0x156f64c calls `cfbGetImage [0x15f4200]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the taken arm of `beq` at 0x156ef8c.
+  The `jalr` at 0x156f670 calls `cfb16GetImage [0x1667e40]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on the taken arm of `beq` at 0x156ef98.
+  The instructions from 0x156f288 to 0x156f28c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x156f3a8 to 0x156f3ac are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is unknown (`jr` at 0x156f61c).
+- `nfbPutImage` in `usr/lib/X11/dyDDX/odyssey.so` at 0x171d350
+  `beq` at 0x171d388 is taken to 0x171d3c8 when entry a5 is zero and falls through when it is nonzero (`beq` at 0x171d388).
+  On that fall-through, `beq` at 0x171d390 is taken to 0x171d3cc when entry a6 is zero and falls through when it is nonzero (`beq` at 0x171d390).
+  On the fall-through of `beq` at 0x171d390, a word is read from entry a1 +0x10 (`lw` at 0x171d398).
+  `bltz` at 0x171d3a0 is taken to 0x171d3e0 when ([a1+16] << 0xe) is negative signed and falls through when it is nonnegative signed (`bltz` at 0x171d3a0).
+  On paths reaching `beq` at 0x171d3a8, it is taken to 0x171d798 when unknown a6 is zero and falls through when it is nonzero (`beq` at 0x171d3a8).
+  On the fall-through of `beq` at 0x171d3a8, `beq` at 0x171d3b0 is taken to 0x171d7f0 when unknown a6 equals 0x1 and falls through when it differs (`beq` at 0x171d3b0).
+  On the fall-through of `beq` at 0x171d3b0, `beq` at 0x171d3c0 is taken to 0x171d3f4 when unknown a6 equals 0x2 and falls through when it differs (`beq` at 0x171d3c0).
+  The `jalr` at 0x171d420 calls `(unknown callee)` with a0=[[([a1+76] + ([0x1738f50] << 0x2))]+8], a1=a1 at entry (arg1), a2=unknown, a3=[[([a1+76] + ([0x1738f50] << 0x2))]+72]:1, a4=([0x1738f50] << 0x2), a7=sym(PixmapWidthPaddingInfo) on the taken path of `beq` at 0x171d3c0.
+  On that path, `beq` at 0x171d45c is taken to 0x171d54c when unknown a7 is zero and falls through when nonzero (`beq` at 0x171d45c).
+  On paths reaching `beq` at 0x171d5a0, it is taken to 0x171d3c8 when unknown t9 is at least unknown ra signed and falls through when t9 is less (`beq` at 0x171d5a0).
+  On that fall-through, `beq` at 0x171d5b8 is taken to 0x171d3c8 when unknown a6 is at least unknown at signed and falls through when a6 is less (`beq` at 0x171d5b8).
+  The `jalr` at 0x171d65c calls `(unknown callee)` with a0=sp-208, a1=unknown, a2=unknown, a3=unknown, a5=a0 at entry (arg0) on the fall-through of `beq` at 0x171d5b8.
+  On paths reaching `beq` at 0x171d6c0, it is taken to 0x171d66c when unknown t8 is at least unknown t9 signed and falls through when t8 is less (`beq` at 0x171d6c0).
+  On that fall-through, `beq` at 0x171d6cc is taken to 0x171d66c when unknown t1 is at least unknown t2 signed and falls through when t1 is less (`beq` at 0x171d6cc).
+  The `jalr` at 0x171d77c calls `(unknown callee)` with a0=sp-208, a1=unknown, a2=unknown, a3=unknown, a5=a0 at entry (arg0) on the fall-through of `beq` at 0x171d6cc.
+  The `jalr` at 0x171d7e0 calls `nfbPutPlane..PG [0x16d9600]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=a7 at entry (arg7), a4=sp-208, a7=0x0 on the taken path of `beq` at 0x171d3a8.
+  The `jalr` at 0x171d83c calls `nfbPutPlane..PG [0x16d9600]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+4]:1, a3=a7 at entry (arg7), a4=sp-208 on the taken path of `beq` at 0x171d3b0.
+  The v0 return is unknown (`jr` at 0x171d3d8).
+- `nfbCopyArea` in `usr/lib/X11/dyDDX/odyssey.so` at 0x169c770
+  The `beq` at 0x169c7b8 branches to 0x169cd78 when a5 is zero and falls through when a5 is nonzero.
+  On the fall-through of `beq` at 0x169c7b8, the `beq` at 0x169c7c0 branches to 0x169cd7c when a6 is zero and falls through when a6 is nonzero.
+  On the fall-through of `beq` at 0x169c7c0, a byte is read from a0 at entry (arg0) +0x0 (`lbu` at 0x169c7c8).
+  On the fall-through of `beq` at 0x169c7d8, words are read from a2 at entry (arg2) +0x4c and +0x10 (`lw` at 0x169c7e0, 0x169c7e4).
+  On the taken arm of `beq` at 0x169cb58, a byte is read from a2 at entry (arg2) +0x4 (`lbu` at 0x169d044).
+  On the fall-through of `beq` at 0x169ceb4, the `jr` at 0x169cec0 selects a jump-table target; targets include 0x169d208, 0x169d238 and 0x169d28c.
+  The `jalr` at 0x169c88c calls (unknown callee) with a0=sp-328, a1=sp-336, a2=0x1, a3=unknown, a7=(([a0+8]:2 + a3) + a5) on paths where the `beq` at 0x169c7d8 falls through.
+  The `jalr` at 0x169c8a4 calls (unknown callee) with a0=sp-328, a1=sp-328, a2=unknown, a3=unknown on paths where the `beq` at 0x169c7d8 falls through.
+  The `bltz` at 0x169c8ec branches to 0x169c960 when `([a1+124] << 0x14)` is signed less than zero and falls through when it is signed greater than or equal to zero on paths where the `bne` at 0x169c8dc falls through.
+  The `jalr` at 0x169c8fc calls (unknown callee) with a0=sp-328, a1=([a1+124] << 0x14), a2=unknown, a3=unknown on paths where the `bltz` at 0x169c8ec falls through.
+  The `beq` at 0x169c910 branches to 0x169c928 when unknown at is zero and falls through when it is nonzero on paths where the `beq` at 0x169c908 falls through.
+  The `jalr` at 0x169c920 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x169c910 falls through.
+  The `jalr` at 0x169c974 calls (unknown callee) with a0=sp-328, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x169c7d8 falls through.
+  The `jalr` at 0x169c994 calls (unknown callee) with a0=sp-328, a1=sp-328, a2=unknown, a3=unknown on paths where the `beq` at 0x169c7c0 falls through.
+  The `jalr` at 0x169ca9c calls (unknown callee) with a0=unknown, a1=unknown, a2=[a0+28], a3=[[([a2+76] + ([0x1738f50] << 0x2))]+48]:1, a4=[[([a2+76] + ([0x1738f50] << 0x2))]+52], a5=a1 at entry (arg1) on paths where the `beq` at 0x169c9b8 falls through.
+  The `jalr` at 0x169caf4 calls (unknown callee) with a0=sp-328, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x169c7c0 falls through.
+  The `beq` at 0x169cb08 branches to 0x169cb24 when unknown at is zero and falls through when it is nonzero on paths where the `beq` at 0x169cb00 falls through.
+  The `jalr` at 0x169cb18 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x169cb08 falls through.
+  The `beq` at 0x169cb00 branches to 0x169cdc4 when unknown s4 equals sp-312 and falls through when they differ on paths where the `beq` at 0x169c7c0 falls through.
+  The `jalr` at 0x169cdcc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x169cb00 is taken.
+  The `jalr` at 0x169ce08 calls `NotClippedByChildren` with a0=a0 at entry (arg0), a1=[a2+16], a2=unknown, a3=unknown on paths where the `bne` at 0x169cbd4 is taken.
+  The `jalr` at 0x169cee0 calls (unknown callee) with a0=sp-328, a1=sp-336, a2=0x1, a3=unknown, a7=([a0+10]:2 + [a0+14]:2) on paths where the `bne` at 0x169cd68 is taken.
+  The `beq` at 0x169cf68 branches to 0x169cfec when unknown a7 is zero and falls through when it is nonzero on paths where the `beq` at 0x169cf5c falls through.
+  The `jalr` at 0x169cf80 calls (unknown callee) with a0=sp-328, a1=sp-336, a2=0x1, a3=unknown on paths where the `beq` at 0x169cf68 falls through.
+  The `bne` at 0x169ce74 branches to 0x169cfb4 when `[a1]:1` is nonzero and falls through when it is zero on paths where the `beq` at 0x169c9b8 is taken.
+  The `jalr` at 0x169cfdc calls `nfbDoBitBltSP [0x1708840]` with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=sp-328, a3=unknown, a5=[a2+5]:1, a6=[a2+20] on paths where the `bne` at 0x169ce74 is taken.
+  The `jalr` at 0x169d004 calls (unknown callee) with a0=sp-328, a1=0x0, a2=0x0, a3=unknown on paths where the `beq` at 0x169c7c0 falls through.
+  The `beq` at 0x169c908 branches to 0x169d014 when unknown s4 equals sp-312 and falls through when they differ on paths where the `bltz` at 0x169c8ec falls through.
+  The `jalr` at 0x169d01c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x169c908 is taken.
+  The `bne` at 0x169d04c branches to 0x169d2b8 when `[a2+4]:1` is signed less than 0x9 and falls through when it is signed greater than or equal to 0x9 on paths where the `beq` at 0x169cb58 is taken.
+  The `beq` at 0x169d054 branches to 0x169d140 when unknown v0 is zero and falls through when it is nonzero on paths where the `bne` at 0x169d04c falls through.
+  The `jalr` at 0x169d07c calls `cfb16CopyArea [0x1709690]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on paths where the `beq` at 0x169d054 falls through.
+  The `jalr` at 0x169d11c calls `miCopyArea [0x15efeb0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on paths where the `beq` at 0x169cb44 is taken.
+  The `jalr` at 0x169d164 calls `cfb32CopyArea [0x1573be0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on paths where the `beq` at 0x169d054 is taken.
+  The `jalr` at 0x169d1b0 calls `nfbDoBitBltSS [0x17093b0]` with a0=a1 at entry (arg1), a1=sp-328, a2=unknown, a3=unknown, a4=[[([a2+76] + ([0x1738f50] << 0x2))]+48]:1, a5=[[([a2+76] + ([0x1738f50] << 0x2))]+52] on paths where the `beq` at 0x169ce9c is taken.
+  The `beq` at 0x169cdac branches to 0x169d1c0 when unknown t8 is zero and falls through when it is nonzero on paths where the `bltz` at 0x169cad8 is taken.
+  The `jalr` at 0x169d1f0 calls `miHandleExposures [0x15e1ef0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown on paths where the `beq` at 0x169cdac is taken.
+  The `jalr` at 0x169d228 calls `nfbDoBitBltSS [0x17093b0]` with a0=a1 at entry (arg1), a1=sp-328, a2=unknown, a3=unknown, a4=[[([a2+76] + ([0x1738f50] << 0x2))]+48]:1, a5=[[([a2+76] + ([0x1738f50] << 0x2))]+52] on paths where the `jr` at 0x169cec0 selects 0x169d208.
+  The `jalr` at 0x169d274 calls `miCopyArea [0x15efeb0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown on paths where the `jr` at 0x169cec0 selects 0x169d238.
+  The `jalr` at 0x169d2a8 calls `nfbDoBitBltSS [0x17093b0]` with a0=a1 at entry (arg1), a1=sp-328, a2=unknown, a3=unknown, a4=[[([a2+76] + ([0x1738f50] << 0x2))]+48]:1, a5=[[([a2+76] + ([0x1738f50] << 0x2))]+52] on paths where the `jr` at 0x169cec0 selects 0x169d28c.
+  The `jalr` at 0x169d2d8 calls `cfbCopyArea [0x16daaa0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on paths where the `bne` at 0x169d04c is taken.
+  The v0 return is unknown overall (`jr` at 0x169c958, 0x169cb38, 0x169cda0, 0x169d0a4, 0x169d18c).
+- `nfbReadDisplay` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1694d50
+  The `beq` at 0x1694dfc branches to 0x1695ce4 when entry a7 is zero and falls through when it is nonzero.
+  The `jalr` at 0x16950f8 calls (unknown callee) with a0=sp-424, a1=sp-432, a2=0x0, a3=unknown.
+  The `jalr` at 0x169510c calls (unknown callee) with a0=sp-408, a1=0x0, a2=0x0, a3=unknown.
+  The `jalr` at 0x169523c calls (unknown callee) with a0=sp-408, a1=sp-424, a2=unknown, a3=unknown.
+  The `jalr` at 0x16952e4 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=a6 at entry (arg6).
+  The `beq` at 0x169543c branches to 0x1695490 when unknown s0 equals `[([sym(WindowTable)] + ([a1] << 0x2))]` and falls through when they differ.
+  The `jalr` at 0x1695494 calls `ErrorF` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x1, a5=-0x1, a7=0x2, on the taken arm of `beq` at 0x169543c.
+  The `beq` at 0x16954bc branches to 0x16955dc when `(a1 & 0x4)` is zero and falls through when it is nonzero; a1 is unknown.
+  The `jalr` at 0x16954c8 calls `GetSpritePosition` with a0=sp-392, a1=sp-388, a2=unknown, a3=unknown, on the fall-through of `beq` at 0x16954bc.
+  The `jalr` at 0x16954d4 calls `GetSpriteCursor` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the fall-through of `beq` at 0x16954bc.
+  The `jalr` at 0x16955e0 calls (unknown callee) with a0=sp-408, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x16955f0 calls (unknown callee) with a0=sp-424, a1=unknown, a2=unknown, a3=unknown.
+  The `beq` at 0x16955f8 branches to 0x1695634 when unknown s0 is zero and falls through when it is nonzero.
+  The `jalr` at 0x169561c calls `WriteToClient` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=a5 at entry (arg5), on the fall-through of `beq` at 0x16955f8.
+  The `jalr` at 0x1695628 calls `Xfree` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the fall-through of `beq` at 0x16955f8.
+  The `jalr` at 0x1695cf4 calls `Xalloc` with a0=unknown, a1=a4 at entry (arg4), a2=[[([a1+436] + ([0x17385d0] << 0x2))]], a3=a7 at entry (arg7), a7=0xa5c70, on the taken arm of `beq` at 0x1694dfc.
+  The instructions from 0x169518c to 0x169518c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16951c4 to 0x16951cc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x169548c to 0x169548c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1695874 to 0x169587c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1695d0c to 0x1695d0c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1695d44 to 0x1695d4c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1696058 to 0x169605c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1696288 to 0x169628c are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is 0x0 or 0x11 (`jr` at 0x1695660, 0x1695698, 0x1695d3c).
+- `nfbSetStereoMode` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15933e0
+  The `beq` at 0x1593408 branches to 0x1593438 when entry a3 equals `[[a0+116]+220]` and falls through when they differ.
+  On the fall-through of `beq` at 0x1593408, the `beq` at 0x1593410 branches to 0x159344c when `[[a0+116]+220]` is zero and falls through when it is nonzero.
+  On the taken arm of `beq` at 0x1593410, the `beq` at 0x159344c branches to 0x1593584 when entry a3 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x159344c, `[a0+216]` is stored as a word at `[a0+116] +0xe4` (`sw` at 0x1593458).
+  On the same path, `[a0+220]` is stored as a word at `[a0+116] +0xe8` (`sw` at 0x1593464).
+  On that path, `[a0+224]` is stored as a word at `[a0+116] +0xec` (`sw` at 0x159346c).
+  The `jalr` at 0x1593574 calls (unknown callee) with a0=unknown, a1=sp-176, a2=0x0, a3=0x1, a7=[a0+116].
+  The `jalr` at 0x1593630 calls (unknown callee) with a0=unknown, a1=sp-176, a2=0x0, a3=[[a0+116]+248], a4=[([a0+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))], a5=([sym(rrmScreenPrivateIndex)] << 0x2), a6=[[a0+116]+244], a7=[([a0+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))].
+  The `jalr` at 0x159363c calls `FakeClientID` with a0=0x0, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x159364c calls `FakeClientID` with a0=0x0, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x1593758 calls `CreateColormap` with a0=ret(FakeClientID), a1=a0 at entry (arg0), a2=unknown, a3=sp-164, a4=0x0, a5=[[sym(serverClient)]].
+  The `beq` at 0x1593768 branches to 0x159378c when ret(CreateColormap) is zero and falls through when it is nonzero.
+  The `jalr` at 0x1593800 calls `CreateWindow` with a0=unknown, a1=[([sym(WindowTable)] + ([a0] << 0x2))], a2=0x0, a3=0x0, a4=[a0+8]:2, a5=[a0+10]:2, a6=0x0, a7=0x1, on the taken arm of `beq` at 0x1593768.
+  The `bne` at 0x159380c branches to 0x1593870 when ret(CreateWindow) is nonzero and falls through when it is zero.
+  The `jalr` at 0x1593880 calls `AddResource` with a0=unknown, a1=0xffffffffc0000001, a2=ret(CreateWindow), a3=unknown, on the taken arm of `bne` at 0x159380c.
+  The `beq` at 0x15938a0 branches to 0x15938bc when entry a3 is zero and falls through when it is nonzero.
+  The `jalr` at 0x15938b4 calls `MapWindow` with a0=unknown, a1=[sym(serverClient)], a2=unknown, a3=unknown, a4=a3 at entry (arg3), on the fall-through of `beq` at 0x15938a0.
+  The `bne` at 0x159393c branches to 0x15938e0 when entry a3 is nonzero and falls through when it is zero.
+  The `jalr` at 0x15938f0 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=a3 at entry (arg3), on the taken arm of `bne` at 0x159393c.
+  The `jalr` at 0x1593908 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `bne` at 0x159393c.
+  The `bne` at 0x1593944 branches to 0x159397c when unknown a4 differs from unknown a5 and falls through when they are equal.
+  The `jalr` at 0x1593958 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=a3 at entry (arg3), on the fall-through of `bne` at 0x1593944.
+  The `jalr` at 0x159396c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the fall-through of `bne` at 0x1593944.
+  The `jalr` at 0x159397c calls `SetWinSize` with a0=unknown, a1=unknown, a2=unknown, a3=a3 at entry (arg3), on the taken arm of `bne` at 0x1593944.
+  The `jalr` at 0x1593988 calls `SetBorderSize` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `bne` at 0x1593944.
+  The `jalr` at 0x1593a48 calls `strcmp` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x1593aa4 calls `FreeResource` with a0=unknown, a1=0x0, a2=unknown, a3=a3 at entry (arg3).
+  The `jalr` at 0x1593ab4 calls `FreeResource` with a0=unknown, a1=0x0, a2=unknown, a3=unknown.
+  The `jalr` at 0x1593ac8 calls `ConfineCursorToWindow` with a0=unknown, a1=0x0, a2=0x0, a3=unknown.
+  The `beq` at 0x1593a84 branches to 0x1593adc when entry a3 is zero and falls through when it is nonzero.
+  The `jalr` at 0x1593ae4 calls `MapWindow` with a0=unknown, a1=[sym(serverClient)], a2=a3 at entry (arg3), a3=unknown, on the taken arm of `beq` at 0x1593a84.
+  The `beq` at 0x1593b08 branches to 0x1593a90 when `[[([a0+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))]+76]` is zero and falls through when it is nonzero.
+  The `jalr` at 0x1593b1c calls (unknown callee) with a0=unknown, a1=unknown, a2=0x0, a3=unknown, on the fall-through of `beq` at 0x1593b08.
+  The instructions from 0x159369c to 0x159369c are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is 0x0 or 0x8 (`jr` at 0x1593430, 0x1593444, 0x1593784, 0x1593824).
+- `nfbStereoValidateSwapbuf..FJ` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1618720
+  A word is loaded from `[([a0+132] + ([0x1739358] << 0x2))] +0x34` (`lw` at 0x1618758).
+  The `bne` at 0x1618768 branches to 0x1618894 when `[[([a0+132] + ([0x1739358] << 0x2))]+52]` is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x1618768, the `beq` at 0x1618774 branches to 0x1618788 when `[a0+52]` is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x1618774, the `beq` at 0x1618780 branches to 0x1618894 when `[[a0+52]+4]` is zero and falls through when it is nonzero.
+  On paths where `beq` at 0x1618774 is taken or `beq` at 0x1618780 falls through, the `beq` at 0x161879c branches to 0x161895c when `[[[a0+16]+116]+220]` equals 0x1 and falls through when it differs.
+  The `jalr` at 0x16187c8 calls (unknown callee) with a0=sp-64, a1=sp-48, a2=0x0, a3=s8 at entry, a4=[a0+52], a6=[[[a0+16]+116]+220], a7=0x1 on paths reaching the `beq` at 0x161879c.
+  The `jalr` at 0x16187dc calls (unknown callee) with a0=sp-64, a1=a0+44, a2=sp-64, a3=unknown on paths reaching the `beq` at 0x161879c.
+  After either arm of `beq` at 0x161879c, the `beq` at 0x16187e8 branches to 0x16187f8 when unknown a6 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x16187e8, the `beq` at 0x16187f4 branches to 0x1618878 when unknown t2 is zero and falls through when it is nonzero.
+  On paths where `beq` at 0x16187e8 is taken or `beq` at 0x16187f4 falls through, the `beq` at 0x16187fc branches to 0x161897c when unknown s2 is zero and falls through when it is nonzero.
+  On the taken arm of the unconditional `beq` at 0x161883c, a halfword is stored to an unknown base (`sh` at 0x16188d8).
+  The `jalr` at 0x1618870 calls (unknown callee) with a0=unknown, a1=unknown, a2=0x0, a3=0x3, a4=-0x1, a5=a0 at entry (arg0) on paths where the `beq` at 0x16187fc falls through.
+  The `jalr` at 0x1618880 calls (unknown callee) with a0=sp-64, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x1618768 falls through.
+  The `jalr` at 0x161889c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jalr` at 0x16189ac calls (unknown callee) with a0=unknown, a1=unknown, a2=0x0, a3=0x3, a4=-0x1, a5=a0 at entry (arg0) on paths where the `beq` at 0x16187fc is taken.
+  The v0 return is ret(?) (`jr` at 0x16188bc).
+- `nfbSetDidFlags` in `usr/lib/X11/dyDDX/odyssey.so` at 0x167bcb0
+  A word is read from a0 at entry (arg0) +0x84 (`lw` at 0x167bcbc).
+  The `beq` at 0x167bce4 is taken to 0x167bebc when [a0+24] is zero and falls through when it is nonzero.
+  The `jalr` at 0x167bd18 calls `nfbComputeDidFlag..IG [0x166b990]` with a0=a0 at entry (arg0), a1=[([a0+132] + ([0x1739358] << 0x2))], a2=[[a0+16]+116], a3=unknown, a4=([0x1739358] << 0x2).
+  A word is read from a0 at entry (arg0) +0x24 (`lw` at 0x167bd20).
+  The `beq` at 0x167bd2c is taken to 0x167be98 when [a0+36] is zero and falls through when it is nonzero.
+  On the taken path of `beq` at 0x167bd2c, a word is stored at [([a0+132] + ([0x1739358] << 0x2))] +0x20 (`sw` at 0x167beb0).
+  The `beq` at 0x167be14 is taken to 0x167be98 when unknown v1 is zero and falls through when it is nonzero.
+  On the fall-through path of `beq` at 0x167be14, the word ([[([a0+132] + ([0x1739358] << 0x2))]+32] | 0x8) is stored at [([a0+132] + ([0x1739358] << 0x2))] +0x20 (`sw` at 0x167be28).
+  On the fall-through path of `beq` at 0x167bdbc, the `beq` at 0x167bdc8 is taken to 0x167bf80 when unknown a1 is zero and falls through when it is nonzero.
+  The `jalr` at 0x167bf80 calls `FindWindowWithOptional` with a0=unknown, a1=unknown, a2=unknown, a3=0x0, a6=0x2, a7=0x4 on the taken path of the `beq` at 0x167bdc8.
+  On the fall-through path of `beq` at 0x167bddc, the `beq` at 0x167bde8 is taken to 0x167bfa0 when unknown a1 is zero and falls through when it is nonzero.
+  The `jalr` at 0x167bfa0 calls `FindWindowWithOptional` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x2, a7=0x4 on the taken path of the `beq` at 0x167bde8.
+  On the taken path of `beq` at 0x167bdb4, the `beq` at 0x167bf4c is taken to 0x167bfc0 when unknown a1 is zero and falls through when it is nonzero.
+  The `jalr` at 0x167bfc0 calls `FindWindowWithOptional` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x2, a7=0x4 on the taken path of the `beq` at 0x167bf4c.
+  On paths through the taken arm of `beq` at 0x167bdb4, the `beq` at 0x167bf5c is taken to 0x167bfe0 when unknown a1 is zero and falls through when it is nonzero.
+  The `jalr` at 0x167bfe0 calls `FindWindowWithOptional` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a6=0x2, a7=0x4 on the taken path of the `beq` at 0x167bf5c.
+  On the fall-through path of `beq` at 0x167bed0, the `beq` at 0x167bef4 is taken to 0x167c000 when (a5 & 0x8) is zero and falls through when it is nonzero; a5 is unknown.
+  The `jalr` at 0x167c004 calls `ErrorF` with a0=0x172f138, a1=unknown, a2=unknown, a3=unknown, a6=-0x9 on the taken path of the `beq` at 0x167bef4.
+  The v0 return is unknown (`jr` at 0x167be90).
+- `nfbStereoDrawCID..EJ` — `usr/lib/X11/dyDDX/odyssey.so` — 0x16d92f0
+  The `beq` at 0x16d9414 is taken to 0x16d94b0 when `[[([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))]+8]` is zero and falls through when it is nonzero.
+  On the taken arm of the `beq` at 0x16d9414, the `beq` at 0x16d94b0 is taken to 0x16d9454 when unknown s4 is zero and falls through when it is nonzero.
+  The `jalr` at 0x16d93c4 calls (unknown callee) with a0=sp-176, a1=0x0, a2=0x0, a3=unknown, a4=[([a0+132] + ([0x1739358] << 0x2))], a7=0x10.
+  The `jalr` at 0x16d93dc calls (unknown callee) with a0=sp-64, a1=sp-48, a2=0x0, a3=unknown.
+  The `jalr` at 0x16d93f0 calls (unknown callee) with a0=sp-176, a1=a1 at entry (arg1), a2=sp-64, a3=unknown.
+  The `jalr` at 0x16d9424 calls (unknown callee) with a0=sp-64, a1=sp-176, a2=unknown, a3=unknown on the fall-through path of the `beq` at 0x16d9414.
+  The `jalr` at 0x16d9438 calls (unknown callee) with a0=sp-64, a1=0x0, a2=unknown, a3=unknown on the fall-through path of the `beq` at 0x16d9414.
+  The `jalr` at 0x16d944c calls (unknown callee) with a0=sp-176, a1=sp-176, a2=sp-64, a3=unknown on the fall-through path of the `beq` at 0x16d9414.
+  The `jalr` at 0x16d9468 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-176, a2=a2 at entry (arg2), a3=unknown.
+  The `jalr` at 0x16d9474 calls (unknown callee) with a0=sp-64, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x16d9488 calls (unknown callee) with a0=sp-176, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x16d94c4 calls (unknown callee) with a0=sp-176, a1=0x0, a2=unknown, a3=unknown on the taken path of the `beq` at 0x16d9414 and fall-through of the `beq` at 0x16d94b0.
+  The return value is that of the unknown callee at 0x16d9488 (`jr` at 0x16d94a8).
+- `nfbInitHWCmapArrays` — `usr/lib/X11/dyDDX/odyssey.so` — 0x170eda0
+  The routine occupies 3272 bytes.
+  It stores a word to absolute address 0x1739364 (odsyNumHWCmaps) (`sw` at 0x170ef84).
+  The `jalr` at 0x170ef8c calls `Xalloc` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `bne` at 0x170ef94 is taken to 0x170efbc when the `Xalloc` result is nonzero and falls through when it is zero; its delay slot stores the result as a word to absolute address 0x1739368 (odsyHWCmaps) (`sw` at 0x170ef98).
+  The `jalr` at 0x170efc8 calls `Xalloc` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on that taken path.
+  The `beq` at 0x170efd4 is taken to 0x170f944 when the `Xalloc` result is zero and falls through when it is nonzero; its delay slot stores the result as a word to absolute address 0x1739360 (odsyCmapGroups) (`sw` at 0x170efd8).
+  The `jalr` at 0x170f948 calls `Xfree` with a0=[0x1739368], a1=unknown, a2=ret(Xalloc), a3=unknown, on the taken path.
+  The `blez` at 0x170f000 is taken to 0x170f4b8 when a0 is at most zero (signed) and falls through when a0 is greater than zero (signed).
+  The `beq` at 0x170f164 is taken to 0x170f4d8 when unknown s4 equals unknown a2 and falls through when they differ.
+  The `jalr` at 0x170f180 calls `Xalloc` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of either branch.
+  The `beq` at 0x170f198 is taken to 0x170f75c when the `Xalloc` result is zero and falls through when it is nonzero.
+  On that taken path, the `blez` at 0x170f760 is taken to 0x170f7ac when unknown v1 is at most zero (signed) and falls through when it is greater than zero (signed).
+  The `jalr` at 0x170f798 calls `Xfree` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on that fall-through path.
+  The `bne` at 0x170f7a4 is taken to 0x170f790 when unknown s0 differs from unknown s2 and falls through when they are equal.
+  The `jalr` at 0x170f7d0 calls `Xfree` with a0=[0x1739360], a1=unknown, a2=unknown, a3=unknown, on the taken path of the `blez` at 0x170f760 or the fall-through path of the `bne` at 0x170f7a4.
+  The `jalr` at 0x170f7dc calls `Xfree` with a0=[0x1739368], a1=unknown, a2=unknown, a3=unknown, on the same paths.
+  The `blez` at 0x170f4f0 is taken to 0x170f800 when unknown a4 is at most zero (signed) and falls through when it is greater than zero (signed).
+  On that fall-through path the `beq` at 0x170f568 is taken to 0x170f51c when unknown a2 equals -0x1 and falls through when it differs.
+  The `beq` at 0x170f59c is taken to 0x170f520 when unknown a2 equals -0x1 and falls through when it differs.
+  The `jalr` at 0x170f528 calls `Xalloc` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the taken path of either `beq`.
+  The `beq` at 0x170f530 is taken to 0x170f8d4 when the `Xalloc` result is zero and falls through when it is nonzero.
+  The `jalr` at 0x170f544 calls `memcpy` with a0=ret(Xalloc), a1=unknown, a2=unknown, a3=unknown, on its fall-through path.
+  On the taken path of the `beq` at 0x170f530, the `beq` at 0x170f8e4 is taken to 0x170f8fc when unknown t2 is zero and falls through when it is nonzero.
+  The `jalr` at 0x170f8f0 calls `Xfree` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on its fall-through path.
+  The instructions from 0x170f048 to 0x170f04c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x170f578 to 0x170f57c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x170f834 to 0x170f83c are not reached by any path from the entry, and their branches are not listed.
+  It returns 0x0 (`jr` at 0x170efb4, 0x170f7f8, 0x170f968) or 0x1 (`jr` at 0x170f8cc, 0x170f934).
+- `nfbUninstallHWColormap` in `usr/lib/X11/dyDDX/odyssey.so` at 0x170fed0
+  It reads words at entry a0 +0xc, +0x0 and +0x44 (`lw` at 0x170fed0, 0x170fed4, 0x170ff0c).
+  `beq` at 0x170ff3c is taken to 0x17101f4 when [a0+68] is zero and falls through when it is nonzero (`beq` at 0x170ff3c).
+  On the fall-through of `beq` at 0x170ff3c, `bltz` at 0x170ff48 is taken to 0x17101f4 when [[a0+68]] is negative signed and falls through when it is nonnegative signed (`bltz` at 0x170ff48).
+  On paths that reach `beq` at 0x1710010, it is taken to 0x17101f4 when [a0+8] equals [[a0+12]+28], and falls through when they differ (`beq` at 0x1710010).
+  The `jalr` at 0x171001c calls `LookupIDByType` with a0=[[a0+12]+28], a1=0x6, a2=unknown, a3=unknown on the fall-through of `beq` at 0x1710010.
+  On that fall-through, a word is loaded from sym(rrmScreenPrivateIndex) +0x0 (`lw` at 0x171002c).
+  On paths after `beq` at 0x1710010 falls through, `beq` at 0x1710054 is taken to 0x17100a8 when [[(([sym(rrmScreenPrivateIndex)] << 0x2) + [[a0+12]+436])]+48] is zero and falls through when it is nonzero (`beq` at 0x1710054).
+  On the fall-through of `beq` at 0x1710054, a halfword is read and written through unknown bases (`lhu` at 0x1710080; `sh` at 0x171008c).
+  After either arm of `beq` at 0x1710054, the word -0x1 is stored at [a0+68] +0x0 (`sw` at 0x17100cc).
+  The `jalr` at 0x17100d4 calls `WalkTree` with a0=[a0+12], a1=sym(TellLostMap), a2=a0+8, a3=[(([sym(rrmScreenPrivateIndex)] << 0x2) + [[a0+12]+436])], a5=[a0+12] after either arm of `beq` at 0x1710054.
+  On that path, `beq` at 0x1710120 is taken to 0x1710144 when unknown t9 is zero and falls through when it is nonzero (`beq` at 0x1710120).
+  The `jalr` at 0x1710128 calls `(unknown callee)` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x1710120.
+  On paths that reach `beq` at 0x1710198, it is taken to 0x17101e4 when unknown a5 equals the word previously loaded from [a0+68] (`lw` at 0x170ff44) and falls through when they differ (`beq` at 0x1710198).
+  On its fall-through path, `beq` at 0x17101c4 is taken to 0x17101e4 when unknown t2 equals unknown a5 and falls through when they differ (`beq` at 0x17101c4).
+  The `jalr` at 0x17101ec calls `(unknown callee)` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when `beq` at 0x1710198 or `beq` at 0x17101c4 is taken.
+  The returned v0 is unknown (`jr` at 0x1710204).
 ## Frame-buffer image, copy and span routines
 
 - `nfbPolyFillRect` (`usr/lib/X11/dyDDX/odyssey.so`, 0x158f310):
