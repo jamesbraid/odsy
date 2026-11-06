@@ -12010,3 +12010,538 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glLightfv_size` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3303e30
   The `beqz` at 0x3303e58 is taken to 0x3303e6c when its tested value is unsigned at least 0xa and falls through when it is less; hostfacts leaves the tested value unknown (`beqz` at 0x3303e58).
   The return values in `v0` are one of -1 or 1 at 0x3303e70, 1 at 0x3303e78, 0x3303e80, 0x3303e88 and 0x3303e90, 3 at 0x3303e98, and 4 at 0x3303ea0, 0x3303ea8, 0x3303eb0 and 0x3303eb8 (`addiu` at 0x3303e68, 0x3303e6c, 0x3303e7c, 0x3303e84, 0x3303e8c, 0x3303e94, 0x3303e9c, 0x3303ea4, 0x3303eac, 0x3303eb4, 0x3303ebc; `jr` at 0x3303e70, 0x3303e78, 0x3303e80, 0x3303e88, 0x3303e90, 0x3303e98, 0x3303ea0, 0x3303ea8, 0x3303eb0, 0x3303eb8).
+
+## 64-bit IP30 library: fragment lighting list execution
+
+- `__glle_ColorMaterial` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3349fb0
+  A doubleword is read at absolute 0x10f8 (`ld` at 0x3349fc8).
+  A word is read at entry `a0` +0 (`lw` at 0x3349fd0).
+  A word is read at entry `a0` +4 in the call delay slot (`jalr` at 0x3349fd8; `lw` at 0x3349fdc).
+  The `jalr` at 0x3349fd8 calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3349ff0 returns entry `a0` +0x8 in `v0` (`daddiu` at 0x3349fe8).
+- `__glle_Lightfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334a270
+  A doubleword is read at absolute 0x1140 (`ld` at 0x334a288).
+  A word is read at entry `a0` +0 (`lw` at 0x334a290).
+  A word is read at entry `a0` +4 in the first call delay slot (`jalr` at 0x334a29c; `lw` at 0x334a2a0).
+  A word is read at entry `a0` +4 in the second call delay slot (`jalr` at 0x334a2a8; `lw` at 0x334a2ac).
+  The `jalr` at 0x334a29c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3).
+  The `jalr` at 0x334a2a8 calls `__glLightfv_size [0x3303e30]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x334a2dc returns an unknown value in `v0` (`daddu` at 0x334a2d4).
+- `__glle_Lightiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334a2f0
+  A doubleword is read at absolute 0x1150 (`ld` at 0x334a308).
+  A word is read at entry `a0` +0 (`lw` at 0x334a310).
+  A word is read at entry `a0` +4 in the first call delay slot (`jalr` at 0x334a31c; `lw` at 0x334a320).
+  A word is read at entry `a0` +4 in the second call delay slot (`jalr` at 0x334a328; `lw` at 0x334a32c).
+  The `jalr` at 0x334a31c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3).
+  The `jalr` at 0x334a328 calls `__glLightiv_size [0x3303ec0]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x334a35c returns an unknown value in `v0` (`daddu` at 0x334a354).
+- `__glle_LightModelfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334a370
+  A doubleword is read at absolute 0x1160 (`ld` at 0x334a384).
+  A word is read at entry `a0` +0 (`lw` at 0x334a390).
+  A word is read at entry `a0` +0 in the second call delay slot (`jalr` at 0x334a3a4; `lw` at 0x334a3a8).
+  The `jalr` at 0x334a398 calls (unknown callee) with a0=[a0], a1=a0+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x334a3a4 calls `__glLightModelfv_size [0x3303f00]` with a0=[a0], a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x334a3d8 returns an unknown value in `v0` (`daddu` at 0x334a3d0).
+- `__glle_LightModeliv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334a3e0
+  A doubleword is read at absolute 0x1170 (`ld` at 0x334a3f4).
+  A word is read at entry `a0` +0 (`lw` at 0x334a400).
+  A word is read at entry `a0` +0 in the second call delay slot (`jalr` at 0x334a414; `lw` at 0x334a418).
+  The `jalr` at 0x334a408 calls (unknown callee) with a0=[a0], a1=a0+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x334a414 calls `__glLightModeliv_size [0x3303f50]` with a0=[a0], a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x334a448 returns an unknown value in `v0` (`daddu` at 0x334a440).
+- `__glle_Materialiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334a570
+  The `ld` at 0x334a588 loads a doubleword from abs 0x11a0.
+  The `lw` at 0x334a590 loads a word from a0 (arg0 at entry) +0x0.
+  The `ld` at 0x334a5a4 loads a doubleword from abs 0x3392bb8.
+  The `lw` at 0x334a5a0 reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334a59c.
+  The `jalr` at 0x334a59c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3); its delay slot is `lw` at 0x334a5a0.
+  The `lw` at 0x334a5ac reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334a5a8.
+  The `jalr` at 0x334a5a8 calls `__glMaterialiv_size [0x3304040]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown; its delay slot is `lw` at 0x334a5ac.
+  The `jr` at 0x334a5dc returns unknown v0 (`daddu` at 0x334a5d4).
+- `__glle_FragmentColorMaterialSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d1a0
+  The `ld` at 0x334d1b8 loads a doubleword from abs 0x19b8.
+  The `lw` at 0x334d1c0 loads a word from a0 (arg0 at entry) +0x0.
+  The `lw` at 0x334d1cc reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334d1c8.
+  The `jalr` at 0x334d1c8 calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `lw` at 0x334d1cc.
+  The `jr` at 0x334d1e0 returns v0 = a0+8 (`daddiu` at 0x334d1d8).
+- `__glle_FragmentLightfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d1f0
+  The `lw` at 0x334d1fc loads a word from a0 (arg0 at entry) +0x0.
+  The `ld` at 0x334d210 loads a doubleword from abs 0x19c0.
+  The `lwc1` at 0x334d218 loads a word from a0 (arg0 at entry) +0x8.
+  The `lw` at 0x334d220 reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334d21c.
+  The `jalr` at 0x334d21c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f14=[a0+8]; its delay slot is `lw` at 0x334d220.
+  The `jr` at 0x334d234 returns v0 = a0+16 (`daddiu` at 0x334d22c).
+- `__glle_FragmentLightfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d240
+  The `ld` at 0x334d258 loads a doubleword from abs 0x19c8.
+  The `lw` at 0x334d260 loads a word from a0 (arg0 at entry) +0x0.
+  The `ld` at 0x334d274 loads a doubleword from abs 0x3392c10.
+  The `lw` at 0x334d270 reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334d26c.
+  The `jalr` at 0x334d26c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3); its delay slot is `lw` at 0x334d270.
+  The `lw` at 0x334d27c reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334d278.
+  The `jalr` at 0x334d278 calls `__glFragmentLightfvSGIX_size [0x3304440]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown; its delay slot is `lw` at 0x334d27c.
+  The `jr` at 0x334d2ac returns unknown v0 (`daddu` at 0x334d2a4).
+- `__glle_FragmentLightiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d2c0
+  The `lw` at 0x334d2cc loads a word from a0 (arg0 at entry) +0x0.
+  The `ld` at 0x334d2e0 loads a doubleword from abs 0x19d0.
+  The `lw` at 0x334d2e8 loads a word from a0 (arg0 at entry) +0x8.
+  The `lw` at 0x334d2f0 reads a word at entry `a0` +0x4 in the delay slot of the `jalr` at 0x334d2ec.
+  The `jalr` at 0x334d2ec calls (unknown callee) with a0=[a0], a1=[a0+4], a2=[a0+8], a3=a3 at entry (arg3); its delay slot is `lw` at 0x334d2f0.
+  The `jr` at 0x334d304 returns v0 = a0+16 (`daddiu` at 0x334d2fc).
+- `__glle_FragmentLightivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d310
+  The `ld` at 0x334d328 loads a doubleword from abs 0x19d8.
+  The `lw` at 0x334d330 loads a word from a0 (arg0 at entry) +0x0.
+  In the `jalr` at 0x334d33c delay slot, the `lw` at 0x334d340 reads a word from entry `a0` +0x4.
+  The `ld` at 0x334d344 loads a doubleword from abs 0x3392c18.
+  The `jalr` at 0x334d33c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3); its delay slot is `lw` at 0x334d340.
+  The `jalr` at 0x334d348 calls `__glFragmentLightivSGIX_size [0x3304570]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown; its delay slot is `lw` at 0x334d34c.
+  In the `jalr` at 0x334d348 delay slot, the `lw` at 0x334d34c reads a word from entry `a0` +0x4.
+  The `jr` at 0x334d37c returns unknown v0 (`daddu` at 0x334d374).
+- `__glle_FragmentLightModelfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d390
+  The `ld` at 0x334d3a8 loads a doubleword from abs 0x19e0.
+  The `lw` at 0x334d3b0 loads a word from a0 (arg0 at entry) +0x0.
+  The `jalr` at 0x334d3b8 calls (unknown callee) with a0=[a0], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=[a0+4]; its delay slot is `lwc1` at 0x334d3bc.
+  In the `jalr` at 0x334d3b8 delay slot, the `lwc1` at 0x334d3bc reads a floating-point word from entry `a0` +0x4.
+  The `jr` at 0x334d3d0 returns v0 = a0+8 (`daddiu` at 0x334d3c8).
+- `__glle_FragmentLightModelfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d3e0
+  The `ld` at 0x334d3f4 loads a doubleword from abs 0x19e8.
+  The `lw` at 0x334d400 loads a word from a0 (arg0 at entry) +0x0.
+  The `ld` at 0x334d410 loads a doubleword from abs 0x3392c20.
+  The `jalr` at 0x334d408 calls (unknown callee) with a0=[a0], a1=a0+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `daddiu` at 0x334d40c.
+  The `jalr` at 0x334d414 calls `__glFragmentLightModelfvSGIX_size [0x33045b0]` with a0=[a0], a1=unknown, a2=unknown, a3=unknown; its delay slot is `lw` at 0x334d418.
+  In the `jalr` at 0x334d414 delay slot, the `lw` at 0x334d418 reads a word from entry `a0` +0x0.
+  The `jr` at 0x334d448 returns unknown v0 (`daddu` at 0x334d440).
+- `__glle_FragmentLightModeliSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d450
+  The `ld` at 0x334d468 loads a doubleword from abs 0x19f0.
+  The `lw` at 0x334d470 loads a word from a0 (arg0 at entry) +0x0.
+  The `jalr` at 0x334d478 calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `lw` at 0x334d47c.
+  In the `jalr` at 0x334d478 delay slot, the `lw` at 0x334d47c reads a word from entry `a0` +0x4.
+  The `jr` at 0x334d490 returns v0 = a0+8 (`daddiu` at 0x334d488).
+- `__glle_FragmentLightModelivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d4a0
+  The `ld` at 0x334d4b4 loads a doubleword from abs 0x19f8.
+  The `lw` at 0x334d4c0 loads a word from a0 (arg0 at entry) +0x0.
+  The `ld` at 0x334d4d0 loads a doubleword from abs 0x3392c28.
+  The `jalr` at 0x334d4c8 calls (unknown callee) with a0=[a0], a1=a0+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3); its delay slot is `daddiu` at 0x334d4cc.
+  The `jalr` at 0x334d4d4 calls `__glFragmentLightModelivSGIX_size [0x3304600]` with a0=[a0], a1=unknown, a2=unknown, a3=unknown; its delay slot is `lw` at 0x334d4d8.
+  In the `jalr` at 0x334d4d4 delay slot, the `lw` at 0x334d4d8 reads a word from entry `a0` +0x0.
+  The `jr` at 0x334d508 returns unknown v0 (`daddu` at 0x334d500).
+
+## 64-bit IP30 library: fragment lighting list construction
+
+- `__gllc_FragmentColorMaterialSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3347ea0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3347ea0).
+  The `jalr` at 0x3347ed0 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x3347ed8 is taken to 0x3347eec when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x3347f10 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d1a0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), on the path taken by `bnez` at 0x3347ed8.
+  On the path taken by `bnez` at 0x3347ed8, the value 0x103 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x3347ef4; `sh` at 0x3347ef8).
+  On the path taken by `bnez` at 0x3347ed8, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x3347f08).
+  On the path taken by `bnez` at 0x3347ed8, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3347f14; `jalr` at 0x3347f10).
+  At return `v0` is unknown (`jr` at 0x3347ee4).
+- `__gllc_FragmentLightfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3347f20
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3347f20).
+  The `jalr` at 0x3347f54 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x3347f5c is taken to 0x3347f74 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x3347f9c calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d1f0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), on the path taken by `bnez` at 0x3347f5c.
+  On the path taken by `bnez` at 0x3347f5c, the value 0x104 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x3347f78; `sh` at 0x3347f7c).
+  On the path taken by `bnez` at 0x3347f5c, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x3347f88).
+  On the path taken by `bnez` at 0x3347f5c, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3347f94).
+  On the path taken by `bnez` at 0x3347f5c, entry `f14` is stored as a word at the return from `__glDlistAllocOp2` +0x20 (`swc1` at 0x3347fa0; `jalr` at 0x3347f9c).
+  At return `v0` is unknown (`jr` at 0x3347f6c).
+- `__gllc_FragmentLightfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3347fb0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3347fc4).
+  The `jalr` at 0x3347fe4 calls `__glFragmentLightfvSGIX_size [0x3304440]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x3347ffc is taken to 0x334807c when the unknown `s1` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x334800c calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `bltz` at 0x3347ffc.
+  When `bltz` at 0x3347ffc falls through, the `bnez` at 0x3348014 is taken to 0x3348034 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x3348058 calls `memcpy` with a0=ret(__glDlistAllocOp2)+32, a1=a2 at entry (arg2), a2=unknown, a3=unknown, when `bltz` at 0x3347ffc falls through and `bnez` at 0x3348014 is taken.
+  The `jalr` at 0x334806c calls `__glDlistAppendOp [0x328b3a0]` with a0=[0x1020]:8, a1=unknown, a2=0x334d240, a3=unknown, when `bltz` at 0x3347ffc falls through and `bnez` at 0x3348014 is taken.
+  The `jalr` at 0x334807c calls `__gllc_InvalidEnum [0x328b980]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the path taken by `bltz` at 0x3347ffc.
+  When `bltz` at 0x3347ffc falls through and `bnez` at 0x3348014 is taken, the value 0x105 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x3348038; `sh` at 0x334803c).
+  When `bltz` at 0x3347ffc falls through and `bnez` at 0x3348014 is taken, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x3348050).
+  When `bltz` at 0x3347ffc falls through and `bnez` at 0x3348014 is taken, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x334805c; `jalr` at 0x3348058).
+  At return `v0` is unknown (`jr` at 0x334802c).
+- `__gllc_FragmentLightiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348090
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3348090).
+  The `jalr` at 0x33480c4 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x33480cc is taken to 0x33480e4 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x334810c calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d2c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), on the path taken by `bnez` at 0x33480cc.
+  On the path taken by `bnez` at 0x33480cc, the value 0x106 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x33480e8; `sh` at 0x33480ec).
+  On the path taken by `bnez` at 0x33480cc, entry `a2` is stored as a word at the return from `__glDlistAllocOp2` +0x20 (`sw` at 0x3348100).
+  On the path taken by `bnez` at 0x33480cc, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x3348104).
+  On the path taken by `bnez` at 0x33480cc, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3348110; `jalr` at 0x334810c).
+  At return `v0` is unknown (`jr` at 0x33480dc).
+- `__gllc_FragmentLightivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348120
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3348134).
+  The `jalr` at 0x3348154 calls `__glFragmentLightivSGIX_size [0x3304570]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x334816c is taken to 0x33481ec when the unknown `s1` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x334817c calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `bltz` at 0x334816c.
+  When `bltz` at 0x334816c falls through, the `bnez` at 0x3348184 is taken to 0x33481a4 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x33481c8 calls `memcpy` with a0=ret(__glDlistAllocOp2)+32, a1=a2 at entry (arg2), a2=unknown, a3=unknown, when `bltz` at 0x334816c falls through and `bnez` at 0x3348184 is taken.
+  The `jalr` at 0x33481dc calls `__glDlistAppendOp [0x328b3a0]` with a0=[0x1020]:8, a1=unknown, a2=0x334d310, a3=unknown, when `bltz` at 0x334816c falls through and `bnez` at 0x3348184 is taken.
+  The `jalr` at 0x33481ec calls `__gllc_InvalidEnum [0x328b980]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the path taken by `bltz` at 0x334816c.
+  When `bltz` at 0x334816c falls through and `bnez` at 0x3348184 is taken, the value 0x107 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x33481a8; `sh` at 0x33481ac).
+  When `bltz` at 0x334816c falls through and `bnez` at 0x3348184 is taken, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x33481c0).
+  When `bltz` at 0x334816c falls through and `bnez` at 0x3348184 is taken, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x33481cc; `jalr` at 0x33481c8).
+  At return `v0` is unknown (`jr` at 0x334819c).
+- `__gllc_FragmentLightModelfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348200
+  The `ld` at 0x3348200 reads a doubleword from absolute 0x1020.
+  The `jalr` at 0x3348230 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x3348238 is taken to 0x334824c when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x3348270 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d390, a3=a0 at entry (arg0), on the path taken by `bnez` at 0x3348238 (`bnez` at 0x3348238).
+  On the path taken by `bnez` at 0x3348238, the value 0x108 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`sh` at 0x3348258) (`bnez` at 0x3348238) (`addiu` at 0x3348254).
+  On the path taken by `bnez` at 0x3348238, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3348268) (`bnez` at 0x3348238).
+  On the path taken by `bnez` at 0x3348238, entry `f13` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`swc1` at 0x3348274; `jalr` at 0x3348270) (`bnez` at 0x3348238).
+  At return `v0` is unknown (`jr` at 0x3348244).
+- `__gllc_FragmentLightModelfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348280
+  The `ld` at 0x33482a4 reads a doubleword from absolute 0x1020.
+  The `jalr` at 0x33482ac calls `__glFragmentLightModelfvSGIX_size [0x33045b0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x33482c4 is taken to 0x3348338 when the unknown `s1` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x33482d0 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `bltz` at 0x33482c4.
+  The `bnez` at 0x33482d8 is taken to 0x33482f8 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero, after `bltz` at 0x33482c4 falls through (`bltz` at 0x33482c4).
+  The `jalr` at 0x3348314 calls `memcpy` with a0=ret(__glDlistAllocOp2)+32, a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the path taken by `bnez` at 0x33482d8, after `bltz` at 0x33482c4 falls through (`bltz` at 0x33482c4; `bnez` at 0x33482d8).
+  The `jalr` at 0x3348328 calls `__glDlistAppendOp [0x328b3a0]` with a0=[0x1020]:8, a1=unknown, a2=0x334d3e0, a3=unknown, on the path taken by `bnez` at 0x33482d8, after `bltz` at 0x33482c4 falls through (`bltz` at 0x33482c4; `bnez` at 0x33482d8).
+  The `jalr` at 0x334833c calls `__gllc_InvalidEnum [0x328b980]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the path taken by `bltz` at 0x33482c4.
+  On the path taken by `bnez` at 0x33482d8, the value 0x109 is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`sh` at 0x3348304), after `bltz` at 0x33482c4 falls through (`bltz` at 0x33482c4; `bnez` at 0x33482d8) (`addiu` at 0x3348300).
+  On the path taken by `bnez` at 0x33482d8, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3348318; `jalr` at 0x3348314), after `bltz` at 0x33482c4 falls through (`bltz` at 0x33482c4; `bnez` at 0x33482d8).
+  At return `v0` is unknown (`jr` at 0x33482f0).
+- `__gllc_FragmentLightModeliSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348350
+  The `ld` at 0x3348350 reads a doubleword from absolute 0x1020.
+  The `jalr` at 0x3348380 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x3348388 is taken to 0x334839c when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x33483c0 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d450, a3=a0 at entry (arg0), a4=a1 at entry (arg1), on the path taken by `bnez` at 0x3348388 (`bnez` at 0x3348388).
+  On the path taken by `bnez` at 0x3348388, the value 0x10a is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`sh` at 0x33483a8) (`bnez` at 0x3348388) (`addiu` at 0x33483a4).
+  On the path taken by `bnez` at 0x3348388, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x33483b8) (`bnez` at 0x3348388).
+  On the path taken by `bnez` at 0x3348388, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x33483c4; `jalr` at 0x33483c0) (`bnez` at 0x3348388).
+  At return `v0` is unknown (`jr` at 0x3348394).
+- `__gllc_FragmentLightModelivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33483d0
+  The `ld` at 0x33483f4 reads a doubleword from absolute 0x1020.
+  The `jalr` at 0x33483fc calls `__glFragmentLightModelivSGIX_size [0x3304600]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x3348414 is taken to 0x3348488 when the unknown `s1` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x3348420 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `bltz` at 0x3348414.
+  The `bnez` at 0x3348428 is taken to 0x3348448 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero, after `bltz` at 0x3348414 falls through (`bltz` at 0x3348414).
+  The `jalr` at 0x3348464 calls `memcpy` with a0=ret(__glDlistAllocOp2)+32, a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the path taken by `bnez` at 0x3348428, after `bltz` at 0x3348414 falls through (`bltz` at 0x3348414; `bnez` at 0x3348428).
+  The `jalr` at 0x3348478 calls `__glDlistAppendOp [0x328b3a0]` with a0=[0x1020]:8, a1=unknown, a2=0x334d4a0, a3=unknown, on the path taken by `bnez` at 0x3348428, after `bltz` at 0x3348414 falls through (`bltz` at 0x3348414; `bnez` at 0x3348428).
+  The `jalr` at 0x334848c calls `__gllc_InvalidEnum [0x328b980]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the path taken by `bltz` at 0x3348414.
+  On the path taken by `bnez` at 0x3348428, the value 0x10b is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`sh` at 0x3348454), after `bltz` at 0x3348414 falls through (`bltz` at 0x3348414; `bnez` at 0x3348428) (`addiu` at 0x3348450).
+  On the path taken by `bnez` at 0x3348428, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3348468; `jalr` at 0x3348464), after `bltz` at 0x3348414 falls through (`bltz` at 0x3348414; `bnez` at 0x3348428).
+  At return `v0` is unknown (`jr` at 0x3348440).
+- `__gllc_FragmentMaterialfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33484a0
+  The `ld` at 0x33484a0 reads a doubleword from absolute 0x1020.
+  The `jalr` at 0x33484d4 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x33484dc is taken to 0x33484f4 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `jalr` at 0x334851c calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d510, a3=a0 at entry (arg0), a4=a1 at entry (arg1), on the path taken by `bnez` at 0x33484dc (`bnez` at 0x33484dc).
+  On the path taken by `bnez` at 0x33484dc, the value 0x10c is stored as a halfword at the return from `__glDlistAllocOp2` +0x14 (`sh` at 0x33484fc) (`bnez` at 0x33484dc) (`addiu` at 0x33484f8).
+  On the path taken by `bnez` at 0x33484dc, entry `a1` is stored as a word at the return from `__glDlistAllocOp2` +0x1c (`sw` at 0x3348508) (`bnez` at 0x33484dc).
+  On the path taken by `bnez` at 0x33484dc, entry `a0` is stored as a word at the return from `__glDlistAllocOp2` +0x18 (`sw` at 0x3348514) (`bnez` at 0x33484dc).
+  On the path taken by `bnez` at 0x33484dc, entry `f14` is stored as a word at the return from `__glDlistAllocOp2` +0x20 (`swc1` at 0x3348520; `jalr` at 0x334851c) (`bnez` at 0x33484dc).
+  At return `v0` is unknown (`jr` at 0x33484ec).
+- `__glle_Materialfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334a4f0
+  The `ld` at 0x334a508 loads a doubleword from absolute 0x1190.
+  The `lw` at 0x334a510 loads a word from entry `a0` +0x0.
+  In the delay slot of `jalr` at 0x334a51c, `lw` at 0x334a520 loads a word from entry `a0` +0x4.
+  The `jalr` at 0x334a51c calls (unknown callee) with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3).
+  The `jalr` at 0x334a528 calls `__glMaterialfv_size [0x3303f90]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown.
+  In the delay slot of `jalr` at 0x334a528, `lw` at 0x334a52c loads a word from entry `a0` +0x4.
+  The `jr` at 0x334a55c returns an unknown value in `v0`.
+- `__gllc_FragmentMaterialiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348630
+  The `ld` at 0x3348630 loads a doubleword from absolute 0x1020.
+  The `jalr` at 0x3348664 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x334866c is taken to 0x3348684 when the result of `__glDlistAllocOp2` is nonzero, and falls through when it is zero.
+  When `bnez` at 0x334866c is taken, `sh` at 0x334868c stores the halfword 0x10e at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x3348688).
+  When `bnez` at 0x334866c is taken, `sw` at 0x33486a0 stores entry `a2` as a word at the return from `__glDlistAllocOp2` +0x20.
+  When `bnez` at 0x334866c is taken, `sw` at 0x33486a4 stores entry `a1` as a word at the return from `__glDlistAllocOp2` +0x1c.
+  The `jalr` at 0x33486ac calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d5e0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2) on the taken path of the `bnez` at 0x334866c.
+  When `bnez` at 0x334866c is taken, `sw` at 0x33486b0 stores entry `a0` as a word at the return from `__glDlistAllocOp2` +0x18 in the delay slot of `jalr` at 0x33486ac.
+  The `jr` at 0x334867c returns an unknown value in `v0`.
+- `__gllc_LightEnviSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33487d0
+  The `ld` at 0x33487d0 loads a doubleword from absolute 0x1020.
+  The `jalr` at 0x3348800 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bnez` at 0x3348808 is taken to 0x334881c when the result of `__glDlistAllocOp2` is nonzero, and falls through when it is zero.
+  When `bnez` at 0x3348808 is taken, `sh` at 0x3348828 stores the halfword 0x110 at the return from `__glDlistAllocOp2` +0x14 (`addiu` at 0x3348824).
+  When `bnez` at 0x3348808 is taken, `sw` at 0x3348838 stores entry `a1` as a word at the return from `__glDlistAllocOp2` +0x1c.
+  The `jalr` at 0x3348840 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334d6b0, a3=a0 at entry (arg0), a4=a1 at entry (arg1) on the taken path of the `bnez` at 0x3348808.
+  When `bnez` at 0x3348808 is taken, `sw` at 0x3348844 stores entry `a0` as a word at the return from `__glDlistAllocOp2` +0x18 in the delay slot of `jalr` at 0x3348840.
+  The `jr` at 0x3348814 returns an unknown value in `v0`.
+- `__gllc_FragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3348530
+  The `lwc1` at 0x3348530 reads a floating-point word from entry `a2` +0x0.
+  The `ld` at 0x3348564 reads a doubleword from absolute 0x1020 in the call delay slot (`jalr` at 0x3348560).
+  The `jalr` at 0x3348560 calls `__glErrorCheckMaterial [0x32ba7a0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f14=[a2].
+  The `beqz` at 0x3348568 is taken to 0x3348590 when the result of `__glErrorCheckMaterial` is zero and falls through when it is nonzero.
+  The `jalr` at 0x3348574 calls `__gllc_Error [0x328bb10]` with a0=[0x1020]:8, a1=ret(__glErrorCheckMaterial), a2=unknown, a3=unknown on fall-through of the `beqz` at 0x3348568.
+  The `jalr` at 0x3348594 calls `__glFragmentMaterialfvSGIX_size [0x3304380]` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown on the taken path of the `beqz` at 0x3348568.
+  The `bltz` at 0x33485ac is taken to 0x3348618 when its unknown tested value is signed negative and falls through when it is nonnegative. This branch is reached when `beqz` at 0x3348568 is taken.
+  The `jalr` at 0x33485c0 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on fall-through of the `bltz` at 0x33485ac, after `beqz` at 0x3348568 is taken.
+  The `beqz` at 0x33485c8 is taken to 0x334857c when the result of `__glDlistAllocOp2` is zero and falls through when it is nonzero. It is reached when `beqz` at 0x3348568 is taken and `bltz` at 0x33485ac falls through.
+  The `jalr` at 0x33485f4 calls `memcpy` with a0=ret(__glDlistAllocOp2)+32, a1=a2 at entry (arg2), a2=unknown, a3=0x10d, a5=a0 at entry (arg0), a6=a1 at entry (arg1) on fall-through of the `beqz` at 0x33485c8, after `beqz` at 0x3348568 is taken and `bltz` at 0x33485ac falls through.
+  On fall-through of the `beqz` at 0x33485c8, the `sh` at 0x33485dc stores halfword 0x10d at the result of `__glDlistAllocOp2` +0x14, after `beqz` at 0x3348568 is taken and `bltz` at 0x33485ac falls through.
+  When `beqz` at 0x3348568 is taken, `bltz` at 0x33485ac falls through, and `beqz` at 0x33485c8 falls through, the `sw` at 0x33485ec stores entry `a1` as a word at the return from `__glDlistAllocOp2` +0x1c.
+  When `beqz` at 0x3348568 is taken, `bltz` at 0x33485ac falls through and `beqz` at 0x33485c8 falls through, the `sw` at 0x33485f8 stores entry `a0` as a word at the return from `__glDlistAllocOp2` +0x18 in the call delay slot (`jalr` at 0x33485f4).
+  The `jalr` at 0x3348608 calls `__glDlistAppendOp [0x328b3a0]` with a0=[0x1020]:8, a1=unknown, a2=0x334d560, a3=unknown on fall-through of the `beqz` at 0x33485c8, after `beqz` at 0x3348568 is taken and `bltz` at 0x33485ac falls through.
+  The `jalr` at 0x334861c calls `__gllc_InvalidEnum [0x328b980]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on the taken path of the `bltz` at 0x33485ac, after `beqz` at 0x3348568 is taken.
+  At the `jr` at 0x3348588, `v0` is unknown on some paths; hostfacts also reports the return from `__glDlistAppendOp` after `b` at 0x3348610 and the return from `__gllc_InvalidEnum` after `b` at 0x3348624.
+- `__gllc_FragmentMaterialivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33486c0
+  The `lw` at 0x33486d4 reads a word from entry `a2` +0x0.
+  The `ld` at 0x33486f0 reads a doubleword from absolute 0x1020.
+  The `jalr` at 0x33486f8 calls `__glErrorCheckMaterial [0x32ba7a0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beqz` at 0x3348700 is taken to 0x3348728 when the result of `__glErrorCheckMaterial` is zero and falls through when it is nonzero.
+  The `jalr` at 0x334870c calls `__gllc_Error [0x328bb10]` with a0=[0x1020]:8, a1=ret(__glErrorCheckMaterial), a2=unknown, a3=unknown on fall-through of the `beqz` at 0x3348700.
+  The `jalr` at 0x334872c calls `__glFragmentMaterialivSGIX_size [0x3304400]` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown on the taken path of the `beqz` at 0x3348700.
+  The `bltz` at 0x3348744 is taken to 0x33487b0 when its unknown tested value is signed negative and falls through when it is nonnegative. This branch is reached when `beqz` at 0x3348700 is taken.
+  The `jalr` at 0x3348758 calls `__glDlistAllocOp2 [0x328b310]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on fall-through of the `bltz` at 0x3348744, after `beqz` at 0x3348700 is taken.
+  The `beqz` at 0x3348760 is taken to 0x3348714 when the result of `__glDlistAllocOp2` is zero and falls through when it is nonzero. It is reached when `beqz` at 0x3348700 is taken and `bltz` at 0x3348744 falls through.
+  The `jalr` at 0x334878c calls `memcpy` with a0=ret(__glDlistAllocOp2)+32, a1=a2 at entry (arg2), a2=unknown, a3=0x10f, a5=a0 at entry (arg0), a6=a1 at entry (arg1) on fall-through of the `beqz` at 0x3348760, after `beqz` at 0x3348700 is taken and `bltz` at 0x3348744 falls through.
+  On fall-through of the `beqz` at 0x3348760, the `sh` at 0x3348774 stores halfword 0x10f at the result of `__glDlistAllocOp2` +0x14, after `beqz` at 0x3348700 is taken and `bltz` at 0x3348744 falls through.
+  When `beqz` at 0x3348700 is taken, `bltz` at 0x3348744 falls through, and `beqz` at 0x3348760 falls through, the `sw` at 0x3348784 stores entry `a1` as a word at the return from `__glDlistAllocOp2` +0x1c.
+  When `beqz` at 0x3348700 is taken, `bltz` at 0x3348744 falls through and `beqz` at 0x3348760 falls through, the `sw` at 0x3348790 stores entry `a0` as a word at the return from `__glDlistAllocOp2` +0x18 in the call delay slot (`jalr` at 0x334878c).
+  The `jalr` at 0x33487a0 calls `__glDlistAppendOp [0x328b3a0]` with a0=[0x1020]:8, a1=unknown, a2=0x334d630, a3=unknown on fall-through of the `beqz` at 0x3348760, after `beqz` at 0x3348700 is taken and `bltz` at 0x3348744 falls through.
+  The `jalr` at 0x33487b4 calls `__gllc_InvalidEnum [0x328b980]` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on the taken path of the `bltz` at 0x3348744, after `beqz` at 0x3348700 is taken.
+  At the `jr` at 0x3348720, `v0` is unknown on some paths; hostfacts also reports the return from `__glDlistAppendOp` after `b` at 0x33487a8 and the return from `__gllc_InvalidEnum` after `b` at 0x33487bc.
+
+## 64-bit IP30 library: fragment material list paths
+
+- `__glle_FragmentMaterialfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d510
+  A word is read at entry `a0` +0x0 (`lw` at 0x334d51c).
+  A doubleword is read at absolute address 0x1a00 (`ld` at 0x334d530).
+  A word is read at entry `a0` +0x8 (`lwc1` at 0x334d538).
+  A word is read at entry `a0` +0x4 (`lw` at 0x334d540; `jalr` at 0x334d53c).
+  The `jalr` at 0x334d53c calls `(unknown callee)` with a0=[a0], a1=[a0+4], a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f14=[a0+8].
+  At return `v0` is entry `a0` +0x10 (`daddiu` at 0x334d54c; `jr` at 0x334d554).
+- `__glle_FragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d560
+  A doubleword is read at absolute address 0x1a08 (`ld` at 0x334d578).
+  A word is read at entry `a0` +0x0 (`lw` at 0x334d580).
+  Two words are read at entry `a0` +0x4 (`lw` at 0x334d590, 0x334d59c; `jalr` at 0x334d58c, 0x334d598).
+  The `jalr` at 0x334d58c calls `(unknown callee)` with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3).
+  The `jalr` at 0x334d598 calls `__glFragmentMaterialfvSGIX_size [0x3304380]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown.
+  At return `v0` is unknown (`jr` at 0x334d5cc).
+- `__glle_FragmentMaterialiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d5e0
+  A word is read at entry `a0` +0x0 (`lw` at 0x334d5ec).
+  A doubleword is read at absolute address 0x1a10 (`ld` at 0x334d600).
+  A word is read at entry `a0` +0x8 (`lw` at 0x334d608).
+  A word is read at entry `a0` +0x4 (`lw` at 0x334d610; `jalr` at 0x334d60c).
+  The `jalr` at 0x334d60c calls `(unknown callee)` with a0=[a0], a1=[a0+4], a2=[a0+8], a3=a3 at entry (arg3).
+  At return `v0` is entry `a0` +0x10 (`daddiu` at 0x334d61c; `jr` at 0x334d624).
+- `__glle_FragmentMaterialivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d630
+  A doubleword is read at absolute address 0x1a18 (`ld` at 0x334d648).
+  A word is read at entry `a0` +0x0 (`lw` at 0x334d650).
+  Two words are read at entry `a0` +0x4 (`lw` at 0x334d660, 0x334d66c; `jalr` at 0x334d65c, 0x334d668).
+  The `jalr` at 0x334d65c calls `(unknown callee)` with a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3).
+  The `jalr` at 0x334d668 calls `__glFragmentMaterialivSGIX_size [0x3304400]` with a0=[a0+4], a1=unknown, a2=unknown, a3=unknown.
+  At return `v0` is unknown (`jr` at 0x334d69c).
+- `__glle_LightEnviSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334d6b0
+  A doubleword is read at absolute address 0x1a40 (`ld` at 0x334d6c8).
+  A word is read at entry `a0` +0x0 (`lw` at 0x334d6d0).
+  A word is read at entry `a0` +0x4 (`lw` at 0x334d6dc; `jalr` at 0x334d6d8).
+  The `jalr` at 0x334d6d8 calls `(unknown callee)` with a0=[a0], a1=[a0+4], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  At return `v0` is entry `a0` +0x8 (`daddiu` at 0x334d6e8; `jr` at 0x334d6f0).
+- `__glsplc_ColorMaterial` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33514d0
+  The `jalr` at 0x33514f8 calls `__glSPDlalloc [0x32087b0]` with a0=0x8, a1=0x4d, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beqz` at 0x3351500 is taken to 0x3351524 when the return from `__glSPDlalloc` is zero and falls through when it is nonzero.
+  On the fall-through path of `beqz` at 0x3351500, entry `a1` is stored as a word at the return from `__glSPDlalloc` +0x4 (`sw` at 0x3351514).
+  On that fall-through path, entry `a0` is stored as a word at the return from `__glSPDlalloc` +0x0 (`sw` at 0x3351520; `jr` at 0x335151c).
+  At either return `v0` is the return from `__glSPDlalloc` (`jalr` at 0x33514f8; `jr` at 0x335151c, 0x3351528).
+- `__glsplc_Lightf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351850
+  The `jalr` at 0x3351878 calls `__glLightfv_size [0x3303e30]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beq` at 0x3351884 is taken to 0x33518a8 when the return from `__glLightfv_size` equals 0x1 and falls through otherwise.
+  The `jalr` at 0x3351890 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `beq` at 0x3351884.
+  The `bgezall` at 0x33518b0 calls `__glsplc_Lightfv [0x33518c0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=unknown, on the path taken by `beq` at 0x3351884 (`daddiu` at 0x33518b4).
+  At return `v0` is unknown (`jr` at 0x33518a0).
+- `__glsplc_Lightfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33518c0
+  The `jalr` at 0x33518ec calls `__glLightfv_size [0x3303e30]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x3351904 is taken to 0x3351960 when the unknown `s0` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x3351914 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x56, a2=unknown, a3=unknown, on the fall-through path of `bltz` at 0x3351904.
+  When `bltz` at 0x3351904 falls through, the `bnez` at 0x335191c is taken to 0x3351938 when the return from `__glSPDlalloc` is nonzero and falls through when it is zero.
+  The `jalr` at 0x3351950 calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=unknown, when `bltz` at 0x3351904 falls through and `bnez` at 0x335191c is taken.
+  The `jalr` at 0x3351960 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the path taken by `bltz` at 0x3351904.
+  When `bltz` at 0x3351904 falls through and `bnez` at 0x335191c is taken, entry `a1` is stored as a word at the return from `__glSPDlalloc` +0x4 (`bltz` at 0x3351904; `bnez` at 0x335191c; `sw` at 0x3351948).
+  When `bltz` at 0x3351904 falls through and `bnez` at 0x335191c is taken, entry `a0` is stored as a word at the return from `__glSPDlalloc` +0x0 (`bltz` at 0x3351904; `bnez` at 0x335191c; `sw` at 0x3351954; `jalr` at 0x3351950).
+  At return `v0` is unknown (`jr` at 0x3351930).
+- `__glsplc_Lighti` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351970
+  The `jalr` at 0x3351998 calls `__glLightiv_size [0x3303ec0]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beq` at 0x33519a4 is taken to 0x33519c4 when the return from `__glLightiv_size` equals 0x1 and falls through otherwise.
+  The `jalr` at 0x33519ac calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the fall-through path of `beq` at 0x33519a4.
+  The `bgezall` at 0x33519d0 calls `__glsplc_Lightiv [0x33519e0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=unknown, on the path taken by `beq` at 0x33519a4 (`daddiu` at 0x33519d4).
+  At return `v0` is unknown (`jr` at 0x33519bc).
+- `__glsplc_Lightiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33519e0
+  The `jalr` at 0x3351a0c calls `__glLightiv_size [0x3303ec0]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x3351a24 is taken to 0x3351a7c when the unknown `s0` value is negative and falls through when it is nonnegative (signed).
+  The `jalr` at 0x3351a30 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x58, a2=unknown, a3=unknown, on the fall-through path of `bltz` at 0x3351a24.
+  When `bltz` at 0x3351a24 falls through, the `bnez` at 0x3351a38 is taken to 0x3351a54 when the return from `__glSPDlalloc` is nonzero and falls through when it is zero.
+  The `jalr` at 0x3351a6c calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=unknown, when `bltz` at 0x3351a24 falls through and `bnez` at 0x3351a38 is taken.
+  The `jalr` at 0x3351a80 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the path taken by `bltz` at 0x3351a24.
+  When `bltz` at 0x3351a24 falls through and `bnez` at 0x3351a38 is taken, entry `a1` is stored as a word at the return from `__glSPDlalloc` +0x4 (`bltz` at 0x3351a24; `bnez` at 0x3351a38; `sw` at 0x3351a64).
+  When `bltz` at 0x3351a24 falls through and `bnez` at 0x3351a38 is taken, entry `a0` is stored as a word at the return from `__glSPDlalloc` +0x0 (`bltz` at 0x3351a24; `bnez` at 0x3351a38; `sw` at 0x3351a70; `jalr` at 0x3351a6c).
+  At return `v0` is unknown (`jr` at 0x3351a4c).
+- `__glsplc_LightModelf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351a90
+  The `jalr` at 0x3351ab0 calls `__glLightModelfv_size [0x3303f00]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `swc1` at 0x3351ab4 stores entry `f13` as a floating-point word at entry stack pointer -0x8 in the delay slot of the `jalr` at 0x3351ab0.
+  The `beq` at 0x3351abc is taken to 0x3351ae0 when the result of `__glLightModelfv_size` equals 1, and falls through when it differs (`addiu` at 0x3351ab8).
+  The `jalr` at 0x3351ac8 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on fall-through of the `beq` at 0x3351abc.
+  The `bgezall` at 0x3351ae4 calls `__glsplc_LightModelfv [0x3351b00]` with a0=a0 at entry (arg0), a1=sp-8, a2=unknown, a3=unknown on the taken path of the `beq` at 0x3351abc.
+  The `jr` at 0x3351ad8 returns an unknown `v0`; hostfacts reports the return from `__glsplc_InvalidEnum` on the fall-through path of `beq` at 0x3351abc and the return from `__glsplc_LightModelfv` on its taken path.
+- `__glsplc_LightModeli` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351ba0
+  The `jalr` at 0x3351bc0 calls `__glLightModeliv_size [0x3303f50]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `sw` at 0x3351bc4 stores entry `a1` as a word at entry stack pointer -0x4 in the delay slot of the `jalr` at 0x3351bc0.
+  The `beq` at 0x3351bcc is taken to 0x3351bf0 when the result of `__glLightModeliv_size` equals 1, and falls through when it differs (`addiu` at 0x3351bc8).
+  The `jalr` at 0x3351bd8 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on fall-through of the `beq` at 0x3351bcc.
+  The `bgezall` at 0x3351bf4 calls `__glsplc_LightModeliv [0x3351c10]` with a0=a0 at entry (arg0), a1=sp-4, a2=unknown, a3=unknown on the taken path of the `beq` at 0x3351bcc.
+  The `jr` at 0x3351be8 returns an unknown `v0`; hostfacts reports the return from `__glsplc_InvalidEnum` on the fall-through path of `beq` at 0x3351bcc and the return from `__glsplc_LightModeliv` on its taken path.
+- `__glsplc_Materialf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351d70
+  The `jalr` at 0x3351d98 calls `__glMaterialfv_size [0x3303f90]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `swc1` at 0x3351d8c stores entry `f14` as a floating-point word at entry stack pointer -0x10.
+  The `beq` at 0x3351da4 is taken to 0x3351dc4 when the result of `__glMaterialfv_size` equals 1, and falls through when it differs (`addiu` at 0x3351da0).
+  The `jalr` at 0x3351dac calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on fall-through of the `beq` at 0x3351da4.
+  The `bgezall` at 0x3351dd0 calls `__glsplc_Materialfv [0x3351de0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=unknown on the taken path of the `beq` at 0x3351da4.
+  The `jr` at 0x3351dbc returns an unknown `v0`; hostfacts reports the return from `__glsplc_InvalidEnum` on the fall-through path of `beq` at 0x3351da4 and the return from `__glsplc_Materialfv` on its taken path.
+- `__glsplc_Materiali` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351eb0
+  The `jalr` at 0x3351ed8 calls `__glMaterialiv_size [0x3304040]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `sw` at 0x3351ecc stores entry `a2` as a word at entry stack pointer -0xc.
+  The `beq` at 0x3351ee4 is taken to 0x3351f08 when the result of `__glMaterialiv_size` equals 1, and falls through when it differs (`addiu` at 0x3351ee0).
+  The `jalr` at 0x3351ef0 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on fall-through of the `beq` at 0x3351ee4.
+  The `bgezall` at 0x3351f10 calls `__glsplc_Materialiv [0x3351f20]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=unknown on the taken path of the `beq` at 0x3351ee4.
+  The `jr` at 0x3351f00 returns an unknown `v0`; hostfacts reports the return from `__glsplc_InvalidEnum` on the fall-through path of `beq` at 0x3351ee4 and the return from `__glsplc_Materialiv` on its taken path.
+- `__glsplc_FragmentColorMaterialSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3355fa0
+  The `jalr` at 0x3355fc8 calls `__glSPDlalloc [0x32087b0]` with `a0` = 0x8, `a1` = 0x103, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beqz` at 0x3355fd0 is taken to 0x3355ff4 when the result of `__glSPDlalloc` is zero, and falls through when it is nonzero.
+  On fall-through of the `beqz` at 0x3355fd0, the `sw` at 0x3355fe4 stores entry `a1` as a word at the result of `__glSPDlalloc` +0x4.
+  On fall-through of the `beqz` at 0x3355fd0, the `sw` at 0x3355ff0 stores entry `a0` as a word at the result of `__glSPDlalloc` +0x0 in the delay slot of the `jr` at 0x3355fec.
+  The `jr` at 0x3355fec, 0x3355ff8 returns the result of `__glSPDlalloc` in `v0`.
+
+## 64-bit IP30 library: fragment light and material lists
+
+- `__glsplc_FragmentLightfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356070
+  The `bltz` at 0x33560b4 is taken to 0x335610c when s0(unknown) is less than 0 (signed) and falls through when s0(unknown) is at least 0 (signed).
+  If the `bltz` at 0x33560b4 falls through, the `bnez` at 0x33560c8 is taken to 0x33560e4 when v0(=ret(__glSPDlalloc)) does not equal 0 and falls through when v0(=ret(__glSPDlalloc)) equals 0.
+  The `jalr` at 0x335609c calls `__glFragmentLightfvSGIX_size [0x3304440]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33560c0 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x105, a2=unknown, a3=unknown when the `bltz` at 0x33560b4 falls through.
+  The `jalr` at 0x33560fc calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=unknown when the `bltz` at 0x33560b4 falls through and the `bnez` at 0x33560c8 is taken.
+  The `jalr` at 0x3356110 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when the `bltz` at 0x33560b4 is taken.
+  The `sw` at 0x33560f4 stores a word containing a1 at entry at ret(__glSPDlalloc) +0x4 when the `bltz` at 0x33560b4 falls through and the `bnez` at 0x33560c8 is taken.
+  The `sw` at 0x3356100, in the delay slot of the `jalr` at 0x33560fc, stores a word containing a0 at entry at ret(__glSPDlalloc) +0x0 when the `bltz` at 0x33560b4 falls through and the `bnez` at 0x33560c8 is taken.
+  The `jr` at 0x33560dc returns v0 = unknown.
+- `__glsplc_FragmentLightiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356120
+  The `beqz` at 0x3356154 is taken to 0x3356180 when v0(=ret(__glSPDlalloc)) equals 0 and falls through when v0(=ret(__glSPDlalloc)) does not equal 0.
+  The `jalr` at 0x335614c calls `__glSPDlalloc [0x32087b0]` with a0=0x10, a1=0x106, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `sw` at 0x335616c stores a word containing a2 at entry at ret(__glSPDlalloc) +0x8 when the `beqz` at 0x3356154 falls through.
+  The `sw` at 0x3356170 stores a word containing a1 at entry at ret(__glSPDlalloc) +0x4 when the `beqz` at 0x3356154 falls through.
+  The `sw` at 0x335617c, in the delay slot of the `jr` at 0x3356178, stores a word containing a0 at entry at ret(__glSPDlalloc) +0x0 when the `beqz` at 0x3356154 falls through.
+  The `jr` at 0x3356178, 0x3356184 returns v0 = ret(__glSPDlalloc).
+- `__glsplc_FragmentLightivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356190
+  The `bltz` at 0x33561d4 is taken to 0x3356230 when s0(unknown) is less than 0 (signed) and falls through when s0(unknown) is at least 0 (signed).
+  If the `bltz` at 0x33561d4 falls through, the `bnez` at 0x33561ec is taken to 0x3356208 when v0(=ret(__glSPDlalloc)) does not equal 0 and falls through when v0(=ret(__glSPDlalloc)) equals 0.
+  The `jalr` at 0x33561bc calls `__glFragmentLightivSGIX_size [0x3304570]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33561e4 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x107, a2=unknown, a3=unknown when the `bltz` at 0x33561d4 falls through.
+  The `jalr` at 0x3356220 calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=unknown when the `bltz` at 0x33561d4 falls through and the `bnez` at 0x33561ec is taken.
+  The `jalr` at 0x3356230 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when the `bltz` at 0x33561d4 is taken.
+  The `sw` at 0x3356218 stores a word containing a1 at entry at ret(__glSPDlalloc) +0x4 when the `bltz` at 0x33561d4 falls through and the `bnez` at 0x33561ec is taken.
+  The `sw` at 0x3356224, in the delay slot of the `jalr` at 0x3356220, stores a word containing a0 at entry at ret(__glSPDlalloc) +0x0 when the `bltz` at 0x33561d4 falls through and the `bnez` at 0x33561ec is taken.
+  The `jr` at 0x3356200 returns v0 = unknown.
+- `__glsplc_FragmentLightModelfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356240
+  The `beqz` at 0x3356270 is taken to 0x3356294 when v0(=ret(__glSPDlalloc)) equals 0 and falls through when v0(=ret(__glSPDlalloc)) does not equal 0.
+  The `jalr` at 0x3356268 calls `__glSPDlalloc [0x32087b0]` with a0=0x8, a1=0x108, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `sw` at 0x3356284 stores a word containing a0 at entry at ret(__glSPDlalloc) +0x0 when the `beqz` at 0x3356270 falls through.
+  The `swc1` at 0x3356290, in the delay slot of the `jr` at 0x335628c, stores a word containing f13 at entry at ret(__glSPDlalloc) +0x4 when the `beqz` at 0x3356270 falls through.
+  The `jr` at 0x335628c, 0x3356298 returns v0 = ret(__glSPDlalloc); f0 = f13 at entry on the fall-through path, and f0 is the callee return on the taken path (`beqz` at 0x3356270).
+- `__glsplc_FragmentLightModelfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33562a0
+  The `bltz` at 0x33562dc is taken to 0x3356330 when s0(unknown) is less than 0 (signed) and falls through when s0(unknown) is at least 0 (signed).
+  If the `bltz` at 0x33562dc falls through, the `bnez` at 0x33562f4 is taken to 0x335630c when v0(=ret(__glSPDlalloc)) does not equal 0 and falls through when v0(=ret(__glSPDlalloc)) equals 0.
+  The `jalr` at 0x33562c4 calls `__glFragmentLightModelfvSGIX_size [0x33045b0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33562ec calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x109, a2=unknown, a3=unknown when the `bltz` at 0x33562dc falls through.
+  The `jalr` at 0x3356320 calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a1 at entry (arg1), a2=unknown, a3=unknown when the `bltz` at 0x33562dc falls through and the `bnez` at 0x33562f4 is taken.
+  The `jalr` at 0x3356330 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown when the `bltz` at 0x33562dc is taken.
+  The `sw` at 0x3356324, in the delay slot of the `jalr` at 0x3356320, stores a word containing a0 at entry at ret(__glSPDlalloc) +0x0 when the `bltz` at 0x33562dc falls through and the `bnez` at 0x33562f4 is taken.
+  The `jr` at 0x3356304 returns v0 = unknown.
+- `__glsplc_FragmentLightModeliSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356340
+  The `jalr` at 0x3356368 calls `__glSPDlalloc [0x32087b0]` with a0=0x8, a1=0x10a, a2=a2 at entry, and a3=a3 at entry.
+  The `beqz` at 0x3356370 is taken to 0x3356394 when the return from `__glSPDlalloc` is zero, and falls through when it is nonzero.
+  When `beqz` at 0x3356370 falls through, the `sw` at 0x3356384 stores entry a1 as a word at the return from `__glSPDlalloc` +0x4.
+  When `beqz` at 0x3356370 falls through, the `sw` at 0x3356390 stores entry a0 as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of `jr` at 0x335638c.
+  The `jr` at 0x335638c, 0x3356398 returns the result of `__glSPDlalloc` in v0.
+- `__glsplc_FragmentLightModelivSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33563a0
+  The `jalr` at 0x33563c4 calls `__glFragmentLightModelivSGIX_size [0x3304600]` with a0, a1, a2, and a3 equal to their entry values.
+  The `bltz` at 0x33563dc is taken to 0x335642c when its unknown tested value is signed negative and falls through when it is signed nonnegative.
+  The `jalr` at 0x33563e8 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x10b, a2=unknown, and a3=unknown when `bltz` at 0x33563dc falls through.
+  When `bltz` at 0x33563dc falls through, the `bnez` at 0x33563f0 is taken to 0x335640c when the return from `__glSPDlalloc` is nonzero and falls through when it is zero.
+  The `jalr` at 0x335641c calls `memcpy` with a0 equal to the return from `__glSPDlalloc` +0x8, a1 equal to entry a1, and a2 and a3 unknown when `bltz` at 0x33563dc falls through and `bnez` at 0x33563f0 is taken.
+  When `bltz` at 0x33563dc falls through and `bnez` at 0x33563f0 is taken, the `sw` at 0x3356420 stores entry a0 as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of `jalr` at 0x335641c.
+  The `jalr` at 0x3356430 calls `__glsplc_InvalidEnum [0x328cc50]` with a0, a1, a2, and a3 unknown when `bltz` at 0x33563dc is taken.
+  The `jr` at 0x3356404 returns unknown in v0; hostfacts reports the return from `__glSPDlalloc`, `memcpy`, or `__glsplc_InvalidEnum` on its respective paths (`bltz` at 0x33563dc; `bnez` at 0x33563f0).
+- `__glsplc_FragmentMaterialfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356440
+  The `jalr` at 0x335646c calls `__glSPDlalloc [0x32087b0]` with a0=0x10, a1=0x10c, a2=a2 at entry, and a3=a3 at entry.
+  The `beqz` at 0x3356474 is taken to 0x33564a0 when the return from `__glSPDlalloc` is zero and falls through when it is nonzero.
+  When `beqz` at 0x3356474 falls through, the `sw` at 0x3356488 stores entry a1 as a word at the return from `__glSPDlalloc` +0x4.
+  When `beqz` at 0x3356474 falls through, the `sw` at 0x3356490 stores entry a0 as a word at the return from `__glSPDlalloc` +0x0.
+  When `beqz` at 0x3356474 falls through, the `swc1` at 0x335649c stores entry f14 as a floating-point word at the return from `__glSPDlalloc` +0x8 in the delay slot of `jr` at 0x3356498.
+  The `jr` at 0x3356498, 0x33564a4 returns the result of `__glSPDlalloc` in v0; hostfacts reports f0 as entry f14 on the fall-through path and the call return on the taken path (`beqz` at 0x3356474).
+- `__glsplc_FragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33564b0
+  The `lwc1` at 0x33564b0 reads a floating-point word at entry a2 +0x0.
+  The `jalr` at 0x33564d8 calls `__glErrorCheckMaterial [0x32ba7a0]` with a0, a1, a2, and a3 equal to their entry values and f14 equal to the word at entry a2.
+  The `beqz` at 0x33564e0 is taken to 0x3356504 when the return from `__glErrorCheckMaterial` is zero and falls through when it is nonzero.
+  The `jalr` at 0x33564ec calls `__glsplc_Error [0x328ccd0]` with a0 equal to the return from `__glErrorCheckMaterial` and a1, a2, and a3 unknown when `beqz` at 0x33564e0 falls through.
+  The `jalr` at 0x3356504 calls `__glFragmentMaterialfvSGIX_size [0x3304380]` with a0 equal to entry a1 and a1, a2, and a3 unknown when `beqz` at 0x33564e0 is taken.
+  When `beqz` at 0x33564e0 is taken, the `bltz` at 0x335651c is taken to 0x3356568 when its unknown tested value is signed negative and falls through when it is signed nonnegative.
+  The `jalr` at 0x3356530 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x10d, a2=unknown, and a3=unknown when `beqz` at 0x33564e0 is taken and `bltz` at 0x335651c falls through.
+  When `beqz` at 0x33564e0 is taken and `bltz` at 0x335651c falls through, the `beqz` at 0x3356538 is taken to 0x33564f4 when the return from `__glSPDlalloc` is zero and falls through when it is nonzero.
+  When `beqz` at 0x33564e0 is taken, `bltz` at 0x335651c falls through, and `beqz` at 0x3356538 falls through, the `sw` at 0x3356550 stores entry a1 as a word at the return from `__glSPDlalloc` +0x4.
+  The `jalr` at 0x3356558 calls `memcpy` with a0 equal to the return from `__glSPDlalloc` +0x8, a1 equal to entry a2, a2 unknown, a3 equal to entry a0, and a4 equal to entry a1 when `beqz` at 0x33564e0 is taken, `bltz` at 0x335651c falls through, and `beqz` at 0x3356538 falls through.
+  When `beqz` at 0x33564e0 is taken, `bltz` at 0x335651c falls through, and `beqz` at 0x3356538 falls through, the `sw` at 0x335655c stores entry a0 as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of `jalr` at 0x3356558.
+  The `jalr` at 0x335656c calls `__glsplc_InvalidEnum [0x328cc50]` with a0=-0x8 and a1, a2, and a3 unknown when `beqz` at 0x33564e0 and `bltz` at 0x335651c are taken.
+  The `jr` at 0x33564fc returns unknown in v0; hostfacts reports unknown, the return from `memcpy`, or the return from `__glsplc_InvalidEnum` on its respective paths (`beqz` at 0x33564e0; `bltz` at 0x335651c; `beqz` at 0x3356538).
+- `__glsplc_FragmentMaterialiSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356580
+  The `jalr` at 0x33565ac calls `__glSPDlalloc [0x32087b0]` with a0=0x10, a1=0x10e, a2=a2 at entry, and a3=a3 at entry.
+  The `beqz` at 0x33565b4 is taken to 0x33565e0 when the return from `__glSPDlalloc` is zero and falls through when it is nonzero.
+  When `beqz` at 0x33565b4 falls through, the `sw` at 0x33565cc stores entry a2 as a word at the return from `__glSPDlalloc` +0x8.
+  When `beqz` at 0x33565b4 falls through, the `sw` at 0x33565d0 stores entry a1 as a word at the return from `__glSPDlalloc` +0x4.
+  When `beqz` at 0x33565b4 falls through, the `sw` at 0x33565dc stores entry a0 as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of `jr` at 0x33565d8.
+  The `jr` at 0x33565d8, 0x33565e4 returns the result of `__glSPDlalloc` in v0.
+- `__glsplc_LightModelfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351b00
+  The `jalr` at 0x3351b24 calls `__glLightModelfv_size [0x3303f00]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x3351b3c is taken to 0x3351b8c when its unknown tested value is signed negative, and falls through when it is nonnegative.
+  The `jalr` at 0x3351b48 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x5a, a2=unknown, a3=unknown on fall-through of the `bltz` at 0x3351b3c.
+  After `bltz` at 0x3351b3c falls through, the `bnez` at 0x3351b50 is taken to 0x3351b6c when the result of `__glSPDlalloc` is nonzero, and falls through when it is zero.
+  The `jalr` at 0x3351b7c calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a1 at entry (arg1), a2=unknown, a3=unknown when `bltz` at 0x3351b3c falls through and `bnez` at 0x3351b50 is taken.
+  The `jalr` at 0x3351b90 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on the taken path of the `bltz` at 0x3351b3c.
+  When `bltz` at 0x3351b3c falls through and `bnez` at 0x3351b50 is taken, the `sw` at 0x3351b80 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of the `jalr` at 0x3351b7c.
+  The `jr` at 0x3351b64 returns an unknown value in `v0`.
+- `__glsplc_LightModeliv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351c10
+  The `jalr` at 0x3351c34 calls `__glLightModeliv_size [0x3303f50]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `bltz` at 0x3351c4c is taken to 0x3351ca0 when its unknown tested value is signed negative, and falls through when it is nonnegative.
+  The `jalr` at 0x3351c5c calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x5c, a2=unknown, a3=unknown on fall-through of the `bltz` at 0x3351c4c.
+  After `bltz` at 0x3351c4c falls through, the `bnez` at 0x3351c64 is taken to 0x3351c7c when the result of `__glSPDlalloc` is nonzero, and falls through when it is zero.
+  The `jalr` at 0x3351c90 calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a1 at entry (arg1), a2=unknown, a3=unknown when `bltz` at 0x3351c4c falls through and `bnez` at 0x3351c64 is taken.
+  The `jalr` at 0x3351ca0 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on the taken path of the `bltz` at 0x3351c4c.
+  When `bltz` at 0x3351c4c falls through and `bnez` at 0x3351c64 is taken, the `sw` at 0x3351c94 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of the `jalr` at 0x3351c90.
+  The `jr` at 0x3351c74 returns an unknown value in `v0`.
+- `__glsplc_Materialfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351de0
+  The `lwc1` at 0x3351de0 reads a word at entry `a2` +0x0.
+  The `jalr` at 0x3351e08 calls `__glErrorCheckMaterial [0x32ba7a0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f14=[a2].
+  The `beqz` at 0x3351e10 is taken to 0x3351e34 when the result of `__glErrorCheckMaterial` is zero, and falls through when it is nonzero.
+  The `jalr` at 0x3351e1c calls `__glsplc_Error [0x328ccd0]` with a0=ret(__glErrorCheckMaterial), a1=unknown, a2=unknown, a3=unknown on fall-through of the `beqz` at 0x3351e10.
+  The `jalr` at 0x3351e34 calls `__glMaterialfv_size [0x3303f90]` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown on the taken path of the `beqz` at 0x3351e10.
+  When `beqz` at 0x3351e10 is taken, the `bltz` at 0x3351e4c is taken to 0x3351e9c when its unknown tested value is signed negative, and falls through when it is nonnegative.
+  The `jalr` at 0x3351e60 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x60, a2=unknown, a3=unknown when `beqz` at 0x3351e10 is taken and `bltz` at 0x3351e4c falls through.
+  When `beqz` at 0x3351e10 is taken and `bltz` at 0x3351e4c falls through, the `beqz` at 0x3351e68 is taken to 0x3351e28 when the result of `__glSPDlalloc` is zero, and falls through when it is nonzero.
+  The `jalr` at 0x3351e8c calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=a0 at entry (arg0), a4=a1 at entry (arg1) when `beqz` at 0x3351e10 is taken, `bltz` at 0x3351e4c falls through and `beqz` at 0x3351e68 falls through.
+  The `jalr` at 0x3351ea0 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=-0x8, a1=unknown, a2=unknown, a3=unknown when `beqz` at 0x3351e10 is taken and `bltz` at 0x3351e4c is taken.
+  When `beqz` at 0x3351e10 is taken, `bltz` at 0x3351e4c falls through and `beqz` at 0x3351e68 falls through, the `sw` at 0x3351e84 stores entry `a1` as a word at the return from `__glSPDlalloc` +0x4.
+  When `beqz` at 0x3351e10 is taken, `bltz` at 0x3351e4c falls through and `beqz` at 0x3351e68 falls through, the `sw` at 0x3351e90 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of the `jalr` at 0x3351e8c.
+  The `jr` at 0x3351e2c returns an unknown value in `v0`.
+- `__glsplc_Materialiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3351f20
+  The `lw` at 0x3351f2c reads a word at entry `a2` +0x0.
+  The `jalr` at 0x3351f50 calls `__glErrorCheckMaterial [0x32ba7a0]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `beqz` at 0x3351f58 is taken to 0x3351f78 when the result of `__glErrorCheckMaterial` is zero, and falls through when it is nonzero.
+  The `jalr` at 0x3351f60 calls `__glsplc_Error [0x328ccd0]` with a0=ret(__glErrorCheckMaterial), a1=unknown, a2=unknown, a3=unknown on fall-through of the `beqz` at 0x3351f58.
+  The `jalr` at 0x3351f7c calls `__glMaterialiv_size [0x3304040]` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown on the taken path of the `beqz` at 0x3351f58.
+  When `beqz` at 0x3351f58 is taken, the `bltz` at 0x3351f94 is taken to 0x3351fe4 when its unknown tested value is signed negative, and falls through when it is nonnegative.
+  The `jalr` at 0x3351fa8 calls `__glSPDlalloc [0x32087b0]` with a0=unknown, a1=0x62, a2=unknown, a3=unknown when `beqz` at 0x3351f58 is taken and `bltz` at 0x3351f94 falls through.
+  When `beqz` at 0x3351f58 is taken and `bltz` at 0x3351f94 falls through, the `beqz` at 0x3351fb0 is taken to 0x3351f6c when the result of `__glSPDlalloc` is zero, and falls through when it is nonzero.
+  The `jalr` at 0x3351fd4 calls `memcpy` with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=unknown, a3=a0 at entry (arg0), a4=a1 at entry (arg1) when `beqz` at 0x3351f58 is taken, `bltz` at 0x3351f94 falls through and `beqz` at 0x3351fb0 falls through.
+  The `jalr` at 0x3351fe8 calls `__glsplc_InvalidEnum [0x328cc50]` with a0=-0x8, a1=unknown, a2=unknown, a3=unknown when `beqz` at 0x3351f58 is taken and `bltz` at 0x3351f94 is taken.
+  When `beqz` at 0x3351f58 is taken, `bltz` at 0x3351f94 falls through and `beqz` at 0x3351fb0 falls through, the `sw` at 0x3351fcc stores entry `a1` as a word at the return from `__glSPDlalloc` +0x4.
+  When `beqz` at 0x3351f58 is taken, `bltz` at 0x3351f94 falls through and `beqz` at 0x3351fb0 falls through, the `sw` at 0x3351fd8 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0 in the delay slot of the `jalr` at 0x3351fd4.
+  The `jr` at 0x3351f70 returns an unknown value in `v0`.
+- `__glsplc_FragmentLightfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3356000
+  The `jalr` at 0x335602c calls `__glSPDlalloc [0x32087b0]` with `a0` = 0x10, `a1` = 0x104, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beqz` at 0x3356034 is taken to 0x3356060 when the result of `__glSPDlalloc` is zero, and falls through when it is nonzero.
+  On fall-through of the `beqz` at 0x3356034, the `sw` at 0x3356048 stores entry `a1` as a word at the return from `__glSPDlalloc` +0x4.
+  On fall-through of the `beqz` at 0x3356034, the `sw` at 0x3356050 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0.
+  On fall-through of the `beqz` at 0x3356034, the `swc1` at 0x335605c stores entry `f14` as a floating-point word at the result of `__glSPDlalloc` +0x8 in the delay slot of the `jr` at 0x3356058.
+  The `jr` at 0x3356058, 0x3356064 returns the result of `__glSPDlalloc` in `v0`.
