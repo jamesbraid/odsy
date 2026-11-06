@@ -29682,3 +29682,1503 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Another word is loaded from entry a0 +0x9a18 (`lwc1` at 0x32df46c).
   Four word stores to entry a1 include `swc1` at 0x32df444, 0x32df454, 0x32df464.
   At the return, v0 is unknown (`jr` at 0x32df474).
+
+- `__glUnScaleColorf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32df960
+  Four words are loaded from entry a2, including `lwc1` at 0x32df964, 0x32df978, 0x32df988.
+  Four word loads from entry a0 include `lwc1` at 0x32df96c, 0x32df97c, 0x32df98c.
+  The four word stores through entry a1 include `swc1` at 0x32df974, 0x32df984, 0x32df994.
+  The returned v0 is unknown (`jr` at 0x32df9a4).
+
+- `__glStoreLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 348 bytes
+  Two doublewords are loaded from entry a0, including +0x9820 and +0x9840 (`ld` at 0x32e718c, 0x32e71b8).
+  Nine word loads use entry a0, including +0x95d4, +0x95d0 and +0x95c8 (`lw` at 0x32e7190, 0x32e7194, 0x32e7198).
+  A doubleword is read at +0xe0 from the doubleword loaded at entry a0 +0x9840 (`ld` at 0x32e71c0).
+  The `bltz` at 0x32e71dc is taken to 0x32e728c when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when it is nonnegative signed.
+  On the fall-through of `bltz` at 0x32e71dc, four word loads use unknown bases, including `lwc1` at 0x32e7214, 0x32e721c, 0x32e7224.
+  The `jalr` at 0x32e7240 calls (unknown callee) with a0=[entry a0+0x9840]:8, a1=entry sp-0xa0, a2=unknown, a3=unknown on the fall-through of `bltz` at 0x32e71dc.
+  On paths through that fall-through, the `bgez` at 0x32e7258 is taken to 0x32e7200 when unknown s0 is nonnegative signed and falls through when it is negative signed.
+  On paths through the fall-through of `bltz` at 0x32e71dc, `beq` at 0x32e720c is taken to 0x32e7288 when unknown s1 equals -0x1 and falls through when it differs.
+  The instructions from 0x32e71f4 to 0x32e71fc are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is 0x0 (`jr` at 0x32e72b4).
+
+- `__glStoreStippledLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 456 bytes
+  Nine word loads from entry a0 include +0x95bc, +0x95b8 and +0x95d0 (`lw` at 0x32e72e4, 0x32e72e8, 0x32e72f0).
+  Three doubleword loads from entry a0 include +0x9820, +0x9840 and +0x9830 (`ld` at 0x32e72ec, 0x32e7324, 0x32e732c).
+  The `beq` at 0x32e733c is taken to 0x32e7464 when the word at entry a0 +0x9740 is zero and falls through when it is nonzero.
+  Its delay slot loads a doubleword at +0xe0 from the doubleword at entry a0 +0x9840 on both arms (`ld` at 0x32e7340).
+  On the fall-through of `beq` at 0x32e733c, a word is loaded from an unknown base (`lw` at 0x32e7398).
+  On paths through that fall-through, `bltz` at 0x32e73a0 is taken to 0x32e7444 when unknown s5 is negative signed and falls through when it is nonnegative signed.
+  On the fall-through of `bltz` at 0x32e73a0, `beq` at 0x32e73b0 is taken to 0x32e73f4 when unknown t8 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32e73b0, four words are loaded from unknown bases, including `lwc1` at 0x32e73c0, 0x32e73c8, 0x32e73d0.
+  The `jalr` at 0x32e73e8 calls (unknown callee) with a0=unknown, a1=entry sp-0xd0, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32e73b0.
+  On paths through the fall-through of `bltz` at 0x32e73a0, `bne` at 0x32e743c is taken to 0x32e73b0 when unknown s5 differs from -0x1 and falls through when equal.
+  On paths through the fall-through of `beq` at 0x32e733c, `bne` at 0x32e7448 is taken to 0x32e7370 when unknown v1 is nonzero and falls through when it is zero.
+  The returned v0 is 0x0 (`jr` at 0x32e7480).
+
+- `__gllc_Bitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 324 bytes
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x32e7ce8).
+  The `bltz` at 0x32e7d20 is taken to 0x32e7e10 when entry a0 is negative signed and falls through when it is nonnegative signed.
+  On the fall-through of `bltz` at 0x32e7d20, `bltz` at 0x32e7d38 is taken to 0x32e7e10 when entry a1 is negative signed and falls through when it is nonnegative signed.
+  The `jalr` at 0x32e7d6c calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=unknown, a2=-0x8, a3=entry a3 on the fall-through of `bltz` at 0x32e7d38.
+  On that fall-through, `bne` at 0x32e7d74 is taken to 0x32e7d98 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x32e7d74, three word stores to the allocation return include +0x1c, +0x18 and +0x30 (`sw` at 0x32e7d9c, 0x32e7da0, 0x32e7db0).
+  That arm stores a halfword at +0x14 of the allocation return (`sh` at 0x32e7da8).
+  The same arm has four word stores to the allocation return, including +0x2c, +0x28 and +0x24 (`swc1` at 0x32e7dc4, 0x32e7dd8, 0x32e7de4).
+  The `jalr` at 0x32e7dec calls `__glFillImage` with a0=[0x1020]:8, a1=entry a0, a2=entry a1, a3=0x1900, a4=0x1a00, a5=entry a6, a6=ret(__glDlistAllocOp2)+0x38, a7=0x4 on the taken arm of `bne` at 0x32e7d74.
+  The `jalr` at 0x32e7e00 calls `__glDlistAppendOp` with a0=[0x1020]:8, a1=unknown, a2=0x32e7e30, a3=unknown on the taken arm of `bne` at 0x32e7d74.
+  The `jalr` at 0x32e7e14 calls `__gllc_InvalidValue` with a0=[0x1020]:8, a1=entry a1, a2=entry a2, a3=entry a3 when `bltz` at 0x32e7d20 or 0x32e7d38 is taken.
+  The v0 return is unknown (`jr` at 0x32e7d90).
+
+- `__glle_Bitmap` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x32e7e30).
+  A word is loaded from absolute 0x1030 (`lw` at 0x32e7e38).
+  The `beq` at 0x32e7e58 is taken to 0x32e7ea8 when the word at 0x1030 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32e7e58, `beq` at 0x32e7e60 is taken to 0x32e7e94 when that word equals 0x2 and falls through when it differs.
+  The `jalr` at 0x32e7e6c calls `__glSetError` with a0=0x502, a1=[0x1030], a2=entry a2, a3=entry a3, a4=[0x1020]:8 on the fall-through of `beq` at 0x32e7e60.
+  On that fall-through, a word is loaded from entry a0 +0x18 (`lw` at 0x32e7e78).
+  On the taken arm of `beq` at 0x32e7e60, a doubleword is read at +0x4748 from the doubleword at 0x1020 (`ld` at 0x32e7e94).
+  The `jalr` at 0x32e7e98 calls (unknown callee) with a0=[0x1020]:8, a1=[0x1030], a2=entry a2, a3=entry a3, a4=[0x1020]:8 on the taken arm of `beq` at 0x32e7e60.
+  That arm stores 0x0 as a word at absolute 0x1030 (`sw` at 0x32e7ea4).
+  On paths through the taken arm of `beq` at 0x32e7e58 or `beq` at 0x32e7e60, a doubleword is loaded from an unknown base (`ld` at 0x32e7ea8).
+  The `jalr` at 0x32e7eb4 calls (unknown callee) with a0=unknown, a1=entry a0, a2=entry a0+0x20, a3=unknown on paths through either of those taken arms.
+  Those paths load a word from entry a0 +0x18 (`lw` at 0x32e7ec0).
+  The v0 return is ([entry a0+0x18] + entry a0)+0x20 (`jr` at 0x32e7e8c, 0x32e7ed4).
+
+- `__gllei_PolygonStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  A word is loaded from absolute 0x1030 (`lw` at 0x32e7ee4).
+  The `beq` at 0x32e7f04 is taken to 0x32e7f3c when that word equals 0x1 and falls through when it differs.
+  The `jalr` at 0x32e7f14 calls `memcpy` with a0=entry a0+0x2b0, a1=entry a1, a2=0x80, a3=entry a3 on the fall-through of `beq` at 0x32e7f04.
+  On that fall-through, a doubleword is loaded from entry a0 +0x4df0 (`ld` at 0x32e7f1c).
+  The `jalr` at 0x32e7f20 calls (unknown callee) with a0=entry a0, a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32e7f04.
+  The `jalr` at 0x32e7f40 calls `__glSetError` with a0=0x502, a1=entry a1, a2=entry a2, a3=entry a3 on the taken arm of `beq` at 0x32e7f04.
+  At its return, v0 is unknown (`jr` at 0x32e7f34).
+
+- `__gllc_PolygonStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 176 bytes
+  The `jalr` at 0x32e7f84 calls `__glImageSize` with a0=0x20, a1=0x20, a2=0x1900, a3=0x1a00.
+  Its delay slot loads a doubleword from absolute 0x1020 (`ld` at 0x32e7f88).
+  The `jalr` at 0x32e7f94 calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=ret(__glImageSize), a2=unknown, a3=unknown.
+  The `bne` at 0x32e7f9c is taken to 0x32e7fb8 when ret(__glDlistAllocOp2) is nonzero and falls through when it is zero.
+  The `jalr` at 0x32e7fdc calls `__glFillImage` with a0=[0x1020]:8, a1=0x20, a2=0x20, a3=0x1900, a4=0x1a00, a5=entry a0, a6=ret(__glDlistAllocOp2)+0x18, a7=0x65, on the taken arm of `bne` at 0x32e7f9c.
+  On that arm, its delay slot stores a halfword at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x32e7fe0).
+  The `jalr` at 0x32e7ff0 calls `__glDlistAppendOp` with a0=[0x1020]:8, a1=unknown, a2=0x32e8000, a3=unknown, on the taken arm of `bne` at 0x32e7f9c.
+  The v0 return is unknown (`jr` at 0x32e7fb0).
+
+- `__glle_PolygonStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+  A doubleword is read from absolute 0x1020 (`ld` at 0x32e8020).
+  The `bgezall` at 0x32e8028 calls `__gllei_PolygonStipple` with a0=[0x1020]:8, a1=entry a0, a2=entry a2, a3=entry a3.
+  The `jalr` at 0x32e8040 calls `__glImageSize` with a0=0x20, a1=0x20, a2=0x1900, a3=0x1a00.
+  The v0 return is ret(__glImageSize) + entry a0 (`jr` at 0x32e8058).
+
+- `__gllc_Map1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 340 bytes
+  A doubleword load reads absolute 0x1020 (`ld` at 0x32e8074).
+  The `jalr` at 0x32e80a4 calls `__glEvalComputeK` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bltz` at 0x32e80b0 is taken to 0x32e81a0 when ret(__glEvalComputeK) is negative signed and falls through when it is nonnegative.
+  On the fall-through of `bltz` at 0x32e80b0, a word is loaded from [0x1020]:8 +0x101c (`lw` at 0x32e80b8).
+  On that fall-through, the `bne` at 0x32e80c0 is taken to 0x32e8174 when that word is less than entry a4 signed and falls through when it is at least entry a4 signed.
+  On the fall-through of `bne` at 0x32e80c0, the `bne` at 0x32e80c8 is taken to 0x32e8178 when unknown v1 is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x32e80c8, the `blez` at 0x32e80d0 is taken to 0x32e8174 when entry a4 is at most zero signed and falls through when it is positive.
+  On the fall-through of `blez` at 0x32e80d0, the `bc1t` at 0x32e80dc is taken to 0x32e8178 when entry f13 equals entry f14 and falls through when they differ (`c.eq.s` at 0x32e80d8).
+  The `jalr` at 0x32e80ec calls `__glMap1_size` with a0=ret(__glEvalComputeK), a1=entry a4, a2=unknown, a3=unknown, on the fall-through of `bc1t` at 0x32e80dc.
+  The `jalr` at 0x32e8108 calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=unknown, a2=-0x8, a3=unknown, on that same path.
+  On that path, the `beq` at 0x32e8110 is taken to 0x32e8180 when ret(__glDlistAllocOp2) is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32e8110, word stores use ret(__glDlistAllocOp2) +0x24 and +0x18 (`sw` at 0x32e8118, 0x32e812c).
+  That path stores a halfword at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x32e8124).
+  Two floating-point word stores use ret(__glDlistAllocOp2) +0x20 and +0x1c on that path (`swc1` at 0x32e8148, 0x32e8154).
+  The `jalr` at 0x32e8150 calls `__glFillMap1f` with a0=ret(__glEvalComputeK), a1=entry a4, a2=entry a3, a3=entry a5, a4=ret(__glDlistAllocOp2)+0x28, a5=0x8e, a7=entry a0, on the fall-through of `beq` at 0x32e8110.
+  The `jalr` at 0x32e8164 calls `__glDlistAppendOp` with a0=[0x1020]:8, a1=unknown, a2=0x32e81c0, a3=unknown, on that same fall-through.
+  The `jalr` at 0x32e8178 calls `__gllc_InvalidValue` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on paths reaching 0x32e8178 including the taken arm of `bne` at 0x32e80c8.
+  The `jalr` at 0x32e81a4 calls `__gllc_InvalidEnum` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `bltz` at 0x32e80b0.
+  The v0 return is unknown (`jr` at 0x32e8198).
+
+- `__glle_Map1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  Two word loads use entry a0 +0x0 (`lw` at 0x32e81d0, 0x32e8218).
+  The `jalr` at 0x32e81ec calls `__glEvalComputeK` with a0=[entry a0], a1=entry a1, a2=entry a2, a3=entry a3.
+  Its delay slot reads a doubleword from absolute 0x1020 (`ld` at 0x32e81f0).
+  A doubleword is loaded at [0x1020]:8 +0x1ad8 (`ld` at 0x32e81f8).
+  Two word reads use entry a0 +0xc (`lw` at 0x32e81fc, 0x32e822c).
+  A doubleword is loaded at [[0x1020]:8+0x1ad8]:8 +0x298 (`ld` at 0x32e8200).
+  Words are loaded at entry a0 +0x8 and +0x4 (`lwc1` at 0x32e8204, 0x32e820c).
+  The `jalr` at 0x32e8214 calls (unknown callee) with a0=[entry a0], a1=unknown, a2=unknown, a3=ret(__glEvalComputeK), a4=[entry a0+0xc], a5=entry a0+0x10, f13=[entry a0+0x4], f14=[entry a0+0x8].
+  The `jalr` at 0x32e8228 calls `__glMap1_size` with a0=unknown, a1=[entry a0+0xc], a2=unknown, a3=unknown.
+  The v0 return is unknown (`jr` at 0x32e8258).
+
+- `__gllc_Map1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 352 bytes
+  A doubleword load reads absolute 0x1020 (`ld` at 0x32e8274).
+  The `jalr` at 0x32e82a4 calls `__glEvalComputeK` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bltz` at 0x32e82b0 is taken to 0x32e83ac when ret(__glEvalComputeK) is negative signed and falls through when it is nonnegative.
+  On the fall-through of `bltz` at 0x32e82b0, a word is loaded from [0x1020]:8 +0x101c (`lw` at 0x32e82b8).
+  On that fall-through, the `bne` at 0x32e82c0 is taken to 0x32e8380 when that word is less than entry a4 signed and falls through when it is at least entry a4 signed.
+  On the fall-through of `bne` at 0x32e82c0, the `bne` at 0x32e82c8 is taken to 0x32e8384 when unknown v1 is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x32e82c8, the `blez` at 0x32e82d0 is taken to 0x32e8384 when entry a4 is at most zero signed and falls through when it is positive.
+  On the fall-through of `blez` at 0x32e82d0, the `bc1t` at 0x32e82e0 is taken to 0x32e8384 when entry f13 equals entry f14 and falls through when they differ (`c.eq.d` at 0x32e82dc).
+  The `jalr` at 0x32e82f0 calls `__glMap1_size` with a0=ret(__glEvalComputeK), a1=entry a4, a2=unknown, a3=unknown, on the fall-through of `bc1t` at 0x32e82e0.
+  The `jalr` at 0x32e830c calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=unknown, a2=-0x8, a3=unknown, on that same path.
+  On that path, the `beq` at 0x32e8314 is taken to 0x32e838c when ret(__glDlistAllocOp2) is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32e8314, word stores use ret(__glDlistAllocOp2) +0x24 and +0x18 (`sw` at 0x32e831c, 0x32e8340).
+  That path stores a halfword at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x32e8328).
+  Two floating-point word stores use ret(__glDlistAllocOp2) +0x20 and +0x1c on that path (`swc1` at 0x32e8354, 0x32e8360).
+  The `jalr` at 0x32e835c calls `__glFillMap1d` with a0=ret(__glEvalComputeK), a1=entry a4, a2=entry a3, a3=entry a5, a4=ret(__glDlistAllocOp2)+0x28, a6=0x8d, a7=entry a0, on the fall-through of `beq` at 0x32e8314.
+  The `jalr` at 0x32e8370 calls `__glDlistAppendOp` with a0=[0x1020]:8, a1=unknown, a2=0x32e81c0, a3=unknown, on that same fall-through.
+  The `jalr` at 0x32e8384 calls `__gllc_InvalidValue` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on paths reaching 0x32e8384 including the taken arm of `bne` at 0x32e82c8.
+  The `jalr` at 0x32e83b0 calls `__gllc_InvalidEnum` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `bltz` at 0x32e82b0.
+  The v0 return is unknown (`jr` at 0x32e83a4).
+
+- `__gllc_Map2f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32e83c0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x32e83e0).
+  The `jalr` at 0x32e8408 calls `__glEvalComputeK` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bltz` at 0x32e8414 is taken to 0x32e8560 when the returned value is negative signed and falls through when it is nonnegative signed.
+  On a path from the fall-through of `bltz` at 0x32e8414, `bc1t` at 0x32e8484 is taken to 0x32e8538 when FP condition code 1 is true and falls through when false.
+  The `jalr` at 0x32e8494 calls `__glMap2_size` with a0=ret(__glEvalComputeK), a1=entry a4, a2=unknown, a3=unknown on the fall-through path of `bc1t` at 0x32e8484.
+  The `jalr` at 0x32e84b0 calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=unknown, a2=-0x8, a3=unknown on the fall-through path of `bc1t` at 0x32e8484.
+  On that path, `beq` at 0x32e84b8 is taken to 0x32e8544 when the allocation result is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32e84b8, three word stores at offsets +0x24, +0x30 and +0x18 use the allocation result as base (`sw` at 0x32e84c8, 0x32e84e0, 0x32e84e4).
+  On that same path, a halfword value 0x90 is stored at allocation result +0x14 (`sh` at 0x32e84d8).
+  Four word stores at allocation-result offsets include +0x2c, +0x28 and +0x20 on that path (`swc1` at 0x32e84f8, 0x32e8500, 0x32e850c).
+  The `jalr` at 0x32e8514 calls `__glFillMap2f` with a0=ret(__glEvalComputeK), a1=entry a4, a2=unknown, a3=entry a3, a4=entry a7, a6=ret(__glDlistAllocOp2)+0x38, a7=0x90 on the fall-through path of `beq` at 0x32e84b8.
+  The `jalr` at 0x32e8528 calls `__glDlistAppendOp` with a0=[0x1020]:8, a1=unknown, a2=0x32e8580, a3=unknown on that same path.
+  The `jalr` at 0x32e853c calls `__gllc_InvalidValue` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on a path from the fall-through of `bltz` at 0x32e8414.
+  The `jalr` at 0x32e8564 calls `__gllc_InvalidEnum` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on the taken path of `bltz` at 0x32e8414.
+  The returned v0 is unknown (`jr` at 0x32e8558).
+
+- `__glle_Map2` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32e8580
+  A word is loaded from entry a0 +0x0 (`lw` at 0x32e8590).
+  The `jalr` at 0x32e85ac calls `__glEvalComputeK` with a0=[a0], a1=entry a1, a2=entry a2, a3=entry a3.
+  Word loads from entry a0 include +0x14, +0x10 and +0xc (`lwc1` at 0x32e85b4, 0x32e85b8; `lw` at 0x32e85bc).
+  The `jalr` at 0x32e85f0 calls (unknown callee) with a0=[a0], a1=unknown, a2=unknown, a3=unknown, a4=[a0+0xc], a7=ret(__glEvalComputeK), f13=[a0+0x4], f14=[a0+0x8], f17=[a0+0x10], f18=[a0+0x14].
+  The `jalr` at 0x32e8608 calls `__glMap2_size` with a0=unknown, a1=[a0+0xc], a2=[a0+0x18], a3=unknown.
+  The returned v0 is unknown (`jr` at 0x32e8638).
+
+- `__gllc_Map2d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32e8640
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x32e8660).
+  The `jalr` at 0x32e8688 calls `__glEvalComputeK` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The `bltz` at 0x32e8694 is taken to 0x32e87f0 when the returned value is negative signed and falls through when it is nonnegative signed.
+  On a path from the fall-through of `bltz` at 0x32e8694, `bc1t` at 0x32e8700 is taken to 0x32e87cc when FP condition code 1 is true and falls through when false.
+  The `jalr` at 0x32e8714 calls `__glMap2_size` with a0=ret(__glEvalComputeK), a1=entry a4, a2=unknown, a3=unknown on the fall-through path of `bc1t` at 0x32e8700.
+  The `jalr` at 0x32e8730 calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=unknown, a2=-0x8, a3=unknown on the fall-through path of `bc1t` at 0x32e8700.
+  On that path, `beq` at 0x32e8738 is taken to 0x32e87d4 when the allocation result is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32e8738, three word stores at offsets +0x24, +0x30 and +0x18 use the allocation result as base (`sw` at 0x32e8748, 0x32e8760, 0x32e8764).
+  On that same path, a halfword value 0x8f is stored at allocation result +0x14 (`sh` at 0x32e8750).
+  Four word stores at allocation-result offsets include +0x2c, +0x28 and +0x20 on that path (`swc1` at 0x32e8784, 0x32e878c, 0x32e879c).
+  The `jalr` at 0x32e87a4 calls `__glFillMap2d` with a0=ret(__glEvalComputeK), a1=entry a4, a2=unknown, a3=entry a3, a4=entry a7, a6=ret(__glDlistAllocOp2)+0x38 on the fall-through path of `beq` at 0x32e8738.
+  The `jalr` at 0x32e87b8 calls `__glDlistAppendOp` with a0=[0x1020]:8, a1=unknown, a2=0x32e8580, a3=unknown on that same path.
+  The `jalr` at 0x32e87cc calls `__gllc_InvalidValue` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on a path from the fall-through of `bltz` at 0x32e8694.
+  The `jalr` at 0x32e87f4 calls `__gllc_InvalidEnum` with a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown on the taken path of `bltz` at 0x32e8694.
+  The returned v0 is unknown (`jr` at 0x32e87e8).
+
+- `__glle_Disable` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32ec6a0
+  A doubleword is loaded from absolute 0x12f0 (`ld` at 0x32ec6b4).
+  The `jalr` at 0x32ec6c4 calls (unknown callee) with a0=[a0], a1=entry a1, a2=entry a2, a3=entry a3.
+  Its delay slot loads a word from entry a0 +0x0 (`lw` at 0x32ec6c8).
+  The return is entry a0 +0x8 (`jr` at 0x32ec6dc).
+
+- `__gllc_Disable` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32ec6f0
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x32ec6f8).
+  The `beq` at 0x32ec714 is taken to 0x32ec7d0 when entry a0 equals 0x8074 and falls through when it differs.
+  On its fall-through path, `beq` at 0x32ec720 is taken to 0x32ec800 when entry a0 equals 0x8075 and falls through when it differs.
+  On a path from the fall-through of `beq` at 0x32ec720, `beq` at 0x32ec740 is taken to 0x32ec79c when entry a0 equals 0x8079 and falls through when it differs.
+  The `jalr` at 0x32ec754 calls `__glDlistAllocOp2` with a0=[0x1020]:8, a1=0x8, a2=0x8078, a3=0x8079 on the fall-through path of `beq` at 0x32ec740.
+  On that path, `bne` at 0x32ec75c is taken to 0x32ec774 when the allocation result is nonzero and falls through when it is zero.
+  On the taken path of `bne` at 0x32ec75c, it stores a word at allocation result +0x18 (`sw` at 0x32ec784).
+  The `jalr` at 0x32ec78c calls `__glDlistAppendOp` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x32ec6a0, a3=unknown, a4=0x89 on that taken path.
+  Its delay slot stores a halfword at allocation result +0x14 (`sh` at 0x32ec790).
+  On the taken path of `beq` at 0x32ec740, words are stored at [0x1020]:8 +0x17c0 and +0x17b4 (`sw` at 0x32ec7c0, 0x32ec7cc).
+  The returns include unknown v0 and [0x1020]:8 (`jr` at 0x32ec76c, 0x32ec7c8, 0x32ec7f8, 0x32ec828).
+
+- `__glGenericPickPointProcs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f2190
+  It loads words from entry a0 +0x8ce4 and +0x97fc (`lw` at 0x32f2198, 0x32f21a4).
+  The `beq` at 0x32f21a8 branches to 0x32f2240 when the word at entry a0 +0x8ce4 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32f21a8, it stores a doubleword at entry a0 +0x4898 (`sd` at 0x32f21b4).
+  After either arm of that branch, it reads a word at entry a0 +0xdd4 (`lw` at 0x32f21bc).
+  The `beq` at 0x32f21cc takes 0x32f2254 when that word equals 0x1c01 and falls through when it differs.
+  On the fall-through of `beq` at 0x32f21cc, `beq` at 0x32f21d4 takes 0x32f2278 when the word at entry a0 +0xdd4 equals 0x1c02 and falls through when it differs.
+  On the fall-through of `beq` at 0x32f21d4, a word is read at entry a0 +0x808 (`lw` at 0x32f21e0).
+  On that path, `beq` at 0x32f21e8 takes 0x32f2260 when the word at entry a0 +0x808 AND 0x400 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32f21e8, it reads a byte at entry a0 +0xde5 (`lbu` at 0x32f21f0).
+  On that path, `beq` at 0x32f21f4 takes 0x32f2280 when that byte is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32f21f4, it stores a doubleword at entry a0 +0x4cb0 (`sd` at 0x32f2200).
+  At either return, v0 is unknown (`jr` at 0x32f2238, 0x32f224c).
+
+- `__glGenericPickLineProcs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f22b0
+  Two words are read from entry a0 +0x8ce4 and +0x97fc (`lw` at 0x32f22b8, 0x32f22c8).
+  The `beq` at 0x32f22cc takes 0x32f2534 when the word at entry a0 +0x8ce4 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32f22cc, it stores a doubleword at entry a0 +0x48a0 (`sd` at 0x32f22d8).
+  After either arm of that branch, a word is loaded at entry a0 +0xdd4 (`lw` at 0x32f22dc).
+  The `beq` at 0x32f22e8 takes 0x32f25c4 when that word equals 0x1c01 and falls through when it differs; its delay slot stores a doubleword at entry a0 +0x48b0 on both arms (`sd` at 0x32f22ec).
+  On the fall-through of `beq` at 0x32f22e8, `beq` at 0x32f22f4 takes 0x32f25ec when the word at entry a0 +0xdd4 equals 0x1c02 and falls through when it differs.
+  On the fall-through of `beq` at 0x32f22f4, a word is read from entry a0 +0x808 (`lw` at 0x32f22fc).
+  On that path, `beq` at 0x32f2304 takes 0x32f25d0 when the word at entry a0 +0x808 AND 0x200 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32f2304, it writes a doubleword at entry a0 +0x4c80 (`sd` at 0x32f2310).
+  The two return sites both leave v0 unknown (`jr` at 0x32f24e8, 0x32f2548).
+
+- `__glGenericPickTransformProcs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f3c30
+  A word is loaded from entry a0 +0x7d0 (`lw` at 0x32f3c34).
+  The `beq` at 0x32f3c48 takes 0x32f3c8c when that word equals 0x1700 and falls through when it differs.
+  On the fall-through of `beq` at 0x32f3c48, `beq` at 0x32f3c54 takes 0x32f3ca8 when the word at entry a0 +0x7d0 equals 0x1701 and falls through when it differs.
+  On the fall-through of `beq` at 0x32f3c54, `beq` at 0x32f3c5c takes 0x32f3cc0 when that word equals 0x1702 and falls through when it differs.
+  On the fall-through of `beq` at 0x32f3c5c, `beq` at 0x32f3c64 takes 0x32f3c74 when the word at entry a0 +0x7d0 equals 0x1800 and falls through when it differs.
+  On the taken arm of `beq` at 0x32f3c64, doubleword stores at entry a0 include +0x4828 and +0x4820 (`sd` at 0x32f3c7c, 0x32f3c80).
+  That path stores a doubleword at entry a0 +0x4818 in the return delay slot (`sd` at 0x32f3c88).
+  On the taken arm of `beq` at 0x32f3c48, it writes a doubleword to entry a0 +0x4828 (`sd` at 0x32f3c98).
+  The return v0 is 0x3337ea0 on the taken arm of `beq` at 0x32f3c5c, and is 0xa3288 at the other returns (`jr` at 0x32f3cd0, 0x32f3c6c, 0x32f3c84, 0x32f3ca0, 0x32f3cb8).
+
+- `__glGenericValidate` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f3dc0
+  It loads a doubleword at entry a0 +0x47f0 (`ld` at 0x32f3dd4).
+  The `jalr` at 0x32f3ddc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The v0 return is the result of that call (`jr` at 0x32f3dec).
+
+- `__glMatValidateVbuf0V1` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32fa320
+  Words are loaded at entry a0 +0x4e58 and +0x8cec (`lw` at 0x32fa32c, 0x32fa334).
+  The `beq` at 0x32fa358 takes 0x32fa370 when the word at entry a0 +0x8cec AND unknown at is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32fa358, a doubleword is loaded from entry a0 +0x4e68 (`ld` at 0x32fa360).
+  The `jalr` at 0x32fa368 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+20056, a2=[a0+36076], a3=a3 at entry (arg3), on the fall-through of `beq` at 0x32fa358.
+  After either arm of `beq` at 0x32fa358, it loads a doubleword from entry a0 +0x4e38 (`ld` at 0x32fa370).
+  A word is read from the doubleword loaded at entry a0 +0x4e38, at offset +0x0 (`lw` at 0x32fa374).
+  The `beq` at 0x32fa380 takes 0x32fa39c when the word at entry a0 +0x8cec AND unknown t8 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32fa380, it loads a doubleword at +0x10 from the doubleword loaded at entry a0 +0x4e38 (`ld` at 0x32fa388).
+  The `jalr` at 0x32fa390 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20024]:8, a2=[a0+36076], a3=unknown, on the fall-through of `beq` at 0x32fa380.
+  The v0 return is unknown (`jr` at 0x32fa3a8).
+
+- `nextLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 136 bytes
+  A doubleword is read from entry a0 +0x0 (`ld` at 0x32ef550).
+  `beq` at 0x32ef554 is taken to 0x32ef5d0 when the loaded doubleword is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32ef554, a doubleword is read through an unknown base (`ld` at 0x32ef55c).
+  On that path, `beq` at 0x32ef560 is taken to 0x32ef5bc when unknown at equals unknown a0 and falls through when they differ.
+  On the fall-through of `beq` at 0x32ef560, `bne` at 0x32ef568 is taken to 0x32ef5a8 when unknown v1 differs from unknown a0 and falls through when they are equal.
+  The v0 return is unknown at 0x32ef59c and is 0x0 at 0x32ef5b4 and 0x32ef5d0 (`jr` at 0x32ef59c, 0x32ef5b4, 0x32ef5d0).
+
+- `mergeLeaves` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 960 bytes
+  The routine reads a word at entry a2 +0x8 (`lw` at 0x32ef5e8).
+  A doubleword is loaded from entry a1 +0x10 (`ld` at 0x32ef5ec).
+  `bne` at 0x32ef604 is taken to 0x32ef644 when the doubleword at entry a1 +0x10 is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x32ef604, `bne` at 0x32ef60c is taken to 0x32ef958 when unknown a5 is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x32ef604, `beq` at 0x32ef668 is taken to 0x32ef7c4 when unknown a5 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32ef668, a word is stored at entry a1 +0xc in the call delay slot (`sw` at 0x32ef680).
+  The `bgezall` at 0x32ef624 calls `freeLeaf` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=unknown, a3=unknown, after the fall-through of `bne` at 0x32ef604.
+  The `bgezall` at 0x32ef67c calls `reallocLeafData` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+12], a3=a3 at entry (arg3), a6=[a2+8], a7=[a1+8], on the fall-through of `beq` at 0x32ef668.
+  The `bgezall` at 0x32ef7a0 calls `freeLeaf` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=unknown, a3=unknown, on a path through the fall-through of `beq` at 0x32ef684.
+  The `bgezall` at 0x32ef7b4 calls `pushMaxVal` with a0=a1 at entry (arg1), a1=[a1+12], a2=unknown, a3=unknown, on a path through the fall-through of `beq` at 0x32ef684.
+  The `bgezall` at 0x32ef7d4 calls `reallocLeafData` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=[a1+12], a3=a3 at entry (arg3), a6=[a2+8], a7=[a1+8], on the taken arm of `beq` at 0x32ef668.
+  The `bgezall` at 0x32ef900 calls `freeLeafData` with a0=a0 at entry (arg0), a1=[a1+16]:8, a2=unknown, a3=unknown, on a path through the fall-through of `beq` at 0x32ef7dc.
+  The `bgezall` at 0x32ef928 calls `freeLeaf` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=unknown, a3=unknown, on a path through the fall-through of `beq` at 0x32ef7dc.
+  The `bgezall` at 0x32ef96c calls `pushMaxVal` with a0=a1 at entry (arg1), a1=[a2+12], a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[a2+8], a7=[a1+8], on the taken arm of `bne` at 0x32ef60c.
+  The v0 return is 0x1 at 0x32ef63c and 0x32ef940, and 0x0 at 0x32ef950 (`jr` at 0x32ef63c, 0x32ef940, 0x32ef950).
+
+- `mergeLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 460 bytes
+  `beq` at 0x32ef9cc is taken to 0x32efa1c when the result of `nextLeaf` is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32ef9cc, a word is read from the result of `nextLeaf` +0x8 (`lw` at 0x32ef9d8).
+  On that path, `bne` at 0x32ef9e8 is taken to 0x32efa1c when the loaded word differs from `[a2+12]+1` and falls through when equal.
+  On the fall-through of `bne` at 0x32ef9e8, `beq` at 0x32ef9f0 is taken to 0x32efacc when the doubleword at entry a2 +0x10 is zero and falls through when nonzero.
+  On paths reaching 0x32efa24, `beq` at 0x32efa2c is taken to 0x32efab8 when the result of `prevLeaf` is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32efa2c, `bne` at 0x32efa44 is taken to 0x32efab8 when `[a2+8]` differs from `[ret(prevLeaf)+12]+1` and falls through when equal.
+  The `bgezall` at 0x32ef9c4 calls `nextLeaf` with a0=a2 at entry (arg2), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), on entry.
+  The `bgezall` at 0x32efa24 calls `prevLeaf` with a0=a2 at entry (arg2), a1=unknown, a2=unknown, a3=unknown, on a path reaching 0x32efa1c.
+  The `bgezall` at 0x32efa90 calls `deleteLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(prevLeaf), a3=0x32ef010, on a path through the fall-through of `bne` at 0x32efa44.
+  The `bgezall` at 0x32efaac calls `mergeLeaves` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=ret(prevLeaf), a3=unknown, a4=0x32ef5e0, on a path through the fall-through of `bne` at 0x32efa44.
+  The `bgezall` at 0x32efae4 calls `deleteLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(nextLeaf), a3=unknown, a5=0x32ef010, on a path through the fall-through of `bne` at 0x32ef9e8.
+  The `bgezall` at 0x32efb00 calls `mergeLeaves` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=ret(nextLeaf), a3=unknown, a6=0x32ef5e0, on a path through the fall-through of `bne` at 0x32ef9e8.
+  The v0 return is unknown (`jr` at 0x32efac4).
+
+- `__glNamesNewData` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1304 bytes
+  A doubleword is loaded from entry a1 +0x10 (`ld` at 0x32efb9c).
+  A byte is read at +0x28 from that loaded doubleword (`lbu` at 0x32efbb4).
+  `beq` at 0x32efbdc is taken to 0x32efc50 when the result of `findLeaf` is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32efbdc, `beq` at 0x32efbe8 is taken to 0x32efc54 when the doubleword at `ret(findLeaf)` +0x10 is zero and falls through when nonzero.
+  On paths reaching 0x32efc90, `beq` at 0x32efc90 is taken to 0x32eff0c when `ret(findLeaf)` is zero and falls through when nonzero.
+  The `bgezall` at 0x32efbd4 calls `findLeaf` with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=0x1, a3=a3 at entry (arg3), on entry.
+  The `bgezall` at 0x32efc80 calls `fixMemoryProblem` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=[a1+24], on the taken arm of `bne` at 0x32efc5c or the fall-through of `beq` at 0x32efc70.
+  The `bgezall` at 0x32efd2c calls `allocLeafData` with a0=a0 at entry (arg0), a1=ret(findLeaf), a2=[ret(findLeaf)+8], a3=[ret(findLeaf)+12], on the fall-through of `bne` at 0x32efd18.
+  The `bgezall` at 0x32efd6c calls `mergeLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(findLeaf), a3=unknown, on the fall-through of `beq` at 0x32efd34.
+  The `jalr` at 0x32efd8c calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=[ret(findLeaf)+24]:8, a3=unknown, on the taken arm of `bne` at 0x32efc10.
+  The `bgezall` at 0x32efdd0 calls `resizeLeaf` with a0=a0 at entry (arg0), a1=ret(findLeaf), a2=[ret(findLeaf)+8], a3=unknown, on the fall-through of `bne` at 0x32efdb8.
+  The `bgezall` at 0x32efdfc calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[ret(findLeaf)+8], a3=[ret(findLeaf)+12], on the taken arm of `bne` at 0x32efdb8.
+  The `bgezall` at 0x32efe30 calls `resizeLeaf` with a0=a0 at entry (arg0), a1=ret(findLeaf), a2=[ret(findLeaf)+8], a3=unknown, on the taken arm of `bne` at 0x32efdb8.
+  The `bgezall` at 0x32efe50 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken arm of `bne` at 0x32efdb8.
+  The `bgezall` at 0x32efe68 calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on a path through the fall-through of `beq` at 0x32efca4.
+  The `bgezall` at 0x32efe90 calls `allocLeafData` with a0=a0 at entry (arg0), a1=ret(allocLeaf), a2=unknown, a3=unknown, on a path through the fall-through of `beq` at 0x32efca4.
+  The `bgezall` at 0x32efed4 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=0x32eed60, on the fall-through of `beq` at 0x32efe9c.
+  The `bgezall` at 0x32efeec calls `mergeLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the fall-through of `beq` at 0x32efe9c.
+  The `bgezall` at 0x32eff18 calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32efc90.
+  The `bgezall` at 0x32eff40 calls `allocLeafData` with a0=a0 at entry (arg0), a1=ret(allocLeaf), a2=unknown, a3=unknown, on the fall-through of `beq` at 0x32eff2c.
+  The `bgezall` at 0x32eff74 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on a path through the taken arm of `beq` at 0x32efc90.
+  The `bgezall` at 0x32eff8c calls `mergeLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on a path through the taken arm of `beq` at 0x32efc90.
+  The `bgezall` at 0x32effd0 calls `resizeLeaf` with a0=a0 at entry (arg0), a1=ret(findLeaf), a2=unknown, a3=[ret(findLeaf)+12], on the taken arm of `bne` at 0x32efd18.
+  The `jalr` at 0x32efff0 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32efc88.
+  The `bgezall` at 0x32f0010 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=0x32eed60, on the taken arm of `beq` at 0x32efe9c.
+  The `bgezall` at 0x32f0028 calls `mergeLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32efe9c.
+  The `jalr` at 0x32f0034 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32efe9c.
+  The `jalr` at 0x32f0050 calls `__glSetError` with a0=0x505, a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32efd34.
+  The `bgezall` at 0x32f006c calls `freeLeaf` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32eff48.
+  The `jalr` at 0x32f0078 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32eff48.
+  The v0 return is 0x0 or 0x1 at 0x32efc48, and 0x1 at 0x32eff04 and 0x32effa4 (`jr` at 0x32efc48, 0x32eff04, 0x32effa4).
+
+- `__glNamesLockData` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  `beq` at 0x32f00c8 is taken to 0x32f0118 when the result of `findLeaf` is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32f00c8, a doubleword is loaded at `ret(findLeaf)` +0x10 (`ld` at 0x32f00d0).
+  On that path, `beq` at 0x32f00d4 is taken to 0x32f0114 when that doubleword is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32f00d4, `beq` at 0x32f00f8 is taken to 0x32f010c when unknown a2 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32f00f8, a word is stored through an unknown base (`sw` at 0x32f0108).
+  The `bgezall` at 0x32f00c0 calls `findLeaf` with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=0x1, a3=a3 at entry (arg3), on entry.
+  The v0 return is unknown at 0x32f010c and 0x0 at 0x32f0120 (`jr` at 0x32f010c, 0x32f0120).
+
+- `__glDeleteArena` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32edd20
+  Doublewords are read from entry a0 +0x0 and +0x8 (`ld` at 0x32edd28, 0x32edd2c).
+  The `beq` at 0x32edd48 branches to 0x32edd84 when a1(=[a0+8]:8) == 0 and falls through when a1(=[a0+8]:8) != 0.
+  On the fall-through of `beq` at 0x32edd48, a doubleword is loaded from an unknown base (`ld` at 0x32edd6c).
+  The `bgezall` at 0x32edd70 calls `DeleteBlock` with a0=[a0]:8, a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32edd48.
+  On that fall-through path, the `bne` at 0x32edd78 branches to 0x32edd60 when s0(unknown) != 0 and falls through when s0(unknown) == 0.
+  After either arm of `beq` at 0x32edd48, a doubleword is read from [a0]:8 +0x18 (`ld` at 0x32edd84).
+  The `jalr` at 0x32edd8c calls (unknown callee) with a0=[a0]:8, a1=a0 at entry (arg0), a2=unknown, a3=unknown after either arm of `beq` at 0x32edd48.
+  The value in v0 is the unknown callee result at return (`jr` at 0x32edda4).
+
+- `__glArenaAlloc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32eddb0
+  A doubleword is loaded from entry a0 +0x10 (`ld` at 0x32eddb0).
+  Words are read from [a0+16]:8 +0x4 and +0x0 (`lw` at 0x32eddb4, 0x32eddbc).
+  The `bne` at 0x32eddec branches to 0x32ede18 when v0(unknown) < v1(unknown) unsigned and falls through when v0(unknown) >= v1(unknown) unsigned; its delay slot reads a doubleword from [a0+16]:8 +0x8 on both arms (`ld` at 0x32eddf0).
+  On the fall-through of `bne` at 0x32eddec, a word is stored to [a0+16]:8 +0x4 (`sw` at 0x32ede0c).
+  When `bne` at 0x32eddec is taken, a doubleword is read from entry a0 +0x0 (`ld` at 0x32ede28).
+  The `bgezall` at 0x32ede38 calls `NewBlock` with a0=[a0]:8, a1=unknown, a2=0x40000, a3=a3 at entry (arg3), a4=[a0+16]:8, a5=[[a0+16]:8+4] on the taken arm of `bne` at 0x32eddec.
+  On that taken arm, the `bne` at 0x32ede44 branches to 0x32ede5c when v0(=ret(NewBlock)) != 0 and falls through when v0(=ret(NewBlock)) == 0.
+  When `bne` at 0x32ede44 is taken, ret(NewBlock) is stored as a doubleword to an unknown base (`sd` at 0x32ede64).
+  On that arm, ret(NewBlock) is also stored at entry a0 +0x10 (`sd` at 0x32ede70).
+  That path stores a word to ret(NewBlock) +0x4 and reads a doubleword from ret(NewBlock) +0x8 (`sw` at 0x32ede74; `ld` at 0x32ede78).
+  The v0 returns are unknown on the fall-through of `bne` at 0x32eddec; on the fall-through of `bne` at 0x32ede44 it is 0x0; on that branch's taken arm it is [ret(NewBlock)+8]:8 (`jr` at 0x32ede10, 0x32ede54, 0x32ede7c).
+
+- `__glArenaFreeAll` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ede90
+  Entry a0 +0x8 and +0x0 supply doublewords (`ld` at 0x32ede9c, 0x32edea0).
+  A doubleword is read from [a0+8]:8 +0x10 (`ld` at 0x32edea8).
+  The code stores a zero word to [a0+8]:8 +0x4 (`sw` at 0x32edeb0).
+  A zero doubleword is stored to [a0+8]:8 +0x10 (`sd` at 0x32edeb8).
+  The doubleword [a0+8]:8 is stored to entry a0 +0x10 (`sd` at 0x32edebc).
+  The `beq` at 0x32edec0 branches to 0x32edef8 when at(=[[a0+8]:8+16]:8) == 0 and falls through when at(=[[a0+8]:8+16]:8) != 0.
+  On the fall-through of `beq` at 0x32edec0, a doubleword is read from an unknown base (`ld` at 0x32ededc).
+  The `bgezall` at 0x32edee0 calls `DeleteBlock` with a0=[a0]:8, a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32edec0.
+  On that fall-through path, the `bne` at 0x32edee8 branches to 0x32eded0 when s0(unknown) != 0 and falls through when s0(unknown) == 0.
+  At return, v0 is unknown (`jr` at 0x32edf00).
+
+- `freeLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee080
+  A doubleword is loaded from entry a1 +0x10 (`ld` at 0x32ee080).
+  The `beq` at 0x32ee090 branches to 0x32ee0b0 when a3(=[a1+16]:8) == 0 and falls through when a3(=[a1+16]:8) != 0.
+  The `bgezall` at 0x32ee0a4 calls `freeLeafData` with a0=a0 at entry (arg0), a1=[a1+16]:8, a2=a2 at entry (arg2), a3=[a1+16]:8 on the fall-through of `beq` at 0x32ee090.
+  After either arm of `beq` at 0x32ee090, a doubleword is read from entry a0 +0x18 (`ld` at 0x32ee0b0).
+  The `jr` at 0x32ee0c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown after either arm of `beq` at 0x32ee090.
+
+- `__glNamesFreeTree` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee0e0
+  The `beq` at 0x32ee110 branches to 0x32ee1d0 when a2 == 0 and falls through when a2 != 0.
+  On the fall-through of `beq` at 0x32ee110, a word is read from entry a1 +0x8 (`lw` at 0x32ee118).
+  On that path, the `bne` at 0x32ee120 branches to 0x32ee1ec when a3 < v0(=[a1+8]) signed and falls through when a3 >= v0(=[a1+8]) signed.
+  On the fall-through of `bne` at 0x32ee120, doublewords are read from entry a2 +0x10 and entry a1 +0x10 (`ld` at 0x32ee12c, 0x32ee130).
+  On that path, the `beq` at 0x32ee13c branches to 0x32ee1b4 when v1(=[a2+16]:8) == 0 and falls through when v1(=[a2+16]:8) != 0; its delay slot reads a doubleword from [a1+16]:8 +0x8 on both arms (`ld` at 0x32ee140).
+  When `beq` at 0x32ee13c falls through, words are read from entry a2 +0xc and +0x8 (`lw` at 0x32ee144, 0x32ee148).
+  On that fall-through path, the `beq` at 0x32ee154 branches to 0x32ee1b8 when s4(unknown) == 0 and falls through when s4(unknown) != 0.
+  When `beq` at 0x32ee154 falls through, the `beq` at 0x32ee188 branches to 0x32ee170 when a1(unknown) == s3(=[[a1+16]:8+8]:8) and falls through when they differ.
+  On the fall-through of `beq` at 0x32ee188, doublewords are read from entry a2 +0x18 and [a2+24]:8 +0x18 (`ld` at 0x32ee190, 0x32ee194).
+  The `jalr` at 0x32ee198 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32ee188.
+  On that call path, [[a1+16]:8+8]:8 is stored as a doubleword to an unknown base (`sd` at 0x32ee1ac).
+  The `bgezall` at 0x32ee1c8 calls `freeLeaf` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=unknown, a3=unknown on paths through the fall-through of `bne` at 0x32ee120.
+  The `bgezall` at 0x32ee1f4 calls `__glNamesFreeTree` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a2+32]:8, a3=a3+1, a5=a3 at entry (arg3) on the taken arm of `bne` at 0x32ee120.
+  The `bgezall` at 0x32ee20c calls `__glNamesFreeTree` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a2+24]:8, a3=unknown on the taken arm of `bne` at 0x32ee120.
+  The `bgezall` at 0x32ee224 calls `__glNamesFreeTree` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a2+16]:8, a3=unknown on the taken arm of `bne` at 0x32ee120.
+  The `bgezall` at 0x32ee238 calls `freeBranch` with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=unknown, a3=unknown on the taken arm of `bne` at 0x32ee120.
+  The v0 value at return is unknown (`jr` at 0x32ee1e4).
+  The instructions from 0x32ee168 to 0x32ee16c are not reached by any path from the entry, and their branches are not listed.
+
+- `findLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee340
+  A word is read from entry a0 +0x8 (`lw` at 0x32ee340).
+  The `blez` at 0x32ee348 takes 0x32ee394 when that word is at most zero signed and falls through when it is greater; its delay slot reads a doubleword from entry a0 +0x0 on both arms (`ld` at 0x32ee34c).
+  On the fall-through of `blez` at 0x32ee348, `beq` at 0x32ee350 takes 0x32ee38c when the doubleword is zero and falls through when it is nonzero.
+  On paths through the fall-through of `beq` at 0x32ee350, two words are loaded from unknown bases (`lw` at 0x32ee360, 0x32ee364).
+  On those paths, `blez` at 0x32ee37c takes 0x32ee394 when unknown a5 is at most zero signed and falls through when it is greater; its delay slot reads a doubleword from an unknown base on both arms (`ld` at 0x32ee380).
+  When `blez` at 0x32ee37c falls through, `bne` at 0x32ee384 takes 0x32ee360 when unknown a4 is nonzero and falls through when it is zero.
+  When either `blez` at 0x32ee348 or 0x32ee37c is taken, `beq` at 0x32ee394 takes 0x32ee38c when unknown a4 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32ee394, two words are read through unknown bases (`lw` at 0x32ee39c, 0x32ee3a0).
+  The v0 return is 0x0 at 0x32ee38c and unknown at 0x32ee3b8 (`jr` at 0x32ee38c, 0x32ee3b8).
+
+- `fixMemoryProblem` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee4e0
+  A word is loaded from entry a1 +0x18 (`lw` at 0x32ee4f0).
+  The `beq` at 0x32ee51c takes 0x32ee554 when that word is at least 0x10 unsigned and falls through when it is less.
+  The `jalr` at 0x32ee538 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x28, a2=unknown, a3=unknown, on the fall-through of `beq` at 0x32ee51c.
+  On that path, a doubleword is loaded from entry a0 +0x0 (`ld` at 0x32ee530).
+  On that path, `beq` at 0x32ee540 takes 0x32ee5fc when the call result is zero and falls through when it is nonzero; its delay slot stores the call result as a doubleword to an unknown base on both arms (`sd` at 0x32ee544).
+  When `beq` at 0x32ee540 falls through, `bne` at 0x32ee54c takes 0x32ee530 when 0x10 differs from unknown s1 and falls through when equal.
+  After the taken arm of `beq` at 0x32ee51c or the fall-through of `bne` at 0x32ee54c, a word is loaded from entry a1 +0x1c (`lw` at 0x32ee554).
+  On those paths, `beq` at 0x32ee56c takes 0x32ee5a4 when that word is at least 0x3 unsigned and falls through when it is less; the preceding instruction stores 0x10 as a word to entry a1 +0x18 (`sw` at 0x32ee568).
+  The `jalr` at 0x32ee588 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=unknown, a3=unknown, on the fall-through of `beq` at 0x32ee56c.
+  On that path, `beq` at 0x32ee590 takes 0x32ee5d0 when the call result is zero and falls through when it is nonzero; its delay slot stores that result as a doubleword to an unknown base on both arms (`sd` at 0x32ee594).
+  When `beq` at 0x32ee590 falls through, `bne` at 0x32ee59c takes 0x32ee580 when 0x3 differs from unknown s1 and falls through when equal.
+  The v0 return is 0x1 at 0x32ee5c8 and 0x0 at 0x32ee5f4 and 0x32ee620 (`jr` at 0x32ee5c8, 0x32ee5f4, 0x32ee620).
+
+- `pushMaxVal` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee680
+  A doubleword is loaded from entry a0 +0x0 (`ld` at 0x32ee680).
+  The `beq` at 0x32ee684 takes 0x32ee6cc when that doubleword is zero and falls through when nonzero.
+  On its fall-through, a doubleword is read at +0x10 from the doubleword loaded from entry a0 (`ld` at 0x32ee690).
+  On paths through the fall-through of `beq` at 0x32ee684, `beq` at 0x32ee6b0 takes 0x32ee694 when unknown v1 equals unknown a0 and falls through when they differ; its delay slot reads a doubleword through an unknown base on both arms (`ld` at 0x32ee6b4).
+  On the taken arm of `beq` at 0x32ee6b0, `bne` at 0x32ee694 takes 0x32ee6cc when unknown a4 is nonzero and falls through when it is zero; its delay slot stores entry a1 as a word to an unknown base on both arms (`sw` at 0x32ee698).
+  On paths where `bne` at 0x32ee694 falls through, `bne` at 0x32ee6b8 is taken, or `beq` at 0x32ee6c4 is taken, a doubleword is read from an unknown base (`ld` at 0x32ee69c).
+  On those paths, `beq` at 0x32ee6a4 takes 0x32ee6cc when unknown v0 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x32ee6b0, `bne` at 0x32ee6b8 takes 0x32ee69c when unknown a4 differs from unknown a0 and falls through when equal.
+  On the fall-through of `bne` at 0x32ee6b8, `beq` at 0x32ee6c4 takes 0x32ee69c when unknown a0 is zero and falls through when nonzero; its delay slot stores entry a1 as a word to an unknown base on both arms (`sw` at 0x32ee6c8).
+  At return, v0 is unknown (`jr` at 0x32ee6cc).
+
+- `deleteChild` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee8f0
+  Two doublewords are read from entry a1 at +0x18 and +0x10 (`ld` at 0x32ee8f0, 0x32ee8f4).
+  The word at entry a0 +0x8 is loaded (`lw` at 0x32ee8f8).
+  The `bne` at 0x32ee908 takes 0x32ee95c when the doubleword at entry a1 +0x10 differs from entry a2 and falls through when equal.
+  On its fall-through, the doubleword read from entry a1 +0x18 is stored to entry a1 +0x10 (`sd` at 0x32ee910).
+  On that path, a doubleword is read from entry a1 +0x20 and zero is stored back there (`ld` at 0x32ee914; `sd` at 0x32ee918).
+  On that path, `beq` at 0x32ee928 takes 0x32ee9b4 when the loaded doubleword is zero and falls through when nonzero; its delay slot stores that doubleword at entry a1 +0x18 on both arms (`sd` at 0x32ee92c).
+  The `bgezall` at 0x32ee940 calls `computeMax` with a0=[a1+32]:8, a1=a3+1, a2=[a0+8], a3=a3 at entry (arg3), a5=[a1+32]:8, a6=[a0+8], on the fall-through of `beq` at 0x32ee928.
+  On the taken arm of `bne` at 0x32ee908, `bne` at 0x32ee95c takes 0x32ee9c4 when the doubleword at entry a1 +0x18 differs from entry a2 and falls through when equal.
+  On the fall-through of `bne` at 0x32ee95c, a doubleword is read from entry a1 +0x20 and zero is stored there (`ld` at 0x32ee968; `sd` at 0x32ee96c).
+  On that path, `beq` at 0x32ee970 takes 0x32ee9a4 when the loaded doubleword is zero and falls through when nonzero; its delay slot stores that doubleword to entry a1 +0x18 on both arms (`sd` at 0x32ee974).
+  The `bgezall` at 0x32ee988 calls `computeMax` with a0=[a1+32]:8, a1=a3+1, a2=[a0+8], a3=a3 at entry (arg3), a5=[a1+32]:8, a6=[a0+8], on the fall-through of `beq` at 0x32ee970.
+  The `bgezall` at 0x32ee9d0 calls `pushMaxVal` with a0=a1 at entry (arg1), a1=[a1+12], a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[a1+24]:8, a6=[a0+8], on the taken arm of `bne` at 0x32ee95c.
+  On the taken arm of `bne` at 0x32ee95c, its call's delay slot stores zero as a doubleword at entry a1 +0x20 (`sd` at 0x32ee9d4).
+  The v0 returns are the `computeMax` result at 0x32ee954, unknown at 0x32ee99c and 0x32ee9ac, and the word read from entry a1 +0xc at 0x32ee9bc (`jr` at 0x32ee954, 0x32ee99c, 0x32ee9ac, 0x32ee9bc).
+
+- `addChild` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ee9e0
+  The `bgezall` at 0x32eea08 calls `computeMax` with a0=a1 at entry (arg1), a1=a2+1, a2=a3 at entry (arg3), a3=a3 at entry (arg3).
+  Entry a0 is stored as a doubleword to entry a1 +0x0 (`sd` at 0x32eea10).
+  Words are read from entry a0 +0xc and +0x8 (`lw` at 0x32eea14, 0x32eea1c).
+  The `beq` at 0x32eea20 takes 0x32eea50 when the word at entry a0 +0xc is at least the `computeMax` result unsigned and falls through when it is less; its delay slot reads a doubleword at entry a0 +0x18 on both arms (`ld` at 0x32eea24).
+  On the fall-through of `beq` at 0x32eea20, `beq` at 0x32eea28 takes 0x32eea54 when that doubleword is zero and falls through when it is nonzero.
+  The `bgezall` at 0x32eea40 calls `pushMaxVal` with a0=a0 at entry (arg0), a1=ret(computeMax), a2=unknown, a3=unknown, on the fall-through of `beq` at 0x32eea28.
+  Its delay slot stores entry a1 as a doubleword at entry a0 +0x20 (`sd` at 0x32eea44).
+  After the taken arm of `beq` at 0x32eea20 or 0x32eea28, `beq` at 0x32eea54 takes 0x32eea80 when unknown ra is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32eea54, the `computeMax` result is stored as a word at entry a0 +0xc, and entry a1 is stored as a doubleword at entry a0 +0x18 (`sw` at 0x32eea5c; `sd` at 0x32eea60).
+  On that path, `beq` at 0x32eea64 takes 0x32eeaac when the doubleword at entry a0 +0x18 is zero and falls through when nonzero; its delay slot stores that doubleword at entry a0 +0x20 on both arms (`sd` at 0x32eea68).
+  The `bgezall` at 0x32eeab8 calls `pushMaxVal` with a0=a0 at entry (arg0), a1=ret(computeMax), a2=unknown, a3=unknown, on the taken arm of `beq` at 0x32eea64.
+  On the taken arm of `beq` at 0x32eea54, the `computeMax` result is stored as a word at entry a0 +0x8 (`sw` at 0x32eea8c).
+  The v0 result is unknown at 0x32eea78 and the `computeMax` result at 0x32eeaa4 (`jr` at 0x32eea78, 0x32eeaa4).
+
+- `buildParent` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 204 bytes
+A doubleword is stored at entry a1 +0x0 (`sd` at 0x32eec90).
+  Another doubleword is stored at entry a2 +0x0 (`sd` at 0x32eec94).
+  The `bgezall` at 0x32eecd4 calls `computeMax` with a0=a1 at entry (arg1), a1=0x0, a2=a3 at entry (arg3), a3=a3 at entry (arg3).
+  The `bgezall` at 0x32eecf4 calls `computeMax` with a0=a2 at entry (arg2), a1=0x0, a2=a3 at entry (arg3), a3=unknown.
+  The `beq` at 0x32eed08 branches to 0x32eed38 when s1(=ret(computeMax)) >= v0(=ret(computeMax)) unsigned and falls through when s1(=ret(computeMax)) < v0(=ret(computeMax)) unsigned.
+  On its fall-through, words are stored at entry a0 +0xc and +0x8 (`sw` at 0x32eed10, 0x32eed28).
+  On that path, doublewords are stored at entry a0 +0x10 and +0x18 (`sd` at 0x32eed14, 0x32eed1c).
+  On its taken arm, words are stored at entry a0 +0x8 and +0xc (`sw` at 0x32eed3c, 0x32eed4c).
+  On that arm, doublewords are stored at entry a0 +0x18 and +0x10 (`sd` at 0x32eed38, 0x32eed44).
+  The returned v0 is ret(computeMax) on both paths (`jr` at 0x32eed30, 0x32eed54).
+
+- `insertLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 684 bytes
+The instructions from 0x32eeec4 to 0x32eeecc are not reached by any path from the entry, and their branches are not listed.
+  A word is read at entry a2 +0xc (`lw` at 0x32eed60).
+  A word and a doubleword are read at entry a1 +0x8 and +0x0 respectively (`lw` at 0x32eed70; `ld` at 0x32eed78).
+  The `beq` at 0x32eed8c branches to 0x32eefb4 when s0(=[a1]:8) == 0 and falls through when s0(=[a1]:8) != 0.
+  On its taken arm, a doubleword is stored at entry a1 +0x0 (`sd` at 0x32eefb4).
+  That arm stores a word at entry a1 +0x8 (`sw` at 0x32eefb8).
+  On the fall-through of `beq` at 0x32eed8c, `blez` at 0x32eed94 branches to 0x32eeff0 when s2(=[a1+8]) <= 0 signed and falls through when s2(=[a1+8]) > 0 signed.
+  The `bgezall` at 0x32eee18 calls `allocBranch` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown on paths where `beq` at 0x32eee08 falls through.
+  The `bgezall` at 0x32eee38 calls `splitParent` with a0=unknown, a1=ret(allocBranch), a2=unknown, a3=unknown, a4=[a1+8] on those paths.
+  The `bgezall` at 0x32eee5c calls `allocBranch` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown on paths reaching 0x32eee54.
+  The `bgezall` at 0x32eee88 calls `buildParent` with a0=ret(allocBranch), a1=unknown, a2=unknown, a3=[a1+8] on those paths.
+  On paths reaching 0x32eee54, a doubleword and a word are stored at entry a1 +0x0 and +0x8 (`sd` at 0x32eee9c; `sw` at 0x32eeeb0).
+  The return is ret(buildParent) on paths reaching 0x32eeebc and [a2+12] on the taken arm of `beq` at 0x32eed8c (`jr` at 0x32eeebc, 0x32eefd4).
+
+- `deleteLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 584 bytes
+A doubleword is read at entry a2 +0x0 (`ld` at 0x32ef01c).
+  The `bne` at 0x32ef030 branches to 0x32ef084 when s0(=[a2]:8) != 0 and falls through when s0(=[a2]:8) == 0.
+  Its delay slot reads a word at entry a1 +0x8 on both arms (`lw` at 0x32ef034).
+  On the fall-through of `bne` at 0x32ef030, a doubleword is stored at entry a1 +0x0 (`sd` at 0x32ef038).
+  The `bgezall` at 0x32ef0a8 calls `deleteChild` with a0=a1 at entry (arg1), a1=[a2]:8, a2=a2 at entry (arg2), a3=[a1+8]-1 on its taken arm.
+  On that arm, `bne` at 0x32ef0cc branches to 0x32ef054 when t8(=[[a2]:8+24]:8) != 0 and falls through when t8(=[[a2]:8+24]:8) == 0.
+  The `bgezall` at 0x32ef104 calls `addChild` with a0=unknown, a1=unknown, a2=unknown, a3=[a1+8] on paths where `bne` at 0x32ef0ec falls through.
+  The `bgezall` at 0x32ef148 calls `deleteChild` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown on paths where `beq` at 0x32ef128 falls through.
+  The `bgezall` at 0x32ef160 calls `freeBranch` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on those paths.
+  The `bgezall` at 0x32ef17c calls `computeMax` with a0=unknown, a1=unknown, a2=[a1+8], a3=unknown on those paths.
+  The `bgezall` at 0x32ef1b0 calls `allocBranch` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown on paths where `bne` at 0x32ef0ec is taken.
+  The `bgezall` at 0x32ef1d4 calls `splitParent` with a0=unknown, a1=ret(allocBranch), a2=unknown, a3=unknown, a4=[a1+8] on those paths.
+  The `bgezall` at 0x32ef238 calls `freeBranch` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where `beq` at 0x32ef128 is taken.
+  On that path, a doubleword is stored at entry a1 +0x0 and another at an unknown base (`sd` at 0x32ef240, 0x32ef244).
+  On that path, a word is stored at entry a1 +0x8 (`sw` at 0x32ef254).
+  The v0 return is unknown (`jr` at 0x32ef04c, 0x32ef07c).
+
+- `prevLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 272 bytes
+The instructions from 0x32ef474 to 0x32ef47c are not reached by any path from the entry, and their branches are not listed.
+  A doubleword is loaded at entry a0 +0x0 (`ld` at 0x32ef400).
+  The `beq` at 0x32ef404 branches to 0x32ef4ec when v0(=[a0]:8) == 0 and falls through when v0(=[a0]:8) != 0.
+  On its fall-through, a doubleword is read from an unknown base (`ld` at 0x32ef40c).
+  On paths where `beq` at 0x32ef410 falls through, `beq` at 0x32ef418 branches to 0x32ef4d8 when v1(unknown) == a0(unknown) and falls through when they differ.
+  The v0 return is 0x0 at 0x32ef42c and 0x32ef4ec and unknown at 0x32ef46c (`jr` at 0x32ef42c, 0x32ef46c, 0x32ef4ec).
+
+- `firstLeaf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 60 bytes
+A doubleword is loaded at entry a0 +0x0 (`ld` at 0x32ef510).
+  The `beq` at 0x32ef518 branches to 0x32ef544 when v0(=[a0]:8) == 0 and falls through when v0(=[a0]:8) != 0.
+  Its delay slot reads a word at entry a0 +0x8 on both arms (`lw` at 0x32ef51c).
+  On the fall-through of `beq` at 0x32ef518, `beq` at 0x32ef520 branches to 0x32ef53c when a3(=[a0+8]) == 0 and falls through when a3(=[a0+8]) != 0.
+  On its fall-through, `bne` at 0x32ef534 branches to 0x32ef530 when a3(=[a0+8]) != a2(unknown) and falls through when they are equal.
+  The delay slot of `bne` at 0x32ef534 reads a doubleword from an unknown base on both arms (`ld` at 0x32ef538).
+  The v0 return is unknown at 0x32ef53c and 0x0 at 0x32ef544 (`jr` at 0x32ef53c, 0x32ef544).
+
+- `__glNamesUnlockData` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f0b60
+  It loads a word at entry a1 +0x0 (`lw` at 0x32f0b60).
+  It subtracts 0x1 from the word (`addiu` at 0x32f0b6c), then stores the result at entry a1 +0x0 (`sw` at 0x32f0b78).
+  `beq` at 0x32f0b7c takes 0x32f0b90 when the result is zero and falls through when nonzero.
+  On the taken path of `beq` at 0x32f0b7c, it loads a doubleword from entry a0 +0x18 (`ld` at 0x32f0b90).
+  The `jalr` at 0x32f0b98 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), on the taken path of `beq` at 0x32f0b7c.
+  At `jr` at 0x32f0b88, v0 is unknown overall; on the fall-through path of `beq` at 0x32f0b7c it is the loaded word minus 0x1, and after the call it is the call result.
+
+- `__glNamesGenRange` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f0cc0
+  The entry reads a word at a1 +0x18 (`lw` at 0x32f0cd8).
+  `bne` at 0x32f0cf8 takes 0x32f0d10 when that word differs from 0x10 and falls through when equal.
+  On the fall-through path of `bne` at 0x32f0cf8, a word is loaded from entry a1 +0x1c (`lw` at 0x32f0d00).
+  On that path, `beq` at 0x32f0d08 takes 0x32f0d2c when the word equals 0x3 and falls through when it differs.
+  The `bgezall` at 0x32f0d1c calls `fixMemoryProblem` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), on the taken path of `bne` at 0x32f0cf8 or the fall-through path of `beq` at 0x32f0d08.
+  The `bgezall` at 0x32f0d34 calls `firstLeaf` with a0=a1 at entry (arg1), a1=unknown, a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f0d08 or the fall-through path of `beq` at 0x32f0d24.
+  The `bgezall` at 0x32f0da8 calls `nextLeaf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on paths where `beq` at 0x32f0d3c falls through and `beq` at 0x32f0d4c is taken.
+  The `bgezall` at 0x32f0e40 calls `pushMaxVal` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on paths where `beq` at 0x32f0e00, `bne` at 0x32f0e14 and `bne` at 0x32f0e20 fall through.
+  The `bgezall` at 0x32f0e68 calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken path of `bne` at 0x32f0e20.
+  The `bgezall` at 0x32f0e8c calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=unknown, on the taken path of `bne` at 0x32f0e20.
+  The `bgezall` at 0x32f0ec4 calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken path of `bne` at 0x32f0d58.
+  The `bgezall` at 0x32f0ee8 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=unknown, on the taken path of `bne` at 0x32f0d58.
+  The `jalr` at 0x32f0f2c calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f0d24.
+  The `bgezall` at 0x32f0f4c calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=[ret(nextLeaf)+16]:8, on the taken path of `bne` at 0x32f0de8.
+  The `bgezall` at 0x32f0f78 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=unknown, on the taken path of `bne` at 0x32f0de8.
+  The `bgezall` at 0x32f0fa0 calls `pushMaxVal` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f0ddc.
+  The `bgezall` at 0x32f0fd8 calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f0e00.
+  The `bgezall` at 0x32f0ffc calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=unknown, on the taken path of `beq` at 0x32f0e00.
+  The `bgezall` at 0x32f1020 calls `mergeLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on paths where `bne` at 0x32f0fac falls through and `beq` at 0x32f0fb8 is taken.
+  The v0 returns at `jr` at 0x32f0d84, 0x32f0eac are unknown; at `jr` at 0x32f0f08 v0 is 0x1.
+
+- `__glNamesDeleteRange` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f1030
+  `beq` at 0x32f1078 takes 0x32f1270 when entry a3 is zero and falls through when nonzero.
+  On the fall-through path of `beq` at 0x32f1078, it reads a word from entry a1 +0x18 (`lw` at 0x32f1080).
+  On that fall-through path, `beq` at 0x32f1088 takes 0x32f1418 when the word equals 0x10 and falls through when it differs.
+  The `bgezall` at 0x32f10a8 calls `findLeaf` with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=0x0, a3=a3 at entry (arg3), on the fall-through path of `beq` at 0x32f1078.
+  The `bgezall` at 0x32f10fc calls `fixMemoryProblem` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on paths where `bne` at 0x32f12ec is taken and `beq` at 0x32f10e8 falls through.
+  The `bgezall` at 0x32f1118 calls `allocLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on paths where `bne` at 0x32f12ec is taken and either `beq` at 0x32f10e8 is taken or `beq` at 0x32f1104 falls through.
+  The `bgezall` at 0x32f1150 calls `allocLeafData` with a0=a0 at entry (arg0), a1=ret(allocLeaf), a2=0x32ee6e0, a3=unknown, on the fall-through path of `beq` at 0x32f1138.
+  The `bgezall` at 0x32f1170 calls `copyLeafInfo` with a0=unknown, a1=ret(allocLeaf), a2=unknown, a3=0x32ee3c0, on the fall-through path of `beq` at 0x32f1158.
+  The `bgezall` at 0x32f1194 calls `resizeLeaf` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, on paths where `beq` at 0x32f1138 is taken or `beq` at 0x32f1158 falls through.
+  The `bgezall` at 0x32f11b0 calls `insertLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(allocLeaf), a3=unknown, a4=0x32eed60, on paths where `beq` at 0x32f1138 is taken or `beq` at 0x32f1158 falls through.
+  The `bgezall` at 0x32f11d4 calls `nextLeaf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, on paths where `beq` at 0x32f10b0 falls through.
+  The `jalr` at 0x32f1268 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f1104.
+  The `bgezall` at 0x32f130c calls `deleteLeaf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the fall-through path of `bne` at 0x32f12f4.
+  The `bgezall` at 0x32f1324 calls `freeLeaf` with a0=a0 at entry (arg0), a1=unknown, a2=0x32ee080, a3=unknown, on the fall-through path of `bne` at 0x32f12f4.
+  The `jalr` at 0x32f1354 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=[[a1+16]:8+40]:1, a3=unknown, on paths where `beq` at 0x32f1380 falls through and either `beq` at 0x32f1390 or `beq` at 0x32f1338 is taken.
+  The `bgezall` at 0x32f13cc calls `resizeLeaf` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, a5=0x32ef260, on the taken path of `bne` at 0x32f12f4.
+  The `bgezall` at 0x32f1400 calls `resizeLeaf` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f10e0.
+  The `bgezall` at 0x32f1458 calls `freeLeaf` with a0=a0 at entry (arg0), a1=ret(allocLeaf), a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f1158.
+  The `jalr` at 0x32f1464 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f1158.
+  The v0 return at `jr` at 0x32f129c is unknown overall.
+
+- `__glNamesGenNames` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f14d0
+  `beq` at 0x32f14ec takes 0x32f1598 when entry a3 is zero and falls through when nonzero.
+  On the fall-through path of `beq` at 0x32f14ec, `blez` at 0x32f1508 takes 0x32f1598 when entry a2 is at most zero signed and falls through when greater than zero.
+  If `blez` at 0x32f1508 falls through, `beq` at 0x32f1524 takes 0x32f1540 when entry a2 AND 0x7 is zero and falls through when nonzero.
+  On the fall-through path of `beq` at 0x32f1524, a word is stored to an unknown base (`sw` at 0x32f1530).
+  If `blez` at 0x32f1508 falls through, `beq` at 0x32f1540 takes 0x32f1598 when unknown a4 is zero and falls through when nonzero.
+  On the fall-through path of `beq` at 0x32f1540, eight word stores to unknown bases include `sw` at 0x32f1550, 0x32f1558, 0x32f1560.
+  The `bgezall` at 0x32f14fc calls `__glNamesGenRange` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), on the fall-through path of `beq` at 0x32f14ec.
+  The v0 return at `jr` at 0x32f15a0 is unknown overall.
+
+- `__glNamesDeleteNames` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f15b0
+  A word is read from entry a3 +0x0 (`lw` at 0x32f15d4).
+  `beq` at 0x32f15ec takes 0x32f1624 when entry a2 is zero and falls through when nonzero.
+  On the fall-through path of `beq` at 0x32f15ec, `beq` at 0x32f15fc takes 0x32f1614 when entry a2 AND 0x1 is zero and falls through when nonzero.
+  On paths through 0x32f1614, `bnel` at 0x32f1618 takes 0x32f1674 when unknown a0 is nonzero and falls through when it is zero.
+  On paths through 0x32f1674, `bne` at 0x32f1674 takes 0x32f16ac when unknown a1 differs from unknown a5 and falls through when equal.
+  On paths through 0x32f167c, `beq` at 0x32f1684 takes 0x32f1660 when unknown a2 equals unknown a5 and falls through when they differ.
+  The `bgezall` at 0x32f163c calls `__glNamesDeleteRange` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken path of `beq` at 0x32f15ec, the fall-through path of `bnel` at 0x32f1618 or the taken path of `beq` at 0x32f1668.
+  The `bgezall` at 0x32f1698 calls `__glNamesDeleteRange` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the fall-through path of `beq` at 0x32f1684.
+  The `bgezall` at 0x32f16b8 calls `__glNamesDeleteRange` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, on the taken path of `bne` at 0x32f1674.
+  The v0 value at `jr` at 0x32f1654 is the result of `__glNamesDeleteRange`.
+  The instructions from 0x32f165c to 0x32f165c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x32f16cc to 0x32f16e4 are not reached by any path from the entry, and their branches are not listed.
+
+- `__glAlphaTestStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 516 bytes
+  The entry reads words from entry a0 +0xfe8 and +0x9740 (`lw` at 0x32fd9cc, 0x32fd9d4).
+  It loads doublewords from entry a0 +0x9820, +0x99e8 and +0x9830 (`ld` at 0x32fd9d8, 0x32fd9e0, 0x32fd9e4).
+  The `beq` at 0x32fd9e8 takes 0x32fdb98 when the word at entry a0 +0x9740 is zero and falls through when it is nonzero.
+  On paths through that fall-through, three word loads from entry a0 +0xfec include `lwc1` at 0x32fda04, 0x32fdac0, 0x32fdb18.
+  Those paths include three word loads from unknown bases (`lwc1` at 0x32fda08, 0x32fdac4, 0x32fdb1c).
+  They include three byte loads from unknown bases (`lbu` at 0x32fda2c, 0x32fdae8, 0x32fdb40).
+  A word is stored through an unknown base on paths through that fall-through (`sw` at 0x32fda5c).
+  On those paths, the `beq` at 0x32fda64 takes 0x32fdb78 when unknown t3 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32fda64, a word is loaded through an unknown base (`lw` at 0x32fda88).
+  On the fall-through of `beq` at 0x32fda64, `bltz` at 0x32fda8c takes 0x32fdba8 when unknown a7 is negative signed and falls through when it is nonnegative signed.
+  On the taken arm of `beq` at 0x32fda64, `beq` at 0x32fdb80 takes 0x32fdb9c when the word at entry a0 +0x9740 equals unknown a4 and falls through when they differ (`lw` at 0x32fdb7c).
+  The instructions from 0x32fdab4 to 0x32fdabc are not reached by any path from the entry, and their branches are not listed.
+  The v0 return is 0x0 or 0x1 (`jr` at 0x32fdb90, 0x32fdba0).
+
+- `__glShadeCISpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  A doubleword at entry a0 +0x9820 (`ld` at 0x33002ac) and a word at +0x9740 (`lw` at 0x33002a8) are loaded.
+  Two word loads read entry a0 +0x9764 and +0x9718 (`lwc1` at 0x33002b4, 0x33002bc).
+  The `bltz` at 0x33002b8 takes 0x330033c when the word at entry a0 +0x9740 minus 0x1 is negative signed, and falls through when nonnegative signed.
+  On that fall-through, `beq` at 0x33002c8 takes 0x33002e8 when the word at entry a0 +0x9740 AND 0x7 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x33002c8, a word is stored through an unknown base (`swc1` at 0x33002dc).
+  On that same path, `bne` at 0x33002e0 takes 0x33002d0 when unknown a1 is nonzero and falls through when zero.
+  After either arm of `beq` at 0x33002c8, `beq` at 0x33002e8 takes 0x330033c when unknown v0 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x33002e8, eight word stores use unknown bases, including `swc1` at 0x3300304, 0x3300308, 0x3300310.
+  On that path, `bne` at 0x3300334 takes 0x33002f0 when unknown a2 differs from -0x1 and falls through when equal.
+  Returning at `jr` at 0x330033c sets v0 to 0x0.
+
+- `__glShadeRGBASpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 212 bytes
+  The entry loads a doubleword at a0 +0x9820 (`ld` at 0x3300358).
+  Four word loads from entry a0 include +0x9770, +0x976c and +0x9768 (`lwc1` at 0x330035c, 0x3300360, 0x3300364).
+  It reads a word at entry a0 +0x9740 (`lw` at 0x330036c).
+  Four further word loads from entry a0 include +0x9724, +0x9720 and +0x971c (`lwc1` at 0x3300370, 0x3300374, 0x330037c).
+  The `bltz` at 0x3300388 takes 0x330041c when the word at entry a0 +0x9740 minus 0x1 is negative signed, and falls through when nonnegative signed.
+  On that fall-through, `beq` at 0x3300394 takes 0x33003c4 when unknown v0 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3300394, four word stores use the doubleword loaded from entry a0 +0x9820; their offsets include +0xc, +0x8 and +0x4 (`swc1` at 0x33003a0, 0x33003a8, 0x33003b0).
+  After either arm of `beq` at 0x3300394, `beq` at 0x33003c4 takes 0x330041c when unknown v1 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x33003c4, eight word stores through unknown bases include `swc1` at 0x33003d8, 0x33003e0, 0x33003e8.
+  On that path, `bne` at 0x3300414 takes 0x33003d0 when unknown a1 differs from -0x1 and falls through when equal.
+  At `jr` at 0x330041c, v0 is 0x0.
+
+- `__glFlatCISpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A word is read at entry a0 +0x9740 (`lw` at 0x3300438).
+  The entry loads a doubleword at a0 +0x9820 (`ld` at 0x3300440) and a word at +0x9718 (`lwc1` at 0x3300444).
+  `bltz` at 0x3300448 takes 0x330049c when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when nonnegative signed.
+  On that fall-through, `beq` at 0x3300454 takes 0x3300470 when unknown a1 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3300454, `bne` at 0x3300468 takes 0x330045c when unknown a1 is nonzero and falls through when zero; its delay slot stores a word through an unknown base on both arms (`swc1` at 0x330046c).
+  After either arm of `beq` at 0x3300454, `beq` at 0x3300470 takes 0x330049c when unknown v0 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3300470, four word stores use unknown bases, including `swc1` at 0x3300484, 0x3300488, 0x3300490.
+  On that path, `bne` at 0x3300494 takes 0x3300480 when unknown a2 differs from -0x1 and falls through when equal; its delay slot writes a word through an unknown base on both arms (`swc1` at 0x3300498).
+  The value in v0 at `jr` at 0x330049c is 0x0.
+
+- `__glFlatRGBASpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  A doubleword at entry a0 +0x9820 (`ld` at 0x33004b8) and a word at +0x9740 (`lw` at 0x33004bc) are read.
+  Four word loads from entry a0 include +0x9724, +0x9720 and +0x971c (`lwc1` at 0x33004c0, 0x33004c4, 0x33004d0).
+  `bltz` at 0x33004d8 takes 0x33004fc when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when nonnegative signed; its delay slot loads the word at entry a0 +0x9718 on both arms (`lwc1` at 0x33004dc).
+  On the fall-through of `bltz` at 0x33004d8, four word stores use unknown bases, including `swc1` at 0x33004e4, 0x33004e8, 0x33004f0.
+  On that path, `bne` at 0x33004f4 takes 0x33004e0 when unknown a2 differs from -0x1 and falls through when equal; its delay slot stores a word through an unknown base on both arms (`swc1` at 0x33004f8).
+  At `jr` at 0x33004fc, v0 is 0x0.
+
+- `__glRoundCISpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 308 bytes
+  It reads a word at entry a0 +0xe04 (`lw` at 0x3300ee4).
+  A second word load uses entry a0 +0x9740 (`lw` at 0x3300eec).
+  The doubleword at entry a0 +0x9820 is read (`ld` at 0x3300f04).
+  `bltz` at 0x3300f08 takes 0x330100c when the word at entry a0 +0x9740 minus 0x1 is negative signed, and falls through when it is nonnegative.
+  On that fall-through, `beq` at 0x3300f10 takes 0x3300f54 when unknown a6 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3300f10, a word is loaded from an unknown base (`lwc1` at 0x3300f18).
+  On that same path, a word is read from entry a0 +0xf28 (`lwc1` at 0x3300f1c).
+  On that path, `bne` at 0x3300f48 takes 0x3300f18 when unknown a6 is nonzero and falls through when zero; its delay slot stores a word to an unknown base on both arms (`swc1` at 0x3300f4c).
+  After either arm of `beq` at 0x3300f10, `beq` at 0x3300f54 takes 0x330100c when unknown t2 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3300f54, four word loads from unknown bases include `lwc1` at 0x3300f64, 0x3300f84, 0x3300fac.
+  On that path, four word loads from entry a0 +0xf28 include `lwc1` at 0x3300f60, 0x3300f8c, 0x3300fb4.
+  That path has four word stores to unknown bases, including `swc1` at 0x3300f88, 0x3300fb0, 0x3300fd8.
+  On that path, `bne` at 0x3301004 takes 0x3300f60 when unknown a2 differs from -0x1 and falls through when equal; its delay slot stores a word to an unknown base on both arms (`swc1` at 0x3301008).
+  The return in v0 is 0x0 (`jr` at 0x330100c).
+
+- `__glRoundCIStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 316 bytes
+  It reads words at entry a0 +0xe04 and +0x9740 (`lw` at 0x3301024, 0x330102c).
+  Doubleword loads use entry a0 +0x9820 and +0x9830 (`ld` at 0x3301034, 0x330103c).
+  `beq` at 0x3301040 takes 0x3301154 when the word at entry a0 +0x9740 is zero and falls through when nonzero.
+  On paths through the fall-through of `beq` at 0x3301040, a word is loaded from an unknown base (`lw` at 0x330112c).
+  On those paths, `bltz` at 0x3301130 takes 0x3301108 when unknown a4 is negative signed and falls through when nonnegative.
+  When `bltz` at 0x3301130 falls through, `beq` at 0x3301138 takes 0x3301080 when unknown t8 is zero and falls through when nonzero.
+  When `beq` at 0x3301138 falls through, `bne` at 0x3301144 takes 0x3301054 when unknown t9 is nonzero and falls through when zero.
+  On that taken arm, a word is loaded from entry a0 +0xf28 (`lwc1` at 0x3301054).
+  The same arm reads a word from an unknown base (`lwc1` at 0x3301058).
+  A word store to an unknown base follows on that arm (`swc1` at 0x3301078).
+  On paths to 0x3301080, `beq` at 0x3301088 takes 0x3301108 when unknown t9 is zero and falls through when nonzero.
+  On its fall-through, `beq` at 0x3301090 takes 0x33010c0 when unknown at is zero and falls through when nonzero.
+  On the latter fall-through, a word is stored to an unknown base (`swc1` at 0x33010bc).
+  After either arm of `beq` at 0x3301090, `beq` at 0x33010c8 takes 0x33010f8 when unknown a5 AND unknown a3 is zero and falls through when nonzero.
+  On that fall-through, another word goes to an unknown base (`swc1` at 0x33010f4).
+  After either arm of `beq` at 0x33010c8, `bne` at 0x3301100 takes 0x3301090 when unknown a4 differs from -0x1 and falls through when equal.
+  On paths through the fall-through of `beq` at 0x3301040, `beq` at 0x3301108 takes 0x3301154 when unknown t0 is zero and falls through when nonzero.
+  The v0 result is 0x0 (`jr` at 0x3301154).
+
+- `__glRoundRGBASpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 228 bytes
+  The entry loads a doubleword at a0 +0x9820 (`ld` at 0x3301168).
+  Its word reads include entry a0 +0x9740, +0x9a1c and +0x9a04 (`lw` at 0x330116c, 0x3301170, 0x3301174).
+  A word is also read at entry a0 +0x9a00 (`lw` at 0x330117c).
+  `bltz` at 0x3301184 takes 0x330123c when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when nonnegative; its delay slot reads a word at entry a0 +0x99fc on both arms (`lw` at 0x3301188).
+  On that fall-through, four word loads from unknown bases include `lwc1` at 0x3301190, 0x33011b4, 0x33011dc.
+  That path reads four words at entry a0 +0xf28, including `lwc1` at 0x3301194, 0x33011bc, 0x33011e4.
+  Four word stores to unknown bases on that path include `swc1` at 0x33011b8, 0x33011e0, 0x3301208.
+  On the fall-through of `bltz` at 0x3301184, `bne` at 0x3301234 takes 0x3301190 when unknown a3 differs from -0x1 and falls through when equal; its delay slot stores a word to an unknown base on both arms (`swc1` at 0x3301238).
+  This return sets v0 to 0x0 (`jr` at 0x330123c).
+
+- `__glRoundRGBAStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 320 bytes
+  A doubleword is loaded from entry a0 +0x9820 (`ld` at 0x3301258).
+  Word loads from entry a0 include +0x9a1c, +0x9a04 and +0x9740 (`lw` at 0x330125c, 0x3301260, 0x3301264).
+  The words at entry a0 +0x9a00 and +0x99fc are read (`lw` at 0x3301268, 0x330126c).
+  `beq` at 0x3301274 takes 0x3301384 when the word at entry a0 +0x9740 is zero and falls through when nonzero; its delay slot loads a doubleword at entry a0 +0x9830 on both arms (`ld` at 0x3301278).
+  On paths through that fall-through, a word load uses an unknown base (`lw` at 0x33012a4).
+  On those paths, `bltz` at 0x33012a8 takes 0x3301378 when unknown a4 is negative signed and falls through when nonnegative.
+  On that fall-through, `beq` at 0x33012c4 takes 0x330136c when unknown v0 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x33012c4, four word loads at entry a0 +0xf28 include `lwc1` at 0x33012cc, 0x33012f8, 0x3301320.
+  Four word loads on that path use unknown bases, including `lwc1` at 0x33012d0, 0x33012f0, 0x3301318.
+  That path has four word stores to unknown bases, including `swc1` at 0x33012f4, 0x330131c, 0x3301344.
+  After either arm of `beq` at 0x33012c4, `bne` at 0x3301370 takes 0x33012c0 when unknown a4 differs from -0x1 and falls through when equal.
+  On paths to 0x3301378, `bne` at 0x3301378 takes 0x3301290 when unknown t3 is nonzero and falls through when zero.
+  The returned v0 is 0x0 (`jr` at 0x3301388).
+
+- `__glLogicOpSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 316 bytes
+  The entry reads a word at a0 +0x9740 (`lw` at 0x3301398).
+  Doublewords are loaded from entry a0 +0x9828 and +0x9820 (`ld` at 0x33013ac, 0x33013b0).
+  `bltz` at 0x33013b4 takes 0x33014bc when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when nonnegative.
+  On the fall-through of `bltz` at 0x33013b4, a doubleword is read from absolute 0x338f000 (`ld` at 0x33013c0).
+  On paths through that fall-through, a word is read at entry a0 +0x848 (`lw` at 0x33013e8).
+  On those paths, two word loads use unknown bases (`lwc1` at 0x33013ec, 0x33013f0).
+  On those paths, `beq` at 0x3301424 takes 0x33013d0 when unknown a5 is at least 0x10 unsigned and falls through when it is less.
+  On the fall-through of `beq` at 0x3301424, `jr` at 0x3301430 selects a target from a jump table at 0x3383568, including 0x3301438, 0x33014b4 and 0x33014ac.
+  On paths to 0x33013dc, `beq` at 0x33013dc takes 0x33014bc when unknown a6 equals -0x1 and falls through when different; its delay slot writes a word to an unknown base on both arms (`swc1` at 0x33013e0).
+  v0 is 0x0 at return (`jr` at 0x33014bc).
+
+- `__glMatValidateV1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fa3b0
+  The `ld` at 0x32fa3b0 reads a doubleword from a0 at entry +0x4e38.
+  The `lw` at 0x32fa3bc reads a word from [a0+20024]:8 +0x0.
+  The `lw` at 0x32fa3c0 reads a word from a0 at entry +0x8cec.
+  On the fall-through of `beq` at 0x32fa3e0, the `ld` at 0x32fa3e8 reads a doubleword from [a0+20024]:8 +0x10.
+  `beq` at 0x32fa3e0 targets 0x32fa3f4 when (a2(=[a0+36076]) & at(unknown)) == 0 and falls through when (a2(=[a0+36076]) & at(unknown)) != 0.
+  The `jalr` at 0x32fa3ec calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20024]:8, a2=[a0+36076], a3=a3 at entry (arg3) on the fall-through of `beq` at 0x32fa3e0.
+  The `jr` at 0x32fa3fc returns unknown in v0.
+
+- `__glMatValidateV1V2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fa410
+  The `ld` at 0x32fa410 reads a doubleword from a0 at entry +0x4e38.
+  The `lw` at 0x32fa420 reads a word from [a0+20024]:8 +0x0.
+  The `lw` at 0x32fa428 reads a word from a0 at entry +0x8cec.
+  On the fall-through of `beq` at 0x32fa44c, the `ld` at 0x32fa454 reads a doubleword from [a0+20024]:8 +0x10.
+  The `ld` at 0x32fa460 reads a doubleword from a0 at entry +0x4e40.
+  The `lw` at 0x32fa464 reads a word from [a0+20032]:8 +0x0.
+  On the fall-through of `beq` at 0x32fa470, the `ld` at 0x32fa478 reads a doubleword from [a0+20032]:8 +0x10.
+  `beq` at 0x32fa44c targets 0x32fa460 when (s1(=[a0+36076]) & at(unknown)) == 0 and falls through when (s1(=[a0+36076]) & at(unknown)) != 0.
+  `beq` at 0x32fa470 targets 0x32fa48c when (s1(=[a0+36076]) & t8(unknown)) == 0 and falls through when (s1(=[a0+36076]) & t8(unknown)) != 0.
+  The `jalr` at 0x32fa458 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20024]:8, a2=[a0+36076], a3=a3 at entry (arg3) on the fall-through of `beq` at 0x32fa44c.
+  The `jalr` at 0x32fa480 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20032]:8, a2=[a0+36076], a3=unknown on the fall-through of `beq` at 0x32fa470.
+  The `jr` at 0x32fa498 returns unknown in v0.
+
+- `__glMatValidateV1V2V3` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fa4a0
+  The `ld` at 0x32fa4a0 reads a doubleword from a0 at entry +0x4e38.
+  The `lw` at 0x32fa4b0 reads a word from [a0+20024]:8 +0x0.
+  The `lw` at 0x32fa4b8 reads a word from a0 at entry +0x8cec.
+  On the fall-through of `beq` at 0x32fa4dc, the `ld` at 0x32fa4e4 reads a doubleword from [a0+20024]:8 +0x10.
+  The `ld` at 0x32fa4f0 reads a doubleword from a0 at entry +0x4e40.
+  The `lw` at 0x32fa4f4 reads a word from [a0+20032]:8 +0x0.
+  On the fall-through of `beq` at 0x32fa500, the `ld` at 0x32fa508 reads a doubleword from [a0+20032]:8 +0x10.
+  The `ld` at 0x32fa518 reads a doubleword from a0 at entry +0x4e48.
+  The `lw` at 0x32fa51c reads a word from [a0+20040]:8 +0x0.
+  On the fall-through of `beq` at 0x32fa528, the `ld` at 0x32fa530 reads a doubleword from [a0+20040]:8 +0x10.
+  `beq` at 0x32fa4dc targets 0x32fa4f0 when (s0(=[a0+36076]) & at(unknown)) == 0 and falls through when (s0(=[a0+36076]) & at(unknown)) != 0.
+  `beq` at 0x32fa500 targets 0x32fa518 when (s0(=[a0+36076]) & t8(unknown)) == 0 and falls through when (s0(=[a0+36076]) & t8(unknown)) != 0.
+  `beq` at 0x32fa528 targets 0x32fa544 when (s0(=[a0+36076]) & t9(unknown)) == 0 and falls through when (s0(=[a0+36076]) & t9(unknown)) != 0.
+  The `jalr` at 0x32fa4e8 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20024]:8, a2=[a0+36076], a3=a3 at entry (arg3) on the fall-through of `beq` at 0x32fa4dc.
+  The `jalr` at 0x32fa510 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20032]:8, a2=[a0+36076], a3=unknown on the fall-through of `beq` at 0x32fa500.
+  The `jalr` at 0x32fa538 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20040]:8, a2=[a0+36076], a3=unknown on the fall-through of `beq` at 0x32fa528.
+  The `jr` at 0x32fa550 returns unknown in v0.
+
+- `__glMatValidateV2V3` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fa560
+  The `ld` at 0x32fa560 reads a doubleword from a0 at entry +0x4e40.
+  The `lw` at 0x32fa570 reads a word from [a0+20032]:8 +0x0.
+  The `lw` at 0x32fa578 reads a word from a0 at entry +0x8cec.
+  On the fall-through of `beq` at 0x32fa59c, the `ld` at 0x32fa5a4 reads a doubleword from [a0+20032]:8 +0x10.
+  The `ld` at 0x32fa5b0 reads a doubleword from a0 at entry +0x4e48.
+  The `lw` at 0x32fa5b4 reads a word from [a0+20040]:8 +0x0.
+  On the fall-through of `beq` at 0x32fa5c0, the `ld` at 0x32fa5c8 reads a doubleword from [a0+20040]:8 +0x10.
+  `beq` at 0x32fa59c targets 0x32fa5b0 when (s1(=[a0+36076]) & at(unknown)) == 0 and falls through when (s1(=[a0+36076]) & at(unknown)) != 0.
+  `beq` at 0x32fa5c0 targets 0x32fa5dc when (s1(=[a0+36076]) & t8(unknown)) == 0 and falls through when (s1(=[a0+36076]) & t8(unknown)) != 0.
+  The `jalr` at 0x32fa5a8 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20032]:8, a2=[a0+36076], a3=a3 at entry (arg3) on the fall-through of `beq` at 0x32fa59c.
+  The `jalr` at 0x32fa5d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+20040]:8, a2=[a0+36076], a3=unknown on the fall-through of `beq` at 0x32fa5c0.
+  The `jr` at 0x32fa5e8 returns unknown in v0.
+
+- `__glEndPolygon` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fb160
+  The `ld` at 0x32fb160 reads a doubleword from a0 at entry +0x4e30.
+  The `sd` at 0x32fb1c4 stores 0x3301ae0 as a doubleword to a0 at entry +0x4980.
+  The `sd` at 0x32fb1c8 stores 0x3301ad0 as a doubleword to a0 at entry +0x4890.
+  On the taken arm of `beq` at 0x32fb1b0, the `ld` at 0x32fb1d8 reads a doubleword from a0 at entry +0x49b0.
+  `beq` at 0x32fb1b0 targets 0x32fb1d8 when a2(unknown) >= 0x3 (signed) and falls through when a2(unknown) < 0x3 (signed).
+  The `jalr` at 0x32fb1e0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a0+20056, a2=unknown, a3=unknown, a6=0xa3d70a3d70a3d70b on the taken arm of `beq` at 0x32fb1b0.
+  The `jr` at 0x32fb1d0 returns unknown in v0.
+
+- `__glLogicOpStippledSpan` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33014d0
+  The entry reads a word at a0 +0x9740 (`lw` at 0x33014e0).
+  It loads doublewords from entry a0 +0x9828 and +0x9820 (`ld` at 0x33014e8, 0x33014f0).
+  The `beq` at 0x33014f8 takes 0x3301648 when that word is zero and falls through when it is nonzero; its delay slot loads a doubleword from entry a0 +0x9830 on both arms (`ld` at 0x33014fc).
+  On paths through the fall-through of `beq` at 0x33014f8, a word load uses an unknown base (`lw` at 0x3301534).
+  On those paths, `bltz` at 0x3301538 takes 0x3301510 when unknown a7 is negative signed and falls through when it is nonnegative signed.
+  On paths through the fall-through of `bltz` at 0x3301538, `beq` at 0x3301578 takes 0x330155c when unknown v1 is zero and falls through when it is nonzero.
+  On paths through the fall-through of `beq` at 0x3301578, the word at entry a0 +0x848 is read (`lw` at 0x3301580).
+  On those paths, `beq` at 0x33015b0 takes 0x3301550 when unknown a1 is at least 0x10 unsigned and falls through when it is less than 0x10 unsigned.
+  On the fall-through of `beq` at 0x33015b0, `jr` at 0x33015bc uses a jump table whose targets include 0x33015c4, 0x3301640 and 0x3301634.
+  A word store through an unknown base occurs on paths reaching 0x3301550 (`swc1` at 0x3301558).
+  The instructions from 0x330150c to 0x330150c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x3301658 to 0x330165c are not reached by any path from the entry, and their branches are not listed.
+  At return, v0 is 0x0 (`jr` at 0x3301650).
+
+- `__glMaskRGBASpan` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3301670
+  Four byte loads from entry a0 include +0x867, +0x866 and +0x865 (`lbu` at 0x3301670, 0x3301678, 0x3301684).
+  It reads the word at entry a0 +0x9740 (`lw` at 0x3301680).
+  Two doubleword loads use entry a0 +0x9828 and +0x9820 (`ld` at 0x3301690, 0x3301694).
+  The `bltz` at 0x3301698 takes 0x33016f0 when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when it is nonnegative signed.
+  On the fall-through of `bltz` at 0x3301698, `beq` at 0x33016a4 takes 0x33016e8 when unknown t2 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x33016a4, four word stores use the doubleword loaded at entry a0 +0x9820 as their base, including `swc1` at 0x33016bc, 0x33016cc, 0x33016d8.
+  After either arm of `beq` at 0x33016a4, `bne` at 0x33016e8 takes 0x330171c when unknown t3 is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x33016e8, word stores through unknown bases include `swc1` at 0x330172c, 0x3301738, 0x3301744.
+  The instructions from 0x33016f8 to 0x33016fc are not reached by any path from the entry, and their branches are not listed.
+  The `jr` at 0x33016f0 returns v0 as 0x0.
+
+- `__glMaskCISpan` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33017d0
+  Words are loaded from entry a0 +0x9740, +0x860 and +0x99d8 (`lw` at 0x33017d8, 0x33017dc, 0x33017e0).
+  The entry reads doublewords at a0 +0x9828 and +0x9820 (`ld` at 0x33017e8, 0x33017f4).
+  The `bltz` at 0x33017f8 takes 0x330197c when the word at entry a0 +0x9740 minus 0x1 is negative signed and falls through when it is nonnegative signed.
+  On the fall-through of `bltz` at 0x33017f8, `beq` at 0x3301800 takes 0x3301858 when unknown a1 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x3301800, a word is loaded through an unknown base (`lwc1` at 0x3301808).
+  On that path, `bne` at 0x3301850 takes 0x3301808 when unknown a1 is nonzero and falls through when it is zero; its delay slot stores a word through an unknown base on both arms (`swc1` at 0x3301854).
+  After either arm of `beq` at 0x3301800, `beq` at 0x330185c takes 0x330197c when unknown t2 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330185c, four word stores use unknown bases, including `swc1` at 0x33018b0, 0x33018f0, 0x3301930.
+  On that path, `bne` at 0x3301974 takes 0x3301870 when unknown a1 differs from -0x1 and falls through when they are equal.
+  The returned v0 is 0x0 (`jr` at 0x330197c).
+
+- `__glim_RasterPos4f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3302810
+  A word is read at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x3302814; `ld` at 0x330281c).
+  The `beq` at 0x330283c takes 0x33028a4 when the word at 0x1030 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330283c, `beq` at 0x3302858 takes 0x330287c when the word at 0x1030 equals 0x2 and falls through when it differs.
+  The `jalr` at 0x3302864 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=a3 at entry (arg3), on the fall-through of `beq` at 0x3302858.
+  On the taken arm of `beq` at 0x3302858, a doubleword is loaded at +0x4748 from the doubleword read at 0x1020 (`ld` at 0x3302880).
+  The `jalr` at 0x3302884 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1030], a3=a3 at entry (arg3), on the taken arm of `beq` at 0x3302858.
+  That taken arm stores a zero word at absolute 0x1030 (`sw` at 0x33028a0).
+  On either the taken arm of `beq` at 0x330283c or the taken arm of `beq` at 0x3302858, a doubleword is loaded through an unknown base (`ld` at 0x33028b4).
+  The `jalr` at 0x33028b8 calls (unknown callee) with a0=unknown, a1=sp-80, a2=unknown, a3=unknown, on either the taken arm of `beq` at 0x330283c or the taken arm of `beq` at 0x3302858.
+  The v0 return is unknown (`jr` at 0x3302874).
+
+- `__glim_RasterPos4i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33028d0
+  The routine reads a word at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x33028d8; `ld` at 0x33028dc).
+  The `beq` at 0x33028f8 takes 0x3302958 when the word at 0x1030 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x33028f8, `beq` at 0x3302910 takes 0x3302934 when the word at 0x1030 equals 0x2 and falls through when it differs.
+  The `jalr` at 0x330291c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a1 at entry (arg1), on the fall-through of `beq` at 0x3302910.
+  On the taken arm of `beq` at 0x3302910, the doubleword at absolute 0x1020 supplies a base for a doubleword load at +0x4748 (`ld` at 0x3302934).
+  The `jalr` at 0x3302938 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a1 at entry (arg1), on the taken arm of `beq` at 0x3302910.
+  That taken arm writes zero as a word to absolute 0x1030 (`sw` at 0x3302954).
+  On either the taken arm of `beq` at 0x33028f8 or the taken arm of `beq` at 0x3302910, a doubleword is loaded through an unknown base (`ld` at 0x3302988).
+  The `jalr` at 0x3302990 calls (unknown callee) with a0=unknown, a1=sp-80, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a1 at entry (arg1), on either the taken arm of `beq` at 0x33028f8 or the taken arm of `beq` at 0x3302910.
+  The `jr` at 0x330292c returns an unknown v0.
+
+- `__glim_RasterPos4iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33029a0
+  A word is read at absolute 0x1030 (`lw` at 0x33029a4); a doubleword is loaded at absolute 0x1020 (`ld` at 0x33029a8).
+  The `beq` at 0x33029c4 is taken to 0x3302a0c when the word at 0x1030 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x33029c4, `beq` at 0x33029d0 is taken to 0x33029f4 when that word equals 0x2 and falls through when it differs.
+  The `jalr` at 0x33029dc calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0) on the fall-through of `beq` at 0x33029d0.
+  The `jalr` at 0x33029f8 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0) on the taken arm of `beq` at 0x33029d0.
+  On that taken arm, zero is stored as a word at absolute 0x1030 (`sw` at 0x3302a08).
+  On either the taken arm of `beq` at 0x33029c4 or the taken arm of `beq` at 0x33029d0, four word loads from entry a0 include +0x0, +0x4 and +0x8 (`lw` at 0x3302a0c, 0x3302a1c, 0x3302a2c).
+  The `jalr` at 0x3302a54 calls (unknown callee) with a0=unknown, a1=sp-48, a2=unknown, a3=unknown, a4=a0 at entry (arg0) on either the taken arm of `beq` at 0x33029c4 or the taken arm of `beq` at 0x33029d0.
+  The value in v0 is unknown at return (`jr` at 0x33029ec).
+
+- `__glim_RasterPos4s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3302a70
+  A word at absolute 0x1030 is loaded (`lw` at 0x3302a78), as is a doubleword at absolute 0x1020 (`ld` at 0x3302a7c).
+  The `beq` at 0x3302a98 is taken to 0x3302af8 when the word at 0x1030 is zero and falls through when it is nonzero.
+  On that fall-through, `beq` at 0x3302ab0 is taken to 0x3302ad4 when that word equals 0x2 and falls through when it differs.
+  The `jalr` at 0x3302abc calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a1 at entry (arg1) on the fall-through of `beq` at 0x3302ab0.
+  The `jalr` at 0x3302ad8 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a1 at entry (arg1) on the taken arm of `beq` at 0x3302ab0.
+  On that taken arm, it writes zero as a word to absolute 0x1030 (`sw` at 0x3302af4).
+  The `jalr` at 0x3302b30 calls (unknown callee) with a0=unknown, a1=sp-80, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a1 at entry (arg1) on either the taken arm of `beq` at 0x3302a98 or the taken arm of `beq` at 0x3302ab0.
+  At return v0 is unknown (`jr` at 0x3302acc).
+
+- `__glim_RasterPos4sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3302b40
+  A word is read at absolute 0x1030 (`lw` at 0x3302b44); a doubleword is loaded at absolute 0x1020 (`ld` at 0x3302b48).
+  The `beq` at 0x3302b64 is taken to 0x3302bac when the word at 0x1030 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x3302b64, `beq` at 0x3302b70 is taken to 0x3302b94 when that word equals 0x2 and falls through when it differs.
+  The `jalr` at 0x3302b7c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0) on the fall-through of `beq` at 0x3302b70.
+  The `jalr` at 0x3302b98 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0) on the taken arm of `beq` at 0x3302b70.
+  On that taken arm, zero is stored as a word at absolute 0x1030 (`sw` at 0x3302ba8).
+  On either the taken arm of `beq` at 0x3302b64 or the taken arm of `beq` at 0x3302b70, four halfword loads from entry a0 include +0x0, +0x2 and +0x4 (`lh` at 0x3302bac, 0x3302bbc, 0x3302bcc).
+  The `jalr` at 0x3302bf4 calls (unknown callee) with a0=unknown, a1=sp-48, a2=unknown, a3=unknown, a4=a0 at entry (arg0) on either the taken arm of `beq` at 0x3302b64 or the taken arm of `beq` at 0x3302b70.
+  The value in v0 is unknown at return (`jr` at 0x3302b8c).
+
+- `__glim_Rectd` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33030c0
+  The routine reads a word at absolute 0x1030 (`lw` at 0x33030c4) and a doubleword at absolute 0x1020 (`ld` at 0x33030cc).
+  `beq` at 0x33030ec is taken to 0x330314c when the word at 0x1030 is zero and falls through when it is nonzero.
+  If that branch falls through, `beq` at 0x3303108 is taken to 0x3303124 when the word equals 0x2 and falls through when it differs.
+  The `jalr` at 0x3303114 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=a3 at entry (arg3) on the fall-through of `beq` at 0x3303108.
+  The `jalr` at 0x330312c calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1030], a3=a3 at entry (arg3) on the taken arm of `beq` at 0x3303108.
+  On that taken arm, a zero word is stored at absolute 0x1030 (`sw` at 0x3303148).
+  The `jalr` at 0x330315c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown on either the taken arm of `beq` at 0x33030ec or the taken arm of `beq` at 0x3303108.
+  The v0 return is unknown (`jr` at 0x330316c).
+
+- `__glim_Rectdv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3303180
+  It reads a word at absolute 0x1030 (`lw` at 0x3303184) and a doubleword at absolute 0x1020 (`ld` at 0x3303188).
+  `beq` at 0x33031a4 is taken to 0x33031ec when the word at 0x1030 is zero and falls through when it is nonzero.
+  On that fall-through, `beq` at 0x33031b4 is taken to 0x33031d0 when the word equals 0x2 and falls through when it differs.
+  The `jalr` at 0x33031c0 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0) on the fall-through of `beq` at 0x33031b4.
+  The `jalr` at 0x33031d4 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0) on the taken arm of `beq` at 0x33031b4.
+  On that taken arm, a zero word is written at absolute 0x1030 (`sw` at 0x33031e8).
+  On either the taken arm of `beq` at 0x33031a4 or the taken arm of `beq` at 0x33031b4, doublewords are loaded from entry a0 +0x0 and +0x8 (`ldc1` at 0x33031ec, 0x33031f8).
+  On those paths, two doubleword loads read entry a1 +0x8 and +0x0 (`ldc1` at 0x33031f0, 0x33031f4).
+  The `jalr` at 0x3303210 calls (unknown callee) with a0=unknown, a1=a1 at entry (arg1), a2=unknown, a3=unknown, a5=a0 at entry (arg0) on either the taken arm of `beq` at 0x33031a4 or the taken arm of `beq` at 0x33031b4.
+  Its return value in v0 is unknown (`jr` at 0x3303220).
+
+- `__glProcessSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fc960
+  A word is read from entry a0 +0x4abc (`lw` at 0x32fc97c).
+  A byte of 0x0 is stored at entry a0 +0x9838 (`sb` at 0x32fc998).
+  The `blez` at 0x32fc99c takes 0x32fca24 when the word loaded from entry a0 +0x4abc is at most zero signed and falls through when it is positive.
+  The `jalr` at 0x32fc9c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `blez` at 0x32fc99c.
+  On paths through that call, the `bne` at 0x32fc9cc takes 0x32fca4c when its unknown return is nonzero and falls through when it is zero.
+  After `bne` at 0x32fc9cc falls through, `bne` at 0x32fc9d8 takes 0x32fc9c0 when unknown s0 differs from s3(=(([a0+19132] << 0x3) + a0)) and falls through when they are equal.
+  The `beq` at 0x32fc9e0 takes 0x32fca24 when unknown a0 equals s4(=[a0+19132]) and falls through when they differ.
+  On its fall-through, `bne` at 0x32fc9ec takes 0x32fca24 when unknown t8 is nonzero and falls through when it is zero.
+  After `bne` at 0x32fc9ec falls through, `beq` at 0x32fc9f8 takes 0x32fca24 when unknown t9 is zero and falls through when it is nonzero.
+  The `jalr` at 0x32fca14 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths through the fall-through of `beq` at 0x32fc9f8.
+  The value returned in v0 is 0x0 (`jr` at 0x32fca44).
+
+- `__glProcessReplicateSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fca60
+  It reads words from entry a0 +0x4abc and +0x4ab8 (`lw` at 0x32fca64, 0x32fcaa4).
+  A byte of 0x0 is stored to entry a0 +0x9838 (`sb` at 0x32fcabc).
+  The word at entry a0 +0x9740 is loaded (`lw` at 0x32fcac0).
+  The `blez` at 0x32fcac4 takes 0x32fcb00 when the word at entry a0 +0x4ab8 is at most zero signed and falls through when positive.
+  The `jalr` at 0x32fcae4 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `blez` at 0x32fcac4.
+  On paths through that call, `bne` at 0x32fcaec takes 0x32fcdd8 when its unknown return is nonzero and falls through when zero.
+  After `bne` at 0x32fcaec falls through, `bne` at 0x32fcaf8 takes 0x32fcae0 when unknown s0 differs from s4(=(([a0+19128] << 0x3) + a0)) and falls through when equal.
+  On paths reaching 0x32fcb00, a byte is loaded from entry a0 +0xde4 (`lbu` at 0x32fcb00).
+  The `beq` at 0x32fcb04 takes 0x32fd12c when that byte is zero and falls through when nonzero; its delay slot reads a doubleword from entry a0 +0x9820 on both arms (`ld` at 0x32fcb08).
+  On paths reaching 0x32fcc20, `beq` at 0x32fcc20 takes 0x32fcc54 when s7(=[a0+19128]) is at least unknown t9 signed and falls through when less.
+  The `jalr` at 0x32fcc40 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32fcc20.
+  On paths reaching 0x32fcd64, `beq` at 0x32fcd64 takes 0x32fcda4 when unknown at is zero and falls through when nonzero; its delay slot stores a0+39600 as a doubleword to entry a0 +0x9840 on both arms (`sd` at 0x32fcd68).
+  The `jalr` at 0x32fcd90 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32fcd64.
+  On the taken path of `bne` at 0x32fcaec, `beq` at 0x32fcde0 takes 0x32fce24 when the byte at entry a0 +0x9838 is zero and falls through when nonzero.
+  When `beq` at 0x32fcde0 is taken, `beq` at 0x32fce28 takes 0x32fce5c when unknown a0 is at least s7(=[a0+19128]) signed and falls through when less.
+  The `jalr` at 0x32fce40 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32fce28.
+  On paths reaching 0x32fcf74, `beq` at 0x32fcf74 takes 0x32fcfa4 when s7(=[a0+19128]) is at least unknown a3 signed and falls through when less.
+  The `jalr` at 0x32fcf90 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32fcf74.
+  On paths reaching 0x32fd0bc, `beq` at 0x32fd0bc takes 0x32fd0f4 when unknown a5 is zero and falls through when nonzero.
+  The `jalr` at 0x32fd0e0 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the fall-through of `beq` at 0x32fd0bc.
+  The v0 return is 0x0 (`jr` at 0x32fcdd0, 0x32fce1c, 0x32fd124, 0x32fd264).
+
+- `__glStippleSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fd510
+  A byte is read at entry a0 +0x1454 and a word at entry a0 +0x9710 (`lbu` at 0x32fd514; `lw` at 0x32fd51c).
+  The `beq` at 0x32fd524 takes 0x32fd5f4 when the byte at entry a0 +0x1454 is zero and falls through when nonzero; its delay slot reads a word from entry a0 +0x9740 on both arms (`lw` at 0x32fd528).
+  On its fall-through, words are read at entry a0 +0xfb4 and +0xfdc (`lw` at 0x32fd52c, 0x32fd530).
+  On paths reaching 0x32fd574, `beq` at 0x32fd574 takes 0x32fd60c when unknown a3 is zero and falls through when nonzero.
+  On that taken arm, its return delay slot stores 0x1 as a byte at entry a0 +0x9838 (`sb` at 0x32fd610).
+  On the fall-through of `beq` at 0x32fd574, `blez` at 0x32fd580 takes 0x32fd5ec when the word at entry a0 +0x9740 is at most zero signed and falls through when positive; its delay slot loads a doubleword at entry a0 +0x9830 on both arms (`ld` at 0x32fd584).
+  When `blez` at 0x32fd580 falls through, `beq` at 0x32fd594 takes 0x32fd5b0 when unknown a5 AND 0x7 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32fd5b0, eight word stores use unknown bases, including `sw` at 0x32fd5c0, 0x32fd5c4, 0x32fd5c8.
+  Both return sites put 0x1 in v0 (`jr` at 0x32fd5ec, 0x32fd60c).
+
+- `__glStippleStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fd620
+  Entry a0 supplies a byte at +0x1454 (`lbu` at 0x32fd624) and a word at +0x9710 (`lw` at 0x32fd62c).
+  The `beq` at 0x32fd634 takes 0x32fd714 when the byte at entry a0 +0x1454 is zero and falls through when nonzero; its delay slot reads the word at entry a0 +0x9740 on both arms (`lw` at 0x32fd638).
+  On the fall-through of `beq` at 0x32fd634, words are loaded from entry a0 +0xfb4 and +0xfdc (`lw` at 0x32fd63c, 0x32fd640).
+  On paths reaching 0x32fd684, `beq` at 0x32fd684 takes 0x32fd72c when unknown a3 is zero and falls through when nonzero.
+  On its taken arm, the return delay slot stores the byte 0x1 to entry a0 +0x9838 (`sb` at 0x32fd730).
+  On the fall-through of `beq` at 0x32fd684, `blez` at 0x32fd690 takes 0x32fd70c when the word at entry a0 +0x9740 is at most zero signed and falls through when positive; its delay slot loads a doubleword at entry a0 +0x9830 on both arms (`ld` at 0x32fd694).
+  After `blez` at 0x32fd690 falls through, `beq` at 0x32fd6a4 takes 0x32fd6c8 when unknown a5 AND 0x3 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x32fd6c8, four word loads use unknown bases, including `lw` at 0x32fd6d4, 0x32fd6d8, 0x32fd6dc.
+  The same path has four word stores to unknown bases, including `sw` at 0x32fd6e8, 0x32fd6f4, 0x32fd6fc.
+  The v0 values at return are 0x0 and 0x1 respectively (`jr` at 0x32fd70c, 0x32fd72c).
+
+- `__glAlphaTestSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fd740
+  Words are loaded from entry a0 +0xfe8 and +0x9740 (`lw` at 0x32fd754, 0x32fd768).
+  Doublewords are read from entry a0 +0x9830 and +0x9820 (`ld` at 0x32fd76c, 0x32fd770).
+  The `beq` at 0x32fd778 takes 0x32fd994 when the word at entry a0 +0x9740 is zero and falls through when nonzero; its delay slot reads a doubleword at entry a0 +0x99e8 on both arms (`ld` at 0x32fd77c).
+  On paths through that fall-through, `bltz` at 0x32fd7a8 takes 0x32fd96c when unknown a5 is negative signed and falls through when it is nonnegative.
+  On its taken arm, the delay slot of the always-taken branch at 0x32fd96c stores -0x1 as a word to an unknown base (`sw` at 0x32fd970).
+  After `bltz` at 0x32fd7a8 falls through, `beq` at 0x32fd7c0 takes 0x32fd818 when unknown t0 AND 0x3 is zero and falls through when nonzero; its delay slot reads a word at entry a0 +0xfec on both arms (`lwc1` at 0x32fd7c4).
+  On the fall-through of `beq` at 0x32fd7c0, `bne` at 0x32fd810 takes 0x32fd7c8 when unknown a7 is nonzero and falls through when zero.
+  On paths reaching 0x32fd938, `beq` at 0x32fd938 takes 0x32fd998 when unknown a2 is zero and falls through when nonzero.
+  On its fall-through, a word is read from entry a0 +0x9740 (`lw` at 0x32fd940).
+  The `beq` at 0x32fd948 then takes 0x32fd974 when that word equals unknown a2 and falls through when they differ.
+  On the taken arm of `beq` at 0x32fd948, a byte of 0x1 is stored at entry a0 +0x9838 (`sb` at 0x32fd984).
+  The return in v0 is 0x1 at 0x32fd964 and 0x32fd98c, and 0x0 at 0x32fd9b0 (`jr` at 0x32fd964, 0x32fd98c, 0x32fd9b0).
+
+- `__glim_Rectf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303230
+  The `lw` at 0x3303234 reads a word from abs 0x1030.
+  The `ld` at 0x330323c reads a doubleword from abs 0x1020.
+  When `beq` at 0x3303278 is taken, the `ld` at 0x3303298 reads a doubleword from [0x1020]:8 +0x4748.
+  On that taken path, the `sw` at 0x33032b8 stores 0x0 as a word to abs 0x1030.
+  `beq` at 0x330325c targets 0x33032bc when a2(=[0x1030]) == 0 and falls through when a2(=[0x1030]) != 0.
+  When `beq` at 0x330325c falls through, `beq` at 0x3303278 targets 0x3303294 when a2(=[0x1030]) == v0(=0x2) and falls through when a2(=[0x1030]) != v0(=0x2).
+  The `jalr` at 0x3303284 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=a3 at entry (arg3); this call is reached on the fall-through of `beq` at 0x3303278.
+  The `jalr` at 0x330329c calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1030], a3=a3 at entry (arg3); this call is reached when `beq` at 0x3303278 is taken.
+  The `jalr` at 0x33032cc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=f12, f14=f13, f15=f14, f16=f15; this call is reached when `beq` at 0x330325c or `beq` at 0x3303278 is taken.
+  The `jr` at 0x33032dc returns unknown in v0.
+
+- `__glim_Rectfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33032f0
+  The `lw` at 0x33032f4 reads a word from abs 0x1030.
+  The `ld` at 0x33032f8 reads a doubleword from abs 0x1020.
+  When `beq` at 0x3303324 is taken, the `ld` at 0x3303340 reads a doubleword from [0x1020]:8 +0x4748.
+  On that taken path, the `sw` at 0x3303358 stores 0x0 as a word to abs 0x1030.
+  `beq` at 0x3303314 targets 0x330335c when a3(=[0x1030]) == 0 and falls through when a3(=[0x1030]) != 0.
+  When `beq` at 0x3303314 falls through, `beq` at 0x3303324 targets 0x3303340 when a3(=[0x1030]) == v0(=0x2) and falls through when a3(=[0x1030]) != v0(=0x2).
+  The `jalr` at 0x3303330 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0); this call is reached on the fall-through of `beq` at 0x3303324.
+  The `jalr` at 0x3303344 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0); this call is reached when `beq` at 0x3303324 is taken.
+  The `jalr` at 0x3303370 calls (unknown callee) with a0=unknown, a1=a1 at entry (arg1), a2=unknown, a3=unknown, a5=a0 at entry (arg0); fp f13=[a0], f14=[a0+4], f15=[a1], f16=[a1+4]; this call is reached when `beq` at 0x3303314 or `beq` at 0x3303324 is taken.
+  The `jr` at 0x3303380 returns unknown in v0.
+
+- `__glim_Recti` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303390
+  The `lw` at 0x3303394 reads a word from abs 0x1030.
+  The `ld` at 0x3303398 reads a doubleword from abs 0x1020.
+  When `beq` at 0x33033cc is taken, the `ld` at 0x33033e8 reads a doubleword from [0x1020]:8 +0x4748.
+  On that taken path, the `sw` at 0x3303408 stores 0x0 as a word to abs 0x1030.
+  `beq` at 0x33033b4 targets 0x330340c when a5(=[0x1030]) == 0 and falls through when a5(=[0x1030]) != 0.
+  When `beq` at 0x33033b4 falls through, `beq` at 0x33033cc targets 0x33033e8 when a5(=[0x1030]) == v0(=0x2) and falls through when a5(=[0x1030]) != v0(=0x2).
+  The `jalr` at 0x33033d8 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a0 at entry (arg0); this call is reached on the fall-through of `beq` at 0x33033cc.
+  The `jalr` at 0x33033ec calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a0 at entry (arg0); this call is reached when `beq` at 0x33033cc is taken.
+  The `jalr` at 0x3303430 calls (unknown callee) with a0=unknown, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a0 at entry (arg0); this call is reached when `beq` at 0x33033b4 or `beq` at 0x33033cc is taken.
+  The `jr` at 0x3303440 returns unknown in v0.
+
+- `__glim_Rectiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303450
+  The `lw` at 0x3303454 reads a word from abs 0x1030.
+  The `ld` at 0x3303458 reads a doubleword from abs 0x1020.
+  When `beq` at 0x3303484 is taken, the `ld` at 0x33034a0 reads a doubleword from [0x1020]:8 +0x4748.
+  On that taken path, the `sw` at 0x33034b8 stores 0x0 as a word to abs 0x1030.
+  When `beq` at 0x3303474 or `beq` at 0x3303484 is taken, two word loads from entry a1 include `lw` at 0x33034bc, 0x33034c0.
+  On those paths, two words are read from entry a0, including `lw` at 0x33034c4, 0x33034cc.
+  `beq` at 0x3303474 targets 0x33034bc when a3(=[0x1030]) == 0 and falls through when a3(=[0x1030]) != 0.
+  When `beq` at 0x3303474 falls through, `beq` at 0x3303484 targets 0x33034a0 when a3(=[0x1030]) == v0(=0x2) and falls through when a3(=[0x1030]) != v0(=0x2).
+  The `jalr` at 0x3303490 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0); this call is reached on the fall-through of `beq` at 0x3303484.
+  The `jalr` at 0x33034a4 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0); this call is reached when `beq` at 0x3303484 is taken.
+  The `jalr` at 0x33034f0 calls (unknown callee) with a0=unknown, a1=a1 at entry (arg1), a2=unknown, a3=unknown, a5=a0 at entry (arg0); this call is reached when `beq` at 0x3303474 or `beq` at 0x3303484 is taken.
+  The `jr` at 0x3303500 returns unknown in v0.
+
+- `__glim_Rects` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303510
+  The `lw` at 0x3303514 reads a word from abs 0x1030.
+  The `ld` at 0x3303518 reads a doubleword from abs 0x1020.
+  When `beq` at 0x330354c is taken, the `ld` at 0x3303568 reads a doubleword from [0x1020]:8 +0x4748.
+  On that taken path, the `sw` at 0x3303588 stores 0x0 as a word to abs 0x1030.
+  `beq` at 0x3303534 targets 0x330358c when a5(=[0x1030]) == 0 and falls through when a5(=[0x1030]) != 0.
+  When `beq` at 0x3303534 falls through, `beq` at 0x330354c targets 0x3303568 when a5(=[0x1030]) == v0(=0x2) and falls through when a5(=[0x1030]) != v0(=0x2).
+  The `jalr` at 0x3303558 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a0 at entry (arg0); this call is reached on the fall-through of `beq` at 0x330354c.
+  The `jalr` at 0x330356c calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1030], a6=[0x1020]:8, a7=a0 at entry (arg0); this call is reached when `beq` at 0x330354c is taken.
+  The `jalr` at 0x33035b0 calls (unknown callee) with a0=unknown, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a0 at entry (arg0); this call is reached when `beq` at 0x3303534 or `beq` at 0x330354c is taken.
+  The `jr` at 0x33035c0 returns unknown in v0.
+
+- `__glim_Rectsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33035d0
+  It reads a word at absolute 0x1030 (`lw` at 0x33035d4) and a doubleword at absolute 0x1020 (`ld` at 0x33035d8).
+  The `beq` at 0x33035f4 takes 0x330363c when the word at 0x1030 equals 0, and falls through when it differs.
+  On that fall-through, the `beq` at 0x3303604 takes 0x3303620 when the word at 0x1030 equals 0x2, and falls through when it differs.
+  The `jalr` at 0x3303610 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0); this call is reached on the fall-through of `beq` at 0x3303604.
+  On the taken path of `beq` at 0x3303604, a doubleword is read at +0x4748 from the doubleword at 0x1020 (`ld` at 0x3303620).
+  The `jalr` at 0x3303624 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1030], a4=[0x1020]:8, a5=a0 at entry (arg0); this call is reached when `beq` at 0x3303604 is taken.
+  That path writes 0x0 as a word at absolute 0x1030 (`sw` at 0x3303638).
+  When `beq` at 0x33035f4 or `beq` at 0x3303604 is taken, halfwords are read at entry a1 +0x2 and +0x0 (`lh` at 0x330363c, 0x3303640) and entry a0 +0x2 and +0x0 (`lh` at 0x3303644, 0x330364c).
+  On those paths, a doubleword is read from an unknown base (`ld` at 0x3303658).
+  The `jalr` at 0x3303670 calls (unknown callee) with a0=unknown, a1=a1 at entry (arg1), a2=unknown, a3=unknown, a5=a0 at entry (arg0); this call is reached when `beq` at 0x33035f4 or `beq` at 0x3303604 is taken.
+  The v0 return is unknown (`jr` at 0x3303680).
+
+- `__glRect` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303690
+  It reads a doubleword from entry a0 +0x4968 (`ld` at 0x33036b8).
+  The `jalr` at 0x33036d4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  A doubleword at entry a0 +0x1ad8 is read (`ld` at 0x33036dc), then a doubleword at +0xa60 from that value (`ld` at 0x33036e0).
+  The `jalr` at 0x33036ec calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f13, f13=f14.
+  The `jalr` at 0x33036fc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f15, f13=f14.
+  The `jalr` at 0x3303710 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f15, f13=f16.
+  The `jalr` at 0x3303724 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f13, f13=f16.
+  Entry a0 +0x4980 is read as a doubleword (`ld` at 0x330372c).
+  The `jalr` at 0x330373c calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  It returns the unknown callee's v0 and f0 results (`jr` at 0x3303750).
+
+- `__glim_InitNames` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303800
+  A word is read at absolute 0x1030 (`lw` at 0x3303800), and a doubleword at absolute 0x1020 (`ld` at 0x330380c).
+  The `beq` at 0x330381c takes 0x3303854 when the word at 0x1030 equals 0x1, and falls through when it differs.
+  On that fall-through, a word is read at +0xdd4 from the doubleword at 0x1020 (`lw` at 0x3303824).
+  On the fall-through of `beq` at 0x330381c, the `beq` at 0x330382c takes 0x330383c when that word equals 0x1c02, and falls through when it differs.
+  When `beq` at 0x330382c is taken, the byte value 0x0 is stored at +0x1488 from the doubleword at 0x1020 (`sb` at 0x330383c).
+  That path reads a doubleword at +0x1490 from the doubleword at 0x1020 (`ld` at 0x3303844), then stores it at +0x1498 (`sd` at 0x3303850).
+  The `jalr` at 0x330385c calls `__glSetError` with a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3); this call is reached when `beq` at 0x330381c is taken.
+  The v0 return at 0x3303834 is unknown, while at 0x330384c it is the word loaded from [0x1020]:8 +0xdd4 (`jr` at 0x3303834, 0x330384c).
+
+- `__glim_LoadName` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303870
+  It loads a word at absolute 0x1030 (`lw` at 0x3303870) and a doubleword at absolute 0x1020 (`ld` at 0x330387c).
+  The `beq` at 0x330388c takes 0x33038e8 when the word at 0x1030 equals 0x1, and falls through when it differs.
+  On that fall-through, the word at +0xdd4 from the doubleword at 0x1020 is loaded (`lw` at 0x3303894).
+  On the fall-through of `beq` at 0x330388c, the `bne` at 0x330389c takes 0x33038c8 when that word differs from 0x1c02, and falls through when it equals 0x1c02.
+  On that fall-through, doublewords are read at +0x1498 and +0x1490 from the doubleword at 0x1020 (`ld` at 0x33038a4, 0x33038a8).
+  On the fall-through of `bne` at 0x330389c, the `beq` at 0x33038ac takes 0x33038d4 when the loaded +0x1490 and +0x1498 doublewords are equal, and falls through when they differ.
+  On its fall-through, entry a0 is stored as a word at -0x4 from the loaded +0x1498 doubleword (`sw` at 0x33038b4), and 0x0 is stored as a byte at +0x1488 from the doubleword at 0x1020 (`sb` at 0x33038b8).
+  The `jalr` at 0x33038d8 calls `__glSetError` with a0=0x502, a1=[[0x1020]:8+5264]:8, a2=[0x1020]:8, a3=[[0x1020]:8+5272]:8; this call is reached when `beq` at 0x33038ac is taken.
+  The `jalr` at 0x33038f0 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3); this call is reached when `beq` at 0x330388c is taken.
+  At 0x33038c0 v0 is the word loaded from [0x1020]:8 +0xdd4; at 0x33038cc it is unknown (`jr` at 0x33038c0, 0x33038cc).
+
+- `__glim_PopName` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3303900
+  A word at absolute 0x1030 (`lw` at 0x3303900) and a doubleword at absolute 0x1020 (`ld` at 0x330390c) are read.
+  The `beq` at 0x330391c takes 0x330397c when the word at 0x1030 equals 0x1, and falls through when it differs.
+  Its fall-through reads a word at +0xdd4 from the doubleword at 0x1020 (`lw` at 0x3303924).
+  On the fall-through of `beq` at 0x330391c, the `bne` at 0x330392c takes 0x330395c when that word differs from 0x1c02, and falls through when it equals 0x1c02.
+  On that fall-through, doublewords are loaded at +0x1498 and +0x1490 from the doubleword at 0x1020 (`ld` at 0x3303934, 0x3303938).
+  On the fall-through of `bne` at 0x330392c, the `beq` at 0x330393c takes 0x3303968 when the loaded +0x1490 and +0x1498 doublewords match, and falls through when they differ.
+  On its fall-through, 0x0 is stored as a byte at +0x1488 from the doubleword at 0x1020 (`sb` at 0x3303944), and the loaded +0x1498 value minus 0x4 is stored as a doubleword at +0x1498 (`sd` at 0x330394c).
+  The `jalr` at 0x330396c calls `__glSetError` with a0=0x504, a1=[0x1020]:8, a2=[[0x1020]:8+5272]:8, a3=a3 at entry (arg3); this call is reached when `beq` at 0x330393c is taken.
+  The `jalr` at 0x3303984 calls `__glSetError` with a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3); this call is reached when `beq` at 0x330391c is taken.
+  The v0 return at 0x3303954 is the word loaded from [0x1020]:8 +0xdd4; at 0x3303960 it is unknown (`jr` at 0x3303954, 0x3303960).
+
+- `__glim_PushName` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
+  A word is loaded from absolute 0x1030 (`lw` at 0x33039a0).
+  The entry loads a doubleword from absolute 0x1020 (`ld` at 0x33039ac).
+  The `beq` at 0x33039bc is taken to 0x3303a34 when the word at 0x1030 equals 0x1 and falls through when it differs.
+  On the fall-through of `beq` at 0x33039bc, a word is loaded from `[0x1020]:8 +0xdd4` (`lw` at 0x33039c4).
+  On that path, `bne` at 0x33039cc is taken to 0x3303a14 when that word differs from 0x1c02 and falls through when it equals 0x1c02.
+  On the fall-through of `bne` at 0x33039cc, a word and two doublewords are loaded from `[0x1020]:8 +0x102c`, +0x1490 and +0x1498 (`lw` at 0x33039d4; `ld` at 0x33039d8, 0x33039dc).
+  On that path, `beq` at 0x33039ec is taken to 0x3303a20 when `[[0x1020]:8+5272]:8` is greater than or equal to `([[0x1020]:8+5264]:8 + ([[0x1020]:8+4140] << 0x2))` unsigned and falls through when it is less unsigned.
+  On the fall-through of `beq` at 0x33039ec, a word is stored at `[[0x1020]:8+5272]:8 +0x0` (`sw` at 0x33039f4).
+  That path clears a byte at `[0x1020]:8 +0x1488` (`sb` at 0x33039f8).
+  On the same path, a doubleword is stored at `[0x1020]:8 +0x1498` in the return delay slot (`sd` at 0x3303a10).
+  The `jalr` at 0x3303a24 calls `__glSetError` with a0=0x503, a1=unknown, a2=[0x1020]:8, a3=[[0x1020]:8+5272]:8, a4=([[0x1020]:8+4140] << 0x2) on the taken arm of `beq` at 0x33039ec.
+  The `jalr` at 0x3303a3c calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3) on the taken arm of `beq` at 0x33039bc.
+  The return at 0x3303a0c has `v0=[[0x1020]:8+3540]`; the return at 0x3303a18 has unknown `v0` (`jr` at 0x3303a0c, 0x3303a18).
+
+- `__glSelectHit` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 328 bytes
+  Entry loads a byte, a word and two doublewords from a0 +0x14a0, +0x14b8, +0x14a8 and +0x14b0 (`lbu` at 0x3303a50; `lw` at 0x3303a54; `ld` at 0x3303a58, 0x3303a60).
+  `bne` at 0x3303a64 is taken to 0x3303af0 when the byte at entry a0 +0x14a0 is nonzero and falls through when it is zero.
+  On its fall-through, a word is loaded from entry a0 +0x9cf0 (`lw` at 0x3303a74).
+  On that path, `beq` at 0x3303a7c is taken to 0x3303af8 when that word equals 0x20 and falls through when it differs.
+  On the fall-through of `beq` at 0x3303a7c, words are read from entry a0 +0x9d5c and +0xf40 (`lw` at 0x3303a84; `lwc1` at 0x3303a94).
+  After either arm of `beq` at 0x3303a7c, a byte is read from entry a0 +0x1488 (`lbu` at 0x3303ab0).
+  `beq` at 0x3303ab4 is taken to 0x3303b08 when that byte is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x3303ab4, a doubleword is read from entry a0 +0x14c0 (`ld` at 0x3303abc).
+  On that path, `beq` at 0x3303ac8 is taken to 0x3303ad8 when unknown a4 is greater than or equal to `[[a0+5312]:8]` unsigned and falls through when it is less unsigned.
+  On the fall-through of `beq` at 0x3303ac8, a word is written at `[a0+5312]:8 +0x0` (`sw` at 0x3303ad0).
+  After either arm of `beq` at 0x3303ac8, a word is loaded from `[a0+5312]:8 +0x4` (`lw` at 0x3303ad8).
+  On that path, `beq` at 0x3303ae0 is taken to 0x3303af0 when `[[a0+5312]:8+4]` is greater than or equal to unknown a4 unsigned and falls through when it is less unsigned.
+  On the fall-through of `beq` at 0x3303ae0, the return delay slot stores a word at `[a0+5312]:8 +0x4` (`sw` at 0x3303aec).
+  On the taken arm of `beq` at 0x3303ab4, `beq` at 0x3303b08 is taken to 0x3303b8c when `[a0+5296]:8` equals `([a0+5288]:8 + ([a0+5304] << 0x2))` and falls through when they differ.
+  Its delay slot stores a byte at entry a0 +0x1488 on both arms (`sb` at 0x3303b0c).
+  On the fall-through of `beq` at 0x3303b08, a word is stored at `[a0+5296]:8 +0x0` (`sw` at 0x3303b24).
+  On that path, `beq` at 0x3303b30 is taken to 0x3303b8c when `[a0+5296]:8+4` equals `([a0+5288]:8 + ([a0+5304] << 0x2))` and falls through when they differ.
+  Its delay slot writes a word at entry a0 +0x14bc on both arms (`sw` at 0x3303b34).
+  On the fall-through of `beq` at 0x3303b30, `beq` at 0x3303b40 is taken to 0x3303b8c when `([a0+5288]:8 + ([a0+5304] << 0x2))` equals `[a0+5296]:8+8` and falls through when they differ.
+  Its delay slot stores a word at `[a0+5296]:8 +0x4` on both arms (`sw` at 0x3303b44).
+  On the fall-through of `beq` at 0x3303b40, `beq` at 0x3303b58 is taken to 0x3303b84 when `[a0+5264]:8` is greater than or equal to `[a0+5272]:8` unsigned and falls through when it is less unsigned.
+  On the fall-through of `beq` at 0x3303b58, `beq` at 0x3303b60 is taken to 0x3303b8c when unknown a2 equals `([a0+5288]:8 + ([a0+5304] << 0x2))` and falls through when they differ.
+  On the fall-through of `beq` at 0x3303b60, one word is loaded and stored through unknown bases (`lw` at 0x3303b68; `sw` at 0x3303b6c).
+  On that path, `bne` at 0x3303b7c is taken to 0x3303b60 when unknown a5 is less than `[a0+5272]:8` unsigned and falls through when it is greater than or equal unsigned.
+  The returns have unknown v0 (`jr` at 0x3303ae8, 0x3303af0, 0x3303b84, 0x3303b90).
+
+- `__glSelectTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 296 bytes
+  The routine reads a word from entry a0 +0x808 (`lw` at 0x3303bac).
+  `beq` at 0x3303bd8 is taken to 0x3303c5c when the word at entry a0 +0x808 masked with 0x1000 is zero and falls through when nonzero.
+  On its fall-through, word loads from entry a1 and a3 include +0x88 and +0x8c (`lwc1` at 0x3303be0, 0x3303be4, 0x3303be8).
+  On that path, words are read at entry a0 +0x2a0 and +0x29c (`lw` at 0x3303bf4, 0x3303c28).
+  On the fall-through of `beq` at 0x3303bd8, `beq` at 0x3303c30 is taken to 0x3303ca8 when unknown v0 is zero and falls through when it is nonzero.
+  After either arm of `beq` at 0x3303c30, `beq` at 0x3303c40 is taken to 0x3303c8c when the word at entry a0 +0x29c equals 0x408 and falls through when it differs.
+  On the fall-through of `beq` at 0x3303c40, `beq` at 0x3303c48 is taken to 0x3303cb8 when that word equals 0x404 and falls through when it differs.
+  On paths reaching 0x3303c50, `bne` at 0x3303c50 is taken to 0x3303c60 when the word at entry a0 +0x29c differs from 0x405 and falls through when it equals 0x405.
+  On the fall-through of `bne` at 0x3303c50, `beq` at 0x3303c58 is taken to 0x3303c8c when unknown a2 is zero and falls through when it is nonzero.
+  On the taken arm of `beq` at 0x3303c48, `bne` at 0x3303cb8 is taken to 0x3303c8c when unknown a2 is nonzero and falls through when it is zero.
+  The `bgezall` at 0x3303c64 calls `__glSelectHit` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a5=0x405; fp f13=[a1+144] on paths reaching 0x3303c60, including the taken arm of `beq` at 0x3303bd8.
+  Its delay slot loads a word from entry a1 +0x90 (`lwc1` at 0x3303c68).
+  The `bgezall` at 0x3303c74 calls `__glSelectHit` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown; fp f13=[a2+144] on those paths.
+  The call delay slot reads a word from entry a2 +0x90 (`lwc1` at 0x3303c78).
+  The `bgezall` at 0x3303c84 calls `__glSelectHit` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown; fp f13=[a3+144] on paths through the call at 0x3303c74.
+  Its delay slot loads a word from entry a3 +0x90 (`lwc1` at 0x3303c88).
+  The returned v0 is unknown (`jr` at 0x3303ca0).
+
+- `__glSelectLine` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
+  A word is loaded from entry a1 +0x90 (`lwc1` at 0x3303cd4).
+  The `bgezall` at 0x3303cfc calls `__glSelectHit` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=[a1+144].
+  The `bgezall` at 0x3303d10 calls `__glSelectHit` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown; fp f13=[a2+144].
+  Its delay slot loads a word from entry a2 +0x90 (`lwc1` at 0x3303d14).
+  The returned v0 is the result of `__glSelectHit` (`jr` at 0x3303d24).
+
+- `__glSelectPoint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  The `bgezall` at 0x3303d4c calls `__glSelectHit` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=[a1+144].
+  Its delay slot reads a word at entry a1 +0x90 (`lwc1` at 0x3303d50).
+  At return, v0 is the result of `__glSelectHit` (`jr` at 0x3303d5c).
+
+- `__glLinearFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x331b9e0
+  It reads a doubleword at entry a0 +0x140 (`ld` at 0x331b9f4).
+  The call delay slot reads a doubleword at entry a0 +0xe8 (`ld` at 0x331ba00).
+  The `jalr` at 0x331b9fc calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+232]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The returned v0 and f0 are the unknown callee's result (`jr` at 0x331ba0c).
+
+- `__glNMNFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x331ba60
+  A doubleword is loaded at entry a0 +0x0 (`ld` at 0x331ba60).
+  A word is read at +0xf28 from that loaded value (`lwc1` at 0x331ba64).
+  The `bc1f` at 0x331ba80 takes 0x331ba90 when f13 is not at most the loaded word, and falls through when it is at most that word (`c.le.s` at 0x331ba68).
+  On the taken arm of `bc1f` at 0x331ba80, it reads a word at entry a0 +0xf4 (`lw` at 0x331ba9c).
+  After either arm of `bc1f` at 0x331ba80, doublewords are read at entry a0 +0x148 and +0xe8 (`ld` at 0x331bab4, 0x331babc).
+  The `jalr` at 0x331bac8 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  At return, v0 and f0 are the unknown callee's result (`jr` at 0x331bad8).
+
+- `__glNMLFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x331bb60
+  A doubleword and a word are loaded at entry a0 +0x0 and +0xf4 respectively (`ld` at 0x331bb60; `lw` at 0x331bb7c).
+  The `bne` at 0x331bbb4 takes 0x331bca4 when the word at entry a0 +0xf4 is signed less than unknown a2, and falls through when it is signed greater than or equal to a2.
+  On the fall-through of `bne` at 0x331bbb4, `bltz` at 0x331bbbc takes 0x331bca4 when unknown a2 is negative signed and falls through when it is nonnegative signed.
+  The `jalr` at 0x331bbe8 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=[a0]:8, a5=sp-128, a6=[a0+244]; this follows the fall-through of `bltz` at 0x331bbbc.
+  The `jalr` at 0x331bc10 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, a5=sp-104; this follows the fall-through of `bltz` at 0x331bbbc.
+  The `jalr` at 0x331bc28 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=f13; this follows the fall-through of `bltz` at 0x331bbbc.
+  The `jalr` at 0x331bccc calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=[a0]:8, a6=[a0+244]; this follows either the taken arm of `bne` at 0x331bbb4 or the taken arm of `bltz` at 0x331bbbc.
+  On the fall-through of `bltz` at 0x331bbbc, a word is loaded at +0x44 from the doubleword at entry a0 +0xe8 (`lw` at 0x331bc38).
+  On that path, `beq` at 0x331bc68 takes 0x331bcec when the word equals 0x190a and falls through when unequal.
+  On the taken arm of `beq` at 0x331bc68, a word is stored at entry a5 +0x10 (`swc1` at 0x331bd08).
+  On the fall-through of `beq` at 0x331bc68, `beq` at 0x331bc70 takes 0x331bd10 when the word equals 0x1909 and falls through when unequal.
+  The return-delay slot stores a word at entry a5 +0xc on paths through either the taken arm of `beq` at 0x331bc68 or the taken arm of `beq` at 0x331bc70 (`swc1` at 0x331bd2c).
+  The v0 return is unknown at 0x331bc9c; at 0x331bd28, v0 and f0 are the `floorf` result (`jr` at 0x331bc9c, 0x331bd28).
+
+- `__glComputePolygonRho` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3325000
+  Word loads from entry a1 include +0x100, +0x114 and +0xf8 (`lwc1` at 0x3325000, 0x3325018, 0x3325024).
+  A word is also read at entry a0 +0xf2c (`lwc1` at 0x3325004).
+  A doubleword is read at entry a0 +0x8da0 (`ld` at 0x332504c).
+  The `bne` at 0x33250a4 takes 0x332510c when the word at +0xf0 from that loaded doubleword is signed less than 0x3 and falls through when it is signed at least 0x3 (`lw` at 0x3325074).
+  After either arm of `bne` at 0x33250a4, `bc1f` at 0x3325134 takes 0x3325144 when f6 is not less than f5 and falls through when f6 is less than f5 (`c.lt.s` at 0x3325130).
+  Its delay slot reads a word from absolute 0x339784c on both arms (`lwc1` at 0x3325138).
+  The v0 value is unknown at either return (`jr` at 0x332513c, 0x3325144).
+
+- `__glMipMapFragment` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33253a0
+  A doubleword is loaded from entry a0 +0x8da0 (`ld` at 0x33253b0).
+  The `bc1t` at 0x33253d8 takes 0x3325494 when f17 is at most the word at +0xf8 from that doubleword and falls through otherwise (`lwc1` at 0x33253b4; `c.le.s` at 0x33253bc).
+  On the fall-through of `bc1t` at 0x33253d8, `bc1t` at 0x33253e8 takes 0x3325454 when floating-point condition code 1 is true and falls through when it is false.
+  The `jalr` at 0x3325464 calls (unknown callee) with a0=[a0+36256]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown, a5=sp-112; this follows the fall-through of `bc1t` at 0x33253d8.
+  The `jalr` at 0x33254a0 calls (unknown callee) with a0=[a0+36256]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a5=sp-112; this follows the taken arm of `bc1t` at 0x33253d8.
+  The `jalr` at 0x3325478 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-112, a3=unknown; this follows either arm of `bc1t` at 0x33253d8.
+  The v0 and f0 returns are the result of the call at 0x3325478 (`jr` at 0x332548c).
+
+- `__glCalcSphereMap` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33259d0
+  The `bgezall` at 0x3325a00 calls (unnamed) [0x33254e0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-48, a3=a3 at entry (arg3).
+  It reads words from entry a1 +0x40 and +0x44 (`lwc1` at 0x3325a0c, 0x3325a14).
+  A doubleword is loaded at entry a0 +0x94d0 (`ld` at 0x3325a24).
+  A second doubleword is loaded at [a0+38096]:8 +0x58 (`ld` at 0x3325a28).
+  The `jalr` at 0x3325a30 calls (unknown callee) with a0=a1+56, a1=sp-48, a2=[a0+38096]:8, a3=unknown.
+  At return, v0 and f0 are unknown call results (`jr` at 0x3325a44).
+
+- `__glCalcEyeLinear` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3325a50
+  Ten word loads from entry a1 include +0x68, +0x6c and +0x70 (`lwc1` at 0x3325a50, 0x3325a58, 0x3325a68).
+  Eight word loads from entry a0 include +0x8d0, +0x8cc and +0x8d4 (`lwc1` at 0x3325a54, 0x3325a5c, 0x3325a60).
+  Four word stores to entry sp include -0x20, -0x1c and -0x18 (`swc1` at 0x3325a84, 0x3325ab8, 0x3325ac0).
+  The code reads a doubleword at entry a0 +0x94d0 (`ld` at 0x3325ad8).
+  It then reads a doubleword at [a0+38096]:8 +0x58 (`ld` at 0x3325ae8).
+  The `jalr` at 0x3325af4 calls (unknown callee) with a0=a1+56, a1=sp-32, a2=[a0+38096]:8, a3=a3 at entry (arg3).
+  The returned v0 and f0 are unknown call results (`jr` at 0x3325b04).
+
+- `__glCalcObjectLinear` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3325b10
+  Ten word reads from entry a1 include offsets +0x18, +0x1c and +0x20 (`lwc1` at 0x3325b10, 0x3325b18, 0x3325b28).
+  Eight word reads from entry a0 include offsets +0x8e0, +0x8dc and +0x8e4 (`lwc1` at 0x3325b14, 0x3325b1c, 0x3325b20).
+  Four words are stored relative to entry sp, including -0x20, -0x1c and -0x18 (`swc1` at 0x3325b44, 0x3325b78, 0x3325b80).
+  A doubleword load uses entry a0 +0x94d0 (`ld` at 0x3325b98).
+  The loaded doubleword is the base of another doubleword load at +0x58 (`ld` at 0x3325ba8).
+  The `jalr` at 0x3325bb4 calls (unknown callee) with a0=a1+56, a1=sp-32, a2=[a0+38096]:8, a3=a3 at entry (arg3).
+  The v0 and f0 values on return are unknown call results (`jr` at 0x3325bc4).
+
+- `__glim_EdgeFlag` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3332bd0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3332bd0).
+  The return delay slot stores the low byte of a0 at [0x1020]:8 +0x275 (`sb` at 0x3332bd8).
+  The v0 return is unknown (`jr` at 0x3332bd4).
+
+- `__glim_EdgeFlagv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3332be0
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x3332be0).
+  A byte is loaded from entry a0 +0x0 (`lbu` at 0x3332be4).
+  That byte is stored to [0x1020]:8 +0x275 in the return delay slot (`sb` at 0x3332bec).
+  On return v0 holds [0x1020]:8 (`jr` at 0x3332be8).
+
+- `TestFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+  A doubleword load uses `a0 (arg0 at entry) +0x0` (`ld` at 0x3304fb0).
+  A word load uses `[a0]:8 +0xfb4` (`lw` at 0x3304fb4).
+  A word load uses `a0 (arg0 at entry) +0x28` (`lw` at 0x3304fb8).
+  A doubleword load uses `a0 (arg0 at entry) +0x18` (`ld` at 0x3304fc4).
+  A word load uses `[a0]:8 +0xfb0` (`lw` at 0x3304fcc).
+  A halfword load uses `[a0]:8 +0x788` (`lh` at 0x3304fd8).
+  Two byte loads use an unknown base (`lbu` at 0x3304fe0, 0x3304ff4).
+  A doubleword load uses `a0 (arg0 at entry) +0x78` (`ld` at 0x3304fe4).
+  At return `v0=unknown` (`jr` at 0x3304ff0).
+
+- `FailOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  A byte store uses an unknown base (`sb` at 0x3305040).
+  A doubleword load uses `a0 (arg0 at entry) +0x0` (`ld` at 0x3305000).
+  A word load uses `[a0]:8 +0xfb4` (`lw` at 0x3305004).
+  A word load uses `a0 (arg0 at entry) +0x28` (`lw` at 0x3305008).
+  A doubleword load uses `a0 (arg0 at entry) +0x18` (`ld` at 0x3305014).
+  A word load uses `[a0]:8 +0xfb0` (`lw` at 0x330501c).
+  A doubleword load uses `a0 (arg0 at entry) +0x80` (`ld` at 0x330502c).
+  Two byte loads use an unknown base (`lbu` at 0x3305030, 0x3305038).
+  At return `v0=unknown` (`jr` at 0x330503c).
+
+- `buildOpTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 260 bytes
+  A word is loaded from entry a0 +0xe00 (`lw` at 0x33054c0).
+  The `beq` at 0x33054cc is taken to 0x33055bc when t2 is zero and falls through when t2 is nonzero; t2 is unknown.
+  On the fall-through of `beq` at 0x33054cc, a byte store uses an unknown base (`sb` at 0x3305520).
+  After that store, a word is loaded from entry a0 +0xe00 (`lw` at 0x3305524).
+  After that store, the `beq` at 0x330553c is taken to 0x33055ac when unknown a6 is at least unknown t2 unsigned, and falls through when a6 is less than t2 unsigned.
+  On the fall-through of `beq` at 0x33054cc, the `beq` at 0x3305544 is taken to 0x3305510 when t9 equals a2 and falls through when they differ; t9 is 0x1e00.
+  On the fall-through of `beq` at 0x3305544, the `beq` at 0x330554c is taken to 0x3305580 when a2 is zero and falls through when it is nonzero.
+  At the return, v0 is unknown (`jr` at 0x33055bc).
+
+- `__glNearestFilter1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 208 bytes
+  The routine loads a word from entry a1 +0x24 (`lwc1` at 0x331a5d0).
+  A word is read from entry a0 +0x8 (`lw` at 0x331a5e0).
+  The `beq` at 0x331a604 is taken to 0x331a668 when at equals v0 and falls through when they differ; at is [a0+8] and v0 is 0x2901.
+  On the fall-through of `beq` at 0x331a604, a word is loaded from entry a1 +0x18 (`lw` at 0x331a614).
+  On that fall-through path, the `bltz` at 0x331a624 is taken to 0x331a660 when unknown a1 is less than zero signed and falls through when a1 is at least zero signed.
+  A doubleword is loaded from entry a1 +0x68 (`ld` at 0x331a630).
+  The `jalr` at 0x331a644 calls (unknown callee) with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=0x0, a3=0x0, a7=a0 at entry (arg0).
+  The `jalr` at 0x331a678 calls `floorf` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a0 at entry (arg0); fp f12=f14; this call is on the taken path of `beq` at 0x331a604.
+  The returned v0 and f0 are unknown call results (`jr` at 0x331a658).
+
+- `__glLinearFilter1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 684 bytes
+  It loads a word from entry a1 +0x18 (`lw` at 0x331a99c).
+  A word is read from entry a0 +0x8 (`lw` at 0x331a9b4).
+  The entry a0 +0x0 doubleword is loaded (`ld` at 0x331a9d0).
+  A word is read from [a0]:8 +0xf28 (`lwc1` at 0x331a9e4).
+  The `beq` at 0x331a9e8 is taken to 0x331abec when a3 equals at and falls through when they differ; a3 is [a0+8] and at is 0x2901.
+  On the fall-through of `beq` at 0x331a9e8, the `bc1f` at 0x331a9f4 is taken to 0x331aa04 when not (f24 < f6 (c.lt.s at 0x331a9f0)) and falls through when f24 < f6 (c.lt.s at 0x331a9f0).
+  The `jalr` at 0x331aa18 calls `floor` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+8]; this call is on the fall-through of `beq` at 0x331a9e8.
+  On that fall-through path, the `beq` at 0x331aa38 is taken to 0x331ab4c when unknown a1 equals a2 and falls through when they differ; a2 is 0x812f.
+  The `jalr` at 0x331aa44 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  Two doublewords are loaded from entry a1 +0x68 (`ld` at 0x331aa4c, 0x331aa74).
+  The `jalr` at 0x331aa68 calls (unknown callee) with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=0x0, a3=0x0, a5=sp-144.
+  The `jalr` at 0x331aa88 calls (unknown callee) with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=0x0, a3=0x0, a5=sp-120.
+  A word is loaded from entry a1 +0x44 (`lw` at 0x331aa98).
+  A word is read through an unknown base (`lwc1` at 0x331aaa0).
+  The `beq` at 0x331aac4 is taken to 0x331ab04 when a3 equals a4 and falls through when they differ; a3 is [a1+68] and a4 is 0x190a.
+  On the taken path of `beq` at 0x331aac4, a word is stored to entry a5 +0x10 (`swc1` at 0x331ab18).
+  On the fall-through of `beq` at 0x331aac4, the `beq` at 0x331aacc is taken to 0x331ab1c when a3 equals a6 and falls through when they differ; a3 is [a1+68] and a6 is 0x1909.
+  On either the taken path of `beq` at 0x331aac4 or the taken path of `beq` at 0x331aacc, a word is stored to entry a5 +0xc (`swc1` at 0x331ab3c).
+  On the fall-through of `beq` at 0x331aacc, the `beq` at 0x331aad8 is taken to 0x331ab78 when a3 equals a7 and falls through when they differ; a3 is [a1+68] and a7 is 0x1908.
+  On the taken path of `beq` at 0x331aad8, a word is stored to entry a5 +0x10 (`swc1` at 0x331ab8c).
+  On the fall-through of `beq` at 0x331aad8, the `beq` at 0x331aae0 is taken to 0x331ab94 when a3 equals t0 and falls through when they differ; a3 is [a1+68] and t0 is 0x1907.
+  On either the taken path of `beq` at 0x331aad8 or the taken path of `beq` at 0x331aae0, three word stores to entry a5 include +0x0, +0x4 and +0x8 (`swc1` at 0x331aba4, 0x331abb8, 0x331abd0).
+  On the fall-through of `beq` at 0x331aae0, the `beq` at 0x331aae8 is taken to 0x331ac24 when a3 equals t1 and falls through when they differ; a3 is [a1+68] and t1 is 0x1906.
+  On the taken path of `beq` at 0x331aae8, a word is stored to entry a5 +0x10 (`swc1` at 0x331ac38).
+  On the fall-through of `beq` at 0x331aae8, the `beq` at 0x331aaf0 is taken to 0x331abd4 when a3 equals t2 and falls through when they differ; a3 is [a1+68] and t2 is 0x8049.
+  On the taken path of `beq` at 0x331aaf0, a word is stored to entry a5 +0x14 (`swc1` at 0x331abe8).
+  The `jalr` at 0x331abf8 calls `floor` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+8]; this call is on the taken path of `beq` at 0x331a9e8.
+  The return at 0x331aafc has unknown v0 and an unknown call result in f0; the return at 0x331ab44 has unknown call results in v0 and f0 (`jr` at 0x331aafc, 0x331ab44).
+
+- `__glPopColorMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  The doublewords at entry a0 +0x94e0 and +0x94d8 are loaded (`ld` at 0x3337fd8, 0x3337fdc).
+  The `beq` at 0x3337ff8 is taken to 0x3338018 when at(=[a0+38104]:8) >= a3(=[a0+38112]:8) (unsigned) and falls through when at(=[a0+38104]:8) < a3(=[a0+38112]:8) (unsigned).
+  On its fall-through, the call delay slot stores a doubleword at entry a0 +0x94e0 (`sd` at 0x333800c).
+  The `jalr` at 0x3338008 calls `__glGenMatrixSignature` with a0=a0 at entry (arg0), a1=[a0+38112]:8-320, a2=a2 at entry (arg2), a3=[a0+38112]:8, a4=a0+65536 on the fall-through of `beq` at 0x3337ff8.
+  The `jalr` at 0x333801c calls `__glSetError` with a0=0x504, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+38112]:8, a4=a0+65536 on the taken arm of `beq` at 0x3337ff8.
+  The return in v0 is unknown (`jr` at 0x333802c).
+
+- `__glLoadIdentityColorMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  Doubleword loads from entry a0 include +0x4808, +0x94e0 and +0x47d0 (`ld` at 0x333805c, 0x3338064, 0x333808c).
+  The `jalr` at 0x3338074 calls (unknown callee) with a0=[a0+38112]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3338084 calls `__glGenMatrixSignature` with a0=a0 at entry (arg0), a1=[a0+38112]:8, a2=unknown, a3=unknown.
+  The `jalr` at 0x3338094 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+38112]:8, a2=unknown, a3=unknown.
+  The v0 return is the unknown callee result (`jr` at 0x33380ac).
+
+- `__glDoMultMatrix` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 520 bytes
+  A word is read at entry a0 +0x7d0 (`lw` at 0x33382c8).
+  The `beq` at 0x33382e8 is taken to 0x3338434 when a4(=[a0+2000]) == at(=0x1700) and falls through when a4(=[a0+2000]) != at(=0x1700).
+  On that fall-through, `beq` at 0x33382f4 is taken to 0x333831c when a4(=[a0+2000]) == v1(=0x1701) and falls through when a4(=[a0+2000]) != v1(=0x1701).
+  On the fall-through of `beq` at 0x33382f4, `beq` at 0x3338300 is taken to 0x33383fc when a4(=[a0+2000]) == a0(=0x1702) and falls through when a4(=[a0+2000]) != a0(=0x1702).
+  On the fall-through of `beq` at 0x3338300, `beq` at 0x3338308 is taken to 0x33383b0 when a4(=[a0+2000]) == a1(=0x1800) and falls through when a4(=[a0+2000]) != a1(=0x1800).
+  On the taken arm of `beq` at 0x33382f4, `beq` at 0x3338360 is taken to 0x33384b0 when a4(?) == 0 and falls through when a4(?) != 0.
+  Its delay slot stores a word to an unknown base on both arms (`sw` at 0x3338364).
+  On the fall-through of `beq` at 0x3338360, a word is stored to an unknown base (`sw` at 0x3338368).
+  After either arm of `beq` at 0x3338360, a doubleword is loaded from entry a0 +0x4810 (`ld` at 0x333837c).
+  On the taken arm of `beq` at 0x33382e8, a byte is stored to an unknown base (`sb` at 0x3338464).
+  The `jalr` at 0x3338334 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+38072]:8, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[a0+2000], a5=a2 at entry (arg2), a6=a1 at entry (arg1) on the taken arm of `beq` at 0x33382f4.
+  The `jalr` at 0x3338348 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x33382f4.
+  The `jalr` at 0x333838c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown after either arm of `beq` at 0x3338360.
+  The `jalr` at 0x33383a0 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown after either arm of `beq` at 0x3338360.
+  The `jalr` at 0x33383c8 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+38112]:8, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[a0+2000], a5=a2 at entry (arg2), a6=a1 at entry (arg1) on the taken arm of `beq` at 0x3338308.
+  The `jalr` at 0x33383d8 calls `__glGenMatrixSignature` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x3338308.
+  The `jalr` at 0x33383ec calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x3338308.
+  The `jalr` at 0x3338410 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+38096]:8, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[a0+2000], a5=a2 at entry (arg2), a6=a1 at entry (arg1) on the taken arm of `beq` at 0x3338300.
+  The `jalr` at 0x3338424 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x3338300.
+  The `jalr` at 0x3338450 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+38056]:8, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=[a0+2000], a5=a2 at entry (arg2), a6=a1 at entry (arg1) on the taken arm of `beq` at 0x33382e8.
+  The `jalr` at 0x333846c calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=0x1, a3=unknown on the taken arm of `beq` at 0x33382e8.
+  The `jalr` at 0x333848c calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=a1 at entry (arg1), a3=a2 at entry (arg2) on the taken arm of `beq` at 0x33382e8.
+  The `jalr` at 0x33384a0 calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x33382e8.
+  The `bgezall` at 0x33384b4 calls `__glInvalidateSequenceNumbers` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on the taken arm of `beq` at 0x3338360.
+  At return v0 is unknown (`jr` at 0x3338314).
+
+- `__glDoRotate` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 408 bytes
+  Doubleword loads from entry a0 use +0x4838 and +0x4808 (`ld` at 0x3338500, 0x3338564).
+  The `jalr` at 0x3338520 calls (unknown callee) with a0=sp-208, a1=sp-224, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3338534 calls `__rcis` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x3338580 calls (unknown callee) with a0=sp-192, a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x333864c calls `__glDoMultMatrix` with a0=a0 at entry (arg0), a1=sp-192, a2=0x3335f60, a3=unknown.
+  The `bc1f` at 0x3338618 is taken to 0x3338634 when not (f25(=f14) == f11 (c.eq.s at 0x3338600)) and falls through when f25(=f14) == f11 (c.eq.s at 0x3338600).
+  On that fall-through, `bc1f` at 0x3338624 is taken to 0x3338634 when FP condition code 1 is false and falls through when FP condition code 1 is true.
+  The v0 and f0 returns are the result of `__glDoMultMatrix` (`jr` at 0x3338660).
+
+- `__glDoScale` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 68 bytes
+  The `bgezall` at 0x333873c calls `__glDoMultMatrix` with a0=a0 at entry (arg0), a1=sp-32, a2=0x3338670, a3=a3 at entry (arg3).
+  Both v0 and f0 hold the result of `__glDoMultMatrix` at return (`jr` at 0x333874c).
+
+- `__glGenericPickMvpMatrixProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 136 bytes
+  Doubleword loads use entry a0 +0x94b8 and +0x94a8 (`ld` at 0x33391c4, 0x33391d0).
+  Further doubleword loads use entry a0 +0x47d0 and +0x47c8 (`ld` at 0x33391e4, 0x33391f4).
+  The `bgezall` at 0x33391cc calls `__glPickMatrixType` with a0=a1 at entry (arg1), a1=[a0+38056]:8, a2=[a0+38072]:8, a3=a3 at entry (arg3).
+  The `bgezall` at 0x33391dc calls `__glReCompute2DMatrix` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x33391ec calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x33391fc calls (unknown callee) with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The value in v0 is the unknown callee's result (`jr` at 0x3339210).
+
+- `__glGenericPickMatrixProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 188 bytes
+  A word is read from entry a1 +0x40 (`lw` at 0x3339220).
+  The `beq` at 0x333922c is taken to 0x3339290 when that word is zero and falls through when nonzero.
+  On its fall-through, `beq` at 0x3339238 is taken to 0x33392ac when the word equals 0x1 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339238, `beq` at 0x3339244 is taken to 0x33392c4 when the word equals 0x2 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339244, `beq` at 0x3339250 is taken to 0x3339278 when the word equals 0x3 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339250, `beq` at 0x333925c is taken to 0x3339274 when the word equals 0x4 and falls through when it differs.
+  On the fall-through of `beq` at 0x333925c, `beq` at 0x3339264 is taken to 0x3339278 when the word equals 0x5 and falls through when it differs.
+  On the taken arm of `beq` at 0x333922c, doublewords are stored at entry a1 +0x58, +0x50 and +0x48 (`sd` at 0x333929c, 0x33392a0, 0x33392a8).
+  On the taken arm of `beq` at 0x3339238, those same offsets receive doubleword stores (`sd` at 0x33392b4, 0x33392b8, 0x33392c0).
+  When `beq` at 0x3339244 is taken, stores use entry a1 +0x58, +0x50 and +0x48 (`sd` at 0x33392cc, 0x33392d0, 0x33392d8).
+  On paths taking `beq` at 0x3339250, 0x333925c or 0x3339264, doubleword stores use entry a1 +0x58, +0x50 and +0x48 (`sd` at 0x3339280, 0x3339284, 0x333928c).
+  When `beq` at 0x3339238 is taken, v0 returns 0x3338cf0; the other return paths yield 0x5dc98 (`jr` at 0x33392bc, 0x333926c, 0x3339288, 0x33392a4, 0x33392d4).
+
+- `__glGenericPickInvTransposeProcs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  The instructions from 0x3339340 to 0x3339340 are not reached by any path from the entry, and their branches are not listed.
+  The entry reads a word at a1 +0x40 (`lw` at 0x33392e4).
+  `beq` at 0x33392f8 is taken to 0x333934c when that word is zero and falls through when nonzero; its delay slot stores a doubleword at entry a1 +0x58 on both arms (`sd` at 0x33392fc).
+  On that branch's fall-through, `beq` at 0x3339308 is taken to 0x3339354 when the word equals 0x1 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339308, `beq` at 0x3339318 is taken to 0x333935c when the word equals 0x2 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339318, `beq` at 0x3339320 is taken to 0x3339344 when the word equals 0x3 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339320, `beq` at 0x3339328 is taken to 0x3339344 when the word equals 0x4 and falls through when it differs.
+  On the fall-through of `beq` at 0x3339328, `beq` at 0x3339330 is taken to 0x3339344 when the word equals 0x5 and falls through when it differs.
+  On the taken arm of `beq` at 0x33392f8, the return delay slot stores a doubleword at entry a1 +0x50 (`sd` at 0x3339350).
+  The taken arms of `beq` at 0x3339308 and 0x3339318 also store at entry a1 +0x50 (`sd` at 0x3339358, 0x3339360).
+  Paths taking `beq` at 0x3339320, 0x3339328 or 0x3339330 store a doubleword at that offset (`sd` at 0x3339348).
+  At the return sites v0 is 0x5dbd8 (`jr` at 0x3339338, 0x3339344, 0x333934c, 0x3339354, 0x333935c).
+
+- `__glDT_NEVER` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
+  At return `v0=0x0` (`jr` at 0x3339370).
+
+- `__glDT_ALWAYS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 12 bytes
+  Its return delay slot stores a word from entry a0 at entry a2 +0x0 (`sw` at 0x33394c8).
+  The value in v0 on return is 0x1 (`jr` at 0x33394c4).
+
+- `__glDT_LEQUAL_M` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33394d0
+  The returned value is unknown (`jr` at 0x33394d4).
+
+- `__glDT_LESS_M` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33394f0
+  Its return value is unknown (`jr` at 0x33394f0).
+
+- `__glDT_EQUAL_M` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3339510
+  The value in v0 at return is unknown (`jr` at 0x3339514).
+
+- `__glDT_GREATER_M` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3339520
+  At return v0 is unknown (`jr` at 0x3339520).
+
+- `__glDT_GEQUAL_M` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3339550
+  The v0 result is unknown (`jr` at 0x3339554).
+
+- `__glim_InterleavedArrays` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33349b0
+  A doubleword is loaded at absolute 0x1020 and a word at absolute 0x1030 (`ld` at 0x33349b8; `lw` at 0x33349d0).
+  The `beq` at 0x33349f0 is taken to 0x3334c4c when the word at 0x1030 equals 0x1 and falls through when it differs.
+  On its fall-through, `bltz` at 0x33349f8 is taken to 0x3334c60 when a1 is negative signed and falls through when a1 is nonnegative signed.
+  On the fall-through of `bltz` at 0x33349f8, `bne` at 0x3334a04 is taken to 0x3334bd0 when a0 is less than 0x2a20 unsigned and falls through when a0 is at least 0x2a20 unsigned.
+  On the fall-through of `bne` at 0x3334a04, `beq` at 0x3334a0c is taken to 0x3334bd0 when unknown a2 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x3334a0c, a doubleword is read from [0x1020]:8 +0x1ad8 and another from [[0x1020]:8+6872]:8 +0x6d8 (`ld` at 0x3334a38, 0x3334a3c).
+  The `jalr` at 0x3334a40 calls (unknown callee) with a0=0x8079, a1=unknown, a2=unknown, a3=a3 at entry (arg3); this follows the fall-through of `beq` at 0x3334a0c.
+  The `jalr` at 0x3334a50 calls (unknown callee) with a0=0x8077, a1=unknown, a2=unknown, a3=unknown; this follows the fall-through of `beq` at 0x3334a0c.
+  On that path, `beq` at 0x3334a5c is taken to 0x3334bec when unknown ra is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x3334a5c, `blez` at 0x3334a7c is taken to 0x3334ad0 when the word at [0x1020]:8 +0x17c4 is at most zero signed and falls through when it is positive signed (`lw` at 0x3334a64).
+  The `jalr` at 0x3334a94 calls (unknown callee) with a0=0x8078, a1=unknown, a2=unknown, a3=unknown; this follows the fall-through of `blez` at 0x3334a7c.
+  The `jalr` at 0x3334abc calls (unknown callee) with a0=unknown, a1=0x1406, a2=unknown, a3=unknown; this follows the fall-through of `blez` at 0x3334a7c.
+  On paths through the fall-through of `beq` at 0x3334a5c, `beq` at 0x3334ad8 is taken to 0x3334b04 when s5 is at least at signed and falls through when s5 is less than at signed; hostfacts reports s5 as [[0x1020]:8+6084] and at as [[0x1020]:8+3968].
+  The `jalr` at 0x3334ae8 calls (unknown callee) with a0=0x8078, a1=unknown, a2=unknown, a3=unknown; this follows the fall-through of `beq` at 0x3334ad8.
+  On the path following either arm of `beq` at 0x3334a5c, `beq` at 0x3334b10 is taken to 0x3334c24 when unknown at is zero and falls through when it is nonzero.
+  The `jalr` at 0x3334b1c calls (unknown callee) with a0=0x8076, a1=[[0x1020]:8+6872]:8, a2=unknown, a3=unknown; this follows the fall-through of `beq` at 0x3334b10.
+  The `jalr` at 0x3334b3c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown; this follows the fall-through of `beq` at 0x3334b10.
+  On either arm of `beq` at 0x3334b10, `beq` at 0x3334b48 is taken to 0x3334c38 when unknown ra is zero and falls through when it is nonzero.
+  The `jalr` at 0x3334b54 calls (unknown callee) with a0=0x8075, a1=[[0x1020]:8+6872]:8, a2=unknown, a3=unknown; this follows the fall-through of `beq` at 0x3334b48.
+  The `jalr` at 0x3334b70 calls (unknown callee) with a0=0x1406, a1=unknown, a2=unknown, a3=unknown; this follows the fall-through of `beq` at 0x3334b48.
+  The `jalr` at 0x3334b80 calls (unknown callee) with a0=0x8074, a1=unknown, a2=unknown, a3=unknown; this follows either arm of `beq` at 0x3334b48.
+  The `jalr` at 0x3334ba0 calls (unknown callee) with a0=unknown, a1=0x1406, a2=unknown, a3=unknown; this follows either arm of `beq` at 0x3334b48.
+  The `jalr` at 0x3334bd4 calls `__glSetError` with a0=0x500, a1=unknown, a2=unknown, a3=a3 at entry (arg3); this follows the taken arm of either `bne` at 0x3334a04 or `beq` at 0x3334a0c.
+  The `jalr` at 0x3334c00 calls (unknown callee) with a0=0x8078, a1=unknown, a2=unknown, a3=unknown; this follows the taken arm of `beq` at 0x3334a5c and the fall-through of `blez` at 0x3334bf0.
+  The `jalr` at 0x3334c28 calls (unknown callee) with a0=0x8076, a1=[[0x1020]:8+6872]:8, a2=unknown, a3=unknown; this follows the taken arm of `beq` at 0x3334b10.
+  The `jalr` at 0x3334c3c calls (unknown callee) with a0=0x8075, a1=[[0x1020]:8+6872]:8, a2=unknown, a3=unknown; this follows the taken arm of `beq` at 0x3334b48.
+  The `jalr` at 0x3334c50 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); this follows the taken arm of `beq` at 0x33349f0.
+  The `jalr` at 0x3334c60 calls `__glSetError` with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); this follows the taken arm of `bltz` at 0x33349f8.
+  At its return, v0 is unknown (`jr` at 0x3334bc8).
+
+- `__glPickMatrixType` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3335e40
+  The entry loads a word from entry a1 +0x40 (`lw` at 0x3335e40).
+  The `beq` at 0x3335e4c is taken to 0x3335f0c when that word is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3335e4c, `beq` at 0x3335e58 is taken to 0x3335e9c when the word equals 0x1 and falls through when it differs.
+  On the fall-through of `beq` at 0x3335e58, `beq` at 0x3335e60 is taken to 0x3335eb8 when the word equals 0x2 and falls through when it differs.
+  On the fall-through of `beq` at 0x3335e60, `beq` at 0x3335e68 is taken to 0x3335ed0 when the word equals 0x3 and falls through when it differs.
+  On the taken arm of `beq` at 0x3335e4c, a word is stored at entry a0 +0x40 (`sw` at 0x3335f10).
+  The v0 return is unknown on the taken arm of `beq` at 0x3335e4c and includes 0x2 on other paths (`jr` at 0x3335f0c, 0x3335e94).
