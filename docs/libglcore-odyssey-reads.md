@@ -1524,15 +1524,46 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glOdysseyProgram2DOffsets` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1104 bytes
   - **Established effects.** `beqz` at 0x324834c takes the direct path when argument 1 is at least 0xe as an unsigned value and falls through when it is less. On the direct path, it stores zero at argument 0 + 0xb50, -1 at +0xb4c, 1 at +0xb44, -1 at +0xb48 and -1 at +0xb40 (`sw` at 0x3248360, 0x3248368, 0x3248370, 0x3248374, 0x324837c). The broader role of this routine and the meanings of the stored fields are unknown.
   - The fall-through path jumps through a table (`jr` at 0x3248358); the table includes entries leading to the same store sequence and to other paths.
-- `__glOdysseyInitKernel` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 656 bytes
-
-  **Established effects.** The routine calls `__glOdysseyIoctl` with entry `a0`, request 0x6f640000, and entry `sp - 0x80` (`jalr` at 0x325aa48). A zero result takes `beqz` at 0x325aa50 to a path that reads a word and a doubleword from the stack (`lw` at 0x325aa78; `ld` at 0x325aa80). That path also stores a word and a doubleword at unknown bases; hostfacts leaves both stored values unknown (`sw` at 0x325aa7c; `sd` at 0x325aa84). Another path calls an unknown callee with entry `a0` and 0x428 (`jalr` at 0x325ab68); `beqz` at 0x325ab74 takes the zero-result path, calling `__glSetError` with 0x505 (`jalr` at 0x325abc0). The purpose of those stores and the routine’s broader role are Unknown.
+- `__glOdysseyInitKernel` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x325a940
+  The `ld` at 0x325a970 reads a doubleword from a0 at entry (arg0) +0x19198.
+  The `jalr` at 0x325aa00 calls `getenv` with a0=0x337c028, a1=unknown, a2=a0+131072, a3=unknown, a5=one of -0x1, 0x10000.
+  The `jalr` at 0x325aa48 calls `__glOdysseyIoctl` with a0=a0 at entry (arg0), a1=0x6f640000, a2=sp-128, a3=unknown.
+  The `bgezall` at 0x325aad4 calls `InitCSet` with a0=a0+102824, a1=0x9, a2=unknown, a3=unknown on paths where the `beq` at 0x325aab4 falls through.
+  The `bgezall` at 0x325ab18 calls `AllocSpecificCSetId` with a0=unknown, a1=unknown, a2=a0 at entry (arg0), a3=unknown.
+  The `jalr` at 0x325ab68 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x428, a2=unknown, a3=unknown on paths where the `beq` at 0x325aadc is taken.
+  The `jalr` at 0x325ab8c calls `__glNamesNewArray` with a0=a0 at entry (arg0), a1=0x1, a2=unknown, a3=unknown on paths where the `beq` at 0x325ab74 falls through.
+  The `bgezall` at 0x325aba8 calls `InitCSet` with a0=unknown, a1=0x4, a2=unknown, a3=unknown on paths where the `beq` at 0x325ab74 falls through.
+  The `jalr` at 0x325abc0 calls `__glSetError` with a0=0x505, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x325ab74 is taken.
+  The `jr` at 0x325aa70 returns v0=0x0.
+  The `jr` at 0x325ab38 returns v0=0x1.
+  The `jr` at 0x325ab58 returns v0=0x0.
 - `__glOdysseyValidate` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
 
   **Established effects.** The word at entry `a0 + 0x18e58` controls the first call (`lw` at 0x31fc0c0): when it is nonzero, `beqz` at 0x31fc0dc falls through to `__glOdysseyValidateContext` (`bgezall` at 0x31fc0e8). A nonzero word at `a0 + 0x4714` makes `beqz` at 0x31fc0f4 fall through to an indirect call with unknown callee (`lw` at 0x31fc0f0; `jalr` at 0x31fc100). Another tested word is unknown; `beqz` at 0x31fc110 skips `__glOdysseyValidateHardware` when it is zero (`bgezall` at 0x31fc118). The routine finishes with byte clears to unknown bases, including the return delay slot (`sb` at 0x31fc12c; `jr` at 0x31fc140; `sb` at 0x31fc144). The role of those clears and the routine’s broader role are Unknown.
-- `__glOdysseyValidateContext` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 716 bytes
-
-  **Established effects.** On one path, `beqz` at 0x31fdbdc falls through when bit 0x200 of the tested value is set and calls `__glOdysseyValidateTextureState` (`jalr` at 0x31fdbe8). Later, `beqz` at 0x31fdc68 skips `__glOdysseyValidateClipPlanes` when its tested register is zero (`bgezall` at 0x31fdc70). If it falls through, the routine calls `__glOdysseyGetNumSWClipPlanes` (`jalr` at 0x31fdc7c); a signed nonpositive result takes `blez` at 0x31fdc84 past the `__glOdysseyValidateSoftClipPlanes` call (`jalr` at 0x31fdc90). The tested values and the routine’s broader role remain Unknown.
+- `__glOdysseyValidateContext` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x31fdb40
+  The `lw` at 0x31fdb78 reads a word from a0 at entry (arg0) +0x18e58.
+  The `jalr` at 0x31fdbb4 calls `__glOdysseyValidateDepthRange` with a0=a0 at entry (arg0), a1=unknown, a2=[a0+101976], a3=unknown, a4=0x1 on paths where the `beq` at 0x31fdba8 falls through.
+  The `jalr` at 0x31fdbd0 calls `__glOdysseyValidateProgram` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdbc8 falls through.
+  The `jalr` at 0x31fdbe8 calls `__glOdysseyValidateTextureState` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdbdc falls through.
+  The `bgezall` at 0x31fdc00 calls `__glOdysseyValidateContextRasterMisc` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdbf4 falls through.
+  The `jalr` at 0x31fdc14 calls `__glOdysseyValidateMatrixComb` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc0c falls through.
+  The `jalr` at 0x31fdc2c calls `__glOdysseyValidateMatrixMV` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc20 falls through.
+  The `jalr` at 0x31fdc44 calls `__glOdysseyValidateMatrixNorm` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc38 falls through.
+  The `jalr` at 0x31fdc5c calls `__glOdysseyValidateMatrixTex` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc50 falls through.
+  The `bgezall` at 0x31fdc70 calls `__glOdysseyValidateClipPlanes` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc68 falls through.
+  The `jalr` at 0x31fdc7c calls `__glOdysseyGetNumSWClipPlanes` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc68 falls through.
+  The `jalr` at 0x31fdc90 calls `__glOdysseyValidateSoftClipPlanes` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `blez` at 0x31fdc84 falls through.
+  The `jalr` at 0x31fdca8 calls `__glOdysseyValidateTexGen` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdc9c falls through.
+  The `jalr` at 0x31fdcc0 calls `__glOdysseyValidateLighting` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdcb4 falls through.
+  The `jalr` at 0x31fdccc calls `__glOdysseyComputeLightState` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdcb4 falls through.
+  The `jalr` at 0x31fdce0 calls `__glOdysseyValidateFragment` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdcd8 falls through.
+  The `jalr` at 0x31fdcf4 calls `__glOdysseyValidateFog` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdcec falls through.
+  The `bgezall` at 0x31fdd10 calls `__glOdysseyValidateDispatchTable` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdd08 falls through.
+  The `jalr` at 0x31fdd2c calls `__glOdysseySetProgram` with a0=a0 at entry (arg0), a1=[a0+51704], a2=unknown, a3=unknown on paths where the `beq` at 0x31fdd18 falls through.
+  The `bgezall` at 0x31fdd50 calls `__glOdysseyValidateScissor` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdd40 falls through.
+  The `bgezall` at 0x31fdd6c calls `__glOdysseyValidateHardware` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x31fdd60 falls through.
+  The `jr` at 0x31fdd88 returns an unknown v0.
+  The `jr` at 0x31fddd8 returns an unknown v0.
 - `__glOdysseyValidateClipPlanes` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 844 bytes
 
   **Established effects.** One path writes words to 0x10000, including 0x908091bb (`sw` at 0x31fc214), followed by values loaded from entry `a0 + 0xc004` and `a0 + 0xc010` (`lwc1` at 0x31fc218; `swc1` at 0x31fc21c; `lwc1` at 0x31fc230; `swc1` at 0x31fc240). Other stores occur between those two values (`swc1` at 0x31fc224, 0x31fc22c). The routine later calls `__glOdysseyGetNumSWClipPlanes` (`jalr` at 0x31fc3e0); a nonzero result makes `beqz` at 0x31fc3f0 fall through, and the routine calls `__glOdysseyGetNumHWClipPlanes` (`jalr` at 0x31fc404). The 0x10000 destination's role and the routine’s broader role are Unknown.
@@ -1567,33 +1598,157 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `CISendFc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x327e7b0
   **Established effects.** The routine occupies 100 bytes. After reading a byte at argument 0 + 0xc0 (`lbu` at 0x327e7b4), it writes one of 0x2f00c02e or 0x3000c02e and then 0xc580c407 to absolute 0x10000 (`sw` at 0x327e7d0, 0x327e7d8). It copies the 32-bit word at argument 0 + 0x98 there (`lwc1` at 0x327e7dc; `swc1` at 0x327e7e4), followed by 0x8080d005 (`sw` at 0x327e7ec).
   The last stores copy the 32-bit words at argument 0 + 0x18, +0x1c, +0x20 and +0x24 to 0x10000 (`lwc1` at 0x327e7f0, 0x327e7f8, 0x327e800, 0x327e808; `swc1` at 0x327e7f4, 0x327e7fc, 0x327e804, 0x327e810). This is the complete store sequence; the routine’s role and the hardware interpretation of its writes are Unknown.
-- `__glOdyim_DrawBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1404 bytes
-  **Established effects.** It reads the word at process address 0x1030 (`lw` at 0x31efc7c). `beq` at 0x31efc9c takes a path calling `__glSetError` with 0x502 when that word equals 1, and falls through otherwise (`jalr` at 0x31f0068).
-  - A path stores original argument 0 at +0x868 and +0x86c of the doubleword loaded at process address 0x1020 (`ld` at 0x31efc78; `sw` at 0x31efce0, 0x31efcf8), with a call to `__glOdysseySetDrawbuf` between those stores (`jalr` at 0x31efce8). The meanings of these stored values and the routine’s wider role are unknown.
-- `__glOdyim_DrawPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 864 bytes
-  **Established effects.** It reads a doubleword at process address 0x1020 (`ld` at 0x321d8b4) and a word at that pointer + 0x18e58 (`lw` at 0x321d8c8). `beqz` at 0x321d8e0 takes an alternate path when the word is zero and falls through when nonzero.
-  - A path stores zero to process address 0x1030 (`sw` at 0x321d92c). Calls include `__glCheckDrawPixelArgs` (`jalr` at 0x321d98c) and `__glOdysseyImageXfer` with the pointer from 0x1020 + 0x14120, two stack addresses, and zeros as the next two arguments (`bgezall` at 0x321db24). The stack records and the routine’s wider role remain unidentified.
+- `__glOdyim_DrawBuffer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x31efc70
+  The `lw` at 0x31efc7c reads a word from absolute 0x1030.
+  The `jalr` at 0x31efce8 calls `__glOdysseySetDrawbuf` with a0=[0x1020]:8, a1=one of 0x0, 0x1, a2=one of 0x0, 0x1, a3=unknown.
+  The `jalr` at 0x31efea0 calls `__glSetError` with a0=0x500, a1=unknown, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x31effa0 calls `__glSetError` with a0=0x502, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x31f0068 calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) on paths where the `beq` at 0x31efc9c is taken.
+  The `jalr` at 0x31f00a0 calls `__glSetError` with a0=0x500, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x31f0168 calls `__glSetError` with a0=0x500, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x31efd04 returns v0=ret(__glOdysseySetDrawbuf).
+  The `jr` at 0x31efd10 returns v0=ret(__glSetError).
+- `__glOdyim_DrawPixels` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x321d8a0
+  The `lw` at 0x321d8a0 reads a word from absolute 0x1030.
+  The `sw` at 0x321d92c stores a word at absolute 0x1030 with value 0x0.
+  The `jalr` at 0x321d8fc calls `__glSetError` with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[0x1030], a7=[0x1020]:8+131072 on paths where the `beq` at 0x321d8f4 falls through.
+  The `jalr` at 0x321d924 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[0x1030], a7=[0x1020]:8+131072.
+  The `jalr` at 0x321d98c calls `__glCheckDrawPixelArgs` with a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=unknown, a4=a3 at entry (arg3).
+  The `jalr` at 0x321d9e8 calls `__glSpecElementsPerGroup` with a0=unknown, a1=a3 at entry (arg3), a2=unknown, a3=unknown, a6=[[0x1020]:8+1464].
+  The `jalr` at 0x321da10 calls `__glOdysseyAsyncCheck` with a0=[0x1020]:8, a1=0x2, a2=unknown, a3=unknown on paths where the `beq` at 0x321da00 falls through.
+  The `jalr` at 0x321da20 calls `__glSpecBytesPerElement` with a0=a3 at entry (arg3), a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x321db24 calls `__glOdysseyImageXfer` with a0=[0x1020]:8+82208, a1=sp-208, a2=sp-144, a3=0x0, a4=0x0, a5=[[0x1020]:8+1444], a7=[[0x1020]:8+1432].
+  The `jalr` at 0x321db40 calls `__glOdysseyAsyncDropMarker` with a0=[0x1020]:8, a1=0x2, a2=unknown, a3=unknown on paths where the `beq` at 0x321db34 falls through.
+  The `jalr` at 0x321dba0 calls `__glSetError` with a0=0x502, a1=0x2, a2=unknown, a3=unknown, a6=0x1908, a7=0x1907 on paths where the `beq` at 0x321db94 falls through.
+  The `jalr` at 0x321dbc0 calls `__glSetError` with a0=0x502, a1=0x2, a2=unknown, a3=unknown, a6=0x1908, a7=0x1907 on paths where the `beq` at 0x321dbb8 falls through.
+  The `jalr` at 0x321dbf0 calls `__glSetError` with a0=0x502, a1=unknown, a2=unknown, a3=unknown, a6=[[0x1020]:8+1464] on paths where the `beq` at 0x321d9c4 is taken.
+  The `jr` at 0x321d910 returns v0=unknown.
 - `__glOdysseyDrawPixels` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 412 bytes
   **Established effects.** `beqz` at 0x3222198 branches when argument 6 is zero and falls through when it is nonzero. The routine calls `__glOdyim_DrawPixels` with original arguments 1 through 5 as its first five arguments (`bgezall` at 0x3222278).
   - After the call, `beqz` at 0x3222288 skips the following stores when argument 6 is zero and falls through when it is nonzero. Those stores include words at argument 0 + 0x594 and + 0x598, whose values hostfacts leaves unknown (`sw` at 0x32222c0, 0x32222c4). The fields and this routine’s wider role remain unidentified.
-- `SendPixelsAsUserPIO` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1976 bytes
-  **Established effects.** It writes 0x4570, a word loaded from +0xba10 of the doubleword read at process address 0x1020, and 0x71 to process address 0x10000 (`ld` at 0x324d9a8; `sw` at 0x324db18; `lw` at 0x324db1c; `sw` at 0x324db20, 0x324db2c). The command words and the routine’s wider role remain unidentified.
-  - One path reads a word from an unknown address (`lw` at 0x324dc94) and writes an unknown word to 0x10000 (`sw` at 0x324dca0). Another loop reads a word from an unknown address (`lw` at 0x324dcb0) and writes an unknown word to 0x10000 (`sw` at 0x324dcb8). The `bne` at 0x324dcc4 repeats when the unknown `a4` value differs from -1 and falls through when equal.
+- `SendPixelsAsUserPIO` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x324d930
+  The `lw` at 0x324d930 reads a word from a2 at entry (arg2) +0x14.
+  The `lw` at 0x324d970 reads a word from a2 at entry (arg2) +0x18.
+  The `lw` at 0x324d990 reads a word from a2 at entry (arg2) +0x1c.
+  The `sw` at 0x324db18 stores a word at absolute 0x10000 with value 0x4570.
+  The `sw` at 0x324db20 stores a word at absolute 0x10000 with value [[0x1020]:8+47632].
+  The `sw` at 0x324db2c stores a word at absolute 0x10000 with value 0x71.
+  The `jalr` at 0x324dfc8 calls `bcopy` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x324e060 calls (unknown callee) with a0=unknown, a1=unknown, a2=0x60000, a3=unknown on paths where the `beq` at 0x324dfb4 is taken.
+  The `jalr` at 0x324e088 calls (unknown callee) with a0=unknown, a1=unknown, a2=0x60000, a3=unknown on paths where the `beq` at 0x324e074 falls through.
+  The instructions from 0x324dbb4 to 0x324dbbc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x324df34 to 0x324df3c are not reached by any path from the entry, and their branches are not listed.
+  The `jr` at 0x324e0b8 returns v0=unknown.
 - `__glOdysseyImageCalcXferWriteParams` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 4932 bytes
   **Established effects.** It initializes words at argument 3 + 0, +0x14, +0x10, +0xc, +0x8 and +0x4 to zero (`sw` at 0x3251bd4, 0x3251bdc, 0x3251be0, 0x3251be4, 0x3251bec, 0x3251bf4).
   - `beq` at 0x3251bf0 branches when argument 0 equals 0x1906 and falls through otherwise. On fall-through, `beqz` at 0x3251bf8 branches when argument 2 is zero; if it is nonzero, `beq` at 0x3251c00 branches when argument 2 equals 3. Both of those taken paths store a zero byte at argument 3 + 0 (`sb` at 0x3251fd8). The record’s field meanings and the routine’s wider role remain unknown.
-- `LoadAndSendStippledQuads` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2188 bytes
-
-  **Established effects.** One path reads a word from an unknown base (`lw` at 0x31f3ad0). The `beqz` at 0x31f3ae0 falls through when `a2` is nonzero; its value at the branch is unknown. On fall-through it stores zero at an unknown base (`sw` at 0x31f3ae8) and write 0x10443, 0xfa, and 0x10046 twice to 0x10000 (`sw` at 0x31f3af4; `sw` at 0x31f3b00; `sw` at 0x31f3b08; `sw` at 0x31f3b0c). The common continuation writes 0x1043f to the same address (`sw` at 0x31f3b18). The routine’s role and the destinations’ hardware effects are Unknown.
-- `__glOdyim_Swaptmesh` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 324 bytes
-
-  **Established effects.** It reads the word at absolute address 0x1030 (`lw` at 0x321c530); `bne` at 0x321c53c takes the return path when that word differs from 1 (`jr` at 0x321c5e8). On a separate path the code reads pointers at +0x4e40 and +0x4e38 of the pointer loaded from absolute address 0x1020 (`ld` at 0x321c540), then stores each into the other's slot (`ld` at 0x321c574; `ld` at 0x321c57c; `sd` at 0x321c580; `sd` at 0x321c58c). Another path calls `__glOdysseyGetHardwareShadow` with the pointer from 0x1020 and second argument 0 (`jalr` at 0x321c59c), and later calls `__glOdysseySendShadowAttributes` with third argument -1 (`jalr` at 0x321c664). The roles of the routine and the pointer slots are Unknown.
-- `__glOdyim_DrawArraysEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 480 bytes
-
-  **Established effects.** The routine reads the word at absolute address 0x1030 (`lw` at 0x32768d0); equality to 1 takes `beq` at 0x32768f0 to `__glSetError` with 0x502 (`jalr` at 0x3276a80). Otherwise signed negative entry `a1` or `a2` takes `bltz` at 0x32768f8 or 0x3276900 to `__glSetError` with 0x501 (`jalr` at 0x3276a40). If those branches fall through, unsigned entry `a0` at least 0xa takes `beqz` at 0x327690c to `__glSetError` with 0x500 (`jalr` at 0x3276a2c). A later path calls `AnalyzeVertarrays` with the pointer from 0x1020 and entry `a1` and `a2` (`bgezall` at 0x32769c8). Its wider role and the hardware effect of these calls remain Unknown.
-- `__glOdyim_DrawElements` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 584 bytes
-
-  **Established effects.** When the word at absolute address 0x1030 equals 1, `beq` at 0x3276acc takes the path calling `__glSetError` with 0x502 (`lw` at 0x3276aac; `jalr` at 0x3276cb8). Otherwise, signed negative entry `a1` takes `bltz` at 0x3276ad4 to `__glSetError` with 0x501 (`jalr` at 0x3276cc8). For nonnegative `a1`, unsigned entry `a0` at least 0xa takes `beqz` at 0x3276ae0 to `__glSetError` with 0x500 (`jalr` at 0x3276b08). If that check falls through, entry `a2` values 0x1401, 0x1403 and 0x1405 take their respective `beq` branches into further processing (`beq` at 0x3276aec; `beq` at 0x3276af4; `beq` at 0x3276afc). The routine’s broader role and hardware effect remain Unknown.
+- `LoadAndSendStippledQuads` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x31f3840
+  The `lw` at 0x31f3858 reads a word from a1 at entry (arg1) +0x0.
+  The `lw` at 0x31f38c4 reads a word from a1 at entry (arg1) +0x4.
+  The `sw` at 0x31f3af4 stores a word at absolute 0x10000 with value 0x10443.
+  The `sw` at 0x31f3b00 stores a word at absolute 0x10000 with value 0xfa.
+  The `sw` at 0x31f3b08 stores a word at absolute 0x10000 with value 0x10046.
+  The `sw` at 0x31f3b18 stores a word at absolute 0x10000 with value 0x1043f.
+  The `sw` at 0x31f3b2c stores a word at absolute 0x10000 with value 0x13c4e.
+  The `jalr` at 0x31f3888 calls `ceil` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x31f38b8 calls `ceil` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=0x3d000000.
+  The `jalr` at 0x31f38ec calls `ceil` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=0x3d000000.
+  The `jalr` at 0x31f3d94 calls `ceil` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x31f4054 calls (unknown callee) with a0=a6 at entry (arg6), a1=unknown, a2=unknown, a3=unknown, a7=0x10000 on paths where the `beq` at 0x31f3c64 is taken.
+  The instructions from 0x31f39f8 to 0x31f39fc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x31f3a78 to 0x31f3a7c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x31f3ddc to 0x31f3ddc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x31f40b4 to 0x31f40bc are not reached by any path from the entry, and their branches are not listed.
+  The `jr` at 0x31f40ac returns v0=unknown.
+- `__glOdyim_Swaptmesh` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x321c530
+  A word is loaded from `abs 0x1030` (`lw` at 0x321c530).
+  A doubleword is loaded from `abs 0x1020` (`ld` at 0x321c540).
+  A word is loaded from `[0x1020]:8 +0x18e50` (`lw` at 0x321c550).
+  A doubleword is loaded from `[0x1020]:8 +0x4890` (`ld` at 0x321c560).
+  A doubleword is loaded from `[0x1020]:8 +0x4e40` (`ld` at 0x321c574).
+  On the fall-through of `bne` at 0x321c56c, a doubleword value `0x327abc0` is stored at `[0x1020]:8 +0x4890` (`sd` at 0x321c578).
+  On the fall-through of `bne` at 0x321c56c, a doubleword value `[[0x1020]:8+20024]:8` is stored at `[0x1020]:8 +0x4e40` (`sd` at 0x321c580).
+  On the fall-through of `bne` at 0x321c56c, a doubleword value `[[0x1020]:8+20032]:8` is stored at `[0x1020]:8 +0x4e38` (`sd` at 0x321c58c).
+  On the taken arm of `beq` at 0x321c564, a doubleword value `0x327ac50` is stored at `[0x1020]:8 +0x4890` (`sd` at 0x321c5fc).
+  On the taken arm of `beq` at 0x321c564, a doubleword value `[[0x1020]:8+20024]:8` is stored at `[0x1020]:8 +0x4e40` (`sd` at 0x321c600).
+  On the taken arm of `beq` at 0x321c564, a doubleword value `[[0x1020]:8+20032]:8` is stored at `[0x1020]:8 +0x4e38` (`sd` at 0x321c60c).
+  The `bne` at 0x321c53c branches to 0x321c5e8 when `at(=[0x1030]) != v0(=0x1)` and falls through when `at(=[0x1030]) == v0(=0x1)`.
+  The `bne` at 0x321c558 branches to 0x321c590 when `v1(=[[0x1020]:8+101968]) != a1(=0x4)` and falls through when `v1(=[[0x1020]:8+101968]) == a1(=0x4)`.
+  The `beq` at 0x321c564 branches to 0x321c5f0 when `a2(=[[0x1020]:8+18576]:8) == a3(=0x327abc0)` and falls through when `a2(=[[0x1020]:8+18576]:8) != a3(=0x327abc0)`.
+  The `bne` at 0x321c56c branches to 0x321c5e8 when `a2(=[[0x1020]:8+18576]:8) != a1(=0x327ac50)` and falls through when `a2(=[[0x1020]:8+18576]:8) == a1(=0x327ac50)`.
+  The `bne` at 0x321c5c8 branches to 0x321c5e8 when `a1(unknown) != a2(=0x5)` and falls through when `a1(unknown) == a2(=0x5)`.
+  The `beq` at 0x321c5e0 branches to 0x321c610 when `a2(unknown) >= 0x2 (unsigned)` and falls through when `a2(unknown) < 0x2 (unsigned)`.
+  The `jalr` at 0x321c59c calls `__glOdysseyGetHardwareShadow` with `a0=[0x1020]:8`, `a1=0x0`, `a2=a2 at entry (arg2)`, `a3=0x327abc0` on the taken arm of `bne` at 0x321c558.
+  The `jalr` at 0x321c5b4 calls `bcopy` with `a0=unknown`, `a1=sp-2336`, `a2=0x900`, `a3=unknown` on the taken arm of `bne` at 0x321c558.
+  The `jalr` at 0x321c62c calls `__glOdysseySendShadowAttributes` with `a0=unknown`, `a1=sp-2336`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x321c5e0.
+  The `jalr` at 0x321c650 calls `__glOdysseySendShadowVertex` with `a0=unknown`, `a1=sp-2336`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x321c5e0.
+  The `jalr` at 0x321c664 calls `__glOdysseySendShadowAttributes` with `a0=unknown`, `a1=sp-2336`, `a2=-0x1`, `a3=unknown` on the taken arm of `beq` at 0x321c5e0.
+  The return value is `0x1` at two exits and unknown at the third (`jr` at 0x321c588, 0x321c608, 0x321c5e8).
+- `__glOdyim_DrawArraysEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32768b0
+  A doubleword is loaded from `abs 0x1020` (`ld` at 0x32768b8).
+  A word is loaded from `abs 0x1030` (`lw` at 0x32768d0).
+  A word is loaded from `[0x1020]:8 +0x18e7c` (`lw` at 0x3276918).
+  A word is loaded from `[0x1020]:8 +0xf80` (`lw` at 0x3276924).
+  A word is loaded from `[0x1020]:8 +0x17bc` (`lw` at 0x3276930).
+  A doubleword is loaded from `[0x1020]:8 +0x1ad8` (`ld` at 0x327693c).
+  The `beq` at 0x32768f0 branches to 0x3276a7c when `at(=[0x1030]) == a4(=0x1)` and falls through when `at(=[0x1030]) != a4(=0x1)`.
+  The `bltz` at 0x32768f8 branches to 0x3276a40 when `a1 < 0 (signed)` and falls through when `a1 >= 0 (signed)`.
+  The `bltz` at 0x3276900 branches to 0x3276a40 when `a2 < 0 (signed)` and falls through when `a2 >= 0 (signed)`.
+  The `beq` at 0x327690c branches to 0x3276a28 when `a0 >= 0xa (unsigned)` and falls through when `a0 < 0xa (unsigned)`.
+  The `beq` at 0x327691c branches to 0x32769b8 when `a0(=[[0x1020]:8+102012]) == 0` and falls through when `a0(=[[0x1020]:8+102012]) != 0`.
+  The `bne` at 0x3276928 branches to 0x327693c when `t8(=[[0x1020]:8+3968]) != a4(=0x1)` and falls through when `t8(=[[0x1020]:8+3968]) == a4(=0x1)`.
+  The `beq` at 0x3276934 branches to 0x3276a50 when `t9(=[[0x1020]:8+6076]) == 0` and falls through when `t9(=[[0x1020]:8+6076]) != 0`.
+  The `beq` at 0x3276958 branches to 0x3276984 when `s0(=a1) >= s2(=(a1 + a2)) (signed)` and falls through when `s0(=a1) < s2(=(a1 + a2)) (signed)`.
+  The `bne` at 0x327697c branches to 0x3276970 when `s2(=(a1 + a2)) != s0(unknown)` and falls through when `s2(=(a1 + a2)) == s0(unknown)`.
+  The `beq` at 0x32769bc branches to 0x32769d4 when `ra(=[[0x1020]:8+102200]) == 0` and falls through when `ra(=[[0x1020]:8+102200]) != 0`.
+  The `beq` at 0x32769d8 branches to 0x3276924 when `ra(=[[0x1020]:8+102168]:8) == 0` and falls through when `ra(=[[0x1020]:8+102168]:8) != 0`.
+  The `blez` at 0x32769f0 branches to 0x3276a10 when `s4(=a2) <= 0 (signed)` and falls through when `s4(=a2) > 0 (signed)`.
+  The `jalr` at 0x3276948 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a4=0x1`.
+  The `jalr` at 0x3276970 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x327698c calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `bgezall` at 0x32769c8 calls `AnalyzeVertarrays` with `a0=[0x1020]:8`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=0x1` on the fall-through of `beq` at 0x32769bc.
+  The `jalr` at 0x32769e8 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a4=0x1`.
+  The `jalr` at 0x3276a08 calls (unknown callee) with `a0=a1 at entry (arg1)`, `a1=a2 at entry (arg2)`, `a2=[[0x1020]:8+102184]:8`, `a3=[[0x1020]:8+102192]:8`.
+  The `jalr` at 0x3276a18 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276a2c calls `__glSetError` with `a0=0x500`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=0x1` on the taken arm of `beq` at 0x327690c.
+  The `jalr` at 0x3276a40 calls `__glSetError` with `a0=0x501`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=0x1` on the taken arm of `bltz` at 0x32768f8 or 0x3276900.
+  The `jalr` at 0x3276a6c calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=unknown`, `a4=0x1` on the taken arm of `beq` at 0x3276934.
+  The `jalr` at 0x3276a80 calls `__glSetError` with `a0=0x502`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`, `a4=0x1` on the taken arm of `beq` at 0x32768f0.
+  The instructions from 0x3276a3c to 0x3276a3c are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x32769b0).
+- `__glOdyim_DrawElements` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3276a90
+  A doubleword is loaded from `abs 0x1020` (`ld` at 0x3276a98).
+  A word is loaded from `abs 0x1030` (`lw` at 0x3276aac).
+  A word is loaded from `[0x1020]:8 +0x18e7c` (`lw` at 0x3276b20).
+  A word is loaded from `[0x1020]:8 +0x18f38` (`lw` at 0x3276b2c).
+  A doubleword is loaded from `abs 0x10c8` (`ld` at 0x3276b64).
+  A doubleword is loaded from `[0x1020]:8 +0x1ad8` (`ld` at 0x3276b68).
+  The `beq` at 0x3276acc branches to 0x3276cb4 when `at(=[0x1030]) == v0(=0x1)` and falls through when `at(=[0x1030]) != v0(=0x1)`.
+  The `bltz` at 0x3276ad4 branches to 0x3276cc8 when `a1 < 0 (signed)` and falls through when `a1 >= 0 (signed)`.
+  The `beq` at 0x3276ae0 branches to 0x3276b08 when `a0 >= 0xa (unsigned)` and falls through when `a0 < 0xa (unsigned)`.
+  The `beq` at 0x3276aec branches to 0x3276b18 when `a0(=0x1401) == a2` and falls through when `a0(=0x1401) != a2`.
+  The `beq` at 0x3276af4 branches to 0x3276b18 when `a2 == a1(=0x1403)` and falls through when `a2 != a1(=0x1403)`.
+  The `beq` at 0x3276afc branches to 0x3276b1c when `s2(=a2) == a2(=0x1405)` and falls through when `s2(=a2) != a2(=0x1405)`.
+  The `bne` at 0x3276b24 branches to 0x3276b60 when `a4(=[[0x1020]:8+102012]) != 0` and falls through when `a4(=[[0x1020]:8+102012]) == 0`.
+  The `beq` at 0x3276b30 branches to 0x3276b48 when `a1(=[[0x1020]:8+102200]) == 0` and falls through when `a1(=[[0x1020]:8+102200]) != 0`.
+  The `beq` at 0x3276b50 branches to 0x3276b60 when `ra(unknown) == 0` and falls through when `ra(unknown) != 0`.
+  The `beq` at 0x3276b58 branches to 0x3276c6c when `s2(=a2) == at(=0x1405)` and falls through when `s2(=a2) != at(=0x1405)`.
+  The `beq` at 0x3276b7c branches to 0x3276bf4 when `t8(=0x1401) == s2(=a2)` and falls through when `t8(=0x1401) != s2(=a2)`.
+  The `beq` at 0x3276b84 branches to 0x3276c2c when `s2(=a2) == t9(=0x1403)` and falls through when `s2(=a2) != t9(=0x1403)`.
+  The `bne` at 0x3276b8c branches to 0x3276bc8 when `s2(=a2) != ra(=0x1405)` and falls through when `s2(=a2) == ra(=0x1405)`.
+  The `jalr` at 0x3276b08 calls `__glSetError` with `a0=0x500`, `a1=unknown`, `a2=unknown`, `a3=a3 at entry (arg3)`.
+  The `bgezall` at 0x3276b40 calls `AnalyzeVertarrays` with `a0=[0x1020]:8`, `a1=[[0x1020]:8+102200]`, `a2=unknown`, `a3=a3 at entry (arg3)`, `a4=[[0x1020]:8+102012]` on the fall-through of `beq` at 0x3276b30.
+  The `jalr` at 0x3276b70 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276bb0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276bcc calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276c10 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276c50 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276c74 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276c94 calls (unknown callee) with `a0=a1 at entry (arg1)`, `a1=a3 at entry (arg3)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276ca4 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3276cb8 calls `__glSetError` with `a0=0x502`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x3276acc.
+  The `jalr` at 0x3276cc8 calls `__glSetError` with `a0=0x501`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `bltz` at 0x3276ad4.
+  The return value is unknown (`jr` at 0x3276bec).
 - `DrawBitmapUsingPolyStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2792 bytes
 
   **Established effects.** A nonzero byte at entry `a0 + 0x18a34` makes `bnez` at 0x31f40f0 branch to 0x31f47cc, outside the facts tool’s block graph (`lbu` at 0x31f40e0). On another path, when the word at `a0 + 0xbb80` is nonzero, `beqz` at 0x31f4130 falls through to clear it and write 0x10443, 0xfa, and 0x10046 twice to 0x10000 (`lw` at 0x31f4124; `sw` at 0x31f413c; `sw` at 0x31f4144; `sw` at 0x31f414c; `sw` at 0x31f4154; `sw` at 0x31f4158). The common continuation writes 0x1081d to 0x10000 (`sw` at 0x31f4164).
@@ -1609,43 +1764,186 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** The routine occupies 10812 bytes. It loads an unknown call target from argument 0 + 0x8 (`ld` at 0x32007cc) and calls it with 0, 1 and 0x285e8 (`jalr` at 0x32007ec). A zero result takes the return path (`beqz` at 0x32007fc); the callback's role is Unknown.
   On a later path it calls another unknown target with the first result, 0x10 and 8 (`jalr` at 0x32009a4). The `beqz` at 0x32009ac takes a path that returns zero when this second result is zero; its delay slot stores that result at the first result + 0x18d48 (`sd` at 0x32009b0; `jr` at 0x3203178).
   Near the end, `bnez` at 0x32030c4 is taken when entry argument 2 is nonzero; the taken path calls `__glShareDlist` and `__glOdysseySharePM`, each with that argument as argument 1 (`jalr` at 0x32030f8, 0x3203108). The object roles and the purpose of the overall routine are Unknown.
-- `__glOdysseyUpdateTransform` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1448 bytes
-
-  **Established effects.** The routine checks a byte at entry `a0 + 0x1c490` (`lbu` at 0x32771e4). When it is zero, `beqz` at 0x3277204 takes a branch that reaches a clear of `a0 + 0x1c491` (`sb` at 0x327721c). On a later path it clears `a0 + 0x18bb0` (`sb` at 0x32773e0) and calls `__glOdysseyValidateDepthRangeNewXform` with entry `a0` and either 0 or 1 as the third argument (`bgezall` at 0x32773e8); the call's delay slot writes that value to `a0 + 0x18bac` (`sw` at 0x32773ec). The purposes of the fields and the broader routine are Unknown.
+- `__glOdysseyUpdateTransform` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32771c0
+  A byte is read from `a0 (arg0 at entry) +0x1c490` (`lbu` at 0x32771e4).
+  A doubleword is read from `a0 (arg0 at entry) +0x94d0` (`ld` at 0x32771fc).
+  A doubleword is read from `a0 (arg0 at entry) +0x94b8` (`ld` at 0x3277200).
+  There are 3 byte stores to `a0 (arg0 at entry) +0x1c491`, including `sb` at 0x327721c, 0x3277628, 0x32776bc.
+  A doubleword is stored to `a0 (arg0 at entry) +0x18a38` (`sdc1` at 0x3277378).
+  A doubleword is stored to `a0 (arg0 at entry) +0x18a40` (`sdc1` at 0x3277380).
+  A byte is stored to `a0 (arg0 at entry) +0x18bb0` (`sb` at 0x32773e0).
+  A word is stored to `a0 (arg0 at entry) +0x18bac` (`sw` at 0x32773ec).
+  The `beq` at 0x3277204 branches to 0x32774c4 when `at(=[a0+115856]:1) == 0` and falls through when `at(=[a0+115856]:1) != 0`.
+  The `beq` at 0x3277214 branches to 0x32774cc when `t8(=[[a0+38072]:8+64]) == t9(=0x4)` and falls through when `t8(=[[a0+38072]:8+64]) != t9(=0x4)`.
+  The `bc1f` at 0x3277234 branches to 0x32772cc when `not (f10 == f4)` and falls through when `f10 == f4` (`c.eq.d` at 0x3277230).
+  The `bgezall` at 0x32773e8 calls `__glOdysseyValidateDepthRangeNewXform` with `a0=a0 at entry (arg0), a1=unknown, a2=one of 0x0, 0x1, a3=unknown`.
+  The `jalr` at 0x3277474 calls `__glOdyim_PolygonOffsetEXT` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f12=[a0+676]`.
+  The `jalr` at 0x3277550 calls `__glInvertTransposeMatrix` with `a0=sp-184, a1=sp-288, a2=unknown, a3=a0+65536, a4=sp-288, a5=[a0+38056]:8+208, a6=[a0+38056]:8, a7=[[a0+38056]:8+208]:8`.
+  The return value is unknown (`jr` at 0x327741c).
 - `__glOdysseyValidateMatrixComb` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1644 bytes
 
   **Established effects.** A byte at entry `a0 + 0x18bb0` selects whether to call `__glOdysseyUpdateTransform`: `beqz` at 0x327789c skips the call when the byte is zero (`lbu` at 0x3277888; `bgezall` at 0x32778a8). A later path writes words to 0x10000, including 0x9080bdc8 (`sw` at 0x3277bf8), followed by words loaded from entry `a0 + 0xb8d8` and `a0 + 0xb914` (`lwc1` at 0x3277bfc; `swc1` at 0x3277c00; `lwc1` at 0x3277c74; `swc1` at 0x3277c78). The full sequence includes other stores between those two; the destination's role and the broader routine's purpose are Unknown.
-- `__glOdysseyValidateDepthRange` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 584 bytes
-
-  **Established effects.** The routine reads 0x1030 (`lw` at 0x3279318). When the word equals 1, `beq` at 0x3279338 takes the path that calls `__glSetError` with 0x502 (`jalr` at 0x3279548). Another path tests the byte at entry `a0 + 0x18bb0` (`lbu` at 0x32793d0); when it is nonzero, `beqz` at 0x32793dc falls through to call `__glOdysseyUpdateTransform` with entry `a0` (`bgezall` at 0x32793e8). A later path sets bits 0x1511 in `a0 + 0x18e58` (`lw` at 0x327942c; `ori` at 0x3279434; `sw` at 0x3279438) and writes 2 to 0x1030 (`sw` at 0x3279440). The purposes of these fields and the broader routine are Unknown.
-- `__glOdysseyValidateFog` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32146e0, 1792 bytes
-  **Established effects.** The byte at argument 0 + 0x18bb0 is read (`lbu` at 0x321470c). `beqz` at 0x3214728 skips `__glOdysseyUpdateTransform` when the byte is zero and falls through to that call when it is nonzero (`jalr` at 0x3214734).
-  - A word at argument 0 + 0x738 is read (`lw` at 0x321473c). The successive `beq` instructions at 0x3214754, 0x3214760, 0x3214768 and 0x3214770 branch on values 0x800, 0x801, 0x2601 and 0x812a respectively, falling through each test when unequal.
-  - The routine stores words with unknown values at argument 0 + 0x9f60, +0x9f64, +0x9f68 and +0x9f6c (`sw` at 0x3214928, 0x3214934, 0x3214944, 0x3214950). It sets bit 0x8 in the word at argument 0 + 0x18e54 (`lw` at 0x3214954; `ori` at 0x321495c; `sw` at 0x3214960) and stores 2 to process address 0x1030 (`sw` at 0x3214968). The word fields' meanings and the routine's broader role are unknown.
+- `__glOdysseyValidateDepthRange` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3279310
+  A word is read from `absolute address 0x1030` (`lw` at 0x3279318).
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x3279328).
+  A doubleword is read from `a0 (arg0 at entry) +0x18a58` (`ldc1` at 0x3279344).
+  A doubleword is read from `a0 (arg0 at entry) +0x18a60` (`ldc1` at 0x327934c).
+  A doubleword is read from `a0 (arg0 at entry) +0x18a48` (`ldc1` at 0x327936c).
+  A doubleword is read from `a0 (arg0 at entry) +0x18a50` (`ldc1` at 0x32793a0).
+  A word is stored to `absolute address 0x1030` (`sw` at 0x3279440).
+  The `beq` at 0x3279338 branches to 0x3279540 when `at(=[0x1030]) == v0(=0x1)` and falls through when `at(=[0x1030]) != v0(=0x1)`.
+  The `bc1f` at 0x32793a8 branches to 0x32793bc when `FP condition code 1 is false` and falls through when `FP condition code 1 is true`.
+  The `bc1t` at 0x32793b4 branches to 0x3279450 when `FP condition code 2 is true` and falls through when `FP condition code 2 is false`.
+  The `bgezall` at 0x32793e8 calls `__glOdysseyUpdateTransform` with `a0=a0 at entry (arg0), a1=unknown, a2=[0x1020]:8, a3=unknown`.
+  The `bgezall` at 0x3279508 calls `__glOdysseyWindowToNormalizedEyeZ` with `a0=a0 at entry (arg0), a1=unknown, a2=[0x1020]:8, a3=unknown`.
+  The `bgezall` at 0x327951c calls `__glOdysseyWindowToNormalizedEyeZ` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3279530 calls `__glim_DepthRange` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3279548 calls `__glSetError` with `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3)`.
+  The return value is unknown at `jr` at 0x3279448, `jr` at 0x3279458.
+- `__glOdysseyValidateFog` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32146e0
+  A byte is read from `a0 (arg0 at entry) +0x18bb0` (`lbu` at 0x321470c).
+  A word is read from `a0 (arg0 at entry) +0x738` (`lw` at 0x321473c).
+  A doubleword is read from `a0 (arg0 at entry) +0x18a40` (`ldc1` at 0x3214740).
+  A doubleword is read from `a0 (arg0 at entry) +0x18a38` (`ldc1` at 0x3214744).
+  A word is read from `a0 (arg0 at entry) +0x80c` (`lw` at 0x321479c).
+  A word is stored to `a0 (arg0 at entry) +0x9f60` (`sw` at 0x3214928).
+  A word is stored to `a0 (arg0 at entry) +0x9f64` (`sw` at 0x3214934).
+  A word is stored to `a0 (arg0 at entry) +0x9f68` (`sw` at 0x3214944).
+  A word is stored to `a0 (arg0 at entry) +0x9f6c` (`sw` at 0x3214950).
+  A word is stored to `a0 (arg0 at entry) +0x18e54` (`sw` at 0x3214960).
+  A word is stored to `absolute address 0x1030` (`sw` at 0x3214968).
+  The `beq` at 0x3214728 branches to 0x321473c when `at(=[a0+101296]:1) == 0` and falls through when `at(=[a0+101296]:1) != 0`.
+  The `beq` at 0x3214754 branches to 0x32149c0 when `a0(=[a0+1848]) == t8(=0x800)` and falls through when `a0(=[a0+1848]) != t8(=0x800)`.
+  The `beq` at 0x3214760 branches to 0x3214ae4 when `a0(=[a0+1848]) == t9(=0x801)` and falls through when `a0(=[a0+1848]) != t9(=0x801)`.
+  The `jalr` at 0x3214734 calls `__glOdysseyUpdateTransform` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x3214a1c calls `expf` with `a0=[a0+1848], a1=unknown, a2=unknown, a3=unknown; fp f15=0xc000000000000000`.
+  The `jalr` at 0x3214a3c calls `expf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3214a4c calls `expf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3214b48 calls `expf` with `a0=[a0+1848], a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3214b74 calls `expf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=0x4022000000000000`.
+  The `jalr` at 0x3214b8c calls `expf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3214c28 calls `logf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3214c40 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=0x3fe62e42fefa39ef`.
+  The `jalr` at 0x3214d3c calls `logf` with `a0=0x7, a1=unknown, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3214d54 calls `ceilf` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f13=0x3fe62e42fefa39ef`.
+  The return value is unknown (`jr` at 0x3214970).
 - `__glOdysseyValidateFragment` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 792 bytes
   **Established effects.** A word at argument 0 + 0xbb80 is read (`lw` at 0x3215c60). `beqz` at 0x3215cac skips a store group when that word is zero and falls through when it is nonzero; the group writes 0x10443, 0xfa and two copies of 0x10046 to process address 0x10000 (`sw` at 0x3215cc4, 0x3215cc8, 0x3215cd0, 0x3215cd4).
   - Subsequent stores to 0x10000 include 0x10407, zero and 0x11a50 (`sw` at 0x3215ce0, 0x3215ce4, 0x3215cec). The command words' hardware effects and the routine's broader role remain unknown. It calls `ValidateFragmentColorMaterial` with original argument 0 and argument 0 + 0x10000 as the third argument (`bgezall` at 0x3215dec).
-- `__glOdysseyValidateLighting` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1708 bytes
-  **Established effects.** It writes 0x19a and 0x18 to argument 0 + 0xc548 and + 0xc56c (`sw` at 0x32578cc, 0x32578d4). The byte at argument 0 + 0xde4 is read (`lbu` at 0x32578d8); `beqz` at 0x32578f8 branches when that byte is zero and falls through to `__glUnScaleColorf` when nonzero (`jalr` at 0x325790c).
-  - A later word store sends 0x8e809015 to process address 0x10000 (`sw` at 0x3257990), followed by four floating-point word stores whose values are unknown (`swc1` at 0x3257998, 0x32579a0, 0x32579a8, 0x32579b0). The command's hardware effect and the routine's broader role are unknown.
+- `__glOdysseyValidateLighting` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32578b0
+  There are 6 word stores to absolute address 0x10000, including `sw` at 0x325795c, 0x3257988, 0x3257990.
+  There are 4 floating-point word stores to absolute address 0x10000, including `swc1` at 0x3257998, 0x32579a0, 0x32579a8.
+  The `beq` at 0x32578f8 branches to 0x325791c when `at(=[a0+3556]:1) == 0` and falls through when `at(=[a0+3556]:1) != 0`.
+  The `beq` at 0x32579b8 branches to 0x3257dbc when `a3(=[a0+1669]:1) == 0` and falls through when `a3(=[a0+1669]:1) != 0`.
+  The `beq` at 0x32579c8 branches to 0x3257dbc when `(t2(=[a0+2056]) & 0x40) == 0` and falls through when `(t2(=[a0+2056]) & 0x40) != 0`.
+  The `beq` at 0x3257aac branches to 0x3257a90 when `(s8(unknown) & t9(=[a0+2064])) == 0` and falls through when `(s8(unknown) & t9(=[a0+2064])) != 0`.
+  The `bne` at 0x3257ab8 branches to 0x3257ad0 when `ra(unknown) != s2(unknown)` and falls through when `ra(unknown) == s2(unknown)`.
+  The `beq` at 0x3257ac8 branches to 0x3257a88 when `(s8(unknown) & at(unknown)) == 0` and falls through when `(s8(unknown) & at(unknown)) != 0`.
+  The `jalr` at 0x325790c calls `__glUnScaleColorf` with `a0=a0 at entry (arg0), a1=a0+50436, a2=a0+1652, a3=0x19a` on the fall-through of `beq` at 0x32578f8.
+  The `bgezall` at 0x3257af0 calls `ValidateLight` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown; fp f16=f24` on the fall-through of `beq` at 0x3257aac.
+  The `bgezall` at 0x3257b28 calls `ValidateLightColor` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown`.
+  The `bgezall` at 0x3257bf8 calls `ValidateLight` with `a0=a0 at entry (arg0), a1=a0+100592, a2=unknown, a3=0x840c; fp f16=0x40400000`.
+  The `bgezall` at 0x3257c10 calls `ValidateLightColor` with `a0=a0 at entry (arg0), a1=0x3388228, a2=unknown, a3=unknown`.
+  The `bgezall` at 0x3257c30 calls `ValidateFragmentLightColor` with `a0=a0 at entry (arg0), a1=a0+100592, a2=unknown, a3=0x0, a4=0x3257480`.
+  The `bgezall` at 0x3257c54 calls `ValidateLight` with `a0=a0 at entry (arg0), a1=a0+100592, a2=0x8, a3=0x840c, a5=0x3256eb0; fp f16=0x40400000`.
+  The `bgezall` at 0x3257ce4 calls `ValidateLightColor` with `a0=a0 at entry (arg0), a1=0x3388228, a2=unknown, a3=unknown`.
+  The `bgezall` at 0x3257e2c calls `ValidateLight` with `a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=0x0`.
+  The `bgezall` at 0x3257e40 calls `ValidateLightColor` with `a0=a0 at entry (arg0), a1=0x3388228, a2=unknown, a3=unknown`.
+  The `bgezall` at 0x3257e60 calls `ValidateFragmentLightColor` with `a0=a0 at entry (arg0), a1=0x3388228, a2=unknown, a3=unknown`.
+  The `bgezall` at 0x3257e84 calls `ValidateLight` with `a0=a0 at entry (arg0), a1=unknown, a2=0x8, a3=0x0; fp f16=0x40400000`.
+  The return is 0x10000 (`jr` at 0x3257db4).
 - `__glOdysseyInitLighting` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 860 bytes
   **Established effects.** Its stores to process address 0x10000 include the words 0xc18093ff, 0xc180cc19, 0xc680d02f and 0xc780d030 (`sw` at 0x3256630, 0x3256654, 0x325666c, 0x3256688). The command words' effects and this routine's broader role remain unknown.
   - The byte at argument 0 + 0xde4 is read (`lbu` at 0x32567e4); `beqz` at 0x32567e8 takes an alternate path when it is zero and falls through when nonzero.
 - `__glOdysseyInitLUTs` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 360 bytes
   **Established effects.** It loads a doubleword from process address 0x1020 (`ld` at 0x3257f9c) and calls `memset` with that pointer + 0xcaa4, zero, and 0x507c (`jalr` at 0x3257fb0).
   - The loop calls `__glOdysseyCreatePMObj` with that pointer, a stack address, an unknown third argument, and zero (`bgezall` at 0x3258038). `beqz` at 0x3258048 exits on a zero low byte of the result and falls through when it is nonzero; `bne` at 0x3258050 repeats when the unknown value in `s1` differs from the value in `s3`, and falls through when they are equal. The allocated object and the routine's broader role remain unknown.
-- `__glOdysseyImageChainCreate` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1244 bytes
-  **Established effects.** The routine calls an unknown callee with the pointer read from 0x1020 and second argument 0x30 (`ld` at 0x3222838; `jalr` at 0x322285c). If its result is zero, `beqz` at 0x3222864 takes a path calling `__glSetError` with 0x505 (`jalr` at 0x32229dc). Otherwise it calls `ImageChainDetermineChainType` and `ImageChainBuildChain` using that returned pointer as their first argument (`bgezall` at 0x3222898; `bgezall` at 0x32228ac). When the low byte of the build call's result is zero, `beqz` at 0x32228b8 takes a path calling `__glOdysseyImageChainFree` on the same pointer (`bgezall` at 0x3222c10). The initial callee's role and the routine's wider role are Unknown.
+- `__glOdysseyImageChainCreate` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3222820
+  A doubleword is loaded from `abs 0x1020` (`ld` at 0x3222838).
+  A doubleword is loaded from `[0x1020]:8 +0x0` (`ld` at 0x3222848).
+  On the fall-through of `beq` at 0x3222864, a doubleword value `0x0` is stored at `ret(?) +0x18` (`sd` at 0x322286c).
+  On the fall-through of `beq` at 0x3222864, a doubleword value `0x0` is stored at `ret(?) +0x10` (`sd` at 0x3222870).
+  On the fall-through of `beq` at 0x3222864, a doubleword value `0x0` is stored at `ret(?) +0x8` (`sd` at 0x3222878).
+  On the fall-through of `beq` at 0x3222864, a doubleword value `0x0` is stored at `ret(?) +0x0` (`sd` at 0x322287c).
+  On the fall-through of `beq` at 0x3222864, a doubleword value `a0` is stored at `ret(?) +0x28` (`sd` at 0x3222890).
+  On the fall-through of `beq` at 0x3222864, a doubleword value `a1` is stored at `ret(?) +0x20` (`sd` at 0x322289c).
+  The `beq` at 0x3222864 branches to 0x32229d8 when `v0(=ret(unknown)) == 0` and falls through when `v0(=ret(unknown)) != 0`.
+  The `beq` at 0x32228b8 branches to 0x3222c10 when `(v0(=ret(ImageChainBuildChain)) & 0xff) == 0` and falls through when `(v0(=ret(ImageChainBuildChain)) & 0xff) != 0`.
+  The `beq` at 0x32228c4 branches to 0x3222968 when `v0(=[ret(unknown)+8]:8) == 0` and falls through when `v0(=[ret(unknown)+8]:8) != 0`.
+  The `beq` at 0x3222930 branches to 0x322291c when `a4(unknown) == 0` and falls through when `a4(unknown) != 0`.
+  The `bne` at 0x322293c branches to 0x32228e0 when `a5(unknown) != 0` and falls through when `a5(unknown) == 0`.
+  The `bne` at 0x3222970 branches to 0x3222998 when `a7(=[ret(unknown)]) < 0x2 (unsigned)` and falls through when `a7(=[ret(unknown)]) >= 0x2 (unsigned)`.
+  The `beq` at 0x32229a0 branches to 0x3222a60 when `a0(=[[ret(unknown)+8]:8]) == 0` and falls through when `a0(=[[ret(unknown)+8]:8]) != 0`.
+  The `beq` at 0x32229a8 branches to 0x3222bb8 when `a0(=[[ret(unknown)+8]:8]) == a1(=0x1)` and falls through when `a0(=[[ret(unknown)+8]:8]) != a1(=0x1)`.
+  The `beq` at 0x32229b0 branches to 0x3222a00 when `a0(=[[ret(unknown)+8]:8]) == t0(=0x13)` and falls through when `a0(=[[ret(unknown)+8]:8]) != t0(=0x13)`.
+  The `beq` at 0x32229b8 branches to 0x3222a4c when `a0(=[[ret(unknown)+8]:8]) == t1(=0x9)` and falls through when `a0(=[[ret(unknown)+8]:8]) != t1(=0x9)`.
+  The `beq` at 0x32229c8 branches to 0x3222980 when `(t2(=[[ret(unknown)+8]:8+16]) & 0x10) == 0` and falls through when `(t2(=[[ret(unknown)+8]:8+16]) & 0x10) != 0`.
+  The `bc1f` at 0x3222a0c branches to 0x3222a44 when `not (f0(=[[ret(unknown)+8]:8+40]) == f4 (c.eq.s at 0x3222a08))` and falls through when `f0(=[[ret(unknown)+8]:8+40]) == f4 (c.eq.s at 0x3222a08)`.
+  The `bc1f` at 0x3222a1c branches to 0x3222a44 when `FP condition code 1 is false` and falls through when `FP condition code 1 is true`.
+  The `bc1t` at 0x3222ae4 branches to 0x3222b78 when `FP condition code 2 is true` and falls through when `FP condition code 2 is false`.
+  The `bc1t` at 0x3222af8 branches to 0x3222b78 when `FP condition code 3 is true` and falls through when `FP condition code 3 is false`.
+  The `jalr` at 0x322285c calls (unknown callee) with `a0=[0x1020]:8`, `a1=0x30`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`.
+  The `bgezall` at 0x3222898 calls `ImageChainDetermineChainType` with `a0=ret(?)`, `a1=a3 at entry (arg3)`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x3222864.
+  The `bgezall` at 0x32228ac calls `ImageChainBuildChain` with `a0=ret(?)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x3222864.
+  The `jalr` at 0x32229dc calls `__glSetError` with `a0=0x505`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x3222864.
+  The `jalr` at 0x3222a7c calls `__glOdysseyImageCalcXferWriteParams` with `a0=[[[ret(?)+8]:8+88]:8+8]`, `a1=[[[ret(?)+8]:8+88]:8+12]`, `a2=[[[ret(?)+8]:8+96]:8+52]`, `a3=sp-128` on the taken arm of `beq` at 0x32229a0.
+  The `jalr` at 0x3222be8 calls `__glOdysseyImageCalcXferReadParams` with `a0=[[[ret(?)+8]:8+96]:8+8]`, `a1=[[[ret(?)+8]:8+96]:8+12]`, `a2=[[ret(?)+8]:8+88]:8`, `a3=sp-104` on the taken arm of `beq` at 0x32229a8.
+  The `bgezall` at 0x3222c10 calls `__glOdysseyImageChainFree` with `a0=ret(?)`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the taken arm of `beq` at 0x32228b8.
+  The instructions from 0x32228d8 to 0x32228dc are not reached by any path from the entry, and their branches are not listed.
+  The return value is `ret(?)` at one exit and `0x0` at two exits (`jr` at 0x3222990, 0x32229f8, 0x3222c2c).
 - `__glOdysseyImageChainFree` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
   **Established effects.** When entry `a0` is zero, `beqz` at 0x3222d24 takes the return path (`jr` at 0x3222d90). Otherwise it reads the pointer at `a0 + 0x8` (`ld` at 0x3222d2c); if nonzero, `beqz` at 0x3222d30 falls through to a loop calling `ImageChainOpFree` (`bgezall` at 0x3222d54). `bnez` at 0x3222d5c repeats when `s0` is nonzero and falls through at zero; hostfacts does not resolve its value at that branch. Afterward it clears a word at entry `a0` and doublewords at `a0 + 0x8` and `a0 + 0x10` (`sw` at 0x3222d64; `sd` at 0x3222d68; `sd` at 0x3222d6c), then calls an unknown callee (`jalr` at 0x3222d78). The fields' roles and the routine's wider role are Unknown.
-- `__glOdysseyClearScratchBuffer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 768 bytes
-  **Established effects.** Signed nonpositive words at entry `a0 + 0x20` or `a0 + 0x24` take return paths (`lw` at 0x3225238; `blez` at 0x3225250; `lw` at 0x3225230; `blez` at 0x3225270; `jr` at 0x32254e8). Otherwise it calls `__glOdysseyOpenPMObjWriteReference` with words at `a0 + 0x10` and `a0 + 0x14` as its `a1` and `a2` arguments and 1 in `a4` (`lw` at 0x3225244; `lw` at 0x322523c; `jalr` at 0x32252cc). A zero result takes `beqz` at 0x32252d4 to `__glSetError` with 0x505 (`jalr` at 0x3225510).
-
-  On another path, a nonzero word at +0xbb80 of the pointer read from 0x1020 makes `beqz` at 0x32252f0 fall through to clear that word and write 0x10443, 0xfa, and 0x10046 twice to 0x10000 (`ld` at 0x322522c; `lw` at 0x32252e0; `sw` at 0x32252f8; `sw` at 0x32252fc; `sw` at 0x3225304; `sw` at 0x3225308; `sw` at 0x322530c). Later calls include `__glOdysseyClear` and `__glOdysseyClosePMObjWriteReference` (`jalr` at 0x3225458; `jalr` at 0x322546c). The destination and wider routine roles are Unknown.
-- `__glOdysseyImageZoomHostImage` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1276 bytes
-  **Established effects.** The routine calls `__glSpecElementsPerGroup` with the words at entry `a2 + 0x8` and `a2 + 0xc`, then calls `__glSpecBytesPerElement` with the latter word (`lw` at 0x3240494, 0x3240484, 0x32404cc; `jalr` at 0x32404b4, 0x32404c8). It also calls the same two helpers with words from entry `a0 + 0x8` and `a0 + 0xc` (`lw` at 0x32404e4, 0x32404d8, 0x32404ec; `jalr` at 0x32404e0, 0x32404f4).
-
-  One selection path takes `beq` at 0x3240888 when its tested value equals 1 and reaches a byte load and a byte store with unknown bases and unknown stored value (`lbu` at 0x32408a4; `sb` at 0x32408ac). If that branch falls through and the value differs from 2, `bne` at 0x3240890 selects a word load and store with unknown bases and unknown stored value (`lw` at 0x3240824; `sw` at 0x3240828); its fall-through reaches a halfword load and store with unknown bases and unknown stored value (`lhu` at 0x3240898; `sh` at 0x32408a0). The addresses, stored values, selector's meaning and wider routine role are Unknown.
+- `__glOdysseyClearScratchBuffer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3225220
+  There are 7 word stores to absolute address 0x10000, including `sw` at 0x32252fc, 0x3225304, 0x3225308.
+  The `blez` at 0x3225250 branches to 0x32254e0 when `a7(=[a0+32]) <= 0 (signed)` and falls through when `a7(=[a0+32]) > 0 (signed)`.
+  The `blez` at 0x3225270 branches to 0x32254e0 when `a2(=[a0+36]) <= 0 (signed)` and falls through when `a2(=[a0+36]) > 0 (signed)`.
+  The `beq` at 0x32252d4 branches to 0x3225508 when `v0(=ret(__glOdysseyOpenPMObjWriteReference)) == 0` and falls through when `v0(=ret(__glOdysseyOpenPMObjWriteReference)) != 0`.
+  The `beq` at 0x32252f0 branches to 0x3225310 when `t9(=[[0x1020]:8+48000]) == 0` and falls through when `t9(=[[0x1020]:8+48000]) != 0`.
+  The `beq` at 0x3225474 branches to 0x32254f0 when `v0(=ret(__glOdysseyClosePMObjWriteReference)) == 0` and falls through when `v0(=ret(__glOdysseyClosePMObjWriteReference)) != 0`.
+  The `jalr` at 0x32252cc calls `__glOdysseyOpenPMObjWriteReference` with `a0=[0x1020]:8, a1=[a0+16], a2=[a0+20], a3=sp-160, a4=0x1, a5=[a0+16], a6=[a0+24], a7=[a0+32]` on the fall-through of `blez` at 0x3225270.
+  The `jalr` at 0x322540c calls `__glOdysseyImageCalcPixelModeFields` with `a0=[0x1020]:8+47596, a1=a0 at entry (arg0), a2=unknown, a3=0x1fffffff, a4=0xffffffffe0000000, a5=0xfffffffffffbffff, a6=([[0x1020]:8+101972] | 0x80)` on the fall-through of `beq` at 0x32252d4.
+  The `jalr` at 0x3225458 calls `__glOdysseyClear` with `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=unknown, a3=0x0, a4=0x0, a5=0x0` on the fall-through of `beq` at 0x32252d4.
+  The `jalr` at 0x322546c calls `__glOdysseyClosePMObjWriteReference` with `a0=[0x1020]:8, a1=unknown, a2=unknown, a3=unknown` on the fall-through of `beq` at 0x32252d4.
+  The `jalr` at 0x32254f8 calls `__glSetError` with `a0=0x505, a1=unknown, a2=unknown, a3=unknown` on the taken arm of `beq` at 0x3225474.
+  The `jalr` at 0x3225510 calls `__glSetError` with `a0=0x505, a1=unknown, a2=0x10000, a3=unknown` on the taken arm of `beq` at 0x32252d4.
+  The return value is unknown (`jr` at 0x32254e8).
+- `__glOdysseyImageZoomHostImage` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3240460
+  On the taken arm of `bne` at 0x3240890, a word is stored to an unknown base (`sw` at 0x3240828).
+  On the fall-through of `bne` at 0x3240890, a halfword is stored to an unknown base (`sh` at 0x32408a0).
+  On the taken arm of `beq` at 0x3240888, a byte is stored to an unknown base (`sb` at 0x32408ac).
+  A word is loaded from `a2 (arg2 at entry) +0xc` (`lw` at 0x3240484).
+  A word is loaded from `a2 (arg2 at entry) +0x8` (`lw` at 0x3240494).
+  A word is loaded from `a0 (arg0 at entry) +0xc` (`lw` at 0x32404d8).
+  A word is loaded from `a0 (arg0 at entry) +0x8` (`lw` at 0x32404e4).
+  A word is loaded from `a2 (arg2 at entry) +0x10` (`lw` at 0x3240504).
+  A word is loaded from `a2 (arg2 at entry) +0x18` (`lw` at 0x3240518).
+  A word is loaded from `a0 (arg0 at entry) +0x18` (`lw` at 0x3240548).
+  A word is loaded from `a0 (arg0 at entry) +0x10` (`lw` at 0x3240568).
+  A word is loaded from `a1 (arg1 at entry) +0x0` (`lw` at 0x32405b8).
+  A word is loaded from `a1 (arg1 at entry) +0x8` (`lw` at 0x32405bc).
+  The `beq` at 0x32405c4 branches to 0x32408e8 when `a3(=[a1+8]) >= t3(=[a1]) (signed)` and falls through when `a3(=[a1+8]) < t3(=[a1]) (signed)`.
+  The `beq` at 0x32405e0 branches to 0x32408fc when `a4(=[a3+8]) >= t1(=[a3]) (signed)` and falls through when `a4(=[a3+8]) < t1(=[a3]) (signed)`.
+  The `beq` at 0x32405fc branches to 0x324090c when `t0(=[a1+12]) >= a5(=[a1+4]) (signed)` and falls through when `t0(=[a1+12]) < a5(=[a1+4]) (signed)`.
+  The `beq` at 0x3240618 branches to 0x324091c when `v0(=[a3+12]) >= a6(=[a3+4]) (signed)` and falls through when `v0(=[a3+12]) < a6(=[a3+4]) (signed)`.
+  The `beq` at 0x324064c branches to 0x32408b0 when `a6(=[a3+4]) >= v0(=[a3+12]) (signed)` and falls through when `a6(=[a3+4]) < v0(=[a3+12]) (signed)`.
+  The `beq` at 0x32406e8 branches to 0x32408b0 when `s7(unknown) >= v0(=[a3+12]) (signed)` and falls through when `s7(unknown) < v0(=[a3+12]) (signed)`.
+  The `beq` at 0x32406f4 branches to 0x32406d4 when `t1(=[a3]) >= a4(=[a3+8]) (signed)` and falls through when `t1(=[a3]) < a4(=[a3+8]) (signed)`.
+  The `beq` at 0x324073c branches to 0x32406d0 when `a3(unknown) >= a4(=[a3+8]) (signed)` and falls through when `a3(unknown) < a4(=[a3+8]) (signed)`.
+  The `bc1f` at 0x3240774 branches to 0x3240734 when `not (f11 < f7 (c.lt.s at 0x3240760))` and falls through when `f11 < f7 (c.lt.s at 0x3240760)`.
+  The `bc1f` at 0x32407e4 branches to 0x3240730 when `FP condition code 1 is false` and falls through when `FP condition code 1 is true`.
+  The `bc1f` at 0x3240804 branches to 0x32407d4 when `FP condition code 2 is false` and falls through when `FP condition code 2 is true`.
+  The `bc1f` at 0x3240864 branches to 0x32407b0 when `FP condition code 3 is false` and falls through when `FP condition code 3 is true`.
+  The `beq` at 0x3240888 branches to 0x32408a4 when `t9(=0x1) == s2(unknown)` and falls through when `t9(=0x1) != s2(unknown)`.
+  The `bne` at 0x3240890 branches to 0x3240824 when `s5(=0x2) != s2(unknown)` and falls through when `s5(=0x2) == s2(unknown)`.
+  The `jalr` at 0x32404b4 calls `__glSpecElementsPerGroup` with `a0=[a2+8]`, `a1=[a2+12]`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)`.
+  The `jalr` at 0x32404c8 calls `__glSpecBytesPerElement` with `a0=[a2+12]`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x32404e0 calls `__glSpecElementsPerGroup` with `a0=[a0+8]`, `a1=[a0+12]`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x32404f4 calls `__glSpecBytesPerElement` with `a0=[a0+12]`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x3240560 calls `ceilf` with `a0=unknown`, `a1=unknown`, `a2=[a0+24]`, `a3=unknown`, `a5=[a2+24]`, `a7=[a2+16]`.
+  The `jalr` at 0x32405b0 calls `ceilf` with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The instructions from 0x32406c8 to 0x32406cc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x32407a4 to 0x32407ac are not reached by any path from the entry, and their branches are not listed.
+  The return value is `0x1` (`jr` at 0x32408e0).
 - `__glOdysseyImageCalcSuitableGfxFormatForReadback` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 276 bytes
   **Established effects.** Entry `a0` equal to 0x1908 takes `beq` at 0x32402b8 to a test of `a1`; if `a1` equals 0x1401, `beq` at 0x324030c takes the path writing 0xa to the word at entry `a2` and 1 to the word at entry `a3` (`sw` at 0x324037c; `sw` at 0x3240388). That path returns 1 (`addiu` at 0x3240380; `jr` at 0x3240384). For a different first argument, `beq` at 0x32402c8 checks 0x1900; when it falls through, the code writes -1 to the words at `a2` and `a3` (`sw` at 0x32402d0; `sw` at 0x32402d4) and returns zero (`move` at 0x32402dc). The output meanings and broader role are Unknown.
 
@@ -1689,18 +1987,22 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - After the paths rejoin, 0xc380d025 goes to 0x10000 (`sw` at 0x327d020), followed by the 32-bit word read at argument 0 + 0x38 (`lwc1` at 0x327d024; `swc1` at 0x327d028). Further store effects and the routine’s role remain Unknown.
   - When `beq` at 0x327cf2c falls through, command stores include 0xc680d02f, 0xc880d031, 0xc780d030, 0xc980d032, 0xca80d035, 0xcc80d037, 0xcb80d036 and 0xcd80d038 in that order (`sw` at 0x327cf34, 0x327cf48, 0x327cf5c, 0x327cf74, 0x327cf94, 0x327cfa8, 0x327cfbc, 0x327cfd4). When taken, those commands are stored at 0x327d074, 0x327d088, 0x327d0a8, 0x327d0c0, 0x327d0e0, 0x327d0f4, 0x327d114 and 0x327d12c (`sw` at 0x327d074, 0x327d088, 0x327d0a8, 0x327d0c0, 0x327d0e0, 0x327d0f4, 0x327d114, 0x327d12c). Some intervening floating-point stores have Unknown values (`swc1` at 0x327cf38, 0x327d078).
   - After rejoining, 0xc180cc19 precedes words from argument 0 + 0xc8, +0xcc and +0xd0 (`sw` at 0x327cffc; `lwc1` at 0x327d000, 0x327d008, 0x327d010; `swc1` at 0x327d004, 0x327d00c, 0x327d018). Following 0xc380d025, words from +0x38, +0x3c, +0x40 and +0x44 are sent (`sw` at 0x327d020; `lwc1` at 0x327d024, 0x327d02c, 0x327d034, 0x327d03c; `swc1` at 0x327d028, 0x327d030, 0x327d038, 0x327d044). Then 0x8080d005 precedes words from +0x18, +0x1c, +0x20 and +0x24 (`sw` at 0x327d04c; `lwc1` at 0x327d050, 0x327d058, 0x327d060, 0x327d068; `swc1` at 0x327d054, 0x327d05c, 0x327d064, 0x327d070). Other branch-specific payload stores are not enumerated here.
-- `RGBSendUnclippedFmNFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 632 bytes
-  - **Established effects.** The byte at argument 0 + 0x198 is read (`lbu` at 0x327d15c); `beqz` at 0x327d188 branches when it is zero and falls through when nonzero. One path calls `__glOdyim_Materialfv` with 0x404, 0x1601 and a stack address as its first three arguments (`jalr` at 0x327d25c).
-  - Later stores to process address 0x10000 include either 0x2f00c02e or 0x3000c02e and 0x8080d005 (`sw` at 0x327d284, 0x327d2b0). A 32-bit word from argument 0 + 0x18 is also sent there (`lwc1` at 0x327d2b4; `swc1` at 0x327d2bc). The remaining output and the routine’s role remain Unknown.
-  - When `beqz` at 0x327d188 is taken, the subsequent stores to 0x10000 include 0xc680d02f, 0xc880d031, 0xc780d030 and 0xc980d032 (`sw` at 0x327d2f8, 0x327d324, 0x327d350, 0x327d37c). The first is followed by words from argument 0 + 0xd8, +0xdc, +0xe0 and +0xe4 (`lwc1` at 0x327d2fc, 0x327d304, 0x327d30c, 0x327d314; `swc1` at 0x327d300, 0x327d308, 0x327d310, 0x327d31c).
-  - When `beqz` at 0x327d188 falls through, `beqz` at 0x327d194 skips the following group if the byte at +0x18d34 of the doubleword loaded from 0x1020 is zero and falls through when nonzero (`lbu` at 0x327d190). The `ld` at 0x327d174 reads the doubleword at absolute 0x1020. That fall-through group includes 0xc680d02f and the four words at pointer offsets +0x18c8c, +0x18c90, +0x18c94 and +0x18c98 (`sw` at 0x327d1a0; `lwc1` at 0x327d1a4, 0x327d1ac, 0x327d1b4, 0x327d1bc; `swc1` at 0x327d1a8, 0x327d1b0, 0x327d1b8, 0x327d1c4). Other command and payload stores in these paths are not enumerated here.
-  - In the shared tail, 0xc180cc19 precedes words from argument 0 + 0xc8, +0xcc and +0xd0 (`sw` at 0x327d28c; `lwc1` at 0x327d290, 0x327d298, 0x327d2a0; `swc1` at 0x327d294, 0x327d29c, 0x327d2a8), followed by 0x8080d005 and words from +0x18, +0x1c, +0x20 and +0x24 (`sw` at 0x327d2b0; `lwc1` at 0x327d2b4, 0x327d2c0, 0x327d2cc, 0x327d2d8; `swc1` at 0x327d2bc, 0x327d2c8, 0x327d2d4, 0x327d2e0).
-- `RGBSendUnclippedFmTNFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 676 bytes
-  - **Established effects.** `beqz` at 0x327d408 takes the alternate path when the byte at argument 0 + 0x198 is zero and falls through when nonzero (`lbu` at 0x327d3dc). One path invokes `__glOdyim_Materialfv` with first arguments 0x404, 0x1601 and a stack address (`jalr` at 0x327d4dc).
-  - **Established effects.** It later sends either 0x2f00c02e or 0x3000c02e to process address 0x10000 (`sw` at 0x327d504). Its stores there also include 0xc380d025, followed by the 32-bit word at argument 0 + 0x38 (`sw` at 0x327d530; `lwc1` at 0x327d534; `swc1` at 0x327d538). Further store effects and the routine’s role remain Unknown.
-  - When `beqz` at 0x327d408 is taken, stores to 0x10000 include 0xc680d02f, 0xc880d031, 0xc780d030 and 0xc980d032 (`sw` at 0x327d5a4, 0x327d5d0, 0x327d5fc, 0x327d628). The first is followed by words from argument 0 + 0xd8, +0xdc, +0xe0 and +0xe4 (`lwc1` at 0x327d5a8, 0x327d5b0, 0x327d5b8, 0x327d5c0; `swc1` at 0x327d5ac, 0x327d5b4, 0x327d5bc, 0x327d5c8).
-  - On fall-through from `beqz` at 0x327d408, `beqz` at 0x327d414 skips the following group when the byte at +0x18d34 of the doubleword loaded from 0x1020 is zero and falls through when nonzero (`lbu` at 0x327d410). The `ld` at 0x327d3f4 reads the doubleword at absolute 0x1020. The fall-through group includes 0xc680d02f and words at pointer offsets +0x18c8c, +0x18c90, +0x18c94 and +0x18c98 (`sw` at 0x327d420; `lwc1` at 0x327d424, 0x327d42c, 0x327d434, 0x327d43c; `swc1` at 0x327d428, 0x327d430, 0x327d438, 0x327d444). Other branch-specific stores are not enumerated here.
-  - The shared tail includes 0xc180cc19 followed by words from argument 0 + 0xc8, +0xcc and +0xd0 (`sw` at 0x327d50c; `lwc1` at 0x327d510, 0x327d518, 0x327d520; `swc1` at 0x327d514, 0x327d51c, 0x327d528), then 0xc380d025 and words from +0x38, +0x3c, +0x40 and +0x44 (`sw` at 0x327d530; `lwc1` at 0x327d534, 0x327d53c, 0x327d544, 0x327d54c; `swc1` at 0x327d538, 0x327d540, 0x327d548, 0x327d554), then 0x8080d005 and words from +0x18, +0x1c, +0x20 and +0x24 (`sw` at 0x327d55c; `lwc1` at 0x327d560, 0x327d56c, 0x327d578, 0x327d584; `swc1` at 0x327d568, 0x327d574, 0x327d580, 0x327d58c).
+- `RGBSendUnclippedFmNFast` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x327d150
+  The `lbu` at 0x327d15c reads a byte from a0 at entry (arg0) +0x198.
+  The `beq` at 0x327d188 is taken to 0x327d2f0 when at(=[a0+408]:1) == 0 and falls through when at(=[a0+408]:1) != 0.
+  The accesses include 11 word stores at absolute 0x10000 using `sw`, including `sw` at 0x327d1a0, 0x327d1cc, 0x327d1f8.
+  The accesses include 39 word stores at absolute 0x10000 using `swc1`, including `swc1` at 0x327d1a8, 0x327d1b0, 0x327d1b8.
+  The `jalr` at 0x327d25c calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101548], f13=[[0x1020]:8+101528], f14=[[0x1020]:8+101524], f15=[[0x1020]:8+101520], f16=[[0x1020]:8+101516] on paths where the `beq` at 0x327d194 falls through.
+  The `jalr` at 0x327d3b4 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a5=0xffffffffc980d032, a6=0xffffffffc780d030, a7=0xffffffffc880d031; fp f12=[a0+248], f13=[a0+228], f14=[a0+224], f15=[a0+220], f16=[a0+216] on paths where the `beq` at 0x327d188 is taken.
+  The `jr` at 0x327d2e8 returns v0=unknown.
+- `RGBSendUnclippedFmTNFast` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x327d3d0
+  The `lbu` at 0x327d3dc reads a byte from a0 at entry (arg0) +0x198.
+  The `beq` at 0x327d408 is taken to 0x327d59c when at(=[a0+408]:1) == 0 and falls through when at(=[a0+408]:1) != 0.
+  The accesses include 12 word stores at absolute 0x10000 using `sw`, including `sw` at 0x327d420, 0x327d44c, 0x327d478.
+  The accesses include 43 word stores at absolute 0x10000 using `swc1`, including `swc1` at 0x327d428, 0x327d430, 0x327d438.
+  The `jalr` at 0x327d4dc calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101548], f13=[[0x1020]:8+101528], f14=[[0x1020]:8+101524], f15=[[0x1020]:8+101520], f16=[[0x1020]:8+101516] on paths where the `beq` at 0x327d414 falls through.
+  The `jalr` at 0x327d660 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a6=0xffffffffc980d032, a7=0xffffffffc780d030; fp f12=[a0+232], f13=[a0+260], f14=[a0+256], f15=[a0+252], f16=[a0+248], f17=[a0+228], f18=[a0+224], f19=[a0+220] on paths where the `beq` at 0x327d408 is taken.
+  The `jr` at 0x327d594 returns v0=unknown.
 - `__glOdyim_DrawRangeElements` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 92 bytes
 
   **Established effects.** The `beqz` at 0x3276cfc falls through when entry `a2` is unsigned less than entry `a1`; that path calls `__glSetError` with `a0 = 0x501` (`jalr` at 0x3276d08). When the branch is taken, it calls `__glOdyim_DrawElements` with entry `a0`, `a3`, `a4`, and `a5` in `a0` through `a3` (`bgezall` at 0x3276d24). The returned value comes from the call on the selected path (`jr` at 0x3276d34). Its wider role and hardware effect are Unknown.
@@ -1719,18 +2021,26 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 ## 64-bit IP30 library: color senders and drawing paths
 
-- `RGBSendUnclippedBmFmNFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1080 bytes
-  **Established effects.**
-  - The byte at argument 0 + 0x198 is tested by a `beqz` taken when it is zero (`lbu` at 0x327d68c; `beqz` at 0x327d6b8). On fall-through, the routine loads a byte at [0x1020]:8 + 0x18d35 and a second `beqz` is taken when that byte is zero (`lbu` at 0x327d6c0; `beqz` at 0x327d6c4).
-  - On the second branch's fall-through, stores to process address 0x10000 include 0xca80d035 and a word loaded from [0x1020]:8 + 0x18cdc (`sw` at 0x327d6d0; `lwc1` at 0x327d6d4; `swc1` at 0x327d6d8). That path calls `__glOdyim_Materialfv` with its first three arguments 0x405, 0x1601 and entry sp - 0x40 (`jalr` at 0x327d78c).
-  - Later stores to 0x10000 include either 0x2f00c02e or 0x3000c02e, followed by 0xc180cc19 (`sw` at 0x327da4c, 0x327da54). The word at argument 0 + 0xc8 is also written there (`lwc1` at 0x327da58; `swc1` at 0x327da5c). The routine's role and the meaning of these values remain Unknown.
-  - This is a partial account of the window writes; the remaining stores and the other material call sites are not enumerated.
-- `RGBSendUnclippedBmFmTNFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1128 bytes
-  **Established effects.**
-  - A byte from argument 0 + 0x198 controls a `beqz` taken when the byte is zero (`lbu` at 0x327dacc; `beqz` at 0x327daf8). On fall-through, a byte at [0x1020]:8 + 0x18d35 controls another `beqz`, also taken when the byte is zero (`lbu` at 0x327db00; `beqz` at 0x327db04).
-  - The latter branch's fall-through writes 0xca80d035 to process address 0x10000 and then writes the word loaded from [0x1020]:8 + 0x18cdc (`sw` at 0x327db10; `lwc1` at 0x327db14; `swc1` at 0x327db18). It calls `__glOdyim_Materialfv` with first three arguments 0x405, 0x1601 and entry sp - 0x40 (`jalr` at 0x327dbcc).
-  - Subsequent stores to 0x10000 include one of 0x2f00c02e and 0x3000c02e, followed by 0xc180cc19 (`sw` at 0x327de90, 0x327de98). The routine's purpose and those words' hardware meaning remain Unknown.
-  - Other window stores and material calls are omitted from this account.
+- `RGBSendUnclippedBmFmNFast` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x327d680
+  The `lbu` at 0x327d68c reads a byte from a0 at entry (arg0) +0x198.
+  The `beq` at 0x327d6b8 is taken to 0x327d878 when a2(=[a0+408]:1) == 0 and falls through when a2(=[a0+408]:1) != 0.
+  The accesses include 19 word stores at absolute 0x10000 using `sw`, including `sw` at 0x327d6d0, 0x327d6fc, 0x327d728.
+  The accesses include 71 word stores at absolute 0x10000 using `swc1`, including `swc1` at 0x327d6d8, 0x327d6e0, 0x327d6e8.
+  The `jalr` at 0x327d78c calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101628], f13=[[0x1020]:8+101608], f14=[[0x1020]:8+101604], f15=[[0x1020]:8+101600], f16=[[0x1020]:8+101596] on paths where the `beq` at 0x327d6c4 falls through.
+  The `jalr` at 0x327d864 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc680d02f; fp f17=[a0+280], f18=[a0+276], f19=[a0+272].
+  The `jalr` at 0x327d93c calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a5=0xffffffffcd80d038, a6=0xffffffffcb80d036, a7=0xffffffffcc80d037; fp f12=[a0+352], f13=[a0+348], f14=[a0+344], f15=[a0+324], f16=[a0+320], f17=[a0+316], f18=[a0+312], f19=[a0+340] on paths where the `beq` at 0x327d6b8 is taken.
+  The `jalr` at 0x327da24 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc6800000; fp f12=[[0x1020]:8+101560], f13=[[0x1020]:8+101556], f14=[[0x1020]:8+101552], f15=[[0x1020]:8+101548], f16=[[0x1020]:8+101528], f17=[[0x1020]:8+101524], f18=[[0x1020]:8+101520], f19=[[0x1020]:8+101516] on paths where the `beq` at 0x327d95c falls through.
+  The `jr` at 0x327dab0 returns v0=0xffffffffc180cc19.
+- `RGBSendUnclippedBmFmTNFast` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x327dac0
+  The `lbu` at 0x327dacc reads a byte from a0 at entry (arg0) +0x198.
+  The `beq` at 0x327daf8 is taken to 0x327dcbc when a2(=[a0+408]:1) == 0 and falls through when a2(=[a0+408]:1) != 0.
+  The accesses include 20 word stores at absolute 0x10000 using `sw`, including `sw` at 0x327db10, 0x327db3c, 0x327db68.
+  The accesses include 75 word stores at absolute 0x10000 using `swc1`, including `swc1` at 0x327db18, 0x327db20, 0x327db28.
+  The `jalr` at 0x327dbcc calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3); fp f12=[[0x1020]:8+101628], f13=[[0x1020]:8+101608], f14=[[0x1020]:8+101604], f15=[[0x1020]:8+101600], f16=[[0x1020]:8+101596] on paths where the `beq` at 0x327db04 falls through.
+  The `jalr` at 0x327dca8 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=0xffffffffc680d02f; fp f17=[a0+280], f18=[a0+276], f19=[a0+272].
+  The `jalr` at 0x327dd80 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=a3 at entry (arg3), a5=0xffffffffcd80d038, a6=0xffffffffcb80d036, a7=0xffffffffcc80d037; fp f12=[a0+352], f13=[a0+348], f14=[a0+344], f15=[a0+324], f16=[a0+320], f17=[a0+316], f18=[a0+312], f19=[a0+340] on paths where the `beq` at 0x327daf8 is taken.
+  The `jalr` at 0x327de68 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=unknown; fp f12=[[0x1020]:8+101560], f13=[[0x1020]:8+101556], f14=[[0x1020]:8+101552], f15=[[0x1020]:8+101548], f16=[[0x1020]:8+101528], f17=[[0x1020]:8+101524], f18=[[0x1020]:8+101520], f19=[[0x1020]:8+101516] on paths where the `beq` at 0x327dda0 falls through.
+  The `jr` at 0x327df20 returns v0=0xffffffffc380d025.
 - `RGBSendClippedFmNFast` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 396 bytes
   **Established effects.**
   - The routine stores one of 0x2f00c02e and 0x3000c02e to process address 0x10000 (`sw` at 0x327df5c). It loads a pointer from 0x1020 and a word from that pointer + 0x688; the `beq` is taken when the word equals 0x81fa (`ld` at 0x327df48; `lw` at 0x327df68; `beq` at 0x327df7c).
@@ -1750,14 +2060,29 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** It writes either 0x2f00c02e or 0x3000c02e to process address 0x10000 (`sw` at 0x327e54c). `beq` at 0x327e56c branches when the word at +0x688 of the doubleword loaded from 0x1020 equals 0x81fa and falls through otherwise (`lw` at 0x327e558). The `ld` at 0x327e538 reads the doubleword at absolute 0x1020.
   - After those paths rejoin, the routine writes byte 1 at +0x18d35 and +0x18d34 of the loaded pointer (`sb` at 0x327e640, 0x327e648). Its later stores to 0x10000 include 0xc380d025 and the 32-bit word at argument 0 + 0x38 (`sw` at 0x327e674; `lwc1` at 0x327e678; `swc1` at 0x327e67c). The meaning of these command words and the routine's broader role remain Unknown.
   - When `beq` at 0x327e56c falls through, additional word stores to 0x10000 include 0xc680d02f, 0xc880d031 and 0xc780d030 in that order (`sw` at 0x327e574, 0x327e588, 0x327e59c). When it is taken, 0xc880d031 is followed by 32-bit words from argument 0 + 0x178, +0x17c and +0x180 (`sw` at 0x327e6dc; `lwc1` at 0x327e6e0, 0x327e6e8, 0x327e6f0; `swc1` at 0x327e6e4, 0x327e6ec, 0x327e6f4). Both paths contain additional floating-point stores whose values hostfacts leaves Unknown, including 0x327e578 on fall-through and 0x327e6cc when taken (`swc1` at 0x327e578, 0x327e6cc); other stores are not enumerated here.
-- `CISendUnclippedFmN` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 384 bytes
-  **Established effects.** The byte at argument 0 + 0x198 is read (`lbu` at 0x327e828); `beqz` at 0x327e848 takes the alternate path when zero and falls through when nonzero. Calls to `__glOdyim_Materialfv` include one with 0x404, 0x1201 and a stack address as the first three arguments (`jalr` at 0x327e88c).
-  - Its complete sequence of stores to process address 0x10000 starts with either 0x2f00c02e or 0x3000c02e and then 0xc180cc19 (`sw` at 0x327e930, 0x327e938). Next are 32-bit words from argument 0 + 0xc8, +0xcc and +0xd0 (`lwc1` at 0x327e93c, 0x327e944, 0x327e94c; `swc1` at 0x327e940, 0x327e948, 0x327e954).
-  - It then writes 0x8080d005 (`sw` at 0x327e95c), followed by 32-bit words from argument 0 + 0x18, +0x1c, +0x20 and +0x24 (`lwc1` at 0x327e960, 0x327e96c, 0x327e978, 0x327e984; `swc1` at 0x327e968, 0x327e974, 0x327e980, 0x327e994). The command values' meanings and the routine's broader role remain Unknown.
-- `CISendUnclippedBmFmN` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 576 bytes
-  **Established effects.** Calls to `__glOdyim_Materialfv` include calls with 0x404 and 0x1201, and with 0x405 and 0x1601 as the first two arguments; both receive a stack address third (`jalr` at 0x327ea20, 0x327eb24).
-  - The complete store sequence to process address 0x10000 begins with either 0x2f00c02e or 0x3000c02e, followed by 0xc180cc19 (`sw` at 0x327eb78, 0x327eb80). 32-bit words from argument 0 + 0xc8, +0xcc and +0xd0 follow (`lwc1` at 0x327eb84, 0x327eb8c, 0x327eb94; `swc1` at 0x327eb88, 0x327eb90, 0x327eb9c).
-  - The remaining stores send 0x8080d005 (`sw` at 0x327eba4), then 32-bit words from argument 0 + 0x18, +0x1c, +0x20 and +0x24 (`lwc1` at 0x327eba8, 0x327ebb4, 0x327ebc0, 0x327ebcc; `swc1` at 0x327ebb0, 0x327ebbc, 0x327ebc8, 0x327ebdc). The command values' meanings and the routine's broader role remain Unknown.
+- `CISendUnclippedFmN` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x327e820
+  The `lbu` at 0x327e828 reads a byte from a0 at entry (arg0) +0x198.
+  The `beq` at 0x327e848 is taken to 0x327e998 when at(=[a0+408]:1) == 0 and falls through when at(=[a0+408]:1) != 0.
+  The accesses include 3 word stores at absolute 0x10000 using `sw`, including `sw` at 0x327e930, 0x327e938, 0x327e95c.
+  The accesses include 7 word stores at absolute 0x10000 using `swc1`, including `swc1` at 0x327e940, 0x327e948, 0x327e954.
+  The `jalr` at 0x327e88c calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1201, a2=sp-48, a3=a3 at entry (arg3).
+  The `jalr` at 0x327e8c0 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1202, a2=sp-48, a3=unknown.
+  The `jalr` at 0x327e8dc calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-48, a3=unknown.
+  The `jalr` at 0x327e908 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1603, a2=sp-48, a3=unknown.
+  The `jr` at 0x327e990 returns v0=0xffffffffc180cc19.
+- `CISendUnclippedBmFmN` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x327e9a0
+  The `lbu` at 0x327e9a0 reads a byte from a0 at entry (arg0) +0x198.
+  The `sw` at 0x327eb78 stores a word at absolute 0x10000 with value one of 0x2f00c02e, 0x3000c02e.
+  The `sw` at 0x327eb80 stores a word at absolute 0x10000 with value 0xffffffffc180cc19.
+  The `jalr` at 0x327ea20 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1201, a2=sp-64, a3=a3 at entry (arg3).
+  The `jalr` at 0x327ea54 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1202, a2=sp-64, a3=unknown.
+  The `jalr` at 0x327ea70 calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1601, a2=sp-64, a3=unknown.
+  The `jalr` at 0x327ea9c calls `__glOdyim_Materialfv` with a0=0x404, a1=0x1603, a2=sp-64, a3=unknown.
+  The `jalr` at 0x327ead4 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1201, a2=sp-64, a3=unknown.
+  The `jalr` at 0x327eb08 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1202, a2=sp-64, a3=unknown.
+  The `jalr` at 0x327eb24 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1601, a2=sp-64, a3=unknown.
+  The `jalr` at 0x327eb50 calls `__glOdyim_Materialfv` with a0=0x405, a1=0x1603, a2=sp-64, a3=unknown.
+  The `jr` at 0x327ebd8 returns v0=one of 0x2f00c02e, 0x3000c02e.
 - `CISendClippedFmN` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 236 bytes
   **Established effects.** The writes to process address 0x10000 include either 0x2f00c02e or 0x3000c02e and then 0xc680d02f (`sw` at 0x327ec00, 0x327ec08). A 32-bit word from argument 0 + 0x98 is written next (`lwc1` at 0x327ec0c; `swc1` at 0x327ec14).
   - A later word store to the same address carries 0xc180cc19 (`sw` at 0x327ec80). The command values' meanings and the routine's broader role remain Unknown.
