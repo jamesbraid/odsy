@@ -5561,10 +5561,47 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
 
 ## X bit-block, region and arc helpers
 
-- `cfbBitBlt` (`usr/lib/X11/dyDDX/odyssey.so`, 2088 bytes):
-  **Established.** `beq` skips an optional call when entry `a0` equals entry `a1` (`beq` at 0x15658e4). When they differ, a second `beqz` skips that call if its target is zero (`beqz` at 0x15658f4); otherwise the routine calls that unknown indirect target (`jalr` at 0x1565904). The code then loads a halfword from entry `a0` +0xa (`lh` at 0x156590c). The function's role and hardware effect are unknown.
-- `miBSFillSpans..DDB` (`usr/lib/X11/dyDDX/odyssey.so`, 2116 bytes):
-  **Established.** It reads the word at entry `a1` +0x44 (`lw` at 0x15cd694), then writes words from a selected record to entry `a1` +0x48 and +0x44 (`sw` at 0x15cd6f0; `sw` at 0x15cd710). Later call sites include `memmove` and an unknown indirect destination (`jalr` at 0x15cd848; `jalr` at 0x15cd86c). The record's role and any hardware effect are unknown.
+- `cfbBitBlt` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1565860
+  It reads a word from `a0 (arg0 at entry) +0x10` (`lw` at 0x15658ec).
+  It reads a word from `[a0+16] +0xb0` (`lw` at 0x15658f0).
+  The `beq` at 0x15658e4 branches to 0x156590c when `a0 == a1` and falls through when `a0 != a1`.
+  The `beq` at 0x15658f4 branches to 0x156590c when `t9(=[[a0+16]+176]) == 0` and falls through when `t9(=[[a0+16]+176]) != 0`.
+  The `beq` at 0x1565920 branches to 0x1565be8 when `t3(=0x1) == at(=[a0]:1)` and falls through when `t3(=0x1) != at(=[a0]:1)`.
+  The `beq` at 0x1565938 branches to 0x1565d60 when `t3(=0x1) == v1(unknown)` and falls through when `t3(=0x1) != v1(unknown)`.
+  The `beq` at 0x15659c8 branches to 0x1565d88 when `at(=[a1]:1) == 0` and falls through when `at(=[a1]:1) != 0`.
+  The `beq` at 0x1565a24 branches to 0x1565e00 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `bltz` at 0x1565b78 branches to 0x1565e08 when `t0(=([[([a2+76] + ([0x173f470] << 0x2))]] << 0x18)) < 0 (signed)` and falls through when `t0(=([[([a2+76] + ([0x173f470] << 0x2))]] << 0x18)) >= 0 (signed)`.
+  The `beq` at 0x1565b98 branches to 0x1565bb0 when `s1(unknown) == 0` and falls through when `s1(unknown) != 0`.
+  The `jalr` at 0x1565904 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a3 at entry (arg3)`, `a2=a4 at entry (arg4)`, `a3=a5 at entry (arg5)`, `a4=a6 at entry (arg6)` on the fall-through of `beq` at 0x15658f4.
+  The `jalr` at 0x1565994 calls (unknown callee) with `a0=sp-96`, `a1=sp-80`, `a2=0x1`, `a3=unknown`.
+  The `jalr` at 0x15659ac calls (unknown callee) with `a0=sp-96`, `a1=sp-96`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x15659e8 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1565a18 calls (unknown callee) with `a0=sp-96`, `a1=sp-96`, `a2=[[([a2+76] + ([0x173f470] << 0x2))]+8]`, `a3=([0x173f470] << 0x2)`.
+  The `jalr` at 0x1565b54 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=[a2+5]:1`, `a3=sp-96`, `a5=[a2+20]`.
+  The `jalr` at 0x1565b90 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1565ba8 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x1565b98.
+  The `jalr` at 0x1565da4 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1565dc0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1565e5c calls `NotClippedByChildren` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=(([a0+10]:2 + a4) + a6)`, `a3=unknown`, `a5=[a2+16]`.
+  The `jalr` at 0x1565ea8 calls (unknown callee) with `a0=sp-96`, `a1=sp-80`, `a2=0x1`, `a3=[a1]:1`, `a4=[a1+10]:2`.
+  The `jalr` at 0x1565f40 calls (unknown callee) with `a0=sp-96`, `a1=sp-80`, `a2=0x1`, `a3=[a1]:1`, `a4=[a1+10]:2`.
+  The `jalr` at 0x1565f68 calls (unknown callee) with `a0=sp-96`, `a1=0x0`, `a2=0x0`, `a3=[a1]:1`, `a4=[a1+10]:2`.
+  The `jalr` at 0x1565fa4 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a6=-0x10`.
+  The `jalr` at 0x1565fc0 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1566078 calls `miHandleExposures` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=unknown`.
+  The return value is unknown (`jr` at 0x1565be0).
+- `miBSFillSpans..DDB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15cd680
+  A word is loaded from `a0 (arg0 at entry) +0x74` (`lw` at 0x15cd69c).
+  Words are loaded from `a1 (arg1 at entry) +0x44` and `+0x4c` (`lw` at 0x15cd694, 0x15cd6bc).
+  Words are stored at `a1 (arg1 at entry) +0x48` and `+0x44` (`sw` at 0x15cd6f0, 0x15cd710).
+  The `beq` at 0x15cd734 branches to 0x15cdcac when `t8(unknown) == 0` and falls through when `t8(unknown) != 0`.
+  The `beq` at 0x15cd740 branches to 0x15cdcac when `sp(unknown) == 0` and falls through when `sp(unknown) != 0`.
+  The `bne` at 0x15cd76c branches to 0x15cd834 when `v1(unknown) != 0` and falls through when `v1(unknown) == 0`.
+  The `bgez` at 0x15cd87c branches to 0x15cdc44 when `ra(=([a1+16] << 0xe)) >= 0 (signed)` and falls through when `ra(=([a1+16] << 0xe)) < 0 (signed)`.
+  The `jalr` at 0x15cd848 calls `memmove` with `a0=unknown`, `a1=a4 at entry (arg4)`, `a2=(a2 << 0x2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x15cd740.
+  The `jalr` at 0x15cd86c calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x15cd740.
+  The `jalr` at 0x15cdc64 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=a2 at entry (arg2)`, `a3=unknown` on the fall-through of `beq` at 0x15cd740.
+  The return value is unknown (`jr` at 0x15cdcdc).
 - `cfbFillBoxTile32sGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 2136 bytes):
   **Established.** It reads the byte addressed by entry `a0`; `beq` takes an alternate path when that byte equals 1 (`lbu` at 0x15b5b24; `beq` at 0x15b5b68). Another path reads a word and later stores a word; both bases are unknown (`lw` at 0x15b5c5c; `sw` at 0x15b5c80). The stored value, routine role and hardware effect are unknown.
 - `cfb16FillBoxTile32sGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 2136 bytes):
@@ -5583,10 +5620,94 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   It reads the first argument's first byte (`lbu` at 0x16cc1f4). The `beq` at 0x16cc20c is taken when this byte equals 1 and falls through otherwise. The routine calls `miZeroArcSetup` (`jalr` at 0x16cc27c), and its word stores include a store to an unknown base (`sw` at 0x16cc438). The role of the store is Unknown.
 - `cfbZeroArcSS8Copy..BN` — `usr/lib/X11/dyDDX/odyssey.so`
   The 6.5.30 routine occupies 2200 bytes at 0x16d8970. It reads a byte at entry `a0` (`lbu` at 0x16d8974), calls `miZeroArcSetup` (`jalr` at 0x16d89fc), and reads an unsigned halfword at entry `a2 +0x4` (`lhu` at 0x16d8a5c). Its stores include a halfword to an unknown destination (`sh` at 0x16d8bb8); the destination and routine roles are unknown. Established.
-- `mfbCopyArea` — `usr/lib/X11/dyDDX/odyssey.so`
-  In 6.5.30 the function occupies 2208 bytes at 0x16a28a0. It reads a byte from entry `a2 +0x5` (`lbu` at 0x16a295c), and signed halfwords from entry `a0 +0xa` and `a0 +0x8` (`lh` at 0x16a2998, 0x16a29a0). Its calls include `NotClippedByChildren` and `miHandleExposures` (`jalr` at 0x16a2f14, 0x16a3130); it also calls an unknown target indirectly (`jalr` at 0x16a2be8), whose target is unknown; the routine role is unknown. Established.
-- `miComputeClips..ABB` — `usr/lib/X11/dyDDX/odyssey.so`
-  The 6.5.30 body occupies 2236 bytes at 0x1711130. It loads a halfword from entry `a2` (`lh` at 0x1711480) and stores that value as a halfword at entry `a0 +0x2c` (`sh` at 0x1711484). Calls include `SendVisibilityNotify` and `miShapedWindowIn` (`jalr` at 0x1711248, 0x1711588). The roles of the destination field and routine are unknown. Established.
+- `mfbCopyArea` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16a28a0
+  A halfword is stored to an unknown base (`sh` at 0x16a2b20).
+  A word is loaded from `a0 (arg0 at entry) +0x10` (`lw` at 0x16a293c).
+  A word is loaded from `[a0+16] +0xb0` (`lw` at 0x16a2940).
+  A byte is loaded from `a2 (arg2 at entry) +0x5` (`lbu` at 0x16a295c).
+  A halfword is loaded from `a0 (arg0 at entry) +0xa` (`lh` at 0x16a2998).
+  A byte is loaded from `a0 (arg0 at entry) +0x0` (`lbu` at 0x16a299c).
+  A halfword is loaded from `a0 (arg0 at entry) +0x8` (`lh` at 0x16a29a0).
+  A word is loaded from `a2 (arg2 at entry) +0x10` (`lw` at 0x16a29b4).
+  The `beq` at 0x16a2934 branches to 0x16a295c when `a0 == a1` and falls through when `a0 != a1`.
+  The `beq` at 0x16a2944 branches to 0x16a295c when `t9(=[[a0+16]+176]) == 0` and falls through when `t9(=[[a0+16]+176]) != 0`.
+  The `beq` at 0x16a2964 branches to 0x16a2c7c when `a0(=[a2+5]:1) == ra(=0x3)` and falls through when `a0(=[a2+5]:1) != ra(=0x3)`.
+  The `beq` at 0x16a2970 branches to 0x16a2ebc when `a0(=[a2+5]:1) == at(=0xc)` and falls through when `a0(=[a2+5]:1) != at(=0xc)`.
+  The `beq` at 0x16a297c branches to 0x16a2ec4 when `a0(=[a2+5]:1) == v0(=0x6)` and falls through when `a0(=[a2+5]:1) != v0(=0x6)`.
+  The `beq` at 0x16a29ac branches to 0x16a2c84 when `t2(=0x1) == a3(=[a0]:1)` and falls through when `t2(=0x1) != a3(=[a0]:1)`.
+  The `beq` at 0x16a29c4 branches to 0x16a2dfc when `t2(=0x1) == a5(unknown)` and falls through when `t2(=0x1) != a5(unknown)`.
+  The `beq` at 0x16a2a54 branches to 0x16a2e24 when `at(=[a1]:1) == 0` and falls through when `at(=[a1]:1) != 0`.
+  The `beq` at 0x16a2ab0 branches to 0x16a2ea0 when `a2(unknown) == 0` and falls through when `a2(unknown) != 0`.
+  The `beq` at 0x16a2abc branches to 0x16a2bf4 when `a0(unknown) == 0` and falls through when `a0(unknown) != 0`.
+  The `beq` at 0x16a2ac4 branches to 0x16a2bf4 when `s7(=a5) == 0` and falls through when `s7(=a5) != 0`.
+  The `beq` at 0x16a2ad0 branches to 0x16a2bf0 when `a4(=a6) == 0` and falls through when `a4(=a6) != 0`.
+  The `jalr` at 0x16a2954 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a3 at entry (arg3)`, `a2=a4 at entry (arg4)`, `a3=a5 at entry (arg5)`, `a4=a6 at entry (arg6)` on the fall-through of `beq` at 0x16a2944.
+  The `jalr` at 0x16a2a20 calls (unknown callee) with `a0=sp-96`, `a1=sp-80`, `a2=0x1`, `a3=unknown`.
+  The `jalr` at 0x16a2a38 calls (unknown callee) with `a0=sp-96`, `a1=sp-96`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x16a2a74 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x16a2aa4 calls (unknown callee) with `a0=sp-96`, `a1=sp-96`, `a2=[[([a2+76] + ([0x173f52c] << 0x2))]+8]`, `a3=([0x173f52c] << 0x2)`.
+  The `jalr` at 0x16a2be8 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=[a2+5]:1`, `a3=sp-96` on the fall-through of `beq` at 0x16a2bd4.
+  The `jalr` at 0x16a2c20 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x16a2c38 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x16a2c28.
+  The `jalr` at 0x16a2e40 calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x16a2e5c calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x16a2e4c.
+  The `jalr` at 0x16a2f14 calls `NotClippedByChildren` with `a0=a0 at entry (arg0)`, `a1=(([a0+10]:2 + a4) + a6)`, `a2=[a2+16]`, `a3=a1 at entry (arg1)`, `a4=[a0+10]:2`, `a6=[0x173f52c]`.
+  The `jalr` at 0x16a2f60 calls (unknown callee) with `a0=sp-96`, `a1=sp-80`, `a2=0x1`, `a3=[a1+8]:2`, `a4=[a1]:1`.
+  The `jalr` at 0x16a2ff8 calls (unknown callee) with `a0=sp-96`, `a1=sp-80`, `a2=0x1`, `a3=[a1+8]:2`, `a4=[a1]:1`.
+  The `jalr` at 0x16a3020 calls (unknown callee) with `a0=sp-96`, `a1=0x0`, `a2=0x0`, `a3=[a1+8]:2`, `a4=[a1]:1`.
+  The `jalr` at 0x16a305c calls (unknown callee) with `a0=sp-96`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a6=-0x10`.
+  The `jalr` at 0x16a3078 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown` on the fall-through of `beq` at 0x16a3068.
+  The `jalr` at 0x16a3130 calls `miHandleExposures` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=unknown` on the taken arm of `beq` at 0x16a2eac.
+  The return value is unknown at one exit and `0x0` at two exits (`jr` at 0x16a2c74, 0x16a2e98, 0x16a30b4).
+- `miComputeClips..ABB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1711130
+  Halfwords are read from `a0 (arg0 at entry) +0x64`, `+0x8` and `+0xa` (`lhu` at 0x171113c; `lh` at 0x1711140, 0x171115c).
+  Halfwords are stored at `a0 (arg0 at entry) +0x2c` and `+0x2e` (`sh` at 0x1711484, 0x171148c).
+  The `beq` at 0x17111f8 branches to 0x1711528 when `v0(=ret(unknown)) == s5(=0x1)` and falls through when `v0(=ret(unknown)) != s5(=0x1)`.
+  The `beq` at 0x1711200 branches to 0x1711560 when `v0(=ret(unknown)) == s8(=0x2)` and falls through when `v0(=ret(unknown)) != s8(=0x2)`.
+  The `beq` at 0x1711220 branches to 0x1711250 when `s3(unknown) == s6(=one of 0x0, 0x1, 0x2)` and falls through when `s3(unknown) != s6(=one of 0x0, 0x1, 0x2)`.
+  The `beq` at 0x171126c branches to 0x171151c when `s4(=a3) == s5(=0x1)` and falls through when `s4(=a3) != s5(=0x1)`.
+  The `beq` at 0x1711278 branches to 0x171151c when `s4(=a3) == at(=0x3)` and falls through when `s4(=a3) != at(=0x3)`.
+  The `beq` at 0x1711280 branches to 0x1711520 when `s4(=a3) == v1(=0x4)` and falls through when `s4(=a3) != v1(=0x4)`.
+  The `beq` at 0x1711458 branches to 0x1711464 when `a4(=[a0+116]) == 0` and falls through when `a4(=[a0+116]) != 0`.
+  The `beq` at 0x17114d4 branches to 0x17114ec when `t9(=[a1+232]) == 0` and falls through when `t9(=[a1+232]) != 0`.
+  The `jalr` at 0x17111e4 calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=sp-208`, `a2=[a0+12]:2`, `a3=unknown`, `a4=[a0+100]:2`, `a6=[a0+100]:2`.
+  The `jalr` at 0x1711248 calls `SendVisibilityNotify` with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=[a0+104]`, `a3=unknown`.
+  The `jalr` at 0x17112b0 calls (unknown callee) with `a0=a0+56`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17112c4 calls (unknown callee) with `a0=a0+44`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17112ec calls (unknown callee) with `a0=[a0+68]+12`, `a1=0x0`, `a2=0x0`, `a3=[[a0+68]+4]`, `a4=[[a0+68]+8]`.
+  The `jalr` at 0x1711300 calls (unknown callee) with `a0=[a0+68]`, `a1=0x0`, `a2=0x0`, `a3=unknown`.
+  The `jalr` at 0x1711324 calls (unknown callee) with `a0=a4 at entry (arg4)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`, `a5=[a0+100]:2`.
+  The `jalr` at 0x1711330 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1711348 calls (unknown callee) with `a0=a4 at entry (arg4)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`, `a5=[a0+100]:2`.
+  The `jalr` at 0x1711398 calls (unknown callee) with `a0=[a0+68]+12`, `a1=a2 at entry (arg2)`, `a2=a0+72`, `a3=unknown`, `a7=[a0+124]`.
+  The `jalr` at 0x17113d4 calls (unknown callee) with `a0=[a0+68]+12`, `a1=a4 at entry (arg4)`, `a2=a0+72`, `a3=unknown`, `a7=[a0+124]`.
+  The `jalr` at 0x17113e4 calls (unknown callee) with `a0=unknown`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17113f8 calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x171144c calls (unknown callee) with `a0=[a0+68]`, `a1=a2 at entry (arg2)`, `a2=a0+44`, `a3=unknown`.
+  The `jalr` at 0x17114e4 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=unknown`, `a2=unknown`, `a3=unknown`, `a5=sym(globalSerialNumber)`, `a7=[sym(globalSerialNumber)]+1` on the fall-through of `beq` at 0x17114d4.
+  The `jalr` at 0x1711550 calls (unknown callee) with `a0=unknown`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`, `a5=[a0+100]:2`.
+  The `jalr` at 0x1711588 calls `miShapedWindowIn` with `a0=a1 at entry (arg1)`, `a1=a2 at entry (arg2)`, `a2=[[a0+120]+40]`, `a3=sp-208`, `a4=[a0+8]:2`, `a5=[a0+10]:2`.
+  The `jalr` at 0x17115ac calls (unknown callee) with `a0=[a0+68]`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1711614 calls (unknown callee) with `a0=sp-200`, `a1=0x0`, `a2=0x0`, `a3=([a0+124] << 0x13)`.
+  The `jalr` at 0x1711628 calls (unknown callee) with `a0=sp-184`, `a1=0x0`, `a2=0x0`, `a3=unknown`.
+  The `jalr` at 0x1711670 calls (unknown callee) with `a0=sp-184`, `a1=sp-168`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17116b4 calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17116f8 calls (unknown callee) with `a0=sp-184`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1711704 calls (unknown callee) with `a0=sp-200`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1711720 calls (unknown callee) with `a0=a4 at entry (arg4)`, `a1=a0+44`, `a2=a2 at entry (arg2)`, `a3=unknown`, `a4=[a0+116]`, `a5=sym(globalSerialNumber)`.
+  The `jalr` at 0x1711738 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a4 at entry (arg4)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17117c8 calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17117dc calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x171180c calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x171182c calls (unknown callee) with `a0=unknown`, `a1=0x0`, `a2=0x0`, `a3=unknown`.
+  The `jalr` at 0x1711864 calls (unknown callee) with `a0=unknown`, `a1=0x0`, `a2=0x0`, `a3=unknown`.
+  The `jalr` at 0x1711898 calls (unknown callee) with `a0=sp-184`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17118d0 calls (unknown callee) with `a0=sp-200`, `a1=a2 at entry (arg2)`, `a2=unknown`, `a3=unknown`.
+  The `bgezall` at 0x17118ec calls `miComputeClips..ABB` with `a0=unknown`, `a1=a1 at entry (arg1)`, `a2=sp-200`, `a3=a3 at entry (arg3)`.
+  The `jalr` at 0x1711990 calls (unknown callee) with `a0=sp-184`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17119bc calls (unknown callee) with `a0=a2 at entry (arg2)`, `a1=a2 at entry (arg2)`, `a2=sp-184`, `a3=unknown`.
+  The `jalr` at 0x17119dc calls (unknown callee) with `a0=unknown`, `a1=unknown`, `a2=unknown`, `a3=unknown`.
+  The return value is unknown (`jr` at 0x1711514).
 - `cfbZeroArcSS8Xor..IM` — `usr/lib/X11/dyDDX/odyssey.so`
   This 6.5.30 function occupies 2272 bytes at 0x16da1c0. It reads a word at entry `a1 +0x4c` (`lw` at 0x16da224) and calls `miZeroArcSetup` (`jalr` at 0x16da24c). One path reads a word from an unknown base (`lw` at 0x16da3f8), performs XOR (`xor` at 0x16da404), and stores a word with unknown value and destination (`sw` at 0x16da408). The destination and routine roles are unknown. Established.
 - `cfbZeroArcSS8Xor..AN` — `usr/lib/X11/dyDDX/odyssey.so`
@@ -5648,12 +5769,52 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   **Established.** The routine reads the first byte of the first argument (`lbu` at 0x16ce5b4); the `beqz` at 0x16ce5d0 is taken when that byte is zero and falls through otherwise. It reads a word and a halfword from the fifth argument at offsets 0x20 and 0xe (`lw` at 0x16ce5dc; `lhu` at 0x16ce5e0). The `blez` at 0x16ce5f4 takes the return path when the second argument is signed nonpositive and falls through when it is positive (`jr` at 0x16cf28c). The `beq` at 0x16ce790 takes the return path when an unknown value equals the second argument shifted left by three plus the third argument; otherwise it falls through (`jr` at 0x16cf28c). A word store occurs at an unknown address with an unknown value (`sw` at 0x16ce66c). The routine's role is unknown.
 - `cfb8SegmentSS1RectGeneral` — `usr/lib/X11/dyDDX/odyssey.so` — 3684 bytes
   **Established.** It loads the word at 0x173f440, named `miZeroLineScreenIndex` (`lw` at 0x16317a8). The `bltz` at 0x16317b8 is taken when the loaded word is negative signed, otherwise falling through. It reads a byte at the first argument (`lbu` at 0x16317ac) and later reads a word at the second argument plus 0x4c (`lw` at 0x16317e0). The `beqz` at 0x1631894 takes a separate path when the third argument is zero and falls through otherwise. A later `beq` at 0x163192c takes the path to a later signed test when an unknown value equals the third argument shifted left by three plus the fourth argument plus eight; it falls through otherwise (`blez` at 0x16323e4). The routine includes byte stores to unknown addresses with unknown values (`sb` at 0x1631b84; `sb` at 0x1631b94), and the `bne` at 0x1631da0 loops when two unknown values differ and falls through when they are equal. The routine's role is unknown.
-- `mfbValidateGC` — `usr/lib/X11/dyDDX/odyssey.so` — 3696 bytes
-  **Established.** It copies halfwords from entry `a2` +8 and +0xa to entry `a0` +0x34 and +0x36 (`lh` at 0x16223b0, 0x16223dc; `sh` at 0x16223b4, 0x16223e4). When entry `a1` has any bit of 0xe8000 set, `bnez` takes the path calling `miComputeCompositeClip` (`bnez` at 0x1622424; `jalr` at 0x1622450). A later path calls `mfbReduceRop` and stores its result as a byte in the selected record (`jalr` at 0x1622670; `sb` at 0x1622678). Another path calls `Xalloc` with 0x54 as its first argument; `beqz` takes the zero-result path if it returns zero (`jalr` at 0x1622e5c; `beqz` at 0x1622e68). Other calls include `mfbCopyRotatePixmap` (`jalr` at 0x16229c4, 0x1622ba4) and `Xfree` (`jalr` at 0x1623200). The routine's role and its effect on hardware remain unknown.
+- `mfbValidateGC` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16223a0
+  Halfwords are read from `a0 (arg0 at entry) +0x34` and `a2 (arg2 at entry) +0x8` (`lh` at 0x16223ac, 0x16223b0).
+  The halfword `[a2+8]:2` is stored at `a0 (arg0 at entry) +0x34` (`sh` at 0x16223b4).
+  The halfword `[a2+10]:2` is stored at `a0 (arg0 at entry) +0x36` (`sh` at 0x16223e4).
+  The `bne` at 0x1622424 branches to 0x1622448 when `(s6(=a1) & t8(=0xe8000)) != 0` and falls through when `(s6(=a1) & t8(=0xe8000)) == 0`.
+  The `beq` at 0x162245c branches to 0x1622e04 when `s6(=a1) == 0` and falls through when `s6(=a1) != 0`.
+  The `beq` at 0x16226a8 branches to 0x1622cdc when `v1(unknown) == a0(=0x3)` and falls through when `v1(unknown) != a0(=0x3)`.
+  The `beq` at 0x16226b0 branches to 0x1622bc8 when `s3(=one of 0x0, 0x1) == 0` and falls through when `s3(=one of 0x0, 0x1) != 0`.
+  The `jalr` at 0x1622450 calls `miComputeCompositeClip` with `a0=a0 at entry (arg0)`, `a1=a2 at entry (arg2)`, `a2=a2 at entry (arg2)`, `a3=[a0+54]:2` on the taken arm of `bne` at 0x1622424.
+  The `jalr` at 0x1622644 calls (unknown callee) with `a0=[[([a0+76] + ([0x173f52c] << 0x2))]+4]`, `a1=unknown`, `a2=0x1`, `a3=([a2+10]:2 + [a0+42]:2)`, `a4=[a0+42]:2`, `a6=([a2+8]:2 + [a0+40]:2)`, `a7=[a0+40]:2`.
+  The `jalr` at 0x1622670 calls `mfbReduceRop` with `a0=[a0+5]:1`, `a1=[a0+24]`, `a2=0x1`, `a3=unknown`.
+  The `jalr` at 0x16229c4 calls `mfbCopyRotatePixmap` with `a0=[a0+36]`, `a1=[([a0+76] + ([0x173f52c] << 0x2))]+4`, `a2=([a2+8]:2 + [a0+40]:2)`, `a3=([a2+10]:2 + [a0+42]:2)`, `a4=[a0+42]:2`, `a6=([a2+8]:2 + [a0+40]:2)`, `a7=[a0+40]:2`.
+  The `jalr` at 0x1622ba4 calls `mfbCopyRotatePixmap` with `a0=[a0+32]`, `a1=[([a0+76] + ([0x173f52c] << 0x2))]+4`, `a2=([a2+8]:2 + [a0+40]:2)`, `a3=([a2+10]:2 + [a0+42]:2)`, `a4=[a0+42]:2`, `a6=([a2+8]:2 + [a0+40]:2)`, `a7=[a0+40]:2`.
+  The `jalr` at 0x1622e5c calls `Xalloc` with `a0=0x54`, `a1=[[a0+72]+80]`, `a2=0x1`, `a3=unknown`, `a6=0x1`.
+  The `jalr` at 0x1623200 calls `Xfree` with `a0=[a0+72]`, `a1=unknown`, `a2=0x1`, `a3=0x1733f20`, `a6=[([a0+76] + ([0x173f52c] << 0x2))]`.
+  The instructions from 0x162251c to 0x162251c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1622578 to 0x162257c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16227b4 to 0x16227b4 are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x1622904).
 - `cfb32PolyFillRect` — `usr/lib/X11/dyDDX/odyssey.so` — 3756 bytes
   **Established.** It reads a word at entry `a1` +0x10 (`lw` at 0x1670a4c). The first `beq` takes a fallback when the unknown value in `a5` is 2; on fall-through, the next `beq` takes it when `a5` is 3 (`beq` at 0x1670a80, 0x1670a8c). That fallback calls `miPolyFillRect` with the original first four arguments (`jalr` at 0x1671764). On another path, `bnez` is taken when the unknown signed value in `a2` is below 0x401; values at least 0x401 fall through to a subtraction from the stack pointer (`bnez` at 0x1670e24; `subu` at 0x1670e38). Indirect calls with unknown targets include `jalr` at 0x1671330 and `jalr` at 0x16715a0. The meaning of its processed records and any hardware effect remain unknown.
-- `cfb16PolyFillRect` — `usr/lib/X11/dyDDX/odyssey.so`
-  **Established effects.** In 6.5.30 the 3764-byte body begins at 0x16794e0. The first two `beq` branches select the `miPolyFillRect` call when the tested value is 2 or 3 (`beq` at 0x1679540, 0x167954c; `jalr` at 0x167a228); that call receives the first four entry arguments (`jalr` at 0x167a228). On another path, `blez` bypasses the following halfword-processing loop when entry `a2` is nonpositive (`blez` at 0x1679594). When entry `a2 & 3` is nonzero, `beqz` falls through to a loop that reads and stores halfwords and repeats while its counter remains nonzero (`beqz` at 0x16795a8; `lh` at 0x16795b0, 0x16795b4; `sh` at 0x16795c8, 0x16795d4; `bnez` at 0x16795d0). The loop's store destinations and values are Unknown in the facts output. The routine also calls an unknown target with entry `a0` and `a1` as its first two arguments (`jalr` at 0x167a064); the target's operation and the routine’s overall role remain Unknown.
+- `cfb16PolyFillRect` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16794e0
+  A halfword is stored to an unknown base (`sh` at 0x16795c8).
+  A word is loaded from `a1 (arg1 at entry) +0x10` (`lw` at 0x167950c).
+  A word is loaded from `a1 (arg1 at entry) +0x4c` (`lw` at 0x167955c).
+  A halfword is loaded from `a0 (arg0 at entry) +0x8` (`lh` at 0x1679588).
+  A halfword is loaded from `a0 (arg0 at entry) +0xa` (`lh` at 0x1679590).
+  A halfword is loaded from `a3 (arg3 at entry) +0xc` (`lhu` at 0x1679960).
+  A halfword is loaded from `a3 (arg3 at entry) +0x4` (`lhu` at 0x1679964).
+  A halfword is loaded from `a3 (arg3 at entry) +0x0` (`lh` at 0x167996c).
+  The `beq` at 0x1679540 branches to 0x167a218 when `a5(unknown) == at(=0x2)` and falls through when `a5(unknown) != at(=0x2)`.
+  The `beq` at 0x167954c branches to 0x167a21c when `a6(=0x3) == a5(unknown)` and falls through when `a6(=0x3) != a5(unknown)`.
+  The `beq` at 0x167956c branches to 0x167a12c when `a5(unknown) == 0` and falls through when `a5(unknown) != 0`.
+  The `beq` at 0x1679578 branches to 0x167a1e4 when `a5(unknown) == a3(=0x1)` and falls through when `a5(unknown) != a3(=0x1)`.
+  The `beq` at 0x167958c branches to 0x167a154 when `t3(=[a0+8]:2) == 0` and falls through when `t3(=[a0+8]:2) != 0`.
+  The `blez` at 0x1679594 branches to 0x16798c8 when `s3(=a2) <= 0 (signed)` and falls through when `s3(=a2) > 0 (signed)`.
+  The `beq` at 0x16795a8 branches to 0x16795d8 when `(s3(=a2) & 0x3) == 0` and falls through when `(s3(=a2) & 0x3) != 0`.
+  The `bne` at 0x16795d0 branches to 0x16795b0 when `a4(unknown) != 0` and falls through when `a4(unknown) == 0`.
+  The `beq` at 0x16798cc branches to 0x167a164 when `t0(=[[[([a1+76] + ([0x173f524] << 0x2))]+8]+8]) == 0` and falls through when `t0(=[[[([a1+76] + ([0x173f524] << 0x2))]+8]+8]) != 0`.
+  The `bne` at 0x1679920 branches to 0x1679de4 when `a1(=[[[[([a1+76] + ([0x173f524] << 0x2))]+8]+8]+4]) != a2(=0x1)` and falls through when `a1(=[[[[([a1+76] + ([0x173f524] << 0x2))]+8]+8]+4]) == a2(=0x1)`.
+  The `bne` at 0x1679da8 branches to 0x167a050 when `s0(unknown) != s5(unknown)` and falls through when `s0(unknown) == s5(unknown)`.
+  The `jalr` at 0x1679dec calls (unknown callee) with `a0=[[([a1+76] + ([0x173f524] << 0x2))]+8]`, `a1=[[[[([a1+76] + ([0x173f524] << 0x2))]+8]+8]+4]`, `a2=0x1`, `a3=unknown` on the taken arm of `bne` at 0x1679920.
+  The `jalr` at 0x167a064 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=unknown`, `a3=unknown` on the taken arm of `bne` at 0x1679da8.
+  The `jalr` at 0x167a228 calls `miPolyFillRect` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=a2 at entry (arg2)`, `a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x1679540 or 0x167954c.
+  The instructions from 0x1679e18 to 0x1679e1c are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x1679ddc).
 - `cfb16SegmentSS1RectGeneral` — `usr/lib/X11/dyDDX/odyssey.so`
   **Established effects.** The 6.5.30 body spans 3768 bytes from 0x15a47b0. When reached with register `a2` zero, `beqz` takes the path returning -1 (`beqz` at 0x15a48d8; `bgtz` at 0x15a54b0; `addiu` at 0x15a54dc; `jr` at 0x15a54e8). A later path includes a repeated sequence that loads two words, advances a pointer by 8, and uses `bnez` to select an alternate path when the masked test is nonzero (`lw` at 0x15a4990, 0x15a4994; `addiu` at 0x15a49cc; `bnez` at 0x15a49d4). Other paths include halfword loads and stores (`lhu` at 0x15a4910; `sh` at 0x15a492c) and a loop whose `bne` returns to its earlier block when its compared registers differ (`bne` at 0x15a4e20). The halfword destination and value are Unknown in the facts output, leaving the exact operation and its role unresolved.
 - `cfbPolyFillRect` — `usr/lib/X11/dyDDX/odyssey.so`
