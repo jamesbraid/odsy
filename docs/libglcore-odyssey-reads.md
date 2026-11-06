@@ -19148,3 +19148,1509 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   On the taken arm of `beq` at 0x3302fb4, `bne` at 0x330308c targets 0x3302fd4 when the word at entry a0 +0xdd4 differs from 0x1c02 and falls through when equal.
   The `bgezall` at 0x330309c calls `__glSelectPoint` with a0=entry a0, a1 unknown, a2 unknown, a3 unknown, a4=[entry a0+3540], a5=0x1c02, on the fall-through of `bne` at 0x330308c.
   The return at 0x3302fcc comes from an unknown callee; the return at 0x3302fdc is unknown (`jr` at 0x3302fcc, 0x3302fdc).
+
+- `__glSaveCI` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3335250
+  A doubleword is loaded from entry a0 +0x4890 (`ld` at 0x333525c).
+  The word from entry a0 +0x270 is stored at entry a1 +0x98 (`lwc1` at 0x3335260; `swc1` at 0x3335270).
+  The `jalr` at 0x3335274 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The v0 return is the unknown callee's result (`jr` at 0x3335284).
+
+- `__glSaveT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33352f0
+  Four word loads from entry a0 include offsets +0x188, +0x190 and +0x18c (`lwc1` at 0x33352fc, 0x3335300, 0x3335304).
+  Four word stores to entry a1 include offsets +0x44, +0x40 and +0x3c (`swc1` at 0x3335314, 0x333531c, 0x3335320).
+  A doubleword is loaded from entry a0 +0x4890 (`ld` at 0x333530c).
+  The `jalr` at 0x333532c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The returned v0 is the callee's result (`jr` at 0x333533c).
+
+- `__glSaveNT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33353d0
+  It reads a doubleword at entry a0 +0x4890 (`ld` at 0x33353dc).
+  Three word loads from entry a0 include offsets +0x178, +0x180 and +0x17c (`lwc1` at 0x33353e0, 0x33353e4, 0x33353e8).
+  Three word stores to entry a1 include offsets +0x30, +0x2c and +0x28 (`swc1` at 0x33353ec, 0x33353f0, 0x33353f4).
+  Four further word loads from entry a0 include +0x188, +0x190 and +0x194 (`lwc1` at 0x33353f8, 0x33353fc, 0x3335400).
+  Four further word stores to entry a1 include +0x44, +0x40 and +0x3c (`swc1` at 0x333540c, 0x3335414, 0x333541c).
+  The `jalr` at 0x3335424 calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The v0 result comes from that callee (`jr` at 0x3335434).
+
+- `__glSaveCIAll` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3335440
+  A doubleword load uses entry a0 +0x4890 (`ld` at 0x333544c).
+  The word from entry a0 +0x270 is stored at entry a1 +0x98 (`lwc1` at 0x3335450; `swc1` at 0x333546c).
+  Three word loads from entry a0 include +0x17c, +0x180 and +0x178 (`lwc1` at 0x3335454, 0x3335458, 0x333545c).
+  Three word stores to entry a1 include +0x30, +0x2c and +0x28 (`swc1` at 0x3335460, 0x3335464, 0x3335468).
+  Four other word loads from entry a0 include +0x188, +0x190 and +0x194 (`lwc1` at 0x3335470, 0x3335474, 0x3335478).
+  Four other word stores to entry a1 include +0x44, +0x40 and +0x3c (`swc1` at 0x3335484, 0x333548c, 0x3335494).
+  The `jalr` at 0x333549c calls (unknown callee) with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Its returned v0 is the result of that call (`jr` at 0x33354ac).
+
+- `__glFilter4Func` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  A doubleword is read at entry a0 +0x138 (`ld` at 0x331b9b4).
+  A doubleword is read at entry a0 +0xe8 (`ld` at 0x331b9c0).
+  The `jalr` at 0x331b9bc calls (unknown callee) with a0=entry a0, a1=[entry a0+0xe8] as a doubleword, a2=entry a2, a3=entry a3.
+  The return value comes from the unknown callee (`jr` at 0x331b9cc).
+
+- `__glNearestFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
+  A doubleword is loaded from entry a0 +0x148 (`ld` at 0x331ba34).
+  A doubleword is loaded from entry a0 +0xe8 (`ld` at 0x331ba40).
+  The `jalr` at 0x331ba3c calls (unknown callee) with a0=entry a0, a1=[entry a0+0xe8] as a doubleword, a2=entry a2, a3=entry a3.
+  The routine returns the unknown callee's value (`jr` at 0x331ba4c).
+
+- `__glLMNFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is loaded from entry a0 +0x0 (`ld` at 0x331bae0).
+  A word is read at +0xf28 from that doubleword (`lwc1` at 0x331bae4).
+  `bc1f` at 0x331bb00 targets 0x331bb10 when f13 is not less than or equal to that word in the floating-point comparison, and falls through when the comparison is true (`c.le.s` at 0x331bae8).
+  On the taken path a word is loaded from absolute 0x3397a00 (`lwc1` at 0x331bb10).
+  On the taken path of `bc1f` at 0x331bb00, a word is read from entry a0 +0xf4 (`lw` at 0x331bb1c).
+  Doublewords are loaded from entry a0 +0x140 and +0xe8 (`ld` at 0x331bb34, 0x331bb3c).
+  The `jalr` at 0x331bb48 calls (unknown callee) with a0=entry a0, a1 unknown, a2 unknown, a3 unknown.
+  The return value comes from the unknown callee (`jr` at 0x331bb58).
+
+- `__glLoadDefaultFilterFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 264 bytes
+  There are 31 word loads from absolute addresses, including `lwc1` at 0x331a280, 0x331a284, 0x331a288.
+  The 33 word stores to entry a0 include `swc1` at 0x331a2c0, 0x331a2c4, 0x331a2c8.
+  The return delay slot stores a word at entry a0 +0x0 (`swc1` at 0x331a384).
+  The integer return value is unknown (`jr` at 0x331a380).
+
+- `__glim_ColorPointer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3334680
+  It loads a word at absolute 0x1030 (`lw` at 0x3334684).
+  The `beq` goes to 0x33346c4 when that word equals 0x1 and falls through when it differs (`beq` at 0x33346a0).
+  The `bgezall` at 0x33346ac calls `__glim_ColorPointerEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = 0x0 and a4 = entry a3 on the fall-through of `beq` at 0x33346a0.
+  The `jalr` at 0x33346c8 calls `__glSetError` with a0 = 0x502, a1 = entry a1, a2 = entry a2, a3 = entry a3 and a4 = entry a3 on the taken arm of `beq` at 0x33346a0.
+  Its v0 return is unknown (`jr` at 0x33346bc).
+
+- `__glim_EdgeFlagPointer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33348f0
+  A word is read at absolute 0x1030 (`lw` at 0x33348f4).
+  The `beq` branches to 0x3334934 if that word equals 0x1 and falls through if unequal (`beq` at 0x3334910).
+  The `bgezall` at 0x333491c calls `__glim_EdgeFlagPointerEXT` with a0 = entry a0, a1 = 0x0, a2 = entry a1 and a3 = entry a3 on the fall-through of `beq` at 0x3334910.
+  The `jalr` at 0x3334938 calls `__glSetError` with a0 = 0x502, a1 = entry a1, a2 = entry a1 and a3 = entry a3 on the taken arm of `beq` at 0x3334910.
+  The returned v0 is unknown (`jr` at 0x333492c).
+
+- `__glim_IndexPointer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3334950
+  It reads the word at absolute 0x1030 (`lw` at 0x3334954).
+  The `beq` takes the branch to 0x3334994 when that word equals 0x1 and falls through when it differs (`beq` at 0x3334970).
+  The `bgezall` at 0x333497c calls `__glim_IndexPointerEXT` with a0 = entry a0, a1 = entry a1, a2 = 0x0 and a3 = entry a2 on the fall-through of `beq` at 0x3334970.
+  The `jalr` at 0x3334998 calls `__glSetError` with a0 = 0x502, a1 = entry a1, a2 = entry a2 and a3 = entry a2 on the taken arm of `beq` at 0x3334970.
+  The v0 return is unknown (`jr` at 0x333498c).
+
+- `__glim_EdgeFlagPointerEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x33344b0).
+  The `bltz` goes to 0x3334524 when signed entry a0 is negative and falls through when nonnegative (`bltz` at 0x33344c8).
+  On the fall-through of `bltz` at 0x33344c8, `bltz` goes to 0x3334528 when signed entry a1 is negative and falls through when nonnegative (`bltz` at 0x33344d0).
+  On the fall-through of both branches, entry a0 and entry a1 are stored as words at offsets +0x16bc and +0x16c0 from the doubleword at 0x1020 (`sw` at 0x33344d8, 0x33344e8).
+  On that path, entry a2 is stored as a doubleword at offset +0x16b0 from the doubleword at 0x1020 (`sd` at 0x33344dc).
+  On that path, a word is read at +0x17b0 from the doubleword at 0x1020 and stored OR 0x8000000 at the same offset (`lw` at 0x33344fc; `sw` at 0x3334514).
+  On that path, a doubleword is stored at +0x16c8 from the doubleword at 0x1020 (`sd` at 0x3334508).
+  The `jalr` at 0x3334530 calls `__glSetError` with a0 = 0x501, a1 = entry a1, a2 = entry a2, a3 = 0x3301ad0 and a4 = the doubleword at 0x1020 on the taken arm of either `bltz` at 0x33344c8 or `bltz` at 0x33344d0.
+  Its delay slot stores a doubleword at +0x16c8 from the doubleword at 0x1020 (`sd` at 0x3334534).
+  The return at 0x3334510 has unknown v0; the return at 0x333451c has the `__glSetError` result (`jr` at 0x3334510, 0x333451c).
+
+- `__glim_ColorPointerEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x3334150).
+  The `bltz` goes to 0x3334250 when signed entry a2 is negative and falls through when nonnegative (`bltz` at 0x3334168).
+  On the fall-through of `bltz` at 0x3334168, `bltz` branches to 0x3334254 when signed entry a3 is negative and falls through when nonnegative (`bltz` at 0x3334170).
+  On the fall-through of `beq` at 0x33341d8, entry a1, a0, a3 and a2 are stored as words at offsets +0x164c, +0x1648, +0x1658 and +0x1654 from the doubleword at 0x1020 (`sw` at 0x33341e4, 0x33341ec, 0x3334208, 0x3334218).
+  On that fall-through, entry a4 is stored as a doubleword at +0x1640 from that doubleword (`sd` at 0x33341f4).
+  On that fall-through, a word is loaded and stored at +0x17b0 from the doubleword at 0x1020 (`lw` at 0x333420c; `sw` at 0x3334240).
+  The `jalr` at 0x333425c calls `__glSetError` with a0 = 0x501, a1 = entry a1, a2 = entry a2, a3 = entry a3 and a6 = the doubleword at 0x1020 on the taken arm of `bltz` at 0x3334168 or 0x3334170, `bne` at 0x333417c, or `beq` at 0x3334188.
+  The `jalr` at 0x3334278 calls `__glSetError` with a0 = 0x500, a1 = entry a1, a2 = entry a2, a3 = entry a3 and a6 = the doubleword at 0x1020 on the taken arm of `bne` at 0x3334194 or `beq` at 0x33341a0.
+  The `jalr` at 0x33342b0 calls `__glSetError` with a0 = 0x500, a1 = entry a1, a2 = entry a2, a3 = entry a3, a5 = 0x3301ad0 and a6 = the doubleword at 0x1020 on the taken arm of `beq` at 0x33341d8.
+  The return at 0x333423c has unknown v0; the return at 0x3334248 has the `__glSetError` result (`jr` at 0x333423c, 0x3334248).
+
+- `__glim_IndexPointerEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword load uses absolute 0x1020 (`ld` at 0x3334540).
+  The `bltz` branches to 0x3334644 when signed entry a1 is negative and falls through when nonnegative (`bltz` at 0x3334558).
+  On the fall-through of `bltz` at 0x3334558, `bltz` branches to 0x3334644 when signed entry a2 is negative and falls through when nonnegative (`bltz` at 0x3334560).
+  On the fall-through of `beq` at 0x33345a0, entry a0, a2 and a1 are stored as words at offsets +0x1670, +0x167c and +0x1678 from the doubleword at 0x1020 (`sw` at 0x33345b0, 0x33345c8, 0x33345cc).
+  On that fall-through, entry a3 is stored as a doubleword at offset +0x1668 from that doubleword (`sd` at 0x33345bc).
+  On that fall-through, a word is read and written at offset +0x17b0 from the doubleword at 0x1020 (`lw` at 0x33345d0; `sw` at 0x3334600).
+  The `jalr` at 0x333461c calls `__glSetError` with a0 = 0x500, a1 = entry a1, a2 = entry a2, a3 = entry a3, a5 = the doubleword at 0x1020 and a6 = 0x3301ad0 on the taken arm of `bne` at 0x3334568 or `beq` at 0x3334574.
+  The `jalr` at 0x3334650 calls `__glSetError` with a0 = 0x501, a1 = entry a1, a2 = entry a2, a3 = entry a3, a4 = 0x3301ad0 and a5 = the doubleword at 0x1020 on the taken arm of `bltz` at 0x3334558 or 0x3334560.
+  The `jalr` at 0x333466c calls `__glSetError` with a0 = 0x500, a1 = entry a1, a2 = entry a2, a3 = entry a3, a5 = the doubleword at 0x1020 and a6 = 0x3301ad0 on the taken arm of `beq` at 0x33345a0.
+  The instructions from 0x3334610 to 0x3334610 are not reached by any path from the entry, and their branches are not listed.
+  Its v0 return at 0x33345fc is unknown; at 0x3334608 it is the `__glSetError` result (`jr` at 0x33345fc, 0x3334608).
+
+- `__glim_SubdivPatchParameterfSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3306750
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3306754).
+  The `beq` at 0x3306774 takes 0x3306804 when entry a0 equals 0x6010 and falls through when it differs.
+  On the fall-through of `beq` at 0x3306774, `beq` at 0x330677c takes 0x33067a4 when entry a0 equals 0x6011 and falls through when it differs.
+  The `jalr` at 0x3306790 calls `__glSetError` with `a0` = `0x500`, `a1` = `a1 at entry (arg1)`, `a2` = `[0x1020]:8`, `a3` = `0x6011` on the fall-through of `beq` at 0x330677c.
+  On the taken path of `beq` at 0x330677c, or the taken path of `beq` at 0x3306804, `bc1t` at 0x33067b0 takes 0x33067dc when f24 equals f0 and falls through otherwise (`c.eq.s` at 0x33067a4).
+  On the fall-through of `bc1t` at 0x33067b0, `bc1t` at 0x33067bc takes 0x33067dc when FP condition code 1 is true and falls through when false.
+  On the taken arm of `bc1t` at 0x33067b0 or 0x33067bc, or subsequent paths to 0x33067dc, a word is stored at +0x1a98 from the doubleword loaded at absolute 0x1020 (`sw` at 0x33067f4).
+  On the taken arm of `beq` at 0x3306774, `beq` at 0x3306804 takes 0x33067a0 when entry a0 equals 0x6011 and falls through when it differs.
+  On the fall-through of `beq` at 0x3306804, `bc1f` at 0x3306814 takes 0x330684c when the comparison f5 < f13 is false and falls through when true (`c.lt.s` at 0x330680c).
+  The `jalr` at 0x3306824 calls `__glSetError` with `a0` = `0x501`, `a1` = `a1 at entry (arg1)`, `a2` = `[0x1020]:8`, `a3` = `0x6011` on the fall-through of `bc1f` at 0x3306814.
+  The `jalr` at 0x330683c calls `__glSetError` with `a0` = `0x500`, `a1` = `a1 at entry (arg1)`, `a2` = `[0x1020]:8`, `a3` = `0x6011` on the taken arm of `bc1f` at 0x33067d4.
+  The `jalr` at 0x3306850 calls `ceil` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `[0x1020]:8`, `a3` = `0x6011` on the taken arm of `bc1f` at 0x3306814.
+  On that taken arm, two words are stored through unknown bases (`swc1` at 0x330686c, 0x3306880).
+  The v0 return is unknown at 0x33067f0, the result of `__glSetError` on the return at 0x33067fc, and the result of `ceil` on the return at 0x330687c (`jr` at 0x33067f0, 0x33067fc, 0x330687c).
+
+- `__glim_SubdivPatchParameteriSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3306890
+  The `bgezall` at 0x33068b0 calls `__glim_SubdivPatchParameterfSGIX` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  At return at 0x33068c0, `v0` is `ret(__glim_SubdivPatchParameterfSGIX)` (`jr` at 0x33068c0).
+
+- `SubdivSmoothEdge` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330aec0
+  `blez` at 0x330aec0 takes 0x330b048 when a0 is at most zero signed and falls through when it is positive signed.
+  On the fall-through of `blez` at 0x330aec0, `beq` at 0x330aed4 takes 0x330af34 when unknown t0 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330aed4, word loads from unknown bases include (`lwc1` at 0x330aedc, 0x330aee0, 0x330aef4).
+  On that path, `bne` at 0x330af2c takes 0x330aedc when unknown t0 is nonzero and falls through when it is zero; its delay slot stores a word through an unknown base on both arms (`swc1` at 0x330af30).
+  After either arm of `beq` at 0x330aed4, `beq` at 0x330af38 takes 0x330b048 when unknown t0 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330af38, 16 word loads from unknown bases include (`lwc1` at 0x330af40, 0x330af44, 0x330af58).
+  That fall-through path has four word stores through unknown bases, including (`swc1` at 0x330af78, 0x330afb4, 0x330aff0).
+  The v0 return is unknown (`jr` at 0x330b048).
+
+- `SubdivRegCreaseEdge` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330b050
+  `blez` at 0x330b050 takes 0x330b130 when a0 is at most zero signed and falls through when it is positive signed.
+  On the fall-through of `blez` at 0x330b050, `beq` at 0x330b060 takes 0x330b098 when unknown a6 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330b060, word loads from unknown bases include (`lwc1` at 0x330b068, 0x330b06c).
+  On that path, `bne` at 0x330b090 takes 0x330b068 when unknown a6 is nonzero and falls through when it is zero; its delay slot stores a word through an unknown base on both arms (`swc1` at 0x330b094).
+  After either arm of `beq` at 0x330b060, `beq` at 0x330b09c takes 0x330b130 when unknown a6 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330b09c, 8 word loads from unknown bases include (`lwc1` at 0x330b0b0, 0x330b0b4, 0x330b0cc).
+  That fall-through path has four word stores through unknown bases, including (`swc1` at 0x330b0c8, 0x330b0e4, 0x330b100).
+  At return, v0 is unknown (`jr` at 0x330b130).
+
+- `SubdivIRRegCreaseEdge` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330b140
+  `blez` at 0x330b140 takes 0x330b250 when a0 is at most zero signed and falls through when it is positive signed.
+  On the fall-through of `blez` at 0x330b140, `beq` at 0x330b158 takes 0x330b198 when (entry a0 AND 0x3) is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330b158, word loads from unknown bases include (`lwc1` at 0x330b160, 0x330b164).
+  On that path, `bne` at 0x330b190 takes 0x330b160 when unknown a6 is nonzero and falls through when it is zero; its delay slot stores a word through an unknown base on both arms (`swc1` at 0x330b194).
+  After either arm of `beq` at 0x330b158, `beq` at 0x330b19c takes 0x330b250 when unknown a6 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330b19c, 8 word loads from unknown bases include (`lwc1` at 0x330b1b0, 0x330b1b4, 0x330b1d4).
+  That fall-through path has four word stores through unknown bases, including (`swc1` at 0x330b1d0, 0x330b1f4, 0x330b218).
+  The value returned in v0 is unknown (`jr` at 0x330b250).
+
+- `SubdivEdge` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330b260
+  The `beq` at 0x330b274 takes 0x330b28c when unknown t1 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330b274, `bne` at 0x330b27c takes 0x330b28c when unknown at is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x330b27c, `beq` at 0x330b284 takes 0x330b2a8 when unknown v0 is zero and falls through when it is nonzero.
+  On the taken arm of `beq` at 0x330b284, `beq` at 0x330b2b0 takes 0x330b318 when unknown ra is zero and falls through when it is nonzero.
+  The `bgezall` at 0x330b294 calls `SubdivSmoothEdge` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)` on the taken arms of `beq` at 0x330b274 or `bne` at 0x330b27c, or the fall-through of `beq` at 0x330b284.
+  The `bgezall` at 0x330b2f0 calls `SubdivIRRegCreaseEdge` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a5 at entry (arg5)` on the taken arm of `bne` at 0x330b2d8 or the fall-through of `beq` at 0x330b2e0.
+  The `bgezall` at 0x330b308 calls `SubdivIRRegCreaseEdge` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a5 at entry (arg5)` on the taken arm of `bne` at 0x330b2c0 or 0x330b2c8.
+  The `bgezall` at 0x330b320 calls `SubdivRegCreaseEdge` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a5 at entry (arg5)` on the taken arm of `beq` at 0x330b2b0, 0x330b2d0 or 0x330b2e0.
+  The instructions from 0x330b300 to 0x330b300 are not reached by any path from the entry, and their branches are not listed.
+  The returned v0 is unknown (`jr` at 0x330b2a0).
+
+- `SmoothPosition` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330b7d0
+  `blez` at 0x330b7d0 takes 0x330b8f0 when entry a0 is at most zero signed and falls through when it is positive.
+  On the fall-through of `blez` at 0x330b7d0, a doubleword is loaded from entry a2 +0x0 in the delay slot of the unconditional branch at 0x330b900 (`ld` at 0x330b904).
+  On the taken arm of `bne` at 0x330b8e0, `bne` at 0x330b838 takes 0x330b820 when unknown a7 is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x330b838 or 0x330b8e0, `beq` at 0x330b840 takes 0x330b8a8 when unknown t8 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330b840, `bne` at 0x330b8a0 takes 0x330b850 when unknown a0 differs from ((a1+1 << 0x3) + a2) and falls through when equal.
+  On the fall-through of `beq` at 0x330b840, four word loads use unknown bases, including `lwc1` at 0x330b858, 0x330b86c, 0x330b880.
+  On that path, four word stores use unknown bases, including `swc1` at 0x330b860, 0x330b874, 0x330b888.
+  On the fall-through of `beq` at 0x330b8bc, a doubleword is loaded from entry a2 +0x0 (`ld` at 0x330b8c4).
+  The instructions from 0x330b814 to 0x330b81c are not reached by any path from the entry, and their branches are not listed.
+  At `jr` at 0x330b8f0, v0 is unknown.
+
+- `CreasePosition` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330b910
+  `blez` at 0x330b910 takes 0x330b9b0 when entry a1 is at most zero signed and falls through when it is positive.
+  On the fall-through of `blez` at 0x330b910, three doublewords are loaded from entry a2 +0x0, +0x8 and +0x10 (`ld` at 0x330b940, 0x330b954, 0x330b970).
+  On that path, three word loads use unknown bases (`lwc1` at 0x330b948, 0x330b960, 0x330b97c).
+  Four word stores use unknown bases on that path, including `swc1` at 0x330b950, 0x330b96c, 0x330b994.
+  On the fall-through of `blez` at 0x330b910, `bne` at 0x330b9a8 takes 0x330b940 when unknown a3 differs from ((a1 << 0x2) + a3) and falls through when equal.
+  At the return, v0 is unknown (`jr` at 0x330b9b0).
+
+- `FinalPosition` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x330b9c0
+  `beq` at 0x330b9d4 takes 0x330b9e8 when entry a0 is zero and falls through when it is nonzero.
+  On its fall-through, `beq` at 0x330b9e0 takes 0x330ba0c when entry a0 AND 0x4 is zero and falls through when it is nonzero.
+  The `bgezall` at 0x330b9fc calls `SmoothPosition` with `a0` = `a1 at entry (arg1)`, `a1` = `a2 at entry (arg2)`, `a2` = `a3 at entry (arg3)`, `a3` = `a4 at entry (arg4)`, `a6` = `a3 at entry (arg3)`, `a7` = `a1 at entry (arg1)` on the taken arm of `beq` at 0x330b9d4 or the fall-through of `beq` at 0x330b9e0.
+  On the taken arm of `beq` at 0x330b9e0, `beq` at 0x330ba0c takes 0x330ba2c when unknown ra is zero and falls through when nonzero.
+  The `bgezall` at 0x330ba1c calls `CreasePosition` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a3 at entry (arg3)`, `a3` = `a4 at entry (arg4)`, `a6` = `a3 at entry (arg3)`, `a7` = `a1 at entry (arg1)` on the fall-through of `beq` at 0x330ba0c.
+  On the taken arm of `beq` at 0x330ba0c, `blez` at 0x330ba2c takes 0x330baa4 when entry a1 is at most zero signed and falls through when it is positive.
+  On the fall-through of `blez` at 0x330ba2c, `beq` at 0x330ba40 takes 0x330ba5c when entry a1 AND 0x1 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x330ba40, a doubleword is loaded from entry a3 +0x0 (`ld` at 0x330ba48).
+  On that path, a word is stored at entry a4 +0x0 (`swc1` at 0x330ba58).
+  On the fall-through of `beq` at 0x330ba60, two doublewords are loaded from entry a3 +0x0 (`ld` at 0x330ba70, 0x330ba80).
+  Two word loads use unknown bases on that path (`lwc1` at 0x330ba78, 0x330ba90).
+  That path also has two word stores to unknown bases (`swc1` at 0x330ba7c, 0x330ba9c).
+  At `jr` at 0x330baa4, v0 is unknown.
+
+- `DoInterpolate` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3311e50
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3311e5c).
+  `blez` at 0x3311e7c takes 0x3311fc0 when unknown a6 is at most zero signed and falls through when positive.
+  On the fall-through of `blez` at 0x3311e7c, `beq` at 0x3311ee4 takes 0x3311f1c when unknown a4 AND 0x3 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3311ee4, two word loads use unknown bases (`lwc1` at 0x3311eec, 0x3311ef0).
+  On that path, `bne` at 0x3311f14 takes 0x3311eec when unknown a4 is nonzero and falls through when it is zero; its delay slot stores a word to an unknown base on both arms (`swc1` at 0x3311f18).
+  After either arm of `beq` at 0x3311ee4, `beq` at 0x3311f20 takes 0x3311fc0 when unknown a4 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3311f20, eight word loads use unknown bases, including `lwc1` at 0x3311f30, 0x3311f34, 0x3311f38.
+  That path has four word stores to unknown bases, including `swc1` at 0x3311f9c, 0x3311fa8, 0x3311fb0.
+  At `jr` at 0x3311fc0, v0 is the word at the doubleword loaded from absolute 0x1020 plus offset 0x1a9c (`lw` at 0x3311e68).
+
+- `__glNearestFilter2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 320 bytes
+  A word is read from entry a1 +0x24 (`lwc1` at 0x331a6a0).
+  A word is read from entry a0 +0x8 (`lw` at 0x331a6c0).
+  `beq` at 0x331a6e8 targets 0x331a794 when the word at entry a0 +0x8 equals 0x2901 and falls through when unequal.
+  On the fall-through a word is loaded from entry a1 +0x18 (`lw` at 0x331a6f8).
+  On the fall-through of `beq` at 0x331a6e8, `bltz` at 0x331a708 targets 0x331a784 when unknown a1 is negative signed and falls through when nonnegative signed.
+  Words are loaded from entry a0 +0xc and entry a1 +0x1c (`lw` at 0x331a714, 0x331a718).
+  `beq` at 0x331a720 targets 0x331a7c0 when the word at entry a0 +0xc equals 0x2901 and falls through when unequal.
+  On the fall-through of `beq` at 0x331a720, `bltz` at 0x331a738 targets 0x331a78c when unknown a0 is negative signed and falls through when nonnegative signed.
+  A doubleword is loaded from entry a1 +0x68 (`ld` at 0x331a744).
+  The `jalr` at 0x331a760 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3 unknown.
+  The `jalr` at 0x331a79c calls `floorf` with a0=entry a0, a1=entry a1, a2=entry a2, a3=0x2901, f12=entry f14, on the taken arm of `beq` at 0x331a6e8.
+  The `jalr` at 0x331a7c4 calls `floorf` with a0 unknown, a1=[entry a1+28], a2 unknown, a3=0x2901, a4=[entry a0+12], a6=[entry a1+28]-1, f12=entry f15, on the taken arm of `beq` at 0x331a720.
+  The returned v0 and f0 come from the unknown callee (`jr` at 0x331a77c).
+
+- `__glNearestFilter3` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 432 bytes
+  A word is loaded from entry a1 +0x24 (`lwc1` at 0x331a7e0).
+  A word is loaded from entry a0 +0x8 (`lw` at 0x331a808).
+  `beq` at 0x331a834 targets 0x331a920 when the word at entry a0 +0x8 equals 0x2901 and falls through when unequal.
+  On the fall-through a word is read from entry a1 +0x18 (`lw` at 0x331a844).
+  On the fall-through of `beq` at 0x331a834, `bltz` at 0x331a854 targets 0x331a908 when unknown a1 is negative signed and falls through when nonnegative signed.
+  Words are read from entry a0 +0xc and entry a1 +0x1c (`lw` at 0x331a860, 0x331a864).
+  `beq` at 0x331a86c targets 0x331a94c when the word at entry a0 +0xc equals 0x2901 and falls through when unequal.
+  On the fall-through of `beq` at 0x331a86c, `bltz` at 0x331a884 targets 0x331a910 when unknown a0 is negative signed and falls through when nonnegative signed.
+  A word is loaded from entry a0 +0x10 (`lw` at 0x331a890).
+  `beq` at 0x331a89c targets 0x331a970 when that word equals 0x2901 and falls through when unequal.
+  On the fall-through of `beq` at 0x331a89c, `bltz` at 0x331a8b4 targets 0x331a918 when unknown a1 is negative signed and falls through when nonnegative signed.
+  A doubleword is loaded from entry a1 +0x68 (`ld` at 0x331a8c4).
+  The `jalr` at 0x331a8e0 calls (unknown callee) with a0=entry a1, a1=entry a0, a2 unknown, a3 unknown.
+  The `jalr` at 0x331a928 calls `floorf` with a0=entry a0, a1=entry a1, a2=0x2901, a3=entry a3, f12=entry f14, on the taken arm of `beq` at 0x331a834.
+  The `jalr` at 0x331a950 calls `floorf` with a0 unknown, a1=[entry a1+28], a2=0x2901, a3 unknown, a4=[entry a0+12], a6=[entry a1+28]-1, f12=entry f15, on the taken arm of `beq` at 0x331a86c.
+  The `jalr` at 0x331a974 calls `floorf` with a0=[entry a1+32], a1 unknown, a2=0x2901, a3 unknown, a7=[entry a0+16], f12=entry f16, on the taken arm of `beq` at 0x331a89c.
+  The returned v0 and f0 come from the unknown callee (`jr` at 0x331a900).
+
+- `__glLinearFilter2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1280 bytes
+  A doubleword is loaded at entry a0 +0x0 (`ld` at 0x331ac40).
+  A word is loaded at entry a1 +0x24 (`lwc1` at 0x331ac4c).
+  `beq` at 0x331aca8 targets 0x331b080 when the word at entry a0 +0x8 equals 0x2901 and falls through when unequal.
+  `beq` at 0x331ad1c targets 0x331b0c8 when the word at entry a0 +0xc equals 0x2901 and falls through when unequal.
+  `beq` at 0x331ae60 targets 0x331af3c when the word at entry a1 +0x44 equals 0x190a and falls through when unequal.
+  On the taken arm of `beq` at 0x331ae60, a word is stored to entry a5 +0x10 (`swc1` at 0x331af7c).
+  The `jalr` at 0x331ace0 calls `floor` with a0=entry a0, a1=entry a1, a2=entry a2, a3=0x2901; this call follows the fall-through of `beq` at 0x331aca8.
+  The `jalr` at 0x331ad50 calls `floor` with a0=[entry a0+12], a1=0x2901, a2=unknown, a3=unknown; this call follows the fall-through of `beq` at 0x331ad1c.
+  The `jalr` at 0x331ad78 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x331ad88 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x331adb0 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=unknown, a5=entry sp-240.
+  The `jalr` at 0x331add0 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=unknown, a5=entry sp-216.
+  The `jalr` at 0x331adf4 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=unknown, a5=entry sp-192.
+  The `jalr` at 0x331ae18 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=unknown, a5=entry sp-168.
+  The `jalr` at 0x331b09c calls `floor` with a0=entry a0, a1=entry a1, a2=entry a2, a3=0x2901; this call follows the taken arm of `beq` at 0x331aca8.
+  The `jalr` at 0x331b0e0 calls `floor` with a0=[entry a0+12], a1=0x2901, a2=unknown, a3=unknown; this call follows the taken arm of `beq` at 0x331ad1c.
+  The integer return value is unknown (`jr` at 0x331ae9c, 0x331af34, 0x331b008).
+
+- `__glLinearFilter3` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 2140 bytes
+  A doubleword is loaded at entry a0 +0x0 (`ld` at 0x331b148).
+  A word is loaded at entry a1 +0x24 (`lwc1` at 0x331b15c).
+  `beq` at 0x331b1b4 targets 0x331b85c when the word at entry a0 +0x8 equals 0x2901 and falls through when unequal.
+  `beq` at 0x331b224 targets 0x331b8a0 when the word at entry a0 +0xc equals 0x2901 and falls through when unequal.
+  `beq` at 0x331b294 targets 0x331b8e0 when the word at entry a0 +0x10 equals 0x2901 and falls through when unequal.
+  `beq` at 0x331b468 targets 0x331b5bc when the word at entry a1 +0x44 equals 0x190a and falls through when unequal.
+  On the taken arm of `beq` at 0x331b468, a word is stored to entry a5 +0x10 (`swc1` at 0x331b63c).
+  The `jalr` at 0x331b1ec calls `floor` with a0=entry a0, a1=entry a1, a2=0x2901, a3=entry a3; this call follows the fall-through of `beq` at 0x331b1b4.
+  The `jalr` at 0x331b258 calls `floor` with a0=0x2901, a1=unknown, a2=unknown, a3=unknown; this call follows the fall-through of `beq` at 0x331b224.
+  The `jalr` at 0x331b2c8 calls `floor` with a0=[entry a0+16], a1=0x2901, a2=unknown, a3=unknown; this call follows the fall-through of `beq` at 0x331b294.
+  The `jalr` at 0x331b2f0 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x331b300 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x331b310 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x331b338 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-368.
+  The `jalr` at 0x331b358 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-344.
+  The `jalr` at 0x331b378 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-320.
+  The `jalr` at 0x331b398 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-296.
+  The `jalr` at 0x331b3bc calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-272.
+  The `jalr` at 0x331b3dc calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-248.
+  The `jalr` at 0x331b400 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-224.
+  The `jalr` at 0x331b424 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=unknown, a3=unknown, a5=entry sp-200.
+  The `jalr` at 0x331b874 calls `floor` with a0=entry a0, a1=entry a1, a2=0x2901, a3=entry a3; this call follows the taken arm of `beq` at 0x331b1b4.
+  The `jalr` at 0x331b8b4 calls `floor` with a0=0x2901, a1=unknown, a2=unknown, a3=unknown; this call follows the taken arm of `beq` at 0x331b224.
+  The `jalr` at 0x331b8f8 calls `floor` with a0=[entry a0+16], a1=0x2901, a2=unknown, a3=unknown; this call follows the taken arm of `beq` at 0x331b294.
+  The integer return value is unknown (`jr` at 0x331b4b0, 0x331b5b4, 0x331b74c, 0x331b854).
+
+- `__glLMLFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 600 bytes
+  A doubleword is read at entry a0 +0x0 (`ld` at 0x331bdc0).
+  A word is read at entry a0 +0xf4 (`lw` at 0x331bddc).
+  `bne` at 0x331be14 targets 0x331bf04 when the word at entry a0 +0xf4 is less than unknown a2 signed and falls through when greater than or equal signed.
+  If `bne` at 0x331be14 falls through, `bltz` at 0x331be1c targets 0x331bf04 when unknown a2 is negative signed and falls through when nonnegative signed.
+  On the fall-through of `bltz` at 0x331be1c, a word is loaded at +0x44 from the doubleword at entry a0 +0xe8 (`lw` at 0x331be98).
+  On the fall-through of `bltz` at 0x331be1c, `beq` at 0x331bec8 targets 0x331bf4c when that word equals 0x190a and falls through when unequal.
+  If `beq` at 0x331bec8 falls through, `beq` at 0x331bed0 targets 0x331bf70 when that word equals 0x1909 and falls through when unequal.
+  On the taken arm of `beq` at 0x331bec8, a word is stored to entry a5 +0x10 (`swc1` at 0x331bf68).
+  The `jalr` at 0x331be48 calls (unknown callee) with a0=entry a0, a1=unknown, a2=unknown, a3=[entry a0]:8, a5=entry sp-128, a6=[entry a0+244]; this call follows the fall-through of `bltz` at 0x331be1c.
+  The `jalr` at 0x331be70 calls (unknown callee) with a0=entry a0, a1=unknown, a2=unknown, a3=unknown, a5=entry sp-104; this call follows the fall-through of `bltz` at 0x331be1c.
+  The `jalr` at 0x331be88 calls `floorf` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, f12=entry f13; this call follows the fall-through of `bltz` at 0x331be1c.
+  The `jalr` at 0x331bf2c calls (unknown callee) with a0=entry a0, a1=unknown, a2=unknown, a3=[entry a0]:8, a6=[entry a0+244]; this call follows the taken arm of `bne` at 0x331be14 or `bltz` at 0x331be1c.
+  The integer return value is unknown (`jr` at 0x331befc, 0x331bf88).
+
+- `__glSaveCN` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3335550
+  A word is loaded from entry `a0` +0x9e88 (`lw` at 0x333555c).
+  On the taken arm of `beq` at 0x3335574, a word is loaded from entry `a1` +0x0 (`lw` at 0x3335598).
+  On the taken arm of `beq` at 0x3335574, a word is stored at entry `a1` +0x0 (`sw` at 0x33355a0).
+  On the taken arm of `beq` at 0x3335574, 4 floating-point word loads use entry `a0`, including offsets +0x170, +0x16c, +0x168 (`lwc1` at 0x33355a4, 0x33355a8, 0x33355ac).
+  On the taken arm of `beq` at 0x3335574, a doubleword is loaded from entry `a0` +0x4890 (`ld` at 0x33355b4).
+  The `beq` takes 0x3335598 when the word at entry `a0` +0x9e88 equals 0x3 and falls through when it differs from 0x3 (`beq` at 0x3335574).
+  The `bgezall` at 0x3335580 calls `__glSaveN` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the fall-through of `beq` at 0x3335574.
+  The `jalr` at 0x33355d8 calls (unknown callee) with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the taken arm of `beq` at 0x3335574.
+  On the taken arm of `beq` at 0x3335574, eight floating-point word stores use entry `a1`, including +0xb4, +0xb0 and +0xac (`swc1` at 0x33355b8, 0x33355bc, 0x33355c0).
+  At return at 0x3335590, `v0` is unknown (`jr` at 0x3335590).
+
+- `__glSaveCNT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33355f0
+  A word is loaded from entry `a0` +0x9e88 (`lw` at 0x33355fc).
+  On the taken arm of `beq` at 0x3335614, a word is loaded from entry `a1` +0x0 (`lw` at 0x3335638).
+  On the taken arm of `beq` at 0x3335614, a word is stored at entry `a1` +0x0 (`sw` at 0x3335640).
+  On the taken arm of `beq` at 0x3335614, a doubleword is loaded from entry `a0` +0x4890 (`ld` at 0x3335644).
+  On the taken arm of `beq` at 0x3335614, 11 floating-point word loads use entry `a0`, including offsets +0x174, +0x170, +0x16c (`lwc1` at 0x3335648, 0x333564c, 0x3335650).
+  The `beq` takes 0x3335638 when the word at entry `a0` +0x9e88 equals 0x3 and falls through when it differs from 0x3 (`beq` at 0x3335614).
+  The `bgezall` at 0x3335620 calls `__glSaveNT` with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the fall-through of `beq` at 0x3335614.
+  The `jalr` at 0x33356b0 calls (unknown callee) with `a0` = `a0 at entry (arg0)`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the taken arm of `beq` at 0x3335614.
+  On the taken arm of `beq` at 0x3335614, fifteen floating-point word stores use entry `a1`, including +0x30, +0x2c and +0x28 (`swc1` at 0x3335664, 0x3335668, 0x333566c).
+  At return at 0x3335630, `v0` is unknown (`jr` at 0x3335630).
+
+- `__glim_MultMatrixd` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3336930
+  On the fall-through of `beq` at 0x3336954, 16 doubleword loads use entry `a0`, including offsets +0x0, +0x8, +0x10 (`ldc1` at 0x333695c, 0x3336968, 0x3336974).
+  The `beq` takes 0x3336a44 when the word at absolute 0x1030 equals 0x1 and falls through when it differs from 0x1 (`beq` at 0x3336954).
+  The `bgezall` at 0x3336a2c calls `__glDoMultMatrix` with `a0` = `[0x1020]:8`, `a1` = `sp-128`, `a2` = `0x3335f60`, `a3` = `a3 at entry (arg3)`, `a4` = `a0 at entry (arg0)`, `a5` = `[0x1020]:8`, on the fall-through of `beq` at 0x3336954.
+  The `jalr` at 0x3336a48 calls `__glSetError` with `a0` = `0x502`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, `a4` = `a0 at entry (arg0)`, `a5` = `[0x1020]:8`, on the taken arm of `beq` at 0x3336954.
+  A word is loaded from absolute 0x1030 (`lw` at 0x3336934).
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3336938).
+  At return at 0x3336a3c, `v0` is unknown (`jr` at 0x3336a3c).
+
+- `__glim_Rotated` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3336ad0
+  The `beq` takes 0x3336b2c when the word at absolute 0x1030 equals 0x1 and falls through when it differs from 0x1 (`beq` at 0x3336af8).
+  The `bgezall` at 0x3336b14 calls `__glDoRotate` with `a0` = `[0x1020]:8`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the fall-through of `beq` at 0x3336af8.
+  The `jalr` at 0x3336b30 calls `__glSetError` with `a0` = `0x502`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the taken arm of `beq` at 0x3336af8.
+  A word is loaded from absolute 0x1030 (`lw` at 0x3336ad4).
+  On the fall-through of `beq` at 0x3336af8, a doubleword is loaded from absolute 0x1020 (`ld` at 0x3336b18).
+  At return at 0x3336b24, `v0` is unknown (`jr` at 0x3336b24).
+
+- `__glim_Scaled` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3336bb0
+  The `beq` takes 0x3336c04 when the word at absolute 0x1030 equals 0x1 and falls through when it differs from 0x1 (`beq` at 0x3336bd4).
+  The `bgezall` at 0x3336bec calls `__glDoScale` with `a0` = `[0x1020]:8`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the fall-through of `beq` at 0x3336bd4.
+  The `jalr` at 0x3336c08 calls `__glSetError` with `a0` = `0x502`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`, on the taken arm of `beq` at 0x3336bd4.
+  A word is loaded from absolute 0x1030 (`lw` at 0x3336bb4).
+  On the fall-through of `beq` at 0x3336bd4, a doubleword is loaded from absolute 0x1020 (`ld` at 0x3336bf0).
+  At return at 0x3336bfc, `v0` is unknown (`jr` at 0x3336bfc).
+
+- `__glim_Translated` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3336c90
+  The word at absolute 0x1030 is loaded (`lw` at 0x3336c94).
+  `beq` at 0x3336cb4 takes 0x3336ce4 when that word equals 0x1 and falls through when it differs.
+  The `bgezall` at 0x3336ccc calls `__glDoTranslate` with `a0` = `[0x1020]:8`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)` on the fall-through of `beq` at 0x3336cb4.
+  Its delay slot loads a doubleword from absolute 0x1020 (`ld` at 0x3336cd0).
+  The `jalr` at 0x3336ce8 calls `__glSetError` with `a0` = `0x502`, `a1` = `a1 at entry (arg1)`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)` on the taken arm of `beq` at 0x3336cb4.
+  At return, v0 is unknown (`jr` at 0x3336cdc).
+
+- `__glReadjustZCounts` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33374c0
+  A byte is read from entry a0 +0x764 (`lbu` at 0x33374c0).
+  `beq` at 0x33374dc takes 0x3337570 when that byte is zero and falls through when nonzero.
+  On that fall-through, a byte is loaded from entry a0 +0xde9 (`lbu` at 0x33374e4).
+  On the fall-through of `beq` at 0x33374dc, `beq` at 0x33374e8 takes 0x3337570 when the byte at entry a0 +0xde9 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x33374e8, words are loaded from entry a0 +0x9d60 and +0x9d64 (`lw` at 0x33374f8, 0x33374fc).
+  On that path, `beq` at 0x3337500 takes 0x3337570 when those words are equal and falls through when they differ.
+  On the fall-through of `beq` at 0x3337500, a doubleword is loaded from entry a0 +0x9d80 (`ld` at 0x3337508).
+  The `jalr` at 0x3337514 calls (unknown callee) with `a0` = `a0 at entry (arg0)`, `a1` = `a0+40160`, `a2` = `[a0+40292]`, `a3` = `a3 at entry (arg3)` on the fall-through of `beq` at 0x3337500.
+  On that fall-through, `beq` at 0x3337540 takes 0x3337560 when unknown at AND 0xffffffff80000000 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x3337540, a word value 0x2 is stored at absolute 0x1030 (`sw` at 0x3337548).
+  On that same path, a word is read and then stored at entry a0 +0x4714 (`lw` at 0x333754c; `sw` at 0x3337558).
+  On either arm of `beq` at 0x3337540, the return delay slot stores a word to an unknown base (`sw` at 0x333756c).
+  The return at 0x3337568 has v0 = 0xffffffff80000000, while v0 is unknown at 0x3337578 (`jr` at 0x3337568, 0x3337578).
+
+- `__glDoTranslate` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3338820
+  The `bgezall` at 0x333884c calls `__glDoMultMatrix` with `a0` = `a0 at entry (arg0)`, `a1` = `sp-32`, `a2` = `0x3338760`, `a3` = `a3 at entry (arg3)`.
+  The returned v0 and f0 are the result of `__glDoMultMatrix` (`jr` at 0x333885c).
+
+- `__glXForm2` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3338980
+  2 floating-point word loads use entry `a1`, including offsets +0x0, +0x4 (`lwc1` at 0x3338980, 0x3338984).
+  12 floating-point word loads use entry `a2`, including offsets +0x10, +0x0, +0x30 (`lwc1` at 0x3338988, 0x333898c, 0x3338998).
+  4 floating-point word stores use entry `a0`, including offsets +0x0, +0x4, +0x8 (`swc1` at 0x33389a0, 0x33389bc, 0x33389d8).
+  At return at 0x33389f4, `v0` is unknown (`jr` at 0x33389f4).
+
+- `__glXForm3` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3338a00
+  3 floating-point word loads use entry `a1`, including offsets +0x0, +0x4, +0x8 (`lwc1` at 0x3338a00, 0x3338a04, 0x3338a10).
+  16 floating-point word loads use entry `a2`, including offsets +0x10, +0x0, +0x20 (`lwc1` at 0x3338a08, 0x3338a0c, 0x3338a14).
+  4 floating-point word stores use entry `a0`, including offsets +0x0, +0x4, +0x8 (`swc1` at 0x3338a2c, 0x3338a50, 0x3338a74).
+  At return at 0x3338a98, `v0` is unknown (`jr` at 0x3338a98).
+
+- `__glPixmapAllocAccum` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3339580
+  It loads a doubleword at entry a0 +0x9e08 and words at entry a0 +0xfdc and +0xfd8 (`ld` at 0x333959c; `lw` at 0x33395a0, 0x33395b4).
+  The `jalr` at 0x33395b0 calls (unknown callee) with a0 = entry a1, a1 = word at entry a0 +0xfd8, a2 = word at entry a0 +0xfdc and a3 = entry a3.
+  The call's v0 is returned (`jr` at 0x33395c0).
+
+- `__gllc_Color3b` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x333c5b0).
+  On the taken path of `bne` at 0x333c5ec, it stores entry a2, a1 and a0 as bytes at offsets +0x1a, +0x19 and +0x18 from the `__glDlistAllocOp2` result (`sb` at 0x333c610, 0x333c614, 0x333c624).
+  On the taken path of `bne` at 0x333c5ec, it stores halfword 0x5 at +0x14 from that result (`sh` at 0x333c61c).
+  The `jalr` at 0x333c5e4 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2 and a3 = entry a3.
+  The `bne` at 0x333c5ec is taken to 0x333c600 when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  The `jalr` at 0x333c63c calls `__glDlistAppendOp` with unknown a0, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348940 and unknown a3 on the taken path of `bne` at 0x333c5ec.
+  Its v0 return is unknown (`jr` at 0x333c5f8).
+
+- `__gllc_Color3bv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333c650
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333c654).
+  On the taken path of `bne` at 0x333c684, it stores halfword 0x5 at +0x14 from the `__glDlistAllocOp2` result (`sh` at 0x333c6a0).
+  On the taken path of `bne` at 0x333c684, bytes loaded at entry a0 +0x0, +0x1 and +0x2 are stored at offsets +0x18, +0x19 and +0x1a from that result (`lb` at 0x333c6ac, 0x333c6b4, 0x333c6bc; `sb` at 0x333c6b0, 0x333c6b8, 0x333c6c0).
+  The `jalr` at 0x333c67c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2 and a3 = entry a3.
+  The `bne` at 0x333c684 is taken to 0x333c69c when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  The `jalr` at 0x333c6d8 calls `__glDlistAppendOp` with unknown a0, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348940 and unknown a3 on the taken path of `bne` at 0x333c684.
+  The returned v0 is unknown (`jr` at 0x333c694).
+
+- `__gllc_Color3d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword at absolute 0x1020 (`ld` at 0x333c6f0).
+  On the taken path of `bne` at 0x333c728, it stores byte 0x1 and halfword 0x6 at offsets +0x16 and +0x14 from the `__glDlistAllocOp2` result (`sb` at 0x333c740; `sh` at 0x333c748).
+  On the taken path of `bne` at 0x333c728, entry f14, f13 and f12 are stored as doublewords at offsets +0x28, +0x20 and +0x18 from that result (`sdc1` at 0x333c760, 0x333c764, 0x333c768).
+  The `jalr` at 0x333c720 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x18, a2 = entry a2 and a3 = entry a3.
+  The `bne` at 0x333c728 is taken to 0x333c73c when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  The `jalr` at 0x333c780 calls `__glDlistAppendOp` with unknown a0, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348990, unknown a3, a4 = 0x1 and a5 = 0x6 on the taken path of `bne` at 0x333c728.
+  Its v0 return is unknown (`jr` at 0x333c734).
+
+- `__glPixInitCI` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333bd30
+  The `jalr` at 0x333bd5c calls `__glInitBuffer` with a0 through a3 equal to entry a0 through a3.
+  Doubleword stores at entry a0 +0x100, +0xf8, +0x128 and +0x130 write 0x3304750, 0x33046a0, 0x3304940 and 0x3304940 (`sd` at 0x333bd70, 0x333bd74, 0x333bd78, 0x333bd7c).
+  Four word stores write 0x3f800000 at entry a0 +0xb8, +0x98, +0x94 and +0x90 (`swc1` at 0x333bda0, 0x333bda4, 0x333bda8, 0x333bdac).
+  Doubleword stores include entry a0 +0x148, +0x110 and +0x108 (`sd` at 0x333bd9c, 0x333bdb4, 0x333bdbc).
+  A word is loaded from entry a1 +0xe04 (`lw` at 0x333bdd8).
+  The `beq` at 0x333bdfc is taken to 0x333be0c when that word is at least 0x20 signed and falls through when it is less than 0x20 signed.
+  The `beq` at 0x333be18 is taken to 0x333be70 when unknown a4 is zero and falls through when it is nonzero.
+  On the fall-through of `beq` at 0x333be18, `bne` at 0x333be20 is taken to 0x333be50 when unknown a5 is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x333be20, the word 0x2 is stored at entry a0 +0x24 (`sw` at 0x333be30).
+  On the taken path of `bne` at 0x333be20, the word 0x1 is stored at entry a0 +0x24 (`sw` at 0x333be54).
+  On the taken path of `beq` at 0x333be18, the word 0x4 is stored at entry a0 +0x24 (`sw` at 0x333be80).
+  The v0 return is unknown at all three returns (`jr` at 0x333be48, 0x333be68, 0x333be98).
+
+- `__glXForm4` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 308 bytes
+  Four word loads from entry a1 include +0x4, +0x0, +0xc (`lwc1` at 0x3338aa0, 0x3338aa4, 0x3338ab4).
+  Before `bc1f` at 0x3338adc, four word loads from entry a2 include +0x0, +0x10, +0x20 (`lwc1` at 0x3338aac, 0x3338ac0, 0x3338ac8).
+  A word comes from absolute 0x33977a0 (`lwc1` at 0x3338abc).
+  `bc1f` at 0x3338adc targets 0x3338b5c when the word at entry a1 +0xc does not compare equal to 0x3f800000 as a float, and falls through when equal (`c.eq.s` at 0x3338ad0).
+  Four word stores on the fall-through path include entry a0 offsets +0x0, +0x4, +0x8 (`swc1` at 0x3338ae8, 0x3338b0c, 0x3338b30).
+  Four word stores on the taken path include entry a0 offsets +0x0, +0x4, +0x8 (`swc1` at 0x3338b60, 0x3338b84, 0x3338ba8).
+  The integer return value is 0x5e418 (`jr` at 0x3338b54, 0x3338bcc).
+
+- `__glXForm2_W` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  Two word loads from entry a1 occur at +0x0, +0x4 (`lwc1` at 0x3338be0, 0x3338be4).
+  Nine word loads from entry a2 include +0x10, +0x0, +0x30 (`lwc1` at 0x3338be8, 0x3338bec, 0x3338bf8).
+  It reads a word from absolute 0x33977a0 (`lwc1` at 0x3338c40).
+  Four word stores to entry a0 include offsets +0x0, +0x4, +0xc (`swc1` at 0x3338c00, 0x3338c1c, 0x3338c44).
+  A word is stored at entry a0 +0x8 in the return delay slot (`swc1` at 0x3338c50).
+  The integer result is 0x5e2d8 (`jr` at 0x3338c4c).
+
+- `__glXForm3_W` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  Three word reads from entry a1 include +0x0, +0x4, +0x8 (`lwc1` at 0x3338c60, 0x3338c64, 0x3338c70).
+  Twelve word reads from entry a2 include +0x10, +0x0, +0x20 (`lwc1` at 0x3338c68, 0x3338c6c, 0x3338c74).
+  A word load uses absolute 0x33977a0 (`lwc1` at 0x3338cdc).
+  Four word stores include entry a0 offsets +0x0, +0x4, +0xc (`swc1` at 0x3338c8c, 0x3338cb0, 0x3338ce0).
+  A word is stored at entry a0 +0x8 in the return delay slot (`swc1` at 0x3338cec).
+  It returns the integer value 0x5e258 (`jr` at 0x3338ce8).
+
+- `__glXForm4_W` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 244 bytes
+  Four word loads from entry a1 include +0x4, +0x0, +0xc (`lwc1` at 0x3338cf0, 0x3338cf4, 0x3338d04).
+  Before `bc1f` at 0x3338d2c, four word loads from entry a2 include +0x0, +0x10, +0x20 (`lwc1` at 0x3338cfc, 0x3338d10, 0x3338d18).
+  The routine reads a word at absolute 0x33977a0 (`lwc1` at 0x3338d0c).
+  `bc1f` at 0x3338d2c targets 0x3338d8c when the word at entry a1 +0xc does not compare equal to 0x3f800000 as a float, and falls through when equal (`c.eq.s` at 0x3338d20).
+  Four word stores on the fall-through path include entry a0 offsets +0x0, +0x4, +0xc (`swc1` at 0x3338d38, 0x3338d5c, 0x3338d7c).
+  Four word stores on the taken path include entry a0 offsets +0x0, +0x4, +0xc (`swc1` at 0x3338d90, 0x3338db4, 0x3338dd8).
+  The value returned in v0 is 0x5e1c8 (`jr` at 0x3338d84, 0x3338ddc).
+
+- `__glXForm2_2DW` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 96 bytes
+  Two word loads use entry a1 offsets +0x0, +0x4 (`lwc1` at 0x3338df0, 0x3338df4).
+  Seven word loads from entry a2 include offsets +0x10, +0x0, +0x30 (`lwc1` at 0x3338df8, 0x3338dfc, 0x3338e08).
+  A word is read from absolute 0x33977a0 (`lwc1` at 0x3338e34).
+  Four word stores to entry a0 include offsets +0x0, +0x4, +0xc (`swc1` at 0x3338e10, 0x3338e3c, 0x3338e44).
+  A word is stored at entry a0 +0x8 in the return delay slot (`swc1` at 0x3338e4c).
+  The return in v0 carries 0x5e0c8, and f0 is the word at entry a2 +0x38 (`jr` at 0x3338e48).
+
+- `__glXForm3_2DW` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 108 bytes
+  Three word loads from entry a1 include offsets +0x0, +0x4 and +0x8 (`lwc1` at 0x3338e50, 0x3338e54, 0x3338e6c).
+  Eight word loads from entry a2 include +0x10, +0x0 and +0x30 (`lwc1` at 0x3338e58, 0x3338e5c, 0x3338e68).
+  A word comes from absolute 0x33977a0 (`lwc1` at 0x3338eac).
+  Four word stores to entry a0 include +0x0, +0x4 and +0xc (`swc1` at 0x3338e74, 0x3338e90, 0x3338eb0).
+  At return v0 contains 0x5e068 (`jr` at 0x3338eb4).
+
+- `__glXForm4_2DW` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 184 bytes
+  Four word loads from entry a1 include +0xc, +0x0 and +0x4 (`lwc1` at 0x3338ecc, 0x3338ed8, 0x3338ee0).
+  Three word loads from entry a2 before the branch include +0x10, +0x0 and +0x30 (`lwc1` at 0x3338ec4, 0x3338edc, 0x3338ee8).
+  A word load reads absolute 0x33977a0 (`lwc1` at 0x3338ed4).
+  `bc1f` at 0x3338ef4 targets 0x3338f38 when the word at entry a1 +0xc does not compare equal to 0x3f800000 as a float, and falls through when equal (`c.eq.s` at 0x3338ee4).
+  On that fall-through path, four word stores to entry a0 include +0x0, +0x4 and +0xc (`swc1` at 0x3338f00, 0x3338f1c, 0x3338f2c).
+  On the taken path, four word stores to entry a0 include +0x0, +0x4 and +0xc (`swc1` at 0x3338f3c, 0x3338f58, 0x3338f6c).
+  The integer returned is 0x5dff8 (`jr` at 0x3338f30, 0x3338f70).
+
+- `__glXForm2_2DNRW` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 72 bytes
+  Two word loads at entry a1 use +0x0 and +0x4 (`lwc1` at 0x3338f84, 0x3338f90).
+  Five word loads from entry a2 include +0x0, +0x30 and +0x14 (`lwc1` at 0x3338f80, 0x3338f88, 0x3338f98).
+  A word is fetched from absolute 0x33977a0 (`lwc1` at 0x3338fb0).
+  Four word stores at entry a0 include +0x0, +0x4 and +0xc (`swc1` at 0x3338f94, 0x3338fb4, 0x3338fbc).
+  Its v0 result is 0x5df38, and f0 is the word at entry a2 +0x38 (`jr` at 0x3338fc0).
+
+- `__glXForm3_2DNRW` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 84 bytes
+  Three word loads from entry a1 include +0x0, +0x8 and +0x4 (`lwc1` at 0x3338fd4, 0x3338fe0, 0x3338fe4).
+  Six word loads from entry a2 include +0x0, +0x30 and +0x14 (`lwc1` at 0x3338fd0, 0x3338fd8, 0x3338fec).
+  Another word read uses absolute 0x33977a0 (`lwc1` at 0x3339014).
+  Four word stores using entry a0 include +0x0, +0x4 and +0xc (`swc1` at 0x3338fe8, 0x3338ff8, 0x3339018).
+  The v0 return value is 0x5dee8 (`jr` at 0x333901c).
+
+- `__glXForm4_2DNRW` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+  Four word loads from entry a1 include +0xc, +0x0 and +0x8 (`lwc1` at 0x3339038, 0x3339044, 0x3339054).
+  Two word loads from entry a2 before the branch use +0x0 and +0x30 (`lwc1` at 0x3339048, 0x3339050).
+  It loads a word from absolute 0x33977a0 (`lwc1` at 0x3339040).
+  `bc1f` at 0x333905c targets 0x3339094 when the word at entry a1 +0xc does not compare equal to 0x3f800000 as a float, and falls through when equal (`c.eq.s` at 0x333904c).
+  Four word stores on the fall-through path use entry a0, including +0x0, +0x4 and +0xc (`swc1` at 0x3339068, 0x3339078, 0x3339088).
+  Four word stores on the taken path use entry a0, including +0x0, +0x4 and +0xc (`swc1` at 0x3339098, 0x33390ac, 0x33390c0).
+  The value in v0 at return is 0x5de88, and f0 is 0x3f800000 (`jr` at 0x333908c, 0x33390c4).
+
+- `InitFnPtrs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Its 83 doubleword loads use absolute addresses, including 0x33911c8, 0x33911d0 and 0x33911e0 (`ld` at 0x3339730, 0x3339734, 0x3339738).
+  Its 83 doubleword stores use entry a0 offsets, including +0x4c68, +0x4c60 and +0x4c58 (`sd` at 0x3339758, 0x3339760, 0x3339768).
+  The first three of those stores write 0x32a62b0, 0x32a60e0 and 0x32a5f90, respectively (`sd` at 0x3339758, 0x3339760, 0x3339768).
+  The v0 return is 0x33396b0 (`jr` at 0x33399dc).
+
+- `__glPixInitRGB` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333afc0
+  The `jalr` at 0x333afec calls `__glInitBuffer` with a0, a1, a2 and a3 equal to their entry values.
+  Nine doubleword stores to entry a0 include +0x130, +0x128 and +0x100 (`sd` at 0x333b000, 0x333b004, 0x333b008).
+  The first three stores write 0x3304940, 0x3304940 and 0x3304750 respectively (`sd` at 0x333b000, 0x333b004, 0x333b008).
+  Four word loads from entry a1 include +0xe18, +0xe1c and +0xe20 (`lw` at 0x333b04c, 0x333b090, 0x333b0d4).
+  Word stores to entry a0 include +0xa8, +0x78 and +0x9c (`sw` at 0x333b07c, 0x333b084, 0x333b088).
+  The OR of the words at entry a1 +0xe18, +0xe1c, +0xe20 and +0xe24 is stored at entry a0 +0xd0 (`sw` at 0x333b16c).
+  The `bne` at 0x333b1d0 is taken to 0x333b20c when unknown a1 is less than 0x11 signed and falls through when it is at least 0x11 signed.
+  On the fall-through of `bne` at 0x333b1d0, the value 0x4 is stored at entry a0 +0x24 (`sw` at 0x333b1d8).
+  On the taken path of `bne` at 0x333b1d0, `bne` at 0x333b214 is taken to 0x333b23c when unknown at is nonzero and falls through when it is zero.
+  On the fall-through of `bne` at 0x333b214, the value 0x2 is stored at entry a0 +0x24 (`sw` at 0x333b220).
+  The v0 return is 0x333a870 at 0x333b234 and 0x3340000 at the other returns (`jr` at 0x333b204, 0x333b234, 0x333b260, 0x333b29c).
+
+- `__glPixPickSpanProcs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword at entry a0 +0x4718 and a byte at entry a0 +0x9590 (`ld` at 0x333bea0; `lbu` at 0x333bec0).
+  `beq` at 0x333bee0 is taken to 0x333bef8 when the byte at entry a0 +0x9590 is zero and falls through when it is nonzero; its delay slot loads a word from entry a0 +0x97fc on both paths (`lw` at 0x333bee4).
+  On the fall-through of `beq` at 0x333bee0, a word is read at entry a0 +0x808 (`lw` at 0x333bee8).
+  On the taken arm of `beq` at 0x333bee0, doublewords 0x0 and 0x32fd370 are stored at entry a0 +0x4a40 and +0x49c8 (`sd` at 0x333bef8, 0x333bf08).
+  On the fall-through of `beq` at 0x333bfc0, `beq` at 0x333bfd0 is taken to 0x333c198 when the word at entry a0 +0x880 equals 0x1102 and falls through when it differs (`lw` at 0x333bfc8).
+  When reached, `beq` at 0x333c054 is taken to 0x333c10c when the word at entry a0 +0x868 equals 0x408 and falls through when it differs (`lw` at 0x333c044).
+  On the fall-through of `beq` at 0x333c054, words are stored at entry a0 +0x4ab8 and +0x4abc (`sw` at 0x333c080, 0x333c088).
+  That same path stores a doubleword at entry a0 +0x4ac0 (`sd` at 0x333c084).
+  On the taken arm of `beq` at 0x333c054, a doubleword is stored at entry a0 +0x4ac0 (`sd` at 0x333c13c).
+  The `jalr` at 0x333c1dc calls `__glLookUpTextureParams` with a0 = entry a0, a1 = 0xde1, a2 unknown, a3 = doubleword at entry a0 +0x4718, a5 = 0x32fdd50, a6 = 0x32fdbd0 and a7 = 0x32ff3f0 on the taken arm of `bgez` at 0x333bfac.
+  The `jalr` at 0x333c1f0 calls `__glLookUpTexture` with a0 = entry a0, a1 = 0xde1 and a2 and a3 unknown on the taken arm of `bgez` at 0x333bfac.
+  The v0 value at each return is unknown (`jr` at 0x333c090, 0x333c0a0, 0x333c148).
+
+- `__glPixPickStoreProcs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a word at entry a0 +0x808 (`lw` at 0x333c3d0).
+  The `beq` at 0x333c3e8 is taken to 0x333c4f8 when that word AND 0x1 is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x333c3e8, it loads a byte from entry a0 +0xde4 (`lbu` at 0x333c3f0).
+  After either arm of `beq` at 0x333c3e8, it loads a word from entry a0 +0x868 (`lw` at 0x333c404).
+  The `bne` at 0x333c424 is taken to 0x333c45c when that word is less than 0x409 unsigned and falls through when it is at least 0x409 unsigned.
+  On paths through the taken arm of `bne` at 0x333c424, `bne` at 0x333c464 is taken to 0x333c4ac when that word is less than 0x405 unsigned and falls through when it is at least 0x405 unsigned.
+  On paths through the fall-through of `bne` at 0x333c464, `bne` at 0x333c474 is taken to 0x333c4e0 when the word at entry a0 +0x868 differs from 0x408 and falls through when equal.
+  On the fall-through of `bne` at 0x333c474, a byte is read at entry a0 +0x9948 (`lbu` at 0x333c480).
+  On that path, `beq` at 0x333c48c is taken to 0x333c4b8 when the byte is zero and falls through when nonzero.
+  On the fall-through of `beq` at 0x333c48c, a doubleword 0x33061d0 is stored at entry a0 +0x4d98 (`sd` at 0x333c498).
+  On that path, a doubleword with unknown value is stored at entry a0 +0x4d90 in the return delay slot (`sd` at 0x333c4a8).
+  The v0 returns include the byte at entry a0 +0x9948 and 0x5aae8; other return values include unknown (`jr` at 0x333c4a4, 0x333c4d8, 0x333c4e0, 0x333c520).
+
+- `__glFilter4Func1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 1260 bytes
+  A word is read at entry a1 +0x24 (`lwc1` at 0x331cd70).
+  A word is read at entry a0 +0x8 (`lw` at 0x331cd9c).
+  `beq` at 0x331cdc8 targets 0x331d164 when that word equals 0x2901 and falls through when unequal.
+  `beq` at 0x331cf74 targets 0x331cfb8 when the word at entry a1 +0x44 equals 0x190a and falls through when unequal.
+  If `beq` at 0x331cf74 falls through, `beq` at 0x331cf7c targets 0x331cff4 when that word equals 0x1909 and falls through when unequal.
+  If `beq` at 0x331cf7c falls through, `beq` at 0x331cf84 targets 0x331d060 when that word equals 0x1908 and falls through when unequal.
+  On the taken arm of `beq` at 0x331cf74, a word is stored to entry a5 +0x10 (`swc1` at 0x331cfec).
+  The `jalr` at 0x331ce04 calls `floor` with a0=entry a0, a1=entry a1, a2=entry a2, a3=unknown, a4=[entry a0+8]; this call follows the fall-through of `beq` at 0x331cdc8.
+  The `jalr` at 0x331ce6c calls `floor` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x331ceec calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=0x0, a5=entry sp-256.
+  The `jalr` at 0x331cf10 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=0x0, a5=entry sp-232.
+  The `jalr` at 0x331cf30 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=0x0, a5=entry sp-208.
+  The `jalr` at 0x331cf50 calls (unknown callee) with a0=entry a1, a1=entry a0, a2=0x0, a3=0x0, a5=entry sp-184.
+  The `jalr` at 0x331d188 calls `floor` with a0=entry a0, a1=entry a1, a2=entry a2, a3=unknown, a4=[entry a0+8], a6=[entry a1+24]-1; this call follows the taken arm of `beq` at 0x331cdc8.
+  The `jalr` at 0x331d1ac calls `floor` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; this call follows the taken arm of `beq` at 0x331cdc8.
+  The `jalr` at 0x331d1d4 calls `floor` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; this call follows the taken arm of `beq` at 0x331cdc8.
+  The `jalr` at 0x331d1fc calls `floor` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; this call follows the taken arm of `beq` at 0x331cdc8.
+  The integer return value is 0x8049 (`jr` at 0x331cfb0, 0x331d038, 0x331d124).
+
+- `__gllc_Color3dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333c790
+  On the taken path of `bne` at 0x333c7c4, 3 doubleword loads use entry `a0`, including offsets +0x0, +0x8, +0x10 (`ldc1` at 0x333c7ec, 0x333c7f4, 0x333c800).
+  The `bne` takes 0x333c7dc when `__glDlistAllocOp2` returns nonzero and falls through on zero (`bne` at 0x333c7c4).
+  The `jalr` at 0x333c7bc calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x18`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333c820 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348990`, `a3` = `unknown` on the taken path of `bne` at 0x333c7c4.
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x333c794).
+  On the taken path of `bne` at 0x333c7c4, a byte with value 0x1 is stored at `__glDlistAllocOp2` return +0x16 (`sb` at 0x333c7dc).
+  On the taken path of `bne` at 0x333c7c4, a halfword with value 0x6 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333c7e8).
+  On the taken path of `bne` at 0x333c7c4, 3 floating-point doubleword stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x20, +0x28 (`sdc1` at 0x333c7f0, 0x333c7fc, 0x333c808).
+  On the taken path of `bne` at 0x333c7c4, the word store has an unknown base (`sw` at 0x333c824).
+  At return, `v0` is unknown (`jr` at 0x333c7d4).
+
+- `__gllc_Color3f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333c830
+  A nonzero return from `__glDlistAllocOp2` takes the `bne` to 0x333c87c; zero falls through (`bne` at 0x333c868).
+  The `jalr` at 0x333c860 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333c8b8 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x33489e0`, `a3` = `unknown`, `a4` = `0x7` on the taken path of `bne` at 0x333c868.
+  The doubleword at absolute 0x1020 is loaded (`ld` at 0x333c830).
+  On the taken path of `bne` at 0x333c868, a halfword with value 0x7 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333c880).
+  On the taken path of `bne` at 0x333c868, 3 floating-point word stores use the `__glDlistAllocOp2` return, including offsets +0x20, +0x1c, +0x18 (`swc1` at 0x333c898, 0x333c89c, 0x333c8a0).
+  On the taken path of `bne` at 0x333c868, a word is stored through an unknown base (`sw` at 0x333c8bc).
+  The returned `v0` is unknown (`jr` at 0x333c874).
+
+- `__gllc_Color3fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333c8d0
+  On the taken path of `bne` at 0x333c904, 3 floating-point word loads use entry `a0`, including offsets +0x0, +0x4, +0x8 (`lwc1` at 0x333c924, 0x333c92c, 0x333c938).
+  The `bne` branches to 0x333c91c for a nonzero `__glDlistAllocOp2` return and falls through for zero (`bne` at 0x333c904).
+  The `jalr` at 0x333c8fc calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333c958 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x33489e0`, `a3` = `unknown` on the taken path of `bne` at 0x333c904.
+  A doubleword comes from absolute 0x1020 (`ld` at 0x333c8d4).
+  On the taken path of `bne` at 0x333c904, a halfword with value 0x7 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333c920).
+  On the taken path of `bne` at 0x333c904, 3 floating-point word stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x1c, +0x20 (`swc1` at 0x333c928, 0x333c934, 0x333c940).
+  On the taken path of `bne` at 0x333c904, an unknown base is used for a word store (`sw` at 0x333c95c).
+  The return leaves `v0` unknown (`jr` at 0x333c914).
+
+- `__gllc_Color3i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333c970
+  If the `__glDlistAllocOp2` return is nonzero, the `bne` takes 0x333c9c0; if zero, it falls through (`bne` at 0x333c9ac).
+  The `jalr` at 0x333c9a4 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333c9fc calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348a30`, `a3` = `unknown` on the taken path of `bne` at 0x333c9ac.
+  The code loads a doubleword at absolute 0x1020 (`ld` at 0x333c970).
+  On the taken path of `bne` at 0x333c9ac, 3 word stores use the `__glDlistAllocOp2` return, including offsets +0x20, +0x1c, +0x18 (`sw` at 0x333c9d0, 0x333c9d4, 0x333c9e4).
+  On the taken path of `bne` at 0x333c9ac, a halfword with value 0x8 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333c9dc).
+  On the taken path of `bne` at 0x333c9ac, the base of a word store is unknown (`sw` at 0x333ca00).
+  Its return value in `v0` is unknown (`jr` at 0x333c9b8).
+
+- `__gllc_Color3iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333ca10
+  On the taken path of `bne` at 0x333ca44, 3 word loads use entry `a0`, including offsets +0x0, +0x4, +0x8 (`lw` at 0x333ca6c, 0x333ca74, 0x333ca7c).
+  The `bne` falls through on a zero `__glDlistAllocOp2` return and takes 0x333ca5c on nonzero (`bne` at 0x333ca44).
+  The `jalr` at 0x333ca3c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333ca98 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348a30`, `a3` = `unknown` on the taken path of `bne` at 0x333ca44.
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x333ca14).
+  On the taken path of `bne` at 0x333ca44, a halfword with value 0x8 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333ca60).
+  On the taken path of `bne` at 0x333ca44, 3 word stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x1c, +0x20 (`sw` at 0x333ca70, 0x333ca78, 0x333ca80).
+  On the taken path of `bne` at 0x333ca44, a word write uses an unknown base (`sw` at 0x333ca9c).
+  `v0` is unknown at return (`jr` at 0x333ca54).
+
+- `__gllc_Color3s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333cab0
+  For a nonzero `__glDlistAllocOp2` return, the `bne` takes 0x333cb00; a zero return falls through (`bne` at 0x333caec).
+  The `jalr` at 0x333cae4 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333cb3c calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348a80`, `a3` = `unknown` on the taken path of `bne` at 0x333caec.
+  A doubleword load reads absolute 0x1020 (`ld` at 0x333cab0).
+  On the taken path of `bne` at 0x333caec, 4 halfword stores use the `__glDlistAllocOp2` return, including offsets +0x1c, +0x1a, +0x14 (`sh` at 0x333cb10, 0x333cb14, 0x333cb1c).
+  On the taken path of `bne` at 0x333caec, one word store has an unknown base (`sw` at 0x333cb40).
+  The value of `v0` at return is unknown (`jr` at 0x333caf8).
+
+- `__gllc_Color3sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333cb50
+  On the taken path of `bne` at 0x333cb84, 3 halfword loads use entry `a0`, including offsets +0x0, +0x2, +0x4 (`lh` at 0x333cbac, 0x333cbb4, 0x333cbbc).
+  The `bne` goes to 0x333cb9c when the `__glDlistAllocOp2` result is nonzero and otherwise falls through (`bne` at 0x333cb84).
+  The `jalr` at 0x333cb7c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333cbd8 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348a80`, `a3` = `unknown` on the taken path of `bne` at 0x333cb84.
+  The routine reads absolute 0x1020 as a doubleword (`ld` at 0x333cb54).
+  On the taken path of `bne` at 0x333cb84, 4 halfword stores use the `__glDlistAllocOp2` return, including offsets +0x14, +0x18, +0x1a (`sh` at 0x333cba0, 0x333cbb0, 0x333cbb8).
+  On the taken path of `bne` at 0x333cb84, a word is written through an unknown base (`sw` at 0x333cbdc).
+  At the return, the value in `v0` is unknown (`jr` at 0x333cb94).
+
+- `__gllc_Color3ub` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333cbf0
+  Zero from `__glDlistAllocOp2` makes the `bne` fall through; nonzero takes 0x333cc40 (`bne` at 0x333cc2c).
+  The `jalr` at 0x333cc24 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333cc7c calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348ad0`, `a3` = `unknown` on the taken path of `bne` at 0x333cc2c.
+  Absolute 0x1020 is read as a doubleword (`ld` at 0x333cbf0).
+  On the taken path of `bne` at 0x333cc2c, 3 byte stores use the `__glDlistAllocOp2` return, including offsets +0x1a, +0x19, +0x18 (`sb` at 0x333cc50, 0x333cc54, 0x333cc64).
+  On the taken path of `bne` at 0x333cc2c, a halfword with value 0xa is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333cc5c).
+  On the taken path of `bne` at 0x333cc2c, an unknown base receives a word store (`sw` at 0x333cc80).
+  Return register `v0` has an unknown value (`jr` at 0x333cc38).
+
+- `__gllc_Color3ubv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333cc90
+  On the taken path of `bne` at 0x333ccc4, 3 byte loads use entry `a0`, including offsets +0x0, +0x1, +0x2 (`lbu` at 0x333ccec, 0x333ccf4, 0x333ccfc).
+  A zero `__glDlistAllocOp2` result falls through the `bne`; a nonzero result takes 0x333ccdc (`bne` at 0x333ccc4).
+  The `jalr` at 0x333ccbc calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333cd18 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348ad0`, `a3` = `unknown` on the taken path of `bne` at 0x333ccc4.
+  It loads absolute 0x1020 as a doubleword (`ld` at 0x333cc94).
+  On the taken path of `bne` at 0x333ccc4, a halfword with value 0xa is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333cce0).
+  On the taken path of `bne` at 0x333ccc4, 3 byte stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x19, +0x1a (`sb` at 0x333ccf0, 0x333ccf8, 0x333cd00).
+  On the taken path of `bne` at 0x333ccc4, a word store addresses an unknown base (`sw` at 0x333cd1c).
+  This return has an unknown `v0` (`jr` at 0x333ccd4).
+
+- `__gllc_Color3ui` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333cd30
+  When `__glDlistAllocOp2` returns nonzero, the `bne` takes 0x333cd80; zero leaves it to fall through (`bne` at 0x333cd6c).
+  The `jalr` at 0x333cd64 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333cdbc calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348b20`, `a3` = `unknown` on the taken path of `bne` at 0x333cd6c.
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333cd30).
+  On the taken path of `bne` at 0x333cd6c, 3 word stores use the `__glDlistAllocOp2` return, including offsets +0x20, +0x1c, +0x18 (`sw` at 0x333cd90, 0x333cd94, 0x333cda4).
+  On the taken path of `bne` at 0x333cd6c, a halfword with value 0xb is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333cd9c).
+  On the taken path of `bne` at 0x333cd6c, the word store uses an unknown base (`sw` at 0x333cdc0).
+  At return, the `v0` value is unknown (`jr` at 0x333cd78).
+
+- `__gllc_Color4iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d460
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333d464).
+  The `jalr` at 0x333d48c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333d494 is taken to 0x333d4ac when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d494, halfword 0x10 is stored at +0x14 from that return (`sh` at 0x333d4b4).
+  On that taken arm, four word loads from entry a0 include +0x0, +0x4 and +0x8 (`lw` at 0x333d4b8, 0x333d4c4, 0x333d4cc).
+  That path has four word stores relative to the allocation return, including +0x18, +0x1c and +0x20 (`sw` at 0x333d4bc, 0x333d4c8, 0x333d4d0).
+  On that path a word is loaded from an unknown base (`lw` at 0x333d4dc).
+  The call delay slot stores a word to an unknown base (`sw` at 0x333d4f4).
+  The `jalr` at 0x333d4f0 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` return, a2 = 0x3348cb0, a3 = unknown, a4 = 0x10, on the taken arm of `bne` at 0x333d494.
+  At the return, v0 is unknown (`jr` at 0x333d4a4).
+
+- `__gllc_Color4s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d500
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333d508).
+  The `jalr` at 0x333d538 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333d540 is taken to 0x333d554 when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d540, halfword 0x11 is stored at +0x14 from that return (`sh` at 0x333d558).
+  That path has four halfword stores relative to the allocation return, including +0x1e, +0x1c and +0x18 (`sh` at 0x333d56c, 0x333d570, 0x333d578).
+  On that path a word is loaded from an unknown base (`lw` at 0x333d584).
+  The call delay slot stores a word to an unknown base (`sw` at 0x333d59c).
+  The `jalr` at 0x333d598 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` return, a2 = 0x3348d00, a3 = unknown, a4 = 0x11, on the taken arm of `bne` at 0x333d540.
+  At the return, v0 is unknown (`jr` at 0x333d54c).
+
+- `__gllc_Color4sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d5b0
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333d5b4).
+  The `jalr` at 0x333d5dc calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333d5e4 is taken to 0x333d5fc when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d5e4, halfword 0x11 is stored at +0x14 from that return (`sh` at 0x333d604).
+  On that taken arm, four halfword loads from entry a0 include +0x0, +0x2 and +0x4 (`lh` at 0x333d608, 0x333d614, 0x333d61c).
+  That path has four halfword stores relative to the allocation return, including +0x18, +0x1a and +0x1c (`sh` at 0x333d60c, 0x333d618, 0x333d620).
+  On that path a word is loaded from an unknown base (`lw` at 0x333d62c).
+  The call delay slot stores a word to an unknown base (`sw` at 0x333d644).
+  The `jalr` at 0x333d640 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` return, a2 = 0x3348d00, a3 = unknown, a4 = 0x11, on the taken arm of `bne` at 0x333d5e4.
+  At the return, v0 is unknown (`jr` at 0x333d5f4).
+
+- `__gllc_Color4ub` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d650
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333d658).
+  The `jalr` at 0x333d688 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333d690 is taken to 0x333d6a4 when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d690, halfword 0x12 is stored at +0x14 from that return (`sh` at 0x333d6a8).
+  That path has four byte stores relative to the allocation return, including +0x1b, +0x1a and +0x18 (`sb` at 0x333d6bc, 0x333d6c0, 0x333d6c8).
+  On that path a word is loaded from an unknown base (`lw` at 0x333d6d4).
+  The call delay slot stores a word to an unknown base (`sw` at 0x333d6ec).
+  The `jalr` at 0x333d6e8 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` return, a2 = 0x3348d50, a3 = unknown, a4 = 0x12, on the taken arm of `bne` at 0x333d690.
+  At the return, v0 is unknown (`jr` at 0x333d69c).
+
+- `__gllc_Color4ubv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d700
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333d704).
+  The `jalr` at 0x333d72c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333d734 is taken to 0x333d74c when the `__glDlistAllocOp2` return is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d734, halfword 0x12 is stored at +0x14 from that return (`sh` at 0x333d754).
+  On that taken arm, four byte loads from entry a0 include +0x0, +0x1 and +0x2 (`lbu` at 0x333d758, 0x333d764, 0x333d76c).
+  That path has four byte stores relative to the allocation return, including +0x18, +0x19 and +0x1a (`sb` at 0x333d75c, 0x333d768, 0x333d770).
+  On that path a word is loaded from an unknown base (`lw` at 0x333d77c).
+  The call delay slot stores a word to an unknown base (`sw` at 0x333d794).
+  The `jalr` at 0x333d790 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` return, a2 = 0x3348d50, a3 = unknown, a4 = 0x12, on the taken arm of `bne` at 0x333d734.
+  At the return, v0 is unknown (`jr` at 0x333d744).
+
+- `__gllc_Color3uiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333cdd4).
+  The `jalr` at 0x333cdfc calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x10, a2=entry a2, a3=entry a3.
+  `bne` at 0x333ce04 targets 0x333ce1c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  On the taken path 0xb is stored as a halfword at +0x14 from that return (`sh` at 0x333ce20).
+  Three word reads on that path from entry a0 include offsets +0x0, +0x4, +0x8 (`lw` at 0x333ce2c, 0x333ce34, 0x333ce3c).
+  Three word stores on that path include offsets +0x18, +0x1c, +0x20 from the allocation return (`sw` at 0x333ce30, 0x333ce38, 0x333ce40).
+  On the taken path, a word is stored through an unknown base (`sw` at 0x333ce5c).
+  The `jalr` at 0x333ce58 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348b20, a3=unknown when `bne` at 0x333ce04 is taken.
+  The return value is unknown (`jr` at 0x333ce14).
+
+- `__gllc_Color3us` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x333ce70).
+  The `jalr` at 0x333cea4 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333ceac targets 0x333cec0 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The taken path stores 0xc as a halfword at +0x14 from that return (`sh` at 0x333cedc).
+  The taken path also stores at halfword offsets +0x1c, +0x1a, +0x18 from the allocation return (`sh` at 0x333ced0, 0x333ced4, 0x333cee4).
+  On the taken path, a word store uses an unknown base (`sw` at 0x333cf00).
+  The `jalr` at 0x333cefc calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348b70, a3=unknown when `bne` at 0x333ceac is taken.
+  The returned value is unknown (`jr` at 0x333ceb8).
+
+- `__gllc_Color3usv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  The routine reads a doubleword from absolute 0x1020 (`ld` at 0x333cf14).
+  The `jalr` at 0x333cf3c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333cf44 targets 0x333cf5c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  When the branch is taken, 0xc is stored as a halfword at +0x14 from that return (`sh` at 0x333cf60).
+  Three halfword reads on that path from entry a0 include offsets +0x0, +0x2, +0x4 (`lhu` at 0x333cf6c, 0x333cf74, 0x333cf7c).
+  Three other halfword stores on that path use offsets +0x18, +0x1a, +0x1c from the allocation return (`sh` at 0x333cf70, 0x333cf78, 0x333cf80).
+  On the taken path, one word is written through an unknown base (`sw` at 0x333cf9c).
+  The `jalr` at 0x333cf98 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348b70, a3=unknown when `bne` at 0x333cf44 is taken.
+  Its return value is unknown (`jr` at 0x333cf54).
+
+- `__gllc_Color4b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  A doubleword comes from absolute 0x1020 (`ld` at 0x333cfb8).
+  The `jalr` at 0x333cfe8 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333cff0 targets 0x333d004 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  Along the taken path, 0xd is stored as a halfword at +0x14 from that return (`sh` at 0x333d008).
+  Four byte stores on that path include offsets +0x1b, +0x1a, +0x18 from the allocation return (`sb` at 0x333d01c, 0x333d020, 0x333d028).
+  The taken path stores a word through an unknown base (`sw` at 0x333d04c).
+  The `jalr` at 0x333d048 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348bc0, a3=unknown, a4=0xd when `bne` at 0x333cff0 is taken.
+  The integer result is unknown (`jr` at 0x333cffc).
+
+- `__gllc_Color4bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x333d064).
+  The `jalr` at 0x333d08c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333d094 targets 0x333d0ac when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The nonzero path stores 0xd as a halfword at +0x14 from that return (`sh` at 0x333d0b4).
+  Four byte reads on that path from entry a0 include offsets +0x0, +0x1, +0x2 (`lb` at 0x333d0b8, 0x333d0c4, 0x333d0cc).
+  Four byte stores on that path include offsets +0x18, +0x19, +0x1a from the allocation return (`sb` at 0x333d0bc, 0x333d0c8, 0x333d0d0).
+  On the taken path, an unknown base is used for a word store (`sw` at 0x333d0f4).
+  The `jalr` at 0x333d0f0 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348bc0, a3=unknown, a4=0xd when `bne` at 0x333d094 is taken.
+  The value returned in v0 is unknown (`jr` at 0x333d0a4).
+
+- `__gllc_Color4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x333d100).
+  The `jalr` at 0x333d134 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x20, a2=entry a2, a3=entry a3.
+  `bne` at 0x333d13c targets 0x333d150 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  After the branch is taken, 0xe is stored as a halfword at +0x14 from that return (`sh` at 0x333d15c).
+  On that taken path, the value 0x1 is stored as a byte at +0x16 from the allocation return (`sb` at 0x333d154).
+  The same arm has four doubleword stores, including offsets +0x30, +0x28, +0x20 from the allocation return (`sdc1` at 0x333d178, 0x333d17c, 0x333d180).
+  On that path, a word write uses an unknown base (`sw` at 0x333d1a0).
+  The `jalr` at 0x333d19c calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348c10, a3=unknown, a4=0x1, a5=0xe on the taken path of `bne` at 0x333d13c.
+  The value in v0 at return is unknown (`jr` at 0x333d148).
+
+- `__gllc_Color4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  One doubleword is read from absolute 0x1020 (`ld` at 0x333d1b4).
+  The `jalr` at 0x333d1dc calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x20, a2=entry a2, a3=entry a3.
+  `bne` at 0x333d1e4 targets 0x333d1fc when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  Following the taken branch, 0xe is stored as a halfword at +0x14 from that return (`sh` at 0x333d208).
+  The taken path has four doubleword loads from entry a0, including offsets +0x0, +0x8, +0x10 (`ldc1` at 0x333d20c, 0x333d214, 0x333d21c).
+  On that taken path, the value 0x1 is stored as a byte at +0x16 from the allocation return (`sb` at 0x333d1fc).
+  That path has four doubleword stores, including offsets +0x18, +0x20, +0x28 from the allocation return (`sdc1` at 0x333d210, 0x333d218, 0x333d224).
+  On that path, it writes a word through an unknown base (`sw` at 0x333d24c).
+  The `jalr` at 0x333d248 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348c10, a3=unknown on the taken path of `bne` at 0x333d1e4.
+  At return v0 is unknown (`jr` at 0x333d1f4).
+
+- `__gllc_Color4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  The entry reads a doubleword from absolute 0x1020 (`ld` at 0x333d260).
+  The `jalr` at 0x333d294 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x10, a2=entry a2, a3=entry a3.
+  `bne` at 0x333d29c targets 0x333d2b0 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  On the nonzero path, 0xf is stored as a halfword at +0x14 from that return (`sh` at 0x333d2b4).
+  That taken path has four word stores, including offsets +0x24, +0x20, +0x1c from the allocation return (`swc1` at 0x333d2d0, 0x333d2d4, 0x333d2d8).
+  On that path it stores a word using an unknown base (`sw` at 0x333d2f8).
+  The `jalr` at 0x333d2f4 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348c60, a3=unknown, a4=0xf on the taken path of `bne` at 0x333d29c.
+  The v0 result is unknown (`jr` at 0x333d2a8).
+
+- `__gllc_Color4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  A doubleword load reads from absolute 0x1020 (`ld` at 0x333d314).
+  The `jalr` at 0x333d33c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x10, a2=entry a2, a3=entry a3.
+  `bne` at 0x333d344 targets 0x333d35c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  When taken, the branch leads to a path where 0xf is stored as a halfword at +0x14 from that return (`sh` at 0x333d360).
+  The taken path has four word loads from entry a0, including offsets +0x0, +0x4, +0x8 (`lwc1` at 0x333d364, 0x333d36c, 0x333d374).
+  On that path four word stores include offsets +0x18, +0x1c, +0x20 from the allocation return (`swc1` at 0x333d368, 0x333d370, 0x333d37c).
+  On that path a word is written with an unknown base (`sw` at 0x333d3a4).
+  The `jalr` at 0x333d3a0 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348c60, a3=unknown on the taken path of `bne` at 0x333d344.
+  Its v0 return is unknown (`jr` at 0x333d354).
+
+- `__gllc_Color4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  It fetches a doubleword from absolute 0x1020 (`ld` at 0x333d3b8).
+  The `jalr` at 0x333d3e8 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x10, a2=entry a2, a3=entry a3.
+  `bne` at 0x333d3f0 targets 0x333d404 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The taken arm stores 0x10 as a halfword at +0x14 from that return (`sh` at 0x333d408).
+  Four word stores on that arm include offsets +0x24, +0x20, +0x18 from the allocation return (`sw` at 0x333d41c, 0x333d420, 0x333d428).
+  On that path one word store has an unknown base (`sw` at 0x333d44c).
+  The `jalr` at 0x333d448 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3348cb0, a3=unknown, a4=0x10 on the taken path of `bne` at 0x333d3f0.
+  The integer return is unknown (`jr` at 0x333d3fc).
+
+- `__gllc_Color4ui` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d7a0
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333d7a8).
+  The `jalr` at 0x333d7d8 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, and a3 = entry a3.
+  The `bne` at 0x333d7e0 is taken to 0x333d7f4 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d7e0, a halfword with value 0x13 is stored at the `__glDlistAllocOp2` result +0x14 (`sh` at 0x333d7f8).
+  On that arm, four word stores at result offsets +0x18, +0x1c, +0x20 and +0x24 contain entry a0, a1, a2 and a3 respectively, including `sw` at 0x333d80c, 0x333d810, 0x333d818.
+  The `jalr` at 0x333d838 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348da0, a3 = unknown, and a4 = 0x13 on the taken arm of `bne` at 0x333d7e0.
+  The value returned in v0 is unknown (`jr` at 0x333d7ec).
+
+- `__gllc_Color4uiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d850
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333d854).
+  The `jalr` at 0x333d87c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, and a3 = entry a3.
+  The `bne` at 0x333d884 is taken to 0x333d89c when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d884, a halfword with value 0x13 is stored at the `__glDlistAllocOp2` result +0x14 (`sh` at 0x333d8a4).
+  On that arm, four words are loaded from entry a0 offsets +0x0, +0x4, +0x8 and +0xc, including `lw` at 0x333d8a8, 0x333d8b4, 0x333d8bc.
+  Four word stores to result offsets +0x18, +0x1c, +0x20 and +0x24 use those values on that path, including `sw` at 0x333d8ac, 0x333d8b8, 0x333d8c0.
+  The `jalr` at 0x333d8e0 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348da0, a3 = unknown, and a4 = 0x13 on the taken arm of `bne` at 0x333d884.
+  At return, v0 is unknown (`jr` at 0x333d894).
+
+- `__gllc_Color4us` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d8f0
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333d8f8).
+  The `jalr` at 0x333d928 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, and a3 = entry a3.
+  The `bne` at 0x333d930 is taken to 0x333d944 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d930, a halfword with value 0x14 is stored at the `__glDlistAllocOp2` result +0x14 (`sh` at 0x333d948).
+  On that path, four halfword stores at result offsets +0x18, +0x1a, +0x1c and +0x1e contain entry a0, a1, a2 and a3 respectively, including `sh` at 0x333d95c, 0x333d960, 0x333d968.
+  The `jalr` at 0x333d988 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348df0, a3 = unknown, and a4 = 0x14 on the taken arm of `bne` at 0x333d930.
+  Its v0 return value is unknown (`jr` at 0x333d93c).
+
+- `__gllc_Color4usv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333d9a0
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333d9a4).
+  The `jalr` at 0x333d9cc calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, and a3 = entry a3.
+  The `bne` at 0x333d9d4 is taken to 0x333d9ec when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333d9d4, a halfword with value 0x14 is stored at the `__glDlistAllocOp2` result +0x14 (`sh` at 0x333d9f4).
+  On that path, four halfwords are read from entry a0 offsets +0x0, +0x2, +0x4 and +0x6, including `lhu` at 0x333d9f8, 0x333da04, 0x333da0c.
+  Those values are written in four halfword stores to result offsets +0x18, +0x1a, +0x1c and +0x1e, including `sh` at 0x333d9fc, 0x333da08, 0x333da10.
+  The `jalr` at 0x333da30 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348df0, a3 = unknown, and a4 = 0x14 on the taken arm of `bne` at 0x333d9d4.
+  The routine returns an unknown v0 (`jr` at 0x333d9e4).
+
+- `__gllc_EdgeFlag` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333da40
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333da44).
+  The `jalr` at 0x333da6c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, and a3 = entry a3.
+  The `bne` at 0x333da74 is taken to 0x333da88 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken arm of `bne` at 0x333da74, a halfword with value 0x15 is stored at the `__glDlistAllocOp2` result +0x14 (`sh` at 0x333da98).
+  The call delay slot stores entry a0 as a byte at the result +0x18 on that arm (`sb` at 0x333daa8).
+  The `jalr` at 0x333daa4 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3348e40, a3 = entry a0 on the taken arm of `bne` at 0x333da74.
+  At the return, v0 is unknown (`jr` at 0x333da80).
+
+- `__gllc_EdgeFlagv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333dac0
+  On the taken path of `bne` at 0x333daf4, a byte is loaded from entry `a0` +0x0 (`lbu` at 0x333db20).
+  The `bne` takes 0x333db0c when `__glDlistAllocOp2` returns nonzero and falls through on zero (`bne` at 0x333daf4).
+  The `jalr` at 0x333daec calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333db28 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348e40`, `a3` = `unknown` on the taken path of `bne` at 0x333daf4.
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x333dac4).
+  On the taken path of `bne` at 0x333daf4, a halfword with value 0x15 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333db10).
+  On the taken path of `bne` at 0x333daf4, a byte is stored at `__glDlistAllocOp2` return +0x18 (`sb` at 0x333db2c).
+  At return, `v0` is unknown (`jr` at 0x333db04).
+
+- `__gllc_End` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333db40
+  A nonzero return from `__glDlistAllocOp2` takes the `bne` to 0x333db80; zero falls through (`bne` at 0x333db6c).
+  The `jalr` at 0x333db64 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x0`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333db94 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348e90`, `a3` = `unknown` on the taken path of `bne` at 0x333db6c.
+  The doubleword is loaded from absolute 0x1020 (`ld` at 0x333db58).
+  On the taken path of `bne` at 0x333db6c, a halfword with value 0x16 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333db98).
+  The returned `v0` is unknown (`jr` at 0x333db78).
+
+- `__gllc_Indexd` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333dbb0
+  The `bne` branches to 0x333dbf8 for a nonzero `__glDlistAllocOp2` return and falls through for zero (`bne` at 0x333dbe0).
+  The `jalr` at 0x333dbd8 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333dc28 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348ed0`, `a3` = `unknown`, `a4` = `0x1`, `a5` = `0x17` on the taken path of `bne` at 0x333dbe0.
+  A doubleword comes from absolute 0x1020 (`ld` at 0x333dbb4).
+  On the taken path of `bne` at 0x333dbe0, a byte with value 0x1 is stored at `__glDlistAllocOp2` return +0x16 (`sb` at 0x333dbf8).
+  On the taken path of `bne` at 0x333dbe0, a halfword with value 0x17 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333dc00).
+  On the taken path of `bne` at 0x333dbe0, a floating-point doubleword is stored at `__glDlistAllocOp2` return +0x18 (`sdc1` at 0x333dc10).
+  On the taken path of `bne` at 0x333dbe0, a word store uses an unknown base (`sw` at 0x333dc2c).
+  The return leaves `v0` unknown (`jr` at 0x333dbf0).
+
+- `__gllc_Indexdv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333dc40
+  On the taken path of `bne` at 0x333dc74, a doubleword is loaded from entry `a0` +0x0 (`ldc1` at 0x333dca0).
+  If the `__glDlistAllocOp2` return is nonzero, the `bne` takes 0x333dc88; if zero, it falls through (`bne` at 0x333dc74).
+  The `jalr` at 0x333dc6c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333dcc0 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348ed0`, `a3` = `unknown` on the taken path of `bne` at 0x333dc74.
+  The code loads a doubleword at absolute 0x1020 (`ld` at 0x333dc44).
+  On the taken path of `bne` at 0x333dc74, a byte with value 0x1 is stored at `__glDlistAllocOp2` return +0x16 (`sb` at 0x333dc90).
+  On the taken path of `bne` at 0x333dc74, a halfword with value 0x17 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333dc9c).
+  On the taken path of `bne` at 0x333dc74, a floating-point doubleword is stored at `__glDlistAllocOp2` return +0x18 (`sdc1` at 0x333dca8).
+  On the taken path of `bne` at 0x333dc74, a word store uses an unknown base (`sw` at 0x333dcc4).
+  Its return value in `v0` is unknown (`jr` at 0x333dc80).
+
+- `__gllc_Indexf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333dcd0
+  The `bne` falls through on a zero `__glDlistAllocOp2` return and takes 0x333dd18 on nonzero (`bne` at 0x333dd00).
+  The `jalr` at 0x333dcf8 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333dd40 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348f20`, `a3` = `unknown`, `a4` = `0x18` on the taken path of `bne` at 0x333dd00.
+  A doubleword is read at absolute 0x1020 (`ld` at 0x333dcd4).
+  On the taken path of `bne` at 0x333dd00, a halfword with value 0x18 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333dd18).
+  On the taken path of `bne` at 0x333dd00, a floating-point word is stored at `__glDlistAllocOp2` return +0x18 (`swc1` at 0x333dd28).
+  On the taken path of `bne` at 0x333dd00, a word store uses an unknown base (`sw` at 0x333dd44).
+  `v0` is unknown at return (`jr` at 0x333dd10).
+
+- `__gllc_Indexfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333dd50
+  On the taken path of `bne` at 0x333dd84, a floating-point word is loaded from entry `a0` +0x0 (`lwc1` at 0x333dda8).
+  For a nonzero `__glDlistAllocOp2` return, the `bne` takes 0x333dd98; a zero return falls through (`bne` at 0x333dd84).
+  The `jalr` at 0x333dd7c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333ddc8 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348f20`, `a3` = `unknown` on the taken path of `bne` at 0x333dd84.
+  A doubleword load reads absolute 0x1020 (`ld` at 0x333dd54).
+  On the taken path of `bne` at 0x333dd84, a halfword with value 0x18 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333dda4).
+  On the taken path of `bne` at 0x333dd84, a floating-point word is stored at `__glDlistAllocOp2` return +0x18 (`swc1` at 0x333ddb0).
+  On the taken path of `bne` at 0x333dd84, a word store uses an unknown base (`sw` at 0x333ddcc).
+  The value of `v0` at return is unknown (`jr` at 0x333dd90).
+
+- `__gllc_Indexi` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333dde0
+  The `bne` goes to 0x333de2c when the `__glDlistAllocOp2` result is nonzero and otherwise falls through (`bne` at 0x333de14).
+  The `jalr` at 0x333de0c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333de54 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348f70`, `a3` = `unknown` on the taken path of `bne` at 0x333de14.
+  The routine reads a doubleword from absolute 0x1020 (`ld` at 0x333dde4).
+  On the taken path of `bne` at 0x333de14, a halfword with value 0x19 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333de2c).
+  On the taken path of `bne` at 0x333de14, a word is stored at `__glDlistAllocOp2` return +0x18 (`sw` at 0x333de3c).
+  On the taken path of `bne` at 0x333de14, a word store uses an unknown base (`sw` at 0x333de58).
+  At the return, the value in `v0` is unknown (`jr` at 0x333de24).
+
+- `__gllc_Indexiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333de70
+  On the taken path of `bne` at 0x333dea4, a word is loaded from entry `a0` +0x0 (`lw` at 0x333decc).
+  Zero from `__glDlistAllocOp2` makes the `bne` fall through; nonzero takes 0x333deb8 (`bne` at 0x333dea4).
+  The `jalr` at 0x333de9c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333dee8 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348f70`, `a3` = `unknown` on the taken path of `bne` at 0x333dea4.
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333de74).
+  On the taken path of `bne` at 0x333dea4, a halfword with value 0x19 is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333dec0).
+  On the taken path of `bne` at 0x333dea4, a word is stored at `__glDlistAllocOp2` return +0x18 (`sw` at 0x333ded0).
+  On the taken path of `bne` at 0x333dea4, a word store uses an unknown base (`sw` at 0x333deec).
+  Return register `v0` has an unknown value (`jr` at 0x333deb0).
+
+- `__gllc_Indexs` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333df00
+  A zero `__glDlistAllocOp2` result falls through the `bne`; a nonzero result takes 0x333df4c (`bne` at 0x333df34).
+  The `jalr` at 0x333df2c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333df74 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348fc0`, `a3` = `unknown` on the taken path of `bne` at 0x333df34.
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x333df04).
+  On the taken path of `bne` at 0x333df34, 2 halfword stores use the `__glDlistAllocOp2` return, including offsets +0x14, +0x18 (`sh` at 0x333df4c, 0x333df5c).
+  On the taken path of `bne` at 0x333df34, a word store uses an unknown base (`sw` at 0x333df78).
+  This return has an unknown `v0` (`jr` at 0x333df44).
+
+- `__gllc_Indexsv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333df90
+  On the taken path of `bne` at 0x333dfc4, a halfword load uses entry `a0` +0x0 (`lh` at 0x333dfec).
+  When `__glDlistAllocOp2` returns nonzero, the `bne` takes 0x333dfd8; zero falls through (`bne` at 0x333dfc4).
+  The `jalr` at 0x333dfbc calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333e008 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3348fc0`, `a3` = `unknown` on the taken path of `bne` at 0x333dfc4.
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333df94).
+  On the taken path of `bne` at 0x333dfc4, 2 halfword stores use the `__glDlistAllocOp2` return, including offsets +0x14, +0x18 (`sh` at 0x333dfe0, 0x333dff0).
+  On the taken path of `bne` at 0x333dfc4, a word store uses an unknown base (`sw` at 0x333e00c).
+  At return, the `v0` value is unknown (`jr` at 0x333dfd0).
+
+- `__gllc_RasterPos3f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333ec40).
+  The `jalr` at 0x333ec70 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333ec78 is taken to 0x333ec90 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x25 is stored at the allocation result +0x14 (`sh` at 0x333ec90).
+  On that path, three word stores at allocation result +0x18, +0x1c and +0x20 hold entry f12, f13 and f14 (`swc1` at 0x333ecb0, 0x333ecac, 0x333eca8).
+  A word is loaded through an unknown base on that path (`lw` at 0x333ecb4).
+  The `jalr` at 0x333ecc8 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349330, a3 = unknown, a4 = 0x25 on the taken path.
+  Its delay slot stores a word through an unknown base (`sw` at 0x333eccc).
+  The v0 return is unknown (`jr` at 0x333ec88).
+
+- `__gllc_RasterPos3fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333ece0
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333ece4).
+  The `jalr` at 0x333ed0c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333ed14 is taken to 0x333ed28 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x25 is stored at the allocation result +0x14 (`sh` at 0x333ed30).
+  On that path, three words are loaded at entry a0 +0x0, +0x4 and +0x8 (`lwc1` at 0x333ed34, 0x333ed3c, 0x333ed48).
+  On that path, three word stores at allocation result +0x18, +0x1c and +0x20 hold words read from entry a0 +0x0, +0x4 and +0x8 (`swc1` at 0x333ed38, 0x333ed44, 0x333ed50).
+  A word is loaded through an unknown base on that path (`lw` at 0x333ed54).
+  The `jalr` at 0x333ed68 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349330, a3 = unknown on the taken path.
+  Its delay slot stores a word through an unknown base (`sw` at 0x333ed6c).
+  The v0 return is unknown (`jr` at 0x333ed20).
+
+- `__gllc_RasterPos3i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333ed80).
+  The `jalr` at 0x333edb4 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333edbc is taken to 0x333edd4 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x26 is stored at the allocation result +0x14 (`sh` at 0x333edec).
+  On that path, three word stores at allocation result +0x18, +0x1c and +0x20 hold entry a0, a1 and a2 (`sw` at 0x333edf4, 0x333ede4, 0x333ede0).
+  A word is loaded through an unknown base on that path (`lw` at 0x333edf8).
+  The `jalr` at 0x333ee0c calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349380, a3 = unknown on the taken path.
+  Its delay slot stores a word through an unknown base (`sw` at 0x333ee10).
+  The v0 return is unknown (`jr` at 0x333edcc).
+
+- `__gllc_RasterPos3iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333ee20
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333ee24).
+  The `jalr` at 0x333ee4c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333ee54 is taken to 0x333ee68 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x26 is stored at the allocation result +0x14 (`sh` at 0x333ee70).
+  On that path, three words are loaded at entry a0 +0x0, +0x4 and +0x8 (`lw` at 0x333ee7c, 0x333ee84, 0x333ee8c).
+  On that path, three word stores at allocation result +0x18, +0x1c and +0x20 hold words read from entry a0 +0x0, +0x4 and +0x8 (`sw` at 0x333ee80, 0x333ee88, 0x333ee90).
+  A word is loaded through an unknown base on that path (`lw` at 0x333ee94).
+  The `jalr` at 0x333eea8 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349380, a3 = unknown on the taken path.
+  Its delay slot stores a word through an unknown base (`sw` at 0x333eeac).
+  The v0 return is unknown (`jr` at 0x333ee60).
+
+- `__gllc_RasterPos3s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333eec0).
+  The `jalr` at 0x333eef4 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333eefc is taken to 0x333ef14 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x27 is stored at the allocation result +0x14 (`sh` at 0x333ef2c).
+  On that path, three halfword stores at allocation result +0x18, +0x1a and +0x1c hold entry a0, a1 and a2 (`sh` at 0x333ef34, 0x333ef24, 0x333ef20).
+  A word is loaded through an unknown base on that path (`lw` at 0x333ef38).
+  The `jalr` at 0x333ef4c calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x33493d0, a3 = unknown on the taken path.
+  Its delay slot stores a word through an unknown base (`sw` at 0x333ef50).
+  The v0 return is unknown (`jr` at 0x333ef0c).
+
+- `__gllc_RasterPos2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 148 bytes
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333e660).
+  The `jalr` at 0x333e68c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x10, a2=entry a2, a3=entry a3.
+  `bne` at 0x333e694 targets 0x333e6ac when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  On the taken path 0x20 is stored as a halfword at +0x14 from that return (`sh` at 0x333e6b4).
+  On the taken path of `bne` at 0x333e694, the value 0x1 is stored as a byte at +0x16 from the allocation return (`sb` at 0x333e6ac).
+  Stores on that path include doubleword offsets +0x20, +0x18 from the allocation return (`sdc1` at 0x333e6c8, 0x333e6cc).
+  On the taken path of `bne` at 0x333e694, a word is stored through an unknown base (`sw` at 0x333e6e8).
+  The `jalr` at 0x333e6e4 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x33491a0, a3=unknown, a4=0x1, a5=0x20 on the taken path of `bne` at 0x333e694.
+  The return value is unknown (`jr` at 0x333e6a4).
+
+- `__gllc_RasterPos2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 152 bytes
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x333e704).
+  The `jalr` at 0x333e72c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x10, a2=entry a2, a3=entry a3.
+  `bne` at 0x333e734 targets 0x333e748 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The taken path stores 0x20 as a halfword at +0x14 from that return (`sh` at 0x333e758).
+  Reads on that path from entry a0 include doubleword offsets +0x0, +0x8 (`ldc1` at 0x333e75c, 0x333e768).
+  On the taken path of `bne` at 0x333e734, the value 0x1 is stored as a byte at +0x16 from the allocation return (`sb` at 0x333e74c).
+  The taken path also stores at doubleword offsets +0x18, +0x20 from the allocation return (`sdc1` at 0x333e764, 0x333e770).
+  On the taken path of `bne` at 0x333e734, a word store uses an unknown base (`sw` at 0x333e78c).
+  The `jalr` at 0x333e788 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x33491a0, a3=unknown on the taken path of `bne` at 0x333e734.
+  The returned value is unknown (`jr` at 0x333e740).
+
+- `__gllc_RasterPos2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  The routine reads a doubleword from absolute 0x1020 (`ld` at 0x333e7a0).
+  The `jalr` at 0x333e7cc calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333e7d4 targets 0x333e7ec when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  When the branch is taken, 0x21 is stored as a halfword at +0x14 from that return (`sh` at 0x333e7ec).
+  Other stores on that path use word offsets +0x1c, +0x18 from the allocation return (`swc1` at 0x333e800, 0x333e804).
+  On the taken path of `bne` at 0x333e7d4, one word is written through an unknown base (`sw` at 0x333e820).
+  The `jalr` at 0x333e81c calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x33491f0, a3=unknown, a4=0x21 on the taken path of `bne` at 0x333e7d4.
+  Its return value is unknown (`jr` at 0x333e7e4).
+
+- `__gllc_RasterPos2fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  A doubleword comes from absolute 0x1020 (`ld` at 0x333e834).
+  The `jalr` at 0x333e85c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333e864 targets 0x333e878 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  Along the taken path, 0x21 is stored as a halfword at +0x14 from that return (`sh` at 0x333e880).
+  Reads on that path from entry a0 include word offsets +0x0, +0x4 (`lwc1` at 0x333e884, 0x333e890).
+  The branch target writes at word offsets +0x18, +0x1c from the allocation return (`swc1` at 0x333e88c, 0x333e898).
+  On the taken path of `bne` at 0x333e864, the routine stores a word through an unknown base (`sw` at 0x333e8b4).
+  The `jalr` at 0x333e8b0 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x33491f0, a3=unknown on the taken path of `bne` at 0x333e864.
+  The integer result is unknown (`jr` at 0x333e870).
+
+- `__gllc_RasterPos2i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x333e8c0).
+  The `jalr` at 0x333e8f0 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333e8f8 targets 0x333e910 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The nonzero path stores 0x22 as a halfword at +0x14 from that return (`sh` at 0x333e910).
+  On the taken path of `bne` at 0x333e8f8, further stores use word offsets +0x1c, +0x18 from the allocation return (`sw` at 0x333e920, 0x333e928).
+  On the taken path of `bne` at 0x333e8f8, an unknown base is used for a word store (`sw` at 0x333e944).
+  The `jalr` at 0x333e940 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3349240, a3=unknown on the taken path of `bne` at 0x333e8f8.
+  The value returned in v0 is unknown (`jr` at 0x333e908).
+
+- `__gllc_RasterPos2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x333e954).
+  The `jalr` at 0x333e97c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333e984 targets 0x333e998 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  After the branch is taken, 0x22 is stored as a halfword at +0x14 from that return (`sh` at 0x333e9a8).
+  Reads on that path from entry a0 include word offsets +0x0, +0x4 (`lw` at 0x333e9ac, 0x333e9b4).
+  The same arm writes at word offsets +0x18, +0x1c from the allocation return (`sw` at 0x333e9b0, 0x333e9b8).
+  On the taken path of `bne` at 0x333e984, the word store uses an unknown base (`sw` at 0x333e9d4).
+  The `jalr` at 0x333e9d0 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3349240, a3=unknown on the taken path of `bne` at 0x333e984.
+  The value in v0 at return is unknown (`jr` at 0x333e990).
+
+- `__gllc_RasterPos2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  One doubleword is read from absolute 0x1020 (`ld` at 0x333e9e0).
+  The `jalr` at 0x333ea10 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333ea18 targets 0x333ea30 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  Following the taken branch, 0x23 is stored as a halfword at +0x14 from that return (`sh` at 0x333ea30).
+  That path stores at halfword offsets +0x1a, +0x18 from the allocation return (`sh` at 0x333ea40, 0x333ea48).
+  On the taken path of `bne` at 0x333ea18, the word store uses an unknown base (`sw` at 0x333ea64).
+  The `jalr` at 0x333ea60 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3349290, a3=unknown on the taken path of `bne` at 0x333ea18.
+  At return v0 is unknown (`jr` at 0x333ea28).
+
+- `__gllc_RasterPos2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 144 bytes
+  The entry reads a doubleword from absolute 0x1020 (`ld` at 0x333ea74).
+  The `jalr` at 0x333ea9c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333eaa4 targets 0x333eab8 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  On the nonzero path, 0x23 is stored as a halfword at +0x14 from that return (`sh` at 0x333eac8).
+  Reads on that path from entry a0 include halfword offsets +0x0, +0x2 (`lh` at 0x333eacc, 0x333ead4).
+  The nonzero path also writes halfword offsets +0x18, +0x1a from the allocation return (`sh` at 0x333ead0, 0x333ead8).
+  On the taken path of `bne` at 0x333eaa4, the word store uses an unknown base (`sw` at 0x333eaf4).
+  The `jalr` at 0x333eaf0 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3349290, a3=unknown on the taken path of `bne` at 0x333eaa4.
+  The v0 result is unknown (`jr` at 0x333eab0).
+
+- `__gllc_RasterPos3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  A doubleword load reads from absolute 0x1020 (`ld` at 0x333eb00).
+  The `jalr` at 0x333eb30 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x18, a2=entry a2, a3=entry a3.
+  `bne` at 0x333eb38 targets 0x333eb50 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  When taken, the branch leads to a path where 0x24 is stored as a halfword at +0x14 from that return (`sh` at 0x333eb58).
+  On the taken path of `bne` at 0x333eb38, the value 0x1 is stored as a byte at +0x16 from the allocation return (`sb` at 0x333eb50).
+  On that taken path, stores use doubleword offsets +0x28, +0x20, +0x18 from the allocation return (`sdc1` at 0x333eb70, 0x333eb74, 0x333eb78).
+  On the taken path of `bne` at 0x333eb38, the word store uses an unknown base (`sw` at 0x333eb94).
+  The `jalr` at 0x333eb90 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x33492e0, a3=unknown, a4=0x1, a5=0x24 on the taken path of `bne` at 0x333eb38.
+  Its v0 return is unknown (`jr` at 0x333eb48).
+
+- `__gllc_RasterPos3dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 160 bytes
+  It fetches a doubleword from absolute 0x1020 (`ld` at 0x333eba4).
+  The `jalr` at 0x333ebcc calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x18, a2=entry a2, a3=entry a3.
+  `bne` at 0x333ebd4 targets 0x333ebe8 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The taken arm stores 0x24 as a halfword at +0x14 from that return (`sh` at 0x333ebf8).
+  Reads on that path from entry a0 include doubleword offsets +0x0, +0x8, +0x10 (`ldc1` at 0x333ebfc, 0x333ec04, 0x333ec10).
+  On the taken path of `bne` at 0x333ebd4, the value 0x1 is stored as a byte at +0x16 from the allocation return (`sb` at 0x333ebec).
+  Its stores on that arm include doubleword offsets +0x18, +0x20, +0x28 from the allocation return (`sdc1` at 0x333ec00, 0x333ec0c, 0x333ec18).
+  On the taken path of `bne` at 0x333ebd4, the word store uses an unknown base (`sw` at 0x333ec34).
+  The `jalr` at 0x333ec30 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x33492e0, a3=unknown on the taken path of `bne` at 0x333ebd4.
+  The integer return is unknown (`jr` at 0x333ebe0).
+
+- `__gllc_RasterPos3sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333ef60
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333ef64).
+  The `jalr` at 0x333ef8c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  `bne` at 0x333ef94 is taken to 0x333efa8 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken arm, 0x27 is stored as a halfword at the result +0x14 (`sh` at 0x333efb0).
+  Three halfwords are loaded from entry a0 +0x0, +0x2 and +0x4 on that path (`lh` at 0x333efbc, 0x333efc4, 0x333efcc).
+  The same path stores those three halfwords at the result +0x18, +0x1a and +0x1c (`sh` at 0x333efc0, 0x333efc8, 0x333efd0).
+  The `jalr` at 0x333efe8 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x33493d0, a3 = unknown, on the taken arm of `bne` at 0x333ef94.
+  The call's delay slot stores a word to an unknown base on that path (`sw` at 0x333efec).
+  The v0 return is unknown (`jr` at 0x333efa0).
+
+- `__gllc_RasterPos4d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The absolute address 0x1020 supplies a doubleword (`ld` at 0x333f000).
+  The `jalr` at 0x333f034 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x20, a2 = entry a2, a3 = entry a3.
+  `bne` at 0x333f03c takes 0x333f054 when the allocation result is nonzero and falls through when it is zero.
+  On the taken arm, byte 0x1 is stored at the result +0x16 (`sb` at 0x333f054).
+  That arm also writes halfword 0x28 at the result +0x14 (`sh` at 0x333f05c).
+  Four doubleword stores on that arm include entry f15 at +0x30, f14 at +0x28 and f13 at +0x20 from the result (`sdc1` at 0x333f078, 0x333f07c, 0x333f080).
+  The `jalr` at 0x333f09c calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349420, a3 = unknown, a4 = 0x1, a5 = 0x28, on the taken arm of `bne` at 0x333f03c.
+  Its delay slot stores a word through an unknown base on that path (`sw` at 0x333f0a0).
+  At return v0 is unknown (`jr` at 0x333f04c).
+
+- `__gllc_RasterPos4dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f0b0
+  A doubleword load uses absolute 0x1020 (`ld` at 0x333f0b4).
+  The `jalr` at 0x333f0dc calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x20, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x333f0e4 branches to 0x333f0f8 when the allocation result is nonzero and falls through when it is zero.
+  On that taken path a byte 0x1 is stored at the result +0x16 (`sb` at 0x333f0fc).
+  Halfword 0x28 is written at the result +0x14 on the same path (`sh` at 0x333f108).
+  Four doubleword reads from entry a0 on that path include +0x0, +0x8 and +0x10 (`ldc1` at 0x333f10c, 0x333f114, 0x333f11c).
+  Four doubleword stores from those reads include result +0x18, +0x20 and +0x28 (`sdc1` at 0x333f110, 0x333f118, 0x333f124).
+  The `jalr` at 0x333f148 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349420, a3 = unknown, on the taken arm of `bne` at 0x333f0e4.
+  That call's delay slot writes a word to an unknown base (`sw` at 0x333f14c).
+  The returned v0 is unknown (`jr` at 0x333f0f0).
+
+- `__gllc_RasterPos4f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x333f160).
+  The `jalr` at 0x333f194 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  `bne` at 0x333f19c is taken to 0x333f1b4 when the allocation result is nonzero and falls through when it is zero.
+  On the taken arm the result +0x14 receives halfword 0x29 (`sh` at 0x333f1b4).
+  Four word stores on that arm include entry f15 at result +0x24, f14 at +0x20 and f13 at +0x1c (`swc1` at 0x333f1d0, 0x333f1d4, 0x333f1d8).
+  The `jalr` at 0x333f1f4 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349470, a3 = unknown, a4 = 0x29, on the taken arm of `bne` at 0x333f19c.
+  That call's delay slot stores a word through an unknown base (`sw` at 0x333f1f8).
+  Its v0 return is unknown (`jr` at 0x333f1ac).
+
+- `__gllc_RasterPos4fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f210
+  A doubleword is fetched at absolute 0x1020 (`ld` at 0x333f214).
+  The `jalr` at 0x333f23c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x10, a2 = entry a2, a3 = entry a3.
+  `bne` at 0x333f244 branches to 0x333f258 when the allocation result is nonzero and falls through when it is zero.
+  Halfword 0x29 is stored at result +0x14 on the taken arm (`sh` at 0x333f260).
+  Four word loads from entry a0 on that arm include +0x0, +0x4 and +0x8 (`lwc1` at 0x333f264, 0x333f26c, 0x333f274).
+  Four corresponding word stores include result +0x18, +0x1c and +0x20 (`swc1` at 0x333f268, 0x333f270, 0x333f27c).
+  The `jalr` at 0x333f2a0 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x3349470, a3 = unknown, on the taken arm of `bne` at 0x333f244.
+  A word is stored through an unknown base in the call's delay slot (`sw` at 0x333f2a4).
+  At the return, v0 is unknown (`jr` at 0x333f250).
+
+- `__gllc_RasterPos4i` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f2b0
+  The `bne` takes 0x333f308 when `__glDlistAllocOp2` returns nonzero and falls through on zero (`bne` at 0x333f2f0).
+  The `jalr` at 0x333f2e8 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f348 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x33494c0`, `a3` = `unknown`, `a4` = `0x2a`, on the taken arm of `bne` at 0x333f2f0.
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x333f2b8).
+  On the taken arm of `bne` at 0x333f2f0, a halfword with value 0x2a is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f308).
+  On the taken arm of `bne` at 0x333f2f0, 4 word stores use the `__glDlistAllocOp2` return, including offsets +0x24, +0x20, +0x18 (`sw` at 0x333f31c, 0x333f320, 0x333f328).
+  On the taken arm of `bne` at 0x333f2f0, a word store uses an unknown base (`sw` at 0x333f34c).
+  At return, `v0` is unknown (`jr` at 0x333f300).
+
+- `__gllc_RasterPos4iv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f360
+  On the taken arm of `bne` at 0x333f394, 4 word loads use entry `a0`, including offsets +0x0, +0x4, +0x8 (`lw` at 0x333f3b8, 0x333f3c4, 0x333f3cc).
+  A nonzero return from `__glDlistAllocOp2` takes the `bne` to 0x333f3a8; zero falls through (`bne` at 0x333f394).
+  The `jalr` at 0x333f38c calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f3f0 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x33494c0`, `a3` = `unknown`, `a4` = `0x2a`, on the taken arm of `bne` at 0x333f394.
+  The doubleword is loaded from absolute 0x1020 (`ld` at 0x333f364).
+  On the taken arm of `bne` at 0x333f394, a halfword with value 0x2a is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f3b4).
+  On the taken arm of `bne` at 0x333f394, 4 word stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x1c, +0x20 (`sw` at 0x333f3bc, 0x333f3c8, 0x333f3d0).
+  On the taken arm of `bne` at 0x333f394, a word store uses an unknown base (`sw` at 0x333f3f4).
+  The returned `v0` is unknown (`jr` at 0x333f3a0).
+
+- `__gllc_RasterPos4s` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f400
+  The `bne` branches to 0x333f458 for a nonzero `__glDlistAllocOp2` return and falls through for zero (`bne` at 0x333f440).
+  The `jalr` at 0x333f438 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f498 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3349510`, `a3` = `unknown`, `a4` = `0x2b`, on the taken arm of `bne` at 0x333f440.
+  A doubleword comes from absolute 0x1020 (`ld` at 0x333f408).
+  On the taken arm of `bne` at 0x333f440, 5 halfword stores use the `__glDlistAllocOp2` return, including offsets +0x14, +0x1e, +0x1c (`sh` at 0x333f458, 0x333f46c, 0x333f470).
+  On the taken arm of `bne` at 0x333f440, a word store uses an unknown base (`sw` at 0x333f49c).
+  The return leaves `v0` unknown (`jr` at 0x333f450).
+
+- `__gllc_RasterPos4sv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f4b0
+  On the taken arm of `bne` at 0x333f4e4, 4 halfword loads use entry `a0`, including offsets +0x0, +0x2, +0x4 (`lh` at 0x333f508, 0x333f514, 0x333f51c).
+  If the `__glDlistAllocOp2` return is nonzero, the `bne` takes 0x333f4f8; if zero, it falls through (`bne` at 0x333f4e4).
+  The `jalr` at 0x333f4dc calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x8`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f540 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3349510`, `a3` = `unknown`, `a4` = `0x2b`, on the taken arm of `bne` at 0x333f4e4.
+  The code loads a doubleword at absolute 0x1020 (`ld` at 0x333f4b4).
+  On the taken arm of `bne` at 0x333f4e4, 5 halfword stores use the `__glDlistAllocOp2` return, including offsets +0x14, +0x18, +0x1a (`sh` at 0x333f504, 0x333f50c, 0x333f518).
+  On the taken arm of `bne` at 0x333f4e4, a word store uses an unknown base (`sw` at 0x333f544).
+  Its return value in `v0` is unknown (`jr` at 0x333f4f0).
+
+- `__gllc_Rectd` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f550
+  The `bne` falls through on a zero `__glDlistAllocOp2` return and takes 0x333f5a4 on nonzero (`bne` at 0x333f58c).
+  The `jalr` at 0x333f584 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x20`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f5ec calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3349560`, `a3` = `unknown`, `a4` = `0x1`, `a5` = `0x2c`, on the taken arm of `bne` at 0x333f58c.
+  A doubleword is read at absolute 0x1020 (`ld` at 0x333f550).
+  On the taken arm of `bne` at 0x333f58c, a byte with value 0x1 is stored at `__glDlistAllocOp2` return +0x16 (`sb` at 0x333f5a4).
+  On the taken arm of `bne` at 0x333f58c, a halfword with value 0x2c is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f5ac).
+  On the taken arm of `bne` at 0x333f58c, 4 floating-point doubleword stores use the `__glDlistAllocOp2` return, including offsets +0x30, +0x28, +0x20 (`sdc1` at 0x333f5c8, 0x333f5cc, 0x333f5d0).
+  On the taken arm of `bne` at 0x333f58c, a word store uses an unknown base (`sw` at 0x333f5f0).
+  `v0` is unknown at return (`jr` at 0x333f59c).
+
+- `__gllc_Rectdv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f600
+  On the taken path of `bne` at 0x333f638, 2 doubleword loads use entry `a0`, including offsets +0x0, +0x8 (`ldc1` at 0x333f660, 0x333f668).
+  On the taken path of `bne` at 0x333f638, 2 doubleword loads use entry `a1`, including offsets +0x0, +0x8 (`ldc1` at 0x333f674, 0x333f680).
+  For a nonzero `__glDlistAllocOp2` return, the `bne` takes 0x333f64c; a zero return falls through (`bne` at 0x333f638).
+  The `jalr` at 0x333f630 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x20`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f6a0 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3349560`, `a3` = `unknown`, on the taken path of `bne` at 0x333f638.
+  A doubleword load reads absolute 0x1020 (`ld` at 0x333f600).
+  On the taken path of `bne` at 0x333f638, a byte with value 0x1 is stored at `__glDlistAllocOp2` return +0x16 (`sb` at 0x333f650).
+  On the taken path of `bne` at 0x333f638, a halfword with value 0x2c is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f65c).
+  On the taken path of `bne` at 0x333f638, 4 floating-point doubleword stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x20, +0x28 (`sdc1` at 0x333f664, 0x333f670, 0x333f67c).
+  On the taken path of `bne` at 0x333f638, a word store uses an unknown base (`sw` at 0x333f6a4).
+  The value of `v0` at return is unknown (`jr` at 0x333f644).
+
+- `__gllc_Rectf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f6b0
+  The `bne` goes to 0x333f704 when the `__glDlistAllocOp2` result is nonzero and otherwise falls through (`bne` at 0x333f6ec).
+  The `jalr` at 0x333f6e4 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f744 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x33495b0`, `a3` = `unknown`, `a4` = `0x2d`, on the taken path of `bne` at 0x333f6ec.
+  The routine reads a doubleword from absolute 0x1020 (`ld` at 0x333f6b0).
+  If `bne` at 0x333f6ec is taken, a halfword with value 0x2d is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f704).
+  If `bne` at 0x333f6ec is taken, 4 floating-point word stores use the `__glDlistAllocOp2` return, including offsets +0x24, +0x20, +0x1c (`swc1` at 0x333f720, 0x333f724, 0x333f728).
+  If `bne` at 0x333f6ec is taken, a word store uses an unknown base (`sw` at 0x333f748).
+  At the return, the value in `v0` is unknown (`jr` at 0x333f6fc).
+
+- `__gllc_Rectfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f760
+  When `bne` at 0x333f798 takes its branch, 2 floating-point word loads use entry `a0`, including offsets +0x0, +0x4 (`lwc1` at 0x333f7b8, 0x333f7c0).
+  When `bne` at 0x333f798 takes its branch, 2 floating-point word loads use entry `a1`, including offsets +0x0, +0x4 (`lwc1` at 0x333f7cc, 0x333f7d8).
+  Zero from `__glDlistAllocOp2` makes the `bne` fall through; nonzero takes 0x333f7ac (`bne` at 0x333f798).
+  The `jalr` at 0x333f790 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f7f8 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x33495b0`, `a3` = `unknown`, on the taken path of `bne` at 0x333f798.
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333f760).
+  When `bne` at 0x333f798 takes its branch, a halfword with value 0x2d is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f7b4).
+  When `bne` at 0x333f798 takes its branch, 4 floating-point word stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x1c, +0x20 (`swc1` at 0x333f7bc, 0x333f7c8, 0x333f7d4).
+  When `bne` at 0x333f798 takes its branch, a word store uses an unknown base (`sw` at 0x333f7fc).
+  Return register `v0` has an unknown value (`jr` at 0x333f7a4).
+
+- `__gllc_Recti` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f810
+  A zero `__glDlistAllocOp2` result falls through the `bne`; a nonzero result takes 0x333f868 (`bne` at 0x333f850).
+  The `jalr` at 0x333f848 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f8a8 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3349600`, `a3` = `unknown`, `a4` = `0x2e`, on the taken path of `bne` at 0x333f850.
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x333f818).
+  On the taken arm of `bne` at 0x333f850, a halfword with value 0x2e is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f868).
+  On the taken arm of `bne` at 0x333f850, 4 word stores use the `__glDlistAllocOp2` return, including offsets +0x24, +0x20, +0x18 (`sw` at 0x333f87c, 0x333f880, 0x333f888).
+  On the taken arm of `bne` at 0x333f850, a word store uses an unknown base (`sw` at 0x333f8ac).
+  This return has an unknown `v0` (`jr` at 0x333f860).
+
+- `__gllc_Rectiv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x333f8c0
+  After `bne` at 0x333f8f8 is taken, 2 word loads use entry `a0`, including offsets +0x0, +0x4 (`lw` at 0x333f920, 0x333f92c).
+  After `bne` at 0x333f8f8 is taken, 2 word loads use entry `a1`, including offsets +0x0, +0x4 (`lw` at 0x333f934, 0x333f93c).
+  When `__glDlistAllocOp2` returns nonzero, the `bne` takes 0x333f90c; zero falls through (`bne` at 0x333f8f8).
+  The `jalr` at 0x333f8f0 calls `__glDlistAllocOp2` with `a0` = `[0x1020]:8`, `a1` = `0x10`, `a2` = `a2 at entry (arg2)`, `a3` = `a3 at entry (arg3)`.
+  The `jalr` at 0x333f958 calls `__glDlistAppendOp` with `a0` = `unknown`, `a1` = `ret(__glDlistAllocOp2)`, `a2` = `0x3349600`, `a3` = `unknown`, `a4` = `0x2e`, on the taken path of `bne` at 0x333f8f8.
+  A doubleword is loaded at absolute 0x1020 (`ld` at 0x333f8c0).
+  After `bne` at 0x333f8f8 is taken, a halfword with value 0x2e is stored at `__glDlistAllocOp2` return +0x14 (`sh` at 0x333f91c).
+  After `bne` at 0x333f8f8 is taken, 4 word stores use the `__glDlistAllocOp2` return, including offsets +0x18, +0x1c, +0x20 (`sw` at 0x333f924, 0x333f930, 0x333f938).
+  After `bne` at 0x333f8f8 is taken, a word store uses an unknown base (`sw` at 0x333f95c).
+  At return, the `v0` value is unknown (`jr` at 0x333f904).
+
+- `__gllc_Rects` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  A doubleword is read from absolute 0x1020 (`ld` at 0x333f978).
+  The `jalr` at 0x333f9a8 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333f9b0 targets 0x333f9c8 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  On the taken path 0x2f is stored as a halfword at +0x14 from that return (`sh` at 0x333f9c8).
+  Four halfword stores on the taken path of `bne` at 0x333f9b0 use offsets from the allocation return, including +0x1e, +0x1c and +0x18 (`sh` at 0x333f9dc, 0x333f9e0, 0x333f9e8).
+  On the taken path of `bne` at 0x333f9b0, a word is stored through an unknown base (`sw` at 0x333fa0c).
+  The `jalr` at 0x333fa08 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3349650, a3=unknown, a4=0x2f on the taken path of `bne` at 0x333f9b0.
+  The return value is unknown (`jr` at 0x333f9c0).
+
+- `__gllc_Rectsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 168 bytes
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x333fa20).
+  The `jalr` at 0x333fa50 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x333fa58 targets 0x333fa6c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The taken path stores 0x2f as a halfword at +0x14 from that return (`sh` at 0x333fa7c).
+  Reads on that path from entry a0 include halfword offsets +0x0, +0x2 (`lh` at 0x333fa80, 0x333fa8c).
+  On the taken path of `bne` at 0x333fa58, halfwords are also read at entry a1 +0x0 and +0x2 (`lh` at 0x333fa94, 0x333fa9c).
+  On the taken path of `bne` at 0x333fa58, four halfword stores use offsets from the allocation return, including +0x18, +0x1a and +0x1c (`sh` at 0x333fa84, 0x333fa90, 0x333fa98).
+  On the taken path of `bne` at 0x333fa58, a word store uses an unknown base (`sw` at 0x333fabc).
+  The `jalr` at 0x333fab8 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x3349650, a3=unknown, a4=0x2f on the taken path of `bne` at 0x333fa58.
+  The returned value is unknown (`jr` at 0x333fa64).
+
+- `__gllc_CullFace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  The routine reads a doubleword from absolute 0x1020 (`ld` at 0x3341e54).
+  The `jalr` at 0x3341e7c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x3341e84 targets 0x3341e9c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  When the branch is taken, 0x4e is stored as a halfword at +0x14 from that return (`sh` at 0x3341ea8).
+  A word store on the taken path of `bne` at 0x3341e84 uses offset +0x18 from the allocation return (`sw` at 0x3341eb8).
+  The `jalr` at 0x3341eb4 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a000, a3=entry a0 on the taken path of `bne` at 0x3341e84.
+  Its return value is unknown (`jr` at 0x3341e94).
+
+- `__gllc_FrontFace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword comes from absolute 0x1020 (`ld` at 0x3342174).
+  The `jalr` at 0x334219c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x33421a4 targets 0x33421bc when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  Along the taken path, 0x53 is stored as a halfword at +0x14 from that return (`sh` at 0x33421c8).
+  A word is stored on the taken path of `bne` at 0x33421a4 at offset +0x18 from the allocation return (`sw` at 0x33421d8).
+  The `jalr` at 0x33421d4 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a1d0, a3=entry a0 on the taken path of `bne` at 0x33421a4.
+  The integer result is unknown (`jr` at 0x33421b4).
+
+- `__gllc_Hint` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  It reads a doubleword from absolute 0x1020 (`ld` at 0x33421f0).
+  The `jalr` at 0x3342220 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x3342228 targets 0x334223c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The nonzero path stores 0x54 as a halfword at +0x14 from that return (`sh` at 0x3342248).
+  On the taken path of `bne` at 0x3342228, two word stores use offsets +0x1c and +0x18 from the allocation return (`sw` at 0x3342258, 0x3342264).
+  The `jalr` at 0x3342260 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a220, a3=entry a0, a4=entry a1 on the taken path of `bne` at 0x3342228.
+  The value returned in v0 is unknown (`jr` at 0x3342234).
+
+- `__gllc_LineStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x33427b0).
+  The `jalr` at 0x33427e0 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x33427e8 targets 0x33427fc when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  After the branch is taken, 0x5d is stored as a halfword at +0x14 from that return (`sh` at 0x3342808).
+  The same arm writes a halfword at +0x1c from the allocation return (`sh` at 0x3342818).
+  On that taken path, entry a0 is stored as a word at +0x18 from that return (`sw` at 0x3342824).
+  The `jalr` at 0x3342820 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a450, a3=entry a0, a4=entry a1 when the `bne` at 0x33427e8 is taken.
+  The value in v0 at return is unknown (`jr` at 0x33427f4).
+
+- `__gllc_LineWidth` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  One doubleword is read from absolute 0x1020 (`ld` at 0x3342834).
+  The `jalr` at 0x3342858 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x3342860 targets 0x3342878 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  Following the taken branch, 0x5e is stored as a halfword at +0x14 from that return (`sh` at 0x3342888).
+  That path stores a word at +0x18 from the allocation return (`swc1` at 0x3342894).
+  The `jalr` at 0x3342890 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a4a0, a3=unknown when the `bne` at 0x3342860 is taken.
+  At return v0 is unknown (`jr` at 0x3342870).
+
+- `__gllc_PointSize` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 112 bytes
+  The entry reads a doubleword from absolute 0x1020 (`ld` at 0x3342bc4).
+  The `jalr` at 0x3342be8 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x3342bf0 targets 0x3342c04 when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  On the nonzero path, 0x63 is stored as a halfword at +0x14 from that return (`sh` at 0x3342c18).
+  The nonzero path also writes a word at +0x18 from the allocation return (`swc1` at 0x3342c24).
+  The `jalr` at 0x3342c20 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a5f0, a3=unknown when the `bne` at 0x3342bf0 is taken.
+  The v0 result is unknown (`jr` at 0x3342bfc).
+
+- `__gllc_PolygonMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
+  A doubleword load reads from absolute 0x1020 (`ld` at 0x3342c30).
+  The `jalr` at 0x3342c60 calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x3342c68 targets 0x3342c7c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  When taken, the branch leads to a path where 0x64 is stored as a halfword at +0x14 from that return (`sh` at 0x3342c88).
+  On that taken path, word stores use offsets +0x1c and +0x18 from the allocation return (`sw` at 0x3342c98, 0x3342ca4).
+  The `jalr` at 0x3342ca0 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a640, a3=entry a0, a4=entry a1 when the `bne` at 0x3342c68 is taken.
+  Its v0 return is unknown (`jr` at 0x3342c74).
+
+- `__gllc_ShadeModel` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  It fetches a doubleword from absolute 0x1020 (`ld` at 0x3342d54).
+  The `jalr` at 0x3342d7c calls `__glDlistAllocOp2` with a0=[0x1020] as a doubleword, a1=0x8, a2=entry a2, a3=entry a3.
+  `bne` at 0x3342d84 targets 0x3342d9c when the return from `__glDlistAllocOp2` is nonzero and falls through when zero.
+  The taken arm stores 0x67 as a halfword at +0x14 from that return (`sh` at 0x3342da8).
+  Its stores on that arm include a word at +0x18 from the allocation return (`sw` at 0x3342db8).
+  The `jalr` at 0x3342db4 calls `__glDlistAppendOp` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x334a6e0, a3=entry a0 when the `bne` at 0x3342d84 is taken.
+  The integer return is unknown (`jr` at 0x3342d94).
+
+- `__gllc_InitNames` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3343780
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3343798).
+  The `jalr` at 0x33437a4 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x0, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x33437ac is taken to 0x33437c4 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x78 is stored at +0x14 from the `__glDlistAllocOp2` result (`sh` at 0x33437d8).
+  The `jalr` at 0x33437d4 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334aab0, a3 = unknown on the taken path of `bne` at 0x33437ac.
+  The return value in v0 is unknown (`jr` at 0x33437bc).
+
+- `__gllc_LoadName` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33437f0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x33437f4).
+  The `jalr` at 0x334381c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x3343824 is taken to 0x3343838 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x79 is stored at +0x14 from the `__glDlistAllocOp2` result (`sh` at 0x3343848).
+  The `jalr` at 0x3343854 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334aaf0, a3 = entry a0 on the taken path of `bne` at 0x3343824.
+  Its call delay slot stores entry a0 as a word at +0x18 from the `__glDlistAllocOp2` result (`sw` at 0x3343858).
+  The return value in v0 is unknown (`jr` at 0x3343830).
+
+- `__gllc_PassThrough` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3343870
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3343874).
+  The `jalr` at 0x3343898 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x33438a0 is taken to 0x33438b8 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x7a is stored at +0x14 from the `__glDlistAllocOp2` result (`sh` at 0x33438c8).
+  The `jalr` at 0x33438d0 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334ab40, a3 = unknown on the taken path of `bne` at 0x33438a0.
+  Its call delay slot stores entry f12 as a word at +0x18 from the `__glDlistAllocOp2` result (`swc1` at 0x33438d4).
+  The return value in v0 is unknown (`jr` at 0x33438b0).
+
+- `__gllc_PopName` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33438e0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x33438f8).
+  The `jalr` at 0x3343904 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x0, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x334390c is taken to 0x3343920 when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x7b is stored at +0x14 from the `__glDlistAllocOp2` result (`sh` at 0x3343938).
+  The `jalr` at 0x3343934 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334ab90, a3 = unknown on the taken path of `bne` at 0x334390c.
+  The return value in v0 is unknown (`jr` at 0x3343918).
+
+- `__gllc_PushName` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3343950
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3343954).
+  The `jalr` at 0x334397c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, a3 = entry a3.
+  The `bne` at 0x3343984 is taken to 0x334399c when the `__glDlistAllocOp2` result is nonzero and falls through when it is zero.
+  On the taken path, halfword 0x7c is stored at +0x14 from the `__glDlistAllocOp2` result (`sh` at 0x33439a8).
+  The `jalr` at 0x33439b4 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334abd0, a3 = entry a0 on the taken path of `bne` at 0x3343984.
+  Its call delay slot stores entry a0 as a word at +0x18 from the `__glDlistAllocOp2` result (`sw` at 0x33439b8).
+  The return value in v0 is unknown (`jr` at 0x3343994).
+
+- `__gllc_ColorMask` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3343e00
+  A doubleword is read at absolute 0x1020 (`ld` at 0x3343e08).
+  The `jalr` at 0x3343e38 calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2, and a3 = entry a3.
+  The `bne` at 0x3343e40 is taken to 0x3343e54 when the allocation call's result is nonzero and falls through when it is zero.
+  On the taken path, 0x85 is stored as a halfword at +0x14 from that result (`sh` at 0x3343e60).
+  That path has four byte stores from the result, including +0x1b, +0x1a and +0x19 (`sb` at 0x3343e74, 0x3343e7c, 0x3343e80).
+  The `jalr` at 0x3343e88 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334aea0, a3 = entry a0, a4 = entry a1, a5 = entry a2 and a6 = entry a3 on the taken path of `bne` at 0x3343e40.
+  The v0 return is unknown (`jr` at 0x3343e4c).
+
+- `__gllc_IndexMask` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3343f20
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x3343f24).
+  The `jalr` at 0x3343f4c calls `__glDlistAllocOp2` with a0 = doubleword at 0x1020, a1 = 0x8, a2 = entry a2 and a3 = entry a3.
+  The `bne` at 0x3343f54 is taken to 0x3343f68 when the allocation call's result is nonzero and falls through when it is zero.
+  On the taken path, the halfword 0x87 is written at +0x14 from that result (`sh` at 0x3343f78).
+  The `jalr` at 0x3343f84 calls `__glDlistAppendOp` with a0 = unknown, a1 = the `__glDlistAllocOp2` result, a2 = 0x334af40 and a3 = entry a0 on the taken path of `bne` at 0x3343f54.
+  Its delay slot stores entry a0 as a word at +0x18 from the allocation result (`sw` at 0x3343f88).
+  At return, v0 is unknown (`jr` at 0x3343f60).
