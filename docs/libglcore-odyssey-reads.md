@@ -5407,7 +5407,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** The low words of entry arguments 0 and 1 are moved to floating-point registers and converted to single precision (`mtc1` at 0x3369480, 0x3369484; `cvt.s.w` at 0x3369488, 0x336948c). Separately, the store sequence at 0x10000 is 0x8080c800 and those two argument low words (`sw` at 0x336949c, 0x33694a0, 0x33694a8). The second argument write is in the return delay slot (`jr` at 0x33694a4). What this destination represents in hardware and the routine's broader purpose are Unknown.
 - `__glOdyim_Vertex2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
   - **Established effects.** The routine reads words from entry argument 0 +0 and +4 (`lw` at 0x33694c0, 0x33694c4). It writes 0x8080c800 followed by those loaded words to absolute 0x10000 (`sw` at 0x33694e4, 0x33694e8, 0x33694f0), with the last store in the return delay slot (`jr` at 0x33694ec). The loaded words are also converted to single precision (`mtc1` at 0x33694c8, 0x33694cc; `cvt.s.w` at 0x33694d0, 0x33694d4). The destination's hardware meaning and this routine's overall role are Unknown.
-- `__glOdyim_Vertex2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369500, 44 bytes
+- `__glOdyim_Vertex2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes at address 0x3369500
+  Entry address: 0x3369500
   - **Established effects.** After moving the first two argument words into floating-point registers, it converts them to single precision (`mtc1` at 0x3369500, 0x3369504; `cvt.s.w` at 0x3369508, 0x336950c). Its three word stores at address 0x10000 comprise 0x8080c800 and the low words of entry arguments 0 and 1 (`sw` at 0x336951c, 0x3369520, 0x3369528). The final store executes as the return delay slot (`jr` at 0x3369524). The hardware significance of those writes and the routine's wider role remain Unknown.
 - `__glOdyim_Vertex2sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
   - **Established effects.** Halfwords are read at entry argument 0 +0 and +2 (`lh` at 0x3369540, 0x3369544), then moved to floating-point registers and converted to single precision (`mtc1` at 0x3369548, 0x336954c; `cvt.s.w` at 0x3369550, 0x3369554). Word writes to absolute 0x10000 place 0x8080c800 before the two loaded halfword values (`sw` at 0x3369564, 0x3369568, 0x3369570); the last write follows the return in its delay slot (`jr` at 0x336956c). The role of that write address and the wider function of the routine are Unknown.
@@ -5452,7 +5453,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** At absolute 0x10000, four word writes place 0x8080cc03 before entry `f12`, `f13` and `f14` (`sw` at 0x336960c; `swc1` at 0x3369610, 0x3369614, 0x336961c). The `f14` write executes in the return delay slot (`jr` at 0x3369618). This address's hardware role and the broader function of this entry are Unknown.
 - `__glOdyim_Vertex3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
   - **Established effects.** Three floating-point words come from entry argument 0 +0, +4 and +8 (`lwc1` at 0x3369640, 0x3369644, 0x3369648). Each is then stored at absolute 0x10000 after an initial word 0x8080cc03 (`sw` at 0x3369658; `swc1` at 0x336965c, 0x3369660, 0x3369668). The third loaded word is written in the return delay slot (`jr` at 0x3369664). The hardware meaning of the destination and the routine's overall purpose remain Unknown.
-- `__glOdyim_Vertex3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3369680, 56 bytes
+- `__glOdyim_Vertex3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 56 bytes at address 0x3369680
+  Entry address: 0x3369680
   - **Established effects.** The low words of entry arguments 0–2 are transferred to floating-point registers and converted to single precision (`mtc1` at 0x3369680, 0x3369684, 0x336968c; `cvt.s.w` at 0x3369688, 0x3369690, 0x3369694). The stores at address 0x10000 instead write 0x8080cc02 and those three argument low words (`sw` at 0x33696a4, 0x33696a8, 0x33696ac, 0x33696b4); argument 2's store is the return delay slot (`jr` at 0x33696b0). The hardware significance of these writes and the routine's broader role are Unknown.
 - `__glCopyImage1` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 208 bytes
   - **Established effects.** `blez` at 0x32a2a84 takes the return path when the word at entry argument 1 +0xbc is signed nonpositive; positive values fall through into a loop with an indirect call whose target is Unknown (`lw` at 0x32a2a64; `blez` at 0x32a2a84; `jalr` at 0x32a2ab0). At that call, arguments 0 and 1 are unchanged, and arguments 2 and 3 are the doublewords at entry argument 1 +0x10 and +0x68 (`ld` at 0x32a2aac, 0x32a2aa8; `jalr` at 0x32a2ab0).
@@ -5782,7 +5784,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** At absolute 0x10000 it stores word 0xc380c41e and then the low word of entry argument 0 (`sw` at 0x336e58c, 0x336e594). The argument write executes in the return delay slot (`jr` at 0x336e590; `sw` at 0x336e594). This entry's broader role and the hardware purpose of that address remain Unknown.
 - `__glOdyim_TexCoord1sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 28 bytes
   - **Established effects.** A halfword is loaded from entry argument 0 +0 (`lh` at 0x336e5c0). Word 0xc380c41e precedes the loaded value in the two word stores to 0x10000 (`sw` at 0x336e5d0, 0x336e5d8); the latter store occupies the return delay slot (`jr` at 0x336e5d4; `sw` at 0x336e5d8). The role of the destination in hardware and the routine's overall function are Unknown.
-- `__glOdyim_TexCoord2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336e600, 36 bytes
+- `__glOdyim_TexCoord2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes at address 0x336e600
+  Entry address: 0x336e600
   - **Established effects.** Two incoming floating-point values are converted from double to single precision (`cvt.s.d` at 0x336e600, 0x336e608). The stores at address 0x10000 place word 0xc380c821 before two floating-point words whose values hostfacts leaves Unknown (`sw` at 0x336e614; `swc1` at 0x336e618, 0x336e620). The final word is written in the return delay slot (`jr` at 0x336e61c; `swc1` at 0x336e620). The destination's hardware meaning and the wider purpose of this entry remain Unknown.
 - `__glOdyim_TexCoord2dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
   - **Established effects.** Doublewords from entry argument 0 +0 and +8 are loaded and converted to single precision (`ldc1` at 0x336e640, 0x336e64c; `cvt.s.d` at 0x336e650, 0x336e65c). A word 0xc380c821 and two floating-point words whose values hostfacts leaves Unknown are written at absolute 0x10000 (`sw` at 0x336e658; `swc1` at 0x336e660, 0x336e668); the second floating-point write executes in the return delay slot (`jr` at 0x336e664; `swc1` at 0x336e668). This routine's broader role and the write destination's hardware function are Unknown.
@@ -5952,7 +5955,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** Four doublewords at entry argument 0 +0, +8, +0x10 and +0x18 are loaded and converted to single precision (`ldc1` at 0x336ea40, 0x336ea4c, 0x336ea54, 0x336ea5c; `cvt.s.d` at 0x336ea58, 0x336ea60, 0x336ea68, 0x336ea70). Word 0xc380d025 and four floating-point words whose values hostfacts leaves Unknown are written in order to 0x10000 (`sw` at 0x336ea64; `swc1` at 0x336ea6c, 0x336ea74, 0x336ea78, 0x336ea80). The last store runs in the return delay slot (`jr` at 0x336ea7c; `swc1` at 0x336ea80). The hardware significance of the destination and the routine's broader role are Unknown.
 - `__glOdyim_TexCoord4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
   - **Established effects.** At absolute 0x10000, this body writes word 0xc380d025, followed by the entry floating-point words in `f12` through `f15` (`sw` at 0x336eacc; `swc1` at 0x336ead0, 0x336ead4, 0x336ead8, 0x336eae0). The `f15` write occupies the return delay slot (`jr` at 0x336eadc; `swc1` at 0x336eae0). The wider function of the entry and the destination's hardware role remain Unknown.
-- `__glOdyim_TexCoord4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336eb00, 44 bytes
+- `__glOdyim_TexCoord4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes at address 0x336eb00
+  Entry address: 0x336eb00
   - **Established effects.** `ldl` accesses entry argument 0 +0 and +8, and `ldr` accesses +7 and +0xf (`ldl` at 0x336eb00, 0x336eb0c; `ldr` at 0x336eb14, 0x336eb18). Its stores at address 0x10000 comprise word 0xc380d025 and two doublewords whose values hostfacts leaves Unknown (`sw` at 0x336eb1c; `sd` at 0x336eb20, 0x336eb28). The latter doubleword is stored in the return delay slot (`jr` at 0x336eb24; `sd` at 0x336eb28). The destination's hardware purpose and the routine's overall role are Unknown.
 - `__glOdyim_TexCoord4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 36 bytes
   - **Established effects.** Five word stores target absolute 0x10000: 0xc380d024 followed by the low words of entry arguments 0–3 (`sw` at 0x336eb4c, 0x336eb50, 0x336eb54, 0x336eb58, 0x336eb60). The argument 3 store executes in the return delay slot (`jr` at 0x336eb5c; `sw` at 0x336eb60). The write address's hardware function and this routine's wider role are Unknown.
@@ -6033,7 +6037,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** Doublewords at entry argument 0 +0, +8 and +0x10 are read and converted from double to single precision (`ldc1` at 0x336f040, 0x336f04c, 0x336f058; `cvt.s.d` at 0x336f054, 0x336f05c, 0x336f064). The routine writes word 0xc580cc0e followed by three floating-point words to absolute 0x10000; hostfacts leaves those three values Unknown (`sw` at 0x336f060; `swc1` at 0x336f068, 0x336f06c, 0x336f074). The last write is the return delay-slot instruction (`jr` at 0x336f070; `swc1` at 0x336f074). The address's hardware meaning and the broader role of this routine are Unknown.
 - `__glOdyim_Color3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
   - **Established effects.** At 0x10000, four word writes place 0xc580cc0e before the entry floating-point words in `f12`, `f13` and `f14` (`sw` at 0x336f0cc; `swc1` at 0x336f0d0, 0x336f0d4, 0x336f0dc). The `f14` write occurs in the return delay slot (`jr` at 0x336f0d8; `swc1` at 0x336f0dc). The destination's function in hardware and this entry's wider role remain Unknown.
-- `__glOdyim_Color3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336f140, 40 bytes
+- `__glOdyim_Color3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes at address 0x336f140
+  Entry address: 0x336f140
   - **Established effects.** `ldl` and `ldr` access entry argument 0 +4 and +0xb, and `lwu` loads a word from +0 (`ldl` at 0x336f140; `ldr` at 0x336f154; `lwu` at 0x336f14c). The stores at address 0x10000 write word 0xc580cc0e, the loaded word and then a doubleword whose value the facts report leaves Unknown (`sw` at 0x336f158, 0x336f15c; `sd` at 0x336f164). That doubleword store runs in the return delay slot (`jr` at 0x336f160; `sd` at 0x336f164). The destination's hardware significance and the routine's broader purpose are Unknown.
 - `__glOdyim_Color3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
   - **Established effects.** Its word stores to absolute 0x10000 place 0xc580cc0d before the low words of entry arguments 0–2 (`sw` at 0x336f1cc, 0x336f1d0, 0x336f1d4, 0x336f1dc). Argument 2's store executes as the return delay-slot instruction (`jr` at 0x336f1d8; `sw` at 0x336f1dc). The hardware role of that destination and this routine's overall function are Unknown.
@@ -6202,7 +6207,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** Four halfwords are read from entry argument 0 +0, +2, +4 and +6 (`lh` at 0x3369ac0, 0x3369ac4, 0x3369ac8, 0x3369acc). They are also moved to floating-point registers and converted to single precision (`mtc1` at 0x3369ad0, 0x3369ad4, 0x3369ae0, 0x3369ae4; `cvt.s.w` at 0x3369ad8, 0x3369adc, 0x3369ae8, 0x3369aec). At 0x10000, the word 0x8080d004 precedes the loaded halfword values in word stores (`sw` at 0x3369afc, 0x3369b00, 0x3369b04, 0x3369b08, 0x3369b10). The final write runs in the return delay slot (`jr` at 0x3369b0c; `sw` at 0x3369b10). The destination's hardware function and this routine's wider role remain Unknown.
 - `__glOdyim_ScratchColor3b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes
   - **Established effects.** The four word writes to absolute 0x10000 contain 0xce80cc0b followed by the low words of entry arguments 0–2 (`sw` at 0x336ef0c, 0x336ef10, 0x336ef14, 0x336ef1c). Argument 2's store occupies the return delay slot (`jr` at 0x336ef18; `sw` at 0x336ef1c). The hardware role of that address and this entry's broader function are Unknown.
-- `__glOdyim_ScratchColor3bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336ef80, 44 bytes
+- `__glOdyim_ScratchColor3bv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes at address 0x336ef80
+  Entry address: 0x336ef80
   - **Established effects.** Bytes are loaded from entry argument 0 +0, +1 and +2 (`lb` at 0x336ef80, 0x336ef8c, 0x336ef94). Word stores at address 0x10000 place 0xce80cc0b before those three loaded values (`sw` at 0x336ef98, 0x336ef9c, 0x336efa0, 0x336efa8); the last write follows the return in its delay slot (`jr` at 0x336efa4; `sw` at 0x336efa8). The destination's hardware meaning and the wider purpose of this routine remain Unknown.
 - `__glOdyim_ScratchColor3d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 44 bytes
   - **Established effects.** Three incoming floating-point values are converted from double to single precision (`cvt.s.d` at 0x336f000, 0x336f008, 0x336f014). At 0x10000, word 0xce80cc0e precedes three floating-point stores whose values hostfacts leaves Unknown (`sw` at 0x336f018; `swc1` at 0x336f01c, 0x336f020, 0x336f028). The third floating-point write runs in the return delay slot (`jr` at 0x336f024; `swc1` at 0x336f028). The write destination's hardware significance and this routine's broader role are Unknown.
@@ -6262,11 +6268,13 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   - **Established effects.** Five word stores target absolute 0x10000: 0xce80d013 first, then the low words of entry arguments 0, 1, 2 and 3 (`sw` at 0x336fb8c, 0x336fb90, 0x336fb94, 0x336fb98, 0x336fba0). The argument 3 store runs during the return delay slot (`jr` at 0x336fb9c; `sw` at 0x336fba0). This routine's wider role and the destination's hardware purpose remain Unknown.
 - `__glOdyim_ScratchColor4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 52 bytes
   - **Established effects.** Four halfwords are loaded from entry argument 0 +0, +2, +4 and +6 (`lh` at 0x336fc00, 0x336fc0c, 0x336fc14, 0x336fc18). At 0x10000, word 0xce80d013 precedes the four loaded values in word writes (`sw` at 0x336fc1c, 0x336fc20, 0x336fc24, 0x336fc28, 0x336fc30); the last value is written in the return delay slot (`jr` at 0x336fc2c; `sw` at 0x336fc30). The destination's hardware significance and the routine's broader function are Unknown.
-- `__glOdyim_ScratchColor3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336f100, 32 bytes
+- `__glOdyim_ScratchColor3f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes at address 0x336f100
+  Entry address: 0x336f100
   **Established.** It stores the word 0xce80cc0e at address 0x10000 (`sw` at 0x336f10c). It follows with floating-point word stores from entry registers f12, f13 and f14 to the same address (`swc1` at 0x336f110, 0x336f114, 0x336f11c); the last runs in the return delay slot (`jr` at 0x336f118). The hardware effect and wider role of this floating-point sender are Unknown.
 - `__glOdyim_ScratchColor3fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
   **Established.** It issues `ldl` at argument 0 +4 and `ldr` at argument 0 +0xb into the same register (`ldl` at 0x336f180; `ldr` at 0x336f194), and loads an unsigned word at argument 0 +0 (`lwu` at 0x336f18c). The routine writes word 0xce80cc0e and then the loaded word to address 0x10000 (`sw` at 0x336f198, 0x336f19c). Its return delay slot (`jr` at 0x336f1a0) stores a doubleword from the register used by the partial loads to that address (`sd` at 0x336f1a4). The doubleword value, hardware effect and wider role of this vector sender are Unknown.
-- `__glOdyim_ScratchColor3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x336f200, 32 bytes
+- `__glOdyim_ScratchColor3i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 32 bytes at address 0x336f200
+  Entry address: 0x336f200
   **Established.** A word store writes 0xce80cc0d at address 0x10000 (`sw` at 0x336f20c). Three further word stores to that address carry the low words of entry arguments 0, 1 and 2 in order (`sw` at 0x336f210, 0x336f214, 0x336f21c); the final store executes in the return delay slot (`jr` at 0x336f218). The hardware effect and wider role of this integer sender are Unknown.
 - `__glOdyim_ScratchColor3iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 40 bytes
   **Established.** A pair of partial doubleword loads uses argument 0 +4 and +0xb (`ldl` at 0x336f280; `ldr` at 0x336f294), while an unsigned word comes from argument 0 +0 (`lwu` at 0x336f28c). It stores word 0xce80cc0d followed by that loaded word to address 0x10000 (`sw` at 0x336f298, 0x336f29c), then stores a doubleword from the partial-load register at the same address in the return delay slot (`jr` at 0x336f2a0; `sd` at 0x336f2a4). The doubleword value, hardware effect and wider role of the doubleword and word stores are Unknown.
@@ -6358,9 +6366,10 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The same path clears the word at a0 +0xbb80 (`sw` at 0x31ffc7c).
   `bltz` takes its branch when the word loaded at a0 +0xb9f4, shifted left by 4, is negative as a signed value; otherwise it falls through to a word store of the low word of 0xffffffff90008116 at absolute address 0x10000 (`lw` at 0x31ffc90; `sll` at 0x31ffc94; `bltz` at 0x31ffc98; `sw` at 0x31ffca4).
   The hardware meaning of these writes and the routine’s broader role are Unknown.
-- `ApplyViewport` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x31f9e70, 616 bytes
+- `ApplyViewport` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 616 bytes
+  Entry address: 0x31f9e70
   **Established.** It calls `__glOdysseyFindWindowSize` and `__glUpdateViewport` (`bgezall` at 0x31f9ea0; `jalr` at 0x31f9eac), then writes floating-point words at argument 0 +0x224, +0x7c0 and +0x7c4 (`swc1` at 0x31f9f38, 0x31f9f48, 0x31f9f58). Calls include `__glOdysseyImageDescribeWindow` with argument 0 equal to entry argument 0 +0x14120 and argument 1 equal to zero, then with argument 0 equal to entry argument 0 +0x14160 and argument 1 equal to one (`jalr` at 0x31f9f54, 0x31f9f70).
-  The word at argument 0 +0xbb80 is read (`lw` at 0x31fa040); `beqz` at 0x31fa06c takes the path that writes 0x10456 and the word read at argument 0 +0xbb78 to address 0x10000 when that word is zero (`lui` at 0x31fa048; `ori` at 0x31fa054; `sw` at 0x31fa0bc; `lw` at 0x31fa0c0; `sw` at 0x31fa0c8). For a nonzero word it falls through to stores at address 0x10000 of 0x10443, 0xfa, 0x10046 twice, 0x10456, and the word read at argument 0 +0xbb78 (`lui` at 0x31fa078; `ori` at 0x31fa07c, 0x31fa088, 0x31fa094; `addiu` at 0x31fa060; `sw` at 0x31fa080, 0x31fa084, 0x31fa08c, 0x31fa090, 0x31fa098; `lw` at 0x31fa09c; `sw` at 0x31fa0a4). The field, stored sequence and routine’s broader roles are Unknown.
+  The word at argument 0 +0xbb80 is read (`lw` at 0x31fa040); `beqz` at 0x31fa06c takes the path that writes 0x10456 and the word read at argument 0 +0xbb78 to absolute 0x10000 when that word is zero (`lui` at 0x31fa048; `ori` at 0x31fa054; `sw` at 0x31fa0bc; `lw` at 0x31fa0c0; `sw` at 0x31fa0c8). For a nonzero word it falls through to stores at absolute 0x10000 of 0x10443, 0xfa, 0x10046 twice, 0x10456, and the word read at argument 0 +0xbb78 (`lui` at 0x31fa078; `ori` at 0x31fa07c, 0x31fa088, 0x31fa094; `addiu` at 0x31fa060; `sw` at 0x31fa080, 0x31fa084, 0x31fa08c, 0x31fa090, 0x31fa098; `lw` at 0x31fa09c; `sw` at 0x31fa0a4). The field, stored sequence and routine’s broader roles are Unknown.
 
 ## 64-bit IP30 library: lighting and convolution window paths
 
@@ -7979,7 +7988,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glInitVertexArrayState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 136 bytes
   - **Established effects.** Its word stores include 1 at entry argument 0 +0x17c4 and zero at +0x17bc, +0x17b8 and +0x17b4 (`sw` at 0x3333664, 0x3333668, 0x333366c, 0x3333670). It writes 0x1406 at offsets including +0x1798, +0x1778 and +0x1694 (`sw` at 0x3333678, 0x333367c, 0x3333680).
   - A doubleword loaded at absolute 0x3392a00 is stored at offsets including +0x17a8 and +0x1788 of entry argument 0 (`ld` at 0x33336c0; `sd` at 0x33336c4, 0x33336c8). The fields' meanings and the initialization routine's hardware role are Unknown.
-- `__glce_TexCoord2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3359d50, 116 bytes
+- `__glce_TexCoord2iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes at address 0x3359d50
+  Entry address: 0x3359d50
   **Established effects.** It saves the doubleword at absolute 0x1da8 on the entry stack (`ld` at 0x3359d50; `sd` at 0x3359d58). In the first `glTexCoord2iv` call's delay slot, it stores at address 0x1da8 the doubleword from +0x27f8 of the doubleword at absolute 0x1020 (`ld` at 0x3359d68, 0x3359d80; `jalr` at 0x3359d88; `sd` at 0x3359d8c). It then loads a doubleword from an Unknown base and writes an Unknown value to 0x1da8 in the second `glTexCoord2iv` call's delay slot (`ld` at 0x3359d98; `jalr` at 0x3359da0; `sd` at 0x3359da4). The return delay slot writes another Unknown doubleword to 0x1da8 (`jr` at 0x3359dbc; `sd` at 0x3359dc0). The meanings of these locations and the routine's wider hardware role are Unknown.
 - `__glce_TexCoord2s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
   **Established effects.** The entry doubleword at 0x1db0 is saved on the stack (`ld` at 0x3359dd0; `sd` at 0x3359ddc). The first `glTexCoord2s` call's delay slot writes the value loaded from +0x2800 of the doubleword at 0x1020 to 0x1db0 (`ld` at 0x3359dec, 0x3359e04; `jalr` at 0x3359e0c; `sd` at 0x3359e10). A later doubleword load has an Unknown base; the delay slot of the second `glTexCoord2s` call writes an Unknown doubleword to 0x1db0 (`ld` at 0x3359e20; `jalr` at 0x3359e28; `sd` at 0x3359e2c). Another Unknown doubleword is stored to 0x1db0 as the routine returns (`jr` at 0x3359e44; `sd` at 0x3359e48). The purpose of these writes and the routine's broader hardware role remain Unknown.
@@ -7992,9 +8002,15 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glDlistInitPageState` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x32901a0
   **Established effects.** An unknown callee receives entry `a0`, 0x38 in `a1`, and entry `a2` and `a3` (`jalr` at 0x32901c8).
   `bnez` at 0x32901d0 is taken when it returns nonzero. That path clears doublewords at result +0x20 and +8 and words at +0x1c and +0x10 (`sd` at 0x32901ec, 0x32901f8; `sw` at 0x32901f0, 0x32901f4). The list includes only some stores. The cleared fields’ hardware meanings and this routine’s broader role are Unknown.
-- `__glDlistFreePageState` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3290230
-  **Established effects.** It calls an unknown target loaded from entry `a1` +0x28 with unknown `a0` and entry `a1` through `a3` (`ld` at 0x3290248; `jalr` at 0x3290260).
-  Later it calls another unknown target loaded from entry `a0` +0x18 with entry `a0`, the doubleword at entry `a1` +0x20 in `a1`, and unknown `a2` and `a3` (`ld` at 0x3290268, 0x3290274; `jalr` at 0x3290270). The indirect targets’ hardware effects and the routine’s wider role are Unknown.
+- `__glDlistFreePageState` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3290230
+  A doubleword is read from `a1 (arg1 at entry) +0x28` (`ld` at 0x3290248).
+  A word is read from `a1 (arg1 at entry) +0x10` (`lw` at 0x329024c).
+  A doubleword is read from `a0 (arg0 at entry) +0x18` (`ld` at 0x3290268).
+  A doubleword is read from `a1 (arg1 at entry) +0x20` (`ld` at 0x3290274).
+  The `jalr` at 0x3290260 calls (unknown callee) with `a0=unknown, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x3290270 calls (unknown callee) with `a0=a0 at entry (arg0), a1=[a1+32]:8, a2=unknown, a3=unknown`.
+  The `jalr` at 0x3290280 calls (unknown callee) with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown`.
+  At `jr` at 0x3290298, the return value is `the unknown callee’s return`.
 - `__glDlistFreePage` — usr/gfx/arch/IP30ODSY64/libGLcore.so — 0x3290490
   **Established effects.** `bltz` at 0x329051c is taken when its tested value is signed negative; that value is unknown.
   On this path it reads the word at entry `a0` +0x18, increments it, and stores it back (`lw` at 0x329054c; `addiu` at 0x3290554; `sw` at 0x329055c). The incremented field’s hardware effect and the routine’s broader role are Unknown.
@@ -8131,14 +8147,42 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   After an Unknown-base doubleword load (`ld` at 0x335a718), the second call's delay slot writes an Unknown doubleword at 0x1e38 (`jalr` at 0x335a720; `sd` at 0x335a724). Its return delay slot also stores an Unknown doubleword at 0x1e38 (`jr` at 0x335a73c; `sd` at 0x335a740); the fields' hardware significance and overall routine role are Unknown.
 - `glTexCoord1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 128 bytes
   **Established effects.** A doubleword loaded from absolute address 0x1d40 supplies the target of an indirect jump (`ld` at 0x3375900; `jr` at 0x3375904). That target, the location's purpose and the broader role of this entry are Unknown.
-- `__glOdyim_SoftGetDoublev` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
-  **Established effects.** A comparison with 0xb00 is taken for entry `a0 = 0xb00` (`addiu` at 0x3288634; `beq` at 0x3288648). That path calls `__glim_GetDoublev` with entry `a0` and `a1`; hostfacts leaves `a2` and `a3` unknown (`jalr` at 0x328869c). The call's hardware effect and the routine's broader role are Unknown.
-- `__glOdyim_SoftGetFloatv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 120 bytes
-  **Established effects.** When entry `a0` equals 0xb00, `beq` takes the path that reaches `__glim_GetFloatv` (`addiu` at 0x32886b4; `beq` at 0x32886c8; `jalr` at 0x3288718). The call receives entry `a0` and `a1`; its `a2` and `a3` values are unknown (`jalr` at 0x3288718). What this dispatch does in hardware and its broader routine role are Unknown.
-- `__glOdyim_SoftGetIntegerv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
-  **Established effects.** Entry `a0 = 0xb00` makes the first `beq` take the path to `__glim_GetIntegerv` (`addiu` at 0x3288734; `beq` at 0x3288748; `jalr` at 0x3288794). That call keeps entry `a0` and `a1`, with `a2` and `a3` unknown in hostfacts (`jalr` at 0x3288794). The dispatch's hardware effect and the routine's wider role are Unknown.
-- `__glOdyim_SoftGetBooleanv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 120 bytes
-  **Established effects.** For entry `a0 = 0xb00`, `beq` branches to the path invoking `__glim_GetBooleanv` (`addiu` at 0x32887b4; `beq` at 0x32887c8; `jalr` at 0x3288818). The first two call arguments are entry `a0` and `a1`; hostfacts reports unknown values for `a2` and `a3` (`jalr` at 0x3288818). The call's hardware effect and this routine's wider role remain Unknown.
+- `__glOdyim_SoftGetDoublev` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3288630
+  The `beq` at 0x3288648 branches to 0x3288698 when `a0 == at(=0xb00)` and falls through when `a0 != at(=0xb00)`.
+  The `beq` at 0x3288654 branches to 0x328869c when `a0 == v1(=0xb01)` and falls through when `a0 != v1(=0xb01)`.
+  The `beq` at 0x3288660 branches to 0x328869c when `a0 == a2(=0xb02)` and falls through when `a0 != a2(=0xb02)`.
+  The `beq` at 0x328866c branches to 0x328869c when `a0 == a3(=0xb03)` and falls through when `a0 != a3(=0xb03)`.
+  The `beq` at 0x3288678 branches to 0x3288698 when `a0 == a4(=0xb43)` and falls through when `a0 != a4(=0xb43)`.
+  The `jalr` at 0x3288680 calls `__glOdyim_GetDoublev` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0xb02, a3=0xb03, a4=0xb43`.
+  The `jalr` at 0x328869c calls `__glim_GetDoublev` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown`.
+  At `jr` at 0x3288690, the return value is `unknown`.
+- `__glOdyim_SoftGetFloatv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32886b0
+  The `beq` at 0x32886c8 branches to 0x3288714 when `a0 == at(=0xb00)` and falls through when `a0 != at(=0xb00)`.
+  The `beq` at 0x32886d4 branches to 0x3288718 when `a0 == v1(=0xb01)` and falls through when `a0 != v1(=0xb01)`.
+  The `beq` at 0x32886e0 branches to 0x3288714 when `a0 == a2(=0xb02)` and falls through when `a0 != a2(=0xb02)`.
+  The `beq` at 0x32886e8 branches to 0x3288714 when `a0 == a3(=0xb03)` and falls through when `a0 != a3(=0xb03)`.
+  The `beq` at 0x32886f0 branches to 0x3288718 when `a0 == a4(=0xb43)` and falls through when `a0 != a4(=0xb43)`.
+  The `jalr` at 0x32886fc calls `__glOdyim_GetFloatv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0xb02, a3=0xb03, a4=0xb43`.
+  The `jalr` at 0x3288718 calls `__glim_GetFloatv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown`.
+  The return value is unknown (`jr` at 0x328870c).
+- `__glOdyim_SoftGetIntegerv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3288730
+  The `beq` at 0x3288748 branches to 0x3288790 when `a0 == at(=0xb00)` and falls through when `a0 != at(=0xb00)`.
+  The `beq` at 0x3288754 branches to 0x3288790 when `a0 == v1(=0xb01)` and falls through when `a0 != v1(=0xb01)`.
+  The `beq` at 0x328875c branches to 0x3288794 when `a0 == a2(=0xb02)` and falls through when `a0 != a2(=0xb02)`.
+  The `beq` at 0x3288768 branches to 0x3288790 when `a0 == a3(=0xb03)` and falls through when `a0 != a3(=0xb03)`.
+  The `beq` at 0x3288770 branches to 0x3288790 when `a0 == a4(=0xb43)` and falls through when `a0 != a4(=0xb43)`.
+  The `jalr` at 0x3288778 calls `__glOdyim_GetIntegerv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0xb02, a3=0xb03, a4=0xb43`.
+  The `jalr` at 0x3288794 calls `__glim_GetIntegerv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown`.
+  The return value is unknown (`jr` at 0x3288788).
+- `__glOdyim_SoftGetBooleanv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32887b0
+  The `beq` at 0x32887c8 branches to 0x3288814 when `a0 == at(=0xb00)` and falls through when `a0 != at(=0xb00)`.
+  The `beq` at 0x32887d4 branches to 0x3288814 when `a0 == v1(=0xb01)` and falls through when `a0 != v1(=0xb01)`.
+  The `beq` at 0x32887dc branches to 0x3288818 when `a0 == a2(=0xb02)` and falls through when `a0 != a2(=0xb02)`.
+  The `beq` at 0x32887e8 branches to 0x3288814 when `a0 == a3(=0xb03)` and falls through when `a0 != a3(=0xb03)`.
+  The `beq` at 0x32887f0 branches to 0x3288818 when `a0 == a4(=0xb43)` and falls through when `a0 != a4(=0xb43)`.
+  The `jalr` at 0x32887fc calls `__glOdyim_GetBooleanv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0xb02, a3=0xb03, a4=0xb43`.
+  The `jalr` at 0x3288818 calls `__glim_GetBooleanv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown`.
+  The return value is unknown (`jr` at 0x328880c).
 - `RestoreCurrentState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
   **Established effects.** The first `beqz` falls through when mask 0x2 of the word at entry `a1` is nonzero (`lw` at 0x320b180; `andi` at 0x320b18c; `beqz` at 0x320b19c). On that path an indirect call uses a target loaded from +0xc28 of the doubleword at entry `a0` +0x1ad8 (`ld` at 0x320b1a4, 0x320b1a8; `jalr` at 0x320b1ac). Its arguments are entry `a1` +4, entry `a1`, entry `a2` and the word at entry `a1` (`lw` at 0x320b180; `jalr` at 0x320b1ac; `daddiu` at 0x320b1b0). The indirect target's hardware effect and this routine's broader role are Unknown.
 
@@ -8453,9 +8497,15 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glim_GenAsyncMarkersSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b7e50
   **Established effects.** `beq` at 0x32b7e74 is taken when the word at 0x1030 equals 1 (`lw` at 0x32b7e58; `addiu` at 0x32b7e5c).
   The taken path calls `__glSetError` with 0x502 in `a0`, entry `a1` and `a3`, and entry `a0` in `a2` (`jalr` at 0x32b7ebc). The tested word’s meaning and this routine’s hardware role are Unknown.
-- `__glim_IsAsyncMarkerSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b7f00
-  **Established effects.** When the word at 0x1030 does not equal 1, `beq` at 0x32b7f20 falls through (`lw` at 0x32b7f04; `addiu` at 0x32b7f08).
-  That path calls `__glNamesIsName` with the doubleword at 0x1020 in `a0`, its doubleword at +0x1ad0 in `a1`, entry `a0` in `a2`, and entry `a3` (`ld` at 0x32b7f2c, 0x32b7f34; `jalr` at 0x32b7f30). The accessed fields’ hardware significance and the routine’s wider role are Unknown.
+- `__glim_IsAsyncMarkerSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32b7f00
+  A word is read from `absolute address 0x1030` (`lw` at 0x32b7f04).
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x32b7f2c).
+  A doubleword is read from `[0x1020]:8 +0x1ad0` (`ld` at 0x32b7f34).
+  The `beq` at 0x32b7f20 branches to 0x32b7f4c when `at(=[0x1030]) == v0(=0x1)` and falls through when `at(=[0x1030]) != v0(=0x1)`.
+  The `jalr` at 0x32b7f30 calls `__glNamesIsName` with `a0=[0x1020]:8, a1=[[0x1020]:8+6864]:8, a2=a0 at entry (arg0), a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x32b7f20.
+  The `jalr` at 0x32b7f50 calls `__glSetError` with `a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x32b7f20.
+  At `jr` at 0x32b7f44, the return value is `unknown`.
+  At `jr` at 0x32b7f64, the return value is `0x0`.
 - `__glim_DeleteAsyncMarkersSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32b8110
   **Established effects.** `beq` at 0x32b8134 falls through when the word at 0x1030 does not equal 1 (`lw` at 0x32b8118; `addiu` at 0x32b811c).
   On that path `bltz` at 0x32b813c is taken when entry `a1` is signed negative, leading to `__glSetError` with 0x501 in `a0` (`jalr` at 0x32b8180). The deletion routine’s broader role and the hardware effect of its error path are Unknown.
@@ -8597,7 +8647,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 - `__glce_Vertex4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
   - **Established effects.** The value initially at 0x1b88 is saved to the stack (`ld` at 0x335b240; `sd` at 0x335b248). A doubleword from absolute 0x1020 supplies the base for a +0x25d8 load (`ld` at 0x335b258, 0x335b270). `glVertex4iv` receives entry arguments 0–3 and its call delay slot writes that loaded doubleword to 0x1b88 (`jalr` at 0x335b278; `sd` at 0x335b27c).
   - Its next `glVertex4iv` call passes entry argument 0; hostfacts leaves arguments 1–3 and the value stored to 0x1b88 in the call delay slot Unknown (`jalr` at 0x335b290; `sd` at 0x335b294). The return delay slot writes an Unknown doubleword to 0x1b88 (`jr` at 0x335b2ac; `sd` at 0x335b2b0). The significance of these writes and this entry's wider role are Unknown.
-- `__glce_Vertex4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335b2c0, 140 bytes
+- `__glce_Vertex4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes at address 0x335b2c0
+  Entry address: 0x335b2c0
   - **Established effects.** A stack save retains the entry doubleword from absolute 0x1b90 (`ld` at 0x335b2c0; `sd` at 0x335b2d4). The first `glVertex4s` call takes entry arguments 0–3; its delay slot stores at address 0x1b90 the doubleword loaded from [0x1020]:8 +0x25e0 (`ld` at 0x335b2e4, 0x335b2fc; `jalr` at 0x335b304; `sd` at 0x335b308).
   - The same four entry arguments reach a second `glVertex4s` call, whose delay slot writes an Unknown value to that absolute location (`jalr` at 0x335b328; `sd` at 0x335b32c). On return, a further Unknown doubleword is stored to 0x1b90 in the delay slot (`jr` at 0x335b344; `sd` at 0x335b348). The meaning of this location and the broader role of the routine are Unknown.
 - `__glce_Vertex4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
@@ -8615,12 +8666,18 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established.** A no-operation occupies the delay slot of the return (`jr` at 0x3306520; `nop` at 0x3306524). The entry's purpose is Unknown.
 - `glMultiTexCoord3dSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 8 bytes
   **Established.** It returns with a no-operation as its delay-slot instruction (`jr` at 0x3306530; `nop` at 0x3306534). Its wider role is Unknown.
-- `__glOdyim_ConvolutionParameterfEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3220a10
-  **Established effects.** `beq` at 0x3220a2c is taken when entry `a1` equals 0x8013 (`dli` at 0x3220a18).
-  The path calls `__glOdyim_ConvolutionParameterfvEXT` with entry `a0`, `a1`, `a3`, and entry stack pointer minus 32 in `a2` (`bgezall` at 0x3220a54). The selected call’s hardware effect and the routine’s wider role are Unknown.
-- `__glOdyim_ConvolutionParameteriEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3220c80
-  **Established effects.** When entry `a1` is not 0x8013, `beq` at 0x3220c9c falls through (`dli` at 0x3220c88).
-  It calls `__glSetError` with 0x500 in `a0` and entry `a1` through `a3` (`jalr` at 0x3220ca8). The error call’s hardware relevance and the routine’s broader purpose are Unknown.
+- `__glOdyim_ConvolutionParameterfEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3220a10
+  A word from `f14` is stored to `sp (at entry) -0x20` (`swc1` at 0x3220a14).
+  The `beq` at 0x3220a2c branches to 0x3220a50 when `a1 == at(=0x8013)` and falls through when `a1 != at(=0x8013)`.
+  The `jalr` at 0x3220a38 calls `__glSetError` with `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x3220a2c.
+  The `bgezall` at 0x3220a54 calls `__glOdyim_ConvolutionParameterfvEXT` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-32, a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x3220a2c.
+  The return value is unknown (`jr` at 0x3220a48).
+- `__glOdyim_ConvolutionParameteriEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3220c80
+  A word from `a2` is stored to `sp (at entry) -0x20` (`sw` at 0x3220c84).
+  The `beq` at 0x3220c9c branches to 0x3220cc0 when `a1 == at(=0x8013)` and falls through when `a1 != at(=0x8013)`.
+  The `jalr` at 0x3220ca8 calls `__glSetError` with `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` on the fall-through of `beq` at 0x3220c9c.
+  The `bgezall` at 0x3220cc4 calls `__glOdyim_ConvolutionParameterivEXT` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-32, a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x3220c9c.
+  The return value is unknown (`jr` at 0x3220cb8).
 - `__glOdyim_SoftColor4b` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3286e70
   **Established effects.** It calls `__glOdyim_Color4b`, then `__glim_Color4b`, each with entry `a0` through `a3` (`jalr` at 0x3286ea0, 0x3286eb8).
   The latter result is returned (`jr` at 0x3286ecc). The hardware effects of either color call and the routine’s broader role are Unknown.
@@ -8805,8 +8862,18 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   **Established effects.** When the word at 0x1030 differs from 1, the `beq` falls through (`lw` at 0x32bb320, `addiu` at 0x32bb324, `beq` at 0x32bb33c). This path stores a halfword of unknown value at offset 0x78a of the doubleword loaded from 0x1020 (`ld` at 0x32bb32c, `sh` at 0x32bb358). The purpose of this mask update is unknown.
 - `__glim_BlendColorEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfd30
   **Established effects.** The `beq` falls through when the word at 0x1030 differs from 1 (`lw` at 0x32bfd30, `addiu` at 0x32bfd34, `beq` at 0x32bfd4c). On that path, floating-point words of unknown value are stored at offsets 0x844, 0x840, 0x83c and 0x838 of the doubleword loaded from 0x1020 (`ld` at 0x32bfd3c, `swc1` at 0x32bfdac, `swc1` at 0x32bfdb0, `swc1` at 0x32bfdb4, `swc1` at 0x32bfdc0). The broader purpose of these stored values is unknown.
-- `__glim_PolygonOffsetEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfdf0
-  **Established effects.** A word at 0x1030 is compared with 1; if it differs, the `beq` falls through (`lw` at 0x32bfdf0, `addiu` at 0x32bfdf4, `beq` at 0x32bfe0c). That path stores entry registers `f13` and `f12` at offsets 0x2a8 and 0x2a4 of the doubleword loaded from 0x1020, respectively (`ld` at 0x32bfdfc, `swc1` at 0x32bfe14, `swc1` at 0x32bfe18). The effect of these two values on later operations is unknown.
+- `__glim_PolygonOffsetEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32bfdf0
+  A word is read from `absolute address 0x1030` (`lw` at 0x32bfdf0).
+  A doubleword is read from `absolute address 0x1020` (`ld` at 0x32bfdfc).
+  A word is stored to `[0x1020]:8 +0x2a8` (`swc1` at 0x32bfe14).
+  A word is stored to `[0x1020]:8 +0x2a4` (`swc1` at 0x32bfe18).
+  A word is stored to `absolute address 0x1030` (`sw` at 0x32bfe20).
+  A word is read from `[0x1020]:8 +0x4714` (`lw` at 0x32bfe24).
+  A word is stored to `[0x1020]:8 +0x4714` (`sw` at 0x32bfe38).
+  The `beq` at 0x32bfe0c branches to 0x32bfe48 when `v0(=[0x1030]) == v1(=0x1)` and falls through when `v0(=[0x1030]) != v1(=0x1)`.
+  The `jalr` at 0x32bfe50 calls `__glSetError` with `a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3)` on the taken arm of `beq` at 0x32bfe0c.
+  At `jr` at 0x32bfe34, the return value is `([[0x1020]:8+18196] | 0x4)`.
+  At `jr` at 0x32bfe40, the return value is `ret(__glSetError)`.
 - `__glim_PolygonOffset` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32bfe60
   **Established effects.** If the word at 0x1030 is not 1, the `beq` falls through (`lw` at 0x32bfe60, `addiu` at 0x32bfe64, `beq` at 0x32bfe7c). The path stores entry register `f12` at offset 0x2a4 and a floating-point word of unknown value at offset 0x2a8 of the doubleword loaded from 0x1020 (`ld` at 0x32bfe6c, `swc1` at 0x32bfe88, `swc1` at 0x32bfe90). The later use of these stored values is unknown.
 - `__glim_Color3ub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32c36f0
@@ -9011,8 +9078,97 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The accesses include a word read at entry `a0` +0x8ce4 and floating-point word stores of unknown values at entry `a0` +0x9708 and +0x9704 (`lw` at 0x32fc554; `swc1` at 0x32fc548, 0x32fc54c). It makes an indirect call to an unknown target (`jalr` at 0x32fc624). The fields’ purposes are Unknown.
 - `__glDontRenderTriangle` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fc950
   The body transfers control to the return address and executes a no-op in its delay slot (`jr` at 0x32fc950; `nop` at 0x32fc954). Its return value and wider role are Unknown.
-- `DoRender` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3312240
-  Its calls include `DoInterpolate` with entry `a0` as the first argument (`bgezall` at 0x33124d8) and `glBegin` with 5 as the first argument (`jalr` at 0x3312500; `addiu` at 0x3312504). The purpose of these calls in the larger operation is Unknown.
+- `DoRender` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3312240
+  The `ld` at 0x331226c reads a doubleword from absolute 0x1020.
+  The `beq` at 0x33122a8 takes 0x33128b0 when a0 == 0 and falls through when a0 != 0.
+  The `bgezall` at 0x33124d8 calls `DoInterpolate [0x3311e50]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x33123c0 falls through.
+  The `bgezall` at 0x33124f4 calls `DoNormal [0x3310d20]` with a0=a0 at entry (arg0), a1=a1+1, a2=unknown, a3=unknown on paths where the `beq` at 0x33124e0 falls through.
+  The `jalr` at 0x3312500 calls `glBegin` with a0=0x5, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x3312540 calls `fprintf` with a0=sym(__iob)+64, a1=0x337cab0, a2=unknown, a3=unknown on paths where the `beq` at 0x3312528 falls through.
+  The `jalr` at 0x331254c calls `glEnd` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x3312624 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c is taken.
+  The `jalr` at 0x3312660 calls `glColor4fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c is taken.
+  The `jalr` at 0x331269c calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c is taken.
+  The `jalr` at 0x3312718 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c falls through.
+  The `jalr` at 0x3312744 calls `glNormal3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c falls through.
+  The `jalr` at 0x3312780 calls `glColor4fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c falls through.
+  The `jalr` at 0x33127bc calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x331270c falls through.
+  The `jalr` at 0x33127d0 calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x33127c8 falls through.
+  The `jalr` at 0x33127dc calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x33127c8 falls through.
+  The `jalr` at 0x33127e8 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x33127c8 falls through.
+  The `jalr` at 0x33127f4 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x33127c8 falls through.
+  The `jalr` at 0x3312804 calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x331270c is taken.
+  The `jalr` at 0x3312810 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x331270c is taken.
+  The `jalr` at 0x331281c calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x331270c is taken.
+  The `jalr` at 0x33129c0 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `beq` at 0x33129fc is taken.
+  The `jalr` at 0x3312a20 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `beq` at 0x33129fc falls through.
+  The `jalr` at 0x3312a5c calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x33129fc falls through.
+  The `jalr` at 0x3312a74 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312a68 falls through.
+  The `jalr` at 0x3312a80 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312a68 falls through.
+  The `jalr` at 0x3312a94 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x33129fc is taken.
+  The `jalr` at 0x3312be0 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `beq` at 0x3312c54 is taken.
+  The `jalr` at 0x3312c1c calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312c54 is taken.
+  The `jalr` at 0x3312c78 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `beq` at 0x3312c54 falls through.
+  The `jalr` at 0x3312cb4 calls `glColor4fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312c54 falls through.
+  The `jalr` at 0x3312cf0 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312c54 falls through.
+  The `jalr` at 0x3312d04 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312cfc falls through.
+  The `jalr` at 0x3312d10 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312cfc falls through.
+  The `jalr` at 0x3312d1c calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312cfc falls through.
+  The `jalr` at 0x3312d2c calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312c54 is taken.
+  The `jalr` at 0x3312d38 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312c54 is taken.
+  The `jalr` at 0x3312dd4 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 is taken.
+  The `jalr` at 0x3312e10 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 is taken.
+  The `jalr` at 0x3312e80 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 falls through.
+  The `jalr` at 0x3312eac calls `glNormal3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 falls through.
+  The `jalr` at 0x3312ee8 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 falls through.
+  The `jalr` at 0x3312efc calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312ef4 falls through.
+  The `jalr` at 0x3312f08 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312ef4 falls through.
+  The `jalr` at 0x3312f14 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312ef4 falls through.
+  The `jalr` at 0x3312f24 calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 is taken.
+  The `jalr` at 0x3312f30 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x3312e74 is taken.
+  The `jalr` at 0x33130d8 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x3313104 calls `glNormal3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x3313140 calls `glColor4fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x331317c calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x3313188 calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x3313194 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x33131a0 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x33131ac calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 is taken.
+  The `jalr` at 0x3313224 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 falls through.
+  The `jalr` at 0x3313260 calls `glColor4fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 falls through.
+  The `jalr` at 0x331329c calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 falls through.
+  The `jalr` at 0x33132a8 calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 falls through.
+  The `jalr` at 0x33132b4 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 falls through.
+  The `jalr` at 0x33132c0 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313218 falls through.
+  The `jalr` at 0x3313358 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `bne` at 0x33133dc is taken.
+  The `jalr` at 0x3313394 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x33133dc is taken.
+  The `jalr` at 0x33133a0 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x33133dc is taken.
+  The `jalr` at 0x33133ac calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x33133dc is taken.
+  The `jalr` at 0x3313414 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `bne` at 0x33133dc falls through.
+  The `jalr` at 0x3313420 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x33133dc falls through.
+  The `jalr` at 0x33134c8 calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `bne` at 0x3313598 is taken.
+  The `jalr` at 0x3313504 calls `glColor4fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 is taken.
+  The `jalr` at 0x3313540 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 is taken.
+  The `jalr` at 0x331354c calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 is taken.
+  The `jalr` at 0x3313558 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 is taken.
+  The `jalr` at 0x3313564 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 is taken.
+  The `jalr` at 0x33135cc calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=[0x3397d60] on paths where the `bne` at 0x3313598 falls through.
+  The `jalr` at 0x3313608 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 falls through.
+  The `jalr` at 0x3313614 calls `glColor4fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 falls through.
+  The `jalr` at 0x3313620 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313598 falls through.
+  The `jalr` at 0x33136ac calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 is taken.
+  The `jalr` at 0x33136d8 calls `glNormal3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 is taken.
+  The `jalr` at 0x3313714 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 is taken.
+  The `jalr` at 0x3313720 calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 is taken.
+  The `jalr` at 0x331372c calls `glNormal3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 is taken.
+  The `jalr` at 0x3313738 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 is taken.
+  The `jalr` at 0x33137a4 calls `glTexCoord2fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 falls through.
+  The `jalr` at 0x33137e0 calls `glVertex3fv` with a0=unknown, a1=[0x3397d60], a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 falls through.
+  The `jalr` at 0x33137ec calls `glTexCoord2fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 falls through.
+  The `jalr` at 0x33137f8 calls `glVertex3fv` with a0=unknown, a1=unknown, a2=unknown, a3=unknown on paths where the `bne` at 0x3313798 falls through.
+  The instructions from 0x3312614 to 0x331261c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x3312bac to 0x3312bac are not reached by any path from the entry, and their branches are not listed.
+  The `jr` at 0x3312580 returns v0=ret(glEnd).
 - `__glTextureRGB_L_NML_Span` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332df30
   Its reads include a floating-point word at entry `a0` +0xf28 and a word at entry `a0` +0x9740 (`lwc1` at 0x332df70; `lw` at 0x332dfa4). Calls include `floorf` at three sites (`jalr` at 0x332e004, 0x332e01c, 0x332e02c). The purpose of these calls in the routine is Unknown.
 - `__glTextureRGB_L_NML_StippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x332e9c0
@@ -9087,7 +9243,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The `__glSPDlalloc` call receives 0x40 and 0xaf in `a0` and `a1` (`addiu` at 0x3353f28, 0x3353f38; `jalr` at 0x3353f34). When its return value is nonzero, `bnez` takes the path calling `memcpy` with the return value, entry `a0`, and 0x40 (`bnez` at 0x3353f3c; `jalr` at 0x3353f5c; `addiu` at 0x3353f60). The use of the copied data is Unknown.
 - `__glsplc_LoadMatrixd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3353f70
   It calls `__glSPDlalloc2` with `a0` 0x80 and `a1` 0xb0 (`addiu` at 0x3353f88, 0x3353f98; `jalr` at 0x3353f94). If the result is nonzero, `bnez` is taken and it calls `memcpy` with the result as `a0`, entry `a0` as `a1`, and 0x80 as `a2` (`bnez` at 0x3353f9c; `jalr` at 0x3353fbc; `addiu` at 0x3353fc0). The allocation’s wider role is Unknown.
-- `__glce_RenderMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335cc70, 76 bytes
+- `__glce_RenderMode` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes at address 0x335cc70
+  Entry address: 0x335cc70
   The doubleword at absolute 0x1260 is saved (`ld` at 0x335cc78). The delay slot of a call to `glRenderMode` stores at address 0x1260 the doubleword at +0x3a28 of the value read from absolute 0x1020 (`ld` at 0x335cc80, 0x335cc98; `jalr` at 0x335cc9c; `sd` at 0x335cca0). The saved doubleword is restored afterward (`sd` at 0x335ccac). Its wider purpose is Unknown.
 - `__glce_GetTexImage` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f410
   It saves the doubleword at 0x1508 and reads the doubleword at 0x1020 (`ld` at 0x335f418, 0x335f420). A call to `glGetTexImage` has a delay-slot store to 0x1508 of the value loaded at +0x3cd0 of the latter (`ld` at 0x335f438; `jalr` at 0x335f43c; `sd` at 0x335f440). It restores the original value after the call (`sd` at 0x335f44c). The field role is Unknown.
@@ -9329,11 +9486,13 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 ## 64-bit IP30 library: pixel command entry paths
 
-- `__glce_GetPixelMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f0f0, 76 bytes
+- `__glce_GetPixelMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes at address 0x335f0f0
+  Entry address: 0x335f0f0
   It loads the doublewords at absolute 0x14b8 and 0x1020 (`ld` at 0x335f0f8, 0x335f100). The call to `glGetPixelMapfv` stores at address 0x14b8 in its delay slot the doubleword read at +0x3c80 of the latter (`ld` at 0x335f118; `jalr` at 0x335f11c; `sd` at 0x335f120). The original 0x14b8 value is restored after the call (`sd` at 0x335f12c). The field’s purpose is Unknown.
 - `__glce_GetPixelMapuiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f140
   The saved doubleword at 0x14c0 is restored after a call to `glGetPixelMapuiv` (`ld` at 0x335f148; `jalr` at 0x335f16c; `sd` at 0x335f17c). The call delay slot first writes to 0x14c0 the doubleword at +0x3c88 of the value loaded from 0x1020 (`ld` at 0x335f150, 0x335f168; `sd` at 0x335f170). The field’s role is Unknown.
-- `__glce_GetPixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335f190, 76 bytes
+- `__glce_GetPixelMapusv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes at address 0x335f190
+  Entry address: 0x335f190
   It preserves the initial doubleword at 0x14c8 across a call to `glGetPixelMapusv` (`ld` at 0x335f198; `jalr` at 0x335f1bc; `sd` at 0x335f1cc). The call delay slot stores at address 0x14c8 a doubleword read at +0x3c90 of the value loaded from 0x1020 (`ld` at 0x335f1a0, 0x335f1b8; `sd` at 0x335f1c0). Its wider purpose is Unknown.
 - `__glce_TagSampleBufferSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3361d20
   A doubleword is read from 0x17d8 before two calls to `glTagSampleBufferSGIX` (`ld` at 0x3361d20; `jalr` at 0x3361d50, 0x3361d60). Both call delay slots and the return delay slot write doublewords to 0x17d8 (`sd` at 0x3361d54, 0x3361d64, 0x3361d80; `jr` at 0x3361d7c). The field’s role is Unknown.
@@ -9731,8 +9890,13 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   An indirect call has the words at entry `a0` +0 and +4 as its first two arguments and entry `a0` +8 as its third (`lw` at 0x334a9d0, 0x334a9e0; `daddiu` at 0x334a9d8; `jalr` at 0x334a9dc). The next call is `__glTexGenfv_size`, with the word at entry `a0` +4 as `a0` (`jalr` at 0x334a9e8; `lw` at 0x334a9ec). The indirect target and broader role are Unknown.
 - `__glle_TexGeniv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334aa30
   Its first indirect call receives the words at entry `a0` +0 and +4 and entry `a0` +8 (`lw` at 0x334aa50, 0x334aa60; `daddiu` at 0x334aa58; `jalr` at 0x334aa5c). It then calls `__glTexGeniv_size` with the word at entry `a0` +4 as the first argument (`jalr` at 0x334aa68; `lw` at 0x334aa6c). The initial callee and the routine’s role are Unknown.
-- `__glsplc_TexParameterf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33521a0
-  It calls `__glTexParameterfv_size` with entry `a1` as `a0` (`jalr` at 0x33521c8). When the result equals 1, `beq` takes the path to `__glsplc_TexParameterfv` with the first two entry arguments and entry stack pointer minus 0x10 as `a2` (`addiu` at 0x33521d0; `beq` at 0x33521d4; `bgezall` at 0x3352200; `daddiu` at 0x3352204). The effect of this parameter dispatch is Unknown.
+- `__glsplc_TexParameterf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33521a0
+  A word is stored to `sp (at entry) -0x10` (`swc1` at 0x33521bc).
+  The `beq` at 0x33521d4 branches to 0x33521f4 when `v0(=ret(__glTexParameterfv_size)) == v1(=0x1)` and falls through when `v0(=ret(__glTexParameterfv_size)) != v1(=0x1)`.
+  The `jalr` at 0x33521c8 calls `__glTexParameterfv_size` with `a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x33521dc calls `__glsplc_InvalidEnum` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown` on the fall-through of `beq` at 0x33521d4.
+  The `bgezall` at 0x3352200 calls `__glsplc_TexParameterfv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=unknown` on the taken arm of `beq` at 0x33521d4.
+  At `jr` at 0x33521ec, the return value is `unknown`.
 - `__glsplc_TexParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3352210
   Entry `a1` is the first argument to `__glTexParameterfv_size` (`jalr` at 0x335223c). The later call to `__glSPDlalloc` supplies 0x69 as `a1`; its `a0` value is unknown (`addiu` at 0x335225c; `jalr` at 0x3352260). A nonzero result takes `bnez` to a `memcpy` call with result +8 and entry `a2` as its first two arguments (`bnez` at 0x3352268; `jalr` at 0x335229c). The operation’s wider role is Unknown.
 - `__glle_TexCoord4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3349b50
@@ -9745,8 +9909,13 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   Its first call uses the doubleword at 0x1208 as an unknown target, with words at entry `a0` +0 and +4 and entry `a0` +8 as the first three arguments (`ld` at 0x334a848; `lw` at 0x334a850, 0x334a860; `daddiu` at 0x334a858; `jalr` at 0x334a85c). A later call to `__glTexEnvfv_size` receives the word at entry `a0` +4 (`jalr` at 0x334a868; `lw` at 0x334a86c). How the two input words are used by the indirect target is Unknown.
 - `__glle_TexEnviv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x334a8b0
   It calls an unknown destination loaded from 0x1218, passing the words at entry `a0` +0 and +4 and entry `a0` +8 (`ld` at 0x334a8c8; `lw` at 0x334a8d0, 0x334a8e0; `daddiu` at 0x334a8d8; `jalr` at 0x334a8dc). It also calls `__glTexEnviv_size` with the word from entry `a0` +4 (`jalr` at 0x334a8e8; `lw` at 0x334a8ec). The indirect callee’s purpose is Unknown.
-- `__glsplc_TexParameteri` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33522c0
-  The `__glTexParameteriv_size` call receives entry `a1` as `a0` (`jalr` at 0x33522e8). A return of 1 makes `beq` take the path calling `__glsplc_TexParameteriv` with entry `a0`, entry `a1` and entry stack pointer minus 0xc (`addiu` at 0x33522f0; `beq` at 0x33522f4; `bgezall` at 0x3352320; `daddiu` at 0x3352324). The routine’s broader role is Unknown.
+- `__glsplc_TexParameteri` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33522c0
+  A word is stored to `sp (at entry) -0xc` (`sw` at 0x33522dc).
+  The `beq` at 0x33522f4 branches to 0x3352318 when `v0(=ret(__glTexParameteriv_size)) == v1(=0x1)` and falls through when `v0(=ret(__glTexParameteriv_size)) != v1(=0x1)`.
+  The `jalr` at 0x33522e8 calls `__glTexParameteriv_size` with `a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`.
+  The `jalr` at 0x3352300 calls `__glsplc_InvalidEnum` with `a0=unknown, a1=unknown, a2=unknown, a3=unknown` on the fall-through of `beq` at 0x33522f4.
+  The `bgezall` at 0x3352320 calls `__glsplc_TexParameteriv` with `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=unknown` on the taken arm of `beq` at 0x33522f4.
+  At `jr` at 0x3352310, the return value is `unknown`.
 - `__glsplc_TexParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3352330
   It passes entry `a1` as `a0` to `__glTexParameteriv_size` (`jalr` at 0x335235c). `__glSPDlalloc` is later called with 0x6b as `a1`; `a0` is unknown (`addiu` at 0x3352380; `jalr` at 0x3352384). When the allocation result is nonzero, `bnez` takes the path calling `memcpy` with result +8 and entry `a2` as the first two arguments (`bnez` at 0x335238c; `jalr` at 0x33523c0). The copied data’s later use is Unknown.
 - `__glsplc_TexEnvf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x33523e0
@@ -9793,7 +9962,8 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
 
 - `__glce_TexGend` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335c870
   The routine loads the doubleword at 0x1220 before two calls to `glTexGend` (`ld` at 0x335c870; `jalr` at 0x335c8b4, 0x335c8d4). Each call delay slot writes a doubleword to 0x1220, with a third store in the return delay slot (`sd` at 0x335c8b8, 0x335c8d8, 0x335c8f8; `jr` at 0x335c8f4). The later use of that location is Unknown.
-- `__glce_TexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335c900, 132 bytes
+- `__glce_TexGendv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes at address 0x335c900
+  Entry address: 0x335c900
   It saves a doubleword from absolute 0x1228 and invokes `glTexGendv` twice (`ld` at 0x335c900; `jalr` at 0x335c940, 0x335c960). Doubleword stores at address 0x1228 occupy both call delay slots and the return delay slot (`sd` at 0x335c944, 0x335c964, 0x335c980; `jr` at 0x335c97c). The field’s purpose is Unknown.
 - `__glce_TexGenf` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x335c990
   The doubleword at 0x1230 is read before two `glTexGenf` calls (`ld` at 0x335c990; `jalr` at 0x335c9d4, 0x335c9f4). Their delay slots write doublewords to 0x1230, and a final write there occurs in the return delay slot (`sd` at 0x335c9d8, 0x335c9f8, 0x335ca18; `jr` at 0x335ca14). The field meaning is Unknown.
@@ -10250,3 +10420,200 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   `__glDlistAllocOp2` receives the doubleword at absolute 0x1020 and 8 (`ld` at 0x3343ea4; `addiu` at 0x3343ec0; `jalr` at 0x3343ecc). Its nonzero return makes `bnez` take a path that writes 0x86 as a halfword at result +0x14 (`bnez` at 0x3343ed4; `addiu` at 0x3343ef4; `sh` at 0x3343ef8). The record’s wider role is Unknown.
 - `__gllc_BlendFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3344a80
   The first two arguments to `__glDlistAllocOp2` are the doubleword at 0x1020 and 8 (`ld` at 0x3344a80; `addiu` at 0x3344aa4; `jalr` at 0x3344ab0). `bnez` takes the path storing halfword 0x9e at result +0x14 when the result is nonzero (`bnez` at 0x3344ab8; `addiu` at 0x3344ad4; `sh` at 0x3344ad8). The consumer of the stored halfword is Unknown.
+
+## 64-bit IP30 library: stencil and blend list operations
+
+- `__gllc_BlendEquationEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3345d20
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3345d24).
+  The `jalr` at 0x3345d4c calls `__glDlistAllocOp2 [0x328b310]` with a0 equal to the doubleword at 0x1020, a1 equal to 0x8, and a2 and a3 equal to their entry values.
+  The `bnez` at 0x3345d54 is taken to 0x3345d68 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  When `bnez` is taken because the allocation return is nonzero, a halfword store writes 0xbf at +0x14 of that return (`bnez` at 0x3345d54; `sh` at 0x3345d78).
+  On the taken `bnez` path, a word store writes entry `a0` at +0x18 of the allocation return in the call delay slot (`bnez` at 0x3345d54; `jalr` at 0x3345d84; `sw` at 0x3345d88).
+  The `jalr` at 0x3345d84 calls `__glDlistAppendOp [0x328b3a0]` with a0 unknown, a1 equal to the return from `__glDlistAllocOp2`, a2 equal to 0x334bf10, and a3 equal to entry a0, when `bnez` is taken because the allocation return is nonzero (`bnez` at 0x3345d54).
+  The value of `v0` at the return is unknown (`jr` at 0x3345d60).
+- `__glle_ClearStencil` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334adb0
+  A doubleword is read from absolute 0x12b8 (`ld` at 0x334adc4).
+  A word is read from entry `a0` +0 (`lw` at 0x334add8).
+  The `jalr` at 0x334add4 calls (unknown callee) with a0 equal to the word at entry a0 and a1, a2, and a3 equal to their entry values.
+  At return `v0` is entry `a0` +8 (`daddiu` at 0x334ade4; `jr` at 0x334adec).
+- `__glle_ClearDepth` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334ae00
+  A doubleword is read from absolute 0x12c0 (`ld` at 0x334ae14).
+  A floating-point doubleword is read from entry `a0` +0 (`ldc1` at 0x334ae18).
+  The `jalr` at 0x334ae24 calls (unknown callee) with a0, a1, a2, and a3 equal to their entry values and f12 equal to the doubleword at entry a0.
+  At return `v0` is entry `a0` +8 (`daddiu` at 0x334ae34; `jr` at 0x334ae3c).
+- `__glle_StencilMask` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334ae50
+  A doubleword is read at absolute 0x12c8 (`ld` at 0x334ae64).
+  A word is read at entry `a0` +0 (`lw` at 0x334ae78).
+  The `jalr` at 0x334ae74 calls (unknown callee) with a0 equal to the word at entry a0 and a1, a2, and a3 equal to their entry values.
+  At return `v0` is entry `a0` +8 (`daddiu` at 0x334ae84; `jr` at 0x334ae8c).
+- `__glle_DepthMask` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334aef0
+  A doubleword is read at absolute 0x12d8 (`ld` at 0x334af04).
+  An unsigned byte is read at entry `a0` +0 (`lbu` at 0x334af18).
+  The `jalr` at 0x334af14 calls (unknown callee) with a0 equal to the byte at entry a0 and a1, a2, and a3 equal to their entry values.
+  At return `v0` is entry `a0` +8 (`daddiu` at 0x334af24; `jr` at 0x334af2c).
+- `__glle_BlendColorEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334bec0
+  The `lwc1` at 0x334bec0 reads a floating-point word at entry `a0` +0xc.
+  The `lwc1` at 0x334bec4 reads a floating-point word at entry `a0` +0x8.
+  The `lwc1` at 0x334bec8 reads a floating-point word at entry `a0` +0x4.
+  The `lwc1` at 0x334bee4 reads a floating-point word at entry `a0` +0x0.
+  The `ld` at 0x334bee0 reads a doubleword at absolute 0x15d0.
+  The `jalr` at 0x334bef0 calls (unknown callee) with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, `a3` = entry `a3`, `f12` = [entry `a0`], `f13` = [entry `a0` +0x4], `f14` = [entry `a0` +0x8], and `f15` = [entry `a0` +0xc].
+  The `daddiu` at 0x334bf00 sets `v0` and `jr` at 0x334bf08 returns entry `a0` +0x10 in `v0`.
+- `__glle_BlendEquationEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334bf10
+  The `ld` at 0x334bf24 reads a doubleword at absolute 0x15d8.
+  The `lw` at 0x334bf38 reads a word at entry `a0` +0x0.
+  The `jalr` at 0x334bf34 calls (unknown callee) with `a0` = [entry `a0`], `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `daddiu` at 0x334bf44 sets `v0` and `jr` at 0x334bf4c returns entry `a0` +0x8 in `v0`.
+- `__glsplc_ClearStencil` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3352d40
+  The `jalr` at 0x3352d64 calls `__glSPDlalloc [0x32087b0]` with `a0` = 0x8, `a1` = 0x82, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beqz` at 0x3352d6c is taken to 0x3352d88 when the return from `__glSPDlalloc` equals 0, and falls through when it is nonzero.
+  When `beqz` at 0x3352d6c falls through, `sw` at 0x3352d84 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0.
+  The `jr` at 0x3352d80, 0x3352d8c returns the result of `__glSPDlalloc` in `v0`.
+- `__glsplc_ClearDepth` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3352da0
+  The `jalr` at 0x3352dc4 calls `__glSPDlalloc2 [0x32089a0]` with `a0` = 0x8, `a1` = 0x83, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beqz` at 0x3352dcc is taken to 0x3352de8 when the return from `__glSPDlalloc2` equals 0, and falls through when it is nonzero.
+  When `beqz` at 0x3352dcc falls through, `sdc1` at 0x3352de4 stores entry `f12` as a floating-point doubleword at the return from `__glSPDlalloc2` +0x0.
+  The `jr` at 0x3352de0, 0x3352dec returns the result of `__glSPDlalloc2` in `v0`.
+- `__glsplc_StencilMask` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3352e00
+  The `jalr` at 0x3352e24 calls `__glSPDlalloc [0x32087b0]` with `a0` = 0x8, `a1` = 0x84, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beqz` at 0x3352e2c is taken to 0x3352e48 when the return from `__glSPDlalloc` equals 0, and falls through when it is nonzero.
+  When `beqz` at 0x3352e2c falls through, `sw` at 0x3352e44 stores entry `a0` as a word at the return from `__glSPDlalloc` +0x0.
+  The `jr` at 0x3352e40, 0x3352e4c returns the result of `__glSPDlalloc` in `v0`.
+- `__glle_BlendFunc` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334b4b0
+  A doubleword is read from absolute 0x13c8 (`ld` at 0x334b4c8).
+  A word is read at entry `a0` +0 (`lw` at 0x334b4d0).
+  A word is read at entry `a0` +4 (`lw` at 0x334b4dc).
+  The `jalr` at 0x334b4d8 calls (unknown callee) with a0 equal to the word at entry a0 +0, a1 equal to the word at entry a0 +4, and a2 and a3 equal to their entry values.
+  At return `v0` is entry `a0` +8 (`daddiu` at 0x334b4e8; `jr` at 0x334b4f0).
+- `__glle_StencilFunc` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334b550
+  A doubleword is read from absolute 0x13d8 (`ld` at 0x334b570).
+  A word is read at entry `a0` +0 (`lw` at 0x334b55c).
+  A word is read at entry `a0` +4 (`lw` at 0x334b580).
+  A word is read at entry `a0` +8 (`lw` at 0x334b578).
+  The `jalr` at 0x334b57c calls (unknown callee) with a0 equal to the word at entry a0 +0, a1 equal to the word at entry a0 +4, a2 equal to the word at entry a0 +8, and a3 equal to its entry value.
+  At return `v0` is entry `a0` +0x10 (`daddiu` at 0x334b58c; `jr` at 0x334b594).
+- `__glle_StencilOp` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334b5a0
+  A doubleword is read from absolute 0x13e0 (`ld` at 0x334b5c0).
+  A word is read at entry `a0` +0 (`lw` at 0x334b5ac).
+  A word is read at entry `a0` +4 (`lw` at 0x334b5d0).
+  A word is read at entry `a0` +8 (`lw` at 0x334b5c8).
+  The `jalr` at 0x334b5cc calls (unknown callee) with a0 equal to the word at entry a0 +0, a1 equal to the word at entry a0 +4, a2 equal to the word at entry a0 +8, and a3 equal to its entry value.
+  At return `v0` is entry `a0` +0x10 (`daddiu` at 0x334b5dc; `jr` at 0x334b5e4).
+- `__glle_DepthFunc` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334b5f0
+  A doubleword is read from absolute 0x13e8 (`ld` at 0x334b604).
+  A word is read at entry `a0` +0 (`lw` at 0x334b618).
+  The `jalr` at 0x334b614 calls (unknown callee) with a0 equal to the word at entry a0 and a1, a2, and a3 equal to their entry values.
+  At return `v0` is entry `a0` +8 (`daddiu` at 0x334b624; `jr` at 0x334b62c).
+- `__glle_DepthRange` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334b930
+  A doubleword is read from absolute 0x1540 (`ld` at 0x334b948).
+  A floating-point doubleword is read at entry `a0` +0 (`ldc1` at 0x334b94c).
+  A floating-point doubleword is read at entry `a0` +8 (`ldc1` at 0x334b930).
+  The `jalr` at 0x334b958 calls (unknown callee) with a0, a1, a2, and a3 equal to their entry values, f12 equal to the doubleword at entry a0, and f13 equal to the doubleword at entry a0 +8.
+  At return `v0` is entry `a0` +0x10 (`daddiu` at 0x334b968; `jr` at 0x334b970).
+
+## 64-bit IP30 library: depth and stencil execution
+
+- `__glDepthTestStippledOffsetSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fe510
+  It reads 4 bytes from `a0` at entry +0x9858 (`lwc1` at 0x32fe54c).
+  `bc1f` is taken to 0x32fe620 when the comparison `f0 < f4` is false and falls through when the comparison `f0 < f4` is true (`c.lt.s` at 0x32fe55c; `bc1f` at 0x32fe578).
+  The `jalr` at 0x32fe9ac calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32feaa8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are 0x0 (`jr` at 0x32fe7cc), 0x1 (`jr` at 0x32fe924).
+- `__glDepthTestSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32feb30
+  It reads 4 bytes from `a0` at entry +0x9740 (`lw` at 0x32feb78).
+  `beqz` is taken to 0x32fed0c when the word loaded from entry `a0` +0x9740 is zero and falls through when that word is nonzero (`beqz` at 0x32feb98).
+  The `jalr` at 0x32febec calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are one of 0x0, 0x1 (`jr` at 0x32fece8), 0x1 (`jr` at 0x32fed04).
+- `__glDepthTestStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fed30
+  It reads 4 bytes from `a0` at entry +0x9740 (`lw` at 0x32fed88).
+  `beqz` is taken to 0x32feee4 when the word loaded from entry `a0` +0x9740 is zero and falls through when that word is nonzero (`beqz` at 0x32fedb0).
+  The `jalr` at 0x32fee5c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are 0x0 (`jr` at 0x32feedc), 0x1 (`jr` at 0x32fef14).
+- `__glDepthTestStencilSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32fef50
+  It reads 4 bytes from `a0` at entry +0x9740 (`lw` at 0x32fefac).
+  `beqz` is taken to 0x32ff174 when the word loaded from entry `a0` +0x9740 is zero and falls through when that word is nonzero (`beqz` at 0x32fefcc).
+  The `jalr` at 0x32ff0a4 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are one of 0x0, 0x1 (`jr` at 0x32ff154), 0x1 (`jr` at 0x32ff16c).
+- `__glDepthTestStencilStippledSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ff1a0
+  It reads 4 bytes from `a0` at entry +0x9740 (`lw` at 0x32ff20c).
+  `beqz` is taken to 0x32ff3a4 when the word loaded from entry `a0` +0x9740 is zero and falls through when that word is nonzero (`beqz` at 0x32ff234).
+  The `jalr` at 0x32ff2ec calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are 0x0 (`jr` at 0x32ff39c), 0x1 (`jr` at 0x32ff3d4).
+- `__glDepthTestStencilOffsetSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ff3f0
+  It reads 8 bytes from `a0` at entry +0x4928 (`ld` at 0x32ff3f0).
+  It reads 4 bytes from `a0` at entry +0x985c (`lwc1` at 0x32ff41c).
+  It reads 4 bytes from `a0` at entry +0x9848 (`lwc1` at 0x32ff420).
+  It reads 8 bytes from `a0` at entry +0x9c98 (`ld` at 0x32ff424).
+  It reads 8 bytes from `a0` at entry +0x9810 (`ld` at 0x32ff428).
+  The `jalr` at 0x32ff84c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32ff954 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are 0x0 (`jr` at 0x32ff6e8), 0x1 (`jr` at 0x32ffa44), 0x1 (`jr` at 0x32ffa60).
+- `__glDepthTestStencilStippledOffsetSpan` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x32ffa70
+  It reads 8 bytes from `a0` at entry +0x4928 (`ld` at 0x32ffa70).
+  It reads 4 bytes from `a0` at entry +0x985c (`lwc1` at 0x32ffa98).
+  It reads 4 bytes from `a0` at entry +0x9848 (`lwc1` at 0x32ffa9c).
+  It reads 8 bytes from `a0` at entry +0x9800 (`ld` at 0x32ffaa4).
+  It reads 8 bytes from `a0` at entry +0x9c90 (`ld` at 0x32ffaac).
+  The `jalr` at 0x32fff4c calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x3300078 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are 0x0 (`jr` at 0x32ffd48), 0x1 (`jr` at 0x32fff08).
+- `__glValidateStencil` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3305660
+  It reads 4 bytes from `a0` at entry +0x780 (`lw` at 0x3305660).
+  It reads 8 bytes from `a1` at entry +0x78 (`ld` at 0x3305678).
+  It reads 1 byte from `a0` at entry +0x789 (`lbu` at 0x3305680).
+  It reads 2 bytes from `a0` at entry +0x786 (`lh` at 0x3305698).
+  The `bgezall` at 0x3305758 calls `buildOpTable [0x33054c0]` with a0=`a0` at entry (arg0), a1=the doubleword at entry `a1` +0x80, a2=the word at entry `a0` +0x78c, a3=unknown, a4=the byte at entry `a0` +0x78b (`ld` at 0x3305754; `lw` at 0x3305748; `lbu` at 0x3305738).
+  The `bgezall` at 0x3305774 calls `buildOpTable [0x33054c0]` with a0=`a0` at entry (arg0), a1=the doubleword at entry `a1` +0x88, a2=the word at entry `a0` +0x790, a3=unknown, a4=the byte at entry `a0` +0x78b (`ld` at 0x3305770; `lw` at 0x3305764; `lbu` at 0x3305738).
+  The `bgezall` at 0x3305790 calls `buildOpTable [0x33054c0]` with a0=`a0` at entry (arg0), a1=the doubleword at entry `a1` +0x90, a2=the word at entry `a0` +0x794, a3=unknown, a4=the byte at entry `a0` +0x78b (`ld` at 0x330578c; `lw` at 0x3305780; `lbu` at 0x3305738).
+  The `jalr` at 0x3305888 calls (unknown callee) with a0=`a0` at entry (arg0), a1=unknown, a2=`a2` at entry (arg2), a3=the word at entry `a0` +0x780 (`lw` at 0x3305660).
+  The `jalr` at 0x33058a4 calls (unknown callee) with a0=`a0` at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x33058bc calls (unknown callee) with a0=`a0` at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x33058d4 calls (unknown callee) with a0=`a0` at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `v0` return values are ret(buildOpTable) (`jr` at 0x33057b4).
+- `__glInitStencil8` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3305940
+  It stores 4 bytes with value 0x1 at `a0` at entry +0x24 (`sw` at 0x3305998).
+  It stores 8 bytes with value 0x33050a0 at `a0` at entry +0xc8 (`sd` at 0x33059a8).
+  It stores 8 bytes with value 0x3305050 at `a0` at entry +0xc0 (`sd` at 0x33059b0).
+  The `jalr` at 0x3305964 calls `__glInitBuffer [0x32c34c0]` with a0=`a0` at entry (arg0), a1=`a1` at entry (arg1), a2=`a2` at entry (arg2), a3=`a3` at entry (arg3).
+  The `v0` return values are 0x33055d0 (`jr` at 0x33059ec).
+- `SetDepthRange` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3335fd0
+  It reads 4 bytes from `a0` at entry +0xf2c (`lwc1` at 0x3335fd4).
+  It stores 8 bytes with value unknown at `a0` at entry +0x7b0 (`sdc1` at 0x3336008).
+  It stores 8 bytes with value unknown at `a0` at entry +0x7a8 (`sdc1` at 0x3336010).
+  It reads 4 bytes from `a0` at entry +0x9d5c (`lw` at 0x3336014).
+  The integer result at return is unknown (`jr` at 0x3336050).
+- `__gllc_StencilFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3344b80
+  It reads 8 bytes from absolute 0x1020 (`ld` at 0x3344b80).
+  It stores 2 bytes with value 0xa0 at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x3344bdc).
+  `bnez` is taken to 0x3344bd4 when the return from `__glDlistAllocOp2` is nonzero and falls through when that return is zero (`bnez` at 0x3344bbc).
+  The `jalr` at 0x3344bb4 calls `__glDlistAllocOp2 [0x328b310]` with a0=the doubleword at absolute 0x1020, a1=0x10, a2=`a2` at entry (arg2), a3=`a3` at entry (arg3).
+  The `jalr` at 0x3344bfc calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334b550, a3=`a0` at entry (arg0), a4=`a1` at entry (arg1), a5=`a2` at entry (arg2).
+  The value in `v0` at return is unknown (`jr` at 0x3344bcc).
+- `__gllc_StencilOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3344c10
+  It reads 8 bytes from absolute 0x1020 (`ld` at 0x3344c10).
+  It stores 2 bytes with value 0xa1 at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x3344c6c).
+  `bnez` is taken to 0x3344c60 when the return from `__glDlistAllocOp2` is nonzero and falls through when that return is zero (`bnez` at 0x3344c4c).
+  The `jalr` at 0x3344c44 calls `__glDlistAllocOp2 [0x328b310]` with a0=the doubleword at absolute 0x1020, a1=0x10, a2=`a2` at entry (arg2), a3=`a3` at entry (arg3).
+  The `jalr` at 0x3344c8c calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334b5a0, a3=`a0` at entry (arg0), a4=`a1` at entry (arg1), a5=`a2` at entry (arg2).
+  At the return, hostfacts does not resolve `v0` (`jr` at 0x3344c58).
+- `__gllc_DepthFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3344ca0
+  It reads 8 bytes from absolute 0x1020 (`ld` at 0x3344ca4).
+  It stores 2 bytes with value 0xa2 at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x3344cf8).
+  `bnez` is taken to 0x3344cec when the return from `__glDlistAllocOp2` is nonzero and falls through when that return is zero (`bnez` at 0x3344cd4).
+  The `jalr` at 0x3344ccc calls `__glDlistAllocOp2 [0x328b310]` with a0=the doubleword at absolute 0x1020, a1=0x8, a2=`a2` at entry (arg2), a3=`a3` at entry (arg3).
+  The `jalr` at 0x3344d04 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334b5f0, a3=`a0` at entry (arg0).
+  The final `v0` value remains unknown (`jr` at 0x3344ce4).
+- `__gllc_DepthRange` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3345240
+  It reads 8 bytes from absolute 0x1020 (`ld` at 0x3345240).
+  It stores 2 bytes with value 0xac at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x334529c).
+  `bnez` is taken to 0x334528c when the return from `__glDlistAllocOp2` is nonzero and falls through when that return is zero (`bnez` at 0x3345274).
+  The `jalr` at 0x334526c calls `__glDlistAllocOp2 [0x328b310]` with a0=the doubleword at absolute 0x1020, a1=0x10, a2=`a2` at entry (arg2), a3=`a3` at entry (arg3).
+  The `jalr` at 0x33452b4 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334b930, a3=0x1.
+  Hostfacts reports the integer return value as unknown (`jr` at 0x3345284).
+- `__gllc_BlendColorEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 0x3345c80
+  It reads 8 bytes from absolute 0x1020 (`ld` at 0x3345c80).
+  It stores 2 bytes with value 0xbe at ret(__glDlistAllocOp2) +0x14 (`sh` at 0x3345cdc).
+  `bnez` is taken to 0x3345cd4 when the return from `__glDlistAllocOp2` is nonzero and falls through when that return is zero (`bnez` at 0x3345cbc).
+  The `jalr` at 0x3345cb4 calls `__glDlistAllocOp2 [0x328b310]` with a0=the doubleword at absolute 0x1020, a1=0x10, a2=`a2` at entry (arg2), a3=`a3` at entry (arg3).
+  The `jalr` at 0x3345d04 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=ret(__glDlistAllocOp2), a2=0x334bec0, a3=unknown.
+  The returned `v0` value is unknown (`jr` at 0x3345ccc).
