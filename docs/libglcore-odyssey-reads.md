@@ -23665,3 +23665,1505 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The `jalr` at 0x3358e08 calls `glRasterPos3sv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x3358e20 calls `glRasterPos3sv` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
   The `jr` at 0x3358e3c returns the result of the second `glRasterPos3sv` call in v0.
+
+- `__glce_RasterPos4d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  The routine reads a doubleword from absolute 0x1ec0 (`ld` at 0x3358e50).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3358e74).
+  A doubleword is read at +0x2910 from the doubleword at 0x1020 (`ld` at 0x3358e8c).
+  A doubleword is read at +0x4688 from the doubleword at 0x1020 (`ld` at 0x3358eac).
+  Three doubleword stores to absolute 0x1ec0 include `sd` at 0x3358e98, 0x3358eb8, 0x3358ed8.
+  The `jalr` at 0x3358e94 calls `glRasterPos4d` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3358eb4 calls `glRasterPos4d` with a0=[[0x1020]:8+0x4688]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3358ed4 returns the result of the second `glRasterPos4d` call in v0 and f0.
+
+- `__glce_RasterPos4dv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  One doubleword is loaded from absolute 0x1ec8 (`ld` at 0x3358ee0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3358ef8).
+  A doubleword is read at +0x2918 from the doubleword at 0x1020 (`ld` at 0x3358f10).
+  A doubleword is read from an unknown address (`ld` at 0x3358f28).
+  Three doubleword stores to absolute 0x1ec8 include `sd` at 0x3358f1c, 0x3358f34, 0x3358f50.
+  The `jalr` at 0x3358f18 calls `glRasterPos4dv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3358f30 calls `glRasterPos4dv` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3358f4c returns the result of the second `glRasterPos4dv` call in v0.
+
+- `__glce_RasterPos4f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  A doubleword load reads from absolute 0x1ed0 (`ld` at 0x3358f60).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3358f84).
+  A doubleword is read at +0x2920 from the doubleword at 0x1020 (`ld` at 0x3358f9c).
+  A doubleword is read at +0x4698 from the doubleword at 0x1020 (`ld` at 0x3358fbc).
+  Three doubleword stores to absolute 0x1ed0 include `sd` at 0x3358fa8, 0x3358fc8, 0x3358fe8.
+  The `jalr` at 0x3358fa4 calls `glRasterPos4f` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3358fc4 calls `glRasterPos4f` with a0=[[0x1020]:8+0x4698]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3358fe4 returns the result of the second `glRasterPos4f` call in v0 and f0.
+
+- `__glce_RasterPos4fv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  The first load reads a doubleword from absolute 0x1ed8 (`ld` at 0x3358ff0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3359008).
+  A doubleword is read at +0x2928 from the doubleword at 0x1020 (`ld` at 0x3359020).
+  A doubleword is read from an unknown address (`ld` at 0x3359038).
+  Three doubleword stores to absolute 0x1ed8 include `sd` at 0x335902c, 0x3359044, 0x3359060.
+  The `jalr` at 0x3359028 calls `glRasterPos4fv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3359040 calls `glRasterPos4fv` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335905c returns the result of the second `glRasterPos4fv` call in v0.
+
+- `__glce_Rects` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  It reads a doubleword from absolute 0x1f30 (`ld` at 0x33595c0).
+  A doubleword is read at absolute 0x1020 (`ld` at 0x33595e4).
+  From that doubleword, a further doubleword is loaded at +0x2980 (`ld` at 0x33595fc).
+  The `jalr` at 0x3359604 calls `glRects` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The later doubleword load has an unknown base (`ld` at 0x3359620).
+  The `jalr` at 0x3359628 calls `glRects` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Three doubleword stores target absolute 0x1f30, including `sd` at 0x3359608, 0x335962c, 0x3359648.
+  The second call result is returned in v0 (`jr` at 0x3359644).
+
+- `__glce_Rectsv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  At entry, a doubleword is read from absolute 0x1f38 (`ld` at 0x3359650).
+  The next absolute doubleword load uses 0x1020 (`ld` at 0x335966c).
+  A further doubleword load uses that value as base at +0x2988 (`ld` at 0x3359684).
+  The `jalr` at 0x335968c calls `glRectsv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A second base is unknown for the doubleword load (`ld` at 0x33596a0).
+  The `jalr` at 0x33596a8 calls `glRectsv` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown.
+  Absolute 0x1f38 receives three doubleword stores, including `sd` at 0x3359690, 0x33596ac, 0x33596c8.
+  At return, v0 holds the second call result (`jr` at 0x33596c4).
+
+- `__glce_CullFace` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  The first access loads a doubleword at absolute 0x1100 (`ld` at 0x335b4d0).
+  It also loads a doubleword from absolute 0x1020 (`ld` at 0x335b4e8).
+  That loaded value is the base for a doubleword read at +0x1b50 (`ld` at 0x335b500).
+  The `jalr` at 0x335b508 calls `glCullFace` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  An unknown base supplies another doubleword (`ld` at 0x335b518).
+  The `jalr` at 0x335b520 calls `glCullFace` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  At absolute 0x1100, three doubleword stores include `sd` at 0x335b50c, 0x335b524, 0x335b540.
+  The return in v0 comes from the second call (`jr` at 0x335b53c).
+
+- `__glce_Fogfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  A doubleword load reads absolute 0x1110 (`ld` at 0x335b5e0).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x335b5fc).
+  A doubleword at the loaded base is read at +0x1b60 (`ld` at 0x335b614).
+  The `jalr` at 0x335b61c calls `glFogfv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The later load reads a doubleword from an unknown base (`ld` at 0x335b630).
+  The `jalr` at 0x335b638 calls `glFogfv` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown.
+  The routine performs three doubleword stores to absolute 0x1110, including `sd` at 0x335b620, 0x335b63c, 0x335b658.
+  The second call supplies the v0 return (`jr` at 0x335b654).
+
+- `__glce_Fogi` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  Absolute 0x1118 is loaded as a doubleword (`ld` at 0x335b660).
+  The code reads a doubleword at absolute 0x1020 (`ld` at 0x335b67c).
+  The doubleword read at that base uses +0x1b68 (`ld` at 0x335b694).
+  The `jalr` at 0x335b69c calls `glFogi` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x335b6b0).
+  The `jalr` at 0x335b6b8 calls `glFogi` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown.
+  There are three doubleword stores at absolute 0x1118, including `sd` at 0x335b6a0, 0x335b6bc, 0x335b6d8.
+  Returning through v0 uses the second call result (`jr` at 0x335b6d4).
+
+- `__glce_PointSize` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x11a8 and 0x1020 (`ld` at 0x335bff0, 0x335c008).
+  A doubleword is loaded at +0x1bf8 from the value at 0x1020 (`ld` at 0x335c020).
+  The `jalr` at 0x335c028 calls `glPointSize` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores target absolute 0x11a8, including `sd` at 0x335c02c, 0x335c040, 0x335c060.
+  Another doubleword is loaded at +0x3970 from the value at 0x1020 (`ld` at 0x335c034).
+  The `jalr` at 0x335c03c calls `glPointSize` with a0 = the doubleword loaded at +0x3970 from the value at 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335c05c).
+
+- `__glce_PolygonMode` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x11b0 and 0x1020 (`ld` at 0x335c070, 0x335c08c).
+  A doubleword is loaded at +0x1c00 from the value at 0x1020 (`ld` at 0x335c0a4).
+  The `jalr` at 0x335c0ac calls `glPolygonMode` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores target absolute 0x11b0, including `sd` at 0x335c0b0, 0x335c0cc, 0x335c0e8.
+  It loads a doubleword from an unknown base (`ld` at 0x335c0c0).
+  The `jalr` at 0x335c0c8 calls `glPolygonMode` with a0 = entry a0, a1 = entry a1, a2 = unknown and a3 = unknown.
+  The second call result is returned in v0 (`jr` at 0x335c0e4).
+
+- `__glce_PolygonStipple` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x11b8 and 0x1020 (`ld` at 0x335c0f0, 0x335c108).
+  A doubleword is loaded at +0x1c08 from the value at 0x1020 (`ld` at 0x335c120).
+  The `jalr` at 0x335c128 calls `glPolygonStipple` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores target absolute 0x11b8, including `sd` at 0x335c12c, 0x335c144, 0x335c160.
+  A doubleword is loaded from an unknown base (`ld` at 0x335c138).
+  The `jalr` at 0x335c140 calls `glPolygonStipple` with a0 = entry a0, a1 = unknown, a2 = unknown and a3 = unknown.
+  The second call result is returned in v0 (`jr` at 0x335c15c).
+
+- `__glce_ShadeModel` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x11c8 and 0x1020 (`ld` at 0x335c200, 0x335c218).
+  A doubleword is loaded at +0x1c18 from the value at 0x1020 (`ld` at 0x335c230).
+  The `jalr` at 0x335c238 calls `glShadeModel` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores target absolute 0x11c8, including `sd` at 0x335c23c, 0x335c254, 0x335c270.
+  A doubleword is loaded from an unknown base (`ld` at 0x335c248).
+  The `jalr` at 0x335c250 calls `glShadeModel` with a0 = entry a0, a1 = unknown, a2 = unknown and a3 = unknown.
+  The second call result is returned in v0 (`jr` at 0x335c26c).
+
+- `__glce_InitNames` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1268 and 0x1020 (`ld` at 0x335ccc0, 0x335ccd4).
+  A doubleword is loaded at +0x1cb8 from the value at 0x1020 (`ld` at 0x335ccec).
+  The `jalr` at 0x335ccf0 calls `glInitNames` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores target absolute 0x1268, including `sd` at 0x335ccf4, 0x335cd04, 0x335cd20.
+  Another doubleword is loaded at +0x3a30 from the value at 0x1020 (`ld` at 0x335ccfc).
+  The `jalr` at 0x335cd00 calls `glInitNames` with a0 = the doubleword loaded at +0x3a30 from the value at 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  The second call result is returned in v0 (`jr` at 0x335cd1c).
+
+- `__glce_RasterPos4i` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  A doubleword is read from absolute 0x1ee0 (`ld` at 0x3359070).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3359094).
+  A doubleword is read at +0x2930 from the doubleword at 0x1020 (`ld` at 0x33590ac).
+  A doubleword is read from an unknown address (`ld` at 0x33590d0).
+  Three doubleword stores to absolute 0x1ee0 include `sd` at 0x33590b8, 0x33590dc, 0x33590f8.
+  The `jalr` at 0x33590b4 calls `glRasterPos4i` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33590d8 calls `glRasterPos4i` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33590f4 returns the result of the second `glRasterPos4i` call in v0.
+
+- `__glce_RasterPos4iv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  The routine reads a doubleword from absolute 0x1ee8 (`ld` at 0x3359100).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3359118).
+  A doubleword is read at +0x2938 from the doubleword at 0x1020 (`ld` at 0x3359130).
+  A doubleword is read from an unknown address (`ld` at 0x3359148).
+  Three doubleword stores to absolute 0x1ee8 include `sd` at 0x335913c, 0x3359154, 0x3359170.
+  The `jalr` at 0x3359138 calls `glRasterPos4iv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3359150 calls `glRasterPos4iv` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335916c returns the result of the second `glRasterPos4iv` call in v0.
+
+- `__glce_RasterPos4s` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  One doubleword is loaded from absolute 0x1ef0 (`ld` at 0x3359180).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33591a4).
+  A doubleword is read at +0x2940 from the doubleword at 0x1020 (`ld` at 0x33591bc).
+  A doubleword is read from an unknown address (`ld` at 0x33591e0).
+  Three doubleword stores to absolute 0x1ef0 include `sd` at 0x33591c8, 0x33591ec, 0x3359208.
+  The `jalr` at 0x33591c4 calls `glRasterPos4s` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33591e8 calls `glRasterPos4s` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3359204 returns the result of the second `glRasterPos4s` call in v0.
+
+- `__glce_RasterPos4sv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword load reads from absolute 0x1ef8 (`ld` at 0x3359210).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3359228).
+  A doubleword is read at +0x2948 from the doubleword at 0x1020 (`ld` at 0x3359240).
+  A doubleword is read from an unknown address (`ld` at 0x3359258).
+  Three doubleword stores to absolute 0x1ef8 include `sd` at 0x335924c, 0x3359264, 0x3359280.
+  The `jalr` at 0x3359248 calls `glRasterPos4sv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3359260 calls `glRasterPos4sv` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335927c returns the result of the second `glRasterPos4sv` call in v0.
+
+- `__glce_Rectd` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  The first load reads a doubleword from absolute 0x1f00 (`ld` at 0x3359290).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33592b4).
+  A doubleword is read at +0x2950 from the doubleword at 0x1020 (`ld` at 0x33592cc).
+  A doubleword is read at +0x46c8 from the doubleword at 0x1020 (`ld` at 0x33592ec).
+  Three doubleword stores to absolute 0x1f00 include `sd` at 0x33592d8, 0x33592f8, 0x3359318.
+  The `jalr` at 0x33592d4 calls `glRectd` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33592f4 calls `glRectd` with a0=[[0x1020]:8+0x46c8]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3359314 returns the result of the second `glRectd` call in v0 and f0.
+
+- `__glce_LoadName` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword is read from absolute 0x1270 (`ld` at 0x335cd30).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335cd48).
+  A doubleword is read at +0x1cc0 from the doubleword at 0x1020 (`ld` at 0x335cd60).
+  A doubleword is read from an unknown address (`ld` at 0x335cd78).
+  3 doubleword stores to absolute 0x1270 include `sd` at 0x335cd6c, 0x335cd84, 0x335cda0.
+  The `jalr` at 0x335cd68 calls `glLoadName` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335cd80 calls `glLoadName` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335cd9c returns the result of the second `glLoadName` call in v0.
+
+- `__glce_PassThrough` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  The routine reads a doubleword from absolute 0x1278 (`ld` at 0x335cdb0).
+  The doubleword at absolute 0x1020 is loaded (`ld` at 0x335cdc8).
+  A doubleword is read at +0x1cc8 from the doubleword at 0x1020 (`ld` at 0x335cde0).
+  A doubleword is read at +0x3a40 from the doubleword at 0x1020 (`ld` at 0x335cdf4).
+  3 doubleword stores to absolute 0x1278 include `sd` at 0x335cdec, 0x335ce00, 0x335ce20.
+  The `jalr` at 0x335cde8 calls `glPassThrough` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335cdfc calls `glPassThrough` with a0=[[0x1020]:8+0x3a40]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335ce1c returns the result of the second `glPassThrough` call in v0 and f0.
+
+- `__glce_PopName` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  One doubleword is loaded from absolute 0x1280 (`ld` at 0x335ce30).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x335ce44).
+  A doubleword is read at +0x1cd0 from the doubleword at 0x1020 (`ld` at 0x335ce5c).
+  A doubleword is read at +0x3a48 from the doubleword at 0x1020 (`ld` at 0x335ce6c).
+  3 doubleword stores to absolute 0x1280 include `sd` at 0x335ce64, 0x335ce74, 0x335ce90.
+  The `jalr` at 0x335ce60 calls `glPopName` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335ce70 calls `glPopName` with a0=[[0x1020]:8+0x3a48]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335ce8c returns the result of the second `glPopName` call in v0.
+
+- `__glce_PushName` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword load reads from absolute 0x1288 (`ld` at 0x335cea0).
+  It loads the doubleword at absolute 0x1020 (`ld` at 0x335ceb8).
+  A doubleword is read at +0x1cd8 from the doubleword at 0x1020 (`ld` at 0x335ced0).
+  A doubleword is read from an unknown address (`ld` at 0x335cee8).
+  3 doubleword stores to absolute 0x1288 include `sd` at 0x335cedc, 0x335cef4, 0x335cf10.
+  The `jalr` at 0x335ced8 calls `glPushName` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335cef0 calls `glPushName` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335cf0c returns the result of the second `glPushName` call in v0.
+
+- `__glce_ColorMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  The first load reads a doubleword from absolute 0x12d0 (`ld` at 0x335d340).
+  The load from absolute 0x1020 reads a doubleword (`ld` at 0x335d364).
+  A doubleword is read at +0x1d20 from the doubleword at 0x1020 (`ld` at 0x335d37c).
+  A doubleword is read from an unknown address (`ld` at 0x335d3a0).
+  3 doubleword stores to absolute 0x12d0 include `sd` at 0x335d388, 0x335d3ac, 0x335d3c8.
+  The `jalr` at 0x335d384 calls `glColorMask` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335d3a8 calls `glColorMask` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335d3c4 returns the result of the second `glColorMask` call in v0.
+
+- `__glce_IndexMask` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword is read from absolute 0x12e0 (`ld` at 0x335d450).
+  The load at 0x335d468 reads a doubleword from absolute 0x1020 (`ld` at 0x335d468).
+  A doubleword is read at +0x1d30 from the doubleword at 0x1020 (`ld` at 0x335d480).
+  A doubleword is read from an unknown address (`ld` at 0x335d498).
+  3 doubleword stores to absolute 0x12e0 include `sd` at 0x335d48c, 0x335d4a4, 0x335d4c0.
+  The `jalr` at 0x335d488 calls `glIndexMask` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335d4a0 calls `glIndexMask` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335d4bc returns the result of the second `glIndexMask` call in v0.
+
+- `__glce_Accum` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  The routine reads a doubleword from absolute 0x12e8 (`ld` at 0x335d4d0).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x335d4ec).
+  A doubleword is read at +0x1d38 from the doubleword at 0x1020 (`ld` at 0x335d504).
+  A doubleword is read from an unknown address (`ld` at 0x335d520).
+  3 doubleword stores to absolute 0x12e8 include `sd` at 0x335d514, 0x335d530, 0x335d550.
+  The `jalr` at 0x335d510 calls `glAccum` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335d52c calls `glAccum` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335d54c returns the result of the second `glAccum` call in v0.
+
+- `__glce_Disable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  One doubleword is loaded from absolute 0x12f0 (`ld` at 0x335d560).
+  At absolute 0x1020 it reads another doubleword (`ld` at 0x335d578).
+  A doubleword is read at +0x1d40 from the doubleword at 0x1020 (`ld` at 0x335d590).
+  A doubleword is read from an unknown address (`ld` at 0x335d5a8).
+  3 doubleword stores to absolute 0x12f0 include `sd` at 0x335d59c, 0x335d5b4, 0x335d5d0.
+  The `jalr` at 0x335d598 calls `glDisable` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335d5b0 calls `glDisable` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335d5cc returns the result of the second `glDisable` call in v0.
+
+- `__glce_Enable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword load reads from absolute 0x12f8 (`ld` at 0x335d5e0).
+  A doubleword comes from absolute 0x1020 (`ld` at 0x335d5f8).
+  A doubleword is read at +0x1d48 from the doubleword at 0x1020 (`ld` at 0x335d610).
+  A doubleword is read from an unknown address (`ld` at 0x335d628).
+  3 doubleword stores to absolute 0x12f8 include `sd` at 0x335d61c, 0x335d634, 0x335d650.
+  The `jalr` at 0x335d618 calls `glEnable` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335d630 calls `glEnable` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335d64c returns the result of the second `glEnable` call in v0.
+
+- `__glce_Finish` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The first load reads a doubleword from absolute 0x1300 (`ld` at 0x335d668).
+  It also reads a doubleword at absolute 0x1020 (`ld` at 0x335d670).
+  A doubleword is read at +0x3ac8 from the doubleword at 0x1020 (`ld` at 0x335d688).
+  2 doubleword stores to absolute 0x1300 include `sd` at 0x335d690, 0x335d69c.
+  The `jalr` at 0x335d68c calls `glFinish` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335d6a4 returns the result of the `glFinish` call in v0.
+
+- `__glce_EvalCoord1d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1360 and 0x1020 (`ld` at 0x335dd90, 0x335dda8).
+  A doubleword is loaded at +0x1db0 from the value at 0x1020 (`ld` at 0x335ddc0).
+  The `jalr` at 0x335ddc8 calls `glEvalCoord1d` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doublewords are stored at absolute 0x1360, including `sd` at 0x335ddcc, 0x335dde0, 0x335de00.
+  Another doubleword is loaded at +0x3b28 from the value at 0x1020 (`ld` at 0x335ddd4).
+  The `jalr` at 0x335dddc calls `glEvalCoord1d` with a0 = the doubleword loaded at +0x3b28 from the value at 0x1020 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335ddfc).
+
+- `__glce_EvalCoord1dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1368 and 0x1020 (`ld` at 0x335de10, 0x335de28).
+  A doubleword is loaded at +0x1db8 from the value at 0x1020 (`ld` at 0x335de40).
+  The `jalr` at 0x335de48 calls `glEvalCoord1dv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The code has three doubleword stores at absolute 0x1368, including `sd` at 0x335de4c, 0x335de64, 0x335de80.
+  A doubleword is loaded from an unknown base (`ld` at 0x335de58).
+  The `jalr` at 0x335de60 calls `glEvalCoord1dv` with a0 = entry a0 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 (`jr` at 0x335de7c).
+
+- `__glce_EvalCoord1f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1370 and 0x1020 (`ld` at 0x335de90, 0x335dea8).
+  A doubleword is loaded at +0x1dc0 from the value at 0x1020 (`ld` at 0x335dec0).
+  The `jalr` at 0x335dec8 calls `glEvalCoord1f` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  At absolute 0x1370, three doubleword stores occur, including `sd` at 0x335decc, 0x335dee0, 0x335df00.
+  Another doubleword is loaded at +0x3b38 from the value at 0x1020 (`ld` at 0x335ded4).
+  The `jalr` at 0x335dedc calls `glEvalCoord1f` with a0 = the doubleword loaded at +0x3b38 from the value at 0x1020 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335defc).
+
+- `__glce_EvalCoord1fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1378 and 0x1020 (`ld` at 0x335df10, 0x335df28).
+  A doubleword is loaded at +0x1dc8 from the value at 0x1020 (`ld` at 0x335df40).
+  The `jalr` at 0x335df48 calls `glEvalCoord1fv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Absolute 0x1378 receives three doubleword stores, including `sd` at 0x335df4c, 0x335df64, 0x335df80.
+  A doubleword is loaded from an unknown base (`ld` at 0x335df58).
+  The `jalr` at 0x335df60 calls `glEvalCoord1fv` with a0 = entry a0 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 (`jr` at 0x335df7c).
+
+- `__glce_EvalCoord2d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1380 and 0x1020 (`ld` at 0x335df90, 0x335dfac).
+  A doubleword is loaded at +0x1dd0 from the value at 0x1020 (`ld` at 0x335dfc4).
+  The `jalr` at 0x335dfcc calls `glEvalCoord2d` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The routine makes three doubleword stores to absolute 0x1380, including `sd` at 0x335dfd0, 0x335dfe8, 0x335e008.
+  Another doubleword is loaded at +0x3b48 from the value at 0x1020 (`ld` at 0x335dfdc).
+  The `jalr` at 0x335dfe4 calls `glEvalCoord2d` with a0 = the doubleword loaded at +0x3b48 from the value at 0x1020 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335e004).
+
+- `__glce_PopAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  A doubleword is loaded from absolute 0x1310 (`ld` at 0x335d700).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335d714).
+  Another doubleword is read at +0x1d60 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335d72c).
+  The `jalr` at 0x335d730 calls `glPopAttrib` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded at +0x3ad8 from the doubleword at absolute 0x1020 (`ld` at 0x335d73c).
+  The `jalr` at 0x335d740 calls `glPopAttrib` with a0=the doubleword at +0x3ad8 from the doubleword at absolute 0x1020, a1=unknown, a2=unknown, a3=unknown.
+  Three doubleword stores target absolute 0x1310, including `sd` at 0x335d734, 0x335d744, 0x335d760.
+  The v0 return is the result of the second call to `glPopAttrib` (`jr` at 0x335d75c).
+
+- `__glce_PushAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword is loaded from absolute 0x1318 (`ld` at 0x335d770).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335d788).
+  Another doubleword is read at +0x1d68 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335d7a0).
+  The `jalr` at 0x335d7a8 calls `glPushAttrib` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335d7b8).
+  The `jalr` at 0x335d7c0 calls `glPushAttrib` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  Absolute 0x1318 receives three doubleword stores, including (`sd` at 0x335d7ac, 0x335d7c4, 0x335d7e0).
+  The v0 return is the result of the second call to `glPushAttrib` (`jr` at 0x335d7dc).
+
+- `__glce_Map1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  A doubleword is loaded from absolute 0x1320 (`ld` at 0x335d7f0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335d81c).
+  Another doubleword is read at +0x1d70 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335d834).
+  The `jalr` at 0x335d840 calls `glMap1d` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335d860).
+  The `jalr` at 0x335d86c calls `glMap1d` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a3.
+  There are three doubleword stores at absolute 0x1320, including `sd` at 0x335d844, 0x335d870, 0x335d890.
+  The v0 and f0 returns are the result of the second call to `glMap1d` (`jr` at 0x335d88c).
+
+- `__glce_Map1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  A doubleword is loaded from absolute 0x1328 (`ld` at 0x335d8a0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335d8cc).
+  Another doubleword is read at +0x1d78 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335d8e4).
+  The `jalr` at 0x335d8f0 calls `glMap1f` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335d910).
+  The `jalr` at 0x335d91c calls `glMap1f` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a3.
+  The three doubleword writes to absolute 0x1328, including `sd` at 0x335d8f4, 0x335d920, 0x335d940.
+  The v0 and f0 returns are the result of the second call to `glMap1f` (`jr` at 0x335d93c).
+
+- `__glce_Map2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 220 bytes
+  A doubleword is loaded from absolute 0x1330 (`ld` at 0x335d950).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335d980).
+  Another doubleword is read at +0x1d80 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335d988).
+  The `jalr` at 0x335d9bc calls `glMap2d` with a0=entry a0, a1=the doubleword at +0x1d80 from the doubleword at absolute 0x1020, a2=the doubleword at absolute 0x1330, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335d9e0).
+  The `jalr` at 0x335da00 calls `glMap2d` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a3.
+  Three stores of doublewords go to absolute 0x1330, including `sd` at 0x335d98c, 0x335d9e4, 0x335da28.
+  The v0 and f0 returns are the result of the second call to `glMap2d` (`jr` at 0x335da24).
+
+- `__glce_Map2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 220 bytes
+  A doubleword is loaded from absolute 0x1338 (`ld` at 0x335da30).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335da60).
+  Another doubleword is read at +0x1d88 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335da68).
+  The `jalr` at 0x335da9c calls `glMap2f` with a0=entry a0, a1=the doubleword at +0x1d88 from the doubleword at absolute 0x1020, a2=the doubleword at absolute 0x1338, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335dac0).
+  The `jalr` at 0x335dae0 calls `glMap2f` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a3.
+  Three doubleword writes target absolute 0x1338, including (`sd` at 0x335da6c, 0x335dac4, 0x335db08).
+  The v0 return is the result of the second call to `glMap2f` (`jr` at 0x335db04).
+
+- `__glce_MapGrid1d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  A doubleword is loaded from absolute 0x1340 (`ld` at 0x335db10).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335db30).
+  Another doubleword is read at +0x1d90 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335db48).
+  The `jalr` at 0x335db54 calls `glMapGrid1d` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335db68).
+  The `jalr` at 0x335db74 calls `glMapGrid1d` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  At absolute 0x1340, three doubleword stores include (`sd` at 0x335db58, 0x335db78, 0x335db98).
+  The v0 return is the result of the second call to `glMapGrid1d` (`jr` at 0x335db94).
+
+- `__glce_MapGrid1f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  A doubleword is loaded from absolute 0x1348 (`ld` at 0x335dba0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335dbc0).
+  Another doubleword is read at +0x1d98 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335dbd8).
+  The `jalr` at 0x335dbe4 calls `glMapGrid1f` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335dbf8).
+  The `jalr` at 0x335dc04 calls `glMapGrid1f` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  The routine writes three doublewords at absolute 0x1348, including (`sd` at 0x335dbe8, 0x335dc08, 0x335dc28).
+  The v0 return is the result of the second call to `glMapGrid1f` (`jr` at 0x335dc24).
+
+- `__glce_MapGrid2d` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  A doubleword is loaded from absolute 0x1350 (`ld` at 0x335dc30).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335dc5c).
+  Another doubleword is read at +0x1da0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335dc74).
+  The `jalr` at 0x335dc80 calls `glMapGrid2d` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335dca0).
+  The `jalr` at 0x335dcac calls `glMapGrid2d` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a3.
+  There are three doubleword stores to absolute 0x1350, including (`sd` at 0x335dc84, 0x335dcb0, 0x335dcd0).
+  The v0 return is the result of the second call to `glMapGrid2d` (`jr` at 0x335dccc).
+
+- `__glce_MapGrid2f` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  A doubleword is loaded from absolute 0x1358 (`ld` at 0x335dce0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335dd0c).
+  Another doubleword is read at +0x1da8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335dd24).
+  The `jalr` at 0x335dd30 calls `glMapGrid2f` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x335dd50).
+  The `jalr` at 0x335dd5c calls `glMapGrid2f` with a0=entry a0, a1=unknown, a2=unknown, a3=entry a3.
+  Absolute 0x1358 receives three doubleword stores, including (`sd` at 0x335dd34, 0x335dd60, 0x335dd80).
+  The v0 return is the result of the second call to `glMapGrid2f` (`jr` at 0x335dd7c).
+
+- `__glce_EvalCoord2dv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1388 and 0x1020 (`ld` at 0x335e010, 0x335e028).
+  A doubleword is loaded at +0x1dd8 from the value at 0x1020 (`ld` at 0x335e040).
+  The `jalr` at 0x335e048 calls `glEvalCoord2dv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores to absolute 0x1388 include (`sd` at 0x335e04c, 0x335e064, 0x335e080).
+  A doubleword is loaded from an unknown base (`ld` at 0x335e058).
+  The `jalr` at 0x335e060 calls `glEvalCoord2dv` with a0 = entry a0 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335e07c).
+
+- `__glce_EvalCoord2f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1390 and 0x1020 (`ld` at 0x335e090, 0x335e0ac).
+  A doubleword is loaded at +0x1de0 from the value at 0x1020 (`ld` at 0x335e0c4).
+  The `jalr` at 0x335e0cc calls `glEvalCoord2f` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores to absolute 0x1390 include (`sd` at 0x335e0d0, 0x335e0e8, 0x335e108).
+  Another doubleword is loaded at +0x3b58 from the value at 0x1020 (`ld` at 0x335e0dc).
+  The `jalr` at 0x335e0e4 calls `glEvalCoord2f` with a0 = the doubleword loaded at +0x3b58 from the value at 0x1020 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335e104).
+
+- `__glce_EvalCoord2fv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x1398 and 0x1020 (`ld` at 0x335e110, 0x335e128).
+  A doubleword is loaded at +0x1de8 from the value at 0x1020 (`ld` at 0x335e140).
+  The `jalr` at 0x335e148 calls `glEvalCoord2fv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores to absolute 0x1398 include (`sd` at 0x335e14c, 0x335e164, 0x335e180).
+  A doubleword is loaded from an unknown base (`ld` at 0x335e158).
+  The `jalr` at 0x335e160 calls `glEvalCoord2fv` with a0 = entry a0 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 and f0 (`jr` at 0x335e17c).
+
+- `__glce_EvalMesh1` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x13a0 and 0x1020 (`ld` at 0x335e190, 0x335e1b0).
+  A doubleword is loaded at +0x1df0 from the value at 0x1020 (`ld` at 0x335e1c8).
+  The `jalr` at 0x335e1d0 calls `glEvalMesh1` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores to absolute 0x13a0 include (`sd` at 0x335e1d4, 0x335e1f4, 0x335e210).
+  It loads a doubleword from an unknown base (`ld` at 0x335e1e8).
+  The `jalr` at 0x335e1f0 calls `glEvalMesh1` with a0 = entry a0 and a1 = entry a1, a2 = entry a2 and a3 unknown.
+  The second call result is returned in v0 (`jr` at 0x335e20c).
+
+- `__glce_EvalPoint1` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It loads doublewords from absolute 0x13a8 and 0x1020 (`ld` at 0x335e220, 0x335e238).
+  A doubleword is loaded at +0x1df8 from the value at 0x1020 (`ld` at 0x335e250).
+  The `jalr` at 0x335e258 calls `glEvalPoint1` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Three doubleword stores to absolute 0x13a8 include (`sd` at 0x335e25c, 0x335e274, 0x335e290).
+  A doubleword is loaded from an unknown base (`ld` at 0x335e268).
+  The `jalr` at 0x335e270 calls `glEvalPoint1` with a0 = entry a0 and a1, a2 and a3 unknown.
+  The second call result is returned in v0 (`jr` at 0x335e28c).
+
+- `__glce_EvalMesh2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 148 bytes
+  A doubleword is read from absolute 0x13b0 (`ld` at 0x335e2a0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335e2c8).
+  A doubleword is read at +0x1e00 from the doubleword at 0x1020 (`ld` at 0x335e2e0).
+  A doubleword is read from an unknown address (`ld` at 0x335e308).
+  3 doubleword stores to absolute 0x13b0 include `sd` at 0x335e2ec, 0x335e314, 0x335e330.
+  The `jalr` at 0x335e2e8 calls `glEvalMesh2` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335e310 calls `glEvalMesh2` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335e32c returns the result of the second `glEvalMesh2` call in v0.
+
+- `__glce_EvalPoint2` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  The routine reads a doubleword from absolute 0x13b8 (`ld` at 0x335e340).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335e35c).
+  A doubleword is read at +0x1e08 from the doubleword at 0x1020 (`ld` at 0x335e374).
+  A doubleword is read from an unknown address (`ld` at 0x335e390).
+  3 doubleword stores to absolute 0x13b8 include `sd` at 0x335e380, 0x335e39c, 0x335e3b8.
+  The `jalr` at 0x335e37c calls `glEvalPoint2` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335e398 calls `glEvalPoint2` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jr` at 0x335e3b4 returns the result of the second `glEvalPoint2` call in v0.
+
+- `__glce_AlphaFunc` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  One doubleword is loaded from absolute 0x13c0 (`ld` at 0x335e3c0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335e3dc).
+  A doubleword is read at +0x1e10 from the doubleword at 0x1020 (`ld` at 0x335e3f4).
+  A doubleword is read from an unknown address (`ld` at 0x335e410).
+  3 doubleword stores to absolute 0x13c0 include `sd` at 0x335e404, 0x335e420, 0x335e440.
+  The `jalr` at 0x335e400 calls `glAlphaFunc` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335e41c calls `glAlphaFunc` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335e43c returns the second `glAlphaFunc` result in v0 and f0.
+
+- `__glce_LogicOp` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword load reads from absolute 0x13d0 (`ld` at 0x335e4d0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335e4e8).
+  A doubleword is read at +0x1e20 from the doubleword at 0x1020 (`ld` at 0x335e500).
+  A doubleword is read from an unknown address (`ld` at 0x335e518).
+  3 doubleword stores to absolute 0x13d0 include `sd` at 0x335e50c, 0x335e524, 0x335e540.
+  The `jalr` at 0x335e508 calls `glLogicOp` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335e520 calls `glLogicOp` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335e53c returns the result of the second `glLogicOp` call in v0.
+
+- `__glce_GetBooleanv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The first load reads a doubleword from absolute 0x1450 (`ld` at 0x335ece8).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335ecf0).
+  A doubleword is read at +0x3c18 from the doubleword at 0x1020 (`ld` at 0x335ed08).
+  2 doubleword stores to absolute 0x1450 include `sd` at 0x335ed10, 0x335ed1c.
+  The `jalr` at 0x335ed0c calls `glGetBooleanv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335ed24 returns the result of the `glGetBooleanv` call in v0.
+
+- `__glce_GetDoublev` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read from absolute 0x1460 (`ld` at 0x335ed88).
+  The absolute doubleword at 0x1020 is loaded (`ld` at 0x335ed90).
+  It reads a doubleword at +0x3c28 from the doubleword loaded at 0x1020 (`ld` at 0x335eda8).
+  2 doubleword stores to absolute 0x1460 include `sd` at 0x335edb0, 0x335edbc.
+  The `jalr` at 0x335edac calls `glGetDoublev` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335edc4 returns the result of the `glGetDoublev` call in v0.
+
+- `__glce_GetError` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The routine reads a doubleword from absolute 0x1468 (`ld` at 0x335edd8).
+  It loads a doubleword from absolute 0x1020 (`ld` at 0x335ede0).
+  The doubleword loaded at 0x1020 supplies the base for a doubleword read at +0x3c30 (`ld` at 0x335edf8).
+  2 doubleword stores to absolute 0x1468 include `sd` at 0x335ee00, 0x335ee0c.
+  The `jalr` at 0x335edfc calls `glGetError` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335ee14 returns the result of the `glGetError` call in v0.
+
+- `__glce_GetFloatv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  One doubleword is loaded from absolute 0x1470 (`ld` at 0x335ee28).
+  The load from absolute 0x1020 reads a doubleword (`ld` at 0x335ee30).
+  A second doubleword load uses the value read at 0x1020 as its base, at +0x3c38 (`ld` at 0x335ee48).
+  2 doubleword stores to absolute 0x1470 include `sd` at 0x335ee50, 0x335ee5c.
+  The `jalr` at 0x335ee4c calls `glGetFloatv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335ee64 returns the result of the `glGetFloatv` call in v0.
+
+- `__glce_GetIntegerv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword load reads from absolute 0x1478 (`ld` at 0x335ee78).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x335ee80).
+  Using the doubleword read at 0x1020 as a base, it loads another doubleword at +0x3c40 (`ld` at 0x335ee98).
+  2 doubleword stores to absolute 0x1478 include `sd` at 0x335eea0, 0x335eeac.
+  The `jalr` at 0x335ee9c calls `glGetIntegerv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335eeb4 returns the result of the `glGetIntegerv` call in v0.
+
+- `__glce_GetMapdv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The first load reads a doubleword from absolute 0x1490 (`ld` at 0x335ef68).
+  Another doubleword comes from absolute 0x1020 (`ld` at 0x335ef70).
+  At +0x3c58 from the doubleword read at 0x1020, it loads a doubleword (`ld` at 0x335ef88).
+  2 doubleword stores to absolute 0x1490 include `sd` at 0x335ef90, 0x335ef9c.
+  The `jalr` at 0x335ef8c calls `glGetMapdv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x335efa4 returns the result of the `glGetMapdv` call in v0.
+
+- `__glce_MatrixMode` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1568 and 0x1020 (`ld` at 0x335f8d0, 0x335f8e8).
+  A doubleword is read at +0x1fb8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335f900).
+  The `jalr` at 0x335f908 calls `glMatrixMode` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The later doubleword load has an unknown base (`ld` at 0x335f918).
+  The `jalr` at 0x335f920 calls `glMatrixMode` with a0 = entry a0, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three doubleword stores to absolute 0x1568 include `sd` at 0x335f90c, 0x335f924, 0x335f940.
+  At return, v0 is the second call result (`jr` at 0x335f93c).
+
+- `__glce_MultMatrixf` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1570 and 0x1020 (`ld` at 0x335f950, 0x335f968).
+  A doubleword is read at +0x1fc0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335f980).
+  The `jalr` at 0x335f988 calls `glMultMatrixf` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The later doubleword load has an unknown base (`ld` at 0x335f998).
+  The `jalr` at 0x335f9a0 calls `glMultMatrixf` with a0 = entry a0, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three doubleword stores to absolute 0x1570 include `sd` at 0x335f98c, 0x335f9a4, 0x335f9c0.
+  At return, v0 is the second call result (`jr` at 0x335f9bc).
+
+- `__glce_MultMatrixd` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1578 and 0x1020 (`ld` at 0x335f9d0, 0x335f9e8).
+  A doubleword is read at +0x1fc8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335fa00).
+  The `jalr` at 0x335fa08 calls `glMultMatrixd` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The later doubleword load has an unknown base (`ld` at 0x335fa18).
+  The `jalr` at 0x335fa20 calls `glMultMatrixd` with a0 = entry a0, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three doubleword stores to absolute 0x1578 include `sd` at 0x335fa0c, 0x335fa24, 0x335fa40.
+  At return, v0 is the second call result (`jr` at 0x335fa3c).
+
+- `__glce_Ortho` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1580 and 0x1020 (`ld` at 0x335fa50, 0x335fa7c).
+  A doubleword is read at +0x1fd0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335fa94).
+  The `jalr` at 0x335fa9c calls `glOrtho` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  A doubleword is loaded at +0x3d48 from the doubleword at absolute 0x1020 (`ld` at 0x335fabc).
+  The `jalr` at 0x335fac4 calls `glOrtho` with a0 = the doubleword at +0x3d48 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three doubleword stores to absolute 0x1580 include `sd` at 0x335faa0, 0x335fac8, 0x335fae8.
+  The second call supplies v0 and f0 at return (`jr` at 0x335fae4).
+
+- `__glce_PopMatrix` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1588 and 0x1020 (`ld` at 0x335faf0, 0x335fb04).
+  A doubleword is read at +0x1fd8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335fb1c).
+  The `jalr` at 0x335fb20 calls `glPopMatrix` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  A doubleword is loaded at +0x3d50 from the doubleword at absolute 0x1020 (`ld` at 0x335fb2c).
+  The `jalr` at 0x335fb30 calls `glPopMatrix` with a0 = the doubleword at +0x3d50 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three doubleword stores to absolute 0x1588 include `sd` at 0x335fb24, 0x335fb34, 0x335fb50.
+  At return, v0 is the second call result (`jr` at 0x335fb4c).
+
+- `__glce_GetMapfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1498 (`ld` at 0x335efb8).
+  A second doubleword comes from absolute 0x1020 (`ld` at 0x335efc0).
+  A doubleword is then loaded at +0x3c60 from that value (`ld` at 0x335efd8).
+  The `jalr` at 0x335efdc calls `glGetMapfv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1498, including `sd` at 0x335efe0, 0x335efec.
+  The v0 return is the return from `glGetMapfv` (`jr` at 0x335eff4).
+
+- `__glce_GetMapiv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x14a0 (`ld` at 0x335f008).
+  At absolute 0x1020 it loads a doubleword (`ld` at 0x335f010).
+  The next doubleword load uses the 0x1020 value plus 0x3c68 (`ld` at 0x335f028).
+  The `jalr` at 0x335f02c calls `glGetMapiv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  At absolute 0x14a0, two doubleword stores include `sd` at 0x335f030, 0x335f03c.
+  The v0 return is the return from `glGetMapiv` (`jr` at 0x335f044).
+
+- `__glce_GetPolygonStipple` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x14d0 (`ld` at 0x335f1e8).
+  It also reads a doubleword at absolute 0x1020 (`ld` at 0x335f1f0).
+  From the doubleword at 0x1020, it reads a doubleword at +0x3c98 (`ld` at 0x335f208).
+  The `jalr` at 0x335f20c calls `glGetPolygonStipple` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The same address 0x14d0 receives two doubleword stores, including `sd` at 0x335f210, 0x335f21c.
+  The v0 return is the return from `glGetPolygonStipple` (`jr` at 0x335f224).
+
+- `__glce_GetString` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x14d8 (`ld` at 0x335f238).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x335f240).
+  That loaded value is the base of a doubleword read at +0x3ca0 (`ld` at 0x335f258).
+  The `jalr` at 0x335f25c calls `glGetString` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The routine stores two doublewords at absolute 0x14d8, including `sd` at 0x335f260, 0x335f26c.
+  The v0 return is the return from `glGetString` (`jr` at 0x335f274).
+
+- `__glce_GetTexLevelParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1520 (`ld` at 0x335f508).
+  The code reads a doubleword at absolute 0x1020 (`ld` at 0x335f510).
+  Using the loaded value, it reads a doubleword at +0x3ce8 (`ld` at 0x335f528).
+  The `jalr` at 0x335f52c calls `glGetTexLevelParameterfv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  There are two doubleword stores to absolute 0x1520, including `sd` at 0x335f530, 0x335f53c.
+  The v0 return is the return from `glGetTexLevelParameterfv` (`jr` at 0x335f544).
+
+- `__glce_GetTexLevelParameteriv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1528 (`ld` at 0x335f558).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x335f560).
+  It reads another doubleword at +0x3cf0 from the value loaded at absolute 0x1020 (`ld` at 0x335f578).
+  The `jalr` at 0x335f57c calls `glGetTexLevelParameteriv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1528 include `sd` at 0x335f580, 0x335f58c.
+  The v0 return is the return from `glGetTexLevelParameteriv` (`jr` at 0x335f594).
+
+- `__glce_IsEnabled` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 80 bytes
+  A doubleword is read at absolute 0x1530 (`ld` at 0x335f5a8).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x335f5b0).
+  It reads another doubleword at +0x3cf8 from the value loaded at absolute 0x1020 (`ld` at 0x335f5c8).
+  The `jalr` at 0x335f5cc calls `glIsEnabled` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1530 include `sd` at 0x335f5d0, 0x335f5e0.
+  The v0 return is unknown (`jr` at 0x335f5e8).
+
+- `__glce_IsList` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 80 bytes
+  A doubleword is read at absolute 0x1538 (`ld` at 0x335f5f8).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x335f600).
+  It reads another doubleword at +0x3d00 from the value loaded at absolute 0x1020 (`ld` at 0x335f618).
+  The `jalr` at 0x335f61c calls `glIsList` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1538 include `sd` at 0x335f620, 0x335f630.
+  The v0 return is unknown (`jr` at 0x335f638).
+
+- `__glce_Frustum` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+  A doubleword is loaded from absolute 0x1548 (`ld` at 0x335f6c0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335f6ec).
+  Another doubleword is read at +0x1f98 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335f704).
+  The `jalr` at 0x335f70c calls `glFrustum` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded at +0x3d10 from the doubleword at absolute 0x1020 (`ld` at 0x335f72c).
+  The `jalr` at 0x335f734 calls `glFrustum` with a0=the doubleword at +0x3d10 from the doubleword at absolute 0x1020, a1=unknown, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1548 include `sd` at 0x335f710, 0x335f738, 0x335f758.
+  The v0 and f0 returns are the results of the second call to `glFrustum` (`jr` at 0x335f754).
+
+- `__glce_LoadIdentity` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 100 bytes
+  A doubleword is loaded from absolute 0x1550 (`ld` at 0x335f760).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x335f774).
+  Another doubleword is read at +0x1fa0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x335f78c).
+  The `jalr` at 0x335f790 calls `glLoadIdentity` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded at +0x3d18 from the doubleword at absolute 0x1020 (`ld` at 0x335f79c).
+  The `jalr` at 0x335f7a0 calls `glLoadIdentity` with a0=the doubleword at +0x3d18 from the doubleword at absolute 0x1020, a1=unknown, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1550 include `sd` at 0x335f794, 0x335f7a4, 0x335f7c0.
+  The v0 return is the result of the second call to `glLoadIdentity` (`jr` at 0x335f7bc).
+
+- `__glce_PushMatrix` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1590 and 0x1020 (`ld` at 0x335fb60, 0x335fb74).
+  A doubleword is loaded at +0x1fe0 from the doubleword at absolute 0x1020 (`ld` at 0x335fb8c).
+  The `jalr` at 0x335fb90 calls `glPushMatrix` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Another doubleword is loaded at +0x3d58 from the doubleword at absolute 0x1020 (`ld` at 0x335fb9c).
+  The `jalr` at 0x335fba0 calls `glPushMatrix` with a0 = the doubleword loaded at +0x3d58 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three doubleword stores target absolute 0x1590, including `sd` at 0x335fb94, 0x335fba4, 0x335fbc0.
+  The second call result is returned in v0 (`jr` at 0x335fbbc).
+
+- `__glce_Rotated` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine reads doublewords at absolute 0x1598 and 0x1020 (`ld` at 0x335fbd0, 0x335fbf4).
+  A doubleword is loaded at +0x1fe8 from the doubleword at absolute 0x1020 (`ld` at 0x335fc0c).
+  The `jalr` at 0x335fc14 calls `glRotated` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Another doubleword is loaded at +0x3d60 from the doubleword at absolute 0x1020 (`ld` at 0x335fc2c).
+  The `jalr` at 0x335fc34 calls `glRotated` with a0 = the doubleword loaded at +0x3d60 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  Absolute 0x1598 receives three doubleword stores, including `sd` at 0x335fc18, 0x335fc38, 0x335fc58.
+  The second call result is returned in v0 and f0 (`jr` at 0x335fc54).
+
+- `__glce_Rotatef` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Two absolute doubleword loads address 0x15a0 and 0x1020 (`ld` at 0x335fc60, 0x335fc84).
+  A doubleword is loaded at +0x1ff0 from the doubleword at absolute 0x1020 (`ld` at 0x335fc9c).
+  The `jalr` at 0x335fca4 calls `glRotatef` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Another doubleword is loaded at +0x3d68 from the doubleword at absolute 0x1020 (`ld` at 0x335fcbc).
+  The `jalr` at 0x335fcc4 calls `glRotatef` with a0 = the doubleword loaded at +0x3d68 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  There are three doubleword stores to absolute 0x15a0, including `sd` at 0x335fca8, 0x335fcc8, 0x335fce8.
+  The second call result is returned in v0 and f0 (`jr` at 0x335fce4).
+
+- `__glce_Scaled` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335fcf0
+  It reads a doubleword at 0x15a8 and another at 0x1020 (`ld` at 0x335fcf0, 0x335fd10).
+  A doubleword is loaded at +0x1ff8 from the doubleword at absolute 0x1020 (`ld` at 0x335fd28).
+  The `jalr` at 0x335fd30 calls `glScaled` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Another doubleword is loaded at +0x3d70 from the doubleword at absolute 0x1020 (`ld` at 0x335fd44).
+  The `jalr` at 0x335fd4c calls `glScaled` with a0 = the doubleword loaded at +0x3d70 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  The code stores three doublewords at absolute 0x15a8, including `sd` at 0x335fd34, 0x335fd50, 0x335fd70.
+  The second call result is returned in v0 and f0 (`jr` at 0x335fd6c).
+
+- `__glce_Scalef` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Absolute addresses 0x15b0 and 0x1020 supply doublewords (`ld` at 0x335fd80, 0x335fda0).
+  A doubleword is loaded at +0x2000 from the doubleword at absolute 0x1020 (`ld` at 0x335fdb8).
+  The `jalr` at 0x335fdc0 calls `glScalef` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Another doubleword is loaded at +0x3d78 from the doubleword at absolute 0x1020 (`ld` at 0x335fdd4).
+  The `jalr` at 0x335fddc calls `glScalef` with a0 = the doubleword loaded at +0x3d78 from the doubleword at absolute 0x1020, a1 = unknown, a2 = unknown and a3 = unknown.
+  Three stores write doublewords to absolute 0x15b0, including `sd` at 0x335fdc4, 0x335fde0, 0x335fe00.
+  The second call result is returned in v0 and f0 (`jr` at 0x335fdfc).
+
+- `__glce_GetConvolutionParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1640 (`ld` at 0x33607e8).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x33607f0).
+  It reads another doubleword at +0x3e08 from the value loaded at absolute 0x1020 (`ld` at 0x3360808).
+  The `jalr` at 0x336080c calls `glGetConvolutionParameterfvEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1640 include (`sd` at 0x3360810, 0x336081c).
+  The v0 return is the return from `glGetConvolutionParameterfvEXT` (`jr` at 0x3360824).
+
+- `__glce_GetConvolutionParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1648 (`ld` at 0x3360838).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3360840).
+  It reads another doubleword at +0x3e10 from the value loaded at absolute 0x1020 (`ld` at 0x3360858).
+  The `jalr` at 0x336085c calls `glGetConvolutionParameterivEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1648 include (`sd` at 0x3360860, 0x336086c).
+  The v0 return is the return from `glGetConvolutionParameterivEXT` (`jr` at 0x3360874).
+
+- `__glce_GetSeparableFilterEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1650 (`ld` at 0x3360888).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3360890).
+  It reads another doubleword at +0x3e18 from the value loaded at absolute 0x1020 (`ld` at 0x33608a8).
+  The `jalr` at 0x33608ac calls `glGetSeparableFilterEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1650 include (`sd` at 0x33608b0, 0x33608bc).
+  The v0 return is the return from `glGetSeparableFilterEXT` (`jr` at 0x33608c4).
+
+- `__glce_SeparableFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 172 bytes
+  A doubleword is loaded from absolute 0x1658 (`ld` at 0x33608d0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x3360904).
+  Another doubleword is read at +0x20a8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x336091c).
+  The `jalr` at 0x3360924 calls `glSeparableFilter2DEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3360950).
+  The `jalr` at 0x3360958 calls `glSeparableFilter2DEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Three doubleword stores to absolute 0x1658 include (`sd` at 0x3360928, 0x336095c, 0x3360978).
+  At return, v0 holds the result of the call at 0x3360958 to `glSeparableFilter2DEXT` (`jr` at 0x3360974).
+
+- `__glce_GetHistogramEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1660 (`ld` at 0x3360988).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3360990).
+  It reads another doubleword at +0x3e28 from the value loaded at absolute 0x1020 (`ld` at 0x33609a8).
+  The `jalr` at 0x33609ac calls `glGetHistogramEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x1660 include (`sd` at 0x33609b0, 0x33609bc).
+  The v0 return is the return from `glGetHistogramEXT` (`jr` at 0x33609c4).
+
+- `__glce_GetHistogramParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1668 (`ld` at 0x33609d8).
+  A doubleword is also loaded from absolute 0x1020 (`ld` at 0x33609e0).
+  It reads another doubleword at +0x3e30 from the value loaded at absolute 0x1020 (`ld` at 0x33609f8).
+  The `jalr` at 0x33609fc calls `glGetHistogramParameterfvEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1668 (`sd` at 0x3360a00, 0x3360a0c).
+  The v0 return is the return from `glGetHistogramParameterfvEXT` (`jr` at 0x3360a14).
+
+- `__glce_GetHistogramParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1670 (`ld` at 0x3360a28).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x3360a30).
+  It reads another doubleword at +0x3e38 from the value loaded at absolute 0x1020 (`ld` at 0x3360a48).
+  The `jalr` at 0x3360a4c calls `glGetHistogramParameterivEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1670 (`sd` at 0x3360a50, 0x3360a5c).
+  The v0 return is the return from `glGetHistogramParameterivEXT` (`jr` at 0x3360a64).
+
+- `__glce_GetMinmaxEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1678 (`ld` at 0x3360a78).
+  The code reads a doubleword at absolute 0x1020 (`ld` at 0x3360a80).
+  It reads another doubleword at +0x3e40 from the value loaded at absolute 0x1020 (`ld` at 0x3360a98).
+  The `jalr` at 0x3360a9c calls `glGetMinmaxEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1678 (`sd` at 0x3360aa0, 0x3360aac).
+  The v0 return is the return from `glGetMinmaxEXT` (`jr` at 0x3360ab4).
+
+- `__glce_GetMinmaxParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1680 (`ld` at 0x3360ac8).
+  It loads the doubleword at absolute 0x1020 (`ld` at 0x3360ad0).
+  It reads another doubleword at +0x3e48 from the value loaded at absolute 0x1020 (`ld` at 0x3360ae8).
+  The `jalr` at 0x3360aec calls `glGetMinmaxParameterfvEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1680 (`sd` at 0x3360af0, 0x3360afc).
+  The v0 return is the return from `glGetMinmaxParameterfvEXT` (`jr` at 0x3360b04).
+
+- `__glce_GetMinmaxParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x1688 (`ld` at 0x3360b18).
+  A second absolute doubleword load uses 0x1020 (`ld` at 0x3360b20).
+  It reads another doubleword at +0x3e50 from the value loaded at absolute 0x1020 (`ld` at 0x3360b38).
+  The `jalr` at 0x3360b3c calls `glGetMinmaxParameterivEXT` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1688 (`sd` at 0x3360b40, 0x3360b4c).
+  The v0 return is the return from `glGetMinmaxParameterivEXT` (`jr` at 0x3360b54).
+
+- `__glce_Translated` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  A doubleword is read from absolute 0x15b8 (`ld` at 0x335fe10).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335fe30).
+  A doubleword is read at +0x2008 from the doubleword at 0x1020 (`ld` at 0x335fe48).
+  A doubleword is read at +0x3d80 from the doubleword at 0x1020 (`ld` at 0x335fe64).
+  3 doubleword stores to absolute 0x15b8 include `sd` at 0x335fe54, 0x335fe70, 0x335fe90.
+  The `jalr` at 0x335fe50 calls `glTranslated` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335fe6c calls `glTranslated` with a0=[[0x1020]:8+0x3d80]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335fe8c returns the second `glTranslated` call result in v0 and f0.
+
+- `__glce_Translatef` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  The routine reads a doubleword from absolute 0x15c0 (`ld` at 0x335fea0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x335fec0).
+  From the doubleword at absolute 0x1020, it reads another at +0x2010 (`ld` at 0x335fed8).
+  The same loaded base supplies a doubleword at +0x3d88 (`ld` at 0x335fef4).
+  3 doubleword stores to absolute 0x15c0 include `sd` at 0x335fee4, 0x335ff00, 0x335ff20.
+  The `jalr` at 0x335fee0 calls `glTranslatef` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x335fefc calls `glTranslatef` with a0=[[0x1020]:8+0x3d88]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x335ff1c returns the second `glTranslatef` result in v0 and f0.
+
+- `__glce_PolygonOffsetEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  One doubleword is loaded from absolute 0x15e0 (`ld` at 0x33600d0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33600ec).
+  The doubleword at absolute 0x1020 supplies a doubleword at +0x2030 (`ld` at 0x3360104).
+  It reads another doubleword at +0x3da8 from that base (`ld` at 0x336011c).
+  3 doubleword stores to absolute 0x15e0 include `sd` at 0x3360110, 0x3360128, 0x3360148.
+  The `jalr` at 0x336010c calls `glPolygonOffsetEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3360124 calls `glPolygonOffsetEXT` with a0=[[0x1020]:8+0x3da8]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3360144 returns the second `glPolygonOffsetEXT` result in v0 and f0.
+
+- `__glce_ConvolutionFilter1DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+  A doubleword load reads from absolute 0x15f8 (`ld` at 0x33602c0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33602ec).
+  A doubleword is read at +0x2048 from the doubleword at 0x1020 (`ld` at 0x3360304).
+  A doubleword is read from an unknown address (`ld` at 0x3360330).
+  3 doubleword stores to absolute 0x15f8 include `sd` at 0x3360310, 0x336033c, 0x3360358.
+  The `jalr` at 0x336030c calls `glConvolutionFilter1DEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3360338 calls `glConvolutionFilter1DEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3360354 returns the result of the second `glConvolutionFilter1DEXT` call in v0.
+
+- `__glce_ConvolutionFilter2DEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 164 bytes
+  The first load reads a doubleword from absolute 0x1600 (`ld` at 0x3360360).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3360390).
+  A doubleword is read at +0x2050 from the doubleword at 0x1020 (`ld` at 0x33603a8).
+  A doubleword is read from an unknown address (`ld` at 0x33603d8).
+  3 doubleword stores to absolute 0x1600 include `sd` at 0x33603b4, 0x33603e4, 0x3360400.
+  The `jalr` at 0x33603b0 calls `glConvolutionFilter2DEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33603e0 calls `glConvolutionFilter2DEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33603fc returns the result of the second `glConvolutionFilter2DEXT` call in v0.
+
+- `__glce_ConvolutionParameterfEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 140 bytes
+  A doubleword is read from absolute 0x1608 (`ld` at 0x3360410).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3360430).
+  A doubleword is read at +0x2058 from the doubleword at 0x1020 (`ld` at 0x3360448).
+  A doubleword is read from an unknown address (`ld` at 0x3360468).
+  3 doubleword stores to absolute 0x1608 include `sd` at 0x3360458, 0x3360478, 0x3360498.
+  The `jalr` at 0x3360454 calls `glConvolutionParameterfEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3360474 calls `glConvolutionParameterfEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jr` at 0x3360494 returns the second `glConvolutionParameterfEXT` call result in v0 and f0.
+
+- `__glce_ConvolutionParameterfvEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  The routine reads a doubleword from absolute 0x1610 (`ld` at 0x33604a0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33604c0).
+  A doubleword is read at +0x2060 from the doubleword at 0x1020 (`ld` at 0x33604d8).
+  A doubleword is read from an unknown address (`ld` at 0x33604f8).
+  3 doubleword stores to absolute 0x1610 include `sd` at 0x33604e4, 0x3360504, 0x3360520.
+  The `jalr` at 0x33604e0 calls `glConvolutionParameterfvEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3360500 calls `glConvolutionParameterfvEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jr` at 0x336051c returns the result of the second `glConvolutionParameterfvEXT` call in v0.
+
+- `__glce_ConvolutionParameteriEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  One doubleword is loaded from absolute 0x1618 (`ld` at 0x3360530).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3360550).
+  A doubleword is read at +0x2068 from the doubleword at 0x1020 (`ld` at 0x3360568).
+  A doubleword is read from an unknown address (`ld` at 0x3360588).
+  3 doubleword stores to absolute 0x1618 include `sd` at 0x3360574, 0x3360594, 0x33605b0.
+  The `jalr` at 0x3360570 calls `glConvolutionParameteriEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3360590 calls `glConvolutionParameteriEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jr` at 0x33605ac returns the result of the second `glConvolutionParameteriEXT` call in v0.
+
+- `__glce_ConvolutionParameterivEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  A doubleword load reads from absolute 0x1620 (`ld` at 0x33605c0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33605e0).
+  A doubleword is read at +0x2070 from the doubleword at 0x1020 (`ld` at 0x33605f8).
+  A doubleword is read from an unknown address (`ld` at 0x3360618).
+  3 doubleword stores to absolute 0x1620 include `sd` at 0x3360604, 0x3360624, 0x3360640.
+  The `jalr` at 0x3360600 calls `glConvolutionParameterivEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3360620 calls `glConvolutionParameterivEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=unknown.
+  The `jr` at 0x336063c returns the result of the second `glConvolutionParameterivEXT` call in v0.
+
+- `__glce_GetConvolutionFilterEXT` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The first load reads a doubleword from absolute 0x1638 (`ld` at 0x3360798).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33607a0).
+  A doubleword is read at +0x3e00 from the doubleword at 0x1020 (`ld` at 0x33607b8).
+  2 doubleword stores to absolute 0x1638 include `sd` at 0x33607c0, 0x33607cc.
+  The `jalr` at 0x33607bc calls `glGetConvolutionFilterEXT` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33607d4 returns the result of the `glGetConvolutionFilterEXT` call in v0.
+
+- `__glce_HistogramEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are read from absolute 0x1690 and 0x1020 (`ld` at 0x3360b60, 0x3360b84).
+  A doubleword is loaded at +0x20e0 from the value read at 0x1020 (`ld` at 0x3360b9c).
+  The `jalr` at 0x3360ba4 calls `glHistogramEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  An unknown base supplies a further doubleword (`ld` at 0x3360bc0).
+  The `jalr` at 0x3360bc8 calls `glHistogramEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Three doubleword stores to absolute 0x1690 include `sd` at 0x3360ba8, 0x3360bcc, 0x3360be8.
+  The return in v0 comes from the second call (`jr` at 0x3360be4).
+
+- `__glce_MinmaxEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  It reads doublewords at absolute 0x1698 and 0x1020 (`ld` at 0x3360bf0, 0x3360c10).
+  The value loaded at 0x1020 supplies a doubleword at +0x20e8 (`ld` at 0x3360c28).
+  The `jalr` at 0x3360c30 calls `glMinmaxEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  A doubleword load uses an unknown base (`ld` at 0x3360c48).
+  The `jalr` at 0x3360c50 calls `glMinmaxEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = unknown.
+  Three doubleword writes to absolute 0x1698 include `sd` at 0x3360c34, 0x3360c54, 0x3360c70.
+  At return, v0 holds the second call's result (`jr` at 0x3360c6c).
+
+- `__glce_ResetHistogramEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Absolute 0x16a0 and 0x1020 are read as doublewords (`ld` at 0x3360c80, 0x3360c98).
+  A second doubleword comes from +0x20f0 of the value read at 0x1020 (`ld` at 0x3360cb0).
+  The `jalr` at 0x3360cb8 calls `glResetHistogramEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  An unknown base is used for another doubleword load (`ld` at 0x3360cc8).
+  The `jalr` at 0x3360cd0 calls `glResetHistogramEXT` with a0 = entry a0, a1 = unknown, a2 = unknown, a3 = unknown.
+  Three doubleword stores at absolute 0x16a0 include `sd` at 0x3360cbc, 0x3360cd4, 0x3360cf0.
+  The routine returns the second call's value in v0 (`jr` at 0x3360cec).
+
+- `__glce_ResetMinmaxEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  The routine loads doublewords from absolute 0x16a8 and 0x1020 (`ld` at 0x3360d00, 0x3360d18).
+  It reads a doubleword at +0x20f8 from the value loaded at 0x1020 (`ld` at 0x3360d30).
+  The `jalr` at 0x3360d38 calls `glResetMinmaxEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword is read through an unknown base (`ld` at 0x3360d48).
+  The `jalr` at 0x3360d50 calls `glResetMinmaxEXT` with a0 = entry a0, a1 = unknown, a2 = unknown, a3 = unknown.
+  Its three doubleword stores to absolute 0x16a8 include `sd` at 0x3360d3c, 0x3360d54, 0x3360d70.
+  The second call supplies the returned v0 (`jr` at 0x3360d6c).
+
+- `__glce_ColorPointerEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3360f30
+  It reads doublewords at absolute 0x16c8 and 0x1020 (`ld` at 0x3360f38, 0x3360f40).
+  The value read at 0x1020 is used to load a doubleword at +0x3e90 (`ld` at 0x3360f58).
+  The `jalr` at 0x3360f5c calls `glColorPointerEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Two doubleword stores to absolute 0x16c8 include `sd` at 0x3360f60, 0x3360f6c.
+  The call result is returned in v0 (`jr` at 0x3360f74).
+
+- `__glce_EdgeFlagPointerEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3360f80
+  Doubleword loads read absolute 0x16d8 and 0x1020 (`ld` at 0x3360f88, 0x3360f90).
+  The doubleword loaded from 0x1020 is the base for a doubleword load at +0x3ea0 (`ld` at 0x3360fa8).
+  The `jalr` at 0x3360fac calls `glEdgeFlagPointerEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, and a3 = entry a3.
+  The call delay slot stores that second loaded doubleword to absolute 0x16d8 (`sd` at 0x3360fb0).
+  The earlier doubleword from absolute 0x16d8 is stored back there (`sd` at 0x3360fbc).
+  At return, v0 holds the call result (`jr` at 0x3360fc4).
+
+- `__glce_GetPointervEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3360fd0
+  It reads doublewords at absolute 0x16e0 and 0x1020 (`ld` at 0x3360fd8, 0x3360fe0).
+  The doubleword loaded from 0x1020 is the base for a doubleword load at +0x3ea8 (`ld` at 0x3360ff8).
+  The `jalr` at 0x3360ffc calls `glGetPointervEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, and a3 = entry a3.
+  The call delay slot stores that second loaded doubleword to absolute 0x16e0 (`sd` at 0x3361000).
+  The earlier doubleword from absolute 0x16e0 is stored back there (`sd` at 0x336100c).
+  The v0 result comes from the call (`jr` at 0x3361014).
+
+- `__glce_IndexPointerEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3361020
+  Absolute addresses 0x16e8 and 0x1020 supply two doublewords (`ld` at 0x3361028, 0x3361030).
+  The doubleword loaded from 0x1020 is the base for a doubleword load at +0x3eb0 (`ld` at 0x3361048).
+  The `jalr` at 0x336104c calls `glIndexPointerEXT` with a0 = entry a0, a1 = entry a1, a2 = entry a2, and a3 = entry a3.
+  The call delay slot stores that second loaded doubleword to absolute 0x16e8 (`sd` at 0x3361050).
+  The earlier doubleword from absolute 0x16e8 is stored back there (`sd` at 0x336105c).
+  The call result is returned in v0 (`jr` at 0x3361064).
+
+- `__glce_ColorPointer` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3361720
+  The routine reads absolute 0x1760 and 0x1020 as doublewords (`ld` at 0x3361728, 0x3361730).
+  The doubleword loaded from 0x1020 is the base for a doubleword load at +0x3f28 (`ld` at 0x3361748).
+  The `jalr` at 0x336174c calls `glColorPointer` with a0 = entry a0, a1 = entry a1, a2 = entry a2, and a3 = entry a3.
+  The call delay slot stores that second loaded doubleword to absolute 0x1760 (`sd` at 0x3361750).
+  The earlier doubleword from absolute 0x1760 is stored back there (`sd` at 0x336175c).
+  Its return places the call result in v0 (`jr` at 0x3361764).
+
+- `__glce_DisableClientState` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3361770
+  Two doublewords are loaded from absolute 0x1768 and 0x1020 (`ld` at 0x3361778, 0x3361780).
+  The doubleword loaded from 0x1020 is the base for a doubleword load at +0x3f30 (`ld` at 0x3361798).
+  The `jalr` at 0x336179c calls `glDisableClientState` with a0 = entry a0, a1 = entry a1, a2 = entry a2, and a3 = entry a3.
+  The call delay slot stores that second loaded doubleword to absolute 0x1768 (`sd` at 0x33617a0).
+  The earlier doubleword from absolute 0x1768 is stored back there (`sd` at 0x33617ac).
+  On return, v0 is the call result (`jr` at 0x33617b4).
+
+- `__glce_EdgeFlagPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read from absolute 0x1778 (`ld` at 0x33617c8).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33617d0).
+  A doubleword is read at +0x3f40 from the doubleword at 0x1020 (`ld` at 0x33617e8).
+  2 doubleword stores to absolute 0x1778 include `sd` at 0x33617f0, 0x33617fc.
+  The `jalr` at 0x33617ec calls `glEdgeFlagPointer` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3361804 returns the result of the `glEdgeFlagPointer` call in v0.
+
+- `__glce_EnableClientState` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The routine reads a doubleword from absolute 0x1780 (`ld` at 0x3361818).
+  The absolute address 0x1020 supplies a doubleword (`ld` at 0x3361820).
+  A doubleword is read at +0x3f48 from the doubleword at 0x1020 (`ld` at 0x3361838).
+  2 doubleword stores to absolute 0x1780 include `sd` at 0x3361840, 0x336184c.
+  The `jalr` at 0x336183c calls `glEnableClientState` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3361854 returns the result of the `glEnableClientState` call in v0.
+
+- `__glce_IndexPointer` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  One doubleword is loaded from absolute 0x1788 (`ld` at 0x3361868).
+  At absolute 0x1020, a doubleword is loaded (`ld` at 0x3361870).
+  A doubleword is read at +0x3f50 from the doubleword at 0x1020 (`ld` at 0x3361888).
+  2 doubleword stores to absolute 0x1788 include `sd` at 0x3361890, 0x336189c.
+  The `jalr` at 0x336188c calls `glIndexPointer` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33618a4 returns the result of the `glIndexPointer` call in v0.
+
+- `__glce_InterleavedArrays` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword load reads from absolute 0x1790 (`ld` at 0x33618b8).
+  The load from absolute 0x1020 reads a doubleword (`ld` at 0x33618c0).
+  A doubleword is read at +0x3f58 from the doubleword at 0x1020 (`ld` at 0x33618d8).
+  2 doubleword stores to absolute 0x1790 include `sd` at 0x33618e0, 0x33618ec.
+  The `jalr` at 0x33618dc calls `glInterleavedArrays` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33618f4 returns the result of the `glInterleavedArrays` call in v0.
+
+- `__glce_PolygonOffset` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  The first load reads a doubleword from absolute 0x17b0 (`ld` at 0x33619f0).
+  The code loads a doubleword from absolute 0x1020 (`ld` at 0x3361a0c).
+  A doubleword is read at +0x2200 from the doubleword at 0x1020 (`ld` at 0x3361a24).
+  A doubleword is read at +0x3f78 from the doubleword at 0x1020 (`ld` at 0x3361a3c).
+  3 doubleword stores to absolute 0x17b0 include `sd` at 0x3361a30, 0x3361a48, 0x3361a68.
+  The `jalr` at 0x3361a2c calls `glPolygonOffset` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3361a44 calls `glPolygonOffset` with a0=[[0x1020]:8+0x3f78]:8, a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3361a64 returns the second `glPolygonOffset` call result in v0 and f0.
+
+- `__glce_Indexub` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword is read from absolute 0x1ce0 (`ld` at 0x3361a70).
+  The value at absolute 0x1020 is loaded as a doubleword (`ld` at 0x3361a88).
+  A doubleword is read at +0x2730 from the doubleword at 0x1020 (`ld` at 0x3361aa0).
+  A doubleword is read from an unknown address (`ld` at 0x3361ab8).
+  3 doubleword stores to absolute 0x1ce0 include `sd` at 0x3361aac, 0x3361ac4, 0x3361ae0.
+  The `jalr` at 0x3361aa8 calls `glIndexub` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3361ac0 calls `glIndexub` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3361adc returns the result of the second `glIndexub` call in v0.
+
+- `__glce_Indexubv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  The routine reads a doubleword from absolute 0x1ce8 (`ld` at 0x3361af0).
+  At absolute 0x1020, a doubleword is loaded (`ld` at 0x3361b08).
+  A doubleword is read at +0x2738 from the doubleword at 0x1020 (`ld` at 0x3361b20).
+  A doubleword is read from an unknown address (`ld` at 0x3361b38).
+  3 doubleword stores to absolute 0x1ce8 include `sd` at 0x3361b2c, 0x3361b44, 0x3361b60.
+  The `jalr` at 0x3361b28 calls `glIndexubv` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3361b40 calls `glIndexubv` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x3361b5c returns the result of the second `glIndexubv` call in v0.
+
+- `__glce_PopClientAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  One doubleword is loaded from absolute 0x17b8 (`ld` at 0x3361b78).
+  A doubleword load accesses absolute 0x1020 (`ld` at 0x3361b80).
+  A doubleword is read at +0x3f80 from the doubleword at 0x1020 (`ld` at 0x3361b98).
+  2 doubleword stores to absolute 0x17b8 include `sd` at 0x3361ba0, 0x3361bac.
+  The `jalr` at 0x3361b9c calls `glPopClientAttrib` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3361bb4 returns the result of the `glPopClientAttrib` call in v0.
+
+- `__glce_PushClientAttrib` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword load reads from absolute 0x17c0 (`ld` at 0x3361bc8).
+  The code loads a doubleword at absolute 0x1020 (`ld` at 0x3361bd0).
+  A doubleword is read at +0x3f88 from the doubleword at 0x1020 (`ld` at 0x3361be8).
+  2 doubleword stores to absolute 0x17c0 include `sd` at 0x3361bf0, 0x3361bfc.
+  The `jalr` at 0x3361bec calls `glPushClientAttrib` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3361c04 returns the result of the `glPushClientAttrib` call in v0.
+
+- `__glce_SampleMaskSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  The first load reads a doubleword from absolute 0x17c8 (`ld` at 0x3361c10).
+  From absolute 0x1020 it reads a doubleword (`ld` at 0x3361c2c).
+  A doubleword is read at +0x2218 from the doubleword at 0x1020 (`ld` at 0x3361c44).
+  A doubleword is read from an unknown address (`ld` at 0x3361c60).
+  3 doubleword stores to absolute 0x17c8 include `sd` at 0x3361c54, 0x3361c70, 0x3361c90.
+  The `jalr` at 0x3361c50 calls `glSampleMaskSGIS` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3361c6c calls `glSampleMaskSGIS` with a0=unknown, a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jr` at 0x3361c8c returns the second `glSampleMaskSGIS` call result in v0 and f0.
+
+- `__glce_SamplePatternSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword is loaded from absolute 0x17d0 (`ld` at 0x3361ca0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x3361cb8).
+  Another doubleword is read at +0x2220 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3361cd0).
+  The `jalr` at 0x3361cd8 calls `glSamplePatternSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3361ce8).
+  The `jalr` at 0x3361cf0 calls `glSamplePatternSGIS` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x17d0 include (`sd` at 0x3361cdc, 0x3361cf4, 0x3361d10).
+  The v0 return is the result of the second call to `glSamplePatternSGIS` (`jr` at 0x3361d0c).
+
+- `__glce_DetailTexFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  A doubleword is loaded from absolute 0x17e0 (`ld` at 0x3361d90).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x3361db0).
+  Another doubleword is read at +0x2230 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3361dc8).
+  The `jalr` at 0x3361dd0 calls `glDetailTexFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3361de8).
+  The `jalr` at 0x3361df0 calls `glDetailTexFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=unknown.
+  Three doubleword stores to absolute 0x17e0 include (`sd` at 0x3361dd4, 0x3361df4, 0x3361e10).
+  The v0 return is the result of the second call to `glDetailTexFuncSGIS` (`jr` at 0x3361e0c).
+
+- `__glce_GetDetailTexFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x17e8 (`ld` at 0x3361e28).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3361e30).
+  It reads another doubleword at +0x3fb0 from the value loaded at absolute 0x1020 (`ld` at 0x3361e48).
+  The `jalr` at 0x3361e4c calls `glGetDetailTexFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x17e8 include (`sd` at 0x3361e50, 0x3361e5c).
+  The v0 return is the return from `glGetDetailTexFuncSGIS` (`jr` at 0x3361e64).
+
+- `__glce_SharpenTexFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  A doubleword is loaded from absolute 0x17f0 (`ld` at 0x3361e70).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x3361e90).
+  Another doubleword is read at +0x2240 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3361ea8).
+  The `jalr` at 0x3361eb0 calls `glSharpenTexFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3361ec8).
+  The `jalr` at 0x3361ed0 calls `glSharpenTexFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=unknown.
+  Three doubleword stores to absolute 0x17f0 include (`sd` at 0x3361eb4, 0x3361ed4, 0x3361ef0).
+  The v0 return is the result of the second call to `glSharpenTexFuncSGIS` (`jr` at 0x3361eec).
+
+- `__glce_GetSharpenTexFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read at absolute 0x17f8 (`ld` at 0x3361f08).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3361f10).
+  It reads another doubleword at +0x3fc0 from the value loaded at absolute 0x1020 (`ld` at 0x3361f28).
+  The `jalr` at 0x3361f2c calls `glGetSharpenTexFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores to absolute 0x17f8 include (`sd` at 0x3361f30, 0x3361f3c).
+  The v0 return is the return from `glGetSharpenTexFuncSGIS` (`jr` at 0x3361f44).
+
+- `__glce_SpriteParameterfSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  A doubleword is loaded from absolute 0x1850 (`ld` at 0x3362510).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x336252c).
+  Another doubleword is read at +0x22a0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3362544).
+  The `jalr` at 0x3362550 calls `glSpriteParameterfSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3362560).
+  The `jalr` at 0x336256c calls `glSpriteParameterfSGIX` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1850 include `sd` at 0x3362554, 0x3362570, 0x3362590.
+  The v0 return is the result of the call to `glSpriteParameterfSGIX` (`jr` at 0x336258c).
+
+- `__glce_SpriteParameterfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  A doubleword is loaded from absolute 0x1858 (`ld` at 0x33625a0).
+  A doubleword is read at absolute 0x1020 (`ld` at 0x33625bc).
+  Another doubleword is read at +0x22a8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x33625d4).
+  The `jalr` at 0x33625dc calls `glSpriteParameterfvSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x33625f0).
+  The `jalr` at 0x33625f8 calls `glSpriteParameterfvSGIX` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1858 include `sd` at 0x33625e0, 0x33625fc, 0x3362618.
+  The v0 return is the result of the call to `glSpriteParameterfvSGIX` (`jr` at 0x3362614).
+
+- `__glce_SpriteParameteriSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  A doubleword is loaded from absolute 0x1860 (`ld` at 0x3362620).
+  The code loads a doubleword from absolute 0x1020 (`ld` at 0x336263c).
+  Another doubleword is read at +0x22b0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3362654).
+  The `jalr` at 0x336265c calls `glSpriteParameteriSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3362670).
+  The `jalr` at 0x3362678 calls `glSpriteParameteriSGIX` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1860 include `sd` at 0x3362660, 0x336267c, 0x3362698.
+  The v0 return is the result of the call to `glSpriteParameteriSGIX` (`jr` at 0x3362694).
+
+- `__glce_SpriteParameterivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 124 bytes
+  A doubleword is loaded from absolute 0x1868 (`ld` at 0x33626a0).
+  Absolute 0x1020 supplies a doubleword (`ld` at 0x33626bc).
+  Another doubleword is read at +0x22b8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x33626d4).
+  The `jalr` at 0x33626dc calls `glSpriteParameterivSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x33626f0).
+  The `jalr` at 0x33626f8 calls `glSpriteParameterivSGIX` with a0=entry a0, a1=entry a1, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1868 include `sd` at 0x33626e0, 0x33626fc, 0x3362718.
+  The v0 return is the result of the call to `glSpriteParameterivSGIX` (`jr` at 0x3362714).
+
+- `__glce_PointParameterfSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 132 bytes
+  A doubleword is loaded from absolute 0x1880 (`ld` at 0x3362800).
+  A load reads a doubleword from absolute 0x1020 (`ld` at 0x336281c).
+  Another doubleword is read at +0x22d0 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3362834).
+  The `jalr` at 0x3362840 calls `glPointParameterfSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3362850).
+  The `jalr` at 0x336285c calls `glPointParameterfSGIS` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  Three doubleword stores to absolute 0x1880 include `sd` at 0x3362844, 0x3362860, 0x3362880.
+  The v0 return is the result of the call to `glPointParameterfSGIS` (`jr` at 0x336287c).
+
+- `__glce_PointParameterfvSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1888 and 0x1020 (`ld` at 0x3362890, 0x33628ac).
+  The doubleword at absolute 0x1020 supplies the base for a doubleword load at +0x22d8 (`ld` at 0x33628c4).
+  The `jalr` at 0x33628cc calls `glPointParameterfvSGIS` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x33628e0).
+  The `jalr` at 0x33628e8 calls `glPointParameterfvSGIS` with a0 = entry a0, a1 = entry a1, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x1888 include `sd` at 0x33628d0, 0x33628ec, 0x3362908.
+  The second call's result is returned in v0 (`jr` at 0x3362904).
+
+- `__glce_FogFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x1890 and 0x1020 (`ld` at 0x3362910, 0x336292c).
+  The doubleword at absolute 0x1020 supplies the base for a doubleword load at +0x22e0 (`ld` at 0x3362944).
+  The `jalr` at 0x336294c calls `glFogFuncSGIS` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x3362960).
+  The `jalr` at 0x3362968 calls `glFogFuncSGIS` with a0 = entry a0, a1 = entry a1, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x1890 include `sd` at 0x3362950, 0x336296c, 0x3362988.
+  The second call's result is returned in v0 (`jr` at 0x3362984).
+
+- `__glce_GetInstrumentsSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3362990
+  The routine reads doublewords at absolute 0x1898 and 0x1020 (`ld` at 0x3362998, 0x33629a0).
+  A doubleword is loaded at +0x4060 from the doubleword read at 0x1020 (`ld` at 0x33629b8).
+  The `jalr` at 0x33629bc calls `glGetInstrumentsSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Two doubleword stores to absolute 0x1898 include `sd` at 0x33629c0, 0x33629cc.
+  The call result is returned in v0 (`jr` at 0x33629d4).
+
+- `__glce_PollInstrumentsSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3362a30
+  The routine reads doublewords at absolute 0x18a8 and 0x1020 (`ld` at 0x3362a38, 0x3362a40).
+  A doubleword is loaded at +0x4070 from the doubleword read at 0x1020 (`ld` at 0x3362a58).
+  The `jalr` at 0x3362a5c calls `glPollInstrumentsSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Two doubleword stores to absolute 0x18a8 include `sd` at 0x3362a60, 0x3362a6c.
+  The call result is returned in v0 (`jr` at 0x3362a74).
+
+- `__glce_ReadInstrumentsSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doublewords are loaded from absolute 0x18b0 and 0x1020 (`ld` at 0x3362a80, 0x3362a98).
+  The doubleword at absolute 0x1020 supplies the base for a doubleword load at +0x2300 (`ld` at 0x3362ab0).
+  The `jalr` at 0x3362ab8 calls `glReadInstrumentsSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x3362ac8).
+  The `jalr` at 0x3362ad0 calls `glReadInstrumentsSGIX` with a0 = entry a0, a1 = unknown, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x18b0 include `sd` at 0x3362abc, 0x3362ad4, 0x3362af0.
+  The second call's result is returned in v0 (`jr` at 0x3362aec).
+
+- `__glce_StartInstrumentsSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doubleword loads use absolute addresses 0x18b8 and 0x1020 (`ld` at 0x3362b00, 0x3362b14).
+  A doubleword is read at +0x2308 from the doubleword loaded at 0x1020 (`ld` at 0x3362b2c).
+  The `jalr` at 0x3362b30 calls `glStartInstrumentsSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  It reads a doubleword at +0x4080 from the doubleword loaded at 0x1020 (`ld` at 0x3362b3c).
+  The `jalr` at 0x3362b40 calls `glStartInstrumentsSGIX` with a0 = the doubleword at +0x4080 from the doubleword loaded at 0x1020, a1 = unknown, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x18b8 include `sd` at 0x3362b34, 0x3362b44, 0x3362b60.
+  The second call supplies the v0 return (`jr` at 0x3362b5c).
+
+- `__glce_StopInstrumentsSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doubleword loads use absolute addresses 0x18c0 and 0x1020 (`ld` at 0x3362b70, 0x3362b88).
+  A doubleword is read at +0x2310 from the doubleword loaded at 0x1020 (`ld` at 0x3362ba0).
+  The `jalr` at 0x3362ba8 calls `glStopInstrumentsSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x3362bb8).
+  The `jalr` at 0x3362bc0 calls `glStopInstrumentsSGIX` with a0 = entry a0, a1 = unknown, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x18c0 include `sd` at 0x3362bac, 0x3362bc4, 0x3362be0.
+  The second call supplies the v0 return (`jr` at 0x3362bdc).
+
+- `__glce_ReferencePlaneSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doubleword loads use absolute addresses 0x18d0 and 0x1020 (`ld` at 0x3362c40, 0x3362c58).
+  A doubleword is read at +0x2320 from the doubleword loaded at 0x1020 (`ld` at 0x3362c70).
+  The `jalr` at 0x3362c78 calls `glReferencePlaneSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x3362c88).
+  The `jalr` at 0x3362c90 calls `glReferencePlaneSGIX` with a0 = entry a0, a1 = unknown, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x18d0 include `sd` at 0x3362c7c, 0x3362c94, 0x3362cb0.
+  The second call supplies the v0 return (`jr` at 0x3362cac).
+
+- `__glce_FrameZoomSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so`
+  Doubleword loads use absolute addresses 0x18d8 and 0x1020 (`ld` at 0x3362cc0, 0x3362cd8).
+  A doubleword is read at +0x2328 from the doubleword loaded at 0x1020 (`ld` at 0x3362cf0).
+  The `jalr` at 0x3362cf8 calls `glFrameZoomSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Another doubleword load uses an unknown base (`ld` at 0x3362d08).
+  The `jalr` at 0x3362d10 calls `glFrameZoomSGIX` with a0 = entry a0, a1 = unknown, a2 = unknown, a3 = unknown.
+  Three doubleword stores to absolute 0x18d8 include `sd` at 0x3362cfc, 0x3362d14, 0x3362d30.
+  The second call supplies the v0 return (`jr` at 0x3362d2c).
+
+- `__glce_IglooInterfaceSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3362d40
+  Doublewords are read from absolute 0x18e0 and 0x1020 (`ld` at 0x3362d48, 0x3362d50).
+  A doubleword is loaded at +0x40a8 from the doubleword at 0x1020 (`ld` at 0x3362d68).
+  The `jalr` at 0x3362d6c calls `glIglooInterfaceSGIX` with a0 = entry a0, a1 = entry a1, a2 = entry a2, a3 = entry a3.
+  Two doubleword stores to absolute 0x18e0 include `sd` at 0x3362d70, 0x3362d7c.
+  The v0 return is the call result (`jr` at 0x3362d84).
+
+- `__glce_ColorSubTable` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 156 bytes
+  A doubleword is loaded from absolute 0x1938 (`ld` at 0x33632b0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x33632dc).
+  Another doubleword is read at +0x2388 from the doubleword loaded at absolute 0x1020 (`ld` at 0x33632f4).
+  The `jalr` at 0x33632fc calls `glColorSubTable` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3363320).
+  The `jalr` at 0x3363328 calls `glColorSubTable` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Three doubleword stores target absolute 0x1938, including (`sd` at 0x3363300, 0x336332c, 0x3363348).
+  The v0 return is the result of the second call to `glColorSubTable` (`jr` at 0x3363344).
+
+- `__glce_GetFogFuncSGIS` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  Absolute 0x1950 supplies a doubleword (`ld` at 0x33633f8).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3363400).
+  It reads another doubleword at +0x4118 from the value loaded at absolute 0x1020 (`ld` at 0x3363418).
+  The `jalr` at 0x336341c calls `glGetFogFuncSGIS` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores target absolute 0x1950, including (`sd` at 0x3363420, 0x336342c).
+  The v0 return is the return from `glGetFogFuncSGIS` (`jr` at 0x3363434).
+
+- `__glce_AsyncMarkerSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword is loaded from absolute 0x1988 (`ld` at 0x33636f0).
+  The routine reads a doubleword at absolute 0x1020 (`ld` at 0x3363708).
+  Another doubleword is read at +0x23d8 from the doubleword loaded at absolute 0x1020 (`ld` at 0x3363720).
+  The `jalr` at 0x3363728 calls `glAsyncMarkerSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  A doubleword is loaded from an unknown base (`ld` at 0x3363738).
+  The `jalr` at 0x3363740 calls `glAsyncMarkerSGIX` with a0=entry a0, a1=unknown, a2=unknown, a3=unknown.
+  Stores to absolute 0x1988 include three doubleword accesses (`sd` at 0x336372c, 0x3363744, 0x3363760).
+  The v0 return is the result of the second call to `glAsyncMarkerSGIX` (`jr` at 0x336375c).
+
+- `__glce_FinishAsyncSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The entry reads a doubleword from absolute 0x1990 (`ld` at 0x3363778).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x3363780).
+  It reads another doubleword at +0x4158 from the value loaded at absolute 0x1020 (`ld` at 0x3363798).
+  The `jalr` at 0x336379c calls `glFinishAsyncSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  At absolute 0x1990, two doubleword stores include (`sd` at 0x33637a0, 0x33637ac).
+  The v0 return is the return from `glFinishAsyncSGIX` (`jr` at 0x33637b4).
+
+- `__glce_PollAsyncSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  Absolute 0x1998 is read as a doubleword (`ld` at 0x33637c8).
+  The routine loads a doubleword from absolute 0x1020 (`ld` at 0x33637d0).
+  It reads another doubleword at +0x4160 from the value loaded at absolute 0x1020 (`ld` at 0x33637e8).
+  The `jalr` at 0x33637ec calls `glPollAsyncSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  The absolute address 0x1998 receives two doubleword stores, including (`sd` at 0x33637f0, 0x33637fc).
+  The v0 return is the return from `glPollAsyncSGIX` (`jr` at 0x3363804).
+
+- `__glce_GenAsyncMarkersSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The doubleword at absolute 0x19a0 is loaded (`ld` at 0x3363818).
+  It loads a doubleword at absolute 0x1020 (`ld` at 0x3363820).
+  It reads another doubleword at +0x4168 from the value loaded at absolute 0x1020 (`ld` at 0x3363838).
+  The `jalr` at 0x336383c calls `glGenAsyncMarkersSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores write to absolute 0x19a0 (`sd` at 0x3363840, 0x336384c).
+  The v0 return is the return from `glGenAsyncMarkersSGIX` (`jr` at 0x3363854).
+
+- `__glce_DeleteAsyncMarkersSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  From absolute 0x19a8, it reads a doubleword (`ld` at 0x3363868).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3363870).
+  It reads another doubleword at +0x4170 from the value loaded at absolute 0x1020 (`ld` at 0x3363888).
+  The `jalr` at 0x336388c calls `glDeleteAsyncMarkersSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores write to absolute 0x19a8 (`sd` at 0x3363890, 0x336389c).
+  The v0 return is the return from `glDeleteAsyncMarkersSGIX` (`jr` at 0x33638a4).
+
+- `__glce_IsAsyncMarkerSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 80 bytes
+  A doubleword load uses absolute 0x19b0 (`ld` at 0x33638b8).
+  The doubleword at absolute 0x1020 is loaded (`ld` at 0x33638c0).
+  It reads another doubleword at +0x4178 from the value loaded at absolute 0x1020 (`ld` at 0x33638d8).
+  The `jalr` at 0x33638dc calls `glIsAsyncMarkerSGIX` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores write to absolute 0x19b0 (`sd` at 0x33638e0, 0x33638f0).
+  The v0 return is unknown (`jr` at 0x33638f8).
+
+- `__glce_GetConvolutionFilter` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  It reads the doubleword at absolute 0x1a90 (`ld` at 0x3364528).
+  Another doubleword load uses absolute 0x1020 (`ld` at 0x3364530).
+  It reads another doubleword at +0x4258 from the value loaded at absolute 0x1020 (`ld` at 0x3364548).
+  The `jalr` at 0x336454c calls `glGetConvolutionFilter` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores write to absolute 0x1a90 (`sd` at 0x3364550, 0x336455c).
+  The v0 return is the return from `glGetConvolutionFilter` (`jr` at 0x3364564).
+
+- `__glce_GetConvolutionParameterfv` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  At absolute 0x1a98, a doubleword is read (`ld` at 0x3364578).
+  It also reads a doubleword at absolute 0x1020 (`ld` at 0x3364580).
+  It reads another doubleword at +0x4260 from the value loaded at absolute 0x1020 (`ld` at 0x3364598).
+  The `jalr` at 0x336459c calls `glGetConvolutionParameterfv` with a0=entry a0, a1=entry a1, a2=entry a2, a3=entry a3.
+  Two doubleword stores write to absolute 0x1a98 (`sd` at 0x33645a0, 0x33645ac).
+  The v0 return is the return from `glGetConvolutionParameterfv` (`jr` at 0x33645b4).
+
+- `__glce_GetConvolutionParameteriv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33645c0
+  Doublewords are read from absolute 0x1aa0 and 0x1020 (`ld` at 0x33645c8, 0x33645d0).
+  It loads a doubleword at +0x4268 from the value read at 0x1020 (`ld` at 0x33645e8).
+  The `jalr` at 0x33645ec calls `glGetConvolutionParameteriv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The call delay slot writes that nested value as a doubleword to absolute 0x1aa0 (`sd` at 0x33645f0).
+  It stores the original value read from 0x1aa0 back there (`sd` at 0x33645fc).
+  The v0 return is the call result (`jr` at 0x3364604).
+
+- `__glce_GetSeparableFilter` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364610
+  Two doubleword loads use absolute 0x1aa8 and 0x1020 (`ld` at 0x3364618, 0x3364620).
+  From the value loaded at 0x1020, a doubleword is read at +0x4270 (`ld` at 0x3364638).
+  The `jalr` at 0x336463c calls `glGetSeparableFilter` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  In the call delay slot it stores the nested doubleword at absolute 0x1aa8 (`sd` at 0x3364640).
+  The earlier doubleword from 0x1aa8 is then stored back at that address (`sd` at 0x336464c).
+  At return, v0 holds the call result (`jr` at 0x3364654).
+
+- `__glce_GetHistogram` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364660
+  The routine reads absolute 0x1ab0 and 0x1020 as doublewords (`ld` at 0x3364668, 0x3364670).
+  A doubleword load uses +0x4278 from the value read at 0x1020 (`ld` at 0x3364688).
+  The `jalr` at 0x336468c calls `glGetHistogram` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  That nested value is stored as a doubleword at absolute 0x1ab0 in the call delay slot (`sd` at 0x3364690).
+  It writes the original doubleword from 0x1ab0 back to that address (`sd` at 0x336469c).
+  It returns the call result in v0 (`jr` at 0x33646a4).
+
+- `__glce_GetHistogramParameterfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33646b0
+  Absolute 0x1ab8 and 0x1020 each supply a doubleword (`ld` at 0x33646b8, 0x33646c0).
+  The value read at 0x1020 is the base for a doubleword load at +0x4280 (`ld` at 0x33646d8).
+  The `jalr` at 0x33646dc calls `glGetHistogramParameterfv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  The nested doubleword is written to absolute 0x1ab8 in the call delay slot (`sd` at 0x33646e0).
+  The saved value from 0x1ab8 is stored back to absolute 0x1ab8 (`sd` at 0x33646ec).
+  The returned v0 is the value from the call (`jr` at 0x33646f4).
+
+- `__glce_GetHistogramParameteriv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364700
+  It reads two doublewords at absolute 0x1ac0 and 0x1020 (`ld` at 0x3364708, 0x3364710).
+  At +0x4288 from the value loaded at 0x1020, it reads a doubleword (`ld` at 0x3364728).
+  The `jalr` at 0x336472c calls `glGetHistogramParameteriv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  In the call delay slot the nested load is stored as a doubleword at absolute 0x1ac0 (`sd` at 0x3364730).
+  Absolute 0x1ac0 receives its earlier doubleword value (`sd` at 0x336473c).
+  The call result is returned in v0 (`jr` at 0x3364744).
+
+- `__glce_DeformationMap3dSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 284 bytes
+  A doubleword is read from absolute 0x18e8 (`ld` at 0x3362dbc).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3362dc0).
+  A doubleword is read at +0x2338 from the doubleword at 0x1020 (`ld` at 0x3362dc8).
+  A doubleword is read from an unknown address (`ld` at 0x3362e3c).
+  3 doubleword stores to absolute 0x18e8 include `sd` at 0x3362dcc, 0x3362e40, 0x3362e9c.
+  The `jalr` at 0x3362e1c calls `glDeformationMap3dSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=a3 at entry (arg3), a5=[[0x1020]:8+0x2338]:8.
+  The `jalr` at 0x3362e80 calls `glDeformationMap3dSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=a3 at entry (arg3).
+  The `jr` at 0x3362ea4 returns the result of the second `glDeformationMap3dSGIX` call in v0 and f0.
+
+- `__glce_DeformationMap3fSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 284 bytes
+  The routine reads a doubleword from absolute 0x18f0 (`ld` at 0x3362edc).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3362ee0).
+  A doubleword is read at +0x2340 from the doubleword at 0x1020 (`ld` at 0x3362ee8).
+  A doubleword is read from an unknown address (`ld` at 0x3362f5c).
+  3 doubleword stores to absolute 0x18f0 include `sd` at 0x3362eec, 0x3362f60, 0x3362fbc.
+  The `jalr` at 0x3362f3c calls `glDeformationMap3fSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=a3 at entry (arg3), a5=[[0x1020]:8+0x2340]:8.
+  The `jalr` at 0x3362fa0 calls `glDeformationMap3fSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=a3 at entry (arg3).
+  The `jr` at 0x3362fc4 returns the result of the second `glDeformationMap3fSGIX` call in v0 and f0.
+
+- `__glce_DeformSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  One doubleword is loaded from absolute 0x18f8 (`ld` at 0x3362fd0).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3362fe8).
+  A doubleword is read at +0x2348 from the doubleword at 0x1020 (`ld` at 0x3363000).
+  A doubleword is read from an unknown address (`ld` at 0x3363018).
+  3 doubleword stores to absolute 0x18f8 include `sd` at 0x336300c, 0x3363024, 0x3363040.
+  The `jalr` at 0x3363008 calls `glDeformSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x3363020 calls `glDeformSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x336303c returns the result of the second `glDeformSGIX` call in v0.
+
+- `__glce_LoadIdentityDeformationMapSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 116 bytes
+  A doubleword load reads from absolute 0x1900 (`ld` at 0x3363050).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x3363068).
+  A doubleword is read at +0x2350 from the doubleword at 0x1020 (`ld` at 0x3363080).
+  A doubleword is read from an unknown address (`ld` at 0x3363098).
+  3 doubleword stores to absolute 0x1900 include `sd` at 0x336308c, 0x33630a4, 0x33630c0.
+  The `jalr` at 0x3363088 calls `glLoadIdentityDeformationMapSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0x33630a0 calls `glLoadIdentityDeformationMapSGIX` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jr` at 0x33630bc returns the result of the second `glLoadIdentityDeformationMapSGIX` call in v0.
+
+- `__glce_GetListParameterfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The first load reads a doubleword from absolute 0x1908 (`ld` at 0x33630d8).
+  A doubleword is read from absolute 0x1020 (`ld` at 0x33630e0).
+  A doubleword is read at +0x40d0 from the doubleword at 0x1020 (`ld` at 0x33630f8).
+  2 doubleword stores to absolute 0x1908 include `sd` at 0x3363100, 0x336310c.
+  The `jalr` at 0x33630fc calls `glGetListParameterfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3363114 returns the result of the `glGetListParameterfvSGIX` call in v0.
+
+- `__glce_GetListParameterivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword is read from absolute 0x1910 (`ld` at 0x3363128).
+  The absolute address 0x1020 supplies a doubleword (`ld` at 0x3363130).
+  A doubleword is read at +0x40d8 from the doubleword at 0x1020 (`ld` at 0x3363148).
+  2 doubleword stores to absolute 0x1910 include `sd` at 0x3363150, 0x336315c.
+  The `jalr` at 0x336314c calls `glGetListParameterivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3363164 returns the result of the `glGetListParameterivSGIX` call in v0.
+
+- `__glce_ListParameterfSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The routine reads a doubleword from absolute 0x1918 (`ld` at 0x3363178).
+  A doubleword load uses absolute 0x1020 (`ld` at 0x3363180).
+  It reads a doubleword at +0x40e0 from the doubleword at 0x1020 (`ld` at 0x3363198).
+  2 doubleword stores to absolute 0x1918 include `sd` at 0x33631a0, 0x33631ac.
+  The `jalr` at 0x336319c calls `glListParameterfSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33631b4 returns the result of the `glListParameterfSGIX` call in v0 and f0.
+
+- `__glce_ListParameterfvSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  One doubleword is loaded from absolute 0x1920 (`ld` at 0x33631c8).
+  Absolute 0x1020 is read as a doubleword (`ld` at 0x33631d0).
+  The next load reads a doubleword at +0x40e8 from the doubleword at 0x1020 (`ld` at 0x33631e8).
+  2 doubleword stores to absolute 0x1920 include `sd` at 0x33631f0, 0x33631fc.
+  The `jalr` at 0x33631ec calls `glListParameterfvSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3363204 returns the result of the `glListParameterfvSGIX` call in v0 and f0.
+
+- `__glce_ListParameteriSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  A doubleword load reads from absolute 0x1928 (`ld` at 0x3363218).
+  The load at absolute 0x1020 reads a doubleword (`ld` at 0x3363220).
+  A further doubleword load uses +0x40f0 from the doubleword at 0x1020 (`ld` at 0x3363238).
+  2 doubleword stores to absolute 0x1928 include `sd` at 0x3363240, 0x336324c.
+  The `jalr` at 0x336323c calls `glListParameteriSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x3363254 returns the result of the `glListParameteriSGIX` call in v0.
+
+- `__glce_ListParameterivSGIX` — `usr/gfx/arch/IP30ODSY64/libGLcore.so` — 76 bytes
+  The first load reads a doubleword from absolute 0x1930 (`ld` at 0x3363268).
+  From absolute 0x1020, it loads a doubleword (`ld` at 0x3363270).
+  It loads another doubleword at +0x40f8 from the doubleword at 0x1020 (`ld` at 0x3363288).
+  2 doubleword stores to absolute 0x1930 include `sd` at 0x3363290, 0x336329c.
+  The `jalr` at 0x336328c calls `glListParameterivSGIX` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jr` at 0x33632a4 returns the result of the `glListParameterivSGIX` call in v0.
+
+- `__glce_GetMinmax` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3364750
+  It loads doublewords from absolute 0x1ac8 and 0x1020 (`ld` at 0x3364758, 0x3364760).
+  It loads a doubleword at +0x4290 from the value read at 0x1020 (`ld` at 0x3364778).
+  The `jalr` at 0x336477c calls `glGetMinmax` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Its call delay slot stores that loaded doubleword at 0x1ac8 (`sd` at 0x3364780).
+  It restores the original doubleword at 0x1ac8 (`sd` at 0x336478c).
+  It returns the call result in v0 (`jr` at 0x3364794).
+
+- `__glce_GetMinmaxParameterfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33647a0
+  It loads doublewords from absolute 0x1ad0 and 0x1020 (`ld` at 0x33647a8, 0x33647b0).
+  It loads a doubleword at +0x4298 from the value read at 0x1020 (`ld` at 0x33647c8).
+  The `jalr` at 0x33647cc calls `glGetMinmaxParameterfv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Its call delay slot stores that loaded doubleword at 0x1ad0 (`sd` at 0x33647d0).
+  It restores the original doubleword at 0x1ad0 (`sd` at 0x33647dc).
+  It returns the call result in v0 (`jr` at 0x33647e4).
+
+- `__glce_GetMinmaxParameteriv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33647f0
+  It loads doublewords from absolute 0x1ad8 and 0x1020 (`ld` at 0x33647f8, 0x3364800).
+  It loads a doubleword at +0x42a0 from the value read at 0x1020 (`ld` at 0x3364818).
+  The `jalr` at 0x336481c calls `glGetMinmaxParameteriv` with a0 = entry a0, a1 = entry a1, a2 = entry a2 and a3 = entry a3.
+  Its call delay slot stores that loaded doubleword at 0x1ad8 (`sd` at 0x3364820).
+  It restores the original doubleword at 0x1ad8 (`sd` at 0x336482c).
+  It returns the call result in v0 (`jr` at 0x3364834).
