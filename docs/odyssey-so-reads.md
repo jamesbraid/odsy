@@ -6561,10 +6561,66 @@ Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (N32), read from the whole 
   The writes include halfword stores to unknown destinations (`sh` at 0x16c95dc, 0x16c95e4, 0x16c95ec, 0x16c95f4). The destinations and this routine’s wider role are Unknown. Its tail transfers include two unknown targets (`jr` at 0x16ca6a4, 0x16caac4).
 - `cfbCopyPlane8to1` — `usr/lib/X11/dyDDX/odyssey.so` — 7080 bytes
   **Established effects.** The `beqz` at 0x15ceb78 returns when bit 0 of the sixth argument is clear and falls through when set (`jr` at 0x15d04cc). The continuing path calls `ffs` with the seventh entry argument (`jalr` at 0x15cec0c). The `beqz` at 0x15cec18 falls through when the pointer at fourth-argument offset 8 is nonzero (`lw` at 0x15cec14). On that path, `blez` at 0x15cec24 returns when the signed word at that pointer's offset 4 is nonpositive and falls through when positive (`lw` at 0x15cec20). A loop reads bytes through unknown bases, performs shifts and bitwise operations, and writes a word through an unknown base (`lbu` at 0x15cf014; `srav` at 0x15cf028; `andi` at 0x15cf064; `sw` at 0x15cf240). `bne` at 0x15cf23c repeats when its compared values differ and falls through when equal. The written value, buffer identities and routine role are unknown.
-- `miWideLine` — `usr/lib/X11/dyDDX/odyssey.so` — 6632 bytes
-  **Established effects.** The `beqz` at 0x16fe1f8 branches when the signed fourth argument is at least 3 and falls through when it is less. Later, `beqz` at 0x16fe260 takes a separate path when that argument is at most 1 and falls through when it is greater. One loop reads halfwords through an unknown base and accumulates register values (`lh` at 0x16fe298, 0x16fe29c; `addu` at 0x16fe2ac, 0x16fe2b8); `bnez` at 0x16fe2b4 repeats when the unknown `a1` value is nonzero and falls through when it is zero; the `addu` in its delay slot executes on both paths. The routine's calls include `miWideSegment..ACB`, `miLineJoin..MBB`, `miLineArc..PBB` and `miFillPolyHelper` (`jalr` at 0x16fe630, 0x16fe750, 0x16fe920, 0x16ff714). The input structure, floating-point state and routine role remain unknown.
-- `miZeroPolyArc` — `usr/lib/X11/dyDDX/odyssey.so`
-  **Established effects.** The 7516-byte 6.5.30 body begins at 0x17201c0. `blez` takes the return path for nonpositive entry `a2` (`blez` at 0x1720218; `jr` at 0x1721788). When the two tested values differ, its initial pass selects a call to `miPolyArc` if either is signed at least 0x321 (`beq` at 0x172026c; `beqz` at 0x1720278, 0x1720284; `jalr` at 0x17202b0); the call receives entry `a0`, entry `a1`, and 1 as its first three arguments (`jalr` at 0x17202b0). The remaining paths include two visible calls to `miZeroArcSetup`, with third arguments 0 and 1 respectively (`jalr` at 0x17208c4, 0x1721694), and indirect calls with unresolved targets (`jalr` at 0x172080c, 0x1721614). The indirect operations, point data and routine role remain unknown.
+- `miWideLine` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16fe190
+  The `beq` at 0x16fe1f8 is taken to 0x16fe218 when entry a3 is at least 0x3 signed and falls through when it is less.
+  The `beq` at 0x16fe260 is taken to 0x16fe510 when 0x1 is at least entry a3 signed and falls through when it is less.
+  It loads a halfword through an unknown base (`lh` at 0x16fe298).
+  The `jalr` at 0x16fe630 calls `miWideSegment..ACB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16fe708 calls `miLineOnePoint..LBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16fe750 calls `miLineJoin..MBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=sp-792, a5=sp-752.
+  The `jalr` at 0x16fe888 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=sp-664, a4=sp-660, a5=0x1.
+  The `jalr` at 0x16fe8b4 calls `DoChangeGC` with a0=a1 at entry (arg1), a1=0x4, a2=sp-668, a3=0x0.
+  The `jalr` at 0x16fe8c4 calls `ValidateGC` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16fe920 calls `miLineArc..PBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x0, a5=sp-752; floating-point register state f18=unknown, f19=unknown.
+  The `jalr` at 0x16fe9b4 calls `miLineOnePoint..LBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16fecd4 calls `miLineArc..PBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=sp-712, a5=0x0; floating-point register state f18=unknown, f19=unknown.
+  The `jalr` at 0x16fed58 calls `miLineArc..PBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=sp-712, a5=sp-656; floating-point register state f18=unknown, f19=unknown.
+  The `jalr` at 0x16fedac calls `miCleanupSpanData` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16fee0c calls `miWideSegment..ACB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16fee54 calls `miLineArc..PBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=sp-712, a5=0x0; floating-point register state f18=unknown, f19=unknown.
+  The `jalr` at 0x16fee8c calls `miLineArc..PBB` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a4=0x0, a5=sp-752; floating-point register state f18=unknown, f19=unknown.
+  The `jalr` at 0x16fef18 calls `DoChangeGC` with a0=a1 at entry (arg1), a1=0x4, a2=sp-672, a3=0x0, a5=[a1+24].
+  The `jalr` at 0x16fef28 calls `ValidateGC` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown.
+  The `jalr` at 0x16ff028 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=0x1, a4=sp-664.
+  The `jalr` at 0x16ff714 calls `miFillPolyHelper` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=unknown, a3=unknown, a6=sp-504, a7=sp-616; floating-point register state f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown.
+  The instructions from 0x16fe574 to 0x16fe57c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16fe718 to 0x16fe71c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16fe8d4 to 0x16fe8dc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16fe9d4 to 0x16fe9dc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x16feefc to 0x16feefc are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x16fed28).
+- `miZeroPolyArc` in `usr/lib/X11/dyDDX/odyssey.so` at 0x17201c0
+  A word is loaded from `a1 (arg1 at entry) +0x18` (`lw` at 0x1720210).
+  Two halfwords are loaded through an unknown base (`lhu` at 0x1720264, 0x1720268).
+  The `blez` at 0x1720218 branches to 0x1721758 when `a2 <= 0 (signed)` and falls through when `a2 > 0 (signed)`.
+  The `beq` at 0x172026c branches to 0x1720240 when `a1(unknown) == a4(unknown)` and falls through when `a1(unknown) != a4(unknown)`.
+  The `beq` at 0x1720278 branches to 0x17202a4 when `a1(unknown) >= 0x321 (signed)` and falls through when `a1(unknown) < 0x321 (signed)`.
+  The `beq` at 0x1720284 branches to 0x17202a0 when `a4(unknown) >= 0x321 (signed)` and falls through when `a4(unknown) < 0x321 (signed)`.
+  The `beq` at 0x17202c0 branches to 0x1721758 when `a6(unknown) == 0` and falls through when `a6(unknown) != 0`.
+  The `beq` at 0x1720300 branches to 0x1721758 when `sp(unknown) == 0` and falls through when `sp(unknown) != 0`.
+  The `beq` at 0x17205f8 branches to 0x1721758 when `sp(unknown) == 0` and falls through when `sp(unknown) != 0`.
+  The `beq` at 0x1720874 branches to 0x1721688 when `a3(unknown) == 0` and falls through when `a3(unknown) != 0`.
+  The `jalr` at 0x17202b0 calls `miPolyArc` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=0x1`, `a3=unknown`.
+  The `jalr` at 0x172080c calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=unknown`, `a3=unknown`, `a5=0x0`.
+  The `jalr` at 0x17208c4 calls `miZeroArcSetup` with `a0=unknown`, `a1=sp-304`, `a2=0x0`, `a3=unknown`, `a5=sp-136` on the fall-through of `beq` at 0x1720874.
+  The `jalr` at 0x17212cc calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=unknown`, `a3=unknown`, `a5=0x0`.
+  The `jalr` at 0x1721308 calls `DoChangeGC` with `a0=a1 at entry (arg1)`, `a1=0x4`, `a2=sp-44`, `a3=0x0`.
+  The `jalr` at 0x1721318 calls `ValidateGC` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x1721614 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=0x0`, `a3=unknown`.
+  The `jalr` at 0x1721694 calls `miZeroArcSetup` with `a0=unknown`, `a1=sp-440`, `a2=0x1`, `a3=unknown` on the taken arm of `beq` at 0x1720874.
+  The `jalr` at 0x17217a0 calls `DoChangeGC` with `a0=a1 at entry (arg1)`, `a1=0x4`, `a2=unknown`, `a3=0x0`.
+  The `jalr` at 0x17217b0 calls `ValidateGC` with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=unknown`, `a3=unknown`.
+  The `jalr` at 0x17219f4 calls (unknown callee) with `a0=a0 at entry (arg0)`, `a1=a1 at entry (arg1)`, `a2=0x0`, `a3=unknown`.
+  The instructions from 0x1720d58 to 0x1720d5c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1720ee8 to 0x1720eec are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1720fec to 0x1720fec are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1721188 to 0x172118c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1721328 to 0x172132c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1721458 to 0x1721458 are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x17214cc to 0x17214cc are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x17217c0 to 0x17217c0 are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x17217ec to 0x17217ec are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x1721788).
 - `cfb32SegmentSS` — `usr/lib/X11/dyDDX/odyssey.so` — 8624 bytes
 
   **Established effects.** The routine reads a word at entry `a0 + 0x10` (`lw` at 0x15bdcc0), then a word at offset `0x1b4` from that result (`lw` at 0x15bdcc4). It also reads a word at entry `a1 + 0x4c` (`lw` at 0x15bdcdc). When `a2` is signed less than or equal to zero, `blez` at 0x15bdd70 takes the path to the return (`jr` at 0x15bf4f8).
@@ -6583,16 +6639,75 @@ One path reads a word from an unknown base (`lw` at 0x15bde88), performs AND and
 - `cfbLineSS` — `usr/lib/X11/dyDDX/odyssey.so` — 0x165c330
   **Established effects.** Occupying 9276 bytes, this routine reads argument 1 + 0x4c (`lw` at 0x165c370) and the word at 0x173f470 (cfbGCPrivateIndex) (`lw` at 0x165c36c), then loads a word through an index based on those values (`lw` at 0x165c37c).
   The `bnez` at 0x165c404 takes the return path when signed `a3` is less than 2 and falls through otherwise. Its other paths include a byte load from an unknown address (`lbu` at 0x165cc34), an AND (`and` at 0x165cc44), XOR (`xor` at 0x165cc4c), and byte store to an unknown address (`sb` at 0x165cc50); the destination and value remain Unknown. The role of the routine and the effect of these writes remain unknown.
-- `cfb32PolyFillArcSolidGeneral` — `usr/lib/X11/dyDDX/odyssey.so` — 0x1573c80
-  **Established effects.** The 9364-byte body loads the word at argument 1 + 0x4c (`lw` at 0x1573cbc) and the index word at 0x173f518 (`lw` at 0x1573cb8). The `blez` at 0x1573cdc takes the return path when signed `a2` is zero or negative and falls through when positive.
-  One path calls `miPolyFillArc` with entry arguments 0 and 1 and argument 2 equal to 1 (`jalr` at 0x1573d10). Another calls `miFillArcSliceSetup` with entry argument 1 as argument 2 (`jalr` at 0x1574754).
-  A word-processing loop reads from an unknown address (`lw` at 0x1574190), contains an AND (`and` at 0x157419c) and XOR (`xor` at 0x15741a0), and stores a word at an unknown address (`sw` at 0x15741a8). The destination, stored value and routine role are unknown.
+- `cfb32PolyFillArcSolidGeneral` in `usr/lib/X11/dyDDX/odyssey.so` at 0x1573c80
+  It loads a word from a1 (arg1 at entry) +0x4c (`lw` at 0x1573cbc).
+  A signed halfword is read from a0 (arg0 at entry) +0x8 (`lh` at 0x1573d90).
+  It stores a word to an unknown base (`sw` at 0x1574064).
+  The branch is taken when a2 <= 0 (signed) to 0x1575c0c and falls through when a2 > 0 (signed) (`blez` at 0x1573cdc).
+  The `jalr` at 0x1573d10 calls miPolyFillArc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=unknown.
+  The `jalr` at 0x1573e00 calls (unknown callee) with a0=unknown, a1=sp-1056, a2=unknown, a3=unknown, a6=[a0+10]:2.
+  The `jalr` at 0x1574754 calls miFillArcSliceSetup with a0=unknown, a1=sp-1048, a2=a1 at entry (arg1), a3=unknown.
+  The instructions from 0x157403c to 0x157403c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x1575478 to 0x157547c are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x1575c38).
 - `miComputeArcs..MO` — `usr/lib/X11/dyDDX/odyssey.so` — 0x15d2d50
   **Established effects.** The routine occupies 10260 bytes. It reads a word at argument 2 + 0x10 (`lw` at 0x15d2dac) and a halfword at argument 2 + 0x8 (`lhu` at 0x15d2de4). It calls `Xalloc` with argument 0 either 0x18 or 0x30 (`jalr` at 0x15d2e40); `beqz` at 0x15d2e48 takes the zero-return path when that allocation returns zero.
   After a nonzero allocation, `blez` at 0x15d2e7c is taken when signed argument 1 is zero or negative and falls through for a positive value. The routine also has a path that writes zero words to unknown destinations (`sw` at 0x15d3350, 0x15d3358, 0x15d3360, 0x15d3364, 0x15d3368, 0x15d336c). Their role is Unknown.
   The calls include `miFreeArcs..KO`, passed entry argument 2 as its argument 1 (`jalr` at 0x15d51bc). The routine role and floating-point-dependent conditions and effects remain unknown.
-- `drawQuadrant..FAB` — `usr/lib/X11/dyDDX/odyssey.so` — 6272 bytes
-  **Established effects.** It stores doublewords of unknown value at first-argument offsets 0x20 and 0x18 around a call to `computeBound..JP` (`sdc1` at 0x15d1138, 0x15d1148; `jalr` at 0x15d1144). `beqz` at 0x15d11f4 branches when the byte at eighth-argument offset 0x10 is zero and falls through when nonzero (`lbu` at 0x15d11e4). `blez` at 0x15d1224 skips a processing path when the signed word at eighth-argument offset 4 is nonpositive, and falls through when positive (`lw` at 0x15d121c). Its subsequent calls include `hookX..LP`, `tailX..LN`, `newFinalSpan..CAB`, `arcSpan..MP` and `arcSpan0..NP` (`jalr` at 0x15d1294, 0x15d15d0, 0x15d1368, 0x15d17f8, 0x15d1d2c). The loop governed by `beq` at 0x15d1458 leaves that path when its compared values are equal and falls through when they differ. The routine role, structures, written values and floating-point state remain unknown.
+- `drawQuadrant..FAB` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15d10d0
+  The `sdc1` at 0x15d1138 stores a doubleword at a0 at entry (arg0) +0x20.
+  The `sdc1` at 0x15d1148 stores a doubleword at a0 at entry (arg0) +0x18.
+  The `ldc1` at 0x15d115c reads a doubleword from a1 at entry (arg1) +0x48.
+  The `jalr` at 0x15d1144 calls `computeBound..JP` with a0=a0 at entry (arg0), a1=sp-624, a2=a1 at entry (arg1), a3=a5 at entry (arg5), a4=a6 at entry (arg6).
+  The `jalr` at 0x15d11d8 calls `floor` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1294 calls `hookX..LP` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1), a4=0x0.
+  The `jalr` at 0x15d1368 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1394 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d13cc calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d13f8 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=0x168c1c0.
+  The `jalr` at 0x15d14cc calls `hookX..LP` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1), a4=0x1.
+  The `jalr` at 0x15d15d0 calls `tailX..LN` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1); fp f13=[a0]:8, f14=[a0+8]:8.
+  The `jalr` at 0x15d16c0 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d16ec calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d174c calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1774 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d17f8 calls `arcSpan..MP` with a0=unknown, a1=unknown, a2=0x0, a3=unknown, a4=0x0, a5=a0 at entry (arg0), a6=sp-624, a7=a1 at entry (arg1).
+  The `jalr` at 0x15d185c calls `arcSpan..MP` with a0=unknown, a1=0x0, a2=unknown, a3=unknown, a5=a0 at entry (arg0), a6=sp-624, a7=a1 at entry (arg1).
+  The `jalr` at 0x15d1988 calls `hookX..LP` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1), a4=0x0.
+  The `jalr` at 0x15d1a64 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1a90 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1ac8 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1af4 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1b90 calls `hookX..LP` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1), a4=0x1.
+  The `jalr` at 0x15d1d2c calls `arcSpan0..NP` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=a0 at entry (arg0), a5=sp-624, a6=a1 at entry (arg1).
+  The `jalr` at 0x15d1da8 calls `hookX..LP` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1), a4=0x0.
+  The `jalr` at 0x15d1e7c calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1ea4 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1ed8 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d1f00 calls `newFinalSpan..CAB` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d2018 calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d20b8 calls `hookX..LP` with a0=unknown, a1=a0 at entry (arg0), a2=sp-624, a3=a1 at entry (arg1), a4=0x1.
+  The `jalr` at 0x15d2220 calls `acos` with a0=0x1, a1=0x1, a2=unknown, a3=unknown, a7=0x172acc0.
+  The `jalr` at 0x15d2238 calls `cos` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d229c calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d249c calls `sqrt` with a0=0x1, a1=0x1, a2=unknown, a3=unknown, a7=0x172acc0.
+  The `jalr` at 0x15d24b8 calls `cbrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d24d4 calls `cbrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d24fc calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d2578 calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a5=0x172acc0, a6=0x1.
+  The `jalr` at 0x15d2594 calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d25bc calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d25cc calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d26dc calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=0x172acc0; fp f17=0x3eb0c6f7a0b5ed8d.
+  The `jalr` at 0x15d26fc calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d2718 calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d27ac calls `newFinalSpan..CAB` with a0=unknown, a1=[a1+136], a2=[a1+136]+1, a3=[a7+12], a4=[a7].
+  The `jalr` at 0x15d27f4 calls `arcSpan..MP` with a0=unknown, a1=0x0, a2=0x0, a3=0x0, a4=0x1, a5=a0 at entry (arg0), a6=sp-624, a7=a1 at entry (arg1).
+  The `jalr` at 0x15d2880 calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown; fp f15=0x3eb0c6f7a0b5ed8d.
+  The `jalr` at 0x15d289c calls `sqrt` with a0=unknown, a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x15d28e4 calls `arcSpan0..NP` with a0=unknown, a1=unknown, a2=0x0, a3=unknown, a4=a0 at entry (arg0), a5=sp-624, a6=a1 at entry (arg1).
+  The `jalr` at 0x15d291c calls `tailSpan..OP` with a0=unknown, a1=unknown, a2=unknown, a3=a0 at entry (arg0), a4=sp-624, a5=a1 at entry (arg1).
+  The `jr` at 0x15d1960 returns v0=unknown.
 - `cfb16LineSS` — `usr/lib/X11/dyDDX/odyssey.so` — 9368 bytes
   **Established effects.** `bltz` at 0x161e56c takes a separate path when the word named `miZeroLineScreenIndex` is negative signed and falls through otherwise (`lw` at 0x161e55c). `bnez` at 0x161e630 returns when the signed fourth argument is less than 2; it falls through when at least 2 (`jr` at 0x1620264). A loop includes an unsigned halfword load and halfword store with unknown bases (`lhu` at 0x161ee6c; `sh` at 0x161ee88). `bnez` at 0x161ee8c repeats when `t2` is nonzero and falls through when zero; the value of `t2` is unknown there. The stored value, destination and role of the routine remain Unknown.
 - `mfbLineSS` — `usr/lib/X11/dyDDX/odyssey.so` — 9452 bytes
@@ -6613,17 +6728,33 @@ One path reads a word from an unknown base (`lw` at 0x15bde88), performs AND and
 - `cfbSegmentSS` — `usr/lib/X11/dyDDX/odyssey.so` — 8800 bytes
 
   **Established effects.** Signed nonpositive `a2` takes the path to the return (`blez` at 0x1688cd0; `jr` at 0x168a488). A later path reads four signed halfwords from unknown bases (`lh` at 0x1688f94, `lh` at 0x1688f98, `lh` at 0x1688f9c, `lh` at 0x1688fa0). It increments the unknown-valued register `t8` by 8 (`addiu` at 0x1688fa8). One processing path includes a byte load, AND, XOR and byte store (`lbu` at 0x1688dd4; `and` at 0x1688de4; `xor` at 0x1688dec; `sb` at 0x1688dfc). The access bases, stored value, and role of the routine are Unknown.
-- `mfbDoBitblt` — `usr/lib/X11/dyDDX/odyssey.so` — 9064 bytes
-
-  **Established effects.** The entry dispatches on `a2`: value 3 takes `beq` at 0x16c41b0 to `mfbDoBitbltCopy` (`jalr` at 0x16c46a4), and value 6 takes `beq` at 0x16c41bc to `mfbDoBitbltXor` (`jalr` at 0x16c46b8). Value 12 takes `beq` at 0x16c41c4 to an internal path, and value 7 takes `beq` at 0x16c41d0 to another. When all four tests fall through, the routine calls `mfbDoBitbltGeneral` (`jalr` at 0x16c41dc).
-
-  One internal path includes two word loads, an OR and a word store (`lw` at 0x16c4d50; `lw` at 0x16c4d54; `or` at 0x16c4d58; `sw` at 0x16c4d5c). Another includes a word load, a NOT and a word store (`lw` at 0x16c6100; `not` at 0x16c6104; `sw` at 0x16c6108). The memory bases and stored values are Unknown in the facts report, as is the routine's role.
-- `cfbPolyFillArcSolidGeneral` — `usr/lib/X11/dyDDX/odyssey.so` — 10844 bytes
-
-  **Established effects.** Signed nonpositive `a2` takes the return path (`blez` at 0x15ebbcc; `jr` at 0x15ee0ec). On a later path, `addiu` increments register `a1` by 12 (`addiu` at 0x15ebc10); its value is unknown there. The `beqz` at 0x15ebc3c takes the path to that increment when unknown `a5` is zero. If it falls through, `beqz` at 0x15ebc48 takes that path when unknown `a4` is zero. After both fall through, `beqz` at 0x15ebc54 takes the increment path when unknown `a6` is zero.
-
-  On another path the routine calls an unknown indirect target (`jalr` at 0x15ebce8). If that call returns a value other than 1, `bne` at 0x15ebd0c takes the path to `miPolyFillArc` with third argument 1 (`jalr` at 0x15ebc00). A later path includes a word load, AND, XOR and word store (`lw` at 0x15ec08c; `and` at 0x15ec098; `xor` at 0x15ec09c; `sw` at 0x15ec0a4). The store's value and base and the routine's role remain Unknown.
-
+- `mfbDoBitblt` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16c4160
+  The following branch conditions describe initial entry when all earlier instructions complete without an intervening exception, handler re-entry or external transfer.
+  Under that condition, `beq` at 0x16c41b0 is taken to 0x16c46a0 when entry `a2` equals `at` (0x3) and falls through when they differ.
+  Under that condition and the fall-through of `beq` at 0x16c41b0, `beq` at 0x16c41bc is taken to 0x16c46b4 when entry `a2` equals `v1` (0x6) and falls through when they differ.
+  Under that condition and the fall-through of `beq` at 0x16c41b0 and 0x16c41bc, `beq` at 0x16c41c4 is taken to 0x16c4340 when entry `a2` equals `a5` (0xc) and falls through when they differ.
+  Under that condition and the fall-through of `beq` at 0x16c41b0, 0x16c41bc and 0x16c41c4, `beq` at 0x16c41d0 is taken to 0x16c4204 when entry `a2` equals `a6` (0x7) and falls through when they differ.
+  A word is loaded through an unknown a7 base if the instruction executes and completes (`lw` at 0x16c4d50).
+  If executed and completed, a word is loaded through an unknown a6 base (`lw` at 0x16c4d54).
+  A word is stored through an unknown a7 base if the instruction executes and completes (`sw` at 0x16c4d5c).
+  If executed and completed, a word is stored through an unknown a1 base (`sw` at 0x16c6108).
+  The linked-transfer sites include those below; the dynamic callee list is not established as complete.
+  The `jalr` at 0x16c41dc calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown if the instruction executes and the taken transfer and its delay slot complete.
+  The `jalr` at 0x16c46a4 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown if the instruction executes and the taken transfer and its delay slot complete.
+  The `jalr` at 0x16c46b8 calls (unknown callee) with a0=unknown, a1=unknown, a2=unknown, a3=unknown, a4=unknown, a5=unknown, a6=unknown, a7=unknown; fp f12=unknown, f13=unknown, f14=unknown, f15=unknown, f16=unknown, f17=unknown, f18=unknown, f19=unknown if the instruction executes and the taken transfer and its delay slot complete.
+  If executed and completed, indirect transfers include sites whose targets and classification as returns, internal transfers or external tails are unknown (`jr` at 0x16c41fc, 0x16c444c, 0x16c4658, 0x16c4e8c, 0x16c5124, 0x16c5518, 0x16c57a4, 0x16c5be8, 0x16c5e18, 0x16c61f8, 0x16c6438).
+  Role: unknown.
+- `cfbPolyFillArcSolidGeneral` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15ebb70
+  It loads a word from a1 (arg1 at entry) +0x4c (`lw` at 0x15ebbac).
+  A signed halfword is loaded from a0 (arg0 at entry) +0x8 (`lh` at 0x15ebc7c).
+  It stores a word to an unknown base (`sw` at 0x15ebf44).
+  The branch is taken when a2 <= 0 (signed) to 0x15ee0c0 and falls through when a2 > 0 (signed) (`blez` at 0x15ebbcc).
+  The `jalr` at 0x15ebc00 calls miPolyFillArc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=unknown.
+  The `jalr` at 0x15ebce8 calls (unknown callee) with a0=unknown, a1=sp-1024, a2=unknown, a3=unknown, a6=[a0+10]:2.
+  The `jalr` at 0x15ec7ec calls miFillArcSliceSetup with a0=unknown, a1=sp-1016, a2=a1 at entry (arg1), a3=unknown.
+  The instructions from 0x15ebf0c to 0x15ebf0c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x15ee5a4 to 0x15ee5ac are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x15ee0ec).
 ## X line, arc and glyph paths
 
 - `cfb16LineSD` (`usr/lib/X11/dyDDX/odyssey.so`, 16028 bytes):
@@ -6636,22 +6767,17 @@ One path reads a word from an unknown base (`lw` at 0x15bde88), performs AND and
   0x1629260; `xor` at 0x1629264), and stores a halfword with unknown value
   and destination (`sh` at 0x1629268). The routine's broader role remains
   unknown.
-- `cfb16PolyFillArcSolidGeneral` (`usr/lib/X11/dyDDX/odyssey.so`, 10876 bytes):
-  **Established effects.** The `blez` at 0x15f0f0c takes the return path when
-  `a2` is signed nonpositive and falls through when positive (`jr` at
-  0x15f345c). A later `addiu` adds 0xc to `a1` (`addiu` at 0x15f0f50).
-  Three tests take paths back toward that block when their respective `a5`,
-  `a4` or `a6` values are zero (`beqz` at 0x15f0f7c; `beqz` at 0x15f0f88;
-  `beqz` at 0x15f0f94); hostfacts does not resolve those values. An indirect
-  call has an unknown callee (`jalr` at 0x15f102c). If its return differs
-  from 1, `bne` at 0x15f1048 takes a path calling `miPolyFillArc` with `a2`
-  equal to 1 (`jalr` at 0x15f0f40); equality falls through. A separate loop
-  reads a word from an unknown base (`lw` at 0x15f13f4), executes AND and XOR
-  (`and` at 0x15f1400; `xor` at 0x15f1404), and stores an unknown value to
-  an unknown base in the branch delay slot (`sw` at 0x15f140c). Its `bnez` at
-  0x15f1408 repeats while the tested `a6` is nonzero and falls through when
-  zero; the store runs on both paths. The complete output and the routine's
-  role are unknown.
+- `cfb16PolyFillArcSolidGeneral` in `usr/lib/X11/dyDDX/odyssey.so` at 0x15f0eb0
+  A word is loaded from a1 (arg1 at entry) +0x4c (`lw` at 0x15f0eec).
+  It reads a signed halfword from a0 (arg0 at entry) +0x8 (`lh` at 0x15f0fc0).
+  A word is stored to an unknown base (`sw` at 0x15f12a0).
+  The branch is taken when a2 <= 0 (signed) to 0x15f3430 and falls through when a2 > 0 (signed) (`blez` at 0x15f0f0c).
+  The `jalr` at 0x15f0f40 calls miPolyFillArc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=unknown.
+  The `jalr` at 0x15f102c calls (unknown callee) with a0=unknown, a1=sp-1024, a2=unknown, a3=unknown, a6=[a0+10]:2.
+  The `jalr` at 0x15f1b5c calls miFillArcSliceSetup with a0=unknown, a1=sp-1016, a2=a1 at entry (arg1), a3=unknown.
+  The instructions from 0x15f1268 to 0x15f126c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x15f3908 to 0x15f390c are not reached by any path from the entry, and their branches are not listed.
+  The return value is unknown (`jr` at 0x15f345c).
 - `cfb16SegmentSD` (`usr/lib/X11/dyDDX/odyssey.so`, 0x15ba5b0):
   **Established effects.** The 14024-byte routine reads entry `a1 +0x4c`
   (`lw` at 0x15ba624) and indexes the resulting pointer using the word at
