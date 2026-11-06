@@ -14737,3 +14737,518 @@ These entries read `usr/gfx/arch/IP30ODSY64/libGLcore.so` directly.
   The `bgezall` at 0x32ce0f8 calls `__glSetError [0x32ca070]` with `a0` = 0x505, `a1` = unknown, `a2` = unknown, `a3` = unknown and `a5` = entry `a1` when `beqz` at 0x32cde38 falls through and `beqz` at 0x32cde58 is taken (`beqz` at 0x32cde38, 0x32cde58; `addiu` at 0x32ce0f4).
   On that path, the call at 0x32ce0f8 has a delay-slot word store of zero at entry `a0` +0x1540 (`bgezall` at 0x32ce0f8; `sw` at 0x32ce0fc).
   The `jr` at 0x32ce0a8 returns the result of `__glGenericAllocDlist`; the `jr` at 0x32ce114 returns zero (`move` at 0x32ce108).
+
+## 64-bit IP30 library: client state and texture sizing
+
+- `__glim_ArrayElementEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33336f0
+  A doubleword is read at absolute 0x1020 (`ld` at 0x3333704).
+  Three words are read at offsets +0x17c0, +0x17b8 and +0x17bc of that doubleword, including `lw` at 0x333370c, 0x3333718 and 0x3333728 (`ld` at 0x3333704).
+  The `beqz` at 0x3333730 is taken to 0x3333754 when bit 0x1 of the word at +0x17c0 of the 0x1020 doubleword is clear and falls through when it is set (`lw` at 0x333370c; `andi` at 0x333371c; `beqz` at 0x3333730).
+  The `jalr` at 0x333374c calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x162c of the doubleword at 0x1020, and `a3` equal to entry `a3`, when `beqz` at 0x3333730 falls through (`beqz` at 0x3333730; `lw` at 0x3333738).
+  The `beqz` at 0x3333758 is taken to 0x333377c when bit 0x2 of the word at +0x17c0 of the 0x1020 doubleword is clear and falls through when it is set (`lw` at 0x333370c; `andi` at 0x3333754; `beqz` at 0x3333758).
+  The `jalr` at 0x3333774 calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x1650 of the doubleword at 0x1020, and `a3` unknown, when `beqz` at 0x3333758 falls through (`beqz` at 0x3333758; `lw` at 0x3333760).
+  A word is read at +0xf80 of the 0x1020 doubleword (`ld` at 0x3333704; `lw` at 0x333377c).
+  The `beq` at 0x3333784 is taken to 0x3333924 when the word at +0xf80 of the 0x1020 doubleword equals 1 and falls through when it differs (`lw` at 0x333377c; `addiu` at 0x3333780; `beq` at 0x3333784).
+  When `beq` at 0x3333784 falls through, `beqz` at 0x333378c is taken to 0x33337b8 when its tested value is zero and falls through when it is nonzero; the tested value is unknown (`beq` at 0x3333784; `beqz` at 0x333378c).
+  The `jalr` at 0x33337ac calls (unknown callee) with `a0` equal to 0x83c7, `a1` and `a2` unknown, and `a3` equal to the word at +0x16e0 of the 0x1020 doubleword, when `beq` at 0x3333784 and `beqz` at 0x333378c fall through (`beq` at 0x3333784; `beqz` at 0x333378c; `dli` at 0x33337a4; `lw` at 0x3333794).
+  When `beq` at 0x3333784 falls through, `beqz` at 0x33337b8 is taken to 0x33337e4 when its tested value is zero and falls through when it is nonzero; that value is unknown (`beq` at 0x3333784; `beqz` at 0x33337b8).
+  The `jalr` at 0x33337d8 calls (unknown callee) with `a0` equal to 0x83c8, `a1` and `a2` unknown, and `a3` equal to the word at +0x1708 of the 0x1020 doubleword, when `beq` at 0x3333784 and `beqz` at 0x33337b8 fall through (`beq` at 0x3333784; `beqz` at 0x33337b8; `dli` at 0x33337d0; `lw` at 0x33337c0).
+  When `beq` at 0x3333784 falls through, `beqz` at 0x33337e4 is taken to 0x3333810 when its tested value is zero and falls through when it is nonzero; that value is unknown (`beq` at 0x3333784; `beqz` at 0x33337e4).
+  The `jalr` at 0x3333804 calls (unknown callee) with `a0` equal to 0x83c9, `a1` and `a2` unknown, and `a3` equal to the word at +0x1730 of the 0x1020 doubleword, when `beq` at 0x3333784 and `beqz` at 0x33337e4 fall through (`beq` at 0x3333784; `beqz` at 0x33337e4; `dli` at 0x33337fc; `lw` at 0x33337ec).
+  When `beq` at 0x3333784 falls through, `beqz` at 0x3333810 is taken to 0x333383c when its tested value is zero and falls through when it is nonzero; that value is unknown (`beq` at 0x3333784; `beqz` at 0x3333810).
+  The `jalr` at 0x3333830 calls (unknown callee) with `a0` equal to 0x83ca, `a1` and `a2` unknown, and `a3` equal to the word at +0x1758 of the 0x1020 doubleword, when `beq` at 0x3333784 and `beqz` at 0x3333810 fall through (`beq` at 0x3333784; `beqz` at 0x3333810; `dli` at 0x3333828; `lw` at 0x3333818).
+  When control reaches `beqz` at 0x333383c, it is taken to 0x3333864 when its tested value is zero and falls through when it is nonzero; that value is unknown (`beqz` at 0x333383c).
+  The `jalr` at 0x3333858 calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x1674 of the 0x1020 doubleword, and `a3` unknown, when `beqz` at 0x333383c falls through (`beqz` at 0x333383c; `lw` at 0x3333844).
+  When control reaches `beqz` at 0x3333864, it is taken to 0x3333888 when its tested value is zero and falls through when it is nonzero; that value is unknown (`beqz` at 0x3333864).
+  The `jalr` at 0x3333880 calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x16b8 of the 0x1020 doubleword, and `a3` unknown, when `beqz` at 0x3333864 falls through (`beqz` at 0x3333864; `lw` at 0x333386c).
+  When control reaches `beqz` at 0x3333890, it is taken to 0x33338b8 when bit 0x1 of its tested value is clear and falls through when it is set; the tested value is unknown (`andi` at 0x333388c; `beqz` at 0x3333890).
+  The `jalr` at 0x33338ac calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x177c of the 0x1020 doubleword, and `a3` unknown, when `beqz` at 0x3333890 falls through (`beqz` at 0x3333890; `lw` at 0x3333898).
+  When control reaches `beqz` at 0x33338bc, it is taken to 0x33338e4 when bit 0x2 of its tested value is clear and falls through when it is set; the tested value is unknown (`andi` at 0x33338b8; `beqz` at 0x33338bc).
+  The `jalr` at 0x33338d8 calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x179c of the 0x1020 doubleword, and `a3` unknown, when `beqz` at 0x33338bc falls through (`beqz` at 0x33338bc; `lw` at 0x33338c4).
+  When control reaches `beqz` at 0x33338e4, it is taken to 0x3333908 when its tested value is zero and falls through when it is nonzero; that value is unknown (`beqz` at 0x33338e4).
+  The `jalr` at 0x3333900 calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x1608 of the 0x1020 doubleword, and `a3` unknown, when `beqz` at 0x33338e4 falls through (`beqz` at 0x33338e4; `lw` at 0x33338ec).
+  When `beq` at 0x3333784 is taken, `beqz` at 0x3333928 is taken to 0x333383c when bit 0x4 of the word at +0x17c0 of the 0x1020 doubleword is clear and falls through when it is set (`beq` at 0x3333784; `lw` at 0x333370c; `andi` at 0x3333924; `beqz` at 0x3333928).
+  The `jalr` at 0x3333944 calls (unknown callee) with `a0` and `a1` unknown, `a2` equal to the word at +0x1698 of the 0x1020 doubleword, and `a3` unknown, when `beq` at 0x3333784 is taken and `beqz` at 0x3333928 falls through (`beq` at 0x3333784; `beqz` at 0x3333928; `lw` at 0x3333930).
+  The integer return value is unknown; facts reports the return from the unknown call at 0x3333900 on one incoming path (`jalr` at 0x3333900; `jr` at 0x333391c).
+- `__gllc_DetailTexFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3346d10
+  A doubleword is read at absolute 0x1020 (`ld` at 0x3346d34).
+  The `bltz` at 0x3346d4c is taken to 0x3346dcc when its tested value is signed negative and falls through when it is signed nonnegative; the tested value is unknown (`bltz` at 0x3346d4c).
+  The `jalr` at 0x3346dd0 calls `__gllc_InvalidValue [0x328b920]` with `a0` equal to the doubleword at 0x1020, `a1` equal to entry `a1`, `a2` equal to entry `a2`, and `a3` equal to entry `a3`, when `bltz` at 0x3346d4c is taken (`bltz` at 0x3346d4c).
+  The `jalr` at 0x3346d5c calls `__glDlistAllocOp2 [0x328b310]` with `a0` equal to the doubleword at 0x1020, `a1` unknown, and `a2` and `a3` equal to their entry values, when `bltz` at 0x3346d4c falls through (`bltz` at 0x3346d4c).
+  After `bltz` at 0x3346d4c falls through, `bnez` at 0x3346d64 is taken to 0x3346d84 when the allocation return is nonzero and falls through when it is zero (`bltz` at 0x3346d4c; `jalr` at 0x3346d5c; `bnez` at 0x3346d64).
+  When `bltz` at 0x3346d4c falls through and `bnez` at 0x3346d64 is taken, a halfword containing 0xe1 is stored at allocation return +0x14 (`bltz` at 0x3346d4c; `bnez` at 0x3346d64; `addiu` at 0x3346d88; `sh` at 0x3346d8c).
+  On that path, two word stores write entry `a1` and `a0` at allocation return +0x1c and +0x18, including `sw` at 0x3346da0 and 0x3346dac; the second executes in the `jalr` delay slot (`bltz` at 0x3346d4c; `bnez` at 0x3346d64; `jalr` at 0x3346da8).
+  The `jalr` at 0x3346da8 calls `memcpy` with `a0` equal to allocation return +0x20, `a1` equal to entry `a2`, and `a2` and `a3` unknown, when `bltz` at 0x3346d4c falls through and `bnez` at 0x3346d64 is taken (`bltz` at 0x3346d4c; `bnez` at 0x3346d64; `daddiu` at 0x3346da4).
+  The `jalr` at 0x3346dbc calls `__glDlistAppendOp [0x328b3a0]` with `a0` equal to the doubleword at 0x1020, `a1` unknown, `a2` equal to 0x334c7a0, and `a3` unknown, when `bltz` at 0x3346d4c falls through and `bnez` at 0x3346d64 is taken (`bltz` at 0x3346d4c; `bnez` at 0x3346d64; `jalr` at 0x3346dbc; `ld` at 0x3346dc0).
+  The integer return value is unknown; facts reports the allocation return, append return or invalid-value call return on the respective incoming paths (`jalr` at 0x3346d5c, 0x3346dbc, 0x3346dd0; `jr` at 0x3346d7c).
+- `__gllc_SharpenTexFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3346de0
+  A doubleword is read at absolute 0x1020 (`ld` at 0x3346e04).
+  The `bltz` at 0x3346e1c is taken to 0x3346e9c when its tested value is signed negative and falls through when it is signed nonnegative; the tested value is unknown (`bltz` at 0x3346e1c).
+  The `jalr` at 0x3346ea0 calls `__gllc_InvalidValue [0x328b920]` with `a0` equal to the doubleword at 0x1020, `a1` equal to entry `a1`, `a2` equal to entry `a2`, and `a3` equal to entry `a3`, when `bltz` at 0x3346e1c is taken (`bltz` at 0x3346e1c).
+  The `jalr` at 0x3346e2c calls `__glDlistAllocOp2 [0x328b310]` with `a0` equal to the doubleword at 0x1020, `a1` unknown, and `a2` and `a3` equal to their entry values, when `bltz` at 0x3346e1c falls through (`bltz` at 0x3346e1c).
+  After `bltz` at 0x3346e1c falls through, `bnez` at 0x3346e34 is taken to 0x3346e54 when the allocation return is nonzero and falls through when it is zero (`bltz` at 0x3346e1c; `jalr` at 0x3346e2c; `bnez` at 0x3346e34).
+  When `bltz` at 0x3346e1c falls through and `bnez` at 0x3346e34 is taken, a halfword containing 0xe2 is stored at allocation return +0x14 (`bltz` at 0x3346e1c; `bnez` at 0x3346e34; `addiu` at 0x3346e58; `sh` at 0x3346e5c).
+  On that path, two word stores write entry `a1` and `a0` at allocation return +0x1c and +0x18, including `sw` at 0x3346e70 and 0x3346e7c; the second executes in the `jalr` delay slot (`bltz` at 0x3346e1c; `bnez` at 0x3346e34; `jalr` at 0x3346e78).
+  The `jalr` at 0x3346e78 calls `memcpy` with `a0` equal to allocation return +0x20, `a1` equal to entry `a2`, and `a2` and `a3` unknown, when `bltz` at 0x3346e1c falls through and `bnez` at 0x3346e34 is taken (`bltz` at 0x3346e1c; `bnez` at 0x3346e34; `daddiu` at 0x3346e74).
+  The `jalr` at 0x3346e8c calls `__glDlistAppendOp [0x328b3a0]` with `a0` equal to the doubleword at 0x1020, `a1` unknown, `a2` equal to 0x334c810, and `a3` unknown, when `bltz` at 0x3346e1c falls through and `bnez` at 0x3346e34 is taken (`bltz` at 0x3346e1c; `bnez` at 0x3346e34; `jalr` at 0x3346e8c; `ld` at 0x3346e90).
+  The integer return value is unknown; facts reports the allocation return, append return or invalid-value call return on the respective incoming paths (`jalr` at 0x3346e2c, 0x3346e8c, 0x3346ea0; `jr` at 0x3346e4c).
+- `__glle_PolygonOffsetEXT` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334bf60
+  Two floating-point words are read at entry `a0` +0x4 and +0, including `lwc1` at 0x334bf60 and 0x334bf7c.
+  A doubleword is read at absolute 0x15e0 (`ld` at 0x334bf78).
+  The `jalr` at 0x334bf88 calls (unknown callee) with `a0`, `a1`, `a2` and `a3` equal to their entry values, `f12` equal to the word at entry `a0` +0, and `f13` equal to the word at entry `a0` +0x4 (`lwc1` at 0x334bf60, 0x334bf7c).
+  The integer return value is entry `a0` +0x8 (`daddiu` at 0x334bf98; `jr` at 0x334bfa0).
+- `__glle_DetailTexFuncSGIS` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x334c7a0
+  A doubleword is read at absolute 0x17e0 (`ld` at 0x334c7b8).
+  Three word reads use entry `a0` +0, +0x4 and +0x4, including `lw` at 0x334c7c0, 0x334c7d0 and 0x334c7d4 (`jalr` at 0x334c7cc).
+  The `jalr` at 0x334c7cc calls (unknown callee) with `a0` equal to the word at entry `a0` +0, `a1` equal to the word at entry `a0` +0x4, `a2` equal to entry `a0` +0x8, and `a3` equal to entry `a3` (`lw` at 0x334c7c0, 0x334c7d0; `daddiu` at 0x334c7c8).
+  The integer return value is unknown (`jr` at 0x334c804).
+- `__glDestroySoftContext` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32c9d70
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x32c9d70).
+  The entry `a0` value is stored as a doubleword at absolute 0x1020 (`sd` at 0x32c9d84).
+  Ten doubleword reads use entry `a0` +0x18, including `ld` at 0x32c9db0, 0x32c9e50, 0x32c9e68.
+  The `beqz` at 0x32c9da8 is taken to 0x32c9dbc when the doubleword at entry `a0` +0x99e8 is zero, and falls through when it is nonzero (`ld` at 0x32c9d8c; `beqz` at 0x32c9da8).
+  The `jalr` at 0x32c9db4 calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x99e8, a2 = entry a2, and a3 = entry a3, when `beqz` at 0x32c9da8 falls through (`beqz` at 0x32c9da8).
+  The `bgezall` at 0x32c9dc0 calls `__glFreeColorTables [0x32c8800]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown.
+  The `bgezall` at 0x32c9dcc calls `__glFreeEvaluatorState [0x32ce560]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown.
+  The `jalr` at 0x32c9dd8 calls `__glFreePixelState [0x3290990]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown.
+  The `bnez` at 0x32c9de4 is taken to 0x32c9f48 when the doubleword at entry `a0` +0x1ad0 is nonzero, and falls through when it is zero (`ld` at 0x32c9de0; `bnez` at 0x32c9de4).
+  The `jalr` at 0x32c9f48 calls `__glFreeAsyncState [0x32b7e10]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown, when `bnez` at 0x32c9de4 is taken (`bnez` at 0x32c9de4).
+  The `bnez` at 0x32c9df0 is taken to 0x32c9f58 when the doubleword at entry `a0` +0x14c8 is nonzero, and falls through when it is zero (`ld` at 0x32c9dec; `bnez` at 0x32c9df0).
+  The `jalr` at 0x32c9f58 calls `__glFreeDlistState [0x328a320]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown, when `bnez` at 0x32c9df0 is taken (`bnez` at 0x32c9df0).
+  The `bnez` at 0x32c9dfc is taken to 0x32c9f68 when the doubleword at entry `a0` +0x4e10 is nonzero, and falls through when it is zero (`ld` at 0x32c9df8; `bnez` at 0x32c9dfc).
+  The `jalr` at 0x32c9f68 calls `__glFreeAttributeState [0x32bfee0]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown, when `bnez` at 0x32c9dfc is taken (`bnez` at 0x32c9dfc).
+  The `bnez` at 0x32c9e08 is taken to 0x32c9f78 when the doubleword at entry `a0` +0x8d88 is nonzero, and falls through when it is zero (`ld` at 0x32c9e04; `bnez` at 0x32c9e08).
+  The `jalr` at 0x32c9f78 calls `__glFreeTextureState [0x3314a30]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown, when `bnez` at 0x32c9e08 is taken (`bnez` at 0x32c9e08).
+  The `beqz` at 0x32c9e14 is taken to 0x32c9e24 when the doubleword at entry `a0` +0x8d20 is zero, and falls through when it is nonzero (`ld` at 0x32c9e10; `beqz` at 0x32c9e14).
+  The `jalr` at 0x32c9e1c calls `__glFreeSpecLUT [0x3304ed0]` with a0 = entry a0, a1 = the doubleword at entry a0 +0x8d20, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9e14 falls through (`beqz` at 0x32c9e14).
+  The `beqz` at 0x32c9e28 is taken to 0x32c9e38 when the doubleword at entry `a0` +0x8d58 is zero, and falls through when it is nonzero (`ld` at 0x32c9e24; `beqz` at 0x32c9e28).
+  The `jalr` at 0x32c9e30 calls `__glFreeSpecLUT [0x3304ed0]` with a0 = entry a0, a1 = the doubleword at entry a0 +0x8d58, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9e28 falls through (`beqz` at 0x32c9e28).
+  The `bnez` at 0x32c9e3c is taken to 0x32c9f88 when the doubleword at entry `a0` +0x8d80 is nonzero, and falls through when it is zero (`ld` at 0x32c9e38; `bnez` at 0x32c9e3c).
+  The `jalr` at 0x32c9f88 calls `__glFreeLUTCache [0x33049f0]` with a0 = entry a0, a1 = unknown, a2 = unknown, and a3 = unknown, when `bnez` at 0x32c9e3c is taken (`bnez` at 0x32c9e3c).
+  The `beqz` at 0x32c9e48 is taken to 0x32c9e5c when the doubleword at entry `a0` +0x730 is zero, and falls through when it is nonzero (`ld` at 0x32c9e44; `beqz` at 0x32c9e48).
+  The `jalr` at 0x32c9e54 calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x730, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9e48 falls through (`beqz` at 0x32c9e48).
+  The `beqz` at 0x32c9e60 is taken to 0x32c9e74 when the doubleword at entry `a0` +0x8cf0 is zero, and falls through when it is nonzero (`ld` at 0x32c9e5c; `beqz` at 0x32c9e60).
+  The `jalr` at 0x32c9e6c calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x8cf0, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9e60 falls through (`beqz` at 0x32c9e60).
+  The `beqz` at 0x32c9e78 is taken to 0x32c9e8c when the doubleword at entry `a0` +0x1490 is zero, and falls through when it is nonzero (`ld` at 0x32c9e74; `beqz` at 0x32c9e78).
+  The `jalr` at 0x32c9e84 calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x1490, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9e78 falls through (`beqz` at 0x32c9e78).
+  The `beqz` at 0x32c9e90 is taken to 0x32c9ea4 when the doubleword at entry `a0` +0x7d8 is zero, and falls through when it is nonzero (`ld` at 0x32c9e8c; `beqz` at 0x32c9e90).
+  The `jalr` at 0x32c9e9c calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x7d8, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9e90 falls through (`beqz` at 0x32c9e90).
+  The `beqz` at 0x32c9ea8 is taken to 0x32c9ebc when the doubleword at entry `a0` +0x94a0 is zero, and falls through when it is nonzero (`ld` at 0x32c9ea4; `beqz` at 0x32c9ea8).
+  The `jalr` at 0x32c9eb4 calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x94a0, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9ea8 falls through (`beqz` at 0x32c9ea8).
+  The `beqz` at 0x32c9ec0 is taken to 0x32c9ed4 when the doubleword at entry `a0` +0x94b0 is zero, and falls through when it is nonzero (`ld` at 0x32c9ebc; `beqz` at 0x32c9ec0).
+  The `jalr` at 0x32c9ecc calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x94b0, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9ec0 falls through (`beqz` at 0x32c9ec0).
+  The `beqz` at 0x32c9ed8 is taken to 0x32c9eec when the doubleword at entry `a0` +0x94c8 is zero, and falls through when it is nonzero (`ld` at 0x32c9ed4; `beqz` at 0x32c9ed8).
+  The `jalr` at 0x32c9ee4 calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x94c8, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9ed8 falls through (`beqz` at 0x32c9ed8).
+  The `beqz` at 0x32c9ef0 is taken to 0x32c9f04 when the doubleword at entry `a0` +0x94d8 is zero, and falls through when it is nonzero (`ld` at 0x32c9eec; `beqz` at 0x32c9ef0).
+  The `jalr` at 0x32c9efc calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x94d8, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9ef0 falls through (`beqz` at 0x32c9ef0).
+  The `beqz` at 0x32c9f08 is taken to 0x32c9f20 when the doubleword at entry `a0` +0x94e8 is zero, and falls through when it is nonzero (`ld` at 0x32c9f04; `beqz` at 0x32c9f08).
+  The `jalr` at 0x32c9f14 calls (unknown callee) with a0 = entry a0, a1 = the doubleword at entry a0 +0x94e8, a2 = unknown, and a3 = unknown, when `beqz` at 0x32c9f08 falls through (`beqz` at 0x32c9f08).
+  The return value in `v0` is unknown (`jr` at 0x32c9f40).
+  The return delay slot stores a doubleword of unknown value at absolute 0x1020 (`jr` at 0x32c9f40; `sd` at 0x32c9f44).
+- `__glim_GetTexLevelParameterfv` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32d5150
+  A doubleword is read at absolute 0x1020 (`ld` at 0x32d515c).
+  A word is read at absolute 0x1030 (`lw` at 0x32d516c).
+  The `beq` at 0x32d518c is taken to 0x32d53e0 when the word at 0x1030 equals 1 and falls through when it differs (`lw` at 0x32d516c; `addiu` at 0x32d5168; `beq` at 0x32d518c).
+  The `jalr` at 0x32d53e4 calls `__glSetError [0x32ca070]` with `a0` 0x502, `a1` 0xc0000, and entry `a2` and `a3` when `beq` at 0x32d518c is taken (`beq` at 0x32d518c; `jalr` at 0x32d53e4; `addiu` at 0x32d53e8).
+  The `jalr` at 0x32d519c calls `__glLookUpTexture [0x3313f90]` with `a0` the doubleword at 0x1020, `a1` entry `a0`, `a2` entry `a2`, and `a3` entry `a3` when `beq` at 0x32d518c falls through (`ld` at 0x32d515c; `beq` at 0x32d518c; `jalr` at 0x32d519c).
+  After the first `beq` falls through, `beqz` at 0x32d51a4 is taken to 0x32d53f4 when the lookup return is zero and falls through when it is nonzero (`beq` at 0x32d518c; `jalr` at 0x32d519c; `beqz` at 0x32d51a4).
+  The `jalr` at 0x32d53f4 calls `__glSetError [0x32ca070]` with `a0` 0x500 and unknown `a1`, `a2`, and `a3` when `beqz` at 0x32d51a4 is taken (`beqz` at 0x32d51a4; `jalr` at 0x32d53f4; `addiu` at 0x32d53f8).
+  After `beqz` at 0x32d51a4 falls through, `bltz` at 0x32d51ac is taken to 0x32d5348 when entry `a1` is signed negative and falls through when it is nonnegative (`beqz` at 0x32d51a4; `bltz` at 0x32d51ac).
+  When `bltz` at 0x32d51ac falls through, a word is read at +0xff8 of the doubleword loaded from 0x1020 (`ld` at 0x32d515c; `bltz` at 0x32d51ac; `lw` at 0x32d51b4).
+  After that `bltz` falls through, `beqz` at 0x32d51bc is taken to 0x32d5348 when entry `a1` is signed greater than or equal to that word and falls through when it is signed less (`bltz` at 0x32d51ac; `lw` at 0x32d51b4; `slt` at 0x32d51b8; `beqz` at 0x32d51bc).
+  The `jalr` at 0x32d5348 calls `__glSetError [0x32ca070]` with `a0` 0x501 and unknown `a1`, `a2`, and `a3` when `bltz` at 0x32d51ac is taken, or when it falls through and `beqz` at 0x32d51bc is taken (`bltz` at 0x32d51ac; `beqz` at 0x32d51bc; `jalr` at 0x32d5348; `addiu` at 0x32d534c).
+  When `beqz` at 0x32d51bc falls through, `bnez` at 0x32d51dc is taken to 0x32d5248 when entry `a2` is unsigned less than 0x805d and falls through when it is unsigned greater than or equal to 0x805d (`beqz` at 0x32d51bc; `dli` at 0x32d51c4; `sltu` at 0x32d51cc; `bnez` at 0x32d51dc).
+  The `jalr` at 0x32d52e8 calls `__glSetError [0x32ca070]` with `a0` 0x501 and unknown `a1`, `a2`, and `a3` on a path where `bnez` at 0x32d5214 is taken (`bnez` at 0x32d5214; `jalr` at 0x32d52e8; `addiu` at 0x32d52ec).
+  Its accesses include 13 floating-point word stores at entry `a3` +0, including `swc1` at 0x32d5244, 0x32d5298, 0x32d52e0.
+  The instruction at 0x32d5344 is not reached from the entry.
+  At the three return sites, `v0` is respectively unknown, unknown or the return from `__glSetError`, and the return from `__glLookUpTexture` (`jr` at 0x32d5294, 0x32d5304, 0x32d539c).
+- `ComputeTexLevelSize` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33180f0
+  The `beqz` at 0x3318118 is taken to 0x3318154 when its tested value is signed greater than or equal to 3, and falls through when it is signed less than 3; the tested value is unknown (`slti` at 0x3318110; `beqz` at 0x3318118).
+  On that fall-through path, `lw` reads a word at entry `a0` +0xff0 (`beqz` at 0x3318118; `lw` at 0x3318120).
+  After `beqz` at 0x3318118 falls through, `bnez` at 0x3318128 is taken to 0x331826c when that word is signed less than an unknown value, and falls through otherwise (`beqz` at 0x3318118; `lw` at 0x3318120; `slt` at 0x3318124; `bnez` at 0x3318128).
+  If `beqz` at 0x3318118 and `bnez` at 0x3318128 both fall through, `bnez` at 0x331813c is taken to 0x3318270 when the word at entry `a0` +0xff0 is signed less than another unknown value, and falls through otherwise (`beqz` at 0x3318118; `bnez` at 0x3318128; `slt` at 0x3318138; `bnez` at 0x331813c).
+  On the path where those three branches fall through, `b` at 0x331814c transfers to 0x33181b4 and its delay slot stores zero as a word at entry `a2` +0x60 (`beqz` at 0x3318118; `bnez` at 0x3318128, 0x331813c; `b` at 0x331814c; `sw` at 0x3318150).
+  If `beqz` at 0x3318118 is taken, `lw` reads a word at entry `a0` +0xff4 (`beqz` at 0x3318118; `lw` at 0x3318154).
+  On that taken path, `bnez` at 0x331815c is taken to 0x3318248 when the word at entry `a0` +0xff4 is signed less than an unknown value, and falls through otherwise (`beqz` at 0x3318118; `lw` at 0x3318154; `slt` at 0x3318158; `bnez` at 0x331815c).
+  On reaching 0x33181b4, five word stores write zero at entry `a2` offsets +0x5c, +0x58, +0x54, +0x50 and +0x4c, including `sw` at 0x33181b4, 0x33181b8, 0x33181bc.
+  On reaching `bnez` at 0x33181d0, it is taken to 0x3318278 when entry `a4` is signed less than 0x8046 and falls through otherwise (`dli` at 0x33181c0; `slt` at 0x33181c8; `bnez` at 0x33181d0).
+  Its delay slot stores entry `a4` as a word at entry `a2` +0x40 on both paths (`bnez` at 0x33181d0; `sw` at 0x33181d4).
+  When `bnez` at 0x33181d0 falls through, `beqz` at 0x33181dc is taken to 0x331831c when entry `a4` is signed less than or equal to 0x8046 and falls through when greater (`bnez` at 0x33181d0; `slt` at 0x33181d8; `beqz` at 0x33181dc).
+  There are 24 doubleword stores to entry `a2` +0x68 on different paths, including `sd` at 0x3318244, 0x331834c, 0x3318390; those three execute in the delay slots of `b` at 0x3318240, 0x3318348, 0x331838c.
+  The integer return is -1 at 0x331824c and 0x3318270, and unknown at 0x3318264 (`addiu` at 0x3318140, 0x3318174, 0x331818c, 0x3318248, 0x331826c; `jr` at 0x331824c, 0x3318270, 0x3318264).
+- `__glim_EnableClientState` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32c0050
+  It reads a word at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x32c0058; `ld` at 0x32c005c).
+  The `beq` at 0x32c0078 is taken to 0x32c0254 when the word at 0x1030 equals 1, and falls through when it differs (`lw` at 0x32c0058; `addiu` at 0x32c0060; `beq` at 0x32c0078).
+  The `jalr` at 0x32c0258 calls `__glSetError [0x32ca070]` with a0 = 0x502, a1 = entry a1, a2 = the doubleword at 0x1020, a3 = entry a3, a4 = 1, and a6 = -0x83c7 on the taken `beq` path (`beq` at 0x32c0078; `addiu` at 0x32c025c).
+  When the `beq` at 0x32c0078 falls through, `bnez` at 0x32c0088 is taken to 0x32c00d8 if entry a0 is unsigned less than 0x8078, and falls through otherwise (`beq` at 0x32c0078; `dli` at 0x32c0080; `sltu` at 0x32c0084; `bnez` at 0x32c0088).
+  If both preceding branches fall through, `bnez` at 0x32c0094 is taken to 0x32c0144 when its unknown tested value is nonzero and falls through when it is zero (`beq` at 0x32c0078; `bnez` at 0x32c0088, 0x32c0094).
+  When those three branches fall through, it reads a word at offset 0x8da8 of the doubleword at 0x1020 (`beq` at 0x32c0078; `bnez` at 0x32c0088, 0x32c0094; `lw` at 0x32c009c).
+  On that path, `bnez` at 0x32c00b0 takes the branch to 0x32c0134 if that word minus 33735 is nonzero, and falls through when it is zero (`lw` at 0x32c009c; `lui` at 0x32c0050; `ori` at 0x32c006c; `addu` at 0x32c00a4; `bnez` at 0x32c00b0).
+  The delay slot of that `bnez` stores an unknown word at +0x17b8 of the doubleword at 0x1020 on either branch arm (`bnez` at 0x32c00b0; `sw` at 0x32c00b4).
+  Its word stores include six at +0x17c0 of the doubleword at 0x1020 (`sw` at 0x32c00c8, 0x32c0118, 0x32c01a8).
+  Its word stores include six at +0x17b4 of that doubleword (`sw` at 0x32c00d4, 0x32c0124, 0x32c01b4).
+  Its word stores include two at +0x17bc of that doubleword (`sw` at 0x32c0178, 0x32c0250).
+  The `jalr` at 0x32c012c calls `__glSetError [0x32ca070]` with a0 = 0x500, a1 = unknown, a2 = the doubleword at 0x1020, a3 = one of 0x8075, 0x8076, or 0x8439, and a6 = -0x83c7 (`addiu` at 0x32c0130).
+  At the six returns, v0 is 0xd6e68 at 0x32c0120, 0x32c01b0 and 0x32c020c; unknown at 0x32c013c and 0x32c01e0; and the word at +0x17b4 of the doubleword at 0x1020 OR 0xff000 at 0x32c023c (`lui` at 0x32c0064, 0x32c0228; `addiu` at 0x32c0070; `lw` at 0x32c021c; `ori` at 0x32c022c; `or` at 0x32c0238; `jr` at 0x32c0120, 0x32c013c, 0x32c01b0, 0x32c01e0, 0x32c020c, 0x32c023c).
+- `__glim_DisableClientState` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32c0270
+  It reads a word at absolute 0x1030 and a doubleword at absolute 0x1020 (`lw` at 0x32c0278; `ld` at 0x32c027c).
+  The `beq` at 0x32c0298 is taken to 0x32c04ac when the word at 0x1030 equals 1, and falls through when it differs (`lw` at 0x32c0278; `addiu` at 0x32c0280; `beq` at 0x32c0298).
+  The `jalr` at 0x32c04b0 calls `__glSetError [0x32ca070]` with a0 = 0x502, a1 = entry a1, a2 = the doubleword at 0x1020, a3 = entry a3, a4 = 1, a6 = 0xffffffffffff0000, and a7 = -0x3 on the taken `beq` path (`beq` at 0x32c0298; `addiu` at 0x32c04b4).
+  When the `beq` at 0x32c0298 falls through, `bnez` at 0x32c02a8 is taken to 0x32c0310 if entry a0 is unsigned less than 0x8078, and falls through otherwise (`beq` at 0x32c0298; `dli` at 0x32c02a0; `sltu` at 0x32c02a4; `bnez` at 0x32c02a8).
+  If both preceding branches fall through, `bnez` at 0x32c02b8 is taken to 0x32c0380 if entry a0 is unsigned greater than 0x8078, and falls through otherwise (`beq` at 0x32c0298; `bnez` at 0x32c02a8; `sltu` at 0x32c02b4; `bnez` at 0x32c02b8).
+  When those three branches fall through, it reads a word at offset 0x8da8 of the doubleword at 0x1020 (`beq` at 0x32c0298; `bnez` at 0x32c02a8, 0x32c02b8; `lw` at 0x32c02c8).
+  On that path, `bnez` at 0x32c02e0 takes the branch to 0x32c0370 if that word minus 33735 is nonzero, and falls through when it is zero (`lw` at 0x32c02c8; `lui` at 0x32c0288; `ori` at 0x32c02b0; `addu` at 0x32c02cc; `bnez` at 0x32c02e0).
+  The delay slot of that `bnez` stores an unknown word at +0x17b8 of the doubleword at 0x1020 on either branch arm (`bnez` at 0x32c02e0; `sw` at 0x32c02e4).
+  Its word stores include six at +0x17c0 of the doubleword at 0x1020 (`sw` at 0x32c0300, 0x32c0354, 0x32c03ec).
+  Its word stores include six at +0x17b4 of that doubleword (`sw` at 0x32c030c, 0x32c0360, 0x32c03f8).
+  Its word stores include two at +0x17bc of that doubleword (`sw` at 0x32c03b0, 0x32c04a8).
+  The `jalr` at 0x32c0368 calls `__glSetError [0x32ca070]` with a0 = 0x500, a1 = unknown, a2 = the doubleword at 0x1020, a3 = one of 0x8075, 0x8076, or 0x8439, a6 = one of 0xffffffffffff0000, -0x83c7, or -0x21, and a7 = -0x3 (`addiu` at 0x32c036c).
+  At the six returns, v0 is 0xd6c48 at 0x32c03f4, 0x32c0458 and 0x32c0490; unknown at 0x32c035c and 0x32c0378; and 0xfffffffff7ffffff at 0x32c042c (`lui` at 0x32c0284, 0x32c03fc; `addiu` at 0x32c0290; `not` at 0x32c0404; `jr` at 0x32c035c, 0x32c0378, 0x32c03f4, 0x32c042c, 0x32c0458, 0x32c0490).
+- `__GL_TEXENV_CLAMP` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x331d860
+  The `bc1f` at 0x331d864 is taken to 0x331d87c when entry `f12 <= f14` is false and falls through when it is true (`c.le.s` at 0x331d860; `bc1f` at 0x331d864).
+  The delay-slot `mov.s` copies entry `f14` to `f0` on both paths (`bc1f` at 0x331d864; `mov.s` at 0x331d868).
+  The integer return value is unknown at both returns; the floating-point return is unknown at 0x331d874 and entry f14 at 0x331d87c (`jr` at 0x331d874, 0x331d87c).
+- `__glNamesUnlockDataList` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f0bb0
+  The `blez` at 0x32f0bd4 is taken to 0x32f0c20 when entry `a1` is signed less than or equal to zero and falls through when it is signed greater than zero (`blez` at 0x32f0bd4).
+  When `blez` falls through, `beqz` at 0x32f0bec is taken to 0x32f0c0c when its unknown tested value is zero and falls through when nonzero (`blez` at 0x32f0bd4; `beqz` at 0x32f0bec).
+  When both branches fall through, a doubleword is read from entry `a2` +0 and a word is read from offset +0 of that doubleword (`blez` at 0x32f0bd4; `beqz` at 0x32f0bec; `ld` at 0x32f0bf4; `lw` at 0x32f0bf8).
+  On that path, `beqz` at 0x32f0c00 is taken to 0x32f0c9c when the loaded word minus one is zero and falls through when nonzero (`beqz` at 0x32f0bec, 0x32f0c00; `addiu` at 0x32f0bfc).
+  Its delay slot writes the loaded word minus one at offset +0 of the doubleword from entry `a2` on both paths (`beqz` at 0x32f0c00; `sw` at 0x32f0c04).
+  The `jalr` at 0x32f0ca4 calls (unknown callee) with `a0` equal to entry `a0`, `a1` equal to the doubleword at entry `a2` +0, and `a2` and `a3` equal to their entry values, when `beqz` at 0x32f0c00 is taken (`beqz` at 0x32f0c00; `jalr` at 0x32f0ca4).
+  When control reaches 0x32f0c10, `bnel` is taken to 0x32f0c64 when its unknown tested value is nonzero and falls through when zero (`bnel` at 0x32f0c10).
+  The `bnel` delay-slot doubleword load has an unknown base, executes on the taken path and is annulled on fall-through (`bnel` at 0x32f0c10; `ld` at 0x32f0c14).
+  When control reaches 0x32f0c6c, `bnez` is taken to 0x32f0c40 when its unknown tested value is nonzero and falls through when zero (`bnez` at 0x32f0c6c).
+  Its delay slot writes a word of unknown value through an unknown base on both paths (`bnez` at 0x32f0c6c; `sw` at 0x32f0c70).
+  The `jalr` at 0x32f0c78 calls (unknown callee) with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown, when `bnez` at 0x32f0c6c falls through (`bnez` at 0x32f0c6c; `jalr` at 0x32f0c78).
+  When control reaches 0x32f0c4c, `beqz` is taken to 0x32f0c88 when its unknown tested value is zero and falls through when nonzero (`beqz` at 0x32f0c4c).
+  Its delay slot stores a word of unknown value through an unknown base on both paths (`beqz` at 0x32f0c4c; `sw` at 0x32f0c50).
+  The `jalr` at 0x32f0c8c calls (unknown callee) with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown, when `beqz` at 0x32f0c4c is taken (`beqz` at 0x32f0c4c; `jalr` at 0x32f0c8c).
+  When control reaches 0x32f0c58, `beq` is taken to 0x32f0c1c when unknown `s0` equals entry `a2` plus entry `a1` shifted left by 3, and falls through when they differ (`beq` at 0x32f0c58).
+  The range 0x32f0c34 through 0x32f0c3c is not reached from the entry.
+  The integer return value is unknown (`jr` at 0x32f0c2c).
+
+## 64-bit IP30 library: context scales and data-list locking
+
+- `__glContextSetColorScales` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32c8d70
+  The `lwc1` at 0x32c8d74 reads a floating-point word at entry `a0` +0xfc8, and the `lwc1` at 0x32c8d8c reads one at entry `a0` +0x99f0.
+  The `bc1f` at 0x32c8db8 is taken to 0x32c8e0c when the first loaded word does not compare equal to the second, and falls through when they compare equal (`c.eq.s` at 0x32c8d9c; `bc1f` at 0x32c8db8).
+  When `bc1f` at 0x32c8db8 falls through, the `bc1f` at 0x32c8dd8 is taken to 0x32c9110 when floating-point condition code 1 is false and falls through when it is true (`bc1f` at 0x32c8db8, 0x32c8dd8).
+  When `bc1f` at 0x32c8dd8 falls through, the `bc1f` at 0x32c8dec is taken to 0x32c8e28 when floating-point condition code 2 is false and falls through when it is true (`bc1f` at 0x32c8dd8, 0x32c8dec).
+  When `bc1f` at 0x32c8dec falls through, the `bc1f` at 0x32c8dfc is taken to 0x32c8e28 when floating-point condition code 3 is false and falls through when it is true (`bc1f` at 0x32c8dec, 0x32c8dfc).
+  On paths reaching 0x32c8e28, four floating-point word stores with unknown values use entry `a0` offsets +0x9a20 through +0x9a2c, including `swc1` at 0x32c8e38, 0x32c8e3c, 0x32c8e40.
+  On paths reaching 0x32c8e28, four floating-point word stores with unknown values use entry `a0` offsets +0x99f0, +0x99f4, +0x99f8 and +0x9a18, including `swc1` at 0x32c8e50, 0x32c8e5c, 0x32c8e68.
+  On paths reaching 0x32c8e28, the `ld` instructions at 0x32c8e78 and 0x32c8e7c read doublewords at entry `a0` +0x4e10 and +0x4e18.
+  The `beqz` at 0x32c8e84 is taken to 0x32c8fb8 when the doubleword at entry `a0` +0x4e10 is unsigned greater than or equal to the doubleword at +0x4e18, and falls through when it is less (`ld` at 0x32c8e78, 0x32c8e7c; `beqz` at 0x32c8e84).
+  The range 0x32c8e94 through 0x32c8e9c is not reached from the entry.
+  The `jalr` at 0x32c8eb0 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `bgtz` at 0x32c8fa8 is taken or `bnez` at 0x32c8efc repeats (`bgtz` at 0x32c8fa8; `bnez` at 0x32c8efc).
+  The `jalr` at 0x32c8ecc calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `bgtz` at 0x32c8fa8 is taken or `bnez` at 0x32c8efc repeats (`bgtz` at 0x32c8fa8; `bnez` at 0x32c8efc).
+  The `jalr` at 0x32c8ee8 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `bgtz` at 0x32c8fa8 is taken or `bnez` at 0x32c8efc repeats (`bgtz` at 0x32c8fa8; `bnez` at 0x32c8efc).
+  The `bnez` at 0x32c8efc is taken to 0x32c8ea0 when unknown `s3` is signed less than the word at entry `a0` +0xf68 and falls through when it is greater than or equal (`lw` at 0x32c8ef0; `bnez` at 0x32c8efc).
+  The `jalr` at 0x32c8f10 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `bgtz` at 0x32c8fa8 or `bnez` at 0x32c8efc falls through (`bgtz` at 0x32c8fa8; `bnez` at 0x32c8efc).
+  The `jalr` at 0x32c8f24 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `bgtz` at 0x32c8fa8 or `bnez` at 0x32c8efc falls through (`bgtz` at 0x32c8fa8; `bnez` at 0x32c8efc).
+  The `beqz` at 0x32c8f38 is taken to 0x32c8fb8 when unknown `s4` is unsigned greater than or equal to the doubleword at entry `a0` +0x4e18, and falls through when it is less (`ld` at 0x32c8f2c; `beqz` at 0x32c8f38).
+  The `beqz` at 0x32c8f4c is taken to 0x32c8f88 when unknown `s1` AND 0x1 is zero and falls through when nonzero (`andi` at 0x32c8f48; `beqz` at 0x32c8f4c).
+  When `beqz` at 0x32c8f4c falls through, the `beqz` at 0x32c8f58 is taken to 0x32c8f84 when the byte at entry `a0` +0xde4 is zero and falls through when nonzero (`beqz` at 0x32c8f4c; `lbu` at 0x32c8f54; `beqz` at 0x32c8f58).
+  The `jalr` at 0x32c8f68 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0`, `a1`, `a2`, and `a3` unknown, and `a5` equal to the byte at entry `a0` +0xde4 when `beqz` at 0x32c8f4c and 0x32c8f58 both fall through (`beqz` at 0x32c8f4c, 0x32c8f58).
+  The `jalr` at 0x32c8f7c calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `beqz` at 0x32c8f4c and 0x32c8f58 both fall through (`beqz` at 0x32c8f4c, 0x32c8f58).
+  The `beqz` at 0x32c8f88 is taken to 0x32c8f2c when unknown `a6` is zero and falls through when it is nonzero (`beqz` at 0x32c8f88).
+  The `jalr` at 0x32c8f98 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `beqz` at 0x32c8f88 falls through (`beqz` at 0x32c8f88).
+  On that path, `bgtz` at 0x32c8fa8 is taken to 0x32c8ea0 when the word at entry `a0` +0xf68 is signed greater than zero and falls through when it is at most zero (`beqz` at 0x32c8f88; `lw` at 0x32c8fa0; `bgtz` at 0x32c8fa8).
+  The `beqz` at 0x32c8fbc is taken to 0x32c8ff0 when the byte at entry `a0` +0xde4 is zero and falls through when nonzero (`lbu` at 0x32c8fb8; `beqz` at 0x32c8fbc).
+  The `jalr` at 0x32c8fd0 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0`, `a1` and `a2` equal to entry `a0` +0x230, and `a3` unknown when `beqz` at 0x32c8fbc falls through (`beqz` at 0x32c8fbc).
+  The `jalr` at 0x32c8fe4 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0`, `a1` and `a2` equal to entry `a0` +0x168, and `a3` unknown when `beqz` at 0x32c8fbc falls through (`beqz` at 0x32c8fbc).
+  The `jalr` at 0x32c8ff8 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0`, `a1` and `a2` equal to entry `a0` +0x674, and `a3` unknown.
+  The `blez` at 0x32c9004 is taken to 0x32c9088 when the word at entry `a0` +0xf68 is signed less than or equal to zero and falls through when it is greater than zero (`lw` at 0x32c9000; `blez` at 0x32c9004).
+  The `jalr` at 0x32c9030 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `blez` at 0x32c9004 falls through or `bnez` at 0x32c907c repeats (`blez` at 0x32c9004; `bnez` at 0x32c907c).
+  The `jalr` at 0x32c904c calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `blez` at 0x32c9004 falls through or `bnez` at 0x32c907c repeats (`blez` at 0x32c9004; `bnez` at 0x32c907c).
+  The `jalr` at 0x32c9068 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown when `blez` at 0x32c9004 falls through or `bnez` at 0x32c907c repeats (`blez` at 0x32c9004; `bnez` at 0x32c907c).
+  The `bnez` at 0x32c907c is taken to 0x32c9020 when unknown `s3` is signed less than the word at entry `a0` +0xf68 and falls through when it is greater than or equal (`lw` at 0x32c9070; `bnez` at 0x32c907c).
+  The `jalr` at 0x32c9090 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0`, `a1` and `a2` equal to entry `a0` +0x6c0, and `a3` unknown when `blez` at 0x32c9004 is taken or `bnez` at 0x32c907c falls through (`blez` at 0x32c9004; `bnez` at 0x32c907c).
+  The `jalr` at 0x32c90a4 calls `__glScaleColorf [0x32df430]` with `a0` equal to entry `a0`, `a1` and `a2` equal to entry `a0` +0x710, and `a3` unknown when `blez` at 0x32c9004 is taken or `bnez` at 0x32c907c falls through (`blez` at 0x32c9004; `bnez` at 0x32c907c).
+  On paths reaching 0x32c9088, four floating-point word stores use entry `a0` offsets +0x99f0, +0x99f4, +0x99f8 and +0x9a18, including `swc1` at 0x32c90ac, 0x32c90b0, 0x32c90b4.
+  On paths reaching 0x32c9088, four floating-point word stores use entry `a0` offsets +0xfd4, +0xfcc, +0xfd0 and +0xfc8, including `swc1` at 0x32c90bc, 0x32c90c4, 0x32c90c8.
+  The `jalr` at 0x32c90d0 calls `__glPixelSetColorScales [0x32907c0]` with `a0` equal to entry `a0` and `a1`, `a2`, and `a3` unknown on paths reaching 0x32c9088.
+  The `swc1` at 0x32c90d4 stores the word loaded from entry `a0` +0x99f0 at entry `a0` +0xfc8 in the delay slot of `jalr` at 0x32c90d0 (`lwc1` at 0x32c8d8c; `jalr` at 0x32c90d0; `swc1` at 0x32c90d4).
+  The `jr` at 0x32c9108 returns an unknown `v0`.
+- `__glNamesLockDataList` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32f0130
+  A doubleword is loaded at entry `a1` +0x10 (`ld` at 0x32f018c).
+  A doubleword is loaded at +0x8 of the preceding loaded doubleword (`ld` at 0x32f01a0).
+  The `beqz` at 0x32f01a4 is taken to 0x32f01e8 when the unknown compared value is unsigned greater than or equal to 0xa and falls through when it is unsigned less than 0xa (`sltiu` at 0x32f0190; `beqz` at 0x32f01a4).
+  On the fall-through path, an indirect jump uses a table at 0x33834d0 (`beqz` at 0x32f01a4; `jr` at 0x32f01b0).
+  The `bltz` at 0x32f0238 is taken to 0x32f01b8 when the tested value is signed negative and falls through when it is signed nonnegative (`bltz` at 0x32f0238).
+  The `bgezall` at 0x32f02a4 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f0238 falls through (`bltz` at 0x32f0238).
+  The `bgezall` at 0x32f04a4 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f0438 falls through (`bltz` at 0x32f0438).
+  The `bgezall` at 0x32f05a8 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f0304 falls through (`bltz` at 0x32f0304).
+  The `bgezall` at 0x32f067c calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f0328 falls through (`bltz` at 0x32f0328).
+  The `bgezall` at 0x32f0740 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f034c falls through (`bltz` at 0x32f034c).
+  The `bgezall` at 0x32f0810 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f0370 falls through (`bltz` at 0x32f0370).
+  The `bgezall` at 0x32f08d4 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f03a0 falls through (`bltz` at 0x32f03a0).
+  The `bgezall` at 0x32f0994 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f03c4 falls through (`bltz` at 0x32f03c4).
+  The `bgezall` at 0x32f0a54 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f03e8 falls through (`bltz` at 0x32f03e8).
+  The `bgezall` at 0x32f0b14 calls `findLeaf [0x32ee340]` with `a0` equal to entry `a1`, `a1` unknown, `a2` equal to 0x1 and `a3` unknown on paths where `bltz` at 0x32f040c falls through (`bltz` at 0x32f040c).
+  The `beqz` at 0x32f02ac is taken to 0x32f02e4 when the `findLeaf` return is zero and falls through when it is nonzero (`beqz` at 0x32f02ac).
+  When `beqz` at 0x32f02ac falls through, a doubleword is loaded at +0x10 of the `findLeaf` return (`beqz` at 0x32f02ac; `ld` at 0x32f02b4).
+  When `beqz` at 0x32f02ac falls through, `beqz` at 0x32f02c0 is taken to 0x32f02e4 if the loaded doubleword is zero and falls through if it is nonzero (`beqz` at 0x32f02ac; `beqz` at 0x32f02c0).
+  Ten word stores target +0x0 of the doubleword loaded at +0x8 from the doubleword loaded at entry `a1` +0x10; their values are the word read there plus 1, including `sw` at 0x32f02f0, 0x32f04f0, 0x32f05d4 (`lw` at 0x32f02e4, 0x32f04e4, 0x32f05c8; `addiu` at 0x32f02ec, 0x32f04ec, 0x32f05d0).
+  The ranges 0x32f0504–0x32f050c, 0x32f05ec, 0x32f0784–0x32f078c, 0x32f0854–0x32f085c, 0x32f0918–0x32f091c, 0x32f09d8–0x32f09dc and 0x32f0a98–0x32f0a9c are not reached from the entry.
+  The integer return at 0x32f01e0 is unknown on some paths and the `findLeaf` result on another; at 0x32f0218 it is unknown on some paths (`jr` at 0x32f01e0; `jr` at 0x32f0218).
+
+## 64-bit IP30 library: byte swapping and list errors
+
+- `__glSpanSwapBytes2` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32a8ea0
+  Two words are read at entry `a1` +0x28 and +0xc4 (`lw` at 0x32a8ea0, 0x32a8ea4).
+  The `blez` at 0x32a8eb8 is taken to 0x32a8ee0 when its unknown value is signed less than or equal to zero, and falls through when it is signed greater than zero.
+  When that `blez` falls through, 2 unsigned-byte loads use unknown bases, including `lbu` at 0x32a8ec0, `lbu` at 0x32a8ec8 (`blez` at 0x32a8eb8).
+  When that `blez` falls through, 2 byte stores use unknown bases, including `sb` at 0x32a8ed0, `sb` at 0x32a8edc (`blez` at 0x32a8eb8).
+  When the `blez` at 0x32a8eb8 falls through, the `bne` at 0x32a8ed8 is taken to 0x32a8ec0 when its two unknown values differ, and falls through when they are equal (`blez` at 0x32a8eb8).
+  The `jr` at 0x32a8ee0 returns the word read from entry `a1` +0x28 in `v0` (`lw` at 0x32a8ea0).
+- `__glSpanSwapBytes2Dst` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32a8ef0
+  Two words are read at entry `a1` +0x80 and +0xc4 (`lw` at 0x32a8ef0, 0x32a8ef4).
+  The `blez` at 0x32a8f08 is taken to 0x32a8f30 when its unknown value is signed less than or equal to zero, and falls through when it is signed greater than zero.
+  When that `blez` falls through, 2 unsigned-byte loads use unknown bases, including `lbu` at 0x32a8f10, `lbu` at 0x32a8f18 (`blez` at 0x32a8f08).
+  When that `blez` falls through, 2 byte stores use unknown bases, including `sb` at 0x32a8f20, `sb` at 0x32a8f2c (`blez` at 0x32a8f08).
+  When the `blez` at 0x32a8f08 falls through, the `bne` at 0x32a8f28 is taken to 0x32a8f10 when its two unknown values differ, and falls through when they are equal (`blez` at 0x32a8f08).
+  The `jr` at 0x32a8f30 returns the word read from entry `a1` +0x80 in `v0` (`lw` at 0x32a8ef0).
+- `__glSpanSwapBytes4` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32a8fc0
+  Two words are read at entry `a1` +0x28 and +0xc4 (`lw` at 0x32a8fc0, 0x32a8fc4).
+  The `blez` at 0x32a8fd8 is taken to 0x32a9010 when its unknown value is signed less than or equal to zero, and falls through when it is signed greater than zero.
+  When that `blez` falls through, 4 unsigned-byte loads use unknown bases, including `lbu` at 0x32a8fe0, `lbu` at 0x32a8fe4, `lbu` at 0x32a8fe8 (`blez` at 0x32a8fd8).
+  When that `blez` falls through, 4 byte stores use unknown bases, including `sb` at 0x32a8ff4, `sb` at 0x32a8ff8, `sb` at 0x32a9000 (`blez` at 0x32a8fd8).
+  When the `blez` at 0x32a8fd8 falls through, the `bne` at 0x32a9008 is taken to 0x32a8fe0 when its two unknown values differ, and falls through when they are equal (`blez` at 0x32a8fd8).
+  The `jr` at 0x32a9010 returns the word read from entry `a1` +0x28 in `v0` (`lw` at 0x32a8fc0).
+- `__glSpanSwapBytes4Dst` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32a9020
+  Two words are read at entry `a1` +0x80 and +0xc4 (`lw` at 0x32a9020, 0x32a9024).
+  The `blez` at 0x32a9038 is taken to 0x32a9070 when its unknown value is signed less than or equal to zero, and falls through when it is signed greater than zero.
+  When that `blez` falls through, 4 unsigned-byte loads use unknown bases, including `lbu` at 0x32a9040, `lbu` at 0x32a9044, `lbu` at 0x32a9048 (`blez` at 0x32a9038).
+  When that `blez` falls through, 4 byte stores use unknown bases, including `sb` at 0x32a9054, `sb` at 0x32a9058, `sb` at 0x32a9060 (`blez` at 0x32a9038).
+  When the `blez` at 0x32a9038 falls through, the `bne` at 0x32a9068 is taken to 0x32a9040 when its two unknown values differ, and falls through when they are equal (`blez` at 0x32a9038).
+  The `jr` at 0x32a9070 returns the word read from entry `a1` +0x80 in `v0` (`lw` at 0x32a9020).
+- `__gllc_InvalidValue` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328b920
+  The `bgezall` at 0x328b940 calls `__glDlistAllocOp2 [0x328b310]` with a0=entry a0, a1=0x0, a2=entry a2, and a3=entry a3.
+  The `bnez` at 0x328b948 is taken to 0x328b95c when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `bgezall` at 0x328b970 calls `__glDlistAppendOp [0x328b3a0]` with a0=entry a0, a1=the return from `__glDlistAllocOp2`, a2=0x328bbb0, and a3=unknown when `bnez` at 0x328b948 is taken (`bnez` at 0x328b948).
+  On the taken `bnez` path at 0x328b948, a halfword with value 0x3f2 is stored at +0x14 of the return from `__glDlistAllocOp2` in the call delay slot (`addiu` at 0x328b96c; `bgezall` at 0x328b970; `sh` at 0x328b974).
+  The `jr` at 0x328b954 returns an unknown value in `v0`; hostfacts reports the value from `__glDlistAllocOp2` on the fall-through path and from `__glDlistAppendOp` on the taken path (`bnez` at 0x328b948; `b` at 0x328b978).
+- `__gllc_InvalidEnum` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328b980
+  The `bgezall` at 0x328b9a0 calls `__glDlistAllocOp2 [0x328b310]` with a0=entry a0, a1=0x0, a2=entry a2, and a3=entry a3.
+  The `bnez` at 0x328b9a8 is taken to 0x328b9c0 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `bgezall` at 0x328b9d0 calls `__glDlistAppendOp [0x328b3a0]` with a0=entry a0, a1=the return from `__glDlistAllocOp2`, a2=0x328bc00, and a3=unknown when `bnez` at 0x328b9a8 is taken (`bnez` at 0x328b9a8).
+  On the taken `bnez` path at 0x328b9a8, a halfword with value 0x3f3 is stored at +0x14 of the return from `__glDlistAllocOp2` in the call delay slot (`addiu` at 0x328b9cc; `bgezall` at 0x328b9d0; `sh` at 0x328b9d4).
+  The `jr` at 0x328b9b8 returns an unknown value in `v0`; hostfacts reports the value from `__glDlistAllocOp2` on the fall-through path and from `__glDlistAppendOp` on the taken path (`bnez` at 0x328b9a8; `b` at 0x328b9d8).
+- `__gllc_InvalidOperation` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328b9e0
+  The `bgezall` at 0x328ba00 calls `__glDlistAllocOp2 [0x328b310]` with a0=entry a0, a1=0x0, a2=entry a2, and a3=entry a3.
+  The `bnez` at 0x328ba08 is taken to 0x328ba20 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `bgezall` at 0x328ba30 calls `__glDlistAppendOp [0x328b3a0]` with a0=entry a0, a1=the return from `__glDlistAllocOp2`, a2=0x328bc50, and a3=unknown when `bnez` at 0x328ba08 is taken (`bnez` at 0x328ba08).
+  On the taken `bnez` path at 0x328ba08, a halfword with value 0x3f4 is stored at +0x14 of the return from `__glDlistAllocOp2` in the call delay slot (`addiu` at 0x328ba2c; `bgezall` at 0x328ba30; `sh` at 0x328ba34).
+  The `jr` at 0x328ba18 returns an unknown value in `v0`; hostfacts reports the value from `__glDlistAllocOp2` on the fall-through path and from `__glDlistAppendOp` on the taken path (`bnez` at 0x328ba08; `b` at 0x328ba38).
+- `__gllc_TableTooLarge` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328ba40
+  The `bgezall` at 0x328ba60 calls `__glDlistAllocOp2 [0x328b310]` with a0=entry a0, a1=0x0, a2=entry a2, and a3=entry a3.
+  The `bnez` at 0x328ba68 is taken to 0x328ba7c when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `bgezall` at 0x328ba90 calls `__glDlistAppendOp [0x328b3a0]` with a0=entry a0, a1=the return from `__glDlistAllocOp2`, a2=0x328bca0, and a3=unknown when `bnez` at 0x328ba68 is taken (`bnez` at 0x328ba68).
+  On the taken `bnez` path at 0x328ba68, a halfword with value 0x3f7 is stored at +0x14 of the return from `__glDlistAllocOp2` in the call delay slot (`addiu` at 0x328ba8c; `bgezall` at 0x328ba90; `sh` at 0x328ba94).
+  The `jr` at 0x328ba74 returns an unknown value in `v0`; hostfacts reports the value from `__glDlistAllocOp2` on the fall-through path and from `__glDlistAppendOp` on the taken path (`bnez` at 0x328ba68; `b` at 0x328ba98).
+- `__gllc_UnimplementedExtension` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328baa0
+  A doubleword is read from absolute 0x1020 (`ld` at 0x328bab8).
+  The `bgezall` at 0x328bac4 calls `__glDlistAllocOp2 [0x328b310]` with a0=the doubleword at 0x1020, a1=0x0, a2=entry a2, and a3=entry a3.
+  The `bnez` at 0x328bacc is taken to 0x328bae0 when the return from `__glDlistAllocOp2` is nonzero and falls through when it is zero.
+  The `bgezall` at 0x328baf4 calls `__glDlistAppendOp [0x328b3a0]` with a0=unknown, a1=the return from `__glDlistAllocOp2`, a2=0x328bcf0, and a3=unknown when `bnez` at 0x328bacc is taken (`bnez` at 0x328bacc).
+  When `bnez` at 0x328bacc is taken, the call delay slot stores the halfword 0x3f5 at +0x14 of the allocation return (`addiu` at 0x328baf0; `bgezall` at 0x328baf4; `sh` at 0x328baf8).
+  The `jr` at 0x328bad8 returns an unknown value in `v0`; hostfacts reports the allocation return on the fall-through path and the append return on the taken path (`bnez` at 0x328bacc; `b` at 0x328bafc).
+- `__gllc_Error` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bb10
+  The `beq` at 0x328bb28 is taken to 0x328bb70 when entry a1 equals 0x501 and falls through when it differs (`addiu` at 0x328bb14; `beq` at 0x328bb28).
+  If `beq` at 0x328bb28 falls through, `beq` at 0x328bb34 is taken to 0x328bb84 when entry a1 equals 0x500 and falls through otherwise (`addiu` at 0x328bb30; `beq` at 0x328bb28, 0x328bb34).
+  If the first two comparisons fall through, `beq` at 0x328bb40 is taken to 0x328bb94 when entry a1 equals 0x502 and falls through otherwise (`beq` at 0x328bb28, 0x328bb34, 0x328bb40; `addiu` at 0x328bb3c).
+  If the first three comparisons fall through, `beq` at 0x328bb48 is taken to 0x328bb60 when entry a1 equals 0x8031 and falls through otherwise (`beq` at 0x328bb28, 0x328bb34, 0x328bb40, 0x328bb48; `dli` at 0x328bb44).
+  The `bgezall` at 0x328bb60 calls `__gllc_TableTooLarge [0x328ba40]` with a0=entry a0, a1=entry a1, a2=0x502, and a3=0x8031 when the first three `beq` instructions fall through and `beq` at 0x328bb48 is taken (`beq` at 0x328bb28, 0x328bb34, 0x328bb40, 0x328bb48).
+  The `bgezall` at 0x328bb74 calls `__gllc_InvalidValue [0x328b920]` with a0=entry a0, a1=entry a1, a2=entry a2, and a3=entry a3 when `beq` at 0x328bb28 is taken (`beq` at 0x328bb28).
+  The `bgezall` at 0x328bb84 calls `__gllc_InvalidEnum [0x328b980]` with a0=entry a0, a1=entry a1, a2=entry a2, and a3=entry a3 when `beq` at 0x328bb28 falls through and `beq` at 0x328bb34 is taken (`beq` at 0x328bb28, 0x328bb34).
+  The `bgezall` at 0x328bb98 calls `__gllc_InvalidOperation [0x328b9e0]` with a0=entry a0, a1=entry a1, a2=0x502, and a3=0x8031 when the first two `beq` instructions fall through and `beq` at 0x328bb40 is taken (`beq` at 0x328bb28, 0x328bb34, 0x328bb40).
+  The `jr` at 0x328bb58 returns an unknown value in `v0`; hostfacts reports 0x10b3a8 on the path without a call and the corresponding call return on each call path (`lui` at 0x328bb18; `addiu` at 0x328bb20).
+- `__glle_InvalidValue` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bbb0
+  The `jalr` at 0x328bbd4 calls `__glSetError [0x32ca070]` with a0=0x501, a1=entry a1, a2=entry a2, and a3=entry a3.
+  The call delay slot sets a0 to 0x501 (`jalr` at 0x328bbd4; `addiu` at 0x328bbd8).
+  The `jr` at 0x328bbec returns entry a0 in `v0` (`move` at 0x328bbe4).
+- `__glle_InvalidEnum` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bc00
+  The `jalr` at 0x328bc24 calls `__glSetError [0x32ca070]` with a0=0x500, a1=entry a1, a2=entry a2, and a3=entry a3.
+  The call delay slot sets a0 to 0x500 (`jalr` at 0x328bc24; `addiu` at 0x328bc28).
+  The `jr` at 0x328bc3c returns entry a0 in `v0` (`move` at 0x328bc34).
+- `__glle_InvalidOperation` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bc50
+  The `jalr` at 0x328bc74 calls `__glSetError [0x32ca070]` with a0=0x502, a1=entry a1, a2=entry a2, and a3=entry a3.
+  The call delay slot sets a0 to 0x502 (`jalr` at 0x328bc74; `addiu` at 0x328bc78).
+  The `jr` at 0x328bc8c returns entry a0 in `v0` (`move` at 0x328bc84).
+- `__glle_TableTooLarge` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bca0
+  The `jalr` at 0x328bcc4 calls `__glSetError [0x32ca070]` with a0=0x8031, a1=entry a1, a2=entry a2, and a3=entry a3.
+  The call delay slot sets a0 to 0x8031 (`jalr` at 0x328bcc4; `dli` at 0x328bcc8).
+  The `jr` at 0x328bcdc returns entry a0 in `v0` (`move` at 0x328bcd4).
+- `__glle_UnimplementedExtension` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bcf0
+  The `jalr` at 0x328bd14 calls `__glSetError [0x32ca070]` with `a0` = 0x502, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3` (`addiu` at 0x328bd18).
+  The `jr` at 0x328bd2c returns entry `a0` in `v0` (`move` at 0x328bd0c, 0x328bd24).
+
+## 64-bit IP30 library: flush and map construction
+
+- `__glim_Flush` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32d3a90
+  The `lw` at 0x32d3a94 reads a word at absolute 0x1030.
+  The `ld` at 0x32d3a98 reads a doubleword at absolute 0x1020.
+  The `beq` at 0x32d3ab0 is taken to 0x32d3ad4 when the word at 0x1030 equals 1 and falls through when it differs (`lw` at 0x32d3a94; `addiu` at 0x32d3a9c).
+  When `beq` at 0x32d3ab0 falls through, the `ld` at 0x32d3ab8 reads the doubleword at +0x4728 of the doubleword loaded from 0x1020 (`beq` at 0x32d3ab0; `ld` at 0x32d3a98).
+  The `jalr` at 0x32d3abc calls (unknown callee) with a0 equal to the doubleword at 0x1020 and a1, a2 and a3 equal to their entry values when `beq` at 0x32d3ab0 falls through (`beq` at 0x32d3ab0).
+  The `jalr` at 0x32d3ad8 calls `__glSetError [0x32ca070]` with a0 equal to 0x502 and a1, a2 and a3 equal to their entry values when `beq` at 0x32d3ab0 is taken (`beq` at 0x32d3ab0; `addiu` at 0x32d3adc).
+  The `jr` at 0x32d3acc returns an unknown value in `v0`.
+- `Flush` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x33396a0
+  The `jr` at 0x33396a0 returns with an unknown value in `v0`.
+- `__glce_Flush` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x335d6b0
+  The `ld` at 0x335d6b8 reads a doubleword at absolute 0x1308.
+  The `ld` at 0x335d6c0 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x335d6d8 reads a doubleword at +0x3ad0 of the value loaded from 0x1020 (`ld` at 0x335d6c0).
+  The `jalr` at 0x335d6dc calls `glFlush` with a0, a1, a2 and a3 equal to their entry values.
+  Two doubleword stores write absolute 0x1308: the first stores the value loaded at +0x3ad0 in the call delay slot, and the second stores the original value read from 0x1308 (`ld` at 0x335d6b8, 0x335d6d8; `jalr` at 0x335d6dc; `sd` at 0x335d6e0, 0x335d6ec).
+  The `jr` at 0x335d6f4 returns the result of `glFlush` in `v0`.
+- `__glce_FlushRasterSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3362bf0
+  The `ld` at 0x3362bf8 reads a doubleword at absolute 0x18c8.
+  The `ld` at 0x3362c00 reads a doubleword at absolute 0x1020.
+  The `ld` at 0x3362c18 reads a doubleword at +0x4090 of the value loaded from 0x1020 (`ld` at 0x3362c00).
+  The `jalr` at 0x3362c1c calls `glFlushRasterSGIX` with a0, a1, a2 and a3 equal to their entry values.
+  Two doubleword stores write absolute 0x18c8: the first stores the value loaded at +0x4090 in the call delay slot, and the second stores the original value read from 0x18c8 (`ld` at 0x3362bf8, 0x3362c18; `jalr` at 0x3362c1c; `sd` at 0x3362c20, 0x3362c2c).
+  The `jr` at 0x3362c34 returns the result of `glFlushRasterSGIX` in `v0`.
+- `glFlush` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3368794
+  The `ld` at 0x3368794 reads a doubleword at absolute 0x1308.
+  The `jr` at 0x3368798 calls (unknown callee) with a0, a1, a2 and a3 equal to their entry values.
+- `glFlushRasterSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x3369034
+  The `ld` at 0x3369034 reads a doubleword at absolute 0x18c8.
+  The `jr` at 0x3369038 calls (unknown callee) with a0, a1, a2 and a3 equal to their entry values.
+- `__glsplc_PolygonStipple` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328cff0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x328cff4).
+  The `jalr` at 0x328d024 calls `__glImageSize [0x32de0f0]` with `a0` = 0x20, `a1` = 0x20, `a2` = 0x1900, and `a3` = 0x1a00 (`addiu` at 0x328d00c, 0x328d014, 0x328d018, 0x328d020).
+  The `jalr` at 0x328d034 calls `__glSPDlalloc [0x32087b0]` with `a0` = the return from `__glImageSize`, `a1` = 0x65, `a2` unknown, and `a3` unknown (`addiu` at 0x328d038).
+  The `bnez` at 0x328d03c is taken to 0x328d054 when `__glSPDlalloc` returns nonzero and falls through when it returns zero (`jalr` at 0x328d034; `bnez` at 0x328d03c).
+  The `jalr` at 0x328d06c calls `__glFillImage [0x32def20]` with `a0` unknown, `a1` = 0x20, `a2` = 0x20, `a3` = 0x1900, `a4` = 0x1a00, `a5` = entry `a0`, and `a6` = the return from `__glSPDlalloc`, on the `bnez` taken path (`bnez` at 0x328d03c; `addiu` at 0x328d058, 0x328d060, 0x328d064, 0x328d070).
+  The `jr` at 0x328d04c returns an unknown `v0` (`jr` at 0x328d04c).
+- `__glsplc_DeformationMap3fSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328d620
+  The `jalr` at 0x328d684 calls `__glCheckMap3Params [0x32cc3a0]` with `a0` = entry `a0`, `a1` unknown, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beq` at 0x328d690 is taken to 0x328d77c when the return from `__glCheckMap3Params` equals 0x501, and falls through otherwise (`addiu` at 0x328d68c; `beq` at 0x328d690).
+  After that `beq` falls through, the `beq` at 0x328d698 is taken to 0x328d768 when the return from `__glCheckMap3Params` equals 0x500, and falls through otherwise (`beq` at 0x328d690; `addiu` at 0x328d694; `beq` at 0x328d698).
+  The `jalr` at 0x328d6d4 calls `__glSPDlalloc [0x32087b0]` with `a0` unknown, `a1` = 0xf8, `a2` unknown, and `a3` unknown, after both `beq` branches fall through (`beq` at 0x328d690, 0x328d698).
+  After both `beq` branches fall through, the `bnez` at 0x328d6dc is taken to 0x328d6f4 when the return from `__glSPDlalloc` is nonzero, and falls through when it is zero (`beq` at 0x328d690, 0x328d698; `bnez` at 0x328d6dc).
+  After both `beq` instructions fall through and `bnez` is taken, four word stores use the return from `__glSPDlalloc` as base, including `sw` at 0x328d714, 0x328d734, 0x328d740 (`beq` at 0x328d690, 0x328d698; `bnez` at 0x328d6dc).
+  After both `beq` instructions fall through and `bnez` is taken, six floating-point word stores use the return from `__glSPDlalloc` as base, including `swc1` at 0x328d720, 0x328d72c, 0x328d738 (`beq` at 0x328d690, 0x328d698; `bnez` at 0x328d6dc).
+  The `jalr` at 0x328d758 calls `__glFillDeformationMap3f [0x32cc1a0]` with `a0` = entry `a4`, `a1` = entry `a3`, `a2` unknown, `a3` = entry `a7`, `a4` unknown, `a5` unknown, `a6` unknown, and `a7` = the return from `__glSPDlalloc` plus 0x28, on that taken `bnez` path (`beq` at 0x328d690, 0x328d698; `bnez` at 0x328d6dc).
+  The `bgezall` at 0x328d76c calls `__glsplc_InvalidEnum [0x328cc50]` with `a0` unknown, `a1` unknown, `a2` = 0x501, and `a3` = 0x500 when the first `beq` falls through and the second `beq` is taken (`beq` at 0x328d690, 0x328d698).
+  The `bgezall` at 0x328d780 calls `__glsplc_InvalidValue [0x328cc10]` with `a0` unknown, `a1` unknown, `a2` = 0x501, and `a3` = 0x500 when the first `beq` is taken (`beq` at 0x328d690).
+  The `jr` at 0x328d6ec returns an unknown `v0` (`jr` at 0x328d6ec).
+- `__glsplc_DeformationMap3dSGIX` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328d790
+  The `jalr` at 0x328d814 calls `__glCheckMap3Params [0x32cc3a0]` with `a0` = entry `a0`, `a1` unknown, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `beq` at 0x328d820 is taken to 0x328d90c when the return from `__glCheckMap3Params` equals 0x501, and falls through otherwise (`addiu` at 0x328d81c; `beq` at 0x328d820).
+  After that `beq` falls through, the `beq` at 0x328d828 is taken to 0x328d8f8 when the return from `__glCheckMap3Params` equals 0x500, and falls through otherwise (`beq` at 0x328d820; `addiu` at 0x328d824; `beq` at 0x328d828).
+  The `jalr` at 0x328d864 calls `__glSPDlalloc [0x32087b0]` with `a0` unknown, `a1` = 0xf7, `a2` unknown, and `a3` unknown, after both `beq` branches fall through (`beq` at 0x328d820, 0x328d828).
+  After both `beq` branches fall through, the `bnez` at 0x328d86c is taken to 0x328d884 when the return from `__glSPDlalloc` is nonzero, and falls through when it is zero (`beq` at 0x328d820, 0x328d828; `bnez` at 0x328d86c).
+  After both `beq` instructions fall through and `bnez` is taken, four word stores use the return from `__glSPDlalloc` as base, including `sw` at 0x328d8a8, 0x328d8c0, 0x328d8d0 (`beq` at 0x328d820, 0x328d828; `bnez` at 0x328d86c).
+  After both `beq` instructions fall through and `bnez` is taken, six floating-point word stores use the return from `__glSPDlalloc` as base, including `swc1` at 0x328d8b4, 0x328d8b8, 0x328d8c4 (`beq` at 0x328d820, 0x328d828; `bnez` at 0x328d86c).
+  The `jalr` at 0x328d8e8 calls `__glFillDeformationMap3d [0x32cc230]` with `a0` = entry `a4`, `a1` = entry `a3`, `a2` unknown, `a3` = entry `a7`, `a4` unknown, `a5` unknown, `a6` unknown, and `a7` = the return from `__glSPDlalloc` plus 0x28, on that taken `bnez` path (`beq` at 0x328d820, 0x328d828; `bnez` at 0x328d86c).
+  The `bgezall` at 0x328d8fc calls `__glsplc_InvalidEnum [0x328cc50]` with `a0` unknown, `a1` unknown, `a2` = 0x501, and `a3` = 0x500 when the first `beq` falls through and the second `beq` is taken (`beq` at 0x328d820, 0x328d828).
+  The `bgezall` at 0x328d910 calls `__glsplc_InvalidValue [0x328cc10]` with `a0` unknown, `a1` unknown, `a2` = 0x501, and `a3` = 0x500 when the first `beq` is taken (`beq` at 0x328d820).
+  The `jr` at 0x328d87c returns an unknown `v0` (`jr` at 0x328d87c).
+- `ApplyMatChange` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328bd40
+  The `bnez` at 0x328bd50 is taken to 0x328bda8 when entry `a2` is unsigned less than 0x1600, and falls through when `a2` is unsigned greater than or equal to 0x1600 (`sltiu` at 0x328bd44; `bnez` at 0x328bd50).
+  When `bnez` at 0x328bd50 falls through, `bnez` at 0x328bd60 is taken to 0x328be24 when entry `a2` is unsigned less than 0x1601, and falls through when `a2` is unsigned greater than or equal to 0x1601 (`bnez` at 0x328bd50; `sltiu` at 0x328bd5c; `bnez` at 0x328bd60).
+  When `bnez` at 0x328bd50 falls through and `bnez` at 0x328bd60 is taken, four floating-point word reads use entry `a3` offsets +0, +4, +8 and +0xc, including `lwc1` at 0x328be24, 0x328be2c, 0x328be34 (`bnez` at 0x328bd50, 0x328bd60).
+  On that path, four floating-point word stores copy those values to entry `a1` offsets +0x38, +0x3c, +0x40 and +0x44, including `swc1` at 0x328be28, 0x328be30, 0x328be3c (`bnez` at 0x328bd50, 0x328bd60).
+  On that path, a word at entry `a1` +4 is ORed with 0x8 and written back (`bnez` at 0x328bd50, 0x328bd60; `lw` at 0x328be38; `ori` at 0x328be44; `sw` at 0x328be48).
+  At the eight returns, `v0` is the word at entry `a1` +4 OR 0x3 at 0x328bebc and unknown at the other seven (`lw` at 0x328be98; `ori` at 0x328bea4; `jr` at 0x328bda0, 0x328bdec, 0x328bdfc, 0x328be1c, 0x328be4c, 0x328be7c, 0x328bebc, 0x328beec).
+- `__glsplc_Bitmap` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328ced0
+  The `ld` at 0x328ced0 reads a doubleword at absolute 0x1020.
+  The `bltz` at 0x328cf0c is taken to 0x328cfd8 when entry `a0` is signed negative and falls through otherwise (`bltz` at 0x328cf0c).
+  When the first `bltz` falls through, the `bltz` at 0x328cf28 is taken to 0x328cfd8 when entry `a1` is signed negative and falls through otherwise (`bltz` at 0x328cf0c, 0x328cf28).
+  The `jalr` at 0x328cf58 calls `__glSPDlalloc [0x32087b0]` with `a0` unknown, `a1` = 4, `a2` = -0x8, and `a3` = entry `a3`, after both `bltz` instructions fall through (`bltz` at 0x328cf0c, 0x328cf28; `addiu` at 0x328cf44, 0x328cf4c).
+  After both `bltz` instructions fall through, `bnez` at 0x328cf60 is taken to 0x328cf7c when `__glSPDlalloc` returns nonzero and falls through when the return is zero (`bltz` at 0x328cf0c, 0x328cf28; `bnez` at 0x328cf60).
+  When both `bltz` branches fall through and `bnez` is taken, three word stores use the `__glSPDlalloc` return as base at offsets +4, +0 and +0x18, including `sw` at 0x328cf80, 0x328cf88, 0x328cf90; the values are entry `a1`, entry `a0` and unknown, respectively (`bltz` at 0x328cf0c, 0x328cf28; `bnez` at 0x328cf60).
+  When both `bltz` branches fall through and `bnez` is taken, four floating-point word stores use the `__glSPDlalloc` return as base at offsets +0x14, +0x10, +0xc and +8, including `swc1` at 0x328cfa4, 0x328cfb4, 0x328cfc0; the first three values are entry `f17`, `f16` and `f15` (`bltz` at 0x328cf0c, 0x328cf28; `bnez` at 0x328cf60).
+  The `jalr` at 0x328cfc8 calls `__glFillImage [0x32def20]` with `a0` unknown, `a1` = entry `a0`, `a2` = entry `a1`, `a3` = 0x1900, `a4` = 0x1a00, `a5` = entry `a6`, and `a6` = the return from `__glSPDlalloc` plus 0x20, when both `bltz` instructions fall through and `bnez` at 0x328cf60 is taken (`bltz` at 0x328cf0c, 0x328cf28; `bnez` at 0x328cf60; `addiu` at 0x328cfb0, 0x328cfb8; `daddiu` at 0x328cfac).
+  The `bgezall` at 0x328cfdc calls `__glsplc_InvalidValue [0x328cc10]` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a6`, and `a3` = entry `a3` when the first `bltz` is taken or when it falls through and the second `bltz` is taken (`bltz` at 0x328cf0c, 0x328cf28).
+  The `jr` at 0x328cf74 returns an unknown `v0` overall; hostfacts reports the return from `__glSPDlalloc` after `bnez` falls through, the return from `__glFillImage` on the path from `b` at 0x328cfd0, and the return from `__glsplc_InvalidValue` on the path from `b` at 0x328cfe4 (`bnez` at 0x328cf60; `b` at 0x328cfd0, 0x328cfe4; `jr` at 0x328cf74).
+- `__glSoftResetContext` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x32c9120
+  The `ld` at 0x32c9144 reads a doubleword at sym(__rld_obj_head) +0x0.
+  The `lw` at 0x32c914c reads a word at [sym(__rld_obj_head)]:8 +0x0.
+  The `beq` at 0x32c9160 takes 0x32c9ad8 when s2(=-0x1) equals at(=[[sym(__rld_obj_head)]:8]) and falls through when they differ.
+  The `sd` at 0x32c9244 stores 0x3397d10 at a0 (arg0 at entry) +0xf50.
+  The `sd` at 0x32c924c stores 0x3397d08 at a0 (arg0 at entry) +0xf48.
+  The `sw` at 0x32c93b4 stores 0x2 at absolute 0x1030.
+  The `jalr` at 0x32c9224 calls `syssgi` with a0=0x8c, a1=unknown, a2=unknown, a3=one of 0x0, 0x1, a5=0x2f on paths where the `beq` at 0x32c9160 falls through.
+  The `jalr` at 0x32c96fc calls `pow` with a0=0x901, a1=unknown, a2=unknown, a3=[a0+3556]:1, a4=0x408, a5=0x3389130, a6=0x1602, a7=0x1d01; fp f12=0x4000000000000000, f14=bits32(0x0).
+  The `jalr` at 0x32c9724 calls `getenv` with a0=0x337ca38, a1=unknown, a2=unknown, a3=unknown; fp f16=0x408f400000000000.
+  The `jalr` at 0x32c9730 calls `atoi` with a0=ret(getenv), a1=unknown, a2=unknown, a3=unknown.
+  The `bgezall` at 0x32c989c calls `__glInitColorTables [0x32c8710]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown, a4=0x1, a5=0x207, a6=0x1e00, a7=0x201.
+  The `bgezall` at 0x32c98a8 calls `__glInitEvaluatorState [0x32ce2d0]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c98b4 calls `__glInitTextureState [0x33145d0]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c98c0 calls `__glInitTransformState [0x33360f0]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c98cc calls `__glInitPixelState [0x3290cc0]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c98d8 calls `__glInitLUTCache [0x3304990]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c98e4 calls `__glInitVertexArrayState [0x3333660]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c98f0 calls `__glInitAsyncState [0x32b7d50]` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown.
+  The `jalr` at 0x32c9aec calls `_rld_new_interface` with a0=0x5, a1=0x337c858, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[sym(__rld_obj_head)]:8, a7=0xcdd98 on paths where the `beq` at 0x32c9160 is taken.
+  The `jalr` at 0x32c9c78 calls `syssgi` with a0=0x8c, a1=unknown, a2=unknown, a3=unknown on paths where the `beq` at 0x32c9c44 falls through.
+  The instructions from 0x32c9914 to 0x32c991c are not reached by any path from the entry, and their branches are not listed.
+  The instructions from 0x32c9ccc to 0x32c9cd0 are not reached by any path from the entry, and their branches are not listed.
+  The `jr` at 0x32c990c returns v0=ret(__glInitAsyncState).
+- `__glsplc_Map1f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328d080
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x328d080).
+  The `jalr` at 0x328d0c4 calls `__glEvalComputeK [0x32ce260]` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `bltz` at 0x328d0d0 is taken to 0x328d198 when the `__glEvalComputeK` return is signed negative and falls through when it is nonnegative (`bltz` at 0x328d0d0).
+  When `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 is taken to 0x328d170 when an unknown word is signed less than entry `a4` and falls through when it is greater than or equal to entry `a4` (`bltz` at 0x328d0d0; `lw` at 0x328d0dc; `slt` at 0x328d0e0; `bnez` at 0x328d0e4).
+  When `bltz` at 0x328d0d0 and `bnez` at 0x328d0e4 fall through, `bnez` at 0x328d0ec is taken to 0x328d174 when the unknown tested value is nonzero and falls through when it is zero (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec).
+  When `bltz` at 0x328d0d0 and both preceding `bnez` branches fall through, `blez` at 0x328d0f4 is taken to 0x328d170 when entry `a4` is signed less than or equal to zero and falls through when it is positive (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4).
+  When `bltz`, both `bnez` branches and `blez` fall through, `bc1t` at 0x328d100 is taken to 0x328d170 when entry `f13` equals entry `f14` and falls through otherwise (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `c.eq.s` at 0x328d0fc; `bc1t` at 0x328d100).
+  The `jalr` at 0x328d10c calls `__glMap1_size [0x32cf3f0]` with `a0` = the `__glEvalComputeK` return, `a1` = entry `a4`, and `a2` and `a3` unknown when `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, `blez` at 0x328d0f4 falls through, and `bc1t` at 0x328d100 falls through (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `bc1t` at 0x328d100).
+  The `jalr` at 0x328d120 calls `__glSPDlalloc [0x32087b0]` with `a0` = the `__glMap1_size` return shifted left 2 plus 0x10, `a1` = 0x8e, and `a2` and `a3` unknown when `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, `blez` at 0x328d0f4 falls through, and `bc1t` at 0x328d100 falls through (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `bc1t` at 0x328d100; `addiu` at 0x328d118, 0x328d124; `sll` at 0x328d11c).
+  When `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, `blez` at 0x328d0f4 falls through, and `bc1t` at 0x328d100 falls through, `beqz` at 0x328d128 is taken to 0x328d17c when the `__glSPDlalloc` return is zero and falls through when it is nonzero (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `bc1t` at 0x328d100; `beqz` at 0x328d128).
+  When `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, `blez` at 0x328d0f4 falls through, and `bc1t` at 0x328d100 falls through and `beqz` at 0x328d128 falls through, two word stores write entry `a4` and entry `a0` at offsets +0xc and +0 of the `__glSPDlalloc` return, including `sw` at 0x328d130, 0x328d13c (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `bc1t` at 0x328d100; `beqz` at 0x328d128).
+  When `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, `blez` at 0x328d0f4 falls through, and `bc1t` at 0x328d100 falls through and `beqz` at 0x328d128 falls through, two floating-point word stores with entry `f14` and `f13` values use the `__glSPDlalloc` return as base at +8 and +4, including `swc1` at 0x328d158, 0x328d164; the latter executes in the call delay slot (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `bc1t` at 0x328d100; `beqz` at 0x328d128; `jalr` at 0x328d160).
+  The `jalr` at 0x328d160 calls `__glFillMap1f [0x32cf220]` with `a0` = the `__glEvalComputeK` return, `a1` = entry `a4`, `a2` = entry `a3`, `a3` = entry `a5`, `a4` = the `__glSPDlalloc` return plus 0x10, `a5` = entry `a0` when `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, `blez` at 0x328d0f4 falls through, and `bc1t` at 0x328d100 falls through and `beqz` at 0x328d128 falls through (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4; `bc1t` at 0x328d100; `beqz` at 0x328d128).
+  The `bgezall` at 0x328d174 calls `__glsplc_InvalidValue [0x328cc10]` with `a0`, `a1`, `a2` and `a3` unknown on paths including one where `bltz` at 0x328d0d0 falls through, `bnez` at 0x328d0e4 and 0x328d0ec fall through, and `blez` at 0x328d0f4 is taken (`bltz` at 0x328d0d0; `bnez` at 0x328d0e4, 0x328d0ec; `blez` at 0x328d0f4).
+  The `bgezall` at 0x328d19c calls `__glsplc_InvalidEnum [0x328cc50]` with `a0`, `a1`, `a2` and `a3` unknown when `bltz` at 0x328d0d0 is taken (`bltz` at 0x328d0d0).
+  At the `jr` at 0x328d190, `v0` is unknown overall, the `__glFillMap1f` return on the path from `b` at 0x328d168, and the `__glsplc_InvalidEnum` return on the path from `b` at 0x328d1a4 (`b` at 0x328d168, 0x328d1a4; `jr` at 0x328d190).
+- `__glsplc_Map1d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328d1b0
+  A doubleword is loaded from absolute 0x1020 (`ld` at 0x328d1b0).
+  The `jalr` at 0x328d1f4 calls `__glEvalComputeK [0x32ce260]` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `bltz` at 0x328d200 is taken to 0x328d2dc when the `__glEvalComputeK` return is signed negative and falls through when it is nonnegative (`bltz` at 0x328d200).
+  When `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 is taken to 0x328d2b8 when an unknown word is signed less than entry `a4` and falls through when it is greater than or equal to entry `a4` (`bltz` at 0x328d200; `lw` at 0x328d20c; `slt` at 0x328d210; `bnez` at 0x328d214).
+  When `bltz` at 0x328d200 and `bnez` at 0x328d214 fall through, `bnez` at 0x328d220 is taken to 0x328d2b8 when entry `a3` is signed less than the `__glEvalComputeK` return and falls through when entry `a3` is signed greater than or equal to that return (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220).
+  When `bltz` at 0x328d200 and both preceding `bnez` branches fall through, `blez` at 0x328d228 is taken to 0x328d2b8 when entry `a4` is signed less than or equal to zero and falls through when it is positive (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228).
+  When `bltz`, both `bnez` branches and `blez` fall through, `bc1t` at 0x328d238 is taken to 0x328d2b8 when entry `f13` equals entry `f14` and falls through otherwise (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `c.eq.d` at 0x328d234; `bc1t` at 0x328d238).
+  The `jalr` at 0x328d248 calls `__glMap1_size [0x32cf3f0]` with `a0` = the `__glEvalComputeK` return, `a1` = entry `a4`, and `a2` and `a3` unknown when `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, `blez` at 0x328d228 falls through, and `bc1t` at 0x328d238 falls through (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `bc1t` at 0x328d238).
+  The `jalr` at 0x328d25c calls `__glSPDlalloc [0x32087b0]` with `a0` = the `__glMap1_size` return shifted left 2 plus 0x10, `a1` = 0x8d, and `a2` and `a3` unknown when `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, `blez` at 0x328d228 falls through, and `bc1t` at 0x328d238 falls through (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `bc1t` at 0x328d238; `addiu` at 0x328d254, 0x328d260; `sll` at 0x328d258).
+  When `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, `blez` at 0x328d228 falls through, and `bc1t` at 0x328d238 falls through, `beqz` at 0x328d264 is taken to 0x328d2c0 when the `__glSPDlalloc` return is zero and falls through when it is nonzero (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `bc1t` at 0x328d238; `beqz` at 0x328d264).
+  When `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, `blez` at 0x328d228 falls through, and `bc1t` at 0x328d238 falls through and `beqz` at 0x328d264 falls through, two word stores write entry `a4` and entry `a0` at offsets +0xc and +0 of the `__glSPDlalloc` return, including `sw` at 0x328d26c, 0x328d288 (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `bc1t` at 0x328d238; `beqz` at 0x328d264).
+  When `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, `blez` at 0x328d228 falls through, and `bc1t` at 0x328d238 falls through and `beqz` at 0x328d264 falls through, two floating-point word stores with unknown values use the `__glSPDlalloc` return as base at +8 and +4, including `swc1` at 0x328d29c, 0x328d2a8; the latter executes in the call delay slot (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `bc1t` at 0x328d238; `beqz` at 0x328d264; `jalr` at 0x328d2a4).
+  The `jalr` at 0x328d2a4 calls `__glFillMap1d [0x32cf320]` with `a0` = the `__glEvalComputeK` return, `a1` = entry `a4`, `a2` = entry `a3`, `a3` = entry `a5`, `a4` = the `__glSPDlalloc` return plus 0x10 when `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, `blez` at 0x328d228 falls through, and `bc1t` at 0x328d238 falls through and `beqz` at 0x328d264 falls through (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228; `bc1t` at 0x328d238; `beqz` at 0x328d264).
+  The `bgezall` at 0x328d2b8 calls `__glsplc_InvalidValue [0x328cc10]` with `a0`, `a1`, `a2` and `a3` unknown on paths including one where `bltz` at 0x328d200 falls through, `bnez` at 0x328d214 and 0x328d220 fall through, and `blez` at 0x328d228 is taken (`bltz` at 0x328d200; `bnez` at 0x328d214, 0x328d220; `blez` at 0x328d228).
+  The `bgezall` at 0x328d2e0 calls `__glsplc_InvalidEnum [0x328cc50]` with `a0`, `a1`, `a2` and `a3` unknown when `bltz` at 0x328d200 is taken (`bltz` at 0x328d200).
+  At the `jr` at 0x328d2d4, `v0` is unknown overall, the `__glFillMap1d` return on the path from `b` at 0x328d2ac, and the `__glsplc_InvalidEnum` return on the path from `b` at 0x328d2e8 (`b` at 0x328d2ac, 0x328d2e8; `jr` at 0x328d2d4).
+  Address 0x328d2b4 is not reached by any path from the entry.
+- `__glsplc_Map2f` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328d2f0
+  The `ld` at 0x328d2f0 reads a doubleword at absolute 0x1020.
+  The `jalr` at 0x328d338 calls `__glEvalComputeK [0x32ce260]` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `bltz` at 0x328d344 is taken to 0x328d460 when the `__glEvalComputeK` return is signed negative and falls through otherwise (`bltz` at 0x328d344).
+  On a path reaching 0x328d3ac, the `bc1t` at 0x328d3ac is taken to 0x328d440 when floating-point condition code 1 is true and falls through when it is false (`bc1t` at 0x328d3ac).
+  The `jalr` at 0x328d3c0 calls `__glMap2_size [0x32cf660]` with `a0` = the return from `__glEvalComputeK`, `a1` = entry `a4`, and `a2` and `a3` unknown, on a path where `bc1t` falls through (`bc1t` at 0x328d3ac).
+  The `jalr` at 0x328d3d4 calls `__glSPDlalloc [0x32087b0]` with `a0` = (the return from `__glMap2_size` shifted left by 2) plus 0x20, `a1` = 0x90, and `a2` and `a3` unknown, on a path where `bc1t` falls through (`bc1t` at 0x328d3ac).
+  When `bc1t` at 0x328d3ac falls through, `beqz` at 0x328d3dc is taken to 0x328d448 when the return from `__glSPDlalloc` is zero and falls through when that return is nonzero (`bc1t` at 0x328d3ac; `beqz` at 0x328d3dc).
+  On the `bc1t` at 0x328d3ac and `beqz` at 0x328d3dc fall-through path, three word stores use the `__glSPDlalloc` return as base at offsets +0xc, +0x18 and +0, including `sw` at 0x328d3e8, 0x328d3f8, 0x328d3fc (`bc1t` at 0x328d3ac; `beqz` at 0x328d3dc).
+  On the `bc1t` at 0x328d3ac and `beqz` at 0x328d3dc fall-through path, four floating-point word stores use the `__glSPDlalloc` return as base at offsets +0x14, +0x10, +8 and +4, including `swc1` at 0x328d410, 0x328d418, 0x328d424 (`bc1t` at 0x328d3ac; `beqz` at 0x328d3dc).
+  The `jalr` at 0x328d42c calls `__glFillMap2f [0x32cf400]` with `a0` = the return from `__glEvalComputeK`, `a1` = entry `a4`, `a2` unknown, `a3` = entry `a3`, `a4` = entry `a7`, `a5` unknown, and `a6` = the `__glSPDlalloc` return plus 0x20, `a7` = entry `a0`, when `bc1t` at 0x328d3ac and `beqz` at 0x328d3dc fall through (`bc1t` at 0x328d3ac; `beqz` at 0x328d3dc).
+  The `bgezall` at 0x328d440 calls `__glsplc_InvalidValue [0x328cc10]` with `a0`, `a1`, `a2` and `a3` unknown on paths including one where `bltz` and the first `bnez` fall through and `bnez` at 0x328d36c is taken (`bltz` at 0x328d344; `bnez` at 0x328d35c, 0x328d36c).
+  The `bgezall` at 0x328d464 calls `__glsplc_InvalidEnum [0x328cc50]` with `a0`, `a1`, `a2` and `a3` unknown when `bltz` at 0x328d344 is taken (`bltz` at 0x328d344).
+  The `jr` at 0x328d458 returns an unknown integer-register value (`jr` at 0x328d458).
+- `__glsplc_Map2d` in `usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x328d480
+  The `ld` at 0x328d480 reads a doubleword at absolute 0x1020.
+  The `jalr` at 0x328d4c8 calls `__glEvalComputeK [0x32ce260]` with `a0` = entry `a0`, `a1` = entry `a1`, `a2` = entry `a2`, and `a3` = entry `a3`.
+  The `bltz` at 0x328d4d4 is taken to 0x328d60c when the `__glEvalComputeK` return is signed negative and falls through otherwise (`bltz` at 0x328d4d4).
+  On a path reaching 0x328d544, the `bc1t` at 0x328d544 is taken to 0x328d5ec when floating-point condition code 1 is true and falls through when it is false (`bc1t` at 0x328d544).
+  The `jalr` at 0x328d558 calls `__glMap2_size [0x32cf660]` with `a0` = the return from `__glEvalComputeK`, `a1` = entry `a4`, and `a2` and `a3` unknown, on a path where `bc1t` falls through (`bc1t` at 0x328d544).
+  The `jalr` at 0x328d56c calls `__glSPDlalloc [0x32087b0]` with `a0` = (the return from `__glMap2_size` shifted left by 2) plus 0x20, `a1` = 0x8f, and `a2` and `a3` unknown, on a path where `bc1t` falls through (`bc1t` at 0x328d544).
+  When `bc1t` at 0x328d544 falls through, `beqz` at 0x328d574 is taken to 0x328d5f8 when the return from `__glSPDlalloc` is zero and falls through when that return is nonzero (`bc1t` at 0x328d544; `beqz` at 0x328d574).
+  On the `bc1t` at 0x328d544 and `beqz` at 0x328d574 fall-through path, three word stores use the `__glSPDlalloc` return as base at offsets +0xc, +0x18 and +0, including `sw` at 0x328d584, 0x328d594, 0x328d598 (`bc1t` at 0x328d544; `beqz` at 0x328d574).
+  On the `bc1t` at 0x328d544 and `beqz` at 0x328d574 fall-through path, four floating-point word stores use the `__glSPDlalloc` return as base at offsets +0x14, +0x10, +8 and +4, including `swc1` at 0x328d5b8, 0x328d5c0, 0x328d5d0 (`bc1t` at 0x328d544; `beqz` at 0x328d574).
+  The `jalr` at 0x328d5d8 calls `__glFillMap2d [0x32cf540]` with `a0` = the return from `__glEvalComputeK`, `a1` = entry `a4`, `a2` unknown, `a3` = entry `a3`, `a4` = entry `a7`, `a5` unknown, and `a6` = the `__glSPDlalloc` return plus 0x20, and `a7` unknown, when `bc1t` at 0x328d544 and `beqz` at 0x328d574 fall through (`bc1t` at 0x328d544; `beqz` at 0x328d574).
+  The `bgezall` at 0x328d5ec calls `__glsplc_InvalidValue [0x328cc10]` with `a0`, `a1`, `a2` and `a3` unknown on paths including one where `bltz` and the first `bnez` fall through and `bnez` at 0x328d4fc is taken (`bltz` at 0x328d4d4; `bnez` at 0x328d4ec, 0x328d4fc).
+  The `bgezall` at 0x328d610 calls `__glsplc_InvalidEnum [0x328cc50]` with `a0`, `a1`, `a2` and `a3` unknown when `bltz` at 0x328d4d4 is taken (`bltz` at 0x328d4d4).
+  The `jr` at 0x328d604 returns an unknown integer-register value (`jr` at 0x328d604).
