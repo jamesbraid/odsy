@@ -114,7 +114,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `sdl` at 0x53a4 stores 8 bytes to a2 (arg2 at entry) +0x0.
   The `sdr` at 0x53a8 stores 8 bytes to a2 (arg2 at entry) +0x7.
   The `lbu` at 0x53bc loads 1 byte from a1 (arg1 at entry) +0x18.
-  The `jal` at 0x53c8 calls sprintf with a0=a2 at entry (arg2), a1=sym(.rodata)+1440, a2=[a0+14]:2, a3=sp-64, a5=-0x11, a6=a1 at entry (arg1), a7=[a0+14]:2.
+  The `jal` at 0x53c8 calls sprintf with a0=a2 at entry (arg2), a1=sym(.rodata)+1440, a2=?, a3=sp-64, a5=-0x11, a6=a1 at entry (arg1).
   The `jal` at 0x53e4 calls nic_name_convert with a0=a0+153, a1=sp-64, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a0 at entry (arg0), a6=a1 at entry (arg1), a7=[a0+14]:2.
   The `beq` branch at 0x5380 targets 0x539c, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x5394 targets 0x53e0, is taken when at(=[a0+6]:1) >= 0x2 (signed), and falls through when at(=[a0+6]:1) < 0x2 (signed).
@@ -1604,7 +1604,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `jal` at 0x8fa0 calls fprom_flash_sectors with a0=a0 at entry (arg0), a1=?, a2=[a0+160], a3=a3 at entry (arg3).
   The `jal` at 0x8fd4 calls promlog_next with a0=a0 at entry (arg0), a1=0x62, a2=?, a3=?.
   The `jal` at 0x8ff4 calls get_entry [0x83e8] with a0=a0 at entry (arg0), a1=0x40, a2=?, a3=?, a4=[a0+168].
-  The `jal` at 0x9028 calls fprom_write with a0=a0 at entry (arg0), a1=?, a2=a0+184, a3=0x40.
+  The `jal` at 0x9028 calls fprom_write with a0=a0 at entry (arg0), a1=?, a2=?, a3=0x40.
   The `jal` at 0x9038 calls fprom_errmsg with a0=ret(fprom_write), a1=?, a2=?, a3=?.
   The `jal` at 0x9048 calls printf with a0=sym(.rodata)+3120, a1=ret(fprom_errmsg), a2=?, a3=?.
   The `jal` at 0x9058 calls promlog_errmsg with a0=?, a1=?, a2=?, a3=?.
@@ -2264,7 +2264,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `beq` branch at 0xacec targets 0xad10, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0xad10 targets 0xacc4 and is always taken.
   The `beq` branch at 0xad18 targets 0xacc4 and is always taken.
-  The return at 0xacd0 has v0 = one of ret(ip27log_setup), ?, ret(promlog_delete), 0x0.
+  The return at 0xacd0 has v0 = one of ret(ip27log_setup), ?, 0x0.
 - `ip27log_iprintf` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0xad20 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
@@ -2610,13 +2610,14 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   6 such `ld` accesses load 8 bytes from ([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3)) +0x0, including `ld` at 0xba68, `ld` at 0xbc54, `ld` at 0xbd4c.
   The `lh` at 0xba74 loads 2 bytes from [([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3))]:8 +0x8600.
   3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xba8c, `lbu` at 0xbde8, `lbu` at 0xbdf0.
-  4 such `ld` accesses load 8 bytes from table(0x9000000034000000) +0x0, including `ld` at 0xbae0, `ld` at 0xbc10, `ld` at 0xbc84.
+  The `ld` at 0xbae0 loads 8 bytes from table(0x9000000034000000) +0x0.
   The `ld` at 0xbb04 loads 8 bytes from (table(0x9600000000000000) | 0x2000) +0x48.
   3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xbb14, `lw` at 0xbb98, `lw` at 0xbed4.
   The `ld` at 0xbb44 loads 8 bytes from ((entry(sym(nasid_to_compact_node)) << 0x3) + [[-0x3c00]:8]:8) +0x0.
   The `lh` at 0xbb4c loads 2 bytes from [((entry(sym(nasid_to_compact_node)) << 0x3) + [[-0x3c00]:8]:8)]:8 +0x8600.
   The `ld` at 0xbb64 loads 8 bytes from ([[((entry(sym(nasid_to_compact_node)) << 0x3) + [[-0x3c00]:8]:8)]:8+34304]:2 << 0x21) -0x6fffffffcc000000.
   The `ld` at 0xbb88 loads 8 bytes from (([[((entry(sym(nasid_to_compact_node)) << 0x3) + [[-0x3c00]:8]:8)]:8+34304]:2 << 0x21)+0x9600000000000000 | 0x2000) +0x48.
+  3 such `ld` accesses load 8 bytes from ?, including `ld` at 0xbc10, `ld` at 0xbc84, `ld` at 0xbcac.
   5 such `lh` accesses load 2 bytes from [([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3))]:8 +0x861a, including `lh` at 0xbc6c, `lh` at 0xbd60, `lh` at 0xbd98.
   The `ld` at 0xbf40 loads 8 bytes from abs 0x9000000014000000.
   The `jal` at 0xba10 calls xswitch_info_get with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2637,15 +2638,15 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `jal` at 0xbcfc calls hwgraph_info_add_LBL with a0=?, a1=sym(.rodata)+4936, a2=0x5, a3=?.
   The `jal` at 0xbd04 calls kern_malloc with a0=0x20, a1=?, a2=?, a3=?.
   The `jal` at 0xbd0c calls get_elsc with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0xbd20 calls l1_mfg_string with a0=ret(kern_malloc), a1=ret(get_elsc), a2=?, a3=a2 at entry (arg2).
-  The `jal` at 0xbd30 calls kern_free with a0=ret(kern_malloc), a1=?, a2=ret(kern_malloc), a3=?.
+  The `jal` at 0xbd20 calls l1_mfg_string with a0=?, a1=ret(get_elsc), a2=?, a3=a2 at entry (arg2).
+  The `jal` at 0xbd30 calls kern_free with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xbd38 calls sndrv_attach with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xbd5c calls sprintf with a0=sp-344, a1=sym(.rodata)+4936, a2=[[([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3))]:8+34330]:2, a3=?.
   The `jal` at 0xbd64 calls hwgraph_path_to_vertex with a0=sp-344, a1=?, a2=?, a3=?.
   The `jal` at 0xbd94 calls sprintf with a0=sp-344, a1=sym(.rodata)+4936, a2=[[([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3))]:8+34330]:2, a3=ret(iobrick_L1bricktype_to_name).
   The `jal` at 0xbd9c calls hwgraph_path_to_vertex with a0=sp-344, a1=?, a2=?, a3=?.
-  The `jal` at 0xbdb8 calls hwgraph_edge_add with a0=ret(hwgraph_path_to_vertex), a1=ret(hwgraph_path_to_vertex), a2=sym(.rodata)+4936, a3=?.
-  The `jal` at 0xbe10 calls hwgraph_info_add_LBL with a0=ret(hwgraph_path_to_vertex), a1=sym(.rodata)+4936, a2=?, a3=?.
+  The `jal` at 0xbdb8 calls hwgraph_edge_add with a0=?, a1=?, a2=sym(.rodata)+4936, a3=?.
+  The `jal` at 0xbe10 calls hwgraph_info_add_LBL with a0=?, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `jal` at 0xbe4c calls sprintf with a0=sp-344, a1=sym(.rodata)+4936, a2=[[([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3))]:8+34330]:2, a3=ret(iobrick_L1bricktype_to_name), a4=sym(.rodata)+4936, a5=a2 at entry (arg2).
   The `jal` at 0xbe68 calls hwgraph_path_add with a0=[sym(hwgraph_root)], a1=sp-344, a2=sp-212, a3=?.
   The `jal` at 0xbe70 calls hwgraph_connectpt_get with a0=?, a1=?, a2=?, a3=?.
@@ -2653,7 +2654,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `jal` at 0xbe94 calls sprintf with a0=sp-208, a1=sym(.rodata)+4936, a2=a2 at entry (arg2), a3=?.
   The `jal` at 0xbea4 calls hwgraph_edge_add with a0=a0 at entry (arg0), a1=?, a2=sp-208, a3=?.
   The `jal` at 0xbeb4 calls xswitch_info_vhdl_set with a0=ret(xswitch_info_get), a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jal` at 0xbf14 calls xwidget_inventory_add [0xb9b0] with a0=?, a1=ret(find_lboard_class), a2=?, a3=?.
+  The `jal` at 0xbf14 calls xwidget_inventory_add [0xb9b0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xbf54 calls get_chimera_type with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xbf68 calls get_chimera_type with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xbf7c calls get_chimera_type with a0=?, a1=?, a2=?, a3=?.
@@ -2662,7 +2663,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `jal` at 0xc02c calls hwgraph_info_add_LBL with a0=?, a1=sym(.rodata)+4936, a2=0x4, a3=?.
   The `jal` at 0xc03c calls xbow_port_io_enabled with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
   The `jal` at 0xc074 calls sprintf with a0=sp-344, a1=sym(.rodata)+4936, a2=[[([[-0x3c00]:8]:8 + (entry(sym(nasid_to_compact_node)) << 0x3))]:8+34330]:2, a3=ret(iobrick_L1bricktype_to_name).
-  The `jal` at 0xc0b4 calls hwgraph_info_add_LBL with a0=?, a1=sym(.rodata)+4936, a2=ret(kern_malloc), a3=?.
+  The `jal` at 0xc0b4 calls hwgraph_info_add_LBL with a0=?, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `jal` at 0xc0c4 calls hub_set_piomode with a0=?, a1=0x2, a2=?, a3=?.
   The `jal` at 0xc0e4 calls chk_for_pebrick with a0=?, a1=-0x35, a2=?, a3=?.
   The `jal` at 0xc0f4 calls chk_for_pebrick with a0=[[((entry(sym(nasid_to_compact_node)) << 0x3) + [[-0x3c00]:8]:8)]:8+34304]:2, a1=-0x35, a2=([[((entry(sym(nasid_to_compact_node)) << 0x3) + [[-0x3c00]:8]:8)]:8+34304]:2 << 0x21), a3=?.
@@ -2762,18 +2763,16 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   2 such `lh` accesses load 2 bytes from [([[-0x3c00]:8]:8 + (a1 << 0x3))]:8 +0x861a, including `lh` at 0xc30c, `lh` at 0xc3dc.
   2 such `sw` accesses store 4 bytes to ret(find_lboard_module) +0x90, including `sw` at 0xc348, `sw` at 0xc43c.
   The `ld` at 0xc388 loads 8 bytes from ([(sym(compact_to_nasid_node) + (a1 + a1))]:2 << 0x21) -0x6fffffffcc000000.
-  The `ld` at 0xc3a0 loads 8 bytes from (([(sym(compact_to_nasid_node) + (a1 + a1))]:2 << 0x21)+0x9600000000000000 | 0x2000) +0x48.
+  3 such `ld` accesses load 8 bytes from ?, including `ld` at 0xc3a0, `ld` at 0xc3fc, `ld` at 0xc414.
   2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xc3b0, `lw` at 0xc420.
-  The `ld` at 0xc3fc loads 8 bytes from ([[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2 << 0x21) -0x6fffffffcc000000.
-  The `ld` at 0xc414 loads 8 bytes from (([[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2 << 0x21)+0x9600000000000000 | 0x2000) +0x48.
   The `jal` at 0xc308 calls find_lboard_module with a0=?, a1=[[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34330]:2, a2=?, a3=?.
   The `jal` at 0xc324 calls sprintf with a0=sp-288, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `jal` at 0xc334 calls hwgraph_traverse with a0=a0 at entry (arg0), a1=sp-288, a2=sp-160, a3=?.
   The `jal` at 0xc368 calls sprintf with a0=sp-288, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `jal` at 0xc378 calls hwgraph_traverse with a0=a0 at entry (arg0), a1=sp-288, a2=sp-160, a3=?.
   The `jal` at 0xc3d8 calls find_lboard_module with a0=?, a1=[[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34330]:2, a2=?, a3=?.
-  The `jal` at 0xc470 calls chk_for_pebrick with a0=[(sym(compact_to_nasid_node) + (a1 + a1))]:2, a1=?, a2=?, a3=([(sym(compact_to_nasid_node) + (a1 + a1))]:2 << 0x21)+0x9600000000000000, a4=(([(sym(compact_to_nasid_node) + (a1 + a1))]:2 << 0x21)+0x9600000000000000 | 0x2000).
-  The `jal` at 0xc480 calls chk_for_pebrick with a0=[[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2, a1=?, a2=([[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2 << 0x21), a3=([[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2 << 0x21)+0x9600000000000000.
+  The `jal` at 0xc470 calls chk_for_pebrick with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0xc480 calls chk_for_pebrick with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xc49c calls cmn_err with a0=0x4, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `beq` branch at 0xc2e8 targets 0xc35c and is always taken.
   The `beq` branch at 0xc314 targets 0xc490, is taken when s2(=ret(find_lboard_module)) == 0, and falls through when s2(=ret(find_lboard_module)) != 0.
@@ -2783,7 +2782,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `beq` branch at 0xc398 targets 0xc470, is taken when s4(=0xc000) == a2(?), and falls through when s4(=0xc000) != a2(?).
   The `beq` branch at 0xc3b8 targets 0xc3c4, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xc3e4 targets 0xc314, is taken when v0(=ret(find_lboard_module)) != 0, and falls through when v0(=ret(find_lboard_module)) == 0.
-  The `beq` branch at 0xc3f4 targets 0xc314, is taken when a2(=[[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2) == a3(=-0x1), and falls through when a2(=[[([[-0x3c00]:8]:8 + (a1 << 0x3))]:8+34304]:2) != a3(=-0x1).
+  The `beq` branch at 0xc3f4 targets 0xc314, is taken when a2(?) == a3(=-0x1), and falls through when a2(?) != a3(=-0x1).
   The `beq` branch at 0xc408 targets 0xc480, is taken when s4(=0xc000) == a4(?), and falls through when s4(=0xc000) != a4(?).
   The `bne` branch at 0xc428 targets 0xc2f0, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0xc430 targets 0xc2f4 and is always taken.
@@ -2974,7 +2973,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `jal` at 0xccc8 calls hwgraph_traverse with a0=[sym(.sdata)+96], a1=sym(.rodata)+4936, a2=sp-40, a3=?.
   The `jal` at 0xcce8 calls hwgraph_traverse with a0=[sym(base_io_scsi_ctlr_vhdl)], a1=sym(.rodata)+4936, a2=sp-40, a3=?.
   The `jal` at 0xcd04 calls hwgraph_traverse with a0=[sym(base_io_scsi_ctlr_vhdl+4)], a1=sym(.rodata)+4936, a2=sp-40, a3=?.
-  The `jal` at 0xcd14 calls hwgraph_vertex_unref with a0=ret(hwgraph_connectpt_get), a1=?, a2=?, a3=?.
+  The `jal` at 0xcd14 calls hwgraph_vertex_unref with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xcd28 calls sys_critical_graph_vertex_add with a0=ret(device_master_get), a1=?, a2=?, a3=?.
   The `jal` at 0xcd30 calls hwgraph_vertex_unref with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xcd44 calls sys_critical_graph_vertex_add with a0=[[([[-0x3c00]:8]:8 + (ret(master_node_get) << 0x3))]:8+35968], a1=?, a2=?, a3=?.
@@ -3015,7 +3014,7 @@ in `usr/cpu/sysgen/IP30boot/kernel.o`, `eutlbmissj` in `usr/cpu/sysgen/IP30boot/
   The `jal` at 0xce28 calls strcat with a0=sp-288, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `jal` at 0xce30 calls hwgraph_path_to_vertex with a0=sp-288, a1=?, a2=?, a3=?.
   The `jal` at 0xce44 calls scsi_ctlr_nums_add with a0=ret(hwgraph_path_to_vertex), a1=-0x1, a2=?, a3=?.
-  The `jal` at 0xce4c calls hwgraph_vertex_unref with a0=ret(hwgraph_path_to_vertex), a1=?, a2=?, a3=?.
+  The `jal` at 0xce4c calls hwgraph_vertex_unref with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xce5c calls vertex_to_name with a0=?, a1=sp-288, a2=0x100, a3=?.
   The `jal` at 0xce6c calls strstr with a0=sp-288, a1=sym(.rodata)+4936, a2=?, a3=?.
   The `jal` at 0xce84 calls strcat with a0=sp-288, a1=sym(.rodata)+4936, a2=?, a3=?.

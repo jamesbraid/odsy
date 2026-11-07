@@ -1457,20 +1457,16 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x818 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `ld` at 0x81c loads 8 bytes from [a0]:8 +0x8.
   11 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x828, `sw` at 0x854, `sw` at 0x93c.
-  2 such `sd` accesses store 8 bytes to ret(odsyGctxFromRnid) +0x98, including `sd` at 0x864, `sd` at 0x964.
-  2 such `sw` accesses store 4 bytes to ret(odsyGctxFromRnid) +0xa0, including `sw` at 0x87c, `sw` at 0x968.
+  The `sd` at 0x864 stores 8 bytes to ret(odsyGctxFromRnid) +0x98.
+  The `sw` at 0x87c stores 4 bytes to ret(odsyGctxFromRnid) +0xa0.
   The `ld` at 0x8c8 loads 8 bytes from [a0+32]:8 +0x48.
   7 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x8d4, `lw` at 0x920, `lw` at 0x98c.
   6 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x8dc, `sw` at 0x928, `sw` at 0x994.
   The `ld` at 0x908 loads 8 bytes from ret(odsyGctxFromRnid) +0x98.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x96c, `lw` at 0xb58.
-  6 such `ld` accesses load 8 bytes from ?, including `ld` at 0x970, `ld` at 0x980, `ld` at 0x9c4.
-  The `sw` at 0x978 stores 4 bytes to ?.
-  The `lw` at 0x99c loads 4 bytes from ret(odsyGctxFromRnid) +0xa4.
-  The `sw` at 0x9a8 stores 4 bytes to ret(odsyGctxFromRnid) +0x1d4.
-  The `lw` at 0x9b0 loads 4 bytes from ret(odsyGctxFromRnid) +0xa0.
-  The `ld` at 0x9b8 loads 8 bytes from ret(odsyGctxFromRnid) +0x78.
-  The `lw` at 0x9ec loads 4 bytes from [a0+32]:8 +0x2834.
+  The `sd` at 0x964 stores 8 bytes to ?.
+  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x968, `sw` at 0x978, `sw` at 0x9a8.
+  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x96c, `lw` at 0x99c, `lw` at 0x9b0.
+  7 such `ld` accesses load 8 bytes from ?, including `ld` at 0x970, `ld` at 0x980, `ld` at 0x9b8.
   The `sd` at 0xa20 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0xa28, `lw` at 0xa44.
   The `lw` at 0xaa8 loads 4 bytes from a3 (arg3 at entry) +0x0.
@@ -1480,13 +1476,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x878 calls OdsyInitCSet with a0=ret(odsyGctxFromRnid)+184, a1=0x4, a2=?, a3=ret(odsyPinAndMapGctxSwShadowRgn), a5=-0x1.
   The `jal` at 0x884 calls OdsyInitCSet with a0=ret(odsyGctxFromRnid)+224, a1=0x4, a2=?, a3=?.
   The `jal` at 0x890 calls OdsyInitCSet with a0=ret(odsyGctxFromRnid)+264, a1=0x4, a2=?, a3=?.
-  The `jal` at 0x8a8 calls OdsyAllocSpecificCSetId with a0=ret(odsyGctxFromRnid)+184, a1=0x0, a2=0x1, a3=?.
-  The `jal` at 0x8f4 calls odsyGctxFromRnid with a0=?, a1=[a0+32]:8, a2=?, a3=?, a5=[[a0+32]:8+80]+1.
-  The `jal` at 0x948 calls OdsyAllocCSetId with a0=?, a1=ret(odsyGctxFromRnid), a2=?, a3=?.
-  The `jal` at 0x9f4 calls copyout with a0=sp-192, a1=a2 at entry (arg2), a2=0x48, a3=ret(OdsyAllocCSetId), a4=-0x1, a5=[[a0+32]:8+10292].
+  The `jal` at 0x8a8 calls OdsyAllocSpecificCSetId with a0=?, a1=?, a2=0x1, a3=?.
+  The `jal` at 0x8f4 calls odsyGctxFromRnid with a0=?, a1=?, a2=?, a3=?, a5=[[a0+32]:8+80]+1.
+  The `jal` at 0x948 calls OdsyAllocCSetId with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x9f4 calls copyout with a0=sp-192, a1=a2 at entry (arg2), a2=0x48, a3=ret(OdsyAllocCSetId), a4=-0x1.
   The `jal` at 0xa10 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a4=a0 at entry (arg0).
   The `jal` at 0xa34 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
-  The `jal` at 0xa64 calls odsy_mm_sg_new with a0=a0 at entry (arg0), a1=[a0+32]:8+744, a2=a3 at entry (arg3), a3=?, a5=[[a0+32]:8+80]+1.
+  The `jal` at 0xa64 calls odsy_mm_sg_new with a0=a0 at entry (arg0), a1=?, a2=a3 at entry (arg3), a3=?, a5=[[a0+32]:8+80]+1.
   The `jal` at 0xa94 calls copyout with a0=sp-192, a1=a2 at entry (arg2), a2=0x48, a3=[[a0+32]:8+80]-1, a4=[a0+32]:8.
   The `jal` at 0xab0 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0xad8 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?, a5=a0 at entry (arg0).
@@ -1502,7 +1498,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x820 targets 0xaf4, is taken when a4(=[[a0]:8+8]:8) != a5(=a0), and falls through when a4(=[[a0]:8+8]:8) == a5(=a0).
   The `beq` branch at 0x84c targets 0x864, is taken when v0(=ret(odsyPinAndMapGctxSwShadowRgn)) == 0, and falls through when v0(=ret(odsyPinAndMapGctxSwShadowRgn)) != 0.
   The `beq` branch at 0x85c targets 0x82c and is always taken.
-  The `beq` branch at 0x8b8 targets 0x8a0 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0x8b8 targets 0x8a0, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0x8cc targets 0xa10, is taken when v1(=[[a0+32]:8+72]:8) != a4(=a0), and falls through when v1(=[[a0+32]:8+72]:8) == a4(=a0).
   The `beq` branch at 0x8e4 targets 0xa58, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x8ec targets 0xa5c, is taken when at(=-0x1) == a3(?), and falls through when at(=-0x1) != a3(?).
@@ -1621,13 +1617,13 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `sd` at 0x1040 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1048, `lw` at 0x1060.
   The `jal` at 0xee4 calls copyin with a0=a2 at entry (arg2), a1=sp-208, a2=0x48, a3=a3 at entry (arg3), a6=0x0, a7=0x0.
-  The `jal` at 0xf34 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a5=-0x1.
+  The `jal` at 0xf34 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?, a5=-0x1.
   The `jal` at 0xfd0 calls odsy_mm_obj_destroy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100c calls copyout with a0=sp-208, a1=a2 at entry (arg2), a2=0x48, a3=?, a6=[[a0+32]:8+80]-1, a7=[a0+32]:8.
   The `jal` at 0x1034 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a4=[[a0+32]:8+72]:8.
   The `jal` at 0x1054 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
-  The `jal` at 0x107c calls odsy_mm_grp_new with a0=[[a0+72]:8+112]:8, a1=[[[a0+72]:8+112]:8+152]:8, a2=sp-208, a3=?, a5=-0x1.
-  The `jal` at 0x10c4 calls odsy_mm_obj_new with a0=[[[a0+72]:8+112]:8+152]:8, a1=?, a2=?, a3=sp-196, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
+  The `jal` at 0x107c calls odsy_mm_grp_new with a0=[[a0+72]:8+112]:8, a1=?, a2=sp-208, a3=?, a5=-0x1.
+  The `jal` at 0x10c4 calls odsy_mm_obj_new with a0=?, a1=?, a2=?, a3=sp-196.
   The `jal` at 0x1108 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x0, a7=0x0.
   The `jal` at 0x1138 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=0x0, a7=0x0.
   The `jal` at 0x1168 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -1652,14 +1648,14 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0xfa8 targets 0xfd0, is taken when at(?) != v1(?), and falls through when at(?) == v1(?).
   The `bne` branch at 0xfb8 targets 0xfd0, is taken when a4(?) != a5(?), and falls through when a4(?) == a5(?).
   The `beq` branch at 0xfc8 targets 0xfdc, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
-  The `beq` branch at 0xfe8 targets 0x10a0 and is always taken.
+  The `beq` branch at 0xfe8 targets 0x10a0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0x101c targets 0x11b8, is taken when v0(=ret(copyout)) != 0, and falls through when v0(=ret(copyout)) == 0.
   The `beq` branch at 0x104c targets 0xf14, is taken when at(=[[a0+32]:8+104]) == 0, and falls through when at(=[[a0+32]:8+104]) != 0.
   The `bne` branch at 0x1064 targets 0x1054, is taken when v1(=[[a0+32]:8+104]) != 0, and falls through when v1(=[[a0+32]:8+104]) == 0.
   The `beq` branch at 0x106c targets 0xf18 and is always taken.
   The `beq` branch at 0x1088 targets 0x1208, is taken when v0(=ret(odsy_mm_grp_new)) == 0, and falls through when v0(=ret(odsy_mm_grp_new)) != 0.
-  The `bne` branch at 0x1094 targets 0xff0, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
-  The `bne` branch at 0x10a0 targets 0xff0, is taken when a5(=one of 0x0, 0x1) != 0, and falls through when a5(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x1094 targets 0xff0, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x10a0 targets 0xff0, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `bne` branch at 0x10ac targets 0xff0, is taken when s3(?) != 0, and falls through when s3(?) == 0.
   The `bne` branch at 0x10cc targets 0xff0, is taken when v0(=ret(odsy_mm_obj_new)) != 0, and falls through when v0(=ret(odsy_mm_obj_new)) == 0.
   The `beq` branch at 0x10d8 targets 0x122c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
@@ -1686,19 +1682,19 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   4 such `lw` accesses load 4 bytes from [a0+32]:8 +0x50, including `lw` at 0x129c, `lw` at 0x130c, `lw` at 0x1370.
   3 such `sw` accesses store 4 bytes to [a0+32]:8 +0x50, including `sw` at 0x12a8, `sw` at 0x1314, `sw` at 0x1384.
   The `ld` at 0x12e4 loads 8 bytes from ?.
-  The `lw` at 0x12fc loads 4 bytes from ret(OdsyLookupCSetId) +0x90.
+  The `lw` at 0x12fc loads 4 bytes from ?.
   The `sd` at 0x1340 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1348, `lw` at 0x1360.
   6 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x0, including `sw` at 0x1398, `sw` at 0x13e0, `sw` at 0x143c.
   The `jal` at 0x127c calls copyin with a0=a2 at entry (arg2), a1=sp-160, a2=0x48, a3=a3 at entry (arg3), a4=[[[a0+72]:8+112]:8+152]:8.
-  The `jal` at 0x12b0 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?.
+  The `jal` at 0x12b0 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x12f0 calls odsy_mm_obj_destroy with a0=?, a1=ret(OdsyLookupCSetId), a2=?, a3=?.
   The `jal` at 0x1334 calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a5=[[a0+32]:8+72]:8.
   The `jal` at 0x1354 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x13a8 calls copyout with a0=sp-160, a1=a2 at entry (arg2), a2=0x48, a3=?.
   The `jal` at 0x13c4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x13e4 calls odsy_mm_grp_destroy with a0=ret(OdsyLookupCSetId), a1=ret(OdsyLookupCSetId), a2=?, a3=?.
-  The `jal` at 0x13f8 calls odsy_mm_grp_destroy with a0=ret(OdsyLookupCSetId), a1=?, a2=?, a3=?, a4=[ret(OdsyLookupCSetId)+144].
+  The `jal` at 0x13f8 calls odsy_mm_grp_destroy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1420 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1450 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[[[a0+72]:8+112]:8+152]:8.
   The `jal` at 0x147c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
@@ -1711,7 +1707,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `beq` branch at 0x12cc targets 0x13e4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x12dc targets 0x149c, is taken when a2(?) >= 0x10 (signed), and falls through when a2(?) < 0x10 (signed).
   The `beq` branch at 0x12e8 targets 0x1308, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x1300 targets 0x13f4, is taken when a4(=[ret(OdsyLookupCSetId)+144]) == 0, and falls through when a4(=[ret(OdsyLookupCSetId)+144]) != 0.
+  The `beq` branch at 0x1300 targets 0x13f4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x131c targets 0x139c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x134c targets 0x129c, is taken when at(=[[a0+32]:8+104]) == 0, and falls through when at(=[[a0+32]:8+104]) != 0.
   The `bne` branch at 0x1364 targets 0x1354, is taken when v1(=[[a0+32]:8+104]) != 0, and falls through when v1(=[[a0+32]:8+104]) == 0.
@@ -1756,9 +1752,8 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `lw` at 0x1624 loads 4 bytes from ret(OdsyFindMatchingCSetElem) +0x0.
   2 such `lw` accesses load 4 bytes from ret(OdsyFindMatchingCSetElem) +0x4, including `lw` at 0x1628, `lw` at 0x1644.
   The `sw` at 0x1640 stores 4 bytes to ?.
-  The `ld` at 0x1658 loads 8 bytes from ?.
+  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x1658, `ld` at 0x1690.
   The `lw` at 0x1664 loads 4 bytes from ?.
-  The `ld` at 0x1690 loads 8 bytes from [[[[a0+72]:8+112]:8+152]:8+8]:8 +0x0.
   The `lw` at 0x16c4 loads 4 bytes from a3 (arg3 at entry) +0x0.
   The `sd` at 0x16e8 stores 8 bytes to [a0+32]:8 +0x48.
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x16f0, `lw` at 0x1708.
@@ -1767,7 +1762,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x15b4 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a5=[[a0+32]:8+80]+1.
   The `jal` at 0x15cc calls OdsyLookupCSetId with a0=ret(OdsyLookupCSetId)+160, a1=[[[a0+72]:8+112]:8+160], a2=?, a3=?.
   The `jal` at 0x15fc calls OdsyFindMatchingCSetElem with a0=ret(OdsyLookupCSetId), a1=sp-104, a2=sym(CoresidRangeFinder), a3=?.
-  The `jal` at 0x168c calls timeout with a0=sym(odsy_mm_mkres_timeout), a1=[[[[[a0+72]:8+112]:8+152]:8+8]:8]:8, a2=0x5dc, a3=?.
+  The `jal` at 0x168c calls timeout with a0=sym(odsy_mm_mkres_timeout), a1=?, a2=0x5dc, a3=?.
   The `jal` at 0x1698 calls odsy_mm_commit with a0=ret(OdsyFindMatchingCSetElem), a1=?, a2=?, a3=?.
   The `jal` at 0x16a8 calls untimeout with a0=ret(timeout), a1=?, a2=?, a3=?.
   The `jal` at 0x16dc calls psema with a0=[a0+32]:8+56, a1=0x219, a2=?, a3=?, a4=[[a0+32]:8+72]:8.
@@ -1867,9 +1862,9 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `ld` at 0x1998 loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x19a0 loads 4 bytes from a1 (arg1 at entry) +0xa0.
   2 such `lh` accesses load 2 bytes from a0 (arg0 at entry) +0x0, including `lh` at 0x19c4, `lh` at 0x19d0.
-  The `lw` at 0x19e0 loads 4 bytes from [a0+8]:8 +0x0.
+  The `lw` at 0x19e0 loads 4 bytes from ?.
   The `jal` at 0x19a4 calls OdsyLookupCSetId with a0=[a0+8]:8+160, a1=[a1+160], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x19e8 calls OdsyFindMatchingCSetElem with a0=ret(OdsyLookupCSetId), a1=sp-64, a2=sym(CoresidSubRangeFinder), a3=[[a0+8]:8], a4=[a0]:2, a5=[a0]:2.
+  The `jal` at 0x19e8 calls OdsyFindMatchingCSetElem with a0=ret(OdsyLookupCSetId), a1=sp-64, a2=sym(CoresidSubRangeFinder), a3=?, a4=[a0]:2, a5=[a0]:2.
   The `bne` branch at 0x19ac targets 0x19c0, is taken when v0(=ret(OdsyLookupCSetId)) != 0, and falls through when v0(=ret(OdsyLookupCSetId)) == 0.
   The `beq` branch at 0x19f0 targets 0x1a00, is taken when v0(=ret(OdsyFindMatchingCSetElem)) == 0, and falls through when v0(=ret(OdsyFindMatchingCSetElem)) != 0.
   The `beq` branch at 0x19f8 targets 0x19b8 and is always taken.
@@ -1908,7 +1903,7 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `lw` accesses load 4 bytes from [a0+32]:8 +0x68, including `lw` at 0x1c34, `lw` at 0x1c4c.
   The `sb` at 0x1e34 stores 1 byte to ?.
   The `jal` at 0x1abc calls copyin with a0=a2 at entry (arg2), a1=sp-240, a2=0x28, a3=a3 at entry (arg3), a4=0x0, a7=0x0.
-  The `jal` at 0x1b38 calls OdsyLookupCSetId with a0=[[[a0+72]:8+112]:8+152]:8+64, a1=?, a2=?, a3=?, a4=[a0+32]:8.
+  The `jal` at 0x1b38 calls OdsyLookupCSetId with a0=?, a1=?, a2=?, a3=?, a4=[a0+32]:8.
   The `jal` at 0x1b70 calls copyout with a0=sp-240, a1=a2 at entry (arg2), a2=0x28, a3=?, a7=[[a0+32]:8+80]-1.
   The `jal` at 0x1bac calls OdsyLookupCSetId with a0=ret(OdsyLookupCSetId)+160, a1=[[[a0+72]:8+112]:8+160], a2=?, a3=?, a5=ret(OdsyLookupCSetId).
   The `jal` at 0x1bf0 calls OdsyFindMatchingCSetElem with a0=?, a1=sp-200, a2=sym(CoresidRangeFinder), a3=?.
@@ -1916,16 +1911,16 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `jal` at 0x1c40 calls us_delay with a0=0x2, a1=?, a2=?, a3=?, a4=[a0+32]:8.
   The `jal` at 0x1c64 calls kmem_alloc with a0=0x28, a1=0x0, a2=?, a3=?, a4=ret(OdsyLookupCSetId).
   The `jal` at 0x1c94 calls OdsyInitCSet with a0=ret(kmem_alloc), a1=0x2, a2=?, a3=?, a4=ret(kmem_alloc).
-  The `jal` at 0x1ca8 calls OdsyAllocSpecificCSetId with a0=ret(OdsyLookupCSetId)+160, a1=[[[a0+72]:8+112]:8+160], a2=ret(kmem_alloc), a3=?.
+  The `jal` at 0x1ca8 calls OdsyAllocSpecificCSetId with a0=?, a1=[[[a0+72]:8+112]:8+160], a2=?, a3=?.
   The `jal` at 0x1ce4 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x1d18 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a7=0x0.
   The `jal` at 0x1d48 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a7=0x0.
   The `jal` at 0x1d78 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `jal` at 0x1d9c calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
-  The `jal` at 0x1dd0 calls odsy_mm_cores_new with a0=[[a0+72]:8+112]:8, a1=ret(OdsyLookupCSetId), a2=?, a3=?, a5=[[a0+72]:8+112]:8+184, a6=sp-240.
-  The `jal` at 0x1e04 calls cmn_err with a0=0x7, a1=sym(.rodata), a2=?, a3=?, a4=ret(kmem_alloc), a5=-0x1.
-  The `jal` at 0x1e10 calls OdsyDestroyCSet with a0=ret(kmem_alloc), a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1e3c calls kmem_free with a0=ret(kmem_alloc), a1=0x28, a2=?, a3=?.
+  The `jal` at 0x1dd0 calls odsy_mm_cores_new with a0=[[a0+72]:8+112]:8, a1=?, a2=?, a3=?, a5=[[a0+72]:8+112]:8+184, a6=sp-240.
+  The `jal` at 0x1e04 calls cmn_err with a0=0x7, a1=sym(.rodata), a2=?, a3=?, a5=-0x1.
+  The `jal` at 0x1e10 calls OdsyDestroyCSet with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x1e3c calls kmem_free with a0=?, a1=0x28, a2=?, a3=?.
   The `beq` branch at 0x1a80 targets 0x1d00, is taken when s3(=[[a0+72]:8+112]:8) == 0, and falls through when s3(=[[a0+72]:8+112]:8) != 0.
   The `beq` branch at 0x1aa8 targets 0x1d34, is taken when at(=[[[a0+72]:8+112]:8+152]:8) == 0, and falls through when at(=[[[a0+72]:8+112]:8+152]:8) != 0.
   The `bne` branch at 0x1ac4 targets 0x1d64, is taken when v0(=ret(copyin)) != 0, and falls through when v0(=ret(copyin)) == 0.
@@ -1938,10 +1933,10 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   The `bne` branch at 0x1b44 targets 0x1b98, is taken when v0(=ret(OdsyLookupCSetId)) != 0, and falls through when v0(=ret(OdsyLookupCSetId)) == 0.
   The `bne` branch at 0x1b80 targets 0x1d94, is taken when v0(=ret(copyout)) != 0, and falls through when v0(=ret(copyout)) == 0.
   The `beq` branch at 0x1bb4 targets 0x1c60, is taken when v0(=ret(OdsyLookupCSetId)) == 0, and falls through when v0(=ret(OdsyLookupCSetId)) != 0.
-  The `bne` branch at 0x1bc0 targets 0x1b54, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
-  The `bne` branch at 0x1bc8 targets 0x1b54, is taken when v1(=one of 0x0, 0x1) != 0, and falls through when v1(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x1bc0 targets 0x1b54, is taken when at(?) != 0, and falls through when at(?) == 0.
+  The `bne` branch at 0x1bc8 targets 0x1b54, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x1bf8 targets 0x1db8, is taken when v0(=ret(OdsyFindMatchingCSetElem)) == 0, and falls through when v0(=ret(OdsyFindMatchingCSetElem)) != 0.
-  The `bne` branch at 0x1c00 targets 0x1b54, is taken when a6(=one of 0x0, 0x1) != 0, and falls through when a6(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x1c00 targets 0x1b54, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `beq` branch at 0x1c14 targets 0x1b54 and is always taken.
   The `beq` branch at 0x1c38 targets 0x1b28, is taken when a5(=[[a0+32]:8+104]) == 0, and falls through when a5(=[[a0+32]:8+104]) != 0.
   The `bne` branch at 0x1c50 targets 0x1c40, is taken when at(=[[a0+32]:8+104]) != 0, and falls through when at(=[[a0+32]:8+104]) == 0.
@@ -2646,13 +2641,14 @@ Each entry reports selected accesses through non-stack pointers, calls and their
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x58, including `sw` at 0x4080, `sw` at 0x4460.
   2 such `sd` accesses store 8 bytes to [[[a0+8]:8+8]:8+8]:8 +0x6b0, including `sd` at 0x4088, `sd` at 0x4444.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x4c, including `sw` at 0x40dc, `sw` at 0x42a4, `sw` at 0x4464.
-  73 such `sw` accesses store 4 bytes to [[[[[a0+8]:8+8]:8+8]:8]:8+736]:8 +0x110000, including `sw` at 0x40e0, `sw` at 0x40e8, `sw` at 0x40f0.
+  54 such `sw` accesses store 4 bytes to table(0x110000) +0x0, including `sw` at 0x40e0, `sw` at 0x40e8, `sw` at 0x40f0.
   The `lbu` at 0x4184 loads 1 byte from a0 (arg0 at entry) +0x11.
   The `lw` at 0x4188 loads 4 bytes from a0 (arg0 at entry) +0x30.
   The `lw` at 0x4194 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `lw` at 0x41ac loads 4 bytes from a0 (arg0 at entry) +0x38.
   The `lw` at 0x427c loads 4 bytes from a0 (arg0 at entry) +0x68.
   The `sw` at 0x4288 stores 4 bytes to a0 (arg0 at entry) +0x68.
+  19 such `sw` accesses store 4 bytes to ?, including `sw` at 0x42bc, `sw` at 0x42c8, `sw` at 0x42d0.
   The `ld` at 0x4434 loads 8 bytes from [[[a0+8]:8+8]:8+8]:8 +0x6a8.
   The `jal` at 0x4004 calls odsy_mm_jettison_freerun_backing_store with a0=[[[a0+8]:8+8]:8+8]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x4044 calls odsy_mm_B_warn with a0=[[[a0+8]:8+8]:8+8]:8, a1=?, a2=?, a3=?.

@@ -1904,24 +1904,24 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `beq` branch at 0xd80eb28 targets 0xd80f014 and is always taken.
   The `beq` branch at 0xd80eb5c targets 0xd80eb6c, is taken when v0(?) >= t6(?) (unsigned), and falls through when v0(?) < t6(?) (unsigned).
   The `beq` branch at 0xd80eb64 targets 0xd80f014 and is always taken.
-  The `beq` branch at 0xd80eb90 targets 0xd80ec54, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd80eb90 targets 0xd80ec54, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0xd80eba4 targets 0xd80ebb4, is taken when t7(?) == t9(?), and falls through when t7(?) != t9(?).
   The `beq` branch at 0xd80ebac targets 0xd80f014 and is always taken.
   The `bne` branch at 0xd80ebb4 targets 0xd80ec24, is taken when t6(?) != at(=0x8008), and falls through when t6(?) == at(=0x8008).
-  The `beq` branch at 0xd80ebc8 targets 0xd80ebe4, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd80ebc8 targets 0xd80ebe4, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0xd80ebd4 targets 0xd80ebe4, is taken when t7(?) == t9(?), and falls through when t7(?) != t9(?).
   The `beq` branch at 0xd80ebdc targets 0xd80f014 and is always taken.
-  The `beq` branch at 0xd80ebe4 targets 0xd80ec00, is taken when t6(=one of 0x0, 0x1) == 0, and falls through when t6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd80ebe4 targets 0xd80ec00, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `beql` branch at 0xd80ebf0 targets 0xd80ec04, is taken when t8(?) == t7(?), and falls through when t8(?) != t7(?); its branch-likely delay slot `lw t9,136(sp)` at 0xd80ebf4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd80ebf8 targets 0xd80f014 and is always taken.
-  The `beql` branch at 0xd80ec08 targets 0xd80ec58, is taken when t9(=one of 0x0, 0x1) == 0, and falls through when t9(=one of 0x0, 0x1) != 0; its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec0c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd80ec08 targets 0xd80ec58, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec0c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd80ec14 targets 0xd80ec58, is taken when t6(?) == t8(?), and falls through when t6(?) != t8(?); its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec18 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd80ec1c targets 0xd80f014 and is always taken.
   The `bnel` branch at 0xd80ec28 targets 0xd80ec58, is taken when t7(?) != at(=0x8009), and falls through when t7(?) == at(=0x8009); its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec2c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd80ec38 targets 0xd80ec58, is taken when t9(=one of 0x0, 0x1) == 0, and falls through when t9(=one of 0x0, 0x1) != 0; its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec3c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd80ec38 targets 0xd80ec58, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec3c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd80ec44 targets 0xd80ec58, is taken when t6(?) == t8(?), and falls through when t6(?) != t8(?); its branch-likely delay slot `lw t7,176(sp)` at 0xd80ec48 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd80ec4c targets 0xd80f014 and is always taken.
-  The `beq` branch at 0xd80ec58 targets 0xd80eccc, is taken when t7(=one of 0x0, 0x1) == 0, and falls through when t7(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd80ec58 targets 0xd80eccc, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The `beql` branch at 0xd80ec68 targets 0xd80ecbc, is taken when t9(?) >= 0x6 (unsigned), and falls through when t9(?) < 0x6 (unsigned); its branch-likely delay slot `lw t6,172(sp)` at 0xd80ec6c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd80ec8c targets 0xd80ecb8 and is always taken.
   The `beq` branch at 0xd80ec94 targets 0xd80ecb8 and is always taken.
@@ -1961,7 +1961,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `beq` branch at 0xd80ef28 targets 0xd80f014 and is always taken.
   The `beq` branch at 0xd80ef58 targets 0xd80ef68, is taken when a1(?) >= t9(?) (signed), and falls through when a1(?) < t9(?) (signed).
   The `beq` branch at 0xd80ef60 targets 0xd80f014 and is always taken.
-  The `beq` branch at 0xd80ef88 targets 0xd80efa4, is taken when t6(=one of 0x0, 0x1) == 0, and falls through when t6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd80ef88 targets 0xd80efa4, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `beq` branch at 0xd80ef94 targets 0xd80eff8, is taken when t8(?) == t7(?), and falls through when t8(?) != t7(?).
   The `beq` branch at 0xd80ef9c targets 0xd80f014 and is always taken.
   The `beq` branch at 0xd80efac targets 0xd80efd8, is taken when t9(?) == 0, and falls through when t9(?) != 0.
@@ -1974,7 +1974,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `beql` branch at 0xd80f000 targets 0xd80f014, is taken when at(?) == 0, and falls through when at(?) != 0; its branch-likely delay slot `lw v1,8(s2)` at 0xd80f004 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd80f01c targets 0xd80ea5c, is taken when s4(?) < v1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+8]) (signed), and falls through when s4(?) >= v1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+8]) (signed).
   The `bltzl` branch at 0xd80f024 targets 0xd80f038, is taken when s6(?) < 0 (signed), and falls through when s6(?) >= 0 (signed); its branch-likely delay slot `lw t6,276(sp)` at 0xd80f028 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xd80f044 targets 0xd80f064, is taken when t7(=one of 0x0, 0x1) != 0, and falls through when t7(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xd80f044 targets 0xd80f064, is taken when t7(?) != 0, and falls through when t7(?) == 0.
   The `bnel` branch at 0xd80f054 targets 0xd80ea4c, is taken when t8(?) < t9(?) (signed), and falls through when t8(?) >= t9(?) (signed); its branch-likely delay slot `lw s1,4(s2)` at 0xd80f058 runs only when taken and is annulled on fall-through.
   The `bgez` branch at 0xd80f06c targets 0xd80f07c, is taken when s6(?) >= 0 (signed), and falls through when s6(?) < 0 (signed).
   The `beq` branch at 0xd80f074 targets 0xd80f0bc and is always taken.
@@ -2090,45 +2090,36 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `sw` at 0xd811cb0 stores 4 bytes to abs 0xd846770.
   The `lw` at 0xd811cf4 loads 4 bytes from a0 (arg0 at entry) +0x20.
   The `lw` at 0xd811cf8 loads 4 bytes from a0 (arg0 at entry) +0x0.
-  The `sw` at 0xd811d14 stores 4 bytes to [a0+32] +0x14.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0x8, including `lw` at 0xd811d94, `lw` at 0xd811df8, `lw` at 0xd811e1c.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0x4, including `lw` at 0xd811d98, `lw` at 0xd811e34, `lw` at 0xd811e9c.
-  22 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd811dbc, `lw` at 0xd811dcc, `lw` at 0xd811de4.
-  56 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd811df0, `sw` at 0xd811e18, `sw` at 0xd811f20.
-  The `sw` at 0xd811e74 stores 4 bytes to [a0+32] +0x4.
-  The `sw` at 0xd811ea0 stores 4 bytes to [a0+32] +0x8.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0x10, including `lw` at 0xd811ea8, `lw` at 0xd811f24, `lw` at 0xd811f50.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0xc, including `lw` at 0xd811ec4, `lw` at 0xd811f68, `lw` at 0xd811fe0.
-  The `sw` at 0xd811f8c stores 4 bytes to [a0+32] +0x10.
-  The `sw` at 0xd811fb4 stores 4 bytes to [a0+32] +0xc.
+  61 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd811d14, `sw` at 0xd811df0, `sw` at 0xd811e18.
+  34 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd811d94, `lw` at 0xd811d98, `lw` at 0xd811dbc.
   10 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8121bc, `sb` at 0xd8121c0, `sb` at 0xd812210.
   8 such `sdc1` accesses store 8 bytes to ?, including `sdc1` at 0xd812298, `sdc1` at 0xd8122a4, `sdc1` at 0xd8122b0.
   3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd812338, `lbu` at 0xd812340, `lbu` at 0xd812478.
   The `jalr` at 0xd811c8c calls getenv with a0=0xd8418f4, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd811cb4 calls fopen with a0=ret(getenv), a1=0xd841904, a2=?, a3=?.
-  The `jalr` at 0xd811cd0 calls perror with a0=ret(getenv), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811cd0 calls perror with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811ce4 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811d00 calls glXGetClientString with a0=[a0], a1=0x3, a2=?, a3=?.
-  The `jalr` at 0xd811d24 calls fgets with a0=sp-1040, a1=0x400, a2=ret(fopen), a3=?.
+  The `jalr` at 0xd811d24 calls fgets with a0=sp-1040, a1=0x400, a2=?, a3=?.
   The `jalr` at 0xd811d40 calls sscanf with a0=sp-1040, a1=0xd841908, a2=sp-1052, a3=?.
-  The `jalr` at 0xd811d70 calls fprintf with a0=sym(__iob)+32, a1=0xd84190c, a2=ret(getenv), a3=?.
+  The `jalr` at 0xd811d70 calls fprintf with a0=sym(__iob)+32, a1=0xd84190c, a2=?, a3=?.
   The `jalr` at 0xd811d84 calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd811e40 calls free with a0=[[a0+32]+4], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811e40 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811e60 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811e88 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd811f74 calls free with a0=[[a0+32]+12], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811f74 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811fa0 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811fc8 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd81201c calls fgets with a0=sp-1040, a1=0x400, a2=ret(fopen), a3=?.
+  The `jalr` at 0xd81201c calls fgets with a0=sp-1040, a1=0x400, a2=?, a3=?.
   The `jalr` at 0xd8120f8 calls sscanf with a0=sp-1040, a1=0xd841940, a2=sp-5248, a3=sp-5244.
-  The `jalr` at 0xd812178 calls fprintf with a0=sym(__iob)+32, a1=0xd841984, a2=ret(getenv), a3=?.
+  The `jalr` at 0xd812178 calls fprintf with a0=sym(__iob)+32, a1=0xd841984, a2=?, a3=?.
   The `jalr` at 0xd81218c calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd812574 calls fprintf with a0=sym(__iob)+32, a1=0xd8419bc, a2=ret(getenv), a3=?.
+  The `jalr` at 0xd812574 calls fprintf with a0=sym(__iob)+32, a1=0xd8419bc, a2=?, a3=?.
   The `jalr` at 0xd812588 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `beq` branch at 0xd811c98 targets 0xd812594, is taken when v0(=ret(getenv)) == 0, and falls through when v0(=ret(getenv)) != 0.
   The `bne` branch at 0xd811cc0 targets 0xd811cf0, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The `bgtz` branch at 0xd811d54 targets 0xd811d94, is taken when a3(?) > 0 (signed), and falls through when a3(?) <= 0 (signed).
-  The `blez` branch at 0xd811da8 targets 0xd811e38, is taken when v1(=[[a0+32]+8]) <= 0 (signed), and falls through when v1(=[[a0+32]+8]) > 0 (signed).
+  The `blez` branch at 0xd811da8 targets 0xd811e38, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `bnel` branch at 0xd811dc4 targets 0xd811e28, is taken when t6(?) != 0, and falls through when t6(?) == 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811dc8 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd811dd4 targets 0xd811dfc, is taken when a0(=0x3) != v0(?), and falls through when a0(=0x3) == v0(?).
   The `beq` branch at 0xd811ddc targets 0xd811e24, is taken when at(?) == 0, and falls through when at(?) != 0.
@@ -2136,8 +2127,8 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `bne` branch at 0xd811dfc targets 0xd811e24, is taken when a1(=0x4) != v0(?), and falls through when a1(=0x4) == v0(?).
   The `beq` branch at 0xd811e04 targets 0xd811e24, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xd811e28 targets 0xd811dbc, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `beq` branch at 0xd811ebc targets 0xd811ff8, is taken when v1(=[[a0+32]+16]) == 0, and falls through when v1(=[[a0+32]+16]) != 0.
-  The `blez` branch at 0xd811ecc targets 0xd811f6c, is taken when v1(=[[a0+32]+16]) <= 0 (signed), and falls through when v1(=[[a0+32]+16]) > 0 (signed).
+  The `beq` branch at 0xd811ebc targets 0xd811ff8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
+  The `blez` branch at 0xd811ecc targets 0xd811f6c, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `bnel` branch at 0xd811ee0 targets 0xd811f5c, is taken when t2(?) != 0, and falls through when t2(?) == 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811ee4 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd811ef0 targets 0xd811f5c, is taken when (t3(?) & 0x1) == 0, and falls through when (t3(?) & 0x1) != 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811ef4 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd811f00 targets 0xd811f30, is taken when a0(=0x8004) != v0(?), and falls through when a0(=0x8004) == v0(?).
@@ -2198,7 +2189,7 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jalr` at 0xd8126e4 calls getpeername with a0=[[a0+264]+8], a1=sp-24, a2=sp-556, a3=a3 at entry (arg3).
   The `jalr` at 0xd812720 calls isNotProxy [0xd8342dc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd812748 calls fprintf with a0=sym(__iob)+32, a1=0xd840d14, a2=?, a3=?.
-  The `jalr` at 0xd812778 calls ioctl with a0=[[a0+264]+8], a1=0xffffffffc0086914, a2=sp-32, a3=?.
+  The `jalr` at 0xd812778 calls ioctl with a0=?, a1=0xffffffffc0086914, a2=sp-32, a3=?.
   The `jalr` at 0xd8127bc calls isNotProxy [0xd8342dc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bne` branch at 0xd8126b8 targets 0xd81269c, is taken when t8(?) != t1(=0xd8441f8), and falls through when t8(?) == t1(=0xd8441f8).
   The `beq` branch at 0xd8126f8 targets 0xd812714, is taken when a2(?) == at(=0x1), and falls through when a2(?) != at(=0x1).

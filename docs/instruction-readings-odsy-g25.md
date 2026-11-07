@@ -542,7 +542,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   It occupies 104 bytes.
   The `jalr` at 0xee299f8 calls fopen with a0=a0 at entry (arg0), a1=0xee5bc70, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xee29a2c calls fread with a0=sp-32, a1=0x4, a2=0x1, a3=ret(fopen).
-  The `jalr` at 0xee29a38 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
+  The `jalr` at 0xee29a38 calls fclose with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0xee29a00 targets 0xee29a18, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The return at 0xee29a10 has v0 = 0x0.
   The return at 0xee29a48 has v0 = ?.
@@ -1382,7 +1382,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `blez` branch at 0xda2261c targets 0xda22704, is taken when t3(=[a1+172]) <= 0 (signed), and falls through when t3(=[a1+172]) > 0 (signed).
   The `blez` branch at 0xda22668 targets 0xda226a8, is taken when s5(=[a1+352]-1) <= 0 (signed), and falls through when s5(=[a1+352]-1) > 0 (signed).
   The `bne` branch at 0xda226a0 targets 0xda22674, is taken when s3(?) != s5(=[a1+352]-1), and falls through when s3(?) == s5(=[a1+352]-1).
-  The `bnel` branch at 0xda226fc targets 0xda2264c, is taken when s7(?) != t5(=[a1+172]), and falls through when s7(?) == t5(=[a1+172]); its branch-likely delay slot `lw t9,116(s8)` at 0xda22700 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda226fc targets 0xda2264c, is taken when s7(?) != t5(?), and falls through when s7(?) == t5(?); its branch-likely delay slot `lw t9,116(s8)` at 0xda22700 runs only when taken and is annulled on fall-through.
   The return at 0xda22734 has v0 = one of ?, ret(?).
 - `__glim_ResetHistogramEXT` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda5c23c (o32).
   Evidence grade: inferred.
@@ -1989,8 +1989,8 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `jalr` at 0xd831cd8 calls _XEatData with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd831d00 calls _XRead with a0=[[[0x1014]+276]+216], a1=ret(malloc), a2=?, a3=?.
   The `jalr` at 0xd831d20 calls _XEatData with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd831d44 calls __glXEmptyImage with a0=[[0x1014]+276], a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5), a5=ret(malloc).
-  The `jalr` at 0xd831d50 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd831d44 calls __glXEmptyImage with a0=[[0x1014]+276], a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5).
+  The `jalr` at 0xd831d50 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd831d68 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd831d7c calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd831da4 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=a1 at entry (arg1).
@@ -3641,8 +3641,8 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `jalr` at 0x216686c calls _XEatData with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
   The `jalr` at 0x21668a0 calls _XRead with a0=[[[0x1028]:8+280]:8+312]:8, a1=ret(malloc), a2=?, a3=?.
   The `jalr` at 0x21668c4 calls _XEatData with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
-  The `jalr` at 0x21668e8 calls __glXEmptyImage with a0=[[0x1028]:8+280]:8, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5), a5=ret(malloc).
-  The `jalr` at 0x21668f4 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x21668e8 calls __glXEmptyImage with a0=[[0x1028]:8+280]:8, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5).
+  The `jalr` at 0x21668f4 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x216690c calls (unknown callee) with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
   The `jalr` at 0x2166920 calls (unknown callee) with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
   The `jalr` at 0x2166944 calls _XFlush with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=a1 at entry (arg1).
@@ -5428,13 +5428,13 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `blez` branch at 0xd8d45c0 targets 0xd8d45cc, is taken when t6(?) <= 0 (signed), and falls through when t6(?) > 0 (signed).
   The `bne` branch at 0xd8d45cc targets 0xd8d468c, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `bne` branch at 0xd8d45d4 targets 0xd8d468c, is taken when s1(?) != 0, and falls through when s1(?) == 0.
-  The `blez` branch at 0xd8d45dc targets 0xd8d467c, is taken when a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
-  The `beq` branch at 0xd8d45e8 targets 0xd8d4624, is taken when (a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) & 0x3) == 0, and falls through when (a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) & 0x3) != 0.
+  The `blez` branch at 0xd8d45dc targets 0xd8d467c, is taken when a3(?) <= 0 (signed), and falls through when a3(?) > 0 (signed).
+  The `beq` branch at 0xd8d45e8 targets 0xd8d4624, is taken when (a3(?) & 0x3) == 0, and falls through when (a3(?) & 0x3) != 0.
   The `bne` branch at 0xd8d4618 targets 0xd8d460c, is taken when a0(?) != v1(?), and falls through when a0(?) == v1(?).
-  The `beq` branch at 0xd8d4620 targets 0xd8d467c, is taken when v1(?) == a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]), and falls through when v1(?) != a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]).
-  The `bne` branch at 0xd8d4674 targets 0xd8d4650, is taken when v1(?) != a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]), and falls through when v1(?) == a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]).
+  The `beq` branch at 0xd8d4620 targets 0xd8d467c, is taken when v1(?) == a3(?), and falls through when v1(?) != a3(?).
+  The `bne` branch at 0xd8d4674 targets 0xd8d4650, is taken when v1(?) != a3(?), and falls through when v1(?) == a3(?).
   The `beq` branch at 0xd8d4684 targets 0xd8d4d20 and is always taken.
-  The `blez` branch at 0xd8d4698 targets 0xd8d4c18, is taken when a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when a3(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
+  The `blez` branch at 0xd8d4698 targets 0xd8d4c18, is taken when a3(?) <= 0 (signed), and falls through when a3(?) > 0 (signed).
   The `bnel` branch at 0xd8d46cc targets 0xd8d4c04, is taken when t9(?) < t5(?) (signed), and falls through when t9(?) >= t5(?) (signed); its branch-likely delay slot `lw t9,96(sp)` at 0xd8d46d0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd8d46dc targets 0xd8d4c04, is taken when t6(?) != t7(?), and falls through when t6(?) == t7(?); its branch-likely delay slot `lw t9,96(sp)` at 0xd8d46e0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8d46e4 targets 0xd8d46f8, is taken when t8(?) == 0, and falls through when t8(?) != 0.
@@ -5734,7 +5734,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `blez` branch at 0xd8d5668 targets 0xd8d5674, is taken when t9(?) <= 0 (signed), and falls through when t9(?) > 0 (signed).
   The `beq` branch at 0xd8d5674 targets 0xd8d5684, is taken when s0(?) == 0, and falls through when s0(?) != 0.
   The `bnel` branch at 0xd8d567c targets 0xd8d5880, is taken when s4(=[a2]) != 0, and falls through when s4(=[a2]) == 0; its branch-likely delay slot `lw t6,448(sp)` at 0xd8d5680 runs only when taken and is annulled on fall-through.
-  The `blez` branch at 0xd8d5690 targets 0xd8d586c, is taken when a2(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when a2(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
+  The `blez` branch at 0xd8d5690 targets 0xd8d586c, is taken when a2(?) <= 0 (signed), and falls through when a2(?) > 0 (signed).
   The `bne` branch at 0xd8d56f0 targets 0xd8d56d4, is taken when t6(?) != at(?), and falls through when t6(?) == at(?).
   The `beq` branch at 0xd8d5704 targets 0xd8d5774, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `bne` branch at 0xd8d5710 targets 0xd8d5774, is taken when s8(=0xc) != t7(?), and falls through when s8(=0xc) == t7(?).
@@ -5754,7 +5754,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8d5844 targets 0xd8d5820, is taken when s2(?) != v1(?), and falls through when s2(?) == v1(?).
   The `bnel` branch at 0xd8d5864 targets 0xd8d56b8, is taken when a3(?) != t8(?), and falls through when a3(?) == t8(?); its branch-likely delay slot `addiu t0,t0,1` at 0xd8d5868 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8d5874 targets 0xd8d5fb0 and is always taken.
-  The `blez` branch at 0xd8d5888 targets 0xd8d5ea8, is taken when t6(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when t6(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
+  The `blez` branch at 0xd8d5888 targets 0xd8d5ea8, is taken when t6(?) <= 0 (signed), and falls through when t6(?) > 0 (signed).
   The `beql` branch at 0xd8d58b0 targets 0xd8d58cc, is taken when s6(=-0x1) == t8(?), and falls through when s6(=-0x1) != t8(?); its branch-likely delay slot `lw t7,156(s4)` at 0xd8d58b4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd8d58c0 targets 0xd8d5e94, is taken when t9(?) < t8(?) (signed), and falls through when t9(?) >= t8(?) (signed); its branch-likely delay slot `lw t6,92(sp)` at 0xd8d58c4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd8d58d0 targets 0xd8d5e94, is taken when t6(?) != t7(?), and falls through when t6(?) == t7(?); its branch-likely delay slot `lw t6,92(sp)` at 0xd8d58d4 runs only when taken and is annulled on fall-through.
@@ -6188,7 +6188,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `jalr` at 0xd8d7974 calls __glXPostError with a0=a0 at entry (arg0), a1=0xa, a2=0x5, a3=[a3+20].
   The `jalr` at 0xd8d79e8 calls (unknown callee) with a0=[[[0x1014]+276]+200], a1=?, a2=?, a3=?.
   The `jalr` at 0xd8d7a14 calls __glXPostError with a0=a0 at entry (arg0), a1=?, a2=0x5, a3=[[[0x1014]+276]+20].
-  The `jalr` at 0xd8d7a48 calls __glXUnbindHWContextFromThread with a0=[[[0x1014]+276]+200], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8d7a48 calls __glXUnbindHWContextFromThread with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd8d7a9c calls __glXAddDrawableInterest with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8d7ac0 calls __glXPostError with a0=a0 at entry (arg0), a1=0xb, a2=0x5, a3=[a3+20].
   The `jalr` at 0xd8d7ae4 calls __glXRestoreCurrent [0xd8c2a98] with a0=a3 at entry (arg3), a1=[[0x1014]+276], a2=0x0, a3=0x0.
@@ -6408,7 +6408,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `blez` branch at 0xdaf1e7c targets 0xdaf1f64, is taken when t3(=[a1+172]) <= 0 (signed), and falls through when t3(=[a1+172]) > 0 (signed).
   The `blez` branch at 0xdaf1ec8 targets 0xdaf1f08, is taken when s5(=[a1+352]-1) <= 0 (signed), and falls through when s5(=[a1+352]-1) > 0 (signed).
   The `bne` branch at 0xdaf1f00 targets 0xdaf1ed4, is taken when s3(?) != s5(=[a1+352]-1), and falls through when s3(?) == s5(=[a1+352]-1).
-  The `bnel` branch at 0xdaf1f5c targets 0xdaf1eac, is taken when s7(?) != t5(=[a1+172]), and falls through when s7(?) == t5(=[a1+172]); its branch-likely delay slot `lw t9,116(s8)` at 0xdaf1f60 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xdaf1f5c targets 0xdaf1eac, is taken when s7(?) != t5(?), and falls through when s7(?) == t5(?); its branch-likely delay slot `lw t9,116(s8)` at 0xdaf1f60 runs only when taken and is annulled on fall-through.
   The return at 0xdaf1f94 has v0 = one of ?, ret(?).
 - `__glim_ResetHistogramEXT` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb2ba5c (o32).
   Evidence grade: inferred.
@@ -7018,8 +7018,8 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `jalr` at 0xd8c0e98 calls _XEatData with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd8c0ec4 calls _XRead with a0=[[[0x1014]+276]+216], a1=ret(malloc), a2=?, a3=?.
   The `jalr` at 0xd8c0ee4 calls _XEatData with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8c0f08 calls __glXEmptyImage with a0=[[0x1014]+276], a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5), a5=ret(malloc).
-  The `jalr` at 0xd8c0f14 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8c0f08 calls __glXEmptyImage with a0=[[0x1014]+276], a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5).
+  The `jalr` at 0xd8c0f14 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd8c0f30 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd8c0f48 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd8c0f6c calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
@@ -7265,12 +7265,12 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `sw` at 0xd8c6e84 stores 4 bytes to ret(malloc) +0x0.
   36 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8c7354, `sw` at 0xd8c7384, `sw` at 0xd8c738c.
   The `jalr` at 0xd8c6ac4 calls __glXInitialize with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8c6d3c calls malloc with a0=0x4, a1=ret(__glXInitialize), a2=?, a3=?, a6=one of 0x0, 0x1.
-  The `jalr` at 0xd8c724c calls malloc with a0=([([ret(__glXInitialize)+32] + (a1 << 0x5))+16] << 0x2), a1=ret(__glXInitialize), a2=?, a3=?, a5=(a1 << 0x5), a6=one of 0x0, 0x1.
-  The `bgezall` at 0xd8c72dc calls (unnamed) [0xd8c3ef0] with a0=ret(__glXInitialize), a1=a1 at entry (arg1), a2=sp-328, a3=?.
+  The `jalr` at 0xd8c6d3c calls malloc with a0=0x4, a1=ret(__glXInitialize), a2=?, a3=?.
+  The `jalr` at 0xd8c724c calls malloc with a0=([([ret(__glXInitialize)+32] + (a1 << 0x5))+16] << 0x2), a1=ret(__glXInitialize), a2=?, a3=?, a5=(a1 << 0x5).
+  The `bgezall` at 0xd8c72dc calls GetBoardName [0xd8c3ef0] with a0=?, a1=a1 at entry (arg1), a2=sp-328, a3=?.
   The `jalr` at 0xd8c72f8 calls strncmp with a0=sp-328, a1=0xd8e2428, a2=0x7, a3=?.
-  The `jalr` at 0xd8c770c calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `bgezall` at 0xd8c79c4 calls (unnamed) [0xd8c63fc] with a0=?, a1=?, a2=ret(malloc), a3=?.
+  The `jalr` at 0xd8c770c calls free with a0=?, a1=?, a2=?, a3=?.
+  The `bgezall` at 0xd8c79c4 calls orderFBConfigSGIXs [0xd8c63fc] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xd8c6994 targets 0xd8c6a1c, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0xd8c69a0 targets 0xd8c6a1c, is taken when a0(=[a2]) == 0, and falls through when a0(=[a2]) != 0.
   The `bne` branch at 0xd8c69d8 targets 0xd8c6a40, is taken when at(?) != 0, and falls through when at(?) == 0.
@@ -7291,7 +7291,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c6ae8 targets 0xd8c6ce0, is taken when s3(=a1) >= a6(=[a0+136]) (signed), and falls through when s3(=a1) < a6(=[a0+136]) (signed).
   The `beq` branch at 0xd8c6b00 targets 0xd8c6e38, is taken when s4(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+12]) == 0, and falls through when s4(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+12]) != 0.
   The `beq` branch at 0xd8c6b08 targets 0xd8c6e38, is taken when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) == 0, and falls through when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) != 0.
-  The `beq` branch at 0xd8c6b10 targets 0xd8c7240, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c6b10 targets 0xd8c7240, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `blez` branch at 0xd8c6b18 targets 0xd8c6b50, is taken when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
   The `beq` branch at 0xd8c6b3c targets 0xd8c6d38, is taken when v1(?) == s1(?), and falls through when v1(?) != s1(?).
   The `bnel` branch at 0xd8c6b48 targets 0xd8c6b3c, is taken when a5(?) != s0(?), and falls through when a5(?) == s0(?); its branch-likely delay slot `lw v1,72(s0)` at 0xd8c6b4c runs only when taken and is annulled on fall-through.
@@ -7405,12 +7405,12 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c72a0 targets 0xd8c6a08 and is always taken.
   The `bne` branch at 0xd8c72ac targets 0xd8c6fe4, is taken when v0(?) != v1(=0x802f), and falls through when v0(?) == v1(=0x802f).
   The `beq` branch at 0xd8c72c4 targets 0xd8c6a08 and is always taken.
-  The `beq` branch at 0xd8c72e4 targets 0xd8c7308, is taken when v0(=ret(0xd8c3ef0)) == 0, and falls through when v0(=ret(0xd8c3ef0)) != 0.
+  The `beq` branch at 0xd8c72e4 targets 0xd8c7308, is taken when v0(=ret(GetBoardName)) == 0, and falls through when v0(=ret(GetBoardName)) != 0.
   The `beq` branch at 0xd8c7300 targets 0xd8c76c8, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `bne` branch at 0xd8c7308 targets 0xd8c73f0, is taken when s2(?) != 0, and falls through when s2(?) == 0.
   The `bne` branch at 0xd8c7310 targets 0xd8c73f0, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `blez` branch at 0xd8c7318 targets 0xd8c73c4, is taken when s1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when s1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
-  The `beq` branch at 0xd8c7344 targets 0xd8c7360, is taken when (at(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) & 0x7) == 0, and falls through when (at(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) & 0x7) != 0.
+  The `beq` branch at 0xd8c7344 targets 0xd8c7360, is taken when (at(?) & 0x7) == 0, and falls through when (at(?) & 0x7) != 0.
   The `bne` branch at 0xd8c7358 targets 0xd8c734c, is taken when a2(?) != 0, and falls through when a2(?) == 0.
   The `beq` branch at 0xd8c7368 targets 0xd8c73c0, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xd8c73b8 targets 0xd8c7378, is taken when a1(?) != s1(?), and falls through when a1(?) == s1(?).
@@ -7420,7 +7420,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c743c targets 0xd8c75b4, is taken when s0(?) == s1(?), and falls through when s0(?) != s1(?).
   The `bne` branch at 0xd8c7450 targets 0xd8c7438, is taken when at(?) < v1(?) (signed), and falls through when at(?) >= v1(?) (signed).
   The `bne` branch at 0xd8c745c targets 0xd8c7438, is taken when a5(?) != a6(?), and falls through when a5(?) == a6(?).
-  The `beq` branch at 0xd8c7464 targets 0xd8c7430, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c7464 targets 0xd8c7430, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xd8c7470 targets 0xd8c7430, is taken when v1(?) == a5(?), and falls through when v1(?) != a5(?).
   The `beq` branch at 0xd8c7478 targets 0xd8c7438 and is always taken.
   The `bne` branch at 0xd8c7488 targets 0xd8c7438, is taken when a6(?) != at(?), and falls through when a6(?) == at(?).
@@ -7437,11 +7437,11 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c7564 targets 0xd8c7438, is taken when at(?) < v1(?) (signed), and falls through when at(?) >= v1(?) (signed).
   The `bne` branch at 0xd8c7578 targets 0xd8c7438, is taken when a5(?) < a6(?) (unsigned), and falls through when a5(?) >= a6(?) (unsigned).
   The `bne` branch at 0xd8c758c targets 0xd8c7438, is taken when at(?) < v1(?) (unsigned), and falls through when at(?) >= v1(?) (unsigned).
-  The `beq` branch at 0xd8c7594 targets 0xd8c7744, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c7594 targets 0xd8c7744, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xd8c75a4 targets 0xd8c7744, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
   The `beq` branch at 0xd8c75ac targets 0xd8c7744 and is always taken.
   The `blez` branch at 0xd8c75b4 targets 0xd8c7708, is taken when s2(?) <= 0 (signed), and falls through when s2(?) > 0 (signed).
-  The `beq` branch at 0xd8c75bc targets 0xd8c769c, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c75bc targets 0xd8c769c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bltz` branch at 0xd8c75d0 targets 0xd8c7600, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
   The `bltz` branch at 0xd8c7604 targets 0xd8c7634, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
   The `bltz` branch at 0xd8c7638 targets 0xd8c7668, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
@@ -7452,22 +7452,22 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c7700 targets 0xd8c7308 and is always taken.
   The `bne` branch at 0xd8c7744 targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xd8c7754 targets 0xd8c7438, is taken when at(?) != v1(?), and falls through when at(?) == v1(?).
-  The `beq` branch at 0xd8c775c targets 0xd8c7778, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c775c targets 0xd8c7778, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xd8c776c targets 0xd8c7778, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
   The `bne` branch at 0xd8c7778 targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c7780 targets 0xd8c779c, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c7780 targets 0xd8c779c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd8c7790 targets 0xd8c779c, is taken when a5(?) == a6(?), and falls through when a5(?) != a6(?).
   The `bne` branch at 0xd8c779c targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c77a4 targets 0xd8c77c0, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c77a4 targets 0xd8c77c0, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xd8c77b4 targets 0xd8c77c0, is taken when v1(?) == a5(?), and falls through when v1(?) != a5(?).
   The `bne` branch at 0xd8c77c0 targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c77c8 targets 0xd8c77e4, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c77c8 targets 0xd8c77e4, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0xd8c77d8 targets 0xd8c77e4, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xd8c77e4 targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c77ec targets 0xd8c7808, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c77ec targets 0xd8c7808, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xd8c77fc targets 0xd8c7808, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
   The `bne` branch at 0xd8c7808 targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c7810 targets 0xd8c782c, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c7810 targets 0xd8c782c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd8c7820 targets 0xd8c782c, is taken when a5(?) == a6(?), and falls through when a5(?) != a6(?).
   The `bne` branch at 0xd8c782c targets 0xd8c7438, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xd8c7840 targets 0xd8c7438, is taken when at(?) != v1(?), and falls through when at(?) == v1(?).
@@ -7487,7 +7487,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bc1t` branch at 0xd8c7928 targets 0xd8c7438, is taken when FP condition code 1 is true, and falls through when FP condition code 1 is false.
   The `bc1t` branch at 0xd8c7938 targets 0xd8c7438, is taken when FP condition code 2 is true, and falls through when FP condition code 2 is false.
   The `bc1t` branch at 0xd8c794c targets 0xd8c7438, is taken when FP condition code 3 is true, and falls through when FP condition code 3 is false.
-  The `beq` branch at 0xd8c796c targets 0xd8c797c, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c796c targets 0xd8c797c, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xd8c7974 targets 0xd8c7b38, is taken when a7(?) == s3(=0xc), and falls through when a7(?) != s3(=0xc).
   The `beq` branch at 0xd8c797c targets 0xd8c79fc, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0xd8c79f0 targets 0xd8c7990, is taken when s4(?) != at(?), and falls through when s4(?) == at(?).
@@ -7496,7 +7496,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c7a2c targets 0xd8c7a20, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0xd8c7a38 targets 0xd8c7a6c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0xd8c7a64 targets 0xd8c7a44, is taken when a1(?) != a7(?), and falls through when a1(?) == a7(?).
-  The `beq` branch at 0xd8c7a70 targets 0xd8c7ae8, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c7a70 targets 0xd8c7ae8, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xd8c7a80 targets 0xd8c7a94, is taken when t0(?) < s4(?) (signed), and falls through when t0(?) >= s4(?) (signed).
   The `beq` branch at 0xd8c7a88 targets 0xd8c7a94, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xd8c7a9c targets 0xd8c7ab0, is taken when t0(?) < s4(?) (signed), and falls through when t0(?) >= s4(?) (signed).
@@ -7505,9 +7505,9 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c7ac0 targets 0xd8c7acc, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xd8c7ad4 targets 0xd8c7ae8, is taken when t0(?) < s4(?) (signed), and falls through when t0(?) >= s4(?) (signed).
   The `beq` branch at 0xd8c7adc targets 0xd8c7ae8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0xd8c7aec targets 0xd8c7b20, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c7aec targets 0xd8c7b20, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bltz` branch at 0xd8c7af8 targets 0xd8c7b1c, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
-  The `bne` branch at 0xd8c7b04 targets 0xd8c7af4, is taken when a1(?) != a2(=sp-560), and falls through when a1(?) == a2(=sp-560).
+  The `bne` branch at 0xd8c7b04 targets 0xd8c7af4, is taken when a1(?) != a2(?), and falls through when a1(?) == a2(?).
   The `beq` branch at 0xd8c7b0c targets 0xd8c7b20 and is always taken.
   The `beq` branch at 0xd8c7b14 targets 0xd8c7870 and is always taken.
   The `beq` branch at 0xd8c7b20 targets 0xd8c7438 and is always taken.
@@ -7516,7 +7516,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c7b40 targets 0xd8c797c, is taken when a1(?) != s3(=0xc), and falls through when a1(?) == s3(=0xc).
   The `bne` branch at 0xd8c7b48 targets 0xd8c797c, is taken when t1(?) != s3(=0xc), and falls through when t1(?) == s3(=0xc).
   The `bne` branch at 0xd8c7b50 targets 0xd8c797c, is taken when t2(?) != v1(=0x10), and falls through when t2(?) == v1(=0x10).
-  The `bne` branch at 0xd8c7b58 targets 0xd8c797c, is taken when a5(=one of 0x0, 0x1) != 0, and falls through when a5(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xd8c7b58 targets 0xd8c797c, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0xd8c7b78 targets 0xd8c797c and is always taken.
   The return at 0xd8c6b74 has v0 = 0x0.
   The return at 0xd8c6cb4 has v0 = 0x0.
@@ -7527,8 +7527,8 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The return at 0xd8c6e8c has v0 = ret(malloc).
   The return at 0xd8c7008 has v0 = 0x0.
   The return at 0xd8c7284 has v0 = 0x0.
-  The return at 0xd8c73e8 has v0 = ret(malloc).
-  The return at 0xd8c76c0 has v0 = ret(malloc).
+  The return at 0xd8c73e8 has v0 = ?.
+  The return at 0xd8c76c0 has v0 = ?.
   The return at 0xd8c773c has v0 = 0x0.
   The indirect jump at 0xd8c6ab4 uses the jump table at 0xd8e05e8 with targets 0xd8c6bd0, 0xd8c6be0, 0xd8c6bf0, 0xd8c6c00, 0xd8c6c10, 0xd8c6a6c, 0xd8c6c20, 0xd8c6c30.
   The indirect jump at 0xd8c6ab4 uses the jump table at 0xd8e05e8 with targets 0xd8c6bd0, 0xd8c6be0, 0xd8c6bf0, 0xd8c6c00, 0xd8c6c10, 0xd8c6a6c, 0xd8c6c20, 0xd8c6c30.
@@ -7562,13 +7562,13 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `sd` at 0xd8c9254 stores 8 bytes to ?.
   8 such `ldc1` accesses load 8 bytes from ?, including `ldc1` at 0xd8c9a14, `ldc1` at 0xd8c9c74, `ldc1` at 0xd8c9ca0.
   The `jalr` at 0xd8c86e4 calls __glXInitialize with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8c89cc calls malloc with a0=0x4, a1=ret(__glXInitialize), a2=?, a3=?, a4=(a1 << 0x5), a5=one of 0x0, 0x1.
-  The `jalr` at 0xd8c9024 calls malloc with a0=([([ret(__glXInitialize)+32] + (a1 << 0x5))+16] << 0x2), a1=ret(__glXInitialize), a2=?, a3=?, a4=(a1 << 0x5), a5=one of 0x0, 0x1.
-  The `bgezall` at 0xd8c90e4 calls (unnamed) [0xd8c3ef0] with a0=ret(__glXInitialize), a1=a1 at entry (arg1), a2=sp-600, a3=?.
+  The `jalr` at 0xd8c89cc calls malloc with a0=0x4, a1=ret(__glXInitialize), a2=?, a3=?, a4=(a1 << 0x5).
+  The `jalr` at 0xd8c9024 calls malloc with a0=([([ret(__glXInitialize)+32] + (a1 << 0x5))+16] << 0x2), a1=ret(__glXInitialize), a2=?, a3=?, a4=(a1 << 0x5).
+  The `bgezall` at 0xd8c90e4 calls GetBoardName [0xd8c3ef0] with a0=?, a1=a1 at entry (arg1), a2=sp-600, a3=?.
   The `jalr` at 0xd8c90fc calls strncmp with a0=sp-600, a1=0xd8e2428, a2=0x7, a3=?.
-  The `bgezall` at 0xd8c92a4 calls (unnamed) [0xd8c7ef4] with a0=sp-584, a1=?, a2=0x0, a3=?.
+  The `bgezall` at 0xd8c92a4 calls orderFBConfigs [0xd8c7ef4] with a0=sp-584, a1=?, a2=0x0, a3=?.
   The `jalr` at 0xd8c9644 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `bgezall` at 0xd8c9b04 calls (unnamed) [0xd8c7ef4] with a0=?, a1=?, a2=?, a3=?.
+  The `bgezall` at 0xd8c9b04 calls orderFBConfigs [0xd8c7ef4] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xd8c8610 targets 0xd8c86b4, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0xd8c8618 targets 0xd8c86b4, is taken when t1(=[a2]) == 0, and falls through when t1(=[a2]) != 0.
   The `beq` branch at 0xd8c8630 targets 0xd8c8678 and is always taken.
@@ -7585,7 +7585,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c8708 targets 0xd8c890c, is taken when s3(=a1) >= at(=[a0+136]) (signed), and falls through when s3(=a1) < at(=[a0+136]) (signed).
   The `beq` branch at 0xd8c8720 targets 0xd8c8a74, is taken when s1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+12]) == 0, and falls through when s1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+12]) != 0.
   The `beq` branch at 0xd8c8728 targets 0xd8c8a74, is taken when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) == 0, and falls through when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) != 0.
-  The `beq` branch at 0xd8c8730 targets 0xd8c901c, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c8730 targets 0xd8c901c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `blez` branch at 0xd8c8738 targets 0xd8c8770, is taken when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when a0(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
   The `beq` branch at 0xd8c875c targets 0xd8c89c8, is taken when at(?) == s2(?), and falls through when at(?) != s2(?).
   The `bnel` branch at 0xd8c8768 targets 0xd8c875c, is taken when v1(?) != s0(?), and falls through when v1(?) == s0(?); its branch-likely delay slot `lw at,72(s0)` at 0xd8c876c runs only when taken and is annulled on fall-through.
@@ -7698,20 +7698,20 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c9098 targets 0xd8c866c and is always taken.
   The `bne` branch at 0xd8c90a4 targets 0xd8c8cb0, is taken when v0(?) != a4(=0x802f), and falls through when v0(?) == a4(=0x802f).
   The `beq` branch at 0xd8c90cc targets 0xd8c866c and is always taken.
-  The `beq` branch at 0xd8c90ec targets 0xd8c910c, is taken when v0(=ret(0xd8c3ef0)) == 0, and falls through when v0(=ret(0xd8c3ef0)) != 0.
+  The `beq` branch at 0xd8c90ec targets 0xd8c910c, is taken when v0(=ret(GetBoardName)) == 0, and falls through when v0(=ret(GetBoardName)) != 0.
   The `beq` branch at 0xd8c9104 targets 0xd8c95cc, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `beq` branch at 0xd8c910c targets 0xd8c9168, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `beq` branch at 0xd8c9114 targets 0xd8c9168, is taken when at(=[a2]) == 0, and falls through when at(=[a2]) != 0.
-  The `blez` branch at 0xd8c911c targets 0xd8c9470, is taken when v1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when v1(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
+  The `beq` branch at 0xd8c9114 targets 0xd8c9168, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `blez` branch at 0xd8c911c targets 0xd8c9470, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `beq` branch at 0xd8c9160 targets 0xd8c93b4 and is always taken.
-  The `blez` branch at 0xd8c9170 targets 0xd8c935c, is taken when a4(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) <= 0 (signed), and falls through when a4(=[([ret(__glXInitialize)+32] + (a1 << 0x5))+16]) > 0 (signed).
+  The `blez` branch at 0xd8c9170 targets 0xd8c935c, is taken when a4(?) <= 0 (signed), and falls through when a4(?) > 0 (signed).
   The `beq` branch at 0xd8c91a8 targets 0xd8c9214 and is always taken.
   The `bne` branch at 0xd8c91bc targets 0xd8c91b0, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0xd8c91c4 targets 0xd8c9204, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0xd8c91fc targets 0xd8c91dc, is taken when v0(?) != a0(?), and falls through when v0(?) == a0(?).
   The `beq` branch at 0xd8c9210 targets 0xd8c935c, is taken when s0(?) == a4(?), and falls through when s0(?) != a4(?).
   The `bgtz` branch at 0xd8c9250 targets 0xd8c923c, is taken when a0(?) > 0 (signed), and falls through when a0(?) <= 0 (signed).
-  The `beq` branch at 0xd8c9260 targets 0xd8c9274, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9260 targets 0xd8c9274, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xd8c926c targets 0xd8c9300, is taken when v1(?) == a4(=0xc), and falls through when v1(?) != a4(=0xc).
   The `beq` branch at 0xd8c9274 targets 0xd8c92c8, is taken when s6(?) == 0, and falls through when s6(?) != 0.
   The `bne` branch at 0xd8c92bc targets 0xd8c928c, is taken when s1(?) != s3(?), and falls through when s1(?) == s3(?).
@@ -7723,7 +7723,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c9314 targets 0xd8c9274, is taken when at(?) != v1(=0xc), and falls through when at(?) == v1(=0xc).
   The `bne` branch at 0xd8c9324 targets 0xd8c9274, is taken when a4(?) != a5(=0xc), and falls through when a4(?) == a5(=0xc).
   The `bne` branch at 0xd8c9334 targets 0xd8c9274, is taken when at(?) != v1(=0x10), and falls through when at(?) == v1(=0x10).
-  The `bne` branch at 0xd8c933c targets 0xd8c9274, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xd8c933c targets 0xd8c9274, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0xd8c9354 targets 0xd8c9274 and is always taken.
   The `beq` branch at 0xd8c93a4 targets 0xd8c9400 and is always taken.
   The `beq` branch at 0xd8c93b0 targets 0xd8c9474, is taken when a0(?) == s3(?), and falls through when a0(?) != s3(?).
@@ -7731,17 +7731,17 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c93f0 targets 0xd8c93a0, is taken when a4(?) >= v0(?) (signed), and falls through when a4(?) < v0(?) (signed).
   The `beq` branch at 0xd8c93f8 targets 0xd8c93b0 and is always taken.
   The `bne` branch at 0xd8c9404 targets 0xd8c93ac, is taken when a5(?) != at(?), and falls through when a5(?) == at(?).
-  The `beq` branch at 0xd8c940c targets 0xd8c9424, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c940c targets 0xd8c9424, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd8c9418 targets 0xd8c9424, is taken when a4(?) == a5(?), and falls through when a4(?) != a5(?).
   The `bne` branch at 0xd8c9424 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c942c targets 0xd8c9448, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c942c targets 0xd8c9448, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xd8c943c targets 0xd8c9448, is taken when v1(?) == a4(?), and falls through when v1(?) != a4(?).
   The `bne` branch at 0xd8c9448 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xd8c9450 targets 0xd8c959c, is taken when v0(?) == s8(=-0x1), and falls through when v0(?) != s8(=-0x1).
   The `beq` branch at 0xd8c9460 targets 0xd8c95a0, is taken when a5(?) >= v0(?) (signed), and falls through when a5(?) < v0(?) (signed).
   The `beq` branch at 0xd8c9468 targets 0xd8c95a0 and is always taken.
   The `blez` branch at 0xd8c9478 targets 0xd8c9640, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
-  The `beq` branch at 0xd8c9480 targets 0xd8c9558, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9480 targets 0xd8c9558, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bltz` branch at 0xd8c948c targets 0xd8c94bc, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
   The `bltz` branch at 0xd8c94c0 targets 0xd8c94f0, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
   The `bltz` branch at 0xd8c94f4 targets 0xd8c9524, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
@@ -7797,22 +7797,22 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c9824 targets 0xd8c983c, is taken when a6(?) == s8(=-0x1), and falls through when a6(?) != s8(=-0x1).
   The `beq` branch at 0xd8c9830 targets 0xd8c983c, is taken when a4(?) == a6(?), and falls through when a4(?) != a6(?).
   The `bne` branch at 0xd8c983c targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c9844 targets 0xd8c9860, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9844 targets 0xd8c9860, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xd8c9854 targets 0xd8c9860, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xd8c9860 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c9868 targets 0xd8c9884, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9868 targets 0xd8c9884, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xd8c9878 targets 0xd8c9884, is taken when a5(?) == at(?), and falls through when a5(?) != at(?).
   The `bne` branch at 0xd8c9884 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c988c targets 0xd8c98a8, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c988c targets 0xd8c98a8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd8c989c targets 0xd8c98a8, is taken when a4(?) == a5(?), and falls through when a4(?) != a5(?).
   The `bne` branch at 0xd8c98a8 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xd8c98b0 targets 0xd8c98cc, is taken when s7(=one of 0x0, 0x1) == 0, and falls through when s7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0xd8c98c0 targets 0xd8c98cc, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xd8c98cc targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c98d4 targets 0xd8c98f0, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c98d4 targets 0xd8c98f0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xd8c98e4 targets 0xd8c98f0, is taken when a5(?) == at(?), and falls through when a5(?) != at(?).
   The `bne` branch at 0xd8c98f0 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c98f8 targets 0xd8c9914, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c98f8 targets 0xd8c9914, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd8c9908 targets 0xd8c9914, is taken when a4(?) == a5(?), and falls through when a4(?) != a5(?).
   The `bne` branch at 0xd8c9914 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xd8c991c targets 0xd8c9938, is taken when t0(?) == s8(=-0x1), and falls through when t0(?) != s8(=-0x1).
@@ -7822,7 +7822,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c9950 targets 0xd8c9964, is taken when v1(?) == v0(?), and falls through when v1(?) != v0(?).
   The `beq` branch at 0xd8c9958 targets 0xd8c9964 and is always taken.
   The `bne` branch at 0xd8c9964 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c996c targets 0xd8c9980, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c996c targets 0xd8c9980, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xd8c9978 targets 0xd8c99d4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xd8c9980 targets 0xd8c93ac, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xd8c9988 targets 0xd8c99a8, is taken when s8(=-0x1) == v0(?), and falls through when s8(=-0x1) != v0(?).
@@ -7848,7 +7848,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c9a60 targets 0xd8c93ac, is taken when t8(=one of 0x0, 0x1) != 0, and falls through when t8(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xd8c9a68 targets 0xd8c93ac, is taken when a3(=one of 0x0, 0x1) != 0, and falls through when a3(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xd8c9a70 targets 0xd8c93ac, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xd8c9a9c targets 0xd8c9ab4, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9a9c targets 0xd8c9ab4, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd8c9aac targets 0xd8c9db0, is taken when at(?) == v1(=0xc), and falls through when at(?) != v1(=0xc).
   The `beq` branch at 0xd8c9ab4 targets 0xd8c9b44, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0xd8c9b38 targets 0xd8c9acc, is taken when a6(?) != a4(?), and falls through when a6(?) == a4(?).
@@ -7857,7 +7857,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c9b74 targets 0xd8c9b68, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0xd8c9b80 targets 0xd8c9bb4, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0xd8c9bac targets 0xd8c9b8c, is taken when v0(?) != a7(?), and falls through when v0(?) == a7(?).
-  The `beq` branch at 0xd8c9bb8 targets 0xd8c9c30, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9bb8 targets 0xd8c9c30, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0xd8c9bc8 targets 0xd8c9bdc, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
   The `beq` branch at 0xd8c9bd0 targets 0xd8c9bdc, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xd8c9be4 targets 0xd8c9bf8, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
@@ -7866,9 +7866,9 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xd8c9c08 targets 0xd8c9c14, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0xd8c9c1c targets 0xd8c9c30, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
   The `beq` branch at 0xd8c9c24 targets 0xd8c9c30, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0xd8c9c34 targets 0xd8c9d9c, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd8c9c34 targets 0xd8c9d9c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bltz` branch at 0xd8c9c40 targets 0xd8c9d98, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
-  The `bne` branch at 0xd8c9c4c targets 0xd8c9c3c, is taken when v0(?) != v1(=sp-832), and falls through when v0(?) == v1(=sp-832).
+  The `bne` branch at 0xd8c9c4c targets 0xd8c9c3c, is taken when v0(?) != v1(?), and falls through when v0(?) == v1(?).
   The `beq` branch at 0xd8c9c54 targets 0xd8c9d9c and is always taken.
   The `beq` branch at 0xd8c9c5c targets 0xd8c9a30 and is always taken.
   The `bc1t` branch at 0xd8c9c6c targets 0xd8c9c88, is taken when FP condition code 2 is true, and falls through when FP condition code 2 is false.
@@ -7898,7 +7898,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xd8c9dc8 targets 0xd8c9ab4, is taken when a4(?) != a5(=0xc), and falls through when a4(?) == a5(=0xc).
   The `bne` branch at 0xd8c9dd8 targets 0xd8c9ab4, is taken when at(?) != v1(=0xc), and falls through when at(?) == v1(=0xc).
   The `bne` branch at 0xd8c9de8 targets 0xd8c9ab4, is taken when a4(?) != a5(=0x10), and falls through when a4(?) == a5(=0x10).
-  The `bne` branch at 0xd8c9df0 targets 0xd8c9ab4, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xd8c9df0 targets 0xd8c9ab4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0xd8c9e10 targets 0xd8c9ab4 and is always taken.
   The return at 0xd8c87a0 has v0 = 0x0.
   The return at 0xd8c893c has v0 = 0x0.
@@ -8714,8 +8714,8 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `jalr` at 0xcf84c34 calls _XEatData with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
   The `jalr` at 0xcf84c6c calls _XRead with a0=[[[0x1028]:8+280]:8+312]:8, a1=ret(malloc), a2=?, a3=?.
   The `jalr` at 0xcf84c8c calls _XEatData with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
-  The `jalr` at 0xcf84cb0 calls __glXEmptyImage with a0=[[0x1028]:8+280]:8, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5), a5=ret(malloc).
-  The `jalr` at 0xcf84cbc calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0xcf84cb0 calls __glXEmptyImage with a0=[[0x1028]:8+280]:8, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=a4 at entry (arg4), a4=a5 at entry (arg5).
+  The `jalr` at 0xcf84cbc calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xcf84cd8 calls (unknown callee) with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
   The `jalr` at 0xcf84cf0 calls (unknown callee) with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
   The `jalr` at 0xcf84d14 calls _XFlush with a0=[[[0x1028]:8+280]:8+312]:8, a1=?, a2=?, a3=?.
@@ -8963,12 +8963,12 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   22 such `ld` accesses load 8 bytes from ?, including `ld` at 0xcf8b3f8, `ld` at 0xcf8b400, `ld` at 0xcf8b408.
   21 such `sw` accesses store 4 bytes to ?, including `sw` at 0xcf8b3fc, `sw` at 0xcf8b404, `sw` at 0xcf8b40c.
   The `jalr` at 0xcf8a8d8 calls __glXInitialize with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xcf8ab50 calls malloc with a0=0x8, a1=ret(__glXInitialize), a2=?, a3=?, a6=one of 0x0, 0x1.
-  The `jalr` at 0xcf8b060 calls malloc with a0=([([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32] << 0x3), a1=ret(__glXInitialize), a2=?, a3=?, a5=(a1 << 0x6), a6=one of 0x0, 0x1.
-  The `bgezall` at 0xcf8b0f0 calls (unnamed) [0xcf87cec] with a0=ret(__glXInitialize), a1=a1 at entry (arg1), a2=sp-328, a3=?.
+  The `jalr` at 0xcf8ab50 calls malloc with a0=0x8, a1=ret(__glXInitialize), a2=?, a3=?.
+  The `jalr` at 0xcf8b060 calls malloc with a0=([([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32] << 0x3), a1=ret(__glXInitialize), a2=?, a3=?, a5=(a1 << 0x6).
+  The `bgezall` at 0xcf8b0f0 calls GetBoardName [0xcf87cec] with a0=?, a1=a1 at entry (arg1), a2=sp-328, a3=?.
   The `jalr` at 0xcf8b10c calls strncmp with a0=sp-328, a1=0xcfa8028, a2=0x7, a3=?.
-  The `jalr` at 0xcf8b524 calls free with a0=ret(malloc), a1=?, a2=?, a3=?, a6=one of 0x0, 0x1.
-  The `bgezall` at 0xcf8b7dc calls (unnamed) [0xcf8a210] with a0=?, a1=?, a2=ret(malloc), a3=?.
+  The `jalr` at 0xcf8b524 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `bgezall` at 0xcf8b7dc calls orderFBConfigSGIXs [0xcf8a210] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xcf8a7a8 targets 0xcf8a830, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0xcf8a7b4 targets 0xcf8a830, is taken when a0(=[a2]) == 0, and falls through when a0(=[a2]) != 0.
   The `bne` branch at 0xcf8a7ec targets 0xcf8a854, is taken when at(?) != 0, and falls through when at(?) == 0.
@@ -8989,7 +8989,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8a8fc targets 0xcf8aaf4, is taken when s3(=a1) >= a6(=[a0+228]) (signed), and falls through when s3(=a1) < a6(=[a0+228]) (signed).
   The `beq` branch at 0xcf8a914 targets 0xcf8ac4c, is taken when s4(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+24]:8) == 0, and falls through when s4(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+24]:8) != 0.
   The `beq` branch at 0xcf8a91c targets 0xcf8ac4c, is taken when a0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) == 0, and falls through when a0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) != 0.
-  The `beq` branch at 0xcf8a924 targets 0xcf8b054, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8a924 targets 0xcf8b054, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `blez` branch at 0xcf8a92c targets 0xcf8a964, is taken when a0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) <= 0 (signed), and falls through when a0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) > 0 (signed).
   The `beq` branch at 0xcf8a950 targets 0xcf8ab4c, is taken when v1(?) == s1(?), and falls through when v1(?) != s1(?).
   The `bnel` branch at 0xcf8a95c targets 0xcf8a950, is taken when a5(?) != s0(?), and falls through when a5(?) == s0(?); its branch-likely delay slot `lw v1,72(s0)` at 0xcf8a960 runs only when taken and is annulled on fall-through.
@@ -9103,12 +9103,12 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8b0b4 targets 0xcf8a81c and is always taken.
   The `bne` branch at 0xcf8b0c0 targets 0xcf8adf8, is taken when v0(?) != v1(=0x802f), and falls through when v0(?) == v1(=0x802f).
   The `beq` branch at 0xcf8b0d8 targets 0xcf8a81c and is always taken.
-  The `beq` branch at 0xcf8b0f8 targets 0xcf8b11c, is taken when v0(=ret(0xcf87cec)) == 0, and falls through when v0(=ret(0xcf87cec)) != 0.
+  The `beq` branch at 0xcf8b0f8 targets 0xcf8b11c, is taken when v0(=ret(GetBoardName)) == 0, and falls through when v0(=ret(GetBoardName)) != 0.
   The `beq` branch at 0xcf8b114 targets 0xcf8b4e0, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `bne` branch at 0xcf8b11c targets 0xcf8b204, is taken when s2(?) != 0, and falls through when s2(?) == 0.
   The `bne` branch at 0xcf8b124 targets 0xcf8b204, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `blez` branch at 0xcf8b12c targets 0xcf8b1d8, is taken when s1(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) <= 0 (signed), and falls through when s1(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) > 0 (signed).
-  The `beq` branch at 0xcf8b158 targets 0xcf8b174, is taken when (at(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) & 0x7) == 0, and falls through when (at(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) & 0x7) != 0.
+  The `beq` branch at 0xcf8b158 targets 0xcf8b174, is taken when (at(?) & 0x7) == 0, and falls through when (at(?) & 0x7) != 0.
   The `bne` branch at 0xcf8b16c targets 0xcf8b160, is taken when a2(?) != 0, and falls through when a2(?) == 0.
   The `beq` branch at 0xcf8b17c targets 0xcf8b1d4, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xcf8b1cc targets 0xcf8b18c, is taken when a1(?) != s1(?), and falls through when a1(?) == s1(?).
@@ -9118,7 +9118,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8b254 targets 0xcf8b3cc, is taken when s0(?) == s1(?), and falls through when s0(?) != s1(?).
   The `bne` branch at 0xcf8b268 targets 0xcf8b250, is taken when a5(?) < a6(?) (signed), and falls through when a5(?) >= a6(?) (signed).
   The `bne` branch at 0xcf8b274 targets 0xcf8b250, is taken when at(?) != v1(?), and falls through when at(?) == v1(?).
-  The `beq` branch at 0xcf8b27c targets 0xcf8b248, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b27c targets 0xcf8b248, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xcf8b288 targets 0xcf8b248, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
   The `beq` branch at 0xcf8b290 targets 0xcf8b250 and is always taken.
   The `bne` branch at 0xcf8b2a0 targets 0xcf8b250, is taken when v1(?) != a5(?), and falls through when v1(?) == a5(?).
@@ -9135,11 +9135,11 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8b37c targets 0xcf8b250, is taken when a5(?) < a6(?) (signed), and falls through when a5(?) >= a6(?) (signed).
   The `bne` branch at 0xcf8b390 targets 0xcf8b250, is taken when at(?) < v1(?) (unsigned), and falls through when at(?) >= v1(?) (unsigned).
   The `bne` branch at 0xcf8b3a4 targets 0xcf8b250, is taken when a5(?) < a6(?) (unsigned), and falls through when a5(?) >= a6(?) (unsigned).
-  The `beq` branch at 0xcf8b3ac targets 0xcf8b55c, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b3ac targets 0xcf8b55c, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xcf8b3bc targets 0xcf8b55c, is taken when v1(?) == a5(?), and falls through when v1(?) != a5(?).
   The `beq` branch at 0xcf8b3c4 targets 0xcf8b55c and is always taken.
   The `blez` branch at 0xcf8b3cc targets 0xcf8b520, is taken when s2(?) <= 0 (signed), and falls through when s2(?) > 0 (signed).
-  The `beq` branch at 0xcf8b3d4 targets 0xcf8b4b4, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b3d4 targets 0xcf8b4b4, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bltz` branch at 0xcf8b3e8 targets 0xcf8b418, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
   The `bltz` branch at 0xcf8b41c targets 0xcf8b44c, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
   The `bltz` branch at 0xcf8b450 targets 0xcf8b480, is taken when a1(?) < 0 (signed), and falls through when a1(?) >= 0 (signed).
@@ -9150,22 +9150,22 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8b518 targets 0xcf8b11c and is always taken.
   The `bne` branch at 0xcf8b55c targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xcf8b56c targets 0xcf8b250, is taken when a5(?) != a6(?), and falls through when a5(?) == a6(?).
-  The `beq` branch at 0xcf8b574 targets 0xcf8b590, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b574 targets 0xcf8b590, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xcf8b584 targets 0xcf8b590, is taken when v1(?) == a5(?), and falls through when v1(?) != a5(?).
   The `bne` branch at 0xcf8b590 targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8b598 targets 0xcf8b5b4, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b598 targets 0xcf8b5b4, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0xcf8b5a8 targets 0xcf8b5b4, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xcf8b5b4 targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8b5bc targets 0xcf8b5d8, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b5bc targets 0xcf8b5d8, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xcf8b5cc targets 0xcf8b5d8, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
   The `bne` branch at 0xcf8b5d8 targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8b5e0 targets 0xcf8b5fc, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b5e0 targets 0xcf8b5fc, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xcf8b5f0 targets 0xcf8b5fc, is taken when a5(?) == a6(?), and falls through when a5(?) != a6(?).
   The `bne` branch at 0xcf8b5fc targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8b604 targets 0xcf8b620, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b604 targets 0xcf8b620, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xcf8b614 targets 0xcf8b620, is taken when v1(?) == a5(?), and falls through when v1(?) != a5(?).
   The `bne` branch at 0xcf8b620 targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8b628 targets 0xcf8b644, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b628 targets 0xcf8b644, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0xcf8b638 targets 0xcf8b644, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xcf8b644 targets 0xcf8b250, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xcf8b658 targets 0xcf8b250, is taken when a5(?) != a6(?), and falls through when a5(?) == a6(?).
@@ -9185,16 +9185,16 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bc1t` branch at 0xcf8b740 targets 0xcf8b250, is taken when FP condition code 1 is true, and falls through when FP condition code 1 is false.
   The `bc1t` branch at 0xcf8b750 targets 0xcf8b250, is taken when FP condition code 2 is true, and falls through when FP condition code 2 is false.
   The `bc1t` branch at 0xcf8b764 targets 0xcf8b250, is taken when FP condition code 3 is true, and falls through when FP condition code 3 is false.
-  The `beq` branch at 0xcf8b784 targets 0xcf8b790, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b784 targets 0xcf8b790, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xcf8b78c targets 0xcf8b950, is taken when a7(?) == s3(=0xc), and falls through when a7(?) != s3(=0xc).
-  The `beq` branch at 0xcf8b794 targets 0xcf8b814, is taken when at(=ret(malloc)) == a3(?), and falls through when at(=ret(malloc)) != a3(?).
+  The `beq` branch at 0xcf8b794 targets 0xcf8b814, is taken when at(?) == a3(?), and falls through when at(?) != a3(?).
   The `bne` branch at 0xcf8b808 targets 0xcf8b7a8, is taken when s4(?) != at(?), and falls through when s4(?) == at(?).
   The `beq` branch at 0xcf8b814 targets 0xcf8b940, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xcf8b830 targets 0xcf8b84c, is taken when (t1(?) & 0x3) == 0, and falls through when (t1(?) & 0x3) != 0.
   The `bne` branch at 0xcf8b844 targets 0xcf8b838, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0xcf8b850 targets 0xcf8b884, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0xcf8b87c targets 0xcf8b85c, is taken when a1(?) != a7(?), and falls through when a1(?) == a7(?).
-  The `beq` branch at 0xcf8b888 targets 0xcf8b900, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b888 targets 0xcf8b900, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xcf8b898 targets 0xcf8b8ac, is taken when t0(?) < s4(?) (signed), and falls through when t0(?) >= s4(?) (signed).
   The `beq` branch at 0xcf8b8a0 targets 0xcf8b8ac, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xcf8b8b4 targets 0xcf8b8c8, is taken when t0(?) < s4(?) (signed), and falls through when t0(?) >= s4(?) (signed).
@@ -9203,9 +9203,9 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8b8d8 targets 0xcf8b8e4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xcf8b8ec targets 0xcf8b900, is taken when t0(?) < s4(?) (signed), and falls through when t0(?) >= s4(?) (signed).
   The `beq` branch at 0xcf8b8f4 targets 0xcf8b900, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0xcf8b904 targets 0xcf8b938, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8b904 targets 0xcf8b938, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bltz` branch at 0xcf8b910 targets 0xcf8b934, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
-  The `bne` branch at 0xcf8b91c targets 0xcf8b90c, is taken when a1(?) != a2(=sp-560), and falls through when a1(?) == a2(=sp-560).
+  The `bne` branch at 0xcf8b91c targets 0xcf8b90c, is taken when a1(?) != a2(?), and falls through when a1(?) == a2(?).
   The `beq` branch at 0xcf8b924 targets 0xcf8b938 and is always taken.
   The `beq` branch at 0xcf8b92c targets 0xcf8b688 and is always taken.
   The `beq` branch at 0xcf8b938 targets 0xcf8b250 and is always taken.
@@ -9214,7 +9214,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8b958 targets 0xcf8b794, is taken when a1(?) != s3(=0xc), and falls through when a1(?) == s3(=0xc).
   The `bne` branch at 0xcf8b960 targets 0xcf8b794, is taken when t1(?) != s3(=0xc), and falls through when t1(?) == s3(=0xc).
   The `bne` branch at 0xcf8b96c targets 0xcf8b794, is taken when t2(?) != v1(=0x10), and falls through when t2(?) == v1(=0x10).
-  The `bne` branch at 0xcf8b978 targets 0xcf8b794, is taken when a5(=one of 0x0, 0x1) != 0, and falls through when a5(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xcf8b978 targets 0xcf8b794, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0xcf8b99c targets 0xcf8b790 and is always taken.
   The return at 0xcf8a988 has v0 = 0x0.
   The return at 0xcf8aac8 has v0 = 0x0.
@@ -9225,8 +9225,8 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The return at 0xcf8aca0 has v0 = ret(malloc).
   The return at 0xcf8ae1c has v0 = 0x0.
   The return at 0xcf8b098 has v0 = 0x0.
-  The return at 0xcf8b1fc has v0 = ret(malloc).
-  The return at 0xcf8b4d8 has v0 = ret(malloc).
+  The return at 0xcf8b1fc has v0 = ?.
+  The return at 0xcf8b4d8 has v0 = ?.
   The return at 0xcf8b554 has v0 = 0x0.
   The indirect jump at 0xcf8a8c8 uses the jump table at 0xcfa4608 with targets 0xcf8a9e4, 0xcf8a9f4, 0xcf8aa04, 0xcf8aa14, 0xcf8aa24, 0xcf8a880, 0xcf8aa34, 0xcf8aa44.
   The indirect jump at 0xcf8a8c8 uses the jump table at 0xcfa4608 with targets 0xcf8a9e4, 0xcf8a9f4, 0xcf8aa04, 0xcf8aa14, 0xcf8aa24, 0xcf8a880, 0xcf8aa34, 0xcf8aa44.
@@ -9260,13 +9260,13 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   21 such `sw` accesses store 4 bytes to ?, including `sw` at 0xcf8d2c4, `sw` at 0xcf8d2cc, `sw` at 0xcf8d2d4.
   8 such `ldc1` accesses load 8 bytes from ?, including `ldc1` at 0xcf8d83c, `ldc1` at 0xcf8da98, `ldc1` at 0xcf8dac4.
   The `jalr` at 0xcf8c500 calls __glXInitialize with a0=a0 at entry (arg0), a1=?, a2=?, a3=a3 at entry (arg3).
-  The `jalr` at 0xcf8c824 calls malloc with a0=0x8, a1=?, a2=?, a3=?, a4=one of 0x0, 0x1.
-  The `jalr` at 0xcf8ce70 calls malloc with a0=([([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32] << 0x3), a1=?, a2=?, a3=?, a4=one of 0x0, 0x1.
-  The `bgezall` at 0xcf8cf34 calls (unnamed) [0xcf87cec] with a0=ret(__glXInitialize), a1=a1 at entry (arg1), a2=sp-600, a3=?.
+  The `jalr` at 0xcf8c824 calls malloc with a0=0x8, a1=?, a2=?, a3=?.
+  The `jalr` at 0xcf8ce70 calls malloc with a0=([([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32] << 0x3), a1=?, a2=?, a3=?.
+  The `bgezall` at 0xcf8cf34 calls GetBoardName [0xcf87cec] with a0=?, a1=a1 at entry (arg1), a2=sp-600, a3=?.
   The `jalr` at 0xcf8cf4c calls strncmp with a0=sp-600, a1=0xcfa8028, a2=0x7, a3=?.
-  The `bgezall` at 0xcf8d0f4 calls (unnamed) [0xcf8bd14] with a0=sp-584, a1=?, a2=0x0, a3=?.
+  The `bgezall` at 0xcf8d0f4 calls orderFBConfigs [0xcf8bd14] with a0=sp-584, a1=?, a2=0x0, a3=?.
   The `jalr` at 0xcf8d464 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `bgezall` at 0xcf8d928 calls (unnamed) [0xcf8bd14] with a0=?, a1=?, a2=?, a3=?.
+  The `bgezall` at 0xcf8d928 calls orderFBConfigs [0xcf8bd14] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xcf8c428 targets 0xcf8c4c4, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0xcf8c430 targets 0xcf8c4c4, is taken when t0(=[a2]) == 0, and falls through when t0(=[a2]) != 0.
   The `beq` branch at 0xcf8c440 targets 0xcf8c488 and is always taken.
@@ -9283,7 +9283,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8c528 targets 0xcf8c750, is taken when s4(=a1) >= v1(=[a0+228]) (signed), and falls through when s4(=a1) < v1(=[a0+228]) (signed).
   The `beq` branch at 0xcf8c544 targets 0xcf8c8d4, is taken when s1(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+24]:8) == 0, and falls through when s1(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+24]:8) != 0.
   The `beq` branch at 0xcf8c54c targets 0xcf8c8d4, is taken when v0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) == 0, and falls through when v0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) != 0.
-  The `beq` branch at 0xcf8c558 targets 0xcf8ce64, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8c558 targets 0xcf8ce64, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `blez` branch at 0xcf8c560 targets 0xcf8c5a0, is taken when v0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) <= 0 (signed), and falls through when v0(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) > 0 (signed).
   The `beq` branch at 0xcf8c58c targets 0xcf8c820, is taken when at(?) == s2(?), and falls through when at(?) != s2(?).
   The `bnel` branch at 0xcf8c598 targets 0xcf8c58c, is taken when v1(?) != s0(?), and falls through when v1(?) == s0(?); its branch-likely delay slot `lw at,72(s0)` at 0xcf8c59c runs only when taken and is annulled on fall-through.
@@ -9396,10 +9396,10 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8cee8 targets 0xcf8c47c and is always taken.
   The `bne` branch at 0xcf8cef4 targets 0xcf8cafc, is taken when a0(?) != a5(=0x802f), and falls through when a0(?) == a5(=0x802f).
   The `beq` branch at 0xcf8cf1c targets 0xcf8c47c and is always taken.
-  The `beq` branch at 0xcf8cf3c targets 0xcf8cf5c, is taken when v0(=ret(0xcf87cec)) == 0, and falls through when v0(=ret(0xcf87cec)) != 0.
+  The `beq` branch at 0xcf8cf3c targets 0xcf8cf5c, is taken when v0(=ret(GetBoardName)) == 0, and falls through when v0(=ret(GetBoardName)) != 0.
   The `beq` branch at 0xcf8cf54 targets 0xcf8d3ec, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `beq` branch at 0xcf8cf5c targets 0xcf8cfb4, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `beq` branch at 0xcf8cf64 targets 0xcf8cfb4, is taken when at(=[a2]) == 0, and falls through when at(=[a2]) != 0.
+  The `beq` branch at 0xcf8cf64 targets 0xcf8cfb4, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `blez` branch at 0xcf8cf6c targets 0xcf8d29c, is taken when s2(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) <= 0 (signed), and falls through when s2(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) > 0 (signed).
   The `beq` branch at 0xcf8cfac targets 0xcf8d1e0 and is always taken.
   The `blez` branch at 0xcf8cfb4 targets 0xcf8d188, is taken when s2(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) <= 0 (signed), and falls through when s2(=[([ret(__glXInitialize)+48]:8 + (a1 << 0x6))+32]) > 0 (signed).
@@ -9411,7 +9411,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8d05c targets 0xcf8d03c, is taken when v0(?) != a0(?), and falls through when v0(?) == a0(?).
   The `beq` branch at 0xcf8d070 targets 0xcf8d188, is taken when s0(?) == at(?), and falls through when s0(?) != at(?).
   The `bgtz` branch at 0xcf8d0b0 targets 0xcf8d09c, is taken when a0(?) > 0 (signed), and falls through when a0(?) <= 0 (signed).
-  The `beq` branch at 0xcf8d0bc targets 0xcf8d0d0, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d0bc targets 0xcf8d0d0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xcf8d0c8 targets 0xcf8d128, is taken when a5(?) == at(=0xc), and falls through when a5(?) != at(=0xc).
   The `beq` branch at 0xcf8d0d0 targets 0xcf8cff8, is taken when s3(=ret(malloc)) == s6(?), and falls through when s3(=ret(malloc)) != s6(?).
   The `bne` branch at 0xcf8d10c targets 0xcf8d0dc, is taken when s1(?) != s4(?), and falls through when s1(?) == s4(?).
@@ -9421,7 +9421,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8d140 targets 0xcf8d0d0, is taken when at(?) != v1(=0xc), and falls through when at(?) == v1(=0xc).
   The `bne` branch at 0xcf8d150 targets 0xcf8d0d0, is taken when a4(?) != a5(=0xc), and falls through when a4(?) == a5(=0xc).
   The `bne` branch at 0xcf8d160 targets 0xcf8d0d0, is taken when at(?) != v1(=0x10), and falls through when at(?) == v1(=0x10).
-  The `bne` branch at 0xcf8d168 targets 0xcf8d0d0, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xcf8d168 targets 0xcf8d0d0, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0xcf8d180 targets 0xcf8d0d0 and is always taken.
   The `beq` branch at 0xcf8d1d0 targets 0xcf8d22c and is always taken.
   The `beq` branch at 0xcf8d1dc targets 0xcf8d29c, is taken when a0(?) == s4(?), and falls through when a0(?) != s4(?).
@@ -9429,17 +9429,17 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8d21c targets 0xcf8d1cc, is taken when a4(?) >= v0(?) (signed), and falls through when a4(?) < v0(?) (signed).
   The `beq` branch at 0xcf8d224 targets 0xcf8d1dc and is always taken.
   The `bne` branch at 0xcf8d230 targets 0xcf8d1d8, is taken when a5(?) != at(?), and falls through when a5(?) == at(?).
-  The `beq` branch at 0xcf8d238 targets 0xcf8d250, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d238 targets 0xcf8d250, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xcf8d244 targets 0xcf8d250, is taken when a4(?) == a5(?), and falls through when a4(?) != a5(?).
   The `bne` branch at 0xcf8d250 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d258 targets 0xcf8d274, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d258 targets 0xcf8d274, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beq` branch at 0xcf8d268 targets 0xcf8d274, is taken when v1(?) == a4(?), and falls through when v1(?) != a4(?).
   The `bne` branch at 0xcf8d274 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xcf8d27c targets 0xcf8d3bc, is taken when v0(?) == s8(=-0x1), and falls through when v0(?) != s8(=-0x1).
   The `beq` branch at 0xcf8d28c targets 0xcf8d3c0, is taken when a5(?) >= v0(?) (signed), and falls through when a5(?) < v0(?) (signed).
   The `beq` branch at 0xcf8d294 targets 0xcf8d3c0 and is always taken.
   The `blez` branch at 0xcf8d29c targets 0xcf8d460, is taken when a3(?) <= 0 (signed), and falls through when a3(?) > 0 (signed).
-  The `beq` branch at 0xcf8d2a4 targets 0xcf8d37c, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d2a4 targets 0xcf8d37c, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bltz` branch at 0xcf8d2b0 targets 0xcf8d2e0, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
   The `bltz` branch at 0xcf8d2e4 targets 0xcf8d314, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
   The `bltz` branch at 0xcf8d318 targets 0xcf8d348, is taken when v0(?) < 0 (signed), and falls through when v0(?) >= 0 (signed).
@@ -9496,22 +9496,22 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8d650 targets 0xcf8d664, is taken when a4(?) == v0(?), and falls through when a4(?) != v0(?).
   The `beq` branch at 0xcf8d658 targets 0xcf8d664 and is always taken.
   The `bne` branch at 0xcf8d664 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d66c targets 0xcf8d688, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d66c targets 0xcf8d688, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xcf8d67c targets 0xcf8d688, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xcf8d688 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d690 targets 0xcf8d6ac, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d690 targets 0xcf8d6ac, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xcf8d6a0 targets 0xcf8d6ac, is taken when a5(?) == at(?), and falls through when a5(?) != at(?).
   The `bne` branch at 0xcf8d6ac targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d6b4 targets 0xcf8d6d0, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d6b4 targets 0xcf8d6d0, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xcf8d6c4 targets 0xcf8d6d0, is taken when a4(?) == a5(?), and falls through when a4(?) != a5(?).
   The `bne` branch at 0xcf8d6d0 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xcf8d6d8 targets 0xcf8d6f4, is taken when s7(=one of 0x0, 0x1) == 0, and falls through when s7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0xcf8d6e8 targets 0xcf8d6f4, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
   The `bne` branch at 0xcf8d6f4 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d6fc targets 0xcf8d718, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d6fc targets 0xcf8d718, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xcf8d70c targets 0xcf8d718, is taken when a5(?) == at(?), and falls through when a5(?) != at(?).
   The `bne` branch at 0xcf8d718 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d720 targets 0xcf8d73c, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d720 targets 0xcf8d73c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xcf8d730 targets 0xcf8d73c, is taken when a4(?) == a5(?), and falls through when a4(?) != a5(?).
   The `bne` branch at 0xcf8d73c targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xcf8d744 targets 0xcf8d760, is taken when a6(?) == s8(=-0x1), and falls through when a6(?) != s8(=-0x1).
@@ -9521,7 +9521,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8d778 targets 0xcf8d78c, is taken when v1(?) == v0(?), and falls through when v1(?) != v0(?).
   The `beq` branch at 0xcf8d780 targets 0xcf8d78c and is always taken.
   The `bne` branch at 0xcf8d78c targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d794 targets 0xcf8d7a8, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d794 targets 0xcf8d7a8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0xcf8d7a0 targets 0xcf8d7fc, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xcf8d7a8 targets 0xcf8d1d8, is taken when v0(=one of 0x0, 0x1) != 0, and falls through when v0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0xcf8d7b0 targets 0xcf8d7d0, is taken when s8(=-0x1) == v0(?), and falls through when s8(=-0x1) != v0(?).
@@ -9547,7 +9547,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8d888 targets 0xcf8d1d8, is taken when t3(=one of 0x0, 0x1) != 0, and falls through when t3(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xcf8d890 targets 0xcf8d1d8, is taken when ra(=one of 0x0, 0x1) != 0, and falls through when ra(=one of 0x0, 0x1) == 0.
   The `bne` branch at 0xcf8d898 targets 0xcf8d1d8, is taken when t2(=one of 0x0, 0x1) != 0, and falls through when t2(=one of 0x0, 0x1) == 0.
-  The `beq` branch at 0xcf8d8b8 targets 0xcf8d8d0, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d8b8 targets 0xcf8d8d0, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xcf8d8c8 targets 0xcf8dbd4, is taken when a5(?) == at(=0xc), and falls through when a5(?) != at(=0xc).
   The `beq` branch at 0xcf8d8d0 targets 0xcf8d96c, is taken when s3(=ret(malloc)) == a2(?), and falls through when s3(=ret(malloc)) != a2(?).
   The `bne` branch at 0xcf8d960 targets 0xcf8d8ec, is taken when a6(?) != a4(?), and falls through when a6(?) == a4(?).
@@ -9556,7 +9556,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8d998 targets 0xcf8d98c, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0xcf8d9a4 targets 0xcf8d9d8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0xcf8d9d0 targets 0xcf8d9b0, is taken when v0(?) != a7(?), and falls through when v0(?) == a7(?).
-  The `beq` branch at 0xcf8d9dc targets 0xcf8da54, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8d9dc targets 0xcf8da54, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0xcf8d9ec targets 0xcf8da00, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
   The `beq` branch at 0xcf8d9f4 targets 0xcf8da00, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xcf8da08 targets 0xcf8da1c, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
@@ -9565,9 +9565,9 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `beq` branch at 0xcf8da2c targets 0xcf8da38, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0xcf8da40 targets 0xcf8da54, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
   The `beq` branch at 0xcf8da48 targets 0xcf8da54, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0xcf8da58 targets 0xcf8dbc0, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xcf8da58 targets 0xcf8dbc0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bltz` branch at 0xcf8da64 targets 0xcf8dbbc, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
-  The `bne` branch at 0xcf8da70 targets 0xcf8da60, is taken when v0(?) != v1(=sp-832), and falls through when v0(?) == v1(=sp-832).
+  The `bne` branch at 0xcf8da70 targets 0xcf8da60, is taken when v0(?) != v1(?), and falls through when v0(?) == v1(?).
   The `beq` branch at 0xcf8da78 targets 0xcf8dbc0 and is always taken.
   The `beq` branch at 0xcf8da80 targets 0xcf8d858 and is always taken.
   The `bc1t` branch at 0xcf8da90 targets 0xcf8daac, is taken when FP condition code 2 is true, and falls through when FP condition code 2 is false.
@@ -9597,7 +9597,7 @@ Skipped 55,342 located or understood rows and 51,000 named-only or undocumented 
   The `bne` branch at 0xcf8dbec targets 0xcf8d8d0, is taken when a4(?) != a5(=0xc), and falls through when a4(?) == a5(=0xc).
   The `bne` branch at 0xcf8dbfc targets 0xcf8d8d0, is taken when at(?) != v1(=0xc), and falls through when at(?) == v1(=0xc).
   The `bne` branch at 0xcf8dc0c targets 0xcf8d8d0, is taken when a4(?) != a5(=0x10), and falls through when a4(?) == a5(=0x10).
-  The `bne` branch at 0xcf8dc14 targets 0xcf8d8d0, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0xcf8dc14 targets 0xcf8d8d0, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0xcf8dc34 targets 0xcf8d8d0 and is always taken.
   The return at 0xcf8c5d0 has v0 = 0x0.
   The return at 0xcf8c784 has v0 = 0x0.

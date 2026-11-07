@@ -7381,9 +7381,9 @@ Each entry records selected software behavior from its exact binary range. The r
   The `beql` branch at 0xda5a424 targets 0xda5a44c, is taken when t7(?) == 0, and falls through when t7(?) != 0; its branch-likely delay slot `andi t1,v0,0x4` at 0xda5a428 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xda5a44c targets 0xda5a474, is taken when t1(?) == 0, and falls through when t1(?) != 0; its branch-likely delay slot `andi t3,v0,0x8` at 0xda5a450 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xda5a474 targets 0xda5a498, is taken when t3(?) == 0, and falls through when t3(?) != 0; its branch-likely delay slot `lw t5,1540(sp)` at 0xda5a478 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xda5a4a0 targets 0xda5a4c8, is taken when t5(=one of -0x1, 0x3, 0x4) != at(=0x3), and falls through when t5(=one of -0x1, 0x3, 0x4) == at(=0x3); its branch-likely delay slot `addiu at,zero,4` at 0xda5a4a4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda5a4a0 targets 0xda5a4c8, is taken when t5(?) != at(=0x3), and falls through when t5(?) == at(=0x3); its branch-likely delay slot `addiu at,zero,4` at 0xda5a4a4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda5a4bc targets 0xda5a4e8 and is always taken.
-  The `bnel` branch at 0xda5a4c8 targets 0xda5a4ec, is taken when t6(=one of -0x1, 0x3, 0x4) != at(=0x4), and falls through when t6(=one of -0x1, 0x3, 0x4) == at(=0x4); its branch-likely delay slot `lw ra,52(sp)` at 0xda5a4cc runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda5a4c8 targets 0xda5a4ec, is taken when t6(?) != at(=0x4), and falls through when t6(?) == at(=0x4); its branch-likely delay slot `lw ra,52(sp)` at 0xda5a4cc runs only when taken and is annulled on fall-through.
   The return at 0xda5a4f4 has v0 = one of ?, ret(?).
   The instructions from 0xda5a11c to 0xda5a11c are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xda5a4c4 to 0xda5a4c4 are not reached by any path from the entry, and their branches are not listed.

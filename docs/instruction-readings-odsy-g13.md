@@ -2056,20 +2056,16 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `lw` at 0xd81f6e0 loads 4 bytes from a0 (arg0 at entry) +0xd8.
   The `lw` at 0xd81f714 loads 4 bytes from a0 (arg0 at entry) +0x118.
   The `lw` at 0xd81f730 loads 4 bytes from a0 (arg0 at entry) +0x14.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd81f744, `lw` at 0xd81f748, `lw` at 0xd81f764.
-  2 such `lh` accesses load 2 bytes from ret(XQueryFont) +0x2c, including `lh` at 0xd81f76c, `lh` at 0xd81fa1c.
+  19 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd81f744, `lw` at 0xd81f748, `lw` at 0xd81f764.
+  The `lh` at 0xd81f76c loads 2 bytes from ret(XQueryFont) +0x2c.
   The `lh` at 0xd81f770 loads 2 bytes from ret(XQueryFont) +0x3a.
   The `lh` at 0xd81f774 loads 2 bytes from ret(XQueryFont) +0x40.
   The `lh` at 0xd81f778 loads 2 bytes from ret(XQueryFont) +0x3e.
-  4 such `lw` accesses load 4 bytes from ret(XQueryFont) +0x14, including `lw` at 0xd81f788, `lw` at 0xd81fac4, `lw` at 0xd81fb5c.
-  2 such `lw` accesses load 4 bytes from ret(XQueryFont) +0x18, including `lw` at 0xd81f78c, `lw` at 0xd81fad8.
-  5 such `lw` accesses load 4 bytes from ret(XQueryFont) +0xc, including `lw` at 0xd81f7a0, `lw` at 0xd81fa84, `lw` at 0xd81faa0.
-  3 such `lw` accesses load 4 bytes from ret(XQueryFont) +0x10, including `lw` at 0xd81f7a4, `lw` at 0xd81fa94, `lw` at 0xd81fab4.
-  3 such `lw` accesses load 4 bytes from ret(XQueryFont) +0x44, including `lw` at 0xd81fa0c, `lw` at 0xd81fb24, `lw` at 0xd81fdc8.
-  The `lh` at 0xd81fa20 loads 2 bytes from ret(XQueryFont) +0x2e.
-  The `lh` at 0xd81fa24 loads 2 bytes from ret(XQueryFont) +0x34.
-  The `lh` at 0xd81fa28 loads 2 bytes from ret(XQueryFont) +0x32.
-  14 such `lh` accesses load 2 bytes from ?, including `lh` at 0xd81fb8c, `lh` at 0xd81fb90, `lh` at 0xd81fb94.
+  The `lw` at 0xd81f788 loads 4 bytes from ret(XQueryFont) +0x14.
+  The `lw` at 0xd81f78c loads 4 bytes from ret(XQueryFont) +0x18.
+  The `lw` at 0xd81f7a0 loads 4 bytes from ret(XQueryFont) +0xc.
+  The `lw` at 0xd81f7a4 loads 4 bytes from ret(XQueryFont) +0x10.
+  18 such `lh` accesses load 2 bytes from ?, including `lh` at 0xd81fa1c, `lh` at 0xd81fa20, `lh` at 0xd81fa24.
   The `sw` at 0xd81fc4c stores 4 bytes to ?.
   The `lw` at 0xd81fd04 loads 4 bytes from ret(XGetImage) +0x8.
   The `lw` at 0xd81fd18 loads 4 bytes from ret(XGetImage) +0x14.
@@ -2084,8 +2080,8 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jalr` at 0xd81f760 calls XQueryFont with a0=?, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xd81f864 calls XCreatePixmap with a0=?, a1=?, a2=?, a3=([ret(XQueryFont)+62]:2 + [ret(XQueryFont)+64]:2).
   The `jalr` at 0xd81f890 calls XCreateGC with a0=?, a1=ret(XCreatePixmap), a2=0x400c, a3=sp-112.
-  The `jalr` at 0xd81f8d4 calls XFillRectangle with a0=?, a1=ret(XCreatePixmap), a2=ret(XCreateGC), a3=0x0.
-  The `jalr` at 0xd81f8f0 calls XSetForeground with a0=?, a1=ret(XCreateGC), a2=0x1, a3=?.
+  The `jalr` at 0xd81f8d4 calls XFillRectangle with a0=?, a1=?, a2=ret(XCreateGC), a3=0x0.
+  The `jalr` at 0xd81f8f0 calls XSetForeground with a0=?, a1=?, a2=0x1, a3=?.
   The `jalr` at 0xd81f908 calls glGetIntegerv with a0=0xcf0, a1=sp-156, a2=?, a3=?.
   The `jalr` at 0xd81f920 calls glGetIntegerv with a0=0xcf1, a1=sp-160, a2=?, a3=?.
   The `jalr` at 0xd81f938 calls glGetIntegerv with a0=0xcf2, a1=sp-164, a2=?, a3=?.
@@ -2097,13 +2093,13 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jalr` at 0xd81f9c8 calls glPixelStorei with a0=0xcf3, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd81f9e0 calls glPixelStorei with a0=0xcf4, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd81f9f8 calls glPixelStorei with a0=0xcf5, a1=0x1, a2=?, a3=?.
-  The `jalr` at 0xd81fb04 calls glNewList with a0=?, a1=0x1300, a2=?, a3=ret(XQueryFont).
+  The `jalr` at 0xd81fb04 calls glNewList with a0=?, a1=0x1300, a2=?, a3=?.
   The `jalr` at 0xd81fb14 calls glEndList with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd81fbd4 calls glNewList with a0=?, a1=0x1300, a2=[ret(XQueryFont)+68], a3=ret(XQueryFont).
+  The `jalr` at 0xd81fbd4 calls glNewList with a0=?, a1=0x1300, a2=?, a3=?.
   The `jalr` at 0xd81fc14 calls glBitmap with a0=0x0, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd81fc24 calls glEndList with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd81fc94 calls XDrawString16 with a0=?, a1=ret(XCreatePixmap), a2=ret(XCreateGC), a3=?.
-  The `jalr` at 0xd81fcfc calls XGetImage with a0=?, a1=ret(XCreatePixmap), a2=0x0, a3=0x0.
+  The `jalr` at 0xd81fc94 calls XDrawString16 with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd81fcfc calls XGetImage with a0=?, a1=?, a2=0x0, a3=0x0.
   The `jalr` at 0xd81fd3c calls glPixelStorei with a0=0xcf1, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd81fd5c calls glPixelStorei with a0=0xcf1, a1=0x1, a2=?, a3=?.
   The `jalr` at 0xd81fdb8 calls glNewList with a0=?, a1=0x1300, a2=?, a3=?.
@@ -2112,12 +2108,12 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `jalr` at 0xd8200cc calls glBitmap with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd8200dc calls glEndList with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd82010c calls (unknown callee) with a0=ret(XGetImage), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd820130 calls XSetForeground with a0=?, a1=ret(XCreateGC), a2=0x0, a3=?.
-  The `jalr` at 0xd820160 calls XFillRectangle with a0=?, a1=ret(XCreatePixmap), a2=ret(XCreateGC), a3=0x0.
-  The `jalr` at 0xd82017c calls XSetForeground with a0=?, a1=ret(XCreateGC), a2=0x1, a3=?.
-  The `jalr` at 0xd8201b4 calls XFreeFontInfo with a0=0x0, a1=ret(XQueryFont), a2=0x1, a3=ret(XQueryFont).
-  The `jalr` at 0xd8201cc calls XFreeGC with a0=?, a1=ret(XCreateGC), a2=?, a3=?.
-  The `jalr` at 0xd8201e4 calls XFreePixmap with a0=?, a1=ret(XCreatePixmap), a2=?, a3=?.
+  The `jalr` at 0xd820130 calls XSetForeground with a0=?, a1=?, a2=0x0, a3=?.
+  The `jalr` at 0xd820160 calls XFillRectangle with a0=?, a1=?, a2=?, a3=0x0.
+  The `jalr` at 0xd82017c calls XSetForeground with a0=?, a1=?, a2=0x1, a3=?.
+  The `jalr` at 0xd8201b4 calls XFreeFontInfo with a0=0x0, a1=?, a2=0x1, a3=?.
+  The `jalr` at 0xd8201cc calls XFreeGC with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8201e4 calls XFreePixmap with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd8201fc calls glPixelStorei with a0=0xcf0, a1=?, a2=?, a3=?.
   The `jalr` at 0xd820214 calls glPixelStorei with a0=0xcf1, a1=?, a2=?, a3=?.
   The `jalr` at 0xd82022c calls glPixelStorei with a0=0xcf2, a1=?, a2=?, a3=?.
@@ -2131,18 +2127,18 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `bne` branch at 0xd81f804 targets 0xd81f810, is taken when t4(?) != 0, and falls through when t4(?) == 0.
   The `bne` branch at 0xd81f814 targets 0xd81f828, is taken when t4(?) != at(=-0x1), and falls through when t4(?) == at(=-0x1).
   The `bne` branch at 0xd81f81c targets 0xd81f828 and is always taken.
-  The `bne` branch at 0xd81fa10 targets 0xd81fa54, is taken when t2(=[ret(XQueryFont)+68]) != 0, and falls through when t2(=[ret(XQueryFont)+68]) == 0.
+  The `bne` branch at 0xd81fa10 targets 0xd81fa54, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `bgez` branch at 0xd81fa3c targets 0xd81fa48, is taken when s5(?) >= 0 (signed), and falls through when s5(?) < 0 (signed).
   The `beq` branch at 0xd81fa60 targets 0xd8201a8, is taken when t8(=a3) == 0, and falls through when t8(=a3) != 0.
   The `bne` branch at 0xd81fa7c targets 0xd81faa0, is taken when t2(?) != at(=0x1), and falls through when t2(?) == at(=0x1).
-  The `bne` branch at 0xd81fa8c targets 0xd81fae0, is taken when a1(?) < v1(=[ret(XQueryFont)+12]) (unsigned), and falls through when a1(?) >= v1(=[ret(XQueryFont)+12]) (unsigned).
+  The `bne` branch at 0xd81fa8c targets 0xd81fae0, is taken when a1(?) < v1(?) (unsigned), and falls through when a1(?) >= v1(?) (unsigned).
   The `beq` branch at 0xd81fa98 targets 0xd81fae0 and is always taken.
-  The `bne` branch at 0xd81faac targets 0xd81fae0, is taken when a0(?) < v1(=[ret(XQueryFont)+12]) (unsigned), and falls through when a0(?) >= v1(=[ret(XQueryFont)+12]) (unsigned).
-  The `bne` branch at 0xd81fabc targets 0xd81fae0, is taken when t5(=[ret(XQueryFont)+16]) < a0(?) (unsigned), and falls through when t5(=[ret(XQueryFont)+16]) >= a0(?) (unsigned).
-  The `bne` branch at 0xd81fad0 targets 0xd81fae0, is taken when a0(?) < t4(=[ret(XQueryFont)+20]) (unsigned), and falls through when a0(?) >= t4(=[ret(XQueryFont)+20]) (unsigned).
+  The `bne` branch at 0xd81faac targets 0xd81fae0, is taken when a0(?) < v1(?) (unsigned), and falls through when a0(?) >= v1(?) (unsigned).
+  The `bne` branch at 0xd81fabc targets 0xd81fae0, is taken when t5(?) < a0(?) (unsigned), and falls through when t5(?) >= a0(?) (unsigned).
+  The `bne` branch at 0xd81fad0 targets 0xd81fae0, is taken when a0(?) < t4(?) (unsigned), and falls through when a0(?) >= t4(?) (unsigned).
   The `beq` branch at 0xd81fae0 targets 0xd81fb24, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0xd81fb1c targets 0xd81fcb0 and is always taken.
-  The `beql` branch at 0xd81fb2c targets 0xd81fc38, is taken when a2(=[ret(XQueryFont)+68]) == 0, and falls through when a2(=[ret(XQueryFont)+68]) != 0; its branch-likely delay slot `lw t8,180(s8)` at 0xd81fb30 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd81fb2c targets 0xd81fc38, is taken when a2(?) == 0, and falls through when a2(?) != 0; its branch-likely delay slot `lw t8,180(s8)` at 0xd81fb30 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd81fb3c targets 0xd81fb54, is taken when t3(?) != at(=0x1), and falls through when t3(?) == at(=0x1); its branch-likely delay slot `lw t6,2428(s8)` at 0xd81fb40 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81fb48 targets 0xd81fb7c and is always taken.
   The `beq` branch at 0xd81fba8 targets 0xd81fbb8, is taken when s6(?) == 0, and falls through when s6(?) != 0.
@@ -2155,11 +2151,11 @@ Each entry reports selected non-stack accesses, calls with argument slots, condi
   The `bnel` branch at 0xd81fd24 targets 0xd81fd50, is taken when t7(=[ret(XGetImage)+20]) != at(=0x1), and falls through when t7(=[ret(XGetImage)+20]) == at(=0x1); its branch-likely delay slot `sw zero,2236(s8)` at 0xd81fd28 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81fd44 targets 0xd81fd68 and is always taken.
   The `beq` branch at 0xd81fd80 targets 0xd820104, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beql` branch at 0xd81fdcc targets 0xd81fe74, is taken when a2(=[ret(XQueryFont)+68]) == 0, and falls through when a2(=[ret(XQueryFont)+68]) != 0; its branch-likely delay slot `lw t8,2320(s8)` at 0xd81fdd0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd81fdcc targets 0xd81fe74, is taken when a2(?) == 0, and falls through when a2(?) != 0; its branch-likely delay slot `lw t8,2320(s8)` at 0xd81fdd0 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd81fddc targets 0xd81fdfc, is taken when t7(?) != at(=0x1), and falls through when t7(?) == at(=0x1); its branch-likely delay slot `lw t3,128(s8)` at 0xd81fde0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81fdf0 targets 0xd81fe2c and is always taken.
   The `bgez` branch at 0xd81fe5c targets 0xd81fe68, is taken when s5(?) >= 0 (signed), and falls through when s5(?) < 0 (signed).
-  The `beql` branch at 0xd81fe98 targets 0xd81ffe0, is taken when t2(=one of 0x0, 0x1) == 0, and falls through when t2(=one of 0x0, 0x1) != 0; its branch-likely delay slot `lw t8,2248(s8)` at 0xd81fe9c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd81fe98 targets 0xd81ffe0, is taken when t2(?) == 0, and falls through when t2(?) != 0; its branch-likely delay slot `lw t8,2248(s8)` at 0xd81fe9c runs only when taken and is annulled on fall-through.
   The `blezl` branch at 0xd81fea4 targets 0xd820088, is taken when t3(?) <= 0 (signed), and falls through when t3(?) > 0 (signed); its branch-likely delay slot `lw v0,2308(s8)` at 0xd81fea8 runs only when taken and is annulled on fall-through.
   The `blez` branch at 0xd81feac targets 0xd81ffc4, is taken when s5(?) <= 0 (signed), and falls through when s5(?) > 0 (signed).
   The `beql` branch at 0xd81fee8 targets 0xd81ff28, is taken when (s5(?) & 0x3) == 0, and falls through when (s5(?) & 0x3) != 0; its branch-likely delay slot `addu v0,a2,s0` at 0xd81feec runs only when taken and is annulled on fall-through.

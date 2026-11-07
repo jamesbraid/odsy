@@ -1831,9 +1831,9 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `beq` branch at 0xdadf3a8 targets 0xdadf53c and is always taken.
   The `bne` branch at 0xdadf41c targets 0xdadf42c, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0xdadf424 targets 0xdadf53c and is always taken.
-  The `bnel` branch at 0xdadf47c targets 0xdadf4b4, is taken when t0(=([a0+4] + a1)) < v0(=[a0+4]) (signed), and falls through when t0(=([a0+4] + a1)) >= v0(=[a0+4]) (signed); its branch-likely delay slot `lw t5,20(a3)` at 0xdadf480 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xdadf47c targets 0xdadf4b4, is taken when t0(?) < v0(=[a0+4]) (signed), and falls through when t0(?) >= v0(=[a0+4]) (signed); its branch-likely delay slot `lw t5,20(a3)` at 0xdadf480 runs only when taken and is annulled on fall-through.
   The `bltz` branch at 0xdadf488 targets 0xdadf494, is taken when a0(?) < 0 (signed), and falls through when a0(?) >= 0 (signed).
-  The `beq` branch at 0xdadf4a4 targets 0xdadf484, is taken when t0(=([a0+4] + a1)) >= v0(?) (signed), and falls through when t0(=([a0+4] + a1)) < v0(?) (signed).
+  The `beq` branch at 0xdadf4a4 targets 0xdadf484, is taken when t0(?) >= v0(?) (signed), and falls through when t0(?) < v0(?) (signed).
   The `beql` branch at 0xdadf4b4 targets 0xdadf514, is taken when t5(=[a0+20]) == 0, and falls through when t5(=[a0+20]) != 0; its branch-likely delay slot `lw t6,4(a3)` at 0xdadf4b8 runs only when taken and is annulled on fall-through.
   The return at 0xdadf544 has v0 = one of -0x1, 0x0.
 - `__glim_DrawBuffer` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdb0ab58 (o32).
@@ -4308,13 +4308,13 @@ Skipped 44,889 located rows and 5,598 understood rows because those statuses alr
   The `jalr` at 0xb398bd0 calls ceilf with a0=?, a1=?, a2=?, a3=?; fp f13=0x3d800000.
   The `jalr` at 0xb398c18 calls ceilf with a0=?, a1=?, a2=?, a3=?; fp f13=0x3d800000.
   The `jalr` at 0xb398c58 calls memset with a0=sp-260, a1=0x0, a2=0x28, a3=?.
-  The `jalr` at 0xb398d8c calls __glOdysseyDestroyPMObjGroup [0xb38f4d0] with a0=[0x1020]:8, a1=?, a2=?, a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
-  The `jalr` at 0xb398dac calls __glOdysseyCreatePMObj [0xb38f2f0] with a0=[0x1020]:8, a1=sp-260, a2=?, a3=a1 at entry (arg1), a7=(a1 << 0x4).
+  The `jalr` at 0xb398d8c calls __glOdysseyDestroyPMObjGroup [0xb38f4d0] with a0=?, a1=?, a2=?, a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
+  The `jalr` at 0xb398dac calls __glOdysseyCreatePMObj [0xb38f2f0] with a0=?, a1=sp-260, a2=?, a3=a1 at entry (arg1), a7=(a1 << 0x4).
   The `bgezall` at 0xb398e2c calls CalcPixelModePixelFormat [0xb398ae0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xb398f20 calls __glOdysseyImageLogBase2 [0xb38a9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xb398fa0 calls __glSetError [0xb3f83f0] with a0=0x505, a1=?, a2=?, a3=?.
   The `jalr` at 0xb39903c calls memset with a0=((((a1 << 0x4) + a1) << 0x2) + ret(__glOdysseyGetCurrentTexture))+1456, a1=0x0, a2=0x44, a3=?.
-  The `jalr` at 0xb399058 calls __glOdysseyDestroyPMObj [0xb38f620] with a0=[0x1020]:8, a1=?, a2=a1 at entry (arg1), a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
+  The `jalr` at 0xb399058 calls __glOdysseyDestroyPMObj [0xb38f620] with a0=?, a1=?, a2=a1 at entry (arg1), a3=?, a5=one of 0x0, 0x1, a7=(((a1 << 0x4) + a1) << 0x2).
   The `beq` branch at 0xb398c40 targets 0xb398f1c, is taken when s0(=a4) >= 0x2 (signed), and falls through when s0(=a4) < 0x2 (signed).
   The `beq` branch at 0xb398c94 targets 0xb398f38, is taken when s3(=a5) == 0, and falls through when s3(=a5) != 0.
   The `beq` branch at 0xb398cc8 targets 0xb398f48, is taken when s6(=0x8063) == s4(=a0), and falls through when s6(=0x8063) != s4(=a0).

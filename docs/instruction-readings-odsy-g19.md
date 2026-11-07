@@ -2080,11 +2080,11 @@ Skipped 44,479 located rows and 5,577 understood rows because those already have
   The `jal` at 0x1aba8 calls mutex_spinlock_spl with a0=a1+796, a1=sym(splerr), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1acd8 calls bte_crb_error_handler with a0=a0 at entry (arg0), a1=?, a2=?, a3=sp-224.
   The `jal` at 0x1ace4 calls hubiio_crb_free with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
-  The `jal` at 0x1ad04 calls mutex_spinunlock with a0=a1+796, a1=ret(mutex_spinlock_spl), a2=?, a3=?.
+  The `jal` at 0x1ad04 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1ad90 calls sn0_error_dump with a0=sym(.rodata)+28464, a1=?, a2=?, a3=?, a6=table(sym(.rodata)+28464).
-  The `jal` at 0x1ada4 calls cmn_err with a0=0x0, a1=sym(.rodata)+28464, a2=[(sym(nasid_to_compact_node) + ([a1+10]:2 + [a1+10]:2))]:2, a3=?.
-  The `jal` at 0x1ae2c calls cmn_err with a0=0x0, a1=sym(.rodata)+28464, a2=[(sym(nasid_to_compact_node) + ([a1+10]:2 + [a1+10]:2))]:2, a3=?.
-  The `jal` at 0x1ae44 calls cmn_err with a0=0x0, a1=sym(.rodata)+28464, a2=[(sym(nasid_to_compact_node) + ([a1+10]:2 + [a1+10]:2))]:2, a3=?.
+  The `jal` at 0x1ada4 calls cmn_err with a0=0x0, a1=sym(.rodata)+28464, a2=?, a3=?.
+  The `jal` at 0x1ae2c calls cmn_err with a0=0x0, a1=sym(.rodata)+28464, a2=?, a3=?.
+  The `jal` at 0x1ae44 calls cmn_err with a0=0x0, a1=sym(.rodata)+28464, a2=?, a3=?.
   The `beq` branch at 0x1abdc targets 0x1ac30 and is always taken.
   The `beq` branch at 0x1abec targets 0x1ac00, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `bltz` branch at 0x1ac04 targets 0x1ad40, is taken when t8(?) < 0 (signed), and falls through when t8(?) >= 0 (signed).
@@ -2602,7 +2602,7 @@ Skipped 44,479 located rows and 5,577 understood rows because those already have
   The `beq` branch at 0x1ca3c targets 0x1c894 and is always taken.
   The `beq` branch at 0x1ca44 targets 0x1c894 and is always taken.
   The `beq` branch at 0x1ca5c targets 0x1c874 and is always taken.
-  The return at 0x1c8a0 has v0 = one of 0x0, 0x1, 0x3, 0x2, ret(error_page_discard).
+  The return at 0x1c8a0 has v0 = one of 0x0, 0x1, 0x3, 0x2, ?.
 - `handle_hspec_buserr` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x1ca64 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
@@ -2678,7 +2678,7 @@ Skipped 44,479 located rows and 5,577 understood rows because those already have
   The `jal` at 0x1cdb8 calls get_matching_spool_addr with a0=sp-80, a1=sp-72, a2=?, a3=0x8, a4=0x0, a6=0x2.
   The `jal` at 0x1ce58 calls kl_ioerror_handler with a0=entry(sym(nasid_to_compact_node)), a1=[-0x3bd6]:2, a2=[-0x3bd8]:2, a3=0x5, a4=a1 at entry (arg1), a5=[a0+272]:8, a6=one of 0x0, 0x1, 0x2, a7=a0 at entry (arg0).
   The `jal` at 0x1cecc calls kl_ioerror_handler with a0=entry(sym(nasid_to_compact_node)), a1=[-0x3bd6]:2, a2=[-0x3bd8]:2, a3=0x5, a4=a1 at entry (arg1), a5=[a0+272]:8, a6=one of 0x0, 0x1, 0x2, a7=a0 at entry (arg0).
-  The `jal` at 0x1cf2c calls cmn_err_tag with a0=0xb6c, a1=0x14, a2=sym(.rodata)+36904, a3=sym(.rodata)+36904, a4=0x9200000001000400, a6=0x100000.
+  The `jal` at 0x1cf2c calls cmn_err_tag with a0=0xb6c, a1=0x14, a2=?, a3=sym(.rodata)+36904, a4=0x9200000001000400, a6=0x100000.
   The `jal` at 0x1cf48 calls cmn_err_tag with a0=0xb6d, a1=0x14, a2=sym(.rodata)+36904, a3=-0x1.
   The `jal` at 0x1cf88 calls kl_ioerror_handler with a0=entry(sym(nasid_to_compact_node)), a1=[-0x3bd6]:2, a2=[-0x3bd8]:2, a3=0x5, a4=a1 at entry (arg1), a5=[a0+272]:8, a6=one of 0x0, 0x1, 0x2, a7=a0 at entry (arg0).
   The `jal` at 0x1cf98 calls get_nasid with a0=?, a1=?, a2=sym(.rodata)+36904, a3=-0x1.
@@ -2734,7 +2734,7 @@ Skipped 44,479 located rows and 5,577 understood rows because those already have
   The `beq` branch at 0x1d014 targets 0x1d124, is taken when v0(=ret(get_matching_spool_addr)) == a4(=0x2), and falls through when v0(=ret(get_matching_spool_addr)) != a4(=0x2).
   The `beq` branch at 0x1d03c targets 0x1d4a0, is taken when a1(?) >= 0x8 (unsigned), and falls through when a1(?) < 0x8 (unsigned).
   The `beq` branch at 0x1d090 targets 0x1d4c0, is taken when (s4(=one of 0x100000, 0x200000) & t8(=[0x9200000001000400]:8)) == 0, and falls through when (s4(=one of 0x100000, 0x200000) & t8(=[0x9200000001000400]:8)) != 0.
-  The `beq` branch at 0x1d0ac targets 0x1d500, is taken when v0(=ret(part_id)) == at(=ret(nasid_to_partid)), and falls through when v0(=ret(part_id)) != at(=ret(nasid_to_partid)).
+  The `beq` branch at 0x1d0ac targets 0x1d500, is taken when v0(=ret(part_id)) == at(?), and falls through when v0(=ret(part_id)) != at(?).
   The `beq` branch at 0x1d0b8 targets 0x1d0e0, is taken when s2(=a2) == v0(=0x1), and falls through when s2(=a2) != v0(=0x1).
   The `beq` branch at 0x1d11c targets 0x1d01c and is always taken.
   The `beq` branch at 0x1d128 targets 0x1d01c and is always taken.
@@ -3926,11 +3926,12 @@ Skipped 44,479 located rows and 5,577 understood rows because those already have
   Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
   Range: 0x24d60-0x24f5c (508 bytes).
   It occupies 508 bytes.
-  2 such `ld` accesses load 8 bytes from (a1 << 0x21) -0x6fffffffcc000000, including `ld` at 0x24d78, `ld` at 0x24e3c.
+  The `ld` at 0x24d78 loads 8 bytes from (a1 << 0x21) -0x6fffffffcc000000.
   2 such `ld` accesses load 8 bytes from ((a1 << 0x21)+0x9600000000000000 | 0x2000) +0x48, including `ld` at 0x24dac, `ld` at 0x24e60.
   2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x24dbc, `lw` at 0x24e6c.
   2 such `lbu` accesses load 1 byte from ret(find_lboard) +0x9, including `lbu` at 0x24de0, `lbu` at 0x24e90.
   The `sw` at 0x24e30 stores 4 bytes to a0 (arg0 at entry) +0x9e0.
+  The `ld` at 0x24e3c loads 8 bytes from ?.
   The `lbu` at 0x24eb8 loads 1 byte from ret(find_lboard) +0x17.
   The `lw` at 0x24ed4 loads 4 bytes from (ret(find_lboard) + ([ret(find_lboard)+23]:1 << 0x2)) +0x24.
   The `lbu` at 0x24ef8 loads 1 byte from ?.

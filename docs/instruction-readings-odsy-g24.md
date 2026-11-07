@@ -1358,9 +1358,9 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beql` branch at 0xd97e374 targets 0xd97e39c, is taken when t7(?) == 0, and falls through when t7(?) != 0; its branch-likely delay slot `andi t1,v0,0x4` at 0xd97e378 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd97e39c targets 0xd97e3c4, is taken when t1(?) == 0, and falls through when t1(?) != 0; its branch-likely delay slot `andi t3,v0,0x8` at 0xd97e3a0 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd97e3c4 targets 0xd97e3e8, is taken when t3(?) == 0, and falls through when t3(?) != 0; its branch-likely delay slot `lw t5,1540(sp)` at 0xd97e3c8 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd97e3f0 targets 0xd97e418, is taken when t5(=one of -0x1, 0x3, 0x4) != at(=0x3), and falls through when t5(=one of -0x1, 0x3, 0x4) == at(=0x3); its branch-likely delay slot `addiu at,zero,4` at 0xd97e3f4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd97e3f0 targets 0xd97e418, is taken when t5(?) != at(=0x3), and falls through when t5(?) == at(=0x3); its branch-likely delay slot `addiu at,zero,4` at 0xd97e3f4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd97e40c targets 0xd97e438 and is always taken.
-  The `bnel` branch at 0xd97e418 targets 0xd97e43c, is taken when t6(=one of -0x1, 0x3, 0x4) != at(=0x4), and falls through when t6(=one of -0x1, 0x3, 0x4) == at(=0x4); its branch-likely delay slot `lw ra,52(sp)` at 0xd97e41c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd97e418 targets 0xd97e43c, is taken when t6(?) != at(=0x4), and falls through when t6(?) == at(=0x4); its branch-likely delay slot `lw ra,52(sp)` at 0xd97e41c runs only when taken and is annulled on fall-through.
   The return at 0xd97e444 has v0 = one of ?, ret(?).
   The instructions from 0xd97e06c to 0xd97e06c are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd97e414 to 0xd97e414 are not reached by any path from the entry, and their branches are not listed.
@@ -2977,11 +2977,11 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   9 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xd983258, `lwc1` at 0xd983294, `lwc1` at 0xd98329c.
   10 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xd98326c, `swc1` at 0xd983278, `swc1` at 0xd9832d0.
   The `lwc1` at 0xd9833c8 loads 4 bytes from a1 (arg1 at entry) +0x4.
-  The `swc1` at 0xd9833d4 stores 4 bytes to [0x1010] +0x16454.
-  The `swc1` at 0xd9833f8 stores 4 bytes to [0x1010] +0x16458.
-  The `swc1` at 0xd98342c stores 4 bytes to [0x1010] +0x1645c.
+  The `swc1` at 0xd9833d4 stores 4 bytes to table(0x16454) +0x0.
+  The `swc1` at 0xd9833f8 stores 4 bytes to table(0x16458) +0x0.
+  The `swc1` at 0xd98342c stores 4 bytes to table(0x1645c) +0x0.
   The `lwc1` at 0xd983434 loads 4 bytes from (a1 + (a0 << 0x3)) -0x4.
-  The `swc1` at 0xd983438 stores 4 bytes to [0x1010] +0x16460.
+  The `swc1` at 0xd983438 stores 4 bytes to table(0x16460) +0x0.
   The `jalr` at 0xd983350 calls CubicBezierFitConstant [0xd982610] with a0=a1 at entry (arg1), a1=sp-24, a2=0x1, a3=a0 at entry (arg0).
   The `jalr` at 0xd983370 calls CubicBezierFitLinear [0xd982638] with a0=a1 at entry (arg1), a1=sp-24, a2=0x1, a3=a0 at entry (arg0).
   The `jalr` at 0xd983390 calls CubicBezierFitQuadratic [0xd9827b4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-24, a3=a0 at entry (arg0).
@@ -3002,7 +3002,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd983358 targets 0xd9833bc and is always taken.
   The `beq` branch at 0xd983378 targets 0xd9833bc and is always taken.
   The `beq` branch at 0xd983398 targets 0xd9833bc and is always taken.
-  The return at 0xd983448 has v0 = [0x1010]+65536.
+  The return at 0xd983448 has v0 = table(0x10000).
   The instructions from 0xd983450 to 0xd98515c are not reached by any path from the entry, and their branches are not listed.
 - `__glim_FragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd98a06c (o32).
   Evidence grade: inferred.
@@ -3777,11 +3777,8 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `lw` at 0xd98ef84 loads 4 bytes from [0x1010] +0x75c.
   The `lw` at 0xd98f054 loads 4 bytes from ret(__glOdysseyImageTilingCreate) +0x0.
   The `lw` at 0xd98f058 loads 4 bytes from ret(__glOdysseyImageTilingCreate) +0x4.
-  The `lw` at 0xd98f0a0 loads 4 bytes from ret(__glOdysseyImageTilingCreate) +0x8.
+  26 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd98f0a0, `lw` at 0xd98f0c0, `lw` at 0xd98f0d8.
   3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd98f0b0, `lbu` at 0xd98f0dc, `lbu` at 0xd98f140.
-  The `lw` at 0xd98f0c0 loads 4 bytes from ret(__glOdysseyImageChainCreate) +0x4.
-  The `lw` at 0xd98f0d8 loads 4 bytes from [ret(__glOdysseyImageChainCreate)+4] +0x44.
-  23 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd98f0e4, `lw` at 0xd98f0f8, `lw` at 0xd98f100.
   The `lwl` at 0xd98f1b0 loads 4 bytes from ?.
   The `lwr` at 0xd98f1b4 loads 4 bytes from ?.
   The `lwc1` at 0xd98f240 loads 4 bytes from ?.
@@ -3792,15 +3789,15 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `jalr` at 0xd98efdc calls __glOdysseyImageChainCreate [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd98eff8 calls __glOdysseyImageLoadBuzzRasterState [0xd9d2104] with a0=0x1, a1=ret(__glOdysseyImageChainCreate), a2=?, a3=?.
   The `jalr` at 0xd98f014 calls __glOdysseyImageTilingCreate [0xd9cfa80] with a0=a2 at entry (arg2), a1=ret(__glOdysseyImageChainCreate), a2=?, a3=?.
-  The `jalr` at 0xd98f030 calls __glOdysseyImageChainFree [0xd9949ec] with a0=ret(__glOdysseyImageChainCreate), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd98f030 calls __glOdysseyImageChainFree [0xd9949ec] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd98f044 calls __glOdysseyImageLoadBuzzRasterState [0xd9d2104] with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0xd98f1cc calls (unknown callee) with a0=?, a1=sp-52, a2=?, a3=?.
   The `jalr` at 0xd98f1e4 calls __glSetError [0xda4b3d8] with a0=0x505, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd98f1f8 calls __glOdysseyImageChainFree [0xd9949ec] with a0=ret(__glOdysseyImageChainCreate), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd98f20c calls __glOdysseyImageTilingFree [0xd9d167c] with a0=ret(__glOdysseyImageTilingCreate), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd98f1f8 calls __glOdysseyImageChainFree [0xd9949ec] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd98f20c calls __glOdysseyImageTilingFree [0xd9d167c] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd98f220 calls __glOdysseyImageLoadBuzzRasterState [0xd9d2104] with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd98f29c calls __glOdysseyImageChainFree [0xd9949ec] with a0=ret(__glOdysseyImageChainCreate), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd98f2b0 calls __glOdysseyImageTilingFree [0xd9d167c] with a0=ret(__glOdysseyImageTilingCreate), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd98f29c calls __glOdysseyImageChainFree [0xd9949ec] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd98f2b0 calls __glOdysseyImageTilingFree [0xd9d167c] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd98f2c4 calls __glOdysseyImageLoadBuzzRasterState [0xd9d2104] with a0=0x1, a1=?, a2=?, a3=?.
   The `bne` branch at 0xd98ef38 targets 0xd98efa4, is taken when v1(=0x1) != t6(=[[0x1010]+42812]:1), and falls through when v1(=0x1) == t6(=[[0x1010]+42812]:1).
   The `beq` branch at 0xd98ef40 targets 0xd98efa4, is taken when v0(=[a0+56]) == 0, and falls through when v0(=[a0+56]) != 0.
@@ -3816,7 +3813,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd98f080 targets 0xd98f294, is taken when t5(?) == 0, and falls through when t5(?) != 0.
   The `beql` branch at 0xd98f0bc targets 0xd98f0d0, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `lw s1,4(t0)` at 0xd98f0c0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd98f0c4 targets 0xd98f288 and is always taken.
-  The `beql` branch at 0xd98f0d0 targets 0xd98f278, is taken when s1(=[ret(__glOdysseyImageChainCreate)+4]) == 0, and falls through when s1(=[ret(__glOdysseyImageChainCreate)+4]) != 0; its branch-likely delay slot `lw v0,100(sp)` at 0xd98f0d4 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd98f0d0 targets 0xd98f278, is taken when s1(?) == 0, and falls through when s1(?) != 0; its branch-likely delay slot `lw v0,100(sp)` at 0xd98f0d4 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd98f0e0 targets 0xd98f120, is taken when t2(?) == 0, and falls through when t2(?) != 0; its branch-likely delay slot `lw t6,4(s0)` at 0xd98f0e4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd98f0e8 targets 0xd98f0f8, is taken when s2(=one of 0x0, 0x1) == 0, and falls through when s2(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0xd98f0f0 targets 0xd98f0f8 and is always taken.
@@ -3972,7 +3969,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `jalr` at 0xd9907bc calls __glOdyim_ReadPixels [0xd98fb94] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd9907d4 calls __glRestoreCurrentPixelXferState [0xda34620] with a0=[0x1010], a1=ret(__glGetCurrentSetDefaultPixelXferState), a2=?, a3=?.
   The `jalr` at 0xd9907f8 calls __glOdyim_DrawPixels [0xd98f7a0] with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=?, a3=?.
-  The `jalr` at 0xd990890 calls (unknown callee) with a0=[0x1010], a1=ret(?), a2=?, a3=?.
+  The `jalr` at 0xd990890 calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xd99090c calls __glOdysseyImageXfer [0xd98eed8] with a0=[0x1010]+73112, a1=[0x1010]+73172, a2=sp-16, a3=?.
   The `beq` branch at 0xd99003c targets 0xd990050, is taken when t6(=[[0x1010]+92516]) == 0, and falls through when t6(=[[0x1010]+92516]) != 0.
   The `bne` branch at 0xd990044 targets 0xd990050, is taken when v0(=[0x1018]) != 0, and falls through when v0(=[0x1018]) == 0.
@@ -4866,67 +4863,30 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `lw` at 0xd9954e0 loads 4 bytes from abs 0x1010.
   The `lwc1` at 0xd9955a8 loads 4 bytes from a1 (arg1 at entry) +0x4.
   The `lwc1` at 0xd9955ac loads 4 bytes from a1 (arg1 at entry) +0xc.
-  20 such `lw` accesses load 4 bytes from [0x1010] +0x704, including `lw` at 0xd9955e8, `lw` at 0xd995d20, `lw` at 0xd995e8c.
+  The `lw` at 0xd9955e8 loads 4 bytes from [0x1010] +0x704.
   10 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0xd9955f4, `lw` at 0xd995608, `lw` at 0xd995618.
   7 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0xd9955f8, `lw` at 0xd995744, `lw` at 0xd99578c.
   4 such `lw` accesses load 4 bytes from [a0+20] +0x38, including `lw` at 0xd995600, `lw` at 0xd995748, `lw` at 0xd995b98.
   The `lbu` at 0xd99560c loads 1 byte from [a0+20] +0xa.
-  The `lw` at 0xd995658 loads 4 bytes from [0x1010] +0x2f0.
-  The `lwc1` at 0xd99565c loads 4 bytes from [0x1010] +0x280.
-  The `lwc1` at 0xd99566c loads 4 bytes from [0x1010] +0x284.
+  68 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd995658, `lw` at 0xd9957d8, `lw` at 0xd9957dc.
+  52 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xd99565c, `lwc1` at 0xd99566c, `lwc1` at 0xd99567c.
   The `ldc1` at 0xd995674 loads 8 bytes from abs 0xdaee580.
-  The `lwc1` at 0xd99567c loads 4 bytes from [0x1010] +0x288.
-  The `lwc1` at 0xd995690 loads 4 bytes from [0x1010] +0x28c.
-  2 such `swc1` accesses store 4 bytes to [0x1010] +0x11e20, including `swc1` at 0xd9956f4, `swc1` at 0xd995708.
+  2 such `swc1` accesses store 4 bytes to table(0x11e20) +0x0, including `swc1` at 0xd9956f4, `swc1` at 0xd995708.
   The `lwc1` at 0xd9956fc loads 4 bytes from abs 0xdaee588.
-  The `lwc1` at 0xd99570c loads 4 bytes from [0x1010] +0x294.
-  The `lwc1` at 0xd99571c loads 4 bytes from [0x1010] +0x298.
-  The `lwc1` at 0xd99572c loads 4 bytes from [0x1010] +0x29c.
-  The `lwc1` at 0xd995738 loads 4 bytes from [0x1010] +0x2a0.
   7 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xd995758, `lw` at 0xd9957cc, `lw` at 0xd995ba8.
   11 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x18, including `lw` at 0xd995790, `lw` at 0xd995d1c, `lw` at 0xd996238.
   3 such `lw` accesses load 4 bytes from [a0+20] +0x8, including `lw` at 0xd995798, `lw` at 0xd9958e4, `lw` at 0xd996570.
   The `lw` at 0xd99579c loads 4 bytes from [a0+20] +0xc.
   The `lw` at 0xd9957a0 loads 4 bytes from [a0+24] +0x34.
-  5 such `lw` accesses load 4 bytes from [0x1010] +0x788, including `lw` at 0xd9957d8, `lw` at 0xd9957dc, `lw` at 0xd9957e8.
   The `lw` at 0xd9957ec loads 4 bytes from [a0+4] +0x8.
-  The `lw` at 0xd995830 loads 4 bytes from [0x1010] +0x7b70.
-  The `lwc1` at 0xd9958f4 loads 4 bytes from [0x1010] +0x11e20.
-  4 such `lbu` accesses load 1 byte from [0x1010] +0x2f8, including `lbu` at 0xd9959dc, `lbu` at 0xd995aac, `lbu` at 0xd995ae8.
-  The `lw` at 0xd995b64 loads 4 bytes from [0x1010] +0x2f4.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2a8, including `lwc1` at 0xd995d30, `lwc1` at 0xd995d78.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2ac, including `lwc1` at 0xd995d90, `lwc1` at 0xd995e3c.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2b0, including `lwc1` at 0xd995da8, `lwc1` at 0xd995e44.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2b4, including `lwc1` at 0xd995dc0, `lwc1` at 0xd995e4c.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2b8, including `lwc1` at 0xd995dd8, `lwc1` at 0xd995e54.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2bc, including `lwc1` at 0xd995df0, `lwc1` at 0xd995e5c.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2c0, including `lwc1` at 0xd995e08, `lwc1` at 0xd995e64.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2c4, including `lwc1` at 0xd995e20, `lwc1` at 0xd995e6c.
-  5 such `lw` accesses load 4 bytes from [0x1010] +0x2fc, including `lw` at 0xd995e34, `lw` at 0xd995e74, `lw` at 0xd995f30.
-  3 such `lw` accesses load 4 bytes from [[0x1010]+764] +0x0, including `lw` at 0xd995e80, `lw` at 0xd995f98, `lw` at 0xd995fe0.
-  The `sw` at 0xd995e90 stores 4 bytes to [0x1010] +0x11bc4.
-  The `sw` at 0xd995f2c stores 4 bytes to [0x1010] +0x11bc8.
-  The `lw` at 0xd995f3c loads 4 bytes from [[0x1010]+764] +0x4.
-  The `sw` at 0xd995f44 stores 4 bytes to [0x1010] +0x11bd4.
-  The `lw` at 0xd995f48 loads 4 bytes from [0x1010] +0x784.
-  The `sw` at 0xd995f78 stores 4 bytes to [0x1010] +0x119e0.
-  2 such `lw` accesses load 4 bytes from [0x1010] +0x77e4, including `lw` at 0xd996028, `lw` at 0xd99606c.
-  10 such `lwc1` accesses load 4 bytes from [0x1010] +0x2c8, including `lwc1` at 0xd996078, `lwc1` at 0xd99607c, `lwc1` at 0xd996090.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2cc, including `lwc1` at 0xd996094, `lwc1` at 0xd99614c.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2d0, including `lwc1` at 0xd9960ac, `lwc1` at 0xd99615c.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2d4, including `lwc1` at 0xd9960c4, `lwc1` at 0xd996168.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2d8, including `lwc1` at 0xd9960dc, `lwc1` at 0xd996170.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2dc, including `lwc1` at 0xd9960f4, `lwc1` at 0xd996178.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2e0, including `lwc1` at 0xd99610c, `lwc1` at 0xd996180.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2e4, including `lwc1` at 0xd996124, `lwc1` at 0xd996188.
-  The `lw` at 0xd996190 loads 4 bytes from [0x1010] +0x7430.
-  2 such `lw` accesses load 4 bytes from [0x1010] +0x700, including `lw` at 0xd9961c8, `lw` at 0xd996204.
-  The `lw` at 0xd996218 loads 4 bytes from [0x1010] +0x4e0.
-  2 such `lbu` accesses load 1 byte from [0x1010] +0x500, including `lbu` at 0xd996224, `lbu` at 0xd996244.
+  The `lwc1` at 0xd9958f4 loads 4 bytes from table(0x11e20) +0x0.
+  11 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd9959dc, `lbu` at 0xd995aac, `lbu` at 0xd995ae8.
+  The `sw` at 0xd995e90 stores 4 bytes to table(0x11bc4) +0x0.
+  The `sw` at 0xd995f2c stores 4 bytes to table(0x11bc8) +0x0.
+  The `sw` at 0xd995f44 stores 4 bytes to table(0x11bd4) +0x0.
+  The `sw` at 0xd995f78 stores 4 bytes to table(0x119e0) +0x0.
   5 such `lw` accesses load 4 bytes from [a0+24] +0x38, including `lw` at 0xd996290, `lw` at 0xd9962f8, `lw` at 0xd9963a4.
   4 such `lbu` accesses load 1 byte from [a0+24] +0x8, including `lbu` at 0xd99629c, `lbu` at 0xd996304, `lbu` at 0xd9963b0.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2e8, including `lwc1` at 0xd996320, `lwc1` at 0xd9963cc.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2ec, including `lwc1` at 0xd996324, `lwc1` at 0xd9963d0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0xd996474, `lw` at 0xd996484.
   The `lbu` at 0xd996478 loads 1 byte from [a0+24] +0xa.
   The `lw` at 0xd996490 loads 4 bytes from [a0+8] +0x0.
@@ -4939,8 +4899,6 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `lw` at 0xd99655c loads 4 bytes from abs 0xdafa4f8.
   The `lw` at 0xd996564 loads 4 bytes from abs 0xdafa4fc.
   The `lw` at 0xd996628 loads 4 bytes from [a0+4] +0x44.
-  25 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd99662c, `lw` at 0xd996634, `lw` at 0xd996638.
-  5 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd99664c, `lbu` at 0xd99670c, `lbu` at 0xd996774.
   The `lw` at 0xd996660 loads 4 bytes from abs 0xdafa500.
   The `lw` at 0xd996670 loads 4 bytes from abs 0xdafa504.
   The `lw` at 0xd99667c loads 4 bytes from abs 0xdafa508.
@@ -4970,10 +4928,10 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `jalr` at 0xd995c8c calls ImageChainAddOpLut [0xd996da0] with a0=a0 at entry (arg0), a1=0x6, a2=?, a3=?.
   The `jalr` at 0xd995cd4 calls ImageChainAddOpLut [0xd996da0] with a0=a0 at entry (arg0), a1=0x4, a2=?, a3=?.
   The `jalr` at 0xd995d44 calls ImageChainAddOpLut [0xd996da0] with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0xd995fac calls ImageChainAddOpConvolveResidue [0xd99b8d0] with a0=a0 at entry (arg0), a1=[[[0x1010]+764]], a2=sp-36, a3=sp-52; fp f14=[[0x1010]+680].
-  The `jalr` at 0xd995fe8 calls ImageChainAddOpConvolve [0xd997764] with a0=a0 at entry (arg0), a1=[[[0x1010]+764]], a2=sp-36, a3=sp-52; fp f14=[[0x1010]+680].
+  The `jalr` at 0xd995fac calls ImageChainAddOpConvolveResidue [0xd99b8d0] with a0=a0 at entry (arg0), a1=?, a2=sp-36, a3=sp-52.
+  The `jalr` at 0xd995fe8 calls ImageChainAddOpConvolve [0xd997764] with a0=a0 at entry (arg0), a1=?, a2=sp-36, a3=sp-52.
   The `jalr` at 0xd99603c calls ImageChainAddOpLut [0xd996da0] with a0=a0 at entry (arg0), a1=0x2, a2=?, a3=?.
-  The `jalr` at 0xd996194 calls ImageChainAddOpColorMatrix [0xd9a2ee8] with a0=a0 at entry (arg0), a1=[[0x1010]+29744], a2=sp-164, a3=sp-180.
+  The `jalr` at 0xd996194 calls ImageChainAddOpColorMatrix [0xd9a2ee8] with a0=a0 at entry (arg0), a1=?, a2=sp-164, a3=sp-180.
   The `jalr` at 0xd9961dc calls ImageChainAddOpLut [0xd996da0] with a0=a0 at entry (arg0), a1=0x3, a2=?, a3=?.
   The `jalr` at 0xd996260 calls ImageChainAddOpHistogramMinmax [0xd9a9d58] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd9962c8 calls ImageChainAddOpPixelTexture [0xd9aa2b0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -5021,17 +4979,17 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd995784 targets 0xd996970 and is always taken.
   The `beq` branch at 0xd9957c8 targets 0xd9957dc, is taken when a0(?) == at(=0x3), and falls through when a0(?) != at(=0x3).
   The `bnel` branch at 0xd9957d4 targets 0xd995804, is taken when a0(?) != at(=0x4), and falls through when a0(?) == at(=0x4); its branch-likely delay slot `lw t0,1928(v1)` at 0xd9957d8 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd9957e4 targets 0xd995804, is taken when t7(=[[0x1010]+1928]) != at(=0x1100), and falls through when t7(=[[0x1010]+1928]) == at(=0x1100); its branch-likely delay slot `lw t0,1928(v1)` at 0xd9957e8 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd9957e4 targets 0xd995804, is taken when t7(?) != at(=0x1100), and falls through when t7(?) == at(=0x1100); its branch-likely delay slot `lw t0,1928(v1)` at 0xd9957e8 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd9957f4 targets 0xd995804, is taken when (t8(=[[a0+4]+8]) & 0x1) == 0, and falls through when (t8(=[[a0+4]+8]) & 0x1) != 0; its branch-likely delay slot `lw t0,1928(v1)` at 0xd9957f8 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd995808 targets 0xd995818, is taken when t0(=[[0x1010]+1928]) != at(=0x1102), and falls through when t0(=[[0x1010]+1928]) == at(=0x1102); its branch-likely delay slot `lbu t1,292(sp)` at 0xd99580c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd995808 targets 0xd995818, is taken when t0(?) != at(=0x1102), and falls through when t0(?) == at(=0x1102); its branch-likely delay slot `lbu t1,292(sp)` at 0xd99580c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995820 targets 0xd9959d0, is taken when t1(?) != at(=0x1), and falls through when t1(?) == at(=0x1).
   The `bnel` branch at 0xd995828 targets 0xd9958dc, is taken when t2(?) != at(=0x1), and falls through when t2(?) == at(=0x1); its branch-likely delay slot `lw t5,20(s1)` at 0xd99582c runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xd995840 targets 0xd9959d0, is taken when (v0(=[[0x1010]+31600]) & 0x80) == 0, and falls through when (v0(=[[0x1010]+31600]) & 0x80) != 0.
-  The `bltz` branch at 0xd995848 targets 0xd9958a8, is taken when t4(=([[0x1010]+31600] << 0xc)) < 0 (signed), and falls through when t4(=([[0x1010]+31600] << 0xc)) >= 0 (signed).
+  The `beq` branch at 0xd995840 targets 0xd9959d0, is taken when (v0(?) & 0x80) == 0, and falls through when (v0(?) & 0x80) != 0.
+  The `bltz` branch at 0xd995848 targets 0xd9958a8, is taken when t4(?) < 0 (signed), and falls through when t4(?) >= 0 (signed).
   The `bne` branch at 0xd9958c8 targets 0xd9959d0, is taken when v0(=ret(ImageChainAddOpScaleBias)) != 0, and falls through when v0(=ret(ImageChainAddOpScaleBias)) == 0.
   The `beq` branch at 0xd9958d0 targets 0xd996970 and is always taken.
   The `beq` branch at 0xd9958e8 targets 0xd9959d0, is taken when t6(=[[a0+20]+8]) == at(=0x1900), and falls through when t6(=[[a0+20]+8]) != at(=0x1900).
-  The `bc1t` branch at 0xd99590c targets 0xd9959a0, is taken when f12(=[[0x1010]+73248]) < f0 (c.lt.s at 0xd995900), and falls through when not (f12(=[[0x1010]+73248]) < f0 (c.lt.s at 0xd995900)).
+  The `bc1t` branch at 0xd99590c targets 0xd9959a0, is taken when f12(=entry(0x11e20)) < f0 (c.lt.s at 0xd995900), and falls through when not (f12(=entry(0x11e20)) < f0 (c.lt.s at 0xd995900)).
   The `bc1t` branch at 0xd995920 targets 0xd9959a0, is taken when f12 < f0 (c.lt.s at 0xd995918), and falls through when not (f12 < f0 (c.lt.s at 0xd995918)).
   The `bc1t` branch at 0xd995934 targets 0xd9959a0, is taken when f12 < f0 (c.lt.s at 0xd99592c), and falls through when not (f12 < f0 (c.lt.s at 0xd99592c)).
   The `bc1t` branch at 0xd995948 targets 0xd9959a0, is taken when f12 < f0 (c.lt.s at 0xd995940), and falls through when not (f12 < f0 (c.lt.s at 0xd995940)).
@@ -5052,7 +5010,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1tl` branch at 0xd995aa8 targets 0xd995aec, is taken when f0 == f16 (c.eq.d at 0xd995aa0), and falls through when not (f0 == f16 (c.eq.d at 0xd995aa0)); its branch-likely delay slot `lbu t7,760(v1)` at 0xd995aac runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995ad8 targets 0xd995ae8, is taken when v0(=ret(ImageChainAddOpScaleBiasGfx)) != 0, and falls through when v0(=ret(ImageChainAddOpScaleBiasGfx)) == 0.
   The `beq` branch at 0xd995ae0 targets 0xd996970 and is always taken.
-  The `beql` branch at 0xd995af0 targets 0xd995d00, is taken when t7(=[[0x1010]+760]:1) == 0, and falls through when t7(=[[0x1010]+760]:1) != 0; its branch-likely delay slot `lw v0,16(s1)` at 0xd995af4 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd995af0 targets 0xd995d00, is taken when t7(?) == 0, and falls through when t7(?) != 0; its branch-likely delay slot `lw v0,16(s1)` at 0xd995af4 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995b20 targets 0xd995cfc, is taken when v0(=ret(ImageChainAddOpLut)) != 0, and falls through when v0(=ret(ImageChainAddOpLut)) == 0.
   The `beq` branch at 0xd995b28 targets 0xd996970 and is always taken.
   The `bnel` branch at 0xd995b9c targets 0xd995bf0, is taken when t1(=[[a0+20]+56]) != 0, and falls through when t1(=[[a0+20]+56]) == 0; its branch-likely delay slot `mtc1 zero,$f1` at 0xd995ba0 runs only when taken and is annulled on fall-through.
@@ -5066,12 +5024,12 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bnel` branch at 0xd995c74 targets 0xd995cb8, is taken when t5(=[a0+16]) != at(=0x2), and falls through when t5(=[a0+16]) == at(=0x2); its branch-likely delay slot `lbu t6,760(v1)` at 0xd995c78 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995ca4 targets 0xd995cfc, is taken when v0(=ret(ImageChainAddOpLut)) != 0, and falls through when v0(=ret(ImageChainAddOpLut)) == 0.
   The `beq` branch at 0xd995cac targets 0xd996970 and is always taken.
-  The `beql` branch at 0xd995cbc targets 0xd995d00, is taken when t6(=[[0x1010]+760]:1) == 0, and falls through when t6(=[[0x1010]+760]:1) != 0; its branch-likely delay slot `lw v0,16(s1)` at 0xd995cc0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd995cbc targets 0xd995d00, is taken when t6(?) == 0, and falls through when t6(?) != 0; its branch-likely delay slot `lw v0,16(s1)` at 0xd995cc0 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995cec targets 0xd995cfc, is taken when v0(=ret(ImageChainAddOpLut)) != 0, and falls through when v0(=ret(ImageChainAddOpLut)) == 0.
   The `beq` branch at 0xd995cf4 targets 0xd996970 and is always taken.
   The `beq` branch at 0xd995d10 targets 0xd995d20, is taken when v0(=[a0+16]) == at(=0x1), and falls through when v0(=[a0+16]) != at(=0x1).
   The `bnel` branch at 0xd995d18 targets 0xd9963a0, is taken when v0(=[a0+16]) != at(=0x2), and falls through when v0(=[a0+16]) == at(=0x2); its branch-likely delay slot `lw v0,24(s1)` at 0xd995d1c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd995d2c targets 0xd995d7c, is taken when (t7(=[[0x1010]+1796]) & 0x1) == 0, and falls through when (t7(=[[0x1010]+1796]) & 0x1) != 0; its branch-likely delay slot `lwc1 $f14,680(v1)` at 0xd995d30 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd995d2c targets 0xd995d7c, is taken when (t7(?) & 0x1) == 0, and falls through when (t7(?) & 0x1) != 0; its branch-likely delay slot `lwc1 $f14,680(v1)` at 0xd995d30 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995d68 targets 0xd995d78, is taken when v0(=ret(ImageChainAddOpLut)) != 0, and falls through when v0(=ret(ImageChainAddOpLut)) == 0.
   The `beq` branch at 0xd995d70 targets 0xd996970 and is always taken.
   The `bc1fl` branch at 0xd995d88 targets 0xd995e3c, is taken when not (f12 == f10 (c.eq.d at 0xd995d80)), and falls through when f12 == f10 (c.eq.d at 0xd995d80); its branch-likely delay slot `swc1 $f14,332(sp)` at 0xd995d8c runs only when taken and is annulled on fall-through.
@@ -5082,23 +5040,23 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd995e00 targets 0xd995e3c, is taken when not (f0 == f6 (c.eq.d at 0xd995df8)), and falls through when f0 == f6 (c.eq.d at 0xd995df8); its branch-likely delay slot `swc1 $f14,332(sp)` at 0xd995e04 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd995e18 targets 0xd995e3c, is taken when not (f0 == f10 (c.eq.d at 0xd995e10)), and falls through when f0 == f10 (c.eq.d at 0xd995e10); its branch-likely delay slot `swc1 $f14,332(sp)` at 0xd995e1c runs only when taken and is annulled on fall-through.
   The `bc1tl` branch at 0xd995e30 targets 0xd995e78, is taken when f0 == f18 (c.eq.d at 0xd995e28), and falls through when not (f0 == f18 (c.eq.d at 0xd995e28)); its branch-likely delay slot `lw t9,764(v1)` at 0xd995e34 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd995e88 targets 0xd996020, is taken when t0(=[[[0x1010]+764]]) == 0, and falls through when t0(=[[[0x1010]+764]]) != 0; its branch-likely delay slot `lw t1,1796(v1)` at 0xd995e8c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd995e88 targets 0xd996020, is taken when t0(?) == 0, and falls through when t0(?) != 0; its branch-likely delay slot `lw t1,1796(v1)` at 0xd995e8c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd995ec8 targets 0xd995f18, is taken when (t3(?) & 0x78) == 0, and falls through when (t3(?) & 0x78) != 0; its branch-likely delay slot `mfc1 t3,$f10` at 0xd995ecc runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd995ef4 targets 0xd995f0c, is taken when (t3(?) & 0x78) != 0, and falls through when (t3(?) & 0x78) == 0.
   The `beq` branch at 0xd995f04 targets 0xd995f24 and is always taken.
   The `beq` branch at 0xd995f0c targets 0xd995f24 and is always taken.
   The `bltz` branch at 0xd995f1c targets 0xd995f0c, is taken when t3(?) < 0 (signed), and falls through when t3(?) >= 0 (signed).
-  The `beq` branch at 0xd995f50 targets 0xd995f6c, is taken when v0(=[[0x1010]+1924]) == at(=0x1100), and falls through when v0(=[[0x1010]+1924]) != at(=0x1100).
-  The `beq` branch at 0xd995f58 targets 0xd995f6c, is taken when v0(=[[0x1010]+1924]) == at(=0x1101), and falls through when v0(=[[0x1010]+1924]) != at(=0x1101).
-  The `bne` branch at 0xd995f60 targets 0xd995f6c, is taken when v0(=[[0x1010]+1924]) != at(=0x1102), and falls through when v0(=[[0x1010]+1924]) == at(=0x1102).
-  The `bnel` branch at 0xd995f84 targets 0xd995fd8, is taken when t8(=one of 0x1101, 0x1102) != at(=0x1102), and falls through when t8(=one of 0x1101, 0x1102) == at(=0x1102); its branch-likely delay slot `lw t0,764(v1)` at 0xd995f88 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xd995f50 targets 0xd995f6c, is taken when v0(?) == at(=0x1100), and falls through when v0(?) != at(=0x1100).
+  The `beq` branch at 0xd995f58 targets 0xd995f6c, is taken when v0(?) == at(=0x1101), and falls through when v0(?) != at(=0x1101).
+  The `bne` branch at 0xd995f60 targets 0xd995f6c, is taken when v0(?) != at(=0x1102), and falls through when v0(?) == at(=0x1102).
+  The `bnel` branch at 0xd995f84 targets 0xd995fd8, is taken when t8(?) != at(=0x1102), and falls through when t8(?) == at(=0x1102); its branch-likely delay slot `lw t0,764(v1)` at 0xd995f88 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd995fcc targets 0xd99600c and is always taken.
   The `bnel` branch at 0xd99600c targets 0xd996020, is taken when v0(?) != 0, and falls through when v0(?) == 0; its branch-likely delay slot `lw t1,1796(v1)` at 0xd996010 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd996014 targets 0xd996970 and is always taken.
-  The `beql` branch at 0xd996024 targets 0xd996070, is taken when (t1(=[[0x1010]+1796]) & 0x2) == 0, and falls through when (t1(=[[0x1010]+1796]) & 0x2) != 0; its branch-likely delay slot `lw t3,30692(v1)` at 0xd996028 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd996024 targets 0xd996070, is taken when (t1(?) & 0x2) == 0, and falls through when (t1(?) & 0x2) != 0; its branch-likely delay slot `lw t3,30692(v1)` at 0xd996028 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd99605c targets 0xd99606c, is taken when v0(=ret(ImageChainAddOpLut)) != 0, and falls through when v0(=ret(ImageChainAddOpLut)) == 0.
   The `beq` branch at 0xd996064 targets 0xd996970 and is always taken.
-  The `bnel` branch at 0xd996074 targets 0xd996140, is taken when t3(=[[0x1010]+30692]) != at(=0x8421), and falls through when t3(=[[0x1010]+30692]) == at(=0x8421); its branch-likely delay slot `lwc1 $f8,712(v1)` at 0xd996078 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd996074 targets 0xd996140, is taken when t3(?) != at(=0x8421), and falls through when t3(?) == at(=0x8421); its branch-likely delay slot `lwc1 $f8,712(v1)` at 0xd996078 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd99608c targets 0xd996140, is taken when not (f12 == f18 (c.eq.d at 0xd996084)), and falls through when f12 == f18 (c.eq.d at 0xd996084); its branch-likely delay slot `lwc1 $f8,712(v1)` at 0xd996090 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9960a4 targets 0xd996140, is taken when not (f12 == f6 (c.eq.d at 0xd99609c)), and falls through when f12 == f6 (c.eq.d at 0xd99609c); its branch-likely delay slot `lwc1 $f8,712(v1)` at 0xd9960a8 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9960bc targets 0xd996140, is taken when not (f12 == f10 (c.eq.d at 0xd9960b4)), and falls through when f12 == f10 (c.eq.d at 0xd9960b4); its branch-likely delay slot `lwc1 $f8,712(v1)` at 0xd9960c0 runs only when taken and is annulled on fall-through.
@@ -5109,25 +5067,25 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1tl` branch at 0xd996134 targets 0xd9961c0, is taken when f0 == f6 (c.eq.d at 0xd99612c), and falls through when not (f0 == f6 (c.eq.d at 0xd99612c)); its branch-likely delay slot `lw t4,1796(v1)` at 0xd996138 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd9961ac targets 0xd9961bc, is taken when v0(=ret(ImageChainAddOpColorMatrix)) != 0, and falls through when v0(=ret(ImageChainAddOpColorMatrix)) == 0.
   The `beq` branch at 0xd9961b4 targets 0xd996970 and is always taken.
-  The `beql` branch at 0xd9961c4 targets 0xd996208, is taken when (t4(=[[0x1010]+1796]) & 0x4) == 0, and falls through when (t4(=[[0x1010]+1796]) & 0x4) != 0; its branch-likely delay slot `lw v0,1792(v1)` at 0xd9961c8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9961c4 targets 0xd996208, is taken when (t4(?) & 0x4) == 0, and falls through when (t4(?) & 0x4) != 0; its branch-likely delay slot `lw v0,1792(v1)` at 0xd9961c8 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd9961f4 targets 0xd996204, is taken when v0(=ret(ImageChainAddOpLut)) != 0, and falls through when v0(=ret(ImageChainAddOpLut)) == 0.
   The `beq` branch at 0xd9961fc targets 0xd996970 and is always taken.
-  The `beq` branch at 0xd996210 targets 0xd996234, is taken when (v0(=[[0x1010]+1792]) & at(=0x10000000)) == 0, and falls through when (v0(=[[0x1010]+1792]) & at(=0x10000000)) != 0.
-  The `bgtz` branch at 0xd99621c targets 0xd996250, is taken when t6(=[[0x1010]+1248]) > 0 (signed), and falls through when t6(=[[0x1010]+1248]) <= 0 (signed).
-  The `beq` branch at 0xd99622c targets 0xd996250, is taken when t7(=[[0x1010]+1280]:1) == at(=0x1), and falls through when t7(=[[0x1010]+1280]:1) != at(=0x1).
-  The `bgezl` branch at 0xd996234 targets 0xd99628c, is taken when t8(=([[0x1010]+1792] << 0x2)) >= 0 (signed), and falls through when t8(=([[0x1010]+1792] << 0x2)) < 0 (signed); its branch-likely delay slot `lw v0,24(s1)` at 0xd996238 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xd996210 targets 0xd996234, is taken when (v0(?) & at(=0x10000000)) == 0, and falls through when (v0(?) & at(=0x10000000)) != 0.
+  The `bgtz` branch at 0xd99621c targets 0xd996250, is taken when t6(?) > 0 (signed), and falls through when t6(?) <= 0 (signed).
+  The `beq` branch at 0xd99622c targets 0xd996250, is taken when t7(?) == at(=0x1), and falls through when t7(?) != at(=0x1).
+  The `bgezl` branch at 0xd996234 targets 0xd99628c, is taken when t8(?) >= 0 (signed), and falls through when t8(?) < 0 (signed); its branch-likely delay slot `lw v0,24(s1)` at 0xd996238 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd99623c targets 0xd996250, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bnel` branch at 0xd996248 targets 0xd99628c, is taken when t9(=[[0x1010]+1280]:1) != 0, and falls through when t9(=[[0x1010]+1280]:1) == 0; its branch-likely delay slot `lw v0,24(s1)` at 0xd99624c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd996248 targets 0xd99628c, is taken when t9(?) != 0, and falls through when t9(?) == 0; its branch-likely delay slot `lw v0,24(s1)` at 0xd99624c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd996278 targets 0xd996288, is taken when v0(=ret(ImageChainAddOpHistogramMinmax)) != 0, and falls through when v0(=ret(ImageChainAddOpHistogramMinmax)) == 0.
   The `beq` branch at 0xd996280 targets 0xd996970 and is always taken.
   The `bnel` branch at 0xd996294 targets 0xd9962f4, is taken when t0(=[[a0+24]+56]) != at(=0x1), and falls through when t0(=[[a0+24]+56]) == at(=0x1); its branch-likely delay slot `lw v0,24(s1)` at 0xd996298 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd9962a0 targets 0xd9962f4, is taken when t1(=[[a0+24]+8]:1) == 0, and falls through when t1(=[[a0+24]+8]:1) != 0; its branch-likely delay slot `lw v0,24(s1)` at 0xd9962a4 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9962b0 targets 0xd9962f4, is taken when (t2(=[[0x1010]+1796]) & 0x4000) == 0, and falls through when (t2(=[[0x1010]+1796]) & 0x4000) != 0; its branch-likely delay slot `lw v0,24(s1)` at 0xd9962b4 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9962b0 targets 0xd9962f4, is taken when (t2(?) & 0x4000) == 0, and falls through when (t2(?) & 0x4000) != 0; its branch-likely delay slot `lw v0,24(s1)` at 0xd9962b4 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd9962e0 targets 0xd9962f0, is taken when v0(=ret(ImageChainAddOpPixelTexture)) != 0, and falls through when v0(=ret(ImageChainAddOpPixelTexture)) == 0.
   The `beq` branch at 0xd9962e8 targets 0xd996970 and is always taken.
   The `bnel` branch at 0xd9962fc targets 0xd99644c, is taken when t4(=[[a0+24]+56]) != at(=0x1), and falls through when t4(=[[a0+24]+56]) == at(=0x1); its branch-likely delay slot `lw t2,1796(v1)` at 0xd996300 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd996308 targets 0xd99644c, is taken when t5(=[[a0+24]+8]:1) == 0, and falls through when t5(=[[a0+24]+8]:1) != 0; its branch-likely delay slot `lw t2,1796(v1)` at 0xd99630c runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd996318 targets 0xd99644c, is taken when (t6(=[[0x1010]+1796]) & 0x20) != 0, and falls through when (t6(=[[0x1010]+1796]) & 0x20) == 0; its branch-likely delay slot `lw t2,1796(v1)` at 0xd99631c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd996318 targets 0xd99644c, is taken when (t6(?) & 0x20) != 0, and falls through when (t6(?) & 0x20) == 0; its branch-likely delay slot `lw t2,1796(v1)` at 0xd99631c runs only when taken and is annulled on fall-through.
   The `bc1f` branch at 0xd996334 targets 0xd996370, is taken when not (f12 == f16 (c.eq.d at 0xd99632c)), and falls through when f12 == f16 (c.eq.d at 0xd99632c).
   The `bc1tl` branch at 0xd99634c targets 0xd99644c, is taken when f12 == f0 (c.eq.d at 0xd996344), and falls through when not (f12 == f0 (c.eq.d at 0xd996344)); its branch-likely delay slot `lw t2,1796(v1)` at 0xd996350 runs only when taken and is annulled on fall-through.
   The `bc1tl` branch at 0xd996368 targets 0xd99644c, is taken when f18 == f0 (c.eq.d at 0xd996360), and falls through when not (f18 == f0 (c.eq.d at 0xd996360)); its branch-likely delay slot `lw t2,1796(v1)` at 0xd99636c runs only when taken and is annulled on fall-through.
@@ -5135,13 +5093,13 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd996394 targets 0xd996970 and is always taken.
   The `bnel` branch at 0xd9963a8 targets 0xd99644c, is taken when t8(=[[a0+24]+56]) != at(=0x1), and falls through when t8(=[[a0+24]+56]) == at(=0x1); its branch-likely delay slot `lw t2,1796(v1)` at 0xd9963ac runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd9963b4 targets 0xd99644c, is taken when t9(=[[a0+24]+8]:1) == 0, and falls through when t9(=[[a0+24]+8]:1) != 0; its branch-likely delay slot `lw t2,1796(v1)` at 0xd9963b8 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd9963c4 targets 0xd99644c, is taken when (t0(=[[0x1010]+1796]) & 0x20) != 0, and falls through when (t0(=[[0x1010]+1796]) & 0x20) == 0; its branch-likely delay slot `lw t2,1796(v1)` at 0xd9963c8 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd9963c4 targets 0xd99644c, is taken when (t0(?) & 0x20) != 0, and falls through when (t0(?) & 0x20) == 0; its branch-likely delay slot `lw t2,1796(v1)` at 0xd9963c8 runs only when taken and is annulled on fall-through.
   The `bc1f` branch at 0xd9963e0 targets 0xd99641c, is taken when not (f12 == f4 (c.eq.d at 0xd9963d8)), and falls through when f12 == f4 (c.eq.d at 0xd9963d8).
   The `bc1tl` branch at 0xd9963f8 targets 0xd99644c, is taken when f12 == f0 (c.eq.d at 0xd9963f0), and falls through when not (f12 == f0 (c.eq.d at 0xd9963f0)); its branch-likely delay slot `lw t2,1796(v1)` at 0xd9963fc runs only when taken and is annulled on fall-through.
   The `bc1tl` branch at 0xd996414 targets 0xd99644c, is taken when f6 == f0 (c.eq.d at 0xd99640c), and falls through when not (f6 == f0 (c.eq.d at 0xd99640c)); its branch-likely delay slot `lw t2,1796(v1)` at 0xd996418 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd996438 targets 0xd996448, is taken when v0(=ret(ImageChainAddOpIndexZoom)) != 0, and falls through when v0(=ret(ImageChainAddOpIndexZoom)) == 0.
   The `beq` branch at 0xd996440 targets 0xd996970 and is always taken.
-  The `beq` branch at 0xd996450 targets 0xd9964c8, is taken when (t2(=[[0x1010]+1796]) & 0x20) == 0, and falls through when (t2(=[[0x1010]+1796]) & 0x20) != 0.
+  The `beq` branch at 0xd996450 targets 0xd9964c8, is taken when (t2(?) & 0x20) == 0, and falls through when (t2(?) & 0x20) != 0.
   The `bne` branch at 0xd996464 targets 0xd9964c8, is taken when t4(=[[a0+24]+56]) != at(=0x1), and falls through when t4(=[[a0+24]+56]) == at(=0x1).
   The `bnel` branch at 0xd996470 targets 0xd996488, is taken when t5(=[[a0+24]+8]:1) != 0, and falls through when t5(=[[a0+24]+8]:1) == 0; its branch-likely delay slot `lw v0,8(s1)` at 0xd996474 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd99647c targets 0xd9964c8, is taken when t6(=[[a0+24]+10]:1) == 0, and falls through when t6(=[[a0+24]+10]:1) != 0.
@@ -5339,7 +5297,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   4 such `sb` accesses store 1 byte to [0x1010] +0x11beb, including `sb` at 0xd9977dc, `sb` at 0xd997854, `sb` at 0xd997e00.
   3 such `sw` accesses store 4 bytes to [[0x1010]+764] +0x40, including `sw` at 0xd997844, `sw` at 0xd997dcc, `sw` at 0xd998398.
   3 such `sw` accesses store 4 bytes to [[0x1010]+764] +0x44, including `sw` at 0xd997850, `sw` at 0xd997dfc, `sw` at 0xd9983c8.
-  3 such `lw` accesses load 4 bytes from ret(ImageChainOpCreate) +0x14, including `lw` at 0xd997984, `lw` at 0xd997f54, `lw` at 0xd998520.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd997984, `lw` at 0xd997f54, `lw` at 0xd998520.
   6 such `lwc1` accesses load 4 bytes from [[[0x1010]+764]+80] +0x0, including `lwc1` at 0xd9979dc, `lwc1` at 0xd997c34, `lwc1` at 0xd997fb0.
   61 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xd997a14, `lwc1` at 0xd997a28, `lwc1` at 0xd997a30.
   4 such `sb` accesses store 1 byte to [0x1010] +0x11bd1, including `sb` at 0xd997a2c, `sb` at 0xd997a68, `sb` at 0xd997aa4.
@@ -5368,33 +5326,29 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `swc1` at 0xd998764 stores 4 bytes to [0x1010] +0x10574.
   2 such `swc1` accesses store 4 bytes to [0x1010] +0x10578, including `swc1` at 0xd998794, `swc1` at 0xd9987b8.
   The `lwc1` at 0xd998914 loads 4 bytes from [0x1010] +0x10578.
-  The `sw` at 0xd998928 stores 4 bytes to ret(ImageChainOpCreate) +0x0.
+  6 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd998928, `sw` at 0xd9989e0, `sw` at 0xd998a00.
   The `lbu` at 0xd99898c loads 1 byte from [0x1010] +0x11bd0.
   The `lw` at 0xd99899c loads 4 bytes from [0x1010] +0x11bd4.
   The `lwc1` at 0xd9989ac loads 4 bytes from [0x1010] +0x11e20.
-  3 such `sw` accesses store 4 bytes to ret(ImageChainOpCreate) +0x4, including `sw` at 0xd9989e0, `sw` at 0xd998a00, `sw` at 0xd998a10.
-  The `lw` at 0xd998a20 loads 4 bytes from ret(ImageChainOpCreate) +0x8.
-  The `sw` at 0xd998a28 stores 4 bytes to ret(ImageChainOpCreate) +0x8.
-  The `sw` at 0xd998a34 stores 4 bytes to ret(ImageChainOpCreate) +0xc.
   The `lw` at 0xd998a48 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `jalr` at 0xd997874 calls ceilf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3).
   The `jalr` at 0xd997890 calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd997928 calls ImageChainOpCreate [0xd994a84] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd997970 calls ImageChainOpAllocateFilters [0xd994b04] with a0=ret(ImageChainOpCreate), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd997cd4 calls __glOdysseyMap1DFilterToAlphas [0xd9be9e4] with a0=ret(ImageChainOpCreate), a1=[[[0x1010]+764]+80], a2=?, a3=a1 at entry (arg1).
+  The `jalr` at 0xd997cd4 calls __glOdysseyMap1DFilterToAlphas [0xd9be9e4] with a0=?, a1=[[[0x1010]+764]+80], a2=?, a3=a1 at entry (arg1).
   The `jalr` at 0xd997e20 calls ceilf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3).
   The `jalr` at 0xd997e40 calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd997e60 calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd997ef8 calls ImageChainOpCreate [0xd994a84] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd997f40 calls ImageChainOpAllocateFilters [0xd994b04] with a0=ret(ImageChainOpCreate), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd9982a4 calls __glOdysseyGenericConvolution [0xd9c1074] with a0=ret(ImageChainOpCreate), a1=[[[0x1010]+764]+80], a2=?, a3=?.
+  The `jalr` at 0xd9982a4 calls __glOdysseyGenericConvolution [0xd9c1074] with a0=?, a1=[[[0x1010]+764]+80], a2=?, a3=?.
   The `jalr` at 0xd9983ec calls ceilf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=a3 at entry (arg3).
   The `jalr` at 0xd99840c calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99842c calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9984c4 calls ImageChainOpCreate [0xd994a84] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99850c calls ImageChainOpAllocateFilters [0xd994b04] with a0=ret(ImageChainOpCreate), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd998870 calls __glOdysseyGenericConvolution [0xd9c1074] with a0=ret(ImageChainOpCreate), a1=[[[0x1010]+764]+80], a2=?, a3=?.
-  The `jalr` at 0xd998a44 calls ImageChainAddOp [0xd994f50] with a0=a0 at entry (arg0), a1=ret(ImageChainOpCreate), a2=[a0+8], a3=0x0.
+  The `jalr` at 0xd998870 calls __glOdysseyGenericConvolution [0xd9c1074] with a0=?, a1=[[[0x1010]+764]+80], a2=?, a3=?.
+  The `jalr` at 0xd998a44 calls ImageChainAddOp [0xd994f50] with a0=a0 at entry (arg0), a1=?, a2=[a0+8], a3=0x0.
   The `beq` branch at 0xd9977e4 targets 0xd997810, is taken when a1 == 0, and falls through when a1 != 0.
   The `beq` branch at 0xd9977f0 targets 0xd997810, is taken when a1 == at(=0x8010), and falls through when a1 != at(=0x8010).
   The `beq` branch at 0xd9977f8 targets 0xd998354, is taken when a1 == at(=0x8011), and falls through when a1 != at(=0x8011).
@@ -5409,7 +5363,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bltz` branch at 0xd997910 targets 0xd997900, is taken when t6(?) < 0 (signed), and falls through when t6(?) >= 0 (signed).
   The `bne` branch at 0xd997940 targets 0xd997950, is taken when v0(=ret(ImageChainOpCreate)) != 0, and falls through when v0(=ret(ImageChainOpCreate)) == 0.
   The `beq` branch at 0xd997948 targets 0xd998a54 and is always taken.
-  The `bne` branch at 0xd99799c targets 0xd9979ac, is taken when t8(=[ret(ImageChainOpCreate)+20]) != 0, and falls through when t8(=[ret(ImageChainOpCreate)+20]) == 0.
+  The `bne` branch at 0xd99799c targets 0xd9979ac, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0xd9979a4 targets 0xd998a54 and is always taken.
   The `bc1fl` branch at 0xd9979c8 targets 0xd997b18, is taken when not (f10 < f12 (c.lt.s at 0xd9979c0)), and falls through when f10 < f12 (c.lt.s at 0xd9979c0); its branch-likely delay slot `lui v1,0x1` at 0xd9979cc runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd997a24 targets 0xd997a34, is taken when not (f8 < f2 (c.lt.d at 0xd997a1c)), and falls through when f8 < f2 (c.lt.d at 0xd997a1c); its branch-likely delay slot `lwc1 $f10,4(v0)` at 0xd997a28 runs only when taken and is annulled on fall-through.
@@ -5441,7 +5395,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bltz` branch at 0xd997ee0 targets 0xd997ed0, is taken when t9(?) < 0 (signed), and falls through when t9(?) >= 0 (signed).
   The `bne` branch at 0xd997f10 targets 0xd997f20, is taken when v0(=ret(ImageChainOpCreate)) != 0, and falls through when v0(=ret(ImageChainOpCreate)) == 0.
   The `beq` branch at 0xd997f18 targets 0xd998a54 and is always taken.
-  The `bne` branch at 0xd997f6c targets 0xd997f7c, is taken when t5(=[ret(ImageChainOpCreate)+20]) != 0, and falls through when t5(=[ret(ImageChainOpCreate)+20]) == 0.
+  The `bne` branch at 0xd997f6c targets 0xd997f7c, is taken when t5(?) != 0, and falls through when t5(?) == 0.
   The `beq` branch at 0xd997f74 targets 0xd998a54 and is always taken.
   The `bc1fl` branch at 0xd997f9c targets 0xd9980ec, is taken when not (f8 < f12 (c.lt.s at 0xd997f94)), and falls through when f8 < f12 (c.lt.s at 0xd997f94); its branch-likely delay slot `lui v1,0x1` at 0xd997fa0 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd997ff8 targets 0xd998008, is taken when not (f4 < f2 (c.lt.d at 0xd997ff0)), and falls through when f4 < f2 (c.lt.d at 0xd997ff0); its branch-likely delay slot `lwc1 $f8,4(v0)` at 0xd997ffc runs only when taken and is annulled on fall-through.
@@ -5473,7 +5427,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bltz` branch at 0xd9984ac targets 0xd99849c, is taken when t6(?) < 0 (signed), and falls through when t6(?) >= 0 (signed).
   The `bne` branch at 0xd9984dc targets 0xd9984ec, is taken when v0(=ret(ImageChainOpCreate)) != 0, and falls through when v0(=ret(ImageChainOpCreate)) == 0.
   The `beq` branch at 0xd9984e4 targets 0xd998a54 and is always taken.
-  The `bne` branch at 0xd998538 targets 0xd998548, is taken when t8(=[ret(ImageChainOpCreate)+20]) != 0, and falls through when t8(=[ret(ImageChainOpCreate)+20]) == 0.
+  The `bne` branch at 0xd998538 targets 0xd998548, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0xd998540 targets 0xd998a54 and is always taken.
   The `bc1fl` branch at 0xd998568 targets 0xd9986b8, is taken when not (f8 < f12 (c.lt.s at 0xd998560)), and falls through when f8 < f12 (c.lt.s at 0xd998560); its branch-likely delay slot `lui v1,0x1` at 0xd99856c runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9985c4 targets 0xd9985d4, is taken when not (f10 < f2 (c.lt.d at 0xd9985bc)), and falls through when f10 < f2 (c.lt.d at 0xd9985bc); its branch-likely delay slot `lwc1 $f8,4(v0)` at 0xd9985c8 runs only when taken and is annulled on fall-through.
@@ -7155,9 +7109,11 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd9ba068 targets 0xd9ba08c and is always taken.
   The `bne` branch at 0xd9ba08c targets 0xd9b9f78, is taken when v0(?) != v1(=0x40), and falls through when v0(?) == v1(=0x40).
   The `blez` branch at 0xd9ba1cc targets 0xd9ba6a8, is taken when s7(?) <= 0 (signed), and falls through when s7(?) > 0 (signed).
-  The `beq` branch at 0xd9ba1ec targets 0xd9ba200 and is always taken.
+  The `beq` branch at 0xd9ba1ec targets 0xd9ba200, is taken when t5(?) == 0, and falls through when t5(?) != 0.
+  The `beq` branch at 0xd9ba1f8 targets 0xd9ba204 and is always taken.
   The `blez` branch at 0xd9ba224 targets 0xd9ba688, is taken when s7(?) <= 0 (signed), and falls through when s7(?) > 0 (signed).
-  The `beq` branch at 0xd9ba244 targets 0xd9ba258 and is always taken.
+  The `beq` branch at 0xd9ba244 targets 0xd9ba258, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0xd9ba250 targets 0xd9ba25c and is always taken.
   The `blez` branch at 0xd9ba27c targets 0xd9ba668, is taken when s7(?) <= 0 (signed), and falls through when s7(?) > 0 (signed).
   The `beq` branch at 0xd9ba298 targets 0xd9ba2ac and is always taken.
   The `blez` branch at 0xd9ba2d0 targets 0xd9ba64c, is taken when s7(?) <= 0 (signed), and falls through when s7(?) > 0 (signed).
@@ -7193,16 +7149,14 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bnel` branch at 0xd9ba644 targets 0xd9ba2dc, is taken when s2(?) != s7(?), and falls through when s2(?) == s7(?); its branch-likely delay slot `or s1,zero,zero` at 0xd9ba648 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd9ba650 targets 0xd9ba28c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xd9ba660 targets 0xd9ba284, is taken when t7(?) != s7(?), and falls through when t7(?) == s7(?).
-  The `bne` branch at 0xd9ba670 targets 0xd9ba230 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `bne` branch at 0xd9ba670 targets 0xd9ba230, is taken when t8(?) != s3(=0x1), and falls through when t8(?) == s3(=0x1).
   The `bne` branch at 0xd9ba680 targets 0xd9ba22c, is taken when t2(?) != s7(?), and falls through when t2(?) == s7(?).
-  The `bne` branch at 0xd9ba690 targets 0xd9ba1d8 and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `bne` branch at 0xd9ba690 targets 0xd9ba1d8, is taken when t4(?) != s3(=0x1), and falls through when t4(?) == s3(=0x1).
   The `bne` branch at 0xd9ba6a0 targets 0xd9ba1d4, is taken when t0(?) != s7(?), and falls through when t0(?) == s7(?).
   The `bne` branch at 0xd9ba6b0 targets 0xd9ba1cc, is taken when s7(?) != at(=0x100), and falls through when s7(?) == at(=0x100).
   The return at 0xd9ba6e4 has v0 = ?.
   The instructions from 0xd9b9e34 to 0xd9b9e34 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd9b9f10 to 0xd9b9f10 are not reached by any path from the entry, and their branches are not listed.
-  The instructions from 0xd9ba1f4 to 0xd9ba1fc are not reached by any path from the entry, and their branches are not listed.
-  The instructions from 0xd9ba24c to 0xd9ba254 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd9ba2a0 to 0xd9ba2a8 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd9ba2f4 to 0xd9ba2f8 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd9ba6ec to 0xd9c22cc are not reached by any path from the entry, and their branches are not listed.
@@ -7235,7 +7189,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `jalr` at 0xd9ba764 calls multiplicative_inverse [0xd9b9cc0] with a0=0x1000, a1=entry(0xdafa774), a2=?, a3=?.
   The `jalr` at 0xd9ba790 calls __ll_mul with a0=?, a1=?, a2=?, a3=ret(multiplicative_inverse).
   The `jalr` at 0xd9ba7b0 calls __ll_rem with a0=ret(__ll_mul), a1=?, a2=entry(0xdafa770), a3=entry(0xdafa774).
-  The `jalr` at 0xd9ba7d4 calls __ll_mul with a0=?, a1=ret(multiplicative_inverse), a2=?, a3=ret(multiplicative_inverse).
+  The `jalr` at 0xd9ba7d4 calls __ll_mul with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9ba7f4 calls __ll_rem with a0=ret(__ll_mul), a1=?, a2=entry(0xdafa770), a3=entry(0xdafa774).
   The `jalr` at 0xd9ba814 calls __ll_mul with a0=ret(__ll_rem), a1=?, a2=ret(__ll_rem), a3=?.
   The `jalr` at 0xd9ba834 calls __ll_rem with a0=ret(__ll_mul), a1=?, a2=entry(0xdafa770), a3=entry(0xdafa774).
@@ -8380,8 +8334,8 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `jalr` at 0xd9c5728 calls ConvertToLerps [0xd9c22d0] with a0=a0+296, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9c5740 calls ConvertToLerps [0xd9c22d0] with a0=a0+444, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9c5758 calls PackLerpTree [0xd9c324c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd9c57a4 calls __glOdysseyProgram1DOffsets [0xd9c07a8] with a0=a0 at entry (arg0), a1=[a1+16]-1, a2=a2 at entry (arg2), a3=?.
-  The `jalr` at 0xd9c57c0 calls __glOdysseyProgram2DOffsets [0xd9c0a2c] with a0=a0 at entry (arg0), a1=[a1+16]-1, a2=a2 at entry (arg2), a3=?.
+  The `jalr` at 0xd9c57a4 calls __glOdysseyProgram1DOffsets [0xd9c07a8] with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=?.
+  The `jalr` at 0xd9c57c0 calls __glOdysseyProgram2DOffsets [0xd9c0a2c] with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=?.
   The `bnel` branch at 0xd9c5224 targets 0xd9c5248, is taken when t8(=[0x1018]) != at(=0x1), and falls through when t8(=[0x1018]) == at(=0x1); its branch-likely delay slot `lw t9,764(s0)` at 0xd9c5228 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c523c targets 0xd9c5854 and is always taken.
   The `bne` branch at 0xd9c5268 targets 0xd9c56ec, is taken when v0(=[[0x1010]+72160]) != at(=0x1102), and falls through when v0(=[[0x1010]+72160]) == at(=0x1102).
@@ -8485,54 +8439,37 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   5 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0xc, including `lwc1` at 0xd9cfb78, `lwc1` at 0xd9cfbe0, `lwc1` at 0xd9d01c0.
   The `swc1` at 0xd9cfb94 stores 4 bytes to a0 (arg0 at entry) +0xc.
   5 such `lwc1` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lwc1` at 0xd9cfb9c, `lwc1` at 0xd9d016c, `lwc1` at 0xd9d06fc.
-  2 such `lw` accesses load 4 bytes from [0x1010] +0x0, including `lw` at 0xd9cfc54, `lw` at 0xd9cff5c.
-  The `lbu` at 0xd9cfcb4 loads 1 byte from [0x1010] +0x11beb.
-  The `lw` at 0xd9cfcc0 loads 4 bytes from [0x1010] +0x2fc.
-  The `lw` at 0xd9cfcc4 loads 4 bytes from [[0x1010]+764] +0x0.
-  The `lw` at 0xd9cfcd0 loads 4 bytes from [0x1010] +0x11bd4.
-  The `lw` at 0xd9cfcd8 loads 4 bytes from [[0x1010]+764] +0x40.
-  The `lw` at 0xd9cfcdc loads 4 bytes from [[0x1010]+764] +0x44.
+  The `lw` at 0xd9cfc54 loads 4 bytes from [0x1010] +0x0.
+  The `lbu` at 0xd9cfcb4 loads 1 byte from table(0x11beb) +0x0.
+  112 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd9cfcc0, `lw` at 0xd9cfcc4, `lw` at 0xd9cfcd8.
+  The `lw` at 0xd9cfcd0 loads 4 bytes from table(0x11bd4) +0x0.
   The `lbu` at 0xd9cfd80 loads 1 byte from a1 (arg1 at entry) +0xc.
-  The `lw` at 0xd9cfda4 loads 4 bytes from [0x1010] +0x11e1c.
-  The `lw` at 0xd9cfdac loads 4 bytes from [0x1010] +0x11e18.
+  The `lw` at 0xd9cfda4 loads 4 bytes from table(0x11e1c) +0x0.
+  The `lw` at 0xd9cfdac loads 4 bytes from table(0x11e18) +0x0.
   The `sw` at 0xd9cff8c stores 4 bytes to ret(?) +0x8.
-  The `lw` at 0xd9cffb0 loads 4 bytes from [0x1010] +0xc.
   13 such `lw` accesses load 4 bytes from ret(?) +0x8, including `lw` at 0xd9cffcc, `lw` at 0xd9d00c4, `lw` at 0xd9d0cbc.
   5 such `sb` accesses store 1 byte to ?, including `sb` at 0xd9d00d4, `sb` at 0xd9d00e4, `sb` at 0xd9d00f8.
   47 such `swc1` accesses store 4 bytes to ?, including `swc1` at 0xd9d0114, `swc1` at 0xd9d0150, `swc1` at 0xd9d0164.
-  52 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xd9d0154, `lwc1` at 0xd9d0158, `lwc1` at 0xd9d01b0.
-  99 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd9d032c, `lw` at 0xd9d0330, `lw` at 0xd9d0340.
+  60 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xd9d0154, `lwc1` at 0xd9d0158, `lwc1` at 0xd9d01b0.
   98 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd9d0338, `sw` at 0xd9d033c, `sw` at 0xd9d0348.
-  14 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd9d03cc, `lbu` at 0xd9d03d4, `lbu` at 0xd9d03f8.
+  18 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd9d03cc, `lbu` at 0xd9d03d4, `lbu` at 0xd9d03f8.
   2 such `lbu` accesses load 1 byte from [a1+20] +0x9, including `lbu` at 0xd9d0750, `lbu` at 0xd9d0948.
   5 such `lw` accesses load 4 bytes from [a1+20] +0x24, including `lw` at 0xd9d075c, `lw` at 0xd9d0794, `lw` at 0xd9d0a54.
-  2 such `lw` accesses load 4 bytes from [0x1010] +0xe4c, including `lw` at 0xd9d07e4, `lw` at 0xd9d09f8.
-  2 such `lw` accesses load 4 bytes from [0x1010] +0xe50, including `lw` at 0xd9d07e8, `lw` at 0xd9d09fc.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x170, including `lwc1` at 0xd9d07ec, `lwc1` at 0xd9d0a00.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x174, including `lwc1` at 0xd9d07f4, `lwc1` at 0xd9d0a08.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2e8, including `lwc1` at 0xd9d07f8, `lwc1` at 0xd9d0a0c.
-  2 such `lwc1` accesses load 4 bytes from [0x1010] +0x2ec, including `lwc1` at 0xd9d0804, `lwc1` at 0xd9d0a18.
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x0, including `lw` at 0xd9d0860, `lw` at 0xd9d089c.
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x4, including `lw` at 0xd9d0880, `lw` at 0xd9d08b8.
   The `sw` at 0xd9d0908 stores 4 bytes to ret(?) +0x0.
   The `sw` at 0xd9d0910 stores 4 bytes to ret(?) +0x4.
-  The `lbu` at 0xd9d0958 loads 1 byte from [0x1010] +0xdd0.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x10, including `lw` at 0xd9d0964, `lw` at 0xd9d1480.
-  The `lw` at 0xd9d097c loads 4 bytes from [0x1010] +0x4d4.
-  The `lw` at 0xd9d0980 loads 4 bytes from [0x1010] +0x760.
-  The `lbu` at 0xd9d098c loads 1 byte from [0x1010] +0xc96.
-  2 such `lbu` accesses load 1 byte from [0x1010] +0xc97, including `lbu` at 0xd9d099c, `lbu` at 0xd9d09a8.
-  The `lw` at 0xd9d14bc loads 4 bytes from [0x1010] +0x700.
   The `lw` at 0xd9d1598 loads 4 bytes from [a1+24] +0x20.
   The `lw` at 0xd9d15ec loads 4 bytes from [a1+24] +0x24.
   The `jalr` at 0xd9cfc60 calls (unknown callee) with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xd9cfc7c calls __glSetError [0xda4b3d8] with a0=0x505, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9cfc9c calls memset with a0=ret(?), a1=0x0, a2=0xc, a3=?.
-  The `jalr` at 0xd9cfe04 calls ceilf with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd9cfe04 calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9cfec8 calls ceilf with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd9cff7c calls (unknown callee) with a0=[0x1010], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd9cff7c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9cff98 calls __glSetError [0xda4b3d8] with a0=0x505, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd9cffb4 calls (unknown callee) with a0=[0x1010], a1=ret(?), a2=?, a3=?.
+  The `jalr` at 0xd9cffb4 calls (unknown callee) with a0=?, a1=ret(?), a2=?, a3=?.
   The `jalr` at 0xd9cffd4 calls memset with a0=[ret(?)+8], a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd9d03e0 calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9d040c calls floorf with a0=?, a1=?, a2=?, a3=?.
@@ -8569,8 +8506,8 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd9cfc40 targets 0xd9d1634 and is always taken.
   The `bne` branch at 0xd9cfc6c targets 0xd9cfc90, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0xd9cfc88 targets 0xd9d1634 and is always taken.
-  The `bnel` branch at 0xd9cfcb8 targets 0xd9cfd78, is taken when t8(=[[0x1010]+72683]:1) != 0, and falls through when t8(=[[0x1010]+72683]:1) == 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9cfcbc runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9cfcc8 targets 0xd9cfd78, is taken when t4(=[[[0x1010]+764]]) == 0, and falls through when t4(=[[[0x1010]+764]]) != 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9cfccc runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd9cfcb8 targets 0xd9cfd78, is taken when t8(=entry(0x11beb)) != 0, and falls through when t8(=entry(0x11beb)) == 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9cfcbc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9cfcc8 targets 0xd9cfd78, is taken when t4(?) == 0, and falls through when t4(?) != 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9cfccc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9cfcf0 targets 0xd9cfd2c, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The `beq` branch at 0xd9cfd24 targets 0xd9cfd34 and is always taken.
   The `blez` branch at 0xd9cfd34 targets 0xd9cfd44, is taken when t8(?) <= 0 (signed), and falls through when t8(?) > 0 (signed).
@@ -8659,20 +8596,20 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beql` branch at 0xd9d092c targets 0xd9d144c, is taken when t8(=[[a1+24]+8]:1) == 0, and falls through when t8(=[[a1+24]+8]:1) != 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9d0930 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd9d0940 targets 0xd9d144c, is taken when t5(=[[a1+20]+56]) != at(=0x1), and falls through when t5(=[[a1+20]+56]) == at(=0x1); its branch-likely delay slot `lw t6,532(sp)` at 0xd9d0944 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd9d0950 targets 0xd9d144c, is taken when t9(=[[a1+20]+9]:1) == 0, and falls through when t9(=[[a1+20]+9]:1) != 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9d0954 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9d095c targets 0xd9d144c, is taken when t4(=[[0x1010]+3536]:1) == 0, and falls through when t4(=[[0x1010]+3536]:1) != 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9d0960 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9d095c targets 0xd9d144c, is taken when t4(?) == 0, and falls through when t4(?) != 0; its branch-likely delay slot `lw t6,532(sp)` at 0xd9d0960 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d096c targets 0xd9d09f0, is taken when v1(=[a1+16]) == at(=0x5), and falls through when v1(=[a1+16]) != at(=0x5).
   The `beql` branch at 0xd9d0974 targets 0xd9d09f4, is taken when v1(=[a1+16]) == at(=0x4), and falls through when v1(=[a1+16]) != at(=0x4); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d0978 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9d0984 targets 0xd9d09f4, is taken when v1(=[[0x1010]+1236]) == a0(=[[0x1010]+1888]), and falls through when v1(=[[0x1010]+1236]) != a0(=[[0x1010]+1888]); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d0988 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9d0998 targets 0xd9d09ac, is taken when t8(=[[0x1010]+3222]:1) == 0, and falls through when t8(=[[0x1010]+3222]:1) != 0; its branch-likely delay slot `lbu a1,3223(t5)` at 0xd9d099c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9d09a0 targets 0xd9d09f4, is taken when a0(=[[0x1010]+1888]) == at(=0x408), and falls through when a0(=[[0x1010]+1888]) != at(=0x408); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d09a4 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xd9d09b0 targets 0xd9d09d0, is taken when a1(=[[0x1010]+3223]:1) == 0, and falls through when a1(=[[0x1010]+3223]:1) != 0.
-  The `bne` branch at 0xd9d09b8 targets 0xd9d09d0, is taken when a0(=[[0x1010]+1888]) != at(=0x404), and falls through when a0(=[[0x1010]+1888]) == at(=0x404).
-  The `beq` branch at 0xd9d09c0 targets 0xd9d09f0, is taken when v1(=[[0x1010]+1236]) == at(=0x400), and falls through when v1(=[[0x1010]+1236]) != at(=0x400).
-  The `beql` branch at 0xd9d09c8 targets 0xd9d09f4, is taken when v1(=[[0x1010]+1236]) == at(=0x401), and falls through when v1(=[[0x1010]+1236]) != at(=0x401); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d09cc runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xd9d09d0 targets 0xd9d1448, is taken when a1(=[[0x1010]+3223]:1) == 0, and falls through when a1(=[[0x1010]+3223]:1) != 0.
-  The `bne` branch at 0xd9d09d8 targets 0xd9d1448, is taken when a0(=[[0x1010]+1888]) != at(=0x405), and falls through when a0(=[[0x1010]+1888]) == at(=0x405).
-  The `beq` branch at 0xd9d09e0 targets 0xd9d09f0, is taken when v1(=[[0x1010]+1236]) == at(=0x402), and falls through when v1(=[[0x1010]+1236]) != at(=0x402).
-  The `bnel` branch at 0xd9d09e8 targets 0xd9d144c, is taken when v1(=[[0x1010]+1236]) != at(=0x403), and falls through when v1(=[[0x1010]+1236]) == at(=0x403); its branch-likely delay slot `lw t6,532(sp)` at 0xd9d09ec runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9d0984 targets 0xd9d09f4, is taken when v1(?) == a0(?), and falls through when v1(?) != a0(?); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d0988 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9d0998 targets 0xd9d09ac, is taken when t8(?) == 0, and falls through when t8(?) != 0; its branch-likely delay slot `lbu a1,3223(t5)` at 0xd9d099c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9d09a0 targets 0xd9d09f4, is taken when a0(?) == at(=0x408), and falls through when a0(?) != at(=0x408); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d09a4 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xd9d09b0 targets 0xd9d09d0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `bne` branch at 0xd9d09b8 targets 0xd9d09d0, is taken when a0(?) != at(=0x404), and falls through when a0(?) == at(=0x404).
+  The `beq` branch at 0xd9d09c0 targets 0xd9d09f0, is taken when v1(?) == at(=0x400), and falls through when v1(?) != at(=0x400).
+  The `beql` branch at 0xd9d09c8 targets 0xd9d09f4, is taken when v1(?) == at(=0x401), and falls through when v1(?) != at(=0x401); its branch-likely delay slot `lw t9,452(sp)` at 0xd9d09cc runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xd9d09d0 targets 0xd9d1448, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `bne` branch at 0xd9d09d8 targets 0xd9d1448, is taken when a0(?) != at(=0x405), and falls through when a0(?) == at(=0x405).
+  The `beq` branch at 0xd9d09e0 targets 0xd9d09f0, is taken when v1(?) == at(=0x402), and falls through when v1(?) != at(=0x402).
+  The `bnel` branch at 0xd9d09e8 targets 0xd9d144c, is taken when v1(?) != at(=0x403), and falls through when v1(?) == at(=0x403); its branch-likely delay slot `lw t6,532(sp)` at 0xd9d09ec runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d0a24 targets 0xd9d0a48, is taken when t6(?) == 0, and falls through when t6(?) != 0.
   The `bnel` branch at 0xd9d0a30 targets 0xd9d0a4c, is taken when t8(?) != 0, and falls through when t8(?) == 0; its branch-likely delay slot `lw t5,180(sp)` at 0xd9d0a34 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d0a40 targets 0xd9d0a6c and is always taken.
@@ -10454,26 +10391,21 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `lw` at 0xd9e7928 loads 4 bytes from abs 0x1018.
   2 such `lw` accesses load 4 bytes from [0x1010] +0x49c, including `lw` at 0xd9e7990, `lw` at 0xd9e7da8.
   The `lw` at 0xd9e7a30 loads 4 bytes from [0x1010] +0x16418.
-  5 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x570, including `lw` at 0xd9e7a84, `lw` at 0xd9e7c88, `lw` at 0xd9e7d14.
-  4 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x574, including `lw` at 0xd9e7a98, `lw` at 0xd9e7c90, `lw` at 0xd9e7d38.
-  3 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x578, including `lw` at 0xd9e7aa4, `lw` at 0xd9e7fe0, `lw` at 0xd9e8078.
-  2 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x57c, including `lw` at 0xd9e7adc, `lw` at 0xd9e7bac.
+  The `lw` at 0xd9e7a84 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x570.
+  The `lw` at 0xd9e7a98 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x574.
+  The `lw` at 0xd9e7aa4 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x578.
+  The `lw` at 0xd9e7adc loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x57c.
   2 such `lw` accesses load 4 bytes from ret(__glOdysseySetCurrentFilter) +0x0, including `lw` at 0xd9e7af4, `lw` at 0xd9e7b4c.
   2 such `lw` accesses load 4 bytes from ret(__glOdysseySetCurrentFilter) +0x4, including `lw` at 0xd9e7b08, `lw` at 0xd9e7b6c.
   2 such `lw` accesses load 4 bytes from ret(__glOdysseySetCurrentFilter) +0x40, including `lw` at 0xd9e7b18, `lw` at 0xd9e7b7c.
   The `lw` at 0xd9e7b94 loads 4 bytes from ret(__glOdysseySetCurrentFilter) +0x44.
-  The `lw` at 0xd9e7c68 loads 4 bytes from ret(__glOdysseyGetCurrentTexture) +0x4fc.
-  The `lw` at 0xd9e7c7c loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x560.
-  The `lw` at 0xd9e7c98 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x55c.
-  3 such `lw` accesses load 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x558, including `lw` at 0xd9e7ca4, `lw` at 0xd9e7cb0, `lw` at 0xd9e7eac.
-  The `lw` at 0xd9e7cbc loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x554.
+  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd9e7bac, `lw` at 0xd9e7c68, `lw` at 0xd9e7c7c.
   2 such `lw` accesses load 4 bytes from [0x1010] +0x47c, including `lw` at 0xd9e7dd8, `lw` at 0xd9e7e5c.
   The `lw` at 0xd9e7dfc loads 4 bytes from [0x1010] +0x490.
   The `lw` at 0xd9e7e20 loads 4 bytes from [0x1010] +0x488.
   The `lw` at 0xd9e7e3c loads 4 bytes from [0x1010] +0x484.
   The `lw` at 0xd9e7e4c loads 4 bytes from [0x1010] +0x480.
   2 such `sw` accesses store 4 bytes to [0x1010] +0x47c, including `sw` at 0xd9e7e78, `sw` at 0xd9e80ac.
-  The `lw` at 0xd9e7e88 loads 4 bytes from (ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2)) +0x564.
   The `lw` at 0xd9e7fe8 loads 4 bytes from [0x1010] +0x48c.
   The `jalr` at 0xd9e793c calls __glSetError [0xda4b3d8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd9e795c calls CheckTargetLevel [0xd9e5c48] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -10489,7 +10421,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `jalr` at 0xd9e7c0c calls __glOdysseySetCurrentFilter [0xd9b5f84] with a0=[0x1010], a1=0x2, a2=?, a3=0xde0.
   The `jalr` at 0xd9e7c20 calls __glSetError [0xda4b3d8] with a0=0x502, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9e7c3c calls memset with a0=sp-128, a1=0x0, a2=0x3c, a3=0xde0.
-  The `jalr` at 0xd9e7cb8 calls GetImageFmtEnumFromBuzzTexFormat [0xd9e1d08] with a0=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1364], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd9e7cb8 calls GetImageFmtEnumFromBuzzTexFormat [0xd9e1d08] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9e7d4c calls memset with a0=sp-68, a1=0x0, a2=0x3c, a3=?.
   The `jalr` at 0xd9e7d78 calls __glSpecElementsPerGroup [0xda28af0] with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=?, a3=?.
   The `jalr` at 0xd9e7d90 calls __glSpecBytesPerElement [0xda28bf4] with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
@@ -10526,7 +10458,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bnel` branch at 0xd9e7b74 targets 0xd9e7ba8, is taken when t8(=[ret(__glOdysseySetCurrentFilter)+4]) != at(=0x8016), and falls through when t8(=[ret(__glOdysseySetCurrentFilter)+4]) == at(=0x8016); its branch-likely delay slot `addiu a3,zero,3552` at 0xd9e7b78 runs only when taken and is annulled on fall-through.
   The `blez` branch at 0xd9e7b88 targets 0xd9e7b94, is taken when v1(=[ret(__glOdysseySetCurrentFilter)+64]) <= 0 (signed), and falls through when v1(=[ret(__glOdysseySetCurrentFilter)+64]) > 0 (signed).
   The `blez` branch at 0xd9e7b98 targets 0xd9e7ba4, is taken when v1(=[ret(__glOdysseySetCurrentFilter)+68]) <= 0 (signed), and falls through when v1(=[ret(__glOdysseySetCurrentFilter)+68]) > 0 (signed).
-  The `beq` branch at 0xd9e7bb4 targets 0xd9e7c30, is taken when v0(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1404]) == 0, and falls through when v0(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1404]) != 0.
+  The `beq` branch at 0xd9e7bb4 targets 0xd9e7c30, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0xd9e7bbc targets 0xd9e7be8, is taken when v1(=a0) == a3(=0xde0), and falls through when v1(=a0) != a3(=0xde0).
   The `beq` branch at 0xd9e7bc4 targets 0xd9e7be0, is taken when v1(=a0) == at(=0xde1), and falls through when v1(=a0) != at(=0xde1).
   The `bne` branch at 0xd9e7bd0 targets 0xd9e7bf8, is taken when v1(=a0) != at(=0x806f), and falls through when v1(=a0) == at(=0x806f).
@@ -10554,8 +10486,8 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd9e7fb8 targets 0xd9e7fd8 and is always taken.
   The `beq` branch at 0xd9e7fc0 targets 0xd9e7fd8 and is always taken.
   The `bltz` branch at 0xd9e7fd0 targets 0xd9e7fc0, is taken when t5(?) < 0 (signed), and falls through when t5(?) >= 0 (signed).
-  The `beql` branch at 0xd9e8014 targets 0xd9e80a4, is taken when t5(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1400]) == 0, and falls through when t5(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1400]) != 0; its branch-likely delay slot `lw t5,80(sp)` at 0xd9e8018 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xd9e8098 targets 0xd9e802c, is taken when v1(?) < t4(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1400]) (unsigned), and falls through when v1(?) >= t4(=[(ret(__glOdysseyGetCurrentTexture) + (((a1 << 0x4) + a1) << 0x2))+1400]) (unsigned).
+  The `beql` branch at 0xd9e8014 targets 0xd9e80a4, is taken when t5(?) == 0, and falls through when t5(?) != 0; its branch-likely delay slot `lw t5,80(sp)` at 0xd9e8018 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xd9e8098 targets 0xd9e802c, is taken when v1(?) < t4(?) (unsigned), and falls through when v1(?) >= t4(?) (unsigned).
   The `bnel` branch at 0xd9e80b4 targets 0xd9e80d8, is taken when t6(=a0) != at(=0xde0), and falls through when t6(=a0) == at(=0xde0); its branch-likely delay slot `lw ra,36(sp)` at 0xd9e80b8 runs only when taken and is annulled on fall-through.
   The return at 0xd9e80dc has v0 = one of ret(__glOdysseyGetCurrentTexture), ?.
   The instructions from 0xd9e7dd4 to 0xd9e7dd4 are not reached by any path from the entry, and their branches are not listed.

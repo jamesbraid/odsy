@@ -299,7 +299,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beql` branch at 0xd824c18 targets 0xd824c44, is taken when t1(=[a0+112]) >= t2(=[a0+108]+44) (unsigned), and falls through when t1(=[a0+112]) < t2(=[a0+108]+44) (unsigned); its branch-likely delay slot `sw a0,100(s0)` at 0xd824c1c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd824ccc targets 0xd824cec, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd824cd0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd824cf0 targets 0xd824d04, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0.
-  The return at 0xd824d28 has v0 = one of 0x0, ret(?).
+  The return at 0xd824d28 has v0 = one of 0x0, ?.
 - `glXSwapIntervalSGI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd824f58 (o32).
   Evidence grade: inferred.
   Exact binary: `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
@@ -545,7 +545,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd83a6e4 targets 0xd83a744 and is always taken.
   The `beql` branch at 0xd83a708 targets 0xd83a728, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd83a70c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd83a72c targets 0xd83a744, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,92(sp)` at 0xd83a730 runs only when taken and is annulled on fall-through.
-  The return at 0xd83a750 has v0 = one of 0x0, ret(malloc).
+  The return at 0xd83a750 has v0 = one of 0x0, ?.
 - `glXHyperpipeConfigSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd83a758 (o32).
   Evidence grade: inferred.
   Exact binary: `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so`.
@@ -701,7 +701,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd83ae28 targets 0xd83ae88 and is always taken.
   The `beql` branch at 0xd83ae4c targets 0xd83ae6c, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd83ae50 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd83ae70 targets 0xd83ae88, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,92(sp)` at 0xd83ae74 runs only when taken and is annulled on fall-through.
-  The return at 0xd83ae94 has v0 = one of 0x0, ret(malloc).
+  The return at 0xd83ae94 has v0 = one of 0x0, ?.
 - `__glOdylc_Normal3b` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd9d6a50 (o32).
   Evidence grade: inferred.
   Exact binary: `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so`.
@@ -1401,7 +1401,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd824290 calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=?, a3=?.
   The `jalr` at 0xd824360 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?, a7=-0x800c.
   The `jalr` at 0xd824374 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd824380 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd824380 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd8243b0 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8243d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
   The `jalr` at 0xd8243e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -1426,7 +1426,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `blez` branch at 0xd8242c0 targets 0xd824350, is taken when s0(?) <= 0 (signed), and falls through when s0(?) > 0 (signed).
   The `beq` branch at 0xd8242c8 targets 0xd8243f4 and is always taken.
   The `beq` branch at 0xd8242dc targets 0xd824350, is taken when s0(?) == a6(?), and falls through when s0(?) != a6(?).
-  The `beq` branch at 0xd824304 targets 0xd8242dc, is taken when t2(?) >= 0x1a (unsigned), and falls through when t2(?) < 0x1a (unsigned).
+  The `beq` branch at 0xd824304 targets 0xd8242dc, is taken when t2(=table(-0x800c)) >= 0x1a (unsigned), and falls through when t2(=table(-0x800c)) < 0x1a (unsigned).
   The `beq` branch at 0xd824318 targets 0xd8242dc and is always taken.
   The `beq` branch at 0xd824320 targets 0xd8242dc and is always taken.
   The `beq` branch at 0xd824328 targets 0xd8242dc and is always taken.
@@ -1518,10 +1518,9 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `sw` at 0xd824dbc stores 4 bytes to [a0+108] +0x14.
   The `sw` at 0xd824dc4 stores 4 bytes to [a0+108] +0x18.
   The `sw` at 0xd824dcc stores 4 bytes to [a0+108] +0x10.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd824df0, `sw` at 0xd824e04.
+  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd824df0, `sw` at 0xd824e04, `sw` at 0xd824f24.
   2 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd824e34, `lw` at 0xd824ed0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd824e40, `lw` at 0xd824edc.
-  The `sw` at 0xd824f24 stores 4 bytes to ret(__glXAddDrawableInterest) +0x0.
   The `jalr` at 0xd824c80 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd824c9c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd824cac calls __glXAddDrawableInterest with a0=ret(?), a1=?, a2=?, a3=?.
@@ -1529,13 +1528,13 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd824e1c calls _XReply with a0=a0 at entry (arg0), a1=sp-144, a2=0x0, a3=0x0, a4=[a0+108].
   The `jalr` at 0xd824e38 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+1232].
   The `jalr` at 0xd824e4c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd824e58 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd824e58 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd824eb0 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+108].
   The `jalr` at 0xd824ed4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+1232].
   The `jalr` at 0xd824ee8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd824f00 calls __glXPostHiddenError with a0=a0 at entry (arg0), a1=sp-144, a2=0x11, a3=0x0.
-  The `jalr` at 0xd824f0c calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd824f20 calls __glXFreeDrawablePrivate with a0=ret(__glXAddDrawableInterest), a1=ret(__glXAddDrawableInterest), a2=?, a3=?.
+  The `jalr` at 0xd824f0c calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd824f20 calls __glXFreeDrawablePrivate with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd824f50 calls __glXPostError with a0=a0 at entry (arg0), a1=0xb, a2=0x10, a3=0x0.
   The `beq` branch at 0xd824c90 targets 0xd824e84, is taken when (v0(=ret(__glXSetupForCommand)) & 0xff) == 0, and falls through when (v0(=ret(__glXSetupForCommand)) & 0xff) != 0.
   The `beq` branch at 0xd824cb4 targets 0xd824f40, is taken when v0(=ret(__glXAddDrawableInterest)) == 0, and falls through when v0(=ret(__glXAddDrawableInterest)) != 0.
@@ -1649,11 +1648,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `sb` at 0xd8253b8 stores 1 byte to ret(__glXAddDrawableInterest) +0x20.
   The `sw` at 0xd8253c4 stores 4 bytes to ret(__glXAddDrawableInterest) +0xc.
   The `sw` at 0xd8253f0 stores 4 bytes to ret(__glXCreateVideoSourcePrivate) +0x0.
-  The `sw` at 0xd825414 stores 4 bytes to ret(__glXCreateVideoSourcePrivate) +0x4.
-  The `sw` at 0xd825428 stores 4 bytes to ret(__glXCreateVideoSourcePrivate) +0x8.
-  The `sw` at 0xd825454 stores 4 bytes to ret(__glXCreateVideoSourcePrivate) +0xc.
-  The `sw` at 0xd825470 stores 4 bytes to ret(__glXCreateVideoSourcePrivate) +0x10.
-  The `sw` at 0xd825484 stores 4 bytes to ret(__glXCreateVideoSourcePrivate) +0x14.
+  5 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd825414, `sw` at 0xd825428, `sw` at 0xd825454.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4d0, including `lw` at 0xd825488, `lw` at 0xd825548.
   The `lw` at 0xd825494 loads 4 bytes from [a0+1232] +0x0.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x6c, including `lw` at 0xd8254a4, `lw` at 0xd8254e8, `lw` at 0xd8255c0.
@@ -1670,15 +1665,11 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `sw` at 0xd82550c stores 4 bytes to [a0+108] +0x8.
   The `sw` at 0xd825514 stores 4 bytes to [a0+108] +0x4.
   The `sb` at 0xd825518 stores 1 byte to [a0+108] +0x1.
-  The `lw` at 0xd825520 loads 4 bytes from ret(__glXCreateVideoSourcePrivate) +0x4.
+  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd825520, `lw` at 0xd825528, `lw` at 0xd825530.
   The `sw` at 0xd825524 stores 4 bytes to [a0+108] +0x18.
-  The `lw` at 0xd825528 loads 4 bytes from ret(__glXCreateVideoSourcePrivate) +0x8.
   The `sw` at 0xd82552c stores 4 bytes to [a0+108] +0x1c.
-  The `lw` at 0xd825530 loads 4 bytes from ret(__glXCreateVideoSourcePrivate) +0xc.
   The `sw` at 0xd825534 stores 4 bytes to [a0+108] +0x20.
-  The `lw` at 0xd825538 loads 4 bytes from ret(__glXCreateVideoSourcePrivate) +0x10.
   The `sw` at 0xd82553c stores 4 bytes to [a0+108] +0x24.
-  The `lw` at 0xd825540 loads 4 bytes from ret(__glXCreateVideoSourcePrivate) +0x14.
   The `sw` at 0xd825544 stores 4 bytes to [a0+108] +0x28.
   The `lw` at 0xd825554 loads 4 bytes from [a0+1232] +0x4.
   The `lw` at 0xd825568 loads 4 bytes from a0 (arg0 at entry) +0x7c.
@@ -1688,18 +1679,18 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd825380 calls __glXAddDrawableInterest with a0=ret(?), a1=?, a2=?, a3=?.
   The `jalr` at 0xd8253c0 calls __glXCreateVideoSourcePrivate with a0=ret(__glXAddDrawableInterest)+44, a1=0x3, a2=?, a3=?.
   The `jalr` at 0xd8253ec calls (unknown callee) with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=a5 at entry (arg5), a3=0x4, a4=sp-192, a5=ret(__glXCreateVideoSourcePrivate).
-  The `jalr` at 0xd825424 calls (unknown callee) with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=a5 at entry (arg5), a3=0x6, a4=sp-192, a7=ret(__glXCreateVideoSourcePrivate).
+  The `jalr` at 0xd825424 calls (unknown callee) with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=a5 at entry (arg5), a3=0x6, a4=sp-192.
   The `jalr` at 0xd825450 calls (unknown callee) with a0=a2 at entry (arg2), a1=a3 at entry (arg3), a2=a5 at entry (arg5), a3=0x7, a4=sp-192.
-  The `bgezall` at 0xd825474 calls (unnamed) [0xd8251f8] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd825498 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=ret(__glXCreateVideoSourcePrivate), a4=a0 at entry (arg0).
-  The `jalr` at 0xd82555c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=[a0+108], a4=[ret(__glXCreateVideoSourcePrivate)+20], a5=[ret(__glXCreateVideoSourcePrivate)+16], a6=[ret(__glXCreateVideoSourcePrivate)+12], a7=[ret(__glXCreateVideoSourcePrivate)+8].
+  The `bgezall` at 0xd825474 calls videoPackingToInternalFormat [0xd8251f8] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd825498 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?, a4=a0 at entry (arg0).
+  The `jalr` at 0xd82555c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=[a0+108].
   The `jalr` at 0xd825574 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd825580 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd825580 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd8255b0 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=[a0+108], a5=[a0+108]+44.
-  The `jalr` at 0xd8255cc calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8255e0 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8255f8 calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=a5 at entry (arg5), a3=?.
-  The `jalr` at 0xd82560c calls __glXRemoveDrawableInterest with a0=ret(__glXAddDrawableInterest), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8255cc calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8255e0 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8255f8 calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=a5 at entry (arg5), a3=?.
+  The `jalr` at 0xd82560c calls __glXRemoveDrawableInterest with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xd82530c targets 0xd825590, is taken when (v0(=ret(__glXSetupForCommand)) & 0xff) == 0, and falls through when (v0(=ret(__glXSetupForCommand)) & 0xff) != 0.
   The `beq` branch at 0xd825318 targets 0xd825354, is taken when s0(=a4) == v0(=0x2), and falls through when s0(=a4) != v0(=0x2).
   The `beq` branch at 0xd825324 targets 0xd825358, is taken when s0(=a4) == v1(=0x5), and falls through when s0(=a4) != v1(=0x5).
@@ -1723,7 +1714,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd825600 targets 0xd825344 and is always taken.
   The `beq` branch at 0xd825614 targets 0xd825344 and is always taken.
   The return at 0xd82533c has v0 = 0x0.
-  The return at 0xd82534c has v0 = one of ret(?), 0x0.
+  The return at 0xd82534c has v0 = one of ?, 0x0.
 - `glXSwapIntervalSGI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd825758 (n32).
   Evidence grade: inferred.
   Exact binary: `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so`.
@@ -1889,7 +1880,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `sw` at 0xd83c320 stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `jalr` at 0xd83c248 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd83c260 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+1232].
-  The `jalr` at 0xd83c2dc calls _XReply with a0=a0 at entry (arg0), a1=sp-80, a2=0x0, a3=0x0, a4=ret(__glXSetupForCommand), a5=[a0+108], a6=0x11, a7=0x1000d.
+  The `jalr` at 0xd83c2dc calls _XReply with a0=a0 at entry (arg0), a1=sp-80, a2=0x0, a3=0x0, a5=[a0+108], a6=0x11, a7=0x1000d.
   The `jalr` at 0xd83c2f8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+1232].
   The `jalr` at 0xd83c30c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd83c338 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+108].
@@ -1929,7 +1920,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd83cd70, `lw` at 0xd83cdf8, `lw` at 0xd83ce40.
   The `jalr` at 0xd83cc84 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd83cca0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
-  The `jalr` at 0xd83cd20 calls _XReply with a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=0x0, a4=[a0+132], a5=0x1000e, a6=0x11, a7=ret(__glXSetupForCommand).
+  The `jalr` at 0xd83cd20 calls _XReply with a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=0x0, a4=[a0+132], a5=0x1000e, a6=0x11.
   The `jalr` at 0xd83cd50 calls _XEatData with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd83cd68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
   The `jalr` at 0xd83cd7c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -1960,7 +1951,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd83ce84 targets 0xd83ce98, is taken when a2(=[a0+1232]) == 0, and falls through when a2(=[a0+1232]) != 0.
   The `beq` branch at 0xd83ce9c targets 0xd83ceac, is taken when t9(=[a0+124]) == 0, and falls through when t9(=[a0+124]) != 0.
   The return at 0xd83cd9c has v0 = 0x0.
-  The return at 0xd83ce68 has v0 = ret(malloc).
+  The return at 0xd83ce68 has v0 = ?.
   The return at 0xd83cec4 has v0 = 0x0.
 - `glXHyperpipeConfigSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd83cecc (n32).
   Evidence grade: inferred.
@@ -2120,7 +2111,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd83d560 targets 0xd83d50c and is always taken.
   The return at 0xd83d438 has v0 = 0x0.
   The return at 0xd83d4bc has v0 = 0x0.
-  The return at 0xd83d518 has v0 = one of ret(malloc), 0x0.
+  The return at 0xd83d518 has v0 = one of ?, 0x0.
 - `__glOdyim_Clear` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9644d0 (n32).
   Evidence grade: inferred.
   Exact binary: `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`.
@@ -2522,7 +2513,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd99ece0 calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a3 at entry (arg3), a1=a4 at entry (arg4), a2=sp-432, a3=0x0.
   The `jalr` at 0xd99ee70 calls __glOdysseyProgramTexFilter [0xd9b6820] with a0=?, a1=?, a2=?, a3=?.
   The `bgezall` at 0xd99eed0 calls LoadTextureFilter [0xd99cb60] with a0=a1 at entry (arg1), a1=[a1+16]-1, a2=[[0x1010]+38564], a3=((0x40000 | [[0x1010]+31956]) | 0x4000), a4=[[0x1010]+31956].
-  The `jalr` at 0xd99ef84 calls floorf with a0=?, a1=sp-432, a2=?, a3=?, a4=sp-432, a5=one of 0x0, 0x1, a6=[a2+32], a7=[a2+28].
+  The `jalr` at 0xd99ef84 calls floorf with a0=?, a1=sp-432, a2=?, a3=?, a4=sp-432, a6=[a2+32], a7=[a2+28].
   The `jalr` at 0xd99ef9c calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99efd0 calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99efe4 calls ceilf with a0=?, a1=?, a2=?, a3=?.
@@ -2536,7 +2527,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd99f1c4 calls ceilf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99f1e8 calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99f200 calls floorf with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd99f32c calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a3 at entry (arg3), a1=a4 at entry (arg4), a2=sp-432, a3=0x0, a4=sp-432, a5=one of 0x0, 0x1.
+  The `jalr` at 0xd99f32c calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a3 at entry (arg3), a1=a4 at entry (arg4), a2=sp-432, a3=0x0, a4=sp-432.
   The `jalr` at 0xd99f484 calls floorf with a0=?, a1=[[0x1010]+72660], a2=[a2+32]:1, a3=[a2+32]:1, a4=sp-432, a5=[a2+32].
   The `jalr` at 0xd99f4a4 calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99f4b8 calls floorf with a0=?, a1=?, a2=?, a3=?.
@@ -2564,7 +2555,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd99f958 calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a4 at entry (arg4), a1=[a1+68], a2=sp-432, a3=0x0.
   The `jalr` at 0xd99f9ec calls floorf with a0=[a2+16], a1=[a2+12], a2=[a2+8], a3=[a2+4], a4=sp-432, a5=[a2].
   The `jalr` at 0xd99fa08 calls floorf with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd99fa3c calls floorf with a0=?, a1=?, a2=?, a3=?, a6=one of 0x0, 0x1.
+  The `jalr` at 0xd99fa3c calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99fa4c calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99fa6c calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a4 at entry (arg4), a1=[a1+68], a2=sp-432, a3=0x0.
   The `jalr` at 0xd99fb04 calls floorf with a0=?, a1=?, a2=?, a3=?, a4=sp-432, a7=[a2+35]:1.
@@ -2581,7 +2572,7 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `jalr` at 0xd99fd38 calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99fd54 calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a4 at entry (arg4), a1=[a1+68], a2=sp-432, a3=0x0.
   The `jalr` at 0xd99fe00 calls floorf with a0=[a2+8], a1=[a2+4], a2=[a2+32]:1, a3=[a2], a4=sp-432; fp f14=0xffffffffbf800000, f15=[a2+4].
-  The `jalr` at 0xd99fe24 calls floorf with a0=?, a1=?, a2=?, a3=?; fp f16=[a2+12].
+  The `jalr` at 0xd99fe24 calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99fe44 calls floorf with a0=?, a1=?, a2=?, a3=?, a4=[a2+35]:1.
   The `jalr` at 0xd99fe5c calls floorf with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd99fe7c calls __glOdysseyImageMovePixelsTexture [0xd9bbff0] with a0=a4 at entry (arg4), a1=[a1+68], a2=sp-432, a3=0x0.
@@ -2654,13 +2645,13 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd99ea70 targets 0xd99ea98, is taken when a1(=[[a1+68]+12]) == a3(=0x1405), and falls through when a1(=[[a1+68]+12]) != a3(=0x1405).
   The `beq` branch at 0xd99ea7c targets 0xd99ea94, is taken when a1(=[[a1+68]+12]) == a4(=0x1404), and falls through when a1(=[[a1+68]+12]) != a4(=0x1404).
   The `beq` branch at 0xd99ea8c targets 0xd99ea98 and is always taken.
-  The `beq` branch at 0xd99eb1c targets 0xd99f388, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd99eb1c targets 0xd99f388, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `beq` branch at 0xd99eba8 targets 0xd99ebec, is taken when a1(=[a2+32]:1) == 0, and falls through when a1(=[a2+32]:1) != 0.
   The `beq` branch at 0xd99ebf0 targets 0xd99ec30, is taken when a2(=[a2+33]:1) == 0, and falls through when a2(=[a2+33]:1) != 0.
   The `beq` branch at 0xd99ec34 targets 0xd99ec7c, is taken when a3(=[a2+35]:1) == 0, and falls through when a3(=[a2+35]:1) != 0.
   The `beq` branch at 0xd99ec80 targets 0xd99ecc4, is taken when a4(=[a2+34]:1) == 0, and falls through when a4(=[a2+34]:1) != 0.
   The `beq` branch at 0xd99ed68 targets 0xd99ed98, is taken when a5(=[[0x1010]+38960]) == 0, and falls through when a5(=[[0x1010]+38960]) != 0.
-  The `beq` branch at 0xd99eedc targets 0xd99f2b4, is taken when a5(=one of 0x0, 0x1) == 0, and falls through when a5(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd99eedc targets 0xd99f2b4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0xd99ef64 targets 0xd99efb0, is taken when at(=[a2+32]:1) == 0, and falls through when at(=[a2+32]:1) != 0.
   The `beq` branch at 0xd99efb4 targets 0xd99eff4, is taken when v0(=[a2+33]:1) == 0, and falls through when v0(=[a2+33]:1) != 0.
   The `beq` branch at 0xd99eff8 targets 0xd99f044, is taken when v1(=[a2+35]:1) == 0, and falls through when v1(=[a2+35]:1) != 0.
@@ -2678,13 +2669,13 @@ Each entry below summarises what the local mechanical analyser reports for one r
   The `beq` branch at 0xd99f738 targets 0xd99f864, is taken when a2(=[a2+33]:1) == 0, and falls through when a2(=[a2+33]:1) != 0.
   The `beq` branch at 0xd99f744 targets 0xd99f864, is taken when a7(=[a2+34]:1) == 0, and falls through when a7(=[a2+34]:1) != 0.
   The `beq` branch at 0xd99f868 targets 0xd99f960, is taken when v1(=[a2+32]:1) == 0, and falls through when v1(=[a2+32]:1) != 0.
-  The `beq` branch at 0xd99f910 targets 0xd99f948, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd99f910 targets 0xd99f948, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0xd99f964 targets 0xd99fa74, is taken when t9(=[a2+33]:1) == 0, and falls through when t9(=[a2+33]:1) != 0.
-  The `beq` branch at 0xd99fa24 targets 0xd99fa5c, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd99fa24 targets 0xd99fa5c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0xd99fa78 targets 0xd99fb78, is taken when a7(=[a2+35]:1) == 0, and falls through when a7(=[a2+35]:1) != 0.
-  The `beq` branch at 0xd99fb10 targets 0xd99fb4c, is taken when v1(=one of 0x0, 0x1) == 0, and falls through when v1(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd99fb10 targets 0xd99fb4c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xd99fb7c targets 0xd99fc8c, is taken when a0(=[a2+34]:1) == 0, and falls through when a0(=[a2+34]:1) != 0.
-  The `beq` branch at 0xd99fc1c targets 0xd99fc54, is taken when t9(=one of 0x0, 0x1) == 0, and falls through when t9(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0xd99fc1c targets 0xd99fc54, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0xd99fc8c targets 0xd99e860 and is always taken.
   The `beq` branch at 0xd99fc98 targets 0xd9a0b0c, is taken when at(=[a2+32]:1) == 0, and falls through when at(=[a2+32]:1) != 0.
   The `beq` branch at 0xd99fca4 targets 0xd9a0b10, is taken when v0(=[a2+35]:1) == 0, and falls through when v0(=[a2+35]:1) != 0.
