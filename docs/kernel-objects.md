@@ -146,7 +146,7 @@ Each entry names the member of the media archive.
   The IP35 build has the same size, and the 320-byte layout is the one `odsyLoadTimingTable` takes, described in `docs/display.md`.
   The member is 4340 bytes.
 - `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`: **inferred.**
-  Draws the console text port in the kernel and in diagnostics. `ODSY_SET_GC` at 0x30 (2440 bytes) sets up the graphics state with nine arguments (board base, colours and block words), `odsy_drawbitmap` at 0xf8c (1716 bytes) draws a glyph bitmap as filled boxes, `odsy_sboxfi` at 0xb90 (600 bytes) fills a box and `odsy_pnt2i` at 0xde8 (404 bytes) draws a point.
+  Draws the console text port in the kernel and in diagnostics. the set graphics-context Odyssey driver request at 0x30 (2440 bytes) sets up the graphics state with nine arguments (board base, colours and block words), `odsy_drawbitmap` at 0xf8c (1716 bytes) draws a glyph bitmap as filled boxes, `odsy_sboxfi` at 0xb90 (600 bytes) fills a box and `odsy_pnt2i` at 0xde8 (404 bytes) draws a point.
   Both send commands to the board through the command FIFO port under the text-port lock and do nothing while the mute word is set.
   `odsy_tpinit` at 0x1658 (492 bytes) resets the text port for use.
   The member is 38052 bytes with 11 routines.
@@ -182,7 +182,7 @@ One row per member with routines. "Shared with media build" counts routines of t
 | `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` | established | board memory manager | DMA to backing store | 69124 | 57 | 51 | 51 | 6 | 16 | `gfP_OdsyMMxfr` at 0x1e5c |
 | `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 19140 | 13 | 13 | 11 | 0 | 0 | `gf_OdsySetDisplayMode` at 0xb68 |
 | `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 9284 | 5 | 5 | 5 | 0 | 0 | `gf_OdsyExit` at 0x1b8 |
-| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34804 | 11 | 11 | 9 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
+| `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34804 | 11 | 11 | 9 | 0 | 0 | the set graphics-context Odyssey driver request at 0x30 |
 | `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 8468 | 2 | 2 | 2 | 0 | 0 | `gf_OdsyDownload` at 0x118 |
 
 Patch 4103 member notes. Addresses are offsets into each member's text; media sizes are from the media table above.
@@ -194,7 +194,7 @@ Patch 4103 member notes. Addresses are offsets into each member's text; media si
 - `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`: **inferred.**
   The drawable binding member of patch 4103, 16900 bytes and 11 routines, none of them the media member's code by hash. `gfP_OdsyMakeCurrent` at 0x9b0 (784 bytes) binds a client to its drawables, `odsyBindDrawable` at 0x12c (684 bytes) fills one binding record and `gfP_OdsySetDrawBuffer` at 0x55c (564 bytes) sets the draw buffer. `gfP_OdsyPbufAssoc` at 0xcc0 (576 bytes) and `gfP_OdsyPbufDeassoc` at 0xf00 (456 bytes) attach and detach a pixel-buffer group.
 - `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`: **inferred.**
-  The textport member of patch 4103, 34804 bytes and 11 routines. `ODSY_SET_GC` at 0x30 is 1664 bytes here against 2440 in the media member, `odsy_drawbitmap` at 0xb44 is 1236 bytes (1716 in the media member) and `odsy_tpinit` at 0x1034 is 396 bytes (492). `odsy_cmov2i` at 0xb34 (16 bytes) and `odsy_unblank` at 0x11c0 (8 bytes) are the two routines whose code hash matches the media member.
+  The textport member of patch 4103, 34804 bytes and 11 routines. the set graphics-context Odyssey driver request at 0x30 is 1664 bytes here against 2440 in the media member, `odsy_drawbitmap` at 0xb44 is 1236 bytes (1716 in the media member) and `odsy_tpinit` at 0x1034 is 396 bytes (492). `odsy_cmov2i` at 0xb34 (16 bytes) and `odsy_unblank` at 0x11c0 (8 bytes) are the two routines whose code hash matches the media member.
 - `builds/vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)`: **inferred.**
   The microcode member of patch 4103, 8468 bytes and two routines. `gf_OdsyDownload` at 0x118 (900 bytes, 840 in the media member) is the private-request entry that carries a client's microcode, and its code hash differs from the media member's. `odsyDownloadUcode` at 0x0 writes the microcode lines to the board.
 
@@ -221,7 +221,7 @@ Patch 4103 member notes. Addresses are offsets into each member's text; media si
 | `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_pmm.o)` | established | board memory manager | DMA to backing store | 69156 | 57 | 51 | 51 | 6 | 16 | `gfP_OdsyMMxfr` at 0x1e5c |
 | `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 19172 | 13 | 13 | 11 | 0 | 0 | `gf_OdsySetDisplayMode` at 0xb68 |
 | `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 9316 | 5 | 5 | 5 | 0 | 0 | `gf_OdsyExit` at 0x1b8 |
-| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34836 | 11 | 11 | 9 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
+| `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 34836 | 11 | 11 | 9 | 0 | 0 | the set graphics-context Odyssey driver request at 0x30 |
 | `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 8500 | 2 | 2 | 2 | 0 | 0 | `gf_OdsyDownload` at 0x118 |
 
 Patch 4104 member notes. Each member has the routines, addresses and code hashes of its patch 4103 counterpart, so the notes say only what differs.
@@ -233,7 +233,7 @@ Patch 4104 member notes. Each member has the routines, addresses and code hashes
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_drawable.o)`: **inferred.**
   The drawable binding member of patch 4104, 16916 bytes. Its `.text` is byte for byte patch 4103's, so every routine matches the patch 4103 routine of the same name; the only longer section is `.debug_info` (29 bytes, the same two added compile flags as `odsy_clip.o`), and `gfP_OdsyMakeCurrent` at 0x9b0 (784 bytes) is the entry that binds a client's drawables.
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`: **inferred.**
-  The textport member of patch 4104, 34836 bytes, 32 more than patch 4103's. `ODSY_SET_GC` at 0x30 is 1664 bytes and `odsy_drawbitmap` at 0xb44 is 1236 bytes, as in patch 4103, and `odsy_tpinit` at 0x1034 (396 bytes) keeps its place.
+  The textport member of patch 4104, 34836 bytes, 32 more than patch 4103's. the set graphics-context Odyssey driver request at 0x30 is 1664 bytes and `odsy_drawbitmap` at 0xb44 is 1236 bytes, as in patch 4103, and `odsy_tpinit` at 0x1034 (396 bytes) keeps its place.
 - `builds/vpro-patch-4104/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ucode.o)`: **inferred.**
   The microcode member of patch 4104, 8500 bytes, 32 more than patch 4103's. `gf_OdsyDownload` at 0x118 is 900 bytes, the same size as in patch 4103, and `odsyDownloadUcode` stays at 0x0.
 
@@ -265,7 +265,7 @@ Patch 4104 member notes. Each member has the routines, addresses and code hashes
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_rainier.o)` | established | Rainier add-in board access | mapped register window | 8228 | 6 | 6 | 0 | 0 | 0 | `odsy_ProbeRainier` at 0x9c |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_retrace.o)` | established | swap and retrace scheduling | display FIFO | 20516 | 13 | 13 | 3 | 0 | 0 | `gf_OdsySchedSwapBuf` at 0x380 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_sched.o)` | established | suspend, resume and exit | flow control attach | 10148 | 5 | 5 | 3 | 0 | 0 | `gf_OdsyExit` at 0x248 |
-| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 37668 | 11 | 11 | 6 | 0 | 0 | `ODSY_SET_GC` at 0x30 |
+| `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)` | established | textport drawing | command FIFO port | 37668 | 11 | 11 | 6 | 0 | 0 | the set graphics-context Odyssey driver request at 0x30 |
 | `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)` | established | microcode download | command FIFO port | 9220 | 2 | 2 | 2 | 0 | 0 | `gf_OdsyDownload` at 0x120 |
 
 IP35 member notes. Addresses are offsets into each member's text; media sizes are from the media table above.
@@ -277,7 +277,7 @@ IP35 member notes. Addresses are offsets into each member's text; media sizes ar
 - `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_drawable.o)`: **inferred.**
   The drawable binding member of the IP35 build, 17892 bytes and 11 routines. `odsyBindDrawable` at 0x138 (692 bytes) and `odsyUnbindDrawable` at 0x3ec (336 bytes) keep the media member's code hashes. `gfP_OdsyMakeCurrent` at 0xab0 (916 bytes, 756 in the media member) and `gfP_OdsySetDrawBuffer` at 0x53c (676 bytes, 520) differ from it, as do `gfP_OdsyPbufAssoc` at 0xe44 and `gfP_OdsyPbufDeassoc` at 0x1008.
 - `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`: **inferred.**
-  The textport member of the IP35 build, 37668 bytes and 11 routines. `ODSY_SET_GC` at 0x30 (2440 bytes) has the media member's code hash, as do `odsy_cmov2i` at 0xf1c (16 bytes), `odsy_getdesc` at 0x15cc (24 bytes) and `odsy_unblank` at 0x17d4 (8 bytes). `odsy_drawbitmap` at 0xf2c is 1696 bytes against the media member's 1716, `odsy_sboxfi` at 0xb64 is 572 bytes (600) and `odsy_pnt2i` at 0xda0 is 380 bytes (404).
+  The textport member of the IP35 build, 37668 bytes and 11 routines. the set graphics-context Odyssey driver request at 0x30 (2440 bytes) has the media member's code hash, as do `odsy_cmov2i` at 0xf1c (16 bytes), `odsy_getdesc` at 0x15cc (24 bytes) and `odsy_unblank` at 0x17d4 (8 bytes). `odsy_drawbitmap` at 0xf2c is 1696 bytes against the media member's 1716, `odsy_sboxfi` at 0xb64 is 572 bytes (600) and `odsy_pnt2i` at 0xda0 is 380 bytes (404).
 - `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_ucode.o)`: **inferred.**
   The microcode member of the IP35 build, 9220 bytes and two routines. `gf_OdsyDownload` at 0x120 is 1092 bytes, 252 more than the media member's 840, and its code hash differs. `odsyDownloadUcode` at 0x0 writes the microcode lines to the board.
 

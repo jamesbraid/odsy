@@ -4019,7 +4019,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd990314 targets 0xd990338, is taken when not (f0 == f6 (c.eq.d at 0xd99030c)), and falls through when f0 == f6 (c.eq.d at 0xd99030c); its branch-likely delay slot `lw t8,3660(s0)` at 0xd990318 runs only when taken and is annulled on fall-through.
   The `bc1tl` branch at 0xd99032c targets 0xd9908a4, is taken when f0 == f10 (c.eq.d at 0xd990324), and falls through when not (f0 == f10 (c.eq.d at 0xd990324)); its branch-likely delay slot `lw t8,272(sp)` at 0xd990330 runs only when taken and is annulled on fall-through.
   The `bgez` branch at 0xd990380 targets 0xd990394, is taken when t6(=[[0x1010]+73148]) >= 0 (signed), and falls through when t6(=[[0x1010]+73148]) < 0 (signed).
-  The `beql` branch at 0xd9903ac targets 0xd9903c4, is taken when v1(?) == 0, and falls through when v1(?) != 0; its branch-likely delay slot `cvt.s.w $f4,$f8` at 0xd9903b0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9903ac targets 0xd9903c4, is taken when v1(?) == 0, and falls through when v1(?) != 0; its branch-likely delay slot `the Odyssey stack assembly unit 1.w $f4,$f8` at 0xd9903b0 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9903e8 targets 0xd990404, is taken when not (f0 < f2 (c.lt.s at 0xd9903e0)), and falls through when f0 < f2 (c.lt.s at 0xd9903e0); its branch-likely delay slot `trunc.w.s $f6,$f2` at 0xd9903ec runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9903f8 targets 0xd990410 and is always taken.
   The `bc1fl` branch at 0xd990414 targets 0xd990430, is taken when not (f2 < f0 (c.lt.s at 0xd99040c)), and falls through when f2 < f0 (c.lt.s at 0xd99040c); its branch-likely delay slot `trunc.w.s $f8,$f2` at 0xd990418 runs only when taken and is annulled on fall-through.
@@ -7613,7 +7613,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd9c2378 targets 0xd9c23b8, is taken when not (f8 < f14 (c.lt.d at 0xd9c2370)), and falls through when f8 < f14 (c.lt.d at 0xd9c2370); its branch-likely delay slot `lwc1 $f0,4(a0)` at 0xd9c237c runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9c2390 targets 0xd9c23b8, is taken when not (f4 < f14 (c.lt.d at 0xd9c2388)), and falls through when f4 < f14 (c.lt.d at 0xd9c2388); its branch-likely delay slot `lwc1 $f0,4(a0)` at 0xd9c2394 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9c23a8 targets 0xd9c23b8, is taken when not (f8 < f14 (c.lt.d at 0xd9c23a0)), and falls through when f8 < f14 (c.lt.d at 0xd9c23a0); its branch-likely delay slot `lwc1 $f0,4(a0)` at 0xd9c23ac runs only when taken and is annulled on fall-through.
-  The `bc1tl` branch at 0xd9c23dc targets 0xd9c240c, is taken when f12 == f4 (c.eq.s at 0xd9c23d4), and falls through when not (f12 == f4 (c.eq.s at 0xd9c23d4)); its branch-likely delay slot `cvt.s.d $f4,$f14` at 0xd9c23e0 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c23dc targets 0xd9c240c, is taken when f12 == f4 (c.eq.s at 0xd9c23d4), and falls through when not (f12 == f4 (c.eq.s at 0xd9c23d4)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f14` at 0xd9c23e0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2400 targets 0xd9c2414 and is always taken.
   The `bc1f` branch at 0xd9c2424 targets 0xd9c2430, is taken when not (f6(=[a0]) < f12 (c.lt.s at 0xd9c241c)), and falls through when f6(=[a0]) < f12 (c.lt.s at 0xd9c241c).
   The `beql` branch at 0xd9c2430 targets 0xd9c2458, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0; its branch-likely delay slot `sw a3,0(a1)` at 0xd9c2434 runs only when taken and is annulled on fall-through.
@@ -7629,7 +7629,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd9c24ec targets 0xd9c2518, is taken when not (f6(=[a0+4]) < f12 (c.lt.s at 0xd9c24e4)), and falls through when f6(=[a0+4]) < f12 (c.lt.s at 0xd9c24e4); its branch-likely delay slot `sw zero,12(sp)` at 0xd9c24f0 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9c2504 targets 0xd9c2518, is taken when not (f8(=[a0]) < f12 (c.lt.s at 0xd9c24fc)), and falls through when f8(=[a0]) < f12 (c.lt.s at 0xd9c24fc); its branch-likely delay slot `sw zero,12(sp)` at 0xd9c2508 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c250c targets 0xd9c2518 and is always taken.
-  The `bc1tl` branch at 0xd9c253c targets 0xd9c2568, is taken when f12 == f4 (c.eq.s at 0xd9c2534), and falls through when not (f12 == f4 (c.eq.s at 0xd9c2534)); its branch-likely delay slot `cvt.s.d $f4,$f14` at 0xd9c2540 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c253c targets 0xd9c2568, is taken when f12 == f4 (c.eq.s at 0xd9c2534), and falls through when not (f12 == f4 (c.eq.s at 0xd9c2534)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f14` at 0xd9c2540 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c255c targets 0xd9c256c and is always taken.
   The `bc1f` branch at 0xd9c257c targets 0xd9c2588, is taken when not (f6(=[a0+8]) < f12 (c.lt.s at 0xd9c2574)), and falls through when f6(=[a0+8]) < f12 (c.lt.s at 0xd9c2574).
   The `beql` branch at 0xd9c2588 targets 0xd9c25b0, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0; its branch-likely delay slot `sw a3,4(a1)` at 0xd9c258c runs only when taken and is annulled on fall-through.
@@ -7645,7 +7645,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd9c2644 targets 0xd9c2670, is taken when not (f6(=[a0+12]) < f12 (c.lt.s at 0xd9c263c)), and falls through when f6(=[a0+12]) < f12 (c.lt.s at 0xd9c263c); its branch-likely delay slot `sw zero,8(sp)` at 0xd9c2648 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9c265c targets 0xd9c2670, is taken when not (f8(=[a0+8]) < f12 (c.lt.s at 0xd9c2654)), and falls through when f8(=[a0+8]) < f12 (c.lt.s at 0xd9c2654); its branch-likely delay slot `sw zero,8(sp)` at 0xd9c2660 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2664 targets 0xd9c2670 and is always taken.
-  The `bc1tl` branch at 0xd9c2698 targets 0xd9c26c4, is taken when f12 == f4 (c.eq.s at 0xd9c2690), and falls through when not (f12 == f4 (c.eq.s at 0xd9c2690)); its branch-likely delay slot `cvt.s.d $f4,$f14` at 0xd9c269c runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c2698 targets 0xd9c26c4, is taken when f12 == f4 (c.eq.s at 0xd9c2690), and falls through when not (f12 == f4 (c.eq.s at 0xd9c2690)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f14` at 0xd9c269c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c26b8 targets 0xd9c26c8 and is always taken.
   The `bc1f` branch at 0xd9c26d8 targets 0xd9c26e4, is taken when not (f6(=[a0+16]) < f12 (c.lt.s at 0xd9c26d0)), and falls through when f6(=[a0+16]) < f12 (c.lt.s at 0xd9c26d0).
   The `beql` branch at 0xd9c26e4 targets 0xd9c270c, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0; its branch-likely delay slot `sw a3,8(a1)` at 0xd9c26e8 runs only when taken and is annulled on fall-through.
@@ -7661,7 +7661,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd9c27a0 targets 0xd9c27cc, is taken when not (f6(=[a0+20]) < f12 (c.lt.s at 0xd9c2798)), and falls through when f6(=[a0+20]) < f12 (c.lt.s at 0xd9c2798); its branch-likely delay slot `sw zero,4(sp)` at 0xd9c27a4 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9c27b8 targets 0xd9c27cc, is taken when not (f8(=[a0+16]) < f12 (c.lt.s at 0xd9c27b0)), and falls through when f8(=[a0+16]) < f12 (c.lt.s at 0xd9c27b0); its branch-likely delay slot `sw zero,4(sp)` at 0xd9c27bc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c27c0 targets 0xd9c27cc and is always taken.
-  The `bc1tl` branch at 0xd9c27f0 targets 0xd9c281c, is taken when f12 == f4 (c.eq.s at 0xd9c27e8), and falls through when not (f12 == f4 (c.eq.s at 0xd9c27e8)); its branch-likely delay slot `cvt.s.d $f4,$f14` at 0xd9c27f4 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c27f0 targets 0xd9c281c, is taken when f12 == f4 (c.eq.s at 0xd9c27e8), and falls through when not (f12 == f4 (c.eq.s at 0xd9c27e8)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f14` at 0xd9c27f4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2810 targets 0xd9c2820 and is always taken.
   The `bc1f` branch at 0xd9c2834 targets 0xd9c2840, is taken when not (f6(=[a0+24]) < f12 (c.lt.s at 0xd9c282c)), and falls through when f6(=[a0+24]) < f12 (c.lt.s at 0xd9c282c).
   The `beql` branch at 0xd9c2840 targets 0xd9c2868, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0; its branch-likely delay slot `sw a3,12(a1)` at 0xd9c2844 runs only when taken and is annulled on fall-through.
@@ -7677,7 +7677,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bc1fl` branch at 0xd9c28fc targets 0xd9c2928, is taken when not (f6(=[a0+28]) < f12 (c.lt.s at 0xd9c28f4)), and falls through when f6(=[a0+28]) < f12 (c.lt.s at 0xd9c28f4); its branch-likely delay slot `sw zero,0(sp)` at 0xd9c2900 runs only when taken and is annulled on fall-through.
   The `bc1fl` branch at 0xd9c2914 targets 0xd9c2928, is taken when not (f8(=[a0+24]) < f12 (c.lt.s at 0xd9c290c)), and falls through when f8(=[a0+24]) < f12 (c.lt.s at 0xd9c290c); its branch-likely delay slot `sw zero,0(sp)` at 0xd9c2918 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c291c targets 0xd9c2928 and is always taken.
-  The `bc1tl` branch at 0xd9c2950 targets 0xd9c2974, is taken when f12 == f4 (c.eq.s at 0xd9c2948), and falls through when not (f12 == f4 (c.eq.s at 0xd9c2948)); its branch-likely delay slot `cvt.s.d $f4,$f14` at 0xd9c2954 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c2950 targets 0xd9c2974, is taken when f12 == f4 (c.eq.s at 0xd9c2948), and falls through when not (f12 == f4 (c.eq.s at 0xd9c2948)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f14` at 0xd9c2954 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2968 targets 0xd9c2978 and is always taken.
   The `bne` branch at 0xd9c2980 targets 0xd9c29b4, is taken when t8(?) != t1(=0x1), and falls through when t8(?) == t1(=0x1).
   The `bne` branch at 0xd9c2988 targets 0xd9c29a4, is taken when a2(?) != t1(=0x1), and falls through when a2(?) == t1(=0x1).
@@ -7685,7 +7685,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd9c29ac targets 0xd9c29dc and is always taken.
   The `bne` branch at 0xd9c29b4 targets 0xd9c29d0, is taken when a2(?) != t1(=0x1), and falls through when a2(?) == t1(=0x1).
   The `beq` branch at 0xd9c29c8 targets 0xd9c29dc and is always taken.
-  The `bc1tl` branch at 0xd9c2a00 targets 0xd9c2a24, is taken when f12 == f8 (c.eq.s at 0xd9c29f8), and falls through when not (f12 == f8 (c.eq.s at 0xd9c29f8)); its branch-likely delay slot `cvt.s.d $f8,$f14` at 0xd9c2a04 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c2a00 targets 0xd9c2a24, is taken when f12 == f8 (c.eq.s at 0xd9c29f8), and falls through when not (f12 == f8 (c.eq.s at 0xd9c29f8)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f8,$f14` at 0xd9c2a04 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2a18 targets 0xd9c2a28 and is always taken.
   The `bne` branch at 0xd9c2a2c targets 0xd9c2a5c, is taken when t9(?) != t1(=0x1), and falls through when t9(?) == t1(=0x1).
   The `bnel` branch at 0xd9c2a34 targets 0xd9c2a50, is taken when a3(?) != t1(=0x1), and falls through when a3(?) == t1(=0x1); its branch-likely delay slot `sw t2,20(a1)` at 0xd9c2a38 runs only when taken and is annulled on fall-through.
@@ -7693,7 +7693,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `beq` branch at 0xd9c2a54 targets 0xd9c2a80 and is always taken.
   The `bnel` branch at 0xd9c2a5c targets 0xd9c2a78, is taken when a3(?) != t1(=0x1), and falls through when a3(?) == t1(=0x1); its branch-likely delay slot `sw zero,20(a1)` at 0xd9c2a60 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2a6c targets 0xd9c2a80 and is always taken.
-  The `bc1tl` branch at 0xd9c2aa0 targets 0xd9c2ac4, is taken when f12 == f18 (c.eq.s at 0xd9c2a94), and falls through when not (f12 == f18 (c.eq.s at 0xd9c2a94)); its branch-likely delay slot `cvt.s.d $f8,$f14` at 0xd9c2aa4 runs only when taken and is annulled on fall-through.
+  The `bc1tl` branch at 0xd9c2aa0 targets 0xd9c2ac4, is taken when f12 == f18 (c.eq.s at 0xd9c2a94), and falls through when not (f12 == f18 (c.eq.s at 0xd9c2a94)); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f8,$f14` at 0xd9c2aa4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2ab8 targets 0xd9c2ac8 and is always taken.
   The `bne` branch at 0xd9c2ac8 targets 0xd9c2af4, is taken when a2(=one of 0x0, 0x1) != t1(=0x1), and falls through when a2(=one of 0x0, 0x1) == t1(=0x1).
   The `bne` branch at 0xd9c2ad0 targets 0xd9c2ae8, is taken when a3(=one of 0x0, 0x1) != t1(=0x1), and falls through when a3(=one of 0x0, 0x1) == t1(=0x1).
@@ -7712,7 +7712,7 @@ Skipped 51,890 located or understood rows, 383 eligible rows with an exact binar
   The `bnel` branch at 0xd9c2bf4 targets 0xd9c2c14, is taken when t2(=0x1) != t8(=[a0+128]), and falls through when t2(=0x1) == t8(=[a0+128]); its branch-likely delay slot `lw t9,24(a1)` at 0xd9c2bf8 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd9c2c14 targets 0xd9c2c34, is taken when t2(=0x1) != t9(=[a0+132]), and falls through when t2(=0x1) == t9(=[a0+132]); its branch-likely delay slot `lw t3,28(a1)` at 0xd9c2c18 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd9c2c34 targets 0xd9c2c54, is taken when t2(=0x1) != t3(=[a0+136]), and falls through when t2(=0x1) == t3(=[a0+136]); its branch-likely delay slot `lwc1 $f10,40(sp)` at 0xd9c2c38 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd9c2c60 targets 0xd9c2c84, is taken when t4(=[a0+104]) == 0, and falls through when t4(=[a0+104]) != 0; its branch-likely delay slot `cvt.s.d $f8,$f0` at 0xd9c2c64 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd9c2c60 targets 0xd9c2c84, is taken when t4(=[a0+104]) == 0, and falls through when t4(=[a0+104]) != 0; its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f8,$f0` at 0xd9c2c64 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9c2c78 targets 0xd9c2c88 and is always taken.
   The `bne` branch at 0xd9c2c88 targets 0xd9c2c9c, is taken when t1(=0x1) != t0(=one of 0x0, 0x1), and falls through when t1(=0x1) == t0(=one of 0x0, 0x1).
   The return at 0xd9c2c9c has v0 = a0+44.

@@ -42,7 +42,7 @@ Size code 3 is a 32 MB board to both programs. **established** (read from both):
 
 ### The revision nibble, the letter and the inventory name
 
-Read:
+
 
 
 
@@ -61,6 +61,7 @@ Read:
 
 ## Strap word and configuration register fields (pass 12)
 
+Positions come from the 6.5.30 binaries above.
 
 - **established.** The top byte of +0x106c holds the board's straps, read once. Size is the top two bits, bank count the next, CAS latency the next, and the low nibble is stored as the board revision (decode above). Whether that low nibble is a board version in the hardware's sense, and the register's own name, are **unknown** from the binaries read here; a read of the remaining readers of +0x106c in `libGLcore` and `odyssey.so` would settle the nibble. The size field has three legal codes (32, 64, 128 MB) in the 6.5.30 kernel and code 3 is handled as above (recorded as 33, programmed as 128 MB). Why: **unknown: no shipped software or published source depends on it** beyond that branch. Routes tried: both 6.5.30 kernels and the strings of both.
 - **inferred.** The board revision selects the pixel-clock part: revision 0 boards use the first part (I2C 0x26), later boards the second (I2C 0x58); the 6.5.30 kernel's choice is the variant word at +292 (`docs/display.md`), and that this is the strap nibble is inferred.

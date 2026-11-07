@@ -131,6 +131,7 @@ No stored frame tests depth (above), so this section rests on the N32 `libGLcore
 
 
 
+
 its GL entry points but stores no depth-tested frame.
 
 ### The depth word
@@ -172,7 +173,7 @@ library's conversion routines give its layout:
   its exponent and shifted right five places ([tokens.md](tokens.md), block 0x01a), the same packing
   as `__glOdySpanFloatToEyeZ24`. **inferred**: fog is evaluated against the same eye-linear depth.
 
-The conversion routines, all in `ody_image_convert.c` of the N32 library:
+The conversion routines, all in the Odyssey GL driver image conversion source unit of the N32 library:
 
 - **`__glOdySpanFloatToEyeZ24`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`
   (0x0d9a6d80, 352 bytes), **established**, read in full: encodes a span of floats in [0, 1] as

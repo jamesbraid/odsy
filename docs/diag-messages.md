@@ -30,7 +30,7 @@ by `scripts/diag_messages.py`; rerun that script to regenerate it, do not edit t
 - `output`: `printed` for a call that writes text out; `buffer` for a call that formats into
   memory, which prints only if the buffer is printed later (not followed here).
 - `severity`: for `cmn_err`, the level from `a0` with its CE_ name: 4 is `CE_WARN`, 1 `CE_ALERT`, 5 `CE_NOTE`, 7 `CE_DEBUG`, 0
-: 4 is `CE_WARN`, 1 `CE_ALERT`, 5 `CE_NOTE`, 7 `CE_DEBUG`, 0
+
   `CE_PANIC`. Flag bits (0x8, 0x10, 0x20 and so on) are masked off and not shown. For `fprintf`,
   the stream when it is a named symbol (`stderr` or `stdout`); `stream not named` when the stream
   is a pointer taken from a structure.

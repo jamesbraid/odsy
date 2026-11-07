@@ -2386,10 +2386,10 @@ Each entry reports selected accesses, calls, branches and returns from the named
   The `jalr` at 0xdab2450 calls __glSPDlistSpace [0xdadf11c] with a0=0x0, a1=one of 0x0, 0x1, a2=0x1028, a3=a3 at entry (arg3).
   The `bne` branch at 0xdab2418 targets 0xdab2430, is taken when t6(=[0x1034]) != 0, and falls through when t6(=[0x1034]) == 0.
   The `beql` branch at 0xdab2424 targets 0xdab2434, is taken when (v1(=[0x1030]) & 0x4) == 0, and falls through when (v1(=[0x1030]) & 0x4) != 0; its branch-likely delay slot `addiu t8,a1,2` at 0xdab2428 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab2438 targets 0xdab24a4, is taken when a0(=[0x1028]) >= t8(=one of 0x2, 0x3) (signed), and falls through when a0(=[0x1028]) < t8(=one of 0x2, 0x3) (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xdab243c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2438 targets 0xdab24a4, is taken when a0(=[0x1028]) >= t8(=one of 0x2, 0x3) (signed), and falls through when a0(=[0x1028]) < t8(=one of 0x2, 0x3) (signed); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xdab243c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xdab246c targets 0xdab248c, is taken when v0(=ret(__glSPDlistSpace)) != 0, and falls through when v0(=ret(__glSPDlistSpace)) == 0.
   The `beq` branch at 0xdab2484 targets 0xdab24dc and is always taken.
-  The `beql` branch at 0xdab2494 targets 0xdab24a4, is taken when (v1(=[0x1030]) & 0x4) == 0, and falls through when (v1(=[0x1030]) & 0x4) != 0; its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xdab2498 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2494 targets 0xdab24a4, is taken when (v1(=[0x1030]) & 0x4) == 0, and falls through when (v1(=[0x1030]) & 0x4) != 0; its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xdab2498 runs only when taken and is annulled on fall-through.
   The return at 0xdab24e4 has v0 = one of ret(__glSPDlistSpace), ?.
 - `__glOdylc_TexCoord2d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab2bc8 (o32).
   Evidence grade: inferred.
@@ -2408,10 +2408,10 @@ Each entry reports selected accesses, calls, branches and returns from the named
   The `jalr` at 0xdab2c2c calls __glSPDlistSpace [0xdadf11c] with a0=0x0, a1=one of 0x0, 0x1, a2=0x1028, a3=a3 at entry (arg3).
   The `bne` branch at 0xdab2bf0 targets 0xdab2c08, is taken when t6(=[0x1034]) != 0, and falls through when t6(=[0x1034]) == 0.
   The `beql` branch at 0xdab2bfc targets 0xdab2c0c, is taken when (v1(=[0x1030]) & 0x4) == 0, and falls through when (v1(=[0x1030]) & 0x4) != 0; its branch-likely delay slot `addiu t8,a1,3` at 0xdab2c00 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xdab2c10 targets 0xdab2c84, is taken when a0(=[0x1028]) >= t8(=one of 0x3, 0x4) (signed), and falls through when a0(=[0x1028]) < t8(=one of 0x3, 0x4) (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xdab2c14 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2c10 targets 0xdab2c84, is taken when a0(=[0x1028]) >= t8(=one of 0x3, 0x4) (signed), and falls through when a0(=[0x1028]) < t8(=one of 0x3, 0x4) (signed); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xdab2c14 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xdab2c4c targets 0xdab2c6c, is taken when v0(=ret(__glSPDlistSpace)) != 0, and falls through when v0(=ret(__glSPDlistSpace)) == 0.
   The `beq` branch at 0xdab2c64 targets 0xdab2cc4 and is always taken.
-  The `beql` branch at 0xdab2c74 targets 0xdab2c84, is taken when (v1(=[0x1030]) & 0x4) == 0, and falls through when (v1(=[0x1030]) & 0x4) != 0; its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xdab2c78 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xdab2c74 targets 0xdab2c84, is taken when (v1(=[0x1030]) & 0x4) == 0, and falls through when (v1(=[0x1030]) & 0x4) != 0; its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xdab2c78 runs only when taken and is annulled on fall-through.
   The return at 0xdab2ccc has v0 = one of ret(__glSPDlistSpace), ?.
 - `__glOdylc_TexCoord2i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdab2ff0 (o32).
   Evidence grade: inferred.

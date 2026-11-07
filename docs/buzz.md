@@ -44,7 +44,7 @@ The words below are written to the command FIFO by the immediate-mode entry poin
 
 ### Layout
 
-**inferred** from the table below and from `ApplyParameterF/I` (`ody_attrib.s`, from 0x0d95c4e0), which builds the word as `0xc080d000 | (slot << 24) | opcode` in a loop (slot starts at 6, opcode at 47, count from the d0 field, both counted up per iteration; slot 10, opcode 53 for the second set):
+**inferred** from the table below and from `ApplyParameterF/I` (the Odyssey GL driver attribute state assembly unit, from 0x0d95c4e0), which builds the word as `0xc080d000 | (slot << 24) | opcode` in a loop (slot starts at 6, opcode at 47, count from the d0 field, both counted up per iteration; slot 10, opcode 53 for the second set):
 
 ```
  31 30 29      24 23      16 15 14 13    10 9           0
@@ -376,7 +376,7 @@ Release IRIX 6.5.30m, IP30 kernel objects and the N32 libGLcore unless named. Ea
 
 ### Level descriptor words (blocks 0x280 + i)
 
-**established** by reading `__glOdysseyTextureActivate` (`ody_texture.s`, source lines 1976-2005), which writes three 32-bit words per level into the context at 12-byte stride (`GC_HW_TEXLEVEL`, `glcore_odsy.h`), ending at context offset 32736:
+**established** by reading `__glOdysseyTextureActivate` (the Odyssey GL driver texture assembly unit, source lines 1976-2005), which writes three 32-bit words per level into the context at 12-byte stride (`GC_HW_TEXLEVEL`, `glcore_odsy.h`), ending at context offset 32736:
 
 | Word | Fields written |
 |---|---|
@@ -384,7 +384,7 @@ Release IRIX 6.5.30m, IP30 kernel objects and the N32 libGLcore unless named. Ea
 | 1 | bits 11:0 from the level's width in 16-texel units, `(w + 15) >> 4`, rounded up to even (when that value is 4096 the field is cleared and bit 0 is set instead); bits 25:20 from a per-level field at offset 1364 of the texture object's 68-byte per-level record; bits 31:30 from the field at offset 1368 of the same record; other bits kept |
 | 2 | not written by this routine |
 
-The rounding to an even tile count and the 16-texel unit are **established** as arithmetic; that word 0 is a board-memory address of the level (the object's per-level value comes from a memory-object reference opened just before) and that word 1 holds a pitch in tiles are **inferred**. The record fields behind bits 25:20 and 31:30 are **established** from `AllocateGfxMemForTexture` (`ody_texture.s`, N32 0x0d9d03b0-0x0d9d089f), which fills the per-level record (`docs/opengl.md`, texture level records): record offset 0 (bits 25:20) is the texel format index that `ChooseSuitableBuzzTexObjFormat` returns (`BUZZ.h` section 3, 0 to 49, so six bits hold it), and record offset 4 (bits 31:30) is the storage class `CalcTexelSizes` returns (0, 1 or 2, the `c` of the allocation's element size `2 << c`). **established** that word 2 has no writer in libGLcore: the only constant-displacement accesses to the level descriptors (`__glOdysseyTextureActivate`, `ody_texture.s` 0x0d9d1f90-0x0d9d2537, the stores at 31968 and 31972; and the loads at 31968-31988 in `ody_context.s` that send them) store words 0 and 1 and only load word 2. So word 2 is sent as whatever the context holds at that place. What the board does with each field: **unknown**. On a board it would show in the block 0x280 + i operands, matched with the rendered result, for one texture of each storage class.
+The rounding to an even tile count and the 16-texel unit are **established** as arithmetic; that word 0 is a board-memory address of the level (the object's per-level value comes from a memory-object reference opened just before) and that word 1 holds a pitch in tiles are **inferred**. The record fields behind bits 25:20 and 31:30 are **established** from `AllocateGfxMemForTexture` (the Odyssey GL driver texture assembly unit, N32 0x0d9d03b0-0x0d9d089f), which fills the per-level record (`docs/opengl.md`, texture level records): record offset 0 (bits 25:20) is the texel format index that `ChooseSuitableBuzzTexObjFormat` returns (`BUZZ.h` section 3, 0 to 49, so six bits hold it), and record offset 4 (bits 31:30) is the storage class `CalcTexelSizes` returns (0, 1 or 2, the `c` of the allocation's element size `2 << c`). **established** that word 2 has no writer in libGLcore: the only constant-displacement accesses to the level descriptors (`__glOdysseyTextureActivate`, the Odyssey GL driver texture assembly unit 0x0d9d1f90-0x0d9d2537, the stores at 31968 and 31972; and the loads at 31968-31988 in the Odyssey GL driver context assembly unit that send them) store words 0 and 1 and only load word 2. So word 2 is sent as whatever the context holds at that place. What the board does with each field: **unknown**. On a board it would show in the block 0x280 + i operands, matched with the rendered result, for one texture of each storage class.
 
 ### The windows at board +0x100000, +0x120000 and +0x200000
 
@@ -405,7 +405,7 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 | +0x1c000 | +0x220000 (PB&J read-back) | 8 | 2 | 2 |
 | +0x3c000 | +0x400000 (display FIFO) | 1 | 2 | 2 |
 
-Every build maps the first two windows for every client and the other six only for a client whose flag word has bit 5 set. The windows end at +0x40000 of the client's mapping, and the +0x1c000 window's eight pages reach exactly to the display FIFO's page. The 6.5.5 kernel's `v_mapkvsegment` maps the pages with `ddv_mappages` and ignores the cache argument; it returns 1 when the faulting address lies inside the range just mapped, and `gf_OdsyMapGfx` returns 0 when any call did that and -1 when none did (an aligned address of zero counts as success). Which cache attribute 0 and 2 request on the board's windows is **unknown** (`docs/open-questions.md`); it is the one field in which patch 4103 differs from the later builds, with the values swapped between the command-FIFO window and the +0x118000 window (the context-switch request page, section 4).
+Every build maps the first two windows for every client and the other six only for a client whose flag word has bit 5 set. The windows end at +0x40000 of the client's mapping, and the +0x1c000 window's eight pages reach exactly to the display FIFO's page. Which cache attribute 0 and 2 request on the board's windows is **unknown** (`docs/open-questions.md`); it is the one field in which patch 4103 differs from the later builds, with the values swapped between the command-FIFO window and the +0x118000 window (the context-switch request page, section 4).
 
 The performance mode word at +0x402c is built identically in the patch 4103 `gfP_OdsyPerfStat` (private ioctl 51): the same 24-byte argument, bits 3:0 from byte 16, bits 4, 5 and 6 from bit 0 of bytes 17, 18 and 19, bits 10:8 from the low three bits of byte 21, and the constant 0x88000000; the word is also kept in the board record (+10444 there) before the register store. The statistics buffer is `(2 << n) * 32` bytes for `n` = byte 16, as in the 6.5.30m routine, and a mask with bits 0 and 2 both set is refused with 22 (**established**, the field positions in the section above).
 

@@ -84,8 +84,9 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 ## Raster state blocks and their fields
 
 Release IRIX 6.5.30m, N32 libGLcore (`libglcore/asm/ODYSSEY/ody_attrib.s` and
-`ody_context.s`, with source line numbers) and the kernel textport's start-up stream
+the Odyssey GL driver context assembly unit, with source line numbers) and the kernel textport's start-up stream
 (`buzz_init` in `odsy_tport.o`, read in `ucode/buzz_routines.md`, routine 214). Field
+
 
 Each setter keeps a shadow word in the context, rewrites its field, and sends the block
 after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context flag asks for it.
@@ -156,7 +157,7 @@ after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context fl
 
 ## Blocks only the hardware validator sends
 
-Release IRIX 6.5.30m, N32 libGLcore. `__glOdysseyValidateHardware` (`ody_context.s`, source
+Release IRIX 6.5.30m, N32 libGLcore. `__glOdysseyValidateHardware` (the Odyssey GL driver context assembly unit, source
 lines 1840 to 2014) tests the dirty word at context +0x10000 + 26976 bit by bit and, for each set
 bit, sends the settle group and then one block from its context shadow. Setters raise the bit
 after changing the shadow. Within libGLcore only this routine sends the nine blocks below; the
@@ -240,7 +241,7 @@ kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
   two-side flag and bit 27 is set when the fragment normal interpolation is GL_FLAT
   (`__glOdyim_FragmentLightModelivSGIX`, `ody_fragment.s`, lines 511 and 518).
 
-| 0x004 bit | GL state | Writer (`ody_attrib.s` `__glOdyim_Enable` unless named) |
+| 0x004 bit | GL state | Writer (the Odyssey GL driver attribute state assembly unit `__glOdyim_Enable` unless named) |
 |---:|---|---|
 | 0 | `GL_POINT_SMOOTH` | line 332 |
 | 1 | `GL_LINE_SMOOTH` | line 296 |
@@ -254,7 +255,7 @@ kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
 | 20 | `GL_COLOR_LOGIC_OP` | line 317 |
 | 22 | `GL_FOG` | line 270 |
 
-- Bits 13 and 25 of block 0x004 are set once by `__glOdysseyInitDefaultValues` (`ody_context.s`,
+- Bits 13 and 25 of block 0x004 are set once by `__glOdysseyInitDefaultValues` (the Odyssey GL driver context assembly unit,
   source lines 2630 and 2631) and never cleared in libGLcore; `PopAttributes` restores bit 13
   with the enable group. Their effect is unknown. Bits 24, 26 and 28 to 31 have no writer.
 - **0x005**, word `0x00010405`, one operand from context +31744, sent when dirty bit 2
@@ -318,8 +319,8 @@ A sequencer word is `(reg << 24) | 0x8000 | enc(value)` with `enc(v) = (v & 0x3f
 |---|---|---:|---|---|
 | `0x278083ff` | 0x27, instruction write address | 2047 | `odsyRestartContext` (`odsy_ctxsw.o`), the last register writes before the final words of the restart | write address 2047, the last instruction RAM slot, which the loaders never write (`ucode/buzz_isa.md`, "Loading"); why the restart sets it: **unknown** |
 | `0x280080ff` | 0x28, list slot | 255 | the same place | the list slot pointer is parked at 255; **unknown** whether that is the last slot or a null value |
-| `0x2900812f` | 0x29 | 303 | `__glOdysseyImageMovePixelsCopy` (`ody_image_move.s`: the constant 303 goes to a context word, then into the word) | a routine entry: record 303 of `buzz_xform.bin` starts a 17-record routine (`ucode/buzz_routines.md`) |
-| `0x298080c5` | 0x29 | 1221 | `__glOdysseyValidateProgram` and `__glOdysseySetProgram` (`ody_program.s`, source line 1308) | routine 1221, a 1-record routine in `buzz_xform.bin` |
+| `0x2900812f` | 0x29 | 303 | `__glOdysseyImageMovePixelsCopy` (the Odyssey GL driver image move assembly unit: the constant 303 goes to a context word, then into the word) | a routine entry: record 303 of `buzz_xform.bin` starts a 17-record routine (`ucode/buzz_routines.md`) |
+| `0x298080c5` | 0x29 | 1221 | `__glOdysseyValidateProgram` and `__glOdysseySetProgram` (the Odyssey GL driver assembly unit 1, source line 1308) | routine 1221, a 1-record routine in `buzz_xform.bin` |
 | `0x29808062` | 0x29 | 1122 | `__glOdysseySetProgram` in the 4103 patch's libGLcore | **inferred** the same routine as 1221: the kernel's older copy of the program has records from 891 on 99 lower (`ucode/buzz_isa.md`, "Two copies"), and 1221 - 99 = 1122 |
 | `0x310080f0` | 0x31, table index | 240 | `__glOdysseyInitLighting` | the index before a four-word block `0x908091bb` with four zero floats |
 | `0x310080f4` | 0x31, table index | 244 | `__glOdysseyInitLighting` | the same four-word block at the next group of four |

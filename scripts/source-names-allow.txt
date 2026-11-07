@@ -1,0 +1,124 @@
+# Source-file names and request names the reference docs may carry: each one is a name that a published source holds,
+# a file shipped in the installed system, or a file in this workspace. Anything else is described in words.
+# NAME<TAB>REASON; checked by retools/scripts/check-leaks.py.
+BUZZ.h	file in this workspace
+DISPLAY.h	file in this workspace
+PBJ.h	file in this workspace
+apimacro.h	name in the published OpenGL sample implementation
+arch/mips/include/asm/sgi/heart.h	name in published Linux source
+arch/mips/include/asm/xtalk/xwidget.h	name in published Linux source
+arch/mips/sgi-ip30/ip30-xtalk.c	name in published Linux source
+asm/xtalk/xwidget.h	name in published Linux source
+buffers.h	name in the published OpenGL sample implementation
+dl_block.c	name in the published OpenGL sample implementation
+dl_heap.c	name in the published OpenGL sample implementation
+dl_init.c	name in the published OpenGL sample implementation
+dl_list.c	name in the published OpenGL sample implementation
+dl_opt.c	name in the published OpenGL sample implementation
+dl_table.c	name in the published OpenGL sample implementation
+dlistint.h	name in the published OpenGL sample implementation
+enum.c	name in published Linux or OpenBSD source
+gfx/lib/opengl/glcore/dl_block.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_heap.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_init.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_list.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_mopt.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_opt.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_splc.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/dl_table.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_api.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_hist.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_mod.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_pack.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_paths.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_read.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_rend.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/px_upack.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_accum.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_attrib.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_blend.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_buffer.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_capi.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_ci.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_clip.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_contxt.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_depth.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_dlist.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_eval.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_feed.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_fog.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_get.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_lcomp.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_light.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_lnspan.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_math.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_memmgr.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_names.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_napi.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_pgfin.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_pgspan.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_pick.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_rapi.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_rect.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_rgb.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_select.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_size.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_sten.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_store.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_tapi.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_tex.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_texel.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_texextr.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_vapi.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_varray.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_vertex.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_xform.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/glcore/s_zfuncs.c	path in the published OpenGL sample implementation
+gfx/lib/opengl/include/machdep.h	path in the published OpenGL sample implementation
+glcore_odsy.h	file in this workspace
+global.h	name in the published OpenGL sample implementation
+glxproto.h	name in published NetBSD, X.Org or Mesa source
+libglcore/asm/ODYSSEY/x.s	path to a file in this workspace
+lighting.h	name in the published OpenGL sample implementation
+mi/mivaltree.c	name in published OpenBSD X.Org source
+movelight.c	name in the published OpenGL sample implementation
+odsy_kern.h	file in this workspace
+odyssey.c	name in published Linux or OpenBSD source
+odysseyreg.h	name in published Linux or OpenBSD source
+odysseyvar.h	name in published Linux or OpenBSD source
+ogl-sample/gfx/lib/opengl/glcore/s_capi.c	path in the published OpenGL sample implementation
+ogl-sample/gfx/lib/opengl/glcore/s_tapi.c	path in the published OpenGL sample implementation
+ogl-sample/gfx/lib/opengl/include/xform.h	path in the published OpenGL sample implementation
+openbsd/sys/arch/sgi/xbow/odyssey.c	name in published OpenBSD source
+px_api.c	name in the published OpenGL sample implementation
+px_pack.c	name in the published OpenGL sample implementation
+px_paths.c	name in the published OpenGL sample implementation
+px_read.c	name in the published OpenGL sample implementation
+px_upack.c	name in the published OpenGL sample implementation
+report.c	name in published Linux or OpenBSD source
+s_attrib.c	name in the published OpenGL sample implementation
+s_blend.c	name in the published OpenGL sample implementation
+s_buffer.c	name in the published OpenGL sample implementation
+s_capi.c	name in the published OpenGL sample implementation
+s_contxt.c	name in the published OpenGL sample implementation
+s_depth.c	name in the published OpenGL sample implementation
+s_eval.c	name in the published OpenGL sample implementation
+s_fog.c	name in the published OpenGL sample implementation
+s_get.c	name in the published OpenGL sample implementation
+s_names.c	name in the published OpenGL sample implementation
+s_prim.c	name in the published OpenGL sample implementation
+s_rapi.c	name in the published OpenGL sample implementation
+s_sten.c	name in the published OpenGL sample implementation
+s_tapi.c	name in the published OpenGL sample implementation
+s_vapi.c	name in the published OpenGL sample implementation
+s_varray.c	name in the published OpenGL sample implementation
+s_xform.c	name in the published OpenGL sample implementation
+sys/arch/sgi/dev/gl.h	name in published OpenBSD source
+sys/arch/sgi/xbow/odyssey.c	name in published OpenBSD source
+xwidget.h	name in published Linux or OpenBSD source
+GFX_ATTACH_BOARD	name in published Linux source
+GFX_DETACH_BOARD	name in published Linux source
+GFX_GETNUM_BOARDS	name in published Linux source
+GFX_IS_MANAGED	name in published Linux source
+GFX_LABEL	name in published Linux source
+GFX_MAPALL	name in published Linux source

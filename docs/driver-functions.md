@@ -882,7 +882,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsyCheckBoardPointer` (`odsy_init.o`, offset 0x124, 164 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
   Makes sure the record for board number N exists. When the slot in `OdsyBoardspp` is empty it allocates
-  0xb4e0 (46304) zeroed bytes with `kmem_zalloc`, calling `assfail` on line 238 of `odsy_init.c` if that
+  0xb4e0 (46304) zeroed bytes with `kmem_zalloc`, calling `assfail` on line 238 (with the file-name string it passes) if that
   fails, stores the record and puts N in the halfword at +790. In every case it then stores N in the word
   at +240 and sets the word at +0xb468, the flag that selects the busy-wait delay, to 1.
 - `odsyInitDMA` (`odsy_init.o`, offset 0x2668, 244 bytes): **established.**
@@ -1305,7 +1305,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsyCheckBoardPointer` (`odsy_init.o`, offset 0x124, 164 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
   Makes sure the record for board number N exists. When the slot in `OdsyBoardspp` is empty it allocates
-  0xb4f8 (46328) zeroed bytes with `kmem_zalloc`, calling `assfail` on line 238 of `odsy_init.c` if that
+  0xb4f8 (46328) zeroed bytes with `kmem_zalloc`, calling `assfail` on line 238 (with the file-name string it passes) if that
   fails, stores the record and puts N in the halfword at +790. In every case it then stores N in the word
   at +240 and sets the word at +0xb480, the flag that selects the busy-wait delay, to 1.
 - `gfP_OdsySetClipMask` (`odsy_clip.o`, offset 0xb88, 168 bytes): **established.**
@@ -1476,19 +1476,23 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_i2c_start` (`odsy_i2c.o`, offset 0x40c8, 4912 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
 
+
   Opens a transfer on a two-wire port and sends the address byte (arguments: port record, address byte, acknowledge flag). The decompiled listing was followed to every return and the assembly consulted at each branch; the kernel build inlines each semaphore, FIFO-wait and cursor-replay macro, which is why the body is 4912 bytes. Each control-register write of the port is a 64-bit command pushed into the display FIFO at board +0x400000: the high word is 0x30000001 ORed with the register's display address shifted left 14 (the halfword at port record +24), the low word is the shadow control word that the pointer at record +0 names.
   The sequence is: wait for FIFO level 14 and push the shadow with bit 14 (force idle) set; wait 20 microseconds with `odsy_usdelay`; wait for level 15, clear bits 14 and 13 and push again; wait another 20 microseconds; wait for level 13 and read both the control and the status register back through the window at board +0x220000 (display address times 8) into their shadows. It then loads the address byte into bits 7:0, sets bits 8, 9 and 12 (start, transfer, send), clears bits 11 and 13 (stop, force stop), pushes, and clears bit 8 in the shadow. A failed FIFO wait anywhere returns 3; on the success path a last level-15 wait precedes one more read-back of the status register.
   The result is the code of `odsy_i2c_xfer_done_loop` when that is nonzero, otherwise the code of `odsy_i2c_recv_ack` called with 1 when the acknowledge flag is 0 and 0 otherwise, otherwise 0. Every display-FIFO use sits inside a bracket: unless the start-up word at board record +46184 is set, it takes the semaphore at +0x8530 (priority 25); on release it takes the spin lock at +0x8540 and, when a deferred cursor command is pending at +34120, waits for FIFO level 12 and replays it.
 - `odsy_i2c_stop` (`odsy_i2c.o`, offset 0x53f8, 2504 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Ends a two-wire transfer (argument: port record). The tail was checked in the assembly, where the status and control read-backs are separate loads. After a display-FIFO wait at level 15 it sets bit 13 (force stop) of the shadow control word, clears bits 14, 9, 8 and 11 (force idle, transfer, start, stop) and pushes the word, then calls `odsy_i2c_xfer_done_loop`; a nonzero code from that call is returned as is.
   When the wait succeeds, a second FIFO wait at level 14 precedes two read-backs through the window at board +0x220000: the status register into its shadow and the control register into the control shadow (the shadow is refreshed, not zeroed). The routine returns 1 when status bit 22 (busy) is still set and 0 when the bus has released. A failed FIFO wait returns 3.
 - `odsy_i2c_sendbyte` (`odsy_i2c.o`, offset 0x5dc0, 3796 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Sends one data byte as the bus master (arguments: port record, the byte, an acknowledge value to compare, a stop flag). The two result selections were checked in the assembly, where each is a conditional move. The routine calls `odsy_i2c_busy_high_loop` first and returns its code when nonzero. It does not call `odsy_i2c_recv_ack`; the acknowledge test is its own.
   After a FIFO wait at level 15 it clears bits 13, 14, 8 and 11 (force stop, force idle, start, stop), sets bits 12 and 9 (send, transfer), loads the byte into bits 7:0 and pushes the word, then calls `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is). After another level-15 wait it reads the status back through the window at board +0x220000; the result becomes 1 when status bit 8 equals the third argument and stays 0 otherwise. When the stop flag is 1 it then clears bits 13, 14, 8 and 9, sets bit 11 (stop), pushes again and waits with `odsy_i2c_xfer_done_loop`; a failure of that second wait makes the result 1. A failed FIFO wait returns 3.
 - `odsy_i2c_long_recvbyte` (`odsy_i2c.o`, offset 0x6ce0, 2568 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Receives one byte as the bus master with a chosen acknowledge and stop (arguments: port record, acknowledge flag, stop flag, pointer for the byte). Both pushes and the flag tests between them were followed. After a FIFO wait at level 15 it reads the control register back through the window at board +0x220000, clears bits 12 and 8 (send, start), sets bit 10 (refuse acknowledge) unless the acknowledge flag is 1, in which case it clears bit 10, and pushes the word.
   It then calls `odsy_i2c_short_recvbyte` with the byte pointer. After a second level-15 wait it sets bit 11 (stop) when the stop flag is 1 and clears it otherwise, clears bit 10 when the acknowledge flag is 0, and pushes the word again. The result is the code of `odsy_i2c_short_recvbyte`; a failed FIFO wait returns 3.
 - `odsy_i2c_recv_1byte` (`odsy_i2c.o`, offset 0x76e8, 3132 bytes): **established.**
@@ -1497,26 +1501,32 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   It waits with `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is), stores the status low byte through the pointer, then sets bit 9 (transfer) in the shadow when the stop flag is not 1 and clears it when it is, and pushes the word a second time after another level-15 wait. A failed FIFO wait returns 3; success returns 0.
 - `odsy_i2c_becomeSlaveRecv` (`odsy_i2c.o`, offset 0x8324, 2612 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Switches a port from master to slave-receive and takes the first byte (arguments: port record, acknowledge flag, slave address, pointer for the byte). Every return path was followed. It first calls `odsy_i2c_busy_high_loop` and returns its code when nonzero. After a level-15 FIFO wait it reads the control register back through the window at board +0x220000, sets bits 13 and 17 (force stop, slave enable), clears bit 9 (transfer), sets bit 10 (refuse acknowledge) when the flag is 0, clears it when the flag is 1 and leaves it alone for any other value, and puts the low 7 bits of the slave address into bits 24:18.
   It pushes the word after another level-15 wait and calls `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is). A status with bit 20 or 21 set (clock or data error) returns 1; otherwise the status low byte is stored through the pointer, bit 13 is cleared in the shadow and the result is 0. A failed FIFO wait returns 3.
 - `odsy_i2c_slave_recvbyte` (`odsy_i2c.o`, offset 0x8d58, 2572 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Collects bytes while another device drives the clock (arguments: port record, acknowledge flag, buffer limit, buffer). The loop and its two exits were checked in the assembly. When the acknowledge flag differs from bit 10 of the shadow control word it writes the flag into bit 10 of the shadow. After a level-15 FIFO wait it reads the status back through the window at board +0x220000, and loops while status bit 22 (busy) is set.
   Each pass calls `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is), returns 1 on status bit 20 or 21 (clock or data error), and returns 3 after inverting shadow bit 10 when the number of bytes stored so far exceeds the limit argument; so a limit of n lets n + 1 bytes in. Otherwise it stores the status low byte in the buffer at the running count (kept as a 16-bit value) and rereads the status. The result is 0 when the busy bit clears. A failed FIFO wait returns 3.
 - `odsy_i2c_xfer_done_loop` (`odsy_i2c.o`, offset 0x9764, 1256 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Waits for a two-wire byte transfer to finish (argument: port record). The pass counter and its limit were confirmed in the assembly. Each pass takes the display semaphore unless the start-up word at board record +46184 is set, waits for display-FIFO fill to reach level 15 (not drain to empty) with `odsy_poll_dfifo_level`, reads the status register through the window at board +0x220000 into the shadow, and increments a counter.
   While the counter is below 800 the routine returns 0 as soon as status bit 9 (transfer done) reads set, and otherwise waits 100 microseconds with `odsy_usdelay`; the pass that makes the counter 800 returns 2 without testing the bit. A failed FIFO wait returns 3.
 - `odsy_i2c_busy_high_loop` (`odsy_i2c.o`, offset 0x9c4c, 1256 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Waits until a two-wire port shows its busy flag (argument: port record). Its pass structure matches `odsy_i2c_xfer_done_loop` with another status bit and limit, confirmed in the assembly. Each pass takes the display semaphore unless the start-up word at board record +46184 is set, waits for display-FIFO level 15, reads the status register through the window at board +0x220000 into the shadow and increments a counter.
   While the counter is below 400 the routine returns 0 as soon as status bit 22 (busy) reads set, and otherwise waits 100 microseconds with `odsy_usdelay`; the pass that makes the counter 400 returns 2 without testing the bit. A failed FIFO wait returns 3.
 - `odsy_i2c_recv_ack` (`odsy_i2c.o`, offset 0xa134, 1288 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Polls the acknowledge bit of a finished byte (arguments: port record, wanted value). The return values were checked in the assembly. It compares bit 8 of the shadow status with the wanted value and returns 0 on a match. Otherwise it waits 100 microseconds with `odsy_usdelay`, takes the display semaphore unless the start-up word at board record +46184 is set, waits for display-FIFO level 15 and rereads the status through the window at board +0x220000.
   After 400 comparisons that fail it returns 2. A failed FIFO wait returns 3, not 2.
 - `odsy_i2c_init_port_handle` (`odsy_i2c.o`, offset 0xa63c, 1148 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_i2c.o)`.
+
   Fills in the record for one of the two two-wire ports (arguments: port record, board record, port number 0 or 1); any other number returns 1. Every branch was followed. Port 0 gets control and status display addresses 0x2780 and 0x2781 with shadow words at board +0x8614 and +0x8618; port 1 gets 0x2740 and 0x2741 with shadows at +0x860c and +0x8610. The record receives the shadow pointers at +0 and +8, the board at +16, the control and status display addresses as halfwords at +24 and +26, and the port number at +28.
   After a display-FIFO wait at level 14 (a failure returns 3) it reads the control and status registers back through the window at board +0x220000 into their shadows and returns 0.
 - `odsy_i2cReset` (`odsy_i2c.o`, offset 0xaab8, 2440 bytes): **established.**
@@ -1553,11 +1563,13 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   It calls `odsy_i2c_write_denali_byte` for each byte of the buffer in order, stopping at the first failure. It then takes the semaphore again, waits for level 15, writes the saved 0x3804 value back, replays the deferred cursor update and returns 0, or 1 when a byte write or a FIFO wait failed (the restore of 0x3804 is attempted on that path too).
 - `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
   Lays out board memory for a frame-buffer request and programs the scan-out registers (arguments: board record, 52-byte request block). When the request word at +16 is nonzero it returns what `odsyProbeFb` returns and changes nothing. The decompiled listing was followed through the probe branch, the oversubscription branch and the commit path, and the six pushed headers were matched to display registers by decoding the six consecutive literal doublewords the routine loads, whose address field (bits 31:14 after removing 0x30000001) reads 0x2800, 0x2801, 0x2802, 0x2803, 0x2807 and 0x2809.
   Sizing: the tile columns are ceil(width / 16) plus one, rounded down to even, so the row stride is an even number of tiles; the tile rows are ceil(height / 16). The tile count is the product, which is the size in units for depth 32; it is halved (rounded up) for depth 16 and quartered for depth 8, and those depths store 3 and 2 as the depth code (4 for depth 32). The record's start word at +1360 (units shifted left 9) is rounded up to a multiple of 4 and becomes the frame-buffer region at +1360; its region record at +1304 takes the depth at +1321, the width and height at +1336 and +1340 and the column count at +1348. The overlay region at +1496 follows, rounded to a multiple of 4, depth 2, one sixteenth of the tile count rounded up. The coarse-Z slot that follows has size zero (its pointer at +2152 is cleared and its start is the overlay end rounded again). Up to four 8-bit accumulation regions, selected by request word +12 (0 none, 1 two, 2 four), each a quarter of the tile count, follow it; their region records are 136 bytes each from +1576, with the start words from +1632 and the record pointers from +2160. The end, rounded to a multiple of 4, is stored at +1088 as the first free address for later allocations.
   A request whose end, shifted left 13, is not below the SDRAM size word at +252 shifted left 20 logs a severity 4 message and returns -1 with no register written. Otherwise it writes results into the request: +20 the frame-buffer start word (record +1360), +24 the overlay start word (+1496), +28 the frame-buffer start in units shifted left 13, +32, +36, +40 and +44 the sizes of the frame-buffer, overlay, accumulation and coarse-Z regions (the last is zero), and +48 the SDRAM size in bytes. It then takes the display semaphore unless the start-up word at +46184 is set, waits for display-FIFO level 10 and pushes six display-register writes in this order: 0x2800 the overlay start, 0x2801 the frame-buffer start, 0x2802 and 0x2803 each with data 0, 0x2807 the row stride in tiles, 0x2809 the depth code. It releases with the cursor replay, stores the width and height as halfwords at +232 and +234, clears the words at +796 and +800, and sets the halfword at +804 to 1, and returns 0. A failed level wait releases and returns -1.
 - `odsyLoadTimingTable` (`odsy_brdmgr.o`, offset 0x3c4c, 8392 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
   Programs a video timing into the board: the pixel-clock generator, the
   video timing generator tables and the scan-out registers. It takes the lock at record +0x8520, reads the
   host-interface control register back through the window at board +0x220000 and loads the 3-bit clock
@@ -1578,6 +1590,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   It releases the lock at +0x8520 and returns 0, or 16 when a FIFO wait fails.
 - `odsyInitDBE` (`odsy_init.o`, offset 0x2c5c, 4248 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.
+
   Brings the display back end to a known state and identifies the
   attached parts. In order it quiets the clock registers (display addresses 0x2b00 five times and 0x2700),
   reads the two output-enable words at 0x2483 and 0x2482 into the record, sets up the main and option two-wire
@@ -1596,6 +1609,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   The full step list and the unresolved stack words of the mode table are in `docs/kernel.md`.
 - `odsyBlankScreen` (`odsy_brdmgr.o`, offset 0x21f8, 4580 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
 
   off or on through the output-enable and DAC-control display registers. Mode 2 blanks: it clears bit 5 of the
   shadow of display register 0x2482 (record -19492) and bits 0, 1 and 5 of the shadow of 0x2483 (record -19496), reads
@@ -1654,6 +1668,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   ends with the markers 15608 to 15611, each followed by 16 zero words, and returns nothing.
 - `odsyConfigFb` (`odsy_brdmgr.o`, offset 0x824, 2148 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+
   Lays out board memory for a frame-buffer request and programs the scan-out registers (arguments: board record, 52-byte request block). When the request word at +16 is nonzero it returns what `odsyProbeFb` returns and changes nothing. The decompiled listing was followed through the probe branch, the oversubscription branch and the commit path, and the six pushed headers were matched to display registers by decoding the six consecutive literal doublewords the routine loads, whose address field (bits 31:14 after removing 0x30000001) reads 0x2800, 0x2801, 0x2802, 0x2803, 0x2807 and 0x2809.
   Sizing: the tile columns are ceil(width / 16) plus one, rounded down to even, so the row stride is an even number of tiles; the tile rows are ceil(height / 16). The tile count is the product, which is the size in units for depth 32; it is halved (rounded up) for depth 16 and quartered for depth 8, and those depths store 3 and 2 as the depth code (4 for depth 32). The record's start word at +1360 (units shifted left 9) is rounded up to a multiple of 4 and becomes the frame-buffer region at +1360; its region record at +1304 takes the depth at +1321, the width and height at +1336 and +1340 and the column count at +1348. The overlay region at +1496 follows, rounded to a multiple of 4, depth 2, one sixteenth of the tile count rounded up. The coarse-Z slot that follows has size zero (its pointer at +2152 is cleared and its start is the overlay end rounded again). Up to four 8-bit accumulation regions, selected by request word +12 (0 none, 1 two, 2 four), each a quarter of the tile count, follow it; their region records are 136 bytes each from +1576, with the start words from +1632 and the record pointers from +2160. The end, rounded to a multiple of 4, is stored at +1088 as the first free address for later allocations.
   A request whose end, shifted left 13, is not below the SDRAM size word at +252 shifted left 20 logs a severity 4 message and returns -1 with no register written. Otherwise it writes results into the request: +20 the frame-buffer start word (record +1360), +24 the overlay start word (+1496), +28 the frame-buffer start in units shifted left 13, +32, +36, +40 and +44 the sizes of the frame-buffer, overlay, accumulation and coarse-Z regions (the last is zero), and +48 the SDRAM size in bytes. It then takes the display semaphore unless the start-up word at +46208 is set, waits for display-FIFO level 10 and pushes six display-register writes in this order: 0x2800 the overlay start, 0x2801 the frame-buffer start, 0x2802 and 0x2803 each with data 0, 0x2807 the row stride in tiles, 0x2809 the depth code. It releases with the cursor replay, stores the width and height as halfwords at +232 and +234, clears the words at +796 and +800, and sets the halfword at +804 to 1, and returns 0. A failed level wait releases and returns -1.
@@ -1671,18 +1686,22 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Then, with no pass limit, it waits 10 microseconds, waits for FIFO level 15, reads the status through the window at board +0x220000, and loops until the state field (bits 13:10) reads 0 or 10. It clears bit 14 and pushes the word once more. A failed FIFO wait ends the routine early.
 - `odsy_i2c_becomeSlaveRecv` (`odsy_i2c.o`, offset 0x8324, 2612 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Switches a port from master to slave-receive and takes the first byte (arguments: port record, acknowledge flag, slave address, pointer for the byte). Every return path was followed. It first calls `odsy_i2c_busy_high_loop` and returns its code when nonzero. After a level-15 FIFO wait it reads the control register back through the window at board +0x220000, sets bits 13 and 17 (force stop, slave enable), clears bit 9 (transfer), sets bit 10 (refuse acknowledge) when the flag is 0, clears it when the flag is 1 and leaves it alone for any other value, and puts the low 7 bits of the slave address into bits 24:18.
   It pushes the word after another level-15 wait and calls `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is). A status with bit 20 or 21 set (clock or data error) returns 1; otherwise the status low byte is stored through the pointer, bit 13 is cleared in the shadow and the result is 0. A failed FIFO wait returns 3.
 - `odsy_i2c_busy_high_loop` (`odsy_i2c.o`, offset 0x9c4c, 1256 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Waits until a two-wire port shows its busy flag (argument: port record). Its pass structure matches `odsy_i2c_xfer_done_loop` with another status bit and limit, confirmed in the assembly. Each pass takes the display semaphore unless the start-up word at board record +46208 is set, waits for display-FIFO level 15, reads the status register through the window at board +0x220000 into the shadow and increments a counter.
   While the counter is below 400 the routine returns 0 as soon as status bit 22 (busy) reads set, and otherwise waits 100 microseconds with `odsy_usdelay`; the pass that makes the counter 400 returns 2 without testing the bit. A failed FIFO wait returns 3.
 - `odsy_i2c_init_port_handle` (`odsy_i2c.o`, offset 0xa63c, 1148 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Fills in the record for one of the two two-wire ports (arguments: port record, board record, port number 0 or 1); any other number returns 1. Every branch was followed. Port 0 gets control and status display addresses 0x2780 and 0x2781 with shadow words at board +0x8614 and +0x8618; port 1 gets 0x2740 and 0x2741 with shadows at +0x860c and +0x8610. The record receives the shadow pointers at +0 and +8, the board at +16, the control and status display addresses as halfwords at +24 and +26, and the port number at +28.
   After a display-FIFO wait at level 14 (a failure returns 3) it reads the control and status registers back through the window at board +0x220000 into their shadows and returns 0.
 - `odsy_i2c_long_recvbyte` (`odsy_i2c.o`, offset 0x6ce0, 2568 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Receives one byte as the bus master with a chosen acknowledge and stop (arguments: port record, acknowledge flag, stop flag, pointer for the byte). Both pushes and the flag tests between them were followed. After a FIFO wait at level 15 it reads the control register back through the window at board +0x220000, clears bits 12 and 8 (send, start), sets bit 10 (refuse acknowledge) unless the acknowledge flag is 1, in which case it clears bit 10, and pushes the word.
   It then calls `odsy_i2c_short_recvbyte` with the byte pointer. After a second level-15 wait it sets bit 11 (stop) when the stop flag is 1 and clears it otherwise, clears bit 10 when the acknowledge flag is 0, and pushes the word again. The result is the code of `odsy_i2c_short_recvbyte`; a failed FIFO wait returns 3.
 - `odsy_i2c_read_comp_reg4` (`odsy_i2c.o`, offset 0x0, 2804 bytes): **established.**
@@ -1713,24 +1732,29 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   It waits with `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is), stores the status low byte through the pointer, then sets bit 9 (transfer) in the shadow when the stop flag is not 1 and clears it when it is, and pushes the word a second time after another level-15 wait. A failed FIFO wait returns 3; success returns 0.
 - `odsy_i2c_recv_ack` (`odsy_i2c.o`, offset 0xa134, 1288 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Polls the acknowledge bit of a finished byte (arguments: port record, wanted value). The return values were checked in the assembly. It compares bit 8 of the shadow status with the wanted value and returns 0 on a match. Otherwise it waits 100 microseconds with `odsy_usdelay`, takes the display semaphore unless the start-up word at board record +46208 is set, waits for display-FIFO level 15 and rereads the status through the window at board +0x220000.
   After 400 comparisons that fail it returns 2. A failed FIFO wait returns 3, not 2.
 - `odsy_i2c_sendbyte` (`odsy_i2c.o`, offset 0x5dc0, 3796 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Sends one data byte as the bus master (arguments: port record, the byte, an acknowledge value to compare, a stop flag). The two result selections were checked in the assembly, where each is a conditional move. The routine calls `odsy_i2c_busy_high_loop` first and returns its code when nonzero. It does not call `odsy_i2c_recv_ack`; the acknowledge test is its own.
   After a FIFO wait at level 15 it clears bits 13, 14, 8 and 11 (force stop, force idle, start, stop), sets bits 12 and 9 (send, transfer), loads the byte into bits 7:0 and pushes the word, then calls `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is). After another level-15 wait it reads the status back through the window at board +0x220000; the result becomes 1 when status bit 8 equals the third argument and stays 0 otherwise. When the stop flag is 1 it then clears bits 13, 14, 8 and 9, sets bit 11 (stop), pushes again and waits with `odsy_i2c_xfer_done_loop`; a failure of that second wait makes the result 1. A failed FIFO wait returns 3.
 - `odsy_i2c_slave_recvbyte` (`odsy_i2c.o`, offset 0x8d58, 2572 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Collects bytes while another device drives the clock (arguments: port record, acknowledge flag, buffer limit, buffer). The loop and its two exits were checked in the assembly. When the acknowledge flag differs from bit 10 of the shadow control word it writes the flag into bit 10 of the shadow. After a level-15 FIFO wait it reads the status back through the window at board +0x220000, and loops while status bit 22 (busy) is set.
   Each pass calls `odsy_i2c_xfer_done_loop` (a nonzero code is returned as is), returns 1 on status bit 20 or 21 (clock or data error), and returns 3 after inverting shadow bit 10 when the number of bytes stored so far exceeds the limit argument; so a limit of n lets n + 1 bytes in. Otherwise it stores the status low byte in the buffer at the running count (kept as a 16-bit value) and rereads the status. The result is 0 when the busy bit clears. A failed FIFO wait returns 3.
 - `odsy_i2c_start` (`odsy_i2c.o`, offset 0x40c8, 4912 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
 
   Opens a transfer on a two-wire port and sends the address byte (arguments: port record, address byte, acknowledge flag). The decompiled listing was followed to every return and the assembly consulted at each branch; the kernel build inlines each semaphore, FIFO-wait and cursor-replay macro, which is why the body is 4912 bytes. Each control-register write of the port is a 64-bit command pushed into the display FIFO at board +0x400000: the high word is 0x30000001 ORed with the register's display address shifted left 14 (the halfword at port record +24), the low word is the shadow control word that the pointer at record +0 names.
   The sequence is: wait for FIFO level 14 and push the shadow with bit 14 (force idle) set; wait 20 microseconds with `odsy_usdelay`; wait for level 15, clear bits 14 and 13 and push again; wait another 20 microseconds; wait for level 13 and read both the control and the status register back through the window at board +0x220000 (display address times 8) into their shadows. It then loads the address byte into bits 7:0, sets bits 8, 9 and 12 (start, transfer, send), clears bits 11 and 13 (stop, force stop), pushes, and clears bit 8 in the shadow. A failed FIFO wait anywhere returns 3; on the success path a last level-15 wait precedes one more read-back of the status register.
   The result is the code of `odsy_i2c_xfer_done_loop` when that is nonzero, otherwise the code of `odsy_i2c_recv_ack` called with 1 when the acknowledge flag is 0 and 0 otherwise, otherwise 0. Every display-FIFO use sits inside a bracket: unless the start-up word at board record +46208 is set, it takes the semaphore at +0x8530 (priority 25); on release it takes the spin lock at +0x8540 and, when a deferred cursor command is pending at +34120, waits for FIFO level 12 and replays it.
 - `odsy_i2c_stop` (`odsy_i2c.o`, offset 0x53f8, 2504 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Ends a two-wire transfer (argument: port record). The tail was checked in the assembly, where the status and control read-backs are separate loads. After a display-FIFO wait at level 15 it sets bit 13 (force stop) of the shadow control word, clears bits 14, 9, 8 and 11 (force idle, transfer, start, stop) and pushes the word, then calls `odsy_i2c_xfer_done_loop`; a nonzero code from that call is returned as is.
   When the wait succeeds, a second FIFO wait at level 14 precedes two read-backs through the window at board +0x220000: the status register into its shadow and the control register into the control shadow (the shadow is refreshed, not zeroed). The routine returns 1 when status bit 22 (busy) is still set and 0 when the bus has released. A failed FIFO wait returns 3.
 - `odsy_i2c_write_comp_reg4` (`odsy_i2c.o`, offset 0xaf4, 2636 bytes): **established.**
@@ -1750,6 +1774,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   After 20 microseconds it waits up to 133 passes, 100 microseconds apart, for status bit 22 (busy) to read set. It then sets bit 11 (stop), clears bit 13 (force stop), sets bit 9 (transfer), loads the byte into bits 7:0 and pushes the word after a display-FIFO wait at level 15. A second wait of up to 133 passes looks for status bit 9 (transfer done), and a status with bit 8 set (acknowledge refused) fails. It returns 0 on success and 1 on any failed step.
 - `odsy_i2c_xfer_done_loop` (`odsy_i2c.o`, offset 0x9764, 1256 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_i2c.o)`.
+
   Waits for a two-wire byte transfer to finish (argument: port record). The pass counter and its limit were confirmed in the assembly. Each pass takes the display semaphore unless the start-up word at board record +46208 is set, waits for display-FIFO fill to reach level 15 (not drain to empty) with `odsy_poll_dfifo_level`, reads the status register through the window at board +0x220000 into the shadow, and increments a counter.
   While the counter is below 800 the routine returns 0 as soon as status bit 9 (transfer done) reads set, and otherwise waits 100 microseconds with `odsy_usdelay`; the pass that makes the counter 800 returns 2 without testing the bit. A failed FIFO wait returns 3.
 - `odsyInitBoardGfx` (`odsy_init.o`, offset 0xc5c, 640 bytes): **established.**
@@ -1803,7 +1828,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   `odsyLowaterInterrupt`; bit 25 logs the `.rodata` message at +432 ("CFIFO HW received") at severity 5; bit 31 calls
   `odsyGenlockInterrupt`; bit 30 logs the message at +472 (CLOCK_STOPPED_INTR) at severity 5; bits 29, 28,
   27, 24, 23, 22, 21, 20 and 18 log the messages at +520, +568, +608, +648, +688, +736, +784, +832 and
-  +888 at severity 4 (the strings are READ_DURING_DIAG_ERROR, PUSH_CMD_ERROR, GFX_OFLOW_INTR, DBE_OFLOW_INTR, DFIFO_OFLOW_INTR, XFORM_IFIFO_OFLOW_INTR, XFORM_UCODE_OFLOW_INTR, XFORM_PTABLE_OFLOW_INTR and GFX_XTALK_STALL); any of the bits in 0x3c000 logs the +936 message (HOST_FLAG_INTR) at severity 5; then bits 13, 11, 10, 8 and 7 log +976, +1024, +1064, +1112 and +1160 at severity 4 (PRIV_VIOLATE_GFX, DMA_DONE_FLAG, DMA_CMD_OFLO_INTR, ILLEGAL_OUT_FORMAT, MULTGET_INTR). Bit 4 adds
+  +888 at severity 4 (the strings are READ_DURING_DIAG_ERROR, PUSH_CMD_ERROR, the overflow interrupt graphics-driver request, DBE_OFLOW_INTR, DFIFO_OFLOW_INTR, XFORM_IFIFO_OFLOW_INTR, XFORM_UCODE_OFLOW_INTR, XFORM_PTABLE_OFLOW_INTR and the crosstalk-link stall graphics-driver request); any of the bits in 0x3c000 logs the +936 message (HOST_FLAG_INTR) at severity 5; then bits 13, 11, 10, 8 and 7 log +976, +1024, +1064, +1112 and +1160 at severity 4 (PRIV_VIOLATE_GFX, DMA_DONE_FLAG, DMA_CMD_OFLO_INTR, ILLEGAL_OUT_FORMAT, MULTGET_INTR). Bit 4 adds
   one to the word at record +46176 and logs the +1216 message (CORRECTABLE_ECC_ERROR) at severity 5 with the text at +1200
   ("multiple") when bit 3 is set or the text at +1432 ("single") when it is clear, and the count; bits
   2, 1 and 0 log +1280, +1336 and +1384 at severity 4 (UNCORRECTABLE_ECC_ERROR, SYNC_TIMEOUT_FLAG, HEURISTIC_OVERFLOW). When the raw flags intersect 0x39f02587 it calls `odsy_teardown` and returns its result;
@@ -1855,6 +1880,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   the word at +16 of the `gfxinfo` entry is incremented.
 - `gf_OdsyPositionCursor` (`odsy_brdmgr.o`, offset 0x118c, 580 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
   Moves the hardware cursor. It stores the pointer position in the board record (halfwords at -19672 and
   -19670 from record +0x10000), subtracts the hot spot (halfwords at -19668 and -19666) and packs the result as
   a 64-bit display-FIFO command with x in the upper and y in the lower halfword. When the display mode halfword at +804 is 2
@@ -1977,6 +2003,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_i2c_cmd` (`odsy_ddc.o`, offset 0x2314, 3312 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
 
+
   
   Runs one user two-wire command. The request block carries the command number as a halfword at +2, the
   port number at +8 (0 selects the port handle at record +0xb3e0, 1 the one at +0xb408, anything else
@@ -2002,6 +2029,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   and logs a severity 4 message on failure.
 - `odsy_i2cProbe2b` (`odsy_ddc.o`, offset 0x410, 6172 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+
 
   per-port data slot.
   Reads a monitor's EDID over a port handle (word at +0 points at the line-control shadow, +16 is the board
@@ -2742,6 +2770,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   (the short way round), allocates and clears the node's pointer array when the node holds no elements, stores the
   element at the low bits of the id, adds one to the node's count (+8) and the set's, makes the node the hint and returns the
   id. It does not check that the id is free.
+
 - `OdsyAllocCSetId` (`odsy_adt.o`, offset 0x604, 608 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
   Gives an element the lowest free id the search finds in a chunked set. A shift of 0 returns -1. When the set's
@@ -2751,7 +2780,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   set's count are incremented and the node becomes the hint. Otherwise, or when no free slot is found, it builds a
   new node with its array (a failed array allocation poisons the node with 210 and frees it, returning -1), gives it
   the next 1-based number, one element, takes as its id the set's element count before the increment, links it into the ring tail and stores the element in slot 0.
-  source's plain scan from the head (`odsy_adt.c`).
+
 - `OdsyDeallocCSetId` (`odsy_adt.o`, offset 0x864, 352 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
   Frees an id in a chunked set. It walks the ring to the id's chunk in whichever direction is shorter, stores 0 in the
@@ -2774,10 +2803,11 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)`.
   Returns a 32 KB slot to the bitmap of `OdsyAlloc32kSlot`. A null bitmap or a slot at or above 512 x 64 logs a
   severity 4 message and returns. Otherwise it takes the lock, clears the bit with a 64-bit mask, lowers the first-free
-  index to this doubleword when it was higher and releases the lock.
+  index to this doubleword when it was higher and releases the lock. The mask is built by shifting a 64-bit value,
   so slots from 32 up within a word clear correctly.
 - `gfP_OdsyBRDMGRsetColors` (`odsy_brdmgr.o`, offset 0x0, 1680 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
   Private request 26: loads colour-map entries. It copies in 16 bytes: a halfword count at +0 (0 returns 0) and
   the pointer to an array of 8-byte entries (index word, packed colour word) at +8. It allocates and copies the
   array (failures: 12 and 14), takes the display-FIFO semaphore (`psema` at 25 on +0x8530, or nothing when the start-up word at
@@ -2791,6 +2821,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   word at -19664 when the head flag at -31408 differs from its bit 5), then calls `vsema`.
 - `gfP_OdsyBRDMGRcursor` (`odsy_brdmgr.o`, offset 0x13d0, 3396 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
+
   Private request 28: sets the hardware cursor. It copies in 40 bytes (failure 14) and acts on the flag word at +0
   in this order. Bit 0 stores the two halfwords of word +4 as the hot spot (-19668 and -19666 from board record +0x10000);
   bit 1 calls `gf_OdsyPositionCursor` with the halfwords of word +8; bit 2 stores word +12 as the cursor control word
@@ -2810,7 +2841,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   (its role is unknown from the binary alone) and sends that word. When bit 0 is clear and bit 1 is set, bit 6 of the control
   word at -19500 is set to bit 0 of the value and the word is sent. Both sends are display-FIFO doublewords at board
   +0x400000 whose header halves are constants held by the object. The release replays the pending cursor command as
-  in the other display requests.
+
 
 - `odsy_LoadDCD2Regs` (`odsy_brdmgr.o`, offset 0x3828, 1060 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_brdmgr.o)`.
@@ -3043,6 +3074,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   the tick count reaches 30 it returns 1.
 - `odsy_Probe2AB` (`odsy_ddc.o`, offset 0x3004, 728 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_ddc.o)`.
+
   Finds a DDC2AB monitor and moves it to the assigned address. It calls `odsy_i2cReset`, then loops until 30 ticks
   have passed: the reset command byte 0xf0 is sent (no stop) up to three times with `odsy_2abSendCmd`, each a tick; three
   failures send a stop, wait and loop. `odsy_2abGetReply` must return a one-byte reply 0xe0 (attention); a non-positive
@@ -3172,6 +3204,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   the port height at +16 of its static object, and the primitive end `0x14001`. A word at +7036 of the hardware-state
   object adds an extra settle group (`0x10443` with 250 and two `0x10046`) in front of the settle sequence of `BUZZ.h`
   section 5 that closes every text-port drawing routine. The use count goes down and the lock is released.
+
 - `odsy_pnt2i` (`odsy_tport.o`, offset 0xde8, 404 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
   Text-port point (arguments: board base, x, y). With the mute word clear it takes the in-use count and the text-port spin lock,
@@ -3180,13 +3213,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_tpinit` (`odsy_tport.o`, offset 0x1658, 492 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
 
+
   Prepares the board for text-port output (argument: board base). It finds the board with `odsyPipeNrFromBase`, sets the mute word and
   waits in 5 us steps for the command FIFO level (bits 15:7 of the word at +4204) to reach zero. Up to six times it writes 0, 1, 0 to
   +4228, 0 to +4212 and 1 to +4220 and runs `odsyInitCfifo`; a failure runs `odsyReset` first on the next pass and a sixth failure logs
   severity 1 and leaves the port muted. It then calls `odsyInitDBE` twice with two stored timing structures, stores the board's width and height
   (halfwords at +232 and +234) in the static port object, copies three board words (+1360, +1496 and +1336 divided by 16) into the stored
   state, clears 11128 bytes of the hardware-state object, writes 4165 stored words to the FIFO port at +0x110000,
-  calls `ODSY_SET_GC`, and clears the mute word.
+  calls the set graphics-context Odyssey driver request, and clears the mute word.
 - `gfP_OdsyHPconfig` (`odsy_hpipe.o`, offset 0xc58, 712 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)`.
   Private request 40: creates a display-pipe configuration (several boards tiled side by side). It copies in 524 bytes (failure
@@ -3317,7 +3351,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Private request 37 on the IP35 build: removes the association made by `gfP_OdsyPbufAssoc`; the whole body was read and matches the IP30 routine except that one message-pointer load moved a few instructions. It copies in 8 bytes (failure: log and 14), takes the board from owner +40, folds the drawable id (the two halves of the first word ORed together) modulo 13 and takes the reader lock at board +0x8660 with `mraccessf`. The drawable is looked up in the hash at board +0x8658 (missing: unlock, 22). A drawable whose object pointer at +24 is null logs at severity 4 and returns 0 with the lock still held. Otherwise it stores the group's id (its first word) in the second word of the message, promotes the lock with `mrtrypromote` (failure: unlock, 13), removes the drawable with `odsyHashRemove`, sets its type word at +36 to 1 and, when its user count at +32 is zero, destroys it with `odsyDestroyDrawable`. It then unlocks and copies the 8 bytes back out (failure: log and 14), and returns 0.
 - `odsy_tpinit` (`odsy_tport.o`, offset 0x15e4, 496 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
-  Prepares the board for text-port output on the IP35 build (argument: board base); the whole body was read and it matches the IP30 routine apart from where one argument move sits. `odsyPipeNrFromBase` gives the pipe, whose board record is found through the per-pipe table; the mute word in small data is set to 1 (with a `wbflush`) and the routine waits in 5 microsecond steps until the field in bits 15:7 of the register at +4204 reads zero. It then tries up to six times: it writes 0, 1, 0 to register +4228, 0 to +4212 and 1 to +4220, and runs `odsyInitCfifo` for the pipe stored in the record's halfword at +790; a failure runs `odsyReset` for that pipe and tries again, and the sixth failure logs severity 1 and leaves the port muted. On success it calls `odsyInitDBE` twice with two stored timing structures, copies the board's width and height (+232, +234) into the static port object, copies the board word at +1360 into two words of the stored state (+16676, +16700) and the word at +1496 into +16724, clears 11128 bytes of the hardware-state object, stores the word at +1336 divided by 16 into it at +6952, replays 4165 stored words to the FIFO port at +0x110000, calls `ODSY_SET_GC` and clears the mute word.
+  Prepares the board for text-port output on the IP35 build (argument: board base); the whole body was read and it matches the IP30 routine apart from where one argument move sits. `odsyPipeNrFromBase` gives the pipe, whose board record is found through the per-pipe table; the mute word in small data is set to 1 (with a `wbflush`) and the routine waits in 5 microsecond steps until the field in bits 15:7 of the register at +4204 reads zero. It then tries up to six times: it writes 0, 1, 0 to register +4228, 0 to +4212 and 1 to +4220, and runs `odsyInitCfifo` for the pipe stored in the record's halfword at +790; a failure runs `odsyReset` for that pipe and tries again, and the sixth failure logs severity 1 and leaves the port muted. On success it calls `odsyInitDBE` twice with two stored timing structures, copies the board's width and height (+232, +234) into the static port object, copies the board word at +1360 into two words of the stored state (+16676, +16700) and the word at +1496 into +16724, clears 11128 bytes of the hardware-state object, stores the word at +1336 divided by 16 into it at +6952, replays 4165 stored words to the FIFO port at +0x110000, calls the set graphics-context Odyssey driver request and clears the mute word.
 - `odsyClipMask` (`odsy_clip.o`, offset 0x5bc, 520 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_clip.o)`.
   The IP35 build of the clip-mask routine, compared instruction by instruction with the IP30 build: the 136
@@ -3496,13 +3530,14 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
 - `odsy_drawbitmap` (`odsy_tport.o`, offset 0xf8c, 1716 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_tport.o)`.
 
+
   Text-port glyph draw (arguments: board base, bitmap record with the row pointer at +0, width +8, height +10, x and y origin +12 and +14, x and y advance +16
   and +18, row stride in halfwords +20). It returns when the mute word is set, otherwise counts itself in use, takes the text-port lock and calls
-  `ODSY_SET_GC` with the enable flag set. The bitmap is walked in bands of at most 64 rows and cells of at most 16 columns. For each cell it copies
+  the set graphics-context Odyssey driver request with the enable flag set. The bitmap is walked in bands of at most 64 rows and cells of at most 16 columns. For each cell it copies
   the cell's rows, bottom row first, as halfwords to the start of the hardware-state object (the 16-word stipple pattern), sends block 0x03f with 6, the pattern as
   blocks 0x04e and 0x04f (16 words each), the primitive begin 0x14400 with 7, four 0x8080c800 vertices (the cell's left and right columns by its bottom and top rows, flipped against the
   port height at +16 of the static port object, with the glyph origin and a one-row offset applied) and 0x14001. A nonzero word at +7036 puts an extra 0x10443 group in front of the
-  closing settle group. When the bitmap is done it adds the x and y advance to the cursor in the static object, calls `ODSY_SET_GC` again with the enable flag clear, sends one more
+  closing settle group. When the bitmap is done it adds the x and y advance to the cursor in the static object, calls the set graphics-context Odyssey driver request again with the enable flag clear, sends one more
   settle group and releases the lock.
 - `generatePageTable` (`odsy_dma.o`, offset 0x558, 880 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dma.o)`.
@@ -3633,21 +3668,21 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   Maps the board's windows into a client's address space on the IP35 build (arguments: manager object, user address); the whole body was read and the window table is the IP30 one. The address is cut to a 16 KB boundary, `gfx_flow_clean_up_other_gfxp` runs and `ddv_getaddr` gives the base. `v_mapkvsegment` maps +0x100000 at user offset 0 (1 page, cache argument 0) and +0x120000 at 0x4000 (1 page, 2); only when bit 5 of the client's flag word (+4) is set does it map the register page from +0 at 0x8000 (2 pages, 2), +0x110000 at 0x10000 (1, 0), +0x118000 at 0x14000 (1, 2), +0x200000 at 0x18000 (1, 2), +0x220000 at 0x1c000 (8, 2) and +0x400000 at 0x3c000 (1, 2). Under `splhi` it sets bit 0 of the flag word. A process not yet attached to flow control is attached (`rt_pin_thread`, `gfx_flow_attach_me`, the credit word at -31292 from +0x10000 rebuilt from the board word at -19376 shifted left 12 and written there and to register 0x1074, the word at -31288 and register 0x107c cleared, level restored, `odsy_flow_await_returned_credits`, level raised, `gfx_flow_attach_me_finish`, `rt_unpin_thread`). It clears the eight doublewords at +104 and sets in them the bit of the current processor (number from the halfword at -15320, doubleword index its value divided by 64). It returns 0 when a mapping reported the client's address as mapped and -1 when none did.
 - `odsyInitCfifo` (`odsy_init.o`, offset 0x2bc8, 1092 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-The source covers only these board-side FIFO commands, which the IP30 kernel build also writes; the flow-control credits, the thread attach and detach, the board answer check and the microcode load below rest on the IP35 binary alone.
+
   Sets up the command FIFO and loads the transform microcode on the IP35 build (arguments: board number, flow-control flag); the whole body was read. It returns 0, or 1 when the board does not answer the check below. With the flag set it first takes `splhi`, sets bit 1 of the flag word at +4 of the client record behind +72, and, when the flow handle at +808 exists and `gfx_flow_am_i_attached` says this thread is not attached, pins the thread with `rt_pin_thread`, attaches with `gfx_flow_attach_me`, rewrites the shadow of 0x1074 (bits 16:12 replaced by the credit target number from -19376, shifted left 12) and stores it, stores 0 to 0x107c (flow control on), lowers the level, waits in `odsy_flow_await_returned_credits`, raises it again, calls `gfx_flow_attach_me_finish` and unpins; the level is restored on the way out.
   FIFO stores go to the board base plus 0x110000, one `sync` after each: the header word 0x10854 and the operands 0 and 0x0fffffff, then five doublewords from the literal pool, 0x000006b000000000, 0x000006b100000100, 0x000006b300005e50, 0x000006b200007dc0 and 0x000007b500000001 (what blocks 0x6b0 to 0x6b3 and 0x7b5 configure is unknown from the binary alone; a read of the flags handler's tests of the FIFO fill status bits would settle the 0x6b2 and 0x6b3 pair), and the word 0x10046. It then reads one doubleword from a literal-pool address in uncached space (result discarded), waits 2000 us with `odsy_usdelay` and reads the word at board offset 0x201594; any value other than 0x003d0046 skips the microcode load and goes to the exit with result 1.
   Microcode load: the three sequencer words 0x2e008380, 0x2600807f and 0x27008000, then 2048 records of six words. A record takes six halfwords of the microcode array (starting 2000 bytes into the array the small-data slot points to), the six taken from the highest index of the record down to the lowest; each is sent as 0x40008000 OR the low 10 bits OR the high 6 bits shifted left 23. A final doubleword, 0x000007f03b9aca00, goes to the FIFO port last.
   With the flag set it ends, on both the success and the failure path, by taking `splhi` again; when the flow handle exists and this thread is attached and the word at +104 is zero it first waits for returned credits when the credit count is below the bias (with the thread pinned), stores 1 at board record +34248, stores 1 to 0x107c, reads 0x107c back, calls `gfx_flow_detach_me` and clears bit 1 of the client flag word; then it restores the level.
 - `gf_OdsyInitialize` (`odsy_init.o`, offset 0x15dc, 1644 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-The source has no host-chip code, so the host-part tests and the credit counts, the flow-control word bits and the crossbar interrupt target rest on the IP35 binary alone.
+
   Prepares a board after attach on the IP35 build (argument: graphics manager object); the whole body was read. It returns 0, or -1 when nodes stay open. It clears the start-up word at -19328 first. When the open-node count at +28480 is nonzero it logs "odsy board %d: %d rnodes still open when OdsyInitialize called" at severity 4, makes a semaphore at +28464, arms `timeout` for 500 ticks with `odsy_init_ddrncount_timeout` and sleeps on it at priority 25, and repeats while the count stays nonzero, returning -1 after the eleventh pass.
   Next it owns the graphics semaphore: when the owner at +72 is not the caller it does `psema` on +56 at priority 537, records itself as owner and polls the hold word at +104 in 2 us steps until it is zero; either way it raises the lock count at +80 by one. It calls `htp_register_board` with four zeroes (an uncached literal-pool read with a discarded result sits in its delay slot). When the manager's flag word (+4) has bits 1:0 set, it detaches the thread from flow control with the same sequence `odsyInitCfifo` uses on exit (when +104 is zero and the credit count is below the bias it waits for returned credits first; then 1 to the shadow of 0x107c and to the register, read back, `gfx_flow_detach_me`) and clears those flag bits. It then frees the old flow handle at +808 with `gfx_flow_dealloc`.
   The loop body: it calls `odsyReset`, reads the word at 0x9000000014000000 and then `get_nasid` and `get_chimera_type` (the same host-part tests as `odsyReset`: bits 15:12 equal to 4, or chimera type 3 or 5, give 2048 credits; any other host takes the kernel variable `odyssey_dwcredits` times 8) and allocates a flow handle with `gfx_flow_alloc` (device handle -19400, window from +832 plus 0x100000 and plus 0x110000, 100000 ns timer, `odsyHiwaterInterrupt` as handler, the record as argument, flags 1). It stores the handle at +808, reads the handle's window information into +840 and the credit target number into -19376. Then it waits in 5 us steps until the command FIFO fill (bits 15:7 of 0x106c) is zero, pulses 0x1084 with 0, 1, 0, and builds the flow-control word in its shadow: 0x800000 when the kernel variable `odyssey_dwsupport` is nonzero and 0x1800000 otherwise, ORed with the crossbar interrupt target number shifted left 17, the credit target number shifted left 12 and 0xc8; the word goes to 0x1074 with a `sync`. It calls `odsyInitCfifo` with flow control on; a nonzero result frees the flow handle, waits 10 ms and goes round again. The counter that was meant to limit the retries sits in a register that the top of the loop clears, so as compiled the loop only leaves on success and the -1 exit behind it cannot be reached.
   After success: `OdsyInit32kSlotMask` on the mask at +29952; one slot taken and dropped (slot 0 is never used); a second slot stored at -19356, its host address (the write-back region at +880 plus twice the slot) at -19352 and a zero halfword written there; `odsyInitMM`; `odsyInitDMA`; the doublewords at -19584 and -19608 cleared; the board-started halfword at +794 cleared; `odsyInitRetrace`; `odsyInitInterrupts`. It sets bit 1 of the manager's flag word, attaches the thread to flow control when the handle exists and it is not attached (pin, `gfx_flow_attach_me`, 0x1074 with the credit target number in bits 16:12, 0 to 0x107c, await returned credits, `gfx_flow_attach_me_finish`, unpin), runs `odsyZeroOut`, and detaches again as above. Finally it clears bit 1 of the flag word, clears the start-up word, lowers the lock count at +80 and returns.
 - `odsyReset` (`odsy_init.o`, offset 0x23e0, 2024 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-The source has no host-chip code, so the host-node lookup, the widget flag and piomode calls and the credit nibble written to 0x24 rest on the IP35 binary alone.
+
   Brings a board to idle on the IP35 build; the whole body was read. It finds the board record through the global table, calls `odsyFifoTimer` with a null argument, stores 1 to the word at +816 (cleared again at the end) and clears the halfword at +794. It takes the shared crossbar lock (a spin lock with the saved level when the start-up word at -19328 is set, otherwise a mutex at priority 25).
   The host node comes from `xwidget_info_get`, `xwidget_info_master_get` and `master_node_get` through the compact-to-node table when the board has a device handle at -19400, else from the halfword at -19396. Before the reset it calls `hub_widget_flags_set` for that node and the widget byte at -19392 with flags 1, and it makes two uncached reads whose results are discarded (the word at a literal-pool address and offset 272 of the node's register block). It then clears the 588-byte identity block at +200, copies the string "ODYSSEY" into its first 16 bytes and stores the board number at +240, -1 at +248, +284 and +288, the block size 588 at +236 as a word, 1280 at +232 and 1024 at +234 as halfwords (the pair reads as a maximum width and height; that role is inferred from the values).
   Reset proper: it saves the widget control word (0x24) in its shadow, calls `odsyLowLevelReset`, puts the widget id (byte +793, low nibble) into the shadow, writes the byte OR 0x4200 to 0x24 (bit 9 big-endian, 4 in bits 15:12 for the crossbar credit), waits 100 ms and reads 0x24 back into its shadow. It builds the configuration word from the master id (byte +792, low nibble, in bits 22:19) and stores it to 0x1004, then runs `odsyGatherInfo` with 1 (the strap decode), `odsyMMinit` with the board base and the memory-manager record at +872, `odsyInitDBE` with the default timing pointer from the first small-data slot and the second argument 1, and `odsyGatherInfo` with 0 (revision type). After every group of steps it reloads 0x24 into the shadow.
@@ -3681,20 +3716,21 @@ The source has no host-chip code, so the host-node lookup, the widget flag and p
   After the rows it calls `odsyDMAWait` in mode 1 on the op number at +96, sends a settle group, block 0x018 (0x10018) and a settle tail, and for host to board counts the transfer in +104 and either clears +76 (when the flag at +4920 of the manager's record is set) or frees the store with `odsy_mm_obj_free_bs`. It returns 0.
 - `odsyInitDBE` (`odsy_init.o`, offset 0x3600, 4248 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
-The option-card, compositor, Rainier and Denali probes and the two-wire part probes are IP35-visible facts that rest on the IP35 binary alone.
+  The option-card, compositor, Rainier and Denali probes and the two-wire part probes are IP35-visible facts that rest on the IP35 binary alone.
   Display back-end set-up on the IP35 build; the 1099 instructions of the body were compared one by one with the IP30 listing and differ only in the places listed at the end, so the sequence is the IP30 one. It quiets the clock registers (display address 0x2b00 five times and 0x2700), reads the output-enable words at 0x2483 and 0x2482 into the record, sets up the main and option two-wire ports with `odsy_i2c_init_port_handle`, reads the option card's identity at address 0x1f, fills the part-presence words at +700, +704, +708 and +712 through `odsy_ProbeCompositor`, `odsy_ProbeRainier`, `odsy_ProbeDenali` and `odsy_ReadCompositorNic` (and `odsy_i2cProbe2b` on the main port with no option card), waits for `odsy_DCDResetDone` and writes the card's PLL register 0 with 16, 32 or 48 when an option card is present, calls `odsyConfigFb` for 1280 by 1024 at depth 8 and, for the full start only, writes the scan-out size (0x2802, 0x2803) and calls `odsyLoadTimingTable`. It then writes the 32-entry main mode table at 0x2900 to 0x291f and the 8-entry overlay table at 0x2920 to 0x2927, clears entries 0x29 to 0x2c, resets the cursor control mirror, initialises the display semaphore to 1 and ends with `odsyBlankScreen` (blanking off). A failed FIFO wait abandons the routine. The differences from IP30 are: the start-up word that bypasses the display-FIFO semaphore is at -19328 from +0x10000 (16 uses; IP30 -19352); the semaphore initialised at the end is at +0xb488 (IP30 +0xb470); the stored display constants are read through small-data slots 24 bytes higher (-30600 to -30528 for the mode-table words; IP30 -30624 to -30552) and the tables 16 bytes higher (-30704; IP30 -30720); the message strings are 104 bytes earlier; and the semaphore wait count of 25 and two loads of the option-card byte are scheduled at different points. The jump `bnez` around the Rainier probe goes to the neighbouring label with the same effect.
 - `odsy_set_gfx_mfg_nic_name` (`odsy_init.o`, offset 0x5c4, 344 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_init.o)`.
   Copies the manufacturing name out of the board's identification text on the IP35 build (argument: board record); the whole body was read. The vertex handle is at record +0x10000 - 19400. With no handle it clears the first byte of the name buffer (record +0xb4d0, reached as -19248 from +0x10000) and returns 1. `nic_vertex_info_get` on the handle returning null logs "odsy_set_gfx_mfg_nic_name fail: NULL nic_info" at severity 1, clears the same byte and returns 1. Otherwise the text is copied with `strncpy` (at most 1023 characters, terminated) into a 1088-byte stack frame and split with `strtok_r` on the separators ":;" . Each token is compared with "Name"; on a match the next token becomes the name, and the scan carries on so a later "Name" would replace it; when the scan ends the name pointer starts as an empty string and is the last token taken. The name is copied with `strncpy` to record +0xb4d0 and a zero byte is stored one past its end (at -19247 plus the length from +0x10000). It returns 0. The IP30 routine does the same scan in a different order and with its name buffer at +0xb4b8.
 - `odsyBlankScreen` (`odsy_brdmgr.o`, offset 0x21f8, 4708 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
+
   Turns the picture off or on through the display output registers on the IP35 build (arguments: board record, mode); the whole routine was read as a decompiled listing, with the branch conditions and the literal-pool headers confirmed in the assembly. It returns 0, 5 (a display-FIFO wait failed) or 11 (the option-port reconfiguration failed). Display writes are 64-bit stores at board +0x400000: a header word in the upper half (0x39b00001 for register 0x26c0, 0x39800001 for 0x2600, 0x39208001 for 0x2482, 0x3920c001 for 0x2483, 0x79604001 for the cursor control 0x2581) over the data word. The shadows are the words at +46044 (0x2482) and +46040 (0x2483); register read-backs go through the window at +0x233000 plus 4 plus 8 times the offset from 0x2600.
   Mode 2 blanks (without the option card; see below): the 0x2482 shadow loses bit 5; unless the text-port bypass word at +46208 is set it takes the display-FIFO semaphore at +34096 (priority 25) and waits for FIFO level 10 (a failed wait goes to the release path and returns 5); it writes 0x26c0 with bit 0 set (read back first) and, when the value `odsy_monitor_type` gives is 1, writes 0x2600 with its bit 0 cleared; the 0x2483 shadow loses bits 0, 1 and 5 and both shadows are written. Mode 0 restores: it waits for level 11, writes 0x26c0 with bit 0 cleared and, for monitor type 1, 0x2600 with bit 0 set, sets bits 0, 1 and 5 of the 0x2483 shadow (0x23) and writes both shadows. Mode 1 waits for level 14 and writes only the two shadows, with 0x2482 bit 5 cleared and 0x2483 bits 0, 1 and 5 set; it does not touch 0x26c0 or 0x2600.
   Every path with the bypass word clear ends with the release of the display-FIFO semaphore, which first replays a deferred cursor update: under the spin lock at +34112, when the doubleword at +34120 is nonzero it waits for FIFO level 12, and if the saved bit at +34128 differs from bit 5 of the cursor-control shadow at +45872 it writes the shadow without bit 1 and then with bit 5 replaced, writes the deferred doubleword, writes the shadow without bit 0 when the bit differed, clears the deferred doubleword and leaves the shadow with bit 1 set and bit 0 clear.
   With the option card present (halfword +298 equal to 3) each mode takes the semaphore at +46216 and the lock inside the record that the pointer at +46104 names (at +34080 or +34064 by the flag at +46116), sets the register index at +46120 to 23 and reads register 23 of the option port record at +46088 with `odsy_i2cDDCRegRead`. A failed read calls `odsy_reconfigDCD2FPLD` and `odsy_restoreDCD2FPGA`, either failure returns 11; the register is read again (failure returns 5) and written back with `odsy_i2cPLLRegWrite` with bits 3:1 set (mode 2), bit 3 set (mode 1) or bits 3:1 cleared (mode 0), a failed write returns 5, and the written byte is kept at +34368. Mode 2 with the card present does only this and none of the display writes; mode 1 does it first and then the display writes; mode 0 does the display writes first and this after them.
 - `odsyLoadTimingTable` (`odsy_brdmgr.o`, offset 0x3cd0, 8540 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_brdmgr.o)`.
-The source has no dual-channel card, DVI or genlock code: those parts (the option-card semaphore, the second clock chip, the genlock request and the tail that loads the card's registers and sets the DVI registers) rest on the IP35 binary alone. Programs a video timing (arguments: board record, 320-byte timing structure; result 0, or 16 on any failed display-FIFO wait) on the IP35 build.
+  Programs a video timing (arguments: board record, 320-byte timing structure; result 0, or 16 on any failed display-FIFO wait) on the IP35 build.
   Locks: when the halfword at +298 is 3 (dual-channel option card) it first takes the option-card semaphore at +0xb488 with `psema` (the IP30 build keeps it at +0xb470) and releases it just before returning; it then takes the mutex at +0x8520 of the lock owner stored at +0xb418, or the one at +0x8510 when the flag at +0xb424 is zero, and takes the display-FIFO semaphore at +0x8530 unless the flag at +0xb480 is set. Every release of that semaphore goes through the same inlined helper as in `odsyBlankScreen`, which replays the pending cursor words.
   Clock chip: bits 2:0 of timing word +208 go to the display host-interface configuration through the FIFO, and the host-interface control word read back at board +0x233804 gets its two-wire clock selects from +212 (bits 14:12) and +216 (bits 17:15) with bit 18, the chip soft reset, cleared. The variant at +292 picks the chip, and the chosen two-wire address is stored at +0xb428. At 0 or below the classic part is addressed at two-wire address 0x26 and registers 5, 4, 2, 3, 0, 1, 7 and 6 get the bytes at timing words +96 to +124 in that order, and register 8 gets 90 afterwards; above 0 the second part is addressed at 0x58 and registers 0 to 7 get +128 to +156, while words +132, +136, +148, +152 and +236 to +248 are copied to the record words at +0x861c and following (+0x8640 and following for the dual-channel words) as shadows for the genlock interrupt (a dual-channel card also copies +264 to +280). A failed register write logs a severity 1 message that names the register and the routine continues, as the source does. One wait of 100,000 us follows.
   Tables: it sets bit 18 of the control word again, clears two stack buffers of 512 and 4096 bytes and sends them as zero tables of 256 frame halfwords (header word 0x39000080) and 2048 line halfwords (0x38000400). It then sends the caller's tables (pointer and length at +0 and +8, +16 and +24) behind headers 0x3900 and 0x3800 carrying (length + 1) / 2 words, four halfwords to each FIFO doubleword, polling for FIFO level 0 at every 64th halfword and padding an odd count with zero.
@@ -3714,7 +3750,7 @@ The source has no dual-channel card, DVI or genlock code: those parts (the optio
   Text-port point on the IP35 build (arguments: board base, x, y); the whole body was read. It returns at once when the port's in-use word in small data is set. Otherwise it takes the spin lock beside that word, stores 1 in the word (the IP30 build keeps a counter and flushes the write buffer around it; this one stores 1 and later 0) and sends to base +0x110000: 0x14400 with operand 0, the vertex word 0x8080c800, x, the port height (the word at +16 of the port object) minus y plus 1, and 0x14001. When the word at +7036 of the stored hardware state is nonzero it first sends a short settle group (0x10443 with 250, two 0x10046). It then sends a short group, block 0x019, a 150-wait group (0x10443 with 150, four 0x10046) and a last short group (0x10443 with 250, two 0x10046), and releases the lock, clearing the in-use word.
 - `odsy_drawbitmap` (`odsy_tport.o`, offset 0xf2c, 1696 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_tport.o)`.
-  Text-port glyph draw on the IP35 build. The band and cell walk (64 rows, 16 columns), the stipple copy, block 0x03f with 6, the 0x04e and 0x04f pattern blocks, the four-vertex quad with the one-row offset and the two `ODSY_SET_GC` calls (enable set, then clear) are as in the IP30
+  Text-port glyph draw on the IP35 build. The band and cell walk (64 rows, 16 columns), the stipple copy, block 0x03f with 6, the 0x04e and 0x04f pattern blocks, the four-vertex quad with the one-row offset and the two the set graphics-context Odyssey driver request calls (enable set, then clear) are as in the IP30
   entry; the words and the cursor update are identical. The lock is a bare `mutex_spinlock` with an in-use flag stored as 1, and no counter, write-buffer flush or `sync` is used. The whole IP35 body was compared with the IP30 listing instruction by instruction: only register numbering, the lock handling and the release (the IP30 build also keeps a use counter and flushes) differ.
 - `odsyGctxFromRnid` (`odsy.o`, offset 0xfc, 92 bytes): **established.**
   Build: `vpro-patch-4103/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)`.

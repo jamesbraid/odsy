@@ -130,7 +130,7 @@ So for 2D textures a model needs only self-consistency: upload and sample both g
 
 ## Sampler word 4: the context-kept field (bits 22:18 and bit 0)
 
-`__glOdysseyValidateTextureState` (the merge and store at 0xd9d2cd0) builds word 4 of block 0x016 from the texture object's word with the context's own bits merged in under the mask 0x007c0001 (`BUZZ.h`, TEXMODE4). The context's copy is the shadow word at +0x7cd4 (31956). Every one of the 71 stores to that word in the N32 library was listed and its masks and constants read (`ody_attrib.s`, `ody_image_api.s`, `ody_image_chain.s`, `ody_image_move.s`, `ody_image_utils.s`, `ody_texture.s`). Together they give three independent pieces, all **established** as what the library writes.
+`__glOdysseyValidateTextureState` (the merge and store at 0xd9d2cd0) builds word 4 of block 0x016 from the texture object's word with the context's own bits merged in under the mask 0x007c0001 (`BUZZ.h`, TEXMODE4). The context's copy is the shadow word at +0x7cd4 (31956). Every one of the 71 stores to that word in the N32 library was listed and its masks and constants read (the Odyssey GL driver attribute state assembly unit, the Odyssey GL driver image API assembly unit, the Odyssey GL driver image chain assembly unit, the Odyssey GL driver image move assembly unit, the Odyssey GL driver image utility assembly unit, the Odyssey GL driver texture assembly unit). Together they give three independent pieces, all **established** as what the library writes.
 
 | Piece | Bits | Written by | Value |
 |---|---|---|---|

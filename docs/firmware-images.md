@@ -1,6 +1,6 @@
 # Firmware and standalone images
 
-Three shipped files carry code that runs before IRIX or outside it: the IP30 boot PROM image, the IP35 boot PROM image and the standalone diagnostic monitor of the IP30. Release IRIX 6.5.30m. **Established** is what was read in the file; **inferred** is marked.
+Three shipped files carry code that runs before IRIX or outside it: the IP30 boot PROM image, the IP35 boot PROM image and the standalone diagnostic monitor of the IP30. Release IRIX 6.5.30m. **Established** is what was read in the file; **inferred** is marked. The standalone driver the first and third carry is read from the binaries only.
 
 - `usr/cpu/firmware/IP30prom.bin`: **established.**
   The flash image of the IP30 boot PROM, 879312 bytes of big-endian MIPS64 code with no header: the first word is a jump to 0xbfc003c0 (the reset vector `j` at +0x0) and the second a jump to 0xbfc003e0, followed by exception-vector jumps (0xbfc005d4) that fill the rest of the first page. Code addresses are the flash offset plus 0xbfc00000 (the image is also seen at 0x9fc00000 in the cached window, which is how its code builds addresses with `lui`).

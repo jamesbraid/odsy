@@ -28,7 +28,7 @@ The driver is a STREAMS module with a single global state record in `.bss` (208 
 
 - `tp_xmit_qenable` (`tport.o`, offset 0x6c8, 88 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.
-  Timer callback that wakes the stream after a transmit delay (argument: the queue). It checks the transmit timer identifier at +32 and, when it is zero, calls `assfail` with the expression text `tp.tp_txtimeoid`, the file name `../textport/tport.c` and line 360; if the identifier is still zero afterwards it returns. Otherwise it zeroes +32 and calls `qenable` on the queue it was given.
+  Timer callback that wakes the stream after a transmit delay (argument: the queue). It checks the transmit timer identifier at +32 and, when it is zero, calls `assfail` with the expression text `tp.tp_txtimeoid`, the file name the Odyssey stack text-port source unit and line 360; if the identifier is still zero afterwards it returns. Otherwise it zeroes +32 and calls `qenable` on the queue it was given.
 
 - `tp_xmit` (`tport.o`, offset 0x720, 96 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.
@@ -48,7 +48,7 @@ The driver is a STREAMS module with a single global state record in `.bss` (208 
 
 - `tp_rcv_qenable` (`tport.o`, offset 0x934, 88 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.
-  Timer callback that wakes the stream for received keyboard bytes (argument: the queue). It tests the receive timer identifier at +36; zero calls `assfail` with the expression text `tp.tp_rxtimeoid`, the file name `../textport/tport.c` and line 477, and a still-zero identifier returns. Otherwise it zeroes +36 and calls `qenable` on the queue.
+  Timer callback that wakes the stream for received keyboard bytes (argument: the queue). It tests the receive timer identifier at +36; zero calls `assfail` with the expression text `tp.tp_rxtimeoid`, the file name the Odyssey stack text-port source unit and line 477, and a still-zero identifier returns. Otherwise it zeroes +36 and calls `qenable` on the queue.
 
 - `tp_rcv` (`tport.o`, offset 0x98c, 388 bytes): **established.**
   Build: `usr/cpu/sysgen/IP35boot/tport.a(tport.o)`.

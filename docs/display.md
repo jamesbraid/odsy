@@ -17,7 +17,7 @@ This is a first pass over the pieces that carry timing. It names what exists and
 
 ### The 320-byte timing structure
 
-`odsyLoadTimingTable` (`odsy_brdmgr.o`, IP30 6.5.30m, disassembly from line 4223 of `odsy_brdmgr.text.s`) is the consumer. It writes most fields to the display FIFO as type-3 words (header `(3 << 28) | (address << 14) | 1`, data in the low word; `DISPLAY.h` section 1). The headers are `.lit8` constants of `odsy_brdmgr.o`; their offsets were tied to the code by the `R_MIPS_GPREL16 .lit8` relocations and the object's GP0 of 0x7800. Offsets are decimal bytes; "word" means a 32-bit big-endian word.
+`odsyLoadTimingTable` (`odsy_brdmgr.o`, IP30 6.5.30m, disassembly from line 4223 of the Odyssey kernel driver board manager assembly unit) is the consumer. It writes most fields to the display FIFO as type-3 words (header `(3 << 28) | (address << 14) | 1`, data in the low word; `DISPLAY.h` section 1). The headers are `.lit8` constants of `odsy_brdmgr.o`; their offsets were tied to the code by the `R_MIPS_GPREL16 .lit8` relocations and the object's GP0 of 0x7800. Offsets are decimal bytes; "word" means a 32-bit big-endian word.
 
 | Offset | Use in the loader | Label |
 |---|---|---|

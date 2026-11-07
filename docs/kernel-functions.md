@@ -104,7 +104,7 @@ Labels: the function names and their objects are **established** from the symbol
 
 `odsy_tport.o`: text port: lock initialisation, descriptor lookup, colour move and unblank.
 
-`ODSY_SET_GC`, `odsy_cmov2i`, `odsy_color`, `odsy_drawbitmap`, `odsy_getdesc`, `odsy_mapcolor`, `odsy_pnt2i`, `odsy_sboxfi`, `odsy_tpinit`, `odsy_tport_lock_init`, `odsy_unblank`
+the set graphics-context Odyssey driver request, `odsy_cmov2i`, `odsy_color`, `odsy_drawbitmap`, `odsy_getdesc`, `odsy_mapcolor`, `odsy_pnt2i`, `odsy_sboxfi`, `odsy_tpinit`, `odsy_tport_lock_init`, `odsy_unblank`
 
 `odsy_ucode.o`: microcode download from a caller's image (ucode/buzz_isa.md, "Loading").
 

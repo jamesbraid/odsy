@@ -14021,7 +14021,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda4f894 calls __glSetError [0xda4b3d8] with a0=0x501, a1=?, a2=?, a3=?.
   The `jalr` at 0xda4f8b8 calls __glSetError [0xda4b3d8] with a0=0x501, a1=?, a2=?, a3=?.
   The `jalr` at 0xda4f8f4 calls __glFillMap2d [0xda505e8] with a0=[ret(__glSetUpMap2)], a1=?, a2=?, a3=?.
-  The `bnel` branch at 0xda4f808 targets 0xda4f82c, is taken when t7(=[0x1018]) != at(=0x1), and falls through when t7(=[0x1018]) == at(=0x1); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xda4f80c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xda4f808 targets 0xda4f82c, is taken when t7(=[0x1018]) != at(=0x1), and falls through when t7(=[0x1018]) == at(=0x1); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xda4f80c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda4f820 targets 0xda4f900 and is always taken.
   The `beq` branch at 0xda4f86c targets 0xda4f900, is taken when v0(=ret(__glSetUpMap2)) == 0, and falls through when v0(=ret(__glSetUpMap2)) != 0.
   The `beql` branch at 0xda4f884 targets 0xda4f8a8, is taken when a3(?) >= v1(=[ret(__glSetUpMap2)]) (signed), and falls through when a3(?) < v1(=[ret(__glSetUpMap2)]) (signed); its branch-likely delay slot `slt at,t1,v1` at 0xda4f888 runs only when taken and is annulled on fall-through.
@@ -14112,7 +14112,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `jalr` at 0xda4fce0 calls __glSetError [0xda4b3d8] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xda4fcb0 targets 0xda4fcd0, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xda4fcc8 targets 0xda4fd08 and is always taken.
-  The `bgtzl` branch at 0xda4fcd0 targets 0xda4fcf4, is taken when a0 > 0 (signed), and falls through when a0 <= 0 (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xda4fcd4 runs only when taken and is annulled on fall-through.
+  The `bgtzl` branch at 0xda4fcd0 targets 0xda4fcf4, is taken when a0 > 0 (signed), and falls through when a0 <= 0 (signed); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xda4fcd4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda4fce8 targets 0xda4fd08 and is always taken.
   The return at 0xda4fd10 has v0 = one of ret(__glSetError), [0x1010].
   The instructions from 0xda4fcf0 to 0xda4fcf0 are not reached by any path from the entry, and their branches are not listed.
@@ -14154,7 +14154,7 @@ Each entry records selected software behavior from its exact binary range. The r
   The `bne` branch at 0xda4fdcc targets 0xda4fdec, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xda4fde4 targets 0xda4fe48 and is always taken.
   The `blez` branch at 0xda4fdec targets 0xda4fdfc, is taken when a0 <= 0 (signed), and falls through when a0 > 0 (signed).
-  The `bgtzl` branch at 0xda4fdf4 targets 0xda4fe18, is taken when v1(?) > 0 (signed), and falls through when v1(?) <= 0 (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xda4fdf8 runs only when taken and is annulled on fall-through.
+  The `bgtzl` branch at 0xda4fdf4 targets 0xda4fe18, is taken when v1(?) > 0 (signed), and falls through when v1(?) <= 0 (signed); its branch-likely delay slot `the Odyssey stack assembly unit 1.d $f4,$f12` at 0xda4fdf8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xda4fe0c targets 0xda4fe48 and is always taken.
   The return at 0xda4fe50 has v0 = one of ret(__glSetError), [0x1010].
   The instructions from 0xda4fe14 to 0xda4fe14 are not reached by any path from the entry, and their branches are not listed.

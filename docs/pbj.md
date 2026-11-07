@@ -43,7 +43,7 @@ Each item below is **unknown** after a full read of the paths that touch it, wit
 
 ## Display-address registers, one entry each
 
-Release IRIX 6.5.30m, IP30 kernel objects. The offset starting each row is a display address: the number in the header word the kernel sends through the display FIFO (board +0x400000) or reads back at board +0x220000 + 8 x address + 4. That ordering is the pairing, so each name is **inferred** while the write itself is **established**.
+Release IRIX 6.5.30m, IP30 kernel objects. The offset starting each row is a display address: the number in the header word the kernel sends through the display FIFO (board +0x400000) or reads back at board +0x220000 + 8 x address + 4.
 
 | Offset | Access | Role and derivation |
 |---|---|---|
@@ -55,8 +55,8 @@ Release IRIX 6.5.30m, IP30 kernel objects. The offset starting each row is a dis
 | 0x26c0 | load 32 bits | **established.** DAC control: `odsyBlankScreen` (`odsy_brdmgr.o`) sets bit 0 here to blank, `odsySetDACGain` sets or clears bit 1 with a read-modify-write through +0x233604, and `odsyLoadTimingTable` writes structure word 160. |
 | 0x2700 | load 32 bits, store 64 bits | **established.** Host-interface control register of the display chip: bits 14:12 take the clock-select field of timing word 212, bits 17:15 that of word 216, bit 18 is held clear while the clock is programmed and set after a 100 ms wait, and `odsyInitDBE` (`odsy_init.o`) first writes 0x0006d3e0. |
 | 0x2701 | load 32 bits | **established.** Identification word of the display chip, read by `odsyGatherInfo` (`odsy_init.o`) at +0x23380c, which stores bits 2:0 at record +268, and by `odsyInitDBE`, which skips the option-card probe when bit 10 is set. |
-| 0x27cc | load 32 bits, store 64 bits | **established.** Genlock control register: `odsyLoadTimingTable` (`odsy_brdmgr.o`) writes timing word 88 here after setting bit 31 of the 0x1034 mask, and `odsyGenlockInterrupt` (`odsy_intr.o`) continues only when bit 6 is set.
-| 0x27cd | load 32 bits | **inferred.** Genlock status, read only: `odsyGenlockInterrupt` (`odsy_intr.o`) loads it, and bit 1 selects the "got" or "lost" message and the 0x2481 update.
+| 0x27cc | load 32 bits, store 64 bits | **established.** Genlock control register: `odsyLoadTimingTable` (`odsy_brdmgr.o`) writes timing word 88 here after setting bit 31 of the 0x1034 mask, and `odsyGenlockInterrupt` (`odsy_intr.o`) continues only when bit 6 is set. |
+| 0x27cd | load 32 bits | **inferred.** Genlock status, read only: `odsyGenlockInterrupt` (`odsy_intr.o`) loads it, and bit 1 selects the "got" or "lost" message and the 0x2481 update. What bit 0 means beyond the handler returning when it is clear, and whether bit 1 is a lock state, are **unknown** from the binaries read here. |
 | 0x2802 | store 64 bits | **established.** Scan-out width in pixels: `odsyConfigFb` and `odsyInitDBE` (`odsy_brdmgr.o`) store zero in the quick form and 1280 otherwise, `odsyLoadTimingTable` stores timing word 176, which holds 1280 in the built-in timing. |
 | 0x2803 | store 64 bits | **established.** Scan-out height in lines, written beside 0x2802 by `odsyConfigFb` and `odsyInitDBE` (`odsy_brdmgr.o`): 0, or 1024 in the full-size form; `odsyLoadTimingTable` stores timing word 180. |
 | 0x2929 | store 64 bits | **inferred.** Written by `odsyInitDBE` (`odsy_init.o`) with 0, first of four consecutive stores (0x2929 to 0x292c) after the mode table, and `odsyLoadTimingTable` stores bit 5 of timing word 200 here, the same flag it stores to 0x2806. What the register controls is **unknown** from the binaries read here; the grouping with the next three is from their store order. |
