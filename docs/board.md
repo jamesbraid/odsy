@@ -4,7 +4,7 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
 
 ## The strap word at board +0x106c
 
-- **established.** `odsyGatherInfo(board, 1)` reads the 32-bit word at +0x106c (the register `BUZZ.h` calls `ODSY_REG_FIFO_LEVELS`, whose bits 15:0 are FIFO levels) and decodes its top byte as board configuration:
+- `odsyGatherInfo(board, 1)` reads the 32-bit word at +0x106c (the FIFO-levels register of `BUZZ.h`, whose bits 15:0 are FIFO levels) and decodes its top byte as board configuration:
 
 | Bits | Decoded | Stored in record | Values |
 |---|---|---|---|
@@ -70,7 +70,7 @@ Positions come from the 6.5.30 binaries above.
 
 ## Board numbering and the two-board case (6.5.30 kernel)
 
-- The standalone build's board-count limit is 1 and the kernel build's is 2 (`odsy_internals.h`). Both facts are for the PROM and monitor builds; the order the 6.5.30 kernel uses is below.
+
 - **established (6.5.30 kernel, [driver-functions.md](driver-functions.md)).** The board number comes from the attach order, not from a port scan: `odsy_attach` takes the next value of `OdsyBoardEnum` under `GfxBoardInitSema`, and `odsy_earlyinit` looks only for board 0 with `odsyFindBoardAddr`. The numbering therefore follows the order in which the crossbar layer calls the attach routine for matching widgets. That layer is not part of the driver and its order was not read, so whether a second board gets the higher or the lower port number first is **unknown** from the driver; the published `hinv -m` captures list the boards at `/hw/node/xtalk/11` and `/hw/node/xtalk/9` (the higher port first), which says nothing about the attach order.
 - **unknown.** What makes a pair of boards one two-head system, and how a board becomes master or slave. The strings of the 6.5.30 kernel carry no text of such a check ("Illegal" and "master" appear only in unrelated routines) and its code was not searched for one. A search of the 6.5.30 kernel for reads of the display back end's host-interface status register after every board is initialised would settle whether it classifies boards at all, and by which bits.
 

@@ -84,7 +84,7 @@ Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`
 
 Owner: `BUZZ.h` TEXMODE1 to TEXMODE3.
 
-- **established.** `__glOdysseyValidateTexture` (0x0d9d26d0, `ody_texture.s`, source lines 2183 to 2195) builds words 1 to 3 of block 0x016 as follows. For each axis it takes n = max(0, size_level_n - base_level) (object offsets 144, 152 and 148 minus 92 for S, T, R; the S/T/R assignment follows `BUZZ.h`), forms the float 2^n, multiplies by the object's clamp float (offsets 72, 76 and 80, set from `GL_TEXTURE_MAX_CLAMP_S/T/R_SGIX`), converts with `trunc.w.s`, masks with 0x1ffff and ORs it into the context word (offsets 168, 172, 176), keeping the old bits 31:17 (mask 0xfffe0000).
+- `__glOdysseyValidateTexture` (0x0d9d26d0, the texture module, source lines 2183 to 2195) builds words 1 to 3 of block 0x016 as follows. For each axis it takes n = max(0, size_level_n - base_level) (object offsets 144, 152 and 148 minus 92 for S, T, R; the S/T/R assignment follows `BUZZ.h`), forms the float 2^n, multiplies by the object's clamp float (offsets 72, 76 and 80, set from `GL_TEXTURE_MAX_CLAMP_S/T/R_SGIX`), converts with `trunc.w.s`, masks with 0x1ffff and ORs it into the context word (offsets 168, 172, 176), keeping the old bits 31:17 (mask 0xfffe0000).
 - **established.** The result is not saturated: a product above 0x1ffff wraps through the mask. A size of 2^17 texels reads as 0. Reaching that needs a level of 2^17 or a clamp float of 2^(17-n) or more; the largest texture the driver validates was not checked, so whether the wrap is reachable is **unknown**.
 - **established.** The default is 1.0 for all three (`InitTextureObject`, 0x0d9cf5a0, `_lit_3f800000` stored at offsets 72, 76, 80), so the register carries 2^n, the full level size in texels, not size - 1.
 - **established.** The TexParameter setters reject a negative value (`c.lt.s` against zero, then `__glSetError`); the float is stored unconverted and the conversion happens in the validate step above.
@@ -124,7 +124,7 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 
 **Block 0x5a, host tag write-back.**
 
-- **established.** `__glOdyGetFromHardware` (`ody_get.s`, N32 libGLcore 0x0d985aa0) sends a class-0 word `0x4c0 + n` (n = 0..3 by its argument, COUNT 1) with a sequence number, then `0x00010a5a` with two operands: a halfword index and a 16-bit tag (the incremented counter at context `0x10000 - 22860`). It then polls the halfword at that index in a page the kernel mapped for it (context offsets 27800 and 27964, set from an ioctl in `ody_pmobj.s`) until it equals the tag, or a word at offset 124 of another shared buffer until it equals the sequence number.
+- `__glOdyGetFromHardware` (the state-query module, N32 libGLcore 0x0d985aa0) sends a class-0 word `0x4c0 + n` (n = 0..3 by its argument, COUNT 1) with a sequence number, then `0x00010a5a` with two operands: a halfword index and a 16-bit tag (the incremented counter at context `0x10000 - 22860`). It then polls the halfword at that index in a page the kernel mapped for it (context offsets 27800 and 27964, set from an ioctl in the pixel-map module) until it equals the tag, or a word at offset 124 of another shared buffer until it equals the sequence number.
 - **inferred.** Block 0x5a writes its second operand to host memory at the place its first operand names; `odsyDMAOp`'s use (first operand ORed with 0x8000, tag `0x5a00 | n`) is the same block with a kernel target. The 0x8000 bit's meaning: **unknown**.
 
 **Saved record layout, as the restore code reads it.** **established** as offsets (`odsyRestoreVertex`, `odsyRestoreVB`, the `restore*` walkers in `odsy_ctxsw.o`); the record is the one at offset 192 of the hardware state:
@@ -142,7 +142,7 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 
 **libGLcore side.**
 
-- **established.** `__glOdysseyGetHardwareShadow` (`ody_unixcontext.s`) issues ioctl `0x6f64000c` on the device descriptor. **inferred** from the name that the kernel side is `gfP_OdsySaveHwShadow`; the ioctl switch was not traced.
+- `__glOdysseyGetHardwareShadow` (the host-context module) issues ioctl `0x6f64000c` on the device descriptor. By inference from the name that the kernel side is `gfP_OdsySaveHwShadow`; the ioctl switch was not traced.
 - **established.** `__glOdyGetFromShadow` calls `__glOdyGetFromHardware` (above) and then `__glOdyDecodeShadowFormat` on a table of 20-byte descriptors (index times 20 from a context pointer at `0x16d24`), which is how glGet reads state that exists only on the board. The descriptor layout is **established** in `docs/opengl.md` ("The 20-byte shadow descriptors").
 - Make-current and lose-current were read in a later pass (`docs/opengl.md`, make-current and lose-current), and the IP35 `odsy_ctxsw` diff is in section 7 below.
 
@@ -310,7 +310,7 @@ The full set of blocks the board holds as context state is what the kernel repla
 | 0x04b | 8 | 0x2b40 | window descriptor (`docs/opengl.md`) |
 | 0x041, 0x024, 0x040 | 2, 1, 2 | 0x2b60, 0x2b68, 0x2b6c | 0x040/0x041 also sent by `odsyClipPush` |
 
-- **established.** The 0x028-0x02b / 0x03a / 0x038 choice is a new instance of the three-layout pattern of the post-filter blocks: one shadow region (0x1070-0x116f, 64 words) goes out as four 16-word blocks, one 16-word block or one 4-word block. libGLcore sends 0x00013c28-0x00013c2b, 0x0001103a and 0x00013c38 only from `ody_context.s` (`__glOdysseyValidateHardware`). What these blocks hold: **unknown**; their size (a 4 x 4 matrix per block, or four 16-entry sets) is the only clue.
+- The 0x028-0x02b / 0x03a / 0x038 choice is a new instance of the three-layout pattern of the post-filter blocks: one shadow region (0x1070-0x116f, 64 words) goes out as four 16-word blocks, one 16-word block or one 4-word block. libGLcore sends 0x00013c28-0x00013c2b, 0x0001103a and 0x00013c38 only from the context module (`__glOdysseyValidateHardware`). What these blocks hold: **unknown**; their size (a 4 x 4 matrix per block, or four 16-entry sets) is the only clue.
 - **established.** Every block id the kernel replays is below 0x060 apart from the tables (0x200-0x24f), the level descriptors (0x280+) and 0x258 (`0x00010658` with one operand, the last word of the routine). A scan of `lui 1` / `ori` command words in libGLcore, the X module and the kernel finds no class-1 id between 0x060 and 0x1ff that is stored to the FIFO; the libGLcore hits in that range are context offsets, not command words (checked by their use as load and store displacements). So the raster state the board holds as context is the set above. **inferred**, because the scan relies on the immediate form.
 - **unknown.** Field layouts of the blocks with no "Known from" entry, and the meaning of the shadow record outside these offsets.
 

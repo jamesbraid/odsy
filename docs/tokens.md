@@ -51,7 +51,7 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 
 ### Material slots 6 to 13 and the lighting defaults
 
-- **established.** `__glOdysseyInitLighting` (`ody_lighting.s`) sends one four-float attribute word per slot 6 to 13, with these values: slot 6 (op 0x2f) 0.2, 0.2, 0.2, 1.0; slot 7 (0x30) 0.8, 0.8, 0.8, 1.0; slot 8 (0x31) 0, 0, 0, 1; slot 9 (0x32) 0, 0, 0, 1; slot 10 (0x35) 0.2, 0.2, 0.2, 1.0; slot 11 (0x36) 0.8, 0.8, 0.8, 1.0; slot 12 (0x37) 0, 0, 0, 1; slot 13 (0x38) 0, 0, 0, 1. The words are `0xc680d02f`, `0xc780d030`, `0xc880d031`, `0xc980d032`, `0xca80d035`, `0xcb80d036`, `0xcc80d037`, `0xcd80d038`. Before them it sends `0xc18093ff` (slot 1, four operands 0, 0, 1, 1, bit 14 clear unlike the other attribute words) and `0xc180cc19` with 0, 0, 1.
+- `__glOdysseyInitLighting` (the lighting module) sends one four-float attribute word per slot 6 to 13, with these values: slot 6 (op 0x2f) 0.2, 0.2, 0.2, 1.0; slot 7 (0x30) 0.8, 0.8, 0.8, 1.0; slot 8 (0x31) 0, 0, 0, 1; slot 9 (0x32) 0, 0, 0, 1; slot 10 (0x35) 0.2, 0.2, 0.2, 1.0; slot 11 (0x36) 0.8, 0.8, 0.8, 1.0; slot 12 (0x37) 0, 0, 0, 1; slot 13 (0x38) 0, 0, 0, 1. The words are `0xc680d02f`, `0xc780d030`, `0xc880d031`, `0xc980d032`, `0xca80d035`, `0xcb80d036`, `0xcc80d037`, `0xcd80d038`. Before them it sends `0xc18093ff` (slot 1, four operands 0, 0, 1, 1, bit 14 clear unlike the other attribute words) and `0xc180cc19` with 0, 0, 1.
 - **inferred.** Slots 6 to 9 are the front material's ambient, diffuse, specular and emission colours, and slots 10 to 13 the back material's, because the values are the OpenGL default material (ambient 0.2, diffuse 0.8, specular and emission black, alpha 1) and the order follows the opcode order of the senders. `0xc180cc19` with (0, 0, 1) is then the default normal. `docs/buzz.md` calls the same words the clipped-vertex senders' forms (`CISendClipped*`, `RGBSendClipped*`); both readings can hold if the clip senders carry per-vertex material colour. Which one the board implements: **unknown**.
 - **established.** `odsyResetHwShadow` (`odsy_ctxsw.o`) stores the default words `0xc780d030`, `0xc880d031`, `0xcb80d036` and `0xcc80d037` into the vertex shadow with the other slots (`docs/buzz.md`, "Attribute word defaults").
 - **unknown: no shipped software or published source depends on it.** What opcode 0x3ff of `0xc18093ff` selects. It is sent once at the start of lighting set-up, and no other function in the scanned files sends it.
@@ -91,45 +91,46 @@ the Odyssey GL driver context assembly unit, with source line numbers) and the k
 Each setter keeps a shadow word in the context, rewrites its field, and sends the block
 after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context flag asks for it.
 
-- **0x01e**, word `0x0001041e`, **established**: the alpha test. Bits 14:12 hold the
+- **0x01e**, word `0x0001041e`: the alpha test. Bits 14:12 hold the
   comparison as the GL enum minus 0x200 (GL_NEVER 0 to GL_ALWAYS 7), and bits 11:0 the
   reference value clamped to 0 to 1 and scaled by 4096, with 1.0 sent as 4095.
-  Sender `__glOdyim_AlphaFunc` (`ody_attrib.s`, source lines 1682 to 1692), shadow at
+  Sender `__glOdyim_AlphaFunc` (the attribute module, source lines 1682 to 1692), shadow at
   context +31784; the other bits of the word are kept.
-- **0x020**, word `0x00010420`, **established**: the depth test. Bits 2:0 hold the
-  comparison as the GL enum minus 0x200; `__glOdyim_DepthFunc` (`ody_attrib.s`, line 1922)
+- **0x020**, word `0x00010420`: the depth test. Bits 2:0 hold the
+  comparison as the GL enum minus 0x200; `__glOdyim_DepthFunc` (the attribute module, line 1922)
   rewrites only those bits of the shadow at context +31792 and sends the whole word.
-- **0x022**, word `0x00010422`, **established**: the logic operation. Bits 3:0 hold
+- **0x022**, word `0x00010422`: the logic operation. Bits 3:0 hold
   the GL enum minus 0x1500 (GL_CLEAR 0 to GL_SET 15), from `__glOdyim_LogicOp`
-  (`ody_attrib.s`, line 2315). The kernel textport sends 3, GL_COPY.
-- **0x015**, word `0x00010415`, **established**: the polygon mode. Bits 3:2 hold the
+  (the attribute module, line 2315). The kernel textport sends 3, GL_COPY.
+- **0x015**, word `0x00010415`: the polygon mode. Bits 3:2 hold the
   front-face mode and bits 1:0 the back-face mode, each as the GL enum minus 0x1b00
-  (GL_POINT 0, GL_LINE 1, GL_FILL 2), from `__glOdyim_PolygonMode` (`ody_attrib.s`, line 2721).
+  (GL_POINT 0, GL_LINE 1, GL_FILL 2), from `__glOdyim_PolygonMode` (the attribute module, line 2721).
   The kernel textport sends 10 (binary 1010) (fill for both faces by the enum minus 0x1b00 rule above).
-- **0x048**, word `0x00010c48`, **established**: the line stipple, three operands.
+- **0x048**, word `0x00010c48`: the line stipple, three operands.
   Operands 0 and 1 carry the 16-bit pattern in bits 15:0, and operand 2 carries the repeat
   factor minus one in bits 7:0, the factor clamped to 1 to 256
-  (`__glOdyim_LineStipple`, `ody_attrib.s`, source lines 2268 to 2276).
-- **0x058**, word `0x00010458`, **established**: the polygon offset. Bits 24:0 hold a
+  (`__glOdyim_LineStipple`, the attribute module, source lines 2268 to 2276).
+- **0x058**, word `0x00010458`: the polygon offset. Bits 24:0 hold a
   signed depth offset in units of the depth buffer, clamped to plus or minus 2^24,
-  and bits 31:25 are kept. `__glOdyim_PolygonOffsetEXT` (`ody_attrib.s`, line 3445)
+  and bits 31:25 are kept. `__glOdyim_PolygonOffsetEXT` (the attribute module, line 3445)
   builds it from the factor and bias, scaled by the depth range and the projection.
   The scaling, the 70-degree limit angle that stands in for the per-polygon slope, and the
   step size are in [raster.md](raster.md#polygon-offset).
-- **0x01d**, word `0x0001081d`, **established**: the scissor box, two operands, each
+- **0x01d**, word `0x0001081d`: the scissor box, two operands, each
   with a 12-bit field in bits 23:12 and one in bits 11:0. `__glOdysseyValidateScissor`
-  (`ody_context.s`, source line 2120) also hands the four fields to ioctl 0x6f64000d
+  (the context module, source line 2120) also hands the four fields to ioctl 0x6f64000d
   as minimum x, minimum y, maximum x and maximum y, so operand 0 is the x range and
   operand 1 the y range, low limit in the upper field.
-- **0x04e**, word `0x00013c4e`, **established**: rows 31 down to 16 of the 32 by 32
-  polygon stipple, one 32-bit row per operand. `__glOdysseyConvertStipple` (`ody_attrib.s`,
+- **0x04e**, word `0x00013c4e`: rows 31 down to 16 of the 32 by 32
+  polygon stipple, one 32-bit row per operand. `__glOdysseyConvertStipple` (the attribute module,
   line 2790) reverses the row order of the GL pattern before it sends the two blocks,
   so the board's first stipple row is the top row of the GL pattern.
-- **0x04f**, word `0x00013c4f`, **established**: rows 15 down to 0 of the polygon
-  stipple, sent right after block 0x04e by `__glOdysseyConvertStipple` (`ody_attrib.s`).
-- **0x03f**, word `0x0001043f`, **established**: the stipple mode word, sent before
-  the two pattern blocks from context +31736 (`__glOdysseyConvertStipple`, `ody_attrib.s`).
-  **inferred:** it carries the binaries read here; the kernel
+- **0x04f**, word `0x00013c4f`: rows 15 down to 0 of the polygon
+  stipple, sent right after block 0x04e by `__glOdysseyConvertStipple` (the attribute module).
+- **0x03f**, word `0x0001043f`: the stipple mode word, sent before
+  the two pattern blocks from context +31736 (`__glOdysseyConvertStipple`, the attribute module).
+  What its fields mean is **unknown** from the binaries read here; the kernel
+  textport sends 6, and the GL path writes the word from context +31736. A read of the stipple
   routines' other callers would settle the fields.
 - **0x04b**, word `0x0001204b`, **inferred**: the screen mask, four rectangles as
   eight operands, a minimum and a maximum word each, with x in bits 23:12 and y in bits 11:0.
@@ -140,8 +141,8 @@ after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context fl
   operand each. The kernel textport sends 0x80 for both (`buzz_init`, `odsy_tport.o`)
   which would read as 1.0 in fixed point with seven
   fraction bits.
-- **0x04a** operands, **established**, `__glOdysseyValidateContextRasterMisc` (0x0d969500, 488 bytes, source
-  lines 2073 to 2103, `ody_context.s`) with `__glOdyim_LineWidth` (0x0d95c2a0) and
+- **0x04a** operands, `__glOdysseyValidateContextRasterMisc` (0x0d969500, 488 bytes, source
+  lines 2073 to 2103, the context module) with `__glOdyim_LineWidth` (0x0d95c2a0) and
   `__glOdyim_PointSize` (0x0d95d300): the first operand (context +31828) is the line width and the
   second (+31832) the point size, each as 128 x the size truncated to an integer and masked to 24
   bits, the top byte kept from the old word. A smoothed primitive (context enable bits 0x200 for
@@ -150,9 +151,9 @@ after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context fl
   size rounded to an integer, trunc(size + 0.5) with a minimum of 1. Both routines raise
   GL_INVALID_VALUE for a size of zero or less and GL_INVALID_OPERATION inside glBegin. The clamp
   limits are context words set to 0.5, 10.0 and 0.125 (minimum, maximum, granularity) at +3744 to
-  +3752 for points and +3756 to +3764 for lines in the context creation routine (`ody_context.s`,
+  +3752 for points and +3756 to +3764 for lines in the context creation routine (the context module,
   source lines 4296 to 4301); that GL_POINT_SIZE_RANGE and GL_LINE_WIDTH_RANGE report them is
-  **inferred** from the offsets. The antialiased frames of
+  By inference from the offsets. The antialiased frames of
   [raster.md](raster.md) use 1 to 3 and the sizes 1 and 2 in these operands.
 
 ## Blocks only the hardware validator sends
@@ -163,83 +164,83 @@ bit, sends the settle group and then one block from its context shadow. Setters 
 after changing the shadow. Within libGLcore only this routine sends the nine blocks below; the
 kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
 
-- **0x01a**, word `0x0001181a`, **established**: the fog block, six operands from context
-  +31752 to +31772, sent when dirty bit 3 is set (`ody_context.s`, source line 1871).
-  `__glOdysseyValidateFog` sets that bit when it finishes (`ody_fog.s`, line 533).
-- **0x01a** operands 0 and 1, **established**: the fog colour. `__glOdyim_Fogfv`
-  (`ody_fog.s`, source lines 542 to 550) scales each GL fog colour component by 4096, with 1.0
+- **0x01a**, word `0x0001181a`: the fog block, six operands from context
+  +31752 to +31772, sent when dirty bit 3 is set (the context module, source line 1871).
+  `__glOdysseyValidateFog` sets that bit when it finishes (the fog module, line 533).
+- **0x01a** operands 0 and 1: the fog colour. `__glOdyim_Fogfv`
+  (the fog module, source lines 542 to 550) scales each GL fog colour component by 4096, with 1.0
   sent as 4095, and puts red in bits 23:12 and green in bits 11:0 of operand 0, blue and alpha
   likewise in operand 1. In colour-index mode the fog index goes to bits 23:12 of operand 0 (line 578).
-- **0x01a** operands 2 to 5, **established**: the fog function, rebuilt by
-  `__glOdysseyValidateFog` (`ody_fog.s`, source lines 526 to 532) for each GL fog mode it switches
+- **0x01a** operands 2 to 5: the fog function, rebuilt by
+  `__glOdysseyValidateFog` (the fog module, source lines 526 to 532) for each GL fog mode it switches
   on at line 312 (GL_EXP, GL_EXP2, GL_LINEAR and GL_FOG_FUNC_SGIS). Five coefficients go out as
   signed 12-bit values with eight fraction bits: bits 11:0 of operand 3 and both 12-bit halves of
   operands 4 and 5. Bits 14:12 of operand 3 take a 3-bit code (7 on the paths read). Bits 23:0 of
   operand 2 take a positive scale: the IEEE single with 96 taken from its exponent, then shifted
-  right five places, which leaves six exponent bits and an 18-bit mantissa. **inferred:** the board
+  right five places, which leaves six exponent bits and an 18-bit mantissa. By inference, the board
   evaluates the fog factor from eye depth with these; the depth range at context +1704 and +1712
   enters the scale at source lines 471 to 475.
 - **0x051**, word `0x00010451`, one operand from context +0x10000 - 26984, sent when dirty
-  bit 24 is set (`ody_context.s`, source line 2002). **established:** `__glOdysseyValidateMatrixComb`
-  (`ody_xform.s`, source lines 596 to 602) sets bit 0 when the vertex pre-clip class at
+  bit 24 is set (the context module, source line 2002). `__glOdysseyValidateMatrixComb`
+  (the transform module, source lines 596 to 602) sets bit 0 when the vertex pre-clip class at
   +0x10000 - 25156 is 2 or 3, and sets bit 1 when the far depth-range value (context +1712) is
-  below the near one (+1704). **inferred:** bit 1 marks a reversed depth range, and bit 0 tells
+  below the near one (+1704). By inference, bit 1 marks a reversed depth range, and bit 0 tells
   the transform engine to pre-clip vertices.
-- **The pre-clip class behind block 0x051 bit 0**, **established** from the same routine
-  (`ody_xform.s`, source lines 525 to 560): class 0 while `GL_VERTEX_PRECLIP_SGIX` (0x83ee) is
+- **The pre-clip class behind block 0x051 bit 0**, from the same routine
+  (the transform module, source lines 525 to 560): class 0 while `GL_VERTEX_PRECLIP_SGIX` (0x83ee) is
   disabled (byte +0x10000 - 25164), class 3 when the `GL_VERTEX_PRECLIP_HINT_SGIX` hint, which
-  `__glOdyim_Hint` stores at +0x10000 - 25160 (`ody_attrib.s`, line 208), is GL_NICEST, and
+  `__glOdyim_Hint` stores at +0x10000 - 25160 (the attribute module, line 208), is GL_NICEST, and
   class 2 for the other hints. Under GL_FASTEST the routine drops to class 1 when the projection
   matrix has zero in its elements 3 and 7 and a large element 15, the case that cannot need it.
   Classes 2 and 3 also set bit 4 of context word +27016 (line 579).
-- **0x013**, word `0x00011013`, four operands, sent when dirty bit 14 is set (`ody_context.s`,
-  source line 1880), **established**: the level-of-detail limits of the bound texture.
-  `__glOdysseyValidateTextureState` (`ody_texture.s`, source line 2488) copies them from offsets
+- **0x013**, word `0x00011013`, four operands, sent when dirty bit 14 is set (the context module,
+  source line 1880): the level-of-detail limits of the bound texture.
+  `__glOdysseyValidateTextureState` (the texture module, source line 2488) copies them from offsets
   192 to 204 of the texture object into context +0x10000 - 26844 to - 26832; every value is
   two's complement with eight fraction bits in bits 13:0.
   Operand 0 is the S level-of-detail bias and operand 1 the T bias (`GL_TEXTURE_LOD_BIAS_S_SGIX`
-  and `_T_SGIX`), each made by `floatToS58_Clamp` (`ody_texture.s`, line 344), which clamps to
+  and `_T_SGIX`), each made by `floatToS58_Clamp` (the texture module, line 344), which clamps to
   -32 and +31.996 and scales by 256 (`__glOdyim_TexParameteriv`, source lines 4669 and 4675).
   The R bias is kept only as a float at object offset 108 (line 4680) and reaches no block.
-- **0x013** operands 2 and 3, **established**: the minimum and maximum level of detail.
+- **0x013** operands 2 and 3: the minimum and maximum level of detail.
   `GL_TEXTURE_MIN_LOD` is clamped to -15 and +15 and shifted left eight places into operand 2
   (`__glOdyim_TexParameteriv`, source lines 4627 to 4633). `__glOdysseyTextureSetMaxLOD`
-  (`ody_texture.s`, source line 4019) puts the smaller of `GL_TEXTURE_MAX_LOD` and the level
+  (the texture module, source line 4019) puts the smaller of `GL_TEXTURE_MAX_LOD` and the level
   count above the base level, clamped the same way, into operand 3. `InitTextureObject` starts
   them at 0x3100 (-15) and 0xf00 (+15), the GL defaults of -1000 and 1000 after the clamp, and
   the two biases at 0, which is the context default as well.
-- **0x01c**, word `0x00010c1c`, **established**: the fragment light model, three operands
-  from context +0x10000 - 27268, sent when dirty bit 23 is set (`ody_context.s`, line 1989).
-  `__glOdyim_FragmentLightModelfvSGIX` (`ody_fragment.s`, source lines 442 to 446) writes the
+- **0x01c**, word `0x00010c1c`: the fragment light model, three operands
+  from context +0x10000 - 27268, sent when dirty bit 23 is set (the context module, line 1989).
+  `__glOdyim_FragmentLightModelfvSGIX` (the fragment module, source lines 442 to 446) writes the
   model's ambient colour scaled by 4096: red in bits 23:12 and green in bits 11:0 of operand 0,
   blue in bits 23:12 of operand 1.
-- **0x01c** operands 1 and 2, low bits, **inferred**: the fragment colour-material
-  selection. `ValidateFragmentColorMaterial` (`ody_fragment.s`, source lines 35 to 81)
+- **0x01c** operands 1 and 2, low bits (by inference): the fragment colour-material
+  selection. `ValidateFragmentColorMaterial` (the fragment module, source lines 35 to 81)
   clears and sets single bits from bit 1 to bit 7 of both words according to which material
   colour tracks the current colour.
 - **0x004**, word `0x00010404`, one operand from context +31740, sent when dirty bit 1
-  is set (`ody_context.s`, source line 1847), **established**: the raster enable word, one bit or
+  is set (the context module, source line 1847): the raster enable word, one bit or
   small field per fragment operation. Its setters raise dirty bit 1 after each change. The table
   below gives each bit with the GL state behind it and the store that writes it; lines are source
   lines of the 6.5.30m N32 libGLcore.
-- **0x004** cull fields, **established**: bit 8 is `GL_CULL_FACE` (`__glOdyim_Enable`,
-  `ody_attrib.s`, line 253); `__glOdyim_CullFace` (lines 1900 to 1908) sets bit 9 for GL_BACK,
+- **0x004** cull fields: bit 8 is `GL_CULL_FACE` (`__glOdyim_Enable`,
+  the attribute module, line 253); `__glOdyim_CullFace` (lines 1900 to 1908) sets bit 9 for GL_BACK,
   bit 10 for GL_FRONT and both for GL_FRONT_AND_BACK, and `__glOdyim_FrontFace` sets bit 23 for
   GL_CW and clears it for GL_CCW (line 2228), so the board picks the facing from the winding.
-- **0x004** depth and stencil bits, **established**: bit 16 follows `GL_DEPTH_TEST` and bit 15
-  `GL_STENCIL_TEST`, but `__glOdyim_Enable` (`ody_attrib.s`, lines 259 and 356) sets each only
+- **0x004** depth and stencil bits: bit 16 follows `GL_DEPTH_TEST` and bit 15
+  `GL_STENCIL_TEST`, but `__glOdyim_Enable` (the attribute module, lines 259 and 356) sets each only
   when the visual has that buffer (context bytes +3225 and +3226), so the test is off on the board
   whenever the buffer is missing.
-- **0x004** bit 17, **established**: blending in use. `__glOdysseyValidateContextRasterMisc`
-  (`ody_context.s`, source line 2056) sets it when `GL_BLEND` is on and `GL_COLOR_LOGIC_OP` is off,
-  as GL requires, and the accumulation and convolution paths in `ody_accumop.s` and
-  `ody_image_chain.s` switch it on and off around the draws in which they add with the blender.
-- **0x004** lighting and shading bits, **established**: bit 12 is set for `GL_FLAT` by
-  `__glOdyim_ShadeModel` (`ody_attrib.s`, line 2806). Bit 11 is two-sided vertex lighting:
-  `__glOdysseyValidateLighting` (`ody_lighting.s`, line 571) sets it when lighting is on and
+- **0x004** bit 17: blending in use. `__glOdysseyValidateContextRasterMisc`
+  (the context module, source line 2056) sets it when `GL_BLEND` is on and `GL_COLOR_LOGIC_OP` is off,
+  as GL requires, and the accumulation and convolution paths in the accumulation module and
+  the image-chain module switch it on and off around the draws in which they add with the blender.
+- **0x004** lighting and shading bits: bit 12 is set for `GL_FLAT` by
+  `__glOdyim_ShadeModel` (the attribute module, line 2806). Bit 11 is two-sided vertex lighting:
+  `__glOdysseyValidateLighting` (the lighting module, line 571) sets it when lighting is on and
   `GL_LIGHT_MODEL_TWO_SIDE` (context byte +1413) is true. Bit 21 is the fragment-lighting
   two-side flag and bit 27 is set when the fragment normal interpolation is GL_FLAT
-  (`__glOdyim_FragmentLightModelivSGIX`, `ody_fragment.s`, lines 511 and 518).
+  (`__glOdyim_FragmentLightModelivSGIX`, the fragment module, lines 511 and 518).
 
 | 0x004 bit | GL state | Writer (the Odyssey GL driver attribute state assembly unit `__glOdyim_Enable` unless named) |
 |---:|---|---|
@@ -259,56 +260,56 @@ kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
   source lines 2630 and 2631) and never cleared in libGLcore; `PopAttributes` restores bit 13
   with the enable group. Their effect is unknown. Bits 24, 26 and 28 to 31 have no writer.
 - **0x005**, word `0x00010405`, one operand from context +31744, sent when dirty bit 2
-  is set (`ody_context.s`, source line 1852), **established**: the transform and texture path
-  selection. Bit 25 is the perspective-texture flag `AddProgram` writes (`ody_program.s`,
+  is set (the context module, source line 1852): the transform and texture path
+  selection. Bit 25 is the perspective-texture flag `AddProgram` writes (the program module,
   line 794) before it raises dirty bit 2 (line 1267).
-- **0x005** bits 2:0, **established**: the user clip planes in hardware, as a thermometer code.
-  `__glOdysseyValidateClipPlanes` (`ody_context.s`, source lines 1826 to 1828) sets bit 2 when
+- **0x005** bits 2:0: the user clip planes in hardware, as a thermometer code.
+  `__glOdysseyValidateClipPlanes` (the context module, source lines 1826 to 1828) sets bit 2 when
   `__glOdysseyGetNumHWClipPlanes` returns one or more, bit 1 for two or more and bit 0 for three,
   after it has written each enabled plane's four coefficients into transform data memory from
   word 288 (0x120) up.
-- **0x005** bits 5:3 and 10, **established**: the active texture target. `__glOdysseyValidateTextureState`
-  (`ody_texture.s`, source lines 2333 to 2401) sets bit 5 for a complete `GL_TEXTURE_3D`, else
+- **0x005** bits 5:3 and 10: the active texture target. `__glOdysseyValidateTextureState`
+  (the texture module, source lines 2333 to 2401) sets bit 5 for a complete `GL_TEXTURE_3D`, else
   bit 4 for `GL_TEXTURE_2D`, else bit 3 for `GL_TEXTURE_1D`, sets bit 10 with any of them, and
   clears bits 5:3 and 11:10 when no enabled target has a complete texture.
   `DownsampleTextureThruHW` sets bit 3 or 4 for its own draw (lines 1422 to 1424).
-- **0x005** bits 15:13 and 19, **established** from `__glOdysseyValidateFragment`
-  (`ody_fragment.s`, source lines 115 to 162): bit 19 is set when lighting is on in RGBA mode
+- **0x005** bits 15:13 and 19, from `__glOdysseyValidateFragment`
+  (the fragment module, source lines 115 to 162): bit 19 is set when lighting is on in RGBA mode
   with `GL_LIGHT_MODEL_COLOR_CONTROL` at `GL_SEPARATE_SPECULAR_COLOR`, and bits 15:13 take 2 when
   fragment lighting or that separate specular colour is in use in RGBA mode, 1 otherwise.
-  **inferred:** the 3-bit field selects how many colours the rasteriser interpolates per vertex.
+  By inference, the 3-bit field selects how many colours the rasteriser interpolates per vertex.
 - **0x006**, word `0x00010406`, one operand from context +32736, sent when dirty bit 11
-  is set (`ody_context.s`, source lines 1964 to 1967), **established**: bits 5:0 are the index of
+  is set (the context module, source lines 1964 to 1967): bits 5:0 are the index of
   the first texture level descriptor the texture unit reads. The 64 descriptors sit at context
   +31968 in steps of 12, so +32736 is the word just past them. `__glOdysseyTextureActivate`
-  (`ody_texture.s`, source line 2020) writes 0, the descriptor of level 0 of the bound texture.
-- **0x006** value 60, **established**: `DownsampleTextureThruHW` (`ody_texture.s`, source
+  (the texture module, source line 2020) writes 0, the descriptor of level 0 of the bound texture.
+- **0x006** value 60: `DownsampleTextureThruHW` (the texture module, source
   lines 1508 to 1534) builds a level descriptor in slot 60 (context +32688), sends it as
   block 0x2bc, then sets bits 5:0 to 0x3c and raises dirty bit 11, so its draws read the level
-  it is filling. It and `__glOdysseyImageMovePixelsTexture` (`ody_image_move.s`, lines 3333
+  it is filling. It and `__glOdysseyImageMovePixelsTexture` (the image-move module, lines 3333
   and 3560) restore the saved word afterwards. Bits 31:6 have no writer and stay 0.
 - **0x047**, word `0x00011847`, six operands from context +0x10000 - 26868 to - 26848, sent
-  when dirty bit 13 is set (`ody_context.s`, source line 1877). **established:**
-  `__glOdysseyInitDefaultValues` (`ody_context.s`, lines 2536 to 2541) zeroes all six and raises
+  when dirty bit 13 is set (the context module, source line 1877). 
+  `__glOdysseyInitDefaultValues` (the context module, lines 2536 to 2541) zeroes all six and raises
   the bit, and no other store in libGLcore, the X module or the kernel writes them, so the board
   only ever receives six zero words. What they set on the board is unknown.
 - **0x052**, word `0x00010452`, one operand from context +31836, sent when dirty bit 7 is
-  set (`ody_context.s`, source line 1976), **established**: the write masks. Bits 11:0 hold the
+  set (the context module, source line 1976): the write masks. Bits 11:0 hold the
   colour-index write mask, limited to the visual's index bits (context +30792), from
-  `__glOdyim_IndexMask` (`ody_attrib.s`, line 2251).
-- **0x052** stencil and colour bits, **established**: bits 19:12 hold the stencil write mask,
+  `__glOdyim_IndexMask` (the attribute module, line 2251).
+- **0x052** stencil and colour bits: bits 19:12 hold the stencil write mask,
   cut to the stencil depth and forced to 0 when the visual has no stencil buffer
-  (`__glOdyim_StencilMask`, `ody_attrib.s`, line 2844). `__glOdyim_ColorMask` (lines 1846 to
+  (`__glOdyim_StencilMask`, the attribute module, line 2844). `__glOdyim_ColorMask` (lines 1846 to
   1849) sets bits 20, 21, 22 and 23 for red, green, blue and alpha writes.
-- **0x052** bit 24, **established**: depth writes. `__glOdyim_DepthMask` (`ody_attrib.s`, line
+- **0x052** bit 24: depth writes. `__glOdyim_DepthMask` (the attribute module, line
   1947) sets it only when the mask is true and the visual has a depth buffer. The clear, copy
-  and texture-load paths (`ody_clear.s`, `ody_image_move.s`, `LoadTextureFromHost`) save the
+  and texture-load paths (the clear module, the image-move module, `LoadTextureFromHost`) save the
   word, open the masks they need and put it back.
 
 ## Block 0x045, 0x250 and the level descriptors
 
 - **established.** The X module sends block 0x045 (`0x00010845`, two operands) in two places. `odsyGammaFit` (`odyssey.so`) sends the word, then an operand equal to a floating-point result truncated and clamped to 255, then the constant 30463 (0x76ff). `odsyInitDefaultHW` sends it with two words from the screen record at +56 and +60. **inferred**, from the first sender's name, that block 0x045 holds gamma-ramp fitting parameters; the field split is **unknown**.
-- **established.** `__glOdysseyValidateContext` (`ody_context.s`, source line 2529) sends `0x00010407` with one zero operand, then block 0x250 (`0x00011a50`, count 6) with six operands, the context words at `0x10000 - 26796` to `0x10000 - 26776`. Just before, the routine rewrites those six words with and/or masks (visible constants `0xff000fff`, `0xfffff000`, -3073 and -769). Block 0x250 is not among the blocks the kernel replays, so it is either not context state or is rebuilt by libGLcore at context make-current. Its fields are **unknown**.
+- `__glOdysseyValidateContext` (the context module, source line 2529) sends `0x00010407` with one zero operand, then block 0x250 (`0x00011a50`, count 6) with six operands, the context words at `0x10000 - 26796` to `0x10000 - 26776`. Just before, the routine rewrites those six words with and/or masks (visible constants `0xff000fff`, `0xfffff000`, -3073 and -769). Block 0x250 is not among the blocks the kernel replays, so it is either not context state or is rebuilt by libGLcore at context make-current. Its fields are **unknown**.
 - **established.** Block 0x2bc is level descriptor 60 of the texture level table (0x280 + 60, three operands, word `0x00010ebc`), one of the 64 level descriptors (`docs/buzz.md`, "Level descriptor words").
 
 ## Sequencer register words

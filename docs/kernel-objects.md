@@ -78,8 +78,8 @@ Each entry names the member of the media archive.
   `gfP_OdsyMakeCurrent` at 0xa2c (756 bytes) is private request 8 and copies in an 80-byte argument, `gfP_OdsySetDrawBuffer` at 0x53c (520 bytes) is request 9, and `gfP_OdsyPbufAssoc` at 0xd20 (452 bytes) is request 36, which makes a pixel-buffer group addressable by a drawable id.
   `odsyBindDrawable` at 0x138 (692 bytes) fills one of a context's two binding records, and `odsyPushBufferSelect` at 0x744 (744 bytes) sends the draw-buffer mask to the board through the command FIFO port.
   The member is 17028 bytes with 11 routines.
-- `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dvi.o)`: **inferred.**
-  A 1220-byte object with no routine and no data: the IP30 build carries only the compilation record, which names the source `../graphics/ODYSSEY/odsy_dvi.c` and nothing else, because the digital video output is an IP35 feature.
+- `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_dvi.o)`: by inference.
+  A 1220-byte object with no routine and no data: the IP30 build carries only the compilation record, which names the source the digital-video module and nothing else, because the digital video output is an IP35 feature.
   The IP35 build of the same object has 9 routines in 14676 bytes (see the IP35 table below).
   The member is 1220 bytes.
 - `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_flow.o)`: **inferred.**

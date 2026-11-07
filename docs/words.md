@@ -97,15 +97,15 @@ Release IRIX 6.5.30m. A command word is a 32-bit value the host stores into the 
 
 ## Colour and index words stored to the FIFO
 
-- `0xc580c406` (colour slot, one operand, opcode 0x06, `libGLcore.so`): **established.**
+- `0xc580c406` (colour slot, one operand, opcode 0x06, `libGLcore.so`).
   Integer colour index: `Indexi`, `Indexs` and `Indexub` with vector and display-list forms, 12 routines.
-  The kernel textport's `odsy_color` and `ODSY_SET_GC` also store it to set its drawing colour index.
+  The kernel textport's `odsy_color` and the text-port state set-up routine also store it to set its drawing colour index.
 - `0xc580c407` (colour slot, one operand, opcode 0x07, `libGLcore.so`): **established.**
   Float colour index in nine routines (`Indexf`, `Indexd`, display-list forms) and in `__glOdysseyClipCheck`,
   which forwards the index of a clipped vertex.
-- `0xc580cc08` (colour slot, three operands, opcode 0x08, `libGLcore.so`): **established.**
+- `0xc580cc08` (colour slot, three operands, opcode 0x08, `libGLcore.so`).
   Three unsigned bytes of RGB from `Color3ub`, `Color3ubv` and the display-list forms (four routines). It is
-  also the one RGB colour word the kernel textport stores, in `ODSY_SET_GC`, where the 8-bit values are
+  also the one RGB colour word the kernel textport stores, in the text-port state set-up routine, where the 8-bit values are
   widened to 12 bits by repeating the nibble (`BUZZ.h`).
 - `0xc580cc09` (colour slot, three operands, opcode 0x09, `libGLcore.so`): **established.**
   Unsigned-short RGB from `Color3us`, `Color3usv` and their display-list copies, the 16-bit form of
@@ -151,8 +151,8 @@ who stores each word, not its effect.
   with their vector forms, six routines.
 - `0xce80c407` (scratch slot, one operand, opcode 0x07, `libGLcore.so`): **established.**
   Float index for the scratch colour from `ScratchIndexf` and `ScratchIndexd` with vector forms, four routines.
-- `0xce80cc08` (scratch slot, three operands, opcode 0x08, `libGLcore.so`): **established.**
-  Unsigned-byte scratch RGB, `ScratchColor3ub` and its vector form, two routines; the kernel's `ODSY_SET_GC`
+- `0xce80cc08` (scratch slot, three operands, opcode 0x08, `libGLcore.so`).
+  Unsigned-byte scratch RGB, `ScratchColor3ub` and its vector form, two routines; the kernel's the text-port state set-up routine
   also stores this word.
 - `0xce80cc09` (scratch slot, three operands, opcode 0x09, `libGLcore.so`): **established.**
   Unsigned-short scratch RGB from the two `ScratchColor3us` routines.
@@ -250,9 +250,9 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
 - `0x00010420` (block 0x020, one operand, `libGLcore.so`): **established.**
   The depth test function. `__glOdyim_DepthFunc` rewrites only bits 2:0 of the shadow at context +31792 with the
   GL comparison enum minus 0x200 and stores the whole word; `__glOdysseyClear` stores it as well.
-- `0x00010422` (block 0x022, one operand, `libGLcore.so`): **established.**
+- `0x00010422` (block 0x022, one operand, `libGLcore.so`).
   The logic operation in bits 3:0, the GL enum minus 0x1500 from `__glOdyim_LogicOp`; the kernel textport's
-  `ODSY_SET_GC` stores the constant for GL_COPY, and the image-chain routines resend it before a pixel pass.
+  The text-port state set-up routine stores the constant for GL_COPY, and the image-chain routines resend it before a pixel pass.
 - `0x00010415` (block 0x015, one operand, `libGLcore.so`): **established.**
   The polygon mode: bits 3:2 front face and bits 1:0 back face, each GL enum minus 0x1b00, from
   `__glOdyim_PolygonMode`. `__glOdysseyClear` and `__glOdyim_PolygonOffsetEXT` also store it. Replay reads
@@ -274,11 +274,9 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
 - `0x00013c4f` (block 0x04f, sixteen operands, `libGLcore.so`): **established.**
   Rows 15 down to 0 of the polygon stipple, sent straight after 0x04e by `__glOdysseyConvertStipple` and, for
   glyph bitmaps, by the kernel's `odsy_drawbitmap`; replay reads hardware-shadow offset 0x40.
-- `0x0001043f` (block 0x03f, one operand, `libGLcore.so`): **inferred.**
+- `0x0001043f` (block 0x03f, one operand, `libGLcore.so`) (by inference).
   The stipple mode word, sent before the two pattern blocks from context +31736 by `__glOdysseyConvertStipple`;
   the kernel textport stores the constant 6. What 6 selects is **unknown**.
- uses for primitive-relative stipple with the tall
-  glyph aspect.
 - `0x0001204b` (block 0x04b, eight operands, `libGLcore.so`): **inferred.**
   The screen mask: four rectangles as minimum and maximum words with x in bits 23:12 and y in bits 11:0.
   `odsyClipPush` (`odsy_clip.o`) stores it with the clip, and the textport's start-up stream sends 0x4ff3ff for
@@ -287,19 +285,19 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
   The line width and point size, one operand each; `__glOdysseyValidateHardware` sends it from the context and
   the kernel textport start-up stream stores 0x80 for both, which would read as 1.0 in a fixed-point
   number with seven fraction bits (inferred from the value alone).
-- `0x00010c21` (block 0x021, three operands, `odsy_tport.o`): **established.**
-  The blender block. `ODSY_SET_GC` stores a control word and then the colour as two packed words, and
+- `0x00010c21` (block 0x021, three operands, `odsy_tport.o`).
+  The blender block. The text-port state set-up routine stores a control word and then the colour as two packed words, and
   libGLcore's `__glOdysseyValidateHardware` (word built at 0xd9683f0) sends the same block with the equation (bits 15:13) and the two factor codes (bits 12:6 and 5:0) as its first operand, from `glBlendEquationEXT` and `glBlendFunc` (`BUZZ.h` section 4); the colour is the second and third operands only. The textport's fills use the colour as the drawing colour.
-- `0x00011023` (block 0x023, four operands, `odsy_tport.o`): **established.**
-  Stored by `ODSY_SET_GC` twice and by `__glOdysseyValidateContext` in libGLcore, beside the sequencer
+- `0x00011023` (block 0x023, four operands, `odsy_tport.o`).
+  Stored by the text-port state set-up routine twice and by `__glOdysseyValidateContext` in libGLcore, beside the sequencer
   registers 0x22 and 0x23 that choose colour-index or RGB handling (`docs/words.md`, sequencer section).
-- `0x00011017` (block 0x017, four operands, `odsy_tport.o`): **established.**
+- `0x00011017` (block 0x017, four operands, `odsy_tport.o`).
   The window descriptor sent when the graphics context or clip changes: four operands copied from context
   +0x969c to +0x96a8 by `__glOdysseyValidateHardware` in libGLcore (the X module's routines copy the same four words from
-  their own context at +6948 to +6960), stored once by `ODSY_SET_GC` and by `odsyRestartContext`.
+  their own context at +6948 to +6960), stored once by the text-port state set-up routine and by `odsyRestartContext`.
   `__glOdysseySwapBuffers` ORs bit 23 into the third operand of the last of its three sends.
-- `0x00010424` (block 0x024, one operand, `odsy_tport.o`): **established.**
-  Stored by `ODSY_SET_GC`, `odsyPushBufferSelect` (`odsy_drawable.o`) and replayed by `odsyRestoreRaster`. `odsyPushBufferSelect` builds the operand as a 4-bit mask copied from bits 0 to 3 of the board record word at +568, except that when the related record's word at +32 has any bit of 0x3c00 set the operand is 12 if any of those four flags is set and 0 otherwise; it sends the word after a settle sequence and also copies the four window-descriptor words (block 0x017) from +6948. The operand is a draw-buffer select (**inferred**, because no code names the field).
+- `0x00010424` (block 0x024, one operand, `odsy_tport.o`).
+  Stored by the text-port state set-up routine, `odsyPushBufferSelect` (`odsy_drawable.o`) and replayed by `odsyRestoreRaster`. `odsyPushBufferSelect` builds the operand as a 4-bit mask copied from bits 0 to 3 of the board record word at +568, except that when the related record's word at +32 has any bit of 0x3c00 set the operand is 12 if any of those four flags is set and 0 otherwise; it sends the word after a settle sequence and also copies the four window-descriptor words (block 0x017) from +6948. The operand is a draw-buffer select (by inference, because no code names the field).
 
 ## Framing and synchronisation words stored to the FIFO
 
@@ -348,8 +346,8 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
 A sequencer word is `(reg << 24) | 0x8000 | enc(value)`, where `enc(v)` is the low ten bits of v with higher bits moved up
 to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host never reads these registers back.
 
-- `0x22008000` (register 0x22, value 0, `odsy_tport.o`): **inferred.**
-  `ODSY_SET_GC` stores it twice in the textport's state set-up, and the X module sends 0 here before RGB drawing
+- `0x22008000` (register 0x22, value 0, `odsy_tport.o`) (by inference).
+  The text-port state set-up routine stores it twice in the textport's state set-up, and the X module sends 0 here before RGB drawing
   (`docs/opengl.md`); every site that sends an RGB colour word pairs it with this register at 0 and with 0x23 at
   2, so register 0x22 reads as half of a colour-handling mode pair.
 - `0x22008001` (register 0x22, value 1, `odsy_tport.o`): **inferred.**
@@ -362,9 +360,8 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
 - `0x23008003` (register 0x23, value 3, `odsy_tport.o`): **inferred.**
   Stored by `odsy_color` beside 0x22008001; with it the index-colour pair is (1, 3) at every sender of the index
   colour word.
-- `0x2600807f` (register 0x26, value 127, `odsy_init.o`): **established.**
+- `0x2600807f` (register 0x26, value 127, `odsy_init.o`).
   Stored by `odsyInitCfifo` before the microcode load. What register 0x26 limits is **unknown**
-  standalone driver loads the register it names `s3MaxWExp`
   (`ucode/buzz_isa.md`, "Sequencer registers"). It is not a routine
   address; 127 only coincides with an entry number in `AddProgram`'s lists.
 - `0x27008000` (register 0x27, value 0, `odsy_init.o`): **established.**
@@ -390,13 +387,13 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
 - `0x29808062` (register 0x29, value 1122, `libGLcore.so`): **inferred.**
   The 4103 patch's libGLcore sends it from `__glOdysseySetProgram`; the older kernel copy of the program has records
   from 891 on 99 lower, and 1221 minus 99 is 1122, so this is the same one-record routine as 1221.
-- `0x298080c5` (register 0x29, value 1221, `libGLcore.so`): **established.**
+- `0x298080c5` (register 0x29, value 1221, `libGLcore.so`).
   Routine 1221 of `buzz_xform.bin`, a single-record routine, sent by `__glOdysseyValidateProgram` and
-  `__glOdysseySetProgram` (`ody_program.s`) as the program-entry word.
-- `0x2e008380` (register 0x2e, value 896, `odsy_init.o`): **established.**
+  `__glOdysseySetProgram` (the program module) as the program-entry word.
+- `0x2e008380` (register 0x2e, value 896, `odsy_init.o`).
   Stored by `odsyInitCfifo` before the microcode load and by the GL context default
   (`__glOdysseyInitDefaultValues`) with the same value 896. What register 0x2e holds is **unknown**
-
+  (`ucode/buzz_isa.md`, "Sequencer registers"). It is not a routine address, which is
   why it does not move with the 99-record insertion.
 - `0x3000c02e` (register 0x30, value 46, `odsy_ctxsw.o`): **established.**
   Bits 15:14 are 11, unlike the others. `odsyResetHwShadow`, `odsyRestoreGfe` (four sites), `odsyRestoreVB`
@@ -428,8 +425,8 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
   Index 36, the third block of the full replay, which carries 16 words in `odsyRestoreXform`.
 - `0x34008034` (register 0x34, index 52, `odsy_ctxsw.o`): **established.**
   Index 52, the fourth block of the full replay in `odsyRestoreXform`.
-- `0x35008000` (register 0x35, value 0, `libGLcore.so`): **inferred.**
-  The colour-material copy enable of register 0x35 (`ucode/buzz_isa.md` names it that way, and gives the context default 0). `ValidateColorMaterial` (`libglcore/decomp/ODYSSEY/ody_attrib.c`) stores the word with the value it computes when the flag at context +0xC94 is set, and records the same value at context +0xa228. The default-state routine `__glOdysseyInitDefaultValues` (`ody_context.c`) sends the word with the zeroed +0xa228 word, so the default value is 0.
+- `0x35008000` (register 0x35, value 0, `libGLcore.so`) (by inference).
+  The colour-material copy enable of register 0x35 (`ucode/buzz_isa.md` names it that way, and gives the context default 0). `ValidateColorMaterial` (`libglcore/decomp/ODYSSEY/ody_attrib.c`) stores the word with the value it computes when the flag at context +0xC94 is set, and records the same value at context +0xa228. The default-state routine `__glOdysseyInitDefaultValues` (the context module) sends the word with the zeroed +0xa228 word, so the default value is 0.
 
 ## GLX request-code words stored by libGL (not command words)
 
@@ -560,9 +557,9 @@ These words are not FIFO commands. `libGL.so` (the IP30 build under `usr/gfx/arc
 - `0x00013c2b` (block 0x02b, sixteen operands, `libGLcore.so`): **established.**
   Fourth of the sixteen-operand set, ending the mode in which the 64 shadow words go out as four blocks, from
   `__glOdysseyValidateHardware`; contents unknown.
-- `0x0001103a` (block 0x03a, four operands, `odsy_ctxsw.o`): **established.**
+- `0x0001103a` (block 0x03a, four operands, `odsy_ctxsw.o`).
   The four-word layout of the same 64-word region, chosen by the mode word at 0x106c of the shadow (3 selects this one);
-  libGLcore sends it only from `ody_context.s` and the kernel's `odsyRestoreRaster` replays it. Contents unknown.
+  libGLcore sends it only from the context module and the kernel's `odsyRestoreRaster` replays it. Contents unknown.
 - `0x00013c38` (block 0x038, sixteen operands, `odsy_ctxsw.o`): **established.**
   The one-block layout of the 64-word region: mode 2 sends all sixteen words as a single block. Built in
   `odsyRestoreRaster`; libGLcore's `__glOdysseyValidateHardware` has the same constant. Contents unknown.
@@ -579,14 +576,14 @@ These words are not FIFO commands. `libGL.so` (the IP30 build under `usr/gfx/arc
 for each bit set, sends the settle group and then one block from its shadow; the kernel's `odsyRestoreRaster` replays
 the same blocks after a lost context.
 
-- `0x00010404` (block 0x004, one operand, `libGLcore.so`): **established.**
+- `0x00010404` (block 0x004, one operand, `libGLcore.so`).
   The raster enable word, one bit or small field per fragment operation, from context +31740 when dirty bit 1 is set:
   bit 0 point smoothing, 1 line smoothing, 2 polygon smoothing, 3 and 4 line and polygon stipple, 5 to 7 polygon offset
   for points, lines and fill, 8 cull enable with 9 and 10 for back and front, 11 two-sided lighting, 12 flat shading,
   14 alpha test, 15 stencil test, 16 depth test, 17 blending, 18 dither, 19 and 20 index and colour logic op, 22 fog,
   23 clockwise front face. The setters are `__glOdyim_Enable`, `__glOdyim_CullFace` and `__glOdyim_ShadeModel`; the
-  kernel textport's `ODSY_SET_GC` stores the word with the constant its own drawing needs.
-  *Culling enabled with no face selected* (bit 8 set, bits 10:9 both clear): **established** that no shipped software
+  kernel textport's the text-port state set-up routine stores the word with the constant its own drawing needs.
+  *Culling enabled with no face selected* (bit 8 set, bits 10:9 both clear): that no shipped software
   sends it, **unknown** what the board does with it. Bit 8 is set in one place, the `GL_CULL_FACE` case of
   `__glOdyim_Enable` (0xd956bc0), and cleared by the same case of `__glOdyim_Disable`. Bits 10:9 are written only by
   `__glOdyim_CullFace` (0xd95b690), which stores 01, 10 or 11 and raises `GL_INVALID_ENUM` for any other face, and are
@@ -597,10 +594,10 @@ the same blocks after a lost context.
   the word. The only immediate mask that clears any of bits 10:9 is the one in `__glOdyim_CullFace`, and the only
   `ori` of 0x100 on the word is the enable case. Many of the stores take their mask from a register that an
   earlier call or load filled (the accumulation and image paths, which save and put back whole words); for those the
-  claim rests on the image paths restoring a word that was itself written by the routines above, so it is **inferred**
+  claim rests on the image paths restoring a word that was itself written by the routines above, so it is by inference
   for them. The X module's pixel-mode switch sends the word with bits 19 or 20 and 15 only (`docs/odyssey-so-reads.md`, the entries
   that send 0x10404; not re-scanned here), so it never sets bit 8 either. If bit 8 with 00 must be modelled, "no face is
-  culled" follows from bits 9 and 10 being separate back and front selectors (**inferred**, from the 11 that
+  culled" follows from bits 9 and 10 being separate back and front selectors (by inference, from the 11 that
   `GL_FRONT_AND_BACK` stores); "keep the previously selected face" has no software behind it. Either is a model choice.
 - `0x00010405` (block 0x005, one operand, `libGLcore.so`): **established.**
   The transform and texture path selection, from context +31744 when dirty bit 2 is set: bits 2:0 are the user clip planes as
@@ -611,8 +608,8 @@ the same blocks after a lost context.
   Bits 5:0 are the index of the first texture level descriptor the texture unit reads, from context +32736 when dirty
   bit 11 is set. `__glOdysseyTextureActivate` writes 0 for level 0, and `DownsampleTextureThruHW` writes 60 so
   its draw reads descriptor 60; `odsyRestoreRaster` replays the word from hardware-shadow offset 0x468.
-- `0x00010407` (block 0x007, one operand, `libGLcore.so`): **established.**
-  Built in `ValidateFragmentLightColor`, `__glOdysseyInitDefaultValues` and `__glOdysseyValidateFragment`. Its one operand is an index from 0 to 7. `odsyRestoreRaster` replays it eight times, with operands 7 down to 0, and each is followed by the six-operand word for block 0x250 plus that index (0x257 down to 0x250), whose operands come from the context's hardware shadow at +7132 plus 24 bytes per index. `__glOdysseyInitDefaultValues` and `__glOdysseyValidateFragment` send operand 0 straight before block 0x250, and `ValidateFragmentLightColor` (`ody_lighting.c`) sends a register index before a word it forms as 0x11800 or the index plus 592 (0x250). What the eight entries hold is unknown.
+- `0x00010407` (block 0x007, one operand, `libGLcore.so`).
+  Built in `ValidateFragmentLightColor`, `__glOdysseyInitDefaultValues` and `__glOdysseyValidateFragment`. Its one operand is an index from 0 to 7. `odsyRestoreRaster` replays it eight times, with operands 7 down to 0, and each is followed by the six-operand word for block 0x250 plus that index (0x257 down to 0x250), whose operands come from the context's hardware shadow at +7132 plus 24 bytes per index. `__glOdysseyInitDefaultValues` and `__glOdysseyValidateFragment` send operand 0 straight before block 0x250, and `ValidateFragmentLightColor` (the lighting module) sends a register index before a word it forms as 0x11800 or the index plus 592 (0x250). What the eight entries hold is unknown.
 - `0x0001041f` (block 0x01f, one operand, `libGLcore.so`): **established.**
   Sent by `__glOdysseyClear` twice and by `__glOdysseyValidateHardware`; `odsyRestoreRaster` replays it from hardware-shadow offset
   0xb4 beside 0x01e, 0x020 and 0x058. What field it holds is unknown.
@@ -739,11 +736,11 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x01f` (state block between alpha test and depth test): **established.**
   Word 0x0001041f with one operand, replayed from hardware-shadow offset 0xb4 beside 0x01e at 0xb0 and
   0x020 at 0xb8; libGLcore's `__glOdysseyClear` sends it twice. The register's field is unknown.
-- `0x021` (blender block: equation, factors, constant colour): **established.**
-  Word 0x00010c21 with three operands, a control word (equation and blend factor codes) and a packed RG and BA colour, from `ODSY_SET_GC` and
+- `0x021` (blender block: equation, factors, constant colour).
+  Word 0x00010c21 with three operands, a control word (equation and blend factor codes) and a packed RG and BA colour, from the text-port state set-up routine and
   `__glOdysseyValidateHardware`; the kernel replays it from hardware-shadow offset 0xbc.
-- `0x023` (texture-clip block): **inferred.**
-  Word 0x00011023, four operands, replayed from hardware-shadow offset 0xe8 and sent by `ODSY_SET_GC` twice; `docs/opengl.md`
+- `0x023` (texture-clip block) (by inference).
+  Word 0x00011023, four operands, replayed from hardware-shadow offset 0xe8 and sent by the text-port state set-up routine twice; `docs/opengl.md`
   records that the X module and textport send it with the 0x022 sequencer pair, which is why it reads as part of
   the colour-handling state.
 - `0x028` (first of four 16-operand blocks): **established.**
@@ -778,8 +775,8 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
 - `0x03d` (mode-3 post-filter block, `odsy_ctxsw.o`): **established.**
   Word 0x0001083d, two operands, a scale of 0x1000 and a bias of 0 that the context's default-state routine
   writes; the kernel replays it in `odsyRestoreRaster`.
-- `0x03e` (texture offset block, `libGLcore.so`): **inferred.**
-  Three words, the texture offset values. `__glOdysseyValidateHardware` (`libglcore/decomp/ODYSSEY/ody_context.c`) sends them as word 0x00010c3e with operands from the context at +0x8d6c, +0x8d70 and +0x8d74. `__glOdysseyValidateTextureState` (`ody_texture.c`) copies those three from the texture state's +0xd0, +0xd4 and +0xd8 words, and `SetTexOffsetValues` (`ody_texture.c`) zeroes the same three words, so the block sends the texture's offset set. Replayed from hardware-shadow offset 0x11f4 by `odsyRestoreRaster`.
+- `0x03e` (texture offset block, `libGLcore.so`) (by inference).
+  Three words, the texture offset values. `__glOdysseyValidateHardware` (`libglcore/decomp/ODYSSEY/ody_context.c`) sends them as word 0x00010c3e with operands from the context at +0x8d6c, +0x8d70 and +0x8d74. `__glOdysseyValidateTextureState` (the texture module) copies those three from the texture state's +0xd0, +0xd4 and +0xd8 words, and `SetTexOffsetValues` (the texture module) zeroes the same three words, so the block sends the texture's offset set. Replayed from hardware-shadow offset 0x11f4 by `odsyRestoreRaster`.
 - `0x040` (clip-origin block): **established.**
   Word 0x00010840 with a doubleword built from the board record and a drawable word, stored twice by `odsyClipPush`
   (`odsy_clip.o`) and by `__glOdysseySetDrawbuf` in libGLcore; the kernel's clip push writes it before block 0x041.
@@ -829,11 +826,11 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   a texture level; word 0 is the level's board address and word 1 its pitch in tiles (inferred, `docs/buzz.md`).
 - `0x007` (block, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
   Word 0x00010407 carries it with one operand, an index from 0 to 7. `odsyRestoreRaster` (`odsy_ctxsw.o`) loops eight times with the index counting down from 7: it sends the word with the index, then the six-operand word for block 0x250 plus the index (0x257 down to 0x250), whose operands it loads from the context's hardware shadow at +7132 plus 24 bytes per index. `__glOdysseyInitDefaultValues` and `__glOdysseyValidateFragment` send the word with operand 0 just before block 0x250, and `ValidateFragmentLightColor` sends it with a register index before a word it forms as 0x11800 or the index plus 592 (0x250). The drivers never read a result back from it, so no shipped software or published source depends on what it sets. Routes tried: the binary scan for word 0x00010407, the decompiled senders in the Odyssey GL driver fragment source unit, the Odyssey GL driver lighting source unit and the Odyssey GL driver context source unit, `BUZZ.h`, and the replay table in `docs/buzz.md`.
-- `0x024` (block, `odsy_tport.o`): **established.**
-  Word 0x00010424, one operand: `ODSY_SET_GC` writes and reads hardware-shadow offset 0x2b68, and `odsyRestoreRaster` replays
+- `0x024` (block, `odsy_tport.o`).
+  Word 0x00010424, one operand: the text-port state set-up routine writes and reads hardware-shadow offset 0x2b68, and `odsyRestoreRaster` replays
   that offset; `odsyPushBufferSelect` instead builds a 4-bit buffer mask from the board record's flags at +568
   (12 or 0 when the related record's +32 word has a bit of 0x3c00 set) and sends it after a settle sequence. The operand
-  reads as the draw-buffer select (**inferred**).
+  reads as the draw-buffer select (by inference).
 
 ## Attribute-form words that carry other state
 
@@ -844,12 +841,12 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   Built only by `odsyZeroOut`, which stores it once at the start of its fill loop together with the constants 1856 and 448
   and then writes zero words in runs of up to 16 through the command FIFO port. **inferred** from the zero fill that the loop clears a memory; what register the word addresses is unknown.
 
-- `0x8f80a944` (ten-operand state word, opcode 0x144, `libGLcore.so`): **inferred.**
-  The clear-rectangle form. `__glOdysseyClear` (`libglcore/decomp/ODYSSEY/ody_clear.c`) sends it after the primitive begin word 0x14400 with operand 7 and before the end word 0x14001, with ten operands: four floats loaded from words 0, 4, 8 and 12 of the record that the pointer at 196(sp) names, the first corner as two floats converted from the integers at 208(sp) and 212(sp), the float at 200(sp), the second corner as two floats (those integers plus the ones at 216(sp) and 220(sp)), and the float at 200(sp) again. The branch at 0xd96794c, taken when a3 is nonzero, skips these stores. `LoadAndSendStippledQuads` (`ody_bitmap.c`) sends the same word.
-- `0x8f80b968` (fourteen-operand state word, opcode 0x168, `libGLcore.so`): **inferred.**
-  The textured-rectangle form. `DownsampleTextureThruHW` (`libglcore/decomp/ODYSSEY/ody_texture.c`) sends it between the begin word 0x14400 with operand 7 and the end word 0x14001, with fourteen operands: four zero words, the first corner as two floats, a zero word, the second corner as two floats, then a zero word and four more operands that the routine computes. `ody_image_move.c` and `ody_bitmap.c` send the same word.
-- `0x908091bb` (four-operand state word, opcode 0x1bb, `libGLcore.so`): **inferred.**
-  A table write: four floats stored at the entry that the preceding register-0x31 word selects. `__glOdysseyInitLighting` (`libglcore/decomp/ODYSSEY/ody_lighting.c`) sends it after the index words for entries 240 and 244 with four zero floats. `__glOdysseyValidateClipPlanes` (`ody_context.c`) sends it once per enabled user clip plane, after register-0x31 index 288 plus four times the count of planes already sent, with the plane's four floats, copied from the array that the context word at +0x6d4 points to (16 bytes per plane) into the context's shadow words first. `ody_texgen.c` sends it for texture-generation planes, and `ucode/buzz_isa.md`'s register table places the 0x1bb stores at the register-0x31 parameter base.
+- `0x8f80a944` (ten-operand state word, opcode 0x144, `libGLcore.so`) (by inference).
+  The clear-rectangle form. `__glOdysseyClear` (`libglcore/decomp/ODYSSEY/ody_clear.c`) sends it after the primitive begin word 0x14400 with operand 7 and before the end word 0x14001, with ten operands: four floats loaded from words 0, 4, 8 and 12 of the record that the pointer at 196(sp) names, the first corner as two floats converted from the integers at 208(sp) and 212(sp), the float at 200(sp), the second corner as two floats (those integers plus the ones at 216(sp) and 220(sp)), and the float at 200(sp) again. The branch at 0xd96794c, taken when a3 is nonzero, skips these stores. `LoadAndSendStippledQuads` (the bitmap module) sends the same word.
+- `0x8f80b968` (fourteen-operand state word, opcode 0x168, `libGLcore.so`) (by inference).
+  The textured-rectangle form. `DownsampleTextureThruHW` (`libglcore/decomp/ODYSSEY/ody_texture.c`) sends it between the begin word 0x14400 with operand 7 and the end word 0x14001, with fourteen operands: four zero words, the first corner as two floats, a zero word, the second corner as two floats, then a zero word and four more operands that the routine computes. the image-move module and the bitmap module send the same word.
+- `0x908091bb` (four-operand state word, opcode 0x1bb, `libGLcore.so`) (by inference).
+  A table write: four floats stored at the entry that the preceding register-0x31 word selects. `__glOdysseyInitLighting` (`libglcore/decomp/ODYSSEY/ody_lighting.c`) sends it after the index words for entries 240 and 244 with four zero floats. `__glOdysseyValidateClipPlanes` (the context module) sends it once per enabled user clip plane, after register-0x31 index 288 plus four times the count of planes already sent, with the plane's four floats, copied from the array that the context word at +0x6d4 points to (16 bytes per plane) into the context's shadow words first. the texture-generation module sends it for texture-generation planes, and `ucode/buzz_isa.md`'s register table places the 0x1bb stores at the register-0x31 parameter base.
 
 ## Constant words and operands the kernel builds that match no word family
 

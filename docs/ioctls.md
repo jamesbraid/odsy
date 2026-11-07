@@ -10,9 +10,9 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   The first comparison of `gfxioctl` takes it with no argument copy of its own; **inferred** from the header name that
   it reports how many boards the driver has registered through `GfxRegisterBoard`. The libGL open path and
   `ddxFindAvailableBoards` send it.
-- 0x66 `GFX_GETBOARDINFO` (ioctl 102, `gfx.o`): **established.**
+- 0x66 (ioctl 102, `gfx.o`).
   `gfxioctl` copies a 24-byte argument in through `copyin_xlate`, which converts the caller's ABI layout,
-  so the request works from o32, N32 and 64-bit clients; **inferred** that it returns the per-board record
+  so the request works from o32, N32 and 64-bit clients; by inference it returns the per-board record
   that `gfxinfo` prints.
 - 0x67 `GFX_ATTACH_BOARD` (ioctl 103, `gfx.o`): **established.**
   A 16-byte argument is converted in through `copyin_xlate` before the board is attached to the calling
@@ -24,15 +24,15 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
 - 0x69 `GFX_IS_MANAGED` (ioctl 105, `gfx.o`): **established.**
   A 4-byte argument is copied in with plain `copyin`; **inferred** from the header name that the request
   tells the caller whether the board is under the graphics manager.
-- 0x6a `GFX_INITIALIZE` (ioctl 106, `gfx.o`): **established.**
+- 0x6a (ioctl 106, `gfx.o`).
   `gfxioctl` takes the board's `ddv` lock around the call into the board driver; for this board the
   driver's initialise entry is `gf_OdsyInitialize`, whose reset and flow-control work is in
   `docs/kernel.md`. `gfxinfo` and `gfxinit` send it.
-- 0x6b `GFX_START` (ioctl 107, `gfx.o`): **established.**
+- 0x6b (ioctl 107, `gfx.o`).
   Same locked call shape as 106, into the board driver's start entry, `gf_OdsyStart` (`odsy_init.o`),
   which hands the hardware-shadow cache region to the board at 0x4034 and 0x403c; `gfxinfo` sends it after
   the download.
-- 0x6c `GFX_DOWNLOAD` (ioctl 108, `gfx.o`): **established.**
+- 0x6c (ioctl 108, `gfx.o`).
   A 40-byte argument is converted in with `copyin_xlate`; the board driver's download entry is
   `gf_OdsyDownload`. `gfxinfo`'s `odsy_init` and the other board initialisers send it.
 - 0x6e `GFX_MAPALL` (ioctl 110, `gfx.o`): **inferred.**
@@ -42,10 +42,10 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
 - 0x6f `GFX_LABEL` (ioctl 111, `gfx.o`): **established.**
   `gfxioctl` copies a 16-byte argument in with `copyin` and passes it on; the X server sends it from
   `irixKernInit`; **inferred** that it names the board for the hardware graph.
-- 0x70 `GFX_REATTACH_BOARD` (ioctl 112, `gfx.o`): **established.**
+- 0x70 (ioctl 112, `gfx.o`).
   A 16-byte argument converted with `copyin_xlate`, the same layout size as the attach request;
   `ng1_setmon` sends it.
-- 0x71 `GFX_SET_DIAG_FLAG` (ioctl 113, `gfx.o`): **established.**
+- 0x71 (ioctl 113, `gfx.o`).
   The case calls `drv_priv` first and, for a privileged caller, sets bit 2 of the board record's flag word at
   +4 without copying any argument; the compositor diagnostic and `saXSGIvcQueryChannelGammaMap` send it.
 
@@ -217,10 +217,10 @@ Each entry starts with the table's handler. The request number is in hex after i
   timeout (`timeout`) and itself stores the save request doubleword to the board at 0x118000, the same
   request `gf_OdsyPcxSwap` makes (`docs/registers.md`). libGLcore sends it from
   `__glOdysseyGetHardwareShadow`.
-- `gfP_OdsySetClipMask` (ioctl 0x6f64000d, `odsy_clip.o`): **established.**
+- `gfP_OdsySetClipMask` (ioctl 0x6f64000d, `odsy_clip.o`).
   Copies in 16 bytes, checks the caller (`RRM_CheckValidFault`) and validates the clip through
   `gf_OdsyValidateClip`; the four words are the clip-mask fields that libGLcore hands over from
-  `ody_context.s`.
+  the context module.
 - `gfP_OdsyClearBuffer` (ioctl 0x6f64000e, `odsy_clip.o`): **established.**
   Copies in 44 bytes, checks the caller, and attaches the process to flow control before the clear is
   queued (`gfx_flow_attach_me`); the sender is `__glOdysseyClear`.
