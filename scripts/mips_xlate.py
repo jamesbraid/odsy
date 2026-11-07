@@ -1,0 +1,1 @@
+../retools/scripts/mips_xlate.py
