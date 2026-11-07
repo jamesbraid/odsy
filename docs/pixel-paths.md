@@ -318,6 +318,101 @@ word and a colour word with the same class and code come from different parts of
   the transfer path it first writes the box floats, and after the words sends 0x14001 and, when
   asked, the flush sequence followed by 0x10658 and 0x120000.
 
+### A screen-to-screen copy inside an index window (block 0x2031)
+
+The X server's window moves and tile doublings on an 8-bit colour-index window send the
+eight-word copy block with one fixed set of format words: word 2 `0x80503050`, word 4
+`0x83331008`, word 7 `0x32330041`, bracketed by block 0x017 whose third operand is
+`0x20086a00`. The words below are decoded against the library's header tables above. The
+question they answer is whether the board converts the pixel on the way (source field format,
+then destination field format) or moves the field unchanged.
+
+- **established** (a recorded IRIX 6.5.30 boot of a Fuel guest: 40 copy blocks, every one with
+  word 4 `0x83331008`, word 7 low bits `0x0041` and destination mode `0x20086a00`; none preceded
+  by block 0x203b, whose first appearance is later in the boot and carries the identity scale
+  `0x1000` and bias 0): the copy source is a 16-byte pixel's field 3 (bytes 6 and 7), the
+  destination the same field, and word 4 bits 19:16 and 15:13 give a 2-byte field in a 16-byte
+  pixel on both sides. Word 4 bits 7:0 are `0x08`: class (bits 2:0) 0, code (bits 7:3) 1.
+- **established** (`__glOdysseyImageCalcXferReadParams` and the description routine, table rows
+  above): class 0 code 1 is the read pair the library sends for `COLOR_INDEX`/`UNSIGNED_BYTE`
+  from a window whose storage code is non-zero. The 8-bit index window the description routine
+  builds is storage 2 layout 4, fields (3, 2), and the library's own read header for it is
+  `0x02301008` before the drawable and front bits. The copy's `0x83331008` agrees on the class,
+  the code, bit 12 and field offset 3 for the colour field; it differs where the copy names its
+  own geometry (bit 31 front, field offsets 3 and 3, pixel-size code 3 for a 16-byte pixel). The
+  same pair is the one `OdysseyImageCalcXferCopyParams` returns for pixel class 16.
+- **established** (`__glOdysseyImageCalcXferWriteParams`, last bullet of the format and type
+  table above): word 7 low byte `0x41` is format code 1 (`COLOR_INDEX`), type code 2 (bytes).
+  The destination mode word `0x20086a00` is the second operand word the library fills in
+  `__glOdysseyImageCalcPixelModeFields`: bits 6:4 are 0 (the field format
+  `__glOdysseyImageCalcFieldFormat` gives pixel classes 16 and 17, "index"), bits 9:7 are 4
+  (layout), bits 12:10 are 2 (storage) and bit 19 is set (classes 16 and 17). So the
+  destination mode independently names the same storage 2 layout 4 index window the source
+  pair names.
+- **established** (same recorded boot, DMA upload descriptor ahead of the first 256 x 256
+  tile): the X server uploads the tile into this window with header word 4 `0x83331008` and
+  write word 7 `0x32050041`, so the word 4 the later copies use as their source description is
+  the one the host write used for the destination.
+- **So the meaning of `0x08`** (answer to the source-format question): **established** as the
+  library's class 0 code 1 pair, which is its index-byte read of a storage-2 index window;
+  **inferred** that the pair means "one component held in the first byte of a 2-byte field"
+  rather than "index" as such, because the same pair is also what the library sends for
+  `ALPHA`/`UNSIGNED_BYTE` from an A8 texture (pixel class 0 above) and for the luminance
+  classes 1 and 2 in `OdysseyImageCalcXferCopyParams`. What turns the component into an index, a luminance or an alpha is
+  then the other half of the pair: the write header's format code in word 7 and the
+  destination mode's field format in bits 6:4. For `0x08` with write format `COLOR_INDEX`
+  (`0x41`) into field format 0, both halves say index, which is the pairing the library builds
+  for an index-to-index `glCopyPixels` (chain type 3 in `ImageChainDetermineChainType`).
+- **Convert or raw is not a decision any software or microcode exposes**: **unknown**. The
+  short path (word 7 bit 27 clear) writes only block 0x2031 and no sequencer register, so it
+  selects no microcode routine (`ucode/buzz_routines.md`, "How a command word reaches a
+  routine"); the copy is executed by the board itself. No routine or address holds a
+  format-compare for it, and the question stays under "What the board does with the read and
+  write header fields" in [open-questions.md](open-questions.md). Why the earlier passes did
+  not cover it: they read how the library and X module build the words (this file's header and
+  copy sections, `odsyCopyRectBody` in [opengl.md](opengl.md)), and the board-side meaning of
+  word 4's codes was listed as open without a case that discriminated raw from converted
+  movement. This section adds the first such case, from the recorded boot.
+- **inferred** (the identity rule): a copy whose source pair is class 0 code 1, whose write
+  format is `COLOR_INDEX` bytes and whose destination mode names a 2-byte index field leaves
+  the index value unchanged. Evidence: (1) the library builds exactly this pair for an
+  index-to-index `glCopyPixels`, so the board must round-trip an index through it or index
+  copies would corrupt; (2) the X server relies on it for every scroll and tile doubling, and
+  uses the same word 4 for the upload that produced the data. Nothing board-visible shows how the board does it, so a model may
+  implement it as a field copy or as a read-then-write of the index so long as the value that
+  results is the same.
+- **Where the rule stops** (what makes a copy convert): in the command words the board is
+  given, three things select a different treatment, each **established** as a library
+  behaviour and each **unknown** as to the board's arithmetic:
+  1. A source pair and write pair that are not the same component class: a luminance, alpha or
+     RGBA source into an index destination, or an index source into a colour destination.
+     The library has a separate chain type for index into colour
+     (`ImageChainDetermineChainType`, chain type 2); which steps that chain sends was not
+     read here, and no recorded board copy of the case exists to decode.
+  2. Word 7 bit 27 (the transform path) set: the library sets it for the scale and bias steps
+     and flipped or zoomed copies, and `odsyCopyRectBody` then wraps the block in a textured
+     rectangle (`0xcf80a92f`, vertex word `0x8080c800`) that runs through the transform
+     microcode (routine 303). Zoom (`RenderFunc_ColorZoom`, `RenderFunc_IndexZoom`) reaches
+     the board as a textured rectangle through `__glOdysseyImageMovePixelsTexture`, not a
+     plain copy (**inferred**, the stores are folded in the decompiler).
+  3. A non-identity scale or bias in block 0x203b ahead of the copy (the library programs it
+     for pixel-transfer scale and bias, and signed-type reads). What block 0x203b does to an
+     index copy is **unknown**: no recorded case has both.
+  Different field widths on the two sides (for example a 2-byte index field to a 4-byte or
+  8-byte one, as an index-to-texture copy would be) is also a converting case, since the
+  component has to be widened and the write header's expand flag and type code then apply.
+- **Bound the rule as**: raw (identity) when the source pair equals the write header's pair
+  for the destination's field format, the field sizes agree (word 4 bits 15:13 against word 7
+  bits 15:13), word 7 bit 27 is clear, and block 0x203b holds the identity scale and bias (or,
+  for an index field, none is in force). Everything else keeps the converting path.
+- **unknown**: the high byte of the 2-byte index field. A byte-index upload (`0x41`) and the
+  class 0 code 1 read each carry 8 bits, while the destination field is 2 bytes. The
+  recorded boot does not show whether the board copies both bytes or reads the low byte and
+  writes it back the way the upload would. For pixels the same upload path wrote the two are
+  equal; for a pixel written another way (a fill through a 12-bit index) they could differ.
+  A discriminating test: copy a region that holds a pixel whose field value is above 0xff and
+  read it back.
+
 ## Pixel-buffer swap state, depth and stencil by burst, and the zoom rectangle
 
 Release IRIX 6.5.30m, IP30. Kernel members of `odyssey.a` (`rrm.o`, `odsy_drawable.o`), N32
