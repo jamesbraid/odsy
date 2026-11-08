@@ -10,11 +10,10 @@
  *
  * Derivation: derived from odsy RE binary analysis of the VPro display
  * path (kernel display set-up, timing load, cursor request and genlock
- * handling, and the X server mode tables), cross-read against published
- * driver behaviour; see the odsy repository RE notes (docs/display.md,
- * docs/pbj.md, docs/registers.md). Every fact is restated in our own
- * words. scripts/check-publish-safe.py checks this file against those
- * notes and the publish-safe rules.
+ * handling, and the X server mode tables), cross-read against vendor
+ * driver behaviour; see the odsy RE notes. Every fact is restated in our
+ * own words. The odsy publish-safe check verifies this file against those
+ * notes.
  *
  * Grades, on every register, field and value:
  *   established - read in full in the shipped software that builds or
@@ -28,7 +27,7 @@
  * measured on a board. A grade speaks about the layout and the role the
  * software gives a bit, not about what the hardware does with it.
  *
- * Machine-parseable annotations (scripts/check-publish-safe.py reads them):
+ * Machine-parseable annotations (the odsy publish-safe check reads them):
  *   REG: <BLOCK>.<name> <offset> <acc><width> [count=<n>] reset=<v> <grade>
  *   FIELD: <BLOCK>.<name>.<field> <hi>:<lo> <grade>     a register field
  *   FIELD: <WORD>.<field> <hi>:<lo> <grade>             a non-register word
@@ -194,8 +193,8 @@
  * 512 bytes, which is this block. Each pixel indexes the cursor colour
  * table; index 15 has no entry and inverts the pixel under the cursor. The
  * stored image is the bitmap with its two middle nibble columns swapped
- * and mirrored. The first block's role against the second's is inferred
- * from the sizes.
+ * and mirrored. The shipped driver names this block the glyph plane and
+ * block B the alpha plane.
  */
 /* REG: DISPLAY.cursor_image_a 0x2500 w32 count=128 reset=unknown established */
 
@@ -272,8 +271,7 @@
  * Data-path control of the display chip. The timing load writes the
  * structure's word here and sets bit 7 when bit 6 of that word is set. The
  * blanking routine reads it back. The role is inferred from the order of
- * the driver's stores and a published driver's field name; bit meanings
- * beyond the two named are unknown.
+ * the driver's stores; bit meanings beyond the two named are unknown.
  */
 /* REG: DISPLAY.datapath_ctl 0x2600 rw32 reset=unknown inferred */
 /* FIELD: DISPLAY.datapath_ctl.bit6 6:6 unknown */
@@ -312,7 +310,7 @@
 /*
  * Genlock control. The timing load writes the structure's word here after
  * enabling the genlock interrupt source, and the genlock handler continues
- * only when bit 6 is set; the published driver names that bit as the
+ * only when bit 6 is set, which reads as a genlock-enabled flag (inferred).
  * While the clock is being reprogrammed
  * the word is held at 0.
  */
@@ -324,9 +322,8 @@
 /*
  * Genlock status, read only. The handler returns if bit 0 is clear. Bit 1
  * selects the branch that reprograms the clock part: set takes the "lost"
- * branch, clear the "got" one. A published driver's constants give bit 1
- * as the lock state and bit 0 as the lock source; the handler's own
-
+ * branch, clear the "got" one. The handler's own message calls bit 0 the
+ * generator state; what bit 1 means beyond selecting the branch is unknown,
  * so the name valid is a guess.
  */
 /* REG: DISPLAY.genlock_status 0x27cd r32 reset=unknown inferred */
@@ -386,17 +383,13 @@
 
 /*
  * Colour-map unit configuration. Start-up writes 0; the timing load stores
- * bit 5 of the structure's word 200, the same flag it stores to the second
- * scan configuration register in PBJ_DECODE.h. A published driver writes
- * its colour-map unit configuration with the field-sequential flag at the
- * same step.
- */
+ * a flag bit of the timing load, the same flag it stores to the second
+ * scan configuration register in PBJ_DECODE.h.  */
 /* REG: DISPLAY.cmap_unit_ctl 0x2929 w32 reset=unknown inferred */
 
 /*
  * Red, green and blue overrides of the colour-map unit, in that order.
- * Start-up writes 0 to each, in the order a published driver zeroes its
- * red, green and blue overrides.
+ * Start-up writes 0 to each.
  */
 /* REG: DISPLAY.cmap_override 0x292a w32 count=3 reset=unknown inferred */
 

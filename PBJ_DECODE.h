@@ -11,11 +11,10 @@
  *
  * Derivation: derived from odsy RE binary analysis of the VPro display
  * path (display FIFO writers, start-up, frame-buffer set-up and blanking),
- * cross-read against published driver behaviour and the published
- * diagnostic reference; see the odsy repository RE notes (docs/pbj.md,
- * docs/display.md, docs/registers.md). Every fact is restated in our own
- * words. scripts/check-publish-safe.py checks this file against those
- * notes and the publish-safe rules.
+ * cross-read against vendor driver behaviour and the published diagnostic
+ * reference; see the odsy RE notes. Every fact is restated in our own
+ * words. The odsy publish-safe check verifies this file against those
+ * notes.
  *
  * Grades, on every register, field and value:
  *   established - read in full in the shipped software that builds or
@@ -29,7 +28,7 @@
  * measured on a board. A grade speaks about the layout and the role the
  * software gives a bit, not about what the hardware does with it.
  *
- * Machine-parseable annotations (scripts/check-publish-safe.py reads them):
+ * Machine-parseable annotations (the odsy publish-safe check reads them):
  *   REG: <BLOCK>.<name> <offset> <acc><width> [count=<n>] reset=<v> <grade>
  *   FIELD: <BLOCK>.<name>.<field> <hi>:<lo> <grade>     a register field
  *   FIELD: <WORD>.<field> <hi>:<lo> <grade>             a non-register word
@@ -89,8 +88,8 @@
  * words, the cursor control word, X server colour-map loads and the cursor
  * position when cursor control bit 2 is set; type 3 for everything the
  * kernel loads at start-up or mode set and for the textport colour map.
- * established as uses. A published driver builds its headers from an
- * update kind, a target and a register and count; its kinds are an
+ * established as uses. So type 3
+
 
 
  * is read as apply at once and type 7 as apply at the next vertical blank,
@@ -179,13 +178,13 @@
 
 /*
  * Host-interface control of the display chip. The timing load puts the
- * clock-select field of timing word 212 in bits 14:12 and that of word 216
+ * first clock-select field of the timing load in bits 14:12 and the second
  * in bits 17:15 of the word read back from this register, then writes it
  * twice: with bit 18 clear before the clock is programmed and with bit 18
  * set after a 100 ms wait. Start-up first writes 0x0006d3e0 (both selects
  * 5, bit 18 set, low bits 0x3e0); that is a driver-written start value,
- * not a reset value. A published driver sets its two serial-bus clock
- * selects and a soft-reset-not bit at these steps.
+
+
  */
 /* REG: PBJ.hif_ctl 0x2700 rw32 reset=unknown established */
 /* FIELD: PBJ.hif_ctl.clock_run 18:18 established */
@@ -206,8 +205,8 @@
  * block reports. Bit 10 is tested at start-up: when it is clear, the
  * driver probes the option port on the second I2C controller for a dual-
  * channel display option, so a set bit 10 is read as "no option card"
- * (inferred). A published driver reads its revision and option-board
- * detect inputs from this register.
+
+
  */
 /* REG: PBJ.id 0x2701 r32 reset=unknown established */
 /* FIELD: PBJ.id.version 2:0 established */
@@ -286,21 +285,21 @@
 
 /*
  * Written 0 by the frame-buffer set-up, 0 or 1280 by start-up, and the
- * timing structure's word 176 (1280 in the built-in timings, twice that on
- * one path) by the timing load. Active width in pixels is one reading; a
- * pan offset fits the same writes (inferred).
+ * timing load's active-width value (1280 in the built-in timings, twice
+ * that on one path) by the timing load. Active width in pixels is one
+ * reading; a pan offset fits the same writes (inferred).
  */
 /* REG: PBJ.scan_width 0x2802 w32 reset=unknown inferred */
 
 /*
  * Companion of the width register: 0, 1024 in the full-size form, or the
- * timing structure's word 180. Active height in lines (inferred, same
- * caveat).
+ * timing load's active-height value. Active height in lines (inferred,
+ * same caveat).
  */
 /* REG: PBJ.scan_height 0x2803 w32 reset=unknown inferred */
 
 /*
- * Written from bits 1:0 of timing structure word 200 by the timing load.
+ * Written from the low two bits of a timing load value by the timing load.
  * Meaning unknown.
  */
 /* REG: PBJ.scan_cfg_a 0x2804 w32 reset=unknown established */
@@ -312,7 +311,7 @@
 /* REG: PBJ.scan_cfg_b 0x2805 w32 reset=unknown unknown */
 
 /*
- * Written from bit 5 of timing structure word 200 by the timing load (the
+ * Written from one flag bit of a timing load value by the timing load (the
  * same flag as the colour-map unit configuration). Meaning unknown.
  */
 /* REG: PBJ.scan_cfg_c 0x2806 w32 reset=unknown established */
@@ -341,8 +340,8 @@
 #define PBJ_FB_DEPTH_CODE_BPP32 4
 
 /*
- * Back-end interface configuration. The timing load stores bits 2:0 of
- * timing word 208 here; a published driver names that field the display
+ * Back-end interface configuration. The timing load stores a 3-bit timing
+ * load value here; its role is unknown (the field name is a placeholder).
  * Start-up first writes 0 five times, which may
  * be a reset or a flush of this register's function (unknown). Nothing
  * reads it back.
