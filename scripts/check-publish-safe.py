@@ -4,12 +4,13 @@
 Usage (from anywhere; paths are relative to the repository root):
     python3 scripts/check-publish-safe.py [--header H ...] [--verbose]
 
-With no --header it checks BUZZ_DECODE.h, DISPLAY_DECODE.h and PBJ_DECODE.h.
+With no --header it checks BUZZ_DECODE.h, DISPLAY_DECODE.h, PBJ_DECODE.h and
+TEXTURE_DECODE.h.
 Needs only the Python 3 standard library. Exit status 0 means clean, 1 means
 at least one failure (each offending line is printed), 2 means a usage or
 setup problem (a file missing).
 
-Three checks, applied to all three headers:
+Three checks, applied to all four headers:
 
 1. Publish-safety. The headers go into public projects, so they must carry no
    vendor source path, no routine or symbol name, no raw address or binary
@@ -39,6 +40,13 @@ lines name an address as @<BLOCK>.<name> instead. A TESTVEC value must be one
 the RE notes record; layout-only values are written as unverified EXAMPLE
 lines, which are decoded for consistency but not compared with the notes.
 
+TEXTURE_DECODE.h has no registers. It uses FIELD/ENUM/TESTVEC/EXAMPLE on
+named words, plus two more things the check reads: the rows of the texel format
+table (compared with the recorded exhaustive run of the format routines and with
+the table in docs/texture-formats.md) and CALC lines for the pitch and slice
+helper functions (evaluated here against a reference and, when a C compiler is
+present, by compiling the header and running the helpers and the table).
+
 Hooking in: the repository has no CI entry point of its own. scripts/pre-push is
 the nearest hook; adding `python3 scripts/check-publish-safe.py || exit 1` there
 would run it on every push. It is not wired in.
@@ -61,7 +69,7 @@ BANNED = [
     ('vendor install path', r'\busr/(?:cpu|gfx|lib|diags)\b'),
     ('source/object file name', r'\b[\w-]+\.(?:c|s|so|a|o)\b(?![\w-])'),
     ('header file name other than ours',
-     r'\b(?!(?:BUZZ|DISPLAY|PBJ)_DECODE\.h\b|stdint\.h\b)[\w-]+\.h\b'),
+     r'\b(?!(?:BUZZ|DISPLAY|PBJ|TEXTURE)_DECODE\.h\b|stdint\.h\b)[\w-]+\.h\b'),
     ('odsy symbol', r'\bodsy(?:[A-Z_]\w*)'),
     ('driver routine prefix', r'\b(?:gfP_|gfx_|ody_|odsy_)\w*'),
     ('library routine', r'\b__gl\w*|\bRenderFunc\w*|\bImage(?:Chain|Xfer|Calc|Copy|ToDma)\w*'),
@@ -74,6 +82,7 @@ BANNED = [
     ('SGI build or board token', r'\bIP\d{2}[A-Z0-9]*\b'),
     ('RE tool name', r'\bDWARF\b|\bGhidra\b|\bm2c\b|\bspimdisasm\b'),
     ('N32 or kernel virtual address', r'\b0x0d[0-9a-f]{6}\b|\b0x1fc[0-9a-f]+\b|\b0xbfc[0-9a-f]+\b|\b0xa8[0-9a-f]{6}\b|\b0x9[0-9a-f]{7}\b'),
+    ('N32 code address without the leading zero', r'\b0x0?d[89a][0-9a-f]{5}\b'),
     ('binary offset', r'\+0x[0-9a-fA-F]+|\bat 0x[0-9a-fA-F]{4,}|\boffset 0x[0-9a-fA-F]{3,}|\bboard \+'),
     ('record or context offset', r'\b(?:context|record|object|mirror|shadow)\s+\+\s*\d+'),
     ('source line cite', r'\bsource line\b|\blines? \d{3,}'),
@@ -399,7 +408,7 @@ def check_prose_vectors(rep, header, vecs):
 # DISPLAY_DECODE.h / PBJ_DECODE.h: the REG form
 # ---------------------------------------------------------------------------
 NEW_HEADERS = {'DISPLAY_DECODE.h': 'DISPLAY', 'PBJ_DECODE.h': 'PBJ'}
-ALL_HEADERS = ['BUZZ_DECODE.h', 'DISPLAY_DECODE.h', 'PBJ_DECODE.h']
+ALL_HEADERS = ['BUZZ_DECODE.h', 'DISPLAY_DECODE.h', 'PBJ_DECODE.h', 'TEXTURE_DECODE.h']
 
 # The whole line must be a REG entry. The offset is at most four hex digits, so
 # a code or kernel address (0x1fc..., 0x0d......) cannot fit.
@@ -885,9 +894,9 @@ NEW_CLAIMS = [
 ]
 
 
-def check_new_claims(rep, header, fields, regs, enums, defs):
+def check_new_claims(rep, header, fields, regs, enums, defs, claims=None):
     cache = {}
-    for label, doc, rx, binds in NEW_CLAIMS:
+    for label, doc, rx, binds in (NEW_CLAIMS if claims is None else claims):
         if doc not in cache:
             try:
                 cache[doc] = read(doc)
@@ -914,6 +923,23 @@ def check_new_claims(rep, header, fields, regs, enums, defs):
             if kind == 'EQ':
                 if num(b[2]) != b[1]:
                     rep.fail(doc, '"%s": prose says %s, the header says %s' % (label, g(b[2]), b[1]))
+                continue
+            if kind in ('DEFN', 'DEFL'):
+                want = num(b[2]) & (0xffff if kind == 'DEFL' else 0xffffffff)
+                if defs.get(b[1]) != want:
+                    rep.fail(header, '%s is %s but %s says 0x%x ("%s")'
+                             % (b[1], defs.get(b[1]), doc, want, label))
+                continue
+            if kind in ('FW', 'FWD'):
+                key = b[1]
+                if key not in fields:
+                    rep.fail(header, 'no FIELD for %s (claim "%s")' % (key, label))
+                    continue
+                have = fields[key][0] - fields[key][1] + 1
+                want = int(g(b[2])) - int(g(b[3])) + 1 if kind == 'FW' else int(g(b[2]))
+                if have != want:
+                    rep.fail(header, '%s is %d bits wide but %s says %d ("%s")'
+                             % (key, have, doc, want, label))
                 continue
             if kind == 'DEF':
                 if defs.get(b[1]) != int(g(b[2])):
@@ -1060,6 +1086,479 @@ def check_buzz(rep, header, text, verbose):
               % (len(fields), len(vecs), len(defs), len(CLAIMS)))
 
 
+# ---------------------------------------------------------------------------
+# TEXTURE_DECODE.h: named words (no registers), the format table, CALC lines
+# ---------------------------------------------------------------------------
+TEX_HEADER = 'TEXTURE_DECODE.h'
+TEX_PREFIX = 'TEX'
+SWEEP = 'libglcore/runs/texture-format-index-sweep.txt'
+TEX_DOCS = ['docs/texture-state.md', 'docs/texture-formats.md', 'docs/tokens.md', 'BUZZ.h']
+
+TEX_CLAIMS = [
+    # --- block words: opcode (count and id together) and operand counts ---
+    ('texture-mode block word and count', 'BUZZ.h', r'(0x00011c16) \+ (\d+) words',
+     [('DEFL', 'TEX_OP_TEXMODE', 1), ('DEF', 'TEX_MODE_WORDS', 2)]),
+    ('level-of-detail block word and count', 'BUZZ.h', r'(0x00011013) \+ (\d+),',
+     [('DEFL', 'TEX_OP_TEXLOD', 1), ('DEF', 'TEX_LOD_WORDS', 2)]),
+    ('texture offset block word and count', 'BUZZ.h', r'(0x00010c3e) \+ (\d+),',
+     [('DEFL', 'TEX_OP_TEXOFFSET', 1), ('DEF', 'TEX_OFFSET_WORDS', 2)]),
+    ('environment block word and count', 'BUZZ.h', r'(0x0001141b) \+ (\d+),',
+     [('DEFL', 'TEX_OP_TEXENV', 1), ('DEF', 'TEX_ENV_WORDS', 2)]),
+    ('environment block id in the texture notes', 'docs/texture-state.md',
+     r'## Texture environment block `(0x141b)`', [('DEFN', 'TEX_OP_TEXENV', 1)]),
+    ('first level block word', 'docs/tokens.md',
+     r'\*\*0x006\*\*, word `(0x00010406)`.*?bits (\d+):(\d+) are the index of',
+     [('DEFL', 'TEX_OP_FIRSTLEVEL', 1), ('F', 'FIRSTLEVEL.index', 2, 3)]),
+    ('first level unwritten bits', 'docs/tokens.md', r'Bits (\d+):(6) have no writer',
+     [('F', 'FIRSTLEVEL.unwritten', 1, 2)]),
+    ('scratch level descriptor', 'docs/tokens.md', r'\*\*0x006\*\* value (\d+):',
+     [('DEF', 'TEX_SCRATCH_LEVEL', 1)]),
+    ('target block word', 'docs/tokens.md', r'\*\*0x005\*\*, word `(0x00010405)`, one operand',
+     [('DEFL', 'TEX_OP_TARGET', 1)]),
+    ('active target bits', 'docs/tokens.md',
+     r'sets bit (\d+) for a complete `GL_TEXTURE_3D`, else\s+bit (\d+) for `GL_TEXTURE_2D`, else '
+     r'bit (\d+) for `GL_TEXTURE_1D`, sets bit (\d+) with any of them, and\s+clears bits (\d+):(\d+) and (\d+):(\d+)',
+     [('F', 'TARGET.dim3', 1, None), ('F', 'TARGET.dim2', 2, None), ('F', 'TARGET.dim1', 3, None),
+      ('F', 'TARGET.active', 4, None)]),
+    # --- environment ---
+    ('environment mode codes', 'docs/texture-state.md',
+     r'Bits (\d+):(\d+) of word 0 are set to (\d) for `GL_REPLACE`.*?, (\d) for `GL_MODULATE`.*?, '
+     r'(\d) for `GL_DECAL`.*?, (\d) for `GL_BLEND`.*? and (\d) for `GL_ADD`',
+     [('F', 'ENV_W0.mode', 1, 2), ('EN', 'ENV_W0.mode', 'replace', 3), ('EN', 'ENV_W0.mode', 'modulate', 4),
+      ('EN', 'ENV_W0.mode', 'decal', 5), ('EN', 'ENV_W0.mode', 'blend', 6), ('EN', 'ENV_W0.mode', 'add', 7)]),
+    ('environment initial mode', 'docs/texture-state.md', r'initialisation sets bits 2:0 to (\d), modulate',
+     [('EN', 'ENV_W0.mode', 'modulate', 1)]),
+    ('environment add colour', 'docs/texture-state.md',
+     r'`GL_ADD` writes (0xfff) to the four environment colour channels',
+     [('DEFN', 'TEX_COLOUR12_MAX', 1)]),
+    ('environment colour width', 'docs/texture-state.md', r'converts four floats to (\d+) bits per channel',
+     [('DEF', 'TEX_COLOUR12_BITS', 1)]),
+    ('environment colour packing', 'BUZZ.h',
+     r'GL_TEXTURE_ENV_COLOR as four unsigned 12-bit channels[\s*]+packed like the border colour', []),
+    ('environment add all ones', 'BUZZ.h', r'writes all ones \(0xffffff, 0xffffff\)', []),
+    ('environment words 3 and 4', 'docs/texture-state.md',
+     r'Words 3 and 4 of the block .*? are always zero for GL texturing', []),
+    # --- texture-mode operands ---
+    ('border colour layout', 'BUZZ.h',
+     r'R in TEXMODE5 (\d+):(\d+), G in[\s*]+(\d+):(\d+), B in[\s*]+TEXMODE6 (\d+):(\d+), A in (\d+):(\d+)',
+     [('F', 'MODE_W5.red', 1, 2), ('F', 'MODE_W5.green', 3, 4), ('F', 'MODE_W6.blue', 5, 6),
+      ('F', 'MODE_W6.alpha', 7, 8)]),
+    ('operand 6 offset flag', 'BUZZ.h', r'TEXMODE6 bit (\d+): complement of TEXMODE4 bit (\d+)',
+     [('F', 'MODE_W6.has_offset', 1, None)]),
+    ('detail combine bit', 'BUZZ.h', r'/\* Bit (\d+): detail combine', [('F', 'MODE_W0.detail_modulate', 1, None)]),
+    ('detail level field', 'BUZZ.h', r'Bits (\d+):(\d+): detail level as a positive count, min\(-level, (\d+)\)',
+     [('F', 'MODE_W0.detail_level', 1, 2), ('DEF', 'TEX_DETAIL_COUNT_MAX', 3)]),
+    ('size exponents', 'BUZZ.h', r'Bits (\d+):(\d+), (\d+):(\d+), (\d+):(\d+): log2 size',
+     [('F', 'MODE_W0.log2_s', 1, 2), ('F', 'MODE_W0.log2_t', 3, 4), ('F', 'MODE_W0.log2_r', 5, 6)]),
+    ('maximum clamp field', 'BUZZ.h', r'Bits (\d+):(\d+): maximum clamp coordinate.*?\(mask (0x1ffff)\)',
+     [('F', 'MODE_W1.max_clamp', 1, 2), ('F', 'MODE_W2.max_clamp', 1, 2), ('F', 'MODE_W3.max_clamp', 1, 2),
+      ('DEFN', 'TEX_MODE_W1_MAX_CLAMP_MASK', 3)]),
+    ('wrap auxiliary field', 'BUZZ.h', r'Bits (\d+):(\d+): a 6-bit value set with the wrap mode',
+     [('F', 'MODE_W1.wrap_aux', 1, 2), ('F', 'MODE_W2.wrap_aux', 1, 2), ('F', 'MODE_W3.wrap_aux', 1, 2),
+      ('FW', 'WRAPAUX.value', 1, 2)]),
+    ('wrap auxiliary field (texture notes)', 'docs/texture-state.md', r'Size word bits (\d+):(\d+) of that axis',
+     [('F', 'MODE_W1.wrap_aux', 1, 2), ('F', 'MODE_W2.wrap_aux', 1, 2), ('F', 'MODE_W3.wrap_aux', 1, 2)]),
+    ('wrap auxiliary values', 'docs/texture-state.md',
+     r'`GL_REPEAT` \(0x2901\) \| (\d+) \| (\d+) \|.*?`GL_CLAMP` \(0x2900\) \| (\d+) \| (\d+) \|.*?'
+     r'`GL_CLAMP_TO_EDGE_SGIS` \(0x812f\) \| (\d+) \| (\d+) \|.*?`GL_CLAMP_TO_BORDER_SGIS` \(0x812d\) \| (\d+) \| (\d+) \|',
+     [('EN', 'WRAPAUX.value', 'repeat_clamp', 2), ('EN', 'WRAPAUX.value', 'repeat_clamp', 4),
+      ('EN', 'WRAPAUX.value', 'edge', 6), ('EN', 'WRAPAUX.value', 'border', 8)]),
+    # --- level of detail ---
+    ('level of detail word', 'BUZZ.h', r'with 8 fraction bits in (\d+) bits.*?mask (0x3fff)',
+     [('DEF', 'TEX_LOD_BITS', 1), ('DEFN', 'TEX_LOD_VALUE_MASK', 2)]),
+    ('level of detail field', 'docs/tokens.md', r"two's complement with eight fraction bits in bits (\d+):(\d+)",
+     [('F', 'LOD.value', 1, 2)]),
+    ('level of detail defaults', 'docs/tokens.md', r'them at (0x3100) \(-15\) and (0xf00) \(\+15\)',
+     [('DEFN', 'TEX_LOD_MIN_DEFAULT', 1), ('DEFN', 'TEX_LOD_MAX_DEFAULT', 2)]),
+    ('level of detail limits', 'docs/texture-state.md', r'limited to -(\d+) to (\d+) before they are written',
+     [('DEF', 'TEX_LOD_LIMIT', 1), ('DEF', 'TEX_LOD_LIMIT', 2)]),
+    # --- level table bounds and limits ---
+    ('level table size', 'docs/texture-state.md', r'The level table is (\d+) entries of three words',
+     [('DEF', 'TEX_LEVEL_TABLE_ENTRIES', 1)]),
+    ('primary and detail ranges', 'docs/texture-state.md',
+     r'at most (\d+), entries 0 to (\d+), and detail entries sit at (\d+) to (\d+)',
+     [('DEF', 'TEX_PRIMARY_LEVELS_MAX', 1), ('DEF', 'TEX_PRIMARY_LAST', 2), ('DEF', 'TEX_DETAIL_FIRST', 3),
+      ('DEF', 'TEX_TABLE_LAST', 4)]),
+    ('unwritten entries', 'docs/texture-state.md', r'Entries (\d+) to (\d+) are never written by activation',
+     [('DEF', 'TEX_UNUSED_FIRST', 1), ('DEF', 'TEX_UNUSED_LAST', 2)]),
+    ('detail entry count', 'docs/texture-state.md',
+     r'entries `64 - n` to 63 \(the loop at 0x[0-9a-f]+, n the negated detail level, at most (\d+)\)',
+     [('DEF', 'TEX_DETAIL_COUNT_MAX', 1)]),
+    ('size limit', 'docs/texture-state.md', r'no larger than (0x8000) \(32,768\)', [('DEFN', 'TEX_SIZE_MAX', 1)]),
+    ('border limit', 'docs/texture-state.md', r'a border other than 0 or (\d+) makes the check',
+     [('DEF', 'TEX_BORDER_MAX', 1)]),
+    # --- 3D and placement ---
+    ('slice exponent field', 'docs/texture-formats.md', r'Level word 2 bits (\d+):(\d+), written for 3D targets only',
+     [('F', 'LEVEL3D_W2.slice_exp', 1, 2)]),
+    ('slice stride', 'docs/texture-formats.md', r'this is `\((\d+) << c\) << word 2` units',
+     [('DEF', 'TEX_SLICE_STRIDE_BASE', 1)]),
+    ('tile width', 'docs/texture-formats.md', r'from the width in (\d+)-texel tiles rounded up to even',
+     [('DEF', 'TEX_TILE_TEXELS', 1)]),
+    # --- format index, class, size code, offset code ---
+    ('format index width', 'docs/texture-formats.md', r'six-bit field in bits (\d+):(\d+) of word 1',
+     [('FW', 'FMT.index', 1, 2)]),
+    ('class width', 'docs/texture-formats.md', r'"Class" is the (\d)-bit value', [('FWD', 'CLASS.value', 1)]),
+    ('size code width', 'docs/texture-formats.md', r'\*\*Word 1 bits (\d+):(\d+) are the size code',
+     [('FW', 'SIZE.code', 1, 2)]),
+    ('offset code width', 'docs/texture-formats.md', r'offset code \(level word 1 bits (\d+):(\d+)\)',
+     [('FW', 'OFFCODE.value', 1, 2)]),
+    # --- colour table ---
+    ('colour table width', 'docs/texture-state.md', r'a width of 0 or a power of two up to (\d+) is accepted',
+     [('DEF', 'TEX_COLTAB_MAX_WIDTH', 1)]),
+    ('colour table upload targets', 'docs/texture-state.md',
+     r'sixteen words to `(0x3e00) \+ i`.*?then sixteen to `(0x3e10) \+ i`.*?for i = 0 to (\d+)\)',
+     [('DEFN', 'TEX_COLTAB_A_BASE', 1), ('DEFN', 'TEX_COLTAB_B_BASE', 2), ('DEF', 'TEX_COLTAB_UPLOAD_LAST', 3)]),
+    ('colour table lanes', 'docs/texture-state.md',
+     r'red lane of entry n in bits (\d+):(\d+), green lane in bits (\d+):(\d+)\) and the second with word n = '
+     r'\(blue in (\d+):(\d+), alpha in (\d+):(\d+)\); bits (\d+):(\d+) of each word are kept',
+     [('F', 'COLTAB_A.red', 1, 2), ('F', 'COLTAB_A.green', 3, 4), ('F', 'COLTAB_B.blue', 5, 6),
+      ('F', 'COLTAB_B.alpha', 7, 8), ('F', 'COLTAB_A.kept', 9, 10), ('F', 'COLTAB_B.kept', 9, 10)]),
+    ('colour table entry mapping', 'docs/texture-state.md',
+     r'words (\d+) i to \1 i \+ (\d+) of the first table.*?upload i = n >> (\d+) at word n & (\d+) of both',
+     [('DEF', 'TEX_COLTAB_UPLOAD_WORDS', 1), ('DEF', 'TEX_COLTAB_WORD_MASK', 2),
+      ('DEF', 'TEX_COLTAB_UPLOAD_SHIFT', 3), ('DEF', 'TEX_COLTAB_WORD_MASK', 4)]),
+    ('colour table lane conversion', 'docs/texture-state.md', r'`trunc\((\d+) x \+ 0\.5\) & (0x[0-9a-f]+)`',
+     [('DEF', 'TEX_COLOUR12_ROUND_SCALE', 1), ('DEFN', 'TEX_COLOUR12_LANE_MASK', 2)]),
+    ('colour table entries', 'docs/texture-state.md', r'never receives fewer than (\d+) entries',
+     [('DEF', 'TEX_COLTAB_ENTRIES', 1)]),
+    ('unsent upload targets', 'docs/texture-state.md',
+     r'`(0x3e20)` \(dirty bit 0x040000\) and `(0x3e30)` \(0x080000\)',
+     [('DEFN', 'TEX_COLTAB_C_BASE', 1), ('DEFN', 'TEX_COLTAB_D_BASE', 2)]),
+]
+
+# (opcode macro, operand count macro, id)
+TEX_OPS = [('TEX_OP_TEXENV', 'TEX_ENV_WORDS', 0x01b), ('TEX_OP_TEXMODE', 'TEX_MODE_WORDS', 0x016),
+           ('TEX_OP_TEXLOD', 'TEX_LOD_WORDS', 0x013), ('TEX_OP_TEXOFFSET', 'TEX_OFFSET_WORDS', 0x03e)]
+
+FMT_ROW_RE = re.compile(r'^\s*\[(\d+)\]\s*=\s*\{([^}]*)\},\s*/\*\s*(\w+)')
+PIXCLASS_RE = re.compile(r'tex_pixclass_to_index\[\w+\]\s*=\s*\{([^}]*)\}', re.S)
+CALC_RE = re.compile(r'CALC:\s*(\w+)\s+(.*?)\s*=>\s*(\d+)\s*$')
+
+
+def read_sweep(rep):
+    text = read(SWEEP).split('\n== ')[0]
+    widths, pix, cls = {}, {}, {}
+    section = None
+    for line in text.splitlines():
+        if line.startswith('CalcTexelSizes'):
+            section = 'w'
+        elif line.startswith('GetImageFmtEnumFromBuzzTexFormat'):
+            section = 'p'
+        elif line.startswith('ChooseSuitableBuzzTexModeBaseFmt'):
+            section = 'c'
+        elif line.startswith('ChooseSuitableBuzzTexObjFormat'):
+            section = 'o'
+        elif section == 'w':
+            m = re.match(r'^\s*(\d+)\s+(\d+) (\d+) (\d+) (\d+) (\d+) (\d+) (-|\d+)\s*$', line)
+            if m:
+                widths[int(m.group(1))] = (tuple(int(m.group(k)) for k in range(2, 8)),
+                                           None if m.group(8) == '-' else int(m.group(8)))
+        elif section == 'p':
+            for a, b in re.findall(r'(\d+):(-?\d+)', line):
+                pix[int(a)] = int(b)
+        elif section == 'c':
+            m = re.match(r'^\s*(\d+)\s+(\d)(?: for .*?, (\d) otherwise)?\s*$', line)
+            if m:
+                cls[int(m.group(1))] = (int(m.group(2)), int(m.group(3) or m.group(2)))
+    if not widths or not pix or not cls:
+        rep.fail(SWEEP, 'could not parse the recorded format routine output')
+    return widths, pix, cls
+
+
+def parse_fmt_table(rep, header, text):
+    rows = {}
+    for n, line in enumerate(text.splitlines(), 1):
+        m = FMT_ROW_RE.match(line)
+        if not m:
+            continue
+        idx, vals, grade = int(m.group(1)), [int(v) for v in m.group(2).split(',')], m.group(3)
+        where = '%s:%d' % (header, n)
+        if len(vals) != 11:
+            rep.fail(where, 'format row %d has %d values, expected 11' % (idx, len(vals)))
+            continue
+        if grade not in GRADES:
+            rep.fail(where, 'bad grade %r on format row %d' % (grade, idx))
+        if idx in rows:
+            rep.fail(where, 'duplicate format row %d' % idx)
+        rows[idx] = dict(present=vals[0], widths=tuple(vals[1:7]), size=vals[7], pclass=vals[8],
+                         cls=(vals[9], vals[10]), grade=grade, line=n, vals=vals)
+    if not rows:
+        rep.fail(header, 'no format table rows')
+    return rows
+
+
+def check_fmt_table(rep, header, text, enums):
+    rows = parse_fmt_table(rep, header, text)
+    widths, pix, cls = read_sweep(rep)
+    # Exhaustive run: every index 0..51 is either a row or has zero widths.
+    for idx in range(0, 52):
+        w = widths.get(idx)
+        if w is None:
+            rep.fail(SWEEP, 'no width line for index %d' % idx)
+            continue
+        wd, code = w
+        row = rows.get(idx)
+        if sum(wd) == 0:
+            if row is not None:
+                rep.fail(header, 'format row %d exists but the recorded run gives zero widths' % idx)
+            if code is not None or pix.get(idx) != -1 or cls.get(idx, (0, 0)) != (0, 0):
+                rep.fail(SWEEP, 'index %d: expected an unused entry' % idx)
+            continue
+        if row is None:
+            rep.fail(header, 'no format row for index %d (the recorded run gives widths %s)' % (idx, wd))
+            continue
+        if row['present'] != 1:
+            rep.fail(header, 'format row %d is not marked present' % idx)
+        if row['widths'] != wd:
+            rep.fail(header, 'format row %d widths %s, recorded run %s' % (idx, row['widths'], wd))
+        if row['size'] != code:
+            rep.fail(header, 'format row %d size code %s, recorded run %s' % (idx, row['size'], code))
+        if row['pclass'] != pix.get(idx):
+            rep.fail(header, 'format row %d pixel class %s, recorded run %s' % (idx, row['pclass'], pix.get(idx)))
+        if row['cls'] != cls.get(idx):
+            rep.fail(header, 'format row %d class %s, recorded run %s' % (idx, row['cls'], cls.get(idx)))
+    for idx in rows:
+        if idx > 51:
+            rep.fail(header, 'format row %d is beyond the recorded run' % idx)
+    # The table in the notes.
+    doc = read('docs/texture-formats.md')
+    sec = doc.split('## The table', 1)[1].split('By grade', 1)[0]
+    drows = {}
+    for line in sec.splitlines():
+        cells = [c.strip() for c in line.strip().strip('|').split(' | ')]
+        if len(cells) == 8 and cells[0].isdigit():
+            drows[int(cells[0])] = cells
+    if set(drows) != set(i for i in rows):
+        rep.fail('docs/texture-formats.md', 'table rows %s differ from header rows %s'
+                 % (sorted(drows), sorted(rows)))
+    for idx, cells in drows.items():
+        row = rows.get(idx)
+        if row is None:
+            continue
+        bits = int(cells[2])
+        if bits != sum(row['widths']):
+            rep.fail(header, 'format row %d: widths sum to %d, notes say %d bits' % (idx, sum(row['widths']), bits))
+        m = re.match(r'(\d+), (\d+)$', cells[3])
+        if not m or int(m.group(1)) != row['size'] or int(m.group(2)) != 2 << row['size']:
+            rep.fail(header, 'format row %d: size code %d does not match "%s" in the notes' % (idx, row['size'], cells[3]))
+        pc = -1 if cells[4] == 'none' else int(cells[4])
+        if pc != row['pclass']:
+            rep.fail(header, 'format row %d: pixel class %d, notes say %s' % (idx, row['pclass'], cells[4]))
+        dcls = set(int(x) for x in re.findall(r'(?:^|; |\bor )(\d)\b', cells[6]))
+        # The notes list the classes the listed GL formats give; the recorded run
+        # (compared above) is exhaustive, so the notes' classes must be among the row's.
+        if not dcls or not dcls <= set(row['cls']):
+            rep.fail(header, 'format row %d: class %s, notes say %s' % (idx, row['cls'], cells[6]))
+        gr = cells[7]
+        if gr.startswith('as '):
+            ref = drows.get(int(gr.split()[1]))
+            gr = ref[7] if ref else gr
+        if row['grade'] == 'established' and 'established' not in gr:
+            rep.fail(header, 'format row %d is graded established, the notes grade it "%s"' % (idx, cells[7]))
+        if row['grade'] == 'inferred' and 'inferred' not in gr:
+            rep.fail(header, 'format row %d is graded inferred, the notes grade it "%s"' % (idx, cells[7]))
+    # Row grade must agree with the ENUM grade of the same index.
+    for (target, label), val in enums.items():
+        if target == 'FMT.index' and val in rows and val in drows:
+            pass
+    enum_idx = set(v for (t, _l), v in enums.items() if t == 'FMT.index')
+    if enum_idx != set(rows):
+        rep.fail(header, 'FMT.index ENUM values %s differ from format rows %s' % (sorted(enum_idx), sorted(rows)))
+    # Pixel class to index (move path).
+    m = PIXCLASS_RE.search(text)
+    got = [int(x) for x in m.group(1).split(',')] if m else []
+    m2 = re.search(r'a table from the pixel class of the source image: (.*?)\*\*Established', doc, re.S)
+    want = {}
+    if m2:
+        want = {int(a): int(b) for a, b in re.findall(r'(\d+) gives (\d+)', m2.group(1))}
+    if not want or got != [want.get(i) for i in range(len(want))] or len(got) != len(want):
+        rep.fail(header, 'tex_pixclass_to_index %s differs from the notes %s' % (got, want))
+    for pcl in range(0, 16):
+        idx = got[pcl] if pcl < len(got) else None
+        if idx is None or pix.get(idx) != pcl:
+            rep.fail(header, 'pixel class %s maps to index %s whose recorded pixel class is %s'
+                     % (pcl, idx, pix.get(idx)))
+    return rows, got
+
+
+def calc_ref(fn, a):
+    def even(n):
+        return (n + 1) & ~1
+    if fn == 'pitch':
+        inner = a['w'] - 2 * a['b'] if a['w'] > 2 * a['b'] else 0
+        t = even((inner + 15) // 16 + 2 * a['b'])
+        return 1 if t == 4096 else t
+    if fn == 'pitch_icc':
+        t = ((a['w'] + 1) // 2 + 15) >> 4
+        if a['b']:
+            t += 2
+        t = even(t)
+        return 1 if t == 4096 else t
+    if fn == 'slice_tiles':
+        inner = a['h'] - 2 * a['b'] if a['h'] > 2 * a['b'] else 0
+        return a['pitch'] * ((inner + 15) // 16 + 2 * a['b'])
+    if fn == 'slice_pow2':
+        s = 1
+        while s < a['tiles']:
+            s <<= 1
+        return s
+    if fn == 'slice_exp':
+        e = 0
+        while (1 << e) < a['tiles']:
+            e += 1
+        return e
+    if fn == 'stride':
+        return (32 << a['c']) << a['e']
+    raise KeyError(fn)
+
+
+CALC_C = {'pitch': 'tex_pitch_tiles(%(w)d, %(b)d)', 'pitch_icc': 'tex_pitch_tiles_icc(%(w)d, %(b)d)',
+          'slice_tiles': 'tex_slice_tiles(%(pitch)d, %(h)d, %(b)d)',
+          'slice_pow2': 'tex_slice_tiles_pow2(%(tiles)d)', 'slice_exp': 'tex_slice_exp(%(tiles)d)',
+          'stride': 'tex_slice_stride(%(c)d, %(e)d)'}
+
+
+def check_calcs(rep, header, text):
+    doc = read('docs/texture-formats.md')
+    calcs = []
+    for n, line in enumerate(text.splitlines(), 1):
+        if 'CALC:' not in line or '<' in line:
+            continue
+        where = '%s:%d' % (header, n)
+        m = CALC_RE.search(line)
+        if not m:
+            rep.fail(where, 'malformed CALC line: %s' % line.strip())
+            continue
+        fn, rest, res = m.group(1), m.group(2), int(m.group(3))
+        try:
+            args = {k: int(v) for k, v in (p.split('=') for p in rest.split())}
+            want = calc_ref(fn, args)
+        except (KeyError, ValueError):
+            rep.fail(where, 'bad CALC line: %s' % line.strip())
+            continue
+        if want != res:
+            rep.fail(where, '%s %s is %d by the reference arithmetic, CALC says %d' % (fn, rest, want, res))
+        calcs.append((fn, args, res, where))
+        # The case must be one the notes state.
+        if fn == 'pitch':
+            ok = re.search(r'W = %d, b = %d gives %d' % (args['w'], args['b'], res), doc)
+        elif fn == 'pitch_icc':
+            ok = re.search(r'W = %d gives %d' % (args['w'], res), doc)
+        elif fn == 'stride':
+            ok = '0x%x' % res in doc.split('4. **Slice stride.**', 1)[-1][:900]
+        elif fn == 'slice_tiles':
+            ok = re.search(r'S = %d' % (args['pitch'] * ((args['h'] - 2 * args['b'] + 15) // 16 + 2 * args['b'])), doc) \
+                or re.search(r'%d tiles' % res, doc)
+        elif fn == 'slice_pow2':
+            ok = re.search(r'\(%d tiles rounded up\)' % args['tiles'], doc) and re.search(r'S = %d' % res, doc)
+        else:
+            ok = re.search(r'S = %d' % (1 << res), doc)
+        if not ok:
+            rep.fail(where, 'the notes do not state the case: %s' % line.strip())
+    if not calcs:
+        rep.fail(header, 'no CALC lines')
+    return calcs
+
+
+def check_c_compile(rep, header, rows, pix_to_idx, calcs, verbose):
+    import shutil
+    import subprocess
+    import tempfile
+    cc = shutil.which('cc') or shutil.which('gcc') or shutil.which('clang')
+    if not cc:
+        print('note: no C compiler found; the compile check of %s was skipped' % header)
+        return False
+    lines = ['#include "%s"' % header, '#include <stdio.h>',
+             'static int bad;',
+             '#define CHK(a, b) do { if ((long)(a) != (long)(b)) { printf("mismatch: %s != %s\\n", #a, #b); bad++; } } while (0)',
+             'int main(void) {']
+    for idx, r in rows.items():
+        t = 'tex_fmt_table[%d]' % idx
+        for name, v in zip(('present', 'r', 'g', 'b', 'a', 'l', 'i', 'size_code', 'pixel_class', 'class_rgb',
+                            'class_rgba'), r['vals']):
+            lines.append('CHK(%s.%s, %d);' % (t, name, v))
+    for i, v in enumerate(pix_to_idx):
+        lines.append('CHK(tex_pixclass_to_index[%d], %d);' % (i, v))
+    for fn, args, res, _w in calcs:
+        lines.append('CHK(%s, %d);' % (CALC_C[fn] % args, res))
+    lines += ['return bad ? 1 : 0; }']
+    with tempfile.TemporaryDirectory() as d:
+        src, exe = os.path.join(d, 't.c'), os.path.join(d, 't')
+        with open(src, 'w') as f:
+            f.write('\n'.join(lines) + '\n')
+        r = subprocess.run([cc, '-std=c11', '-Wall', '-Wextra', '-Werror', '-I', REPO, '-o', exe, src],
+                           capture_output=True, text=True)
+        if r.returncode:
+            rep.fail(header, 'does not compile cleanly: %s' % (r.stderr.strip()[:400]))
+            return True
+        r = subprocess.run([exe], capture_output=True, text=True)
+        if r.returncode:
+            rep.fail(header, 'C helper or table disagrees with its CALC/table lines: %s' % r.stdout.strip()[:400])
+    if verbose:
+        print('%s: compiled with %s; %d table checks and %d CALC lines run' %
+              (header, os.path.basename(cc), len(rows) * 11 + len(pix_to_idx), len(calcs)))
+    return True
+
+
+def check_texture(rep, header, text, verbose):
+    check_banned(rep, header, text)
+    fields = parse_fields_new(rep, header, text, {}, TEX_PREFIX)
+    defs = parse_defines(text)
+    check_macros_new(rep, header, fields, defs, TEX_PREFIX)
+    enums = parse_enums(rep, header, text, fields, defs, TEX_PREFIX)
+    vecs = check_vectors_new(rep, header, text, fields, {}, {})
+    # Every TESTVEC value must be one the notes record.
+    corpus = set()
+    for doc in TEX_DOCS:
+        for m in HEXLIT_RE.finditer(read(doc)):
+            corpus.add(int(m.group(0), 16))
+    for kind, value, target, _vals, n in vecs:
+        if kind == 'TESTVEC' and value not in corpus:
+            rep.fail('%s:%d' % (header, n), 'TESTVEC value 0x%x is not recorded in the RE notes; write it as an '
+                     'unverified EXAMPLE' % value)
+    # Block words: operand count and id agree with the opcode.
+    for op, words, bid in TEX_OPS:
+        v = defs.get(op)
+        if v is None or defs.get(words) is None:
+            rep.fail(header, 'missing %s or %s' % (op, words))
+        elif (v >> 10) & 0xf != defs[words] or v & 0x3ff != bid or v >> 16:
+            rep.fail(header, '%s = 0x%x does not carry %d operands and id 0x%03x' % (op, v, defs[words], bid))
+    for need in ('TEX_OP_FIRSTLEVEL', 'TEX_OP_TARGET'):
+        if (defs.get(need, 0) >> 10) & 0xf != 1:
+            rep.fail(header, '%s does not carry one operand' % need)
+    # The mode block word must equal the one in BUZZ_DECODE.h.
+    if defs.get('TEX_OP_TEXMODE') != parse_defines(read('BUZZ_DECODE.h')).get('BUZZ_OP_TEXMODE'):
+        rep.fail(header, 'TEX_OP_TEXMODE differs from BUZZ_OP_TEXMODE in BUZZ_DECODE.h')
+    # Environment colour is packed like the border colour.
+    for a, b in (('ENV_W1.red', 'MODE_W5.red'), ('ENV_W1.green', 'MODE_W5.green'),
+                 ('ENV_W2.blue', 'MODE_W6.blue'), ('ENV_W2.alpha', 'MODE_W6.alpha')):
+        if a in fields and b in fields and fields[a][:2] != fields[b][:2]:
+            rep.fail(header, '%s %s but %s %s: the notes pack the environment colour like the border colour'
+                     % (a, fields[a][:2], b, fields[b][:2]))
+    # Facts shared with BUZZ_DECODE.h.
+    bz = parse_fields(Report(), 'BUZZ_DECODE.h', read('BUZZ_DECODE.h'))
+    doc_f = read('docs/texture-formats.md')
+    m = re.search(r'\*\*Class\*\* \(mode word 4 bits (\d+):(\d+)', doc_f)
+    if not m or 'SAMPLER.activation' not in bz or (int(m.group(1)), int(m.group(2))) != bz['SAMPLER.activation'][:2]:
+        rep.fail(header, 'the class is not stored where BUZZ_DECODE.h puts SAMPLER.activation')
+    m = re.search(r'TEXMODE6 bit (\d+): complement of TEXMODE4 bit (\d+)', read('BUZZ.h'))
+    if not m or 'SAMPLER.no_offset' not in bz or int(m.group(2)) != bz['SAMPLER.no_offset'][0]:
+        rep.fail(header, 'the offset flag pair does not match SAMPLER.no_offset in BUZZ_DECODE.h')
+    # The unwritten word-2 statement: BUZZ_DECODE.h must not own the same bits under another name.
+    if 'LEVEL3D_W2.slice_exp' in fields and 'TEXLEVEL_W2.bits' in bz \
+            and fields['LEVEL3D_W2.slice_exp'][:2] != bz['TEXLEVEL_W2.bits'][:2]:
+        rep.fail(header, 'LEVEL3D_W2.slice_exp covers different bits than TEXLEVEL_W2.bits in BUZZ_DECODE.h')
+    check_new_claims(rep, header, fields, {}, enums, defs, TEX_CLAIMS)
+    rows, pix_to_idx = check_fmt_table(rep, header, text, enums)
+    calcs = check_calcs(rep, header, text)
+    compiled = check_c_compile(rep, header, rows, pix_to_idx, calcs, verbose)
+    if verbose:
+        print('%s: %d fields, %d enums, %d vectors (%d TESTVEC), %d format rows, %d CALC lines, %d macros, '
+              '%d prose claims%s'
+              % (header, len(fields), len(enums), len(vecs), sum(1 for v in vecs if v[0] == 'TESTVEC'),
+                 len(rows), len(calcs), len(defs), len(TEX_CLAIMS), '' if compiled else ' (no C compile)'))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('--header', action='append',
@@ -1076,7 +1575,9 @@ def main():
         except OSError as e:
             print('error: cannot read %s: %s' % (h, e), file=sys.stderr)
             return 2
-        if base in NEW_HEADERS:
+        if base == TEX_HEADER:
+            check_texture(rep, h, text, args.verbose)
+        elif base in NEW_HEADERS:
             selected_new[base] = h
         else:
             check_buzz(rep, h, text, args.verbose)
