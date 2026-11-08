@@ -349,6 +349,14 @@ then destination field format) or moves the field unchanged.
   (layout), bits 12:10 are 2 (storage) and bit 19 is set (classes 16 and 17). So the
   destination mode independently names the same storage 2 layout 4 index window the source
   pair names.
+- **Bit split of the write word's low byte** (word 7): format code in bits 4:0, type code in
+  bits 8:5, so `0x41` is format 1 (bits 4:0 = 00001) and type 2 (bits 8:5 = 010). This is not
+  the read byte's split (class in bits 2:0, code in bits 7:3): the write byte's type field
+  starts at bit 5 and runs past the byte into bit 8, and bit 9 is the expand flag. The split
+  is **established** from the header table above and the write-parameter routine's outputs
+  (`0x42` luminance bytes = format 2 type 2, `0x4b` RGBA bytes = format 0xb type 2, `0x61`
+  16-bit index = format 1 type 3, `0x6b` = format 0xb type 3), all consistent with it. In the
+  copy block it is the same field, taken from the destination's write header.
 - **established** (same recorded boot, DMA upload descriptor ahead of the first 256 x 256
   tile): the X server uploads the tile into this window with header word 4 `0x83331008` and
   write word 7 `0x32050041`, so the word 4 the later copies use as their source description is
