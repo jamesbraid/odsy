@@ -57,12 +57,13 @@ Other public sources in this repository:
 
 Our primary output is a set of C header files at the repository root, one per chip or block, in the style of gr2 and gr4. **The code is the document.** Each header holds register offsets and fields, packet and token formats, state machines and constants, with a comment on every definition saying how it was derived and whether it is established, inferred or unknown.
 
-Planned headers (none written yet; `docs/coverage.md` tracks each):
+Headers at the repository root:
 
-1. **`ODSY.h`**: overall address map, board identification, configurations and common types.
-2. **`BUZZ.h`**: the graphics ASIC: registers, command and FIFO formats, texture and raster state, transform program interface.
-3. **`PBJ.h`**: the second chip, the display back end.
-4. **`DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout.
+1. **`BUZZ.h`**: the graphics ASIC: registers, command and FIFO formats, texture and raster state, transform program interface. `BUZZ_DECODE.h`, `TEXTURE_DECODE.h` and `DMA_DECODE.h` are the publish-safe decode views of its command, texture and DMA words.
+2. **`PBJ.h`**: the second chip, the display back end (`PBJ_DECODE.h` is its decode view).
+3. **`DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout (`DISPLAY_DECODE.h` is its decode view).
+
+Still planned: **`ODSY.h`**, the overall address map, board identification, configurations and common types. `scripts/gen_odyssey_rust.py` generates Rust register modules under `generated/` from the decode headers.
 
 [docs/coverage.md](docs/coverage.md) is the map of what is written and what is missing, with the open problems in priority order. Prose that does not fit a header goes in `docs/` chapters.
 
@@ -201,8 +202,8 @@ Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the
 
 Roles:
 
-- **Opus readers** take the Priority list in `docs/coverage.md`, in order, and take the rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item to `understood`, whatever their status now.
-- **Sonnet readers** pick rows below `understood` from the inventory, `undocumented` first, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written, not another mention. Backfill `docs/coverage.md` area rows the same way.
+- **Deep readers** take the Priority list in `docs/coverage.md`, in order, and take the rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item to `understood`, whatever their status now.
+- **Bulk readers** pick rows below `understood` from the inventory, `undocumented` first, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written, not another mention. Backfill `docs/coverage.md` area rows the same way.
 - Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have understood must show `understood` in the regenerated file; if it does not, the entry lacks a label, a derivation citation or a role, names more than three items on a line, or does not name the thing (`docs/inventory/README.md` gives the rule). If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
