@@ -57,6 +57,7 @@ BANNED = [
     ('vendor register name', r'\bsys\.config\b|\b[a-z]+\.[a-z]+_config\b'),
     ('binary name', r'\blibGL\w*|\bodyssey\.(?:a|so)\b|\bbuzz_xform\b|\bbuzz_ucode\b'),
     ('vendor release cite', r'\b6\.5\.\d+m?\b'),
+    ('SGI build or board token', r'\bIP\d{2}[A-Z0-9]*\b'),
     ('RE tool name', r'\bDWARF\b|\bGhidra\b|\bm2c\b|\bspimdisasm\b'),
     ('N32 or kernel virtual address', r'\b0x0d[0-9a-f]{6}\b|\b0x1fc[0-9a-f]+\b|\b0xbfc[0-9a-f]+\b|\b0xa8[0-9a-f]{6}\b|\b0x9[0-9a-f]{7}\b'),
     ('binary offset', r'\+0x[0-9a-fA-F]+|\bat 0x[0-9a-fA-F]{4,}|\boffset 0x[0-9a-fA-F]{3,}|\bboard \+'),
@@ -368,8 +369,7 @@ def check_prose_vectors(rep, header, vecs):
         elif v.get('format') != fmt or v.get('type') != typ:
             rep.fail(header, 'TESTVEC 0x%x decodes format=%s type=%s; prose says format=%d type=%d'
                      % (value, v.get('format'), v.get('type'), fmt, typ))
-    for value, word, want in [(0x08, 'HDR_W4', {'class': 0, 'code': 1}),
-                              (0x82233000, 'HDR_W4', {'class': 0, 'code': 0})]:
+    for value, word, want in [(0x08, 'HDR_W4', {'class': 0, 'code': 1})]:
         v = vecs.get((value, word))
         if v is None:
             rep.fail(header, 'no TESTVEC for 0x%x as %s' % (value, word))

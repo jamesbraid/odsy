@@ -128,8 +128,8 @@
  * ===================================================================
  *
  * Bits:
- *   2:0    class   (read only; zero in a write header)
- *   7:3    code    (read only; zero in a write header)
+ *   2:0    class   (read only; zero in a library-built write header)
+ *   7:3    code    (read only; zero in a library-built write header)
  *   11:8   not written by the senders: unknown
  *   12     always set
  *   15:13  size field (read: the class field of the table below;
@@ -306,9 +306,10 @@
  * A full word 4 seen for an 8-bit index window copy (front, fields 3/3,
  * size code 3 for a 16-byte pixel):
  * TESTVEC: 0x83331008 as HDR_W4 => class=0, code=1, bit12=1, size_field=0, pixel_size=3, field_a=3, field_b=3, drawable=0, front=1
- * A word 4 reported for a movie transfer; decoded by layout only (the
- * transfer context is not independently derived here):
- * TESTVEC: 0x82233000 as HDR_W4 => class=0, code=0, bit12=1, size_field=1, pixel_size=3, field_a=2, field_b=2, drawable=0, front=1
+ * A word 4 reported for a movie transfer; decoded by layout only and NOT
+ * independently derived. This is an illustrative example, not a conformance
+ * vector: do not assert a generator against it.
+ * EXAMPLE (unverified): 0x82233000 as HDR_W4 => class=0, code=0, bit12=1, size_field=1, pixel_size=3, field_a=2, field_b=2, drawable=0, front=1
  */
 
 /* ===================================================================
