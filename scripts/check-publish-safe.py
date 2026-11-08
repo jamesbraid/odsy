@@ -57,6 +57,15 @@ ranges, macros, enums and vectors are checked as for the display headers, its
 bits are compared with BUZZ_DECODE.h where it reuses them, and its constants are
 compared with docs/kernel.md, docs/pixel-paths.md, docs/registers.md and BUZZ.h.
 
+Generated Rust. With no --header the check also scans generated/odyssey-regs/*.rs
+(the Rust modules scripts/gen_odyssey_rust.py writes from the headers) with the
+same publish-safety rules, and fails if they are stale against the headers.
+Beyond the shared rules a .rs file must carry the generator banner naming a real
+commit (no "-dirty"), no word "odsy" anywhere else, no note-file or URL pointer,
+no hex literal of five or more digits that is neither in its header nor a
+contiguous bit mask, and no decimal literal of seven or more digits. Pass
+--rust to run only that part.
+
 Hooking in: the repository has no CI entry point of its own. scripts/pre-push is
 the nearest hook; adding `python3 scripts/check-publish-safe.py || exit 1` there
 would run it on every push. It is not wired in.
@@ -64,6 +73,7 @@ would run it on every push. It is not wired in.
 import argparse
 import os
 import re
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -1885,13 +1895,76 @@ def check_dma(rep, header, text, verbose):
               % (header, len(words), len(fields), len(enums), len(vecs), len(addr_fields)))
 
 
+RUST_DIR = 'generated/odyssey-regs'
+RUST_MODULES = {'buzz': 'BUZZ_DECODE.h', 'display': 'DISPLAY_DECODE.h', 'pbj': 'PBJ_DECODE.h',
+                'texture': 'TEXTURE_DECODE.h', 'dma': 'DMA_DECODE.h'}
+RUST_BANNER = re.compile(r'^// generated from odsy [0-9a-f]{12} (\w+_DECODE\.h) - do not edit, regenerate in odsy$')
+RUST_BANNED = [
+    ('odsy named outside the banner', r'(?i)\bodsy\b'),
+    ('note-file pointer', r'docs/|\.md\b|\.rs\b'),
+    ('URL or host pointer', r'https?://|git@|ssh://'),
+]
+
+
+def check_rust(rep, rust_dir=None):
+    rust_dir = rust_dir or os.path.join(REPO, RUST_DIR)
+    if not os.path.isdir(rust_dir):
+        rep.fail(rust_dir, 'generated Rust directory is missing; run scripts/gen_odyssey_rust.py')
+        return
+    present = sorted(f for f in os.listdir(rust_dir) if not f.startswith('.'))
+    for f in present:
+        if f[:-3] not in RUST_MODULES or not f.endswith('.rs'):
+            rep.fail(os.path.join(rust_dir, f), 'not one of the five generated modules')
+    for mod, header in RUST_MODULES.items():
+        rel = '%s/%s.rs' % (RUST_DIR, mod)
+        try:
+            with open(os.path.join(rust_dir, mod + '.rs'), encoding='utf-8') as f:
+                text = f.read()
+        except OSError:
+            rep.fail(rel, 'missing; run scripts/gen_odyssey_rust.py')
+            continue
+        lines = text.splitlines()
+        m = RUST_BANNER.match(lines[0]) if lines else None
+        if not m or m.group(1) != header:
+            rep.fail(rel + ':1', 'banner is not "generated from odsy <12 hex> %s - do not edit, regenerate in odsy"' % header)
+        hdr = read(header).lower()
+        for n, line in enumerate(lines, 1):
+            where = '%s:%d' % (rel, n)
+            for label, rx in BANNED:
+                mm = re.search(rx, line)
+                if mm and n > 1:
+                    rep.fail(where, 'banned content (%s) %r in: %s' % (label, mm.group(0), line.strip()))
+            if n > 1:
+                for label, rx in RUST_BANNED:
+                    mm = re.search(rx, line)
+                    if mm:
+                        rep.fail(where, 'banned content (%s) %r in: %s' % (label, mm.group(0), line.strip()))
+            for lit in re.findall(r'\b0x([0-9a-fA-F]{5,})\b', line):
+                v = int(lit, 16)
+                contiguous = v & (v + 1) == 0 or (v >> ((v & -v).bit_length() - 1)) & ((v >> ((v & -v).bit_length() - 1)) + 1) == 0
+                if not contiguous and lit.lower().lstrip('0') not in hdr:
+                    rep.fail(where, 'hex literal 0x%s is neither in %s nor a bit mask: %s' % (lit, header, line.strip()))
+            if re.search(r'\b\d{7,}\b', line):
+                rep.fail(where, 'decimal literal of seven or more digits: %s' % line.strip())
+
+
+def check_rust_fresh(rep):
+    gen = os.path.join(HERE, 'gen_odyssey_rust.py')
+    r = subprocess.run([sys.executable, gen, '--root', REPO, '--check'], capture_output=True, text=True)
+    if r.returncode:
+        for line in (r.stderr or r.stdout).strip().splitlines() or ['generator failed']:
+            rep.fail(RUST_DIR, line)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('--header', action='append',
                     help='header to check (repeatable; default: all five)')
     ap.add_argument('--verbose', action='store_true')
+    ap.add_argument('--rust', action='store_true',
+                    help='check only the generated Rust (leak scan and staleness)')
     args = ap.parse_args()
-    headers = args.header or ALL_HEADERS
+    headers = [] if args.rust else (args.header or ALL_HEADERS)
     rep = Report()
     selected_new = {}
     for h in headers:
@@ -1911,10 +1984,16 @@ def main():
             check_buzz(rep, h, text, args.verbose)
     if selected_new:
         check_new_headers(rep, selected_new, args.verbose)
+    if args.rust or not args.header:
+        check_rust(rep)
+        check_rust_fresh(rep)
     if rep.fails:
         print('%d failure(s)' % len(rep.fails))
         return 1
-    print('ok: %s publish-safe and consistent with the prose' % ', '.join(headers))
+    if headers:
+        print('ok: %s publish-safe and consistent with the prose' % ', '.join(headers))
+    if args.rust or not args.header:
+        print('ok: generated Rust publish-safe and fresh against the headers')
     return 0
 
 
