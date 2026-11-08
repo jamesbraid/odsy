@@ -28,7 +28,7 @@ All three builders fill eight words; word 0 is lowest in memory.
 | 1 | x in bits 15:0, y in 31:16 (the smaller corner) | the same |
 | 2 | description +0x1c in bits 11:0 (0x1000 sent as 1) | the same |
 | 3 | width in bits 15:0, height in 31:16 | the same |
-| 4 | bits 2:0 class, 7:3 code, 12 set, 15:13 the class field, 19:16 description +0x28, 23:20 and 27:24 the two field codes, 28 set for a drawable, 31 front | bits 2:0 and 7:3 zero, 12 set, 15:13 the write field, 19:16, 23:20, 27:24 and 31 as for a read |
+| 4 | bits 2:0 class, 7:3 code, 12 set, 15:13 the class field, 18:16 pixel-size code from description +0x28 (see "Pixel-size field width"), 23:20 and 27:24 the two field codes, 28 set for a drawable, 31 front | bits 2:0 and 7:3 zero, 12 set, 15:13 the write field, 18:16, 23:20, 27:24 and 31 as for a read |
 | 5 | host row stride less the row bytes | the same |
 | 6 | row bytes in bits 19:0 | the same |
 | 7 | bits 18:16 the host bytes-per-pixel code, bit 30 when source and destination descriptions differ in word +4 | bits 4:0 format code, 8:5 type code, bit 9 expand, bit 10 unpack byte swap, 18:16 bytes-per-pixel code, bit 27 transfer path, bit 30 as for a read |
@@ -64,6 +64,16 @@ All three builders fill eight words; word 0 is lowest in memory.
   kernel's bytes-per-pixel table (2, 4, 8, 16, 12, 1, 6, 3 for codes 0 to 7, `docs/kernel.md`)
   is its exact inverse: the table at 0x0daec810, indexed by host bytes, gives 1→5, 2→0, 3→7,
   4→1, 6→6, 8→2, 12→4, 16→3 (**established**, dumped).
+
+### Pixel-size field width
+
+The pixel-size code is three bits, 18:16, in both header words that carry one. **Established** for word 7: the
+host bytes-per-pixel table has eight entries (codes 0 to 7), its dumped inverse covers all eight, and the kernel's
+transfer handler reads word 7 bits 18:16. **Inferred** for word 4: the kernel's own header builder for memory
+objects writes only bits 18:16 (codes 0 to 2), and every value seen in recorded copies is at most 3. The library
+copies word 4 bits 19:16 as one four-bit field from the buffer description, which is why earlier notes wrote
+19:16; no code or recorded value sets bit 19 as a size bit. **Unknown**: what bit 19 of word 4 means if it is ever
+set. A decoder reads the size from 18:16 and treats bit 19 as reserved.
 
 ## Board-to-host table
 
@@ -331,7 +341,7 @@ then destination field format) or moves the field unchanged.
   word 4 `0x83331008`, word 7 low bits `0x0041` and destination mode `0x20086a00`; none preceded
   by block 0x203b, whose first appearance is later in the boot and carries the identity scale
   `0x1000` and bias 0): the copy source is a 16-byte pixel's field 3 (bytes 6 and 7), the
-  destination the same field, and word 4 bits 19:16 and 15:13 give a 2-byte field in a 16-byte
+  destination the same field, and word 4 bits 18:16 and 15:13 give a 2-byte field in a 16-byte
   pixel on both sides. Word 4 bits 7:0 are `0x08`: class (bits 2:0) 0, code (bits 7:3) 1.
 - **established** (`__glOdysseyImageCalcXferReadParams` and the description routine, table rows
   above): class 0 code 1 is the read pair the library sends for `COLOR_INDEX`/`UNSIGNED_BYTE`
