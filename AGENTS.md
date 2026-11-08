@@ -213,8 +213,6 @@ Output rules:
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 - Commit what you cite: findings may rest on IRIX binaries or public sources only.
 
-Push checks: git hooks are not cloned, so turn the pre-push hook on once per clone with `ln -s ../../scripts/pre-push .git/hooks/pre-push` (or push through `retools/re-push`, which runs the same checks). The hook runs `scripts/check-leaks.sh --push`, which is odsy's own wrapper around the shared retools leak check; on a push it also runs `scripts/check-publish-safe.py`, so a push is refused when a header fails the publish-safe scan, a `generated/odyssey-regs/*.rs` leaks, or one is stale against its header (regenerate with `scripts/gen_odyssey_rust.py`). Run `python3 scripts/check-publish-safe.py` yourself before pushing.
-
 Downstream emulator projects consume the headers and docs; they should not need to read the binaries.
 
 Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`odsy_kernel: label the display-mode field`); bodies say why. Do not wait to batch work.
