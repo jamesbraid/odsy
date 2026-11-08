@@ -66,9 +66,10 @@ no hex literal of five or more digits that is neither in its header nor a
 contiguous bit mask, and no decimal literal of seven or more digits. Pass
 --rust to run only that part.
 
-Hooking in: the repository has no CI entry point of its own. scripts/pre-push is
-the nearest hook; adding `python3 scripts/check-publish-safe.py || exit 1` there
-would run it on every push. It is not wired in.
+Hooking in: the repository has no CI entry point of its own. scripts/pre-push (the
+shared retools hook) runs scripts/check-leaks.sh --push, which for odsy is a local
+wrapper that runs the shared leak check and then this script, so a push fails when
+this script does. Enable the hook per clone: see AGENTS.md, "Push checks".
 """
 import argparse
 import os
