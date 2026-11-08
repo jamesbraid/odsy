@@ -4,13 +4,13 @@
 Usage (from anywhere; paths are relative to the repository root):
     python3 scripts/check-publish-safe.py [--header H ...] [--verbose]
 
-With no --header it checks BUZZ_DECODE.h, DISPLAY_DECODE.h, PBJ_DECODE.h and
-TEXTURE_DECODE.h.
+With no --header it checks BUZZ_DECODE.h, DISPLAY_DECODE.h, PBJ_DECODE.h,
+TEXTURE_DECODE.h and DMA_DECODE.h.
 Needs only the Python 3 standard library. Exit status 0 means clean, 1 means
 at least one failure (each offending line is printed), 2 means a usage or
 setup problem (a file missing).
 
-Three checks, applied to all four headers:
+Three checks, applied to all five headers:
 
 1. Publish-safety. The headers go into public projects, so they must carry no
    vendor source path, no routine or symbol name, no raw address or binary
@@ -47,6 +47,16 @@ the table in docs/texture-formats.md) and CALC lines for the pitch and slice
 helper functions (evaluated here against a reference and, when a C compiler is
 present, by compiling the header and running the helpers and the table).
 
+DMA_DECODE.h has no registers. It describes DMA-engine descriptor words, and
+adds a rule that no address value appears in it: a hex literal of five or more
+digits is allowed only as a contiguous bit mask or as the one descriptor size
+limit, a decimal literal of seven or more digits is refused, a macro with ADDR in
+its name must be a SHIFT, MASK or BITS, and no TESTVEC or EXAMPLE may name or
+set bits in an address field (a field whose name starts "addr"). Its field
+ranges, macros, enums and vectors are checked as for the display headers, its
+bits are compared with BUZZ_DECODE.h where it reuses them, and its constants are
+compared with docs/kernel.md, docs/pixel-paths.md, docs/registers.md and BUZZ.h.
+
 Hooking in: the repository has no CI entry point of its own. scripts/pre-push is
 the nearest hook; adding `python3 scripts/check-publish-safe.py || exit 1` there
 would run it on every push. It is not wired in.
@@ -69,7 +79,7 @@ BANNED = [
     ('vendor install path', r'\busr/(?:cpu|gfx|lib|diags)\b'),
     ('source/object file name', r'\b[\w-]+\.(?:c|s|so|a|o)\b(?![\w-])'),
     ('header file name other than ours',
-     r'\b(?!(?:BUZZ|DISPLAY|PBJ|TEXTURE)_DECODE\.h\b|stdint\.h\b)[\w-]+\.h\b'),
+     r'\b(?!(?:BUZZ|DISPLAY|PBJ|TEXTURE|DMA)_DECODE\.h\b|stdint\.h\b)[\w-]+\.h\b'),
     ('odsy symbol', r'\bodsy(?:[A-Z_]\w*)'),
     ('driver routine prefix', r'\b(?:gfP_|gfx_|ody_|odsy_)\w*'),
     ('library routine', r'\b__gl\w*|\bRenderFunc\w*|\bImage(?:Chain|Xfer|Calc|Copy|ToDma)\w*'),
@@ -408,7 +418,8 @@ def check_prose_vectors(rep, header, vecs):
 # DISPLAY_DECODE.h / PBJ_DECODE.h: the REG form
 # ---------------------------------------------------------------------------
 NEW_HEADERS = {'DISPLAY_DECODE.h': 'DISPLAY', 'PBJ_DECODE.h': 'PBJ'}
-ALL_HEADERS = ['BUZZ_DECODE.h', 'DISPLAY_DECODE.h', 'PBJ_DECODE.h', 'TEXTURE_DECODE.h']
+ALL_HEADERS = ['BUZZ_DECODE.h', 'DISPLAY_DECODE.h', 'PBJ_DECODE.h', 'TEXTURE_DECODE.h',
+               'DMA_DECODE.h']
 
 # The whole line must be a REG entry. The offset is at most four hex digits, so
 # a code or kernel address (0x1fc..., 0x0d......) cannot fit.
@@ -1559,10 +1570,325 @@ def check_texture(rep, header, text, verbose):
                  len(rows), len(calcs), len(defs), len(TEX_CLAIMS), '' if compiled else ' (no C compile)'))
 
 
+# ---------------------------------------------------------------------------
+# DMA_DECODE.h: descriptor words, no registers, no address values
+# ---------------------------------------------------------------------------
+HEX_ANY_RE = re.compile(r'\b0x[0-9a-fA-F]+')
+DEC_BIG_RE = re.compile(r'(?<![\w.])\d{7,}(?![\w.])')
+DMA_SIZE_LIMIT_MACRO = 'DMA_ENTRY_MAX_BYTES'
+DMA_CORPUS = ['docs/kernel.md', 'BUZZ.h', 'docs/buzz.md', 'docs/registers.md']
+
+
+def is_mask(v):
+    """True for a contiguous run of one bits starting at bit 0."""
+    return v > 0 and (v & (v + 1)) == 0
+
+
+def check_dma_no_addresses(rep, header, text, fields):
+    """No address value anywhere: see the module docstring."""
+    addr_fields = [k for k in fields if k.split('.')[1].startswith('addr')]
+    for n, line in enumerate(text.splitlines(), 1):
+        where = '%s:%d' % (header, n)
+        m = DEC_BIG_RE.search(line)
+        if m:
+            rep.fail(where, 'decimal literal %s could be an address: %s' % (m.group(0), line.strip()))
+        dm = re.match(r'^#define\s+(\w+)\s+(.*)$', line)
+        name = dm.group(1) if dm else None
+        # Vector lines are checked on their own: the value must have zero in
+        # every address field.
+        if 'TESTVEC:' in line or 'EXAMPLE (unverified):' in line:
+            continue
+        for hm in HEX_ANY_RE.finditer(line):
+            tok = hm.group(0)
+            v = int(tok, 16)
+            if len(tok) - 2 < 5:
+                continue
+            if name and name.endswith('_MASK') and is_mask(v):
+                continue
+            if name == DMA_SIZE_LIMIT_MACRO:
+                continue
+            rep.fail(where, 'hex literal %s (5+ digits) could be an address; only a contiguous '
+                     'MASK or %s may be this wide: %s' % (tok, DMA_SIZE_LIMIT_MACRO, line.strip()))
+        if name and 'ADDR' in name and not re.search(r'_(SHIFT|MASK|BITS)$', name):
+            rep.fail(where, 'address macro %s is not a SHIFT, MASK or BITS (values are omitted): %s'
+                     % (name, line.strip()))
+    return addr_fields
+
+
+def check_dma_vector_addresses(rep, header, text, fields, addr_fields):
+    for n, line in enumerate(text.splitlines(), 1):
+        m = TV2_RE.search(line)
+        if not m or '<' in line:
+            continue
+        value, target = int(m.group(2), 16), m.group(3)
+        for key in addr_fields:
+            if key.split('.')[0] != target:
+                continue
+            hi, lo = fields[key][0], fields[key][1]
+            if (value >> lo) & ((1 << (hi - lo + 1)) - 1):
+                rep.fail('%s:%d' % (header, n), '0x%x sets bits in address field %s; vectors carry no address'
+                         % (value, key))
+        for part in m.group(4).split(','):
+            name = part.strip().partition('=')[0]
+            if ('%s.%s' % (target, name)) in addr_fields:
+                rep.fail('%s:%d' % (header, n), 'vector names address field %s.%s' % (target, name))
+
+
+def dma_vectors_in_notes(rep, header, vecs):
+    hexes = set()
+    for doc in DMA_CORPUS:
+        try:
+            for m in HEXLIT_RE.finditer(read(doc)):
+                hexes.add(int(m.group(0), 16))
+        except OSError as e:
+            print('error: cannot read %s: %s' % (doc, e), file=sys.stderr)
+            sys.exit(2)
+    for kind, value, target, _vals, n in vecs:
+        if kind == 'TESTVEC' and value not in hexes:
+            rep.fail('%s:%d' % (header, n), 'TESTVEC value 0x%x is not recorded in the RE notes; write it as '
+                     'an unverified EXAMPLE' % value)
+
+
+def span(f, key):
+    return (f[key][0], f[key][1]) if key in f else None
+
+
+def dma_claims(rep, header, fields, defs, enums, buzz):
+    """Prose cross-checks. Each claim is (label, doc, regex, function)."""
+    def bits(v):
+        return bin(v).count('1')
+
+    def tz(v):
+        return (v & -v).bit_length() - 1
+
+    def c_pack(m, err):
+        m1, m2, sh = int(m.group(1), 16), int(m.group(2), 16), int(m.group(3))
+        want_lo = (m1.bit_length() - 1, 0)
+        lo2 = tz(m2) + sh
+        want_hi = (lo2 + bits(m2) - 1, lo2)
+        for w in ('KICK_A_LO', 'KICK_B_HI'):
+            if span(fields, w + '.addr_lo') != want_lo:
+                err('%s.addr_lo is %s, the spreading rule gives %d:%d' % (w, span(fields, w + '.addr_lo'), *want_lo))
+            if span(fields, w + '.addr_hi') != want_hi:
+                err('%s.addr_hi is %s, the spreading rule gives %d:%d' % (w, span(fields, w + '.addr_hi'), *want_hi))
+
+    def c_half(m, err):
+        half, split = int(m.group(1)), int(m.group(2))
+        for w in ('KICK_A_LO', 'KICK_B_HI'):
+            lo = fields.get(w + '.addr_lo')
+            hi = fields.get(w + '.addr_hi')
+            if not lo or not hi:
+                err('no address fields in %s' % w)
+                continue
+            if (lo[0] - lo[1] + 1) + (hi[0] - hi[1] + 1) != half or lo[0] != split:
+                err('%s address fields do not make a %d-bit half split after bit %d' % (w, half, split))
+        if span(fields, 'KICK_A_LO.addr_hi') != (int(m.group(3)), int(m.group(4))):
+            err('upper address bits are %s in the header, %s:%s in the notes'
+                % (span(fields, 'KICK_A_LO.addr_hi'), m.group(3), m.group(4)))
+
+    def c_48(m, err):
+        if defs.get('DMA_KICK_ADDR_BITS') != int(m.group(1)):
+            err('DMA_KICK_ADDR_BITS is %s, notes say %s' % (defs.get('DMA_KICK_ADDR_BITS'), m.group(1)))
+        half = sum(fields[k][0] - fields[k][1] + 1 for k in ('KICK_A_LO.addr_lo', 'KICK_A_LO.addr_hi'))
+        if 2 * half != defs.get('DMA_KICK_ADDR_BITS'):
+            err('two address halves of %d bits do not make DMA_KICK_ADDR_BITS' % half)
+
+    def c_ids(m, err):
+        if enums.get(('KICK_A_HI.id', 'plain')) != int(m.group(1), 16) or \
+           enums.get(('KICK_A_HI.id', 'variant')) != int(m.group(2), 16):
+            err('kick id enums differ from the notes (0x%s, 0x%s)' % (m.group(1), m.group(2)))
+
+    def c_page(m, err):
+        total, sh0, mask, sh1, cnt = int(defs.get('DMA_KICK_ADDR_BITS', 0)), int(m.group(1)), int(m.group(2), 16), int(m.group(3)), int(m.group(4))
+        if span(fields, 'PAGE_W0.addr') != (total - sh0 - 1, 0):
+            err('PAGE_W0.addr is %s but a >> %d of a %d-bit address needs %d:0'
+                % (span(fields, 'PAGE_W0.addr'), sh0, total, total - sh0 - 1))
+        if span(fields, 'PAGE_W1.addr_lo') != (sh1 + mask.bit_length() - 1, sh1):
+            err('PAGE_W1.addr_lo is %s, notes give %d:%d' % (span(fields, 'PAGE_W1.addr_lo'), sh1 + mask.bit_length() - 1, sh1))
+        if span(fields, 'PAGE_W1.count') != (cnt - 1, 0):
+            err('PAGE_W1.count is %s, notes give a %d-bit count' % (span(fields, 'PAGE_W1.count'), cnt))
+        if sh0 != sh1:
+            err('page entry shifts differ: word 0 >> %d, word 1 << %d' % (sh0, sh1))
+
+    def c_entry_bytes(m, err):
+        if defs.get('DMA_ENTRY_BYTES') != int(m.group(1)):
+            err('DMA_ENTRY_BYTES is %s, notes say %s' % (defs.get('DMA_ENTRY_BYTES'), m.group(1)))
+
+    def c_hdr(m, err):
+        if defs.get('DMA_ENTRY_HDR_BYTES') != int(m.group(2)) or int(m.group(1)) + 1 != int(m.group(2)):
+            err('DMA_ENTRY_HDR_BYTES is %s, notes say bytes 0-%s are a %s-byte header'
+                % (defs.get('DMA_ENTRY_HDR_BYTES'), m.group(1), m.group(2)))
+
+    def c_pages(m, err):
+        first, last, npages = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if first != defs.get('DMA_ENTRY_HDR_BYTES') or last + 1 != defs.get('DMA_ENTRY_BYTES'):
+            err('page list bytes %d-%d do not follow the header and fill the entry' % (first, last))
+        if npages != defs.get('DMA_ENTRY_PAGES_MAX'):
+            err('DMA_ENTRY_PAGES_MAX is %s, notes say %d' % (defs.get('DMA_ENTRY_PAGES_MAX'), npages))
+        if npages * defs.get('DMA_PAGE_ENTRY_BYTES', 0) != last - first + 1:
+            err('%d page entries of %s bytes do not fill bytes %d-%d'
+                % (npages, defs.get('DMA_PAGE_ENTRY_BYTES'), first, last))
+
+    def c_page_bytes(m, err):
+        if defs.get('DMA_PAGE_ENTRY_BYTES') != 8:
+            err('DMA_PAGE_ENTRY_BYTES is %s, notes say eight bytes a page' % defs.get('DMA_PAGE_ENTRY_BYTES'))
+
+    def c_chunk(m, err):
+        if defs.get('DMA_PAGE_CHUNK_BYTES') != int(m.group(1)):
+            err('DMA_PAGE_CHUNK_BYTES is %s, notes say %s' % (defs.get('DMA_PAGE_CHUNK_BYTES'), m.group(1)))
+
+    def c_limit(m, err):
+        v = int(m.group(1), 16)
+        if v != int(m.group(2)) or defs.get(DMA_SIZE_LIMIT_MACRO) != v:
+            err('%s is %s, notes say 0x%x (%s)' % (DMA_SIZE_LIMIT_MACRO, defs.get(DMA_SIZE_LIMIT_MACRO), v, m.group(2)))
+
+    def c_edits(m, err):
+        w1, w3, w6 = int(m.group(1)) // 4, int(m.group(2)) // 4, int(m.group(3)) // 4
+        for key, word, rng in (('HDR_W1.x', w1, (15, 0)), ('HDR_W1.y', w1, (31, 16)),
+                               ('HDR_W3.width', w3, (15, 0)), ('HDR_W3.height', w3, (31, 16)),
+                               ('HDR_W6.row_bytes', w6, (int(m.group(4)), int(m.group(5))))):
+            if key not in buzz:
+                err('BUZZ_DECODE.h has no %s' % key)
+                continue
+            if int(re.search(r'W(\d)', key).group(1)) != word:
+                err('%s is not word %d as the notes say' % (key, word))
+            if (buzz[key][0], buzz[key][1]) != rng:
+                err('%s is %d:%d in BUZZ_DECODE.h, notes say %d:%d' % (key, buzz[key][0], buzz[key][1], rng[0], rng[1]))
+
+    def c_topbyte(m, err):
+        fixed = int(m.group(1), 16) << 24
+        have = sum(1 << fields[k][1] for k in ('ENTRY_W7.fixed25', 'ENTRY_W7.fixed28', 'ENTRY_W7.fixed29') if k in fields)
+        if fixed != have:
+            err('fixed bits 0x%x in the header, notes force 0x%x' % (have, fixed))
+        if (int(m.group(2), 16) << 24) != 1 << fields['ENTRY_W7.read_dir'][1]:
+            err('ENTRY_W7.read_dir is not the notes\' read bit')
+        if (int(m.group(3)), int(m.group(4))) != (fields['ENTRY_W7.transform'][1], fields['ENTRY_W7.differs'][1]):
+            err('ENTRY_W7 transform/differs bits are not the ones the notes say are kept from the caller')
+
+    def c_irq(m, err):
+        off, rd, irq = int(m.group(1)), m.group(2), m.group(3)
+        if off // 4 != 7 or rd != str(fields['ENTRY_W7.read_dir'][1]) or irq != str(fields['ENTRY_W7.irq_after'][1]):
+            err('word +%d bit %s / bit %s do not match ENTRY_W7.read_dir/irq_after' % (off, rd, irq))
+
+    def c_plain(m, err):
+        if int(m.group(1)) != fields['ENTRY_W7.transform'][1]:
+            err('plain path bit is %s in the notes, %d in the header' % (m.group(1), fields['ENTRY_W7.transform'][1]))
+
+    def c_transform(m, err):
+        if int(m.group(1)) != fields['ENTRY_W7.transform'][1]:
+            err('transform path bit is %s in the notes, %d in the header' % (m.group(1), fields['ENTRY_W7.transform'][1]))
+
+    def c_differs(m, err):
+        if int(m.group(1)) != fields['ENTRY_W7.differs'][1]:
+            err('differs bit is %s in the notes, %d in the header' % (m.group(1), fields['ENTRY_W7.differs'][1]))
+
+    def c_tag(m, err):
+        low, cnt, flag, marker, ctr = int(m.group(1), 16), int(m.group(2)), int(m.group(3), 16), int(m.group(4), 16), int(m.group(5), 16)
+        if defs.get('DMA_TAG_CMD_LOW16') != low or defs.get('DMA_TAG_CMD_COUNT') != cnt:
+            err('tag command word/count are %s/%s, notes say 0x%x/%d'
+                % (defs.get('DMA_TAG_CMD_LOW16'), defs.get('DMA_TAG_CMD_COUNT'), low, cnt))
+        if ((low >> 10) & 0xf) != cnt or (low & 0x3ff) != defs.get('DMA_TAG_CMD_ID') or \
+           (cnt << 10 | defs.get('DMA_TAG_CMD_ID', 0)) != low:
+            err('tag command word 0x%x does not decode to count %d id 0x%x' % (low, cnt, defs.get('DMA_TAG_CMD_ID', 0)))
+        if flag != 1 << fields['TAG_W0.flag'][1]:
+            err('TAG_W0.flag is bit %d, notes OR in 0x%x' % (fields['TAG_W0.flag'][1], flag))
+        if marker >> 8 != defs.get('DMA_TAG_W1_MARKER_TAG') or (marker >> 8) << 8 != marker:
+            err('tag marker is 0x%x in the notes' % marker)
+        if span(fields, 'TAG_W1.marker') != (15, 8) or span(fields, 'TAG_W1.tag') != (ctr.bit_length() - 1, 0):
+            err('tag fields do not match marker in 15:8 and a count masked with 0x%x' % ctr)
+
+    def c_done(m, err):
+        if defs.get('DMA_DONE_FLAG_BIT') != int(m.group(1)):
+            err('DMA_DONE_FLAG_BIT is %s, notes say %s' % (defs.get('DMA_DONE_FLAG_BIT'), m.group(1)))
+
+    def c_done_reg(m, err):
+        if int(m.group(1), 16) != 1 << defs.get('DMA_DONE_FLAG_BIT', -1):
+            err('registers notes clear 0x%s for the DMA-done flag, not bit %s' % (m.group(1), defs.get('DMA_DONE_FLAG_BIT')))
+
+    claims = [
+        ('kick address spreading rule', 'BUZZ.h',
+         r'PACK\(x\) = \(x & 0x([0-9a-f]+)\) \| \(\(x & 0x([0-9a-f]+)\) << (\d+)\)', c_pack),
+        ('kick address halves', 'BUZZ.h',
+         r'each (\d+)-bit half of the physical address is split after bit (\d+)[\s*]+and[\s*]+the upper seven bits sit six places higher \(bits (\d+):(\d+) of the word\)', c_half),
+        ('kick address width', 'BUZZ.h', r'board takes a[\s*]+(\d+)-bit physical address', c_48),
+        ('kick ids', 'BUZZ.h', r'word A: 0x0*([0-9a-f]+) or 0x0*([0-9a-f]+) \(high\)', c_ids),
+        ('page entry', 'BUZZ.h',
+         r'word 0 = the physical address >> (\d+),[\s*]+word 1 = \(physical address & 0x([0-9a-f]+)\) << (\d+) \| a (\d+)-bit byte count', c_page),
+        ('page chunk', 'BUZZ.h', r'chunks of up to (\d+) bytes', c_chunk),
+        ('descriptor size', 'docs/kernel.md', r'a list of (\d+)-byte table entries', c_entry_bytes),
+        ('descriptor header', 'docs/kernel.md', r'bytes 0-(\d+) are the caller\'s (\d+)-byte header \(eight words', c_hdr),
+        ('descriptor page list', 'docs/kernel.md',
+         r'Bytes (\d+)-(\d+) are the page list `generatePageTable` writes \(`BUZZ.h`, eight bytes a page, up to (\d+) pages\)', c_pages),
+        ('page entry bytes', 'docs/kernel.md', r'eight bytes a page, up to \d+ pages', c_page_bytes),
+        ('descriptor split limit', 'docs/kernel.md', r'at most 0x([0-9a-f]+) \((\d+)\) is one entry', c_limit),
+        ('descriptor header edits', 'docs/kernel.md',
+         r'word \+(\d+) low half = the entry\'s x, high half = its y; word \+(\d+) low half = its width, high half = its height; '
+         r'word \+(\d+) bits (\d+):(\d+) = bytes per pixel times the width', c_edits),
+        ('word 7 top byte', 'docs/kernel.md',
+         r'top byte of header word 7 \(request offset \d+\) to `0x([0-9a-f]+) \| \(bit 0 of \+\d+ clear \? 0x([0-9a-f]+) : 0\) '
+         r'\| \(old bit (\d+)\) \| \(old bit (\d+)\)`', c_topbyte),
+        ('interrupt after the last descriptor', 'docs/kernel.md',
+         r'If header word \+(\d+) bit (\d+) is set, the last entry\'s word \+\d+ gets bit (\d+) set', c_irq),
+        ('plain path bit', 'docs/kernel.md', r'\*\*Plain path\*\* \(header word 7 bit (\d+) clear\)', c_plain),
+        ('transform path bit', 'docs/kernel.md', r'\*\*Transform path\*\* \(bit (\d+) set\)', c_transform),
+        ('differs bit', 'docs/pixel-paths.md',
+         r'header word 7 bit (\d+) is set when the source and destination descriptions differ', c_differs),
+        ('completion tag command', 'docs/kernel.md',
+         r'class-1 block 0x05a \(`0x0001([0-9a-f]{4})`, COUNT (\d+)\): operand 0 = record word \+\d+ \| 0x([0-9a-f]+), '
+         r'operand 1 = the tag `0x([0-9a-f]+) \| \(counter & 0x([0-9a-f]+)\)`', c_tag),
+        ('DMA-done flag bit', 'BUZZ.h', r'FLAGS_DMA_DONE_FLAG\s+\(1u << (\d+)\)', c_done),
+        ('DMA-done flag clear', 'docs/registers.md', r'stores (0x[0-9a-f]+) \(the DMA-done flag\)', c_done_reg),
+    ]
+    cache = {}
+    for label, doc, rx, fn in claims:
+        if doc not in cache:
+            try:
+                cache[doc] = read(doc)
+            except OSError as e:
+                print('error: cannot read %s: %s' % (doc, e), file=sys.stderr)
+                sys.exit(2)
+        m = re.search(rx, cache[doc], re.S)
+        if not m:
+            rep.fail(doc, 'prose for "%s" not found (the passage changed or was removed); pattern: %s' % (label, rx))
+            continue
+        try:
+            fn(m, lambda msg, label=label, doc=doc: rep.fail(header, '%s ("%s", %s)' % (msg, label, doc)))
+        except (KeyError, TypeError) as e:
+            rep.fail(header, 'claim "%s" could not be evaluated: missing %s' % (label, e))
+
+
+def check_dma(rep, header, text, verbose):
+    check_banned(rep, header, text)
+    fields = parse_fields_new(rep, header, text, {}, 'DMA')
+    defs = parse_defines(text)
+    check_macros_new(rep, header, fields, defs, 'DMA')
+    enums = parse_enums(rep, header, text, fields, defs, 'DMA')
+    addr_fields = check_dma_no_addresses(rep, header, text, fields)
+    check_dma_vector_addresses(rep, header, text, fields, addr_fields)
+    vecs = check_vectors_new(rep, header, text, fields, {}, {})
+    dma_vectors_in_notes(rep, header, vecs)
+    # Self-consistency of constants.
+    if defs.get('DMA_ENTRY_BYTES') != defs.get('DMA_ENTRY_HDR_BYTES', 0) + \
+            defs.get('DMA_ENTRY_PAGES_MAX', 0) * defs.get('DMA_PAGE_ENTRY_BYTES', 0):
+        rep.fail(header, 'DMA_ENTRY_BYTES is not header bytes plus page entries')
+    if defs.get('DMA_ENTRY_MAX_BYTES', 0) > defs.get('DMA_ENTRY_PAGES_MAX', 0) * defs.get('DMA_PAGE_CHUNK_BYTES', 0) * 2:
+        rep.fail(header, 'DMA_ENTRY_MAX_BYTES exceeds what the page list could cover even with slack')
+    buzz = parse_fields(Report(), 'BUZZ_DECODE.h', read('BUZZ_DECODE.h'))
+    for key, other in (('ENTRY_W7.read_dir', 'HDR_W7.read_dir'), ('ENTRY_W7.transform', 'HDR_W7.transform'),
+                       ('ENTRY_W7.differs', 'HDR_W7.differs')):
+        if key in fields and other in buzz and span(fields, key) != (buzz[other][0], buzz[other][1]):
+            rep.fail(header, '%s is %s but %s is %d:%d in BUZZ_DECODE.h' % (key, span(fields, key), other, buzz[other][0], buzz[other][1]))
+    dma_claims(rep, header, fields, defs, enums, buzz)
+    if verbose:
+        words = sorted({k.split('.')[0] for k in fields})
+        print('%s: %d words, %d fields, %d enums, %d vectors, %d address fields'
+              % (header, len(words), len(fields), len(enums), len(vecs), len(addr_fields)))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('--header', action='append',
-                    help='header to check (repeatable; default: all three)')
+                    help='header to check (repeatable; default: all five)')
     ap.add_argument('--verbose', action='store_true')
     args = ap.parse_args()
     headers = args.header or ALL_HEADERS
@@ -1579,6 +1905,8 @@ def main():
             check_texture(rep, h, text, args.verbose)
         elif base in NEW_HEADERS:
             selected_new[base] = h
+        elif base == 'DMA_DECODE.h':
+            check_dma(rep, h, text, args.verbose)
         else:
             check_buzz(rep, h, text, args.verbose)
     if selected_new:
