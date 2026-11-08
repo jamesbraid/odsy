@@ -238,6 +238,7 @@
 /* FIELD: HDR_W7.type 8:5 established */
 /* FIELD: HDR_W7.expand 9:9 established */
 /* FIELD: HDR_W7.swap 10:10 inferred */
+/* FIELD: HDR_W7.size_field 15:13 established */
 /* FIELD: HDR_W7.psize 18:16 established */
 /* FIELD: HDR_W7.read_dir 24:24 established */
 /* FIELD: HDR_W7.transform 27:27 established */
@@ -249,6 +250,8 @@
 #define BUZZ_HDR_W7_TYPE_INPLACE  0x000001e0u
 #define BUZZ_HDR_W7_EXPAND        (1u << 9)
 #define BUZZ_HDR_W7_SWAP          (1u << 10)
+#define BUZZ_HDR_W7_SIZE_FIELD_SHIFT 13   /* bits 15:13; compared against HDR_W4.size_field on the copy path */
+#define BUZZ_HDR_W7_SIZE_FIELD_MASK  0x7u
 #define BUZZ_HDR_W7_PSIZE_SHIFT   16
 #define BUZZ_HDR_W7_PSIZE_MASK    0x7u
 #define BUZZ_HDR_W7_READ          (1u << 24)
@@ -419,7 +422,7 @@
 /* FIELD: TEXLEVEL_W1.offset_code 28:26 established */
 /* FIELD: TEXLEVEL_W1.size_code 31:30 established */
 /* Word 2. */
-/* FIELD: TEXLEVEL_W2.bits 11:0 unknown */
+/* FIELD: TEXLEVEL_W2.bits 11:0 established */
 /* Word 0 bits 28:0: a per-level value taken from the allocation; that it
  * is the level's board-memory address is inferred. Word 1 bits 11:0:
  * the level width in 16-texel units, rounded up to an even count; when
@@ -429,8 +432,11 @@
  * (0 for 2-byte texels, 1 for 4, 2 for 8: log2 bytes minus one,
  * inferred); 28:26 the offset code (0 or 2). Word 1 bit 29 and bits
  * 19:12 are never written by the software (inferred zero; board
- * meaning unknown). Word 2 is not written by texture activation; one
- * path clears bits 11:0. Board meaning unknown. */
+ * meaning unknown). Word 2 bits 11:0 ARE written by texture activation for
+ * 3D targets, as the base-2 ceiling of the slice tile count (the 3D slice
+ * exponent; the texture-state decode header carries it as a 3D slice
+ * field); for non-3D targets the mipmap builder and the pixel-to-texture
+ * move clear them. Board reading inferred. */
 #define BUZZ_TEXLEVEL_W1_PITCH_MASK    0x00000fffu
 #define BUZZ_TEXLEVEL_W1_FMT_SHIFT     20
 #define BUZZ_TEXLEVEL_W1_FMT_MASK      0x3fu
