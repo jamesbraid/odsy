@@ -12,18 +12,6 @@
  *   libGLcore_n32.so  usr/gfx/arch/IP30ODSY32/libGLcore.so (N32, DWARF
  *                     names and line numbers only; no types)
  *   odyssey.a         usr/cpu/sysgen/IP30boot/odyssey.a (kernel objects)
-
-
-
-
-
-
-
-
-
-
-
-
  * Diagnostics: odydiags, Internal Support Tools 2.7, its microcode image
  *   usr/diags/ody/ucode/diagxform.bin (ucode/disasm/diagxform.lst)
  * Addresses are the N32 libGLcore virtual addresses printed in the
@@ -459,7 +447,7 @@
  * reports, and a storage class; ChooseSuitableBuzzTexObjFormat
  * (0x0d9cfdc0) picks the index from the GL internal format.
  * All rows established from those two functions, run for every input
- * (scripts/texfmt_sweep.py). The class column is the size code
+ * (retools/tools/odsy/texfmt_sweep.py). The class column is the size code
  * CalcTexelSizes returns, the c of the element size 2 << c bytes that
  * AllocateGfxMemForTexture asks the allocator for: 0 = 2 bytes, 1 = 4,
  * 2 = 8 (the 8-bit and 12-bit layouts are booked at 2 bytes, 12/12/12/12
@@ -620,49 +608,28 @@
  * established, in the order the stores reach the FIFO port (board PIO
  * base + 0x110000):
  *   1. 0x00010854, 0, 0x0fffffff   class-1 block 0x054, COUNT 2, with two
-
-
-
-
-
-
-
-
-
-
-
-
+ *      operands, 0 and 0x0fffffff. established as values and as the first
+ *      stores of the routine. What block 0x054 does is unknown from the
  *      binaries read here; the operands look like the bounds of a range
+ *      (inferred from the values alone, 0 to the top of a 256 MB space).
+ *      A read of the microcode routine that block 0x054 reaches
+ *      (ucode/buzz_routines.md) would settle it.
  *   2. five doubleword stores (high word first is inferred, big-endian):
  *        0x000006b0_00000000  0x000006b1_00000100  0x000006b3_00005e50
  *        0x000006b2_00007dc0  0x000007b5_00000001
  *      (.lit8 offsets 0x30-0x48 of odsy_init.o, and 107 << 36 for the
  *      first). established as values and order. What the block numbers
-
-
-
- *      the values exactly:
-
-
-
-
-
-
- *      the values only: 0x100 = 256, 0x7dc0 = 32192 = 32768 - 576, and
-
-
-
- *                checked)
-
  *      configure is unknown from the binaries read here. Arithmetic on
-
-
-
+ *      the values only: 0x100 = 256, 0x7dc0 = 32192 = 32768 - 576, and
+ *      0x5e50 = 24144 = 3/4 of 32192; these are inferred to be sizes and
+ *      fill thresholds of a command FIFO, but no 6.5.30 code reads the
  *      blocks back. These are the only stores to those register ids in any
  *      kernel object: every .lit8, .data and .rodata of odyssey.a, gfx.o
  *      and rrm.o was searched for the pairs, and the disassembly for
  *      immediate loads of 0x6b0-0x6b3 and 0x7b5. The 0x6b8 pair found in
  *      odsy_init.o .data lies inside the buzz_ucode array, not a store.
+ *      A read of the flags handler's tests of the FIFO fill status bits
+ *      (0x1064) would settle the 0x6b2 and 0x6b3 pair.
  *   3. 0x00010046                  pad word, then a 2000 us delay.
  *   4. A read of board + 0x201594 must return 0x003d0046. established as
  *      the comparison; what the register is: unknown. inferred: an
@@ -683,23 +650,17 @@
  *      format and meaning in ucode/buzz_isa.md.
  *   6. 0x000007f0_3b9aca00         one more doubleword (value 10^9), the
  *                                  last FIFO store of the routine.
-
+ *      established as a value and position. What register 0x7f0 does is
  *      unknown from the binaries read here (a hardware-sync timeout is
-
-
-
-
+ *      one reading of 10^9; the name of flags bit 1 in the 6.5.30 print
+ *      table and the board-side consumer would settle it).
  * After that flow control is attached (HEART credit tnum written into
  * the flow configuration register, flow-off register written 0).
  *
  * Water marks: unknown. Which of 0x6b2 and 0x6b3 is the high mark and
-
-
+ * which the low mark, and their units, are not shown by the binaries
  * read here. The CFIFO_HW and CFIFO_LW status bits (0x1064) and flags
-
-
-
-
+ * (0x1014 bits 25 and 9) are named in this header; that they
  * compare against these registers is inferred from their names only.
  *
  * The host side has its own, fixed threshold. odsyHiwaterInterrupt
