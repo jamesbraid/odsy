@@ -5,7 +5,7 @@ How the N32 libGLcore of IRIX 6.5.30 moves pixels between host memory and the bo
 `glCopyPixels`, the tables behind each header field, where zoom and pixel transfer happen, and
 where the raster distance comes from. Every address is in
 `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`; the installed 6.5.30m copy has the
-same code at the same addresses. Read with Ghidra (with `ghidra/scripts/IrixGp.java`, and the
+same code at the same addresses. Read with Ghidra (with `retools/ghidra/scripts/IrixGp.java`, and the
 switch tables of the four parameter routines forced from their `.rodata` words, because
 `IrixJumpTables.java` does not follow their `la` table base) and against the committed assembly.
 
@@ -137,7 +137,7 @@ set. A decoder reads the size from 18:16 and treats bit 19 as reserved.
 Two class and code pairs in the board-to-host table are shared: class 0 code 0 (a stencil byte, and
 colour index bytes on one kind of window) and class 2 code 2 (a 32-bit depth word and `BGRA`/
 `UI_8_8_8_8_REV`). What separates them in the header the library sends is **established** by running
-the shipped routines under `scripts/read_header_sweep.py` (the description routine, the read-parameter
+the shipped routines under `retools/tools/odsy/read_header_sweep.py` (the description routine, the read-parameter
 routine and the field-offset routine, on a mode record filled for each window kind), and by reading
 the read builder's call to the field-offset routine:
 
@@ -148,7 +148,7 @@ the read builder's call to the field-offset routine:
   depth-or-stencil different pairs at every storage and layout code where a window allows a depth or
   stencil read and a class 2 colour read: storage 2 layout 2 gives (2,2) for colour and (0,0) for depth
   or stencil; storage 3 layout 2 gives (6,2) and (4,0). Swept over every storage and layout code (left
-  buffer, `scripts/read_header_sweep.py` run on the field routine): colour and depth-or-stencil differ
+  buffer, `retools/tools/odsy/read_header_sweep.py` run on the field routine): colour and depth-or-stencil differ
   at storage 1 layouts 2 and 3, storage 2 layouts 2, 3 and 4, and storage 3 layouts 2 and 4, which
   include every pair a window can have that allows a class 2 depth read or a stencil read. A `BGRA`
   read therefore never carries the depth read's field codes on the same window.
@@ -167,7 +167,7 @@ the read builder's call to the field-offset routine:
   host bytes per pixel; none depends on colour against depth. Word 7 bits 18:16 are 1 for both
   4-byte reads and 5 for both 1-byte reads.
 - **No command surrounds the read differently.** `__glOdyim_ReadPixels`, `ImageXfer`, the chain
-  builder and the move routine store nothing to the command window (`scripts/fifo_words.py`: 0 window
+  builder and the move routine store nothing to the command window (`retools/tools/odsy/fifo_words.py`: 0 window
   stores in each range) and the raster-state save and load routines store only to the context. The one
   request goes through `ReadFromPMObj` to the kernel's transfer ioctl, whose flag word does not depend
   on the format, and the kernel copies header word 4 into each entry unchanged (`kernel.md`, the
@@ -435,7 +435,7 @@ then destination field format) or moves the field unchanged.
 
 Release IRIX 6.5.30m, IP30. Kernel members of `odyssey.a` (`rrm.o`, `odsy_drawable.o`), N32
 `libGL.so` and N32 `libGLcore.so` (`root/usr/gfx/arch/IP30ODSY32/`). The FIFO word lists come
-from `scripts/fifo_words.py` run on the routines named; callees were taken from the target
+from `retools/tools/odsy/fifo_words.py` run on the routines named; callees were taken from the target
 address, not the listing's label. No vendor source was read for these three items.
 
 ### Front and back of a pixel buffer: what writes 0x609 bit 31
@@ -546,7 +546,7 @@ address, not the listing's label. No vendor source was read for these three item
 ## Stencil word position, the DMA question, the move's sampler words and depth test on colour writes
 
 Release IRIX 6.5.30m, IP30, N32 `libGLcore.so` (`root/usr/gfx/arch/IP30ODSY32/`). Routines were
-disassembled in plain `objdump` and walked with `scripts/fifo_words.py`; callees were taken from target
+disassembled in plain `objdump` and walked with `retools/tools/odsy/fifo_words.py`; callees were taken from target
 addresses. No vendor source was read for any item here.
 
 ### Where the stencil index sits in a burst word
@@ -617,7 +617,7 @@ addresses. No vendor source was read for any item here.
 
 ## The raster state an image transfer runs under, the zoom filter, the z of a colour write and stencil shift and offset
 
-Release IRIX 6.5.30m, IP30, N32 `libGLcore.so`. Plain `objdump`, `scripts/fifo_words.py` and `scripts/glcore_probe.py`
+Release IRIX 6.5.30m, IP30, N32 `libGLcore.so`. Plain `objdump`, `retools/tools/odsy/fifo_words.py` and `retools/tools/odsy/glcore_probe.py`
 (run on `__glOdysseyImageInit` with a zeroed context). No vendor source was read. **This section corrects two earlier
 statements in this file's last section**: the transfer steps do not run under the application's raster state, and the
 texture move's filter bits are not the application's.
@@ -696,7 +696,7 @@ Release 6.5.30m, N32 `libGLcore.so` (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY3
 
 Release IRIX 6.5.30m, IP30, N32 `libGLcore.so`. Listings `libglcore/asm/ODYSSEY/ody_image_move.s`,
 the Odyssey GL driver image chain assembly unit, the Odyssey GL driver image API assembly unit, the Odyssey GL driver image conversion assembly unit and the Odyssey GL driver image assembly unit; routines run under Unicorn with
-`scripts/write_burst_sweep.py` and the harness of `scripts/read_header_sweep.py`. No vendor source was read. Software
+`retools/tools/odsy/write_burst_sweep.py` and the harness of `retools/tools/odsy/read_header_sweep.py`. No vendor source was read. Software
 evidence only: it fixes the words the library sends and the bytes it expects, not what the board does with them.
 
 ### Which burst tag a write uses
@@ -706,7 +706,7 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
   stores byte 20 in the low bits of the shadow of the burst select word (`0x13c00 | tag`: the `lbu 68($sp)` feeding the store to context +0x9704 in its transfer branch), and the burst sender
   `SendPixelsAsUserPIO` (0x0d9b9680) reads it back (`context +0x9704 & 0x3ff`) as the tag of every burst word it emits
   (`0x14000 | tag | (words - words/16) << 10`).
-- **established**, by running the routine for every format, type and destination pixel class (`scripts/write_burst_sweep.py`):
+- **established**, by running the routine for every format, type and destination pixel class (`retools/tools/odsy/write_burst_sweep.py`):
   - tag `0x10` for 1-byte index (`0x41`) and 16-bit index (`0x61`) sources, accepted only into classes 1, 2 and 4 to 17, and for
     `0x80` and `0x81` (index, depth and stencil with `UNSIGNED_INT`) into every class that accepts them;
   - class-dependent, `0x11` into the expand classes (7, 8, 10, 11, 12 and 13) and `0x10` into the others (0 to 6, 9, 14 to 17), for the
@@ -769,7 +769,7 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
 - **unknown**: `glCopyTexImage` reaches the same copy through the image chain's copy step (`RenderFunc_CopyColor`,
   0x0d990dd0, transfer flag 0), which sends no corner record; whether `MovePixelsCopy` forces the transfer path there is not resolved
   (the decompiler folds the branch). Settle by running `MovePixelsCopy` under the probe for a window-to-texture-object copy and
-  listing its FIFO words with `scripts/fifo_words.py`.
+  listing its FIFO words with `retools/tools/odsy/fifo_words.py`.
 
 ### Read conversion on the host
 
@@ -793,7 +793,7 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
 ## Object-to-window copies, the post-filter block and five state calls
 
 Release IRIX 6.5.30m, IP30, N32 `libGLcore.so` (`root/builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/`). Read from the listing and
-the objdump of the whole `.text`, with `scripts/fifo_words.py` for callees and `scripts/glcore_probe.py` for the default state
+the objdump of the whole `.text`, with `retools/tools/odsy/fifo_words.py` for callees and `retools/tools/odsy/glcore_probe.py` for the default state
 block. No vendor source was read. Software evidence only: nothing here says what the board does with a word.
 
 ### The copy routine's mode, re-derived

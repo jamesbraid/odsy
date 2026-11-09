@@ -1,6 +1,6 @@
 # libGLcore functions by source file and role
 
-Release IRIX 6.5.30m, N32 `libGLcore.so` for IP30 (`usr/gfx/arch/IP30ODSY32`; the other ABIs and the IP35 copies are builds of the same sources). The disassembly is `libglcore/asm/`, one file per source file, extracted by `scripts/extract_libglcore_odsy.py`.
+Release IRIX 6.5.30m, N32 `libGLcore.so` for IP30 (`usr/gfx/arch/IP30ODSY32`; the other ABIs and the IP35 copies are builds of the same sources). The disassembly is `libglcore/asm/`, one file per source file, extracted by `retools/tools/odsy/extract_libglcore_odsy.py`.
 
 Labels: the source file of each function is **established** from the compiler's `# Source:` line in the extracted assembly (a DWARF compilation unit of the library). The role of a source file is **inferred** from its name and from the names of the functions in it; where `docs/opengl.md`, `docs/buzz.md` or `ucode/buzz_isa.md` read a function in full, the finding is there and not repeated. The lists are names filed by source file and inferred role; they describe no function's behaviour, and the source file of each name is the only fact in them that was read from the binary.
 

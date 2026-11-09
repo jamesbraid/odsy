@@ -1,1 +1,0 @@
-../retools/scripts/odsy/test_fifo_words.py

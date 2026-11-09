@@ -85,7 +85,7 @@ below was copied from that install.
 | X server modules (`ddx/`) | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` |
 | IP35 kernel (`odsy_kernel_ip35/`) | the same seven files as the IP30 row, from `IP35boot/` (Fuel, Tezro, Onyx 350). Not installed on the Octane2 reference image: take them from the 6.5.30 Installation Tools and Overlays (1 of 3) disc with `instigator extract --unpack --path /usr/cpu/sysgen/IP35boot <iso> <outdir>` | `usr/cpu/sysgen/IP35boot/` |
 | Microcode (`ucode/`) | `buzz_xform.bin`, `vof/` | `usr/gfx/ucode/ODSY/` |
-| Microcode in the kernel (`ucode/buzz_ucode_ip30.bin`, `_ip35.bin`) | the `buzz_ucode` array of `odsy_init.o`, written unchanged by `scripts/extract_buzz_ucode.py` | `usr/gfx/ucode/ODSY-kernel/` |
+| Microcode in the kernel (`ucode/buzz_ucode_ip30.bin`, `_ip35.bin`) | the `buzz_ucode` array of `odsy_init.o`, written unchanged by `retools/tools/odsy/extract_buzz_ucode.py` | `usr/gfx/ucode/ODSY-kernel/` |
 | Firmware | `IP30prom.bin` | `usr/cpu/firmware/` |
 
 The Odyssey kernel driver on an IP30 install is `odyssey.a` under `IP30boot/`
@@ -96,14 +96,14 @@ Verify the install on your own system with `ls /usr/gfx/arch`, `ls
 /usr/lib/X11/dyDDX` and `ls /usr/cpu/sysgen/IP30boot`. Missing paths are
 normal: layouts differ by release and graphics option.
 
-The second half of this list is the wider scope of section 6. The reference install holds none of the `IP35*` paths, `ip35prom.img` or the media-only builds: take them from the 6.5.30 discs as section 6 says. `scripts/inventory.py` reads whatever of them `root/` holds.
+The second half of this list is the wider scope of section 6. The reference install holds none of the `IP35*` paths, `ip35prom.img` or the media-only builds: take them from the 6.5.30 discs as section 6 says. `retools/tools/inventory.py` reads whatever of them `root/` holds.
 
 ## 2. Copying the files
 
 On the IRIX host, tar the paths in the block above (`tar -cvf /tmp/odsy_root.tar
 <paths>`) and unpack on your workstation with `mkdir -p root && cd root && tar
--xvf /path/to/odsy_root.tar`. `scripts/populate-root` then creates the symlinks
-in the binary directories from the block below.
+-xvf /path/to/odsy_root.tar`. The symlinks in the binary directories are tracked in
+git and resolve once `root/` is filled; the block below lists them.
 
 Reference image used for the 6.5.30 listing, for reproducibility:
 `vpro-octane2-installed-20261023.qcow2`, SHA-256
@@ -111,7 +111,7 @@ Reference image used for the 6.5.30 listing, for reproducibility:
 
 ## 3. Symlinks
 
-`scripts/populate-root` reads these blocks. `archives` lines are `ARCHIVE LINKDIR`: the
+These blocks list the layout. `archives` lines are `ARCHIVE LINKDIR`: the
 archive's members are unpacked inside `root/` and linked into `LINKDIR`. `links`
 lines are `LINK TARGET`, relative to the repository root.
 
@@ -171,7 +171,7 @@ Types have to come from headers, the ucode and the RE notes. 6.5.30 is the lates
 
 ## 6. Wider scope: every 6.5.30 file that touches VPro
 
-Found by reading the file lists (`instigator extract --manifest-only`) of the four 6.5.30 discs (Installation Tools and Overlays 1 of 3, Overlays 2 of 3 and 3 of 3, and the Octane2 VPro Patches disc), then unpacking every disc whole (`instigator extract --unpack`) and checking each file for VPro symbols and strings (`odsy`, `Odsy`, `ODYSSEY`, `VPro`, `BUZZ`, `PB&J`). Machine tags in the file lists (`GFXBOARD=ODYSSEY`, `CPUBOARD=IP30` or `IP35`) agree with the string search. Everything below is in `root/`, under the install path, and is read by `scripts/inventory.py` (group names in `scripts/inventory.json`).
+Found by reading the file lists (`instigator extract --manifest-only`) of the four 6.5.30 discs (Installation Tools and Overlays 1 of 3, Overlays 2 of 3 and 3 of 3, and the Octane2 VPro Patches disc), then unpacking every disc whole (`instigator extract --unpack`) and checking each file for VPro symbols and strings (`odsy`, `Odsy`, `ODYSSEY`, `VPro`, `BUZZ`, `PB&J`). Machine tags in the file lists (`GFXBOARD=ODYSSEY`, `CPUBOARD=IP30` or `IP35`) agree with the string search. Everything below is in `root/`, under the install path, and is read by `retools/tools/inventory.py` (group names in `scripts/inventory.json`).
 
 | Group | Files | Disc |
 |---|---|---|
@@ -185,8 +185,8 @@ Found by reading the file lists (`instigator extract --manifest-only`) of the fo
 | X | `odyssey.so`, `glx.so`, `Xsgi` | Tools and Overlays 1 |
 | Graphics tools | `gfxinit` (loads the transform microcode), `gfxinfo`, `setmon`, `dmconf`, `sgcombine`, `gfxtopology`, `startgfx`, `stopgfx`, `/usr/bin/X11/xsetmon` | Tools and Overlays 1 |
 | Diagnostics | `/sbin/stand/ide.IP30` (also installed as `/usr/stand/ide`; the IP30 IDE holds the textport part of the driver plus the timing-table and display-clock routines the PROM also carries), `usr/diags/compositor/bin/sting`, `usr/sbin/Confidence/dualchannel` (I2C tests), `usr/gfx/STINGRAY/bin/cmp_flash` and `cmp_flash_all` (compositor flash tools) | Tools and Overlays 1 |
-| Microcode and timing data | `ODSY/buzz_xform.bin`; `ODSY/vof/*.vfo` (video formats); `vfc/rules/VPro_*.def`; `STINGRAY/cmb`, `vfo`, `xlx` and `usr/diags/compositor/data/*.cmb` (compositor tables for the Odyssey dual-channel option); the kernel's own copy, `ODSY-kernel/buzz_ucode_ip30.bin` and `_ip35.bin`, made by `scripts/extract_buzz_ucode.py` | Tools and Overlays 1 |
-| Field diagnostics | `odydiags`, the VPro diagnostics that run under IRIX, from the Internal Support Tools 2.7 disc (builds for 6.5.10 and 6.5.15, both with the same microcode): `usr/diags/ody/ucode/diagxform.bin`, its own transform microcode (24,252 bytes, 2021 records, SHA-256 `dd27f727e58ee230ff61e711836096d810edaa152a50174c221ce6956ff47530`), linked at `root/builds/odydiags-6.5.15/usr/diags/ody/ucode/diagxform.bin`; listing `ucode/disasm/diagxform.lst`. The 6.5.15 program `usr/diags/ody/odydiags` (6,720,984 bytes, SHA-256 `46a9c870ebaa7ba43098687cb44a629d00698103cd9d3db696e29d3c0150158a`) and its stored frames and CRC lists `usr/diags/ody/checksum/` are linked under the same root. The package's user guide names one transform test, a microcode-memory write and read-back; its drawing tests replay command streams recorded from the board's C simulator and compare the frame with the simulator's (`ucode/buzz_isa.md`, passes 17 and 18; `scripts/odydiags_frame_check.py`) | Internal Support Tools 2.7 |
+| Microcode and timing data | `ODSY/buzz_xform.bin`; `ODSY/vof/*.vfo` (video formats); `vfc/rules/VPro_*.def`; `STINGRAY/cmb`, `vfo`, `xlx` and `usr/diags/compositor/data/*.cmb` (compositor tables for the Odyssey dual-channel option); the kernel's own copy, `ODSY-kernel/buzz_ucode_ip30.bin` and `_ip35.bin`, made by `retools/tools/odsy/extract_buzz_ucode.py` | Tools and Overlays 1 |
+| Field diagnostics | `odydiags`, the VPro diagnostics that run under IRIX, from the Internal Support Tools 2.7 disc (builds for 6.5.10 and 6.5.15, both with the same microcode): `usr/diags/ody/ucode/diagxform.bin`, its own transform microcode (24,252 bytes, 2021 records, SHA-256 `dd27f727e58ee230ff61e711836096d810edaa152a50174c221ce6956ff47530`), linked at `root/builds/odydiags-6.5.15/usr/diags/ody/ucode/diagxform.bin`; listing `ucode/disasm/diagxform.lst`. The 6.5.15 program `usr/diags/ody/odydiags` (6,720,984 bytes, SHA-256 `46a9c870ebaa7ba43098687cb44a629d00698103cd9d3db696e29d3c0150158a`) and its stored frames and CRC lists `usr/diags/ody/checksum/` are linked under the same root. The package's user guide names one transform test, a microcode-memory write and read-back; its drawing tests replay command streams recorded from the board's C simulator and compare the frame with the simulator's (`ucode/buzz_isa.md`, passes 17 and 18; `retools/tools/odsy/odydiags_frame_check.py`) | Internal Support Tools 2.7 |
 | PROM | `IP30prom.bin` carries graphics code: the Odyssey timing-table loader, the DCD2 register loader, the I2C reset and ID routines (about eleven `odsy` routine names appear as strings). `ip35prom.img` holds the string "odsy" once; its code is not readable as an ELF. Neither is disassembled here, only listed in the function inventory by name | Tools and Overlays 1 |
 
 Checked and left out. Reason in each case: the file has no VPro code.

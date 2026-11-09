@@ -10,8 +10,11 @@ ghidra/
   processors/<name>/   one Ghidra processor extension per directory
   import/<name>/       loader and import scripts for firmware images
   types/<name>/        data-type scripts
-  scripts/             the shared IRIX scripts, linked from the retools submodule
 ```
+
+`processors/odsy-buzz` is a link into `retools/ghidra/processors/odsy-buzz`. It stays a link because
+its `tests/run-ghidra.sh` locates the module as `ghidra/processors/odsy-buzz` from the repository root.
+The shared IRIX scripts are used directly from `retools/ghidra/scripts/`.
 
 ## Build and run
 
@@ -19,11 +22,11 @@ Run a component's `tests/run-ghidra.sh` in the Ghidra image, then its
 `tests/check.py` on the dump directory it writes:
 
 ```sh
-tools/re-run --ghidra ghidra/processors/odsy-buzz/tests/run-ghidra.sh .cache/odsy-buzz
-tools/re-run python3 ghidra/processors/odsy-buzz/tests/check.py .cache/odsy-buzz
+retools/tools/re-run --ghidra ghidra/processors/odsy-buzz/tests/run-ghidra.sh .cache/odsy-buzz
+retools/tools/re-run python3 ghidra/processors/odsy-buzz/tests/check.py .cache/odsy-buzz
 ```
 
-(`tools/re-run` mounts the workspace at `/work`, the Ghidra image with `--ghidra` and
+(`retools/tools/re-run` mounts the workspace at `/work`, the Ghidra image with `--ghidra` and
 the toolchain image without.) `run-ghidra.sh` installs a processor as a user
 extension in a throwaway settings directory, so nothing is added to a Ghidra
 installation. The Sleigh compiler output (`*.sla`) is not committed.
@@ -33,29 +36,29 @@ installation. The Sleigh compiler output (`*.sla`) is not committed.
 | Path | What it is |
 |---|---|
 | [processors/odsy-buzz/](processors/odsy-buzz/) | the BUZZ transform-microcode processor (`ODSY-BUZZ`) and its import script `BuzzImport.java`; build and use are in [docs/tooling.md](../docs/tooling.md) |
-| [scripts/](scripts/) | the IRIX MIPS scripts: `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); see [scripts/README.md](scripts/README.md) |
+| [retools/ghidra/scripts/](../retools/ghidra/scripts/) | the IRIX MIPS scripts (shared, in the retools submodule): `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); see [retools/ghidra/scripts/README.md](../retools/ghidra/scripts/README.md) |
 
 ## Decompiled C as JSON, typed structures and function similarity
 
-`tools/re-run --ghidra-export OBJECT` runs Ghidra over one ELF object under `root/` (a linked
+`retools/tools/re-run --ghidra-export OBJECT` runs Ghidra over one ELF object under `root/` (a linked
 library or kernel, or a relocatable driver object) and prints the path of the JSON it wrote under
 `.cache/ghidra-export/`, which git ignores, so there is nothing to commit by accident. It builds the
 Ghidra image on first use. A relocatable object has no load address: name its functions, do not give
-addresses (Ghidra places such an object itself, so the addresses in its JSON are Ghidra's, not section offsets). The options are listed at the top of [tools/ghidra-export.py](../tools/ghidra-export.py);
+addresses (Ghidra places such an object itself, so the addresses in its JSON are Ghidra's, not section offsets). The options are listed at the top of [retools/tools/ghidra-export.py](../retools/tools/ghidra-export.py);
 function-similarity databases live in `.cache/ghidra-bsim/`.
 
 ```sh
 # decompiled C per function, as JSON with the decompiler's warnings
-tools/re-run --ghidra-export root/usr/gfx/arch/IP30ODSY32/libGLcore.so \
+retools/tools/re-run --ghidra-export root/usr/gfx/arch/IP30ODSY32/libGLcore.so \
     --decompile-symbol NAME --decompile-symbol 'prefix_*' --decompile-symbol @0xADDRESS
 # the same, with named structure fields
-tools/re-run --ghidra-export root/usr/gfx/arch/IP30ODSY32/libGLcore.so \
+retools/tools/re-run --ghidra-export root/usr/gfx/arch/IP30ODSY32/libGLcore.so \
     --decompile-symbol NAME --types ghidra/types/context.types.json
 # every function, or a list file (one name, glob or @address per line)
-tools/re-run --ghidra-export OBJECT --decompile-all
-tools/re-run --ghidra-export OBJECT --decompile-list names.txt
+retools/tools/re-run --ghidra-export OBJECT --decompile-all
+retools/tools/re-run --ghidra-export OBJECT --decompile-list names.txt
 # function similarity: one object per run, each matched against those before it
-tools/re-run --ghidra-export OBJECT --bsim-db libglcore --bsim-label family-host-abi
+retools/tools/re-run --ghidra-export OBJECT --bsim-db libglcore --bsim-label family-host-abi
 ```
 
 `--types` takes a JSON file kept in the repository, with `structs`
@@ -75,7 +78,7 @@ is the machine address and `ghidra_address` where Ghidra holds it (the C text us
 
 ```sh
 # every routine of a PROM image, given its container header size and load address
-tools/re-run --ghidra-export root/firmware/PROM.img --flat --header HEADER_BYTES --load 0xLOAD_ADDRESS \
+retools/tools/re-run --ghidra-export root/firmware/PROM.img --flat --header HEADER_BYTES --load 0xLOAD_ADDRESS \
     --decompile-all
 ```
 

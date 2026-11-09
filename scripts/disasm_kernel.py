@@ -1,1 +1,0 @@
-../retools/scripts/odsy/disasm_kernel.py

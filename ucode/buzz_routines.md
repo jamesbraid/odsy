@@ -1,6 +1,6 @@
 # BUZZ microcode: routine map
 
-Release IRIX 6.5.30m. Every row is **established** from the records of `ucode/ODSY/buzz_xform.bin` (listing `ucode/disasm/buzz_xform.lst`, field split in `ucode/buzz_isa.md`). The table is written by `scripts/buzz_routine_table.py`; the entries under "What the routines do" name inputs, outputs and arithmetic in the terms of `ucode/buzz_isa.md`, "The instruction set (pass 12)": registers R0 to R31 (R0 to R16 the host's matrices), the operand latch, parameter words, output words of the vertex packet and the colour unit.
+Release IRIX 6.5.30m. Every row is **established** from the records of `ucode/ODSY/buzz_xform.bin` (listing `ucode/disasm/buzz_xform.lst`, field split in `ucode/buzz_isa.md`). The table is written by `retools/tools/odsy/buzz_routine_table.py`; the entries under "What the routines do" name inputs, outputs and arithmetic in the terms of `ucode/buzz_isa.md`, "The instruction set (pass 12)": registers R0 to R31 (R0 to R16 the host's matrices), the operand latch, parameter words, output words of the vertex packet and the colour unit.
 
 A routine is the run of records from its entry to the next record whose bits 1:0 are 1 or 2 (the end mark; `ucode/buzz_isa.md`, "Sequencing bits 1:0"). An entry is record 0, a record named in libGLcore's `AddProgram` list or by the lighting loader, or the record five after an end mark. Where two entries share an end mark (107 and 108, 119, 123 and 127, 145 and 159), the later entry is a tail of the earlier routine.
 
@@ -40,7 +40,7 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   values 0x10 to 0x1f name operand 0 to 15, values below 0x10 name an attribute slot.
   Each of the eight routines reads exactly as many operand words as the word that dispatches
   it carries, counting the last four operands of a slot 15 word as one read of slot 15
-  (`scripts/buzz_ucode_disasm.py` field split; senders in `ody_xform.s`, `ody_clear.s`).
+  (`retools/tools/odsy/buzz_ucode_disasm.py` field split; senders in `ody_xform.s`, `ody_clear.s`).
 - **inferred.** A word whose top byte has bit 6 clear (`0x8n`, `0x9n`, the "position" form)
   runs a routine when it arrives; one with bit 6 set (`0xcn`, `0xdn`) only latches its slot.
   When the opcode is 0x100 or above the routine is the record the opcode names; below
@@ -168,7 +168,7 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   16, 5, 14 and 5 records. The word numbers reach 20 in each of the two groups (366 to 388 and 389 to 409); the header count of 9 does not cover them (pass 16 left this open). The word records numbered 16 to 20 are those whose colour field is 0x0009 (370, 374 to 376, 382, 388, 393 to 395, 401, 409),
   which pass 16 reads as the fifth bit of the word number, not as a colour operation: 370 and 382 are word 16 (code 0x21), 376 is 17, 374 is 18, 375 is 19 and 388 and 409 are word 20 with the last-word bit. The word records with `d2` 0x21 are 369, 370, 381, 382, 400 and 401. Colour words
   (`s1` 0x81, colour field 0x000a) are 384 and 385 as words 1 and 2, 386 and 387 as words 11 and 12, and 405 to 408 repeat them. The first stretch names words 5, 15, 6 (code 0x21), 16, 8, 9, 7, 18, 19, 17, 3, 4, 13, 14, 6 (0x21) and 16 (0x21);
-  scalar code 5 (`d1` 5) is set at 398 and 399 and nowhere else in the routine. The end mark 2 is at 405 and 406 to 409 are its delay slots. **inferred** from this and `scripts/buzz_ucode_dataflow.py`: it selects operands 0 to 9 and the slot-15 group into the words of the corner packets;
+  scalar code 5 (`d1` 5) is set at 398 and 399 and nowhere else in the routine. The end mark 2 is at 405 and 406 to 409 are its delay slots. **inferred** from this and `retools/tools/odsy/buzz_ucode_dataflow.py`: it selects operands 0 to 9 and the slot-15 group into the words of the corner packets;
   no field issues a dot product, so it computes none. The grouping of the four headers into packets, and what the words 13 to 20 mean, are **unknown**.
 - **`410`** (routine; kernel record 410, records 410 to 417 identical in the kernel copy), **inferred**: the colour-unit data load. The kernel sets
   sequencer 0x29 to 410 and sequencer 0x32 to a colour-unit address (24), then sends `0x8e809015`
@@ -202,7 +202,7 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   so its 1/w is 1. **established** against an expected value for words 5 and 6 and for the last
   vertex leaving through 234: the field diagnostics' points test, run through 214, 224 and 234 of
   `diagxform.bin` (records equal to these), reproduces the C simulator's stored frames pixel for
-  pixel (`ucode/buzz_isa.md`, pass 18; `scripts/odydiags_frame_check.py`).
+  pixel (`ucode/buzz_isa.md`, pass 18; `retools/tools/odsy/odydiags_frame_check.py`).
 - **`51`** (routine; kernel record 51), **inferred**: texture generation from planes, added when any
   of S, T, R or Q uses an eye-linear or object-linear mode (`ody_program.s`, source line 1097).
   Inputs: the position slot and the four planes at parameter words 0x100 to 0x10f
@@ -374,7 +374,7 @@ sets a bit in the program key and adds no routine.
   are what 694 or 668 left behind: the eye normal in R16, the light vector in R17, the viewer vector
   in R26 and the spot direction and cutoff in R20, plus light word 14 (the negated spot exponent)
   and the shininess words 0x0f0, 0x0f1, 0x0f4 and 0x0f5 that routine 490 derives. Run after 656 and
-  694 (`scripts/buzz_ucode_dataflow.py`), it fires products of R26 and R17 against the normal and
+  694 (`retools/tools/odsy/buzz_ucode_dataflow.py`), it fires products of R26 and R17 against the normal and
   each other, takes reciprocal square roots of two of them (code 1, records 724 and 725) into
   R18.y and R18.z, negates the spot exponent into R20.x (code 0xc, 723), loads K from words 0x0f4
   and 0x0f5 (724, 728), and passes four products through code 5 and two through code 4 (726 to 733).
@@ -480,12 +480,7 @@ sends `0x90808800`, and only then loads 0x33 with the first list's start and 0x2
 0x2c with the per-vertex values. **inferred:** the second list runs once when a program is
 selected, as its set-up pass, and the first list runs for every vertex.
 
-
-
-
-
-
-
+**inferred:** the three sequencer words a table record supplies are the vertex routine's start address, its loop address and an alternate loop address, the routine being 214 with 224 and 234, the words the 6.5.30m textport stream and table record 0 both use, so +8 is the start, +12 the loop and +16 the alternate entry of every table program. The role names are **inferred** from `AddProgram` relocating the three words, not read.
 
 **established** (VPro patches 4103 and 4104, N32 `libGLcore.so` file offset 0x1d0bf0): the older
 library has the same table with 21 records, every record number 99 lower (the kernel copy's
@@ -951,7 +946,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
   word 0x0f9 in their w lanes. Output: the back-face copies of the vectors 1226 prepared, which a
   two-sided program needs because the back face sees the negated normal. **inferred**, numeric run
   (`ucode/runs/two-sided-1752.json` through `490 515 1226 1265 1752.. 1771.. 1771..`,
-  `scripts/buzz_ucode_dataflow.py --numeric`): with word 0x0f7 = -s' from 490, program 1752 dots
+  `retools/tools/odsy/buzz_ucode_dataflow.py --numeric`): with word 0x0f7 = -s' from 490, program 1752 dots
   the normal with R21 to give the back N.L and with R22 to give 8 + s' (1 + N.H), the back-face
   specular operand GL needs for the negated normal; both equal the GL values for the run's state
   (`ucode/buzz_isa.md` pass 15).
@@ -1041,7 +1036,7 @@ The second list of a program runs once when `__glOdysseySetProgram` selects it (
 - **`792`** (routine; no kernel record), **established**: the attenuation-or-spot routine used when the
   environment variable `ODYSSEY_SPOT_INTERPOLATE` is set (the string at 0x0dae4d88, passed to `getenv` at
   source line 961). `AddProgram` then adds 792 and 780 instead of 768. It is the 95-record routine the
-  kernel's older copy lacks, so the variable selects code that 6.5.30m added. **inferred** from a run after 656 and 694 (`scripts/buzz_ucode_dataflow.py`): its inputs are the registers 694 left (R18, R19), light word 14 and the constants 0.0, 1.0, -1.0, 1/32 (0x1ee), 131072 (0x1ec) and -32 (0x1ed). It fires one value x twice (797, 798), runs code 0xb on x and code 3 on x + 1/32, and subtracts the two results (825); it adds and subtracts 131072 to x (832, 840), which in single precision rounds x to a multiple of 1/64, and subtracts that from x to leave the remainder (848); code 5, just after K is loaded with -32 (853), turns the remainder into a weight, and the dot product at 860 adds the code-0xb result to the weight times the difference before code 4 (866). That is a linear interpolation between two samples 1/32 apart, which matches the variable's name. **inferred**, numeric run `ucode/runs/spot-interpolate-792.json` replayed from 796: the result equals the interpolation between two table entries exactly when codes 0xb and 3 read one table at the entry at or below their operands and the sum x + 131072 keeps 1/32 and rounds down; with IEEE single rounding the weight runs from -0.25 to 0.25 and the result leaves the interval (`ucode/buzz_isa.md`, pass 16). The colour unit then multiplies the light-relative specular, diffuse and ambient colours (0x4220, 0x4120, 0x4028, 0x4020) as 768 does, and the routine outputs no vertex word.
+  kernel's older copy lacks, so the variable selects code that 6.5.30m added. **inferred** from a run after 656 and 694 (`retools/tools/odsy/buzz_ucode_dataflow.py`): its inputs are the registers 694 left (R18, R19), light word 14 and the constants 0.0, 1.0, -1.0, 1/32 (0x1ee), 131072 (0x1ec) and -32 (0x1ed). It fires one value x twice (797, 798), runs code 0xb on x and code 3 on x + 1/32, and subtracts the two results (825); it adds and subtracts 131072 to x (832, 840), which in single precision rounds x to a multiple of 1/64, and subtracts that from x to leave the remainder (848); code 5, just after K is loaded with -32 (853), turns the remainder into a weight, and the dot product at 860 adds the code-0xb result to the weight times the difference before code 4 (866). That is a linear interpolation between two samples 1/32 apart, which matches the variable's name. **inferred**, numeric run `ucode/runs/spot-interpolate-792.json` replayed from 796: the result equals the interpolation between two table entries exactly when codes 0xb and 3 read one table at the entry at or below their operands and the sum x + 131072 keeps 1/32 and rounds down; with IEEE single rounding the weight runs from -0.25 to 0.25 and the result leaves the interval (`ucode/buzz_isa.md`, pass 16). The colour unit then multiplies the light-relative specular, diffuse and ambient colours (0x4220, 0x4120, 0x4028, 0x4020) as 768 does, and the routine outputs no vertex word.
 
 #### Fragment lighting routines
 

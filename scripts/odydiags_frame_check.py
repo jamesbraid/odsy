@@ -1,1 +1,0 @@
-../retools/scripts/odsy/odydiags_frame_check.py

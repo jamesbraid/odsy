@@ -2,7 +2,7 @@
 
 Labels: **established** (read from a binary, with where), **inferred** (a reasoned reading, with the reasoning), **unknown**. Release IRIX 6.5.30m. "Image" means `ucode/ODSY/buzz_xform.bin` unless the kernel's copy (`buzz_ucode`, see `buzz_ucode.md`) is named. Record numbers are 0-based indices of 12-byte records in the image.
 
-The listing is `ucode/disasm/buzz_xform.lst` (and `buzz_ucode_kernel.lst` for the kernel copy), made by `scripts/buzz_ucode_disasm.py`. It prints each record's six halfwords and the field groups below. "The instruction set (pass 12)" gives each field its role: register file, vector dot-product unit, two write ports, parameter memory, scalar unit, output stage and colour unit.
+The listing is `ucode/disasm/buzz_xform.lst` (and `buzz_ucode_kernel.lst` for the kernel copy), made by `retools/tools/odsy/buzz_ucode_disasm.py`. It prints each record's six halfwords and the field groups below. "The instruction set (pass 12)" gives each field its role: register file, vector dot-product unit, two write ports, parameter memory, scalar unit, output stage and colour unit.
 
 ## Summary
 
@@ -18,7 +18,7 @@ The routine map, one row per routine with its end mark, length and operand field
 
 ## Two copies of the program
 
-- **established.** The image has 2794 records. The kernel's `buzz_ucode` array has 2266 records plus 4 bytes (`ffffffff`). Record by record, the kernel copy equals image records 0 to 791 and 891 to 2364: the image has 99 records inserted at 792 and 429 appended after the kernel copy's end (`difflib` over records, `scripts/buzz_ucode_disasm.py --kernel` applies the shift to entry labels). Both 792 and 891 are routine entries named by libGLcore (below), so the insertion is one whole routine.
+- **established.** The image has 2794 records. The kernel's `buzz_ucode` array has 2266 records plus 4 bytes (`ffffffff`). Record by record, the kernel copy equals image records 0 to 791 and 891 to 2364: the image has 99 records inserted at 792 and 429 appended after the kernel copy's end (`difflib` over records, `retools/tools/odsy/buzz_ucode_disasm.py --kernel` applies the shift to entry labels). Both 792 and 891 are routine entries named by libGLcore (below), so the insertion is one whole routine.
 - **inferred.** The kernel copy is an older build of the same program. The kernel loads it at board start-up (`odsyInitCfifo`); `gf_OdsyDownload` later replaces the kernel's shadow with a caller's image. Which program calls `gf_OdsyDownload` with `buzz_xform.bin`: `gfxinit` (pass 7, below; the name is assembled from `ODSY/buzz_` and `xform.bin`, which is why no binary holds the whole string). libGLcore names only a header, `buzz_xform.u.h`, in its debug line table.
 
 ## Loading
@@ -158,7 +158,7 @@ Release 6.5.30m; records of `ucode/ODSY/buzz_xform.bin`; host code N32 libGLcore
 
 ## Pass 13: fire timing, the output stage across routines, the factor K and the colour-unit address
 
-Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and of the kernel copy; host code N32 libGLcore (`libglcore/asm/ODYSSEY/`, decompiled in `libglcore/decomp/ODYSSEY/`). `scripts/buzz_ucode_dataflow.py` runs a list of routines record by record under the rules below and prints, for each record, which value each port writes; `ucode/buzz_routines.md` quotes its output. Every rule is **inferred** unless marked: no software reads a result of the program back (pass 7), so the evidence is that the rules make the routines compute what the host's state requires.
+Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and of the kernel copy; host code N32 libGLcore (`libglcore/asm/ODYSSEY/`, decompiled in `libglcore/decomp/ODYSSEY/`). `retools/tools/odsy/buzz_ucode_dataflow.py` runs a list of routines record by record under the rules below and prints, for each record, which value each port writes; `ucode/buzz_routines.md` quotes its output. Every rule is **inferred** unless marked: no software reads a result of the program back (pass 7), so the evidence is that the rules make the routines compute what the host's state requires.
 
 ### The vector unit fires on bit 44
 
@@ -220,7 +220,7 @@ Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and of the kernel copy; 
 
 ## Pass 15: register-load sources, factor timing, code 5 and the operands the rules leave open
 
-Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin`; host code N32 libGLcore. `scripts/buzz_ucode_dataflow.py` implements the rules below and, with `--numeric`, runs a list on numbers: the scenario files in `ucode/runs/` hold the inputs the host would send, and `--code` picks a function for an open scalar code. Every rule is **inferred**; the evidence is a numeric run whose result equals the value GL defines for the same state, or a record that would otherwise do nothing.
+Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin`; host code N32 libGLcore. `retools/tools/odsy/buzz_ucode_dataflow.py` implements the rules below and, with `--numeric`, runs a list on numbers: the scenario files in `ucode/runs/` hold the inputs the host would send, and `--code` picks a function for an open scalar code. Every rule is **inferred**; the evidence is a numeric run whose result equals the value GL defines for the same state, or a record that would otherwise do nothing.
 
 ### Register loads and the factor K
 
@@ -255,7 +255,7 @@ A register lane that nothing in the run writes is printed `in:` plus its name: t
 
 ## Pass 16: the scalar operand bit, codes 4, 3, 0xb and 6, word 0x0f9, the fifth word-index bit and the unresolved operands
 
-Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and the kernel copy `ucode/buzz_ucode_ip30.bin`; host code N32 libGLcore. Runs use `scripts/buzz_ucode_dataflow.py`, which now applies the operand rule below, takes an initial operand latch (`"B"` in a scenario), rounds results with `--round f32` or `--round tN`, and offers the choices `pow8t32` (a table lookup) and `mulF` (the code-0xe product) for open codes. A fact is promoted to **established** here only where two independent pieces of evidence agree and no assumed input carries the result.
+Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and the kernel copy `ucode/buzz_ucode_ip30.bin`; host code N32 libGLcore. Runs use `retools/tools/odsy/buzz_ucode_dataflow.py`, which now applies the operand rule below, takes an initial operand latch (`"B"` in a scenario), rounds results with `--round f32` or `--round tN`, and offers the choices `pow8t32` (a table lookup) and `mulF` (the code-0xe product) for open codes. A fact is promoted to **established** here only where two independent pieces of evidence agree and no assumed input carries the result.
 
 ### Bit 3 of the scalar code picks the operand
 
@@ -289,7 +289,7 @@ Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and the kernel copy `uco
 
 ### The operands the rules leave unresolved, by cause
 
-`scripts/buzz_ucode_dataflow.py --unresolved IMAGE` runs every routine alone from record 0 and from each record five after an end mark, skips each run's first twelve records, and lists every record with a port write, scalar operand, factor load, parameter store or output-stage read that has no source; it then runs each routine twice in a row and drops what the second pass resolves. Pass 15 counted operands; this counts records, so the totals differ. In `buzz_xform.bin`, 101 records; 2 resolve when the routine follows itself (685 and 711 in 668 and 694, which read what the previous vertex left); 99 remain:
+`retools/tools/odsy/buzz_ucode_dataflow.py --unresolved IMAGE` runs every routine alone from record 0 and from each record five after an end mark, skips each run's first twelve records, and lists every record with a port write, scalar operand, factor load, parameter store or output-stage read that has no source; it then runs each routine twice in a row and drops what the second pass resolves. Pass 15 counted operands; this counts records, so the totals differ. In `buzz_xform.bin`, 101 records; 2 resolve when the routine follows itself (685 and 711 in 668 and 694, which read what the previous vertex left); 99 remain:
 
 - 47 port P writes with source b = 2 and no scalar result four records before, all in the table programs from 1877 and 2385. These programs loop through value-3 marks, which the script does not follow, so they are not counted as unknown until a run follows the loop.
 - 19 port P writes whose source field b is 1 (9) or 3 (10): those sources are **unknown**.
@@ -299,12 +299,9 @@ Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin` and the kernel copy `uco
 
 ## Pass 17: what the diagnostics hold, a third build, the w-lane read and code 6
 
-Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin`, compared with the diagnostic image `ucode/disasm/diagxform.lst` (below); host code N32 libGLcore. Runs use `scripts/buzz_ucode_dataflow.py`, which now applies the read rule below and follows table-program loops. Nothing in this pass is promoted to **established**: no expected value bears on a timing rule (first section), so every rule stays **inferred**.
+Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin`, compared with the diagnostic image `ucode/disasm/diagxform.lst` (below); host code N32 libGLcore. Runs use `retools/tools/odsy/buzz_ucode_dataflow.py`, which now applies the read rule below and follows table-program loops. Nothing in this pass is promoted to **established**: no expected value bears on a timing rule (first section), so every rule stays **inferred**.
 
 ### The diagnostics hold no timing and no expected transform value
-
-
-
 
 - 6.5.30m `/sbin/stand/ide.IP30`: its VPro code is the probe, reset, textport and timing routines; its microcode tests (strings for the HQ and GE11 microcode RAMs) belong to MGRAS.
 - The VPro diagnostics that run under IRIX, `odydiags` (Internal Support Tools 2.7, builds for 6.5.10 and 6.5.15, `IRIX_FILES.md` section 6): the user guide's "Xform Tests" are one test, a microcode-memory test that writes the standard microcode, a repeating six-word pattern or a named file into the instruction RAM and reads it back, so its expected value is the data written. The drawing tests (points, lines, triangles, antialiased points and lines, blend, alpha, a 3D texture) compare a checksum of the read-back frame against a stored list, and the OpenGL suite under `usr/tests/otest` (transform tests named after GL features: matrices, clip planes, lighting, normalize, two-sided lighting, texture generation) compares frame checksums as well. This pass read the user guide only and took a frame checksum to give no number for any transform step. Pass 18 corrects that: the stored files are the whole frames, and the points test's frame is an expected value of the unlit transform program.
@@ -331,13 +328,13 @@ Release 6.5.30m, records of `ucode/ODSY/buzz_xform.bin`, compared with the diagn
 
 ### Table-program loops
 
-- `scripts/buzz_ucode_dataflow.py` takes `ENTRY..` for "from ENTRY to the next mark of any value plus four", so a program runs as its 0x29 part, its 0x2a loop and its 0x2c part (`ucode/buzz_routines.md`, "Table records"), the sequencer continuing after a value-3 mark's four delay slots at the loop address. The census `--unresolved` now runs each table program as first part, loop twice and closing part and drops the records the second loop pass or closing part resolves.
+- `retools/tools/odsy/buzz_ucode_dataflow.py` takes `ENTRY..` for "from ENTRY to the next mark of any value plus four", so a program runs as its 0x29 part, its 0x2a loop and its 0x2c part (`ucode/buzz_routines.md`, "Table records"), the sequencer continuing after a value-3 mark's four delay slots at the loop address. The census `--unresolved` now runs each table program as first part, loop twice and closing part and drops the records the second loop pass or closing part resolves.
 - Result, `buzz_xform.bin`: 101 records without a source alone; 2 resolve when the routine follows itself (685, 711); 5 resolve in their program's loop (the output-stage reads at the loop entries 1453, 1599, 1771 and 1899, and code 3 at 1773); 94 remain.
 - The 47 port P writes with source b = 2 in the table programs from 1877 do not resolve in the loop run: there is no scalar operation four records before them in either pass, and no other distance fits them (across all 299 port P writes with b = 2, 237 have a scalar operation four records before; the other 62 have their nearest scalar operation at distances from 1 to 8 with no value repeated more than four times). So the loop structure is not their cause. What they take is open.
 
 ## Pass 18: the points test of the field diagnostics as an expected value
 
-Binary: `odydiags`, 6.5.15 build of the VPro field diagnostics (Internal Support Tools 2.7; N32, stripped, function names in `.dynsym`), linked at `root/builds/odydiags-6.5.15/usr/diags/ody/odydiags`, with its stored frames and checksum lists in `.../checksum/`. Documents: the package's `usr/diags/ody/uguide.htm` and `ogltests.htm`. Microcode: `diagxform.bin`, the image `odydiags` loads. Script: `scripts/odydiags_frame_check.py`, which drives `scripts/buzz_ucode_dataflow.py`.
+Binary: `odydiags`, 6.5.15 build of the VPro field diagnostics (Internal Support Tools 2.7; N32, stripped, function names in `.dynsym`), linked at `root/builds/odydiags-6.5.15/usr/diags/ody/odydiags`, with its stored frames and checksum lists in `.../checksum/`. Documents: the package's `usr/diags/ody/uguide.htm` and `ogltests.htm`. Microcode: `diagxform.bin`, the image `odydiags` loads. Script: `retools/tools/odsy/odydiags_frame_check.py`, which drives `retools/tools/odsy/buzz_ucode_dataflow.py`.
 
 ### How the drawing tests are built
 
@@ -347,7 +344,7 @@ Binary: `odydiags`, 6.5.15 build of the VPro field diagnostics (Internal Support
 
 ### The points test against the transform program
 
-- What `__clog_pts` sends (**established**, decoded by `scripts/odydiags_frame_check.py --dump`): 5961 command words, 3114 calls to the +0x100000 window and 2748 to the FIFO port, in the formats of `BUZZ.h` section 1. It loads the unlit program (sequencer 0x29 = 214, 0x2a = 224, 0x2c = 234; list 1057, 515, 1125, with a one-record patch at RAM 1125 that is an idle record with end mark 2), the matrix table through opcodes 0x1c8 and 0x1df, clears the four screen quarters, and draws five point primitives in white: three of one vertex in the lower-right quarter and three of four vertices in the upper-left, using the two-, three- and four-operand position words 0x8080c801, 0x8080cc03 and 0x8080d005. Every vertex has z = 0 and the projection makes w = 1200 for all of them.
+- What `__clog_pts` sends (**established**, decoded by `retools/tools/odsy/odydiags_frame_check.py --dump`): 5961 command words, 3114 calls to the +0x100000 window and 2748 to the FIFO port, in the formats of `BUZZ.h` section 1. It loads the unlit program (sequencer 0x29 = 214, 0x2a = 224, 0x2c = 234; list 1057, 515, 1125, with a one-record patch at RAM 1125 that is an idle record with end mark 2), the matrix table through opcodes 0x1c8 and 0x1df, clears the four screen quarters, and draws five point primitives in white: three of one vertex in the lower-right quarter and three of four vertices in the upper-left, using the two-, three- and four-operand position words 0x8080c801, 0x8080cc03 and 0x8080d005. Every vertex has z = 0 and the projection makes w = 1200 for all of them.
 - The run: for each primitive the script runs `214..`, then `224..` once for each further vertex, then `234`, with slot 0 set to that pass's vertex (the `passes` input added to the dataflow script) and R0 to R4 from the stream's matrix stores. It takes output words 5 and 6 of each packet as window x and y, places a one-pixel point at their floor, stores rows top first, and computes the CRC.
 - Result (`ucode/runs/odydiags-points-1280x1024.txt` and `-128x64.txt`, the script's output): the built frame has CRC 0x3f302c5b, the `csumlist` value, and differs from `points.SUM` in no pixel (14 lit pixels, 15 vertices, two of them at one place). For the 128 x 64 stream the program sits at 1180, 1192 and 1204 and every routine-entry opcode is 197 higher (matrix stores 0x28d and 0x2a4); with 214, 224 and 234 of `diagxform.bin` substituted, the built frame has CRC 0xf00fd871, the `csumlist.sml` value, and differs from `points.sml` in no pixel.
 - What the comparison assumes and so does not test: word 5 is x and word 6 is y; a point is the pixel at the floor of both; rows are stored top first; the two- and three-operand words fill z = 0 and w = 1; the clears leave zero; white is stored as all ones; block 0x01d's operands are x and y ranges (low end in bits 23:12, high end in 11:0), which clip nothing here.
@@ -368,7 +365,7 @@ Binary: `odydiags`, 6.5.15 build of the VPro field diagnostics (Internal Support
 
 ## Pass 19: what the host uploads for codes 3 and 0xb, and normals left unnormalised
 
-Release 6.5.30m, N32 libGLcore; records of `ucode/ODSY/buzz_xform.bin`. Runs use `scripts/buzz_ucode_dataflow.py` with every scalar code set to its pass 15 to 17 reading (`--code 3=pow8 --code 5=mulK --code d=mulK --code 4=neg --code c=neg --code 1=rsqrt --code 6=mulF --code e=mulF`).
+Release 6.5.30m, N32 libGLcore; records of `ucode/ODSY/buzz_xform.bin`. Runs use `retools/tools/odsy/buzz_ucode_dataflow.py` with every scalar code set to its pass 15 to 17 reading (`--code 3=pow8 --code 5=mulK --code d=mulK --code 4=neg --code c=neg --code 1=rsqrt --code 6=mulF --code e=mulF`).
 
 ### The host uploads no table
 

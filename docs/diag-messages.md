@@ -30,7 +30,6 @@ by `scripts/diag_messages.py`; rerun that script to regenerate it, do not edit t
 - `output`: `printed` for a call that writes text out; `buffer` for a call that formats into
   memory, which prints only if the buffer is printed later (not followed here).
 - `severity`: for `cmn_err`, the level from `a0` with its CE_ name: 4 is `CE_WARN`, 1 `CE_ALERT`, 5 `CE_NOTE`, 7 `CE_DEBUG`, 0
-
   `CE_PANIC`. Flag bits (0x8, 0x10, 0x20 and so on) are masked off and not shown. For `fprintf`,
   the stream when it is a named symbol (`stderr` or `stdout`); `stream not named` when the stream
   is a pointer taken from a structure.
@@ -49,7 +48,7 @@ by `scripts/diag_messages.py`; rerun that script to regenerate it, do not edit t
 ## Method
 
 The generator takes every routine of the target from the fact sheet
-(`scripts/facts.py`), finds the calls that name a printing routine, and then:
+(`retools/tools/facts.py`), finds the calls that name a printing routine, and then:
 
 1. Resolves the format argument by walking the instructions back from the call, through the
    delay slot (which runs before the callee). A register set in more than one place is resolved
@@ -68,7 +67,7 @@ The generator takes every routine of the target from the fact sheet
 The fact sheet's argument values are not used for the format. For a relocatable object they drop
 the immediate that a delay slot adds to a relocated address, so a format such as `.rodata+128`
 reads as `.rodata`. The generator resolves the delay slot itself. That defect is in
-`scripts/facts.py` and is not fixed here.
+`retools/tools/facts.py` and is not fixed here.
 
 ## Hardware-facing messages
 

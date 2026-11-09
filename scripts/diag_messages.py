@@ -17,7 +17,7 @@ A call that some path through the routine returns without is not unconditional, 
 so when no single branch decides it.
 
 Run from the repository root inside the toolchain environment (MIPS objdump and pyelftools,
-as for scripts/facts.py). The TSV is sorted and has no timestamps, so the same inputs give
+as for retools/tools/facts.py). The TSV is sorted and has no timestamps, so the same inputs give
 the same bytes.
 """
 import argparse
@@ -53,7 +53,6 @@ PRINTERS = {
     'snprintf': ('buffer', 2, None),
     'cmn_err': ('cmn_err', 1, 0),
 }
-
 
 # cmn_err levels by their CE_ names, which are the syslog levels, so the number is the one a0 holds once the flag bits (0x8, 0x10, 0x20, ...) are masked
 CE_LEVELS = {0: 'CE_PANIC', 1: 'CE_ALERT', 4: 'CE_WARN', 5: 'CE_NOTE', 6: 'CE_CONT', 7: 'CE_DEBUG'}

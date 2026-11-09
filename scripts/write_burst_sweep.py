@@ -1,1 +1,0 @@
-../retools/scripts/odsy/write_burst_sweep.py

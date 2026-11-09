@@ -1,1 +1,0 @@
-../retools/scripts/odsy/analyze_fifo.py

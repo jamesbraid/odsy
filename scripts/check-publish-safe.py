@@ -66,9 +66,8 @@ no hex literal of five or more digits that is neither in its header nor a
 contiguous bit mask, and no decimal literal of seven or more digits. Pass
 --rust to run only that part.
 
-Hooking in: the repository has no CI entry point of its own. scripts/pre-push is
-the nearest hook; adding `python3 scripts/check-publish-safe.py || exit 1` there
-would run it on every push. It is not wired in.
+Hooking in: the repository has no CI entry point or push hook of its own, so this
+check is run by hand.
 """
 import argparse
 import os

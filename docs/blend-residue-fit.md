@@ -1,14 +1,14 @@
 # The blend frame's residue: measurements and fits
 
-`scripts/odydiags_blend_fit.py` takes apart the difference between the rebuilt
+`retools/tools/odsy/odydiags_blend_fit.py` takes apart the difference between the rebuilt
 and the stored `blend` frame of the VPro field diagnostics. The stored frame is
 the board simulator's output, not a capture from a board, so every result is a
 statement about that simulator's stream and frame. The rebuild is
-`scripts/odydiags_frame_check.py --test blend` under the rules of
+`retools/tools/odsy/odydiags_frame_check.py --test blend` under the rules of
 [raster.md](raster.md): 12,598 of 1,310,720 pixels differ.
 
 ```
-uv run --with numpy python scripts/odydiags_blend_fit.py [panels|amplify|dither|fit|frame|all]
+uv run --with numpy python retools/tools/odsy/odydiags_blend_fit.py [panels|amplify|dither|fit|frame|all]
 ```
 
 It needs numpy for `fit` and `frame` and the files under `root/` that the frame

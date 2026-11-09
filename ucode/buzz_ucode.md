@@ -6,7 +6,7 @@ Facts are labelled established (read from a binary, with where), inferred (a rea
 
 - **established.** The global object symbol `buzz_ucode` (type OBJECT, size 27196 bytes) sits at offset 0x7d0 of `.data` in `odsy_init.o`, a member of `odyssey.a`. Source: `readelf -s` on `odsy_kernel/odsy_init.o` and on `odsy_kernel_ip35/odsy_init.o`; `.data` is 0x720c bytes in both.
 - **established.** The IP30 (Octane2) and IP35 (Fuel, Tezro, Onyx 350) copies are byte-identical (same size, same SHA-256 `9955bc1bad614a4d28bc3a56914b2037cb1ab45bcb7e8bc2432d9d31804d9133`). Release 6.5.30 for both.
-- `scripts/extract_buzz_ucode.py` writes each copy unchanged to `root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin` and `..._ip35.bin`, and links them from `ucode/`, the way the shipped files in `ucode/ODSY/` are linked. `--stats` prints the numbers below.
+- `retools/tools/odsy/extract_buzz_ucode.py` writes each copy unchanged to `root/usr/gfx/ucode/ODSY-kernel/buzz_ucode_ip30.bin` and `..._ip35.bin`, and links them from `ucode/`, the way the shipped files in `ucode/ODSY/` are linked. `--stats` prints the numbers below.
 - It is not the file `buzz_xform.bin`, but it is an older build of the same program (`ucode/buzz_isa.md`, "Two copies"). That file reaches the board through `gf_OdsyDownload` and `odsyDownloadUcode` (`odsy_ucode.o`), which copy a caller's image into the kernel shadow and load it; this array is sent only by `odsyInitCfifo`. established.
 
 ## Element format

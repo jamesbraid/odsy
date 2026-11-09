@@ -1,1 +1,0 @@
-../retools/scripts/odsy/extract_libglcore_odsy.py

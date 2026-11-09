@@ -1,1 +1,0 @@
-../retools/scripts/odsy/evaluator_check.py

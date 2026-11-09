@@ -1,1 +1,0 @@
-../retools/scripts/odsy/xfer_sweep_signed_records.py

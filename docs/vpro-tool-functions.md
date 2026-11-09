@@ -1,6 +1,6 @@
 # VPro tool functions, one entry each
 
-Release IRIX 6.5.30m. Each entry starts with the function, then the shipped binary, its address in that binary and its size in bytes. Labels are **established** (the whole body was read in the Ghidra decompilation and the listing, with the `$gp` fix-up and jump-table scripts of `ghidra/scripts/` applied first) or **inferred**. An entry speaks for the binary it names. Driver-side numbers are in `docs/ioctls.md` and `docs/driver-functions.md`.
+Release IRIX 6.5.30m. Each entry starts with the function, then the shipped binary, its address in that binary and its size in bytes. Labels are **established** (the whole body was read in the Ghidra decompilation and the listing, with the `$gp` fix-up and jump-table scripts of `retools/ghidra/scripts/` applied first) or **inferred**. An entry speaks for the binary it names. Driver-side numbers are in `docs/ioctls.md` and `docs/driver-functions.md`.
 
 ## Dual-channel confidence test, `usr/sbin/Confidence/dualchannel`
 
@@ -170,7 +170,7 @@ Updates the programmable logic images stored in the compositor board's flash. A 
 
 ## Compositor test program (`usr/diags/compositor/bin/sting`): register access
 
-Release IRIX 6.5.30m, N32, `$gp` resolved with `ghidra/scripts/IrixGp.java` before reading. In this section **established** means the decompilation was read in full and the listing was checked at every address the entry cites. The routines below are the layer that reaches the compositor chips: the platform-parameter and driver routes, the two-wire fall-back and the software shadow. The chip address bytes the callers pass are 0xaa (write) and 0xab (read) for the compositor-chip block `CCX`, 0xd4 and 0xd5 for the chip `CHIC`, 0xac and 0xad for the transform block `CTX`, and 0xa5 for a fourth target; the names follow the module's own tables `CCX_regs`, `CHIC_regs` and `CTX_regs`.
+Release IRIX 6.5.30m, N32, `$gp` resolved with `retools/ghidra/scripts/IrixGp.java` before reading. In this section **established** means the decompilation was read in full and the listing was checked at every address the entry cites. The routines below are the layer that reaches the compositor chips: the platform-parameter and driver routes, the two-wire fall-back and the software shadow. The chip address bytes the callers pass are 0xaa (write) and 0xab (read) for the compositor-chip block `CCX`, 0xd4 and 0xd5 for the chip `CHIC`, 0xac and 0xad for the transform block `CTX`, and 0xa5 for a fourth target; the names follow the module's own tables `CCX_regs`, `CHIC_regs` and `CTX_regs`.
 
 - `diag_ioctl` (`usr/diags/compositor/bin/sting`, 0x10031834, 136 bytes): **established.**
   Sends one driver request to board number n of the diagnostic (arguments: board index, request, argument pointer). An index of 32 or more fails an `assert` on "ody_num<ODYSSEYS_SUPPORTED" in the Odyssey GL driver source unit 2 (0x10031878 is the assert call); otherwise `ioctl` is called with the descriptor stored in the program's table of 32 board descriptors at 0x10054230 (4 bytes an entry, index times 4) at 0x100318a8, and the result is not examined.

@@ -30,7 +30,7 @@ Every role above is a name from the software, not a finding. Replace each with a
 
 For licensing reasons proprietary SGI binaries are **not checked into source control** (the local `root/` tree is gitignored). Copy them from an authentic IRIX distribution into `root/` following [IRIX_FILES.md](IRIX_FILES.md). Disassembly, decompiled C, headers and notes derived from them are committed.
 
-The subdirectories below contain relative symbolic links resolving into `root/` (`scripts/populate-root` creates them from the `links` block in IRIX_FILES.md):
+The subdirectories below contain relative symbolic links resolving into `root/` (they are tracked in git and resolve once `root/` is filled; the `links` block in IRIX_FILES.md lists them):
 
 | Directory | Symlinked files | Target in `root/` | DWARF status (6.5.30m) |
 |---|---|---|---|
@@ -43,7 +43,7 @@ The subdirectories below contain relative symbolic links resolving into `root/` 
 
 The 6.5.30m DWARF in the kernel objects and the N32 libGLcore holds only compile units, function and variable names, and line tables: `dwarfdump -i` finds no structure, member or base-type entries. Structure layouts have to be recovered from the code. The install carries no VPro register-dump or diagnostic tool: `/usr/stand/ide` is the IP30 IDE with only the textport part of the driver, and `/usr/diags` holds the compositor and IR tools.
 
-DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30); fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
+DWARF status is what `retools/tools/odsy/map_binaries.py` reported on the primary release (IRIX 6.5.30); fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
 
 Other public sources in this repository:
 
@@ -92,9 +92,8 @@ Install these on your workstation:
 
 Initialise only the submodules you need: `git submodule update --init m2c spimdisasm libdwarf-code`.
 
-Scripts (`scripts/`, run from the repository root):
+Scripts come from the `retools/` submodule: shared tools in `retools/tools/`, Odyssey-specific ones in `retools/tools/odsy/`. Run them from the repository root. This repository keeps no local copies or symlinks of them; only its own `scripts/` files (inventory config, publish-safety checker, Rust register generator) live here.
 
-- `populate-root`: create the symlinks listed in IRIX_FILES.md once `root/` is filled.
 - `map_binaries.py`: catalogue every linked binary (sections, functions, DWARF compilation units) into `binaries_manifest.json`.
 - `disasm_kernel.py`: disassemble the kernel `.o` objects into m2c-ready assembly under `odsy_kernel/disasm/`. Unpack archives (`.a`) with `ar x` first.
 - `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
@@ -106,9 +105,9 @@ Scripts (`scripts/`, run from the repository root):
 - `fifo_words.py`: for one routine's address range in an IRIX shared object, list the words it stores to a command window in program order, with each value folded to a constant or shown as its source (a context field, an argument, a call result). Calls are named from their target address. `test_fifo_words.py` covers its folding rules.
 - `texfmt_sweep.py`: run the four texture-format routines of a libGLcore build (GL internal format to board format index, index to component widths and size code, index to pixel class, index and format to class) for every input under Unicorn, in any of the o32, N32 and 64-bit builds, and compare builds; the table it feeds is `docs/texture-formats.md`.
 - `glcore_probe.py`: run one routine of an N32 libGLcore under Unicorn with a zeroed (or all-ones) context record and print the context words, command-window words and calls it makes, for settling what a switch ladder or setter does with given arguments. It is software evidence of the shipped code, not of the board.
-- `ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [ghidra/scripts/README.md](ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
+- `retools/ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [retools/ghidra/scripts/README.md](retools/ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
 
-The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
+The scripts descend from gr4's and carry its BSD-3 notice ([retools/tools/LICENSE-gr4](retools/tools/LICENSE-gr4)).
 
 ---
 
@@ -198,19 +197,19 @@ A row becomes `understood` only through an entry whose subject it is: a table ro
 
 ## 8. Working on this repository
 
-Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the scripts above, then read, write headers and docs, and regenerate the inventory.
+Workflow: populate `root/` (IRIX_FILES.md), run the scripts above, then read, write headers and docs, and regenerate the inventory.
 
 Roles:
 
 - **Deep readers** take the Priority list in `docs/coverage.md`, in order, and take the rows of `docs/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item to `understood`, whatever their status now.
 - **Bulk readers** pick rows below `understood` from the inventory, `undocumented` first, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written, not another mention. Backfill `docs/coverage.md` area rows the same way.
-- Every reader regenerates the inventory (`scripts/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have understood must show `understood` in the regenerated file; if it does not, the entry lacks a label, a derivation citation or a role, names more than three items on a line, or does not name the thing (`docs/inventory/README.md` gives the rule). If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
+- Every reader regenerates the inventory (`retools/tools/inventory.py`) and commits the changed `docs/inventory/` and `docs/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have understood must show `understood` in the regenerated file; if it does not, the entry lacks a label, a derivation citation or a role, names more than three items on a line, or does not name the thing (`docs/inventory/README.md` gives the rule). If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `retools/tools/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
 
 - Findings go in chip headers at the repository root plus `docs/` chapters, written in your own words.
 - Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the public source path.
-- Update `docs/coverage.md` and the inventory (`scripts/inventory.py`) in the same commit as the finding.
+- Update `docs/coverage.md` and the inventory (`retools/tools/inventory.py`) in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 - Commit what you cite: findings may rest on IRIX binaries or public sources only.
 

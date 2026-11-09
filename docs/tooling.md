@@ -2,7 +2,7 @@
 
 The index of all Ghidra tooling is [ghidra/README.md](../ghidra/README.md).
 
-The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra with the scripts in [ghidra/scripts/](../ghidra/scripts/README.md), which are shared with the other graphics workspaces. The BUZZ transform microcode (`ucode/ODSY/buzz_xform.bin`, the kernel's copy `ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
+The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra with the scripts in [retools/ghidra/scripts/](../retools/ghidra/scripts/README.md), which are shared with the other graphics workspaces. The BUZZ transform microcode (`ucode/ODSY/buzz_xform.bin`, the kernel's copy `ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -10,7 +10,7 @@ The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-
 | `data/languages/odsy_buzz.{ldefs,pspec,cspec}` | Language `ODSY-BUZZ:BE:16:default` |
 | `ghidra_scripts/BuzzImport.java` | The import recipe, run as a pre-script on a raw import |
 | `tests/run-ghidra.sh`, `tests/*.java` | Import the three images and dump listings, functions and decompiled routines |
-| `tests/check.py` | Compares those dumps with `scripts/buzz_ucode_disasm.py` and the documents |
+| `tests/check.py` | Compares those dumps with `retools/tools/odsy/buzz_ucode_disasm.py` and the documents |
 
 ## How the decode works
 
@@ -45,7 +45,7 @@ The units follow [ucode/buzz_isa.md](../ucode/buzz_isa.md), passes 12 to 18. Eac
 - a lane read reaches the scalar unit one record later;
 - an output-stage result reaches port V seven records later.
 
-Each slot has a valid flag. A unit whose slot is empty under the rules takes `in_NOSRC` in the decompiler, the `-` of `scripts/buzz_ucode_dataflow.py`. Inside a routine the flags are constants and fold away. At a routine entry they are what the routine before left, so they show as `in_` inputs: a routine reads its predecessor's products the way the sequencer runs them.
+Each slot has a valid flag. A unit whose slot is empty under the rules takes `in_NOSRC` in the decompiler, the `-` of `retools/tools/odsy/buzz_ucode_dataflow.py`. Inside a routine the flags are constants and fold away. At a routine entry they are what the routine before left, so they show as `in_` inputs: a routine reads its predecessor's products the way the sequencer runs them.
 
 | Unit | Modelled (label in buzz_isa.md) | Named pcodeop (unknown) |
 |---|---|---|
@@ -95,7 +95,7 @@ Reading the decompiler output: a routine's results are its writes to `vreg`, `pm
 
 From `check.py` against IRIX 6.5.30m `buzz_xform.bin`, the kernel copy and the 6.5.15 `odydiags` `diagxform.bin`:
 
-- **(a) passes.** All 2794, 2266 and 2021 records match `scripts/buzz_ucode_disasm.py` field for field, end marks and idle records included.
+- **(a) passes.** All 2794, 2266 and 2021 records match `retools/tools/odsy/buzz_ucode_disasm.py` field for field, end marks and idle records included.
 - **(b) passes.** All 128 entries of the routine table in [ucode/buzz_routines.md](../ucode/buzz_routines.md#routines) are found in `buzz_xform.bin`: 102 as function entries, the rest as records inside a table program's flow. The same holds for all 119 kernel records that the copy holds.
 - **(c) passes.** The decompiled routines show the documented arithmetic:
   - Clip-plane routine 0: `R27_x` to `R27_w` are the modelview rows R9 to R12 against `P`, and R26 takes plane B from `pm_124` to `pm_127`.

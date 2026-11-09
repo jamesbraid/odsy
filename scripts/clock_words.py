@@ -1,1 +1,0 @@
-../retools/scripts/odsy/clock_words.py

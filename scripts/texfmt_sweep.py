@@ -1,1 +1,0 @@
-../retools/scripts/odsy/texfmt_sweep.py

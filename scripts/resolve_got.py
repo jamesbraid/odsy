@@ -1,1 +1,0 @@
-../retools/scripts/odsy/resolve_got.py
