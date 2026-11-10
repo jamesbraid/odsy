@@ -16,7 +16,7 @@
  * path (the kick, the descriptor builder and the completion handling); see
  * the odsy repository's RE notes (docs/kernel.md, docs/pixel-paths.md,
  * docs/registers.md, docs/buzz.md). Every fact is restated in our own
- * words. scripts/check-publish-safe.py checks this file against those notes
+ * words. the shared decode-header check (defs.toml) checks this file against those notes
  * and against the publish-safe rules.
  *
  * The eight-word image header inside the descriptor is BUZZ_DECODE.h
@@ -34,7 +34,7 @@
  * measured on a board. A grade speaks about the word's layout, not about
  * what the hardware does with a value.
  *
- * Machine-parseable annotations (scripts/check-publish-safe.py reads them):
+ * Machine-parseable annotations (the shared decode-header check reads them):
  *   FIELD: <WORD>.<name> <hi>:<lo> <grade>        one per field
  *   ENUM: <WORD>.<name> <value> <label> <grade>   one per named value
  *   TESTVEC: <value> as <WORD> => name=val, ...   a known real value

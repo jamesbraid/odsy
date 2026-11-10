@@ -63,7 +63,7 @@ Headers at the repository root:
 2. **`PBJ.h`**: the second chip, the display back end (`PBJ_DECODE.h` is its decode view).
 3. **`DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout (`DISPLAY_DECODE.h` is its decode view).
 
-Still planned: **`ODSY.h`**, the overall address map, board identification, configurations and common types. `scripts/gen_odyssey_rust.py` generates Rust register modules under `generated/` from the decode headers.
+Still planned: **`ODSY.h`**, the overall address map, board identification, configurations and common types. `retools/tools/defs/gen_decode_rust.py` generates Rust register modules under `generated/` from the decode headers.
 
 [docs/coverage.md](docs/coverage.md) is the map of what is written and what is missing, with the open problems in priority order. Prose that does not fit a header goes in `docs/` chapters.
 
@@ -92,7 +92,7 @@ Install these on your workstation:
 
 Initialise only the submodules you need: `git submodule update --init m2c spimdisasm libdwarf-code`.
 
-Scripts come from the `retools/` submodule: shared tools in `retools/tools/`, Odyssey-specific ones in `retools/tools/odsy/`. Run them from the repository root. This repository keeps no local copies or symlinks of them; only its own `scripts/` files (inventory config, publish-safety checker, Rust register generator) live here.
+Scripts come from the `retools/` submodule: shared tools in `retools/tools/`, Odyssey-specific ones in `retools/tools/odsy/`. Run them from the repository root. This repository keeps no local copies or symlinks of them; only its own `scripts/` files (inventory config and `odsy_checks.py`, the checks specific to these headers) live here. The publish-safety check and the Rust register generator are the shared decode-header tools in `retools/tools/defs/`, configured by `defs.toml`: `retools/tools/defs/check-publish-safe.py --config defs.toml` and `retools/tools/defs/gen_decode_rust.py --config defs.toml [--check]`.
 
 - `map_binaries.py`: catalogue every linked binary (sections, functions, DWARF compilation units) into `binaries_manifest.json`.
 - `disasm_kernel.py`: disassemble the kernel `.o` objects into m2c-ready assembly under `odsy_kernel/disasm/`. Unpack archives (`.a`) with `ar x` first.

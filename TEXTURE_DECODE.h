@@ -24,7 +24,7 @@
  * odsy repository's RE notes (docs/texture-state.md,
  * docs/texture-formats.md, docs/tokens.md, docs/buzz.md and the recorded
  * output of the format index sweep). Every fact is restated in our own
- * words. scripts/check-publish-safe.py checks this file against
+ * words. the shared decode-header check (defs.toml) checks this file against
  * those notes and against the publish-safe rules.
  *
  * Grades, on every field and value:
@@ -42,7 +42,7 @@
  * inferred the same except for the format selection routines, which the
  * notes ran in every build and found identical.
  *
- * Machine-parseable annotations (scripts/check-publish-safe.py reads them):
+ * Machine-parseable annotations (the shared decode-header check reads them):
  *   FIELD: <WORD>.<field> <hi>:<lo> <grade>      one per field
  *   ENUM: <WORD>.<field> <value> <label> <grade> one per enum value
  *   TESTVEC: <value> as <WORD> => field=val, ... a known real value

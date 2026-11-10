@@ -13,7 +13,7 @@
  * FIFO, DMA path and texture state; see the odsy repository's RE notes
  * (docs/pixel-paths.md, docs/tokens.md, docs/texture-state.md,
  * docs/texture-formats.md, docs/buzz.md). Every fact is restated in our
- * own words. scripts/check-publish-safe.py checks this file against those
+ * own words. the shared decode-header check (defs.toml) checks this file against those
  * notes and against the publish-safe rules.
  *
  * Grades, on every field and value:
@@ -28,7 +28,7 @@
  * measured on a board. A grade speaks about the word's layout, not about
  * what the hardware does with a value.
  *
- * Machine-parseable annotations (scripts/check-publish-safe.py reads them):
+ * Machine-parseable annotations (the shared decode-header check reads them):
  *   FIELD: <WORD>.<name> <hi>:<lo> <grade>     one per field
  *   TESTVEC: <value> as <WORD> => name=val, ...   a known real value
  * A single bit is written <n>:<n>. Do not reformat these lines.
