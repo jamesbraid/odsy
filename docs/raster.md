@@ -118,6 +118,7 @@ One position rule (truncation to 1/256), one point rule (floor), one line rule (
 Each of these was looked for in every stream that has a stored frame (`points`, `lines`, `triangle`, `alpha`, `blend`, `checkr3d`, `aapts`, `aalines`).
 
 - Triangle edge ties (a centre exactly on an edge): **not tested**. With positions truncated to 1/256 no pixel centre falls on an edge in `triangle`, `alpha`, `blend` or `checkr3d`: keeping or dropping every edge centre gives the same frames (survey rows "triangle: keep every edge centre" and "drop every edge centre").
+- Which neighbour owns a pixel on an edge shared by two triangles: **unknown: no shipped software or published source depends on it.** A patent says each shared subpixel has exactly one owner, decided by consulting the neighbouring pixels of the quad, and does not say which side. No shipped stream or stored frame draws a shared edge with a tie, and an emulator run shows only the emulator. Silicon test: with depth test, blending, antialiasing and dithering off and a one-colour 8-bit window, clear the window to black; draw two triangles that share an edge passing exactly through pixel centres, with every vertex on a half-integer window coordinate (rectangle corners at x.5, y.5 split by its diagonal; also one split by a vertical and one by a horizontal edge through centres), each filled by logic-op XOR with a white constant so a pixel drawn twice returns to black and a pixel never drawn stays black. Read the window back with `glReadPixels`. A pixel on the shared edge that is white was drawn once; black means a hole or a double hit, and holes are told from doubles by repeating with ADD blending at 50% grey (grey 128 once, 0 for a hole, 255 for a double). Repeat with the two triangles drawn in the opposite order and with each triangle's vertex order reversed. Which neighbour owns an edge pixel (left against right, top against bottom, and whether it depends on the vertex order) is read off the white pixels of the four runs.
 - Whether a line's end pixel is drawn: **not tested** in `lines` (no end on a centre, above).
 - Depth: **not tested** (see [Depth](#depth) for what the library shows). `blend` sends depth word 0x020 = 1 with bit 16 of block 0x004 clear, `checkr3d` draws its squares with no depth test and lets each overwrite the last, and the points, lines and triangle tests draw at one depth.
 - Dither: **not tested**. Bit 18 of block 0x004 (`GL_DITHER`, `docs/tokens.md`) is clear for every drawn primitive of every stream; only the set-up point primitive drawn under 0x42200 has it, and that primitive has no vertex. The flat-colour frames fit floor(256 c + b) for any b from 0 to 0.2.
@@ -128,10 +129,6 @@ Each of these was looked for in every stream that has a stored frame (`points`, 
 No stored frame tests depth (above), so this section rests on the N32 `libGLcore.so` of 6.5.30m
 (addresses from `libglcore/asm/ODYSSEY/*.s`), the porting guide 007-4271-001 and the patents in
 `docs/sources/` ([published-sources.md](published-sources.md)). `odydiags` 6.5.15 names `glDepthFunc`, `glClearDepth` and `glDepthMask` among
-
-
-
-
 its GL entry points but stores no depth-tested frame.
 
 ### The depth word
@@ -154,9 +151,8 @@ library's conversion routines give its layout:
   Depth Buffers" and "Buffer Reads and Writes") says the board converts colour between internal and external pixel formats in hardware,
   but that depth and stencil, kept in an internal floating-point format, are slower to read and
   write "due to float conversions", which the library does on the host. Whether the board's DMA
-
-
-
+  parameter block has an output format field that selects pass-through is **unknown** from the
+  binaries read here; a read of the kernel's backing-store DMA parameter fill (`odsyDMAOp`) would
   settle it. The library's own depth transfers use pixel-size code 1, four bytes a pixel
   ([kernel.md](kernel.md), DMA entry layout).
 - **What the value means**, **established** from `__glOdyUpdateDepthSpanInfo` (0x0d9a6360) and
@@ -241,7 +237,6 @@ The conversion routines, all in the Odyssey GL driver image conversion source un
   and +9 of the mode record are the double-buffer and depth flags, since a double-buffered 8-bit
   RGBA visual with byte +9 clear gets no depth readback. Why the 48-bit colour visuals get the
   shorter word is not shown; the likely reason is room in the pixel, which a
-
   2005 comp.sys.sgi.hardware post describes as 8 or 16 bytes holding colour and every auxiliary
   buffer. The porting guide's "packed into one 4-byte value on reads and writes" ("Stencil and
   Depth Buffers") is the host-side format, which the library builds from either width.
@@ -324,7 +319,6 @@ Block 0x051 bit 1 is set when the far end is below the near one ([tokens.md](tok
   and the clip-plane routines (output code 0x08 consumes clip z with no compare; routine 0 sends
   plane distances like texture coordinates), the library's conversion, depth-range, window-z,
   clear and soft-clip routines above, the same routines in the 6.5.8 library (same constants), every
-
   `odydiags` stream (all draw at z = 0 except `checkr3d`, which draws with the depth test off and
   lies inside the frustum), the Internal Support Tools 2.7 OpenGL suite (below), and the
   comp.sys.sgi archives (a 2000 comp.sys.sgi.graphics report of orthographic programs losing their clipping on a
