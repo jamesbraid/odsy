@@ -45,7 +45,6 @@ Tier 1, local reads:
 13. Display-mode bits 31:25: the OpenBSD driver's comments and the readers in `odsy_retrace.o`.
 14. Retrace period: decode the event entries against the `.vfo` fields.
 15. Line-table encoding: decode the signal and event bits across the 79 `.vfo` files in `root/`.
-16. Clock-part register bits: the write order in `odsy_ddc.o`.
 17. Scan and diagnostic registers: stores at those displacements in the diagnostic tool the entry names.
 18. DMA engine: `odydiags` searched (done, `kernel.md`); `sting` has no caller; the board-side meaning of 0xe03 stays open (route 1).
 19. Routines no host code names: search the IP35 PROM image's BASEIO code for loads of them (the IP35 diagnostics are missing).
@@ -177,7 +176,6 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 
 ## Pixel clock and retrace period
 
-- [software now] **Bit positions of the first clock part's registers.** The clock formula is settled from the 71 files: 12 MHz x (feedback low byte + 8 + 256 x the next four bits) / (oscillator byte - 126), with the post scaler in `LoopControl` bits 5:4 ([display-files.md](display-files.md), "How the clock-part words give the pixel clock"). Still open: which physical register and bit of the I2C 0x26 part each named word lands in, and what its four constant words (`InputControl`, `DPAControl`, `DPAOffset`, `OutputEnables`) select. Tried: all 71 files and the compiler rules (the built-in structures' upper feedback bits were not read in this pass). Next: the published datasheet of the part identified in `docs/display.md` for its register map, then the structure builder's write order in `odsy_ddc.o`.
 - [software now] **Retrace period from the board's own tables.** The frame table fixes lines per frame (the pair counts sum to 1066 and 1065 in the two built-ins) and the line table's timed entries the clocks per line (1688 for the first five line types of the 60 Hz timing, inferred); with the clock, the frame rate follows (1066 x 1688 at 107.964 MHz is 60.0 Hz). The rule fails for later line types, so the period cannot yet be derived from the tables alone. Next: decode the event entries (bits 14:12 = 100) against the `.vfo` signal fields.
 
 ## Board memory
