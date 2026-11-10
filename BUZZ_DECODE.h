@@ -339,6 +339,24 @@
  * destination x lies inside the source x range (overlap handling,
  * inferred). Operand 7 bits 23:19 as seen on copy streams: unknown.
  *
+ * Destination buffer selection (established for the fields the sender
+ * fills; board use inferred). The destination DRAWABLE/base is operand 5,
+ * an image-header word 0 (the reserved value 0x30000010 names the bound
+ * draw drawable; otherwise a board address in 16-byte units). FRONT vs
+ * BACK within that drawable is operand 2 bit 31 (COPY_W2.dst_front). The
+ * destination buffer is NOT taken from operand 7: operand 7 bits 23:19 are
+ * the nibble above the host bytes-per-pixel code (HDR_W7.psize, 18:16),
+ * vary with pixel size, and carry no buffer select. The front bit is
+ * logical and tracks the displayed buffer across a buffer swap; the driver
+ * recomputes it from the drawable's swap state and re-sends it on each
+ * swap. Both buffer bases reach the board: the make-current reply carries
+ * a first and a second buffer location (established), sent on in the
+ * drawable descriptor block 0x017 (word 0 the first/draw buffer location;
+ * word 3 inferred to be the second). So the bit most plausibly selects
+ * between two bases the board already holds rather than driving base
+ * arithmetic (inferred); which of the two it picks is board behaviour,
+ * unknown (no shipped software reads the result back).
+ *
  * Index copy rule (inferred; discriminating test is unknown): a copy
  * whose source word 4 is class 0 code 1, whose destination word 7 is
  * format 1 (COLOR_INDEX) with type 2 and whose destination names a
@@ -352,6 +370,7 @@
 /* FIELD: COPY_W2.dst_field_b 15:12 established */
 /* FIELD: COPY_W2.dst_window 27:16 established */
 /* FIELD: COPY_W2.dst_front 31:31 established */
+/* FIELD: COPY_W7.reserved_23_19 23:19 unknown */
 /* FIELD: COPY_W7.clamp_off 29:28 inferred */
 /* FIELD: COPY_W7.dst_y_in_src 30:30 inferred */
 /* FIELD: COPY_W7.dst_x_in_src 31:31 inferred */

@@ -482,6 +482,19 @@ address, not the listing's label. No vendor source was read for these three item
   a front draw mask writes. The kernel makes the draw select absolute (exchanged when +18 is nonzero) and the read
   register's bit 31 logical (set when +18 is zero), and uses the same pane state for both. What the board does with 0x609 bit 31
   itself is in no software: **unknown**.
+- **inferred (the board-side mechanism, bounded).** The front bit chooses between two buffer bases the board already holds,
+  rather than driving base arithmetic from one base. Make-current reads a first and a second buffer location from the bind
+  reply and sends both on in the drawable descriptor block 0x017 (word 0 the first/draw buffer, word 3 inferred the second;
+  the make-current drawable descriptor in [opengl.md](opengl.md)); the buffer-select registers 0x608 (draw) and 0x609 (read)
+  carry only the first base plus the logical-front bit, and 0x60c to 0x60f are sent whatever the record holds and have no
+  kernel writer (the clip-push register writes in [opengl.md](opengl.md)). So the most supported reading is that bit 31 picks
+  the descriptor's first or second base; the board is not forced to compute a back base by a fixed offset. Which base the bit
+  actually selects stays board behaviour and is **unknown** (no shipped software reads the result back). The transform
+  microcode does not bear on it: the disassembled program is the geometry transform and lighting stage only
+  ([ucode/buzz_isa.md](../ucode/buzz_isa.md)), and the copy and buffer-select paths are fixed-function raster hardware. What
+  would settle it: the swap-time FIFO capture already named above, read with an emulator run that places block 0x017 word 3 at
+  an address distinct from any natural offset and toggles 0x609 bit 31 — drawing that follows word 3 confirms the
+  select-between-bases reading, drawing at base-plus-offset refutes it.
 
 ### Depth and stencil by pixel burst: how the plane is chosen
 
