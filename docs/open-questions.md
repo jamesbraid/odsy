@@ -8,6 +8,7 @@ Questions the binaries and published sources have not yet answered. One entry ea
 2. **Diagnostics on other media.** The IP35 PROM and its diagnostics, and the Octane2 VPro Patches disc, may test registers the driver only writes.
 3. **Published output from real machines.** `gfxinfo -v`, `hinv -v` and diagnostic transcripts for V6 to V12 boards in newsgroup and mailing-list archives.
 4. **The shipped driver under an emulator.** Run it and log what it reads back and what it waits for. This shows the driver's expectation, not the board's behaviour, and is labelled so.
+5. **The IRIX source tree linked from this repository.** Whoever reads it is exposed for VPro and must not also implement the device; record the exposure in the commit.
 
 An entry that exhausts all five is relabelled "unknown: no shipped software or published source depends on it" in its owning file, with the routes listed, and removed here.
 
@@ -15,7 +16,7 @@ An entry that exhausts all five is relabelled "unknown: no shipped software or p
 
 Every entry below opens with one route tag. Route numbers refer to the list at the top of this file.
 
-- An emulator run shows the driver's expectation, not the board.
+- **software now**: the next route runs from the repository tree, the linked IRIX source tree, the binaries in `root/`, or a search of published material. An emulator run shows the driver's expectation, not the board.
 - **missing release or binary**: the next step needs a release, disc, binary or model that `root/` does not hold.
 - **hardware only**: no software or published route is named. Recorded, not scheduled.
 - **pointer**: a summary bullet with no route of its own.
@@ -73,7 +74,7 @@ Tier 3, numeric and microcode checks on the stored frames and runs:
 38. Antialiased coverage: fit G with the width-1.06 area filter and a closed form for the curve.
 39. Small clip w and integer vertex edges: search the shipped binaries in `root/` and the stored frames.
 
-Tier 4, route 5 reads:
+Tier 4, route 5 reads (linked IRIX source tree, exposure applies):
 
 40. Blocks the hardware validator sends: route 5, then the emulator.
 41. COUNT 9 to 14: route 5.
@@ -98,7 +99,7 @@ Tier 5, published search (route 3 and similar):
 58. Unclipped vertices and quads from Z=0 (two entries): newsgroup reports of VPro artefacts near the eye.
 59. Display register bit fields: published output.
 
-Not in this list: the raster tie rule and the pixel-clock artefacts (hardware only), and the four missing-binary entries (the texture unit model, `hinv`, the IRIX tools and man page, and the 6.5.9 projection path).
+Not in this list: the three missing-binary entries (the texture unit model, the format compiler's man page and `pandora`, and the 6.5.9 projection path). The raster tie rule, the pixel-clock artefacts and the overlay storage are hardware only and live, with their silicon tests, in `raster.md`, `board.md` and `display.md`.
 
 ### Duplicates and pointers for the owner
 
@@ -149,7 +150,7 @@ Patents, SGI manuals and white papers were searched for every open entry below; 
 - [software now] **Whether the board signals the fall of (flags AND enables), and what happens to a routed source raised while its enable is clear.** The flags handler is a single pass that acknowledges at the board (`docs/interrupts-fifo-reset.md`). Tried: both handlers, the reset and disable routines, the PROM and monitor images. No software route is left. [hardware only] Silicon test: with one enable set and its flag source held asserted, read the flag word before and after the acknowledge write and count interrupts at the host for 1 ms (level: repeated; edge: one); then raise a source while its enable is clear, set the enable, and see whether an interrupt follows.
 - [software now] **DMA engine details.** The diagnostic transfer's data path and the flags word are answered from `odydiags` ([kernel.md](kernel.md), "Diagnostic transfer"): it is a host-to-board-memory write, a pre-fill of the read-back buffer, a board-memory-to-host read and a host-side image compare, and flags bit 2 (the 0xe03 kick) follows the tool's asynchronous-DMA option. Left: what the board does differently for 0xe03, the operands of block 0x05a beyond the tag page (0xd0a on the error path), the board's use of entry bit 31 and the page list's end marker, and the 0xe03 path's completion (the kernel polls the same flag for both). Tried: every DMA routine in `odsy_dma.o` and `odsy_pmm.o`, `odydiags` 6.5.15 (`diagdma`, `diag_do_dma`, the parameter-file strings; the compositor tool `sting` has no DMA caller, no string or call names the ioctl). Next: route 1 for a release whose driver names the kick ids.
 - [software now] **Drawable registers 0x608 to 0x60f and block 0x017.** What the board does with the buffer locations, origins and descriptor fields, and bit 23 of block 0x017's third word (`docs/opengl.md`, drawable binding and clip push; `docs/display.md`). Tried: bind, clip push, buffer select, swap and restore. Next: route 5.
-- [software now] **Image path words.** The meaning of block 0x170 and of the bare word 0x71, chunk id 20 (compared for but in no table entry), and the pixel-size codes the X module puts in its DMA headers (`docs/opengl.md`, X module image paths). Answered in pass 12: the chunk id (per-visual table), the mono-image and glyph callees. Tried: `odsyDrawImagePIO` and its format table, the mono and glyph routines and their callees. Next:
+- [software now] **Image path words.** The meaning of block 0x170 and of the bare word 0x71, chunk id 20 (compared for but in no table entry), and the pixel-size codes the X module puts in its DMA headers (`docs/opengl.md`, X module image paths). Answered in pass 12: the chunk id (per-visual table), the mono-image and glyph callees. Tried: `odsyDrawImagePIO` and its format table, the mono and glyph routines and their callees. Next: `odsyDrawImageDMA`'s 80-byte request builder for the header codes, then the 6.5.7 PROM binary for any pixel write.
 - [software now] **Block 0x170 operand in the public glyph path.** The OpenBSD VPro driver (`openbsd/sys/arch/sgi/xbow/odyssey.c:867-868, 884-887`) sends block 0x170 (`0x00004570`) with the operands `0x0f00104c` before a glyph and `0x0fd1104c` before each glyph row, then the bare word `0x71`, then pixel chunks led by `0x00014011 | (count << 10)` (chunk id 0x11, as `docs/opengl.md` gives for 24-bit TrueColor). The pass 12 reading of `odsyDrawImagePIO` puts the chunk id's low two bits in operand bits 18:17 and a pixel count in bits 23:20. For id 0x11 the public constants have bits 18:17 = 0 (bit 16 set instead), and bits 23:20 = 0xd for every row whatever the glyph width (8 and 16 pixel fonts share it), with bits 27:24 = 0xf. So either the bit placement in the pass 12 reading is off, or the board ignores those bits for this path. Tried: the OpenBSD and Linux sources (Linux has no VPro driver); the 6.5.30m binary reading in `docs/opengl.md`. Next: search them for the pixel-transfer format block, then re-read the bit assembly in `odsyDrawImagePIO` against these two constants.
 
 ## PB&J and display
