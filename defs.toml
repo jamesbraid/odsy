@@ -317,7 +317,7 @@ binds = [
 group = 'BUZZ_DECODE.h'
 label = 'copy operand 7 flags'
 doc = 'docs/pixel-paths.md'
-regex = "bits (\\d+):(\\d+) set\\s+when context \\+0x16a68 is zero, bit (\\d+) exactly when.*?bit (\\d+) when the destination y lies\\s+in the source\\'s y range and bit (\\d+) when the destination x"
+regex = "bits (\\d+):(\\d+) set\\s+when context \\+0x16a68 is zero \\(.*?\\), bit (\\d+) exactly when.*?bit (\\d+) when the destination y lies\\s+in the source\\'s y range and bit (\\d+) when the destination x"
 binds = [
   ['F', 'COPY_W7.clamp_off', 1, 2],
   ['F', 'HDR_W7.transform', 3],
