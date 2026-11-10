@@ -517,4 +517,86 @@
  * TESTVEC: 0x82 as SAMPLER => colour_table=0, mag=1, min=4
  */
 
+/* ===================================================================
+ * 7. Blocks and words the senders and replay paths use
+ * ===================================================================
+ *
+ * Block ids that the shipped software sends but that no other section
+ * names. Each id is the low ten bits of a command word (section 1); the
+ * grade says whether the id, count and word are what the sender emits
+ * (established) and, where a role is given, how it was reached.
+ *
+ * Alpha test, id 0x01e, command word 0x0001041e, one operand: the
+ * comparison in bits 14:12 and the reference in bits 11:0. The
+ * comparison is the GL comparison enum minus 0x200 (0 never, 1 less,
+ * 2 equal, 3 less-or-equal, 4 greater, 5 not-equal, 6 greater-or-equal,
+ * 7 always); the reference is the clamped 0..1 value scaled by 4096, with
+ * 1.0 sent as 4095. The sender keeps the other bits of the word.
+ * established as the sender's arithmetic; the pass sets for each
+ * comparison under reference 0.5 (less-or-equal passes alpha 0.3 and 0.5,
+ * equal passes 0.5 only, never passes none, always passes all) are read
+ * from the stored frames of the vendor's board simulator, not from a
+ * board, and agree with this reading.
+ */
+/* FIELD: ALPHA_TEST.reference 11:0 established */
+/* FIELD: ALPHA_TEST.func 14:12 established */
+#define BUZZ_ALPHA_TEST_REFERENCE_SHIFT 0
+#define BUZZ_ALPHA_TEST_REFERENCE_MASK  0xfffu
+#define BUZZ_ALPHA_TEST_FUNC_SHIFT      12
+#define BUZZ_ALPHA_TEST_FUNC_MASK       0x7u
+#define BUZZ_ALPHA_TEST_FUNC_NEVER      0 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_LESS       1 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_EQUAL      2 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_LEQUAL     3 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_GREATER    4 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_NOTEQUAL   5 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_GEQUAL     6 /* established */
+#define BUZZ_ALPHA_TEST_FUNC_ALWAYS     7 /* established */
+#define BUZZ_BLK_ALPHA_TEST             0x01e /* established */
+/* Under reference 0.5: less-or-equal as bits 14:12 = 3, reference 0x800.
+ * TESTVEC: 0x3800 as ALPHA_TEST => func=3, reference=2048
+ */
+
+/* Frame pixel as stored in the vendor simulator's reference frames: red in
+ * bits 31:24, green 23:16, blue 15:8 and alpha 7:0, each component the
+ * colour in 0..1 scaled as floor(256 c) and limited to 255. established
+ * for the colours the reference frames draw (0.1 to 1.0), by rebuilding
+ * the stored frames with a matching checksum; the frames are the
+ * simulator's output, not a board's. Values below 0.1 are not tested.
+ */
+/* FIELD: FRAME_PIXEL.alpha 7:0 established */
+/* FIELD: FRAME_PIXEL.blue 15:8 established */
+/* FIELD: FRAME_PIXEL.green 23:16 established */
+/* FIELD: FRAME_PIXEL.red 31:24 established */
+#define BUZZ_FRAME_PIXEL_ALPHA_SHIFT 0
+#define BUZZ_FRAME_PIXEL_BLUE_SHIFT  8
+#define BUZZ_FRAME_PIXEL_GREEN_SHIFT 16
+#define BUZZ_FRAME_PIXEL_RED_SHIFT   24
+#define BUZZ_FRAME_PIXEL_COMPONENT_MASK 0xffu
+/* Colours 0.5, 0.6, 0.7 and 1.0 as red, green, blue and alpha.
+ * TESTVEC: 0x8099b3ff as FRAME_PIXEL => red=128, green=153, blue=179, alpha=255
+ */
+
+/* Other block ids, each sent with the operand count in the comment. The
+ * role, where given, is inferred and said so. */
+#define BUZZ_BLK_IMAGE_SELECTS      0x01d /* established id; sent to select the
+        window destination of a host-to-board pixel move; roles of the
+        selects inferred */
+#define BUZZ_BLK_GAMMA_FIT          0x045 /* established id, word 0x00010845,
+        two operands; gamma-ramp fitting parameters, role inferred, field
+        split unknown */
+#define BUZZ_BLK_PIO_PIXELS         0x170 /* established id; leads a
+        host-written pixel burst: the word 0x4570, then the bare word
+        0x71, then the pixel groups; fields unknown beyond the copied
+        format and type bits of the image header's word 7 */
+#define BUZZ_BLK_TABLE_DATA         0x1a2 /* established id; the 16-word data
+        port of the table that sequencer register 0x31 indexes */
+#define BUZZ_SEQ_REG_TABLE_INDEX    0x31  /* established */
+#define BUZZ_BLK_SLOT_PAIR          0x1ea /* established id,
+        four operands (the first operand of two slot entries, each with
+        bit 31 flipped as a second operand); role inferred */
+#define BUZZ_SLOT4_DEFAULT_WORD     0xc480c426u /* established: opcode 0x26,
+        attribute slot 4, one operand; the word the driver stores as that
+        slot's default; what slot 4 carries is unknown */
+
 #endif /* BUZZ_DECODE_H */

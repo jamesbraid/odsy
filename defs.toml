@@ -53,6 +53,12 @@ macro_pairs = [
   ["TEXLEVEL_W1.format_index", "BUZZ_TEXLEVEL_W1_FMT_SHIFT", "BUZZ_TEXLEVEL_W1_FMT_MASK"],
   ["TEXLEVEL_W1.offset_code", "BUZZ_TEXLEVEL_W1_OFFS_SHIFT", "BUZZ_TEXLEVEL_W1_OFFS_MASK"],
   ["TEXLEVEL_W1.size_code", "BUZZ_TEXLEVEL_W1_SIZE_SHIFT", "BUZZ_TEXLEVEL_W1_SIZE_MASK"],
+  ["ALPHA_TEST.reference", "BUZZ_ALPHA_TEST_REFERENCE_SHIFT", "BUZZ_ALPHA_TEST_REFERENCE_MASK"],
+  ["FRAME_PIXEL.alpha", "BUZZ_FRAME_PIXEL_ALPHA_SHIFT", "BUZZ_FRAME_PIXEL_COMPONENT_MASK"],
+  ["FRAME_PIXEL.blue", "BUZZ_FRAME_PIXEL_BLUE_SHIFT", "BUZZ_FRAME_PIXEL_COMPONENT_MASK"],
+  ["FRAME_PIXEL.green", "BUZZ_FRAME_PIXEL_GREEN_SHIFT", "BUZZ_FRAME_PIXEL_COMPONENT_MASK"],
+  ["FRAME_PIXEL.red", "BUZZ_FRAME_PIXEL_RED_SHIFT", "BUZZ_FRAME_PIXEL_COMPONENT_MASK"],
+  ["ALPHA_TEST.func", "BUZZ_ALPHA_TEST_FUNC_SHIFT", "BUZZ_ALPHA_TEST_FUNC_MASK"],
 ]
 inplace = [
   ["HDR_W7.type", "BUZZ_HDR_W7_TYPE_INPLACE"],
@@ -181,6 +187,15 @@ group = "ODSY_DECODE.h"
 module = "board"
 rust_prefix = "ODSY_"
 description = ["Board identity on the crossbar, the register positions of the board", "window, and the identity, strap and memory-configuration words."]
+
+[[headers]]
+file = "COMPOSITOR_DECODE.h"
+form = "regs"
+prefix = "CCX"
+group = "COMPOSITOR_DECODE.h"
+module = "compositor"
+rust_prefix = "CCX_"
+description = ["Register numbers of the first compositor chip of a VPro compositor board,", "with access direction and default value."]
 
 [[claims]]
 group = 'BUZZ_DECODE.h'

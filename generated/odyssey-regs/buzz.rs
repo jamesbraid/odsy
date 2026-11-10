@@ -1,4 +1,4 @@
-// generated from odsy 9df73b89ce69 BUZZ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy cc82edb1b264 BUZZ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Command opcodes and the image, copy, pixel-mode, texture-level and sampler
 //! words of the Odyssey geometry and pixel engine's command stream.
@@ -26,6 +26,38 @@ pub const PF_FRAC_BITS: u32 = 12;
 /// established.
 pub const PF_ONE: u32 = 0x1000;
 pub const PF_MAX_X4096: u32 = 0x7fff;
+/// established.
+pub const ALPHA_TEST_FUNC_NEVER: u32 = 0;
+/// established.
+pub const ALPHA_TEST_FUNC_LESS: u32 = 1;
+/// established.
+pub const ALPHA_TEST_FUNC_EQUAL: u32 = 2;
+/// established.
+pub const ALPHA_TEST_FUNC_LEQUAL: u32 = 3;
+/// established.
+pub const ALPHA_TEST_FUNC_GREATER: u32 = 4;
+/// established.
+pub const ALPHA_TEST_FUNC_NOTEQUAL: u32 = 5;
+/// established.
+pub const ALPHA_TEST_FUNC_GEQUAL: u32 = 6;
+/// established.
+pub const ALPHA_TEST_FUNC_ALWAYS: u32 = 7;
+/// established.
+pub const BLK_ALPHA_TEST: u32 = 30;
+/// established id; sent to select the window destination of a host-to-board pixel move; roles of the selects inferred.
+pub const BLK_IMAGE_SELECTS: u32 = 29;
+/// established id, word 0x00010845, two operands; gamma-ramp fitting parameters, role inferred, field split unknown.
+pub const BLK_GAMMA_FIT: u32 = 69;
+/// established id; leads a host-written pixel burst: the word 0x4570, then the bare word 0x71, then the pixel groups; fields unknown beyond the copied format and type bits of the image header's word 7.
+pub const BLK_PIO_PIXELS: u32 = 0x170;
+/// established id; the 16-word data port of the table that sequencer register 0x31 indexes.
+pub const BLK_TABLE_DATA: u32 = 0x1a2;
+/// established.
+pub const SEQ_REG_TABLE_INDEX: u32 = 49;
+/// established id, four operands (the first operand of two slot entries, each with bit 31 flipped as a second operand); role inferred.
+pub const BLK_SLOT_PAIR: u32 = 0x1ea;
+/// established: opcode 0x26, attribute slot 4, one operand; the word the driver stores as that slot's default; what slot 4 carries is unknown.
+pub const SLOT4_DEFAULT_WORD: u32 = 0xc480c426;
 
 /// `op_texlevel(i)` is the opcode of descriptor `i`: `0x0e80` plus `i`.
 pub const fn op_texlevel(i: u32) -> u32 {
@@ -943,6 +975,64 @@ impl SamplerWord {
     }
 }
 
+/// The `ALPHA_TEST` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct AlphaTest(u32);
+
+impl AlphaTest {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 11:0, established.
+    pub const fn reference(self) -> u32 {
+        self.0 & 0xfff
+    }
+
+    /// Bits 14:12, established.
+    pub const fn func(self) -> u32 {
+        (self.0 >> 12) & 0x7
+    }
+}
+
+/// The `FRAME_PIXEL` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct FramePixel(u32);
+
+impl FramePixel {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 7:0, established.
+    pub const fn alpha(self) -> u32 {
+        self.0 & 0xff
+    }
+
+    /// Bits 15:8, established.
+    pub const fn blue(self) -> u32 {
+        (self.0 >> 8) & 0xff
+    }
+
+    /// Bits 23:16, established.
+    pub const fn green(self) -> u32 {
+        (self.0 >> 16) & 0xff
+    }
+
+    /// Bits 31:24, established.
+    pub const fn red(self) -> u32 {
+        self.0 >> 24
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1033,5 +1123,21 @@ mod tests {
         assert_eq!(w.colour_table() as u32, 0, "colour_table");
         assert_eq!(w.mag().bits(), 1, "mag");
         assert_eq!(w.min().bits(), 4, "min");
+    }
+
+    #[test]
+    fn testvec_alpha_test_3800() {
+        let w = AlphaTest::new(0x3800);
+        assert_eq!(w.func(), 3, "func");
+        assert_eq!(w.reference(), 2048, "reference");
+    }
+
+    #[test]
+    fn testvec_frame_pixel_8099b3ff() {
+        let w = FramePixel::new(0x8099b3ff);
+        assert_eq!(w.red(), 128, "red");
+        assert_eq!(w.green(), 153, "green");
+        assert_eq!(w.blue(), 179, "blue");
+        assert_eq!(w.alpha(), 255, "alpha");
     }
 }

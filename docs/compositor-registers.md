@@ -4,6 +4,8 @@ The compositor diagnostic `usr/diags/compositor/bin/sting` carries one table per
 
 ### CCX register table (chip address bytes 0xaa / 0xab)
 
+The register numbers, access directions and non-zero defaults of this table, except the seven registers whose code is 0, are in [COMPOSITOR_DECODE.h](../COMPOSITOR_DECODE.h).
+
 90 named registers of 257 records.
 
 | Register | Number | Label | Code | Reading of the code | Default value |

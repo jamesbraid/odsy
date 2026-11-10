@@ -1,4 +1,4 @@
-// generated from odsy 865e0c278a6f PBJ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy cc82edb1b264 PBJ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Host-interface, I2C and scanout-buffer registers of the Odyssey board,
 //! and the header word that frames a display FIFO write.
@@ -16,6 +16,28 @@ pub const FIFO_DEPTH_DWORDS: u32 = 24;
 pub const READ_SLOT_BYTES: u32 = 8;
 /// established.
 pub const ADDR_BITS: u32 = 14;
+/// established: variant <= 0.
+pub const CLOCK_I2C_ADDR_A: u32 = 38;
+/// established: variant > 0.
+pub const CLOCK_I2C_ADDR_B: u32 = 88;
+/// established.
+pub const CLOCK_A_REG_INPUT_CONTROL: u32 = 0;
+/// established.
+pub const CLOCK_A_REG_LOOP_CONTROL: u32 = 1;
+/// established.
+pub const CLOCK_A_REG_FEEDBACK_DIV0: u32 = 2;
+/// established.
+pub const CLOCK_A_REG_FEEDBACK_DIV1: u32 = 3;
+/// established.
+pub const CLOCK_A_REG_DPA_OFFSET: u32 = 4;
+/// established.
+pub const CLOCK_A_REG_DPA_CONTROL: u32 = 5;
+/// established.
+pub const CLOCK_A_REG_OUTPUT_ENABLE: u32 = 6;
+/// established.
+pub const CLOCK_A_REG_OSC_DIV: u32 = 7;
+/// established.
+pub const CLOCK_WRITE_COUNT: u32 = 8;
 
 /// Display-space register `hif_ctl`: read/write, 32-bit; reset unknown; established.
 pub const REG_HIF_CTL: u32 = 0x2700;

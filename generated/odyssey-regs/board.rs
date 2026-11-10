@@ -1,4 +1,4 @@
-// generated from odsy b3731089ecd6 ODSY_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy cc82edb1b264 ODSY_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Board identity on the crossbar, the register positions of the board
 //! window, and the identity, strap and memory-configuration words.
@@ -64,6 +64,14 @@ pub const BOARD_FLOW_CONFIG: u32 = 0x1074;
 pub const BOARD_FLOW_OFF: u32 = 0x107c;
 /// established.
 pub const BOARD_FLOW_CLEAR: u32 = 0x1084;
+/// established, label only.
+pub const BOARD_SCAN_CONFIG: u32 = 0x108c;
+/// established, label only.
+pub const BOARD_SCAN_ADDR_HI: u32 = 0x109c;
+/// established, label only.
+pub const BOARD_SCAN_ADDR_LO: u32 = 0x10a4;
+/// established, label only.
+pub const BOARD_SCAN_GO: u32 = 0x10ac;
 /// inferred.
 pub const BOARD_SWAP_TRIGGER: u32 = 0x10b4;
 /// inferred.
@@ -102,6 +110,16 @@ pub const BOARD_CMD_WINDOW_2: u32 = 0x120000;
 pub const BOARD_DISPLAY_FIFO_PORT: u32 = 0x400000;
 /// established.
 pub const REV_TYPE_B_BIAS: u32 = 8;
+/// established.
+pub const WIDGET_ID_TYPE_A_FIRST: u32 = 1;
+/// established.
+pub const WIDGET_ID_TYPE_A_LAST: u32 = 3;
+/// established.
+pub const WIDGET_ID_TYPE_B_FIRST: u32 = 9;
+/// established.
+pub const WIDGET_ID_TYPE_B_LAST: u32 = 15;
+/// established.
+pub const MASTER_ID_CODE_VALUE: u32 = 18;
 /// established.
 pub const RGBA12_MIN_MEMORY_MB: u32 = 128;
 
@@ -315,6 +333,64 @@ impl WidgetId {
     }
 }
 
+/// The `WIDGET_CONTROL` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct WidgetControl(u32);
+
+impl WidgetControl {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bit 9, established.
+    pub const fn big_endian(self) -> bool {
+        (self.0 >> 9) & 1 != 0
+    }
+
+    /// Bits 15:12, established.
+    pub const fn credit(self) -> u32 {
+        (self.0 >> 12) & 0xf
+    }
+}
+
+/// The `MASTER_ID` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct MasterId(u32);
+
+impl MasterId {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 15:0, established.
+    pub const fn code(self) -> u32 {
+        self.0 & 0xffff
+    }
+
+    /// Bit 18, established.
+    pub const fn bit18(self) -> bool {
+        (self.0 >> 18) & 1 != 0
+    }
+
+    /// Bits 23:20, established.
+    pub const fn master(self) -> u32 {
+        (self.0 >> 20) & 0xf
+    }
+
+    /// Bit 24, established.
+    pub const fn bit24(self) -> bool {
+        (self.0 >> 24) & 1 != 0
+    }
+}
+
 /// The `STRAP` word.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Strap(u32);
@@ -400,5 +476,17 @@ impl SdramCfg {
     /// Bits 22:19, established.
     pub const fn host_id(self) -> u32 {
         (self.0 >> 19) & 0xf
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn testvec_widget_control_4200() {
+        let w = WidgetControl::new(0x4200);
+        assert_eq!(w.big_endian() as u32, 1, "big_endian");
+        assert_eq!(w.credit(), 4, "credit");
     }
 }

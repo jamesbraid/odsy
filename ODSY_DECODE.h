@@ -109,6 +109,14 @@
 #define ODSY_BOARD_FLOW_CONFIG        0x1074 /* established */
 #define ODSY_BOARD_FLOW_OFF           0x107c /* inferred */
 #define ODSY_BOARD_FLOW_CLEAR         0x1084 /* established */
+/* The firmware labels these four registers (scan configuration, scan
+ * address high, scan address low, scan go) and the kernel only zeroes
+ * them. established as the firmware's labels; what a scan go does is
+ * unknown. */
+#define ODSY_BOARD_SCAN_CONFIG        0x108c /* established, label only */
+#define ODSY_BOARD_SCAN_ADDR_HI       0x109c /* established, label only */
+#define ODSY_BOARD_SCAN_ADDR_LO       0x10a4 /* established, label only */
+#define ODSY_BOARD_SCAN_GO            0x10ac /* established, label only */
 #define ODSY_BOARD_SWAP_TRIGGER       0x10b4 /* inferred */
 #define ODSY_BOARD_SWAP_TIMING        0x10bc /* inferred */
 #define ODSY_BOARD_BUFFER_B_SET       0x10c4 /* inferred */
@@ -153,8 +161,61 @@
 #define ODSY_WIDGET_ID_REVISION_MASK   0x7u
 #define ODSY_REV_TYPE_B_BIAS           8 /* established */
 
+/* The established form of the same field: the driver reads bits 31:28 as
+ * one revision type and dispatches on it. Types 1 to 3 and 9 to 15 are
+ * accepted; 0 and 4 to 8 are rejected as invalid. The split into variant
+ * and revision above is the inferred reading of that type. */
+#define ODSY_WIDGET_ID_TYPE_SHIFT      28 /* established */
+#define ODSY_WIDGET_ID_TYPE_MASK       0xfu /* established */
+#define ODSY_WIDGET_ID_TYPE_A_FIRST    1 /* established */
+#define ODSY_WIDGET_ID_TYPE_A_LAST     3 /* established */
+#define ODSY_WIDGET_ID_TYPE_B_FIRST    9 /* established */
+#define ODSY_WIDGET_ID_TYPE_B_LAST     15 /* established */
+
 /* Layout illustration: type 10 is variant B, revision 2.
  * EXAMPLE (unverified): 0xa0000000 as WIDGET_ID => variant=1, revision=2
+ */
+
+/* ===================================================================
+ * 3a. Widget control word and master-id word
+ * ===================================================================
+ *
+ * Widget control (position 0x24): the driver saves it before each link
+ * reset, restores it afterwards (the reset clears it), and ends its
+ * start-up with the widget's own id ORed with 0x4200. By the public
+ * widget layout that sets bit 9 (the system is big-endian) and puts the
+ * value 4 in the crossbar credit field, bits 15:12. The field positions
+ * are published; that the driver writes this value is established.
+ *
+ * Master-id word (position 0x4014): written once by the reset. Bits 15:0
+ * hold the value 0x12, bits 18 and 24 are set, bits 19:16 are clear and
+ * the widget's master id is in bits 23:20. established as the layout of
+ * the word the driver writes; what each part means is unknown. The twin
+ * word (ODSY_BOARD_MASTER_ID_B) puts the id in a different place.
+ */
+/* FIELD: WIDGET_CONTROL.big_endian 9:9 established */
+/* FIELD: WIDGET_CONTROL.credit 15:12 established */
+#define ODSY_WIDGET_CONTROL_BIG_ENDIAN_SHIFT 9
+#define ODSY_WIDGET_CONTROL_BIG_ENDIAN_MASK  0x1u
+#define ODSY_WIDGET_CONTROL_CREDIT_SHIFT     12
+#define ODSY_WIDGET_CONTROL_CREDIT_MASK      0xfu
+/* TESTVEC: 0x4200 as WIDGET_CONTROL => big_endian=1, credit=4
+ */
+/* FIELD: MASTER_ID.code 15:0 established */
+/* FIELD: MASTER_ID.bit18 18:18 established */
+/* FIELD: MASTER_ID.master 23:20 established */
+/* FIELD: MASTER_ID.bit24 24:24 established */
+#define ODSY_MASTER_ID_CODE_SHIFT     0
+#define ODSY_MASTER_ID_CODE_MASK      0xffffu
+#define ODSY_MASTER_ID_BIT18_SHIFT    18
+#define ODSY_MASTER_ID_BIT18_MASK     0x1u
+#define ODSY_MASTER_ID_MASTER_SHIFT   20
+#define ODSY_MASTER_ID_MASTER_MASK    0xfu
+#define ODSY_MASTER_ID_BIT24_SHIFT    24
+#define ODSY_MASTER_ID_BIT24_MASK     0x1u
+#define ODSY_MASTER_ID_CODE_VALUE     0x12 /* established */
+/* Layout illustration: master id 3.
+ * EXAMPLE (unverified): 0x1340012 as MASTER_ID => code=18, bit18=1, master=3, bit24=1
  */
 
 /* ===================================================================

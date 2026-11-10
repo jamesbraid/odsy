@@ -89,9 +89,6 @@
  * position when cursor control bit 2 is set; type 3 for everything the
  * kernel loads at start-up or mode set and for the textport colour map.
  * established as uses. So type 3
-
-
-
  * is read as apply at once and type 7 as apply at the next vertical blank,
  * inferred from the pairing of uses. Bits 29:28 are set in both types and
  * are probably a per-chip target select, one bit each for the two ASICs of
@@ -153,6 +150,35 @@
  * those datasheets, not here.
  */
 
+/*
+ * Which part is used follows a board clock variant that the driver reads
+ * from its board record: a variant of zero or less selects the part at
+ * I2C address 0x26, a positive variant the part at 0x58. established.
+ * Each is programmed with eight register bytes taken from the timing
+ * structure. The part at 0x26 gets them in the order registers 5, 4, 2,
+ * 3, 0, 1, 7, 6; the part at 0x58 gets them as registers 0 to 7 in order.
+ * established, from the order of the eight bus writes in the timing load.
+ * The register numbers of the part at 0x26, by the names the driver's
+ * failure messages give them (established, the k-th write's message names
+ * the k-th register of the order above, and two of the numbers are fixed
+ * independently by the genlock code): input control 0, loop control 1,
+ * feedback divider 0 at 2, feedback divider 1 at 3, DPA offset 4, DPA
+ * control 5, output enable 6 and oscillator divider 7. Those names match the
+ * published register map of the part; the message names do not label the
+ * registers of the part at 0x58.
+ */
+#define PBJ_CLOCK_I2C_ADDR_A               0x26 /* established: variant <= 0 */
+#define PBJ_CLOCK_I2C_ADDR_B               0x58 /* established: variant > 0 */
+#define PBJ_CLOCK_A_REG_INPUT_CONTROL      0 /* established */
+#define PBJ_CLOCK_A_REG_LOOP_CONTROL       1 /* established */
+#define PBJ_CLOCK_A_REG_FEEDBACK_DIV0      2 /* established */
+#define PBJ_CLOCK_A_REG_FEEDBACK_DIV1      3 /* established */
+#define PBJ_CLOCK_A_REG_DPA_OFFSET         4 /* established */
+#define PBJ_CLOCK_A_REG_DPA_CONTROL        5 /* established */
+#define PBJ_CLOCK_A_REG_OUTPUT_ENABLE      6 /* established */
+#define PBJ_CLOCK_A_REG_OSC_DIV            7 /* established */
+#define PBJ_CLOCK_WRITE_COUNT              8 /* established */
+
 /* ===================================================================
  * 3. Start-up order
  * =================================================================== */
@@ -183,8 +209,7 @@
  * twice: with bit 18 clear before the clock is programmed and with bit 18
  * set after a 100 ms wait. Start-up first writes 0x0006d3e0 (both selects
  * 5, bit 18 set, low bits 0x3e0); that is a driver-written start value,
-
-
+ * not a reset value.
  */
 /* REG: PBJ.hif_ctl 0x2700 rw32 reset=unknown established */
 /* FIELD: PBJ.hif_ctl.clock_run 18:18 established */
@@ -205,8 +230,7 @@
  * block reports. Bit 10 is tested at start-up: when it is clear, the
  * driver probes the option port on the second I2C controller for a dual-
  * channel display option, so a set bit 10 is read as "no option card"
-
-
+ * (inferred).
  */
 /* REG: PBJ.id 0x2701 r32 reset=unknown established */
 /* FIELD: PBJ.id.version 2:0 established */
