@@ -337,24 +337,33 @@
  * zero (what the flag is: unknown), bit 27 = HDR_W7.transform, bit 30 set when the
  * destination y lies inside the source y range, bit 31 set when the
  * destination x lies inside the source x range (overlap handling,
- * inferred). Operand 7 bits 23:19 as seen on copy streams: unknown.
+ * inferred). Operand 7 bits 23:20 hold the destination's first field
+ * code (the second goes to operand 2 bits 15:12) and bits 19:16 are one
+ * 4-bit size field (established from the sender's stores).
  *
  * Destination buffer selection (established for the fields the sender
  * fills; board use inferred). The destination DRAWABLE/base is operand 5,
  * an image-header word 0 (the reserved value 0x30000010 names the bound
- * draw drawable; otherwise a board address in 16-byte units). FRONT vs
- * BACK within that drawable is operand 2 bit 31 (COPY_W2.dst_front). The
- * destination buffer is NOT taken from operand 7: operand 7 bits 23:19 are
- * the nibble above the host bytes-per-pixel code (HDR_W7.psize, 18:16),
- * vary with pixel size, and carry no buffer select. The front bit is
- * logical and tracks the displayed buffer across a buffer swap; the driver
- * recomputes it from the drawable's swap state and re-sends it on each
- * swap. Both buffer bases reach the board: the make-current reply carries
+ * draw drawable; otherwise a board address, unit inferred as 16 bytes
+ * from the sender's divide-by-16 and not reconciled with the memory
+ * manager's shift-left-by-5 extent word). FRONT vs BACK within that
+ * drawable is operand 2 bit 31 (COPY_W2.dst_front). The destination
+ * buffer is NOT taken from operand 7: bits 23:20 are the destination's
+ * first field code and 19:16 a 4-bit size field, so no buffer select is
+ * there. The sender sets operand 2 bit 31 from the GL draw-buffer
+ * selection at copy time (cleared for three of the draw-buffer values,
+ * set otherwise; established); the swap state is not an input, and the
+ * swap routine sends no copy words. Whether the bit tracks the displayed
+ * buffer across a swap is therefore NOT shown by any copy-path evidence;
+ * the swap tracking seen in the kernel belongs to bit 31 of registers
+ * 0x608/0x609, a separate bit (see docs/pixel-paths.md). Both buffer bases reach the board: the make-current reply carries
  * a first and a second buffer location (established), sent on in the
  * drawable descriptor block 0x017 (word 0 the first/draw buffer location;
  * word 3 inferred to be the second). So the bit most plausibly selects
  * between two bases the board already holds rather than driving base
- * arithmetic (inferred); which of the two it picks is board behaviour,
+ * arithmetic (inferred, weakly: the kernel's pixel-buffer attach path with
+ * its flag bit 1 set writes zero as the second base, and what that bit
+ * means is not traced); which of the two it picks is board behaviour,
  * unknown (no shipped software reads the result back).
  *
  * Index copy rule (inferred; discriminating test is unknown): a copy
@@ -370,7 +379,8 @@
 /* FIELD: COPY_W2.dst_field_b 15:12 established */
 /* FIELD: COPY_W2.dst_window 27:16 established */
 /* FIELD: COPY_W2.dst_front 31:31 established */
-/* FIELD: COPY_W7.reserved_23_19 23:19 unknown */
+/* FIELD: COPY_W7.dst_field_a 23:20 established */
+/* FIELD: COPY_W7.size_code 19:16 established */
 /* FIELD: COPY_W7.clamp_off 29:28 inferred */
 /* FIELD: COPY_W7.dst_y_in_src 30:30 inferred */
 /* FIELD: COPY_W7.dst_x_in_src 31:31 inferred */

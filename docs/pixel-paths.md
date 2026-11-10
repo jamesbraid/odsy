@@ -318,10 +318,10 @@ word and a colour word with the same class and code come from different parts of
   are a read header's words 0, 1, 3 and 4 and a write header's words 0, 1 and 7 interleaved:
   word 0 the source base (0x30000019 for the read drawable), word 1 source x and y, word 2 the
   destination description +0x1c in bits 27:16, the destination's second field code in bits 15:12
-  and the source +0x1c in bits 11:0, with destination front in bit 31; word 3 width and height;
+  and the source +0x1c in bits 11:0, with destination front in bit 31 (**established** from 0xd9b7cb8 to 0xd9b7cd4: the bit comes from the GL draw-buffer selection at copy time, cleared for three of its values and set otherwise, and never from swap state; the swap routine sends no copy words); word 3 width and height;
   word 4 the read header's word 4; word 5 the destination base (0x30000010 for the draw
   drawable); word 6 destination x and y; word 7 the write header's word 7 with bits 29:28 set
-  when context +0x16a68 is zero, bit 27 exactly when the caller's fourth argument is nonzero (0x0d9b7aa8 to 0x0d9b7ab4), bit 30 when the destination y lies
+  when context +0x16a68 is zero (bits 23:20 the destination's first field code from the helper at 0x0d9beb40, bits 19:16 a 4-bit size field, **established** from the stores at 0x0d9b7e68 to 0x0d9b7e9c), bit 27 exactly when the caller's fourth argument is nonzero (0x0d9b7aa8 to 0x0d9b7ab4), bit 30 when the destination y lies
   in the source's y range and bit 31 when the destination x lies in the source's x range.
 - **`ImageCopyPixelBody`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d9b73c0, 1120 bytes), **established**, read in full in the
   assembly: fills the per-piece corners and sends 0x2031 and the eight words to the FIFO; with
@@ -482,13 +482,14 @@ address, not the listing's label. No vendor source was read for these three item
   a front draw mask writes. The kernel makes the draw select absolute (exchanged when +18 is nonzero) and the read
   register's bit 31 logical (set when +18 is zero), and uses the same pane state for both. What the board does with 0x609 bit 31
   itself is in no software: **unknown**.
+- **established (correction).** The copy block's own front bit (operand 2 bit 31) does not track swaps: the sender derives it from the draw-buffer selection only. The swap tracking described above is for bit 31 of registers 0x608 and 0x609, a different bit.
 - **inferred (the board-side mechanism, bounded).** The front bit chooses between two buffer bases the board already holds,
   rather than driving base arithmetic from one base. Make-current reads a first and a second buffer location from the bind
   reply and sends both on in the drawable descriptor block 0x017 (word 0 the first/draw buffer, word 3 inferred the second;
   the make-current drawable descriptor in [opengl.md](opengl.md)); the buffer-select registers 0x608 (draw) and 0x609 (read)
   carry only the first base plus the logical-front bit, and 0x60c to 0x60f are sent whatever the record holds and have no
   kernel writer (the clip-push register writes in [opengl.md](opengl.md)). So the most supported reading is that bit 31 picks
-  the descriptor's first or second base; the board is not forced to compute a back base by a fixed offset. Which base the bit
+  the descriptor's first or second base (weakly: on the pixel-buffer attach path with flag bit 1 set the kernel zeroes the second base, and that bit's meaning is not traced, so a double-buffered pixel buffer may have no second base to select); the board is not forced to compute a back base by a fixed offset. Which base the bit
   actually selects stays board behaviour and is **unknown** (no shipped software reads the result back). The transform
   microcode does not bear on it: the disassembled program is the geometry transform and lighting stage only
   ([ucode/buzz_isa.md](../ucode/buzz_isa.md)), and the copy and buffer-select paths are fixed-function raster hardware. What
@@ -966,3 +967,12 @@ Release IRIX 6.5.30m, IP30, N32 `libGLcore.so` (`root/builds/6.5.30-media/usr/gf
   from a caller that breaks the `GLubyte` prototype; the vector emitter loads each component with `lbu`, so it cannot send one. No shipped
   software is known to depend on what the board answers for a byte operand above 255: **unknown**. Routes tried: the two emitters and the
   four-component pair `__glOdyim_Color4ubv` (0x0dad4f00, 52 bytes), the kernel's textport colour store, and the OpenBSD driver's fill (three bytes).
+
+## Corrections (2026-11-10)
+
+An independent re-check of the copy-block and buffer-select text against the shipped libGLcore and kernel found three errors, all confirmed:
+
+- The copy block's front bit (operand 2 bit 31) was said to track the displayed buffer across a swap and to be recomputed from swap state. It is set only from the GL draw-buffer selection when the copy is built; the swap routine sends no copy words. The swap tracking evidence belongs to bit 31 of registers 0x608 and 0x609. Behaviour change: do not model the copy's front bit as following swaps.
+- Copy operand 7 bits 23:19 were described as the nibble above the pixel-size code. Bits 23:20 are the destination's first field code and bits 19:16 one 4-bit size field. No buffer select there still holds. The 3-bit pixel-size pin for ordinary write headers (18:16) is unchanged; the copy sender writes a 4-bit field.
+- The destination base unit was graded established under a heading that covers the sender's fields; the 16-byte unit is inferred, and the memory manager's shift-left-by-5 word suggests 32 bytes. Left unreconciled.
+- Weakened: the select-between-bases reading of the front bit, because the pixel-buffer attach path zeroes the second base when its flag bit 1 is set.
