@@ -145,15 +145,7 @@
  * established as values; meaning unknown (but see the next comment). */
 /*
  * The textport's mode word. Which bits the driver sets, from the 6.5.30
-
-
-
-
-
-
-
-
-
+ * binary alone:
  * established (6.5.30 kernel, odsyInitDBE in odsy_init.o, 0x2e60 to
  * 0x2e88, with the first mask word from docs/kernel.md): the same
  * routine builds the word as ((X & 0xfe001fff) | 0x4b5e00) & 0xfffffe00
@@ -172,7 +164,6 @@
  * 7 on the double-buffered ones, 1 and 0 on colour-index ones) would be
  * gamma compensation, true colour and stereo with one spare bit: that
  * assignment is inferred from the count of fields alone.
-
  * unknown: bits 31:25. The OpenBSD driver sets two of them (bits 31 and
  * 28 of 0x905215a6, the word it writes to all 32 entries) and no
  * IRIX 6.5.30 word has either set; no named field covers them, so
@@ -230,7 +221,23 @@
  * register does on the board: unknown unless stated.
  */
 #define VTG_LINE_TABLE         0x2000 /* up to 2048 16-bit entries, two
-                                         per word, even entry low */
+                                         per word, even entry low.
+                                         Entry: bit 15 ends the line
+                                         type; a timed entry holds a
+                                         duration in pixel clocks in
+                                         bits 14:8 and signal levels in
+                                         bits 7:0; an event entry takes
+                                         no time. Every line type of 34
+                                         shipped timing files sums its
+                                         timed entries to the pixels per
+                                         line (inferred split, see
+                                         docs/display.md, "Which signal
+                                         a line-table low-byte bit
+                                         drives"). Signals are numbered
+                                         0..20 as bits of the timing
+                                         generator's enable and initial
+                                         state words; bit 5 is the DAC
+                                         blank, bit 6 is unused. */
 #define VTG_FRAME_TABLE        0x2400 /* up to 256 entries: pairs of
                                          (line-table word index, count) */
 #define VTG_CTRL0              0x2481 /* struct word 28 | 0x42; also 1 */
