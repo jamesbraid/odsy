@@ -1,4 +1,4 @@
-// generated from odsy c0fd68397625 ODSY_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 0ec91a1e8d8e ODSY_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Board identity on the crossbar, the register positions of the board
 //! window, and the identity, strap and memory-configuration words.
@@ -102,6 +102,8 @@ pub const BOARD_CMD_WINDOW_2: u32 = 0x120000;
 pub const BOARD_DISPLAY_FIFO_PORT: u32 = 0x400000;
 /// established.
 pub const REV_TYPE_B_BIAS: u32 = 8;
+/// established.
+pub const RGBA12_MIN_MEMORY_MB: u32 = 128;
 
 /// Values of `sdram_size` in `Strap` that the header names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
