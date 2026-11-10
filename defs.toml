@@ -173,6 +173,15 @@ size_limit_macro = "DMA_ENTRY_MAX_BYTES"
 module = "dma"
 rust_prefix = "DMA_"
 description = ["DMA-engine descriptor words of the Odyssey board: the kick words, the", "transfer entry and its tag."]
+[[headers]]
+file = "ODSY_DECODE.h"
+form = "regs"
+prefix = "ODSY"
+group = "ODSY_DECODE.h"
+module = "board"
+rust_prefix = "ODSY_"
+description = ["Board identity on the crossbar, the register positions of the board", "window, and the identity, strap and memory-configuration words."]
+
 [[claims]]
 group = 'BUZZ_DECODE.h'
 label = 'read class/code split'
@@ -1461,3 +1470,401 @@ binds = [
   ['DEFN', 'TEX_COLTAB_D_BASE', 2],
 ]
 
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "widget manufacturer and part"
+doc = "docs/board.md"
+regex = "manufacturer (\\d+) and part (0x[0-9a-f]+) under"
+binds = [["DEF", "ODSY_WIDGET_MFR", 1], ["DEFN", "ODSY_WIDGET_PART", 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "pio window length"
+doc = "docs/driver-functions.md"
+regex = "a (0x[0-9a-f]+)-byte window; on success"
+binds = [["DEFN", "ODSY_PIO_WINDOW_BYTES", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "identity revision nibble"
+doc = "docs/board.md"
+regex = "takes bits (\\d+):(\\d+) as a buzz revision type"
+binds = [["IN", ["WIDGET_ID.variant", "WIDGET_ID.revision"], 1, 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "identity variant flag"
+doc = "docs/board.md"
+regex = "Bit (\\d+) \\(record \\+280\\) is a variant flag"
+binds = [["F", "WIDGET_ID.variant", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "variant B bias"
+doc = "docs/board.md"
+regex = "\\| 9 to 15 \\| value - (\\d+)"
+binds = [["DEF", "ODSY_REV_TYPE_B_BIAS", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap size code"
+doc = "docs/board.md"
+regex = "\\| (\\d+):(\\d+) \\| SDRAM size code"
+binds = [["F", "STRAP.sdram_size", 1, 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap banks"
+doc = "docs/board.md"
+regex = "\\| (\\d+) \\| SDRAM banks"
+binds = [["F", "STRAP.banks", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap latency"
+doc = "docs/board.md"
+regex = "\\| (\\d+) \\| CAS latency"
+binds = [["F", "STRAP.cas", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap board revision"
+doc = "docs/board.md"
+regex = "\\| (\\d+):(\\d+) \\| board revision"
+binds = [["F", "STRAP.board_rev", 1, 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "fifo levels"
+doc = "docs/registers.md"
+regex = "bits (\\d+):(\\d+) are the display FIFO level and bits (\\d+):(\\d+) the command-side level"
+binds = [["F", "STRAP.display_level", 1, 2], ["F", "STRAP.command_level", 3, 4]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration host id"
+doc = "docs/board.md"
+regex = "bits (\\d+):(\\d+) = the widget master id"
+binds = [["F", "SDRAM_CFG.host_id", 1, 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration banks"
+doc = "docs/board.md"
+regex = "bit (\\d+) set for 4 banks"
+binds = [["F", "SDRAM_CFG.banks", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration latency"
+doc = "docs/board.md"
+regex = "bit (\\d+) set for CAS latency 2"
+binds = [["F", "SDRAM_CFG.cas", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration size"
+doc = "docs/board.md"
+regex = "bits (\\d+):(\\d+): 0 for 32 MB, 1 for 64 MB, 2 for 128 MB"
+binds = [["F", "SDRAM_CFG.size", 1, 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration pulse and enable"
+doc = "docs/board.md"
+regex = "bit (\\d+) pulses an SDRAM initialisation; bit (\\d+) enables it"
+binds = [["F", "SDRAM_CFG.reset", 1], ["F", "SDRAM_CFG.enable", 2]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register widget_id"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Widget identification word"
+binds = [["DEFN", "ODSY_BOARD_WIDGET_ID", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register widget_status"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Widget status word"
+binds = [["DEFN", "ODSY_BOARD_WIDGET_STATUS", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register err_addr_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Upper error-address word"
+binds = [["DEFN", "ODSY_BOARD_ERR_ADDR_HI", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register err_addr_lo"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Lower error-address word"
+binds = [["DEFN", "ODSY_BOARD_ERR_ADDR_LO", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register widget_control"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Widget control word"
+binds = [["DEFN", "ODSY_BOARD_WIDGET_CONTROL", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_dest_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Upper half of the widget's interrupt destination"
+binds = [["DEFN", "ODSY_BOARD_INTR_DEST_HI", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_dest_lo"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Lower half of the same interrupt destination"
+binds = [["DEFN", "ODSY_BOARD_INTR_DEST_LO", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register err_command"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Error command word"
+binds = [["DEFN", "ODSY_BOARD_ERR_COMMAND", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register xbar_intr_config"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Crossbar interrupt configuration word"
+binds = [["DEFN", "ODSY_BOARD_XBAR_INTR_CONFIG", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register sdram_config"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* SDRAM configuration word"
+binds = [["DEFN", "ODSY_BOARD_SDRAM_CONFIG", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register abort"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Abort and reset register"
+binds = [["DEFN", "ODSY_BOARD_ABORT", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flags"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* The flags register"
+binds = [["DEFN", "ODSY_BOARD_FLAGS", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flag_clear"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Flag-clear register"
+binds = [["DEFN", "ODSY_BOARD_FLAG_CLEAR", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flag_intr_enable"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Flag interrupt-enable mask"
+binds = [["DEFN", "ODSY_BOARD_FLAG_INTR_ENABLE", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flag_intr_disable"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Interrupt-enable clear register"
+binds = [["DEFN", "ODSY_BOARD_FLAG_INTR_DISABLE", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_ctl_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Interrupt control, high half"
+binds = [["DEFN", "ODSY_BOARD_INTR_CTL_HI", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_ctl_lo"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Low half of the shared interrupt destination"
+binds = [["DEFN", "ODSY_BOARD_INTR_CTL_LO", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_vector"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Four interrupt vectors packed one per byte"
+binds = [["DEFN", "ODSY_BOARD_INTR_VECTOR", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_header"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Interrupt packet header word"
+binds = [["DEFN", "ODSY_BOARD_INTR_HEADER", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register status0"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Status word 0"
+binds = [["DEFN", "ODSY_BOARD_STATUS0", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register levels_straps"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Levels and straps"
+binds = [["DEFN", "ODSY_BOARD_LEVELS_STRAPS", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flow_config"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Flow-control configuration"
+binds = [["DEFN", "ODSY_BOARD_FLOW_CONFIG", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flow_off"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Flow-control off switch"
+binds = [["DEFN", "ODSY_BOARD_FLOW_OFF", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flow_clear"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Flow-control clear"
+binds = [["DEFN", "ODSY_BOARD_FLOW_CLEAR", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register swap_trigger"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Per-window buffer-swap trigger"
+binds = [["DEFN", "ODSY_BOARD_SWAP_TRIGGER", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register swap_timing"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Per-window swap-timing select"
+binds = [["DEFN", "ODSY_BOARD_SWAP_TIMING", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register buffer_b_set"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Buffer-B select set register"
+binds = [["DEFN", "ODSY_BOARD_BUFFER_B_SET", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register buffer_b_clear"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Buffer-B select clear register"
+binds = [["DEFN", "ODSY_BOARD_BUFFER_B_CLEAR", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register buffer_b_state"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Read-back of the buffer select"
+binds = [["DEFN", "ODSY_BOARD_BUFFER_B_STATE", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register ctx_save_addr_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* High 16 bits of the physical address of the context-save buffer"
+binds = [["DEFN", "ODSY_BOARD_CTX_SAVE_ADDR_HI", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register ctx_save_addr_lo"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Low 32 bits of the same context-save buffer address"
+binds = [["DEFN", "ODSY_BOARD_CTX_SAVE_ADDR_LO", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register master_id_a"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Master-id control word of the 0x4000 group"
+binds = [["DEFN", "ODSY_BOARD_MASTER_ID_A", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register stats_addr_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* High half \\(bits 47:32\\) of the physical address of the 16 KB statistics"
+binds = [["DEFN", "ODSY_BOARD_STATS_ADDR_HI", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register stats_addr_lo"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Low half \\(bits 31:0\\) of the statistics region address"
+binds = [["DEFN", "ODSY_BOARD_STATS_ADDR_LO", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register stats_control"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Statistics control word"
+binds = [["DEFN", "ODSY_BOARD_STATS_CONTROL", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register shadow_addr_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* High half of the physical address of the hardware-shadow cache region"
+binds = [["DEFN", "ODSY_BOARD_SHADOW_ADDR_HI", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register shadow_addr_lo"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Low half \\(bits 31:0\\) of the shadow cache region address"
+binds = [["DEFN", "ODSY_BOARD_SHADOW_ADDR_LO", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register master_id_b"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Master-id word of the second control pair"
+binds = [["DEFN", "ODSY_BOARD_MASTER_ID_B", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register cmd_fifo_port"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Command FIFO port"
+binds = [["DEFN", "ODSY_BOARD_CMD_FIFO_PORT", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register ctx_save_port"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Context-save request port"
+binds = [["DEFN", "ODSY_BOARD_CTX_SAVE_PORT", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register cmd_window_2"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Second command-word window"
+binds = [["DEFN", "ODSY_BOARD_CMD_WINDOW_2", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register display_fifo_port"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Display FIFO port"
+binds = [["DEFN", "ODSY_BOARD_DISPLAY_FIFO_PORT", 1]]

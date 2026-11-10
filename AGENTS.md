@@ -63,7 +63,7 @@ Headers at the repository root:
 2. **`PBJ.h`**: the second chip, the display back end (`PBJ_DECODE.h` is its decode view).
 3. **`DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout (`DISPLAY_DECODE.h` is its decode view).
 
-Still planned: **`ODSY.h`**, the overall address map, board identification, configurations and common types. `retools/tools/defs/gen_decode_rust.py` generates Rust register modules under `generated/` from the decode headers.
+4. **`ODSY_DECODE.h`**: the publish-safe board view: widget identity, the board register map, and the identity, strap and memory-configuration words. A fuller `ODSY.h` with the board configurations is still planned. `retools/tools/defs/gen_decode_rust.py` generates Rust register modules under `generated/` from the decode headers.
 
 [docs/coverage.md](docs/coverage.md) is the map of what is written and what is missing, with the open problems in priority order. Prose that does not fit a header goes in `docs/` chapters.
 
