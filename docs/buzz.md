@@ -78,7 +78,7 @@ The words below are written to the command FIFO by the immediate-mode entry poin
 
 Order of the data type codes: unsigned byte, unsigned short, unsigned int, byte, short, int, float (colours); byte, short, int, float (normals). **established** from the opcode to entry-point pairing. Opcodes 0x1a to 0x1d, 0x26 to 0x2e and 0x33, 0x34 were not seen: **unknown** whether they exist.
 
-Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`, `0x908091ea`, `0x9080bda2`, `0x9080bdc8`, `0x90008116`, `0x90808800`, `0x8f80a944`, `0x8f80b968`, `0xcf80a92f`, `0xd080c433`, `0xd080c439`) have bits 15:14 = 10 (or 11 for `0xd080c4xx`) and are state, program and pixel-transfer words (lighting, clip planes, matrices, `__glOdysseySetProgram`, `ApplyParameter`). Their field meaning: **unknown**. `0x80000000`, `0xdeadbeef` and `0xbaadcade` in the same list are masks or markers, not words.
+Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`, `0x908091ea`, `0x9080bda2`, `0x9080bdc8`, `0x90008116`, `0x90808800`, `0x8f80a944`, `0x8f80b968`, `0xcf80a92f`, `0xd080c433`, `0xd080c439`) have bits 15:14 = 10 (or 11 for `0xd080c4xx`) and are state, program and pixel-transfer words (lighting, clip planes, matrices, `__glOdysseySetProgram`, `ApplyParameter`). Their field meaning: **unknown: no shipped software or published source names the fields.** Test that would settle it: for each id (the low ten bits of the word: 0x015, 0x1bb, 0x1df, 0x1ea, 0x1a2, 0x1c8, 0x116, 0x000, 0x144, 0x168, 0x12f, 0x033, 0x039), find the microcode routine the id reaches (`ucode/buzz_routines.md`, "How a command word reaches a routine"), disassemble it from `ucode/disasm`, and list which operand values (source codes 16 to 31, `ucode/buzz_isa.md`) it reads and the masks and shifts it applies; those bits are the fields. An id the microcode never consumes is handled outside the sequencer, and only a board capture of the FIFO with a known input can name its fields. `0x80000000`, `0xdeadbeef` and `0xbaadcade` in the same list are masks or markers, not words.
 
 ## 3. The maximum texture clamp field
 
@@ -331,7 +331,7 @@ The full set of blocks the board holds as context state is what the kernel repla
 | 14 | 0xce80c406 | 0x06 | 1 | Index |
 | 16 | 0xd080c433, 0xd080cc34, 0xd080c439, 0xd080cc3a | 0x33, 0x34, 0x39, 0x3a | 1, 3, 1, 3 | four words for one slot |
 
-The word `0x3000c02e` (sequencer register 0x30 form, `ucode/buzz_isa.md`) is stored beside them. So opcodes 0x1c (slot 2, three components), 0x26 (slot 4, one component) and the slot-16 family 0x33/0x34/0x39/0x3a exist as board-visible defaults; what attributes slots 2, 4 and 16 carry: **unknown** (slot 2 with three components and slot 4 with one are consistent with a secondary colour and a fog coordinate, but nothing names them).
+The word `0x3000c02e` (sequencer register 0x30 form, `ucode/buzz_isa.md`) is stored beside them. So opcodes 0x1c (slot 2, three components), 0x26 (slot 4, one component) and the slot-16 family 0x33/0x34/0x39/0x3a exist as board-visible defaults; what attributes slots 2, 4 and 16 carry: **unknown: no shipped software or published source names them**. Test that would settle it: find every microcode routine that reads source codes 2, 4 and 16 of `ucode/buzz_isa.md` and follow where its result goes (a colour output, a fog term or an interpolant). (Slot 2 with three components and slot 4 with one are consistent with a secondary colour and a fog coordinate, but nothing names them).
 
 ## Interrupts: IP35 comparison and the flags no code tests
 
@@ -421,7 +421,7 @@ The roles below are read from the order and values of the stores in `odsyReset` 
 
 `odsyReset` in both 6.5.30 builds zeroes the same registers in the same order:
 
-| Offset | Register | Evidence |
+| Offset | Role | Evidence |
 |---|---|---|
 | 0x1014 / 0x101c | flags, "set privileged" and "clear privileged" forms | 6.5.30 writes 0x101c = 0xffffffff; the set and clear naming of the pair is inferred from that |
 | 0x1034 / 0x103c | flag interrupt enable, set and clear forms | 6.5.30 writes 0x103c = 0xffffffff |

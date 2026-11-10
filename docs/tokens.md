@@ -79,15 +79,14 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 | `0x00013c2a` | 0x02a | 16 | from 0x1070 | third of those four |
 | `0x00013c4d` | 0x04d | 16 | 0xf8 | the third sixteen-word bitmap beside 0x04e and 0x04f |
 
-- **unknown.** The field layout of the blocks marked unknown. The kernel replay routine only copies their operands from the shadow record to the FIFO and never decodes them.
+- **unknown: no shipped software or published source decodes them.** The field layout of the blocks marked unknown. The kernel replay routine only copies their operands from the shadow record to the FIFO and never decodes them. Test that would settle each block: find the libGLcore routine that builds its operands (`retools/tools/hostfacts.py`, callers of the sender) and the GL state that changes them, which names the field's role; the bit boundaries need a board capture that replays the block alone with a few chosen operands and reads the drawn effect.
 
 ## Raster state blocks and their fields
 
 Release IRIX 6.5.30m, N32 libGLcore (`libglcore/asm/ODYSSEY/ody_attrib.s` and
 the Odyssey GL driver context assembly unit, with source line numbers) and the kernel textport's start-up stream
 (`buzz_init` in `odsy_tport.o`, read in `ucode/buzz_routines.md`, routine 214). Field
-
-
+names are the GL state each setter changes.
 Each setter keeps a shadow word in the context, rewrites its field, and sends the block
 after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context flag asks for it.
 
@@ -136,11 +135,10 @@ after the settle group (`0x00010443`, 250, `0x00010046` twice) when a context fl
   eight operands, a minimum and a maximum word each, with x in bits 23:12 and y in bits 11:0.
   The kernel textport sends 0x4ff3ff as the first maximum, 1279 by 1023 for its 1280 by 1024
   screen, and 0xffffff as the other three (`buzz_init`, `odsy_tport.o`).
-
 - **0x04a**, word `0x0001084a`, **inferred**: the line width and point size, one
   operand each. The kernel textport sends 0x80 for both (`buzz_init`, `odsy_tport.o`)
   which would read as 1.0 in fixed point with seven
-  fraction bits.
+  fraction bits (**inferred** from the value alone).
 - **0x04a** operands, `__glOdysseyValidateContextRasterMisc` (0x0d969500, 488 bytes, source
   lines 2073 to 2103, the context module) with `__glOdyim_LineWidth` (0x0d95c2a0) and
   `__glOdyim_PointSize` (0x0d95d300): the first operand (context +31828) is the line width and the
