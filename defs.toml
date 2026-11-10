@@ -1868,3 +1868,10 @@ label = "board register display_fifo_port"
 doc = "docs/registers.md"
 regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Display FIFO port"
 binds = [["DEFN", "ODSY_BOARD_DISPLAY_FIFO_PORT", 1]]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "twelve-bit formats need this much memory"
+doc = "docs/display.md"
+regex = "Flag bits 5:4 are not 1 when the variant is nonzero, and not 2 when the variant is 0\\. .*?3\\. Flag bit 8 is clear when the memory is below (\\d+) MB"
+binds = [["DEFN", "ODSY_RGBA12_MIN_MEMORY_MB", 1]]

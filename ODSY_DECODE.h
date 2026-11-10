@@ -272,6 +272,14 @@
  *   V8       128 MB  A
  *   V10      32 MB   B
  *   V12      128 MB  B
+ *
+ * What the host's windowing software does with the kind (established as
+ * the software's behaviour, not as a property of the silicon): below the
+ * memory threshold the four 12-bit-component pixel formats are not
+ * offered and 24-bit accumulation is refused; at or above it, the
+ * variant picks which of the 12-bit formats are offered. A 32 MB board
+ * of either variant is offered the same formats.
  */
+#define ODSY_RGBA12_MIN_MEMORY_MB     128 /* established */
 
 #endif /* ODSY_DECODE_H */
