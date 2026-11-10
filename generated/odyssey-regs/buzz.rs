@@ -1,4 +1,4 @@
-// generated from odsy a06b058bed77 BUZZ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 9df73b89ce69 BUZZ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Command opcodes and the image, copy, pixel-mode, texture-level and sampler
 //! words of the Odyssey geometry and pixel engine's command stream.
@@ -674,9 +674,14 @@ impl CopyControl {
         self.0
     }
 
-    /// Bits 23:19, unknown.
-    pub const fn reserved_23_19(self) -> u32 {
-        (self.0 >> 19) & 0x1f
+    /// Bits 23:20, established.
+    pub const fn dst_field_a(self) -> u32 {
+        (self.0 >> 20) & 0xf
+    }
+
+    /// Bits 19:16, established.
+    pub const fn size_code(self) -> u32 {
+        (self.0 >> 16) & 0xf
     }
 
     /// Bits 29:28, inferred.
