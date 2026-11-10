@@ -1,4 +1,4 @@
-// generated from odsy 33a442eb136e-dirty BUZZ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 4e187ebeace7 BUZZ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Command opcodes and the image, copy, pixel-mode, texture-level and sampler
 //! words of the Odyssey geometry and pixel engine's command stream.
