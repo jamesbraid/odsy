@@ -1,4 +1,4 @@
-// generated from odsy 83fbfa1b67bf DMA_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy a06b058bed77 DMA_DECODE.h - do not edit, regenerate in odsy
 //!
 //! DMA-engine descriptor words of the Odyssey board: the kick words, the
 //! transfer entry and its tag.

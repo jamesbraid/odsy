@@ -1,4 +1,4 @@
-// generated from odsy 7e00547eb687 TEXTURE_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy a06b058bed77 TEXTURE_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Texture state words of the Odyssey command stream: environment, mode, LOD,
 //! offset and target blocks, and the opcodes that carry them.
