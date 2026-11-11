@@ -2,6 +2,16 @@
 
 Each entry says what one routine does to the hardware and cites the instruction addresses it rests on. The facts come from the routine bodies in the shipped binaries and from the linked register and ioctl rows of the inventory. Meanings that come from a datasheet or a callee are marked Inferred, and open points are marked Unknown with the route that would settle them.
 
+## Absolute addresses 0x10000, 0x4000 and 0x1030
+
+Many entries below end with the same open point: which device answers at an absolute address that no linked board window row lists. What the repository can already say, by address:
+
+- **0x10000 (`CISendFc` in the 6.5.30m builds).** **inferred.** The kernel's mapping routine `gf_OdsyMapGfx` places board +0x110000, the command FIFO port, at user offset 0x10000 of a client's mapping (`docs/buzz.md`, "Where `gf_OdsyMapGfx` places each window"; the offsets are **established** from the `v_mapkvsegment` arguments), and the words stored here (attribute words and the `0x2f00c02e` / `0x3000c02e` headers) are the kind of word the kernel sends to that port. So the stores are command FIFO writes, provided the client's mapping starts at virtual address 0. That proviso is the inferred part: the address the library hands to the mapping request has not been read.
+- **0x4000 (`CISendFc` in the patch 4103 builds).** **inferred**, same proviso. User offset 0x4000 is board +0x120000, a window whose use is **unknown** (`docs/buzz.md`, "The windows at board +0x100000, +0x120000 and +0x200000"). The patch 4103 senders store the same fixed command group there that the 6.5.30m senders store to 0x10000, so that build sends command words to this window. Whether it is a second command port or an alias of the FIFO is **unknown**.
+- **0x1030 (and 0x1010 to 0x1034).** **established** that the library treats these as ordinary memory: it loads a list pointer from 0x1030, stores small state values (0, 1, 2) back into it, and passes the doubleword at 0x1020 to a routine as a context pointer (`docs/capability-trees.md`, `docs/libglcore-odyssey-reads.md`). **established** that the kernel never reaches a board offset of 0x1030 by a constant displacement (`docs/kernel.md`, search of every constant displacement). So 0x1030 is a process-global word, not a device register, and "which device" does not apply to it. Which mapping or allocation makes that page resident at 0x1000: **unknown**. If the client mapping did start at virtual 0, the +0x100000 window would cover 0x1030 and contradict the memory use, which is one reason to doubt that the start is 0.
+
+Test that settles the rest: find the caller that supplies the client address to the graphics mapping request (the library or X module code that issues the mapping ioctl, and the fault path that reaches `gf_OdsyMapGfx`), read the address constant, and add it to the window table in `docs/buzz.md`. If the start is 0, then 0x10000 is the FIFO port and 0x4000 the +0x120000 window. If the start is elsewhere, none of the three addresses reaches the board through that table, and the stores to 0x10000 and 0x4000 need another explanation.
+
 - `AllocateGfxMemForTexture` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb398b00 (n64).
   Inferred: the routine fills a per-index slot of the current texture record with the entry arguments and the results of the format and size routines, and creates or replaces the PM object behind it, since its stores go to slots at a stride of 0x44 and it calls `__glOdysseyCreatePMObj`, `__glOdysseyDestroyPMObj` and `__glOdysseyDestroyPMObjGroup`. It gets the current texture record T from `__glOdysseyGetCurrentTexture` (`bgezall` at 0xb398b58, an unconditional call because its register is zero) with the 8-byte word at abs 0x1020 and its first argument, then calls `ChooseSuitableBuzzTexObjFormat` (`bgezall` at 0xb398b70) and `CalcTexelSizes` (`bgezall` at 0xb398ba4) with seven frame addresses from sp-288 to sp-264 as a1 to a7.
   Two `ceilf` calls (`jalr` at 0xb398bd0 and 0xb398c18) round the values a2 minus twice a5 and a3 minus twice a6, each scaled by the 0.0625 literal in the delay slot (`lwc1` at 0xb398bb8), and the two sizes are multiplied. With a4 below 2 (`beq` at 0xb398c40 not taken) the product is kept; with a4 of 2 or more that `beq` is taken and `__glOdysseyImageLogBase2` (`jalr` at 0xb398f20) is called on the product, which its committed entry gives as a rounded-up base-2 logarithm, and 1 shifted left by the result is kept instead. The kept value goes to frame +0x90.
@@ -30,7 +40,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the last two headers are attribute words, since the linked token rows list 0xc180cc19 as
   an attribute with count 3 and 0xffffffff8080d005 (token 0x8080d005) as an attribute with count 4,
   which matches the three floats from +0xc0 and the four from +0x10 that follow them.
-  Unknown: the board register block that the address 0x10000 belongs to; the linked mmio rows list
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board register block that the address 0x10000 belongs to; the linked mmio rows list
   windows 0x110000 and 0x120000 only, so the decode needs the board datasheet.
   Evidence grade: inferred.
 - `CISendFc` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd9fde00 (o32).
@@ -45,7 +55,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   0xffffffff8080d005, and the floats at +0x10, +0x14, +0x18 and +0x1c follow as read (`swc1` at 0xd9fde54, 0xd9fde5c, 0xd9fde64 and, in the return's delay slot, 0xd9fde70).
   Inferred: the constant 0xffffffffc580c407 is an attribute header with a count of 1, since the linked
   token row lists it so, which matches the single float stored after it at +0x90.
-  Unknown: whether 0x10000 lies inside either linked board window (0x110000, 0x120000); only the board's
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): whether 0x10000 lies inside either linked board window (0x110000, 0x120000); only the board's
   address-decode table can say.
   Evidence grade: inferred.
 - `CISendFc` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdad00c8 (o32).
@@ -61,7 +71,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   float taken as-is from +0x90 (`swc1` at 0xdad010c), then the constant 0xffffffff8080d005 (`sw` at
   0xdad0110), then four floats taken as-is from +0x10, +0x14, +0x18 and +0x1c (the `swc1` at 0xdad0118,
   0xdad0120, 0xdad0128 and, in the delay slot of the return, 0xdad0134).
-  Unknown: whether the address 0x4000 lies inside the linked board window 0x110000 or 0x120000; the
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): whether the address 0x4000 lies inside the linked board window 0x110000 or 0x120000; the
   board documentation for that range would settle it.
   Evidence grade: established.
 - `CISendFc` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacbc00 (n32).
@@ -69,7 +79,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The first store writes a header word whose top byte is 0x10 when the byte at +0xb8 of the argument (`lbu` at 0xdacbc00) is zero and 0xf when it is not, shifted left 24 and ORed with 0x2000c02e (`sw` at 0xdacbc28); the second writes the constant 0xffffffffc580c407 (`sw` at 0xdacbc30).
   The word at +0x90 of the argument goes out through $f4 (`lwc1` at 0xdacbc34, `swc1` at 0xdacbc3c), then the constant 0xffffffff8080d005 is written (`sw` at 0xdacbc44), then the words at +0x10, +0x14, +0x18 and +0x1c go out through $f3, $f2, $f1 and $f0 (`swc1` at 0xdacbc4c, 0xdacbc54, 0xdacbc5c and 0xdacbc68).
   The return at 0xdacbc64 leaves v0 at 0xffffffffc580c407 and $f0 at the word at +0x1c, with the last store in its delay slot.
-  Unknown: the device behind the absolute address 0x4000, given that the linked mmio rows cover the windows at 0x110000 and 0x120000 only and no datasheet excerpt covers 0x4000.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device behind the absolute address 0x4000, given that the linked mmio rows cover the windows at 0x110000 and 0x120000 only and no datasheet excerpt covers 0x4000.
   Evidence grade: established.
 - `CISendFc` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3b1470 (n64).
   Streams eight 4-byte words, one after another, to the single absolute address 0x4000 from a straight-line body with no branch or call; `a0` points at a caller record that supplies five of the words.
@@ -178,7 +188,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   slot, 0xd9fb150).
   Inferred: the constant 0xffffffffc580d015 is an attribute header with a count of 4, since the
   linked token row lists it so, which matches the four floats stored after it.
-  Unknown: the board register block holding the target address 0x10000, as only the windows 0x110000
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board register block holding the target address 0x10000, as only the windows 0x110000
   and 0x120000 are linked; the board's address map would settle it.
   Evidence grade: inferred.
 - `RGBSendFc` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x222bdf0 (n64).
@@ -195,7 +205,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Four words from the argument at +0x90, +0x94, +0x98 and +0x9c pass through $f2, $f1, $f0 and $f4 (`lwc1` at 0xdaca854, 0xdaca85c, 0xdaca864 and 0xdaca86c; `swc1` at 0xdaca858, 0xdaca860, 0xdaca868 and 0xdaca874).
   After the constant 0xffffffff8080d005 (`sw` at 0xdaca87c), the words at +0x10, +0x14, +0x18 and +0x1c pass through $f3, $f2, $f1 and $f0 (`swc1` at 0xdaca884, 0xdaca88c, 0xdaca894 and 0xdaca8a0).
   The return at 0xdaca89c gives v0 as 0xffffffffc580d015 and $f0 as the word at +0x1c.
-  Unknown: the target of the stores to 0x4000 in this entry, since no linked row or excerpt matches that address and the windows at 0x110000 and 0x120000 do not contain it.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the target of the stores to 0x4000 in this entry, since no linked row or excerpt matches that address and the windows at 0x110000 and 0x120000 do not contain it.
   Evidence grade: established.
 - `RenderFunc_Interlace` in `usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd9b054c (o32).
   Does not store to a fixed address; it sets and clears bytes at +0xc of the two sub-records whose
@@ -282,7 +292,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the 0x500 and 0x502 exits are error reports, since `__glSetError` per its callee note records the
   first GL error code of the context.
   Unknown: the routines behind the indirect calls at 0x220cab4 and 0x220cacc; callee notes for them would settle it.
-  Unknown: the owner of abs 0x1030 and abs 0x10000 (the latter written at 0x220ca90 and 0x220ca94); no linked register row covers either.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the owner of abs 0x1030 and abs 0x10000 (the latter written at 0x220ca90 and 0x220ca94); no linked register row covers either.
   Evidence grade: inferred.
 - `__glOdyim_Begin` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdaae2f0 (o32).
   The routine sorts its work by two words: the word at abs 0x1018 and the word at +0x168d4 of the
@@ -405,7 +415,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   returns. Otherwise it calls `__glOdysseyTextureDeactivate` (the `bgezall` on `zero` at 0xb3a153c always calls),
   clears the pointer at the context plus 0x18b48 (`sd` at 0xb3a1544) and returns.
   Unknown: the callee reached through the pointer at the start of the context (`jalr` at 0xb3a1574); the bundle has no callee note for it.
-  Unknown: which device or state the word at abs 0x1030 belongs to; no linked register row names that address.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which device or state the word at abs 0x1030 belongs to; no linked register row names that address.
   Evidence grade: established.
 - `__glOdyim_DeleteTextures` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdabc010 (n32).
   Inferred: T, the word at abs 0x1010, is the context pointer, because the `__glSetError` note reads its context from the process-page word at address 4112 (0x1010); arg0 is a count and arg1 an array of 4-byte names, since the loop steps a pointer by 4 per name until it reaches arg1 plus arg0 shifted left 2 (`beq` at 0xdabc128).
@@ -442,7 +452,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   (`sw` at 0xb3a1794). On the way out the word at the context plus 0x18fe0 gets 0x200 ORed in (`lw` at 0xb3a189c, `sw` at
   0xb3a18a8) and abs 0x1030 is set to 2 again (`sw` at 0xb3a18bc).
   Inferred: the 0x501 and 0x502 exits are error reports, since `__glSetError` per its callee note records the first error code of the context.
-  Unknown: which device or state abs 0x1030 belongs to; the linked rows give it no name.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which device or state abs 0x1030 belongs to; the linked rows give it no name.
   Evidence grade: inferred.
 - `__glOdyim_FragmentMaterialfvSGIX` in `usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd98a1a8 (o32).
   Forwards its four arguments to `__glim_FragmentMaterialfvSGIX` and then, for three values of `a0`, sends
@@ -766,7 +776,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The exit at 0xda078e4 returns the value of `__glim_Indexub`, in v0 and f0.
   Inferred: the committed note for `__glOdyim_Indexub` says it writes 0xc580c406 and then the low
   word of its entry argument 0 to absolute 0x10000, so the first call writes two words there.
-  Unknown: the device that takes the two words at absolute 0x10000, and the register at offset
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device that takes the two words at absolute 0x10000, and the register at offset
   +0x270 of the record at 0x1020 that `__glim_Indexub` writes; a register map for each would settle
   them.
   Evidence grade: inferred.
@@ -858,7 +868,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The bail-out at 0x231c410 picks up t9 from Q+0x20, zeroes f14, loads f15 with a single-precision one and
   leaves via the `jr` at 0x231c41c, a0 to a3 as received.
   Unknown: the landing point of the jump at 0x231c41c, whose pointer is read from Q+0x20 while running.
-  Unknown: the identity of whatever sits at abs 0x10000; no linked register row names it.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the identity of whatever sits at abs 0x10000; no linked register row names it.
   Evidence grade: established.
 - `__glOdyim_Vertex2d_mag_line0` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49cbc0 (n64).
   Takes two doubles in f12 and f13, narrows both to single precision, and runs a series of float tests against
@@ -882,7 +892,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Every bail-out lands at 0xb49cccc: t9 comes from Q+0x20, f14 is zeroed, f15 gets a single-precision one, and the
   `jr` at 0xb49ccd8 goes there with a0 to a3 as received.
   Unknown: the destination of the tail jump at 0xb49ccd8; its pointer is only known at run time.
-  Unknown: the device behind abs 0x4000, where three words are stored; nothing in the linked rows labels it.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device behind abs 0x4000, where three words are stored; nothing in the linked rows labels it.
   Evidence grade: established.
 - `__glOdyim_Vertex2d_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdad9380 (o32).
   Two-coordinate vertex sender for the 6.5.30 build, driven by three float tests: narrows the two incoming doubles in f12 and f14 to single precision at entry.
@@ -919,7 +929,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   single-precision one (the `lui` and `mtc1` before the `jr` at 0x231acb0), and jumps with a0 to a3 untouched; the
   doubles in f12 and f13 were already narrowed.
   Unknown: the destination of the tail jump at 0x231acb0, taken from a pointer; a callee note for that address would settle it.
-  Unknown: what sits at abs 0x10000, the target of three stores; the linked rows list nothing for it.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): what sits at abs 0x10000, the target of three stores; the linked rows list nothing for it.
   Evidence grade: established.
 - `__glOdyim_Vertex2d_mag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba8880 (o32).
   Variant of the two-coordinate sender in the vpro-patch build, which targets a different output address: narrows the two incoming doubles in f12 and f14 to single precision at entry.
@@ -1004,7 +1014,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Failure goes to 0x231c558: Q+0x20 into t9, zero into f14, a single-precision one into f15, then the `jr` at
   0x231c564 with the integer arguments unchanged.
   Unknown: which routine the `jr` at 0x231c564 enters; Q+0x20 holds a value known only at run time.
-  Unknown: what the stores to abs 0x10000 reach; the linked rows hold no entry for it.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): what the stores to abs 0x10000 reach; the linked rows hold no entry for it.
   Evidence grade: established.
 - `__glOdyim_Vertex2dv_mag_line0` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb06c0 (n32).
   Reads two doubles through `a0` (`ldc1` at 0xdbb06c0 and 0xdbb06c8), converts each to a float in $f12 and $f13, picks up the pointers at abs 0x1020 (record R) and abs 0x1024 (record Q) (`lw` at 0xdbb06d0 and 0xdbb06d4), and then either writes to abs 0x4000 and returns the word at abs 0x1020, or tail-jumps through the word at Q+0x20.
@@ -1092,7 +1102,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path reads t9 from B+0x20 (`lw` at 0xdacee70), zeroes $f14, puts 0x3f800000 in $f15 and jumps
   at 0xdacee7c; a0 to a3 are untouched.
   Unknown: the routine at the end of that jump, because the pointer in record B is set at run time.
-  Unknown: which device register sits at 0x10000, which neither linked window (0x110000, 0x120000) covers.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which device register sits at 0x10000, which neither linked window (0x110000, 0x120000) covers.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2dv_smallw` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x2319bc0 (n64).
   Shortest of the pointer-argument variants: it loads two doubles from the pointer in a0 (`ldc1` at
@@ -1112,7 +1122,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The other route, at 0x2319c30, takes t9 from Q+0x20, clears f14, sets f15 to a single-precision one, and makes
   the `jr` at 0x2319c3c with the integer arguments untouched.
   Unknown: the routine entered by the `jr` at 0x2319c3c; Q+0x20 supplies a run-time value.
-  Unknown: what answers at abs 0x10000; the linked rows contain no entry.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): what answers at abs 0x10000; the linked rows contain no entry.
   Evidence grade: established.
 - `__glOdyim_Vertex2dv_smallw` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadf80 (n32).
   Submits one vertex whose two coordinates are doubles at a0+0x0 and a0+0x8 (`ldc1` at 0xdbadf80 and
@@ -1210,7 +1220,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path loads t9 from B+0x20 (0xdad005c), clears $f14, sets $f15 to 0x3f800000 and jumps at
   0xdad0068 with a0 to a3 as received.
   Unknown: the target of the indirect jump at 0xdad0068, which depends on a word in record B set at run time.
-  Unknown: the device register at 0x10000; no linked window row (0x110000, 0x120000) includes that address.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device register at 0x10000; no linked window row (0x110000, 0x120000) includes that address.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2f_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231ad80 (n64).
   Single-precision twin of the double-argument vertex fast path: the two floats arrive in f12 and f13 and need no
@@ -1229,7 +1239,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The leaving path begins at 0x231ae1c: t9 from Q+0x20, f14 cleared, f15 set to a single-precision one, then
   the `jr` at 0x231ae28 with a0 to a3 as received.
   Unknown: the target of the `jr` at 0x231ae28; Q+0x20 is read while running.
-  Unknown: what lies behind abs 0x10000; the linked rows list nothing there.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): what lies behind abs 0x10000; the linked rows list nothing there.
   Evidence grade: established.
 - `__glOdyim_Vertex2f_mag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49b6c0 (n64).
   Takes the entry floats `$f12` and `$f13` and, if they pass three float tests against the two
@@ -1260,7 +1270,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x4000 are one record, a header word followed by the two
   coordinates, because they hit the same address and the second and third write the entry
   coordinates.
-  Unknown: the board-side result of the stores to absolute 0x4000, since no linked row names that
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board-side result of the stores to absolute 0x4000, since no linked row names that
   address and the linked board windows start at 0x110000; a reviewed datasheet would settle it.
   Unknown: where the `jr t9` at 0xb49b764 lands; a runtime trace of that jump would name it.
   Evidence grade: inferred.
@@ -1297,7 +1307,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path loads t9 from B+0x20 (0xdacef20), zeroes $f14, sets $f15 to 0x3f800000 and jumps at
   0xdacef2c, a0 to a3 as they came in.
   Unknown: the routine behind the `jr t9` at 0xdacef2c, since record B is filled at run time.
-  Unknown: the register behind address 0x10000; it lies outside both linked windows (0x110000, 0x120000).
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the register behind address 0x10000; it lies outside both linked windows (0x110000, 0x120000).
   Evidence grade: inferred.
 - `__glOdyim_Vertex2f_smallw` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x2319c80 (n64).
   Takes the entry floats `$f12` and `$f13` and, if they clear two float tests against the two
@@ -1325,7 +1335,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x10000 are one record, a first header word and the two
   coordinate words, considering that they hit the same address and the second and third write the
   entry coordinates.
-  Unknown: the board-side handling of the three writes to absolute 0x10000, because the linked board
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board-side handling of the three writes to absolute 0x10000, because the linked board
   windows begin at 0x110000; datasheet evidence for that address would settle the point.
   Unknown: the routine entered through the `jr t9` at 0x2319cec; watching the jump execute would
   settle the target.
@@ -1375,7 +1385,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x4000 are one record, a header followed by the x and y
   words, on the grounds that they hit the same address and the second and third write the entry
   coordinates.
-  Unknown: the device side of absolute 0x4000; no linked row covers it and the board windows begin
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device side of absolute 0x4000; no linked row covers it and the board windows begin
   at 0x110000; a reviewed board datasheet is the remaining route.
   Unknown: the entry point the `jr t9` at 0xb49a6a8 reaches; the destination waits on a trace of
   that jump.
@@ -1403,7 +1413,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path loads t9 from B+0x20 (0xdad1a10), clears $f14, sets $f15 to 0x3f800000 and jumps at
   0xdad1a1c, a0 to a3 untouched.
   Unknown: the routine that jump at 0xdad1a1c reaches, because record B is filled at run time.
-  Unknown: the device register at 0x10000, which falls outside the linked windows (0x110000 and 0x120000).
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device register at 0x10000, which falls outside the linked windows (0x110000 and 0x120000).
   Evidence grade: inferred.
 - `__glOdyim_Vertex2fv_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231c6c0 (n64).
   Loads the float pair at `a0` +0x0 and +0x4 into `$f12` and `$f13` (the `lwc1` at 0x231c6c0 and
@@ -1439,7 +1449,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x10000 form one record, header word, then coordinate one,
   then coordinate two, in view of the fact that they hit the same address and the second and third
   write the entry coordinates.
-  Unknown: the register block that absolute 0x10000 falls in; the linked board windows begin at
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the register block that absolute 0x10000 falls in; the linked board windows begin at
   0x110000 and none covers it; the point waits on a datasheet line for the address.
   Unknown: the place the `jr t9` at 0x231c7dc sends control; an execution trace through the jump
   would answer it.
@@ -1490,7 +1500,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path reads t9 from B+0x20 (0xdad0124), clears $f14, sets $f15 to 0x3f800000 and jumps at
   0xdad0130 with a0 to a3 untouched and $f12 and $f13 holding the two loaded coordinates.
   Unknown: the callee of the jump at 0xdad0130, whose pointer lives in record B and is set at run time.
-  Unknown: the register at address 0x10000, absent from the linked windows at 0x110000 and 0x120000.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the register at address 0x10000, absent from the linked windows at 0x110000 and 0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2fv_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231ae40 (n64).
   Loads the float pair at `a0` +0x0 and +0x4 into `$f12` and `$f13` (the `lwc1` at 0x231ae40 and
@@ -1521,7 +1531,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x10000 are one record, a leading header word with both
   coordinates behind it, as they hit the same address and the second and third write the entry
   coordinates.
-  Unknown: the board register behind absolute 0x10000, because no linked row names it and the board
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board register behind absolute 0x10000, because no linked row names it and the board
   windows listed start at 0x110000; a reviewed register description is the route to an answer.
   Unknown: the target reached by the `jr t9` at 0x231aef0; the target needs a trace taken while the
   jump executes.
@@ -1553,7 +1563,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   leaving `a0` to `a3`, `$f12` and `$f13` as at entry.
   Inferred: the three stores to absolute 0x4000 are one record, one header word and then the two
   coordinates, since they hit the same address and the second and third write the entry coordinates.
-  Unknown: the device-side result of the writes to absolute 0x4000; no linked row names it and the
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the device-side result of the writes to absolute 0x4000; no linked row names it and the
   linked board windows start at 0x110000; only a datasheet entry for that address would answer it.
   Unknown: the destination of the `jr t9` at 0xb49b82c; only a run that records the jump would name
   the target.
@@ -1592,7 +1602,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path loads t9 from B+0x20 (0xdacefa8), leaves $f14 zero, sets $f15 to 0x3f800000 in the delay
   slot of the jump at 0xdacefb4, and passes a0 to a3 along unchanged.
   Unknown: the routine behind that `jr t9`, because record B is filled at run time.
-  Unknown: which register 0x10000 addresses; the linked windows (0x110000 and 0x120000) leave it out.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which register 0x10000 addresses; the linked windows (0x110000 and 0x120000) leave it out.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2i_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdadb4c0 (o32).
   Fast path of a vertex call taking the two integer arguments a0 and a1: it converts them to single-
@@ -1630,7 +1640,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   path emits only three words while the tail receives the original arguments plus fixed a2 and a3.
   Unknown: the routine entered by the `jr t9` at 0xdadb624, which is the word at B+0x20 and whose runtime
   contents would settle it.
-  Unknown: which device answers at 0x10000, since no linked mmio row lists that address and the rows cover
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which device answers at 0x10000, since no linked mmio row lists that address and the rows cover
   0x110000 and 0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2i_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad1a40 (n32).
@@ -1656,7 +1666,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path loads t9 from B+0x20 (0xdad1b58), clears $f14, sets $f15 to 0x3f800000 and jumps at
   0xdad1b64, a0 to a3 as received.
   Unknown: the routine entered by the jump at 0xdad1b64, whose pointer in record B is set at run time.
-  Unknown: the register behind 0x10000, which the linked windows at 0x110000 and 0x120000 do not list.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the register behind 0x10000, which the linked windows at 0x110000 and 0x120000 do not list.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2i_mag_line0` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbaa880 (o32).
   Takes two integer coordinates in a0 and a1, converts each to single precision for the arithmetic
@@ -1708,7 +1718,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   The tail path loads t9 from B+0x20 (0xdbb0b94), clears $f14, sets $f15 to 0x3f800000 and jumps at
   0xdbb0ba0, a0 to a3 unchanged.
   Unknown: the callee of the jump at 0xdbb0ba0, since the pointer in record B is filled at run time.
-  Unknown: the register at absolute 0x4000; the linked windows at 0x110000 and 0x120000 do not list it.
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the register at absolute 0x4000; the linked windows at 0x110000 and 0x120000 do not list it.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2i_mag_line0` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49d0c0 (n64).
   Converts the integers in `a0` and `a1` to single-precision floats in `$f12` and `$f13` and runs
@@ -1744,7 +1754,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x4000 form one record, a header with the two coordinate
   words trailing it, owing to the fact that they hit the same address and the second and third write
   the entry coordinates.
-  Unknown: the board-side result of the three stores to absolute 0x4000, as no linked row covers it
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board-side result of the three stores to absolute 0x4000, as no linked row covers it
   and the windows begin at 0x110000; a datasheet covering that address would close it.
   Unknown: the final target of the `jr t9` at 0xb49d1e0; a captured run of the jump is the remaining
   route.
@@ -1797,7 +1807,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x10000 are one record, a header word and the pair of
   coordinates after it, seeing that they hit the same address and the second and third write the
   incoming coordinates.
-  Unknown: the board-side destination of the writes to absolute 0x10000, as the linked windows start
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): the board-side destination of the writes to absolute 0x10000, as the linked windows start
   at 0x110000 and no row names it; a datasheet naming the address would resolve it.
   Unknown: the address the `jr t9` at 0x231afb8 jumps to; a trace of the running jump would name the
   destination.
@@ -1831,7 +1841,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Inferred: the three stores to absolute 0x4000 are one record, the header word first, then both
   coordinates, given that they hit the same address and the second and third write the incoming
   coordinates.
-  Unknown: how absolute 0x4000 is seen on the board side; the linked rows begin at 0x110000 and none
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): how absolute 0x4000 is seen on the board side; the linked rows begin at 0x110000 and none
   names it; the route is a datasheet line naming the address.
   Unknown: which routine the `jr t9` at 0xb49b8f4 enters; tracing the jump at run time is the route.
   Evidence grade: inferred.
@@ -1860,7 +1870,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   emits only three words while the tail receives the original arguments plus fixed a2 and a3.
   Unknown: the code entered by the `jr t9` at 0xdad8500, which is the word at B+0x20 and whose runtime
   contents would settle it.
-  Unknown: which unit answers at 0x10000, since no linked mmio row lists that address and the rows cover
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which unit answers at 0x10000, since no linked mmio row lists that address and the rows cover
   0x110000 and 0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2i_smallw` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7980 (o32).
@@ -1888,7 +1898,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   emits only three words while the tail receives the original arguments plus fixed a2 and a3.
   Unknown: the target entered by the `jr t9` at 0xdba79fc, which is the word at B+0x20 and whose runtime
   contents would settle it.
-  Unknown: which component answers at 0x4000, since no linked mmio row lists that address and the rows
+  Unknown (known facts and the test that settles it: see "Absolute addresses 0x10000, 0x4000 and 0x1030" above): which component answers at 0x4000, since no linked mmio row lists that address and the rows
   cover 0x110000 and 0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2iv_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdadb640 (o32).
