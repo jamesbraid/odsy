@@ -599,4 +599,24 @@
         attribute slot 4, one operand; the word the driver stores as that
         slot's default; what slot 4 carries is unknown */
 
+/* Colour-mode select words. A sequencer word is (register << 24) | 0x8000 |
+ * the value (see the table-index register above). Two registers are sent as
+ * a pair before colour words: an RGB fill sends value 0 to register 0x22 and
+ * value 2 to register 0x23, a colour-index fill sends 1 and 3. established
+ * as the register numbers and values on the paths that send them (the kernel
+ * text port sends the index pair before every fill; the public OpenBSD
+ * console driver sends the RGB pair before its fill). The reading of the
+ * pair as a colour-handling mode is inferred, the reset value is unknown,
+ * and no shipped path relies on the reset mode. */
+#define BUZZ_SEQ_REG_COLOUR_MODE_A     0x22 /* established */
+#define BUZZ_SEQ_REG_COLOUR_MODE_B     0x23 /* established */
+#define BUZZ_SEQ_COLOUR_MODE_A_RGB     0 /* established */
+#define BUZZ_SEQ_COLOUR_MODE_A_INDEX   1 /* established */
+#define BUZZ_SEQ_COLOUR_MODE_B_RGB     2 /* established */
+#define BUZZ_SEQ_COLOUR_MODE_B_INDEX   3 /* established */
+#define BUZZ_SEQ_WORD_COLOUR_A_RGB     0x22008000u /* established */
+#define BUZZ_SEQ_WORD_COLOUR_B_RGB     0x23008002u /* established */
+#define BUZZ_SEQ_WORD_COLOUR_A_INDEX   0x22008001u /* established */
+#define BUZZ_SEQ_WORD_COLOUR_B_INDEX   0x23008003u /* established */
+
 #endif /* BUZZ_DECODE_H */

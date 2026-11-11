@@ -58,6 +58,26 @@ pub const SEQ_REG_TABLE_INDEX: u32 = 49;
 pub const BLK_SLOT_PAIR: u32 = 0x1ea;
 /// established: opcode 0x26, attribute slot 4, one operand; the word the driver stores as that slot's default; what slot 4 carries is unknown.
 pub const SLOT4_DEFAULT_WORD: u32 = 0xc480c426;
+/// established.
+pub const SEQ_REG_COLOUR_MODE_A: u32 = 34;
+/// established.
+pub const SEQ_REG_COLOUR_MODE_B: u32 = 35;
+/// established.
+pub const SEQ_COLOUR_MODE_A_RGB: u32 = 0;
+/// established.
+pub const SEQ_COLOUR_MODE_A_INDEX: u32 = 1;
+/// established.
+pub const SEQ_COLOUR_MODE_B_RGB: u32 = 2;
+/// established.
+pub const SEQ_COLOUR_MODE_B_INDEX: u32 = 3;
+/// established.
+pub const SEQ_WORD_COLOUR_A_RGB: u32 = 0x22008000;
+/// established.
+pub const SEQ_WORD_COLOUR_B_RGB: u32 = 0x23008002;
+/// established.
+pub const SEQ_WORD_COLOUR_A_INDEX: u32 = 0x22008001;
+/// established.
+pub const SEQ_WORD_COLOUR_B_INDEX: u32 = 0x23008003;
 
 /// `op_texlevel(i)` is the opcode of descriptor `i`: `0x0e80` plus `i`.
 pub const fn op_texlevel(i: u32) -> u32 {
