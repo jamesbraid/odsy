@@ -130,17 +130,17 @@ After issue the owner context stores the op number at +256 or +248 depending on 
 
 **established** from the kernel handler (`odsy_pmm.o` .text 0x1fa8-0x2633, `copyin` and `copyout` of 80 bytes) and its two libGLcore senders, `__glOdysseyAssignToPMObj` (the Odyssey GL driver pixmap object assembly unit, N32 0x0d9c6d20-0x0d9c6e73) and `__glOdysseyReadFromPMObj` (0x0d9c6e80-0x0d9c6fa7):
 
-| Offset | Content |
-|---|---|
-| 0 | 0 |
-| 4 | memory group id |
-| 8 | halfword entry index within the group |
-| 16 | user buffer address (zero-extended 32-bit) |
-| 24 | length in bytes |
-| 28-59 | the 32-byte transfer header (the caller's, with word 5 masked to 17 bits) |
-| 60 | flags: bit 0 set by the write sender (`AssignToPMObj` ORs in 1) and clear from the read sender; bit 1 makes the kernel wait for the transfer (`odsyDMAWait` mode 1) before replying; bit 3 the unclipped and bit 4 the clipped path of `odsyDMAOps`; bits 23:16 stored into byte 18 of the memory object |
-| 64 | a caller word passed through |
-| 72 | reply: the op number of the last operation (libGLcore keeps it for a later `MMwaitXfr` unless it asked for the wait) |
+| Offset | Content | Grade |
+|---|---|---|
+| 0 | 0 | established |
+| 4 | memory group id | established |
+| 8 | halfword entry index within the group | established |
+| 16 | user buffer address (zero-extended 32-bit) | established |
+| 24 | length in bytes | established |
+| 28-59 | the 32-byte transfer header (the caller's, with word 5 masked to 17 bits) | established |
+| 60 | flags: bit 0 set by the write sender (`AssignToPMObj` ORs in 1) and clear from the read sender; bit 1 makes the kernel wait for the transfer (`odsyDMAWait` mode 1) before replying; bit 3 the unclipped and bit 4 the clipped path of `odsyDMAOps`; bits 23:16 stored into byte 18 of the memory object | established |
+| 64 | a caller word passed through | established |
+| 72 | reply: the op number of the last operation (libGLcore keeps it for a later `MMwaitXfr` unless it asked for the wait) | established |
 
 - **established.** Before calling `odsyDMAOps` the handler rewrites the top byte of header word 7 (request offset 56) to `0x32 | (bit 0 of +60 clear ? 0x01 : 0) | (old bit 27) | (old bit 30)`, keeping bits 23:0. So bits 29, 28 and 25 are always set, bit 24 is set for a read (board to host) and clear for a write, and the caller controls only bits 27, 30 and 23:0. Because the entries copy the header, bit 24 is also the read bit the entry section above says makes the last entry request a completion interrupt: reads finish on an interrupt, writes on the tag alone.
 - The image-move senders in libGLcore (the image-move module lines near 2607 and 2703 of the decompiled source) pass flag words of the form `1 or 3 or 9 or 0xb`, optionally `| 0x10`, `| 8`, with a per-object byte in bits 23:16.
@@ -188,26 +188,26 @@ The board record itself is driver state, not hardware. Its offsets are defined i
 
 **established** for constant forms: every `lui`/`ori` pair that builds a class-1 word (`BUZZ.h` section 1) or a per-vertex or state word, found in every IP30 `odsy*.o` function. Words built any other way (loaded from shadow memory, as the replay routines do for their operands) are not in the list; the operands the replay routines load are in `docs/buzz.md` sections 4 and 8. Count-0 words are followed by no operands.
 
-| Routine | Words |
-|---|---|
-| the set graphics-context Odyssey driver request (textport state) | 0x10019, 0x10404, 0x10422, 0x10424, 0x10c21, 0x11017, 0x11023, colour words 0xc580c406, 0xc580cc08, 0xce80cc08 |
-| `odsy_sboxfi`, `odsy_pnt2i` | 0x10019, 0x10046, 0x10443, 0x14001, 0x14400 (pnt2i), 0x8080c800 (pnt2i) |
-| `odsy_drawbitmap` | 0x10019, 0x10046, 0x1043f, 0x10443, 0x13c4e, 0x13c4f, 0x14001, 0x14400, 0x8080c800 |
-| `odsy_color` | 0xc580c406 |
-| `odsy_mm_obj_xfr_bs` | 0x10018, 0x10019, 0x10046, 0x10443 |
-| `gfP_OdsyClearBuffer` | 0x10019, 0x10046, 0x10443, 0x14001, 0x8f80a92f |
-| `gf_OdsyPcxSwap` | 0x10443, 0x10444, 0x10850, 0x14001, 0x14400 |
-| `odsyDMAOp` | 0x10019, 0x10443, 0x10658, 0x10a5a, 0x14001 |
-| `odsyDMAOps` | 0x10443, 0x10444, 0x10658, 0x10a5a, 0x14400, 0x8080c800, 0xcf80a92f |
-| `odsyClipPush` | 0x10019, 0x10443, 0x10840, 0x10841, 0x1204b, 0x9000bda2, 0x31008140, 0x90008116, and the wide doubleword writes to registers 0x608-0x60f (`docs/opengl.md`, the clip push) |
-| `odsyRestartContext` | 0x10019, 0x10400, 0x10443, 0x10658, 0x10850, 0x11017, 0x8080c800, 0xcf80a92f |
-| `odsyPushBufferSelect` | 0x10019, 0x10046, 0x10424, and the wide doubleword writes to registers 0x608 and 0x609 |
-| `odsyInitCfifo` | 0x10046 (plus the microcode load words of `BUZZ.h` section 5) |
-| `odsyResetHwShadow` | the default attribute words of `docs/buzz.md` section 8 |
-| `odsyRestoreGfe` | 0x14001, 0x14400 |
-| `odsyRestoreXform`, `odsyRestoreVB`, `odsySetProgram` | 0x9080bdc8, 0x908091df; 0x908091ea; 0x90808800 |
-| `odsyZeroOut` | 0xcf809014 |
-| `odsyRestoreRaster` | every block id in the replay table of `docs/buzz.md` section 8, with 0x10018, 0x10019, 0x10404-0x10407, 0x10415, 0x1041e-0x10420, 0x10422, 0x10424, 0x1043f, 0x10443, 0x1044c, 0x10451, 0x10452, 0x10456-0x10458, 0x10658 |
+| Routine | Words | Grade |
+|---|---|---|
+| the set graphics-context Odyssey driver request (textport state) | 0x10019, 0x10404, 0x10422, 0x10424, 0x10c21, 0x11017, 0x11023, colour words 0xc580c406, 0xc580cc08, 0xce80cc08 | established (constant forms) |
+| `odsy_sboxfi`, `odsy_pnt2i` | 0x10019, 0x10046, 0x10443, 0x14001, 0x14400 (pnt2i), 0x8080c800 (pnt2i) | established (constant forms) |
+| `odsy_drawbitmap` | 0x10019, 0x10046, 0x1043f, 0x10443, 0x13c4e, 0x13c4f, 0x14001, 0x14400, 0x8080c800 | established (constant forms) |
+| `odsy_color` | 0xc580c406 | established (constant forms) |
+| `odsy_mm_obj_xfr_bs` | 0x10018, 0x10019, 0x10046, 0x10443 | established (constant forms) |
+| `gfP_OdsyClearBuffer` | 0x10019, 0x10046, 0x10443, 0x14001, 0x8f80a92f | established (constant forms) |
+| `gf_OdsyPcxSwap` | 0x10443, 0x10444, 0x10850, 0x14001, 0x14400 | established (constant forms) |
+| `odsyDMAOp` | 0x10019, 0x10443, 0x10658, 0x10a5a, 0x14001 | established (constant forms) |
+| `odsyDMAOps` | 0x10443, 0x10444, 0x10658, 0x10a5a, 0x14400, 0x8080c800, 0xcf80a92f | established (constant forms) |
+| `odsyClipPush` | 0x10019, 0x10443, 0x10840, 0x10841, 0x1204b, 0x9000bda2, 0x31008140, 0x90008116, and the wide doubleword writes to registers 0x608-0x60f (`docs/opengl.md`, the clip push) | established (constant forms) |
+| `odsyRestartContext` | 0x10019, 0x10400, 0x10443, 0x10658, 0x10850, 0x11017, 0x8080c800, 0xcf80a92f | established (constant forms) |
+| `odsyPushBufferSelect` | 0x10019, 0x10046, 0x10424, and the wide doubleword writes to registers 0x608 and 0x609 | established (constant forms) |
+| `odsyInitCfifo` | 0x10046 (plus the microcode load words of `BUZZ.h` section 5) | established (constant forms) |
+| `odsyResetHwShadow` | the default attribute words of `docs/buzz.md` section 8 | established (constant forms) |
+| `odsyRestoreGfe` | 0x14001, 0x14400 | established (constant forms) |
+| `odsyRestoreXform`, `odsyRestoreVB`, `odsySetProgram` | 0x9080bdc8, 0x908091df; 0x908091ea; 0x90808800 | established (constant forms) |
+| `odsyZeroOut` | 0xcf809014 | established (constant forms) |
+| `odsyRestoreRaster` | every block id in the replay table of `docs/buzz.md` section 8, with 0x10018, 0x10019, 0x10404-0x10407, 0x10415, 0x1041e-0x10420, 0x10422, 0x10424, 0x1043f, 0x10443, 0x1044c, 0x10451, 0x10452, 0x10456-0x10458, 0x10658 | established (constant forms) |
 
 Observations (**established** as values): the settle words 0x10019, 0x10046 and 0x10443 are the three group openers of `BUZZ.h` section 5; 0x14001 and 0x14400 are the primitive end and begin words; 0x10850 and 0x10443/0x10444 appear only around context save and DMA. The only count-8 words sent by the kernel are 0x12030-0x12033 and 0x1204b (`docs/buzz.md` section 9). What blocks 0x018, 0x019, 0x043, 0x044, 0x046, 0x050 and 0x258 do on the board: **unknown** (`docs/open-questions.md`) (the board's state read through 0x1014 and 0x1064 before and after each, named for 0x054 in `docs/buzz.md`). The kernel's operand values for each block are the shadow words listed in `docs/buzz.md` section 8.
 

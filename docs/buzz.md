@@ -60,21 +60,21 @@ The words below are written to the command FIFO by the immediate-mode entry poin
 
 ### Opcodes (established as values, in the functions named)
 
-| Opcode | Word (slot 0 base) | Sender |
-|---|---|---|
-| 0x00, 0x01 | 0x8080c800 / c801 | Vertex2 integer / float |
-| 0x02, 0x03 | 0x8080cc02 / cc03 | Vertex3 integer / float |
-| 0x04, 0x05 | 0x8080d004 / d005 | Vertex4 integer / float |
-| 0x06, 0x07 | 0xc580c406 / c407 | Index integer / float |
-| 0x08 to 0x0e | 0xc580cc08 to cc0e | Color3 ub, us, ui, b, s, i, float |
-| 0x0f to 0x15 | 0xc580d00f to d015 | Color4 ub, us, ui, b, s, i, float |
-| 0x16 to 0x19 | 0xc180cc16 to cc19 | Normal3 b, s, i, float |
-| 0x1e, 0x1f | 0xc380c41e / c41f | TexCoord1 integer / float |
-| 0x20, 0x21 | 0xc380c820 / c821 | TexCoord2 integer / float |
-| 0x22, 0x23 | 0xc380cc22 / cc23 | TexCoord3 integer / float |
-| 0x24, 0x25 | 0xc380d024 / d025 | TexCoord4 integer / float |
-| 0x2f to 0x32 | 0xc680d02f, c780d030, c880d031, c980d032 | clipped-vertex senders (`CISendClipped*`, `RGBSendClipped*`), four floats each, slots 6 to 9 |
-| 0x35 to 0x38 | 0xca80d035, cb80d036, cc80d037, cd80d038 | same senders, slots 10 to 13 |
+| Opcode | Word (slot 0 base) | Sender | Grade |
+|---|---|---|---|
+| 0x00, 0x01 | 0x8080c800 / c801 | Vertex2 integer / float | established |
+| 0x02, 0x03 | 0x8080cc02 / cc03 | Vertex3 integer / float | established |
+| 0x04, 0x05 | 0x8080d004 / d005 | Vertex4 integer / float | established |
+| 0x06, 0x07 | 0xc580c406 / c407 | Index integer / float | established |
+| 0x08 to 0x0e | 0xc580cc08 to cc0e | Color3 ub, us, ui, b, s, i, float | established |
+| 0x0f to 0x15 | 0xc580d00f to d015 | Color4 ub, us, ui, b, s, i, float | established |
+| 0x16 to 0x19 | 0xc180cc16 to cc19 | Normal3 b, s, i, float | established |
+| 0x1e, 0x1f | 0xc380c41e / c41f | TexCoord1 integer / float | established |
+| 0x20, 0x21 | 0xc380c820 / c821 | TexCoord2 integer / float | established |
+| 0x22, 0x23 | 0xc380cc22 / cc23 | TexCoord3 integer / float | established |
+| 0x24, 0x25 | 0xc380d024 / d025 | TexCoord4 integer / float | established |
+| 0x2f to 0x32 | 0xc680d02f, c780d030, c880d031, c980d032 | clipped-vertex senders (`CISendClipped*`, `RGBSendClipped*`), four floats each, slots 6 to 9 | established |
+| 0x35 to 0x38 | 0xca80d035, cb80d036, cc80d037, cd80d038 | same senders, slots 10 to 13 | established |
 
 **established** for every row above, re-read in a later pass with `retools/tools/hostfacts.py` on the N32 `libGLcore.so` (IRIX 6.5.30m): each word is the value the sender's `lui`/`ori` pair builds. Vertex2/3/4 and Index, integer and float, in `__glOdyim_Vertex*` and `__glOdyim_Index*`; Color3 and Color4 in the display-list `__glOdylc_Color*` senders (all seven type codes) and the immediate-mode `ub` and float forms; Normal3 `b`, `s`, `i`, float and TexCoord1 to 4 integer and float in `__glOdylc_*`. The four-operand count of the slot 6 to 13 words is the count field of the word itself (0xd02f has bits 13:10 = 4); that the operands are floats is **inferred** from the default material values `__glOdysseyInitLighting` sends through them. `CISendClippedFmN`, `CISendClippedBmFmN`, `RGBSendClippedFmN` and `RGBSendClippedBmFmN` (and `__glOdysseyInitLighting`) form the slot 6 to 9 words; the `BmFm` (front and back material) forms also form slots 10 to 13.
 
@@ -131,14 +131,14 @@ Hosts: IP30 read in full; the IP35 `odsy_ctxsw` is 8 lines longer and was not di
 
 **Saved record layout, as the restore code reads it.** **established** as offsets (`odsyRestoreVertex`, `odsyRestoreVB`, the `restore*` walkers in `odsy_ctxsw.o`); the record is the one at offset 192 of the hardware state:
 
-| Offset | Content |
-|---|---|
-| 140 + 8v | a descriptor word for vertex v (v = 0..3); 2-bit fields at bits 17:16, 15:14 and below select, per attribute, which of four stored entries belongs to the vertex |
-| 256 + 4v | the position command word of vertex v (an attribute word, `BUZZ.h` section 1), COUNT in bits 13:10 |
-| 768 + 16v + 4j | its operands, j < COUNT |
-| 384 + 4k, 1280 + 16k + 4j | first attribute slot: four stored command words (k from descriptor bits 17:16) and their operands |
-| 400 + 4k, 1344 + 16k + 4j | second attribute slot (k from bits 15:14) |
-| 2300 | completion word |
+| Offset | Content | Grade |
+|---|---|---|
+| 140 + 8v | a descriptor word for vertex v (v = 0..3); 2-bit fields at bits 17:16, 15:14 and below select, per attribute, which of four stored entries belongs to the vertex | established |
+| 256 + 4v | the position command word of vertex v (an attribute word, `BUZZ.h` section 1), COUNT in bits 13:10 | established |
+| 768 + 16v + 4j | its operands, j < COUNT | established |
+| 384 + 4k, 1280 + 16k + 4j | first attribute slot: four stored command words (k from descriptor bits 17:16) and their operands | established |
+| 400 + 4k, 1344 + 16k + 4j | second attribute slot (k from bits 15:14) | established |
+| 2300 | completion word | established |
 
 Re-read with `retools/tools/hostfacts.py` on `odsy_ctxsw.o` and its committed disassembly: **established** for the offsets 140 + 8v, 256 + 4v, 768 (operand base), 384 and 400 with their operand bases 1280 and 1344, and 2300 (stored as zero before the save request and loaded in the poll loops). The 16-byte stride of the operand arrays and the "k from descriptor bits" selection of the stored entry rest on the same full read of `odsyRestoreVertex` and `odsyRestoreVB`; the stride was not isolated again, so treat it as **inferred** from the 1280 and 1344 bases being 64 apart for four entries.
 
@@ -222,17 +222,17 @@ Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_d
 
 **established** as stores (offsets from the board PIO base; each word is built in a record copy by read-modify-write and then stored once):
 
-| Offset | Content as written |
-|---|---|
-| 0x34 | bits 31:24 vector of source 0; bits 23, 22, 21 set; bits 19:16 = `xtalk_intr_target_get` & 0xf; bits 15:0 = bits 47:32 of the source 0 address |
-| 0x3c | bits 31:0 of the source 0 address |
-| 0x5c | bit 13 set, bits 12:8 cleared, then bits 12:10 and 7:0 set |
-| 0x1034 | the interrupt enable mask (`BUZZ.h` flags section) |
-| 0x103c | `odsyDisableInterrupts` stores 0xffffffff |
-| 0x1044 | bits 28:25 = the target number (bits 19:16 of the 0x34 word), bit 29 set, bits 24:22, 19 and 18:16 set, bits 15:0 = bits 47:32 of the source 1 address |
-| 0x104c | bits 31:0 of the source 1 address |
-| 0x1054 | bits 7:0 vector of source 1, 15:8 source 2, 23:16 source 3, 31:24 source 4 |
-| 0x105c | interrupt packet header word: three ten-bit groups (bits 9:0, 19:10, 29:20), each a barrier bit (bit 0 of the group, set), a 3-bit destination id (bits 5:3 of the group, 7) and the 4-bit target number (bits 9:6 of the group); the kernel fills the three groups identically (`docs/registers.md`, 0x105c) |
+| Offset | Content as written | Grade |
+|---|---|---|
+| 0x34 | bits 31:24 vector of source 0; bits 23, 22, 21 set; bits 19:16 = `xtalk_intr_target_get` & 0xf; bits 15:0 = bits 47:32 of the source 0 address | established |
+| 0x3c | bits 31:0 of the source 0 address | established |
+| 0x5c | bit 13 set, bits 12:8 cleared, then bits 12:10 and 7:0 set | established |
+| 0x1034 | the interrupt enable mask (`BUZZ.h` flags section) | established |
+| 0x103c | `odsyDisableInterrupts` stores 0xffffffff | established |
+| 0x1044 | bits 28:25 = the target number (bits 19:16 of the 0x34 word), bit 29 set, bits 24:22, 19 and 18:16 set, bits 15:0 = bits 47:32 of the source 1 address | established |
+| 0x104c | bits 31:0 of the source 1 address | established |
+| 0x1054 | bits 7:0 vector of source 1, 15:8 source 2, 23:16 source 3, 31:24 source 4 | established |
+| 0x105c | interrupt packet header word: three ten-bit groups (bits 9:0, 19:10, 29:20), each a barrier bit (bit 0 of the group, set), a 3-bit destination id (bits 5:3 of the group, 7) and the 4-bit target number (bits 9:6 of the group); the kernel fills the three groups identically (`docs/registers.md`, 0x105c) | established |
 
 - **established.** `odsyDisableInterrupts` clears bit 21 of the 0x34 word, clears bits 18:16 of the 0x1044 word, then writes 0xffffffff to 0x1034's neighbour 0x103c. (It stores to record offset 4156 = 0x103c.)
 - **inferred.** 0x34/0x3c is the error-widget interrupt (vector, target, address of the crossbar error source) and bit 21 of 0x34 its enable; 0x1054 carries the four other sources' vector numbers. 0x103c is a write-one-to-clear counterpart of 0x1034, because `odsyDisableInterrupts` writes all ones to it and `odsyLowaterInterrupt` writes 0x200 to it. Not confirmed by hardware.
@@ -283,38 +283,38 @@ Each offset has its own entry, with the function that reaches it and its derivat
 
 The full set of blocks the board holds as context state is what the kernel replays after a lost context (`odsyRestoreRaster`, `odsy_ctxsw.o`, decompiled with m2c from `odsy_kernel/disasm/odsy_ctxsw/`). **established**: each row is a class-1 word the routine sends, its operand count, and the offset in the hardware-shadow record (the structure at offset 0xb0 of the routine's second argument) it reads the operands from, in send order. Settle groups (0x043, 0x046, 0x019) between them are left out.
 
-| Block | Words | Shadow offset | Known from |
-|---|---|---|---|
-| 0x017 | 4 | 0x1b24 | |
-| 0x023 | 4 | 0xe8 | X module and textport send it with the 0x022 sequencer pair (`docs/opengl.md`) |
-| 0x052 | 1 | 0xe4 | |
-| 0x01d | 2 | 0xa8 | |
-| 0x053 | 5 | 0x1b34 | rectangle copy (`docs/opengl.md`) |
-| 0x004, 0x005, 0x022, 0x015, 0x056 | 1 each | 0x84, 0x88, 0xc8, 0x8c, 0x1cb0 | 0x004 raster mode (textport) |
-| 0x048 | 3 | 0xcc | |
-| 0x03f | 1 | 0x80 | glyph set-up (textport sends 6) |
-| 0x04e, 0x04f | 16 each | 0x00, 0x40 | 32 x 32 stipple or glyph bitmap (`BUZZ.h` section 5) |
-| 0x04a | 2 | 0xdc | |
-| 0x01b | 5 | 0x138 | texture environment |
-| 0x016 | 7 | 0x14c | texture modes |
-| 0x051, 0x04c | 1 each | 0x1b20, 0x1cac | |
-| 0x021 | 3 | 0xbc | blender: word 0 equation (15:13) and factor codes (12:6, 5:0), words 1 and 2 constant colour (`docs/raster.md`, logic operations) |
-| 0x030-0x033, 0x03d or 0x03b | 4 x 8, 2 or 8 | 0x1174 | post-filter scale and bias, by the mode word at shadow 0x1170 (1 or other: 0x030-0x033; 3: 0x03d; 2: 0x03b) |
-| 0x028-0x02b, 0x03a or 0x038 | 4 x 16, 4 or 16 | 0x1070 | a second three-layout set chosen by the word at 0x106c (1 or other: 0x028-0x02b; 3: 0x03a; 2: 0x038) |
-| 0x01e, 0x01f, 0x020, 0x058 | 1 each | 0xb0, 0xb4, 0xb8, 0xd8 | |
-| 0x01a | 6 | 0x90 | |
-| 0x047 | 6 | 0x1b94 | |
-| 0x013 | 4 | 0x1bac | texture LOD |
-| 0x03e and the tables | 3, then 0x200-0x24f and 0x280+i | 0x11f4 | texture offset, five tables, level descriptors (`BUZZ.h` section 2) |
-| 0x006 | 1 | 0x468 | |
-| 0x018 | 0 | | |
-| 0x01c | 3 | 0x1a04 | |
-| 0x057 | 1 | 0x1cb4 | |
-| 0x04d | 16 | 0xf8 | a third 16-word bitmap beside 0x04e/0x04f |
-| 0x042 | 2 | 0x1ca4 | |
-| 0x007 | 1 operand, sent 8 times with indexes 7 down to 0, each followed by block 0x250 plus the index (6 operands) | 0x1bdc plus 24 per index | per-index entry select; see `docs/words.md` |
-| 0x04b | 8 | 0x2b40 | window descriptor (`docs/opengl.md`) |
-| 0x041, 0x024, 0x040 | 2, 1, 2 | 0x2b60, 0x2b68, 0x2b6c | 0x040/0x041 also sent by `odsyClipPush` |
+| Block | Words | Shadow offset | Known from | Grade |
+|---|---|---|---|---|
+| 0x017 | 4 | 0x1b24 | | established |
+| 0x023 | 4 | 0xe8 | X module and textport send it with the 0x022 sequencer pair (`docs/opengl.md`) | established |
+| 0x052 | 1 | 0xe4 | | established |
+| 0x01d | 2 | 0xa8 | | established |
+| 0x053 | 5 | 0x1b34 | rectangle copy (`docs/opengl.md`) | established |
+| 0x004, 0x005, 0x022, 0x015, 0x056 | 1 each | 0x84, 0x88, 0xc8, 0x8c, 0x1cb0 | 0x004 raster mode (textport) | established |
+| 0x048 | 3 | 0xcc | | established |
+| 0x03f | 1 | 0x80 | glyph set-up (textport sends 6) | established |
+| 0x04e, 0x04f | 16 each | 0x00, 0x40 | 32 x 32 stipple or glyph bitmap (`BUZZ.h` section 5) | established |
+| 0x04a | 2 | 0xdc | | established |
+| 0x01b | 5 | 0x138 | texture environment | established |
+| 0x016 | 7 | 0x14c | texture modes | established |
+| 0x051, 0x04c | 1 each | 0x1b20, 0x1cac | | established |
+| 0x021 | 3 | 0xbc | blender: word 0 equation (15:13) and factor codes (12:6, 5:0), words 1 and 2 constant colour (`docs/raster.md`, logic operations) | established |
+| 0x030-0x033, 0x03d or 0x03b | 4 x 8, 2 or 8 | 0x1174 | post-filter scale and bias, by the mode word at shadow 0x1170 (1 or other: 0x030-0x033; 3: 0x03d; 2: 0x03b) | established |
+| 0x028-0x02b, 0x03a or 0x038 | 4 x 16, 4 or 16 | 0x1070 | a second three-layout set chosen by the word at 0x106c (1 or other: 0x028-0x02b; 3: 0x03a; 2: 0x038) | established |
+| 0x01e, 0x01f, 0x020, 0x058 | 1 each | 0xb0, 0xb4, 0xb8, 0xd8 | | established |
+| 0x01a | 6 | 0x90 | | established |
+| 0x047 | 6 | 0x1b94 | | established |
+| 0x013 | 4 | 0x1bac | texture LOD | established |
+| 0x03e and the tables | 3, then 0x200-0x24f and 0x280+i | 0x11f4 | texture offset, five tables, level descriptors (`BUZZ.h` section 2) | established |
+| 0x006 | 1 | 0x468 | | established |
+| 0x018 | 0 | | | established |
+| 0x01c | 3 | 0x1a04 | | established |
+| 0x057 | 1 | 0x1cb4 | | established |
+| 0x04d | 16 | 0xf8 | a third 16-word bitmap beside 0x04e/0x04f | established |
+| 0x042 | 2 | 0x1ca4 | | established |
+| 0x007 | 1 operand, sent 8 times with indexes 7 down to 0, each followed by block 0x250 plus the index (6 operands) | 0x1bdc plus 24 per index | per-index entry select; see `docs/words.md` | established |
+| 0x04b | 8 | 0x2b40 | window descriptor (`docs/opengl.md`) | established |
+| 0x041, 0x024, 0x040 | 2, 1, 2 | 0x2b60, 0x2b68, 0x2b6c | 0x040/0x041 also sent by `odsyClipPush` | established |
 
 - The 0x028-0x02b / 0x03a / 0x038 choice is a new instance of the three-layout pattern of the post-filter blocks: one shadow region (0x1070-0x116f, 64 words) goes out as four 16-word blocks, one 16-word block or one 4-word block. libGLcore sends 0x00013c28-0x00013c2b, 0x0001103a and 0x00013c38 only from the context module (`__glOdysseyValidateHardware`). What these blocks hold: **unknown**; their size (a 4 x 4 matrix per block, or four 16-entry sets) is the only clue.
 - **established.** Every block id the kernel replays is below 0x060 apart from the tables (0x200-0x24f), the level descriptors (0x280+) and 0x258 (`0x00010658` with one operand, the last word of the routine). A scan of `lui 1` / `ori` command words in libGLcore, the X module and the kernel finds no class-1 id between 0x060 and 0x1ff that is stored to the FIFO; the libGLcore hits in that range are context offsets, not command words (checked by their use as load and store displacements). So the raster state the board holds as context is the set above. **inferred**, because the scan relies on the immediate form.
@@ -324,18 +324,18 @@ The full set of blocks the board holds as context state is what the kernel repla
 
 **established.** `odsyResetHwShadow` (`odsy_ctxsw.o`) clears 0x900 bytes of the vertex shadow and stores one default attribute word per slot (`BUZZ_ATTR_WORD` layout, `BUZZ.h` section 1). Slot is bits 31:24 (0x80 for position, 0xc0 | slot otherwise); the opcode is bits 9:0; the count bits 13:10.
 
-| Slot | Default word | Opcode | Count | Note |
-|---|---|---|---|---|
-| 0 (position) | 0x8080c800 | 0x00 | 2 | Vertex2 integer |
-| 1 | 0xc180cc18 | 0x18 | 3 | a Normal3 form (0x16-0x19 are Normal3) |
-| 2 | 0xc280cc1c | 0x1c | 3 | |
-| 3 | 0xc380c41e | 0x1e | 1 | TexCoord1 integer |
-| 4 | 0xc480c426 | 0x26 | 1 | |
-| 5 | 0xc580cc0d | 0x0d | 3 | Color3 (0x08-0x0e), the int form |
-| 6-9 | 0xc680d02f .. 0xc980d032 | 0x2f-0x32 | 4 | the clipped-vertex senders' forms |
-| 10-13 | 0xca80d035 .. 0xcd80d038 | 0x35-0x38 | 4 | as above |
-| 14 | 0xce80c406 | 0x06 | 1 | Index |
-| 16 | 0xd080c433, 0xd080cc34, 0xd080c439, 0xd080cc3a | 0x33, 0x34, 0x39, 0x3a | 1, 3, 1, 3 | four words for one slot |
+| Slot | Default word | Opcode | Count | Note | Grade |
+|---|---|---|---|---|---|
+| 0 (position) | 0x8080c800 | 0x00 | 2 | Vertex2 integer | established |
+| 1 | 0xc180cc18 | 0x18 | 3 | a Normal3 form (0x16-0x19 are Normal3) | established |
+| 2 | 0xc280cc1c | 0x1c | 3 | | established |
+| 3 | 0xc380c41e | 0x1e | 1 | TexCoord1 integer | established |
+| 4 | 0xc480c426 | 0x26 | 1 | | established |
+| 5 | 0xc580cc0d | 0x0d | 3 | Color3 (0x08-0x0e), the int form | established |
+| 6-9 | 0xc680d02f .. 0xc980d032 | 0x2f-0x32 | 4 | the clipped-vertex senders' forms | established |
+| 10-13 | 0xca80d035 .. 0xcd80d038 | 0x35-0x38 | 4 | as above | established |
+| 14 | 0xce80c406 | 0x06 | 1 | Index | established |
+| 16 | 0xd080c433, 0xd080cc34, 0xd080c439, 0xd080cc3a | 0x33, 0x34, 0x39, 0x3a | 1, 3, 1, 3 | four words for one slot | established |
 
 Every default word in the table is **established**: `retools/tools/hostfacts.py` on `odsy_ctxsw.o` shows `odsyResetHwShadow` building each one from a `lui`/`ori` pair. The opcode and count columns are the fields of those words (bits 9:0 and 13:10); the "Note" column readings are **inferred** from the sender families in `docs/tokens.md`.
 
@@ -402,16 +402,16 @@ The rounding to an even tile count and the 16-texel unit are **established** as 
 
 **established** by reading the routine in full in the 6.5.30m IP30 build, the IP35 build and patch 4103. All three cut the client's address down to a 16 KB boundary and map the windows one call at a time with `v_mapkvsegment`, 16 KB pages, at the offsets below from that address (user offset, board offset from the register base, pages, cache-algorithm argument 0 or 2; the last argument of every call is the client's own address, the faulting address of the request):
 
-| User offset | Board offset | Pages | Cache algorithm, 6.5.30m IP30 and IP35 | Cache algorithm, patch 4103 |
-|---|---|---|---|---|
-| +0x0000 | +0x100000 | 1 | 0 | 0 |
-| +0x4000 | +0x120000 | 1 | 2 | 2 |
-| +0x8000 | +0x000000 (PIO registers up to 0x7fff) | 2 | 2 | 2 |
-| +0x10000 | +0x110000 (command FIFO) | 1 | 0 | 2 |
-| +0x14000 | +0x118000 | 1 | 2 | 0 |
-| +0x18000 | +0x200000 | 1 | 2 | 2 |
-| +0x1c000 | +0x220000 (PB&J read-back) | 8 | 2 | 2 |
-| +0x3c000 | +0x400000 (display FIFO) | 1 | 2 | 2 |
+| User offset | Board offset | Pages | Cache algorithm, 6.5.30m IP30 and IP35 | Cache algorithm, patch 4103 | Grade |
+|---|---|---|---|---|---|
+| +0x0000 | +0x100000 | 1 | 0 | 0 | established |
+| +0x4000 | +0x120000 | 1 | 2 | 2 | established |
+| +0x8000 | +0x000000 (PIO registers up to 0x7fff) | 2 | 2 | 2 | established |
+| +0x10000 | +0x110000 (command FIFO) | 1 | 0 | 2 | established |
+| +0x14000 | +0x118000 | 1 | 2 | 0 | established |
+| +0x18000 | +0x200000 | 1 | 2 | 2 | established |
+| +0x1c000 | +0x220000 (PB&J read-back) | 8 | 2 | 2 | established |
+| +0x3c000 | +0x400000 (display FIFO) | 1 | 2 | 2 | established |
 
 Every build maps the first two windows for every client and the other six only for a client whose flag word has bit 5 set. The windows end at +0x40000 of the client's mapping, and the +0x1c000 window's eight pages reach exactly to the display FIFO's page. Which cache attribute 0 and 2 request on the board's windows is **unknown** (`docs/open-questions.md`); it is the one field in which patch 4103 differs from the later builds, with the values swapped between the command-FIFO window and the +0x118000 window (the context-switch request page, section 4).
 

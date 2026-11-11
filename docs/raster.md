@@ -437,14 +437,14 @@ The `aapts` and `aalines` frames (`__clog_aapts` 0x10071b40 and `__clog_aalines`
 - **Blend**, **established (vendor simulation)**: source alpha over destination on all four bytes with the source alpha equal to the coverage. A white point stores alpha a^2 + (1 - a), so the alpha byte is the blend of an alpha of a with the destination alpha of 1. For the 69 lit pixels of the size 1 points that sit away from other points the colour byte and the alpha byte give the same coverage to one step under this rule.
 - **Coverage depends only on the pixel's area in the primitive**, **inferred (vendor simulation)**: a = G(c), where c is the exact area of the pixel square inside the primitive and G is a single monotone curve shared by points and lines. The primitive is a strip of the line width about the segment, or a square of the point size (not a disc). Reading G from the axis-aligned lines (c = width / 2 - |distance| + 1/2) and applying it unchanged to the other primitives:
 
-| c | G(c) | c | G(c) | c | G(c) |
-| ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 0.00 | 0.3125 | 0.567 | 0.6875 | 0.726 |
-| 0.0625 | 0.181 | 0.375 | 0.608 | 0.75 | 0.753 |
-| 0.125 | 0.314 | 0.4375 | 0.644 | 0.8125 | 0.791 |
-| 0.1875 | 0.423 | 0.5 | 0.667 | 0.875 | 0.843 |
-| 0.25 | 0.504 | 0.5625 | 0.686 | 0.9375 | 0.913 |
-| | | 0.625 | 0.706 | 1 | 0.997 |
+| c | G(c) | c | G(c) | c | G(c) | Grade |
+| ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 0 | 0.00 | 0.3125 | 0.567 | 0.6875 | 0.726 | inferred (vendor simulation) |
+| 0.0625 | 0.181 | 0.375 | 0.608 | 0.75 | 0.753 | inferred (vendor simulation) |
+| 0.125 | 0.314 | 0.4375 | 0.644 | 0.8125 | 0.791 | inferred (vendor simulation) |
+| 0.1875 | 0.423 | 0.5 | 0.667 | 0.875 | 0.843 | inferred (vendor simulation) |
+| 0.25 | 0.504 | 0.5625 | 0.686 | 0.9375 | 0.913 | inferred (vendor simulation) |
+| | | 0.625 | 0.706 | 1 | 0.997 | inferred (vendor simulation) |
 
   G is below 0.04 at c = 0 (a pixel entirely outside the edge stores nothing from 0.03 beyond it), 1.000 from c = 1.03, and 0.104 at c = 0.031. The curve is concave to c = 0.5, nearly flat from 0.4 to 0.75 and steep again to 1, so it is not a power law: a pixel half covered stores 0.667, a quarter covered 0.504. The widths 1, 2 and 3 give the same curve (they collapse to within one step as a function of the edge distance), and so do the two point sizes. A closed form for G is **unknown**; block 0x045, which `diag_lineAA_gamma` (0x1052e1d0) loads with 255 and 0x76ff before both tests, is the only register the streams set that could shape it, and no shipped software reads back what it does (`docs/words.md`).
   Fit quality, edge pixels only (stored coverage strictly between 0 and 1): near-axis lines 4527 pixels, mean difference 0.4 step of 204, largest 4; size 1 points 49 pixels, mean 2.9, largest 8; size 2 points 277 pixels, mean 2.4, largest 8. The line of slope -0.27 (15 degrees from the x axis) has 1367 edge pixels with a mean difference of 7 steps and a largest of 26: the area rule explains why its centre pixels reach only 0.90 (the unit strip leaves the corners of a pixel on its centre line uncovered, exact area 0.90), but the hardware reads about 0.03 higher than G of that area. The residual for oblique lines is **unknown**.

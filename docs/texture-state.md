@@ -12,11 +12,11 @@ For a 3D target the last level is replaced by the base level before the table is
 
 **Bits written.** *Established* for the three routines that store the level words, each read for its stores to the three words:
 
-| Routine | Word 0 | Word 1 | Word 2 |
-|---|---|---|---|
-| `__glOdysseyTextureActivate` | bits 28:0 (0xd9d2160) | bits 25:20 (0xd9d217c), 31:30 (0xd9d2194), 11:0 (0xd9d2108) | bits 11:0 (0xd9d2130) |
-| `DownsampleTextureThruHW` (0xd9d11a0), descriptor 60 only | bits 28:0 (0xd9d1468) | bits 31:30, 28:26 and 25:20 (0xd9d14cc), 11:0 (0xd9d14ec) | bits 11:0, cleared (0xd9d14dc) |
-| `__glOdysseyImageMovePixelsTexture` (0xd9bbff0), descriptor 60 only (stores at 0xd9bc1b8 to 0xd9bc36c) | bits 28:0 | bits 31:30, 28:26, 25:20 and 11:0 | bits 11:0, cleared |
+| Routine | Word 0 | Word 1 | Word 2 | Grade |
+|---|---|---|---|---|
+| `__glOdysseyTextureActivate` | bits 28:0 (0xd9d2160) | bits 25:20 (0xd9d217c), 31:30 (0xd9d2194), 11:0 (0xd9d2108) | bits 11:0 (0xd9d2130) | established |
+| `DownsampleTextureThruHW` (0xd9d11a0), descriptor 60 only | bits 28:0 (0xd9d1468) | bits 31:30, 28:26 and 25:20 (0xd9d14cc), 11:0 (0xd9d14ec) | bits 11:0, cleared (0xd9d14dc) | established |
+| `__glOdysseyImageMovePixelsTexture` (0xd9bbff0), descriptor 60 only (stores at 0xd9bc1b8 to 0xd9bc36c) | bits 28:0 | bits 31:30, 28:26, 25:20 and 11:0 | bits 11:0, cleared | established |
 
 Every store is a read-modify-write with a mask, so bits the routine does not name keep their previous value. A search of the whole N32 library assembly for stores to word 1 at its context offsets (`sw`, `sd` and `sh` with an offset of 31972 + 12 i) finds only these three routines. Therefore bit 29 and bits 19:12 of word 1 are **established** as never written by these routines and **inferred** never written by any code of the library: a store through a pointer formed another way would not show, and the context's creation was not traced for a nonzero initial table (**inferred** zero). Bits 28:26 are written only by the move and the mipmap builder, from the texture-offset code of the buffer (0 or 2). What the board does with a set bit 29, set bits 19:12 or a level descriptor past entry 63 is **unknown: no shipped software or published source depends on it**. Routes tried: the writers above, the kernel's context-restore replay (plain loads and stores, no mask), the X module (no level descriptor), the published patents (texture cache and tile sizes only), the porting guide. What would settle it: a board's behaviour with those bits set, which no software here shows.
 
@@ -26,12 +26,12 @@ One value is written differently: when the row in 16-texel units comes out as ex
 
 *Established.* `__glOdysseyTextureSetSWrap` (0xd9d5bc0), `...SetTWrap` (0xd9d5c70) and `...SetRWrap` (0xd9d5d20) each take one enumerant and write one axis, with no look at the other two:
 
-| Enumerant | Word 4 field (S bits 13:12, T 11:10, R 9:8) | Size word bits 23:18 of that axis |
-|---|---|---|
-| `GL_REPEAT` (0x2901) | 0 | 0 |
-| `GL_CLAMP` (0x2900) | 2 | 0 |
-| `GL_CLAMP_TO_EDGE_SGIS` (0x812f) | 1 | 1 |
-| `GL_CLAMP_TO_BORDER_SGIS` (0x812d) | 3 | 63 |
+| Enumerant | Word 4 field (S bits 13:12, T 11:10, R 9:8) | Size word bits 23:18 of that axis | Grade |
+|---|---|---|---|
+| `GL_REPEAT` (0x2901) | 0 | 0 | established |
+| `GL_CLAMP` (0x2900) | 2 | 0 | established |
+| `GL_CLAMP_TO_EDGE_SGIS` (0x812f) | 1 | 1 | established |
+| `GL_CLAMP_TO_BORDER_SGIS` (0x812d) | 3 | 63 | established |
 
 Any enumerant outside the four raises GL error 0x500. The R setter reads `GL_REPEAT` for the sampler unless the target is 3D (the stored value is kept at object +36, the value the sampler gets at +40). So the library sends every combination of repeat, clamp, clamp to edge and clamp to border on the three axes, and a mixed state (for example S clamp, T repeat) reaches the board as the two fields and nothing else. What the board does with a combination the stock programs do not send is **unknown**: the diagnostic simulator frames of [raster.md](raster.md) use one wrap on every axis, and the demos seen draw one wrap on all axes. What would settle it: a mixed-wrap drawing on a board.
 

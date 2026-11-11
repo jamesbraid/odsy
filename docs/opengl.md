@@ -43,20 +43,20 @@ The X module draws 2D by sending the same class-1 command words as the GL driver
 
 **established.** The kernel's private-ioctl entry `gf_OdsyPrivate` (`odsy.o`) accepts commands whose upper 16 bits are 0x6f64 and whose low bits are below 53, and calls the function in a 53-entry table (the `odsy.o` `.data` relocations at table offset 0xe0 on, one pointer per number). The table, by command number `0x6f640000 + n`:
 
-| n | Function | n | Function |
-|---|---|---|---|
-| 0 | `gfP_OdsyMMattach` | 26 | `gfP_OdsyBRDMGRsetColors` |
-| 1 to 4 | `MMalloc`, `MMdealloc`, `MMmakeResident`, `MMquery` | 27 | `BRDMGRconfigFb` |
-| 6 | `MMxfr` | 28 | `BRDMGRcursor` (`docs/display.md`) |
-| 7 | `gfP_OdsyGLGet` | 29, 30 | `BRDMGRsetDpyMode`, `BRDMGRsetBlanking` |
-| 8 | `gfP_OdsyMakeCurrent` | 31, 32 | `BRDMGRloadTimingTable`, `BRDMGRVTGcontrol` |
-| 9 | `gfP_OdsySetDrawBuffer` | 33 | `BRDMGRi2ccmd` |
-| 10, 11 | `MMdebug`, `MMwaitXfr` | 35 | `BRDMGRSetDACGain` |
-| 12 | `gfP_OdsySaveHwShadow` | 36, 37 | `LoadCompositorTiming`, `CompositorRegAccess` |
-| 13, 14 | `SetClipMask`, `ClearBuffer` | 38, 39 | `I2CPassthrough`, `SetNicinfo` |
-| 15 | `GetDrawableGeometry` | 42, 43 | `PbufAssoc`, `PbufDeassoc` |
-| 16 to 24 | `HPgetTopology`, `HPgetConfig`, `HPconfig`, `HPdestroyConfig`, `HPbind`, `HPunbind`, `HPqueryAttrib`, `HPqueryBestAttrib`, `HPsetAttrib` | 46 to 50 | `DIAGdma`, `DIAGallocScanbuf`, `DIAGfreeScanbuf`, `DIAGgetShadowPtrs`, `DIAGreleaseShadowPtrs` |
-| 5, 25, 34, 40, 41, 44, 45 | `gfP_OdsyInvalidIoctl` | 51, 52 | `PerfStat`, `DIAGreset` |
+| n | Function | n | Function | Grade |
+|---|---|---|---|---|
+| 0 | `gfP_OdsyMMattach` | 26 | `gfP_OdsyBRDMGRsetColors` | established |
+| 1 to 4 | `MMalloc`, `MMdealloc`, `MMmakeResident`, `MMquery` | 27 | `BRDMGRconfigFb` | established |
+| 6 | `MMxfr` | 28 | `BRDMGRcursor` (`docs/display.md`) | established |
+| 7 | `gfP_OdsyGLGet` | 29, 30 | `BRDMGRsetDpyMode`, `BRDMGRsetBlanking` | established |
+| 8 | `gfP_OdsyMakeCurrent` | 31, 32 | `BRDMGRloadTimingTable`, `BRDMGRVTGcontrol` | established |
+| 9 | `gfP_OdsySetDrawBuffer` | 33 | `BRDMGRi2ccmd` | established |
+| 10, 11 | `MMdebug`, `MMwaitXfr` | 35 | `BRDMGRSetDACGain` | established |
+| 12 | `gfP_OdsySaveHwShadow` | 36, 37 | `LoadCompositorTiming`, `CompositorRegAccess` | established |
+| 13, 14 | `SetClipMask`, `ClearBuffer` | 38, 39 | `I2CPassthrough`, `SetNicinfo` | established |
+| 15 | `GetDrawableGeometry` | 42, 43 | `PbufAssoc`, `PbufDeassoc` | established |
+| 16 to 24 | `HPgetTopology`, `HPgetConfig`, `HPconfig`, `HPdestroyConfig`, `HPbind`, `HPunbind`, `HPqueryAttrib`, `HPqueryBestAttrib`, `HPsetAttrib` | 46 to 50 | `DIAGdma`, `DIAGallocScanbuf`, `DIAGfreeScanbuf`, `DIAGgetShadowPtrs`, `DIAGreleaseShadowPtrs` | established |
+| 5, 25, 34, 40, 41, 44, 45 | `gfP_OdsyInvalidIoctl` | 51, 52 | `PerfStat`, `DIAGreset` | established |
 
 Numbers 8, 9 and 12 match what libGLcore sends (`0x6f640008`, `0x6f640009`, `0x6f64000c`, the Odyssey GL driver native context source unit). **established** by the table relocations; what the argument layouts of most entries hold: **unknown** here.
 
@@ -83,19 +83,19 @@ Source: IP30 `odsy_drawable.o`: `odsyBindDrawable` .text 0x138-0x3eb, `odsyUnbin
 
 - **established.** `odsyBindDrawable(board, R, class, flags)` makes no PIO store and sends no FIFO word. It fills a 48-byte binding record at *R* + 464 (class 1) or *R* + 512 (class 2), and patches one word of *R*:
 
-| Record offset | Content |
-|---|---|
-| 0 | state bits: bit 0 set on entry; bit 2 set when the drawable id was found in the board's drawable hash; bit 1 set when the bind completed. All three are cleared when the id is 0 |
-| 4 | drawable id, word 100 of the resource node's drawable object (node offset 120 for class 1, 128 for class 2). The hash index is `((id >> 16) \| (id & 0xffff)) mod 13`, over the table at board record +0x8658 |
-| 8 | the caller's flag word |
-| 12 | first buffer: word 56 of a memory object |
-| 16 | second buffer: word 56 of another memory object, or 0 |
-| 20-35 | four more buffer words (word 56 of each), or 0 |
-| 36 | not written by any IP30 kernel object (no store to *R* + 500 or *R* + 548) |
-| 40 | halfword 44 of the first buffer's memory object |
-| 42 | byte 17 of the first buffer's memory object |
-| 43 | always written 0 |
-| 44, 45 | bytes 19 and 17 of the first extra buffer's object (two-buffer path only) |
+| Record offset | Content | Grade |
+|---|---|---|
+| 0 | state bits: bit 0 set on entry; bit 2 set when the drawable id was found in the board's drawable hash; bit 1 set when the bind completed. All three are cleared when the id is 0 | established |
+| 4 | drawable id, word 100 of the resource node's drawable object (node offset 120 for class 1, 128 for class 2). The hash index is `((id >> 16) \| (id & 0xffff)) mod 13`, over the table at board record +0x8658 | established |
+| 8 | the caller's flag word | established |
+| 12 | first buffer: word 56 of a memory object | established |
+| 16 | second buffer: word 56 of another memory object, or 0 | established |
+| 20-35 | four more buffer words (word 56 of each), or 0 | established |
+| 36 | not written by any IP30 kernel object (no store to *R* + 500 or *R* + 548) | established |
+| 40 | halfword 44 of the first buffer's memory object | established |
+| 42 | byte 17 of the first buffer's memory object | established |
+| 43 | always written 0 | established |
+| 44, 45 | bytes 19 and 17 of the first extra buffer's object (two-buffer path only) | established |
 
 - **established.** The drawable found in the hash points, at its offset 24, to a buffer-set object. `gfP_OdsyPbufAssoc` attaches it (8-byte argument: drawable id, then a context-set id looked up with `OdsyLookupCSetId`). When flag bit 1 is set, the record takes its first buffer from the set's entry at offset 24 and zeroes the second buffer and the four extras. When the bit is clear, the first buffer comes from entry 16, the second from entry 32 and the extras from entries 40-64. Bind also takes a reference on the drawable (its word 32). `odsyUnbindDrawable` drops the reference, removes the drawable from the hash and frees it when the count reaches zero, and clears the record's bits 1:0 and id.
 - **established.** Bind copies the first buffer word's low 31 bits into *R* + 140 (class 1) or *R* + 144 (class 2), keeping bit 31 of the old value.
@@ -129,15 +129,15 @@ IRIX 6.5.30m, IP30, N32 libGLcore and `odyssey.so`. Labels as above.
 
 **established** for constant forms only: every `lui`/`ori` class-1 word (`BUZZ.h` section 1) in `libglcore/asm/ODYSSEY/*.s`, kept when its id and count match a block the kernel replays or one of the table ranges (`docs/buzz.md` section 8), with words that are context offsets or address constants removed by hand (the words 0x1201c and 0x13420 of the accumulation and texture code are offsets, not commands; words with bit 14 set other than the primitive begin and end are offsets too). Words built by shifts and masks, such as the level descriptor ids 0x280 + i or the table ids 0x200 + i, show only as their base form. The per-vertex and attribute words are catalogued in `docs/buzz.md` section 2.
 
-| File | Blocks sent |
-|---|---|
-| the Odyssey GL driver context assembly unit (`__glOdysseyValidateHardware`, make-current) | the full raster-state set: 0x004-0x007, 0x015, 0x01a, 0x01b, 0x01c, 0x01d, 0x01f, 0x021, 0x023, 0x03a, 0x03d, 0x03e, 0x047, 0x04a, 0x04c, 0x051, 0x052, 0x053, 0x056, 0x057, 0x013, 0x016, 0x017, 0x030-0x033, 0x03b, 0x028-0x02b, 0x038, the level descriptors, the five 256-word tables, the sync group |
-| the Odyssey GL driver native context assembly unit (swap) | 0x017, 0x25a, sync group |
-| the Odyssey GL driver texture assembly unit | sync group, level descriptor words, 0x14400 |
-| the Odyssey GL driver bitmap assembly unit, the Odyssey GL driver attribute state assembly unit | stipple blocks 0x04e and 0x04f (and 0x04d), 0x01d, 0x03f, 0x004-0x005, 0x015, 0x056, 0x058, primitive begin and end |
-| the Odyssey GL driver clear assembly unit, the Odyssey GL driver accumulation assembly unit, the Odyssey GL driver fragment assembly unit, the Odyssey GL driver lighting assembly unit, the Odyssey GL driver image chain assembly unit, the Odyssey GL driver image move assembly unit, the Odyssey GL driver pixmap object assembly unit, the Odyssey GL driver state query assembly unit | sync group with one or more of 0x007, 0x015, 0x01d, 0x01f, 0x020, 0x022, 0x041, 0x053, 0x000 (six operands), 0x25a and, in the image-move code, a word of the 0x280 + i level-descriptor form with i = 60 (`0x10ebc`) (image move and chain, lighting, fragment and the memory-object code) |
-| the Odyssey GL driver display-list assembly unit, the Odyssey GL driver line drawing assembly unit, the Odyssey GL driver point drawing assembly unit, the Odyssey GL driver polygon drawing assembly unit, the Odyssey GL driver polygon clipping assembly unit, the Odyssey GL driver vertex assembly unit, the Odyssey GL driver primitive assembly unit | primitive begin and end (0x14400, 0x14001) around vertex words, sync group |
-| the Odyssey GL driver clipping assembly unit | 0x044 |
+| File | Blocks sent | Grade |
+|---|---|---|
+| the Odyssey GL driver context assembly unit (`__glOdysseyValidateHardware`, make-current) | the full raster-state set: 0x004-0x007, 0x015, 0x01a, 0x01b, 0x01c, 0x01d, 0x01f, 0x021, 0x023, 0x03a, 0x03d, 0x03e, 0x047, 0x04a, 0x04c, 0x051, 0x052, 0x053, 0x056, 0x057, 0x013, 0x016, 0x017, 0x030-0x033, 0x03b, 0x028-0x02b, 0x038, the level descriptors, the five 256-word tables, the sync group | established (constant forms) |
+| the Odyssey GL driver native context assembly unit (swap) | 0x017, 0x25a, sync group | established (constant forms) |
+| the Odyssey GL driver texture assembly unit | sync group, level descriptor words, 0x14400 | established (constant forms) |
+| the Odyssey GL driver bitmap assembly unit, the Odyssey GL driver attribute state assembly unit | stipple blocks 0x04e and 0x04f (and 0x04d), 0x01d, 0x03f, 0x004-0x005, 0x015, 0x056, 0x058, primitive begin and end | established (constant forms) |
+| the Odyssey GL driver clear assembly unit, the Odyssey GL driver accumulation assembly unit, the Odyssey GL driver fragment assembly unit, the Odyssey GL driver lighting assembly unit, the Odyssey GL driver image chain assembly unit, the Odyssey GL driver image move assembly unit, the Odyssey GL driver pixmap object assembly unit, the Odyssey GL driver state query assembly unit | sync group with one or more of 0x007, 0x015, 0x01d, 0x01f, 0x020, 0x022, 0x041, 0x053, 0x000 (six operands), 0x25a and, in the image-move code, a word of the 0x280 + i level-descriptor form with i = 60 (`0x10ebc`) (image move and chain, lighting, fragment and the memory-object code) | established (constant forms) |
+| the Odyssey GL driver display-list assembly unit, the Odyssey GL driver line drawing assembly unit, the Odyssey GL driver point drawing assembly unit, the Odyssey GL driver polygon drawing assembly unit, the Odyssey GL driver polygon clipping assembly unit, the Odyssey GL driver vertex assembly unit, the Odyssey GL driver primitive assembly unit | primitive begin and end (0x14400, 0x14001) around vertex words, sync group | established (constant forms) |
+| the Odyssey GL driver clipping assembly unit | 0x044 | established (constant forms) |
 
 This is the by-file view of the senders the earlier passes found by function; the by-block view is the table in `docs/buzz.md` section 8. Everything beyond this list is not a command word in libGLcore: **established** as a negative result of the scan above, **inferred** where a word is built at run time.
 
@@ -156,39 +156,39 @@ This is the by-file view of the senders the earlier passes found by function; th
 
 **established** from the literal size in the `copyin` and `copyout` calls of each handler (`odsy_kernel/disasm`, IP30), bytes in and out; a blank means no copy, `var` means the size is a computed value:
 
-| n | Handler | In | Out |
-|---|---|---|---|
-| 0 | `MMattach` | 72 | 72 |
-| 1, 2 | `MMalloc`, `MMdealloc` | 72 | 72 |
-| 3 | `MMmakeResident` | 8 | |
-| 4 | `MMquery` | 40 | 40 |
-| 6 | `MMxfr` | 80 | 80 |
-| 7 | `GLGet` | 4 | |
-| 8 | `MakeCurrent` | 80 | 80 |
-| 9 | `SetDrawBuffer` | 4 | |
-| 10, 11 | `MMdebug`, `MMwaitXfr` | 24, 8 | 4, |
-| 12 | `SaveHwShadow` | | |
-| 13 | `SetClipMask` | 16 | |
-| 14 | `ClearBuffer` | 44 | |
-| 15 | `GetDrawableGeometry` | | 16 |
-| 16, 17 | `HPgetTopology`, `HPgetConfig` | , 524 | 388, 524 |
-| 18 | `HPconfig` | 524 | 524 |
-| 19, 20, 21 | `HPdestroyConfig`, `HPbind`, `HPunbind` | 4 each | |
-| 22, 23, 24 | `HPqueryAttrib`, `HPqueryBestAttrib`, `HPsetAttrib` | 32 each (plus a variable tail) | 4, 4 (query) |
-| 26 | `BRDMGRsetColors` | 16 (plus a variable tail) | |
-| 27 | `BRDMGRconfigFb` | 52 | 52 |
-| 28 | `BRDMGRcursor` | 40, 60, 512, 256 | |
-| 29, 30 | `BRDMGRsetDpyMode`, `BRDMGRsetBlanking` | 8, 4 | |
-| 31, 32 | `BRDMGRloadTimingTable`, `BRDMGRVTGcontrol` | 320, 8 | |
-| 33 | `BRDMGRi2ccmd` | 48 | |
-| 35 | `BRDMGRSetDACGain` | 4 | |
-| 37 | `CompositorRegAccess` | 12 | 12 (twice) |
-| 38, 39 | `I2CPassthrough`, `SetNicinfo` | 8, 80 | |
-| 42, 43 | `PbufAssoc`, `PbufDeassoc` | 8, 8 | , 8 |
-| 46 | `DIAGdma` | 48 | |
-| 47, 48 | `DIAGallocScanbuf`, `DIAGfreeScanbuf` | 24, | 24, |
-| 49 | `DIAGgetShadowPtrs` | 80 | 80 |
-| 51 | `PerfStat` | 24 | 24 |
+| n | Handler | In | Out | Grade |
+|---|---|---|---|---|
+| 0 | `MMattach` | 72 | 72 | established |
+| 1, 2 | `MMalloc`, `MMdealloc` | 72 | 72 | established |
+| 3 | `MMmakeResident` | 8 | | established |
+| 4 | `MMquery` | 40 | 40 | established |
+| 6 | `MMxfr` | 80 | 80 | established |
+| 7 | `GLGet` | 4 | | established |
+| 8 | `MakeCurrent` | 80 | 80 | established |
+| 9 | `SetDrawBuffer` | 4 | | established |
+| 10, 11 | `MMdebug`, `MMwaitXfr` | 24, 8 | 4, | established |
+| 12 | `SaveHwShadow` | | | established |
+| 13 | `SetClipMask` | 16 | | established |
+| 14 | `ClearBuffer` | 44 | | established |
+| 15 | `GetDrawableGeometry` | | 16 | established |
+| 16, 17 | `HPgetTopology`, `HPgetConfig` | , 524 | 388, 524 | established |
+| 18 | `HPconfig` | 524 | 524 | established |
+| 19, 20, 21 | `HPdestroyConfig`, `HPbind`, `HPunbind` | 4 each | | established |
+| 22, 23, 24 | `HPqueryAttrib`, `HPqueryBestAttrib`, `HPsetAttrib` | 32 each (plus a variable tail) | 4, 4 (query) | established |
+| 26 | `BRDMGRsetColors` | 16 (plus a variable tail) | | established |
+| 27 | `BRDMGRconfigFb` | 52 | 52 | established |
+| 28 | `BRDMGRcursor` | 40, 60, 512, 256 | | established |
+| 29, 30 | `BRDMGRsetDpyMode`, `BRDMGRsetBlanking` | 8, 4 | | established |
+| 31, 32 | `BRDMGRloadTimingTable`, `BRDMGRVTGcontrol` | 320, 8 | | established |
+| 33 | `BRDMGRi2ccmd` | 48 | | established |
+| 35 | `BRDMGRSetDACGain` | 4 | | established |
+| 37 | `CompositorRegAccess` | 12 | 12 (twice) | established |
+| 38, 39 | `I2CPassthrough`, `SetNicinfo` | 8, 80 | | established |
+| 42, 43 | `PbufAssoc`, `PbufDeassoc` | 8, 8 | , 8 | established |
+| 46 | `DIAGdma` | 48 | | established |
+| 47, 48 | `DIAGallocScanbuf`, `DIAGfreeScanbuf` | 24, | 24, | established |
+| 49 | `DIAGgetShadowPtrs` | 80 | 80 | established |
+| 51 | `PerfStat` | 24 | 24 | established |
 
 The generic resource-manager ioctls 1000 to 1025 take 4 to 64 bytes (`docs/display.md` pass 10). Field layouts: most are **unknown** here; known layouts are in the sections of `docs/display.md`, `docs/kernel.md` and `docs/buzz.md` that name each call (the cursor request, the timing structure, the performance-statistics argument, the DMA transfer and the swap request). For the memory-manager calls: `MMalloc` copies in 72 bytes and uses word 1 (a set id, -1 meaning none), a halfword at +8 below 16 (the slot in the group's table of 16 objects), bytes at +12 and +13, and words at +16, +20, +24, +28, +32 and +36 as the description it compares with an existing object of that type before creating one (`odsy_mm_obj_new`); **established**. The fields, **established** from the libGLcore sender `__glOdysseyCreatePMObj` (the Odyssey GL driver pixmap object assembly unit, N32 0x0d9c67f0-0x0d9c69ec), the kernel's `odsy_mm_obj_new` and the texture caller `AllocateGfxMemForTexture` (the Odyssey GL driver texture assembly unit, N32 0x0d9d03b0-0x0d9d089f):
 
@@ -221,18 +221,18 @@ The colour-table caller (the Odyssey GL driver lookup-table assembly unit) sends
 
 **established**, the record's fields as `AllocateGfxMemForTexture` stores them (the Odyssey GL driver texture assembly unit, N32 0x0d9d03b0-0x0d9d089f, the stores at offsets 1364-1428 of the texture object plus 68 times the level):
 
-| Record offset | Content |
-|---|---|
-| 0 | the board texture format chosen by `ChooseSuitableBuzzTexObjFormat` for the internal format |
-| 4 | the element-size code from `CalcTexelSizes` (the `c` of the description above) |
-| 8 | `CalcPixelModePixelFormat` of that code |
-| 12 | width in 16-texel tiles (description word 28) |
-| 16 | tile count (description word 32) |
-| 20 | not stored here; the routine compares it across levels to find levels already in one group (the memory value of the per-level array) |
-| 24 | the internal format argument |
-| 28, 32, 36 | width, height and depth in texels |
-| 40 | border width |
-| 44-64 | six further words returned by `CalcTexelSizes` |
+| Record offset | Content | Grade |
+|---|---|---|
+| 0 | the board texture format chosen by `ChooseSuitableBuzzTexObjFormat` for the internal format | established |
+| 4 | the element-size code from `CalcTexelSizes` (the `c` of the description above) | established |
+| 8 | `CalcPixelModePixelFormat` of that code | established |
+| 12 | width in 16-texel tiles (description word 28) | established |
+| 16 | tile count (description word 32) | established |
+| 20 | not stored here; the routine compares it across levels to find levels already in one group (the memory value of the per-level array) | established |
+| 24 | the internal format argument | established |
+| 28, 32, 36 | width, height and depth in texels | established |
+| 40 | border width | established |
+| 44-64 | six further words returned by `CalcTexelSizes` | established |
 
 What the board makes of each format code is the hardware question; the codes and where they go are not.
 
@@ -240,27 +240,27 @@ What the board makes of each format code is the hardware question; the codes and
 
 **established** from `__glOdyDecodeShadowFormat` (the Odyssey GL driver state query assembly unit, jump tables read from `libGLcore_n32.so`): word 0 bits 5:0 select one of 59 decode forms (a value of 59 or more raises GL error 1280; bits 28:24 give an element count in kind 46); words 1 to 3 (and 4 in kind 15) are either indices (times four) into the array of shadow words at hardware-state offset 3824, or raw values held in the descriptor, depending on the form. A second table by the same kind number gives the result type code passed to `__glConvertResult`: 4 for the float forms, 3 for integer forms, 1 for a single value. Each form builds up to four values in a local buffer and a count code, then converts to the caller's type. The forms, by kind:
 
-| Kinds | Form (established as code) |
-|---|---|
-| 0, 2, 4, 6, 26, 27, 28 | return the descriptor's own three words as the values (type 4 for 0, 2 and 4, type 1 for 6, type 3 for 26 to 28) |
-| 1, 3, 5, 7 | no value (count zero) |
-| 8 | three floats from the shadow array at the indices in words 1 to 3, plus the constant 1.0 |
-| 15 | four floats from the shadow array at the indices in words 1 to 4 |
-| 14 | three floats held in the descriptor, plus 1.0 |
-| 11, 18, 22 | signed integers to colour range for the first colour scale: each word becomes `(2 x + 1)` times the hardware-state float at offset 3552 |
-| 12, 19, 23 | the same with the scale at offset 3560 |
-| 13, 20, 24 | the same with the scale at offset 3568 (kind 20 also folds the constant pair 1.0 and 2.0) |
-| 9, 17, 10, 16 | unsigned integers times the scale at 3560 (9, 16) or 3568 (10, 17) |
-| 30, 38 | the descriptor's first value as an integer, then 0, 0 and 1 |
-| 31, 39 | one float from the descriptor, then 0.0, 0.0 and 1.0 |
-| 32, 40 | two integer words, then 0 and 1 |
-| 33, 41 | two floats, then 0.0 and 1.0 |
-| 34, 42 | three integer words, then 1 |
-| 35, 43 | three floats, then 1.0 |
-| 36, 44 | no values loaded, count code 3 (the values are the descriptor's words) |
-| 37, 45 | no value (count zero) |
-| 46 | element count from bits 28:24 of word 0 (15 gives the single value 1, 16 gives 0, other counts the descriptor's words) |
-| 21, 25, 29, 47 to 58 | no loads; the descriptor's words are returned with count code 5 (four values) |
+| Kinds | Form (established as code) | Grade |
+|---|---|---|
+| 0, 2, 4, 6, 26, 27, 28 | return the descriptor's own three words as the values (type 4 for 0, 2 and 4, type 1 for 6, type 3 for 26 to 28) | established |
+| 1, 3, 5, 7 | no value (count zero) | established |
+| 8 | three floats from the shadow array at the indices in words 1 to 3, plus the constant 1.0 | established |
+| 15 | four floats from the shadow array at the indices in words 1 to 4 | established |
+| 14 | three floats held in the descriptor, plus 1.0 | established |
+| 11, 18, 22 | signed integers to colour range for the first colour scale: each word becomes `(2 x + 1)` times the hardware-state float at offset 3552 | established |
+| 12, 19, 23 | the same with the scale at offset 3560 | established |
+| 13, 20, 24 | the same with the scale at offset 3568 (kind 20 also folds the constant pair 1.0 and 2.0) | established |
+| 9, 17, 10, 16 | unsigned integers times the scale at 3560 (9, 16) or 3568 (10, 17) | established |
+| 30, 38 | the descriptor's first value as an integer, then 0, 0 and 1 | established |
+| 31, 39 | one float from the descriptor, then 0.0, 0.0 and 1.0 | established |
+| 32, 40 | two integer words, then 0 and 1 | established |
+| 33, 41 | two floats, then 0.0 and 1.0 | established |
+| 34, 42 | three integer words, then 1 | established |
+| 35, 43 | three floats, then 1.0 | established |
+| 36, 44 | no values loaded, count code 3 (the values are the descriptor's words) | established |
+| 37, 45 | no value (count zero) | established |
+| 46 | element count from bits 28:24 of word 0 (15 gives the single value 1, 16 gives 0, other counts the descriptor's words) | established |
+| 21, 25, 29, 47 to 58 | no loads; the descriptor's words are returned with count code 5 (four values) | established |
 
 **inferred** that the colour forms convert signed and unsigned integer colour state to the floats that glGet returns, with the three scale words being per-channel-group colour scales kept in the hardware-state area (`docs/opengl.md` make-current). Which GL query uses which descriptor is **established** from the callers. `__glOdysseyDoGet` (the Odyssey GL driver state query assembly unit, N32 0x0d986380-0x0d986bf3) calls `__glOdyGetFromShadow` (0x0d986300-0x0d98637f) with slot 0 for `GL_CURRENT_INDEX` (0x0b01), 1 for `GL_CURRENT_COLOR` (0x0b00), 2 for `GL_CURRENT_NORMAL` (0x0b02), 4 for `GL_CURRENT_TEXTURE_COORDS` (0x0b03) and 6 for `GL_EDGE_FLAG` (0x0b43). `__glOdysseyUpdateRasterPos` (0x0d986d00-0x0d986dcb) reads the board with selector 3 and decodes slot 2 or 3 (by the context byte at 3220) into context +384, then slot 4 into context +288. The slot table starts at the pointer held at context +0x16d24, the shared buffer whose word 124 is the read-back sequence number (`docs/buzz.md` section 4); slot 6 therefore overlaps that word. `__glOdysseyInitKernel` (the Odyssey GL driver pixmap object assembly unit, N32 0x0d9c63c0-0x0d9c664f) takes the pointer from the reply of `MMattach` (ioctl `0x6f640000`, reply doubleword at offset 40) and stores the pointer minus 2304 at context +27944, so the table follows a 2304-byte area, the size of the saved record that the kernel's `odsyResetHwShadow` clears. No libGLcore code stores into the table: the pointer is loaded in four places (`__glOdyGetFromHardware`, `__glOdyGetFromShadow`, `__glOdysseyUpdateRasterPos` and one routine in the Odyssey GL driver evaluator assembly unit), and each only reads through it. Who fills it (pass 12): the board. The kernel programs board register 0x4014 (the glGet write-back offset) with a cache-line offset of 18: 18 x 128 = 2304 bytes, which is where this table starts after the saved record (`docs/buzz.md` section 10); that the board writes its glGet results there is **inferred**. **inferred** (register name, value and offset agree; the write is the board's and not visible in software). Its contents are the context's current state at the read-back, so there is no fixed value to record; the decode forms above say how libGLcore reads it.
 

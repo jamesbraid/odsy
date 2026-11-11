@@ -125,14 +125,14 @@ Release IRIX 6.5.30m, IP30. Sources: `gfP_OdsyBRDMGRcursor` and `gf_OdsyPosition
 
 - **established.** `gfP_OdsyBRDMGRcursor(dev, ..., arg, ...)` copies 40 bytes from the caller and acts on a flag word at offset 0, each flag in the order tested:
 
-| Flag | Argument | Effect |
-|---|---|---|
-| 0x01 | words 1: hi16 and lo16 | stored in the board record at -19668 and -19666 (hotspot offsets, subtracted from the position) |
-| 0x02 | word 2: hi16 = x, lo16 = y | `gf_OdsyPositionCursor`: stores x and y in the record (-19672, -19670) and writes the display-FIFO word `0x39600001` (or `0x79600001`) with data `((x - x0) << 16) | ((y - y0) & 0xffff)`, header address 0x2580, type 3 when record bit 2 of the control word (-19664) is 0, type 7 otherwise |
-| 0x04 | word 3 | replaces the control word at record -19664 and writes it with header `0x79604001` (type 7, address 0x2581) |
-| 0x08 | pointer in word 4 | copies 60 bytes in, writes them as 15 words with header `0x3964000f` (type 3, address 0x2590, count 15) |
-| 0x10 | pointer in word 6 | copies 512 bytes in, writes 128 words with header `0x39400080` (type 3, address 0x2500) |
-| 0x20 | pointer in word 8 | copies 256 bytes in, writes 64 words with header `0x39700040` (type 3, address 0x25c0) |
+| Flag | Argument | Effect | Grade |
+|---|---|---|---|
+| 0x01 | words 1: hi16 and lo16 | stored in the board record at -19668 and -19666 (hotspot offsets, subtracted from the position) | established |
+| 0x02 | word 2: hi16 = x, lo16 = y | `gf_OdsyPositionCursor`: stores x and y in the record (-19672, -19670) and writes the display-FIFO word `0x39600001` (or `0x79600001`) with data `((x - x0) << 16) | ((y - y0) & 0xffff)`, header address 0x2580, type 3 when record bit 2 of the control word (-19664) is 0, type 7 otherwise | established |
+| 0x04 | word 3 | replaces the control word at record -19664 and writes it with header `0x79604001` (type 7, address 0x2581) | established |
+| 0x08 | pointer in word 4 | copies 60 bytes in, writes them as 15 words with header `0x3964000f` (type 3, address 0x2590, count 15) | established |
+| 0x10 | pointer in word 6 | copies 512 bytes in, writes 128 words with header `0x39400080` (type 3, address 0x2500) | established |
+| 0x20 | pointer in word 8 | copies 256 bytes in, writes 64 words with header `0x39700040` (type 3, address 0x25c0) | established |
 
   (Pointer words are 64-bit and sit at offsets 16, 24 and 32 of the argument.) Before each write the driver waits for the display FIFO level to fall to 15 (7 before the colour block); a copyin failure returns 14, a FIFO timeout 5. An absent flag leaves that item untouched.
 - **established.** `DISPLAY.h`'s `VTG_REG_2580` and `VTG_REG_2581` are these two words: 0x2580 is the cursor position, 0x2581 the control word the cursor request rewrites. Other display-FIFO writers in the driver wrap their stores with the same word (read the record's control word, compare its bit 5 against a record halfword, store `0x79604001 | word`, toggle bit 5, store again, then flush a queued pending doubleword at record -31416): **established** as a code pattern in `odsyGatherInfo`, `odsyGenlockInterrupt` and `gfP_OdsyBRDMGRcursor`; what bits 0, 1 and 5 do on the board: **unknown**.
@@ -209,20 +209,20 @@ Release IRIX 6.5.30m. Kernel objects `rrm.o`, `odsy_retrace.o`, `odsy_dvi.o` (IP
 
 **established.** `gfxioctl` (`gfx.o`) sends any command from 1000 up to 9999 that the driver does not take itself to `RRM_Dispatch` (`rrm.o`), which accepts 1000 to 1099 and calls a handler from a table of 24-byte entries in `rrm.o` `.data` (handler pointer, argument size and a flag word, name pointer; read from the `.rel.data` relocations and the data words). The numbers in use, with the handler:
 
-| n | Handler | n | Handler |
-|---|---|---|---|
-| 1000 | `RRM_OpenRN` | 1013 | `RRM_SwapGroup` |
-| 1001 | `RRM_CloseRN` | 1014 | `RRM_SwapUnGroup` |
-| 1002 | `RRM_BindProcToRN` | 1015 | `RRM_ValidateMessage` |
-| 1003 | `RRM_BindRNToClip` | 1016 | `RRM_GetDisplayModes` |
-| 1004 | `RRM_UnbindRNFromClip` | 1017 | `RRM_LoadDisplayMode` |
-| 1005 | `RRM_SwapBuf` | 1018 | `RRM_CushionBuffer` |
-| 1006 | `RRM_SetSwapInterval` | 1019 | `RRM_SwapReady` |
-| 1007 | `RRM_WaitForRetrace` | 1020 | `RRM_MGR_SwapBuf` |
-| 1008 | `RRM_SetDisplayMode` | 1021 to 1023 | `RRM_SetVideoSync`, `RRM_GetVideoSync`, `RRM_WaitVideoSync` |
-| 1009 | `RRM_Message` | 1024 | `RRM_BindRNToReadAndClip` |
-| 1010 | `RRM_InvalidateRN` | 1025 | `RRM_MapClipToSwapbufID` |
-| 1011, 1012 | `RRM_ValidateClip`, `RRM_ValidateSwapBuf` | | |
+| n | Handler | n | Handler | Grade |
+|---|---|---|---|---|
+| 1000 | `RRM_OpenRN` | 1013 | `RRM_SwapGroup` | established |
+| 1001 | `RRM_CloseRN` | 1014 | `RRM_SwapUnGroup` | established |
+| 1002 | `RRM_BindProcToRN` | 1015 | `RRM_ValidateMessage` | established |
+| 1003 | `RRM_BindRNToClip` | 1016 | `RRM_GetDisplayModes` | established |
+| 1004 | `RRM_UnbindRNFromClip` | 1017 | `RRM_LoadDisplayMode` | established |
+| 1005 | `RRM_SwapBuf` | 1018 | `RRM_CushionBuffer` | established |
+| 1006 | `RRM_SetSwapInterval` | 1019 | `RRM_SwapReady` | established |
+| 1007 | `RRM_WaitForRetrace` | 1020 | `RRM_MGR_SwapBuf` | established |
+| 1008 | `RRM_SetDisplayMode` | 1021 to 1023 | `RRM_SetVideoSync`, `RRM_GetVideoSync`, `RRM_WaitVideoSync` | established |
+| 1009 | `RRM_Message` | 1024 | `RRM_BindRNToReadAndClip` | established |
+| 1010 | `RRM_InvalidateRN` | 1025 | `RRM_MapClipToSwapbufID` | established |
+| 1011, 1012 | `RRM_ValidateClip`, `RRM_ValidateSwapBuf` | | | established |
 
 ### Ioctl 1005, the kernel side of a buffer swap
 
@@ -257,33 +257,33 @@ Release IRIX 6.5.30m. Kernel objects `rrm.o`, `odsy_retrace.o`, `odsy_dvi.o` (IP
 
 **established.** `odsyLoadTimingTable` in `odyssey.so` (disassembly `ddx/asm/odyssey/odsy/odsy.s`, 137839) clears a 320-byte local structure and fills it by calling `SDBgetSymbolValueScalar(file, name, &field)` once per `.vfo` field name (the main path makes 49 such calls, some into locals), then hands it to the kernel with the timing-table ioctl. An earlier pass decoded only some names from the module's strings: `FormatInfo_H_Active`, `ODY_AMI_PLL_0x0`, `ODY_AMI_PLL_0x4`, `ODY_PLL_OutputEnables`, `ODY_VTG_Control`, `ODY_VTG_InitState`, `ODY_VTG_ChanEn`, `TTL_Sync`, `LineSeqTab`, `FrameTab`, `FormatInfo_DualHead`, `ODY_I2CClockSpeed`, `DPAControl`, `DPAOffset` and `ODY_GEN_hPSD`. Two words come from the caller's format record instead: structure word 184 (the refresh rate, truncated from a floating-point value at record offset 272) and word 172 (record offset 300). The name-to-offset map, **established** by resolving each call's name argument through the module's global offset table (`gp` = 0x173a9c0, the `.got` start plus 0x7ff0; the names are offsets from the GOT entry at `gp` - 28680, 0x172acc0) and its destination from the `a2` argument, for the calls at 0x170a8cc to 0x170b86c of `odsyLoadTimingTable` (`odyssey.so` 0x170a7f0):
 
-| Structure offset | Source |
-|---|---|
-| 0 and 8, 16 and 24 | `FrameTab` and `LineSeqTab`: a buffer allocated for each array and its length |
-| 28, 32, 36 | `ODY_VTG_Control` (bit 1 also set when the screen record's word 136 is nonzero), `ODY_VTG_InitState`, `ODY_VTG_ChanEn` |
-| 40 to 76 | when the screen record's word 136 is nonzero, its words 268 to 304; otherwise `ODY_GEN_lPFD`, `hPFD`, `lPFD_HI`, `hPFD_HI`, `lPFD_LO`, `hPFD_LO`, `lPSD`, `hPSD`, `lHMASK`, `hHMASK` |
-| 80, 84 | `ODY_GEN_BP_CLAMP`, `ODY_GENLOCK` |
-| 88 | `ODY_GEN_CONTROL` ORed with `GEN_Control_mask` |
-| 96 to 124 | `ODY_PLL_DPAControl`, `DPAOffset`, `FdBkDiv0`, `FdBkDiv1`, `InputControl`, `LoopControl`, `Osc_Div`, `OutputEnables` |
-| 128 to 156 | `ODY_AMI_PLL_0x0` to `ODY_AMI_PLL_0x7` |
-| 160, 164, 168 | `ODY_DAC_Cntrl`, `ODY_DP_Cntrl`, `ODY_SM_Cntrl` |
-| 172, 184 | the caller's format record (offset 300; offset 272 truncated, the refresh rate) |
-| 176, 180 | `ActivePixelsPerLine`, `FrameBufferHeight` |
-| 192 | `AchievedFrequency` |
-| 200 | format flags: bit 0 `FormatInfo_Interlaced` (bit 1 also when the format record's word 304 points at a nonzero word), bit 2 `FormatInfo_Stereo`, bit 3 `FormatInfo_FullScreenStereo`, bit 4 `FormatInfo_DualHead`, bit 5 `FormatInfo_FieldSequential` |
-| 208, 212, 216 | `ODY_DCBClockSpeed`, `ODY_DDCClockSpeed`, `ODY_I2CClockSpeed` |
-| 220 | the routine's fifth argument |
-| 224 | the screen record's word 136 |
-| 236 to 248 | `GEN_AMI_REG1`, `GEN_AMI_REG2`, `GEN_AMI_REG5`, `GEN_AMI_REG6` |
-| 252 | 1 when the board's halfword 58 is 3, else 0 |
-| 256, 284, 312 | 0 |
-| 260 | 255 or 187, by whether the computed pixel clock exceeds a constant |
-| 264 | 240 when `TTL_Sync` is 3, else 0 |
-| 268 to 280 | `DCDHorizontalFrontPorch`, `DCDHorizontalSync`, `DCDHorizontalBackPorch` and `ActivePixelsPerLine`, each halved |
-| 288, 308 | 64, 142 |
-| 292 | divider selection found by a search over a 4 x 4 table of ratios: index bits 1:0, 3:2 and 5:4 |
-| 296, 300 | `DCDTotalPixelsPerLine` bits 7:0 and bits 13:8 |
-| 304 | 3, 18 or 19 by the pixel clock (`DCDTotalPixelsPerLine` times `TotalLinesPerFrame` times `FramesPerSecond`, over a constant) |
+| Structure offset | Source | Grade |
+|---|---|---|
+| 0 and 8, 16 and 24 | `FrameTab` and `LineSeqTab`: a buffer allocated for each array and its length | established |
+| 28, 32, 36 | `ODY_VTG_Control` (bit 1 also set when the screen record's word 136 is nonzero), `ODY_VTG_InitState`, `ODY_VTG_ChanEn` | established |
+| 40 to 76 | when the screen record's word 136 is nonzero, its words 268 to 304; otherwise `ODY_GEN_lPFD`, `hPFD`, `lPFD_HI`, `hPFD_HI`, `lPFD_LO`, `hPFD_LO`, `lPSD`, `hPSD`, `lHMASK`, `hHMASK` | established |
+| 80, 84 | `ODY_GEN_BP_CLAMP`, `ODY_GENLOCK` | established |
+| 88 | `ODY_GEN_CONTROL` ORed with `GEN_Control_mask` | established |
+| 96 to 124 | `ODY_PLL_DPAControl`, `DPAOffset`, `FdBkDiv0`, `FdBkDiv1`, `InputControl`, `LoopControl`, `Osc_Div`, `OutputEnables` | established |
+| 128 to 156 | `ODY_AMI_PLL_0x0` to `ODY_AMI_PLL_0x7` | established |
+| 160, 164, 168 | `ODY_DAC_Cntrl`, `ODY_DP_Cntrl`, `ODY_SM_Cntrl` | established |
+| 172, 184 | the caller's format record (offset 300; offset 272 truncated, the refresh rate) | established |
+| 176, 180 | `ActivePixelsPerLine`, `FrameBufferHeight` | established |
+| 192 | `AchievedFrequency` | established |
+| 200 | format flags: bit 0 `FormatInfo_Interlaced` (bit 1 also when the format record's word 304 points at a nonzero word), bit 2 `FormatInfo_Stereo`, bit 3 `FormatInfo_FullScreenStereo`, bit 4 `FormatInfo_DualHead`, bit 5 `FormatInfo_FieldSequential` | established |
+| 208, 212, 216 | `ODY_DCBClockSpeed`, `ODY_DDCClockSpeed`, `ODY_I2CClockSpeed` | established |
+| 220 | the routine's fifth argument | established |
+| 224 | the screen record's word 136 | established |
+| 236 to 248 | `GEN_AMI_REG1`, `GEN_AMI_REG2`, `GEN_AMI_REG5`, `GEN_AMI_REG6` | established |
+| 252 | 1 when the board's halfword 58 is 3, else 0 | established |
+| 256, 284, 312 | 0 | established |
+| 260 | 255 or 187, by whether the computed pixel clock exceeds a constant | established |
+| 264 | 240 when `TTL_Sync` is 3, else 0 | established |
+| 268 to 280 | `DCDHorizontalFrontPorch`, `DCDHorizontalSync`, `DCDHorizontalBackPorch` and `ActivePixelsPerLine`, each halved | established |
+| 288, 308 | 64, 142 | established |
+| 292 | divider selection found by a search over a 4 x 4 table of ratios: index bits 1:0, 3:2 and 5:4 | established |
+| 296, 300 | `DCDTotalPixelsPerLine` bits 7:0 and bits 13:8 | established |
+| 304 | 3, 18 or 19 by the pixel clock (`DCDTotalPixelsPerLine` times `TotalLinesPerFrame` times `FramesPerSecond`, over a constant) | established |
 
 Words 92, 188, 204, 228, 232 and 316 get no store after the routine clears the structure, so they reach the kernel as 0; word 196 is 0 too unless `AchievedFrequency` is an eight-byte value, which this reading does not settle. With the loader's table above this names every display-FIFO destination: 0x2481-0x2483 take the VTG control, initial state and channel enable; 0x27c0-0x27cc the genlock words and control; 0x26c0, 0x2600 and 0x2680 the DAC, data-path and SM controls; 0x2802 and 0x2803 the active width and frame-buffer height; 0x2b00 the DCB clock-speed code; 0x2700 bits 14:12 and 17:15 the DDC and I2C clock-speed codes. Words 264 to 304 are the timing of the digital (DCD) output, which reaches its FPGA over I2C. The names are the format compiler's; what each field does in the chip is still the hardware question below.
 

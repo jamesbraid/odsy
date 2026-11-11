@@ -48,16 +48,16 @@ minutes. `all` output from the run behind these numbers is in
 **Inferred**, a partial account of the panel 0 residue (pixels left different of
 13,934):
 
-| Candidate | Pixels |
-| --- | --- |
-| baseline, floor(256 c) | 1070 |
-| floor(256 c + b), b from 0.01 to 0.15 | 1053 (b = 0.03) to 3514 |
-| 12-bit vertex colours, the weighted sum quantised, then to 8 bits: best | 774 (sum rounded up, then >> 4) |
-| weights held to 10 to 16 bits in the forms tried, plus 0, 0.5 or 1 low bit | 735 best of 1368 variants |
-| vertex 1/w with a 6 to 14 bit mantissa, three rounding modes, plus one low bit | 729 best |
-| red, green and blue plus one 12-bit low bit (1/16 of an output step), alpha unchanged, 1.0 as 4096 | 556 |
-| the same with the vertex colour 1.0 as 4095 | 782 |
-| the same with red, green and blue 1.0 as 4095 at the vertices and alpha 1.0 as 4096 | 500 |
+| Candidate | Pixels | Grade |
+| --- | --- | --- |
+| baseline, floor(256 c) | 1070 | inferred |
+| floor(256 c + b), b from 0.01 to 0.15 | 1053 (b = 0.03) to 3514 | inferred |
+| 12-bit vertex colours, the weighted sum quantised, then to 8 bits: best | 774 (sum rounded up, then >> 4) | inferred |
+| weights held to 10 to 16 bits in the forms tried, plus 0, 0.5 or 1 low bit | 735 best of 1368 variants | inferred |
+| vertex 1/w with a 6 to 14 bit mantissa, three rounding modes, plus one low bit | 729 best | inferred |
+| red, green and blue plus one 12-bit low bit (1/16 of an output step), alpha unchanged, 1.0 as 4096 | 556 | inferred |
+| the same with the vertex colour 1.0 as 4095 | 782 | inferred |
+| the same with red, green and blue 1.0 as 4095 at the vertices and alpha 1.0 as 4096 | 500 | inferred |
 
 With the same change applied to every panel's packing (`frame`), the whole frame
 differs in 10,051 pixels, 900 of them over 3 steps (baseline 12,598 and 1325).

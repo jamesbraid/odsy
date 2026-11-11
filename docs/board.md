@@ -31,11 +31,11 @@ Size code 3 is a 32 MB board to both programs. **established** (read from both):
 
 - **established.** `odsyGatherInfo(board, 0)` reads +0x04 and takes bits 31:28 as a buzz revision type, stored in record +264, then dispatches through a 16-entry jump table (`odsy_init.o` `.rodata` offset 0x238):
 
-| Value | Record +264 | Record +280 |
-|---|---|---|
-| 1, 2, 3 | the value | 0 |
-| 9 to 15 | value - 8 (1 to 7) | 1 |
-| 0, 4 to 8 | error "Invalid buzz rev type %d" | |
+| Value | Record +264 | Record +280 | Grade |
+|---|---|---|---|
+| 1, 2, 3 | the value | 0 | established |
+| 9 to 15 | value - 8 (1 to 7) | 1 | established |
+| 0, 4 to 8 | error "Invalid buzz rev type %d" | | established |
 
 - **established.** After a valid type it reads the word at +0x23380c, keeps bits 2:0 in record +268, and returns.
 - **inferred.** Bit 31 (record +280) is a variant flag, the low three bits the BUZZ revision. **established** (`docs/pbj.md`, items 3 and 4): +0x23380c is display address 0x2701, the register whose bits 2:0 `gfxinit` prints as "PB&J version"; `odsyGatherInfo` stores them in record +268. `+0x233804` is the clock-programming word read by `odsyLoadTimingTable` (`docs/display.md`), a neighbour in the same block. The meaning of bits 31:3 of 0x2701: **unknown**, `odsyInitDBE` tests bit 10 (`PBJ.h` section 2); a read-back of the whole word on a real board with known revisions would settle the rest.
