@@ -1,4 +1,4 @@
-// generated from odsy 95550b2cfdb3 BUZZ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 8cd2c555c135 BUZZ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Command opcodes and the image, copy, pixel-mode, texture-level and sampler
 //! words of the Odyssey geometry and pixel engine's command stream.
@@ -58,6 +58,14 @@ pub const SEQ_REG_TABLE_INDEX: u32 = 49;
 pub const BLK_SLOT_PAIR: u32 = 0x1ea;
 /// established: opcode 0x26, attribute slot 4, one operand; the word the driver stores as that slot's default; what slot 4 carries is unknown.
 pub const SLOT4_DEFAULT_WORD: u32 = 0xc480c426;
+/// established: the low half (count 4, opcode 0x2f) of the clipped-vertex senders' slot 6 word; the four-operand words of slots 7 to 9 carry opcodes 0x30 to 0x32.
+pub const ATTR_LOW_COUNT4_OP2F: u32 = 0xd02f;
+/// established: opcode 0x1c, attribute slot 2, three operands.
+pub const SLOT2_WORD: u32 = 0xc280cc1c;
+/// established: opcode 0x33, attribute slot 16, one operand.
+pub const SLOT16_WORD_OP33: u32 = 0xd080c433;
+/// established: opcode 0x34, attribute slot 16, three operands.
+pub const SLOT16_WORD_OP34: u32 = 0xd080cc34;
 /// established.
 pub const SEQ_REG_COLOUR_MODE_A: u32 = 34;
 /// established.

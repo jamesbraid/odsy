@@ -1,4 +1,4 @@
-// generated from odsy 34ff2bad8f55 ODSY_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 8cd2c555c135 ODSY_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Board identity on the crossbar, the register positions of the board
 //! window, and the identity, strap and memory-configuration words.
@@ -130,6 +130,10 @@ pub const WIDGET_ID_TYPE_B_LAST: u32 = 15;
 pub const MASTER_ID_CODE_VALUE: u32 = 18;
 /// established.
 pub const RGBA12_MIN_MEMORY_MB: u32 = 128;
+/// established.
+pub const STATS_CTL_FIXED_BITS: u32 = 0x88000000;
+/// established.
+pub const HOST_FLOW_MODE_OFFSET: u32 = 64;
 
 /// Values of `sdram_size` in `Strap` that the header names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -487,6 +491,89 @@ impl SdramCfg {
     }
 }
 
+/// The `STATS_CTL` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct StatsCtl(u32);
+
+impl StatsCtl {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 3:0, established.
+    pub const fn size_exp(self) -> u32 {
+        self.0 & 0xf
+    }
+
+    /// Bit 4, established.
+    pub const fn flag_a(self) -> bool {
+        (self.0 >> 4) & 1 != 0
+    }
+
+    /// Bit 5, established.
+    pub const fn flag_b(self) -> bool {
+        (self.0 >> 5) & 1 != 0
+    }
+
+    /// Bit 6, established.
+    pub const fn flag_c(self) -> bool {
+        (self.0 >> 6) & 1 != 0
+    }
+
+    /// Bits 10:8, established.
+    pub const fn select(self) -> u32 {
+        (self.0 >> 8) & 0x7
+    }
+
+    /// Bit 27, established.
+    pub const fn fixed_mid(self) -> bool {
+        (self.0 >> 27) & 1 != 0
+    }
+
+    /// Bit 31, established.
+    pub const fn fixed_top(self) -> bool {
+        (self.0 >> 31) & 1 != 0
+    }
+}
+
+/// The `HOST_FLOW_MODE` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct HostFlowMode(u32);
+
+impl HostFlowMode {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bit 8, established.
+    pub const fn attach_cpu0(self) -> bool {
+        (self.0 >> 8) & 1 != 0
+    }
+
+    /// Bit 9, established.
+    pub const fn attach_cpu1(self) -> bool {
+        (self.0 >> 9) & 1 != 0
+    }
+
+    /// Bits 11:10, established.
+    pub const fn owner_cpu0(self) -> u32 {
+        (self.0 >> 10) & 0x3
+    }
+
+    /// Bits 13:12, established.
+    pub const fn owner_cpu1(self) -> u32 {
+        (self.0 >> 12) & 0x3
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -496,5 +583,12 @@ mod tests {
         let w = WidgetControl::new(0x4200);
         assert_eq!(w.big_endian() as u32, 1, "big_endian");
         assert_eq!(w.credit(), 4, "credit");
+    }
+
+    #[test]
+    fn testvec_stats_ctl_88000000() {
+        let w = StatsCtl::new(0x88000000);
+        assert_eq!(w.fixed_mid() as u32, 1, "fixed_mid");
+        assert_eq!(w.fixed_top() as u32, 1, "fixed_top");
     }
 }
