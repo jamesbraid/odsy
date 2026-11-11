@@ -12,7 +12,8 @@
  * positions, field roles, enum values and register positions only. No
  * binary symbols, no source paths, no vendor identifiers.
  *
- * Scope: the board PIO window only. The command stream is BUZZ_DECODE.h,
+ * Scope: the board PIO window, plus the one host-chip word the driver
+ * programs for the board's flow control (section 8). The command stream is BUZZ_DECODE.h,
  * TEXTURE_DECODE.h and DMA_DECODE.h; the display half is DISPLAY_DECODE.h
  * and PBJ_DECODE.h, whose register offsets are in the display's own
  * address space behind the display FIFO port and are not repeated here.
@@ -355,5 +356,82 @@
  * of either variant is offered the same formats.
  */
 #define ODSY_RGBA12_MIN_MEMORY_MB     128 /* established */
+
+/* ===================================================================
+ * 7. Statistics control word
+ * ===================================================================
+ *
+ * The driver's statistics request builds one control word from a 24-byte
+ * argument supplied by its caller and stores it to the board (position
+ * 0x402c). Bits 3:0 are the low nibble of the same argument byte that
+ * gives the size of the host-memory statistics region (the region is
+ * (2 << n) * 32 bytes for n = that byte), bits 4, 5 and 6 are bit 0 of
+ * three further bytes, bits 10:8 are the low three bits of another, bit 7
+ * is cleared, and two bits are always set: bit 31 and bit 27. That the
+ * two always-set bits are constants of the driver's word is established;
+ * what any field selects on the board is unknown. The same word, with the
+ * same fixed bits, is built by the older driver build as well.
+ */
+/* FIELD: STATS_CTL.size_exp 3:0 established */
+/* FIELD: STATS_CTL.flag_a 4:4 established */
+/* FIELD: STATS_CTL.flag_b 5:5 established */
+/* FIELD: STATS_CTL.flag_c 6:6 established */
+/* FIELD: STATS_CTL.select 10:8 established */
+/* FIELD: STATS_CTL.fixed_mid 27:27 established */
+/* FIELD: STATS_CTL.fixed_top 31:31 established */
+#define ODSY_STATS_CTL_SIZE_EXP_SHIFT   0
+#define ODSY_STATS_CTL_SIZE_EXP_MASK    0xfu
+#define ODSY_STATS_CTL_FLAG_A_SHIFT     4
+#define ODSY_STATS_CTL_FLAG_A_MASK      0x1u
+#define ODSY_STATS_CTL_FLAG_B_SHIFT     5
+#define ODSY_STATS_CTL_FLAG_B_MASK      0x1u
+#define ODSY_STATS_CTL_FLAG_C_SHIFT     6
+#define ODSY_STATS_CTL_FLAG_C_MASK      0x1u
+#define ODSY_STATS_CTL_SELECT_SHIFT     8
+#define ODSY_STATS_CTL_SELECT_MASK      0x7u
+#define ODSY_STATS_CTL_FIXED_MID_SHIFT  27
+#define ODSY_STATS_CTL_FIXED_MID_MASK   0x1u
+#define ODSY_STATS_CTL_FIXED_TOP_SHIFT  31
+#define ODSY_STATS_CTL_FIXED_TOP_MASK   0x1u
+/* The two always-set bits of every word the driver writes.
+ * TESTVEC: 0x88000000 as STATS_CTL => fixed_mid=1, fixed_top=1
+ */
+#define ODSY_STATS_CTL_FIXED_BITS       0x88000000u /* established */
+
+/* ===================================================================
+ * 8. Host flow-control mode word
+ * ===================================================================
+ *
+ * Not a board register: the board's driver also programs one 64-bit word
+ * of the host chip (at register offset 0x40 from the host chip's base,
+ * the public Linux layout's flow-control mode register) when a processor
+ * attaches to the board's credit record, and rewrites it when the
+ * processor detaches. For processor number n the attach sets bit n + 8
+ * and writes the value n into the two-bit field at bits 2n + 11 : 2n + 10;
+ * the detach clears bit n + 8 and sets both bits of that field. Both are
+ * read-modify-write under the driver's own lock. The processor numbers
+ * seen index two per-processor register pairs, so n is 0 or 1 here. The
+ * positions and values are established as what the driver does; what the
+ * host chip does with the fields is inferred (the public Linux layout
+ * calls the registers' purpose unknown, "possibly graphics flow
+ * control"), so the field names say only when the driver sets them. Fields for processor 0 and processor 1 are listed
+ * separately because the per-processor positions differ.
+ */
+#define ODSY_HOST_FLOW_MODE_OFFSET      0x40 /* established */
+/* FIELD: HOST_FLOW_MODE.attach_cpu0 8:8 established */
+/* FIELD: HOST_FLOW_MODE.attach_cpu1 9:9 established */
+/* FIELD: HOST_FLOW_MODE.owner_cpu0 11:10 established */
+/* FIELD: HOST_FLOW_MODE.owner_cpu1 13:12 established */
+#define ODSY_HOST_FLOW_MODE_ATTACH_CPU0_SHIFT 8
+#define ODSY_HOST_FLOW_MODE_ATTACH_CPU0_MASK  0x1u
+#define ODSY_HOST_FLOW_MODE_ATTACH_CPU1_SHIFT 9
+#define ODSY_HOST_FLOW_MODE_ATTACH_CPU1_MASK  0x1u
+#define ODSY_HOST_FLOW_MODE_OWNER_CPU0_SHIFT  10
+#define ODSY_HOST_FLOW_MODE_OWNER_CPU0_MASK   0x3u
+#define ODSY_HOST_FLOW_MODE_OWNER_CPU1_SHIFT  12
+#define ODSY_HOST_FLOW_MODE_OWNER_CPU1_MASK   0x3u
+/* Layout illustration: processor 1 attached (bit 9 set, owner field 1).
+ * EXAMPLE (unverified): 0x1200 as HOST_FLOW_MODE => attach_cpu0=0, attach_cpu1=1, owner_cpu0=0, owner_cpu1=1
+ */
 
 #endif /* ODSY_DECODE_H */

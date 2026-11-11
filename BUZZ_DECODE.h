@@ -598,6 +598,20 @@
 #define BUZZ_SLOT4_DEFAULT_WORD     0xc480c426u /* established: opcode 0x26,
         attribute slot 4, one operand; the word the driver stores as that
         slot's default; what slot 4 carries is unknown */
+/* More attribute-slot words, same 32-bit layout as the slot 4 word: bits
+ * 31:24 name the slot (0xc0 plus the slot number for slots above 0), bits
+ * 23:16 are 0x80, bits 15:14 are both set, the operand count is in bits
+ * 13:10 and the opcode in bits 9:0. All established as the values the
+ * drivers send or store; what slots 2 and 16 carry is unknown. */
+#define BUZZ_ATTR_LOW_COUNT4_OP2F   0xd02fu /* established: the low half
+        (count 4, opcode 0x2f) of the clipped-vertex senders' slot 6 word;
+        the four-operand words of slots 7 to 9 carry opcodes 0x30 to 0x32 */
+#define BUZZ_SLOT2_WORD             0xc280cc1cu /* established: opcode 0x1c,
+        attribute slot 2, three operands */
+#define BUZZ_SLOT16_WORD_OP33       0xd080c433u /* established: opcode 0x33,
+        attribute slot 16, one operand */
+#define BUZZ_SLOT16_WORD_OP34       0xd080cc34u /* established: opcode 0x34,
+        attribute slot 16, three operands */
 
 /* Colour-mode select words. A sequencer word is (register << 24) | 0x8000 |
  * the value (see the table-index register above). Two registers are sent as
