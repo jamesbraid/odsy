@@ -511,6 +511,13 @@
     ],
     "sources": [
       {
+        "type": "header",
+        "label": "BUZZ.h register ids",
+        "kind": "block",
+        "file": "BUZZ.h",
+        "pattern": "^#define\\s+(BUZZ_REG_\\w+)\\s+(0x[0-9a-fA-F]+)\\b"
+      },
+      {
         "type": "stores",
         "label": "code",
         "kind": "word",
@@ -557,6 +564,17 @@
     },
     "min_decimal": 1000,
     "dispatchers": [
+      {
+        "type": "compare",
+        "functions": "^gfxioctl$",
+        "binaries": [
+          "usr/cpu/sysgen/*/gfx.o"
+        ],
+        "range": [
+          "101",
+          "113"
+        ]
+      },
       {
         "type": "pointer-table",
         "name": "private",
