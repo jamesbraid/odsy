@@ -122,7 +122,7 @@ Readers may open anything:
 
 - every shipped binary on every IRIX release, and any disassembly or
   decompilation of it;
-- the IRIX source tree linked from this repository;
+- the IRIX source tree linked from this repository (hint only, never evidence);
 - vendor specifications, including any embedded source code or HDL pages;
 - public drivers and emulators: Linux, NetBSD, OpenBSD, MAME and others;
 - manuals, release notes and man pages;
@@ -153,14 +153,14 @@ list those routes among the routes tried. Searches of the source tree may
 suggest where to look; they are not among the routes tried.
 
 Label honestly. Use "established" only for what you read in full: the whole
-function body, table or source passage. A reading built from call lists,
+function body or table in a shipped binary, or the passage in a published document or capture. A reading built from call lists,
 register-store summaries, a sibling build or a name is "inferred". Never
 reword or reformat an entry to change its grade. Independent audits sample
 entries against the binaries, and their measured rates are published beside
 the coverage figures.
 
 An entry that was written quickly and not yet checked against the binary or
-the source ends with "Unverified." in place of "Inferred." or "Established.".
+its document ends with "Unverified." in place of "Inferred." or "Established.".
 It grades at most `located`, whatever else it says, so the understood figure
 counts only what has been read. When you re-read it, correct it and change the
 label to established or inferred.
@@ -181,8 +181,8 @@ the owning chip header or chapter and delete the entry.
 A coverage row is done when every inventory entry in its area
 (`docs/inventory/`) is `understood` or `no-software-dependency`. `understood`
 means the entry for that item carries a label (established or inferred), a role
-and hardware effect, and a derivation citation (release, binary or path,
-offset, callee or source path) in the same entry. Naming an item, or listing it
+and hardware effect, and a derivation citation (release, binary and its install path under `root/`,
+offset, callee) in the same entry. Naming an item, or listing it
 with others, is not enough. `no-software-dependency` is the section 6 label
 "unknown: no shipped software or published source depends on it", with the
 routes tried. `located` (identity, address or size, and callers or sites cited,
@@ -195,7 +195,7 @@ the definition above, or when the session ends. In that case, say in
 `docs/open-questions.md` where you stopped and what comes next.
 
 
-A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member or source path, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule.
+A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule.
 
 ---
 
@@ -212,10 +212,10 @@ Roles:
 Output rules:
 
 - Findings go in chip headers at the repository root plus `docs/` chapters, written in your own words.
-- Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the public source path.
+- Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the published document or capture.
 - Update `docs/coverage.md` and the inventory (`retools/tools/inventory.py`) in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
-- Commit what you cite: findings may rest on IRIX binaries or public sources only.
+- Commit what you cite: findings may rest on IRIX binaries, published documents or captures only.
 
 Downstream emulator projects consume the headers and docs; they should not need to read the binaries.
 
