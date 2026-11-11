@@ -1,4 +1,4 @@
-// generated from odsy cc82edb1b264 PBJ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 34ff2bad8f55 PBJ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Host-interface, I2C and scanout-buffer registers of the Odyssey board,
 //! and the header word that frames a display FIFO write.
@@ -10,7 +10,7 @@
 
 #![allow(dead_code)]
 
-/// established.
+/// inferred.
 pub const FIFO_DEPTH_DWORDS: u32 = 24;
 /// established.
 pub const READ_SLOT_BYTES: u32 = 8;

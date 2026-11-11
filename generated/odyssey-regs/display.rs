@@ -1,4 +1,4 @@
-// generated from odsy 865e0c278a6f DISPLAY_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 34ff2bad8f55 DISPLAY_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Display-half registers of the Odyssey board: colour map, line and frame
 //! tables, cursor, DAC, timing generator, genlock and the display-mode table.
@@ -352,27 +352,27 @@ impl CursorCtl {
         self.0
     }
 
-    /// Bit 4, inferred.
+    /// Bit 4, unknown.
     pub const fn dual_head(self) -> bool {
         (self.0 >> 4) & 1 != 0
     }
 
-    /// Bit 3, inferred.
+    /// Bit 3, unknown.
     pub const fn field_seq(self) -> bool {
         (self.0 >> 3) & 1 != 0
     }
 
-    /// Bit 2, inferred.
+    /// Bit 2, unknown.
     pub const fn crosshair(self) -> bool {
         (self.0 >> 2) & 1 != 0
     }
 
-    /// Bit 1, inferred.
+    /// Bit 1, unknown.
     pub const fn enable(self) -> bool {
         (self.0 >> 1) & 1 != 0
     }
 
-    /// Bit 0, inferred.
+    /// Bit 0, unknown.
     pub const fn delay_enable(self) -> bool {
         self.0 & 1 != 0
     }

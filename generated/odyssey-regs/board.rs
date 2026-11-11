@@ -1,4 +1,4 @@
-// generated from odsy cc82edb1b264 ODSY_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 34ff2bad8f55 ODSY_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Board identity on the crossbar, the register positions of the board
 //! window, and the identity, strap and memory-configuration words.
@@ -424,7 +424,7 @@ impl Strap {
         (self.0 >> 24) & 0xf
     }
 
-    /// Bits 15:7, established.
+    /// Bits 15:7, inferred.
     pub const fn command_level(self) -> u32 {
         (self.0 >> 7) & 0x1ff
     }
