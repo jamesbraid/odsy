@@ -1,4 +1,4 @@
-// generated from odsy 8cd2c555c135 BUZZ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 289a60718186 BUZZ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Command opcodes and the image, copy, pixel-mode, texture-level and sampler
 //! words of the Odyssey geometry and pixel engine's command stream.
@@ -220,6 +220,70 @@ pub const RASTER_ENABLE_FOG: u32 = 0x400000;
 pub const RASTER_ENABLE_FRONT_CW: u32 = 0x800000;
 /// established.
 pub const SAMPLER_IMAGE_DEFAULT: u32 = 0x3640000;
+/// established.
+pub const ATTR_VERTEX3F_WORD: u32 = 0x8080cc03;
+/// established word; two operands. The operands sent at start-up are the pair below; the reading as the bounds of a range is inferred from the values alone.
+pub const CMD_RANGE_BLOCK: u32 = 0x10854;
+/// established value.
+pub const RANGE_BLOCK_LOW: u32 = 0;
+/// established value.
+pub const RANGE_BLOCK_HIGH: u32 = 0xfffffff;
+/// established: value 0.
+pub const INIT_DW_6B0: u64 = 0x6b000000000;
+/// established: value 256.
+pub const INIT_DW_6B1: u64 = 0x6b100000100;
+/// established: value 24144.
+pub const INIT_DW_6B3: u64 = 0x6b300005e50;
+/// established: value 32192.
+pub const INIT_DW_6B2: u64 = 0x6b200007dc0;
+/// established: value 1.
+pub const INIT_DW_7B5: u64 = 0x7b500000001;
+/// established.
+pub const INIT_DW_7F0: u64 = 0x7f03b9aca00;
+/// established; one operand, role inferred.
+pub const CMD_WAIT: u32 = 0x10443;
+/// established; no operand, role inferred.
+pub const CMD_PAD: u32 = 0x10046;
+/// established; no operand, role inferred.
+pub const CMD_FLUSH: u32 = 0x10019;
+/// established.
+pub const SYNC_WAIT_FIRST: u32 = 250;
+/// established.
+pub const SYNC_WAIT_SECOND: u32 = 150;
+/// established.
+pub const INIT_DELAY_US: u32 = 0x7d0;
+/// established.
+pub const CLASS0_ID_ADDR: u32 = 0x340;
+/// established.
+pub const CLASS0_ID_DATA: u32 = 0x341;
+/// established.
+pub const CLASS0_WRITE_ADDR: u32 = 0x740;
+/// established.
+pub const CLASS0_WRITE_DATA: u32 = 0x741;
+/// established.
+pub const CLASS0_CLEAR_ADDR: u32 = 0x1c0;
+/// established.
+pub const CLASS0_CLEAR_WORDS: u32 = 0x240;
+/// established.
+pub const SLOT15_WORD_OP12F: u32 = 0xcf80a92f;
+/// established; four operands, sent after the lighting data base register is set, once for entry 24 and then for entries 0 to 23.
+pub const WORD_DATA_LOAD4: u32 = 0x8e809015;
+/// established: top byte of the words below.
+pub const WORD_TOP_BYTE_90: u32 = 144;
+/// established; sixteen operands, id 0x1a2, sent ahead of each run of sixteen words of the 512-word table the table-index register selects (the id is the table data port's).
+pub const WORD_TABLE16_A_LOW24: u32 = 0x80bda2;
+/// established; sixteen operands, id 0x1c8, sent after the register-file base register is set to index 0.
+pub const WORD_TABLE16_B_LOW24: u32 = 0x80bdc8;
+/// established; four operands, id 0x1df, sent at register-file index 16.
+pub const WORD_TABLE4_A_LOW24: u32 = 0x8091df;
+/// established; four operands, id 0x1ea (the slot pair block above), each of two saved words followed by a copy with bit 31 flipped.
+pub const WORD_TABLE4_B_LOW24: u32 = 0x8091ea;
+/// established; two zero operands follow, id 0; sent before the program registers are loaded.
+pub const WORD_PROGRAM_SWITCH_LOW24: u32 = 0x808800;
+/// established.
+pub const WORD_CLIP_STATE_A_LOW24: u32 = 0x8116;
+/// established.
+pub const WORD_CLIP_STATE_B_LOW24: u32 = 0xbda2;
 
 /// `op_texlevel(i)` is the opcode of descriptor `i`: `0x0e80` plus `i`.
 pub const fn op_texlevel(i: u32) -> u32 {

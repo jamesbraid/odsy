@@ -1,4 +1,4 @@
-// generated from odsy 8cd2c555c135 ODSY_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 289a60718186 ODSY_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Board identity on the crossbar, the register positions of the board
 //! window, and the identity, strap and memory-configuration words.
@@ -28,6 +28,8 @@ pub const BOARD_ERR_ADDR_LO: u32 = 28;
 pub const BOARD_WIDGET_CONTROL: u32 = 36;
 /// established.
 pub const BOARD_REQ_TIMEOUT: u32 = 44;
+/// established.
+pub const BOARD_REQ_TIMEOUT_BITS: u32 = 20;
 /// established.
 pub const BOARD_INTR_DEST_HI: u32 = 52;
 /// established.
@@ -134,6 +136,12 @@ pub const RGBA12_MIN_MEMORY_MB: u32 = 128;
 pub const STATS_CTL_FIXED_BITS: u32 = 0x88000000;
 /// established.
 pub const HOST_FLOW_MODE_OFFSET: u32 = 64;
+/// established.
+pub const BOARD_STARTUP_PROBE_POS: u32 = 0x201594;
+/// established.
+pub const BOARD_STARTUP_PROBE_VALUE: u32 = 0x3d0046;
+/// established.
+pub const BOARD_DISPLAY_ID_POS: u32 = 0x23380c;
 
 /// Values of `sdram_size` in `Strap` that the header names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
