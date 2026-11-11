@@ -1,5 +1,5 @@
 window	offset	name	access	sites	binaries	functions	evidence	example	status	doc	section
-board	0x4		r4	2	2	odsyGatherInfo	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyGatherInfo	understood	docs/registers.md#crossbar-widget-header-0x00-to-0x5c	Crossbar widget header (0x00 to 0x5c)
+board	0x4		r4	2	2	odsyGatherInfo	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o):odsyGatherInfo	understood	docs/display.md#kernel-cursor-request	Kernel cursor request
 board	0xc		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	understood	docs/registers.md#crossbar-widget-header-0x00-to-0x5c	Crossbar widget header (0x00 to 0x5c)
 board	0x14		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	understood	docs/registers.md#crossbar-widget-header-0x00-to-0x5c	Crossbar widget header (0x00 to 0x5c)
 board	0x1c		r4	2	2	odsyXtErrorInterrupt	board record +824	builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_intr.o):odsyXtErrorInterrupt	understood	docs/registers.md#crossbar-widget-header-0x00-to-0x5c	Crossbar widget header (0x00 to 0x5c)
