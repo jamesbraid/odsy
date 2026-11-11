@@ -1,4 +1,4 @@
-// generated from odsy cc82edb1b264 BUZZ_DECODE.h - do not edit, regenerate in odsy
+// generated from odsy 95550b2cfdb3 BUZZ_DECODE.h - do not edit, regenerate in odsy
 //!
 //! Command opcodes and the image, copy, pixel-mode, texture-level and sampler
 //! words of the Odyssey geometry and pixel engine's command stream.
@@ -78,6 +78,140 @@ pub const SEQ_WORD_COLOUR_B_RGB: u32 = 0x23008002;
 pub const SEQ_WORD_COLOUR_A_INDEX: u32 = 0x22008001;
 /// established.
 pub const SEQ_WORD_COLOUR_B_INDEX: u32 = 0x23008003;
+/// established; one operand, section 9 bits below.
+pub const CMD_RASTER_ENABLE: u32 = 0x10404;
+/// established; one operand: clip planes, texture target, colour count.
+pub const CMD_PATH_SELECT: u32 = 0x10405;
+/// established; one operand: index of the first level descriptor read.
+pub const CMD_FIRST_TEXLEVEL: u32 = 0x10406;
+/// established; four operands: S bias, T bias, minimum and maximum LOD.
+pub const CMD_LOD_LIMITS: u32 = 0x11013;
+/// established; one operand: bits 3:2 front, 1:0 back (GL enum minus 0x1b00).
+pub const CMD_POLYGON_MODE: u32 = 0x10415;
+/// established; four operands, role inferred.
+pub const CMD_WINDOW_DESC: u32 = 0x11017;
+/// established; six operands: colour pair then function coefficients.
+pub const CMD_FOG: u32 = 0x1181a;
+/// established; three operands.
+pub const CMD_FRAG_LIGHT_MODEL: u32 = 0x10c1c;
+/// established; see ALPHA_TEST above.
+pub const CMD_ALPHA_TEST: u32 = 0x1041e;
+/// established; one operand: bits 2:0 comparison (GL enum minus 0x200).
+pub const CMD_DEPTH_FUNC: u32 = 0x10420;
+/// established; one operand: bits 3:0 (GL enum minus 0x1500).
+pub const CMD_LOGIC_OP: u32 = 0x10422;
+/// established; one operand, role inferred as the draw-buffer select.
+pub const CMD_BUFFER_SELECT: u32 = 0x10424;
+/// established; three operands: 16-bit pattern twice, then repeat minus one.
+pub const CMD_LINE_STIPPLE: u32 = 0x10c48;
+/// established; one operand: bits 24:0 signed depth offset.
+pub const CMD_POLYGON_OFFSET: u32 = 0x10458;
+/// established; one operand: index 11:0, stencil 19:12, RGBA enables 23:20, depth 24.
+pub const CMD_WRITE_MASKS: u32 = 0x10452;
+/// established; sixteen operands: rows 31 down to 16 of the 32 by 32 polygon stipple.
+pub const CMD_STIPPLE_ROWS_HI: u32 = 0x13c4e;
+/// established; sixteen operands: rows 15 down to 0.
+pub const CMD_STIPPLE_ROWS_LO: u32 = 0x13c4f;
+/// established word; the operand's meaning is unknown.
+pub const CMD_STIPPLE_MODE: u32 = 0x1043f;
+/// established; two operands: slot in bits 18:12 with the low bits 0xf, then 0.
+pub const CMD_CONTEXT_SELECT: u32 = 0x10850;
+/// established; two operands, part of the clip push, fields unknown.
+pub const CMD_CLIP_ORIGIN_PAIR: u32 = 0x10840;
+/// established; two operands: draw drawable x and y in the low 13 bits.
+pub const CMD_DRAWABLE_ORIGIN: u32 = 0x10841;
+/// established word; two operands, role inferred.
+pub const CMD_LINE_POINT_SIZE: u32 = 0x1084a;
+/// established; five operands, sent ahead of a rectangle copy.
+pub const CMD_RECT_COPY: u32 = 0x11453;
+/// established; one operand, sent before a rectangle copy and DMA transfers.
+pub const CMD_DMA_PRELUDE: u32 = 0x10658;
+/// established; bit 14 set, id 0, one operand: the primitive type.
+pub const CMD_PRIM_BEGIN: u32 = 0x14400;
+/// established; no operand.
+pub const CMD_PRIM_END: u32 = 0x14001;
+/// established.
+pub const CMD_POSTFILTER_M1_0: u32 = 0x12030;
+/// established.
+pub const CMD_POSTFILTER_M1_1: u32 = 0x12031;
+/// established.
+pub const CMD_POSTFILTER_M1_2: u32 = 0x12032;
+/// established.
+pub const CMD_POSTFILTER_M1_3: u32 = 0x12033;
+/// established; two operands, identity scale 0x1000 and bias 0 by default.
+pub const CMD_POSTFILTER_M3: u32 = 0x1083d;
+/// established; sixteen operands.
+pub const CMD_REGION_ONE_BLOCK: u32 = 0x13c38;
+/// established; sixteen operands.
+pub const CMD_REGION_BLOCK_0: u32 = 0x13c28;
+/// established; sixteen operands.
+pub const CMD_REGION_BLOCK_1: u32 = 0x13c29;
+/// established; sixteen operands.
+pub const CMD_REGION_BLOCK_2: u32 = 0x13c2a;
+/// established; sixteen operands.
+pub const CMD_REGION_BLOCK_3: u32 = 0x13c2b;
+/// established; one operand.
+pub const CMD_BLK_01F: u32 = 0x1041f;
+/// established; two operands, image-chain set-up.
+pub const CMD_BLK_042: u32 = 0x10842;
+/// established; six operands, only zeros are ever sent.
+pub const CMD_BLK_047: u32 = 0x11847;
+/// established; one operand.
+pub const CMD_BLK_04C: u32 = 0x1044c;
+/// established; sixteen operands.
+pub const CMD_BLK_04D: u32 = 0x13c4d;
+/// established; one operand: bit 0 and bit 1 are set from vertex pre-clip class and a reversed depth range (roles inferred).
+pub const CMD_BLK_051: u32 = 0x10451;
+/// established; one operand.
+pub const CMD_BLK_056: u32 = 0x10456;
+/// established; one operand.
+pub const CMD_BLK_057: u32 = 0x10457;
+/// established.
+pub const RASTER_ENABLE_POINT_SMOOTH: u32 = 1;
+/// established.
+pub const RASTER_ENABLE_LINE_SMOOTH: u32 = 2;
+/// established.
+pub const RASTER_ENABLE_POLYGON_SMOOTH: u32 = 4;
+/// established.
+pub const RASTER_ENABLE_LINE_STIPPLE: u32 = 8;
+/// established.
+pub const RASTER_ENABLE_POLYGON_STIPPLE: u32 = 16;
+/// established.
+pub const RASTER_ENABLE_OFFSET_POINT: u32 = 32;
+/// established.
+pub const RASTER_ENABLE_OFFSET_LINE: u32 = 64;
+/// established.
+pub const RASTER_ENABLE_OFFSET_FILL: u32 = 128;
+/// inferred.
+pub const RASTER_ENABLE_CULL: u32 = 0x100;
+/// established.
+pub const RASTER_ENABLE_CULL_BACK: u32 = 0x200;
+/// established.
+pub const RASTER_ENABLE_CULL_FRONT: u32 = 0x400;
+/// inferred.
+pub const RASTER_ENABLE_TWO_SIDE_LIGHT: u32 = 0x800;
+/// established.
+pub const RASTER_ENABLE_FLAT_SHADE: u32 = 0x1000;
+/// established.
+pub const RASTER_ENABLE_ALPHA_TEST: u32 = 0x4000;
+/// inferred.
+pub const RASTER_ENABLE_STENCIL_TEST: u32 = 0x8000;
+/// inferred.
+pub const RASTER_ENABLE_DEPTH_TEST: u32 = 0x10000;
+/// inferred.
+pub const RASTER_ENABLE_BLEND: u32 = 0x20000;
+/// established.
+pub const RASTER_ENABLE_DITHER: u32 = 0x40000;
+/// established.
+pub const RASTER_ENABLE_INDEX_LOGIC_OP: u32 = 0x80000;
+/// established.
+pub const RASTER_ENABLE_COLOUR_LOGIC_OP: u32 = 0x100000;
+/// established.
+pub const RASTER_ENABLE_FOG: u32 = 0x400000;
+/// established.
+pub const RASTER_ENABLE_FRONT_CW: u32 = 0x800000;
+/// established.
+pub const SAMPLER_IMAGE_DEFAULT: u32 = 0x3640000;
 
 /// `op_texlevel(i)` is the opcode of descriptor `i`: `0x0e80` plus `i`.
 pub const fn op_texlevel(i: u32) -> u32 {
@@ -1159,5 +1293,17 @@ mod tests {
         assert_eq!(w.green(), 153, "green");
         assert_eq!(w.blue(), 179, "blue");
         assert_eq!(w.alpha(), 255, "alpha");
+    }
+
+    #[test]
+    fn testvec_sampler_3640000() {
+        let w = SamplerWord::new(0x3640000);
+        assert_eq!(w.colour_table() as u32, 0, "colour_table");
+        assert_eq!(w.mag().bits(), 0, "mag");
+        assert_eq!(w.min().bits(), 0, "min");
+        assert_eq!(w.image_flag18() as u32, 1, "image_flag18");
+        assert_eq!(w.table_fmt(), 6, "table_fmt");
+        assert_eq!(w.activation(), 6, "activation");
+        assert_eq!(w.no_offset() as u32, 0, "no_offset");
     }
 }

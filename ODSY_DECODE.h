@@ -88,6 +88,10 @@
 #define ODSY_BOARD_ERR_ADDR_HI        0x14 /* established */
 #define ODSY_BOARD_ERR_ADDR_LO        0x1c /* established */
 #define ODSY_BOARD_WIDGET_CONTROL     0x24 /* established */
+/* Request timeout: the position is the public widget layout's, the register
+ * is 20 bits wide (the firmware diagnostic's mask) and the kernel driver
+ * never touches it. What it times and in what unit is unknown. */
+#define ODSY_BOARD_REQ_TIMEOUT        0x2c /* established */
 #define ODSY_BOARD_INTR_DEST_HI       0x34 /* established */
 #define ODSY_BOARD_INTR_DEST_LO       0x3c /* established */
 #define ODSY_BOARD_ERR_COMMAND        0x44 /* established */
@@ -133,6 +137,15 @@
 #define ODSY_BOARD_SHADOW_ADDR_HI     0x4034 /* established */
 #define ODSY_BOARD_SHADOW_ADDR_LO     0x403c /* established */
 #define ODSY_BOARD_MASTER_ID_B        0x4044 /* established */
+/* Three more words of the same group. The driver stores zero to each once
+ * at reset and nothing reads them, so the stores are established and the
+ * roles are inferred from position and from the pairs above: an address
+ * pair for a diagnostic history region (upper then lower half, as the
+ * statistics address pair above is) and a mode word. Which address
+ * bits the board keeps and the mode bit positions are unknown. */
+#define ODSY_BOARD_DIAG_ADDR_HI       0x404c /* inferred */
+#define ODSY_BOARD_DIAG_ADDR_LO       0x4054 /* inferred */
+#define ODSY_BOARD_DIAG_MODE          0x405c /* inferred */
 
 /* FIFO ports and windows */
 #define ODSY_BOARD_CMD_FIFO_PORT      0x110000 /* established */

@@ -27,6 +27,8 @@ pub const BOARD_ERR_ADDR_LO: u32 = 28;
 /// established.
 pub const BOARD_WIDGET_CONTROL: u32 = 36;
 /// established.
+pub const BOARD_REQ_TIMEOUT: u32 = 44;
+/// established.
 pub const BOARD_INTR_DEST_HI: u32 = 52;
 /// established.
 pub const BOARD_INTR_DEST_LO: u32 = 60;
@@ -100,6 +102,12 @@ pub const BOARD_SHADOW_ADDR_HI: u32 = 0x4034;
 pub const BOARD_SHADOW_ADDR_LO: u32 = 0x403c;
 /// established.
 pub const BOARD_MASTER_ID_B: u32 = 0x4044;
+/// inferred.
+pub const BOARD_DIAG_ADDR_HI: u32 = 0x404c;
+/// inferred.
+pub const BOARD_DIAG_ADDR_LO: u32 = 0x4054;
+/// inferred.
+pub const BOARD_DIAG_MODE: u32 = 0x405c;
 /// established.
 pub const BOARD_CMD_FIFO_PORT: u32 = 0x110000;
 /// established.

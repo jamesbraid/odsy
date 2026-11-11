@@ -619,4 +619,111 @@
 #define BUZZ_SEQ_WORD_COLOUR_A_INDEX   0x22008001u /* established */
 #define BUZZ_SEQ_WORD_COLOUR_B_INDEX   0x23008003u /* established */
 
+/* ===================================================================
+ * 9. Class-1 command words and the raster enable word
+ * ===================================================================
+ *
+ * The full command word of each register block the shipped drivers send,
+ * as 0x0001 in bits 31:16, the operand count in bits 13:10 and the block
+ * id in bits 9:0 (section 1). The grade on a word says that the driver
+ * sends exactly this word with this operand count: the value was read
+ * as an immediate in the kernel's context replay routine, the one place
+ * that sends every block below from its saved copy. A role is a
+ * separate claim and is graded where it is given. A block with no role
+ * stated is one whose operands the software only copies: unknown, no
+ * shipped software or published source depends on what they set.
+ */
+/* Roles read from the setters that fill the operand (established unless
+ * marked). */
+#define BUZZ_CMD_RASTER_ENABLE       0x00010404u /* established; one operand, section 9 bits below */
+#define BUZZ_CMD_PATH_SELECT         0x00010405u /* established; one operand: clip planes, texture target, colour count */
+#define BUZZ_CMD_FIRST_TEXLEVEL      0x00010406u /* established; one operand: index of the first level descriptor read */
+#define BUZZ_CMD_LOD_LIMITS          0x00011013u /* established; four operands: S bias, T bias, minimum and maximum LOD */
+#define BUZZ_CMD_POLYGON_MODE        0x00010415u /* established; one operand: bits 3:2 front, 1:0 back (GL enum minus 0x1b00) */
+#define BUZZ_CMD_WINDOW_DESC         0x00011017u /* established; four operands, role inferred */
+#define BUZZ_CMD_FOG                 0x0001181au /* established; six operands: colour pair then function coefficients */
+#define BUZZ_CMD_FRAG_LIGHT_MODEL    0x00010c1cu /* established; three operands */
+#define BUZZ_CMD_ALPHA_TEST          0x0001041eu /* established; see ALPHA_TEST above */
+#define BUZZ_CMD_DEPTH_FUNC          0x00010420u /* established; one operand: bits 2:0 comparison (GL enum minus 0x200) */
+#define BUZZ_CMD_LOGIC_OP            0x00010422u /* established; one operand: bits 3:0 (GL enum minus 0x1500) */
+#define BUZZ_CMD_BUFFER_SELECT       0x00010424u /* established; one operand, role inferred as the draw-buffer select */
+#define BUZZ_CMD_LINE_STIPPLE        0x00010c48u /* established; three operands: 16-bit pattern twice, then repeat minus one */
+#define BUZZ_CMD_POLYGON_OFFSET      0x00010458u /* established; one operand: bits 24:0 signed depth offset */
+#define BUZZ_CMD_WRITE_MASKS         0x00010452u /* established; one operand: index 11:0, stencil 19:12, RGBA enables 23:20, depth 24 */
+#define BUZZ_CMD_STIPPLE_ROWS_HI     0x00013c4eu /* established; sixteen operands: rows 31 down to 16 of the 32 by 32 polygon stipple */
+#define BUZZ_CMD_STIPPLE_ROWS_LO     0x00013c4fu /* established; sixteen operands: rows 15 down to 0 */
+#define BUZZ_CMD_STIPPLE_MODE        0x0001043fu /* established word; the operand's meaning is unknown */
+#define BUZZ_CMD_CONTEXT_SELECT      0x00010850u /* established; two operands: slot in bits 18:12 with the low bits 0xf, then 0 */
+#define BUZZ_CMD_CLIP_ORIGIN_PAIR    0x00010840u /* established; two operands, part of the clip push, fields unknown */
+#define BUZZ_CMD_DRAWABLE_ORIGIN     0x00010841u /* established; two operands: draw drawable x and y in the low 13 bits */
+#define BUZZ_CMD_SCREEN_MASK         0x0001204bu /* established word; eight operands: four min/max pairs, x in 23:12 and y in 11:0, role inferred */
+#define BUZZ_CMD_LINE_POINT_SIZE     0x0001084au /* established word; two operands, role inferred */
+#define BUZZ_CMD_RECT_COPY           0x00011453u /* established; five operands, sent ahead of a rectangle copy */
+#define BUZZ_CMD_DMA_PRELUDE         0x00010658u /* established; one operand, sent before a rectangle copy and DMA transfers */
+#define BUZZ_CMD_PRIM_BEGIN          0x00014400u /* established; bit 14 set, id 0, one operand: the primitive type */
+#define BUZZ_CMD_PRIM_END            0x00014001u /* established; no operand */
+/* Post-filter layouts. Mode 1 sends four eight-operand blocks (the
+ * first, 0x030, is BUZZ_CMD_POSTFILTER_M1_0; the one at id 0x031 shares
+ * its id with COPY, section 1); mode 2 uses 0x03b (BUZZ_OP_POSTFILTER);
+ * mode 3 is two operands. established as words. */
+#define BUZZ_CMD_POSTFILTER_M1_0     0x00012030u /* established */
+#define BUZZ_CMD_POSTFILTER_M1_1     0x00012031u /* established */
+#define BUZZ_CMD_POSTFILTER_M1_2     0x00012032u /* established */
+#define BUZZ_CMD_POSTFILTER_M1_3     0x00012033u /* established */
+#define BUZZ_CMD_POSTFILTER_M3       0x0001083du /* established; two operands, identity scale 0x1000 and bias 0 by default */
+/* The 64-word shadow region goes out in one of three layouts chosen by a
+ * mode word: sixteen words as one block (id 0x038), or four blocks of
+ * sixteen (ids 0x028 to 0x02b). What the words hold is unknown; the
+ * sixteen-operand size is established. */
+#define BUZZ_CMD_REGION_ONE_BLOCK    0x00013c38u /* established; sixteen operands */
+#define BUZZ_CMD_REGION_BLOCK_0      0x00013c28u /* established; sixteen operands */
+#define BUZZ_CMD_REGION_BLOCK_1      0x00013c29u /* established; sixteen operands */
+#define BUZZ_CMD_REGION_BLOCK_2      0x00013c2au /* established; sixteen operands */
+#define BUZZ_CMD_REGION_BLOCK_3      0x00013c2bu /* established; sixteen operands */
+/* Blocks whose word and operand count are established and whose
+ * operand layout is unknown: the software only copies their operands. */
+#define BUZZ_CMD_BLK_01F             0x0001041fu /* established; one operand */
+#define BUZZ_CMD_BLK_042             0x00010842u /* established; two operands, image-chain set-up */
+#define BUZZ_CMD_BLK_047             0x00011847u /* established; six operands, only zeros are ever sent */
+#define BUZZ_CMD_BLK_04C             0x0001044cu /* established; one operand */
+#define BUZZ_CMD_BLK_04D             0x00013c4du /* established; sixteen operands */
+#define BUZZ_CMD_BLK_051             0x00010451u /* established; one operand: bit 0 and bit 1 are set from vertex pre-clip class and a reversed depth range (roles inferred) */
+#define BUZZ_CMD_BLK_056             0x00010456u /* established; one operand */
+#define BUZZ_CMD_BLK_057             0x00010457u /* established; one operand */
+
+/* Raster enable word (block 0x004), one bit per fragment operation. The
+ * setters' bit for each state was found by running them. established for
+ * the bits below marked so; the other bits are inferred from the
+ * setter's stores in the notes, not re-run. */
+#define BUZZ_RASTER_ENABLE_POINT_SMOOTH      0x00000001u /* established */
+#define BUZZ_RASTER_ENABLE_LINE_SMOOTH       0x00000002u /* established */
+#define BUZZ_RASTER_ENABLE_POLYGON_SMOOTH    0x00000004u /* established */
+#define BUZZ_RASTER_ENABLE_LINE_STIPPLE      0x00000008u /* established */
+#define BUZZ_RASTER_ENABLE_POLYGON_STIPPLE   0x00000010u /* established */
+#define BUZZ_RASTER_ENABLE_OFFSET_POINT      0x00000020u /* established */
+#define BUZZ_RASTER_ENABLE_OFFSET_LINE       0x00000040u /* established */
+#define BUZZ_RASTER_ENABLE_OFFSET_FILL       0x00000080u /* established */
+#define BUZZ_RASTER_ENABLE_CULL              0x00000100u /* inferred */
+#define BUZZ_RASTER_ENABLE_CULL_BACK         0x00000200u /* established */
+#define BUZZ_RASTER_ENABLE_CULL_FRONT        0x00000400u /* established */
+#define BUZZ_RASTER_ENABLE_TWO_SIDE_LIGHT    0x00000800u /* inferred */
+#define BUZZ_RASTER_ENABLE_FLAT_SHADE        0x00001000u /* established */
+#define BUZZ_RASTER_ENABLE_ALPHA_TEST        0x00004000u /* established */
+#define BUZZ_RASTER_ENABLE_STENCIL_TEST      0x00008000u /* inferred */
+#define BUZZ_RASTER_ENABLE_DEPTH_TEST        0x00010000u /* inferred */
+#define BUZZ_RASTER_ENABLE_BLEND             0x00020000u /* inferred */
+#define BUZZ_RASTER_ENABLE_DITHER            0x00040000u /* established */
+#define BUZZ_RASTER_ENABLE_INDEX_LOGIC_OP    0x00080000u /* established */
+#define BUZZ_RASTER_ENABLE_COLOUR_LOGIC_OP   0x00100000u /* established */
+#define BUZZ_RASTER_ENABLE_FOG               0x00400000u /* established */
+#define BUZZ_RASTER_ENABLE_FRONT_CW          0x00800000u /* established */
+
+/* Sampler word the library loads as the image-transfer default.
+ * established by running the library's transfer set-up on an empty
+ * context: bits 25, 24, 22, 21 and 18, which read as activation 6,
+ * colour-table format 6 and the image flag in bit 18.
+ * TESTVEC: 0x03640000 as SAMPLER => colour_table=0, mag=0, min=0, image_flag18=1, table_fmt=6, activation=6, no_offset=0
+ */
+#define BUZZ_SAMPLER_IMAGE_DEFAULT   0x03640000u /* established */
+
 #endif /* BUZZ_DECODE_H */
