@@ -75,6 +75,19 @@ copies word 4 bits 19:16 as one four-bit field from the buffer description, whic
 19:16; no code or recorded value sets bit 19 as a size bit. **Unknown**: what bit 19 of word 4 means if it is ever
 set. **Test:** run `hostfacts.py` over the kernel transfer handler and the library's header builder and list every constant that tests or sets 0x80000 on the word 4 value; a hit names the bit, no hit leaves it reserved. A decoder reads the size from 18:16 and treats bit 19 as reserved.
 
+### Field size against the selected pixel mode
+
+Trace of the X server's command stream, drawing a window manager's minimised icon (an 87 x 67 RGB icon, TrueColor 24-bit visual, display mode id 10). **Inferred** from that stream, not from a reading of the routine that sends it:
+
+- The frame is drawn in a colour-index window after a pixel-mode select word `0x20086a00`, which selects a 2-byte field.
+- The 24-bit image is then uploaded by DMA with image header word 4 `0x8223305a` and word 7 `0x3201004c`. No pixel-mode select is sent between the two.
+- Word 7 is format 0xc (ABGR), type 2 (bytes), pixel-size code 1 (4 bytes), with the pixel bytes in the order A, B, G, R.
+- Word 4 carries field codes 2 (bits 23:20) and 2 (bits 27:24), which the trace reads as 4-byte fields. Its pixel-size code (bits 18:16) is 3, so the two headers of this one upload disagree on pixel size. Which of them the board uses for the transfer is unknown.
+
+A reading of the X server routine that sends the upload would make the command-stream facts established. It would not settle the board's behaviour.
+
+**Unknown**: what the board does when word 4's field size disagrees with the field size the current pixel mode selects. The likely reading is that word 4 governs the upload (**inferred**). If it does, the uploaded icon matches its file, and if the pixel mode governs, it does not. The routes tried are the command stream above and the header and pixel-mode builders in this chapter. The discriminating test is a readback on a real V12: `XGetImage` of a 24-bit upload made straight after a colour-index select, compared byte for byte with the source file. The same upload without the select is the control. A readback that matches the source points to word 4. A readback that differs in a regular pattern, such as two-byte fields where the source has four, points to the pixel mode. [open-questions.md](open-questions.md) carries the entry.
+
 ## Board-to-host table
 
 - **`__glOdysseyImageCalcXferReadParams`** in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` (0x0d9bf200, 3324 bytes), **established**, read in
