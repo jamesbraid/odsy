@@ -203,9 +203,9 @@
 #define BUZZ_PSIZE_6B   6 /* 6 bytes  - established */
 #define BUZZ_PSIZE_3B   7 /* 3 bytes  - established */
 /* What the board does with these codes beyond choosing the stride: unknown.
- * Also unknown: what it does when word 4's field size differs from the one
- * the selected pixel mode gives (docs/pixel-paths.md, "Field size against
- * the selected pixel mode"). */
+ * Also unknown: whether word 4's size field (15:13) governs a DMA upload's
+ * field size, and whether the selected pixel mode matters to one at all
+ * (docs/pixel-paths.md, "Field size against the selected pixel mode"). */
 
 /* Read class (2:0) and code (7:3). established as the pairs a read
  * header carries (classes 0..4 occur; the code is a 5-bit selector, values
