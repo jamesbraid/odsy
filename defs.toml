@@ -665,7 +665,7 @@ binds = [
 group = 'display'
 label = 'cursor control field groups'
 doc = 'docs/display.md'
-regex = 'clears bits (\d+):(\d+) and sets bits (\d+):(\d+), so enable and delay enable are in bits (\d+):(\d+) and the other three fields \(dual head, fq, cross-hair\) in bits (\d+):(\d+)'
+regex = 'clears bits (\d+):(\d+) and sets bits (\d+):(\d+), so two fields sit in bits (\d+):(\d+) and three in bits (\d+):(\d+)'
 binds = [
   ['IN', ['DISPLAY.cursor_ctl.enable', 'DISPLAY.cursor_ctl.delay_enable'], 5, 6],
   ['IN', ['DISPLAY.cursor_ctl.dual_head', 'DISPLAY.cursor_ctl.field_seq', 'DISPLAY.cursor_ctl.crosshair'], 7, 8],
@@ -675,7 +675,7 @@ binds = [
 group = 'display'
 label = 'cursor control bit assignment'
 doc = 'docs/display.md'
-regex = 'dual head bit (\d+), fq bit (\d+), cross-hair bit (\d+), enable bit (\d+), delay enable bit (\d+)'
+regex = 'dual head bit (\d+), second enable bit (\d+), cross-hair bit (\d+), enable bit (\d+), delay enable bit (\d+)'
 binds = [
   ['F', 'DISPLAY.cursor_ctl.dual_head', 1],
   ['F', 'DISPLAY.cursor_ctl.field_seq', 2],
@@ -747,7 +747,7 @@ binds = [
 group = 'display'
 label = 'genlock status bits'
 doc = 'docs/pbj.md'
-regex = 'bit (\d+) as the lock state and bit (\d+) as the lock source'
+regex = 'bit (\d+) selects the "got" or "lost" message.*?What bit (\d+) means beyond the handler returning when it is clear'
 binds = [
   ['F', 'DISPLAY.genlock_status.lost', 1],
   ['F', 'DISPLAY.genlock_status.valid', 2],
@@ -957,7 +957,7 @@ binds = [
 group = 'display'
 label = 'FIFO depth'
 doc = 'PBJ.h'
-regex = 'the depth is defined as (\d+) doublewords'
+regex = 'the display FIFO is inferred to hold (\d+) doublewords'
 binds = [
   ['DEF', 'PBJ_FIFO_DEPTH_DWORDS', 1],
 ]
@@ -1552,7 +1552,7 @@ binds = [["F", "STRAP.board_rev", 1, 2]]
 group = "ODSY_DECODE.h"
 label = "fifo levels"
 doc = "docs/registers.md"
-regex = "bits (\\d+):(\\d+) are the display FIFO level and bits (\\d+):(\\d+) the command-side level"
+regex = "bits (\\d+):(\\d+) are the display FIFO level in doublewords \\(\\*\\*established\\*\\*[^)]*\\) and bits (\\d+):(\\d+) a command-side level"
 binds = [["F", "STRAP.display_level", 1, 2], ["F", "STRAP.command_level", 3, 4]]
 
 [[claims]]

@@ -235,7 +235,7 @@
 /* FIELD: STRAP.banks 29:29 established */
 /* FIELD: STRAP.cas 28:28 established */
 /* FIELD: STRAP.board_rev 27:24 established */
-/* FIELD: STRAP.command_level 15:7 established */
+/* FIELD: STRAP.command_level 15:7 inferred */
 /* FIELD: STRAP.display_level 6:0 established */
 #define ODSY_STRAP_SDRAM_SIZE_SHIFT     30
 #define ODSY_STRAP_SDRAM_SIZE_MASK      0x3u

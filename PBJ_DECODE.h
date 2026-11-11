@@ -120,7 +120,7 @@
     ((((uint32_t)(type) & PBJ_FIFO_HDR_TYPE_MASK) << PBJ_FIFO_HDR_TYPE_SHIFT) | \
      (((uint32_t)(addr) & PBJ_FIFO_HDR_ADDRESS_MASK) << PBJ_FIFO_HDR_ADDRESS_SHIFT) | \
      ((uint32_t)(count) & PBJ_FIFO_HDR_COUNT_MASK))
-#define PBJ_FIFO_DEPTH_DWORDS      24 /* established */
+#define PBJ_FIFO_DEPTH_DWORDS      24 /* inferred */
 #define PBJ_READ_SLOT_BYTES        8  /* established */
 #define PBJ_ADDR_BITS              14 /* established */
 

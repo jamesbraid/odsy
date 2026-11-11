@@ -216,16 +216,16 @@
  * Cursor control word. Five named fields live in bits 4:0: the firmware
  * textport clears 4:2 and sets 1:0, so enable and delay enable are in 1:0
  * and the other three in 4:2 (established). Which field is which bit is
- * inferred from the order the fields are declared and a big-endian bit-
- * field layout. The kernel also toggles bit 5 around cursor requests; what
+ * unknown from the binaries read; the layout below lists the guessed fields
+ * from high to low and is a guess, not evidence. The kernel also toggles bit 5 around cursor requests; what
  * it does on the board is unknown. Start-up writes 0.
  */
 /* REG: DISPLAY.cursor_ctl 0x2581 w32 reset=unknown established */
-/* FIELD: DISPLAY.cursor_ctl.dual_head 4:4 inferred */
-/* FIELD: DISPLAY.cursor_ctl.field_seq 3:3 inferred */
-/* FIELD: DISPLAY.cursor_ctl.crosshair 2:2 inferred */
-/* FIELD: DISPLAY.cursor_ctl.enable 1:1 inferred */
-/* FIELD: DISPLAY.cursor_ctl.delay_enable 0:0 inferred */
+/* FIELD: DISPLAY.cursor_ctl.dual_head 4:4 unknown */
+/* FIELD: DISPLAY.cursor_ctl.field_seq 3:3 unknown */
+/* FIELD: DISPLAY.cursor_ctl.crosshair 2:2 unknown */
+/* FIELD: DISPLAY.cursor_ctl.enable 1:1 unknown */
+/* FIELD: DISPLAY.cursor_ctl.delay_enable 0:0 unknown */
 /* FIELD: DISPLAY.cursor_ctl.toggle 5:5 unknown */
 #define DISPLAY_CURSOR_CTL_DUAL_HEAD_SHIFT 4
 #define DISPLAY_CURSOR_CTL_DUAL_HEAD_MASK  0x1u
