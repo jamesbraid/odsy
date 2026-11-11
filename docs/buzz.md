@@ -433,19 +433,19 @@ The roles below are read from the order and values of the stores in `odsyReset` 
 |---|---|---|
 | 0x1014 / 0x101c | flags, "set privileged" and "clear privileged" forms | 6.5.30 writes 0x101c = 0xffffffff; the set and clear naming of the pair is inferred from that |
 | 0x1034 / 0x103c | flag interrupt enable, set and clear forms | 6.5.30 writes 0x103c = 0xffffffff |
-| 0x1044, 0x104c | interrupt control, high and low words (the shared target address of sources 1-4 plus enables) | order and the address split |
-| 0x1054 | interrupt vector numbers | order; field order below |
-| 0x105c | interrupt header (per-source destination widget, transaction number, barrier) | order and the three copies of the target |
+| 0x1044, 0x104c | interrupt control, high and low words (the shared target address of sources 1-4 plus enables) | the zero stores are **established** (`odsyReset` in `odsy_init.o`, IP30, re-read with `hostfacts.py` 2026-11-10); the high and low naming, the shared target address and the enables are **inferred** from the order and the address split, with no read-back and no field decode |
+| 0x1054 | interrupt vector numbers | the zero store is **established** (same re-read); the vector-number role and its field order below are **inferred** from the order |
+| 0x105c | interrupt header (per-source destination widget, transaction number, barrier) | the zero store is **established** (same re-read); the per-source destination widget, transaction number and barrier fields are **inferred** from the order and the three copies of the target in `odsyInitInterrupts`, which this re-read did not cover |
 | 0x1074, 0x107c | flow-control configuration, flow-control detach | order; `BUZZ.h` already had both |
 | 0x1084 | flow-control clear | order in `odsyReset` |
 | 0x108c, 0x109c, 0x10a4, 0x10ac | scan configuration, scan address high, scan address low, scan go | order (four in both) |
 | 0x401c, 0x4024, 0x402c | performance-statistics region address high and low, and mode | order; matches section 9's reading of 0x401c/0x4024/0x402c |
-| 0x4034, 0x403c | software-sync write-back region address, bits 47:32 and 31:0 | order; `gf_OdsyStart` fills them with the physical address of the host write-back region |
-| 0x4044 | software-sync mode | order and every field value (below) |
-| 0x4014 | glGet write-back offset | order and every field value (below) |
+| 0x4034, 0x403c | software-sync write-back region address, bits 47:32 and 31:0 | **established** (`gf_OdsyStart` in `odsy_init.o`, IP30, re-read with `hostfacts.py` and the disassembly 2026-11-10): `kvtophys` of the pointer at board record +880 is stored with `dsrl32` and `andi 0xffff` to 0x4034 (bits 47:32) and its low 32 bits to 0x403c; the reset zero stores are also established. That the region is a software-sync write-back target is **inferred** from the registers' position in the reset sequence |
+| 0x4044 | software-sync mode | the stores are **established** (`odsyReset`, `odsy_init.o` IP30, disassembly of the 0x4044 store 2026-11-10): bits 7:4 from the master id (record byte 792 and 0xf), bit 16 set, bits 15:14 set with bits 13:8 cleared, bits 3:2 set, bits above 16 cleared; the role as the software-sync mode is **inferred** |
+| 0x4014 | glGet write-back offset | the stores are **established** (same disassembly): bits 23:20 from the master id, the low 16 bits forced to 0x12, bit 18 and bit 24 set, bits 19:16 otherwise cleared; the role as the glGet write-back offset is **inferred** |
 | 0x404c, 0x4054, 0x405c | diagnostic region address high and low, diagnostic mode | order; the three zero stores are **established**, the roles **inferred** from position beside the 0x401c/0x4024 pair (`docs/registers.md`) |
-| 0x10bc | swap on swap-ready or on vertical retrace (0 = on retrace) | order and value |
-| 0x10cc | per-window-id "display buffer B" clear (all ones = every id shows buffer A) | order and value |
+| 0x10bc | store of 0 **established** (`odsyReset`, re-read 2026-11-10); the earlier reading "swap on retrace when 0" is **unknown** and sits badly with the per-slot bitmap reading of 0x10b4 and 0x10bc in section 6, so treat the register as a per-slot swap enable or pending bitmap (**inferred**) until a consumer is read | the zero store |
+| 0x10cc | per-window-id "display buffer B" clear (all ones = every id shows buffer A) | the all-ones store is **established** (32-bit store of -1, re-read 2026-11-10); the clear-port role is **inferred** from its pairing with the buffer-select readback at 0x10d4 (`docs/interrupts-fifo-reset.md`) |
 | 0x1004 | board configuration (`docs/board.md`) | the SDRAM fields and the reset pulse |
 | 0x34, 0x3c, 0x5c | crossbar widget registers: interrupt destination upper and lower address, interrupt configuration | order in `odsyReset` |
 
