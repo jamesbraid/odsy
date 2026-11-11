@@ -6,12 +6,14 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
 
 - `odsyGatherInfo(board, 1)` reads the 32-bit word at +0x106c (the FIFO-levels register of `BUZZ.h`, whose bits 15:0 are FIFO levels) and decodes its top byte as board configuration:
 
-| Bits | Decoded | Stored in record | Values |
-|---|---|---|---|
-| 31:30 | SDRAM size code | +252 (MB) | 0 -> 32, 1 -> 64, 2 -> 128, 3 -> 33 |
-| 29 | SDRAM banks | +260 | 0 -> 2, 1 -> 4 |
-| 28 | CAS latency | +256 | 1 -> 2, 0 -> 3 |
-| 27:24 | board revision | +292 | raw nibble; 0 selects the first clock part, 1 or more the second (`docs/display.md`, clock parts) |
+| Bits | Decoded | Stored in record | Values | Grade |
+|---|---|---|---|---|
+| 31:30 | SDRAM size code | +252 (MB) | 0 -> 32, 1 -> 64, 2 -> 128, 3 -> 33 | **established** (`odsy_init.o` `.text` 0xbdc to 0xc18, with the value stores at 0xc98 to 0xcbc) |
+| 29 | SDRAM banks | +260 | 0 -> 2, 1 -> 4 | **established** (same routine, 0xc38 to 0xc5c, with the 2-bank store at 0xcac) |
+| 28 | CAS latency | +256 | 1 -> 2, 0 -> 3 | **established** (same routine, 0xc18 to 0xc38, with the latency-2 store at 0xca4) |
+| 27:24 | board revision | +292 | raw nibble; 0 selects the first clock part, 1 or more the second (`docs/display.md`, clock parts) | nibble and its store at 0xbf8 **established**; the link to the clock part is **inferred** (below) |
+
+Grade covers the bit positions and the decoded values read from the kernel's attach code. What each field means on the board is graded separately in the paragraphs that follow.
 
 - **established.** The decoded values are checked in `odsyReset`: banks other than 2 or 4, latency other than 2 or 3 and size other than 32, 33, 64 or 128 log "invalid sdram banks", "invalid sdram casl" or "invalid sdram size %dMB". The strings in `odsyGatherInfo` name the same fields ("unknown sdram casl setting", "unknown number of sdram banks").
 - **inferred.** The word's top byte is a strap or ID field set by the board (no driver code writes it and the same register's other bits change at run time). The value 3 for size, recorded as 33, selects the same register code as 128 in step below; why the board distinguishes it: **unknown**. **Test that settles it:** a published verbose boot or board-memory datasheet of a 32 MB (V6 or V10) board showing the memory configuration programmed for strap size 3, compared with code 2. Both shipped programs were read in full and treat code 3 as 32 MB while writing the 128 MB register code, so no further shipped read settles it. "33" is the driver's own marker, not a size in MB.
