@@ -72,4 +72,4 @@ quad keeps 114 to 134 pixels per channel with the constant, and the first quad's
 green 33 to 86. The offsets the stored bytes allow (the last table of `fit`)
 change sign with the value, which no constant, weight width, 12-bit conversion
 or 1/w width tried explains. The form of the simulator's colour interpolation is
-**unknown**.
+**unknown**. **Test that settles it:** fit the stored frames of the three-vertex triangles with the interpolation forms of a published rasteriser description (the patents and white papers in `docs/sources/`) and keep the form whose residue is zero in every channel; or read the interpolation routine's constants in the simulator binary that produced the frames. No candidate tried so far reaches zero.

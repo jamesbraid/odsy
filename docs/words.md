@@ -349,7 +349,7 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
 - `0x22008000` (register 0x22, value 0, `odsy_tport.o`) (by inference).
   The text-port state set-up routine stores it twice in the textport's state set-up, and the X module sends 0 here before RGB drawing
   (`docs/opengl.md`); every site that sends an RGB colour word pairs it with this register at 0 and with 0x23 at
-  2, so register 0x22 reads as half of a colour-handling mode pair.
+  2, so register 0x22 reads as half of a colour-handling mode pair. What the pair selects on the board is **unknown: no shipped software or published source depends on it**. **Test that settles it:** find the microcode routine that reads registers 0x22 and 0x23 (`ucode/buzz_isa.md`) and what it chooses on their values.
 - `0x22008001` (register 0x22, value 1, `odsy_tport.o`): **inferred.**
   `odsy_color` stores it before it sets a colour index: the pair with `0xc580c406` at every sender makes value 1 the
   index-colour setting of the mode register that RGB drawing holds at 0.
@@ -361,7 +361,7 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
   Stored by `odsy_color` beside 0x22008001; with it the index-colour pair is (1, 3) at every sender of the index
   colour word.
 - `0x2600807f` (register 0x26, value 127, `odsy_init.o`).
-  Stored by `odsyInitCfifo` before the microcode load. What register 0x26 limits is **unknown**
+  Stored by `odsyInitCfifo` before the microcode load. What register 0x26 limits is **unknown** **Test that settles it:** find the microcode routine that reads register 0x26 (`ucode/buzz_isa.md`) and the quantity it compares with 127;
   (`ucode/buzz_isa.md`, "Sequencer registers"). It is not a routine
   address; 127 only coincides with an entry number in `AddProgram`'s lists.
 - `0x27008000` (register 0x27, value 0, `odsy_init.o`): **established.**

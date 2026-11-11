@@ -8,7 +8,7 @@ Which public entry point sends each word, with the address of the sender and of 
 
 An attribute word is `BUZZ_ATTR_WORD(slot, count, op)` (`BUZZ.h`): bits 31:24 are 0x80 for the position or `0xc0 | slot`, bits 13:10 the number of operand words that follow, bits 9:0 the opcode. The opcode names the data type the entry point sends (`BUZZ.h`, "Per-vertex words"): 0x00-0x05 Vertex2/3/4 integer then float, 0x06 and 0x07 Index integer and float, 0x08-0x0e Color3, 0x0f-0x15 Color4 (each unsigned byte, unsigned short, unsigned int, byte, short, int, float), 0x16-0x19 Normal3 byte, short, int, float, 0x1e-0x25 TexCoord1 to 4 integer then float. **established** that each row below is sent by the named entry point, with its slot, operand count and opcode; **inferred** that the data-type reading follows the opcode order, because the entry points read agree with it (`__glOdylc_Color3ui` 0x0a, `__glOdylc_Color4b` 0x12, `__glOdyim_TexCoord3d` 0x23). Double-precision entry points send the float form, converting on the host (`Color3d` 0x0e, `TexCoord1d` 0x1f, `Indexd` 0x07).
 
-Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratch*` entry points send the same colour and index opcodes as slot 5 to it. What the board does with a scratch colour: **unknown**.
+Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratch*` entry points send the same colour and index opcodes as slot 5 to it. What the board does with a scratch colour: **unknown**. **Test that settles it:** find a consumer of the slot, such as a shader program read of register 14 in the transform microcode (`ucode/buzz_isa.md`) or a library path that depends on a scratch colour's effect.
 
 | Word | Slot | Operands | Opcode | Form | First sender by name | Grade |
 |---|---:|---:|---:|---|---|---|
@@ -79,7 +79,7 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 | `0x00013c2a` | 0x02a | 16 | from 0x1070 | third of those four | established word and count; contents unknown where stated |
 | `0x00013c4d` | 0x04d | 16 | 0xf8 | the third sixteen-word bitmap beside 0x04e and 0x04f | established word and count; contents unknown where stated |
 
-- **unknown: no shipped software or published source decodes them.** The field layout of the blocks marked unknown. The kernel replay routine only copies their operands from the shadow record to the FIFO and never decodes them. Test that would settle each block: find the libGLcore routine that builds its operands (`retools/tools/hostfacts.py`, callers of the sender) and the GL state that changes them, which names the field's role; the bit boundaries need a board capture that replays the block alone with a few chosen operands and reads the drawn effect.
+- **unknown: no shipped software or published source decodes them.** The field layout of the blocks marked unknown. The kernel replay routine only copies their operands from the shadow record to the FIFO and never decodes them. Test that would settle each block: find the libGLcore routine that builds its operands (`retools/tools/hostfacts.py`, callers of the sender) and the GL state that changes them, which names the field's role; then run that setter under `retools/tools/odsy/glcore_probe.py` with a few chosen arguments and read which bits of the shadow word move, as was done for the 0x004 enable bits above. The bit boundaries of fields the library never varies stay **unknown: no shipped software or published source depends on them**.
 
 ## Raster state blocks and their fields
 
@@ -319,7 +319,7 @@ A sequencer word is `(reg << 24) | 0x8000 | enc(value)` with `enc(v) = (v & 0x3f
 | Word | Register | Value | Sender | Reading |
 |---|---|---:|---|---|
 | `0x278083ff` | 0x27, instruction write address | 2047 | `odsyRestartContext` (`odsy_ctxsw.o`), the last register writes before the final words of the restart | write address 2047, the last instruction RAM slot, which the loaders never write (`ucode/buzz_isa.md`, "Loading"); why the restart sets it: **unknown** |
-| `0x280080ff` | 0x28, list slot | 255 | the same place | the list slot pointer is parked at 255; **unknown** whether that is the last slot or a null value |
+| `0x280080ff` | 0x28, list slot | 255 | the same place | the list slot pointer is parked at 255; **unknown** whether that is the last slot or a null value (test: compare 255 with the microcode's list-slot count and the largest slot index the transform program reads) |
 | `0x2900812f` | 0x29 | 303 | `__glOdysseyImageMovePixelsCopy` (the Odyssey GL driver image move assembly unit: the constant 303 goes to a context word, then into the word) | a routine entry: record 303 of `buzz_xform.bin` starts a 17-record routine (`ucode/buzz_routines.md`) |
 | `0x298080c5` | 0x29 | 1221 | `__glOdysseyValidateProgram` and `__glOdysseySetProgram` (the Odyssey GL driver assembly unit 1, source line 1308) | routine 1221, a 1-record routine in `buzz_xform.bin` |
 | `0x29808062` | 0x29 | 1122 | `__glOdysseySetProgram` in the 4103 patch's libGLcore | **inferred** the same routine as 1221: the kernel's older copy of the program has records from 891 on 99 lower (`ucode/buzz_isa.md`, "Two copies"), and 1221 - 99 = 1122 |
@@ -330,7 +330,7 @@ A sequencer word is `(reg << 24) | 0x8000 | enc(value)` with `enc(v) = (v & 0x3f
 | `0x34008014` | 0x34, table index | 20 | `odsyRestoreXform` | the fifth block in the full replay |
 | `0x34008024` | 0x34, table index | 36 | `odsyRestoreXform` | the third block in the full replay |
 | `0x34008034` | 0x34, table index | 52 | `odsyRestoreXform` | the fourth block in the full replay |
-| `0x35008000` | 0x35 | 0 | `__glOdysseyValidateContext` | the context default (`ucode/buzz_isa.md`); meaning **unknown** |
+| `0x35008000` | 0x35 | 0 | `__glOdysseyValidateContext` | the context default (`ucode/buzz_isa.md`); meaning **unknown** (test: find the microcode routine that reads register 0x35 and what it branches on) |
 
 - **unknown: no shipped software or published source depends on it.** What registers 0x28, 0x31, 0x34 and 0x35 select on the board. The host sets them and never reads them back.
 

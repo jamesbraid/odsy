@@ -14,7 +14,7 @@ Labels: **established**, **inferred**, **unknown**. IRIX 6.5.30m, IP30 `odsy_ini
 | 27:24 | board revision | +292 | raw nibble; 0 selects the first clock part, 1 or more the second (`docs/display.md`, clock parts) |
 
 - **established.** The decoded values are checked in `odsyReset`: banks other than 2 or 4, latency other than 2 or 3 and size other than 32, 33, 64 or 128 log "invalid sdram banks", "invalid sdram casl" or "invalid sdram size %dMB". The strings in `odsyGatherInfo` name the same fields ("unknown sdram casl setting", "unknown number of sdram banks").
-- **inferred.** The word's top byte is a strap or ID field set by the board (no driver code writes it and the same register's other bits change at run time). The value 3 for size, recorded as 33, selects the same register code as 128 in step below; why the board distinguishes it: **unknown**. "33" is the driver's own marker, not a size in MB.
+- **inferred.** The word's top byte is a strap or ID field set by the board (no driver code writes it and the same register's other bits change at run time). The value 3 for size, recorded as 33, selects the same register code as 128 in step below; why the board distinguishes it: **unknown**. **Test that settles it:** a published verbose boot or board-memory datasheet of a 32 MB (V6 or V10) board showing the memory configuration programmed for strap size 3, compared with code 2. Both shipped programs were read in full and treat code 3 as 32 MB while writing the 128 MB register code, so no further shipped read settles it. "33" is the driver's own marker, not a size in MB.
 - **inferred.** The bank count and CAS latency are what "board inventory reports" carry, because the driver stores them in the record that `odsyGatherInfo` fills and prints.
 
 ## How the IP35 PROM labels the strap fields
@@ -54,7 +54,7 @@ Size code 3 is a 32 MB board to both programs. **established** (read from both):
   - bits 4:3: 0 for 32 MB, 1 for 64 MB, 2 for 128 MB and for the size code 3 (the driver rewrites its record to 32 in that case).
   - Then bit 5 is cleared, set, written, cleared again (three stores, 400 us apart) and bit 8 is set last.
 - **inferred.** +0x1004 configures the board's SDRAM controller (banks, CAS latency, size) and bit 5 pulses an SDRAM initialisation; bit 8 enables it. Reason: the field values are exactly the three probed properties and the pulse is the driver's standard reset shape. Not confirmed by hardware.
-- **unknown.** Organisation and addressing of the memory, timing beyond CAS latency, and the width of any other field of 0x1004.
+- **unknown.** Organisation and addressing of the memory, timing beyond CAS latency, and the width of any other field of 0x1004. **Test that settles it:** a published board memory datasheet or parts list for the V6, V8, V10 or V12 naming the SDRAM parts and their mode registers; the kernels and libGLcore's memory-manager calls were read and carry sizes only.
 
 ## Strap word and configuration register fields (pass 12)
 
