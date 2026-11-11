@@ -114,7 +114,7 @@ The table slots are 8-byte aligned. Each pairs one for one with a 32-bit offset 
 
 | Slot | Word | Name in the PROM | Bits and mask | Kernel counterpart |
 |---|---|---|---|---|
-| 0x28 | 0x2c | XT_REQ_TIMEOUT | 20, 0xfffff | none (never accessed) |
+| 0x28 | 0x2c | XT_REQ_TIMEOUT | 20, 0xfffff | none (never accessed); name and mask **established** from the PROM table, the word 0x2c **established** by the published Linux crossbar header (`arch/mips/include/asm/xtalk/xwidget.h`, torvalds/linux master read 2026-11-10: `WIDGET_REQ_TIMEOUT 0x2c`, `w_req_timeout` at 0x2c after the pad at 0x28) |
 | 0x30 | 0x34 | XT_INTR_DST_HI | 32, 0xffffffff | `odsyInitInterrupts` store |
 | 0x38 | 0x3c | XT_INTR_DST_LO | 32, 0xffffffff | `odsyInitInterrupts` store |
 | 0x1070 | 0x1074 | FLCTL_CONFIG | 25, 0x1ffffff | flow-control configuration store |

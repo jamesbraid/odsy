@@ -10,44 +10,44 @@ An attribute word is `BUZZ_ATTR_WORD(slot, count, op)` (`BUZZ.h`): bits 31:24 ar
 
 Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratch*` entry points send the same colour and index opcodes as slot 5 to it. What the board does with a scratch colour: **unknown**.
 
-| Word | Slot | Operands | Opcode | Form | First sender by name |
-|---|---:|---:|---:|---|---|
-| `0x8080cc02` | 0 | 3 | 0x02 | Vertex3 integer | `__glOdyim_Vertex3i` |
-| `0x8080d004` | 0 | 4 | 0x04 | Vertex4 integer | `__glOdyim_Vertex4i` |
-| `0xc180cc16` | 1 | 3 | 0x16 | Normal3 b | `__glOdylc_Normal3b` |
-| `0xc180cc17` | 1 | 3 | 0x17 | Normal3 s | `__glOdylc_Normal3s` |
-| `0xc380c41f` | 3 | 1 | 0x1f | TexCoord1 float | `__glOdylc_TexCoord1d` |
-| `0xc380c821` | 3 | 2 | 0x21 | TexCoord2 float | `__glOdylc_TexCoord2d` |
-| `0xc380cc22` | 3 | 3 | 0x22 | TexCoord3 integer | `__glOdylc_TexCoord3i` |
-| `0xc380cc23` | 3 | 3 | 0x23 | TexCoord3 float | `__glOdyim_TexCoord3d` |
-| `0xc380d024` | 3 | 4 | 0x24 | TexCoord4 integer | `__glOdylc_TexCoord4i` |
-| `0xc380d025` | 3 | 4 | 0x25 | TexCoord4 float | `__glOdyim_TexCoord4dv` |
-| `0xc580c407` | 5 | 1 | 0x07 | Index float | `__glOdylc_Indexd` |
-| `0xc580cc0a` | 5 | 3 | 0x0a | Color3 ui | `__glOdylc_Color3ui` |
-| `0xc580cc0b` | 5 | 3 | 0x0b | Color3 b | `__glOdylc_Color3b` |
-| `0xc580cc0c` | 5 | 3 | 0x0c | Color3 s | `__glOdylc_Color3s` |
-| `0xc580cc0e` | 5 | 3 | 0x0e | Color3 f | `__glOdyim_Color3d` |
-| `0xc580d00f` | 5 | 4 | 0x0f | Color4 ub | `__glOdylc_Color4ub` |
-| `0xc580d010` | 5 | 4 | 0x10 | Color4 us | `__glOdylc_Color4us` |
-| `0xc580d011` | 5 | 4 | 0x11 | Color4 ui | `__glOdylc_Color4ui` |
-| `0xc580d012` | 5 | 4 | 0x12 | Color4 b | `__glOdylc_Color4b` |
-| `0xc580d013` | 5 | 4 | 0x13 | Color4 s | `__glOdylc_Color4s` |
-| `0xc580d014` | 5 | 4 | 0x14 | Color4 i | `__glOdylc_Color4i` |
-| `0xc580d015` | 5 | 4 | 0x15 | Color4 f | `__glOdyim_Color4dv` |
-| `0xce80c407` | 14 | 1 | 0x07 | Index float | `__glOdyim_ScratchIndexd` |
-| `0xce80cc09` | 14 | 3 | 0x09 | Color3 us | `__glOdyim_ScratchColor3us` |
-| `0xce80cc0a` | 14 | 3 | 0x0a | Color3 ui | `__glOdyim_ScratchColor3ui` |
-| `0xce80cc0b` | 14 | 3 | 0x0b | Color3 b | `__glOdyim_ScratchColor3b` |
-| `0xce80cc0c` | 14 | 3 | 0x0c | Color3 s | `__glOdyim_ScratchColor3s` |
-| `0xce80cc0d` | 14 | 3 | 0x0d | Color3 i | `__glOdyim_ScratchColor3i` |
-| `0xce80cc0e` | 14 | 3 | 0x0e | Color3 f | `__glOdyim_ScratchColor3d` |
-| `0xce80d00f` | 14 | 4 | 0x0f | Color4 ub | `__glOdyim_ScratchColor4ub` |
-| `0xce80d010` | 14 | 4 | 0x10 | Color4 us | `__glOdyim_ScratchColor4us` |
-| `0xce80d011` | 14 | 4 | 0x11 | Color4 ui | `__glOdyim_ScratchColor4ui` |
-| `0xce80d012` | 14 | 4 | 0x12 | Color4 b | `__glOdyim_ScratchColor4b` |
-| `0xce80d013` | 14 | 4 | 0x13 | Color4 s | `__glOdyim_ScratchColor4s` |
-| `0xce80d014` | 14 | 4 | 0x14 | Color4 i | `__glOdyim_ScratchColor4i` |
-| `0xce80d015` | 14 | 4 | 0x15 | Color4 f | `__glOdyim_ScratchColor4dv` |
+| Word | Slot | Operands | Opcode | Form | First sender by name | Grade |
+|---|---:|---:|---:|---|---|---|
+| `0x8080cc02` | 0 | 3 | 0x02 | Vertex3 integer | `__glOdyim_Vertex3i` | established word and sender; form inferred |
+| `0x8080d004` | 0 | 4 | 0x04 | Vertex4 integer | `__glOdyim_Vertex4i` | established word and sender; form inferred |
+| `0xc180cc16` | 1 | 3 | 0x16 | Normal3 b | `__glOdylc_Normal3b` | established word and sender; form inferred |
+| `0xc180cc17` | 1 | 3 | 0x17 | Normal3 s | `__glOdylc_Normal3s` | established word and sender; form inferred |
+| `0xc380c41f` | 3 | 1 | 0x1f | TexCoord1 float | `__glOdylc_TexCoord1d` | established word and sender; form inferred |
+| `0xc380c821` | 3 | 2 | 0x21 | TexCoord2 float | `__glOdylc_TexCoord2d` | established word and sender; form inferred |
+| `0xc380cc22` | 3 | 3 | 0x22 | TexCoord3 integer | `__glOdylc_TexCoord3i` | established word and sender; form inferred |
+| `0xc380cc23` | 3 | 3 | 0x23 | TexCoord3 float | `__glOdyim_TexCoord3d` | established word and sender; form inferred |
+| `0xc380d024` | 3 | 4 | 0x24 | TexCoord4 integer | `__glOdylc_TexCoord4i` | established word and sender; form inferred |
+| `0xc380d025` | 3 | 4 | 0x25 | TexCoord4 float | `__glOdyim_TexCoord4dv` | established word and sender; form inferred |
+| `0xc580c407` | 5 | 1 | 0x07 | Index float | `__glOdylc_Indexd` | established word and sender; form inferred |
+| `0xc580cc0a` | 5 | 3 | 0x0a | Color3 ui | `__glOdylc_Color3ui` | established word and sender; form inferred |
+| `0xc580cc0b` | 5 | 3 | 0x0b | Color3 b | `__glOdylc_Color3b` | established word and sender; form inferred |
+| `0xc580cc0c` | 5 | 3 | 0x0c | Color3 s | `__glOdylc_Color3s` | established word and sender; form inferred |
+| `0xc580cc0e` | 5 | 3 | 0x0e | Color3 f | `__glOdyim_Color3d` | established word and sender; form inferred |
+| `0xc580d00f` | 5 | 4 | 0x0f | Color4 ub | `__glOdylc_Color4ub` | established word and sender; form inferred |
+| `0xc580d010` | 5 | 4 | 0x10 | Color4 us | `__glOdylc_Color4us` | established word and sender; form inferred |
+| `0xc580d011` | 5 | 4 | 0x11 | Color4 ui | `__glOdylc_Color4ui` | established word and sender; form inferred |
+| `0xc580d012` | 5 | 4 | 0x12 | Color4 b | `__glOdylc_Color4b` | established word and sender; form inferred |
+| `0xc580d013` | 5 | 4 | 0x13 | Color4 s | `__glOdylc_Color4s` | established word and sender; form inferred |
+| `0xc580d014` | 5 | 4 | 0x14 | Color4 i | `__glOdylc_Color4i` | established word and sender; form inferred |
+| `0xc580d015` | 5 | 4 | 0x15 | Color4 f | `__glOdyim_Color4dv` | established word and sender; form inferred |
+| `0xce80c407` | 14 | 1 | 0x07 | Index float | `__glOdyim_ScratchIndexd` | established word and sender; form inferred |
+| `0xce80cc09` | 14 | 3 | 0x09 | Color3 us | `__glOdyim_ScratchColor3us` | established word and sender; form inferred |
+| `0xce80cc0a` | 14 | 3 | 0x0a | Color3 ui | `__glOdyim_ScratchColor3ui` | established word and sender; form inferred |
+| `0xce80cc0b` | 14 | 3 | 0x0b | Color3 b | `__glOdyim_ScratchColor3b` | established word and sender; form inferred |
+| `0xce80cc0c` | 14 | 3 | 0x0c | Color3 s | `__glOdyim_ScratchColor3s` | established word and sender; form inferred |
+| `0xce80cc0d` | 14 | 3 | 0x0d | Color3 i | `__glOdyim_ScratchColor3i` | established word and sender; form inferred |
+| `0xce80cc0e` | 14 | 3 | 0x0e | Color3 f | `__glOdyim_ScratchColor3d` | established word and sender; form inferred |
+| `0xce80d00f` | 14 | 4 | 0x0f | Color4 ub | `__glOdyim_ScratchColor4ub` | established word and sender; form inferred |
+| `0xce80d010` | 14 | 4 | 0x10 | Color4 us | `__glOdyim_ScratchColor4us` | established word and sender; form inferred |
+| `0xce80d011` | 14 | 4 | 0x11 | Color4 ui | `__glOdyim_ScratchColor4ui` | established word and sender; form inferred |
+| `0xce80d012` | 14 | 4 | 0x12 | Color4 b | `__glOdyim_ScratchColor4b` | established word and sender; form inferred |
+| `0xce80d013` | 14 | 4 | 0x13 | Color4 s | `__glOdyim_ScratchColor4s` | established word and sender; form inferred |
+| `0xce80d014` | 14 | 4 | 0x14 | Color4 i | `__glOdyim_ScratchColor4i` | established word and sender; form inferred |
+| `0xce80d015` | 14 | 4 | 0x15 | Color4 f | `__glOdyim_ScratchColor4dv` | established word and sender; form inferred |
 
 ### Material slots 6 to 13 and the lighting defaults
 
@@ -60,24 +60,24 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 
 `odsyRestoreRaster` (`odsy_ctxsw.o`, IP30 and IP35) sends each block below with the operand count shown, reading the operands from the hardware-shadow record (offsets as in `docs/buzz.md` section 4, "Command-stream register blocks"). **established** for the word value, operand count and shadow offset. The word is `0x10000 | count << 10 | id`; a count of 15 stands for sixteen operands (`docs/buzz.md`, stipple blocks). Libraries and the X module send some of these too: the site count is in `docs/inventory/tokens.tsv`.
 
-| Word | Block id | Operands | Shadow offset | Reading |
-|---|---|---:|---|---|
-| `0x00010405` | 0x005 | 1 | 0x88 | one of the single-operand raster blocks 0x004, 0x005, 0x022, 0x015, 0x056; contents **unknown** |
-| `0x00010406` | 0x006 | 1 | 0x468 | contents **unknown** |
-| `0x0001041f` | 0x01f | 1 | 0xb4 | with 0x01e, 0x020 and 0x058 at 0xb0, 0xb8 and 0xd8; contents **unknown** |
-| `0x00010457` | 0x057 | 1 | 0x1cb4 | contents **unknown** |
-| `0x0001081d` | 0x01d | 2 | 0xa8 | contents **unknown** |
-| `0x00010842` | 0x042 | 2 | 0x1ca4 | contents **unknown** |
-| `0x0001084a` | 0x04a | 2 | 0xdc | contents **unknown** |
-| `0x00010c1c` | 0x01c | 3 | 0x1a04 | contents **unknown** |
-| `0x00010c48` | 0x048 | 3 | 0xcc | contents **unknown** |
-| `0x0001181a` | 0x01a | 6 | 0x90 | contents **unknown** |
-| `0x00011847` | 0x047 | 6 | 0x1b94 | contents **unknown** |
-| `0x00012031` | 0x031 | 8 | from 0x1174 | second of the four eight-operand post-filter blocks 0x030 to 0x033 |
-| `0x00012032` | 0x032 | 8 | from 0x1174 | third of those four |
-| `0x00013c29` | 0x029 | 16 | from 0x1070 | second of the four sixteen-operand blocks 0x028 to 0x02b |
-| `0x00013c2a` | 0x02a | 16 | from 0x1070 | third of those four |
-| `0x00013c4d` | 0x04d | 16 | 0xf8 | the third sixteen-word bitmap beside 0x04e and 0x04f |
+| Word | Block id | Operands | Shadow offset | Reading | Grade |
+|---|---|---:|---|---|---|
+| `0x00010405` | 0x005 | 1 | 0x88 | one of the single-operand raster blocks 0x004, 0x005, 0x022, 0x015, 0x056; contents **unknown** | established word and count; contents unknown where stated |
+| `0x00010406` | 0x006 | 1 | 0x468 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x0001041f` | 0x01f | 1 | 0xb4 | with 0x01e, 0x020 and 0x058 at 0xb0, 0xb8 and 0xd8; contents **unknown** | established word and count; contents unknown where stated |
+| `0x00010457` | 0x057 | 1 | 0x1cb4 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x0001081d` | 0x01d | 2 | 0xa8 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x00010842` | 0x042 | 2 | 0x1ca4 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x0001084a` | 0x04a | 2 | 0xdc | contents **unknown** | established word and count; contents unknown where stated |
+| `0x00010c1c` | 0x01c | 3 | 0x1a04 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x00010c48` | 0x048 | 3 | 0xcc | contents **unknown** | established word and count; contents unknown where stated |
+| `0x0001181a` | 0x01a | 6 | 0x90 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x00011847` | 0x047 | 6 | 0x1b94 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x00012031` | 0x031 | 8 | from 0x1174 | second of the four eight-operand post-filter blocks 0x030 to 0x033 | established word and count; contents unknown where stated |
+| `0x00012032` | 0x032 | 8 | from 0x1174 | third of those four | established word and count; contents unknown where stated |
+| `0x00013c29` | 0x029 | 16 | from 0x1070 | second of the four sixteen-operand blocks 0x028 to 0x02b | established word and count; contents unknown where stated |
+| `0x00013c2a` | 0x02a | 16 | from 0x1070 | third of those four | established word and count; contents unknown where stated |
+| `0x00013c4d` | 0x04d | 16 | 0xf8 | the third sixteen-word bitmap beside 0x04e and 0x04f | established word and count; contents unknown where stated |
 
 - **unknown: no shipped software or published source decodes them.** The field layout of the blocks marked unknown. The kernel replay routine only copies their operands from the shadow record to the FIFO and never decodes them. Test that would settle each block: find the libGLcore routine that builds its operands (`retools/tools/hostfacts.py`, callers of the sender) and the GL state that changes them, which names the field's role; the bit boundaries need a board capture that replays the block alone with a few chosen operands and reads the drawn effect.
 
@@ -240,19 +240,21 @@ kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
   two-side flag and bit 27 is set when the fragment normal interpolation is GL_FLAT
   (`__glOdyim_FragmentLightModelivSGIX`, the fragment module, lines 511 and 518).
 
-| 0x004 bit | GL state | Writer (the Odyssey GL driver attribute state assembly unit `__glOdyim_Enable` unless named) |
-|---:|---|---|
-| 0 | `GL_POINT_SMOOTH` | line 332 |
-| 1 | `GL_LINE_SMOOTH` | line 296 |
-| 2 | `GL_POLYGON_SMOOTH` | line 338 |
-| 3 | `GL_LINE_STIPPLE` | line 302 |
-| 4 | `GL_POLYGON_STIPPLE` | line 344 |
-| 5, 6, 7 | `GL_POLYGON_OFFSET_POINT`, `_LINE`, `_FILL` | lines 463, 472, 454 |
-| 14 | `GL_ALPHA_TEST` | line 239 |
-| 18 | `GL_DITHER` | line 265 |
-| 19 | `GL_INDEX_LOGIC_OP` | line 307 |
-| 20 | `GL_COLOR_LOGIC_OP` | line 317 |
-| 22 | `GL_FOG` | line 270 |
+| 0x004 bit | GL state | Writer (the Odyssey GL driver attribute state assembly unit `__glOdyim_Enable` unless named) | Grade |
+|---:|---|---|---|
+| 0 | `GL_POINT_SMOOTH` | line 332 | established |
+| 1 | `GL_LINE_SMOOTH` | line 296 | established |
+| 2 | `GL_POLYGON_SMOOTH` | line 338 | established |
+| 3 | `GL_LINE_STIPPLE` | line 302 | established |
+| 4 | `GL_POLYGON_STIPPLE` | line 344 | established |
+| 5, 6, 7 | `GL_POLYGON_OFFSET_POINT`, `_LINE`, `_FILL` | lines 463, 472, 454 | established |
+| 14 | `GL_ALPHA_TEST` | line 239 | established |
+| 18 | `GL_DITHER` | line 265 | established |
+| 19 | `GL_INDEX_LOGIC_OP` | line 307 | established |
+| 20 | `GL_COLOR_LOGIC_OP` | line 317 | established |
+| 22 | `GL_FOG` | line 270 | established |
+
+The Grade column is **established** by running `__glOdyim_Enable` (0xd956bc0, N32 libGLcore, 6.5.30m) once per enumerant under `retools/tools/odsy/glcore_probe.py` with a zeroed context: each enumerant sets exactly the one bit shown in the word at context +31740 (0x7bfc), the shadow this block is sent from. GL_POINT_SMOOTH 0xb10 gives 0x1, GL_LINE_SMOOTH 0xb20 0x2, GL_POLYGON_SMOOTH 0xb41 0x4, GL_LINE_STIPPLE 0xb24 0x8, GL_POLYGON_STIPPLE 0xb42 0x10, the three polygon-offset enumerants 0x2a01, 0x2a02 and 0x8037 0x20, 0x40 and 0x80, GL_ALPHA_TEST 0xbc0 0x4000, GL_DITHER 0xbd0 0x40000, GL_INDEX_LOGIC_OP 0xbf1 0x80000, GL_COLOR_LOGIC_OP 0xbf2 0x100000 and GL_FOG 0xb60 0x400000. The same probe of `__glOdyim_CullFace` (0x404 front gives 0x400, 0x405 back 0x200, 0x408 both 0x600), `__glOdyim_ShadeModel` (GL_FLAT 0x1d00 gives 0x1000) and `__glOdyim_FrontFace` (GL_CW 0x900 gives 0x800000) confirms bits 9, 10, 12 and 23. Whether the board treats a bit as the table names it is not shown by this: the evidence is the driver's own store.
 
 - Bits 13 and 25 of block 0x004 are set once by `__glOdysseyInitDefaultValues` (the Odyssey GL driver context assembly unit,
   source lines 2630 and 2631) and never cleared in libGLcore; `PopAttributes` restores bit 13

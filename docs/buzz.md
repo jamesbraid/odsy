@@ -443,7 +443,7 @@ The roles below are read from the order and values of the stores in `odsyReset` 
 | 0x4034, 0x403c | software-sync write-back region address, bits 47:32 and 31:0 | order; `gf_OdsyStart` fills them with the physical address of the host write-back region |
 | 0x4044 | software-sync mode | order and every field value (below) |
 | 0x4014 | glGet write-back offset | order and every field value (below) |
-| 0x404c, 0x4054, 0x405c | diagnostic region address high and low, diagnostic mode | order |
+| 0x404c, 0x4054, 0x405c | diagnostic region address high and low, diagnostic mode | order; the three zero stores are **established**, the roles **inferred** from position beside the 0x401c/0x4024 pair (`docs/registers.md`) |
 | 0x10bc | swap on swap-ready or on vertical retrace (0 = on retrace) | order and value |
 | 0x10cc | per-window-id "display buffer B" clear (all ones = every id shows buffer A) | order and value |
 | 0x1004 | board configuration (`docs/board.md`) | the SDRAM fields and the reset pulse |
