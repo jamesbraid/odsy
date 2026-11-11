@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	address_unknown	input
 binaries	276	0	268	3	152	0	0	2	6	0	97.1	97.1	97.8	97.1			90.0	20	2026-11-02		0				
-functions	106592	0	7563	1138	3598	29635	55589	43440	0	0	7.1	59.2	100.0	7.1			100.0	15	2026-11-02		902	556	3798	0	
-functions (distinct names)	18949	0	2508	229	2492	14234	16314	127	0	0	13.2	99.3	100.0	13.2							66				
+functions	106592	0	7663	1151	3671	29581	55540	43389	0	0	7.2	59.3	100.0	7.2			100.0	15	2026-11-02		902	556	3798	0	
+functions (distinct names)	18949	0	2581	236	2565	14161	16241	127	0	0	13.6	99.3	100.0	13.6							66				
 mmio	67	0	56	6	56	0	7	4	0	0	83.6	94.0	100.0	83.6	56		87.5	8	2026-11-01		0				
 tokens	271	0	212	39	212	0	10	36	0	13	78.2	86.7	100.0	83.0			45.0	20	2026-11-01		0				
 ioctls	92	0	85	0	79	1	1	6	0	0	92.4	93.5	100.0	92.4			73.3	15	2026-10-29		0				
@@ -102,7 +102,7 @@ functions in usr/cpu/sysgen/IP30boot/gfx.o	62	0	59	2	59	3	3	0	0	0	95.2	100.0	100
 functions in usr/cpu/sysgen/IP30boot/gfxs.a(gfx_flow.o)	22	0	22	0	22	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP30boot/gfxs.a(gfx.o)	62	0	59	2	59	3	3	0	0	0	95.2	100.0	100.0	95.2							0	0	0	0	
 functions in usr/cpu/sysgen/IP30boot/gfxstubs.a(gfxstubs.o)	18	0	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
-functions in usr/cpu/sysgen/IP30boot/kernel.o	726	0	42	5	42	684	684	0	0	0	5.8	100.0	100.0	5.8							0	0	134	0	
+functions in usr/cpu/sysgen/IP30boot/kernel.o	726	0	69	11	69	657	657	0	0	0	9.5	100.0	100.0	9.5							0	0	134	0	
 functions in usr/cpu/sysgen/IP30boot/odysseystubs.a(odysseystubs.o)	1	0	1	0	1	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP30boot/rrm.o	72	0	72	0	72	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP30boot/tport.a(tport.o)	22	0	22	0	22	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
@@ -111,7 +111,7 @@ functions in usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	16	0	16	0	16	0	0	0	0	0	1
 functions in usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	5	0	4	0	4	1	1	0	0	0	80.0	100.0	100.0	80.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	62	0	61	2	61	1	1	0	0	0	98.4	100.0	100.0	98.4							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	18	0	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
-functions in usr/cpu/sysgen/IP35boot/kernel.o	1318	0	71	8	69	972	974	273	0	0	5.4	79.3	100.0	5.4							0	1	112	0	
+functions in usr/cpu/sysgen/IP35boot/kernel.o	1318	0	144	15	142	945	952	222	0	0	10.9	83.2	100.0	10.9							0	1	112	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy.o)	4	0	4	2	4	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_adt.o)	18	0	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/odyssey.a(odsy_attach.o)	3	0	3	0	3	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
