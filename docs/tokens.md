@@ -62,17 +62,17 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 
 | Word | Block id | Operands | Shadow offset | Reading | Grade |
 |---|---|---:|---|---|---|
-| `0x00010405` | 0x005 | 1 | 0x88 | one of the single-operand raster blocks 0x004, 0x005, 0x022, 0x015, 0x056; contents **unknown** | established word and count; contents unknown where stated |
-| `0x00010406` | 0x006 | 1 | 0x468 | contents **unknown** | established word and count; contents unknown where stated |
-| `0x0001041f` | 0x01f | 1 | 0xb4 | with 0x01e, 0x020 and 0x058 at 0xb0, 0xb8 and 0xd8; contents **unknown** | established word and count; contents unknown where stated |
-| `0x00010457` | 0x057 | 1 | 0x1cb4 | contents **unknown** | established word and count; contents unknown where stated |
-| `0x0001081d` | 0x01d | 2 | 0xa8 | contents **unknown** | established word and count; contents unknown where stated |
-| `0x00010842` | 0x042 | 2 | 0x1ca4 | contents **unknown** | established word and count; contents unknown where stated |
-| `0x0001084a` | 0x04a | 2 | 0xdc | contents **unknown** | established word and count; contents unknown where stated |
-| `0x00010c1c` | 0x01c | 3 | 0x1a04 | contents **unknown** | established word and count; contents unknown where stated |
-| `0x00010c48` | 0x048 | 3 | 0xcc | contents **unknown** | established word and count; contents unknown where stated |
-| `0x0001181a` | 0x01a | 6 | 0x90 | contents **unknown** | established word and count; contents unknown where stated |
-| `0x00011847` | 0x047 | 6 | 0x1b94 | contents **unknown** | established word and count; contents unknown where stated |
+| `0x00010405` | 0x005 | 1 | 0x88 | one of the single-operand raster blocks 0x004, 0x005, 0x022, 0x015, 0x056; contents **unknown** (test: find the stores to shadow +0x88 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x00010406` | 0x006 | 1 | 0x468 | contents **unknown** (test: find the stores to shadow +0x468 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x0001041f` | 0x01f | 1 | 0xb4 | with 0x01e, 0x020 and 0x058 at 0xb0, 0xb8 and 0xd8; contents **unknown** (test: find the stores to shadow +0xb4 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x00010457` | 0x057 | 1 | 0x1cb4 | contents **unknown** (test: find the stores to shadow +0x1cb4 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x0001081d` | 0x01d | 2 | 0xa8 | contents **unknown** (test: find the stores to shadow +0xa8 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x00010842` | 0x042 | 2 | 0x1ca4 | contents **unknown** (test: find the stores to shadow +0x1ca4 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x0001084a` | 0x04a | 2 | 0xdc | contents **unknown** (test: find the stores to shadow +0xdc in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x00010c1c` | 0x01c | 3 | 0x1a04 | contents **unknown** (test: find the stores to shadow +0x1a04 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x00010c48` | 0x048 | 3 | 0xcc | contents **unknown** (test: find the stores to shadow +0xcc in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x0001181a` | 0x01a | 6 | 0x90 | contents **unknown** (test: find the stores to shadow +0x90 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
+| `0x00011847` | 0x047 | 6 | 0x1b94 | contents **unknown** (test: find the stores to shadow +0x1b94 in the state-update code and name the GL state each carries) | established word and count; contents unknown where stated |
 | `0x00012031` | 0x031 | 8 | from 0x1174 | second of the four eight-operand post-filter blocks 0x030 to 0x033 | established word and count; contents unknown where stated |
 | `0x00012032` | 0x032 | 8 | from 0x1174 | third of those four | established word and count; contents unknown where stated |
 | `0x00013c29` | 0x029 | 16 | from 0x1070 | second of the four sixteen-operand blocks 0x028 to 0x02b | established word and count; contents unknown where stated |

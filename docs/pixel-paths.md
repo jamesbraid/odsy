@@ -73,7 +73,7 @@ transfer handler reads word 7 bits 18:16. **Inferred** for word 4: the kernel's 
 objects writes only bits 18:16 (codes 0 to 2), and every value seen in recorded copies is at most 3. The library
 copies word 4 bits 19:16 as one four-bit field from the buffer description, which is why earlier notes wrote
 19:16; no code or recorded value sets bit 19 as a size bit. **Unknown**: what bit 19 of word 4 means if it is ever
-set. A decoder reads the size from 18:16 and treats bit 19 as reserved.
+set. **Test:** run `hostfacts.py` over the kernel transfer handler and the library's header builder and list every constant that tests or sets 0x80000 on the word 4 value; a hit names the bit, no hit leaves it reserved. A decoder reads the size from 18:16 and treats bit 19 as reserved.
 
 ## Board-to-host table
 
@@ -613,7 +613,7 @@ addresses. No vendor source was read for any item here.
   touched. So the wrap, the minification and magnification filter are whatever the context's block 0x016 shadow holds when the move runs.
   **inferred**: that is the shadow left by the last texture activation or the object-initialiser default (`TEXMODE4` = 0x82: mag filter linear), so the
   zoom's magnification filter is not chosen by the zoom step; bits 22:18 are the context-kept bits (`BUZZ.h`), and bit 28 (set when the active level has no border) is absent unless the context carries it.
-  Meaning of bits 25:23 and 22:18: **unknown**.
+  Meaning of bits 25:23 and 22:18: bits 25:23 are the 3-bit class value the texture activation takes from the current-texture lookup (`TEXMODE4_ACT_MASK` in `BUZZ.h`, which records 5 and 6 as the RGB and RGBA classes the driver derives), and bits 22:18 are the context-kept bits (`TEXMODE4_CTX_BITS`; 22:20 are the colour-table format code). What the board does with either field is **unknown**. **Test:** a drawing capture that varies only the class value, or the published texture-unit description; no shipped code reads the fields back.
 - **established.** The four floats 0, 0, 0, 1 in each rectangle word are sent to the board; the move sets neither block 0x01b (texture environment) nor the raster
   colour, so whether they take part is decided by the context's texture-environment state: **unknown**.
 

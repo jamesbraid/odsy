@@ -393,7 +393,7 @@ to bit 23 (`ucode/buzz_isa.md`), so bit 23 adds 1024 to the value. The host neve
 - `0x2e008380` (register 0x2e, value 896, `odsy_init.o`).
   Stored by `odsyInitCfifo` before the microcode load and by the GL context default
   (`__glOdysseyInitDefaultValues`) with the same value 896. What register 0x2e holds is **unknown**
-  (`ucode/buzz_isa.md`, "Sequencer registers"). It is not a routine address, which is
+  (`ucode/buzz_isa.md`, "Sequencer registers"). **Test:** read the microcode routines in `ucode/disasm/buzz_xform.lst` and `buzz_ucode_kernel.lst` for the instructions that consume sequencer register 0x2e and name what the value 896 is compared against. It is not a routine address, which is
   why it does not move with the 99-record insertion.
 - `0x3000c02e` (register 0x30, value 46, `odsy_ctxsw.o`): **established.**
   Bits 15:14 are 11, unlike the others. `odsyResetHwShadow`, `odsyRestoreGfe` (four sites), `odsyRestoreVB`

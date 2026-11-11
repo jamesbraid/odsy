@@ -7,7 +7,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
 Many entries below end with the same open point: which device answers at an absolute address that no linked board window row lists. What the repository can already say, by address:
 
 - **0x10000 (`CISendFc` in the 6.5.30m builds).** **inferred.** The kernel's mapping routine `gf_OdsyMapGfx` places board +0x110000, the command FIFO port, at user offset 0x10000 of a client's mapping (`docs/buzz.md`, "Where `gf_OdsyMapGfx` places each window"; the offsets are **established** from the `v_mapkvsegment` arguments), and the words stored here (attribute words and the `0x2f00c02e` / `0x3000c02e` headers) are the kind of word the kernel sends to that port. So the stores are command FIFO writes, provided the client's mapping starts at virtual address 0. That proviso is the inferred part: the address the library hands to the mapping request has not been read.
-- **0x4000 (`CISendFc` in the patch 4103 builds).** **inferred**, same proviso. User offset 0x4000 is board +0x120000, a window whose use is **unknown** (`docs/buzz.md`, "The windows at board +0x100000, +0x120000 and +0x200000"). The patch 4103 senders store the same fixed command group there that the 6.5.30m senders store to 0x10000, so that build sends command words to this window. Whether it is a second command port or an alias of the FIFO is **unknown**.
+- **0x4000 (`CISendFc` in the patch 4103 builds).** **inferred**, same proviso. User offset 0x4000 is board +0x120000, a window whose use is **unknown** (`docs/buzz.md`, "The windows at board +0x100000, +0x120000 and +0x200000"). The patch 4103 senders store the same fixed command group there that the 6.5.30m senders store to 0x10000, so that build sends command words to this window. Whether it is a second command port or an alias of the FIFO is **unknown**. Test: the mapping-address read described under "Test that settles the rest" at the end of this section.
 - **0x1030 (and 0x1010 to 0x1034).** **established** that the library treats these as ordinary memory: it loads a list pointer from 0x1030, stores small state values (0, 1, 2) back into it, and passes the doubleword at 0x1020 to a routine as a context pointer (`docs/capability-trees.md`, `docs/libglcore-odyssey-reads.md`). **established** that the kernel never reaches a board offset of 0x1030 by a constant displacement (`docs/kernel.md`, search of every constant displacement). So 0x1030 is a process-global word, not a device register, and "which device" does not apply to it. Which mapping or allocation makes that page resident at 0x1000: **unknown**. If the client mapping did start at virtual 0, the +0x100000 window would cover 0x1030 and contradict the memory use, which is one reason to doubt that the start is 0.
 
 Test that settles the rest: find the caller that supplies the client address to the graphics mapping request (the library or X module code that issues the mapping ioctl, and the fault path that reaches `gf_OdsyMapGfx`), read the address constant, and add it to the window table in `docs/buzz.md`. If the start is 0, then 0x10000 is the FIFO port and 0x4000 the +0x120000 window. If the start is elsewhere, none of the three addresses reaches the board through that table, and the stores to 0x10000 and 0x4000 need another explanation.
@@ -1940,6 +1940,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   at run time would settle it.
   Unknown: which component answers at 0x10000, since no linked mmio row names that address and the rows
   cover 0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2iv_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad1b80 (n32).
   Converts the two integer words at a0 and a0+4 (loaded at 0xdad1b80 and 0xdad1b84) into the single
@@ -1976,6 +1977,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   resolved; a run to that jump with the pointer printed would settle it.
   Unknown: which device, if any, answers abs 0x10000; the linked mmio rows (0x110000 and 0x120000)
   do not cover it, so the board address map is the route.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: established.
 - `__glOdyim_Vertex2iv_mag_line0` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbaaa00 (o32).
   Short path of a vertex call taking the two words at a0 and a0+0x4 (loaded into t4 and t5 by the `lw` at
@@ -2016,6 +2018,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   run time would settle it.
   Unknown: which unit answers at 0x4000, since no linked mmio row names that address and the rows cover
   0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2iv_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdad9880 (o32).
   Fast path of a vertex call taking the two words at a0 and a0+0x4 (loaded into t4 and t5 by the `lw` at
@@ -2048,6 +2051,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   at run time would settle it.
   Unknown: which device answers at 0x10000, since no linked mmio row names that address and the rows cover
   0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2iv_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231afc0 (n64).
   Reads two integer words from `a0` +0x0 and +0x4 (the `lw` at 0x231afc0 and 0x231afc4), converts
@@ -2079,6 +2083,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   incoming coordinates.
   Unknown: the hardware reached by the writes to absolute 0x10000, since the linked board windows
   begin at 0x110000; a published register map would answer it.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Unknown: the callee behind the `jr t9` at 0x231b080; a recorded run is the route to the
   destination.
   Evidence grade: inferred.
@@ -2110,6 +2115,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   stepping through the call would settle it.
   Unknown: any device behind abs 0x4000, since the linked mmio rows stop at the windows 0x110000 and
   0x120000; the board address map would settle it.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: established.
 - `__glOdyim_Vertex2iv_mag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49b900 (n64).
   Reads two 32-bit words from a0 (`lw` at 0xb49b900 and 0xb49b904) and, if three float tests pass, writes them
@@ -2133,6 +2139,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   0xb49b9bc, which is the doubleword at +0x20 of the second record, and a run-time read of it would settle it.
   Unknown: the device-side result of the writes to abs 0x4000, since the bundle has no linked register row or
   datasheet excerpt for that address.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: established.
 - `__glOdyim_Vertex2iv_smallw` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdad8540 (o32).
   Short path of a vertex call taking the two words at a0 and a0+0x4 (loaded into t4 and t5 by the `lw` at
@@ -2162,6 +2169,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   run time would settle it.
   Unknown: which unit answers at 0x10000, since no linked mmio row covers that address and the rows cover
   0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2iv_smallw` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x2319e40 (n64).
   Fetches two 32-bit words from a0 (`lw` at 0x2319e40 and 0x2319e44) and, if two float tests pass, writes them
@@ -2212,6 +2220,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   run time would settle it.
   Unknown: which device answers at 0x4000, since no linked mmio row covers that address and the rows cover
   0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2sv_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdadb940 (o32).
   Fast path for one two-component vertex given as a pointer to two halfwords: when a chain of
@@ -2300,6 +2309,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   from the doubleword at +0x20 of the second record, so reading that doubleword in a live run would settle it.
   Unknown: the hardware-side result of the writes to abs 0x4000. No linked register row or datasheet excerpt in
   the bundle covers that address.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: established.
 - `__glOdyim_Vertex2sv_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdad9a80 (o32).
   Fast path of a vertex call taking the two signed halfwords at a0 and a0+0x2 (`lh` into t4 and t5 at
@@ -2332,6 +2342,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   contents would resolve it.
   Unknown: which device answers at 0x10000, since no linked mmio row lists that address and the rows span
   0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2sv_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231b180 (n64).
   Reads two sign-extended halfwords from a0 (`lh` at 0x231b180 and 0x231b184) and, once three float tests have
@@ -2387,6 +2398,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   run time would settle it.
   Unknown: which component answers at 0x4000, since no linked mmio row covers that address and the rows
   cover 0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: inferred.
 - `__glOdyim_Vertex2sv_mag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbaf480 (n32).
   Reads two signed halfwords from a0 and a0+2 (loaded at 0xdbaf480 and 0xdbaf484), converts both to
@@ -2416,6 +2428,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   pointer; a trace at that jump would settle it.
   Unknown: whether any device sits at abs 0x4000; only the windows 0x110000 and 0x120000 are linked,
   and the board address map would answer it.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: established.
 - `__glOdyim_Vertex2sv_mag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49bac0 (n64).
   Loads two sign-extended halfwords from a0 (`lh` at 0xb49bac0 and 0xb49bac4) and, if three float tests pass,
@@ -2488,6 +2501,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   not followed by the tool; following the pointer at runtime would settle it.
   Unknown: the device behind abs 0x10000, if any; the linked mmio rows cover only 0x110000 and
   0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: established.
 - `__glOdyim_Vertex2sv_smallw` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x2319fc0 (n64).
   Reads two sign-extended halfwords from a0 and, provided two float tests pass, writes them to abs 0x10000
@@ -2565,6 +2579,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   unresolved; reading the pointer from a live run would settle it.
   Unknown: which unit, if any, decodes abs 0x10000; the linked mmio rows list only 0x110000 and
   0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: established.
 - `__glOdyim_Vertex3d_mag_line0` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231cd00 (n64).
   Takes three double-precision arguments in f12 to f14 and narrows them to single precision in place and, when a
@@ -2627,6 +2642,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   left unresolved; a debugger stop at the jump would settle it.
   Unknown: whether a device is mapped at abs 0x4000; the linked mmio rows list only 0x110000 and
   0x120000, and the board address map is the route.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x4000 board +0x120000.
   Evidence grade: established.
 - `__glOdyim_Vertex3d_mag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231b280 (n64).
   Receives three double-precision arguments in f12 to f14, which it narrows to single precision in place and,
@@ -2650,6 +2666,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   the `jr t9` at 0x231b34c, loaded from +0x20 of the second record, whose value a run-time read would settle.
   Unknown: the hardware-side result of the writes to abs 0x10000, because neither a linked register row nor a
   datasheet excerpt covers that address.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: established.
 - `__glOdyim_Vertex3d_mag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba9040 (o32).
   Fast path for one three-component vertex passed as three doubles: when three single-precision
@@ -2747,6 +2764,7 @@ Test that settles the rest: find the caller that supplies the client address to 
   stays unresolved; capturing the pointer at runtime would settle it.
   Unknown: whether a device answers abs 0x10000; the linked mmio rows cover only the windows at
   0x110000 and 0x120000.
+  Test: the mapping-address read in "Test that settles the rest" at the top of this file; a client mapping that starts at 0 makes 0x10000 board +0x110000.
   Evidence grade: established.
 - `__glOdyim_Vertex3d_smallw` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x231a080 (n64).
   Takes one vertex as three double-precision arguments and either writes it straight to the fixed

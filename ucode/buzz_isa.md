@@ -63,7 +63,7 @@ The numbering is **established** from the shadow stride above and the host uses:
 | 0x34 | register-file base: the word index the 0x1c8/0x1df stores write at | the matrix validators (`ody_xform.s`) |
 | 0x35 | colour-material copy enable | context default 0; `ValidateColorMaterial` (`ody_attrib.s`, 0x0d9565c0) |
 
-This corrects two readings of earlier passes: 0x26 is not a routine address (127 is the exponent limit), and 0x2e is the FIFO mark, which is why it did not move with the 99-record insertion.
+This corrects two readings of earlier passes: 0x26 is not a routine address (127 is the exponent limit), and 0x2e is not a routine address either, which is why it did not move with the 99-record insertion. An earlier note called 0x2e a FIFO mark; no evidence for that is recorded, and the table above keeps its role unknown.
 
 ## Programs, entries and dispatch
 
