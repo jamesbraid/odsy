@@ -93,6 +93,11 @@
  * is 20 bits wide (the firmware diagnostic's mask) and the kernel driver
  * never touches it. What it times and in what unit is unknown. */
 #define ODSY_BOARD_REQ_TIMEOUT        0x2c /* established */
+#define ODSY_BOARD_REQ_TIMEOUT_BITS   20 /* established */
+#define ODSY_BOARD_REQ_TIMEOUT_MASK   0xfffffu /* established: the firmware
+        diagnostic's table lists the register with this mask; its table
+        slot is 0x28 and the word is the slot plus 4 (the pairing is
+        inferred, the position is the public widget layout's) */
 #define ODSY_BOARD_INTR_DEST_HI       0x34 /* established */
 #define ODSY_BOARD_INTR_DEST_LO       0x3c /* established */
 #define ODSY_BOARD_ERR_COMMAND        0x44 /* established */
@@ -433,5 +438,34 @@
 /* Layout illustration: processor 1 attached (bit 9 set, owner field 1).
  * EXAMPLE (unverified): 0x1200 as HOST_FLOW_MODE => attach_cpu0=0, attach_cpu1=1, owner_cpu0=0, owner_cpu1=1
  */
+
+/* ===================================================================
+ * 9. Two board words the driver reads
+ * ===================================================================
+ *
+ * Both positions are in the board's PIO window (section 2) and take 32-bit
+ * reads. The driver reads each once and tests it; nothing else in the
+ * shipped software reads either.
+ *
+ * Start-up probe. Before it loads the geometry microcode the driver reads
+ * this word and compares it with a fixed value; on a mismatch it skips the
+ * load, drops flow control and reports failure. The comparison and both
+ * values are established; that the word is an identification or ready
+ * word is inferred from the skipped load, and what the register is stays
+ * unknown.
+ */
+#define ODSY_BOARD_STARTUP_PROBE_POS    0x201594 /* established */
+#define ODSY_BOARD_STARTUP_PROBE_VALUE  0x003d0046u /* established */
+
+/*
+ * Display-chip identification read-back. The driver reads this word at
+ * board attach and keeps bits 2:0 as the display chip's version; the word
+ * is display-space register 0x2701 (PBJ_DECODE.h, PBJ.id) seen through the
+ * board's display read-back window. The position and the kept bits are
+ * established; the other bits of the word are the unknown ones PBJ_DECODE.h
+ * lists.
+ */
+#define ODSY_BOARD_DISPLAY_ID_POS       0x23380c /* established */
+#define ODSY_BOARD_DISPLAY_ID_VERSION_MASK 0x7u /* established */
 
 #endif /* ODSY_DECODE_H */

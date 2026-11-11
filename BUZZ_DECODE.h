@@ -740,4 +740,109 @@
  */
 #define BUZZ_SAMPLER_IMAGE_DEFAULT   0x03640000u /* established */
 
+/* ===================================================================
+ * 10. Start-up and replay words
+ * ===================================================================
+ *
+ * Words the driver stores to the command FIFO port at start-up and when it
+ * replays a saved context, and one the immediate-mode senders emit. Each
+ * value was re-read as an immediate in the shipped driver or library (the
+ * start-up doublewords from the object's constant pool) for the grade
+ * "established". A role is a separate claim and carries its own grade.
+ *
+ * Immediate-mode vertex: the Vertex3f sender stores this word and then
+ * three single-precision operands. Bits 31:24 are 0x80 (the position
+ * form), the operand count in bits 13:10 is 3 and the opcode in bits 9:0
+ * is 3, the same layout as the attribute words above.
+ */
+#define BUZZ_ATTR_VERTEX3F_WORD     0x8080cc03u /* established */
+
+/* Start-up command FIFO set-up, in the order the words are sent. */
+#define BUZZ_CMD_RANGE_BLOCK        0x00010854u /* established word; two
+        operands. The operands sent at start-up are the pair below; the
+        reading as the bounds of a range is inferred from the values alone */
+#define BUZZ_RANGE_BLOCK_LOW        0x00000000u /* established value */
+#define BUZZ_RANGE_BLOCK_HIGH       0x0fffffffu /* established value */
+
+/* The five doublewords that follow carry a register id in the upper half
+ * and the value in the lower half (upper half first is inferred from the
+ * constants' layout). The ids lie above the ten-bit block-id field of the
+ * class-1 words, so this is a wider register space. What the registers
+ * configure is unknown; the arithmetic on the values (256, 32192, 24144
+ * and 32192 - 576) suggests sizes and fill thresholds, inferred only. The
+ * start-up sends them in the order listed here (id 0x6b3 before 0x6b2),
+ * and the same values on both driver builds. */
+#define BUZZ_INIT_DW_6B0            0x000006b000000000ull /* established: value 0 */
+#define BUZZ_INIT_DW_6B1            0x000006b100000100ull /* established: value 256 */
+#define BUZZ_INIT_DW_6B3            0x000006b300005e50ull /* established: value 24144 */
+#define BUZZ_INIT_DW_6B2            0x000006b200007dc0ull /* established: value 32192 */
+#define BUZZ_INIT_DW_7B5            0x000007b500000001ull /* established: value 1 */
+/* Sent once after the microcode load, as the last FIFO store of the set-up.
+ * The value is 10^9; its role is unknown (a sync timeout is one reading). */
+#define BUZZ_INIT_DW_7F0            0x000007f03b9aca00ull /* established */
+
+/* No-operand and one-operand class-1 words the set-up and the draw
+ * routines send as a group: a wait with one operand, a pad word and a
+ * flush word. The names are inferred from how they are used. After the
+ * range block and the doublewords, the set-up sends the pad word and
+ * waits 2000 microseconds before it reads the start-up probe word
+ * (ODSY_DECODE.h). The copy, fill and glyph routines open with the wait
+ * word and operand 250, two pad words, the flush word, the wait word with
+ * operand 150 and four pad words. */
+#define BUZZ_CMD_WAIT               0x00010443u /* established; one operand, role inferred */
+#define BUZZ_CMD_PAD                0x00010046u /* established; no operand, role inferred */
+#define BUZZ_CMD_FLUSH              0x00010019u /* established; no operand, role inferred */
+#define BUZZ_SYNC_WAIT_FIRST        250 /* established */
+#define BUZZ_SYNC_WAIT_SECOND       150 /* established */
+#define BUZZ_INIT_DELAY_US          2000 /* established */
+
+/* Class-0 register writes. A class-0 write has bit 16 clear and the
+ * operand count in bits 13:10 (1 here), so the word is the count shifted
+ * left ten places or-ed with the id. Id 0x340 takes an address and id
+ * 0x341 is a data port; the port stepping its address on each word is
+ * inferred from the one address word the start-up clear sends. Which
+ * memory the address selects is unknown. The start-up clear writes
+ * address 448 once and then streams 576 zero words through the port. */
+#define BUZZ_CLASS0_ID_ADDR         0x340 /* established */
+#define BUZZ_CLASS0_ID_DATA         0x341 /* established */
+#define BUZZ_CLASS0_WRITE_ADDR      0x740u /* established */
+#define BUZZ_CLASS0_WRITE_DATA      0x741u /* established */
+#define BUZZ_CLASS0_CLEAR_ADDR      448 /* established */
+#define BUZZ_CLASS0_CLEAR_WORDS     576 /* established */
+
+/* Attribute-form state word of slot 15: ten operands, opcode 0x12f. The
+ * rectangle-copy path, the context restart and the DMA path send it; what
+ * the ten floats set is unknown. */
+#define BUZZ_SLOT15_WORD_OP12F      0xcf80a92fu /* established */
+
+/* Data-load and table words the context replay sends. Their top byte is
+ * 0x8e or 0x90 and bits 23:16 are 0x80; with bit 23 set the count in bits
+ * 13:10 gives the operand count (a count of 15 is sixteen operands) and
+ * bits 9:0 the id, as the notes decode them. The word fields beyond that
+ * are unknown. The 0x90 words are listed as the top byte and the low 24
+ * bits so that no whole value reads as a kernel address in the generated
+ * modules; a word is (BUZZ_WORD_TOP_BYTE_90 << 24) | the low part. */
+#define BUZZ_WORD_DATA_LOAD4        0x8e809015u /* established; four operands, sent after the lighting
+        data base register is set, once for entry 24 and then for entries 0 to 23 */
+#define BUZZ_WORD_TOP_BYTE_90       0x90u /* established: top byte of the words below */
+#define BUZZ_WORD_TABLE16_A_LOW24   0x80bda2u /* established; sixteen operands, id 0x1a2,
+        sent ahead of each run of sixteen words of the 512-word table the
+        table-index register selects (the id is the table data port's) */
+#define BUZZ_WORD_TABLE16_B_LOW24   0x80bdc8u /* established; sixteen operands, id 0x1c8,
+        sent after the register-file base register is set to index 0 */
+#define BUZZ_WORD_TABLE4_A_LOW24    0x8091dfu /* established; four operands, id 0x1df,
+        sent at register-file index 16 */
+#define BUZZ_WORD_TABLE4_B_LOW24    0x8091eau /* established; four operands, id 0x1ea (the slot
+        pair block above), each of two saved words followed by a copy with bit 31 flipped */
+#define BUZZ_WORD_PROGRAM_SWITCH_LOW24 0x808800u /* established; two zero operands follow, id 0;
+        sent before the program registers are loaded */
+
+/* Two state words of the clip push with the same top byte 0x90, bits 23:16
+ * clear, given as the low 24 bits. Their values are established. No operand
+ * count is established for either: the clip push sends a flush word
+ * straight after the second one, so do not decode bits 13:10 as an operand
+ * count. Fields are unknown. */
+#define BUZZ_WORD_CLIP_STATE_A_LOW24 0x008116u /* established */
+#define BUZZ_WORD_CLIP_STATE_B_LOW24 0x00bda2u /* established */
+
 #endif /* BUZZ_DECODE_H */
