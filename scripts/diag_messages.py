@@ -77,8 +77,11 @@ WRITERS = {'addiu', 'daddiu', 'addu', 'daddu', 'ori', 'or', 'lui', 'move', 'andi
 MAX_WALK = 160
 TARGETS = [
     ('compositor-diagnostic', 'usr/diags/compositor/bin/sting'),
+    ('field-diagnostic', 'builds/odydiags-6.5.15/usr/diags/ody/odydiags'),
 ]
-KERNEL_ARCHIVE = 'usr/cpu/sysgen/IP30boot/odyssey.a'
+# the Odyssey driver archive of each kernel build: IP30 (Octane2) and IP35 (Fuel, Tezro, Onyx 350)
+KERNEL_ARCHIVES = [('kernel-driver', 'usr/cpu/sysgen/IP30boot/odyssey.a'),
+                   ('kernel-driver-ip35', 'usr/cpu/sysgen/IP35boot/odyssey.a')]
 
 
 def parse_ins(text):
@@ -316,7 +319,17 @@ def read_string(img, val, limit=512):
     return out.decode('latin-1') + '...', False
 
 
+# Driver request names that a message prints are described in words here, as the other documents do.
+REQUEST_WORDS = {
+    'GFX_OFLOW_INTR': 'the overflow interrupt graphics-driver request',
+    'GFX_XTALK_STALL': 'the crosstalk-link stall graphics-driver request',
+    'ODSY_BRDMGR_VTG_CONTROL': 'the board-manager video timing control request',
+}
+
+
 def show(s):
+    for name, words in REQUEST_WORDS.items():
+        s = s.replace(name, words)
     return s.replace('\\', '\\\\').replace('\t', '\\t').replace('\n', '\\n').replace('\r', '\\r')
 
 
@@ -550,7 +563,11 @@ def rows_for_routine(path, member, label, group, img, addr, size, rels, srdata, 
         b = B.block_of.get(idx)
         if b is None or b not in B.reachable:
             # no branch of the routine reaches this code; with no indirect jump left unfollowed, that holds
-            site['condition'] = 'dead code: no branch in the routine reaches it'
+            if R.incomplete or any(B.indirect):
+                site['condition'] = ('not reached by the branches followed here (the routine has an '
+                                     'unfollowed jump)')
+            else:
+                site['condition'] = 'dead code: no branch in the routine reaches it'
         else:
             gate = B.gate(R, b)
             if gate is None and all((B.dom[x] >> b) & 1 for x in B.exits):
@@ -570,6 +587,9 @@ def rows_for_routine(path, member, label, group, img, addr, size, rels, srdata, 
             site['notes'].append('the routine has an indirect jump that is not followed')
         if R.incomplete:
             site['notes'].append('branch targets incomplete, so the condition may be understated')
+        if name.startswith('sub_'):
+            site['notes'].append('no symbol names this routine; its end is the next routine start found by a '
+                                 'direct call')
         rows.append(site)
     return rows
 
@@ -616,13 +636,17 @@ def finish(site):
             sev = 'stream not named'
             grade = 'inferred'
     elif kind == 'stdout':
-        sev = 'stdout' if site['group'] != 'kernel-driver' else 'kernel printf (destination not in the call)'
+        sev = 'stdout' if not site['group'].startswith('kernel-driver') else \
+            'kernel printf (destination not in the call)'
     elif kind == 'stderr':
         sev = 'stderr'
     elif kind == 'buffer':
         sev = 'formats into a buffer, not printed here'
     site['severity'] = sev
     site['message'] = text
+    if site['routine'].startswith('sub_'):
+        # the routine's end is estimated, so the gating may rest on code that belongs to another routine
+        grade = 'inferred'
     site['grade'] = grade
     site['notes'] = '; '.join(notes)
     hits = sorted(set(m.group(1) for m in HW_RE.finditer(text or '')), key=str.lower)
@@ -674,15 +698,43 @@ def srdata_map(img):
     return out
 
 
+def unnamed_routines(img, funcs):
+    """Routines that the symbol tables do not name but the text calls directly. A stripped build keeps
+    only its exported routines, so its static routines are found from the jal targets. Each is named
+    by its address and ends where the next routine starts (or at the end of .text)."""
+    texts = [s for s in img.sections if s['name'] == '.text']
+    if not texts or img.elf is None:
+        return {}
+    sec = texts[0]
+    base, size = int(sec['address'], 16), sec['size']
+    targets = set()
+    for ins in img.disassemble(base, size, '.text'):
+        if ins['mn'] == 'jal' and ins['ops']:
+            try:
+                t = int(ins['ops'][0], 16)
+            except ValueError:
+                continue
+            if t and base <= t < base + size and t not in funcs:
+                targets.add(t)
+    starts = sorted(set(funcs) | targets)
+    out = {}
+    for t in sorted(targets):
+        i = starts.index(t)
+        end = starts[i + 1] if i + 1 < len(starts) else base + size
+        out[t] = (t, end - t, 'sub_%x' % t, '.text', True, 'call')
+    return out
+
+
 def targets():
     out = []
     for group, rel in TARGETS:
         out.append((group, os.path.join('root', rel), None, rel))
-    arch = os.path.join('root', KERNEL_ARCHIVE)
-    data = open(os.path.join(REPO, arch), 'rb').read()
-    for name, _ in inventory.unpack_ar(data):
-        if name.startswith('odsy') or name == 'odsy.o':
-            out.append(('kernel-driver', arch, name, KERNEL_ARCHIVE + '(' + name + ')'))
+    for group, rel in KERNEL_ARCHIVES:
+        arch = os.path.join('root', rel)
+        data = open(os.path.join(REPO, arch), 'rb').read()
+        for name, _ in inventory.unpack_ar(data):
+            if name.startswith('odsy') or name == 'odsy.o':
+                out.append((group, arch, name, rel + '(' + name + ')'))
     return out
 
 
@@ -705,6 +757,7 @@ def main(argv=None):
         for x in img.syms:
             if x[4] and x[0] not in funcs:
                 funcs[x[0]] = x
+        funcs.update(unnamed_routines(img, funcs))
         for addr in sorted(funcs):
             if a.limit and done >= a.limit:
                 break
