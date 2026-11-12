@@ -36,7 +36,7 @@ Role statements for 25 routines from the odsy binaries. Each statement comes fro
 
 - `__glOdylc_Color4s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd962a50.
   Grade: inferred.
-  Appears to be the display-list-compile form of glColor4s. It makes one visible call, __glSPDlistSpace at 0xd962abc, with a5 = 0x10000 and globals at 0x1010 and 0x1028. Its return path returns that call's value. The facts do not say how the short components are stored.
+  Appears to be the display-list-compile form of glColor4s. It makes one visible call, __glSPDlistSpace at 0xd962abc, with a5 = 0x10000 and globals at 0x1010 and 0x1028. One return path gives that call's value; the other returns a value the facts do not resolve. The facts do not say how the short components are stored.
 
 - `__glOdylc_Color4us` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd963260.
   Grade: inferred.

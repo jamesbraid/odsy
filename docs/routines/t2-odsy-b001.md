@@ -24,7 +24,7 @@ Targets 26 to 50 of the ranked located, hardware-only reading list (the list's s
   **Inferred.** Loads two words from the fixed addresses 0x90000000180000a0 and 0x90000000180000a4 (0x338, 0x33c). It returns 1 at 0x354 only when the first word is at least 6 (unsigned, branch at 0x344) and the second is zero (branch at 0x34c), and returns 0 at 0x360 otherwise. The meaning of those two words is not in the facts, so the VGA reading comes from the routine name alone.
 
 - `klcheck_vga` in `usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)` at 0xafc
-  **Inferred.** Computes a byte address as a0 + (a1 << 12) + (a2 << 8) and reads a word at +0x20008 (`lw` at 0xb14) and a byte at +0x20007 (`lbu` at 0xb40). It compares a6 with 3 (branch at 0xb24) and a5 with 0 (branch at 0xb2c), clears the byte at +0x20007 on one path (`sb` at 0xb4c), and returns 0 at 0xb38 or the computed address plus 0x20000 at 0xb48. The fields it reads are not identified by the facts.
+  **Inferred.** Computes a byte address as a0 + (a1 << 12) + (a2 << 8) and reads a word at +0x20008 (`lw` at 0xb14) and a byte at +0x20007 (`lbu` at 0xb40). It compares a6 with 3 (branch at 0xb24) and a5 with 0 (branch at 0xb2c), stores the byte at +0x20007 back on one path (`sb` at 0xb4c) after masking it with 0xfc (`andi` at 0xb44, which clears its low two bits), and returns 0 at 0xb38 or the computed address plus 0x20000 at 0xb48. The fields it reads are not identified by the facts.
 
 - `gfx_disp` in `usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)` at 0xc28
   **Inferred.** Same code as the `gfx.o` copy in this batch: calls `gthread_find` at 0xc30, walks the record chain reached through it, tests bit 0x4 at +8 and calls `valusema` at 0xd44 before returning 0 or 1. The rendered facts do not say what the records hold.

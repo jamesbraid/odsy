@@ -40,7 +40,7 @@ Grade: inferred.
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so` at `0xd823fec`
 
-`__glXGetDrawableAttributes` is a 1040-byte n32 routine. It calls `__glXSetupForCommand`, sends a request with `_XReply` (the reply size argument is 0x1000a), and reads the reply with `_XRead` into a `malloc`'d buffer. It writes word fields at offsets 0x0 through 0x18 of the output argument a2, and an indirect jump at 0xd824310 through the table at 0xd844788 chooses which store runs. It returns 0 or 1, and the table's meaning is not established by the facts.
+`__glXGetDrawableAttributes` is a 1040-byte n32 routine. It calls `__glXSetupForCommand`, waits for a reply with `_XReply` (0x1000a is in a6 at the call, which is not an `_XReply` argument, so its role is not established), and reads the reply with `_XRead` into a `malloc`'d buffer. It writes word fields at offsets 0x0 through 0x18 of the output argument a2, and an indirect jump at 0xd824310 through the table at 0xd844788 chooses which store runs. It returns 0 or 1, and the table's meaning is not established by the facts.
 
 Grade: inferred.
 

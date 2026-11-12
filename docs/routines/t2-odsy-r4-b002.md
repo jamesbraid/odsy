@@ -41,8 +41,9 @@ facts leave open are marked unknown.
 - `_nmadd_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x318d0
   **Inferred.** Runs a negated multiply-add on doubles with the same three-operand shape as the other
   wrappers. It calls breakout_and_test3_sd at 0x3193c; a nonzero result is returned directly (beq at
-  0x31944), and a zero result calls madd at 0x31988 and returns its value. The name implies negation, but no
-  sign change is visible around the madd call, so the sign handling is an unknown sub-fact.
+  0x31944), and a zero result calls madd at 0x31988 and returns its value. The name implies negation. The delay
+  slot of the madd call runs `xori a7,a7,0x1`, which flips a bit of a7, but the facts do not say what a7 holds, so
+  the sign handling is an unknown sub-fact.
 
 - `_madd_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31998
   **Inferred.** Runs a multiply-add on doubles. It calls breakout_and_test3_sd at 0x31a04; a nonzero result

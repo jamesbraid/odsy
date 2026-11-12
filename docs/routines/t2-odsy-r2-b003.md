@@ -43,7 +43,7 @@
   **Inferred.** Eight bytes. The jump at 0x24080 tail-calls ULIsystrap with the entry arguments, and the store at 0x24084 in its delay slot writes a doubleword to 0xffffffffffffc038.
 
 - `systrap` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x24100
-  **Inferred.** System-call dispatch. It loads 0xffffffffffffc028 and 0xffffffffffffc018 and saves about 30 doublewords through the pointer at [-0x3fe8]+1008 (sd at 0x24118 to 0x2417c). It calls ktimer_switch at 0x241a8 with a1 = 1 and again at 0x241ec with a1 = 0, and calls syscall at 0x241c8 with a0 read through a pointer chain at +368. The bne at 0x24104 sends k0 != 0 (read from -0x3fd8) back to 0x24080. The bne at 0x241e0 sends a nonzero syscall result to exception_exit (jump at 0x24274). The call to _baduk is also in the body.
+  **Inferred.** System-call dispatch. It loads 0xffffffffffffc028 and 0xffffffffffffc018 and saves 25 doublewords through the pointer at [-0x3fe8]+1008 (sd at 0x24118 to 0x241a4). It calls ktimer_switch at 0x241a8 with a1 = 1 and again at 0x241ec with a1 = 0, and calls syscall at 0x241c8 with a0 read through a pointer chain at +368. The bne at 0x24104 sends k0 != 0 (read from -0x3fd8) back to 0x24080. The bne at 0x241e0 sends a nonzero syscall result to exception_exit (jump at 0x24274). The call to _baduk is also in the body.
 
 - `VEC_syscall` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x2427c
   **Inferred.** The only action shown is a cmn_err call at 0x24294 with level 0, a .data format address and the entry a2 and a3. The rest of the 32-byte body is not in the facts, so this is a diagnostic stub as far as is known.

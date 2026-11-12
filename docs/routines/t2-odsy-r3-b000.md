@@ -31,7 +31,7 @@
   **Inferred.** Returns a0 at 0x7794 and exits at once when the length a2 is zero (0x7688). It aligns the destination by testing a0 against 0x1f, 0xf, 0x7, 0x3 and 0x1 (0x76b0 to 0x76e0), then stores doublewords with seven `sd` instructions at 0x7740 to 0x7768, with byte, halfword and word stores on the tail. The shape matches a fill routine, but the facts do not show the fill value register.
 
 - `bzero_pref` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x77d8
-  **Inferred.** A loop from a0 to the end address in a3 (branch at 0x77dc) that stores doublewords at a0 -8, a0 and a0 +8 (0x77e0 to 0x77f4). It uses an `sdr` at 0x781c for an unaligned tail and tests bit 0x10 of a1 at 0x77e8 to choose a path. The name suggests a zero fill with prefetch, but the facts list no prefetch instruction and do not show the stored value.
+  **Inferred.** A branch at 0x77dc compares a0 with the end address in a3 and goes to 0x77c8, outside this routine, so the loop it closes is not in these facts. The routine stores doublewords at a0 -8, a0 and a0 +8 (0x77e0 to 0x77f4). It uses an `sdr` at 0x781c for an unaligned tail and tests bit 0x10 of a1 at 0x77e8 to choose a path. The name suggests a zero fill with prefetch, but the facts list no prefetch instruction and do not show the stored value.
 
 - `uload_half` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x7d18
   **Inferred.** Reads the byte at a0 +0 (`lb` at 0x7d24) and the byte at a0 +1 (`lbu` at 0x7d28), which is the usual shape of an unaligned halfword load. It stores 8 bytes to a1 at 0x7d38 and returns 0 at 0x7d3c. The facts do not show how the two bytes are combined, and two halfword stores at 0x7d20 and 0x7d34 go through a pointer loaded at 0x7d18.

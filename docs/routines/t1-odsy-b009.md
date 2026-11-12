@@ -76,7 +76,7 @@ Grade: inferred.
 
 ### libGL.so at 0xd8caf6c
 
-`glXQueryMaxSwapBarriersSGIX` is a query round trip: `__glXSetupForCommand`, the reply through `_XReply`, then `_XFlush`. The name suggests it returns the maximum swap-barrier count. The reply field offsets are not decoded.
+`glXQueryMaxSwapBarriersSGIX` calls `__glXSetupForCommand` and then `_XReply`. A `_XFlush` call sits on a branch taken before the `_XReply` call is reached, not after it. The name suggests it returns the maximum swap-barrier count. The reply field offsets are not decoded.
 
 Grade: inferred.
 
