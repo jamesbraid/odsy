@@ -1,0 +1,1092 @@
+{
+ "schema": "defs-flat/1",
+ "source": "defs/board.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "HOST_FLOW_MODE",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "HOST_FLOW_MODE.owner_cpu1",
+   "hi": 13,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "HOST_FLOW_MODE.owner_cpu0",
+   "hi": 11,
+   "lo": 10,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "HOST_FLOW_MODE.attach_cpu1",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "HOST_FLOW_MODE.attach_cpu0",
+   "hi": 8,
+   "lo": 8,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "MASTER_ID",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "MASTER_ID.bit24",
+   "hi": 24,
+   "lo": 24,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "MASTER_ID.master",
+   "hi": 23,
+   "lo": 20,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "MASTER_ID.bit18",
+   "hi": 18,
+   "lo": 18,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "MASTER_ID.code",
+   "hi": 15,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "SDRAM_CFG",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "SDRAM_CFG.host_id",
+   "hi": 22,
+   "lo": 19,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "SDRAM_CFG.enable",
+   "hi": 8,
+   "lo": 8,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "SDRAM_CFG.reset",
+   "hi": 5,
+   "lo": 5,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "SDRAM_CFG.size",
+   "hi": 4,
+   "lo": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.size.mb32",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.size.mb64",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.size.mb128",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "SDRAM_CFG.banks",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.banks.two",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.banks.four",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "SDRAM_CFG.cas",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.cas.cas3",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "SDRAM_CFG.cas.cas2",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "STATS_CTL",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.fixed_top",
+   "hi": 31,
+   "lo": 31,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.fixed_mid",
+   "hi": 27,
+   "lo": 27,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.select",
+   "hi": 10,
+   "lo": 8,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.flag_c",
+   "hi": 6,
+   "lo": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.flag_b",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.flag_a",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STATS_CTL.size_exp",
+   "hi": 3,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "STRAP",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STRAP.sdram_size",
+   "hi": 31,
+   "lo": 30,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.sdram_size.mb32",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.sdram_size.mb64",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.sdram_size.mb128",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.sdram_size.mb32_alt",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STRAP.banks",
+   "hi": 29,
+   "lo": 29,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.banks.two",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.banks.four",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STRAP.cas",
+   "hi": 28,
+   "lo": 28,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.cas.cas3",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "enum_value",
+   "name": "STRAP.cas.cas2",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STRAP.board_rev",
+   "hi": 27,
+   "lo": 24,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STRAP.command_level",
+   "hi": 15,
+   "lo": 7,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "STRAP.display_level",
+   "hi": 6,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "WIDGET_CONTROL",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "WIDGET_CONTROL.credit",
+   "hi": 15,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "WIDGET_CONTROL.big_endian",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "word",
+   "name": "WIDGET_ID",
+   "width": 32,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "WIDGET_ID.variant",
+   "hi": 31,
+   "lo": 31,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "field",
+   "name": "WIDGET_ID.revision",
+   "hi": 30,
+   "lo": 28,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_ABORT",
+   "value": 4108,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_BUFFER_B_CLEAR",
+   "value": 4300,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_BUFFER_B_SET",
+   "value": 4292,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_BUFFER_B_STATE",
+   "value": 4308,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_CMD_FIFO_PORT",
+   "value": 1114112,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_CMD_WINDOW_2",
+   "value": 1179648,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_CTX_SAVE_ADDR_HI",
+   "value": 16388,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_CTX_SAVE_ADDR_LO",
+   "value": 16396,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_CTX_SAVE_PORT",
+   "value": 1146880,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_DIAG_ADDR_HI",
+   "value": 16460,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_DIAG_ADDR_LO",
+   "value": 16468,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_DIAG_MODE",
+   "value": 16476,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_DISPLAY_FIFO_PORT",
+   "value": 4194304,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_DISPLAY_ID_POS",
+   "value": 2308108,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_DISPLAY_ID_VERSION_MASK",
+   "value": 7,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_ERR_ADDR_HI",
+   "value": 20,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_ERR_ADDR_LO",
+   "value": 28,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_ERR_COMMAND",
+   "value": 68,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLAGS",
+   "value": 4116,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLAG_CLEAR",
+   "value": 4124,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLAG_INTR_DISABLE",
+   "value": 4156,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLAG_INTR_ENABLE",
+   "value": 4148,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLOW_CLEAR",
+   "value": 4228,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLOW_CONFIG",
+   "value": 4212,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_FLOW_OFF",
+   "value": 4220,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_INTR_CTL_HI",
+   "value": 4164,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_INTR_CTL_LO",
+   "value": 4172,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_INTR_DEST_HI",
+   "value": 52,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_INTR_DEST_LO",
+   "value": 60,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_INTR_HEADER",
+   "value": 4188,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_INTR_VECTOR",
+   "value": 4180,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_LEVELS_STRAPS",
+   "value": 4204,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_MASTER_ID_A",
+   "value": 16404,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_MASTER_ID_B",
+   "value": 16452,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_REQ_TIMEOUT",
+   "value": 44,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_REQ_TIMEOUT_BITS",
+   "value": 20,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_REQ_TIMEOUT_MASK",
+   "value": 1048575,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SCAN_ADDR_HI",
+   "value": 4252,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SCAN_ADDR_LO",
+   "value": 4260,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SCAN_CONFIG",
+   "value": 4236,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SCAN_GO",
+   "value": 4268,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SDRAM_CONFIG",
+   "value": 4100,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SHADOW_ADDR_HI",
+   "value": 16436,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SHADOW_ADDR_LO",
+   "value": 16444,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_STARTUP_PROBE_POS",
+   "value": 2102676,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_STARTUP_PROBE_VALUE",
+   "value": 3997766,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_STATS_ADDR_HI",
+   "value": 16412,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_STATS_ADDR_LO",
+   "value": 16420,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_STATS_CONTROL",
+   "value": 16428,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_STATUS0",
+   "value": 4196,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SWAP_TIMING",
+   "value": 4284,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_SWAP_TRIGGER",
+   "value": 4276,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_WIDGET_CONTROL",
+   "value": 36,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_WIDGET_ID",
+   "value": 4,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_WIDGET_STATUS",
+   "value": 12,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "BOARD_XBAR_INTR_CONFIG",
+   "value": 92,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "HOST_FLOW_MODE_OFFSET",
+   "value": 64,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "MASTER_ID_CODE_VALUE",
+   "value": 18,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "PIO_WINDOW_BYTES",
+   "value": 4198400,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "REV_TYPE_B_BIAS",
+   "value": 8,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "RGBA12_MIN_MEMORY_MB",
+   "value": 128,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "STATS_CTL_FIXED_BITS",
+   "value": 2281701376,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_ID_TYPE_A_FIRST",
+   "value": 1,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_ID_TYPE_A_LAST",
+   "value": 3,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_ID_TYPE_B_FIRST",
+   "value": 9,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_ID_TYPE_B_LAST",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_ID_TYPE_MASK",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_ID_TYPE_SHIFT",
+   "value": 28,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_MFR",
+   "value": 35,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  },
+  {
+   "unit": "board",
+   "kind": "constant",
+   "name": "WIDGET_PART",
+   "value": 49171,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped kernel board routines"
+  }
+ ]
+}

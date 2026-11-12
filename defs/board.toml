@@ -1,0 +1,229 @@
+# Imported from ODSY_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "board"
+prefix = "ODSY"
+title = "VPro (Odyssey) graphics board: widget identity, board"
+doc = "Board identity on the crossbar, the register positions of the board window, and the identity, strap and memory-configuration words."
+from = "odsy binary analysis of the shipped kernel board routines"
+public_from = ["odsy binary analysis"]
+
+[c]
+legacy_header = "ODSY_DECODE.h"
+legacy_guard = "ODSY_DECODE_H"
+
+[words.HOST_FLOW_MODE]
+width = 32
+grade = "established"
+
+[words.HOST_FLOW_MODE.fields]
+owner_cpu1 = { bits = [13, 12], grade = "established" }
+owner_cpu0 = { bits = [11, 10], grade = "established" }
+attach_cpu1 = { bits = [9, 9], grade = "established" }
+attach_cpu0 = { bits = [8, 8], grade = "established" }
+
+[[words.HOST_FLOW_MODE.tests]]
+value = 0x1200
+kind = "example"
+expect = { attach_cpu0 = 0, attach_cpu1 = 1, owner_cpu0 = 0, owner_cpu1 = 1 }
+
+[words.MASTER_ID]
+width = 32
+grade = "established"
+
+[words.MASTER_ID.fields]
+bit24 = { bits = [24, 24], grade = "established" }
+master = { bits = [23, 20], grade = "established" }
+bit18 = { bits = [18, 18], grade = "established" }
+code = { bits = [15, 0], grade = "established" }
+
+[[words.MASTER_ID.tests]]
+value = 0x1340012
+kind = "example"
+expect = { code = 18, bit18 = 1, master = 3, bit24 = 1 }
+
+[words.SDRAM_CFG]
+width = 32
+grade = "established"
+
+[words.SDRAM_CFG.fields]
+host_id = { bits = [22, 19], grade = "established" }
+enable = { bits = [8, 8], grade = "inferred" }
+reset = { bits = [5, 5], grade = "inferred" }
+
+[words.SDRAM_CFG.fields.size]
+bits = [4, 3]
+grade = "established"
+
+[words.SDRAM_CFG.fields.size.enums]
+mb32 = { value = 0, grade = "established" }
+mb64 = { value = 1, grade = "established" }
+mb128 = { value = 2, grade = "established" }
+
+[words.SDRAM_CFG.fields.banks]
+bits = [2, 2]
+grade = "established"
+
+[words.SDRAM_CFG.fields.banks.enums]
+two = { value = 0, grade = "established" }
+four = { value = 1, grade = "established" }
+
+[words.SDRAM_CFG.fields.cas]
+bits = [1, 1]
+grade = "established"
+
+[words.SDRAM_CFG.fields.cas.enums]
+cas3 = { value = 0, grade = "established" }
+cas2 = { value = 1, grade = "established" }
+
+[words.STATS_CTL]
+width = 32
+grade = "established"
+
+[words.STATS_CTL.fields]
+fixed_top = { bits = [31, 31], grade = "established" }
+fixed_mid = { bits = [27, 27], grade = "established" }
+select = { bits = [10, 8], grade = "established" }
+flag_c = { bits = [6, 6], grade = "established" }
+flag_b = { bits = [5, 5], grade = "established" }
+flag_a = { bits = [4, 4], grade = "established" }
+size_exp = { bits = [3, 0], grade = "established" }
+
+[[words.STATS_CTL.tests]]
+value = 0x88000000
+expect = { fixed_mid = 1, fixed_top = 1 }
+
+[words.STRAP]
+width = 32
+grade = "established"
+
+[words.STRAP.fields]
+board_rev = { bits = [27, 24], grade = "established" }
+command_level = { bits = [15, 7], grade = "inferred" }
+display_level = { bits = [6, 0], grade = "established" }
+
+[words.STRAP.fields.sdram_size]
+bits = [31, 30]
+grade = "established"
+
+[words.STRAP.fields.sdram_size.enums]
+mb32 = { value = 0, grade = "established" }
+mb64 = { value = 1, grade = "established" }
+mb128 = { value = 2, grade = "established" }
+mb32_alt = { value = 3, grade = "established" }
+
+[words.STRAP.fields.banks]
+bits = [29, 29]
+grade = "established"
+
+[words.STRAP.fields.banks.enums]
+two = { value = 0, grade = "established" }
+four = { value = 1, grade = "established" }
+
+[words.STRAP.fields.cas]
+bits = [28, 28]
+grade = "established"
+
+[words.STRAP.fields.cas.enums]
+cas3 = { value = 0, grade = "established" }
+cas2 = { value = 1, grade = "established" }
+
+[[words.STRAP.tests]]
+value = 0xa1000000
+kind = "example"
+expect = { sdram_size = 2, banks = 1, cas = 0, board_rev = 1 }
+
+[words.WIDGET_CONTROL]
+width = 32
+grade = "established"
+
+[words.WIDGET_CONTROL.fields]
+credit = { bits = [15, 12], grade = "established" }
+big_endian = { bits = [9, 9], grade = "established" }
+
+[[words.WIDGET_CONTROL.tests]]
+value = 0x4200
+expect = { big_endian = 1, credit = 4 }
+
+[words.WIDGET_ID]
+width = 32
+grade = "inferred"
+
+[words.WIDGET_ID.fields]
+variant = { bits = [31, 31], grade = "inferred" }
+revision = { bits = [30, 28], grade = "inferred" }
+
+[[words.WIDGET_ID.tests]]
+value = 0xa0000000
+kind = "example"
+expect = { variant = 1, revision = 2 }
+
+[constants]
+BOARD_ABORT = { value = 0x100c, grade = "inferred" }
+BOARD_BUFFER_B_CLEAR = { value = 0x10cc, grade = "established" }
+BOARD_BUFFER_B_SET = { value = 0x10c4, grade = "inferred" }
+BOARD_BUFFER_B_STATE = { value = 0x10d4, grade = "inferred" }
+BOARD_CMD_FIFO_PORT = { value = 0x110000, grade = "established" }
+BOARD_CMD_WINDOW_2 = { value = 0x120000, grade = "inferred" }
+BOARD_CTX_SAVE_ADDR_HI = { value = 0x4004, grade = "established" }
+BOARD_CTX_SAVE_ADDR_LO = { value = 0x400c, grade = "established" }
+BOARD_CTX_SAVE_PORT = { value = 0x118000, grade = "established" }
+BOARD_DIAG_ADDR_HI = { value = 0x404c, grade = "inferred" }
+BOARD_DIAG_ADDR_LO = { value = 0x4054, grade = "inferred" }
+BOARD_DIAG_MODE = { value = 0x405c, grade = "inferred" }
+BOARD_DISPLAY_FIFO_PORT = { value = 0x400000, grade = "established" }
+BOARD_DISPLAY_ID_POS = { value = 0x23380c, grade = "established" }
+BOARD_DISPLAY_ID_VERSION_MASK = { value = 0x7, grade = "established" }
+BOARD_ERR_ADDR_HI = { value = 0x14, grade = "established" }
+BOARD_ERR_ADDR_LO = { value = 0x1c, grade = "established" }
+BOARD_ERR_COMMAND = { value = 0x44, grade = "established" }
+BOARD_FLAGS = { value = 0x1014, grade = "established" }
+BOARD_FLAG_CLEAR = { value = 0x101c, grade = "established" }
+BOARD_FLAG_INTR_DISABLE = { value = 0x103c, grade = "established" }
+BOARD_FLAG_INTR_ENABLE = { value = 0x1034, grade = "established" }
+BOARD_FLOW_CLEAR = { value = 0x1084, grade = "established" }
+BOARD_FLOW_CONFIG = { value = 0x1074, grade = "established" }
+BOARD_FLOW_OFF = { value = 0x107c, grade = "inferred" }
+BOARD_INTR_CTL_HI = { value = 0x1044, grade = "established" }
+BOARD_INTR_CTL_LO = { value = 0x104c, grade = "established" }
+BOARD_INTR_DEST_HI = { value = 0x34, grade = "established" }
+BOARD_INTR_DEST_LO = { value = 0x3c, grade = "established" }
+BOARD_INTR_HEADER = { value = 0x105c, grade = "inferred" }
+BOARD_INTR_VECTOR = { value = 0x1054, grade = "established" }
+BOARD_LEVELS_STRAPS = { value = 0x106c, grade = "established" }
+BOARD_MASTER_ID_A = { value = 0x4014, grade = "established" }
+BOARD_MASTER_ID_B = { value = 0x4044, grade = "established" }
+BOARD_REQ_TIMEOUT = { value = 0x2c, grade = "established" }
+BOARD_REQ_TIMEOUT_BITS = { value = 0x14, grade = "established" }
+BOARD_REQ_TIMEOUT_MASK = { value = 0xfffff, grade = "established" }
+BOARD_SCAN_ADDR_HI = { value = 0x109c, grade = "established", doc = "label only" }
+BOARD_SCAN_ADDR_LO = { value = 0x10a4, grade = "established", doc = "label only" }
+BOARD_SCAN_CONFIG = { value = 0x108c, grade = "established", doc = "label only" }
+BOARD_SCAN_GO = { value = 0x10ac, grade = "established", doc = "label only" }
+BOARD_SDRAM_CONFIG = { value = 0x1004, grade = "established" }
+BOARD_SHADOW_ADDR_HI = { value = 0x4034, grade = "established" }
+BOARD_SHADOW_ADDR_LO = { value = 0x403c, grade = "established" }
+BOARD_STARTUP_PROBE_POS = { value = 0x201594, grade = "established" }
+BOARD_STARTUP_PROBE_VALUE = { value = 0x3d0046, grade = "established" }
+BOARD_STATS_ADDR_HI = { value = 0x401c, grade = "established" }
+BOARD_STATS_ADDR_LO = { value = 0x4024, grade = "established" }
+BOARD_STATS_CONTROL = { value = 0x402c, grade = "established" }
+BOARD_STATUS0 = { value = 0x1064, grade = "established" }
+BOARD_SWAP_TIMING = { value = 0x10bc, grade = "inferred" }
+BOARD_SWAP_TRIGGER = { value = 0x10b4, grade = "inferred" }
+BOARD_WIDGET_CONTROL = { value = 0x24, grade = "established" }
+BOARD_WIDGET_ID = { value = 0x4, grade = "established" }
+BOARD_WIDGET_STATUS = { value = 0xc, grade = "established" }
+BOARD_XBAR_INTR_CONFIG = { value = 0x5c, grade = "inferred" }
+HOST_FLOW_MODE_OFFSET = { value = 0x40, grade = "established" }
+MASTER_ID_CODE_VALUE = { value = 0x12, grade = "established" }
+PIO_WINDOW_BYTES = { value = 0x401000, grade = "established" }
+REV_TYPE_B_BIAS = { value = 0x8, grade = "established" }
+RGBA12_MIN_MEMORY_MB = { value = 0x80, grade = "established" }
+STATS_CTL_FIXED_BITS = { value = 0x88000000, grade = "established" }
+WIDGET_ID_TYPE_A_FIRST = { value = 0x1, grade = "established" }
+WIDGET_ID_TYPE_A_LAST = { value = 0x3, grade = "established" }
+WIDGET_ID_TYPE_B_FIRST = { value = 0x9, grade = "established" }
+WIDGET_ID_TYPE_B_LAST = { value = 0xf, grade = "established" }
+WIDGET_ID_TYPE_MASK = { value = 0xf, grade = "established" }
+WIDGET_ID_TYPE_SHIFT = { value = 0x1c, grade = "established" }
+WIDGET_MFR = { value = 0x23, grade = "established" }
+WIDGET_PART = { value = 0xc013, grade = "established" }

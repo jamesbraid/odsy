@@ -1,0 +1,342 @@
+# Imported from PBJ_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "pbj"
+prefix = "PBJ"
+title = "VPro (Odyssey) PB&J display back end (publish-safe subset)"
+doc = "Host-interface, I2C and scanout-buffer registers of the Odyssey board, and the header word that frames a display FIFO write."
+from = "odsy binary analysis of the shipped display driver"
+public_from = ["odsy binary analysis"]
+
+[c]
+legacy_header = "PBJ_DECODE.h"
+legacy_guard = "PBJ_DECODE_H"
+
+[spaces.pbj_regs]
+unit = "reg"
+
+[registers.hif_ctl]
+offset = 0x2700
+access = "rw"
+width = 32
+grade = "established"
+doc = """
+Host-interface control of the display chip. The timing load puts the
+first clock-select field of the timing load in bits 14:12 and the second
+in bits 17:15 of the word read back from this register, then writes it
+twice: with bit 18 clear before the clock is programmed and with bit 18
+set after a 100 ms wait. Start-up first writes 0x0006d3e0 (both selects
+5, bit 18 set, low bits 0x3e0); that is a driver-written start value,
+not a reset value."""
+space = "pbj_regs"
+
+[registers.hif_ctl.fields]
+clock_run = { bits = [18, 18], grade = "established" }
+clock_sel_b = { bits = [17, 15], grade = "established" }
+clock_sel_a = { bits = [14, 12], grade = "established" }
+low_bits = { bits = [11, 0], grade = "unknown" }
+
+[[registers.hif_ctl.tests]]
+value = 0x6d3e0
+expect = { clock_run = 1, clock_sel_b = 5, clock_sel_a = 5, low_bits = 992 }
+
+[registers.id]
+offset = 0x2701
+access = "r"
+width = 32
+grade = "established"
+doc = """
+Identification word. Bits 2:0 are the chip version the board information
+block reports. Bit 10 is tested at start-up: when it is clear, the
+driver probes the option port on the second I2C controller for a dual-
+channel display option, so a set bit 10 is read as "no option card"
+(inferred)."""
+space = "pbj_regs"
+
+[registers.id.fields]
+no_option = { bits = [10, 10], grade = "inferred" }
+version = { bits = [2, 0], grade = "established" }
+
+[registers.i2c_opt_ctl]
+offset = 0x2740
+access = "rw"
+width = 32
+grade = "established"
+doc = """
+I2C controller control register, option port (first of the port's two
+registers). The register-read routine reads it, clears bits 12, 8 and 10
+of its shadow and writes it back as an immediate update. The driver
+reads this register at the first word of the read-back slot, not the
+second. Bit meanings are unknown."""
+space = "pbj_regs"
+
+[registers.i2c_opt_ctl.fields]
+bit12 = { bits = [12, 12], grade = "unknown" }
+bit10 = { bits = [10, 10], grade = "unknown" }
+bit8 = { bits = [8, 8], grade = "unknown" }
+
+[registers.i2c_opt_data]
+offset = 0x2741
+access = "r"
+width = 32
+grade = "established"
+doc = """
+I2C controller status/data register, option port. The register-read
+routine polls it for bit 9, up to 133 times. Bit meanings are unknown."""
+space = "pbj_regs"
+
+[registers.i2c_opt_data.fields]
+bit9 = { bits = [9, 9], grade = "unknown" }
+
+[registers.i2c_main_ctl]
+offset = 0x2780
+access = "rw"
+width = 32
+grade = "established"
+doc = """
+I2C controller control register, main port (first of the port's two
+registers). The register-read routine reads it, clears bits 12, 8 and 10
+of its shadow and writes it back as an immediate update. The driver
+reads this register at the first word of the read-back slot, not the
+second. Bit meanings are unknown."""
+space = "pbj_regs"
+
+[registers.i2c_main_ctl.fields]
+bit12 = { bits = [12, 12], grade = "unknown" }
+bit10 = { bits = [10, 10], grade = "unknown" }
+bit8 = { bits = [8, 8], grade = "unknown" }
+
+[registers.i2c_main_data]
+offset = 0x2781
+access = "r"
+width = 32
+grade = "established"
+doc = """
+I2C controller status/data register, main port. The register-read
+routine polls it for bit 9, up to 133 times. Bit meanings are unknown."""
+space = "pbj_regs"
+
+[registers.i2c_main_data.fields]
+bit9 = { bits = [9, 9], grade = "unknown" }
+
+[registers.fb_base_b]
+offset = 0x2800
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Scanout base of the second buffer region, written by the frame-buffer
+set-up as a tile count shifted left 9, after rounding the region start
+up to a multiple of four. A tile is 16 by 16 pixels. Reading as a
+scanout base address is inferred."""
+space = "pbj_regs"
+
+[registers.fb_base_a]
+offset = 0x2801
+access = "w"
+width = 32
+grade = "established"
+doc = "Scanout base of the first buffer region, same encoding as the second."
+space = "pbj_regs"
+
+[registers.scan_width]
+offset = 0x2802
+access = "w"
+width = 32
+grade = "inferred"
+doc = """
+Written 0 by the frame-buffer set-up, 0 or 1280 by start-up, and the
+timing load's active-width value (1280 in the built-in timings, twice
+that on one path) by the timing load. Active width in pixels is one
+reading; a pan offset fits the same writes (inferred)."""
+space = "pbj_regs"
+
+[registers.scan_height]
+offset = 0x2803
+access = "w"
+width = 32
+grade = "inferred"
+doc = """
+Companion of the width register: 0, 1024 in the full-size form, or the
+timing load's active-height value. Active height in lines (inferred,
+same caveat)."""
+space = "pbj_regs"
+
+[registers.scan_cfg_a]
+offset = 0x2804
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Written from the low two bits of a timing load value by the timing load.
+Meaning unknown."""
+space = "pbj_regs"
+
+[registers.scan_cfg_b]
+offset = 0x2805
+access = "w"
+width = 32
+grade = "unknown"
+doc = """
+Listed among the addresses the kernel writes; no read of the source of
+its value was completed. Meaning unknown."""
+space = "pbj_regs"
+
+[registers.scan_cfg_c]
+offset = 0x2806
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Written from one flag bit of a timing load value by the timing load (the
+same flag as the colour-map unit configuration). Meaning unknown."""
+space = "pbj_regs"
+
+[registers.fb_pitch]
+offset = 0x2807
+access = "w"
+width = 32
+grade = "inferred"
+doc = """
+Scanout pitch: the frame-buffer width in 16-pixel tiles, rounded up to
+an even count. Reading as pitch is inferred from the arithmetic."""
+space = "pbj_regs"
+
+[registers.fb_depth]
+offset = 0x2809
+access = "w"
+width = 32
+grade = "inferred"
+doc = """
+Scanout pixel size code. The codes the set-up writes are 2 for 8 bits a
+pixel, 3 for 16 and 4 for 32 (established as values). The field width is
+not known; three bits is the least that holds them, so the field range
+is inferred."""
+space = "pbj_regs"
+
+[registers.fb_depth.fields.code]
+bits = [2, 0]
+grade = "inferred"
+
+[registers.fb_depth.fields.code.enums]
+bpp8 = { value = 2, grade = "established" }
+bpp16 = { value = 3, grade = "established" }
+bpp32 = { value = 4, grade = "established" }
+
+[registers.dcb_ctl]
+offset = 0x2b00
+access = "w"
+width = 32
+grade = "inferred"
+doc = """
+Back-end interface configuration. The timing load stores a 3-bit timing
+load value here; its role is unknown (the field name is a placeholder).
+Start-up first writes 0 five times, which may
+be a reset or a flush of this register's function (unknown). Nothing
+reads it back."""
+space = "pbj_regs"
+
+[registers.dcb_ctl.fields]
+dcb_clock = { bits = [2, 0], grade = "inferred" }
+
+[words.FIFO_HDR]
+width = 32
+doc = """
+A write is a header word followed by COUNT data words that go to
+consecutive register addresses. The kernel normally sends the header and
+one data word together as one 64-bit store, header in the high half, and
+it pairs any two consecutive words into one doubleword wherever a header
+falls, so a decoder must treat the stream as a run of 32-bit words and
+not as aligned pairs. established.
+
+The FIFO holds 24 doublewords (the driver waits until the level is at or
+below 24 minus the entries it needs). The level is a 7-bit field of a
+graphics-ASIC register. established. How deep the hardware really is:
+unknown.
+
+Type. Only 3 and 7 are ever sent. Type 7 is used for the display-mode
+words, the cursor control word, X server colour-map loads and the cursor
+position when cursor control bit 2 is set; type 3 for everything the
+kernel loads at start-up or mode set and for the textport colour map.
+established as uses. So type 3
+is read as apply at once and type 7 as apply at the next vertical blank,
+inferred from the pairing of uses. Bits 29:28 are set in both types and
+are probably a per-chip target select, one bit each for the two ASICs of
+a two-ASIC board (inferred from the name "all" in that driver). Bit 31
+is never set. What the part does with a type nibble no software sends:
+unknown.
+
+Read-back. Each register address has an eight-byte slot in the window;
+the value is in the second 32-bit word of the slot (the I2C routines
+read the first word; whether the board returns the value in both halves
+is unknown). The window returns what the FIFO last wrote at that
+address. A read does not wait for earlier FIFO writes (inferred); the
+driver reads only after the FIFO has drained."""
+grade = "established"
+
+[words.FIFO_HDR.fields]
+address = { bits = [27, 14], grade = "established" }
+count = { bits = [13, 0], grade = "established" }
+
+[words.FIFO_HDR.fields.type]
+bits = [31, 28]
+grade = "established"
+
+[words.FIFO_HDR.fields.type.enums]
+now = { value = 3, grade = "inferred" }
+synced = { value = 7, grade = "inferred" }
+
+[[words.FIFO_HDR.tests]]
+value = 0x38000400
+expect = { count = 1024, address = "@DISPLAY.line_table", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x39000080
+expect = { count = 128, address = "@DISPLAY.frame_table", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x39400080
+expect = { count = 128, address = "@DISPLAY.cursor_image_a", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x39600001
+expect = { count = 1, address = "@DISPLAY.cursor_pos", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x3964000f
+expect = { count = 15, address = "@DISPLAY.cursor_colors", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x39700040
+expect = { count = 64, address = "@DISPLAY.cursor_image_b", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x39b00001
+expect = { count = 1, address = "@DISPLAY.dac_ctl", type = 3 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x70000001
+kind = "example"
+expect = { count = 1, address = 0, type = 7 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x79600001
+expect = { count = 1, address = "@DISPLAY.cursor_pos", type = 7 }
+
+[[words.FIFO_HDR.tests]]
+value = 0x79604001
+expect = { count = 1, address = "@DISPLAY.cursor_ctl", type = 7 }
+
+[constants]
+ADDR_BITS = { value = 0xe, grade = "established" }
+CLOCK_A_REG_DPA_CONTROL = { value = 0x5, grade = "established" }
+CLOCK_A_REG_DPA_OFFSET = { value = 0x4, grade = "established" }
+CLOCK_A_REG_FEEDBACK_DIV0 = { value = 0x2, grade = "established" }
+CLOCK_A_REG_FEEDBACK_DIV1 = { value = 0x3, grade = "established" }
+CLOCK_A_REG_INPUT_CONTROL = { value = 0x0, grade = "established" }
+CLOCK_A_REG_LOOP_CONTROL = { value = 0x1, grade = "established" }
+CLOCK_A_REG_OSC_DIV = { value = 0x7, grade = "established" }
+CLOCK_A_REG_OUTPUT_ENABLE = { value = 0x6, grade = "established" }
+CLOCK_I2C_ADDR_A = { value = 0x26, grade = "established", doc = "variant <= 0" }
+CLOCK_I2C_ADDR_B = { value = 0x58, grade = "established", doc = "variant > 0" }
+CLOCK_WRITE_COUNT = { value = 0x8, grade = "established" }
+FIFO_DEPTH_DWORDS = { value = 0x18, grade = "inferred" }
+READ_SLOT_BYTES = { value = 0x8, grade = "established" }

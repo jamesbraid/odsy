@@ -1,0 +1,180 @@
+# Imported from DMA_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "dma"
+prefix = "DMA"
+title = "VPro (Odyssey) \"Buzz\" graphics ASIC: host DMA engine"
+doc = "DMA-engine descriptor words of the Odyssey board: the kick words, the transfer entry and its tag."
+from = "odsy binary analysis of the shipped kernel DMA routines"
+public_from = ["odsy binary analysis"]
+
+[c]
+legacy_header = "DMA_DECODE.h"
+legacy_guard = "DMA_DECODE_H"
+
+[words.ENTRY_W7]
+width = 32
+doc = """
+Header word 7 as the descriptor builder leaves it. The kernel forces the
+top byte before it builds descriptors: bits 29, 28 and 25 always set,
+bit 24 set for a board-to-host transfer, bits 27 and 30 kept from the
+caller. Bits 24, 27 and 30 are the same bits as HDR_W7.read_dir,
+HDR_W7.transform and HDR_W7.differs in BUZZ_DECODE.h. Bit 31 is added
+by the builder to the last descriptor of a board-to-host request."""
+grade = "established"
+
+[words.ENTRY_W7.fields]
+irq_after = { bits = [31, 31], grade = "inferred" }
+differs = { bits = [30, 30], grade = "established" }
+fixed29 = { bits = [29, 29], grade = "established" }
+fixed28 = { bits = [28, 28], grade = "established" }
+fixed25 = { bits = [25, 25], grade = "established" }
+
+[words.ENTRY_W7.fields.transform]
+bits = [27, 27]
+grade = "established"
+
+[words.ENTRY_W7.fields.transform.enums]
+plain = { value = 0, grade = "established" }
+transform = { value = 1, grade = "established" }
+
+[words.ENTRY_W7.fields.read_dir]
+bits = [24, 24]
+grade = "established"
+
+[words.ENTRY_W7.fields.read_dir.enums]
+write = { value = 0, grade = "established" }
+read = { value = 1, grade = "established" }
+
+[[words.ENTRY_W7.tests]]
+value = 0x32000000
+kind = "example"
+expect = { read_dir = 0, fixed25 = 1, transform = 0, fixed28 = 1, fixed29 = 1, differs = 0, irq_after = 0 }
+
+[[words.ENTRY_W7.tests]]
+value = 0x33000000
+kind = "example"
+expect = { read_dir = 1, fixed25 = 1, transform = 0, fixed28 = 1, fixed29 = 1, differs = 0, irq_after = 0 }
+
+[[words.ENTRY_W7.tests]]
+value = 0xb3000000
+kind = "example"
+expect = { read_dir = 1, fixed25 = 1, transform = 0, fixed28 = 1, fixed29 = 1, differs = 0, irq_after = 1 }
+
+[words.KICK_A_HI]
+width = 32
+grade = "established"
+
+[words.KICK_A_HI.fields.id]
+bits = [11, 0]
+grade = "established"
+
+[words.KICK_A_HI.fields.id.enums]
+plain = { value = 3585, grade = "established" }
+variant = { value = 3587, grade = "established" }
+
+[[words.KICK_A_HI.tests]]
+value = 0xe01
+expect = { id = 3585 }
+
+[[words.KICK_A_HI.tests]]
+value = 0xe03
+expect = { id = 3587 }
+
+[words.KICK_A_LO]
+width = 32
+grade = "established"
+
+[words.KICK_A_LO.fields]
+addr_hi = { bits = [29, 23], grade = "established" }
+addr_lo = { bits = [16, 0], grade = "established" }
+
+[words.KICK_B_HI]
+width = 32
+grade = "established"
+
+[words.KICK_B_HI.fields]
+addr_hi = { bits = [29, 23], grade = "established" }
+addr_lo = { bits = [16, 0], grade = "established" }
+
+[words.KICK_B_LO]
+width = 32
+grade = "established"
+
+[words.KICK_B_LO.fields]
+zero = { bits = [31, 0], grade = "established" }
+
+[words.PAGE_W0]
+width = 32
+doc = """
+Page entry: 8 bytes, two words, one per run of host memory in order.
+established as the arithmetic the page-list builder performs; the unit
+of the count is inferred from the loop that fills it (bytes). The
+address fields hold the run's host physical address; values omitted.
+  word 0  the physical address shifted right by 16 (bits 47:16)
+  word 1  the physical address bits 15:0 in 31:16, the count in 15:0"""
+grade = "established"
+
+[words.PAGE_W0.fields]
+addr = { bits = [31, 0], grade = "established" }
+
+[words.PAGE_W1]
+width = 32
+grade = "established"
+
+[words.PAGE_W1.fields]
+addr_lo = { bits = [31, 16], grade = "established" }
+count = { bits = [15, 0], grade = "inferred" }
+
+[[words.PAGE_W1.tests]]
+value = 0x200
+kind = "example"
+expect = { count = 512 }
+
+[words.TAG_W0]
+width = 32
+grade = "established"
+
+[words.TAG_W0.fields]
+slot = { bits = [14, 0], grade = "inferred" }
+
+[words.TAG_W0.fields.flag]
+bits = [15, 15]
+grade = "established"
+
+[words.TAG_W0.fields.flag.enums]
+set = { value = 1, grade = "established" }
+
+[[words.TAG_W0.tests]]
+value = 0x8000
+kind = "example"
+expect = { slot = 0, flag = 1 }
+
+[words.TAG_W1]
+width = 32
+grade = "established"
+
+[words.TAG_W1.fields]
+tag = { bits = [7, 0], grade = "established" }
+
+[words.TAG_W1.fields.marker]
+bits = [15, 8]
+grade = "established"
+
+[words.TAG_W1.fields.marker.enums]
+tag = { value = 90, grade = "established" }
+
+[[words.TAG_W1.tests]]
+value = 0x5a00
+expect = { marker = 90, tag = 0 }
+
+[constants]
+DONE_FLAG_BIT = { value = 0xb, grade = "established" }
+ENTRY_BYTES = { value = 0x80, grade = "established" }
+ENTRY_HDR_BYTES = { value = 0x20, grade = "established" }
+ENTRY_MAX_BYTES = { value = 0x24000, grade = "established", doc = "147456;as the split rule" }
+ENTRY_PAGES_MAX = { value = 0xc, grade = "established" }
+KICK_ADDR_BITS = { value = 0x30, grade = "established" }
+PAGE_CHUNK_BYTES = { value = 0x4000, grade = "established", doc = "the largest chunk a page entry is built from; whether it is a page size or only a software chunk size: inferred" }
+PAGE_ENTRY_BYTES = { value = 0x8, grade = "established" }
+TAG_CMD_COUNT = { value = 0x2, grade = "established" }
+TAG_CMD_LOW16 = { value = 0xa5a, grade = "established" }
+TAG_CMD_ID = { value = 0x25a, grade = "established", doc = "the tag command word with bit 15 cleared; the meaning of bit 15 is unknown" }

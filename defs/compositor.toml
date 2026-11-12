@@ -1,0 +1,95 @@
+# Imported from COMPOSITOR_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "compositor"
+prefix = "CCX"
+title = "VPro (Odyssey) compositor chip: register numbers"
+from = "odsy analysis of the compositor diagnostic table in the shipped tools"
+public_from = ["odsy analysis of the compositor diagnostic table"]
+
+[c]
+legacy_header = "COMPOSITOR_DECODE.h"
+legacy_guard = "COMPOSITOR_DECODE_H"
+
+[constants]
+ATPG_FIRST_PIXEL = { value = 0x5c, grade = "established", doc = "established (read-write), default 0x3fffffff" }
+ATPG_OP_MODE = { value = 0x5d, grade = "established", doc = "established (read-write), default 0x1" }
+ATPG_RAMP = { value = 0x5e, grade = "established", doc = "established (read-write), default 0x47" }
+CRC_INPUT_0 = { value = 0x63, grade = "established", doc = "established (read-write)" }
+CRC_INPUT_1 = { value = 0x64, grade = "established", doc = "established (read-write)" }
+CRC_INPUT_2 = { value = 0x65, grade = "established", doc = "established (read-write)" }
+CRC_INPUT_3 = { value = 0x66, grade = "established", doc = "established (read-write)" }
+CRC_INPUT_CTRL = { value = 0x5f, grade = "established", doc = "established (direction inferred: write-only)" }
+CRC_INPUT_STATUS = { value = 0x60, grade = "established", doc = "established (read-only)" }
+CRC_OUTPUT = { value = 0x67, grade = "established", doc = "established (read-write)" }
+CRC_OUTPUT_CTRL = { value = 0x61, grade = "established", doc = "established (direction inferred: write-only)" }
+CRC_OUTPUT_STATUS = { value = 0x62, grade = "established", doc = "established (read-only)" }
+DAC_CONFIG_DAC_CONFIG = { value = 0x53, grade = "established", doc = "established (direction inferred: write-only)" }
+GAMMA_LOAD_CNT = { value = 0x32, grade = "established", doc = "established (direction inferred: write-only)" }
+GAMMA_PROGRAM = { value = 0x2d, grade = "established", doc = "established (direction inferred: write-only)" }
+GAMMA_READ_BLUE_LUT0 = { value = 0x3b, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_BLUE_LUT1 = { value = 0x3c, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_BLUE_LUT2 = { value = 0x3d, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_BLUE_LUT3 = { value = 0x3e, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_GREEN_LUT0 = { value = 0x37, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_GREEN_LUT1 = { value = 0x38, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_GREEN_LUT2 = { value = 0x39, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_GREEN_LUT3 = { value = 0x3a, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_RED_LUT0 = { value = 0x33, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_RED_LUT1 = { value = 0x34, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_RED_LUT2 = { value = 0x35, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_READ_RED_LUT3 = { value = 0x36, grade = "established", doc = "established (direction inferred: read-only)" }
+GAMMA_WRITE_ALL = { value = 0x2e, grade = "established", doc = "established (direction inferred: write-only)" }
+GAMMA_WRITE_BLUE_LUT = { value = 0x31, grade = "established", doc = "established (direction inferred: write-only)" }
+GAMMA_WRITE_GREEN_LUT = { value = 0x30, grade = "established", doc = "established (direction inferred: write-only)" }
+GAMMA_WRITE_RED_LUT = { value = 0x2f, grade = "established", doc = "established (direction inferred: write-only)" }
+I2C_CONTROL_LINK4 = { value = 0x55, grade = "established", doc = "established (direction inferred: write-only)" }
+I2C_CONTROL_LINK5 = { value = 0x56, grade = "established", doc = "established (direction inferred: write-only)" }
+I2C_PORT_ENUM = { value = 0x57, grade = "established", doc = "established (read-only)" }
+I2C_STATUS_LINK4 = { value = 0x58, grade = "established", doc = "established (direction inferred: read-only)" }
+I2C_STATUS_LINK5 = { value = 0x59, grade = "established", doc = "established (direction inferred: read-only)" }
+NIC_0 = { value = 0x5a, grade = "established", doc = "established (direction inferred: read-only), default 0x4b484837" }
+NIC_1 = { value = 0x5b, grade = "established", doc = "established (direction inferred: read-only), default 0x3639" }
+TILE_F0_X = { value = 0x23, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F0_Y = { value = 0x27, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F1_X = { value = 0x24, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F1_Y = { value = 0x28, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F2_X = { value = 0x25, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F2_Y = { value = 0x29, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F3_X = { value = 0x26, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_F3_Y = { value = 0x2a, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_TILE_SPARE0 = { value = 0x2b, grade = "established", doc = "established (direction inferred: write-only)" }
+TILE_TILE_SPARE1 = { value = 0x2c, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_ACT_VID_EDGE0 = { value = 0x10, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_ACT_VID_EDGE1 = { value = 0x11, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CBLANK_EDGE0 = { value = 0xc, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CBLANK_EDGE1 = { value = 0xd, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CBLANK_EDGE2 = { value = 0xe, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CBLANK_EDGE3 = { value = 0xf, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CLK_CNT = { value = 0x1, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE0 = { value = 0x5, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE1 = { value = 0x6, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE2 = { value = 0x7, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE3 = { value = 0x8, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE4 = { value = 0x9, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE5 = { value = 0xa, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_CSYNC_EDGE6 = { value = 0xb, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_FIELD_EDGE0 = { value = 0x16, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_GLOBAL_EDGE0 = { value = 0x1f, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_HMASK_EDGE0 = { value = 0x1b, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_HMASK_EDGE1 = { value = 0x1c, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_HSYNC_EDGE0 = { value = 0x14, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_HSYNC_EDGE1 = { value = 0x15, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_LINE_COUNT = { value = 0x2, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_LINE_LENGTH = { value = 0x4, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_LINE_TYPE = { value = 0x3, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_PLLEN_EDGE0 = { value = 0x1d, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_PLLEN_EDGE1 = { value = 0x1e, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_SPARE5_EDGE0 = { value = 0x20, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_SPARE5_EDGE1 = { value = 0x21, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_SPARE5_EDGE2 = { value = 0x22, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_THSYNC_EDGE0 = { value = 0x19, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_THSYNC_EDGE1 = { value = 0x1a, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_VBLANK_EDGE0 = { value = 0x12, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_VBLANK_EDGE1 = { value = 0x13, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_VID_CNT = { value = 0x0, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_VSYNC_EDGE0 = { value = 0x17, grade = "established", doc = "established (direction inferred: write-only)" }
+VTC_VSYNC_EDGE1 = { value = 0x18, grade = "established", doc = "established (direction inferred: write-only)" }

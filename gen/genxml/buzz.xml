@@ -1,0 +1,432 @@
+<?xml version="1.0" ?>
+<!-- generated from defs/buzz.toml by defs-gen - do not edit, change the source -->
+<genxml unit="buzz" prefix="BUZZ" title='VPro (Odyssey) "Buzz" graphics ASIC: command and image' from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <doc>Command opcodes and the image, copy, pixel-mode, texture-level and sampler words of the Odyssey geometry and pixel engine's command stream.</doc>
+  <enum name="fieldfmt">
+    <value name="index" value="0" grade="established"/>
+    <value name="one" value="2" grade="established"/>
+    <value name="two" value="3" grade="established"/>
+    <value name="rgba" value="5" grade="established"/>
+    <value name="rgba_short_a" value="6" grade="established"/>
+  </enum>
+  <enum name="fmt">
+    <value name="depth_stencil" value="0" grade="established"/>
+    <value name="index" value="1" grade="established"/>
+    <value name="luminance" value="2" grade="established"/>
+    <value name="intensity" value="3" grade="established"/>
+    <value name="red" value="4" grade="established"/>
+    <value name="green" value="5" grade="established"/>
+    <value name="blue" value="6" grade="established"/>
+    <value name="alpha" value="7" grade="established"/>
+    <value name="lum_alpha" value="8" grade="established"/>
+    <value name="rgb" value="9" grade="established"/>
+    <value name="rgba" value="11" grade="established"/>
+    <value name="abgr" value="12" grade="established"/>
+    <value name="bgr" value="13" grade="established"/>
+    <value name="bgra" value="17" grade="established"/>
+  </enum>
+  <enum name="psize">
+    <value name="2b" value="0" grade="established"/>
+    <value name="4b" value="1" grade="established"/>
+    <value name="8b" value="2" grade="established"/>
+    <value name="16b" value="3" grade="established"/>
+    <value name="12b" value="4" grade="established"/>
+    <value name="1b" value="5" grade="established"/>
+    <value name="6b" value="6" grade="established"/>
+    <value name="3b" value="7" grade="established"/>
+  </enum>
+  <enum name="sampler_mag">
+    <value name="nearest" value="0" grade="established"/>
+    <value name="linear" value="1" grade="established"/>
+    <value name="detail" value="2" grade="established"/>
+    <value name="detail_alpha" value="3" grade="established"/>
+    <value name="detail_color" value="4" grade="established"/>
+  </enum>
+  <enum name="sampler_min">
+    <value name="nearest" value="0" grade="established"/>
+    <value name="linear" value="1" grade="established"/>
+    <value name="nearest_mip_nearest" value="2" grade="established"/>
+    <value name="linear_mip_nearest" value="3" grade="established"/>
+    <value name="nearest_mip_linear" value="4" grade="established"/>
+    <value name="linear_mip_linear" value="5" grade="established"/>
+  </enum>
+  <enum name="sampler_wrap">
+    <value name="repeat" value="0" grade="established"/>
+    <value name="edge" value="1" grade="established"/>
+    <value name="clamp" value="2" grade="established"/>
+    <value name="border" value="3" grade="established"/>
+  </enum>
+  <enum name="type">
+    <value name="byte" value="2" grade="established"/>
+    <value name="short" value="3" grade="established"/>
+    <value name="int" value="4" grade="established"/>
+    <value name="332" value="5" grade="established"/>
+    <value name="4444" value="6" grade="established"/>
+    <value name="5551" value="7" grade="established"/>
+    <value name="1010102" value="8" grade="established"/>
+    <value name="565" value="10" grade="established"/>
+    <value name="byte_12" value="11" grade="established"/>
+    <value name="565_class10" value="12" grade="established"/>
+  </enum>
+  <struct name="ALPHA_TEST" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <field name="func" start="12" size="3" type="uint" grade="established"/>
+    <field name="reference" start="0" size="12" type="uint" grade="established"/>
+    <test value="0x3800" kind="vector">
+      <expect field="func" value="3"/>
+      <expect field="reference" value="2048"/>
+    </test>
+  </struct>
+  <struct name="COPY_W2" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>COPY operand 2: the two window words and the destination's second field code.</doc>
+    <field name="dst_front" start="31" size="1" type="uint" grade="established"/>
+    <field name="dst_window" start="16" size="12" type="uint" grade="established"/>
+    <field name="dst_field_b" start="12" size="4" type="uint" grade="established"/>
+    <field name="src_window" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="COPY_W7" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>COPY operand 7 beyond the write header: flags set around the walk.</doc>
+    <field name="dst_x_in_src" start="31" size="1" type="uint" grade="inferred"/>
+    <field name="dst_y_in_src" start="30" size="1" type="uint" grade="inferred"/>
+    <field name="clamp_off" start="28" size="2" type="uint" grade="inferred"/>
+    <field name="dst_field_a" start="20" size="4" type="uint" grade="established"/>
+    <field name="size_code" start="16" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="FRAME_PIXEL" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Frame pixel as stored in the vendor simulator's reference frames: red in
+bits 31:24, green 23:16, blue 15:8 and alpha 7:0, each component the
+colour in 0..1 scaled as floor(256 c) and limited to 255. established
+for the colours the reference frames draw (0.1 to 1.0), by rebuilding
+the stored frames with a matching checksum; the frames are the
+simulator's output, not a board's. Values below 0.1 are not tested.</doc>
+    <field name="red" start="24" size="8" type="uint" grade="established"/>
+    <field name="green" start="16" size="8" type="uint" grade="established"/>
+    <field name="blue" start="8" size="8" type="uint" grade="established"/>
+    <field name="alpha" start="0" size="8" type="uint" grade="established"/>
+    <test value="0x8099b3ff" kind="vector">
+      <expect field="red" value="128"/>
+      <expect field="green" value="153"/>
+      <expect field="blue" value="179"/>
+      <expect field="alpha" value="255"/>
+    </test>
+  </struct>
+  <struct name="HDR_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 0: board reference.</doc>
+    <field name="kept" start="30" size="2" type="uint" grade="inferred"/>
+    <field name="window_rel" start="29" size="1" type="uint" grade="established"/>
+    <field name="ref" start="0" size="29" type="uint" grade="established"/>
+  </struct>
+  <struct name="HDR_W1" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 1: x and y of the smaller corner.</doc>
+    <field name="y" start="16" size="16" type="uint" grade="established"/>
+    <field name="x" start="0" size="16" type="uint" grade="established"/>
+  </struct>
+  <struct name="HDR_W2" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 2: the window word.</doc>
+    <field name="window_word" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="HDR_W3" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 3: width and height.</doc>
+    <field name="height" start="16" size="16" type="uint" grade="established"/>
+    <field name="width" start="0" size="16" type="uint" grade="established"/>
+  </struct>
+  <struct name="HDR_W4" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 4: class and code, field geometry, pixel size.
+The read header's word 4, and the COPY source description.</doc>
+    <field name="front" start="31" size="1" type="uint" grade="established"/>
+    <field name="drawable" start="28" size="1" type="uint" grade="established"/>
+    <field name="field_b" start="24" size="4" type="uint" grade="established"/>
+    <field name="field_a" start="20" size="4" type="uint" grade="established"/>
+    <field name="pixel_size_b19" start="19" size="1" type="uint" grade="unknown"/>
+    <field name="pixel_size" start="16" size="3" type="psize" grade="inferred"/>
+    <field name="size_field" start="13" size="3" type="uint" grade="established"/>
+    <field name="bit12" start="12" size="1" type="uint" grade="established"/>
+    <field name="code" start="3" size="5" type="uint" grade="established"/>
+    <field name="class" start="0" size="3" type="uint" grade="established"/>
+    <test value="0x8" kind="vector">
+      <expect field="class" value="0"/>
+      <expect field="code" value="1"/>
+    </test>
+    <test value="0x82233000" kind="example">
+      <expect field="class" value="0"/>
+      <expect field="code" value="0"/>
+      <expect field="bit12" value="1"/>
+      <expect field="size_field" value="1"/>
+      <expect field="pixel_size" value="3"/>
+      <expect field="field_a" value="2"/>
+      <expect field="field_b" value="2"/>
+      <expect field="drawable" value="0"/>
+      <expect field="front" value="1"/>
+    </test>
+    <test value="0x83331008" kind="vector">
+      <expect field="class" value="0"/>
+      <expect field="code" value="1"/>
+      <expect field="bit12" value="1"/>
+      <expect field="size_field" value="0"/>
+      <expect field="pixel_size" value="3"/>
+      <expect field="field_a" value="3"/>
+      <expect field="field_b" value="3"/>
+      <expect field="drawable" value="0"/>
+      <expect field="front" value="1"/>
+    </test>
+  </struct>
+  <struct name="HDR_W6" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 6: row bytes.</doc>
+    <field name="row_bytes" start="0" size="20" type="uint" grade="established"/>
+  </struct>
+  <struct name="HDR_W7" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Image header word 7: format, type, size and path control.
+The write header's word 7, and the COPY destination control.</doc>
+    <field name="differs" start="30" size="1" type="uint" grade="established"/>
+    <field name="transform" start="27" size="1" type="uint" grade="established"/>
+    <field name="read_dir" start="24" size="1" type="uint" grade="established"/>
+    <field name="psize" start="16" size="3" type="psize" grade="established"/>
+    <field name="size_field" start="13" size="3" type="uint" grade="established"/>
+    <field name="swap" start="10" size="1" type="uint" grade="inferred"/>
+    <field name="expand" start="9" size="1" type="uint" grade="established"/>
+    <field name="type" start="5" size="4" type="type" grade="established"/>
+    <field name="format" start="0" size="5" type="fmt" grade="established"/>
+    <test value="0x41" kind="vector">
+      <expect field="format" value="1"/>
+      <expect field="type" value="2"/>
+      <expect field="expand" value="0"/>
+    </test>
+    <test value="0x42" kind="vector">
+      <expect field="format" value="2"/>
+      <expect field="type" value="2"/>
+      <expect field="expand" value="0"/>
+    </test>
+    <test value="0x4b" kind="vector">
+      <expect field="format" value="11"/>
+      <expect field="type" value="2"/>
+      <expect field="expand" value="0"/>
+    </test>
+    <test value="0x61" kind="vector">
+      <expect field="format" value="1"/>
+      <expect field="type" value="3"/>
+      <expect field="expand" value="0"/>
+    </test>
+    <test value="0x6b" kind="vector">
+      <expect field="format" value="11"/>
+      <expect field="type" value="3"/>
+      <expect field="expand" value="0"/>
+    </test>
+    <test value="0x16c" kind="vector">
+      <expect field="format" value="12"/>
+      <expect field="type" value="11"/>
+      <expect field="expand" value="0"/>
+    </test>
+    <test value="0x32050041" kind="vector">
+      <expect field="format" value="1"/>
+      <expect field="type" value="2"/>
+      <expect field="psize" value="5"/>
+      <expect field="read_dir" value="0"/>
+      <expect field="transform" value="0"/>
+      <expect field="differs" value="0"/>
+    </test>
+  </struct>
+  <struct name="PF" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>A scale or bias word of the post-filter block.</doc>
+    <field name="value" start="0" size="16" type="uint" grade="established"/>
+  </struct>
+  <struct name="PIXMODE_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Pixel-mode descriptor, first word.</doc>
+    <field name="window_word" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="PIXMODE_W1" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Pixel-mode descriptor, second word.</doc>
+    <field name="bit27" start="27" size="1" type="uint" grade="unknown"/>
+    <field name="storage3" start="22" size="1" type="uint" grade="inferred"/>
+    <field name="bit21" start="21" size="1" type="uint" grade="unknown"/>
+    <field name="index_class" start="19" size="1" type="uint" grade="established"/>
+    <field name="size_field" start="13" size="3" type="uint" grade="established"/>
+    <field name="storage" start="10" size="3" type="uint" grade="established"/>
+    <field name="layout" start="7" size="3" type="uint" grade="established"/>
+    <field name="field_format" start="4" size="3" type="fieldfmt" grade="established"/>
+  </struct>
+  <struct name="SAMPLER" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>The sampler word: operand 4 of the texture-mode block.</doc>
+    <field name="no_offset" start="28" size="1" type="uint" grade="established"/>
+    <field name="activation" start="23" size="3" type="uint" grade="established"/>
+    <field name="table_fmt" start="20" size="3" type="uint" grade="established"/>
+    <field name="image_flag18" start="18" size="1" type="uint" grade="established"/>
+    <field name="trilinear" start="17" size="1" type="uint" grade="established"/>
+    <field name="image_flag14" start="14" size="1" type="uint" grade="established"/>
+    <field name="wrap_s" start="12" size="2" type="sampler_wrap" grade="established"/>
+    <field name="wrap_t" start="10" size="2" type="sampler_wrap" grade="established"/>
+    <field name="wrap_r" start="8" size="2" type="sampler_wrap" grade="established"/>
+    <field name="min" start="5" size="3" type="sampler_min" grade="established"/>
+    <field name="mag" start="1" size="4" type="sampler_mag" grade="established"/>
+    <field name="colour_table" start="0" size="1" type="uint" grade="established"/>
+    <test value="0x82" kind="vector">
+      <expect field="colour_table" value="0"/>
+      <expect field="mag" value="1"/>
+      <expect field="min" value="4"/>
+    </test>
+    <test value="0x3640000" kind="vector">
+      <expect field="colour_table" value="0"/>
+      <expect field="mag" value="0"/>
+      <expect field="min" value="0"/>
+      <expect field="image_flag18" value="1"/>
+      <expect field="table_fmt" value="6"/>
+      <expect field="activation" value="6"/>
+      <expect field="no_offset" value="0"/>
+    </test>
+  </struct>
+  <struct name="TEXLEVEL_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Texture level descriptor, word 0.</doc>
+    <field name="kept" start="29" size="3" type="uint" grade="unknown"/>
+    <field name="addr" start="0" size="29" type="uint" grade="established"/>
+  </struct>
+  <struct name="TEXLEVEL_W1" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Texture level descriptor, word 1.</doc>
+    <field name="size_code" start="30" size="2" type="uint" grade="established"/>
+    <field name="offset_code" start="26" size="3" type="uint" grade="established"/>
+    <field name="format_index" start="20" size="6" type="uint" grade="established"/>
+    <field name="pitch" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="TEXLEVEL_W2" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+    <doc>Texture level descriptor, word 2.</doc>
+    <field name="bits" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <constant name="ALPHA_TEST_FUNC_ALWAYS" value="0x7" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_EQUAL" value="0x2" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_GEQUAL" value="0x6" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_GREATER" value="0x4" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_LEQUAL" value="0x3" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_LESS" value="0x1" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_NEVER" value="0x0" grade="established"/>
+  <constant name="ALPHA_TEST_FUNC_NOTEQUAL" value="0x5" grade="established"/>
+  <constant name="ATTR_LOW_COUNT4_OP2F" value="0xd02f" grade="established"/>
+  <constant name="ATTR_VERTEX3F_WORD" value="0x8080cc03" grade="established"/>
+  <constant name="BLK_ALPHA_TEST" value="0x1e" grade="established"/>
+  <constant name="BLK_GAMMA_FIT" value="0x45" grade="established"/>
+  <constant name="BLK_IMAGE_SELECTS" value="0x1d" grade="established"/>
+  <constant name="BLK_PIO_PIXELS" value="0x170" grade="established"/>
+  <constant name="BLK_SLOT_PAIR" value="0x1ea" grade="established"/>
+  <constant name="BLK_TABLE_DATA" value="0x1a2" grade="established"/>
+  <constant name="CLASS0_CLEAR_ADDR" value="0x1c0" grade="established"/>
+  <constant name="CLASS0_CLEAR_WORDS" value="0x240" grade="established"/>
+  <constant name="CLASS0_ID_ADDR" value="0x340" grade="established"/>
+  <constant name="CLASS0_ID_DATA" value="0x341" grade="established"/>
+  <constant name="CLASS0_WRITE_ADDR" value="0x740" grade="established"/>
+  <constant name="CLASS0_WRITE_DATA" value="0x741" grade="established"/>
+  <constant name="CMD_ALPHA_TEST" value="0x1041e" grade="established"/>
+  <constant name="CMD_BLK_01F" value="0x1041f" grade="established"/>
+  <constant name="CMD_BLK_042" value="0x10842" grade="established"/>
+  <constant name="CMD_BLK_047" value="0x11847" grade="established"/>
+  <constant name="CMD_BLK_04C" value="0x1044c" grade="established"/>
+  <constant name="CMD_BLK_04D" value="0x13c4d" grade="established"/>
+  <constant name="CMD_BLK_051" value="0x10451" grade="established"/>
+  <constant name="CMD_BLK_056" value="0x10456" grade="established"/>
+  <constant name="CMD_BLK_057" value="0x10457" grade="established"/>
+  <constant name="CMD_BUFFER_SELECT" value="0x10424" grade="established"/>
+  <constant name="CMD_CLASS1_PREFIX" value="0x10000" grade="established"/>
+  <constant name="CMD_CLIP_ORIGIN_PAIR" value="0x10840" grade="established"/>
+  <constant name="CMD_CONTEXT_SELECT" value="0x10850" grade="established"/>
+  <constant name="CMD_DEPTH_FUNC" value="0x10420" grade="established"/>
+  <constant name="CMD_DMA_PRELUDE" value="0x10658" grade="established"/>
+  <constant name="CMD_DRAWABLE_ORIGIN" value="0x10841" grade="established"/>
+  <constant name="CMD_FIRST_TEXLEVEL" value="0x10406" grade="established"/>
+  <constant name="CMD_FLUSH" value="0x10019" grade="established"/>
+  <constant name="CMD_FOG" value="0x1181a" grade="established"/>
+  <constant name="CMD_FRAG_LIGHT_MODEL" value="0x10c1c" grade="established"/>
+  <constant name="CMD_LINE_POINT_SIZE" value="0x1084a" grade="established"/>
+  <constant name="CMD_LINE_STIPPLE" value="0x10c48" grade="established"/>
+  <constant name="CMD_LOD_LIMITS" value="0x11013" grade="established"/>
+  <constant name="CMD_LOGIC_OP" value="0x10422" grade="established"/>
+  <constant name="CMD_PAD" value="0x10046" grade="established"/>
+  <constant name="CMD_PATH_SELECT" value="0x10405" grade="established"/>
+  <constant name="CMD_POLYGON_MODE" value="0x10415" grade="established"/>
+  <constant name="CMD_POLYGON_OFFSET" value="0x10458" grade="established"/>
+  <constant name="CMD_POSTFILTER_M1_0" value="0x12030" grade="established"/>
+  <constant name="CMD_POSTFILTER_M1_1" value="0x12031" grade="established"/>
+  <constant name="CMD_POSTFILTER_M1_2" value="0x12032" grade="established"/>
+  <constant name="CMD_POSTFILTER_M1_3" value="0x12033" grade="established"/>
+  <constant name="CMD_POSTFILTER_M3" value="0x1083d" grade="established"/>
+  <constant name="CMD_PRIM_BEGIN" value="0x14400" grade="established"/>
+  <constant name="CMD_PRIM_END" value="0x14001" grade="established"/>
+  <constant name="CMD_RANGE_BLOCK" value="0x10854" grade="established"/>
+  <constant name="CMD_RASTER_ENABLE" value="0x10404" grade="established"/>
+  <constant name="CMD_RECT_COPY" value="0x11453" grade="established"/>
+  <constant name="CMD_REGION_BLOCK_0" value="0x13c28" grade="established"/>
+  <constant name="CMD_REGION_BLOCK_1" value="0x13c29" grade="established"/>
+  <constant name="CMD_REGION_BLOCK_2" value="0x13c2a" grade="established"/>
+  <constant name="CMD_REGION_BLOCK_3" value="0x13c2b" grade="established"/>
+  <constant name="CMD_REGION_ONE_BLOCK" value="0x13c38" grade="established"/>
+  <constant name="CMD_SCREEN_MASK" value="0x1204b" grade="established"/>
+  <constant name="CMD_STIPPLE_MODE" value="0x1043f" grade="established"/>
+  <constant name="CMD_STIPPLE_ROWS_HI" value="0x13c4e" grade="established"/>
+  <constant name="CMD_STIPPLE_ROWS_LO" value="0x13c4f" grade="established"/>
+  <constant name="CMD_WAIT" value="0x10443" grade="established"/>
+  <constant name="CMD_WINDOW_DESC" value="0x11017" grade="established"/>
+  <constant name="CMD_WRITE_MASKS" value="0x10452" grade="established"/>
+  <constant name="INIT_DELAY_US" value="0x7d0" grade="established"/>
+  <constant name="INIT_DW_6B0" value="0x6b000000000" grade="established"/>
+  <constant name="INIT_DW_6B1" value="0x6b100000100" grade="established"/>
+  <constant name="INIT_DW_6B2" value="0x6b200007dc0" grade="established"/>
+  <constant name="INIT_DW_6B3" value="0x6b300005e50" grade="established"/>
+  <constant name="INIT_DW_7B5" value="0x7b500000001" grade="established"/>
+  <constant name="INIT_DW_7F0" value="0x7f03b9aca00" grade="established"/>
+  <constant name="OP_COPY" value="0x2031" grade="established"/>
+  <constant name="OP_COPY_WORDS" value="0x8" grade="established"/>
+  <constant name="OP_POSTFILTER" value="0x203b" grade="established"/>
+  <constant name="OP_POSTFILTER_WORDS" value="0x8" grade="established"/>
+  <constant name="OP_TEXMODE" value="0x1c16" grade="established"/>
+  <constant name="PF_FRAC_BITS" value="0xc" grade="established"/>
+  <constant name="PF_MAX_X4096" value="0x7fff" grade="inferred"/>
+  <constant name="PF_ONE" value="0x1000" grade="established"/>
+  <constant name="RANGE_BLOCK_HIGH" value="0xfffffff" grade="established"/>
+  <constant name="RANGE_BLOCK_LOW" value="0x0" grade="established"/>
+  <constant name="RASTER_ENABLE_ALPHA_TEST" value="0x4000" grade="established"/>
+  <constant name="RASTER_ENABLE_BLEND" value="0x20000" grade="inferred"/>
+  <constant name="RASTER_ENABLE_COLOUR_LOGIC_OP" value="0x100000" grade="established"/>
+  <constant name="RASTER_ENABLE_CULL" value="0x100" grade="inferred"/>
+  <constant name="RASTER_ENABLE_CULL_BACK" value="0x200" grade="established"/>
+  <constant name="RASTER_ENABLE_CULL_FRONT" value="0x400" grade="established"/>
+  <constant name="RASTER_ENABLE_DEPTH_TEST" value="0x10000" grade="inferred"/>
+  <constant name="RASTER_ENABLE_DITHER" value="0x40000" grade="established"/>
+  <constant name="RASTER_ENABLE_FLAT_SHADE" value="0x1000" grade="established"/>
+  <constant name="RASTER_ENABLE_FOG" value="0x400000" grade="established"/>
+  <constant name="RASTER_ENABLE_FRONT_CW" value="0x800000" grade="established"/>
+  <constant name="RASTER_ENABLE_INDEX_LOGIC_OP" value="0x80000" grade="established"/>
+  <constant name="RASTER_ENABLE_LINE_SMOOTH" value="0x2" grade="established"/>
+  <constant name="RASTER_ENABLE_LINE_STIPPLE" value="0x8" grade="established"/>
+  <constant name="RASTER_ENABLE_OFFSET_FILL" value="0x80" grade="established"/>
+  <constant name="RASTER_ENABLE_OFFSET_LINE" value="0x40" grade="established"/>
+  <constant name="RASTER_ENABLE_OFFSET_POINT" value="0x20" grade="established"/>
+  <constant name="RASTER_ENABLE_POINT_SMOOTH" value="0x1" grade="established"/>
+  <constant name="RASTER_ENABLE_POLYGON_SMOOTH" value="0x4" grade="established"/>
+  <constant name="RASTER_ENABLE_POLYGON_STIPPLE" value="0x10" grade="established"/>
+  <constant name="RASTER_ENABLE_STENCIL_TEST" value="0x8000" grade="inferred"/>
+  <constant name="RASTER_ENABLE_TWO_SIDE_LIGHT" value="0x800" grade="inferred"/>
+  <constant name="RD_CODE_INDEX_BYTE" value="0x1" grade="established"/>
+  <constant name="SAMPLER_IMAGE_DEFAULT" value="0x3640000" grade="established"/>
+  <constant name="SEQ_COLOUR_MODE_A_INDEX" value="0x1" grade="established"/>
+  <constant name="SEQ_COLOUR_MODE_A_RGB" value="0x0" grade="established"/>
+  <constant name="SEQ_COLOUR_MODE_B_INDEX" value="0x3" grade="established"/>
+  <constant name="SEQ_COLOUR_MODE_B_RGB" value="0x2" grade="established"/>
+  <constant name="SEQ_REG_COLOUR_MODE_A" value="0x22" grade="established"/>
+  <constant name="SEQ_REG_COLOUR_MODE_B" value="0x23" grade="established"/>
+  <constant name="SEQ_REG_TABLE_INDEX" value="0x31" grade="established"/>
+  <constant name="SEQ_WORD_COLOUR_A_INDEX" value="0x22008001" grade="established"/>
+  <constant name="SEQ_WORD_COLOUR_A_RGB" value="0x22008000" grade="established"/>
+  <constant name="SEQ_WORD_COLOUR_B_INDEX" value="0x23008003" grade="established"/>
+  <constant name="SEQ_WORD_COLOUR_B_RGB" value="0x23008002" grade="established"/>
+  <constant name="SLOT15_WORD_OP12F" value="0xcf80a92f" grade="established"/>
+  <constant name="SLOT16_WORD_OP33" value="0xd080c433" grade="established"/>
+  <constant name="SLOT16_WORD_OP34" value="0xd080cc34" grade="established"/>
+  <constant name="SLOT2_WORD" value="0xc280cc1c" grade="established"/>
+  <constant name="SLOT4_DEFAULT_WORD" value="0xc480c426" grade="established"/>
+  <constant name="SYNC_WAIT_FIRST" value="0xfa" grade="established"/>
+  <constant name="SYNC_WAIT_SECOND" value="0x96" grade="established"/>
+  <constant name="TEXLEVEL_COUNT" value="0x40" grade="inferred"/>
+  <constant name="WORD_CLIP_STATE_A_LOW24" value="0x8116" grade="established"/>
+  <constant name="WORD_CLIP_STATE_B_LOW24" value="0xbda2" grade="established"/>
+  <constant name="WORD_DATA_LOAD4" value="0x8e809015" grade="established"/>
+  <constant name="WORD_PROGRAM_SWITCH_LOW24" value="0x808800" grade="established"/>
+  <constant name="WORD_TABLE16_A_LOW24" value="0x80bda2" grade="established"/>
+  <constant name="WORD_TABLE16_B_LOW24" value="0x80bdc8" grade="established"/>
+  <constant name="WORD_TABLE4_A_LOW24" value="0x8091df" grade="established"/>
+  <constant name="WORD_TABLE4_B_LOW24" value="0x8091ea" grade="established"/>
+  <constant name="WORD_TOP_BYTE_90" value="0x90" grade="established"/>
+</genxml>

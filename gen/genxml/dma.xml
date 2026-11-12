@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+<!-- generated from defs/dma.toml by defs-gen - do not edit, change the source -->
+<genxml unit="dma" prefix="DMA" title='VPro (Odyssey) "Buzz" graphics ASIC: host DMA engine' from="odsy binary analysis of the shipped kernel DMA routines">
+  <doc>DMA-engine descriptor words of the Odyssey board: the kick words, the transfer entry and its tag.</doc>
+  <enum name="entry_w7_transform">
+    <value name="plain" value="0" grade="established"/>
+    <value name="transform" value="1" grade="established"/>
+  </enum>
+  <enum name="entry_w7_read_dir">
+    <value name="write" value="0" grade="established"/>
+    <value name="read" value="1" grade="established"/>
+  </enum>
+  <enum name="kick_a_hi_id">
+    <value name="plain" value="3585" grade="established"/>
+    <value name="variant" value="3587" grade="established"/>
+  </enum>
+  <enum name="tag_w0_flag">
+    <value name="set" value="1" grade="established"/>
+  </enum>
+  <enum name="tag_w1_marker">
+    <value name="tag" value="90" grade="established"/>
+  </enum>
+  <struct name="ENTRY_W7" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <doc>Header word 7 as the descriptor builder leaves it. The kernel forces the
+top byte before it builds descriptors: bits 29, 28 and 25 always set,
+bit 24 set for a board-to-host transfer, bits 27 and 30 kept from the
+caller. Bits 24, 27 and 30 are the same bits as HDR_W7.read_dir,
+HDR_W7.transform and HDR_W7.differs in BUZZ_DECODE.h. Bit 31 is added
+by the builder to the last descriptor of a board-to-host request.</doc>
+    <field name="irq_after" start="31" size="1" type="uint" grade="inferred"/>
+    <field name="differs" start="30" size="1" type="uint" grade="established"/>
+    <field name="fixed29" start="29" size="1" type="uint" grade="established"/>
+    <field name="fixed28" start="28" size="1" type="uint" grade="established"/>
+    <field name="transform" start="27" size="1" type="entry_w7_transform" grade="established"/>
+    <field name="fixed25" start="25" size="1" type="uint" grade="established"/>
+    <field name="read_dir" start="24" size="1" type="entry_w7_read_dir" grade="established"/>
+    <test value="0x32000000" kind="example">
+      <expect field="read_dir" value="0"/>
+      <expect field="fixed25" value="1"/>
+      <expect field="transform" value="0"/>
+      <expect field="fixed28" value="1"/>
+      <expect field="fixed29" value="1"/>
+      <expect field="differs" value="0"/>
+      <expect field="irq_after" value="0"/>
+    </test>
+    <test value="0x33000000" kind="example">
+      <expect field="read_dir" value="1"/>
+      <expect field="fixed25" value="1"/>
+      <expect field="transform" value="0"/>
+      <expect field="fixed28" value="1"/>
+      <expect field="fixed29" value="1"/>
+      <expect field="differs" value="0"/>
+      <expect field="irq_after" value="0"/>
+    </test>
+    <test value="0xb3000000" kind="example">
+      <expect field="read_dir" value="1"/>
+      <expect field="fixed25" value="1"/>
+      <expect field="transform" value="0"/>
+      <expect field="fixed28" value="1"/>
+      <expect field="fixed29" value="1"/>
+      <expect field="differs" value="0"/>
+      <expect field="irq_after" value="1"/>
+    </test>
+  </struct>
+  <struct name="KICK_A_HI" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="id" start="0" size="12" type="kick_a_hi_id" grade="established"/>
+    <test value="0xe01" kind="vector">
+      <expect field="id" value="3585"/>
+    </test>
+    <test value="0xe03" kind="vector">
+      <expect field="id" value="3587"/>
+    </test>
+  </struct>
+  <struct name="KICK_A_LO" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="addr_hi" start="23" size="7" type="uint" grade="established"/>
+    <field name="addr_lo" start="0" size="17" type="uint" grade="established"/>
+  </struct>
+  <struct name="KICK_B_HI" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="addr_hi" start="23" size="7" type="uint" grade="established"/>
+    <field name="addr_lo" start="0" size="17" type="uint" grade="established"/>
+  </struct>
+  <struct name="KICK_B_LO" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="zero" start="0" size="32" type="uint" grade="established"/>
+  </struct>
+  <struct name="PAGE_W0" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <doc>Page entry: 8 bytes, two words, one per run of host memory in order.
+established as the arithmetic the page-list builder performs; the unit
+of the count is inferred from the loop that fills it (bytes). The
+address fields hold the run's host physical address; values omitted.
+  word 0  the physical address shifted right by 16 (bits 47:16)
+  word 1  the physical address bits 15:0 in 31:16, the count in 15:0</doc>
+    <field name="addr" start="0" size="32" type="uint" grade="established"/>
+  </struct>
+  <struct name="PAGE_W1" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="addr_lo" start="16" size="16" type="uint" grade="established"/>
+    <field name="count" start="0" size="16" type="uint" grade="inferred"/>
+    <test value="0x200" kind="example">
+      <expect field="count" value="512"/>
+    </test>
+  </struct>
+  <struct name="TAG_W0" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="flag" start="15" size="1" type="tag_w0_flag" grade="established"/>
+    <field name="slot" start="0" size="15" type="uint" grade="inferred"/>
+    <test value="0x8000" kind="example">
+      <expect field="slot" value="0"/>
+      <expect field="flag" value="1"/>
+    </test>
+  </struct>
+  <struct name="TAG_W1" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+    <field name="marker" start="8" size="8" type="tag_w1_marker" grade="established"/>
+    <field name="tag" start="0" size="8" type="uint" grade="established"/>
+    <test value="0x5a00" kind="vector">
+      <expect field="marker" value="90"/>
+      <expect field="tag" value="0"/>
+    </test>
+  </struct>
+  <constant name="DONE_FLAG_BIT" value="0xb" grade="established"/>
+  <constant name="ENTRY_BYTES" value="0x80" grade="established"/>
+  <constant name="ENTRY_HDR_BYTES" value="0x20" grade="established"/>
+  <constant name="ENTRY_MAX_BYTES" value="0x24000" grade="established"/>
+  <constant name="ENTRY_PAGES_MAX" value="0xc" grade="established"/>
+  <constant name="KICK_ADDR_BITS" value="0x30" grade="established"/>
+  <constant name="PAGE_CHUNK_BYTES" value="0x4000" grade="established"/>
+  <constant name="PAGE_ENTRY_BYTES" value="0x8" grade="established"/>
+  <constant name="TAG_CMD_COUNT" value="0x2" grade="established"/>
+  <constant name="TAG_CMD_ID" value="0x25a" grade="established"/>
+  <constant name="TAG_CMD_LOW16" value="0xa5a" grade="established"/>
+</genxml>

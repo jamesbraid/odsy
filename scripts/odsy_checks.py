@@ -1,7 +1,7 @@
-"""odsy-specific checks for retools/tools/defs (named by `plugin` in defs.toml).
+"""odsy-specific checks for retools/tools/defs (named by `plugin` in defs/check.toml).
 
 The declarative part of the odsy check (field ranges, macros, enums, vectors,
-prose claims, the Rust output) lives in defs.toml and the shared tool. What is
+prose claims, the Rust output) lives in defs/*.toml and the shared tool. What is
 left here does not fit a regular expression and a bind:
 
 - BUZZ_DECODE.h: the format/type vectors the pixel-path notes decode in words.
