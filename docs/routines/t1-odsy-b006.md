@@ -7,34 +7,44 @@ were rejected. Grades are inferred. Routine names come from the symbol table and
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb395ad0
 
 `__glOdylc_TexCoord2i` (244 bytes) reads words at abs 0x1048 and 0x1060 and an 8-byte value at
-0x1058. It calls `__glSPDlistSpace` at 0xb395b20 with a0 = 0, branches on the result at 0xb395b34,
-and returns either the 0x1060 word plus 3 (0xb395b94) or the call result (0xb395bbc). The name
+0x1058. It calls `__glSPDlistSpace` at 0xb395b20 with a0 = 0 only on the path where the 0x1048 word is
+below a limit the facts leave unresolved (branch at 0xb395b08); otherwise the call is skipped. After
+the call it branches on the result at 0xb395b34 (taken when the result is zero). The routine returns
+either the 0x1060 word plus 3 (0xb395b94) or, on the zero-result path, the call result (0xb395bbc). The name
 suggests a texture-coordinate entry that compiles into a display list, but the facts do not show
 what the 0x1048 and 0x1060 words hold, so the role is only partly clear.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb396310
 
 `__glOdylc_TexCoord3i` (256 bytes) has the same shape as the 2i routine. It uses the same state
-words at 0x1048, 0x1058 and 0x1060, and calls `__glSPDlistSpace` at 0xb396364 with a0 = 0. Its
-return adds 4 to the 0x1060 word (0xb3963e0), where the 2i routine adds 3. That fits one more
+words at 0x1048, 0x1058 and 0x1060. It calls `__glSPDlistSpace` at 0xb396364 with a0 = 0 only on the
+path where the 0x1048 word is below an unresolved limit (branch at 0xb396348), as in the 2i routine.
+Its return adds 4 to the 0x1060 word (0xb3963e0), where the 2i routine adds 3. That fits one more
 operand, but the facts do not confirm it.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3999e0
 
-`DownsampleTextureThruHW` (2252 bytes) indexes tables behind a0 by its arguments a1 and a2, with
-strides of 68 bytes and 4 bytes per index. Those indices look like a source and a destination
+`DownsampleTextureThruHW` (2252 bytes) indexes tables behind a0 by its arguments a1 and a2, with a
+stride of 68 bytes per index. Those indices look like a source and a destination
 texture level, but the facts do not name them. It calls `__glOdysseyImageLogBase2` at 0xb399b28
 and 0xb399b54, `ChooseSuitableBuzzTexModeBaseFmt` at 0xb399c50, `GetImageFmtEnumFromBuzzTexFormat`
-at 0xb399e08, `__glOdysseyImageCalcFieldFormat` at 0xb399e14 and `__glOdysseyValidateHardware`
-at 0xb399ff0, so it picks a format and validates hardware state. It stores 42 values to abs
-0x4000 (28 integer, 14 float), the most in this batch. The facts do not say what that address is,
-so the hardware role and the exact downsampling method are not established.
+at 0xb399e08 and `__glOdysseyImageCalcFieldFormat` at 0xb399e14. It calls `__glOdysseyValidateHardware`
+at 0xb399ff0 only when a state word it loads through a context pointer is nonzero (branch at 0xb399fe8).
+So it picks a format and, conditionally, validates hardware state. It stores 42 values to abs
+0x4000 (28 integer, 14 float). The facts do not say
+what that address is, so the hardware role and the exact downsampling method are not established.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3b0090
 
@@ -45,15 +55,21 @@ its use is unknown. The name suggests an RGB send path, but nothing here confirm
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3b19b0
 
 `CISendClippedBmFmN` (372 bytes) starts like `RGBSendFc`, reading the byte at a0 +0xc4. It streams
 floats from a0 at +0x9c, +0xac, +0xd0 to +0xd8 and +0x1c to +0x28, writing 11 words and 39 floats to
-abs 0x4000. It also loads one constant from abs 0xb4cfa14 (0xb3b19f4). It makes no calls, returns the
-constant 0xffffffff8080d005, and has no branches in the facts. The name suggests a color-index send of
+abs 0x4000. It also loads one float at 0xb3b19f4 from a base the facts do not resolve. It
+makes no calls, returns the
+constant 0xffffffff8080d005, and has no branches in the facts. The name
+suggests a color-index send of
 a clipped bitmap, but the facts do not show that.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb499ec0
 
@@ -64,6 +80,8 @@ visible in the facts.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49a0c0
 
 `__glOdyim_Vertex3d` (40 bytes) writes one integer word (0xb49a0d4) and three floats (0xb49a0d8,
@@ -71,6 +89,8 @@ Grade: inferred.
 more coordinate. The return value is not visible in the facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49a1c0
 
@@ -80,6 +100,8 @@ the same layout as Vertex3d but with integer operands. The return value is not v
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49a3c0
 
 `__glOdyim_Vertex4i` (64 bytes) writes five integer words to abs 0x4000 (0xb49a3e8, 0xb49a3ec,
@@ -87,6 +109,8 @@ Grade: inferred.
 Vertex3i layout extended by one. The return value is not visible in the facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f0c0
 
@@ -96,14 +120,18 @@ difference from Vertex3d, so the texture coordinate meaning of the name is not v
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f780
 
 `__glOdyim_ScratchColor3b` (28 bytes) writes four integer words to abs 0x4000 (0xb49f788, 0xb49f78c,
-0xb49f790 and one more). It has no loads and no calls. The facts show no conversion of the byte-typed
-arguments, so the values are probably taken from the argument registers as they are. This 28-byte shape
+0xb49f790 and one more). It has no loads and no calls. The facts do not show where the stored values
+come from or any conversion of the byte-typed arguments. This 28-byte shape
 is shared with the 3i, 3s, 3ui and 3us variants.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f840
 
@@ -113,14 +141,18 @@ TexCoord3d store pattern. The name suggests a color operand, but the facts show 
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f880
 
 `__glOdyim_ScratchColor3d` (40 bytes) writes one integer word (0xb49f894) and three floats (0xb49f898,
-0xb49f89c, 0xb49f8a4) to abs 0x4000. It has no loads and no calls. The store pattern matches Color3d,
-so the scratch variant seems to differ only in the path it is reached by. That is not visible in the
+0xb49f89c, 0xb49f8a4) to abs 0x4000. It has no loads and no calls. The store
+pattern matches Color3d. What the Scratch prefix of the name means is not visible in the
 facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fa80
 
@@ -130,12 +162,16 @@ the same integer store count.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fb80
 
 `__glOdyim_ScratchColor3s` (28 bytes) writes four integer words to abs 0x4000 (0xb49fb88, 0xb49fb8c,
 0xb49fb90 and one more). It has no loads and no calls. The shape matches ScratchColor3b and 3i.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fd80
 
@@ -145,6 +181,8 @@ integer variants.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fe80
 
 `__glOdyim_ScratchColor3us` (28 bytes) writes four integer words to abs 0x4000 (0xb49fe88, 0xb49fe8c,
@@ -153,6 +191,8 @@ integer variants.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49ff80
 
 `__glOdyim_ScratchColor4b` (32 bytes) writes five integer words to abs 0x4000 (0xb49ff88, 0xb49ff8c,
@@ -160,6 +200,8 @@ Grade: inferred.
 layout as ScratchColor4i, 4s, 4ub, 4ui and 4us.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0100
 
@@ -171,6 +213,8 @@ return value is not visible.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0280
 
 `__glOdyim_ScratchColor4i` (32 bytes) writes five integer words to abs 0x4000 (0xb4a0288, 0xb4a028c,
@@ -178,6 +222,8 @@ Grade: inferred.
 integer variants.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0380
 
@@ -187,6 +233,8 @@ integer variants.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0480
 
 `__glOdyim_ScratchColor4ub` (32 bytes) writes five integer words to abs 0x4000 (0xb4a0488, 0xb4a048c,
@@ -194,6 +242,8 @@ Grade: inferred.
 integer variants.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0580
 
@@ -203,6 +253,8 @@ integer variants.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0680
 
 `__glOdyim_ScratchColor4us` (32 bytes) writes five integer words to abs 0x4000 (0xb4a0688, 0xb4a068c,
@@ -211,13 +263,18 @@ integer variants.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0780
 
 `__glOdyim_ScratchIndexd` (24 bytes) writes one integer word (0xb4a078c) and one float (0xb4a0794) to
-abs 0x4000. It has no loads and no calls. That fits an opcode word and one double-typed index operand.
+abs 0x4000. It has no loads and no calls. The name suggests a double-typed index operand, but the
+facts do not show the argument type or what the word means.
 The return value is not visible in the facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## Open questions
 
