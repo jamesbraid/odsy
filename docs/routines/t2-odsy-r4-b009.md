@@ -117,10 +117,10 @@ The name is used only where it is cited as a hint, and each role is inferred.
   0x102182a4.
 
 - `glXDestroyGLXPbufferSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd8213d0
-  **Inferred.** It destroys a GLX pbuffer. It calls `__glXSetupForCommand` at 0xd8213f4, registers and then
-  removes drawable interest with `__glXAddDrawableInterest` (0xd821410) and `__glXRemoveDrawableInterest`
-  (0xd821428), frees the drawable private with `__glXFreeDrawablePrivate` at 0xd821450, and flushes with
-  `_XFlush` at 0xd82149c.
+  **Inferred.** It destroys a GLX pbuffer. It calls `__glXSetupForCommand` at 0xd8213f4. When that call
+  returns nonzero, it registers and then removes drawable interest with `__glXAddDrawableInterest` (0xd821410)
+  and `__glXRemoveDrawableInterest` (0xd821428), frees the drawable private with `__glXFreeDrawablePrivate` at
+  0xd821450, and flushes with `_XFlush` at 0xd82149c. A zero return branches at 0xd821400 past those calls.
 
 - `glXCreateGLXPbufferSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd823b00
   **Inferred.** It creates a GLX pbuffer over the X connection. It calls `__glXSetupForCommand` at 0xd823b30,

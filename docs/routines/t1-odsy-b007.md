@@ -12,7 +12,7 @@ Role statements for 25 routines from the ranked tier-1 target list, positions 17
 
 - `glXDestroyGLXPbufferSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd8bfdb0 (376 bytes).
   Evidence grade: inferred.
-  It runs `__glXSetupForCommand` at 0xd8bfdd4 on the display, then removes and frees a drawable interest with `__glXRemoveDrawableInterest` (0xd8bfe08) and `__glXFreeDrawablePrivate` (0xd8bfe30). It flushes the connection with `_XFlush` at 0xd8bfe7c. The name suggests it tears down a pbuffer, which fits the calls, but three callees are unnamed in the facts.
+  It runs `__glXSetupForCommand` at 0xd8bfdd4 on the display. When that call returns nonzero, it adds a drawable interest (`__glXAddDrawableInterest`, 0xd8bfdf0), removes it with `__glXRemoveDrawableInterest` (0xd8bfe08), and frees the drawable private with `__glXFreeDrawablePrivate` (0xd8bfe30). A zero return branches at 0xd8bfde0 past those calls and the flush with `_XFlush` at 0xd8bfe7c. The name suggests it tears down a pbuffer, which fits the calls, but three callees are unnamed in the facts.
 
 - `__glXSendMakeCurrentRead` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd8c2d34 (2460 bytes).
   Evidence grade: inferred.

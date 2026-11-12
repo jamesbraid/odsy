@@ -7,7 +7,7 @@ Each entry gives a role statement for one routine in an odsy binary. The stateme
   Evidence grade: inferred.
 
 - `glXDestroyGLXPbufferSGIX` in `usr/gfx/arch/IP35ODSY/libGL.so` at 0xd8213d0.
-  The routine adds drawable interest with `__glXAddDrawableInterest` at 0xd821410, removes it with `__glXRemoveDrawableInterest` at 0xd821428, and frees the drawable private with `__glXFreeDrawablePrivate` at 0xd821450. It sets up its command first through `__glXSetupForCommand` at 0xd8213f4 and flushes through `_XFlush` at 0xd82149c. The call order suggests a pbuffer teardown, but the exact meaning of the interest handling is not established by these facts.
+  It sets up its command first through `__glXSetupForCommand` at 0xd8213f4. When that call returns nonzero, the routine adds drawable interest with `__glXAddDrawableInterest` at 0xd821410, removes it with `__glXRemoveDrawableInterest` at 0xd821428, frees the drawable private with `__glXFreeDrawablePrivate` at 0xd821450, and flushes through `_XFlush` at 0xd82149c. A zero return branches at 0xd821400 past those calls. The call order suggests a pbuffer teardown, but the exact meaning of the interest handling is not established by these facts.
   Evidence grade: inferred.
 
 - `glXCreateGLXPbufferSGIX` in `usr/gfx/arch/IP35ODSY/libGL.so` at 0xd823b00.
