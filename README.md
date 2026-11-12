@@ -11,6 +11,19 @@ binaries and evidence, the toolchain and the working rules;
 [docs/coverage.md](docs/coverage.md) is the map of what is covered and what is
 next.
 
+## Hardware definitions
+
+The hardware facts live in `defs/*.toml`, one file per block; `defs/check.toml` holds the
+repo's check settings. `gen/` is generated from them and is never edited by hand. Its
+`gen/docs/` pages are the published reference for each block, and `gen/c/` holds the C
+headers. The root `*_DECODE.h` files are forwarding headers that include `gen/c/`, so
+existing consumers keep their old macro names. To change a fact, edit `defs/`, then run
+
+    retools/tools/defs/defs-gen
+    retools/tools/defs/defs-check --build
+
+CI runs `retools/tools/defs/ci-check`.
+
 ## Running the tools and reproducing a result
 
 The host needs Podman, git and python3. Everything else runs in a container built from
