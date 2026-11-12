@@ -8,9 +8,11 @@ No entry was rejected by the renderer or the grader.
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a6ab0`
 
-`__glOdylc_Color4i` is a 344-byte entry. It calls `__glSPDlistSpace` at 0x21a6b1c with the entry arguments a1 to a3, the pointer loaded from 0x1020 as a4, 0x10000 as a5 and the word at 0x1048 as a6. By its name that callee reserves space in a list; its body is not read here. One exit returns the constant 0x1a0408 (or an unknown value) and the other returns the space call's result, so the entry looks like it reserves list space for one colour command and passes the argument values through. The facts do not show how the four integer components are packed, so the encoding is open.
+`__glOdylc_Color4i` is a 344-byte entry. It calls `__glSPDlistSpace` at 0x21a6b1c with a0 = 0, the entry arguments a1 to a3, the pointer loaded from 0x1020 as a4, 0x10000 as a5 and the word at 0x1048 as a6. The call sits behind the branches at 0x21a6aec (on the word at 0x1060) and 0x21a6af8 (a6 against 5), so it does not run on every path. One exit returns the constant 0x1a0408 (or an unknown value) and the other returns the space call's result. Role (from name): the callee name suggests it reserves space in a display list, so the entry looks like it reserves list space for one colour command and passes the argument values through; the callee's body is not read here. The facts do not show how the four integer components are packed, so the encoding is open.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a6d60`
 
@@ -18,11 +20,15 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a7010`
 
 `__glOdylc_Color4ub` is a 344-byte entry with the same shape as the Color4 family, and its space call is at 0x21a707c. Its constant exit is 0x19fea8 (or an unknown value). The name suggests the unsigned-byte variant. Any byte-to-float conversion is not visible in the facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a72c0`
 
@@ -30,11 +36,15 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a7570`
 
 `__glOdylc_Color4us` is a 344-byte entry in the same family, with its space call at 0x21a75dc and constant exit 0x19f948 (or an unknown value). The name suggests the unsigned-short variant. Component conversion is not shown.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a8800`
 
@@ -42,11 +52,15 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a8e30`
 
-`__glOdysseyClear` is a 2008-byte entry. It calls `__glOdysseyValidateHardware` at 0x21a9258 and 0x21a9328, which suggests it checks the hardware state before the clear. It issues `__glOdysseyIoctl` at 0x21a92dc with request word 0x6f64000e, one step on from the 0x6f64000d request in the `__glOdyim_Clear` entry. Both exits return the word at context offset 48000. The facts do not show what the clear does with its mask or colour, so the work it performs is open.
+`__glOdysseyClear` is a 2008-byte entry. It calls `__glOdysseyValidateHardware` at 0x21a9258 and again at 0x21a9328, and issues `__glOdysseyIoctl` at 0x21a92dc with request word 0x6f64000e, one step on from the 0x6f64000d request in the `__glOdyim_Clear` entry. In address order one validate call comes before the ioctl and one after it. By its name the callee checks hardware state, but the facts do not show what is checked or how the calls relate to the clear itself. Both returns (0x21a9548 and 0x21a9588) give the word at context offset 48000. The facts do not show what the clear does with its mask or colour, so the work it performs is open.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21ade10`
 
@@ -54,35 +68,47 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21c7170`
 
-`ApplyMaterialF` is a 1888-byte entry that makes no calls. It reads four floats from its third argument at offsets 0x0 to 0xc, and it writes values into the record at its first argument at offsets 0x0 to 0x1c. It also loads 16 words from the context reached through the pointer at 0x1020, at offsets 0x9fc0 to 0x9ffc. It stores 38 words to the fixed address 0x10000, which is the same constant the list-space calls take as a5. The name and the float reads suggest a material update into an existing record, but the facts do not show which material field each store fills. The 38-store burst to 0x10000 is the part that reaches beyond the record, and its purpose is not read here.
+`ApplyMaterialF` is a 1888-byte entry that makes no calls. It branches on the token in a1 (comparisons against 0x1200, 0x1201, 0x1202, 0x1600, 0x1601 and 0x1603) and on comparisons of floats loaded from a pointer argument at offsets 0x0 to 0xc against a double 1.0. It stores words at offsets 0x4 to 0x1c from a base register that the facts do not name. It loads words at 16 offsets from 0x9fc0 to 0x9ffc, each at two sites, from the context that the pointer at 0x1020 leads to. It also has 38 word stores at offset 0 between 0x21c72b0 and 0x21c73d8; the facts do not show their base register or destination. Its exits return words from the context at offsets 40940 and 40900. Role (from name): the name and the float reads suggest a material update into an existing record, but the facts do not show which material field each store fills or what the 38-store run is for.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21c78d0`
 
-`ApplyMaterialI` is the integer-argument counterpart of `ApplyMaterialF`, 2332 bytes, with the same 38-store burst to 0x10000 and the same pointer at 0x1020. It makes no calls. It branches on the parameter token in a1 (0x1200 to 0x1603, the public GL material names) and on a comparison against 1.0. Its two exits return words from the context at offsets 40944 and 40900. The shape matches the float variant, but each branch's target field is not read here.
+`ApplyMaterialI` is 2332 bytes and makes no calls. Role (from name): it is the integer-argument counterpart of `ApplyMaterialF`, by its name. It branches on the token in a1 (comparisons against 0x1200, 0x1201, 0x1202, 0x1600, 0x1601 and 0x1603) and on a comparison against a double 1.0. It has a run of 38 word stores at offset 0 between 0x21c7a6c and 0x21c7b88, the same count as the float variant; the facts do not show their base register or destination. It reads the context through the pointer at 0x1020 (the branch at 0x21c7a5c tests the word at context offset 48000). Its two exits return words from the context at offsets 40944 and 40900. The shape matches the float variant, but each branch's target field is not read here.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21e2650`
 
-`AddConvolutionBorders` is a 9664-byte entry. It programs the texture filter twice, with `__glOdysseyProgramTexFilter` at 0x21e27a4 and 0x21e2914 and `LoadTextureFilter` at 0x21e280c and 0x21e2924. It moves pixels with `__glOdysseyImageMovePixelsTexture` at 0x21e28a0 and 0x21e29f8. The four `floorf` calls at 0x21e2aa8 to 0x21e2b04 suggest border offsets computed in floating point. The name points to the GL convolution border. The facts do not show which edges each copy covers.
+`AddConvolutionBorders` is a 9664-byte entry with 145 calls: `__glOdysseyProgramTexFilter` 7 times, `LoadTextureFilter` 6 times, `__glOdysseyImageMovePixelsTexture` 26 times, `floorf` 100 times and `ceilf` 6 times. The first calls, in address order, are `__glOdysseyProgramTexFilter` at 0x21e27a4, `LoadTextureFilter` at 0x21e280c, `__glOdysseyImageMovePixelsTexture` at 0x21e28a0, then the same three kinds at 0x21e2914, 0x21e2924 and 0x21e29f8, then four `floorf` calls at 0x21e2aa8 to 0x21e2b04. The `floorf` and `ceilf` calls suggest border offsets computed in floating point. Role (from name): the name points to the GL convolution border. The facts do not show which edges each copy covers.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21fba30`
 
-`__glOdysseyImageMovePixelsCopy` is a 7924-byte entry that computes transfer geometry before the move. It calls `ceilf` four times, `OdysseyImageCalcXferCopyParams` at 0x21fbc2c, and `ImageCalcDmaFieldOffsets` at 0x21fbd50 and 0x21fbdc8. It then opens a read reference and a write reference to a pixel-memory object, through `__glOdysseyOpenPMObjReference` at 0x21fbdec and `__glOdysseyOpenPMObjWriteReference` at 0x21fbe34. `__glOdysseyImageCalcPixelModeFields` at 0x21fc248 finishes the field setup. The name suggests a copy within one surface. The copy loop itself is not among the facts.
+`__glOdysseyImageMovePixelsCopy` is a 7924-byte entry that computes transfer geometry before the move. It calls `ceilf` four times, `OdysseyImageCalcXferCopyParams` at 0x21fbc2c, and `ImageCalcDmaFieldOffsets` at 0x21fbd50 and 0x21fbdc8. It then calls `__glOdysseyOpenPMObjReference` at 0x21fbdec and `__glOdysseyOpenPMObjWriteReference` at 0x21fbe34; the names suggest a read-side and a write-side reference to a pixel-memory object, which the facts do not confirm. `__glOdysseyImageCalcPixelModeFields` is called at 0x21fc248, after those two in address order. The name of the entry suggests a copy within one surface. It also calls `ImageCopyPixelBody` from several sites; the copy loop itself is not in this routine's own facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21fe0f0`
 
-`__glOdysseyImageMovePixelsDMAtoGfx` is a 6932-byte entry that moves pixels from DMA memory toward the graphics side, by its name. It calls `__glOdysseyImageCalcXferWriteParams` at 0x21fe27c and `ImageCalcDmaFieldOffsets` at 0x21fe51c. It uses the GL element-size helpers `__glSpecElementsPerGroup` at 0x21fe2cc and `__glSpecBytesPerElement` at 0x21fe2e0. It opens only a write reference to the pixel-memory object, at 0x21fe61c. Its layout is the write-side counterpart of the copy entry above. Which way the data moves is taken from the name, and the facts do not confirm it.
+`__glOdysseyImageMovePixelsDMAtoGfx` is a 6932-byte entry. It calls `__glOdysseyImageCalcXferWriteParams` at 0x21fe27c and `ImageCalcDmaFieldOffsets` at 0x21fe51c. It uses the GL element-size helpers `__glSpecElementsPerGroup` at 0x21fe2cc and `__glSpecBytesPerElement` at 0x21fe2e0. It calls `__glOdysseyOpenPMObjWriteReference` at 0x21fe61c and makes no call to the plain `__glOdysseyOpenPMObjReference`. It shares the `ImageCalcDmaFieldOffsets` and `__glOdysseyImageCalcPixelModeFields` callees with the copy entry above, and it calls `SendPixelsAsUserPIO` from several sites. Role (from name): the name suggests a move of pixels from DMA memory toward the graphics side; the facts do not confirm the direction.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220ad70`
 
@@ -90,11 +116,15 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220af80`
 
 `__glOdysseyDestroyPMObjGroup` is a 336-byte entry. It walks the known-group set with `InitCSetCursor` and two `NextCSetElem` calls, looks up each group at 0x220b024, removes it at 0x220b038, and issues `__glOdysseyIoctl` at 0x220b064 with request 0x6f640002. Its exits return 0 or 1. The name says it destroys a set of objects. The facts show the walk, the removal and the ioctl, but not the order in which they run.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220b0d0`
 
@@ -102,41 +132,55 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220b2a0`
 
 `__glOdysseyAssignToPMObj` is a 332-byte entry. It checks its transfer arguments with `CheckMMXfrArgs` at 0x220b364 and then calls `__glOdysseyIoctl` at 0x220b380 with request 0x6f640006. Its exits return 0 or 1. The name suggests binding an object to a transfer, and the argument check fits that reading. The facts do not show which object the request names.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220b510`
 
-`OpenPipeMemReference` is a 444-byte entry. It brackets an ioctl with two `__glOdysseyMIPS_SYNC` calls, at 0x220b58c and 0x220b614. The ioctl at 0x220b5ec uses request 0x6f640003 and reads an argument field from the caller's record. It returns 1 on one exit and 0 on the other. The name says it opens a reference to pipe memory. The sync calls on either side of the ioctl look like ordering around a shared-memory handoff, which is inferred from the callee's name alone.
+`OpenPipeMemReference` is a 444-byte entry. It calls `__glOdysseyMIPS_SYNC` at 0x220b58c and again at 0x220b614, and calls `__glOdysseyIoctl` at 0x220b5ec with request 0x6f640003, passing fields loaded from a1 and a2 (a3 = [a2+16], a4 = [a1]). The second sync runs only after the ioctl returns nonzero; when it returns 0 the branch at 0x220b5f4 skips it. The first sync is also behind earlier branches, and a return of 1 at 0x220b5bc sits before the ioctl in address order. The other exit, at 0x220b62c, returns 0 and sits after the second sync. Role (from name): the name says it opens a reference to pipe memory, and the sync calls look like ordering around a shared-memory handoff, which is inferred from the callee's name alone.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220bed0`
 
-`LookupKnownGroup` is a 308-byte entry. It finds the group record for an id through `LookupCSetId` at 0x220bf10. If the id is not found, it appears to allocate a 0x98-byte record, zero it with `bzero` at 0x220bf5c and add it with `AddKnownGroup` at 0x220bf78. It then checks the record with `LookupCoresidRange` at 0x220bf9c. If that check fails, it removes the record at 0x220bfdc and raises GL error 0x505 through `__glSetError` at 0x220bff4. The miss-then-allocate reading is inferred from the call order; the facts do not show the lookup's branch directly.
+`LookupKnownGroup` is a 308-byte entry. It calls `LookupCSetId` at 0x220bf10 and returns that result when it is nonzero (0x220bf28). When the result is 0, execution goes on, past a further branch at 0x220bf30, to an unnamed callee at 0x220bf44 with a1 = 0x98, a `bzero` call at 0x220bf5c with size 0x98 and `AddKnownGroup` at 0x220bf78; the unnamed callee looks like an allocator, which the facts do not show. It then calls `LookupCoresidRange` at 0x220bf9c. If that returns 0, the branch at 0x220bfa4 leads to `RemoveKnownGroup` at 0x220bfdc and a `__glSetError` call with 0x505 at 0x220bff4. Before the lookup, branches at 0x220bee4 and 0x220bef0 jump to 0x220bfb8 when a1 is -3 or -4.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220c010`
 
-`LookupCoresidRange` is a 564-byte entry. It computes an end address as `a1 + (a2 << 3)` and calls `__glOdysseyIoctl` at 0x220c0ec with request 0x6f640004 and the value 2. Two unnamed callees, at 0x220c070 and 0x220c108, do the rest of the work. On failure it raises GL error 0x505 at 0x220c230. One of its exits returns 0 directly, and the others return values the facts do not name. The name suggests a check that two address ranges sit in one memory region. The comparison itself is not in the facts.
+`LookupCoresidRange` is a 564-byte entry. It forms the address `a1 + (a2 << 3)` and loads a doubleword at offset 16 from it, and it calls `__glOdysseyIoctl` at 0x220c0ec with request 0x6f640004 and the value 2 as a4. It also calls two unnamed callees, at 0x220c070 and 0x220c108, whose roles the facts do not show. A zero return from the callee at 0x220c070 branches to 0x220c22c, which reaches a `__glSetError` call with 0x505 at 0x220c230. One exit returns 0 directly; the others return values the facts do not name. Role (from name): the name suggests a check that two address ranges sit in one memory region. The comparison itself is not in the facts.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220e490`
 
-`__glOdysseySetProgram` is a 1240-byte entry. It reads a byte from the context at offset 0x285e0 and several words from offsets 0xc9a4 to 0xca00. It writes 31 words to the fixed address 0x10000 and walks 32-byte records indexed by a1, as `a0 + (a1 << 5)`. It also reads 18 halfwords and three doublewords. Its exits return the constant 0x298080c5 or an unknown value. The name suggests binding a program. The facts show a table walk and a burst of writes to 0x10000, but they do not identify the program object or what those words carry.
+`__glOdysseySetProgram` is a 1240-byte entry. It reads a byte from the context at offset 0x285e0 and several words from offsets 0xc9a4 to 0xca00. It has 31 word stores at offset 0 from one base register that the facts do not name, and it walks 32-byte records indexed by a1 (`a0 + (a1 << 5)`). It also reads 18 halfwords and three doublewords. Its exits return the constant 0x298080c5 or an unknown value. Role (from name): the name suggests binding a program. The facts show a table walk and a burst of stores, but they do not identify the program object, the destination of the stores or what the words carry.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2211220`
 
-`__glOdylc_TexCoord2d` is a 308-byte entry with one call to the list-space callee `__glSPDlistSpace` at 0x2211278. It passes 0 as a0, the entry values of a1 and a3, and the word at 0x1048 as a2. Its exits return the constant 0x135c98 (or an unknown value) and the space call's result. The name points to a two-double texture-coordinate command. The coordinate values reach the call only as pass-through arguments, so how they are encoded is not shown.
+`__glOdylc_TexCoord2d` is a 308-byte entry with one call to the list-space callee `__glSPDlistSpace` at 0x2211278. It passes 0 as a0, the entry values of a1 and a3, and the word at 0x1048 as a2. Its exits return the constant 0x135c98 (or an unknown value) and the space call's result. The facts also list two single-precision stores at 0x22112d0 and 0x22112d4, but not where their values come from. Role (from name): the name points to a two-double texture-coordinate command. How the coordinate values are encoded is not shown.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x22116e0`
 
@@ -144,14 +188,20 @@ Grade: inferred.
 
 Grade: inferred.
 
+Reviewed: 2026-11-12 (sonnet)
+
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2212080`
 
-`__glOdylc_TexCoord3i` is a 308-byte entry with one call to `__glSPDlistSpace` at 0x22120d4. It passes 0 as a0, the entry values of a1 to a3, and the word at 0x1048 as a5. Its exits return the constant 0x134e38 (or an unknown value) and the space call's result. The name suggests the three-int variant. The slot that carries the 0x1048 word moves from entry to entry (a2 here, a4 in the TexCoord2i entry, a6 in TexCoord4i). The facts do not explain that choice.
+`__glOdylc_TexCoord3i` is a 308-byte entry with one call to `__glSPDlistSpace` at 0x22120d4. It passes 0 as a0, the entry values of a1 to a3, and the word at 0x1048 as a5. Its exits return the constant 0x134e38 (or an unknown value) and the space call's result. The name suggests the three-int variant. The slot that carries the 0x1048 word moves from entry to entry (a2 in the TexCoord2d entry, a4 in the TexCoord2i entry, a5 here, a6 in TexCoord4i). The facts do not explain that choice.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2212aa0`
 
 `__glOdylc_TexCoord4i` is a 324-byte entry with one call to `__glSPDlistSpace` at 0x2212af8. It passes 0 as a0, the entry values of a1 to a3, and the word at 0x1048 as a6. Its exits return the constant 0x134418 (or an unknown value) and the space call's result. The name suggests the four-int variant. The argument slot that carries 0x1048 differs from the other members of this family, as noted above.
 
 Grade: inferred.
+
+Reviewed: 2026-11-12 (sonnet)
