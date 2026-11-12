@@ -215,7 +215,7 @@ pub mod cursor_image_a {
     pub const COUNT: u32 = 128;
     pub const STRIDE: u64 = 1;
 }
-/// Cursor position word: the cursor x minus the hotspot x in the high half and y minus the hotspot y in the low half. The write goes out as an immediate  (established)
+/// Cursor position word: the cursor x minus the hotspot x in the high half and y minus the hotspot y in the low half. The kernel sends it as a display-FI (established)
 pub mod cursor_pos {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x2580;
@@ -240,7 +240,7 @@ pub mod cursor_pos {
         }
     }
 }
-/// Cursor control word. Five named fields live in bits 4:0: the firmware textport clears 4:2 and sets 1:0, so enable and delay enable are in 1:0 and the  (established)
+/// Cursor control word, sent whole on every change. Start-up writes 0. The firmware textport clears bits 4:2 and sets bits 1:0 (established). Software us (established)
 pub mod cursor_ctl {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x2581;

@@ -97,9 +97,10 @@ block B the alpha plane.</doc>
   </struct>
   <struct name="CURSOR_POS" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2580" access="w" space="display_regs" reset="unknown">
     <doc>Cursor position word: the cursor x minus the hotspot x in the high half
-and y minus the hotspot y in the low half. The write goes out as an
-immediate update, or as a retrace-synchronised one when bit 2 of the
-cursor control word is set.</doc>
+and y minus the hotspot y in the low half. The kernel sends it as a
+display-FIFO record of type 3 when bit 2 of the cursor control word is
+clear and type 7 when it is set (display.md, cursor). Whether a type 7
+update takes effect at once or at the next frame is unknown.</doc>
     <field name="x" start="16" size="16" type="uint" grade="established"/>
     <field name="y" start="0" size="16" type="uint" grade="established"/>
     <test value="0x640032" kind="example">
@@ -108,12 +109,29 @@ cursor control word is set.</doc>
     </test>
   </struct>
   <struct name="CURSOR_CTL" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2581" access="w" space="display_regs" reset="unknown">
-    <doc>Cursor control word. Five named fields live in bits 4:0: the firmware
-textport clears 4:2 and sets 1:0, so enable and delay enable are in 1:0
-and the other three in 4:2 (established). Which field is which bit is
-unknown from the binaries read; the layout below lists the guessed fields
-from high to low and is a guess, not evidence. The kernel also toggles bit 5 around cursor requests; what
-it does on the board is unknown. Start-up writes 0.</doc>
+    <doc>Cursor control word, sent whole on every change. Start-up writes 0. The
+firmware textport clears bits 4:2 and sets bits 1:0 (established).
+
+Software use per bit, from a reading of the shipped X server module and
+the kernel's display driver. That reading was not repeated for this entry,
+so the grades are the reading's own:
+- Bit 0: set in the word that shows the cursor and clear in the word that
+  hides it, in both the X module and the kernel (usage established; that
+  it is the display enable is inferred).
+- Bit 1: kept by software as a "shown" flag. Hardware meaning unknown.
+- Bit 2: set only for the X module's built-in crosshair cursor, and then the
+  kernel tags its position records with header bit 30 (usage established;
+  that it selects a hardware crosshair is inferred).
+- Bit 4: set when one X screen spans two display channels. Hardware meaning
+  unknown.
+- Bit 5: marks the cursor on the second display channel (meaning inferred).
+  The kernel sets it when it positions the cursor.
+- Bits 31:30: set by the firmware, never by the X module or the kernel.
+  Hardware meaning unknown.
+
+The field names below are an older guess. They put delay enable at bit 0
+and enable at bit 1, which conflicts with the bit 0 usage above. Open
+questions records the conflict; the names stay until it is settled.</doc>
     <field name="toggle" start="5" size="1" type="uint" grade="unknown"/>
     <field name="dual_head" start="4" size="1" type="uint" grade="unknown"/>
     <field name="field_seq" start="3" size="1" type="uint" grade="unknown"/>

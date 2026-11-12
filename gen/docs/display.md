@@ -152,9 +152,10 @@ Array of 128 registers, stride 1.
 ### Register `cursor_pos`
 
 Cursor position word: the cursor x minus the hotspot x in the high half
-and y minus the hotspot y in the low half. The write goes out as an
-immediate update, or as a retrace-synchronised one when bit 2 of the
-cursor control word is set.
+and y minus the hotspot y in the low half. The kernel sends it as a
+display-FIFO record of type 3 when bit 2 of the cursor control word is
+clear and type 7 when it is set (display.md, cursor). Whether a type 7
+update takes effect at once or at the next frame is unknown.
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -163,12 +164,29 @@ cursor control word is set.
 
 ### Register `cursor_ctl`
 
-Cursor control word. Five named fields live in bits 4:0: the firmware
-textport clears 4:2 and sets 1:0, so enable and delay enable are in 1:0
-and the other three in 4:2 (established). Which field is which bit is
-unknown from the binaries read; the layout below lists the guessed fields
-from high to low and is a guess, not evidence. The kernel also toggles bit 5 around cursor requests; what
-it does on the board is unknown. Start-up writes 0.
+Cursor control word, sent whole on every change. Start-up writes 0. The
+firmware textport clears bits 4:2 and sets bits 1:0 (established).
+
+Software use per bit, from a reading of the shipped X server module and
+the kernel's display driver. That reading was not repeated for this entry,
+so the grades are the reading's own:
+- Bit 0: set in the word that shows the cursor and clear in the word that
+  hides it, in both the X module and the kernel (usage established; that
+  it is the display enable is inferred).
+- Bit 1: kept by software as a "shown" flag. Hardware meaning unknown.
+- Bit 2: set only for the X module's built-in crosshair cursor, and then the
+  kernel tags its position records with header bit 30 (usage established;
+  that it selects a hardware crosshair is inferred).
+- Bit 4: set when one X screen spans two display channels. Hardware meaning
+  unknown.
+- Bit 5: marks the cursor on the second display channel (meaning inferred).
+  The kernel sets it when it positions the cursor.
+- Bits 31:30: set by the firmware, never by the X module or the kernel.
+  Hardware meaning unknown.
+
+The field names below are an older guess. They put delay enable at bit 0
+and enable at bit 1, which conflicts with the bit 0 usage above. Open
+questions records the conflict; the names stay until it is settled.
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
