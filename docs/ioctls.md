@@ -10,10 +10,11 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   The first comparison of `gfxioctl` takes it with no argument copy of its own; **inferred** from the header name that
   it reports how many boards the driver has registered through `GfxRegisterBoard`. The libGL open path and
   `ddxFindAvailableBoards` send it.
-- 0x66 (ioctl 102, `gfx.o`).
+- 0x66 (ioctl 102, `gfx.o`): **established.**
   `gfxioctl` copies a 24-byte argument in through `copyin_xlate`, which converts the caller's ABI layout,
-  so the request works from o32, N32 and 64-bit clients; by inference it returns the per-board record
-  that `gfxinfo` prints.
+  so the request works from o32, N32 and 64-bit clients. The reply is the board record: `gf_OdsyInfo`
+  (`odsy.o`) copies at most 588 bytes out of board record +200, and `gfxinfo` prints from that reply
+  (`docs/compositor-probe.md`, `docs/pbj.md`).
 - 0x67 `GFX_ATTACH_BOARD` (ioctl 103, `gfx.o`): **established.**
   A 16-byte argument is converted in through `copyin_xlate` before the board is attached to the calling
   thread group, and `diag_discover_boards` in the compositor diagnostic sends it.
@@ -24,17 +25,19 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
 - 0x69 `GFX_IS_MANAGED` (ioctl 105, `gfx.o`): **established.**
   A 4-byte argument is copied in with plain `copyin`; **inferred** from the header name that the request
   tells the caller whether the board is under the graphics manager.
-- 0x6a (ioctl 106, `gfx.o`).
-  `gfxioctl` takes the board's `ddv` lock around the call into the board driver; for this board the
-  driver's initialise entry is `gf_OdsyInitialize`, whose reset and flow-control work is in
-  `docs/kernel.md`. `gfxinfo` and `gfxinit` send it.
+- 0x6a (ioctl 106, `gfx.o`): **inferred.**
+  The case in `gfxioctl` (0x2fb8 onward in the `gfx.o` build) calls through a pointer loaded from offset 24 of the
+  table at `GfxDev` +32. It then runs the board operation at offset 192 of the same table, only when that entry is
+  nonzero, between `splhi` and `splx`. The label is inferred from the case's call sequence in the disassembly.
+  Which board routine each pointer holds is unknown; the table's initial values in `GfxDev` would settle it.
 - 0x6b (ioctl 107, `gfx.o`).
   Same locked call shape as 106, into the board driver's start entry, `gf_OdsyStart` (`odsy_init.o`),
   which hands the hardware-shadow cache region to the board at 0x4034 and 0x403c; `gfxinfo` sends it after
   the download.
-- 0x6c (ioctl 108, `gfx.o`).
-  A 40-byte argument is converted in with `copyin_xlate`; the board driver's download entry is
-  `gf_OdsyDownload`. `gfxinfo`'s `odsy_init` and the other board initialisers send it.
+- 0x6c (ioctl 108, `gfx.o`): **established.**
+  A 40-byte argument is converted in with `copyin_xlate` (the case's copy length is 0x28 in `gfxioctl`). `gfxinit`'s
+  `odsy_init` (`usr/gfx/gfxinfo`) maps the microcode file and sends it with this request; `gf_OdsyDownload`
+  (`odsy_ucode.o`) hands the file to `odsyDownloadUcode` (`docs/firmware-images.md`).
 - 0x6e `GFX_MAPALL` (ioctl 110, `gfx.o`): **inferred.**
   The request that maps the board windows into the caller; `gf_OdsyMapGfx` (`odsy_map.o`) is the board
   entry that maps eight windows of the PIO space (`docs/registers.md`), and this is the only number in the

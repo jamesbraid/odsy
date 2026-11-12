@@ -719,6 +719,19 @@ ids these words are dirty-bit updates, not FIFO words. The same `ori` shape also
 Each entry starts with the block id, the ten-bit register number inside a class-1 word, and names the word or words
 that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`odsy_ctxsw.o`, `docs/buzz.md`).
 
+- `0x004` (raster-mode block, sent by the textport): **established.**
+  One operand. The X textport sends it for raster mode (`docs/buzz.md`, command-stream table), and `odsyRestoreRaster`
+  (`odsy_ctxsw.o`) replays that operand from hardware-shadow offset 0x84.
+- `0x005` (one-operand block): **established.**
+  `odsyRestoreRaster` (`odsy_ctxsw.o`) reads its one operand from hardware-shadow offset 0x88 and sends it in send order;
+  the command-stream table in `docs/buzz.md` gives the operand count and the offset.
+- `0x006` (one-operand block, shadow offset 0x468): **established.**
+  The replay of the raster state in `odsyRestoreRaster` (`odsy_ctxsw.o`) sends one operand taken from hardware-shadow offset 0x468.
+- `0x013` (texture LOD block, `BUZZ_REG_TEXLOD` in `BUZZ.h`): **established.**
+  Four operands, replayed from hardware-shadow offset 0x1bac by `odsyRestoreRaster` (`odsy_ctxsw.o`) with the texture
+  level-of-detail state.
+- `0x015` (one-operand block, shadow offset 0x8c): **established.**
+  One operand, replayed from hardware-shadow offset 0x8c by `odsyRestoreRaster` (`odsy_ctxsw.o`) in its send order.
 - `0x016` (texture mode block): **established.**
   Seven operands TEXMODE0 to TEXMODE6 sent as word 0x00011c16 when the texture dirty bit 0x200 is set;
   the kernel replays the same seven words from hardware-shadow offset 0x14c.
@@ -730,15 +743,27 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   The block has no operand and no shadow offset in the replay table of `odsyRestoreRaster`. Word 0x00010018 is built in `odsyRestoreRaster`, `odsy_mm_obj_xfr_bs` and libGLcore's `__glOdysseyValidateHardware`, and `odsy_mm_obj_xfr_bs` sends it after its `odsyDMAWait` call, between two settle groups (`docs/driver-functions.md`); `odsyDMAWait` itself sends no command word. The drivers never read a result from it, so no shipped software or published source depends on its effect. Routes tried: the binary scan, the decompiled libGLcore listing (the Odyssey GL driver context source unit is the only file with the word), `BUZZ.h`.
 - `0x019` (settle-sequence word, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
   Block 0x019 has no operand. It is the middle word of the settle sequence, between the 250 and 150 waits, and the senders place it there: the ten libGLcore routines, the kernel members and the forty X-module routines listed under word 0x00010019. The placement is the drivers' choice, and they never read a result after it, so no shipped software or published source depends on what the board does with it. Routes tried: the decompiled libGLcore listing (the Odyssey GL driver pixmap object source unit, the Odyssey GL driver context source unit and the Odyssey GL driver native context source unit carry the word), the binary scan, `BUZZ.h` section 5, and `docs/buzz.md`.
+- `0x01a` (six-operand block, shadow offset 0x90): **established.**
+  Six operands, read from hardware-shadow offset 0x90 when `odsyRestoreRaster` (`odsy_ctxsw.o`) replays the block.
 - `0x01b` (texture environment block): **established.**
   Five operands as word 0x0001141b when dirty bit 0x100 is set; the first operand's bits 2:0 are the environment
   mode from `__glOdysseyTextureSetOp`. Replayed from hardware-shadow offset 0x138.
+- `0x01c` (three-operand block, shadow offset 0x1a04): **established.**
+  Three operands, sent by `odsyRestoreRaster` (`odsy_ctxsw.o`) from hardware-shadow offset 0x1a04 on a context restore.
+- `0x01d` (two-operand block, shadow offset 0xa8): **established.**
+  Two operands at hardware-shadow offset 0xa8, which `odsyRestoreRaster` (`odsy_ctxsw.o`) replays in order.
+- `0x01e` (one-operand block, shadow offset 0xb0): **established.**
+  One operand at hardware-shadow offset 0xb0, replayed by `odsyRestoreRaster` (`odsy_ctxsw.o`) beside 0x01f at 0xb4 and 0x020 at 0xb8.
 - `0x01f` (state block between alpha test and depth test): **established.**
   Word 0x0001041f with one operand, replayed from hardware-shadow offset 0xb4 beside 0x01e at 0xb0 and
   0x020 at 0xb8; libGLcore's `__glOdysseyClear` sends it twice. The register's field is unknown.
 - `0x021` (blender block: equation, factors, constant colour).
   Word 0x00010c21 with three operands, a control word (equation and blend factor codes) and a packed RG and BA colour, from the text-port state set-up routine and
   `__glOdysseyValidateHardware`; the kernel replays it from hardware-shadow offset 0xbc.
+- `0x020` (one-operand block, shadow offset 0xb8): **established.**
+  One operand at hardware-shadow offset 0xb8, replayed by `odsyRestoreRaster` (`odsy_ctxsw.o`) next to the 0x01e and 0x01f blocks.
+- `0x022` (one-operand block, shadow offset 0xc8): **established.**
+  One operand at hardware-shadow offset 0xc8; `odsyRestoreRaster` (`odsy_ctxsw.o`) replays it on a context restore.
 - `0x023` (texture-clip block) (by inference).
   Word 0x00011023, four operands, replayed from hardware-shadow offset 0xe8 and sent by the text-port state set-up routine twice; `docs/opengl.md`
   records that the X module and textport send it with the 0x022 sequencer pair, which is why it reads as part of
@@ -777,6 +802,9 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   writes; the kernel replays it in `odsyRestoreRaster`.
 - `0x03e` (texture offset block, `libGLcore.so`) (by inference).
   Three words, the texture offset values. `__glOdysseyValidateHardware` (`libglcore/decomp/ODYSSEY/ody_context.c`) sends them as word 0x00010c3e with operands from the context at +0x8d6c, +0x8d70 and +0x8d74. `__glOdysseyValidateTextureState` (the texture module) copies those three from the texture state's +0xd0, +0xd4 and +0xd8 words, and `SetTexOffsetValues` (the texture module) zeroes the same three words, so the block sends the texture's offset set. Replayed from hardware-shadow offset 0x11f4 by `odsyRestoreRaster`.
+- `0x03f` (glyph set-up block, one operand at 0x80): **established.**
+  The textport's glyph set-up sends the block (`docs/buzz.md`, command-stream table), and `odsyRestoreRaster`
+  (`odsy_ctxsw.o`) replays its operand from hardware-shadow offset 0x80.
 - `0x040` (clip-origin block): **established.**
   Word 0x00010840 with a doubleword built from the board record and a drawable word, stored twice by `odsyClipPush`
   (`odsy_clip.o`) and by `__glOdysseySetDrawbuf` in libGLcore; the kernel's clip push writes it before block 0x041.
@@ -798,12 +826,23 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   nothing else writes them; replayed from hardware-shadow offset 0x1b94. Effect unknown.
 - `0x04c` (state block replayed from 0x1cac, `libGLcore.so`): **established.**
   Word 0x0001044c, one operand, sent by `__glOdysseyValidateContext` and replayed by `odsyRestoreRaster`. Field unknown.
+- `0x048` (three-operand block, shadow offset 0xcc): **established.**
+  Three operands taken from hardware-shadow offset 0xcc when `odsyRestoreRaster` (`odsy_ctxsw.o`) rebuilds the state after a switch.
 - `0x04d` (third stipple-sized bitmap): **established.**
   Word 0x00013c4d, sixteen operands, replayed from hardware-shadow offset 0xf8 beside the stipple halves 0x04e at 0x00 and
   0x04f at 0x40. Contents unknown.
+- `0x04e` (first half of the 32 x 32 stipple or glyph bitmap): **established.**
+  Sixteen operands from hardware-shadow offset 0x00, the first of the two halves that `odsyRestoreRaster` (`odsy_ctxsw.o`)
+  replays for the bitmap (`BUZZ.h` section 5).
+- `0x04f` (second half of the 32 x 32 stipple or glyph bitmap): **established.**
+  Sixteen operands from hardware-shadow offset 0x40, the half that `odsyRestoreRaster` (`odsy_ctxsw.o`) replays beside 0x04e at 0x00.
 - `0x050` (context select block): **established.**
   Word 0x00010850, two operands: `gf_OdsyPcxSwap` and `odsyRestartContext` send ((slot << 12) AND 0x7f000) OR x OR 0xf and 0
   to switch the board's context (`BUZZ.h`, context save).
+- `0x051` (one-operand block, shadow offset 0x1b20): **established.**
+  One operand taken from hardware-shadow offset 0x1b20 by `odsyRestoreRaster` (`odsy_ctxsw.o`) when it replays the raster state.
+- `0x052` (one-operand block, shadow offset 0xe4): **established.**
+  The replay table of `odsyRestoreRaster` (`odsy_ctxsw.o`) gives it one operand, read from hardware-shadow offset 0xe4 when the block is sent.
 - `0x053` (rectangle-copy block): **established.**
   Word 0x00011453, five operands from context +6964 to +6980, sent by `odsyCopyRectBody` after block 0x258;
   replayed from hardware-shadow offset 0x1b34.
@@ -814,6 +853,9 @@ that carry it. The shadow offsets are the replay table of `odsyRestoreRaster` (`
   `__glOdysseyValidateContext`. Field layout unknown.
 - `0x057` (state block replayed from 0x1cb4, `libGLcore.so`): **established.**
   Word 0x00010457, one operand, sent by `__glOdysseyValidateContext` only. Field layout unknown.
+- `0x058` (one-operand block, shadow offset 0xd8): **established.**
+  One operand at hardware-shadow offset 0xd8, which `odsyRestoreRaster` (`odsy_ctxsw.o`) replays in the row of blocks
+  that also holds 0x01e, 0x01f and 0x020.
 - `0x250` (six-operand context block, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**
   Word 0x00011a50 carries six operands, the context words at +0x10000 - 26796 to +0x10000 - 26776, and `__glOdysseyInitDefaultValues` sends it after block 0x007 (`libglcore/decomp/ODYSSEY/ody_context.c`); `__glOdysseyValidateFragment` sends it the same way. It is the first of eight same-shaped blocks, 0x250 to 0x257, that `odsyRestoreRaster` replays after block 0x007 with indexes 0 to 7, each with six operands from the shadow at +7132 plus 24 bytes per index. The drivers never read a result from these six words, so no shipped software or published source depends on what they set. Routes tried: the binary scan, the decompiled listings for the word (the Odyssey GL driver fragment source unit and the Odyssey GL driver context source unit), `BUZZ.h`, and `docs/buzz.md`.
 - `0x258` (copy-prefix block, `odsy_dma.o`): **unknown: no shipped software or published source depends on it.**
