@@ -121,7 +121,7 @@ Release 6.5.30m, IP30 and IP35 builds. Each item carries its label.
 
 ### Board NIC and the manufacturing name (V6 to V12)
 
-Full note, with grades and a modelling proposal: chips docs/questions/v12-nic.md (chips repository, docs/questions/v12-nic.md).
+Full note, with grades and open questions: chips docs/questions/v12-nic.md (chips repository, docs/questions/v12-nic.md).
 
 - **established.** The board NIC is a Dallas 1-Wire (MicroLAN) memory part, not I2C. The driver passes the host `board + 0x10dc` and the host's generic one-wire code bit-bangs a 32-bit IOC3-style control register there (pulse bit 10, sample bit 2, done bit 1, level bit 0; done is polled without a limit). Host reads family 0x0B (IP35 also 0x09): ROM search, Match ROM, status read of the redirection map at 0x0100, two 32-byte pages each ending in an inverted CRC-16, ROM CRC-8.
 - **established.** The page layout the host turns into text is `Part:...;Name:...;Serial:...;Revision:...;Group:..;Capability:..;Variety:..;Laser:<rom serial>;`; Name is page B bytes 16 to 29 (14 characters). `odsy_set_gfx_mfg_nic_name` splits that text on `:` and `;` and takes the token after `Name`.

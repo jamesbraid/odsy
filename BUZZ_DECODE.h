@@ -2,7 +2,7 @@
  * BUZZ_DECODE.h - VPro (Odyssey) "Buzz" graphics ASIC: command and image
  *                 header decode words (publish-safe subset)
  *
- * Purpose: the wire format of the words an emulator has to decode to move
+ * Purpose: the wire format of the words a decoder has to read to move
  * pixels and bind textures: the COPY command, the eight-word image/DMA
  * header, the post-filter scale/bias command, the pixel-mode descriptor
  * words and the texture level and sampler words. Meant to be consumed by

@@ -413,9 +413,8 @@ then destination field format) or moves the field unchanged.
   the index value unchanged. Evidence: (1) the library builds exactly this pair for an
   index-to-index `glCopyPixels`, so the board must round-trip an index through it or index
   copies would corrupt; (2) the X server relies on it for every scroll and tile doubling, and
-  uses the same word 4 for the upload that produced the data. Nothing board-visible shows how the board does it, so a model may
-  implement it as a field copy or as a read-then-write of the index so long as the value that
-  results is the same.
+  uses the same word 4 for the upload that produced the data. Nothing board-visible shows how the board does it, only that the
+  value that results is the same.
 - **Where the rule stops** (what makes a copy convert): in the command words the board is
   given, three things select a different treatment, each **established** as a library
   behaviour and each **unknown** as to the board's arithmetic:
