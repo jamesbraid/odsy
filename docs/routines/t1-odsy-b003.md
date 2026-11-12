@@ -20,7 +20,7 @@ Reviewed: 2026-11-12
 
 Reviewed: 2026-11-12
 
-## `libGLcore.so` at `0x2239050`
+## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2239050`
 
 `__glOdysseyHyperpipeStereo` (116 bytes) loads a word at a0+0x285d8 (0x2239064) and a field of a3 at offset 0 (0x223906c), and builds a small stack buffer from them together with the constant 3 and a2. It makes one indirect call at 0x22390a0 through a pointer loaded from the global pointer table, which the render names `__glOdysseyIoctl`. The call passes the fixed request number 0x6f640018 in the second argument and the stack buffer address in the third; the loaded word goes into the buffer, not into an argument register. The routine returns 0 or 1 at 0x22390bc, 0 when the call returns 0. Role (from name): a hyperpipe stereo setter or query that asks the driver through ioctl; the request semantics and failure handling are not shown. Grade: inferred.
 
@@ -56,7 +56,7 @@ Reviewed: 2026-11-12
 
 Reviewed: 2026-11-12
 
-## `libGLcore.so` at `0x231ef00`
+## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x231ef00`
 
 `__glOdyim_ScratchColor3b` (32 bytes) makes four 4-byte word stores to abs 0x10000 (including 0x231ef0c, 0x231ef10 and 0x231ef14) and returns 0x10000 at 0x231ef18. It has no loads or calls. The name suggests byte-sized channels, but every store in the render is a 4-byte word, so any packing of byte channels is not shown. Grade: inferred.
 
@@ -146,7 +146,7 @@ Reviewed: 2026-11-12
 
 Reviewed: 2026-11-12
 
-## `libGL.so` at `0xd8d2e68`
+## `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so` at `0xd8d2e68`
 
 `isNotProxy` (932 bytes, o32, `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so`) loads a0+0x108 and a0+0x24 (0xd8d2e80, 0xd8d2e90) and returns 0 at once unless the a0+0x24 field is below 0x40 (0xd8d2e98). It then makes a call at 0xd8d2eb4 with second argument 0x802 and a string address built from the global pointer, a call at 0xd8d2edc with second and third arguments 2 and 5, and a call at 0xd8d2f14 with second argument 0x65 and third 0, apparently `open`, `fcntl` and `ioctl` from their argument patterns. After each of these it returns 0 on a negative result (and, for the 0x65 request, on a result that is not above zero), closing the descriptor first where it is open. It also returns 0 after a close when the 0x65 result is not above the a0+0x24 field (compare at 0xd8d2f58). Otherwise it makes a second call at 0xd8d2f8c with second argument 0x66 and a stack buffer at sp+0x54, closes the descriptor, and calls at 0xd8d2fd8 with second argument 0x3a (':') on the pointer loaded from offset 0x80 of the word at a0+0x108, apparently `strchr`. A null result returns 0. Otherwise it compares the text from that hit with stack bytes at sp+0x3c, returning 1 on reaching '.' (0x2e, tested at 0xd8d301c) or a zero byte and 0 on a mismatch; it returns at 0xd8d3054. Role (from name): a check that a device is not a proxy; the callee names, the ioctl meanings and the exact predicate are not established, so the role stays partly open. Grade: inferred.
 

@@ -26,7 +26,7 @@ Grade: inferred.
 
 Reviewed: 2026-11-12
 
-### libGL.so 0xcf87734
+### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf87734`
 
 `glXWaitVideoSyncSGI` uses the same display-record chain and handle table as the entry at 0xcf876a8. It calls `ioctl` with request 0x3ff (0xcf877d4) on a stack buffer at sp-80 and stores one word to a2 (0xcf877f8); the facts do not show where that word comes from. Signed checks on a0 and a1 (0xcf8776c, 0xcf87774) branch to a block away from the ioctl at 0xcf877d4; the facts give return codes 5 and 6 and a normal return of 0, but the trace does not connect each branch to a code. The name suggests a wait on a frame count with a divisor and a remainder, but the argument roles are not confirmed by the facts.
 
@@ -106,7 +106,7 @@ Grade: inferred.
 
 Reviewed: 2026-11-12
 
-### libGLcore.so 0xbd56530
+### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd56530`
 
 `__glOdylc_Color4b` is a 288-byte stub, 12 bytes longer than the three-component stubs, which fits one more argument. It calls `__glSPDlistSpace` at 0xbd5659c, updates the same abs 0x1048, 0x1058 and 0x1060 words, and writes [0x1020]+0x15ec (0xbd56548). It returns at 0xbd56628 or 0xbd56648. The name suggests a four-component byte color call in a display list; the size difference supports the extra argument, but it is not confirmed.
 
@@ -162,7 +162,7 @@ Grade: inferred.
 
 Reviewed: 2026-11-12
 
-### libGLcore.so 0xbd58bd0
+### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd58bd0`
 
 `__glOdysseyClear` reads and writes context fields at +0xa024, +0xa028, +0xa054 and +0xa058, and writes an integer to abs 0x1030. It makes 44 integer stores and 20 single-precision stores to abs 0x4000, with four single-precision inputs read from a1 at +0x0 to +0xc (0xbd59048 onward). It calls `__glOdysseyValidateHardware` at 0xbd58fc4 with a2 = 0x10415 and a5 = 0x100000, and that call is skipped when the word at +0x18fdc (a0+102364) is zero (branch at 0xbd58fb8). It returns 0x10000 or 0x10046 (0xbd591bc). The name suggests a hardware clear that programs clear values into a register window, but the meaning of the 0x4000 window is not established by these facts.
 
@@ -186,7 +186,7 @@ Grade: inferred.
 
 Reviewed: 2026-11-12
 
-### libGLcore.so 0xbd741a0
+### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd741a0`
 
 `ApplyMaterialF` reads a four-word float vector through a2 (+0x0 to +0xc) and dispatches on a1 against 0x1200 to 0x1603. Those are the GL material tokens (0x1200 ambient, 0x1201 diffuse, 0x1202 specular, 0x1600 emission, 0x1601 shininess, 0x1602 ambient and diffuse, 0x1603 color indexes), identified from their public values. It writes fields of the record at a0 (+0x0 to +0x1c), updates [0x1020]+0xbc58, and stores 21 words to the fixed address 0x4000, then returns [[0x1020]+41160] (0xbd7434c). The name matches `glMaterialfv`, but the identity of the 0x4000 window is not established.
 
