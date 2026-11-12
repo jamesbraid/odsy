@@ -15,7 +15,7 @@
  * by the builder to the last descriptor of a board-to-host request.
  */
 /* word ENTRY_W7: 32 bits; odsy binary analysis of the shipped kernel DMA routines */
-#define DMA_ENTRY_W7_WIDTH                           32 /* established */
+#define DMA_ENTRY_W7_WIDTH                           32 /* inferred */
 #define DMA_ENTRY_W7_IRQ_AFTER_SHIFT                 31 /* inferred */
 #define DMA_ENTRY_W7_IRQ_AFTER_MASK                  0x1u
 #define DMA_ENTRY_W7_IRQ_AFTER_INPLACE               (DMA_ENTRY_W7_IRQ_AFTER_MASK << DMA_ENTRY_W7_IRQ_AFTER_SHIFT)
@@ -89,7 +89,7 @@
 #define DMA_PAGE_W0_ADDR_INPLACE                     (DMA_PAGE_W0_ADDR_MASK << DMA_PAGE_W0_ADDR_SHIFT)
 
 /* word PAGE_W1: 32 bits; odsy binary analysis of the shipped kernel DMA routines */
-#define DMA_PAGE_W1_WIDTH                            32 /* established */
+#define DMA_PAGE_W1_WIDTH                            32 /* inferred */
 #define DMA_PAGE_W1_ADDR_LO_SHIFT                    16 /* established */
 #define DMA_PAGE_W1_ADDR_LO_MASK                     0xffffu
 #define DMA_PAGE_W1_ADDR_LO_INPLACE                  (DMA_PAGE_W1_ADDR_LO_MASK << DMA_PAGE_W1_ADDR_LO_SHIFT)
@@ -98,7 +98,7 @@
 #define DMA_PAGE_W1_COUNT_INPLACE                    (DMA_PAGE_W1_COUNT_MASK << DMA_PAGE_W1_COUNT_SHIFT)
 
 /* word TAG_W0: 32 bits; odsy binary analysis of the shipped kernel DMA routines */
-#define DMA_TAG_W0_WIDTH                             32 /* established */
+#define DMA_TAG_W0_WIDTH                             32 /* inferred */
 #define DMA_TAG_W0_FLAG_SHIFT                        15 /* established */
 #define DMA_TAG_W0_FLAG_MASK                         0x1u
 #define DMA_TAG_W0_FLAG_INPLACE                      (DMA_TAG_W0_FLAG_MASK << DMA_TAG_W0_FLAG_SHIFT)

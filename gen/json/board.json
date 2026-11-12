@@ -96,7 +96,7 @@
    "kind": "word",
    "name": "SDRAM_CFG",
    "width": 32,
-   "grade": "established",
+   "grade": "inferred",
    "from": "odsy binary analysis of the shipped kernel board routines"
   },
   {
@@ -285,7 +285,7 @@
    "kind": "word",
    "name": "STRAP",
    "width": 32,
-   "grade": "established",
+   "grade": "inferred",
    "from": "odsy binary analysis of the shipped kernel board routines"
   },
   {

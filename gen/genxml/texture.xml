@@ -66,7 +66,7 @@ Established as the values returned; the names are inferred from the
 formats that give each. The board's use of the field is unknown.</doc>
     <field name="value" start="0" size="3" type="class_value" grade="established"/>
   </struct>
-  <struct name="COLTAB_A" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="COLTAB_A" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="kept" start="24" size="8" type="uint" grade="unknown"/>
     <field name="red" start="12" size="12" type="uint" grade="established"/>
     <field name="green" start="0" size="12" type="uint" grade="established"/>
@@ -76,7 +76,7 @@ formats that give each. The board's use of the field is unknown.</doc>
       <expect field="kept" value="0"/>
     </test>
   </struct>
-  <struct name="COLTAB_B" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="COLTAB_B" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="kept" start="24" size="8" type="uint" grade="unknown"/>
     <field name="blue" start="12" size="12" type="uint" grade="established"/>
     <field name="alpha" start="0" size="12" type="uint" grade="established"/>
@@ -86,11 +86,11 @@ formats that give each. The board's use of the field is unknown.</doc>
       <expect field="kept" value="0"/>
     </test>
   </struct>
-  <struct name="ENV_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="ENV_W0" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="unwritten" start="3" size="29" type="uint" grade="unknown"/>
     <field name="mode" start="0" size="3" type="env_w0_mode" grade="established"/>
   </struct>
-  <struct name="ENV_W1" size="4" grade="inferred" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="ENV_W1" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <doc>Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment
 mode: it is a filter, and sets bit 17 of the sampler word
 (BUZZ_DECODE.h).
@@ -113,7 +113,7 @@ Mode add overwrites all four channels with 4095, so both words carry
       <expect field="green" value="4095"/>
     </test>
   </struct>
-  <struct name="ENV_W2" size="4" grade="inferred" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="ENV_W2" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="top" start="24" size="8" type="uint" grade="unknown"/>
     <field name="blue" start="12" size="12" type="uint" grade="inferred"/>
     <field name="alpha" start="0" size="12" type="uint" grade="inferred"/>
@@ -132,7 +132,7 @@ and restore the whole block as a copy, so they cannot change it.</doc>
   <struct name="ENV_W4" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="bits" start="0" size="32" type="uint" grade="unknown"/>
   </struct>
-  <struct name="FIRSTLEVEL" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="FIRSTLEVEL" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <doc>The write coverage of the level descriptor words (the bits the library
 writes in word 1 are the format index 25:20, size code 31:30, pitch
 11:0 and, from two internal paths only, the offset code 28:26) is
@@ -182,7 +182,7 @@ wrote).</doc>
       <expect field="value" value="12544"/>
     </test>
   </struct>
-  <struct name="MODE_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="MODE_W0" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="detail_modulate" start="31" size="1" type="uint" grade="established"/>
     <field name="bit30" start="30" size="1" type="uint" grade="unknown"/>
     <field name="detail_level" start="25" size="5" type="uint" grade="established"/>
@@ -198,7 +198,7 @@ wrote).</doc>
       <expect field="log2_r" value="0"/>
     </test>
   </struct>
-  <struct name="MODE_W1" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="MODE_W1" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <doc>detail_level is the detail level as a positive count, min(-level, 15):
 the field is five bits wide but the library never sends more than 15.
 detail_modulate is 1 for the modulate detail function and 0 for add.
@@ -225,19 +225,19 @@ written.
       <expect field="wrap_aux" value="63"/>
     </test>
   </struct>
-  <struct name="MODE_W2" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="MODE_W2" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="top" start="24" size="8" type="uint" grade="unknown"/>
     <field name="wrap_aux" start="18" size="6" type="uint" grade="established"/>
     <field name="bit17" start="17" size="1" type="uint" grade="unknown"/>
     <field name="max_clamp" start="0" size="17" type="uint" grade="established"/>
   </struct>
-  <struct name="MODE_W3" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="MODE_W3" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="top" start="24" size="8" type="uint" grade="unknown"/>
     <field name="wrap_aux" start="18" size="6" type="uint" grade="established"/>
     <field name="bit17" start="17" size="1" type="uint" grade="unknown"/>
     <field name="max_clamp" start="0" size="17" type="uint" grade="established"/>
   </struct>
-  <struct name="MODE_W5" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="MODE_W5" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <doc>The R axis setter writes repeat to the sampler for any target but 3D
 (established). Any other wrap enumerant is refused by the library. The
 library sends every combination of the four modes on the three axes; a
@@ -255,7 +255,7 @@ operand 6 bits 31:25 are unknown. Operand 6 bit 24 is the offset flag
     <field name="red" start="12" size="12" type="uint" grade="established"/>
     <field name="green" start="0" size="12" type="uint" grade="established"/>
   </struct>
-  <struct name="MODE_W6" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="MODE_W6" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <field name="top" start="25" size="7" type="uint" grade="unknown"/>
     <field name="has_offset" start="24" size="1" type="uint" grade="established"/>
     <field name="blue" start="12" size="12" type="uint" grade="established"/>
@@ -291,7 +291,7 @@ upper bound for 2D textures (ICC levels book the full width while the
 pitch halves it) and a contract for 3D slices (section 5).</doc>
     <field name="code" start="0" size="2" type="size_code" grade="established"/>
   </struct>
-  <struct name="TARGET" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+  <struct name="TARGET" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
     <doc>Active texture target (id 0x005, count 1). The word is shared with the
 clip-plane and path-selection bits of the same block; only the target
 bits are listed. established as what the library sets: bit 5 for a

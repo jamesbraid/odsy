@@ -103,7 +103,7 @@
  * COPY operand 7 beyond the write header: flags set around the walk.
  */
 /* word COPY_W7: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_COPY_W7_WIDTH                           32 /* established */
+#define BUZZ_COPY_W7_WIDTH                           32 /* inferred */
 #define BUZZ_COPY_W7_DST_X_IN_SRC_SHIFT              31 /* inferred */
 #define BUZZ_COPY_W7_DST_X_IN_SRC_MASK               0x1u
 #define BUZZ_COPY_W7_DST_X_IN_SRC_INPLACE            (BUZZ_COPY_W7_DST_X_IN_SRC_MASK << BUZZ_COPY_W7_DST_X_IN_SRC_SHIFT)
@@ -147,7 +147,7 @@
  * Image header word 0: board reference.
  */
 /* word HDR_W0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W0_WIDTH                            32 /* established */
+#define BUZZ_HDR_W0_WIDTH                            32 /* inferred */
 #define BUZZ_HDR_W0_KEPT_SHIFT                       30 /* inferred */
 #define BUZZ_HDR_W0_KEPT_MASK                        0x3u
 #define BUZZ_HDR_W0_KEPT_INPLACE                     (BUZZ_HDR_W0_KEPT_MASK << BUZZ_HDR_W0_KEPT_SHIFT)
@@ -196,7 +196,7 @@
  * The read header's word 4, and the COPY source description.
  */
 /* word HDR_W4: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W4_WIDTH                            32 /* established */
+#define BUZZ_HDR_W4_WIDTH                            32 /* unknown */
 #define BUZZ_HDR_W4_FRONT_SHIFT                      31 /* established */
 #define BUZZ_HDR_W4_FRONT_MASK                       0x1u
 #define BUZZ_HDR_W4_FRONT_INPLACE                    (BUZZ_HDR_W4_FRONT_MASK << BUZZ_HDR_W4_FRONT_SHIFT)
@@ -242,7 +242,7 @@
  * The write header's word 7, and the COPY destination control.
  */
 /* word HDR_W7: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W7_WIDTH                            32 /* established */
+#define BUZZ_HDR_W7_WIDTH                            32 /* inferred */
 #define BUZZ_HDR_W7_DIFFERS_SHIFT                    30 /* established */
 #define BUZZ_HDR_W7_DIFFERS_MASK                     0x1u
 #define BUZZ_HDR_W7_DIFFERS_INPLACE                  (BUZZ_HDR_W7_DIFFERS_MASK << BUZZ_HDR_W7_DIFFERS_SHIFT)
@@ -293,7 +293,7 @@
  * Pixel-mode descriptor, second word.
  */
 /* word PIXMODE_W1: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_PIXMODE_W1_WIDTH                        32 /* established */
+#define BUZZ_PIXMODE_W1_WIDTH                        32 /* unknown */
 #define BUZZ_PIXMODE_W1_BIT27_SHIFT                  27 /* unknown */
 #define BUZZ_PIXMODE_W1_BIT27_MASK                   0x1u
 #define BUZZ_PIXMODE_W1_BIT27_INPLACE                (BUZZ_PIXMODE_W1_BIT27_MASK << BUZZ_PIXMODE_W1_BIT27_SHIFT)
@@ -365,7 +365,7 @@
  * Texture level descriptor, word 0.
  */
 /* word TEXLEVEL_W0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_TEXLEVEL_W0_WIDTH                       32 /* established */
+#define BUZZ_TEXLEVEL_W0_WIDTH                       32 /* unknown */
 #define BUZZ_TEXLEVEL_W0_KEPT_SHIFT                  29 /* unknown */
 #define BUZZ_TEXLEVEL_W0_KEPT_MASK                   0x7u
 #define BUZZ_TEXLEVEL_W0_KEPT_INPLACE                (BUZZ_TEXLEVEL_W0_KEPT_MASK << BUZZ_TEXLEVEL_W0_KEPT_SHIFT)

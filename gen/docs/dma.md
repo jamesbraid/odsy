@@ -13,14 +13,14 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 | Word | Width | Grade | Source |
 |---|---|---|---|
-| `ENTRY_W7` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
+| `ENTRY_W7` | 32 | inferred | odsy binary analysis of the shipped kernel DMA routines |
 | `KICK_A_HI` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
 | `KICK_A_LO` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
 | `KICK_B_HI` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
 | `KICK_B_LO` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
 | `PAGE_W0` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
-| `PAGE_W1` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
-| `TAG_W0` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
+| `PAGE_W1` | 32 | inferred | odsy binary analysis of the shipped kernel DMA routines |
+| `TAG_W0` | 32 | inferred | odsy binary analysis of the shipped kernel DMA routines |
 | `TAG_W1` | 32 | established | odsy binary analysis of the shipped kernel DMA routines |
 
 ### Word `ENTRY_W7`

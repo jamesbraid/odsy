@@ -20,7 +20,7 @@
   <enum name="tag_w1_marker">
     <value name="tag" value="90" grade="established"/>
   </enum>
-  <struct name="ENTRY_W7" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+  <struct name="ENTRY_W7" size="4" grade="inferred" from="odsy binary analysis of the shipped kernel DMA routines">
     <doc>Header word 7 as the descriptor builder leaves it. The kernel forces the
 top byte before it builds descriptors: bits 29, 28 and 25 always set,
 bit 24 set for a board-to-host transfer, bits 27 and 30 kept from the
@@ -91,14 +91,14 @@ address fields hold the run's host physical address; values omitted.
   word 1  the physical address bits 15:0 in 31:16, the count in 15:0</doc>
     <field name="addr" start="0" size="32" type="uint" grade="established"/>
   </struct>
-  <struct name="PAGE_W1" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+  <struct name="PAGE_W1" size="4" grade="inferred" from="odsy binary analysis of the shipped kernel DMA routines">
     <field name="addr_lo" start="16" size="16" type="uint" grade="established"/>
     <field name="count" start="0" size="16" type="uint" grade="inferred"/>
     <test value="0x200" kind="example">
       <expect field="count" value="512"/>
     </test>
   </struct>
-  <struct name="TAG_W0" size="4" grade="established" from="odsy binary analysis of the shipped kernel DMA routines">
+  <struct name="TAG_W0" size="4" grade="inferred" from="odsy binary analysis of the shipped kernel DMA routines">
     <field name="flag" start="15" size="1" type="tag_w0_flag" grade="established"/>
     <field name="slot" start="0" size="15" type="uint" grade="inferred"/>
     <test value="0x8000" kind="example">

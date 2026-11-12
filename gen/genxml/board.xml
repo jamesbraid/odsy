@@ -53,7 +53,7 @@
       <expect field="bit24" value="1"/>
     </test>
   </struct>
-  <struct name="SDRAM_CFG" size="4" grade="established" from="odsy binary analysis of the shipped kernel board routines">
+  <struct name="SDRAM_CFG" size="4" grade="inferred" from="odsy binary analysis of the shipped kernel board routines">
     <field name="host_id" start="19" size="4" type="uint" grade="established"/>
     <field name="enable" start="8" size="1" type="uint" grade="inferred"/>
     <field name="reset" start="5" size="1" type="uint" grade="inferred"/>
@@ -74,7 +74,7 @@
       <expect field="fixed_top" value="1"/>
     </test>
   </struct>
-  <struct name="STRAP" size="4" grade="established" from="odsy binary analysis of the shipped kernel board routines">
+  <struct name="STRAP" size="4" grade="inferred" from="odsy binary analysis of the shipped kernel board routines">
     <field name="sdram_size" start="30" size="2" type="strap_sdram_size" grade="established"/>
     <field name="banks" start="29" size="1" type="strap_banks" grade="established"/>
     <field name="cas" start="28" size="1" type="strap_cas" grade="established"/>

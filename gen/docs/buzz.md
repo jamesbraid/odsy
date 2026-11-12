@@ -15,20 +15,20 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 |---|---|---|---|
 | `ALPHA_TEST` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
 | `COPY_W2` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
-| `COPY_W7` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
+| `COPY_W7` | 32 | inferred | odsy binary analysis of the shipped GL library and kernel command senders |
 | `FRAME_PIXEL` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
-| `HDR_W0` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
+| `HDR_W0` | 32 | inferred | odsy binary analysis of the shipped GL library and kernel command senders |
 | `HDR_W1` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
 | `HDR_W2` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
 | `HDR_W3` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
-| `HDR_W4` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
+| `HDR_W4` | 32 | unknown | odsy binary analysis of the shipped GL library and kernel command senders |
 | `HDR_W6` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
-| `HDR_W7` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
+| `HDR_W7` | 32 | inferred | odsy binary analysis of the shipped GL library and kernel command senders |
 | `PF` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
 | `PIXMODE_W0` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
-| `PIXMODE_W1` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
+| `PIXMODE_W1` | 32 | unknown | odsy binary analysis of the shipped GL library and kernel command senders |
 | `SAMPLER` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
-| `TEXLEVEL_W0` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
+| `TEXLEVEL_W0` | 32 | unknown | odsy binary analysis of the shipped GL library and kernel command senders |
 | `TEXLEVEL_W1` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
 | `TEXLEVEL_W2` | 32 | established | odsy binary analysis of the shipped GL library and kernel command senders |
 

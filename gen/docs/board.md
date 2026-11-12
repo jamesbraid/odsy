@@ -15,9 +15,9 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 |---|---|---|---|
 | `HOST_FLOW_MODE` | 32 | established | odsy binary analysis of the shipped kernel board routines |
 | `MASTER_ID` | 32 | established | odsy binary analysis of the shipped kernel board routines |
-| `SDRAM_CFG` | 32 | established | odsy binary analysis of the shipped kernel board routines |
+| `SDRAM_CFG` | 32 | inferred | odsy binary analysis of the shipped kernel board routines |
 | `STATS_CTL` | 32 | established | odsy binary analysis of the shipped kernel board routines |
-| `STRAP` | 32 | established | odsy binary analysis of the shipped kernel board routines |
+| `STRAP` | 32 | inferred | odsy binary analysis of the shipped kernel board routines |
 | `WIDGET_CONTROL` | 32 | established | odsy binary analysis of the shipped kernel board routines |
 | `WIDGET_ID` | 32 | inferred | odsy binary analysis of the shipped kernel board routines |
 

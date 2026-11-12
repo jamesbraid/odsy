@@ -90,7 +90,7 @@ pub mod master_id {
         }
     }
 }
-/// (established)
+/// (inferred)
 pub mod sdram_cfg {
     pub const WIDTH: u32 = 32;
     pub mod host_id { // bits 22:19, established
@@ -304,7 +304,7 @@ pub mod stats_ctl {
         }
     }
 }
-/// (established)
+/// (inferred)
 pub mod strap {
     pub const WIDTH: u32 = 32;
     pub mod sdram_size { // bits 31:30, established

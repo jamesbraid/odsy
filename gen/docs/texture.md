@@ -14,26 +14,26 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | Word | Width | Grade | Source |
 |---|---|---|---|
 | `CLASS` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `COLTAB_A` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `COLTAB_B` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `ENV_W0` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `ENV_W1` | 32 | inferred | odsy binary analysis of the shipped GL library texture routines |
-| `ENV_W2` | 32 | inferred | odsy binary analysis of the shipped GL library texture routines |
+| `COLTAB_A` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `COLTAB_B` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `ENV_W0` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `ENV_W1` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `ENV_W2` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
 | `ENV_W3` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
 | `ENV_W4` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
-| `FIRSTLEVEL` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
+| `FIRSTLEVEL` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
 | `FMT` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
 | `LEVEL3D_W2` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
 | `LOD` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `MODE_W0` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `MODE_W1` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `MODE_W2` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `MODE_W3` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `MODE_W5` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `MODE_W6` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
+| `MODE_W0` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `MODE_W1` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `MODE_W2` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `MODE_W3` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `MODE_W5` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
+| `MODE_W6` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
 | `OFFCODE` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
 | `SIZE` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
-| `TARGET` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
+| `TARGET` | 32 | unknown | odsy binary analysis of the shipped GL library texture routines |
 | `WRAPAUX` | 32 | established | odsy binary analysis of the shipped GL library texture routines |
 
 ### Word `CLASS`

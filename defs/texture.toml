@@ -38,7 +38,7 @@ rgba = { value = 6, grade = "inferred" }
 
 [words.COLTAB_A]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.COLTAB_A.fields]
 kept = { bits = [31, 24], grade = "unknown" }
@@ -52,7 +52,7 @@ expect = { red = 291, green = 1110, kept = 0 }
 
 [words.COLTAB_B]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.COLTAB_B.fields]
 kept = { bits = [31, 24], grade = "unknown" }
@@ -66,7 +66,7 @@ expect = { blue = 2748, alpha = 3567, kept = 0 }
 
 [words.ENV_W0]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.ENV_W0.fields]
 unwritten = { bits = [31, 3], grade = "unknown" }
@@ -99,7 +99,7 @@ not read the order out of the store separately. Bits 31:24 of each
 word: unknown (the setter's stores of the colour never name them).
 Mode add overwrites all four channels with 4095, so both words carry
 0xffffff. established."""
-grade = "inferred"
+grade = "unknown"
 
 [words.ENV_W1.fields]
 top = { bits = [31, 24], grade = "unknown" }
@@ -112,7 +112,7 @@ expect = { red = 4095, green = 4095 }
 
 [words.ENV_W2]
 width = 32
-grade = "inferred"
+grade = "unknown"
 
 [words.ENV_W2.fields]
 top = { bits = [31, 24], grade = "unknown" }
@@ -159,7 +159,7 @@ first level descriptor the texture unit reads. Activation writes 0
 (the base level's descriptor); the on-board mipmap builder writes 60
 (TEX_SCRATCH_LEVEL) and restores the saved word. Bits 31:6 have no
 writer and stay 0. established."""
-grade = "established"
+grade = "unknown"
 
 [words.FIRSTLEVEL.fields]
 unwritten = { bits = [31, 6], grade = "unknown" }
@@ -238,7 +238,7 @@ expect = { value = 0x3100 }
 
 [words.MODE_W0]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.MODE_W0.fields]
 detail_modulate = { bits = [31, 31], grade = "established" }
@@ -274,7 +274,7 @@ written.
   wrap_aux   bits 23:18, a 6-bit value set together with that axis's
              wrap mode in the sampler word (see WRAPAUX below). Its
              meaning on the board is unknown."""
-grade = "established"
+grade = "unknown"
 
 [words.MODE_W1.fields]
 top = { bits = [31, 24], grade = "unknown" }
@@ -289,7 +289,7 @@ expect = { max_clamp = 0, wrap_aux = 63 }
 
 [words.MODE_W2]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.MODE_W2.fields]
 top = { bits = [31, 24], grade = "unknown" }
@@ -299,7 +299,7 @@ max_clamp = { bits = [16, 0], grade = "established" }
 
 [words.MODE_W3]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.MODE_W3.fields]
 top = { bits = [31, 24], grade = "unknown" }
@@ -323,7 +323,7 @@ operand 6 bits 23:12 and alpha in operand 6 bits 11:0. A float x
 converts as in section 2. established. Operand 5 bits 31:24 and
 operand 6 bits 31:25 are unknown. Operand 6 bit 24 is the offset flag
 (below). The default border colour the library writes: not recorded."""
-grade = "established"
+grade = "unknown"
 
 [words.MODE_W5.fields]
 top = { bits = [31, 24], grade = "unknown" }
@@ -332,7 +332,7 @@ green = { bits = [11, 0], grade = "established" }
 
 [words.MODE_W6]
 width = 32
-grade = "established"
+grade = "unknown"
 
 [words.MODE_W6.fields]
 top = { bits = [31, 25], grade = "unknown" }
@@ -401,7 +401,7 @@ complete 3D texture, else bit 4 for a complete 2D texture, else bit 3
 for a complete 1D texture; bit 10 together with any of them. When no
 enabled target has a complete texture, bits 5:3 and 11:10 are cleared.
 Bit 11 is only ever cleared: unknown."""
-grade = "established"
+grade = "unknown"
 
 [words.TARGET.fields]
 bit11 = { bits = [11, 11], grade = "unknown" }

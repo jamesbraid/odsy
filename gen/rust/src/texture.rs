@@ -60,7 +60,7 @@ pub mod class {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod coltab_a {
     pub const WIDTH: u32 = 32;
     pub mod kept { // bits 31:24, unknown
@@ -94,7 +94,7 @@ pub mod coltab_a {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod coltab_b {
     pub const WIDTH: u32 = 32;
     pub mod kept { // bits 31:24, unknown
@@ -128,7 +128,7 @@ pub mod coltab_b {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod env_w0 {
     pub const WIDTH: u32 = 32;
     pub mod unwritten { // bits 31:3, unknown
@@ -188,7 +188,7 @@ pub mod env_w0 {
         }
     }
 }
-/// Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment mode: it is a filter, and sets bit 17 of the sampler word (BUZZ_DECODE.h). Words (inferred)
+/// Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment mode: it is a filter, and sets bit 17 of the sampler word (BUZZ_DECODE.h). Words (unknown)
 pub mod env_w1 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -222,7 +222,7 @@ pub mod env_w1 {
         }
     }
 }
-/// (inferred)
+/// (unknown)
 pub mod env_w2 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -284,7 +284,7 @@ pub mod env_w4 {
         }
     }
 }
-/// The write coverage of the level descriptor words (the bits the library writes in word 1 are the format index 25:20, size code 31:30, pitch 11:0 and, f (established)
+/// The write coverage of the level descriptor words (the bits the library writes in word 1 are the format index 25:20, size code 31:30, pitch 11:0 and, f (unknown)
 pub mod firstlevel {
     pub const WIDTH: u32 = 32;
     pub mod unwritten { // bits 31:6, unknown
@@ -450,7 +450,7 @@ pub mod lod {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod mode_w0 {
     pub const WIDTH: u32 = 32;
     pub mod detail_modulate { // bits 31:31, established
@@ -524,7 +524,7 @@ pub mod mode_w0 {
         }
     }
 }
-/// detail_level is the detail level as a positive count, min(-level, 15): the field is five bits wide but the library never sends more than 15. detail_mo (established)
+/// detail_level is the detail level as a positive count, min(-level, 15): the field is five bits wide but the library never sends more than 15. detail_mo (unknown)
 pub mod mode_w1 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -568,7 +568,7 @@ pub mod mode_w1 {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod mode_w2 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -612,7 +612,7 @@ pub mod mode_w2 {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod mode_w3 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -656,7 +656,7 @@ pub mod mode_w3 {
         }
     }
 }
-/// The R axis setter writes repeat to the sampler for any target but 3D (established). Any other wrap enumerant is refused by the library. The library se (established)
+/// The R axis setter writes repeat to the sampler for any target but 3D (established). Any other wrap enumerant is refused by the library. The library se (unknown)
 pub mod mode_w5 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -690,7 +690,7 @@ pub mod mode_w5 {
         }
     }
 }
-/// (established)
+/// (unknown)
 pub mod mode_w6 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:25, unknown
@@ -814,7 +814,7 @@ pub mod size {
         }
     }
 }
-/// Active texture target (id 0x005, count 1). The word is shared with the clip-plane and path-selection bits of the same block; only the target bits are  (established)
+/// Active texture target (id 0x005, count 1). The word is shared with the clip-plane and path-selection bits of the same block; only the target bits are  (unknown)
 pub mod target {
     pub const WIDTH: u32 = 32;
     pub mod bit11 { // bits 11:11, unknown

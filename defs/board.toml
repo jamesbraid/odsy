@@ -42,7 +42,7 @@ expect = { code = 18, bit18 = 1, master = 3, bit24 = 1 }
 
 [words.SDRAM_CFG]
 width = 32
-grade = "established"
+grade = "inferred"
 
 [words.SDRAM_CFG.fields]
 host_id = { bits = [22, 19], grade = "established" }
@@ -93,7 +93,7 @@ expect = { fixed_mid = 1, fixed_top = 1 }
 
 [words.STRAP]
 width = 32
-grade = "established"
+grade = "inferred"
 
 [words.STRAP.fields]
 board_rev = { bits = [27, 24], grade = "established" }

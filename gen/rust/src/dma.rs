@@ -2,7 +2,7 @@
 // VPro (Odyssey) "Buzz" graphics ASIC: host DMA engine
 #![allow(dead_code)]
 
-/// Header word 7 as the descriptor builder leaves it. The kernel forces the top byte before it builds descriptors: bits 29, 28 and 25 always set, bit 24  (established)
+/// Header word 7 as the descriptor builder leaves it. The kernel forces the top byte before it builds descriptors: bits 29, 28 and 25 always set, bit 24  (inferred)
 pub mod entry_w7 {
     pub const WIDTH: u32 = 32;
     pub mod irq_after { // bits 31:31, inferred
@@ -238,7 +238,7 @@ pub mod page_w0 {
         }
     }
 }
-/// (established)
+/// (inferred)
 pub mod page_w1 {
     pub const WIDTH: u32 = 32;
     pub mod addr_lo { // bits 31:16, established
@@ -262,7 +262,7 @@ pub mod page_w1 {
         }
     }
 }
-/// (established)
+/// (inferred)
 pub mod tag_w0 {
     pub const WIDTH: u32 = 32;
     pub mod flag { // bits 15:15, established

@@ -83,7 +83,7 @@
     <field name="dst_field_b" start="12" size="4" type="uint" grade="established"/>
     <field name="src_window" start="0" size="12" type="uint" grade="established"/>
   </struct>
-  <struct name="COPY_W7" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <struct name="COPY_W7" size="4" grade="inferred" from="odsy binary analysis of the shipped GL library and kernel command senders">
     <doc>COPY operand 7 beyond the write header: flags set around the walk.</doc>
     <field name="dst_x_in_src" start="31" size="1" type="uint" grade="inferred"/>
     <field name="dst_y_in_src" start="30" size="1" type="uint" grade="inferred"/>
@@ -109,7 +109,7 @@ simulator's output, not a board's. Values below 0.1 are not tested.</doc>
       <expect field="alpha" value="255"/>
     </test>
   </struct>
-  <struct name="HDR_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <struct name="HDR_W0" size="4" grade="inferred" from="odsy binary analysis of the shipped GL library and kernel command senders">
     <doc>Image header word 0: board reference.</doc>
     <field name="kept" start="30" size="2" type="uint" grade="inferred"/>
     <field name="window_rel" start="29" size="1" type="uint" grade="established"/>
@@ -129,7 +129,7 @@ simulator's output, not a board's. Values below 0.1 are not tested.</doc>
     <field name="height" start="16" size="16" type="uint" grade="established"/>
     <field name="width" start="0" size="16" type="uint" grade="established"/>
   </struct>
-  <struct name="HDR_W4" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <struct name="HDR_W4" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library and kernel command senders">
     <doc>Image header word 4: class and code, field geometry, pixel size.
 The read header's word 4, and the COPY source description.</doc>
     <field name="front" start="31" size="1" type="uint" grade="established"/>
@@ -173,7 +173,7 @@ The read header's word 4, and the COPY source description.</doc>
     <doc>Image header word 6: row bytes.</doc>
     <field name="row_bytes" start="0" size="20" type="uint" grade="established"/>
   </struct>
-  <struct name="HDR_W7" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <struct name="HDR_W7" size="4" grade="inferred" from="odsy binary analysis of the shipped GL library and kernel command senders">
     <doc>Image header word 7: format, type, size and path control.
 The write header's word 7, and the COPY destination control.</doc>
     <field name="differs" start="30" size="1" type="uint" grade="established"/>
@@ -232,7 +232,7 @@ The write header's word 7, and the COPY destination control.</doc>
     <doc>Pixel-mode descriptor, first word.</doc>
     <field name="window_word" start="0" size="12" type="uint" grade="established"/>
   </struct>
-  <struct name="PIXMODE_W1" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <struct name="PIXMODE_W1" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library and kernel command senders">
     <doc>Pixel-mode descriptor, second word.</doc>
     <field name="bit27" start="27" size="1" type="uint" grade="unknown"/>
     <field name="storage3" start="22" size="1" type="uint" grade="inferred"/>
@@ -272,7 +272,7 @@ The write header's word 7, and the COPY destination control.</doc>
       <expect field="no_offset" value="0"/>
     </test>
   </struct>
-  <struct name="TEXLEVEL_W0" size="4" grade="established" from="odsy binary analysis of the shipped GL library and kernel command senders">
+  <struct name="TEXLEVEL_W0" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library and kernel command senders">
     <doc>Texture level descriptor, word 0.</doc>
     <field name="kept" start="29" size="3" type="uint" grade="unknown"/>
     <field name="addr" start="0" size="29" type="uint" grade="established"/>

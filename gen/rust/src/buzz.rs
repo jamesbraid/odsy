@@ -407,7 +407,7 @@ pub mod copy_w2 {
         }
     }
 }
-/// COPY operand 7 beyond the write header: flags set around the walk. (established)
+/// COPY operand 7 beyond the write header: flags set around the walk. (inferred)
 pub mod copy_w7 {
     pub const WIDTH: u32 = 32;
     pub mod dst_x_in_src { // bits 31:31, inferred
@@ -505,7 +505,7 @@ pub mod frame_pixel {
         }
     }
 }
-/// Image header word 0: board reference. (established)
+/// Image header word 0: board reference. (inferred)
 pub mod hdr_w0 {
     pub const WIDTH: u32 = 32;
     pub mod kept { // bits 31:30, inferred
@@ -601,7 +601,7 @@ pub mod hdr_w3 {
         }
     }
 }
-/// Image header word 4: class and code, field geometry, pixel size. The read header's word 4, and the COPY source description. (established)
+/// Image header word 4: class and code, field geometry, pixel size. The read header's word 4, and the COPY source description. (unknown)
 pub mod hdr_w4 {
     pub const WIDTH: u32 = 32;
     pub mod front { // bits 31:31, established
@@ -720,7 +720,7 @@ pub mod hdr_w6 {
         }
     }
 }
-/// Image header word 7: format, type, size and path control. The write header's word 7, and the COPY destination control. (established)
+/// Image header word 7: format, type, size and path control. The write header's word 7, and the COPY destination control. (inferred)
 pub mod hdr_w7 {
     pub const WIDTH: u32 = 32;
     pub mod differs { // bits 30:30, established
@@ -845,7 +845,7 @@ pub mod pixmode_w0 {
         }
     }
 }
-/// Pixel-mode descriptor, second word. (established)
+/// Pixel-mode descriptor, second word. (unknown)
 pub mod pixmode_w1 {
     pub const WIDTH: u32 = 32;
     pub mod bit27 { // bits 27:27, unknown
@@ -1059,7 +1059,7 @@ pub mod sampler {
         }
     }
 }
-/// Texture level descriptor, word 0. (established)
+/// Texture level descriptor, word 0. (unknown)
 pub mod texlevel_w0 {
     pub const WIDTH: u32 = 32;
     pub mod kept { // bits 31:29, unknown

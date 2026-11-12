@@ -37,7 +37,7 @@
 #define ODSY_MASTER_ID_CODE_INPLACE                  (ODSY_MASTER_ID_CODE_MASK << ODSY_MASTER_ID_CODE_SHIFT)
 
 /* word SDRAM_CFG: 32 bits; odsy binary analysis of the shipped kernel board routines */
-#define ODSY_SDRAM_CFG_WIDTH                         32 /* established */
+#define ODSY_SDRAM_CFG_WIDTH                         32 /* inferred */
 #define ODSY_SDRAM_CFG_HOST_ID_SHIFT                 19 /* established */
 #define ODSY_SDRAM_CFG_HOST_ID_MASK                  0xfu
 #define ODSY_SDRAM_CFG_HOST_ID_INPLACE               (ODSY_SDRAM_CFG_HOST_ID_MASK << ODSY_SDRAM_CFG_HOST_ID_SHIFT)
@@ -89,7 +89,7 @@
 #define ODSY_STATS_CTL_SIZE_EXP_INPLACE              (ODSY_STATS_CTL_SIZE_EXP_MASK << ODSY_STATS_CTL_SIZE_EXP_SHIFT)
 
 /* word STRAP: 32 bits; odsy binary analysis of the shipped kernel board routines */
-#define ODSY_STRAP_WIDTH                             32 /* established */
+#define ODSY_STRAP_WIDTH                             32 /* inferred */
 #define ODSY_STRAP_SDRAM_SIZE_SHIFT                  30 /* established */
 #define ODSY_STRAP_SDRAM_SIZE_MASK                   0x3u
 #define ODSY_STRAP_SDRAM_SIZE_INPLACE                (ODSY_STRAP_SDRAM_SIZE_MASK << ODSY_STRAP_SDRAM_SIZE_SHIFT)

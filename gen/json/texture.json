@@ -81,7 +81,7 @@
    "kind": "word",
    "name": "COLTAB_A",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -116,7 +116,7 @@
    "kind": "word",
    "name": "COLTAB_B",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -151,7 +151,7 @@
    "kind": "word",
    "name": "ENV_W0",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -217,7 +217,7 @@
    "kind": "word",
    "name": "ENV_W1",
    "width": 32,
-   "grade": "inferred",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -252,7 +252,7 @@
    "kind": "word",
    "name": "ENV_W2",
    "width": 32,
-   "grade": "inferred",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -321,7 +321,7 @@
    "kind": "word",
    "name": "FIRSTLEVEL",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -566,7 +566,7 @@
    "kind": "word",
    "name": "MODE_W0",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -637,7 +637,7 @@
    "kind": "word",
    "name": "MODE_W1",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -681,7 +681,7 @@
    "kind": "word",
    "name": "MODE_W2",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -725,7 +725,7 @@
    "kind": "word",
    "name": "MODE_W3",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -769,7 +769,7 @@
    "kind": "word",
    "name": "MODE_W5",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -804,7 +804,7 @@
    "kind": "word",
    "name": "MODE_W6",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {
@@ -922,7 +922,7 @@
    "kind": "word",
    "name": "TARGET",
    "width": 32,
-   "grade": "established",
+   "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library texture routines"
   },
   {

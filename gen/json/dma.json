@@ -8,7 +8,7 @@
    "kind": "word",
    "name": "ENTRY_W7",
    "width": 32,
-   "grade": "established",
+   "grade": "inferred",
    "from": "odsy binary analysis of the shipped kernel DMA routines"
   },
   {
@@ -230,7 +230,7 @@
    "kind": "word",
    "name": "PAGE_W1",
    "width": 32,
-   "grade": "established",
+   "grade": "inferred",
    "from": "odsy binary analysis of the shipped kernel DMA routines"
   },
   {
@@ -256,7 +256,7 @@
    "kind": "word",
    "name": "TAG_W0",
    "width": 32,
-   "grade": "established",
+   "grade": "inferred",
    "from": "odsy binary analysis of the shipped kernel DMA routines"
   },
   {

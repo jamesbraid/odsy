@@ -145,7 +145,7 @@ src_window = { bits = [11, 0], grade = "established" }
 
 [words.COPY_W7]
 width = 32
-grade = "established"
+grade = "inferred"
 type_name = "CopyControl"
 doc = "COPY operand 7 beyond the write header: flags set around the walk."
 
@@ -179,7 +179,7 @@ expect = { red = 128, green = 153, blue = 179, alpha = 255 }
 
 [words.HDR_W0]
 width = 32
-grade = "established"
+grade = "inferred"
 type_name = "ImageWord0"
 doc = "Image header word 0: board reference."
 
@@ -219,7 +219,7 @@ width = { bits = [15, 0], grade = "established" }
 
 [words.HDR_W4]
 width = 32
-grade = "established"
+grade = "unknown"
 type_name = "ReadHeader"
 doc = """
 Image header word 4: class and code, field geometry, pixel size.
@@ -261,7 +261,7 @@ row_bytes = { bits = [19, 0], grade = "established" }
 
 [words.HDR_W7]
 width = 32
-grade = "established"
+grade = "inferred"
 type_name = "WriteHeader"
 doc = """
 Image header word 7: format, type, size and path control.
@@ -326,7 +326,7 @@ window_word = { bits = [11, 0], grade = "established" }
 
 [words.PIXMODE_W1]
 width = 32
-grade = "established"
+grade = "unknown"
 type_name = "PixelModeW1"
 doc = "Pixel-mode descriptor, second word."
 
@@ -370,7 +370,7 @@ expect = { colour_table = 0, mag = 0, min = 0, image_flag18 = 1, table_fmt = 6, 
 
 [words.TEXLEVEL_W0]
 width = 32
-grade = "established"
+grade = "unknown"
 type_name = "TexLevelW0"
 doc = "Texture level descriptor, word 0."
 
