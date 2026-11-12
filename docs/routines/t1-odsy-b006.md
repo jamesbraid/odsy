@@ -16,7 +16,7 @@ what the 0x1048 and 0x1060 words hold, so the role is only partly clear.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb396310
 
@@ -28,7 +28,7 @@ operand, but the facts do not confirm it.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3999e0
 
@@ -44,7 +44,7 @@ what that address is, so the hardware role and the exact downsampling method are
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3b0090
 
@@ -55,7 +55,7 @@ its use is unknown. The name suggests an RGB send path, but nothing here confirm
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3b19b0
 
@@ -69,7 +69,7 @@ a clipped bitmap, but the facts do not show that.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb499ec0
 
@@ -80,7 +80,7 @@ visible in the facts.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49a0c0
 
@@ -90,7 +90,7 @@ more coordinate. The return value is not visible in the facts.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49a1c0
 
@@ -100,7 +100,7 @@ the same layout as Vertex3d but with integer operands. The return value is not v
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49a3c0
 
@@ -110,7 +110,7 @@ Vertex3i layout extended by one. The return value is not visible in the facts.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f0c0
 
@@ -120,7 +120,7 @@ difference from Vertex3d, so the texture coordinate meaning of the name is not v
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f780
 
@@ -131,7 +131,7 @@ is shared with the 3i, 3s, 3ui and 3us variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f840
 
@@ -141,7 +141,7 @@ TexCoord3d store pattern. The name suggests a color operand, but the facts show 
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49f880
 
@@ -152,7 +152,7 @@ facts.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fa80
 
@@ -162,7 +162,7 @@ the same integer store count.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fb80
 
@@ -171,7 +171,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fd80
 
@@ -181,7 +181,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49fe80
 
@@ -191,7 +191,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb49ff80
 
@@ -201,7 +201,7 @@ layout as ScratchColor4i, 4s, 4ub, 4ui and 4us.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0100
 
@@ -213,7 +213,7 @@ return value is not visible.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0280
 
@@ -223,7 +223,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0380
 
@@ -233,7 +233,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0480
 
@@ -243,7 +243,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0580
 
@@ -253,7 +253,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0680
 
@@ -263,7 +263,7 @@ integer variants.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb4a0780
 
@@ -274,7 +274,7 @@ The return value is not visible in the facts.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## Open questions
 

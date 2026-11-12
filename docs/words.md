@@ -596,9 +596,9 @@ the same blocks after a lost context.
   earlier call or load filled (the accumulation and image paths, which save and put back whole words); for those the
   claim rests on the image paths restoring a word that was itself written by the routines above, so it is by inference
   for them. The X module's pixel-mode switch sends the word with bits 19 or 20 and 15 only (`docs/odyssey-so-reads.md`, the entries
-  that send 0x10404; not re-scanned here), so it never sets bit 8 either. If bit 8 with 00 must be modelled, "no face is
+  that send 0x10404; not re-scanned here), so it never sets bit 8 either. If bit 8 with 00 matters, "no face is
   culled" follows from bits 9 and 10 being separate back and front selectors (by inference, from the 11 that
-  `GL_FRONT_AND_BACK` stores); "keep the previously selected face" has no software behind it. Either is a model choice.
+  `GL_FRONT_AND_BACK` stores); "keep the previously selected face" has no software behind it. Which the board does is **unknown**.
 - `0x00010405` (block 0x005, one operand, `libGLcore.so`): **established.**
   The transform and texture path selection, from context +31744 when dirty bit 2 is set: bits 2:0 are the user clip planes as
   a thermometer code from `__glOdysseyValidateClipPlanes`, bits 5:3 the active texture target (1-D, 2-D, 3-D) from

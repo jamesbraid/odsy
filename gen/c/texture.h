@@ -184,8 +184,8 @@
  * filter code in the sampler word and a single level descriptor. The
  * board is inferred to read level 0 plainly (nearest or linear) for 3D:
  * the vendor's porting guide and a published patent both say 3D
- * mipmapping is not implemented. A model that derives further volume
- * levels from slice spacing goes beyond what the library names.
+ * mipmapping is not implemented. Deriving further volume
+ * levels from slice spacing would go beyond what the library names.
  *
  * Slice exponent (level descriptor word 2, 3D targets only). The notes
  * establish that activation writes level word 2 bits 11:0 for a 3D
@@ -352,8 +352,7 @@
  * builders traced give only pairs that map to 0, so code 2 is the move's
  * only possible nonzero output and no traced path produces it: inferred
  * unreachable in the shipped software, not excluded. Whether the board
- * treats 1..7 differently from 0 is unknown. A model can carry the three
- * bits and give them no behaviour.
+ * treats 1..7 differently from 0 is unknown.
  */
 /* word OFFCODE: 32 bits; odsy binary analysis of the shipped GL library texture routines */
 #define TEX_OFFCODE_WIDTH                            32 /* established */

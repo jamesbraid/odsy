@@ -132,9 +132,9 @@ Readers may open anything:
   diagnostic transcripts, X server logs and screenshots in newsgroup and
   mailing-list posts, web pages, archives and forums.
 
-Running the shipped software under an emulator, to watch which registers it
-touches and what it expects back, is also software evidence. Label what it
-shows as the driver's expectation, not as proof of hardware behaviour.
+Running a shipped routine in the MIPS interpreter of `retools/tools/mips_shim.py`
+shows what that software computes. It says nothing about the board, so label
+the result as the software's behaviour, not as proof of hardware behaviour.
 
 Write findings in your own words. Never paste vendor source, HDL or
 proprietary binaries into the repository.
@@ -170,7 +170,7 @@ label to established or inferred.
 Some facts no software reveals, such as the reset value of a register no
 driver reads. When every route is exhausted, label the fact "unknown: no
 shipped software or published source depends on it" and list the routes you
-tried. An emulator author then chooses a value and documents the choice. Never
+tried. A reader who needs a value then chooses one and documents the choice. Never
 write "needs capture".
 
 An open question is not a stopping point. Record it in
@@ -193,7 +193,7 @@ finished when every inventory table reaches done, not when the rows look full.
 
 When you finish a task, regenerate the inventory, then pick the next entries
 below `understood` and carry on. Hand off only when your assigned area meets
-the definition above, or when the session ends. In that case, say in
+the definition above, or when you have to stop. In that case, say in
 `docs/open-questions.md` where you stopped and what comes next.
 
 
@@ -219,6 +219,6 @@ Output rules:
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 - Commit what you cite: findings may rest on IRIX binaries, published documents, captures or public open-source code (cited by project, revision and file) only.
 
-Downstream emulator projects consume the headers and docs; they should not need to read the binaries.
+Readers of the headers and docs should not need to read the binaries.
 
 Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`odsy_kernel: label the display-mode field`); bodies say why. Do not wait to batch work.

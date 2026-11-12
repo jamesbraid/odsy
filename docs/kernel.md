@@ -213,7 +213,7 @@ Observations (**established** as values): the settle words 0x10019, 0x10046 and 
 
 ## Pass 14 (2026-10-31): what a DMA wait depends on, the NIC at attach, and the start-up FIFO set-up
 
-IRIX 6.5.30m, IP30 `odsy_dma.o`, `odsy_intr.o`, `odsy_retrace.o`, `odsy_init.o` and the IP35 builds of the same objects. Written to explain a boot on a Tezro model (model evidence only) where the X server starts and the kernel later logs a DMA wait timeout. Labels as above.
+IRIX 6.5.30m, IP30 `odsy_dma.o`, `odsy_intr.o`, `odsy_retrace.o`, `odsy_init.o` and the IP35 builds of the same objects. Written to explain how the kernel's DMA wait can time out after the X server has started. Labels as above.
 
 ### Who sleeps on one operation
 
@@ -236,12 +236,11 @@ IRIX 6.5.30m, IP30 `odsy_dma.o`, `odsy_intr.o`, `odsy_retrace.o`, `odsy_init.o` 
 ### The start-up FIFO set-up, word by word (IP35 `odsyInitCfifo`)
 
 - **established.** Sent in order: `0x0854` with operands 0 and 0x0fffffff; five doublewords `0x000006b0_00000000`, `0x000006b1_00000100`, `0x000006b3_00005e50`, `0x000006b2_00007dc0`, `0x000007b5_00000001`; `0x00010046`; a 2 ms wait; a read of +0x201594 that must be 0x003d0046; `0x2e008380`, `0x2600807f`, `0x27008000`; 12288 words `0x40008000 | (h & 0x3ff) | ((h >> 10) << 23)`; then `0x000007f0_3b9aca00`.
-- **established** (checked by decoding `buzz_ucode_ip35.bin` in sending order): a model log of "unsupported command" lines cut at 64 distinct values shows exactly the nine non-program words above plus the first 55 distinct program words, so a capped log of this kind says nothing about later traffic.
 
 ### Registers with no board-base access in any shipped driver object
 
-- **established.** A search of every constant displacement from the board base in the IP30 and IP35 `odyssey.a` objects finds no access at 0x1000, 0x1008, 0x1010, 0x1030, 0x1040, 0x1048, 0x1050, 0x1058 or 0x10a0 (the only matches at those displacements are host-memory arrays and a crossbar jump table), and 0x800024 lies outside the 0x401000-byte window `odsy_attach` maps. The IP35 PROM image holds one `odsy` string, in a table of board names. The writer of these accesses in the Tezro model's log is **unknown**; what would settle it is the program counter, width and value of each first access.
-- **established.** IP35 `odsyReset` stores, in the order the model logged them: 0x105c, 0x1074, 0x108c, 0x109c, 0x10a4, 0x10ac (zero), 0x401c, 0x4024, 0x402c (zero), 0x4034, 0x403c (zero), 0x4044 = `0x0001c00c | (m << 4)`, 0x4014 = `0x01040012 | (m << 20)` (m = host widget id, record byte 792 & 0xf; shadows start at zero), 0x404c, 0x4054, 0x405c (zero), then 0x34, 0x1044, 0x103c = all ones, 0x1074, 0x1084 (0, 1, 0), 0x101c = all ones, 0x5c (zero).
+- **established.** A search of every constant displacement from the board base in the IP30 and IP35 `odyssey.a` objects finds no access at 0x1000, 0x1008, 0x1010, 0x1030, 0x1040, 0x1048, 0x1050, 0x1058 or 0x10a0 (the only matches at those displacements are host-memory arrays and a crossbar jump table), and 0x800024 lies outside the 0x401000-byte window `odsy_attach` maps. The IP35 PROM image holds one `odsy` string, in a table of board names. Whether anything on a running system accesses them is **unknown**; what would settle it is a trace on a board of the program counter, width and value of each first access.
+- **inferred.** IP35 `odsyReset` stores, in this order: 0x105c, 0x1074, 0x108c, 0x109c, 0x10a4, 0x10ac (zero), 0x401c, 0x4024, 0x402c (zero), 0x4034, 0x403c (zero), 0x4044 = `0x0001c00c | (m << 4)`, 0x4014 = `0x01040012 | (m << 20)` (m = host widget id, record byte 792 & 0xf; shadows start at zero), 0x404c, 0x4054, 0x405c (zero), then 0x34, 0x1044, 0x103c = all ones, 0x1074, 0x1084 (0, 1, 0), 0x101c = all ones, 0x5c (zero). The order and values have not been checked here against the routine's own stores in program order, which is what would settle it.
 
 ## Pass 15 (2026-10-31): the tag check with one operation, and the interrupt set-up order
 

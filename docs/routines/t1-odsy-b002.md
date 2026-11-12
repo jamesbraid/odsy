@@ -12,7 +12,7 @@ No entry was rejected by the renderer or the grader.
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a6d60`
 
@@ -20,7 +20,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a7010`
 
@@ -28,7 +28,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a72c0`
 
@@ -36,7 +36,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a7570`
 
@@ -44,7 +44,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a8800`
 
@@ -52,7 +52,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21a8e30`
 
@@ -60,7 +60,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21ade10`
 
@@ -68,7 +68,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21c7170`
 
@@ -76,7 +76,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21c78d0`
 
@@ -84,7 +84,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21e2650`
 
@@ -92,7 +92,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21fba30`
 
@@ -100,7 +100,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x21fe0f0`
 
@@ -108,7 +108,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220ad70`
 
@@ -116,7 +116,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220af80`
 
@@ -124,7 +124,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220b0d0`
 
@@ -132,7 +132,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220b2a0`
 
@@ -140,7 +140,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220b510`
 
@@ -148,7 +148,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220bed0`
 
@@ -156,7 +156,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220c010`
 
@@ -164,7 +164,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x220e490`
 
@@ -172,7 +172,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2211220`
 
@@ -180,7 +180,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x22116e0`
 
@@ -188,7 +188,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2212080`
 
@@ -196,7 +196,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ## `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0x2212aa0`
 
@@ -204,4 +204,4 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12

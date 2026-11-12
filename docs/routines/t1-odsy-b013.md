@@ -11,7 +11,7 @@ Every grade here is inferred. The rendered facts give accesses, calls, constants
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `__glOdysseyImageMovePixelsCopy` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbda0aa0`
 
@@ -19,7 +19,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `__glOdysseyImageMovePixelsDMAtoGfx` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbda3380`
 
@@ -27,7 +27,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `__glOdysseyInitLighting` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdaad80`
 
@@ -35,7 +35,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `__glOdylc_Normal3b` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdadbf0`
 
@@ -43,7 +43,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdae430`
 
@@ -51,7 +51,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdaf960`
 
@@ -59,7 +59,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdafa70`
 
@@ -67,7 +67,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb0500`
 
@@ -75,7 +75,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb0690`
 
@@ -83,7 +83,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb29a0`
 
@@ -91,7 +91,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb4f40`
 
@@ -99,7 +99,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb5ad0`
 
@@ -107,7 +107,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb6310`
 
@@ -115,7 +115,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdb99e0`
 
@@ -123,7 +123,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdd0090`
 
@@ -131,7 +131,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbdd19b0`
 
@@ -139,7 +139,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbeb9ec0`
 
@@ -147,7 +147,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbeba0c0`
 
@@ -155,7 +155,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbeba1c0`
 
@@ -163,7 +163,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbeba3c0`
 
@@ -171,7 +171,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbebf0c0`
 
@@ -179,7 +179,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbebf780`
 
@@ -187,7 +187,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbebf840`
 
@@ -195,7 +195,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbebf880`
 
@@ -203,4 +203,4 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12

@@ -262,7 +262,7 @@ word and a colour word with the same class and code come from different parts of
     with a raw signed component. The type code in word 7 is shared with the unsigned type, and no routine read here
     **established** (disassembly of `RenderFunc_DownloadColor` 0xd9a3db0, `ImageChainAddOpScaleBias` 0xd996640,
     `RenderFunc_ScaleBiasForSignedTypes` 0xd998010, `SetupScaleBiasForTexFilter` 0xd99ca10, `__glOdysseyImageMovePixelsDMAtoGfx`
-    0xd9b9e20, and a run of `__glOdysseyImageCalcXferWriteParams` 0xd9bd800 under the emulator over 14 formats, 18
+    0xd9b9e20, and a run of `__glOdysseyImageCalcXferWriteParams` 0xd9bd800 in the MIPS interpreter over 14 formats, 18
     destination classes and the six component types, bit 7 set and clear): the parameter routine reads bit 7 itself.
     With it set, a signed type gets the same record as the unsigned type of that width (word 7 type code 2, 3 or 4,
     the same format code and fields) except byte 0 (accepted) and byte 4 (signed flag, 1). Signed `COLOR_INDEX` and
@@ -354,10 +354,10 @@ eight-word copy block with one fixed set of format words: word 2 `0x80503050`, w
 question they answer is whether the board converts the pixel on the way (source field format,
 then destination field format) or moves the field unchanged.
 
-- **established** (a recorded IRIX 6.5.30 boot of a Fuel guest: 40 copy blocks, every one with
-  word 4 `0x83331008`, word 7 low bits `0x0041` and destination mode `0x20086a00`; none preceded
-  by block 0x203b, whose first appearance is later in the boot and carries the identity scale
-  `0x1000` and bias 0): the copy source is a 16-byte pixel's field 3 (bytes 6 and 7), the
+- **inferred** (copy blocks with word 4 `0x83331008`, word 7 low bits `0x0041` and destination
+  mode `0x20086a00` were seen in one recorded command stream, with block 0x203b, which carries the
+  identity scale `0x1000` and bias 0, first sent after them; the stream is not traced to the
+  library's sender code, which is what would settle it): the copy source is a 16-byte pixel's field 3 (bytes 6 and 7), the
   destination the same field, and word 4 bits 18:16 and 15:13 give a 2-byte field in a 16-byte
   pixel on both sides. Word 4 bits 7:0 are `0x08`: class (bits 2:0) 0, code (bits 7:3) 1.
 - **established** (`__glOdysseyImageCalcXferReadParams` and the description routine, table rows
@@ -509,7 +509,7 @@ address, not the listing's label. No vendor source was read for these three item
   actually selects stays board behaviour and is **unknown** (no shipped software reads the result back). The transform
   microcode does not bear on it: the disassembled program is the geometry transform and lighting stage only
   ([ucode/buzz_isa.md](../ucode/buzz_isa.md)), and the copy and buffer-select paths are fixed-function raster hardware. What
-  would settle it: the swap-time FIFO capture already named above, read with an emulator run that places block 0x017 word 3 at
+  would settle it: a drawing test on a board that places block 0x017 word 3 at
   an address distinct from any natural offset and toggles 0x609 bit 31 — drawing that follows word 3 confirms the
   select-between-bases reading, drawing at base-plus-offset refutes it.
 
@@ -592,7 +592,7 @@ addresses. No vendor source was read for any item here.
   0xd9b99d8 to 0xd9b9a18 and 0xd9b9c34 to 0xd9b9c60, plus a byte-copy realignment through a stack buffer at 0xd9b9aa0 to 0xd9b9ad8), so the burst word is the packed word.
 - **inferred.** The flag register that selects the packer is initialised from the conversion's fifth argument
   (a stack pointer the download passes) and cleared on two other paths (0xd9aa8d4, 0xd9ab7a8); the walk did not prove
-  it is nonzero for every stencil download. A guest run showing the shifted word agrees.
+  it is nonzero for every stencil download. Reading every path that reaches the packer would settle it.
 - **inferred.** The stencil write mask (block 0x052 bits 19:12) applies to the index, not to the word: the library keeps the
   application's mask there for a stencil download and the index sits in bits 23:16, four bits above the mask's own position.
   A literal `(word & mask) | (old & ~mask)` with the mask taken from 19:12 zeroes the index; the mask has to be applied to bits
@@ -988,7 +988,7 @@ Release IRIX 6.5.30m, IP30, N32 `libGLcore.so` (`root/builds/6.5.30-media/usr/gf
 
 An independent re-check of the copy-block and buffer-select text against the shipped libGLcore and kernel found three errors, all confirmed:
 
-- The copy block's front bit (operand 2 bit 31) was said to track the displayed buffer across a swap and to be recomputed from swap state. It is set only from the GL draw-buffer selection when the copy is built; the swap routine sends no copy words. The swap tracking evidence belongs to bit 31 of registers 0x608 and 0x609. Behaviour change: do not model the copy's front bit as following swaps.
+- The copy block's front bit (operand 2 bit 31) was said to track the displayed buffer across a swap and to be recomputed from swap state. It is set only from the GL draw-buffer selection when the copy is built; the swap routine sends no copy words. The swap tracking evidence belongs to bit 31 of registers 0x608 and 0x609. Behaviour change: the copy's front bit does not follow swaps.
 - Copy operand 7 bits 23:19 were described as the nibble above the pixel-size code. Bits 23:20 are the destination's first field code and bits 19:16 one 4-bit size field. No buffer select there still holds. The 3-bit pixel-size pin for ordinary write headers (18:16) is unchanged; the copy sender writes a 4-bit field.
 - The destination base unit was graded established under a heading that covers the sender's fields; the 16-byte unit is inferred, and the memory manager's shift-left-by-5 word suggests 32 bytes. Left unreconciled.
 - Weakened: the select-between-bases reading of the front bit, because the pixel-buffer attach path zeroes the second base when its flag bit 1 is set.

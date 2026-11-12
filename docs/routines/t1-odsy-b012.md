@@ -8,7 +8,7 @@ Role statements for 25 routines from the odsy reading list, positions 300 to 324
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `glXCreateGLXPbufferSGIX` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf872f4`
 
@@ -16,7 +16,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `glXGetVideoSyncSGI` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf876a8`
 
@@ -24,7 +24,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### libGL.so 0xcf87734
 
@@ -32,7 +32,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `CreateContext` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf956c8`
 
@@ -40,7 +40,7 @@ This is the row named `CreateContext`; the renderer left the symbol unnamed. It 
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `glXJoinSwapGroupSGIX` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf9eb34`
 
@@ -48,7 +48,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf9ec54`
 
@@ -56,7 +56,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGL.so` at `0xcf9ed74`
 
@@ -64,7 +64,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `LoadAndSendStippledQuads` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd54010`
 
@@ -72,7 +72,7 @@ The row is unnamed in the renderer; the inventory name is `LoadAndSendStippledQu
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd54830`
 
@@ -80,7 +80,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd55c70`
 
@@ -88,7 +88,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd560d0`
 
@@ -96,7 +96,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd56300`
 
@@ -104,7 +104,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### libGLcore.so 0xbd56530
 
@@ -112,7 +112,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd56c30`
 
@@ -120,7 +120,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd56e70`
 
@@ -128,7 +128,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd570b0`
 
@@ -136,7 +136,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd572f0`
 
@@ -144,7 +144,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd57530`
 
@@ -152,7 +152,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd58560`
 
@@ -160,7 +160,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### libGLcore.so 0xbd58bd0
 
@@ -168,7 +168,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd596d0`
 
@@ -176,7 +176,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd5d4e0`
 
@@ -184,7 +184,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### libGLcore.so 0xbd741a0
 
@@ -192,7 +192,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `ApplyMaterialI` in `builds/vpro-patch-4104/usr/gfx/arch/IP30ODSY64/libGLcore.so` at `0xbd74890`
 
@@ -200,4 +200,4 @@ The row is unnamed in the renderer; the inventory name is `ApplyMaterialI`. It h
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12

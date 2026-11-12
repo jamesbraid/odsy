@@ -56,7 +56,7 @@ How to read it: `documented` means the row's name or value sits on a line that e
 
 ## Priority
 
-Open problems, most important first. Opus readers take these in order.
+Open problems, most important first. Take these in order.
 
 1. **Texture filter precision and texel paths.** Arithmetic precision of each texture filter, and every path a texel takes from memory to the pixel (formats, wrap, mip selection, borders). Start from libGLcore texture state setup and the kernel driver's texture memory handling.
 2. **Command-FIFO formats for the textport and posted writes.** Layout of words accepted through the textport and through posted writes: packing, ordering, completion and flow control.
@@ -143,7 +143,7 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 
 | Program | Behaviour to cover | Status | Owner | Datasheet topic |
 |---|---|---|---|---|
-| buzz_xform.bin | Transform program uploaded by the guest: instruction format, entry points, what it computes. Pass 10 (`ucode/buzz_isa.md`, last section): the entry list's path to the board (registers 0x28 and 0x60), the 43 value-3 marks listed. Open questions (`docs/open-questions.md`): every operation's meaning and the opcode-to-routine dispatch (program-counter trace and data-memory read-back named there) | partial | `ucode/buzz_isa.md`, `ucode/disasm/buzz_xform.lst` | direct XIO interface |
+| buzz_xform.bin | Transform program uploaded by the driver: instruction format, entry points, what it computes. Pass 10 (`ucode/buzz_isa.md`, last section): the entry list's path to the board (registers 0x28 and 0x60), the 43 value-3 marks listed. Open questions (`docs/open-questions.md`): every operation's meaning and the opcode-to-routine dispatch (program-counter trace and data-memory read-back named there) | partial | `ucode/buzz_isa.md`, `ucode/disasm/buzz_xform.lst` | direct XIO interface |
 | buzz_ucode (kernel array) | Older build of the same program as buzz_xform.bin (99 records fewer at 792, 429 fewer at the end). Written: 96-bit word (94 bits used), 2048-word RAM, load words 0x27/0x40, sequencer registers 0x20-0x35, AddProgram entry lists, overlay window 1848-2047, end mark in bits 1:0 with four delay slots, provisional field split, listing. The unloaded tail (records 2048-2265) is overlay code that no kernel path sends (`ucode/buzz_ucode.md`). Pass 6 (`ucode/buzz_isa.md`): sequencer registers 0x22/0x23 read as a colour-mode pair from host-side use; no operation named, with the failed attempts recorded. Pass 7 (`ucode/buzz_isa.md`): gfxinit identified as the loader of buzz_xform.bin through ioctl 108; why no host routine can name an operation, with two candidate stones. Pass 10 (`ucode/buzz_isa.md`, last section): the list's path to the board read from libGLcore and the kernel. Open questions (`docs/open-questions.md`): any operation's meaning, token-to-entry dispatch and the bits 1:0 = 3 marks (program-counter trace and data-memory read-back named there); the `ffffffff` trailer is never sent, so no shipped software depends on it | partial | `ucode/buzz_ucode.md`, `ucode/buzz_isa.md`, `ucode/disasm/buzz_ucode_kernel.lst` | direct XIO interface |
 
 Rows: 31.

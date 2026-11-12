@@ -10,7 +10,7 @@ facts leave open are marked unknown.
   makes an indirect call at 0x311a8 that has that entry in a4. It calls fpstore_sd at 0x311d8 and then
   store_fpcsr at 0x311e0. What the unknown callee at 0x311a8 does, and which value each path hands to
   fpstore_sd, are unknown sub-facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_nmsub_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x311f0
   **Inferred.** Role (from name): a negated multiply-subtract on doubles. It calls breakout_and_test3_sd at
@@ -18,7 +18,7 @@ facts leave open are marked unknown.
   returned as is (the beq at 0x31264 falls through); when it returns zero the routine calls madd at 0x312a4 and
   returns its result. The facts do not show the sign handling around the madd call, so it is an unknown
   sub-fact; it may sit inside madd.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_cvtw_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x312b4
   **Inferred.** Role (from name): converts a double to a 32-bit word. It calls breakout_sd at 0x312d8 with a0
@@ -28,7 +28,7 @@ facts leave open are marked unknown.
   when bit 0x800 of the word at +0x54c off the pointer at abs 0xffffffffffffc018 is set (beq at 0x31330), with
   0x10040 ORed into the word it passes in a6. The call at 0x313e0 is indirect, with an entry of the sym(renorm)
   table in a3; what it does is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_cvtl_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31470
   **Inferred.** Role (from name): converts a double to a 64-bit integer. It calls breakout_sd at 0x31494 and
@@ -37,7 +37,7 @@ facts leave open are marked unknown.
   0x314b4 jumps to 0x31608, the block that calls fpstore_d with 0x8000000000000000, when a1 equals an entry of the
   sym(MTWOP63) table. The three fpstore_d calls at 0x3161c, 0x31640 and 0x31678 pass a0 = 0x8000000000000000,
   0x7fffffffffffffff and 0, the 64-bit minimum, maximum and zero.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_comp_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31690
   **Inferred.** Role (from name): compares two doubles. It uses entries of the sym(SIGN_SHIFT), sym(EXP_SHIFT),
@@ -46,7 +46,7 @@ facts leave open are marked unknown.
   +0x54c off the pointer at abs 0xffffffffffffc018 is set (beq at 0x317d4). It calls store_fpcsr at 0x317e4 and
   0x31844, and the return at 0x31850 returns the store_fpcsr result. Branches test bits 0x1, 0x4 and 0x2 of a3
   (0x31754, 0x31838, 0x31864); what they select is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_nmadd_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x318d0
   **Inferred.** Role (from name): a negated multiply-add on doubles with the same three-operand shape as the
@@ -54,13 +54,13 @@ facts leave open are marked unknown.
   0x31944 falls through), and a zero result calls madd at 0x31988 and returns its value. The delay slot of the
   madd call runs `xori a7,a7,0x1`, which flips a bit of a7, but the facts do not say what a7 holds, so the sign
   handling is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_madd_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31998
   **Inferred.** Role (from name): a multiply-add on doubles. It calls breakout_and_test3_sd at 0x31a04; a
   nonzero result is returned directly (the beq at 0x31a0c falls through), and a zero result calls madd at 0x31a48
   and returns its value. The global at abs 0xffffffffffffc018 that it loads at 0x319a8 is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_sqrt_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31a58
   **Inferred.** Role (from name): square root of a double. It calls breakout_and_test_sd at 0x31a7c and branches
@@ -70,14 +70,14 @@ facts leave open are marked unknown.
   (beq at 0x31ad0 and 0x31ca0). It makes an indirect call at 0x31cd4 with an entry of the sym(renorm) table in
   a7 and calls fpstore_sd at 0x31d00. The indirect call at 0x31b20, with sym(round) in a6, is an unknown
   sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_msub_sd` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31d44
   **Inferred.** Role (from name): a multiply-subtract on doubles with the same shape as the other three-operand
   wrappers. It calls breakout_and_test3_sd at 0x31db0; a nonzero result is returned directly (the beq at 0x31db8
   falls through), and a zero result calls madd at 0x31df8 and returns its value. The facts do not show the sign
   handling around the madd call, so it is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_cvts_d` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31e08
   **Inferred.** Role (from name): converts a double to a single. It calls breakout_sd at 0x31e24 with a0 = 1,
@@ -86,7 +86,7 @@ facts leave open are marked unknown.
   pattern. The call at 0x31fac has a3 = 0x7f800000, the single-precision infinity pattern; the facts do not show
   the value it passes in a0. post_sig at 0x31eb0 is called only when bit 0x800 of the word at +0x54c is set (beq
   at 0x31ea8).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `checkfp` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x31fd0
   **Inferred.** Role (from name): checks floating-point state; the facts show only that it is bracketed by
@@ -95,21 +95,21 @@ facts leave open are marked unknown.
   jumps to the splx call when that word is zero, and the bne at 0x31ffc jumps there when a0 differs from it.
   The body between the two calls makes no named call; it holds swc1 and sdc1 stores (0x32058 to 0x32158) and an
   sd at 0x32168. Where those stores go and what the body tests are unknown sub-facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `fpunit_fpstore_s` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x34800
   **Inferred.** Role (from name): stores a single-precision value. It loads an entry at 0x34820 from a table
   whose address is built at 0x34800-0x34818 from a .rodata relocation with addend 55488, indexed by a1 times 8
   (shift at 0x34808), and tail-jumps through it at 0x34824 with a0 to a3 unchanged. The jump-table targets are
   unknown sub-facts, so the width and destination of each store case are unknown.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `fpunit_fpstore_d` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x34f80
   **Inferred.** Role (from name): stores a double-precision value. The bne at 0x34f80 branches on a2. The a2 != 0
   path jumps to 0x34fb4, loads an entry at 0x34fd0 and tail-jumps through it at 0x34fd4 with a0 to a3
   unchanged. The other path loads an entry at 0x34fa8 from a table whose address is built from a .rodata
   relocation with addend 55848. The jump-table targets are unknown sub-facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `longway` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x352a0
   **Inferred.** Role (from name): unknown; the name gives no hint. It reads a flag byte at abs
@@ -119,33 +119,33 @@ facts leave open are marked unknown.
   (sw at 0x35514), calls printf at 0x35534 and 0x35558 and panic at 0x3558c, and ends in a tail call to _baduk
   at 0x35594. It also executes byte stores at 0x35458 and 0x3552c. What selects each path is an unknown
   sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `stkovflw` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x35470
   **Inferred.** Role (from name): reports a stack overflow, which fits the shared tail it branches to. A 28-byte
   stub whose branch at 0x35484 jumps unconditionally into 0x354fc, the shared error tail that prints and calls
   panic (see stkscr3). The facts list no calls, loads or stores for the stub itself, so its setup before the
   branch is unknown.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `stkundflw` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x3548c
   **Inferred.** Role (from name): reports a stack underflow, which fits the shared tail it branches to. A 28-byte
   stub whose branch at 0x354a0 jumps unconditionally into 0x354fc, the shared print-and-panic tail (see
   stkscr3). The facts list no calls, loads or stores for the stub itself, so its setup before the branch is
   unknown.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `stkscr1` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x354a8
   **Inferred.** Role (from name): a stack-check report. A 28-byte stub whose branch at 0x354bc jumps
   unconditionally into 0x354fc, the shared print-and-panic tail (see stkscr3). The facts list no calls, loads or
   stores for the stub itself, so its setup before the branch is unknown.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `stkscr2` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x354c4
   **Inferred.** Role (from name): a stack-check report. A 28-byte stub whose branch at 0x354d8 jumps
   unconditionally into 0x354fc, the shared print-and-panic tail (see stkscr3). The facts list no calls, loads or
   stores for the stub itself, so its setup before the branch is unknown.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `stkscr3` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x354e0
   **Inferred.** Role (from name): the stack-check error tail. The stubs stkovflw, stkundflw, stkscr1 and stkscr2
@@ -153,7 +153,7 @@ facts leave open are marked unknown.
   branch to 0x354fc as well. From there it writes sym(ovflwword) at 0x35514 (sw), reads the flag byte at abs
   0xffffffffffffc04f (lb at 0x35520), stores a byte at 0x3552c, calls printf at 0x35534 and 0x35558, calls panic
   at 0x3558c with a0 = .data offset 20368, and ends with a tail call to _baduk at 0x35594.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `_cvtd_s` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x3559c
   **Inferred.** Role (from name): converts a single to a double. It calls breakout_sd at 0x355b8 with a0 = 0 and
@@ -162,7 +162,7 @@ facts leave open are marked unknown.
   and 0x35730 have a4 = 0x7ff0000000000000, the double infinity pattern; the facts do not show their a0 values.
   post_sig at 0x35654 is called only when bit 0x800 of the word at +0x54c is set (beq at 0x3564c), with
   a1 = 0x10000.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `round_w` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x35748
   **Inferred.** Role (from name): rounds to a 32-bit word with saturation; the facts do not show the input
@@ -170,7 +170,7 @@ facts leave open are marked unknown.
   minimum), the first only when bit 0x800 and the second only when bit 0x80 of the word at +0x54c is set (beq at
   0x35814 and 0x35858). It calls fpstore_s at 0x35878 and 0x3589c; the call at 0x3589c has a0 = 0x7fffffff, the
   32-bit maximum. The rounding step itself is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `round_s` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x358ac
   **Inferred.** Role (from name): rounds a double to a single-precision result. It loads from a .data table at
@@ -178,21 +178,21 @@ facts leave open are marked unknown.
   lookup (lb +1 at 0x35dbc). It calls post_sig at 0x359ac, 0x35b88, 0x35ca0, 0x35e00, 0x35e3c and 0x35f34, and
   fpstore_s at 0x35a60, 0x35bc0, 0x35ce0, 0x35d8c, 0x35e64 and 0x35fe0. The per-rounding-mode case mapping and
   what the byte lookup selects are unknown sub-facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `maddrnd_s` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x36074
   **Inferred.** Role (from name): a single-precision multiply-add with rounding. It calls post_sig at 0x36164,
   0x3630c, 0x36364, 0x363a0, 0x36450 and 0x36480. It loads from the same .data table at offset 20408 that
   round_s uses (lwu at 0x36300), and the return at 0x36190 returns either that table entry or an unknown value.
   The rounding decision is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `round_l` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x365c4
   **Inferred.** Role (from name): rounds a double to a 64-bit integer. It calls post_sig at 0x36678 with
   a6 = 0x8000000000000000 (the 64-bit minimum) only when bit 0x80 of the word at +0x54c is set (beq at 0x36670).
   It calls fpstore_d at 0x36690 and store_fpcsr at 0x36698, and the return at 0x366a4 returns the store_fpcsr
   result. The rounding decision is an unknown sub-fact.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 
 - `round_d` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x366ac
   **Inferred.** Role (from name): rounds a double to a double-format result. It does a byte-table lookup (lb +1
@@ -200,4 +200,4 @@ facts leave open are marked unknown.
   fpstore_d at 0x36c44. It calls fpstore_d at 0x3683c, 0x369a4, 0x36ac4, 0x36b68, 0x36c44 and 0x36dd4, and
   post_sig at 0x36788, 0x36974, 0x36a8c, 0x36be0, 0x36c1c and 0x36d24. The rounding-mode mapping and what the
   byte lookup selects are unknown sub-facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
