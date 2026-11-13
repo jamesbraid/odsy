@@ -86,10 +86,10 @@ odsy_kern.h	file in this workspace
 odyssey.c	name in published Linux or OpenBSD source
 odysseyreg.h	name in published Linux or OpenBSD source
 odysseyvar.h	name in published Linux or OpenBSD source
-ogl-sample/gfx/lib/opengl/glcore/s_capi.c	path in the published OpenGL sample implementation
-ogl-sample/gfx/lib/opengl/glcore/s_tapi.c	path in the published OpenGL sample implementation
-ogl-sample/gfx/lib/opengl/include/xform.h	path in the published OpenGL sample implementation
-openbsd/sys/arch/sgi/xbow/odyssey.c	name in published OpenBSD source
+references/code/ogl-sample/gfx/lib/opengl/glcore/s_capi.c	path in the published OpenGL sample implementation
+references/code/ogl-sample/gfx/lib/opengl/glcore/s_tapi.c	path in the published OpenGL sample implementation
+references/code/ogl-sample/gfx/lib/opengl/include/xform.h	path in the published OpenGL sample implementation
+references/code/openbsd/sys/arch/sgi/xbow/odyssey.c	name in published OpenBSD source
 px_api.c	name in the published OpenGL sample implementation
 px_pack.c	name in the published OpenGL sample implementation
 px_paths.c	name in the published OpenGL sample implementation
