@@ -1,14 +1,10 @@
-# Imported from ODSY_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former ODSY_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "board"
 prefix = "ODSY"
 title = "VPro (Odyssey) graphics board: widget identity, board"
 doc = "Board identity on the crossbar, the register positions of the board window, and the identity, strap and memory-configuration words."
 from = "odsy binary analysis of the shipped kernel board routines"
 public_from = ["odsy binary analysis"]
-
-[c]
-legacy_header = "ODSY_DECODE.h"
-legacy_guard = "ODSY_DECODE_H"
 
 [words.HOST_FLOW_MODE]
 width = 32

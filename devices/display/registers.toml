@@ -1,14 +1,10 @@
-# Imported from DISPLAY_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former DISPLAY_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "display"
 prefix = "DISPLAY"
 title = "VPro (Odyssey) display registers (publish-safe subset)"
 doc = "Display-half registers of the Odyssey board: colour map, line and frame tables, cursor, DAC, timing generator, genlock and the display-mode table."
 from = "odsy binary analysis of the shipped display driver"
 public_from = ["odsy binary analysis"]
-
-[c]
-legacy_header = "DISPLAY_DECODE.h"
-legacy_guard = "DISPLAY_DECODE_H"
 
 [spaces.display_regs]
 unit = "reg"
@@ -408,7 +404,7 @@ grade = "inferred"
 doc = """
 Colour-map unit configuration. Start-up writes 0; the timing load stores
 a flag bit of the timing load, the same flag it stores to the second
-scan configuration register in PBJ_DECODE.h."""
+scan configuration register in generated/c/pbj.h."""
 space = "display_regs"
 
 [registers.cmap_override]

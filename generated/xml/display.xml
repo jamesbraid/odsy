@@ -255,7 +255,7 @@ what they do is unknown.</doc>
   <struct name="CMAP_UNIT_CTL" size="4" grade="inferred" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2929" access="w" space="display_regs" reset="unknown">
     <doc>Colour-map unit configuration. Start-up writes 0; the timing load stores
 a flag bit of the timing load, the same flag it stores to the second
-scan configuration register in PBJ_DECODE.h.</doc>
+scan configuration register in generated/c/pbj.h.</doc>
   </struct>
   <struct name="CMAP_OVERRIDE" size="4" grade="inferred" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x292a" access="w" count="3" stride="1" space="display_regs" reset="unknown">
     <doc>Red, green and blue overrides of the colour-map unit, in that order.

@@ -23,8 +23,7 @@ binaries and evidence, the toolchain and the working rules.
 The hardware facts live in `devices/<unit>/registers.toml`, one file per block; `tools/config/defs-check.toml` holds the
 repo's check settings. `generated/` is generated from them and is never edited by hand. The
 `registers.md` page beside each `registers.toml` is the published reference for the block, and `generated/c/` holds the C
-headers. The root `*_DECODE.h` files are forwarding headers that include `generated/c/`, so
-existing consumers keep their old macro names. To change a fact, edit its `registers.toml`, then run
+headers. To change a fact, edit its `registers.toml`, then run
 
     retools/tools/defs/defs-gen
     retools/tools/defs/defs-check --build

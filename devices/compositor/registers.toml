@@ -1,13 +1,9 @@
-# Imported from COMPOSITOR_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former COMPOSITOR_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "compositor"
 prefix = "CCX"
 title = "VPro (Odyssey) compositor chip: register numbers"
 from = "odsy analysis of the compositor diagnostic table in the shipped tools"
 public_from = ["odsy analysis of the compositor diagnostic table"]
-
-[c]
-legacy_header = "COMPOSITOR_DECODE.h"
-legacy_guard = "COMPOSITOR_DECODE_H"
 
 [constants]
 ATPG_FIRST_PIXEL = { value = 0x5c, grade = "established", doc = "established (read-write), default 0x3fffffff" }

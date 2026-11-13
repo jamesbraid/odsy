@@ -1,14 +1,10 @@
-# Imported from BUZZ_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former BUZZ_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "buzz"
 prefix = "BUZZ"
 title = "VPro (Odyssey) \"Buzz\" graphics ASIC: command and image"
 doc = "Command opcodes and the image, copy, pixel-mode, texture-level and sampler words of the Odyssey geometry and pixel engine's command stream."
 from = "odsy binary analysis of the shipped GL library and kernel command senders"
 public_from = ["odsy binary analysis"]
-
-[c]
-legacy_header = "BUZZ_DECODE.h"
-legacy_guard = "BUZZ_DECODE_H"
 
 [c.aliases]
 BUZZ_FRAME_PIXEL_COMPONENT_MASK = "BUZZ_FRAME_PIXEL_RED_MASK"

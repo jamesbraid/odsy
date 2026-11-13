@@ -59,13 +59,13 @@ Our primary output is a set of C header files under `devices/`, one per chip or 
 
 Headers under `devices/`:
 
-1. **`devices/buzz/BUZZ.h`**: the graphics ASIC: registers, command and FIFO formats, texture and raster state, transform program interface. `BUZZ_DECODE.h`, `TEXTURE_DECODE.h` and `DMA_DECODE.h` are the publish-safe decode views of its command, texture and DMA words.
-2. **`devices/pbj/PBJ.h`**: the second chip, the display back end (`PBJ_DECODE.h` is its decode view).
-3. **`devices/display/DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout (`DISPLAY_DECODE.h` is its decode view).
+1. **`devices/buzz/BUZZ.h`**: the graphics ASIC: registers, command and FIFO formats, texture and raster state, transform program interface. `generated/c/buzz.h`, `generated/c/texture.h` and `generated/c/dma.h` are the publish-safe generated headers for its command, texture and DMA words.
+2. **`devices/pbj/PBJ.h`**: the second chip, the display back end (`generated/c/pbj.h` is its generated header).
+3. **`devices/display/DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout (`generated/c/display.h` is its generated header).
 
-4. **`ODSY_DECODE.h`**: the publish-safe board view: widget identity, the board register map, and the identity, strap and memory-configuration words. A fuller `ODSY.h` with the board configurations is still planned.
+4. **`generated/c/board.h`**: the publish-safe board view: widget identity, the board register map, and the identity, strap and memory-configuration words. A fuller `ODSY.h` with the board configurations is still planned.
 
-The `*_DECODE.h` files are not written by hand. The hardware facts they state live in `devices/<unit>/registers.toml`, the source of hardware facts, one file per block. `retools/tools/defs/defs-gen` writes `generated/c/` (the C headers), `generated/rust/`, `generated/python/`, `generated/json/`, `generated/xml/` and `devices/<unit>/registers.md` (one reference page per block, the published reference). Each `*_DECODE.h` is a forwarding header that includes `generated/c/` and keeps the old macro names for existing consumers. `generated/` and the forwarding headers are generated and never edited by hand: change the `registers.toml`, then regenerate.
+The headers under `generated/c/` are not written by hand. The hardware facts they state live in `devices/<unit>/registers.toml`, the source of hardware facts, one file per block. `retools/tools/defs/defs-gen` writes `generated/c/` (the C headers), `generated/rust/`, `generated/python/`, `generated/json/`, `generated/xml/` and `devices/<unit>/registers.md` (one reference page per block, the published reference). `generated/` is generated and never edited by hand: change the `registers.toml`, then regenerate.
 
 [evidence/coverage.md](evidence/coverage.md) is the map of what is written and what is missing, with the open problems in priority order. Prose that does not fit a header goes in the unit's `README.md` or in a page under `devices/`, `software/` or `evidence/`.
 

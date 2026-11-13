@@ -313,7 +313,7 @@ Array of 37 registers, stride 1.
 
 Colour-map unit configuration. Start-up writes 0; the timing load stores
 a flag bit of the timing load, the same flag it stores to the second
-scan configuration register in PBJ_DECODE.h.
+scan configuration register in generated/c/pbj.h.
 
 ### Register `cmap_override`
 

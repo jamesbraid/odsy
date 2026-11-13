@@ -362,7 +362,7 @@
 /*
  * Colour-map unit configuration. Start-up writes 0; the timing load stores
  * a flag bit of the timing load, the same flag it stores to the second
- * scan configuration register in PBJ_DECODE.h.
+ * scan configuration register in generated/c/pbj.h.
  */
 /* cmap_unit_ctl: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
 #define DISPLAY_CMAP_UNIT_CTL_OFFSET                 0x2929u /* inferred */

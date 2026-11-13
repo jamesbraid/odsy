@@ -4,15 +4,15 @@ The declarative part of the odsy check (field ranges, macros, enums, vectors,
 prose claims, the Rust output) lives in devices/*/registers.toml and the shared tool. What is
 left here does not fit a regular expression and a bind:
 
-- BUZZ_DECODE.h: the format/type vectors the pixel-path notes decode in words.
-- DISPLAY_DECODE.h / PBJ_DECODE.h: vectors against the display-mode table, the
+- generated/c/buzz.h: the format/type vectors the pixel-path notes decode in words.
+- generated/c/display.h / generated/c/pbj.h: vectors against the display-mode table, the
   host-interface prose and the FIFO header examples; register rows against the
   PBJ register table (offset, access, width).
-- TEXTURE_DECODE.h: the texel format table against the recorded exhaustive run
+- generated/c/texture.h: the texel format table against the recorded exhaustive run
   of the format routines and the notes' table, the pitch and slice arithmetic
   (CALC lines), and a C compile of the header that runs the helpers and table.
-- DMA_DECODE.h: constants and descriptor arithmetic against the notes, and the
-  bits it shares with BUZZ_DECODE.h.
+- generated/c/dma.h: constants and descriptor arithmetic against the notes, and the
+  bits it shares with generated/c/buzz.h.
 """
 import os
 import re
@@ -41,7 +41,7 @@ def parse_defines(text):
     return _ctx.lib.parse_defines(text)
 
 
-# --- BUZZ_DECODE.h ---
+# --- generated/c/buzz.h ---
 
 # Test-vector decodes the prose states: (value, format, type), checked against
 # the header's TESTVEC lines and against the prose text.
@@ -77,7 +77,7 @@ def check_prose_vectors(rep, header, vecs):
         rep.fail('devices/buzz/pixel-paths.md', 'prose decode of read value 0x08 not found')
 
 
-# --- DISPLAY_DECODE.h / PBJ_DECODE.h ---
+# --- generated/c/display.h / generated/c/pbj.h ---
 
 MODE_ROW_RE = re.compile(
     r'^\s*\*\s+(\d+)\s+(\d)\s+(0x[0-9a-f]+|-)\s+(0x[0-9a-f]+|-)\s+'
@@ -189,7 +189,7 @@ def check_pbj_rows(rep, regs):
             rep.fail('devices/pbj/README.md', '%s width %d but the prose row says load %s bits' % (key, r['width'], m.group(1)))
 
 
-# --- TEXTURE_DECODE.h ---
+# --- generated/c/texture.h ---
 
 SWEEP = 'software/opengl/runs/texture-format-index-sweep.txt'
 
@@ -476,29 +476,29 @@ def check_texture(rep, header, h, verbose):
     for need in ('TEX_OP_FIRSTLEVEL', 'TEX_OP_TARGET'):
         if (defs.get(need, 0) >> 10) & 0xf != 1:
             rep.fail(header, '%s does not carry one operand' % need)
-    buzz = _hdr('BUZZ_DECODE.h')
-    # The mode block word must equal the one in BUZZ_DECODE.h.
+    buzz = _hdr('generated/c/buzz.h')
+    # The mode block word must equal the one in generated/c/buzz.h.
     if defs.get('TEX_OP_TEXMODE') != buzz.defs.get('BUZZ_OP_TEXMODE'):
-        rep.fail(header, 'TEX_OP_TEXMODE differs from BUZZ_OP_TEXMODE in BUZZ_DECODE.h')
+        rep.fail(header, 'TEX_OP_TEXMODE differs from BUZZ_OP_TEXMODE in generated/c/buzz.h')
     # Environment colour is packed like the border colour.
     for a, b in (('ENV_W1.red', 'MODE_W5.red'), ('ENV_W1.green', 'MODE_W5.green'),
                  ('ENV_W2.blue', 'MODE_W6.blue'), ('ENV_W2.alpha', 'MODE_W6.alpha')):
         if a in fields and b in fields and fields[a][:2] != fields[b][:2]:
             rep.fail(header, '%s %s but %s %s: the notes pack the environment colour like the border colour'
                      % (a, fields[a][:2], b, fields[b][:2]))
-    # Facts shared with BUZZ_DECODE.h.
+    # Facts shared with generated/c/buzz.h.
     bz = buzz.fields
     doc_f = read('devices/texture/texture-formats.md')
     m = re.search(r'\*\*Class\*\* \(mode word 4 bits (\d+):(\d+)', doc_f)
     if not m or 'SAMPLER.activation' not in bz or (int(m.group(1)), int(m.group(2))) != bz['SAMPLER.activation'][:2]:
-        rep.fail(header, 'the class is not stored where BUZZ_DECODE.h puts SAMPLER.activation')
+        rep.fail(header, 'the class is not stored where generated/c/buzz.h puts SAMPLER.activation')
     m = re.search(r'TEXMODE6 bit (\d+): complement of TEXMODE4 bit (\d+)', read('devices/buzz/BUZZ.h'))
     if not m or 'SAMPLER.no_offset' not in bz or int(m.group(2)) != bz['SAMPLER.no_offset'][0]:
-        rep.fail(header, 'the offset flag pair does not match SAMPLER.no_offset in BUZZ_DECODE.h')
-    # The unwritten word-2 statement: BUZZ_DECODE.h must not own the same bits under another name.
+        rep.fail(header, 'the offset flag pair does not match SAMPLER.no_offset in generated/c/buzz.h')
+    # The unwritten word-2 statement: generated/c/buzz.h must not own the same bits under another name.
     if 'LEVEL3D_W2.slice_exp' in fields and 'TEXLEVEL_W2.bits' in bz \
             and fields['LEVEL3D_W2.slice_exp'][:2] != bz['TEXLEVEL_W2.bits'][:2]:
-        rep.fail(header, 'LEVEL3D_W2.slice_exp covers different bits than TEXLEVEL_W2.bits in BUZZ_DECODE.h')
+        rep.fail(header, 'LEVEL3D_W2.slice_exp covers different bits than TEXLEVEL_W2.bits in generated/c/buzz.h')
     rows, pix_to_idx = check_fmt_table(rep, header, text, enums)
     calcs = check_calcs(rep, header, text)
     compiled = check_c_compile(rep, header, rows, pix_to_idx, calcs, verbose)
@@ -507,7 +507,7 @@ def check_texture(rep, header, h, verbose):
               % (header, len(rows), len(calcs), '' if compiled else ' (no C compile)'))
 
 
-# --- DMA_DECODE.h ---
+# --- generated/c/dma.h ---
 
 DMA_SIZE_LIMIT_MACRO = 'DMA_ENTRY_MAX_BYTES'
 
@@ -607,12 +607,12 @@ def dma_claims(rep, header, fields, defs, enums, buzz):
                                ('HDR_W3.width', w3, (15, 0)), ('HDR_W3.height', w3, (31, 16)),
                                ('HDR_W6.row_bytes', w6, (int(m.group(4)), int(m.group(5))))):
             if key not in buzz:
-                err('BUZZ_DECODE.h has no %s' % key)
+                err('generated/c/buzz.h has no %s' % key)
                 continue
             if int(re.search(r'W(\d)', key).group(1)) != word:
                 err('%s is not word %d as the notes say' % (key, word))
             if (buzz[key][0], buzz[key][1]) != rng:
-                err('%s is %d:%d in BUZZ_DECODE.h, notes say %d:%d' % (key, buzz[key][0], buzz[key][1], rng[0], rng[1]))
+                err('%s is %d:%d in generated/c/buzz.h, notes say %d:%d' % (key, buzz[key][0], buzz[key][1], rng[0], rng[1]))
 
     def c_topbyte(m, err):
         fixed = int(m.group(1), 16) << 24
@@ -724,11 +724,11 @@ def check_dma(rep, header, h, verbose):
         rep.fail(header, 'DMA_ENTRY_BYTES is not header bytes plus page entries')
     if defs.get('DMA_ENTRY_MAX_BYTES', 0) > defs.get('DMA_ENTRY_PAGES_MAX', 0) * defs.get('DMA_PAGE_CHUNK_BYTES', 0) * 2:
         rep.fail(header, 'DMA_ENTRY_MAX_BYTES exceeds what the page list could cover even with slack')
-    buzz = _hdr('BUZZ_DECODE.h').fields
+    buzz = _hdr('generated/c/buzz.h').fields
     for key, other in (('ENTRY_W7.read_dir', 'HDR_W7.read_dir'), ('ENTRY_W7.transform', 'HDR_W7.transform'),
                        ('ENTRY_W7.differs', 'HDR_W7.differs')):
         if key in fields and other in buzz and span(fields, key) != (buzz[other][0], buzz[other][1]):
-            rep.fail(header, '%s is %s but %s is %d:%d in BUZZ_DECODE.h' % (key, span(fields, key), other, buzz[other][0], buzz[other][1]))
+            rep.fail(header, '%s is %s but %s is %d:%d in generated/c/buzz.h' % (key, span(fields, key), other, buzz[other][0], buzz[other][1]))
     dma_claims(rep, header, fields, defs, enums, buzz)
 
 
@@ -737,13 +737,13 @@ def check_dma(rep, header, h, verbose):
 def check_header(ctx, h):
     global _ctx
     _ctx = ctx
-    if h.name == 'BUZZ_DECODE.h':
+    if h.name == 'buzz.h':
         check_prose_vectors(ctx.rep, h.file, h.vecs)
-    elif h.name in ('DISPLAY_DECODE.h', 'PBJ_DECODE.h'):
+    elif h.name in ('display.h', 'pbj.h'):
         check_vector_prose(ctx.rep, h.file, h.vecs)
-    elif h.name == 'TEXTURE_DECODE.h':
+    elif h.name == 'texture.h':
         check_texture(ctx.rep, h.file, h, ctx.verbose)
-    elif h.name == 'DMA_DECODE.h':
+    elif h.name == 'dma.h':
         check_dma(ctx.rep, h.file, h, ctx.verbose)
 
 

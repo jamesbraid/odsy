@@ -1,14 +1,10 @@
-# Imported from PBJ_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former PBJ_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "pbj"
 prefix = "PBJ"
 title = "VPro (Odyssey) PB&J display back end (publish-safe subset)"
 doc = "Host-interface, I2C and scanout-buffer registers of the Odyssey board, and the header word that frames a display FIFO write."
 from = "odsy binary analysis of the shipped display driver"
 public_from = ["odsy binary analysis"]
-
-[c]
-legacy_header = "PBJ_DECODE.h"
-legacy_guard = "PBJ_DECODE_H"
 
 [spaces.pbj_regs]
 unit = "reg"

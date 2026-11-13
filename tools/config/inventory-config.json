@@ -63,15 +63,8 @@
     ],
     "headers": [
       "devices/buzz/BUZZ.h",
-      "BUZZ_DECODE.h",
-      "COMPOSITOR_DECODE.h",
       "devices/display/DISPLAY.h",
-      "DISPLAY_DECODE.h",
-      "DMA_DECODE.h",
-      "ODSY_DECODE.h",
       "devices/pbj/PBJ.h",
-      "PBJ_DECODE.h",
-      "TEXTURE_DECODE.h",
       "software/*/include/*.h",
       "software/kernel/*/include/*.h"
     ],

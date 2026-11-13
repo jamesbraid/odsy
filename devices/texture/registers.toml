@@ -1,4 +1,4 @@
-# Imported from TEXTURE_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former TEXTURE_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "texture"
 prefix = "TEX"
 title = "VPro (Odyssey) \"Buzz\" texture state: environment,"
@@ -6,16 +6,12 @@ doc = "Texture state words of the Odyssey command stream: environment, mode, LOD
 from = "odsy binary analysis of the shipped GL library texture routines"
 public_from = ["odsy binary analysis"]
 
-[c]
-legacy_header = "TEXTURE_DECODE.h"
-legacy_guard = "TEXTURE_DECODE_H"
-
 [words.CLASS]
 width = 32
 doc = """
 Texture class (the "class" columns above): the component set the
 environment sees, a 3-bit value stored in the sampler word bits 25:23
-(BUZZ_DECODE.h SAMPLER.activation, which that file leaves as an
+(generated/c/buzz.h SAMPLER.activation, which that file leaves as an
 unexplained 3-bit value; this file gives its source). The library
 returns it from the index and the OpenGL internal format the
 application named, so the class cannot be derived from the index alone.
@@ -87,7 +83,7 @@ width = 32
 doc = """
 Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment
 mode: it is a filter, and sets bit 17 of the sampler word
-(BUZZ_DECODE.h).
+(generated/c/buzz.h).
 
 Words 1 and 2 are the environment colour, four unsigned 12-bit
 channels. The conversion from a float x is the same as for the border
@@ -148,7 +144,7 @@ doc = """
 The write coverage of the level descriptor words (the bits the library
 writes in word 1 are the format index 25:20, size code 31:30, pitch
 11:0 and, from two internal paths only, the offset code 28:26) is
-in BUZZ_DECODE.h and the offset code is in section 6. Word 1 bit 29
+in generated/c/buzz.h and the offset code is in section 6. Word 1 bit 29
 and bits 19:12 are established as never written by the three routines
 that store level words, and inferred never written by any library
 code. What the board does with them, or with a descriptor past entry
@@ -211,7 +207,7 @@ levels from slice spacing would go beyond what the library names.
 Slice exponent (level descriptor word 2, 3D targets only). The notes
 establish that activation writes level word 2 bits 11:0 for a 3D
 target, as the base-2 ceiling of the slice tile count (0 for a count
-below 2). BUZZ_DECODE.h lists that word as unknown because its sender
+below 2). generated/c/buzz.h lists that word as unknown because its sender
 list there predates this finding; this file carries the field under
 its own word name so the two do not overlap. Board reading: inferred
 (the only reading under which a later sample finds what an upload
@@ -347,7 +343,7 @@ Code 3 is never sent (the allocator's table does accept element sizes
 of 16 and 32 bytes, codes 3 and 4, but no format row uses them).
 
 Offset code (level descriptor word 1 bits 28:26,
-BUZZ_DECODE.h TEXLEVEL_W1.offset_code). Two writers: the on-board
+generated/c/buzz.h TEXLEVEL_W1.offset_code). Two writers: the on-board
 mipmap builder stores 2 only when the record's offset word equals 2,
 which the allocator never produces, so it stores 0; the
 pixel-to-texture move stores a value its helper derives from the
@@ -370,7 +366,7 @@ code2 = { value = 2, grade = "established" }
 [words.SIZE]
 width = 32
 doc = """
-Size code c (level descriptor word 1 bits 31:30, BUZZ_DECODE.h
+Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h
 TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
 and 49, 2 for 32 and 33. The allocator books 2 << c bytes per texel;
 the texture path and the pixel-to-texture move both send the same
@@ -415,7 +411,7 @@ doc = """
 Wrap modes are independent per axis: each setter takes one enumerant,
 writes one axis and looks at no other. The wrap codes themselves (0
 repeat, 1 clamp to edge, 2 clamp, 3 clamp to border) are the sampler
-word's wrap_s, wrap_t and wrap_r fields (BUZZ_DECODE.h). The value that
+word's wrap_s, wrap_t and wrap_r fields (generated/c/buzz.h). The value that
 goes with each code in wrap_aux, established:"""
 grade = "established"
 

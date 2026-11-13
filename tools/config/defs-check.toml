@@ -34,7 +34,7 @@ label = "binary name"
 regex = '\blibGL\w*|\bodyssey\.(?:a|so)\b|\bbuzz_xform\b|\bbuzz_ucode\b'
 
 [units.buzz]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 plugin_form = "legacy"
 prose_offsets = false
 
@@ -59,15 +59,15 @@ size_limit_macro = "DMA_ENTRY_MAX_BYTES"
 prose_offsets = false
 
 [units.board]
-group = "ODSY_DECODE.h"
+group = "board"
 prose_offsets = false
 
 [units.compositor]
-group = "COMPOSITOR_DECODE.h"
+group = "compositor"
 prose_offsets = false
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "read class/code split"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'class \(bits (\d+):(\d+)\) \d+, code \(bits (\d+):(\d+)\)'
@@ -77,7 +77,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "read class/code split (table)"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'bits (\d+):(\d+) class, (\d+):(\d+) code, 12 set'
@@ -87,7 +87,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "write format/type split"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'format code in bits (\d+):(\d+), type code in\s+bits (\d+):(\d+)'
@@ -97,7 +97,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "write word 7 fields"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'bits (\d+):(\d+) format code, (\d+):(\d+) type code, bit (\d+) expand, bit (\d+) unpack byte swap, (\d+):(\d+) bytes-per-pixel code, bit (\d+) transfer path, bit (\d+) as for a read'
@@ -112,7 +112,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 7 pixel-size code"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'result goes to word 7 bits (\d+):(\d+) of both'
@@ -121,13 +121,13 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 4 pixel-size code"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'pixel-size code from description \+0x28'
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 4 pixel-size width note"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'pixel-size code is three bits, (\d+):(\d+), in both header words'
@@ -137,7 +137,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 4 size field"
 doc = "devices/buzz/pixel-paths.md"
 regex = "15:13 the class field"
@@ -146,7 +146,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 1 and 3 packing"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 1 \| x in bits (\d+):(\d+), y in (\d+):(\d+)'
@@ -156,7 +156,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 3 packing"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 3 \| width in bits (\d+):(\d+), height in (\d+):(\d+)'
@@ -166,7 +166,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 6 row bytes"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 6 \| row bytes in bits (\d+):(\d+)'
@@ -175,7 +175,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "word 2 window word"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 2 \| description \+0x1c in bits (\d+):(\d+)'
@@ -184,7 +184,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "copy operand 2 packing"
 doc = "devices/buzz/pixel-paths.md"
 regex = "description \\+0x1c in bits (\\d+):(\\d+), the destination\\'s second field code in bits (\\d+):(\\d+)\\s+and the source \\+0x1c in bits (\\d+):(\\d+), with destination front in bit (\\d+)"
@@ -196,7 +196,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "copy operand 7 flags"
 doc = "devices/buzz/pixel-paths.md"
 regex = "bits (\\d+):(\\d+) set\\s+when context \\+0x16a68 is zero \\(.*?\\), bit (\\d+) exactly when.*?bit (\\d+) when the destination y lies\\s+in the source\\'s y range and bit (\\d+) when the destination x"
@@ -208,7 +208,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "pixel-mode word"
 doc = "devices/buzz/pixel-paths.md"
 regex = "\\+0x96a0\\s+bits (\\d+):(\\d+) the description\\'s \\+0x1c; \\+0x96a4 bits (\\d+):(\\d+) the field format above, (\\d+):(\\d+) the layout\\s+code, (\\d+):(\\d+) the storage code, (\\d+):(\\d+) the description\\'s \\+0x28, bit (\\d+) for pixel classes 16 and\\s+17, bit (\\d+) when"
@@ -223,7 +223,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "level descriptor format index"
 doc = "devices/texture/texture-formats.md"
 regex = 'six-bit field in bits (\d+):(\d+) of word 1 of a level descriptor'
@@ -232,7 +232,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "level descriptor size code"
 doc = "devices/texture/texture-formats.md"
 regex = '\*\*Word 1 bits (\d+):(\d+) are the size code'
@@ -241,7 +241,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "level descriptor offset code"
 doc = "devices/texture/texture-formats.md"
 regex = 'offset code \(level word 1 bits (\d+):(\d+)\)'
@@ -250,7 +250,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "level descriptor pitch"
 doc = "devices/texture/texture-formats.md"
 regex = 'Word 1 bits (\d+):(\d+) come from the width in 16-texel tiles'
@@ -259,7 +259,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "level descriptor word 0"
 doc = "devices/texture/texture-state.md"
 regex = '\| `__glOdysseyTextureActivate` \| bits (\d+):(\d+) '
@@ -268,7 +268,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler wrap fields"
 doc = "devices/texture/texture-state.md"
 regex = 'Word 4 field \(S bits (\d+):(\d+), T (\d+):(\d+), R (\d+):(\d+)\)'
@@ -279,7 +279,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler table format and bit 0"
 doc = "devices/texture/texture-formats.md"
 regex = '\| Table format code \| (\d+):(\d+) \|'
@@ -288,7 +288,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler colour table enable"
 doc = "devices/texture/texture-formats.md"
 regex = '\| Colour-table enable \| (\d+) \|'
@@ -297,7 +297,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler image flag"
 doc = "devices/texture/texture-formats.md"
 regex = '\| Image-step flag \| (\d+) \|'
@@ -306,7 +306,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler min filter"
 doc = "devices/buzz/BUZZ.h"
 regex = 'Bits (\d+):(\d+): minification filter'
@@ -315,7 +315,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler mag filter"
 doc = "devices/buzz/BUZZ.h"
 regex = 'Bits (\d+):(\d+): magnification filter'
@@ -324,7 +324,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler trilinear"
 doc = "devices/buzz/BUZZ.h"
 regex = '/\* Bit (\d+): set for GL_LINEAR_MIPMAP_LINEAR'
@@ -333,7 +333,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler no-offset"
 doc = "devices/buzz/BUZZ.h"
 regex = "/\\* Bit (\\d+): set when the object\\'s offset flag"
@@ -342,7 +342,7 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "sampler activation"
 doc = "devices/buzz/BUZZ.h"
 regex = '/\* Bits (\d+):(\d+): 3-bit value from the current-texture lookup'
@@ -351,25 +351,25 @@ binds = [
 ]
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "post-filter word format"
 doc = "devices/buzz/BUZZ.h"
 regex = 'Each is signed 3\.12 in (\d+) bits'
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "COPY opcode"
 doc = "devices/buzz/pixel-paths.md"
 regex = "sends 0x2031 and the eight words"
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "POSTFILTER opcode"
 doc = "devices/buzz/pixel-paths.md"
 regex = "`0x0001203b` and the eight words"
 
 [[claims]]
-group = "BUZZ_DECODE.h"
+group = "buzz"
 label = "level descriptor opcode"
 doc = "devices/buzz/README.md"
 regex = 'header `0x10e80 \| i`|word `0x00010ebc`|0x280 \+ i'
@@ -1339,7 +1339,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "widget manufacturer and part"
 doc = "devices/board/README.md"
 regex = 'manufacturer (\d+) and part (0x[0-9a-f]+) under'
@@ -1349,7 +1349,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "pio window length"
 doc = "software/kernel/driver-functions.md"
 regex = "a (0x[0-9a-f]+)-byte window; on success"
@@ -1358,7 +1358,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "identity revision nibble"
 doc = "devices/board/README.md"
 regex = 'takes bits (\d+):(\d+) as a buzz revision type'
@@ -1367,7 +1367,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "identity variant flag"
 doc = "devices/board/README.md"
 regex = 'Bit (\d+) \(record \+280\) is a variant flag'
@@ -1376,7 +1376,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "variant B bias"
 doc = "devices/board/README.md"
 regex = '\| 9 to 15 \| value - (\d+)'
@@ -1385,7 +1385,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "strap size code"
 doc = "devices/board/README.md"
 regex = '\| (\d+):(\d+) \| SDRAM size code'
@@ -1394,7 +1394,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "strap banks"
 doc = "devices/board/README.md"
 regex = '\| (\d+) \| SDRAM banks'
@@ -1403,7 +1403,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "strap latency"
 doc = "devices/board/README.md"
 regex = '\| (\d+) \| CAS latency'
@@ -1412,7 +1412,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "strap board revision"
 doc = "devices/board/README.md"
 regex = '\| (\d+):(\d+) \| board revision'
@@ -1421,7 +1421,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "fifo levels"
 doc = "devices/board/board-registers.md"
 regex = 'bits (\d+):(\d+) are the display FIFO level in doublewords \(\*\*established\*\*[^)]*\) and bits (\d+):(\d+) a command-side level'
@@ -1431,7 +1431,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "memory configuration host id"
 doc = "devices/board/README.md"
 regex = 'bits (\d+):(\d+) = the widget master id'
@@ -1440,7 +1440,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "memory configuration banks"
 doc = "devices/board/README.md"
 regex = 'bit (\d+) set for 4 banks'
@@ -1449,7 +1449,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "memory configuration latency"
 doc = "devices/board/README.md"
 regex = 'bit (\d+) set for CAS latency 2'
@@ -1458,7 +1458,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "memory configuration size"
 doc = "devices/board/README.md"
 regex = 'bits (\d+):(\d+): 0 for 32 MB, 1 for 64 MB, 2 for 128 MB'
@@ -1467,7 +1467,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "memory configuration pulse and enable"
 doc = "devices/board/README.md"
 regex = 'bit (\d+) pulses an SDRAM initialisation; bit (\d+) enables it'
@@ -1477,7 +1477,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register widget_id"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Widget identification word'
@@ -1486,7 +1486,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register widget_status"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Widget status word'
@@ -1495,7 +1495,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register err_addr_hi"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Upper error-address word'
@@ -1504,7 +1504,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register err_addr_lo"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Lower error-address word'
@@ -1513,7 +1513,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register widget_control"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Widget control word'
@@ -1522,7 +1522,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register intr_dest_hi"
 doc = "devices/board/board-registers.md"
 regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Upper half of the widget's interrupt destination"
@@ -1531,7 +1531,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register intr_dest_lo"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Lower half of the same interrupt destination'
@@ -1540,7 +1540,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register err_command"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Error command word'
@@ -1549,7 +1549,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register xbar_intr_config"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Crossbar interrupt configuration word'
@@ -1558,7 +1558,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register sdram_config"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* SDRAM configuration word'
@@ -1567,7 +1567,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register abort"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Abort and reset register'
@@ -1576,7 +1576,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flags"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* The flags register'
@@ -1585,7 +1585,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flag_clear"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flag-clear register'
@@ -1594,7 +1594,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flag_intr_enable"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flag interrupt-enable mask'
@@ -1603,7 +1603,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flag_intr_disable"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Interrupt-enable clear register'
@@ -1612,7 +1612,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register intr_ctl_hi"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Interrupt control, high half'
@@ -1621,7 +1621,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register intr_ctl_lo"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low half of the shared interrupt destination'
@@ -1630,7 +1630,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register intr_vector"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Four interrupt vectors packed one per byte'
@@ -1639,7 +1639,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register intr_header"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Interrupt packet header word'
@@ -1648,7 +1648,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register status0"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Status word 0'
@@ -1657,7 +1657,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register levels_straps"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Levels and straps'
@@ -1666,7 +1666,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flow_config"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flow-control configuration'
@@ -1675,7 +1675,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flow_off"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flow-control off switch'
@@ -1684,7 +1684,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register flow_clear"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flow-control clear'
@@ -1693,7 +1693,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register swap_trigger"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Per-window buffer-swap trigger'
@@ -1702,7 +1702,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register swap_timing"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Per-window swap-timing select'
@@ -1711,7 +1711,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register buffer_b_set"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Buffer-B select set register'
@@ -1720,7 +1720,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register buffer_b_clear"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Buffer-B select clear register'
@@ -1729,7 +1729,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register buffer_b_state"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Read-back of the buffer select'
@@ -1738,7 +1738,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register ctx_save_addr_hi"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* High 16 bits of the physical address of the context-save buffer'
@@ -1747,7 +1747,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register ctx_save_addr_lo"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low 32 bits of the same context-save buffer address'
@@ -1756,7 +1756,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register master_id_a"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Master-id control word of the 0x4000 group'
@@ -1765,7 +1765,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register stats_addr_hi"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* High half \(bits 47:32\) of the physical address of the 16 KB statistics'
@@ -1774,7 +1774,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register stats_addr_lo"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low half \(bits 31:0\) of the statistics region address'
@@ -1783,7 +1783,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register stats_control"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Statistics control word'
@@ -1792,7 +1792,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register shadow_addr_hi"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* High half of the physical address of the hardware-shadow cache region'
@@ -1801,7 +1801,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register shadow_addr_lo"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low half \(bits 31:0\) of the shadow cache region address'
@@ -1810,7 +1810,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register master_id_b"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Master-id word of the second control pair'
@@ -1819,7 +1819,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register cmd_fifo_port"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Command FIFO port'
@@ -1828,7 +1828,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register ctx_save_port"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Context-save request port'
@@ -1837,7 +1837,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register cmd_window_2"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Second command-word window'
@@ -1846,7 +1846,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "board register display_fifo_port"
 doc = "devices/board/board-registers.md"
 regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Display FIFO port'
@@ -1855,7 +1855,7 @@ binds = [
 ]
 
 [[claims]]
-group = "ODSY_DECODE.h"
+group = "board"
 label = "twelve-bit formats need this much memory"
 doc = "devices/display/README.md"
 regex = 'Flag bits 5:4 are not 1 when the variant is nonzero, and not 2 when the variant is 0\. .*?3\. Flag bit 8 is clear when the memory is below (\d+) MB'

@@ -2,7 +2,7 @@
 // VPro (Odyssey) "Buzz" texture state: environment,
 #![allow(dead_code)]
 
-/// Texture class (the "class" columns above): the component set the environment sees, a 3-bit value stored in the sampler word bits 25:23 (BUZZ_DECODE.h  (established)
+/// Texture class (the "class" columns above): the component set the environment sees, a 3-bit value stored in the sampler word bits 25:23 (generated/c/bu (established)
 pub mod class {
     pub const WIDTH: u32 = 32;
     pub mod value { // bits 2:0, established
@@ -188,7 +188,7 @@ pub mod env_w0 {
         }
     }
 }
-/// Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment mode: it is a filter, and sets bit 17 of the sampler word (BUZZ_DECODE.h). Words (unknown)
+/// Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment mode: it is a filter, and sets bit 17 of the sampler word (generated/c/buzz.h).  (unknown)
 pub mod env_w1 {
     pub const WIDTH: u32 = 32;
     pub mod top { // bits 31:24, unknown
@@ -772,7 +772,7 @@ pub mod offcode {
         }
     }
 }
-/// Size code c (level descriptor word 1 bits 31:30, BUZZ_DECODE.h TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18 and 49, 2 for 32 a (established)
+/// Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18 and 49, 2 for (established)
 pub mod size {
     pub const WIDTH: u32 = 32;
     pub mod code { // bits 1:0, established
