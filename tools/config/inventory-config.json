@@ -3,26 +3,88 @@
   "siblings": {"kona": "../kona", "crime": "../crime"},
   "docs": {
     "prose": [
-      "docs/*.md",
-      "docs/routines/*.md",
+      "devices/buzz/blend-residue-fit.md",
+      "devices/board/README.md",
+      "devices/buzz/README.md",
+      "software/opengl/capability-trees.md",
+      "software/firmware/compositor-files.md",
+      "software/kernel/compositor-probe.md",
+      "devices/compositor/compositor-registers.md",
+      "evidence/coverage.md",
+      "software/kernel/diag-messages.md",
+      "software/opengl/diagnostics-and-libgl-functions.md",
+      "software/video/display-files.md",
+      "devices/display/README.md",
+      "software/kernel/driver-functions.md",
+      "software/firmware/firmware-images.md",
+      "software/opengl/gl-entry-points.md",
+      "evidence/hw-explanations-odsy-w1.md",
+      "software/userland/install-tools.md",
+      "evidence/instruction-readings-*.md",
+      "devices/board/interrupts-fifo-reset.md",
+      "software/kernel/ioctls.md",
+      "software/kernel/kernel-config.md",
+      "software/kernel/kernel-flow-control.md",
+      "software/kernel/kernel-functions.md",
+      "software/kernel/kernel-gfx-routines.md",
+      "software/kernel/kernel-objects.md",
+      "software/kernel/kernel-rrm-panes.md",
+      "software/kernel/kernel-rrm-routines.md",
+      "software/kernel/kernel-shared.md",
+      "software/kernel/kernel-textport.md",
+      "software/kernel/kernel.md",
+      "software/opengl/libglcore-functions.md",
+      "software/opengl/libglcore-odyssey-builds.md",
+      "software/opengl/libglcore-odyssey-reads.md",
+      "software/opengl/libraries.md",
+      "devices/buzz/numeric-formats.md",
+      "software/xsgi/odyssey-so-functions.md",
+      "software/xsgi/odyssey-so-reads.md",
+      "questions/README.md",
+      "software/opengl/opengl.md",
+      "devices/pbj/README.md",
+      "devices/buzz/pixel-paths.md",
+      "references/documents/published-sources.md",
+      "devices/buzz/raster.md",
+      "devices/board/board-registers.md",
+      "software/opengl/sample-implementation.md",
+      "devices/texture/texture-formats.md",
+      "devices/texture/texture-state.md",
+      "devices/buzz/tokens.md",
+      "evidence/tooling.md",
+      "software/video/video-format-sources.md",
+      "software/userland/vpro-tool-functions.md",
+      "devices/buzz/words.md",
+      "software/xsgi/x-module-functions.md",
+      "software/xsgi/x-server-and-iris-libraries.md",
+      "evidence/routines/*.md",
       "ucode/*.md",
       "README.md"
     ],
     "headers": [
-      "*.h",
+      "devices/buzz/BUZZ.h",
+      "BUZZ_DECODE.h",
+      "COMPOSITOR_DECODE.h",
+      "devices/display/DISPLAY.h",
+      "DISPLAY_DECODE.h",
+      "DMA_DECODE.h",
+      "ODSY_DECODE.h",
+      "devices/pbj/PBJ.h",
+      "PBJ_DECODE.h",
+      "TEXTURE_DECODE.h",
       "*/include/*.h"
     ],
     "tables": [],
     "index": [
       "AGENTS.md",
       "README.md",
-      "IRIX_FILES.md",
-      "docs/coverage.md",
-      "docs/open-questions.md"
+      "evidence/irix-files.md",
+      "evidence/coverage.md",
+      "questions/README.md"
     ],
     "dumps": [],
     "skip": [
-      "docs/inventory/*"
+      "evidence/inventory/*"
     ],
     "context": {
       "ucode": [
@@ -36,8 +98,8 @@
     }
   },
   "review_required": [
-    "docs/routines/t1-*.md",
-    "docs/routines/t2-*.md"
+    "evidence/routines/t1-*.md",
+    "evidence/routines/t2-*.md"
   ],
   "prepare": [],
   "binaries": [
@@ -186,10 +248,10 @@
       "name": "display",
       "size": "0x4000",
       "docs": [
-        "DISPLAY.h",
-        "PBJ.h",
-        "docs/display.md",
-        "docs/pbj.md"
+        "devices/display/DISPLAY.h",
+        "devices/pbj/PBJ.h",
+        "devices/display/README.md",
+        "devices/pbj/README.md"
       ]
     }
   ],
@@ -207,7 +269,7 @@
         "usr/cpu/sysgen/*/odyssey.a*",
         "builds/*/usr/cpu/sysgen/*/odyssey.a*"
       ],
-      "why": "odsy_attach stores the board's PIO base at board record +824 (docs/kernel.md)"
+      "why": "odsy_attach stores the board's PIO base at board record +824 (software/kernel/kernel.md)"
     },
     {
       "type": "constant",
@@ -220,7 +282,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x120000 at client offset 0x4000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x120000 at client offset 0x4000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     },
     {
       "type": "constant",
@@ -233,7 +295,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x0 at client offset 0x8000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x0 at client offset 0x8000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     },
     {
       "type": "constant",
@@ -246,7 +308,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x110000 at client offset 0x10000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x110000 at client offset 0x10000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     },
     {
       "type": "constant",
@@ -259,7 +321,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x118000 at client offset 0x14000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x118000 at client offset 0x14000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     },
     {
       "type": "constant",
@@ -272,7 +334,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x200000 at client offset 0x18000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x200000 at client offset 0x18000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     },
     {
       "type": "constant",
@@ -285,7 +347,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x220000 at client offset 0x1c000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x220000 at client offset 0x1c000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     },
     {
       "type": "constant",
@@ -298,7 +360,7 @@
         "usr/gfx/arch/IP*ODSY*/*",
         "builds/*/usr/gfx/arch/IP*ODSY*/*"
       ],
-      "why": "gf_OdsyMapGfx maps board+0x400000 at client offset 0x3c000, and libGLcore's mapping sits at address 0 (BUZZ.h section 5; the address-0 placement is inferred)"
+      "why": "gf_OdsyMapGfx maps board+0x400000 at client offset 0x3c000, and libGLcore's mapping sits at address 0 (devices/buzz/BUZZ.h section 5; the address-0 placement is inferred)"
     }
   ],
   "accessors": [],
@@ -324,7 +386,7 @@
       },
       "to_window": "display",
       "label": "display FIFO header",
-      "why": "a display FIFO header word of type 3 or 7 carries a display address in bits 27:14 (DISPLAY.h)"
+      "why": "a display FIFO header word of type 3 or 7 carries a display address in bits 27:14 (devices/display/DISPLAY.h)"
     },
     {
       "type": "stride",
@@ -333,18 +395,18 @@
       "hi": "0x240000",
       "stride": 8,
       "to_window": "display",
-      "why": "the read-back window returns one display address per 8 bytes (DISPLAY.h)",
+      "why": "the read-back window returns one display address per 8 bytes (devices/display/DISPLAY.h)",
       "label": "read-back"
     }
   ],
   "tokens": {
     "docs": [
-      "docs/tokens.md",
-      "docs/words.md",
-      "docs/buzz.md",
-      "docs/kernel.md",
-      "docs/opengl.md",
-      "BUZZ.h",
+      "devices/buzz/tokens.md",
+      "devices/buzz/words.md",
+      "devices/buzz/README.md",
+      "software/kernel/kernel.md",
+      "software/opengl/opengl.md",
+      "devices/buzz/BUZZ.h",
       "ucode/buzz_isa.md"
     ],
     "widths": {
@@ -517,9 +579,9 @@
     "sources": [
       {
         "type": "header",
-        "label": "BUZZ.h register ids",
+        "label": "devices/buzz/BUZZ.h register ids",
         "kind": "block",
-        "file": "BUZZ.h",
+        "file": "devices/buzz/BUZZ.h",
         "pattern": "^#define\\s+(BUZZ_REG_\\w+)\\s+(0x[0-9a-fA-F]+)\\b"
       },
       {

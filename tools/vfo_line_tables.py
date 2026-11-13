@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the line-table entry classification of docs/display.md against every .vfo file.
+"""Check the line-table entry classification of devices/display/README.md against every .vfo file.
 
 Each VPro .vfo file of the install stores its line table as 32-bit big-endian words,
 one 16-bit table entry per word, after a count word. This script finds the table by

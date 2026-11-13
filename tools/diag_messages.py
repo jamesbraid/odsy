@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Message catalogue for the compositor diagnostic and the Odyssey kernel driver.
 
-Usage: tools/diag_messages.py [--out docs/diag-messages.tsv] [--only SUBSTRING] [--limit N]
+Usage: tools/diag_messages.py [--out software/kernel/diag-messages.tsv] [--only SUBSTRING] [--limit N]
 
 Every call in a target to a printing routine (printf, fprintf, vfprintf, puts, fputs, perror,
 sprintf, vsprintf, snprintf, cmn_err) becomes one row: the call site, the routine holding it,

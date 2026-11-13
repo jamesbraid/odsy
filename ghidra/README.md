@@ -2,7 +2,7 @@
 
 Everything that runs inside Ghidra lives here. Each component has its own
 acceptance test; run them from the repository root, inside the Ghidra image,
-with `root/` populated ([IRIX_FILES.md](../IRIX_FILES.md)). The checkers need
+with `root/` populated ([evidence/irix-files.md](../evidence/irix-files.md)). The checkers need
 only Python 3 and run in the ordinary toolchain image.
 
 ```
@@ -35,7 +35,7 @@ installation. The Sleigh compiler output (`*.sla`) is not committed.
 
 | Path | What it is |
 |---|---|
-| [processors/odsy-buzz/](processors/odsy-buzz/) | the BUZZ transform-microcode processor (`ODSY-BUZZ`) and its import script `BuzzImport.java`; build and use are in [docs/tooling.md](../docs/tooling.md) |
+| [processors/odsy-buzz/](processors/odsy-buzz/) | the BUZZ transform-microcode processor (`ODSY-BUZZ`) and its import script `BuzzImport.java`; build and use are in [evidence/tooling.md](../evidence/tooling.md) |
 | [retools/ghidra/scripts/](../retools/ghidra/scripts/) | the IRIX MIPS scripts (shared, in the retools submodule): `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); see [retools/ghidra/scripts/README.md](../retools/ghidra/scripts/README.md) |
 
 ## Decompiled C as JSON, typed structures and function similarity

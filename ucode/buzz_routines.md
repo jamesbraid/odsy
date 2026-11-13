@@ -68,7 +68,7 @@ also exists in the kernel's copy, at the number in the table's Kernel record col
   the one texture generation adds whenever a linear mode is on, reads `ma` 0x100 to 0x10f,
   which is indices 256 to 271, the four planes. The constants block 0x1e0 to 0x1ef is the
   one every routine family reads (0x1e3 most of all), and it is the group the kernel's
-  context save skips, because libGLcore rewrites it (`odsyRestoreXform`, `docs/buzz.md` pass 9).
+  context save skips, because libGLcore rewrites it (`odsyRestoreXform`, `devices/buzz/README.md` pass 9).
   An `ma` with bit 9 set (0x200 to 0x20f, in routine 418) is relative to the index in sequencer 0x31.
 
 ### The matrix table behind sequencer 0x34

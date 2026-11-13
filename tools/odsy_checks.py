@@ -55,10 +55,10 @@ PROSE_VECTORS = [
 
 
 def check_prose_vectors(rep, header, vecs):
-    pp = read('docs/pixel-paths.md')
+    pp = read('devices/buzz/pixel-paths.md')
     for value, fmt, typ, rx in PROSE_VECTORS:
         if not re.search(rx, pp, re.S):
-            rep.fail('docs/pixel-paths.md', 'prose decode of 0x%x not found' % value)
+            rep.fail('devices/buzz/pixel-paths.md', 'prose decode of 0x%x not found' % value)
         v = vecs.get((value, 'HDR_W7'))
         if v is None:
             rep.fail(header, 'no TESTVEC for 0x%x as HDR_W7' % value)
@@ -74,7 +74,7 @@ def check_prose_vectors(rep, header, vecs):
                 if v.get(k) != w:
                     rep.fail(header, 'TESTVEC 0x%x %s=%s, expected %d' % (value, k, v.get(k), w))
     if not re.search(r'Word 4 bits 7:0 are `0x08`: class \(bits 2:0\) 0, code \(bits 7:3\) 1', pp):
-        rep.fail('docs/pixel-paths.md', 'prose decode of read value 0x08 not found')
+        rep.fail('devices/buzz/pixel-paths.md', 'prose decode of read value 0x08 not found')
 
 
 # --- DISPLAY_DECODE.h / PBJ_DECODE.h ---
@@ -85,9 +85,9 @@ MODE_ROW_RE = re.compile(
 
 
 def check_vector_prose(rep, header, vecs):
-    display_h = read('DISPLAY.h')
-    pbj_h = read('PBJ.h')
-    docs = read('docs/display.md') + read('docs/pbj.md') + pbj_h
+    display_h = read('devices/display/DISPLAY.h')
+    pbj_h = read('devices/pbj/PBJ.h')
+    docs = read('devices/display/README.md') + read('devices/pbj/README.md') + pbj_h
     rows = {}
     for m in MODE_ROW_RE.finditer(display_h):
         a, b = m.group(3), m.group(4)
@@ -116,7 +116,7 @@ def check_vector_prose(rep, header, vecs):
             m = re.search(r'0x%08x \(bits (\d+):(\d+) = (\d+), (\d+):(\d+) = (\d+), bit (\d+) set,'
                           r'[\s*]+low bits (0x[0-9a-f]+)\)' % value, pbj_h)
             if not m:
-                rep.fail(where, 'prose decode of 0x%08x not found in PBJ.h' % value)
+                rep.fail(where, 'prose decode of 0x%08x not found in devices/pbj/PBJ.h' % value)
                 continue
             exp = {'clock_sel_a': int(m.group(3)), 'clock_sel_b': int(m.group(6)),
                    'clock_run': 1, 'low_bits': int(m.group(8), 16)}
@@ -138,7 +138,7 @@ def check_vector_prose(rep, header, vecs):
                 rep.fail(where, 'header 0x%x: prose says type %s count %s' % (value, m.group(1), m.group(2)))
 
 
-# Table rows of docs/pbj.md: | 0xADDR | access | role and derivation |
+# Table rows of devices/pbj/README.md: | 0xADDR | access | role and derivation |
 PBJ_ROW_RE = re.compile(r'^\|\s*(0x[0-9a-f]+)\s*\|\s*([^|]+?)\s*\|\s*(.*?)\s*\|\s*$', re.M)
 # (register, index, a phrase the prose row for offset+index must contain)
 ROW_KEYS = [
@@ -163,7 +163,7 @@ ROW_KEYS = [
 
 def check_pbj_rows(rep, regs):
     rows = {}
-    for m in PBJ_ROW_RE.finditer(read('docs/pbj.md')):
+    for m in PBJ_ROW_RE.finditer(read('devices/pbj/README.md')):
         rows[int(m.group(1), 16)] = (m.group(2), m.group(3))
     for key, idx, phrase in ROW_KEYS:
         if key not in regs:
@@ -171,22 +171,22 @@ def check_pbj_rows(rep, regs):
         r = regs[key]
         off = r['off'] + idx
         if off not in rows:
-            rep.fail('docs/pbj.md', 'no register row for %s (0x%x); the header has it' % (key, off))
+            rep.fail('devices/pbj/README.md', 'no register row for %s (0x%x); the header has it' % (key, off))
             continue
         cell, text = rows[off]
         if phrase not in text:
-            rep.fail('docs/pbj.md', 'row 0x%x does not describe %s (expected "%s")' % (off, key, phrase))
+            rep.fail('devices/pbj/README.md', 'row 0x%x does not describe %s (expected "%s")' % (off, key, phrase))
         has_load, has_store = 'load' in cell, 'store' in cell
         hr, hw = 'r' in r['acc'], 'w' in r['acc']
         if hr != has_load:
-            rep.fail('docs/pbj.md', '%s access %s but the prose row says "%s"' % (key, r['acc'], cell))
+            rep.fail('devices/pbj/README.md', '%s access %s but the prose row says "%s"' % (key, r['acc'], cell))
         if has_store and not hw:
-            rep.fail('docs/pbj.md', '%s access %s but the prose row says "%s"' % (key, r['acc'], cell))
+            rep.fail('devices/pbj/README.md', '%s access %s but the prose row says "%s"' % (key, r['acc'], cell))
         if hw and not (has_store or re.search(r'writ|stor', text)):
-            rep.fail('docs/pbj.md', '%s is written per the header but no prose row says so' % key)
+            rep.fail('devices/pbj/README.md', '%s is written per the header but no prose row says so' % key)
         m = re.search(r'load (\d+) bits', cell)
         if m and int(m.group(1)) != r['width']:
-            rep.fail('docs/pbj.md', '%s width %d but the prose row says load %s bits' % (key, r['width'], m.group(1)))
+            rep.fail('devices/pbj/README.md', '%s width %d but the prose row says load %s bits' % (key, r['width'], m.group(1)))
 
 
 # --- TEXTURE_DECODE.h ---
@@ -287,7 +287,7 @@ def check_fmt_table(rep, header, text, enums):
         if idx > 51:
             rep.fail(header, 'format row %d is beyond the recorded run' % idx)
     # The table in the notes.
-    doc = read('docs/texture-formats.md')
+    doc = read('devices/texture/texture-formats.md')
     sec = doc.split('## The table', 1)[1].split('By grade', 1)[0]
     drows = {}
     for line in sec.splitlines():
@@ -295,7 +295,7 @@ def check_fmt_table(rep, header, text, enums):
         if len(cells) == 8 and cells[0].isdigit():
             drows[int(cells[0])] = cells
     if set(drows) != set(i for i in rows):
-        rep.fail('docs/texture-formats.md', 'table rows %s differ from header rows %s'
+        rep.fail('devices/texture/texture-formats.md', 'table rows %s differ from header rows %s'
                  % (sorted(drows), sorted(rows)))
     for idx, cells in drows.items():
         row = rows.get(idx)
@@ -385,7 +385,7 @@ CALC_C = {'pitch': 'tex_pitch_tiles(%(w)d, %(b)d)', 'pitch_icc': 'tex_pitch_tile
 
 
 def check_calcs(rep, header, text):
-    doc = read('docs/texture-formats.md')
+    doc = read('devices/texture/texture-formats.md')
     calcs = []
     for n, line in enumerate(text.splitlines(), 1):
         if 'CALC:' not in line or '<' in line:
@@ -488,11 +488,11 @@ def check_texture(rep, header, h, verbose):
                      % (a, fields[a][:2], b, fields[b][:2]))
     # Facts shared with BUZZ_DECODE.h.
     bz = buzz.fields
-    doc_f = read('docs/texture-formats.md')
+    doc_f = read('devices/texture/texture-formats.md')
     m = re.search(r'\*\*Class\*\* \(mode word 4 bits (\d+):(\d+)', doc_f)
     if not m or 'SAMPLER.activation' not in bz or (int(m.group(1)), int(m.group(2))) != bz['SAMPLER.activation'][:2]:
         rep.fail(header, 'the class is not stored where BUZZ_DECODE.h puts SAMPLER.activation')
-    m = re.search(r'TEXMODE6 bit (\d+): complement of TEXMODE4 bit (\d+)', read('BUZZ.h'))
+    m = re.search(r'TEXMODE6 bit (\d+): complement of TEXMODE4 bit (\d+)', read('devices/buzz/BUZZ.h'))
     if not m or 'SAMPLER.no_offset' not in bz or int(m.group(2)) != bz['SAMPLER.no_offset'][0]:
         rep.fail(header, 'the offset flag pair does not match SAMPLER.no_offset in BUZZ_DECODE.h')
     # The unwritten word-2 statement: BUZZ_DECODE.h must not own the same bits under another name.
@@ -665,38 +665,38 @@ def dma_claims(rep, header, fields, defs, enums, buzz):
             err('registers notes clear 0x%s for the DMA-done flag, not bit %s' % (m.group(1), defs.get('DMA_DONE_FLAG_BIT')))
 
     claims = [
-        ('kick address spreading rule', 'BUZZ.h',
+        ('kick address spreading rule', 'devices/buzz/BUZZ.h',
          r'PACK\(x\) = \(x & 0x([0-9a-f]+)\) \| \(\(x & 0x([0-9a-f]+)\) << (\d+)\)', c_pack),
-        ('kick address halves', 'BUZZ.h',
+        ('kick address halves', 'devices/buzz/BUZZ.h',
          r'each (\d+)-bit half of the physical address is split after bit (\d+)[\s*]+and[\s*]+the upper seven bits sit six places higher \(bits (\d+):(\d+) of the word\)', c_half),
-        ('kick address width', 'BUZZ.h', r'board takes a[\s*]+(\d+)-bit physical address', c_48),
-        ('kick ids', 'BUZZ.h', r'word A: 0x0*([0-9a-f]+) or 0x0*([0-9a-f]+) \(high\)', c_ids),
-        ('page entry', 'BUZZ.h',
+        ('kick address width', 'devices/buzz/BUZZ.h', r'board takes a[\s*]+(\d+)-bit physical address', c_48),
+        ('kick ids', 'devices/buzz/BUZZ.h', r'word A: 0x0*([0-9a-f]+) or 0x0*([0-9a-f]+) \(high\)', c_ids),
+        ('page entry', 'devices/buzz/BUZZ.h',
          r'word 0 = the physical address >> (\d+),[\s*]+word 1 = \(physical address & 0x([0-9a-f]+)\) << (\d+) \| a (\d+)-bit byte count', c_page),
-        ('page chunk', 'BUZZ.h', r'chunks of up to (\d+) bytes', c_chunk),
-        ('descriptor size', 'docs/kernel.md', r'a list of (\d+)-byte table entries', c_entry_bytes),
-        ('descriptor header', 'docs/kernel.md', r'bytes 0-(\d+) are the caller\'s (\d+)-byte header \(eight words', c_hdr),
-        ('descriptor page list', 'docs/kernel.md',
+        ('page chunk', 'devices/buzz/BUZZ.h', r'chunks of up to (\d+) bytes', c_chunk),
+        ('descriptor size', 'software/kernel/kernel.md', r'a list of (\d+)-byte table entries', c_entry_bytes),
+        ('descriptor header', 'software/kernel/kernel.md', r'bytes 0-(\d+) are the caller\'s (\d+)-byte header \(eight words', c_hdr),
+        ('descriptor page list', 'software/kernel/kernel.md',
          r'Bytes (\d+)-(\d+) are the page list `generatePageTable` writes \(`BUZZ.h`, eight bytes a page, up to (\d+) pages\)', c_pages),
-        ('page entry bytes', 'docs/kernel.md', r'eight bytes a page, up to \d+ pages', c_page_bytes),
-        ('descriptor split limit', 'docs/kernel.md', r'at most 0x([0-9a-f]+) \((\d+)\) is one entry', c_limit),
-        ('descriptor header edits', 'docs/kernel.md',
+        ('page entry bytes', 'software/kernel/kernel.md', r'eight bytes a page, up to \d+ pages', c_page_bytes),
+        ('descriptor split limit', 'software/kernel/kernel.md', r'at most 0x([0-9a-f]+) \((\d+)\) is one entry', c_limit),
+        ('descriptor header edits', 'software/kernel/kernel.md',
          r'word \+(\d+) low half = the entry\'s x, high half = its y; word \+(\d+) low half = its width, high half = its height; '
          r'word \+(\d+) bits (\d+):(\d+) = bytes per pixel times the width', c_edits),
-        ('word 7 top byte', 'docs/kernel.md',
+        ('word 7 top byte', 'software/kernel/kernel.md',
          r'top byte of header word 7 \(request offset \d+\) to `0x([0-9a-f]+) \| \(bit 0 of \+\d+ clear \? 0x([0-9a-f]+) : 0\) '
          r'\| \(old bit (\d+)\) \| \(old bit (\d+)\)`', c_topbyte),
-        ('interrupt after the last descriptor', 'docs/kernel.md',
+        ('interrupt after the last descriptor', 'software/kernel/kernel.md',
          r'If header word \+(\d+) bit (\d+) is set, the last entry\'s word \+\d+ gets bit (\d+) set', c_irq),
-        ('plain path bit', 'docs/kernel.md', r'\*\*Plain path\*\* \(header word 7 bit (\d+) clear\)', c_plain),
-        ('transform path bit', 'docs/kernel.md', r'\*\*Transform path\*\* \(bit (\d+) set\)', c_transform),
-        ('differs bit', 'docs/pixel-paths.md',
+        ('plain path bit', 'software/kernel/kernel.md', r'\*\*Plain path\*\* \(header word 7 bit (\d+) clear\)', c_plain),
+        ('transform path bit', 'software/kernel/kernel.md', r'\*\*Transform path\*\* \(bit (\d+) set\)', c_transform),
+        ('differs bit', 'devices/buzz/pixel-paths.md',
          r'header word 7 bit (\d+) is set when the source and destination descriptions differ', c_differs),
-        ('completion tag command', 'docs/kernel.md',
+        ('completion tag command', 'software/kernel/kernel.md',
          r'class-1 block 0x05a \(`0x0001([0-9a-f]{4})`, COUNT (\d+)\): operand 0 = record word \+\d+ \| 0x([0-9a-f]+), '
          r'operand 1 = the tag `0x([0-9a-f]+) \| \(counter & 0x([0-9a-f]+)\)`', c_tag),
-        ('DMA-done flag bit', 'BUZZ.h', r'FLAGS_DMA_DONE_FLAG\s+\(1u << (\d+)\)', c_done),
-        ('DMA-done flag clear', 'docs/registers.md', r'stores (0x[0-9a-f]+) \(the DMA-done flag\)', c_done_reg),
+        ('DMA-done flag bit', 'devices/buzz/BUZZ.h', r'FLAGS_DMA_DONE_FLAG\s+\(1u << (\d+)\)', c_done),
+        ('DMA-done flag clear', 'devices/board/board-registers.md', r'stores (0x[0-9a-f]+) \(the DMA-done flag\)', c_done_reg),
     ]
     cache = {}
     for label, doc, rx, fn in claims:
