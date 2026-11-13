@@ -476,7 +476,7 @@ def check_texture(rep, header, h, verbose):
     for need in ('TEX_OP_FIRSTLEVEL', 'TEX_OP_TARGET'):
         if (defs.get(need, 0) >> 10) & 0xf != 1:
             rep.fail(header, '%s does not carry one operand' % need)
-    buzz = _hdr('generated/c/buzz.h')
+    buzz = _hdr('buzz')
     # The mode block word must equal the one in generated/c/buzz.h.
     if defs.get('TEX_OP_TEXMODE') != buzz.defs.get('BUZZ_OP_TEXMODE'):
         rep.fail(header, 'TEX_OP_TEXMODE differs from BUZZ_OP_TEXMODE in generated/c/buzz.h')
@@ -724,7 +724,7 @@ def check_dma(rep, header, h, verbose):
         rep.fail(header, 'DMA_ENTRY_BYTES is not header bytes plus page entries')
     if defs.get('DMA_ENTRY_MAX_BYTES', 0) > defs.get('DMA_ENTRY_PAGES_MAX', 0) * defs.get('DMA_PAGE_CHUNK_BYTES', 0) * 2:
         rep.fail(header, 'DMA_ENTRY_MAX_BYTES exceeds what the page list could cover even with slack')
-    buzz = _hdr('generated/c/buzz.h').fields
+    buzz = _hdr('buzz').fields
     for key, other in (('ENTRY_W7.read_dir', 'HDR_W7.read_dir'), ('ENTRY_W7.transform', 'HDR_W7.transform'),
                        ('ENTRY_W7.differs', 'HDR_W7.differs')):
         if key in fields and other in buzz and span(fields, key) != (buzz[other][0], buzz[other][1]):
