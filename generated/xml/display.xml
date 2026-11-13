@@ -1,0 +1,264 @@
+<?xml version="1.0" ?>
+<!-- generated from devices/display/registers.toml by defs-gen - do not edit, change the source -->
+<genxml unit="display" prefix="DISPLAY" title="VPro (Odyssey) display registers (publish-safe subset)" from="odsy binary analysis of the shipped display driver">
+  <doc>Display-half registers of the Odyssey board: colour map, line and frame tables, cursor, DAC, timing generator, genlock and the display-mode table.</doc>
+  <space name="display_regs" unit="reg"/>
+  <enum name="mode_table_pixel_format">
+    <value name="rgb10" value="1" grade="inferred"/>
+    <value name="rgb8" value="2" grade="inferred"/>
+    <value name="rgb5" value="3" grade="inferred"/>
+    <value name="rgb4" value="4" grade="inferred"/>
+    <value name="rgb10_alt" value="6" grade="inferred"/>
+  </enum>
+  <enum name="mode_table_cmap_group">
+    <value name="gamma" value="26" grade="inferred"/>
+  </enum>
+  <struct name="CMAP" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x0" access="w" count="8192" stride="1" space="display_regs" reset="unknown">
+    <doc>Colour map. One entry per register, indexed by the entry number in the
+display FIFO header address. Each entry packs three 10-bit channels. The
+software widens an 8-bit input channel c to 10 bits as (c &lt;&lt; 2) | (c &gt;&gt;
+6), repeating the top two bits. The map has 8192 entries: the published
+diagnostic reference steps the red, green and blue index to 8191 and
+calls that the maximum size, and the line table begins where the map
+ends. No X visual declares more than 4096 entries. Bits 31:30 are never
+set by any shipped writer. The driver waits for the display FIFO to
+drain before a textport write; the X server path loads runs of entries
+as multi-word FIFO packets of the retrace-synchronised kind.</doc>
+    <field name="top" start="30" size="2" type="uint" grade="unknown"/>
+    <field name="r" start="20" size="10" type="uint" grade="established"/>
+    <field name="g" start="10" size="10" type="uint" grade="established"/>
+    <field name="b" start="0" size="10" type="uint" grade="established"/>
+    <test value="0x3ff80000" kind="example">
+      <expect field="r" value="1023"/>
+      <expect field="g" value="512"/>
+      <expect field="b" value="0"/>
+      <expect field="top" value="0"/>
+    </test>
+  </struct>
+  <struct name="LINE_TABLE" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2000" access="w" count="1024" stride="1" space="display_regs" reset="unknown">
+    <doc>Video timing line table, up to 2048 16-bit entries, two per word with
+the even entry in the low half. A line type is a run of entries ending
+at the first entry with bit 15 set. For the timed entries bits 14:8
+behave as a duration in pixel clocks (the first timed run of the built-
+in 1280 by 1024 timing is the horizontal sync width); this fails for
+some later line types, so it is a partial reading. The low byte of an
+entry is the output state for the span: which signal each bit drives is
+unknown. The loader zeroes the whole table (1024 words) before it sends
+a new one.</doc>
+    <field name="e1_end" start="31" size="1" type="uint" grade="established"/>
+    <field name="e1_duration" start="24" size="7" type="uint" grade="inferred"/>
+    <field name="e1_levels" start="16" size="8" type="uint" grade="unknown"/>
+    <field name="e0_end" start="15" size="1" type="uint" grade="established"/>
+    <field name="e0_duration" start="8" size="7" type="uint" grade="inferred"/>
+    <field name="e0_levels" start="0" size="8" type="uint" grade="unknown"/>
+  </struct>
+  <struct name="FRAME_TABLE" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2400" access="w" count="128" stride="1" space="display_regs" reset="unknown">
+    <doc>Video timing frame table, up to 256 16-bit entries, two per word like
+the line table. Entries come in pairs: the position of a line type in
+the line table (in 32-bit words) and how many consecutive lines use it.
+The list ends with a (0, 0) pair. The counts of a timing add up to its
+total lines per frame. The loader zeroes 128 words before it sends a new
+table.</doc>
+    <field name="repeat" start="16" size="16" type="uint" grade="inferred"/>
+    <field name="position" start="0" size="16" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="VTG_CTL" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2481" access="w" space="display_regs" reset="unknown">
+    <doc>Video timing generator control word. The loader writes the timing
+structure's control word with 0x42 ORed in, then writes 1 after the
+clock is programmed. The genlock handler clears and sets bit 1 here as
+the lock state changes (set while locked, inferred from the handler's
+two branches).</doc>
+    <field name="locked" start="1" size="1" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="VTG_INIT_STATE" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2482" access="rw" space="display_regs" reset="unknown">
+    <doc>Timing generator initial-state word. The driver reads it back once at
+start-up as its shadow and clears bit 5 of the shadow to blank the
+screen. The loader writes the timing structure's initial-state word
+here.</doc>
+    <field name="blank_gate" start="5" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="VTG_CHAN_EN" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2483" access="rw" space="display_regs" reset="unknown">
+    <doc>Timing generator channel-enable word. Blanking clears the three bits of
+mask 0x23 (bits 5, 1 and 0) in the driver's shadow of it and unblanking
+sets them again; the timing load writes the structure's word with the
+driver's own bit 5 kept. The names are ours: what each bit gates is
+unknown.</doc>
+    <field name="blank_gate_5" start="5" size="1" type="uint" grade="established"/>
+    <field name="blank_gate_1" start="1" size="1" type="uint" grade="established"/>
+    <field name="blank_gate_0" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="CURSOR_IMAGE_A" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2500" access="w" count="128" stride="1" space="display_regs" reset="unknown">
+    <doc>Cursor image block A, 128 words. A 32 by 32 cursor at 4 bits a pixel is
+512 bytes, which is this block. Each pixel indexes the cursor colour
+table; index 15 has no entry and inverts the pixel under the cursor. The
+stored image is the bitmap with its two middle nibble columns swapped
+and mirrored. The shipped driver names this block the glyph plane and
+block B the alpha plane.</doc>
+  </struct>
+  <struct name="CURSOR_POS" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2580" access="w" space="display_regs" reset="unknown">
+    <doc>Cursor position word: the cursor x minus the hotspot x in the high half
+and y minus the hotspot y in the low half. The kernel sends it as a
+display-FIFO record of type 3 when bit 2 of the cursor control word is
+clear and type 7 when it is set (display.md, cursor). Whether a type 7
+update takes effect at once or at the next frame is unknown.</doc>
+    <field name="x" start="16" size="16" type="uint" grade="established"/>
+    <field name="y" start="0" size="16" type="uint" grade="established"/>
+    <test value="0x640032" kind="example">
+      <expect field="x" value="100"/>
+      <expect field="y" value="50"/>
+    </test>
+  </struct>
+  <struct name="CURSOR_CTL" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2581" access="w" space="display_regs" reset="unknown">
+    <doc>Cursor control word, sent whole on every change. Start-up writes 0. The
+firmware textport clears bits 4:2 and sets bits 1:0 (established).
+
+Software use per bit, from a reading of the shipped X server module and
+the kernel's display driver. That reading was not repeated for this entry,
+so the grades are the reading's own:
+- Bit 0: set in the word that shows the cursor and clear in the word that
+  hides it, in both the X module and the kernel (usage established; that
+  it is the display enable is inferred).
+- Bit 1: kept by software as a "shown" flag. Hardware meaning unknown.
+- Bit 2: set only for the X module's built-in crosshair cursor, and then the
+  kernel tags its position records with header bit 30 (usage established;
+  that it selects a hardware crosshair is inferred).
+- Bit 4: set when one X screen spans two display channels. Hardware meaning
+  unknown.
+- Bit 5: marks the cursor on the second display channel (meaning inferred).
+  The kernel sets it when it positions the cursor.
+- Bits 31:30: set by the firmware, never by the X module or the kernel.
+  Hardware meaning unknown.
+
+The field names below are an older guess. They put delay enable at bit 0
+and enable at bit 1, which conflicts with the bit 0 usage above. Open
+questions records the conflict; the names stay until it is settled.</doc>
+    <field name="toggle" start="5" size="1" type="uint" grade="unknown"/>
+    <field name="dual_head" start="4" size="1" type="uint" grade="unknown"/>
+    <field name="field_seq" start="3" size="1" type="uint" grade="unknown"/>
+    <field name="crosshair" start="2" size="1" type="uint" grade="unknown"/>
+    <field name="enable" start="1" size="1" type="uint" grade="unknown"/>
+    <field name="delay_enable" start="0" size="1" type="uint" grade="unknown"/>
+  </struct>
+  <struct name="CURSOR_COLORS" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2590" access="w" count="15" stride="1" space="display_regs" reset="unknown">
+    <doc>Cursor colour table, 15 words for pixel values 0 to 14, in the colour-
+map entry format. Software shifts an 8-bit value into the top eight bits
+of each 10-bit field, leaving the low two bits zero.</doc>
+    <field name="top" start="30" size="2" type="uint" grade="unknown"/>
+    <field name="r" start="20" size="10" type="uint" grade="established"/>
+    <field name="g" start="10" size="10" type="uint" grade="established"/>
+    <field name="b" start="0" size="10" type="uint" grade="established"/>
+  </struct>
+  <struct name="CURSOR_IMAGE_B" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x25c0" access="w" count="64" stride="1" space="display_regs" reset="unknown">
+    <doc>Cursor image block B, 64 words: 2 bits a pixel, the alpha plane that
+decides where the cursor shows. Alpha 3 is an opaque cursor pixel and 0
+transparent (inferred from the one shipped arrow image). Alpha 1 and 2
+have no known fixed meaning.</doc>
+  </struct>
+  <struct name="DATAPATH_CTL" size="4" grade="inferred" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2600" access="rw" space="display_regs" reset="unknown">
+    <doc>Data-path control of the display chip. The timing load writes the
+structure's word here and sets bit 7 when bit 6 of that word is set. The
+blanking routine reads it back. The role is inferred from the order of
+the driver's stores; bit meanings beyond the two named are unknown.</doc>
+    <field name="bit7" start="7" size="1" type="uint" grade="unknown"/>
+    <field name="bit6" start="6" size="1" type="uint" grade="unknown"/>
+  </struct>
+  <struct name="AUX_CTL" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2680" access="w" space="display_regs" reset="unknown">
+    <doc>Written once per timing load from a word of the timing structure that
+sits next to the DAC and data-path words. What it controls is unknown.</doc>
+  </struct>
+  <struct name="DAC_CTL" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x26c0" access="rw" space="display_regs" reset="unknown">
+    <doc>DAC control. Blanking sets bit 0; the DAC-gain routine sets or clears
+bit 1 with a read-modify-write; the timing load writes the structure's
+DAC word. That bit 0 blanks is established by the routine; the polarity
+of the gain bit is not known, so its name is inferred.</doc>
+    <field name="gain" start="1" size="1" type="uint" grade="inferred"/>
+    <field name="blank" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="VTG_MISC" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x27c0" access="w" count="12" stride="1" space="display_regs" reset="unknown">
+    <doc>Twelve consecutive timing generator words, written in order from twelve
+consecutive words of the timing structure. Bit meanings are unknown.</doc>
+  </struct>
+  <struct name="GENLOCK_CTL" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x27cc" access="rw" space="display_regs" reset="unknown">
+    <doc>Genlock control. The timing load writes the structure's word here after
+enabling the genlock interrupt source, and the genlock handler continues
+only when bit 6 is set, which reads as a genlock-enabled flag (inferred).
+While the clock is being reprogrammed
+the word is held at 0.</doc>
+    <field name="enabled" start="6" size="1" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="GENLOCK_STATUS" size="4" grade="inferred" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x27cd" access="r" space="display_regs" reset="unknown">
+    <doc>Genlock status, read only. The handler returns if bit 0 is clear. Bit 1
+selects the branch that reprograms the clock part: set takes the "lost"
+branch, clear the "got" one. The handler's own message calls bit 0 the
+generator state; what bit 1 means beyond selecting the branch is unknown,
+so the name valid is a guess.</doc>
+    <field name="lost" start="1" size="1" type="uint" grade="inferred"/>
+    <field name="valid" start="0" size="1" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="MODE_TABLE" size="4" grade="established" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2900" access="w" count="37" stride="1" space="display_regs" reset="unknown">
+    <doc>Display-mode table: one mode word per display id, ids 0 to 36 seen in
+the shipped tables (the upper bound is unknown). Type-7 (retrace-
+synchronised) FIFO writes. Ids below 32 are the window ids that double-
+buffer; bit 30 of the caller's mode is a software buffer flag the kernel
+strips before the write. For ids below 32 the colour-map group is bits
+8:4, for ids from 32 up it is bits 7:3. Every colour-index mode seen has
+pixel_format 0, 3, 6 or 7 (not a channel width); across the TrueColor
+modes the codes below are established as values and their mapping to
+depth is inferred from which visual each table row serves. Colour-map
+group 26 appears on every TrueColor mode and is read as the gamma map. A
+published driver sets two bits among 31:25 (bits 31 and 28) in the one
+word it writes to all entries; no shipped mode word has either set and
+what they do is unknown.</doc>
+    <field name="top" start="25" size="7" type="uint" grade="unknown"/>
+    <field name="bit24" start="24" size="1" type="uint" grade="unknown"/>
+    <field name="layout" start="12" size="12" type="uint" grade="unknown"/>
+    <field name="pixel_format" start="9" size="3" type="mode_table_pixel_format" grade="inferred"/>
+    <field name="cmap_group" start="4" size="5" type="mode_table_cmap_group" grade="established"/>
+    <field name="low_code" start="0" size="4" type="uint" grade="unknown"/>
+    <test value="0x4b59a6" kind="vector">
+      <expect field="low_code" value="6"/>
+      <expect field="cmap_group" value="26"/>
+      <expect field="pixel_format" value="4"/>
+      <expect field="layout" value="1205"/>
+    </test>
+    <test value="0x4b5f00" kind="vector">
+      <expect field="low_code" value="0"/>
+      <expect field="cmap_group" value="16"/>
+      <expect field="pixel_format" value="7"/>
+      <expect field="layout" value="1205"/>
+    </test>
+    <test value="0x5213a6" kind="vector">
+      <expect field="low_code" value="6"/>
+      <expect field="cmap_group" value="26"/>
+      <expect field="pixel_format" value="1"/>
+      <expect field="layout" value="1313"/>
+    </test>
+    <test value="0x521590" kind="vector">
+      <expect field="low_code" value="0"/>
+      <expect field="cmap_group" value="25"/>
+      <expect field="pixel_format" value="2"/>
+      <expect field="layout" value="1313"/>
+    </test>
+    <test value="0x600da6" kind="vector">
+      <expect field="low_code" value="6"/>
+      <expect field="cmap_group" value="26"/>
+      <expect field="pixel_format" value="6"/>
+      <expect field="layout" value="1536"/>
+    </test>
+    <test value="0x9659a7" kind="vector">
+      <expect field="low_code" value="7"/>
+      <expect field="cmap_group" value="26"/>
+      <expect field="pixel_format" value="4"/>
+      <expect field="layout" value="2405"/>
+    </test>
+  </struct>
+  <struct name="CMAP_UNIT_CTL" size="4" grade="inferred" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x2929" access="w" space="display_regs" reset="unknown">
+    <doc>Colour-map unit configuration. Start-up writes 0; the timing load stores
+a flag bit of the timing load, the same flag it stores to the second
+scan configuration register in PBJ_DECODE.h.</doc>
+  </struct>
+  <struct name="CMAP_OVERRIDE" size="4" grade="inferred" from="odsy binary analysis of the shipped display driver" register="yes" offset="0x292a" access="w" count="3" stride="1" space="display_regs" reset="unknown">
+    <doc>Red, green and blue overrides of the colour-map unit, in that order.
+Start-up writes 0 to each.</doc>
+  </struct>
+</genxml>

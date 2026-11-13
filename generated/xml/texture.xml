@@ -1,0 +1,358 @@
+<?xml version="1.0" ?>
+<!-- generated from devices/texture/registers.toml by defs-gen - do not edit, change the source -->
+<genxml unit="texture" prefix="TEX" title='VPro (Odyssey) "Buzz" texture state: environment,' from="odsy binary analysis of the shipped GL library texture routines">
+  <doc>Texture state words of the Odyssey command stream: environment, mode, LOD, offset and target blocks, and the opcodes that carry them.</doc>
+  <enum name="class_value">
+    <value name="none" value="0" grade="established"/>
+    <value name="alpha" value="1" grade="inferred"/>
+    <value name="luminance" value="2" grade="inferred"/>
+    <value name="luminance_alpha" value="3" grade="inferred"/>
+    <value name="intensity" value="4" grade="inferred"/>
+    <value name="rgb" value="5" grade="inferred"/>
+    <value name="rgba" value="6" grade="inferred"/>
+  </enum>
+  <enum name="env_w0_mode">
+    <value name="replace" value="1" grade="established"/>
+    <value name="modulate" value="2" grade="established"/>
+    <value name="decal" value="3" grade="established"/>
+    <value name="blend" value="4" grade="established"/>
+    <value name="add" value="5" grade="established"/>
+  </enum>
+  <enum name="fmt_index">
+    <value name="a8" value="0" grade="established"/>
+    <value name="a8_alt" value="1" grade="established"/>
+    <value name="i8" value="2" grade="established"/>
+    <value name="i8_alt" value="3" grade="established"/>
+    <value name="l8" value="4" grade="established"/>
+    <value name="l8_alt" value="5" grade="established"/>
+    <value name="r3g3b2" value="6" grade="established"/>
+    <value name="r3g3b2_alt" value="7" grade="established"/>
+    <value name="a12" value="8" grade="established"/>
+    <value name="i12" value="9" grade="established"/>
+    <value name="l12" value="10" grade="established"/>
+    <value name="l8a8" value="11" grade="established"/>
+    <value name="rgba4" value="12" grade="established"/>
+    <value name="rgb5a1" value="13" grade="established"/>
+    <value name="l12a12" value="16" grade="established"/>
+    <value name="rgba8" value="17" grade="established"/>
+    <value name="rgb10a2" value="18" grade="established"/>
+    <value name="rgba12_move" value="32" grade="inferred"/>
+    <value name="rgba12" value="33" grade="established"/>
+    <value name="icc_rgb" value="48" grade="established"/>
+    <value name="icc_rgba" value="49" grade="established"/>
+  </enum>
+  <enum name="offcode_value">
+    <value name="none" value="0" grade="established"/>
+    <value name="code2" value="2" grade="established"/>
+  </enum>
+  <enum name="size_code">
+    <value name="b2" value="0" grade="established"/>
+    <value name="b4" value="1" grade="established"/>
+    <value name="b8" value="2" grade="established"/>
+  </enum>
+  <enum name="wrapaux_value">
+    <value name="repeat_clamp" value="0" grade="established"/>
+    <value name="edge" value="1" grade="established"/>
+    <value name="border" value="63" grade="established"/>
+  </enum>
+  <struct name="CLASS" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Texture class (the "class" columns above): the component set the
+environment sees, a 3-bit value stored in the sampler word bits 25:23
+(BUZZ_DECODE.h SAMPLER.activation, which that file leaves as an
+unexplained 3-bit value; this file gives its source). The library
+returns it from the index and the OpenGL internal format the
+application named, so the class cannot be derived from the index alone.
+Established as the values returned; the names are inferred from the
+formats that give each. The board's use of the field is unknown.</doc>
+    <field name="value" start="0" size="3" type="class_value" grade="established"/>
+  </struct>
+  <struct name="COLTAB_A" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="kept" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="red" start="12" size="12" type="uint" grade="established"/>
+    <field name="green" start="0" size="12" type="uint" grade="established"/>
+    <test value="0x123456" kind="example">
+      <expect field="red" value="291"/>
+      <expect field="green" value="1110"/>
+      <expect field="kept" value="0"/>
+    </test>
+  </struct>
+  <struct name="COLTAB_B" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="kept" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="blue" start="12" size="12" type="uint" grade="established"/>
+    <field name="alpha" start="0" size="12" type="uint" grade="established"/>
+    <test value="0xabcdef" kind="example">
+      <expect field="blue" value="2748"/>
+      <expect field="alpha" value="3567"/>
+      <expect field="kept" value="0"/>
+    </test>
+  </struct>
+  <struct name="ENV_W0" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="unwritten" start="3" size="29" type="uint" grade="unknown"/>
+    <field name="mode" start="0" size="3" type="env_w0_mode" grade="established"/>
+  </struct>
+  <struct name="ENV_W1" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Values 0, 6 and 7 are never sent. GL_PHASE_SGIX is not an environment
+mode: it is a filter, and sets bit 17 of the sampler word
+(BUZZ_DECODE.h).
+
+Words 1 and 2 are the environment colour, four unsigned 12-bit
+channels. The conversion from a float x is the same as for the border
+colour (section 3): 0 for x &lt;= 0, otherwise trunc(x * 4096) clamped to
+4095. established as the width and conversion. The channel order is
+inferred: the notes say the words are packed like the border colour
+(red high, green low in word 1; blue high, alpha low in word 2) and do
+not read the order out of the store separately. Bits 31:24 of each
+word: unknown (the setter's stores of the colour never name them).
+Mode add overwrites all four channels with 4095, so both words carry
+0xffffff. established.</doc>
+    <field name="top" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="red" start="12" size="12" type="uint" grade="inferred"/>
+    <field name="green" start="0" size="12" type="uint" grade="inferred"/>
+    <test value="0xffffff" kind="vector">
+      <expect field="red" value="4095"/>
+      <expect field="green" value="4095"/>
+    </test>
+  </struct>
+  <struct name="ENV_W2" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="top" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="blue" start="12" size="12" type="uint" grade="inferred"/>
+    <field name="alpha" start="0" size="12" type="uint" grade="inferred"/>
+    <test value="0xffffff" kind="vector">
+      <expect field="blue" value="4095"/>
+      <expect field="alpha" value="4095"/>
+    </test>
+  </struct>
+  <struct name="ENV_W3" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Words 3 and 4 are always zero for OpenGL texturing: the initialiser
+stores zero in both and no texture setter writes either. established as
+what is sent. Their meaning is unknown. The image-transfer steps save
+and restore the whole block as a copy, so they cannot change it.</doc>
+    <field name="bits" start="0" size="32" type="uint" grade="unknown"/>
+  </struct>
+  <struct name="ENV_W4" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="bits" start="0" size="32" type="uint" grade="unknown"/>
+  </struct>
+  <struct name="FIRSTLEVEL" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>The write coverage of the level descriptor words (the bits the library
+writes in word 1 are the format index 25:20, size code 31:30, pitch
+11:0 and, from two internal paths only, the offset code 28:26) is
+in BUZZ_DECODE.h and the offset code is in section 6. Word 1 bit 29
+and bits 19:12 are established as never written by the three routines
+that store level words, and inferred never written by any library
+code. What the board does with them, or with a descriptor past entry
+63, is unknown.
+
+First level descriptor index (id 0x006, count 1): bits 5:0 name the
+first level descriptor the texture unit reads. Activation writes 0
+(the base level's descriptor); the on-board mipmap builder writes 60
+(TEX_SCRATCH_LEVEL) and restores the saved word. Bits 31:6 have no
+writer and stay 0. established.</doc>
+    <field name="unwritten" start="6" size="26" type="uint" grade="unknown"/>
+    <field name="index" start="0" size="6" type="uint" grade="established"/>
+  </struct>
+  <struct name="FMT" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="index" start="0" size="6" type="fmt_index" grade="established"/>
+  </struct>
+  <struct name="LEVEL3D_W2" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>3D textures. established: the library fills one level-table entry
+for a 3D target and does not change the filter, so a 3D texture whose
+application asked for a mipmap filter reaches the board with a mipmap
+filter code in the sampler word and a single level descriptor. The
+board is inferred to read level 0 plainly (nearest or linear) for 3D:
+the vendor's porting guide and a published patent both say 3D
+mipmapping is not implemented. Deriving further volume
+levels from slice spacing would go beyond what the library names.
+
+Slice exponent (level descriptor word 2, 3D targets only). The notes
+establish that activation writes level word 2 bits 11:0 for a 3D
+target, as the base-2 ceiling of the slice tile count (0 for a count
+below 2). BUZZ_DECODE.h lists that word as unknown because its sender
+list there predates this finding; this file carries the field under
+its own word name so the two do not overlap. Board reading: inferred
+(the only reading under which a later sample finds what an upload
+wrote).</doc>
+    <field name="slice_exp" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="LOD" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="value" start="0" size="14" type="uint" grade="established"/>
+    <test value="0xf00" kind="vector">
+      <expect field="value" value="3840"/>
+    </test>
+    <test value="0x3100" kind="vector">
+      <expect field="value" value="12544"/>
+    </test>
+  </struct>
+  <struct name="MODE_W0" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="detail_modulate" start="31" size="1" type="uint" grade="established"/>
+    <field name="bit30" start="30" size="1" type="uint" grade="unknown"/>
+    <field name="detail_level" start="25" size="5" type="uint" grade="established"/>
+    <field name="unwritten" start="15" size="10" type="uint" grade="unknown"/>
+    <field name="log2_s" start="10" size="5" type="uint" grade="inferred"/>
+    <field name="log2_t" start="5" size="5" type="uint" grade="inferred"/>
+    <field name="log2_r" start="0" size="5" type="uint" grade="inferred"/>
+    <test value="0x8000000" kind="example">
+      <expect field="detail_modulate" value="0"/>
+      <expect field="detail_level" value="4"/>
+      <expect field="log2_s" value="0"/>
+      <expect field="log2_t" value="0"/>
+      <expect field="log2_r" value="0"/>
+    </test>
+  </struct>
+  <struct name="MODE_W1" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>detail_level is the detail level as a positive count, min(-level, 15):
+the field is five bits wide but the library never sends more than 15.
+detail_modulate is 1 for the modulate detail function and 0 for add.
+Detail texture entries sit at the top of the level table (section 5).
+
+Operands 1, 2 and 3 (S, T, R). established as widths and as the values
+written.
+  max_clamp  bits 16:0, whole texels: trunc(2^n * clamp), n the level
+             size exponent less the base level (at least 0), clamp the
+             per-axis maximum-clamp parameter (default 1.0). The
+             default is therefore the whole level size, not size less
+             one. The conversion truncates and the 17-bit mask wraps;
+             it does not saturate. Bit 17 and bits 31:24 are kept from
+             the previous word and never named by a store: unknown.
+  wrap_aux   bits 23:18, a 6-bit value set together with that axis's
+             wrap mode in the sampler word (see WRAPAUX below). Its
+             meaning on the board is unknown.</doc>
+    <field name="top" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="wrap_aux" start="18" size="6" type="uint" grade="established"/>
+    <field name="bit17" start="17" size="1" type="uint" grade="unknown"/>
+    <field name="max_clamp" start="0" size="17" type="uint" grade="established"/>
+    <test value="0xfc0000" kind="example">
+      <expect field="max_clamp" value="0"/>
+      <expect field="wrap_aux" value="63"/>
+    </test>
+  </struct>
+  <struct name="MODE_W2" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="top" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="wrap_aux" start="18" size="6" type="uint" grade="established"/>
+    <field name="bit17" start="17" size="1" type="uint" grade="unknown"/>
+    <field name="max_clamp" start="0" size="17" type="uint" grade="established"/>
+  </struct>
+  <struct name="MODE_W3" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="top" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="wrap_aux" start="18" size="6" type="uint" grade="established"/>
+    <field name="bit17" start="17" size="1" type="uint" grade="unknown"/>
+    <field name="max_clamp" start="0" size="17" type="uint" grade="established"/>
+  </struct>
+  <struct name="MODE_W5" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>The R axis setter writes repeat to the sampler for any target but 3D
+(established). Any other wrap enumerant is refused by the library. The
+library sends every combination of the four modes on the three axes; a
+mixed state (for example S clamp, T repeat) reaches the board as the
+per-axis fields and nothing else. What the board does with a mixed
+state is unknown: every program the notes saw sets one wrap on all axes.
+
+Operands 5 and 6: the border colour, four unsigned 12-bit channels,
+red in operand 5 bits 23:12, green in operand 5 bits 11:0, blue in
+operand 6 bits 23:12 and alpha in operand 6 bits 11:0. A float x
+converts as in section 2. established. Operand 5 bits 31:24 and
+operand 6 bits 31:25 are unknown. Operand 6 bit 24 is the offset flag
+(below). The default border colour the library writes: not recorded.</doc>
+    <field name="top" start="24" size="8" type="uint" grade="unknown"/>
+    <field name="red" start="12" size="12" type="uint" grade="established"/>
+    <field name="green" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="MODE_W6" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <field name="top" start="25" size="7" type="uint" grade="unknown"/>
+    <field name="has_offset" start="24" size="1" type="uint" grade="established"/>
+    <field name="blue" start="12" size="12" type="uint" grade="established"/>
+    <field name="alpha" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="OFFCODE" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Code 3 is never sent (the allocator's table does accept element sizes
+of 16 and 32 bytes, codes 3 and 4, but no format row uses them).
+
+Offset code (level descriptor word 1 bits 28:26,
+BUZZ_DECODE.h TEXLEVEL_W1.offset_code). Two writers: the on-board
+mipmap builder stores 2 only when the record's offset word equals 2,
+which the allocator never produces, so it stores 0; the
+pixel-to-texture move stores a value its helper derives from the
+source object's size and pixel-mode words: 0 for six of the pairs
+traced and 2 for exactly one pair; every other pair is a GL error. The
+builders traced give only pairs that map to 0, so code 2 is the move's
+only possible nonzero output and no traced path produces it: inferred
+unreachable in the shipped software, not excluded. Whether the board
+treats 1..7 differently from 0 is unknown.</doc>
+    <field name="value" start="0" size="3" type="offcode_value" grade="established"/>
+  </struct>
+  <struct name="SIZE" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Size code c (level descriptor word 1 bits 31:30, BUZZ_DECODE.h
+TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
+and 49, 2 for 32 and 33. The allocator books 2 &lt;&lt; c bytes per texel;
+the texture path and the pixel-to-texture move both send the same
+quantity (log2 bytes per texel minus 1), inferred for the move's
+every source object. Whether the board reads the field as a size, a
+layout selector or ignores it is unknown. The booked bytes are an
+upper bound for 2D textures (ICC levels book the full width while the
+pitch halves it) and a contract for 3D slices (section 5).</doc>
+    <field name="code" start="0" size="2" type="size_code" grade="established"/>
+  </struct>
+  <struct name="TARGET" size="4" grade="unknown" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Active texture target (id 0x005, count 1). The word is shared with the
+clip-plane and path-selection bits of the same block; only the target
+bits are listed. established as what the library sets: bit 5 for a
+complete 3D texture, else bit 4 for a complete 2D texture, else bit 3
+for a complete 1D texture; bit 10 together with any of them. When no
+enabled target has a complete texture, bits 5:3 and 11:10 are cleared.
+Bit 11 is only ever cleared: unknown.</doc>
+    <field name="bit11" start="11" size="1" type="uint" grade="unknown"/>
+    <field name="active" start="10" size="1" type="uint" grade="established"/>
+    <field name="dim3" start="5" size="1" type="uint" grade="established"/>
+    <field name="dim2" start="4" size="1" type="uint" grade="established"/>
+    <field name="dim1" start="3" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="WRAPAUX" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
+    <doc>Wrap modes are independent per axis: each setter takes one enumerant,
+writes one axis and looks at no other. The wrap codes themselves (0
+repeat, 1 clamp to edge, 2 clamp, 3 clamp to border) are the sampler
+word's wrap_s, wrap_t and wrap_r fields (BUZZ_DECODE.h). The value that
+goes with each code in wrap_aux, established:</doc>
+    <field name="value" start="0" size="6" type="wrapaux_value" grade="established"/>
+  </struct>
+  <constant name="BORDER_MAX" value="0x1" grade="established"/>
+  <constant name="COLOUR12_BITS" value="0xc" grade="established"/>
+  <constant name="COLOUR12_LANE_MASK" value="0xfff" grade="established"/>
+  <constant name="COLOUR12_MAX" value="0xfff" grade="established"/>
+  <constant name="COLOUR12_ROUND_SCALE" value="0xfff" grade="established"/>
+  <constant name="COLTAB_A_BASE" value="0x3e00" grade="established"/>
+  <constant name="COLTAB_B_BASE" value="0x3e10" grade="established"/>
+  <constant name="COLTAB_C_BASE" value="0x3e20" grade="inferred"/>
+  <constant name="COLTAB_D_BASE" value="0x3e30" grade="inferred"/>
+  <constant name="COLTAB_ENTRIES" value="0x100" grade="established"/>
+  <constant name="COLTAB_MAX_WIDTH" value="0x100" grade="established"/>
+  <constant name="COLTAB_UPLOAD_LAST" value="0xf" grade="established"/>
+  <constant name="COLTAB_UPLOAD_SHIFT" value="0x4" grade="established"/>
+  <constant name="COLTAB_UPLOAD_WORDS" value="0x10" grade="established"/>
+  <constant name="COLTAB_WORD_MASK" value="0xf" grade="established"/>
+  <constant name="DETAIL_COUNT_MAX" value="0xf" grade="established"/>
+  <constant name="DETAIL_FIRST" value="0x31" grade="established"/>
+  <constant name="ENV_WORDS" value="0x5" grade="established"/>
+  <constant name="FMT_INDEX_MAX_USED" value="0x31" grade="established"/>
+  <constant name="LEVEL_TABLE_ENTRIES" value="0x40" grade="established"/>
+  <constant name="LOD_BITS" value="0xe" grade="established"/>
+  <constant name="LOD_LIMIT" value="0xf" grade="established"/>
+  <constant name="LOD_MAX_DEFAULT" value="0xf00" grade="established"/>
+  <constant name="LOD_MIN_DEFAULT" value="0x3100" grade="established"/>
+  <constant name="LOD_WORDS" value="0x4" grade="established"/>
+  <constant name="MODE_WORDS" value="0x7" grade="established"/>
+  <constant name="OFFSET_WORDS" value="0x3" grade="established"/>
+  <constant name="OP_FIRSTLEVEL" value="0x406" grade="established"/>
+  <constant name="OP_TARGET" value="0x405" grade="established"/>
+  <constant name="OP_TEXENV" value="0x141b" grade="established"/>
+  <constant name="OP_TEXLOD" value="0x1013" grade="established"/>
+  <constant name="OP_TEXMODE" value="0x1c16" grade="established"/>
+  <constant name="OP_TEXOFFSET" value="0xc3e" grade="established"/>
+  <constant name="PIXCLASS_COUNT" value="0x12" grade="established"/>
+  <constant name="PRIMARY_LAST" value="0xf" grade="established"/>
+  <constant name="PRIMARY_LEVELS_MAX" value="0x10" grade="established"/>
+  <constant name="SCRATCH_LEVEL" value="0x3c" grade="established"/>
+  <constant name="SIZE_MAX" value="0x8000" grade="established"/>
+  <constant name="SLICE_STRIDE_BASE" value="0x20" grade="established"/>
+  <constant name="TABLE_LAST" value="0x3f" grade="established"/>
+  <constant name="TILE_TEXELS" value="0x10" grade="established"/>
+  <constant name="UNUSED_FIRST" value="0x10" grade="established"/>
+  <constant name="UNUSED_LAST" value="0x30" grade="established"/>
+</genxml>

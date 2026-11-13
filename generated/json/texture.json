@@ -1,0 +1,1402 @@
+{
+ "schema": "defs-flat/1",
+ "source": "devices/texture/registers.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "CLASS",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "CLASS.value",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.none",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.alpha",
+   "value": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.luminance",
+   "value": 2,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.luminance_alpha",
+   "value": 3,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.intensity",
+   "value": 4,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.rgb",
+   "value": 5,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "CLASS.value.rgba",
+   "value": 6,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "COLTAB_A",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "COLTAB_A.kept",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "COLTAB_A.red",
+   "hi": 23,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "COLTAB_A.green",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "COLTAB_B",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "COLTAB_B.kept",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "COLTAB_B.blue",
+   "hi": 23,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "COLTAB_B.alpha",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "ENV_W0",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W0.unwritten",
+   "hi": 31,
+   "lo": 3,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W0.mode",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "ENV_W0.mode.replace",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "ENV_W0.mode.modulate",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "ENV_W0.mode.decal",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "ENV_W0.mode.blend",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "ENV_W0.mode.add",
+   "value": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "ENV_W1",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W1.top",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W1.red",
+   "hi": 23,
+   "lo": 12,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W1.green",
+   "hi": 11,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "ENV_W2",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W2.top",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W2.blue",
+   "hi": 23,
+   "lo": 12,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W2.alpha",
+   "hi": 11,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "ENV_W3",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W3.bits",
+   "hi": 31,
+   "lo": 0,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "ENV_W4",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "ENV_W4.bits",
+   "hi": 31,
+   "lo": 0,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "FIRSTLEVEL",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "FIRSTLEVEL.unwritten",
+   "hi": 31,
+   "lo": 6,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "FIRSTLEVEL.index",
+   "hi": 5,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "FMT",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "FMT.index",
+   "hi": 5,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.a8",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.a8_alt",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.i8",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.i8_alt",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.l8",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.l8_alt",
+   "value": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.r3g3b2",
+   "value": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.r3g3b2_alt",
+   "value": 7,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.a12",
+   "value": 8,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.i12",
+   "value": 9,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.l12",
+   "value": 10,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.l8a8",
+   "value": 11,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.rgba4",
+   "value": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.rgb5a1",
+   "value": 13,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.l12a12",
+   "value": 16,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.rgba8",
+   "value": 17,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.rgb10a2",
+   "value": 18,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.rgba12_move",
+   "value": 32,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.rgba12",
+   "value": 33,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.icc_rgb",
+   "value": 48,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "FMT.index.icc_rgba",
+   "value": 49,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "LEVEL3D_W2",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "LEVEL3D_W2.slice_exp",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "LOD",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "LOD.value",
+   "hi": 13,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "MODE_W0",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.detail_modulate",
+   "hi": 31,
+   "lo": 31,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.bit30",
+   "hi": 30,
+   "lo": 30,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.detail_level",
+   "hi": 29,
+   "lo": 25,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.unwritten",
+   "hi": 24,
+   "lo": 15,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.log2_s",
+   "hi": 14,
+   "lo": 10,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.log2_t",
+   "hi": 9,
+   "lo": 5,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W0.log2_r",
+   "hi": 4,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "MODE_W1",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W1.top",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W1.wrap_aux",
+   "hi": 23,
+   "lo": 18,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W1.bit17",
+   "hi": 17,
+   "lo": 17,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W1.max_clamp",
+   "hi": 16,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "MODE_W2",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W2.top",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W2.wrap_aux",
+   "hi": 23,
+   "lo": 18,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W2.bit17",
+   "hi": 17,
+   "lo": 17,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W2.max_clamp",
+   "hi": 16,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "MODE_W3",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W3.top",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W3.wrap_aux",
+   "hi": 23,
+   "lo": 18,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W3.bit17",
+   "hi": 17,
+   "lo": 17,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W3.max_clamp",
+   "hi": 16,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "MODE_W5",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W5.top",
+   "hi": 31,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W5.red",
+   "hi": 23,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W5.green",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "MODE_W6",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W6.top",
+   "hi": 31,
+   "lo": 25,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W6.has_offset",
+   "hi": 24,
+   "lo": 24,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W6.blue",
+   "hi": 23,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "MODE_W6.alpha",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "OFFCODE",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "OFFCODE.value",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "OFFCODE.value.none",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "OFFCODE.value.code2",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "SIZE",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "SIZE.code",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "SIZE.code.b2",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "SIZE.code.b4",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "SIZE.code.b8",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "TARGET",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "TARGET.bit11",
+   "hi": 11,
+   "lo": 11,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "TARGET.active",
+   "hi": 10,
+   "lo": 10,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "TARGET.dim3",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "TARGET.dim2",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "TARGET.dim1",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "word",
+   "name": "WRAPAUX",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "field",
+   "name": "WRAPAUX.value",
+   "hi": 5,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "WRAPAUX.value.repeat_clamp",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "WRAPAUX.value.edge",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "enum_value",
+   "name": "WRAPAUX.value.border",
+   "value": 63,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "BORDER_MAX",
+   "value": 1,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLOUR12_BITS",
+   "value": 12,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLOUR12_LANE_MASK",
+   "value": 4095,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLOUR12_MAX",
+   "value": 4095,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLOUR12_ROUND_SCALE",
+   "value": 4095,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_A_BASE",
+   "value": 15872,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_B_BASE",
+   "value": 15888,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_C_BASE",
+   "value": 15904,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_D_BASE",
+   "value": 15920,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_ENTRIES",
+   "value": 256,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_MAX_WIDTH",
+   "value": 256,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_UPLOAD_LAST",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_UPLOAD_SHIFT",
+   "value": 4,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_UPLOAD_WORDS",
+   "value": 16,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "COLTAB_WORD_MASK",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "DETAIL_COUNT_MAX",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "DETAIL_FIRST",
+   "value": 49,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "ENV_WORDS",
+   "value": 5,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "FMT_INDEX_MAX_USED",
+   "value": 49,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "LEVEL_TABLE_ENTRIES",
+   "value": 64,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "LOD_BITS",
+   "value": 14,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "LOD_LIMIT",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "LOD_MAX_DEFAULT",
+   "value": 3840,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "LOD_MIN_DEFAULT",
+   "value": 12544,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "LOD_WORDS",
+   "value": 4,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "MODE_WORDS",
+   "value": 7,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OFFSET_WORDS",
+   "value": 3,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OP_FIRSTLEVEL",
+   "value": 1030,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OP_TARGET",
+   "value": 1029,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OP_TEXENV",
+   "value": 5147,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OP_TEXLOD",
+   "value": 4115,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OP_TEXMODE",
+   "value": 7190,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "OP_TEXOFFSET",
+   "value": 3134,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "PIXCLASS_COUNT",
+   "value": 18,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "PRIMARY_LAST",
+   "value": 15,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "PRIMARY_LEVELS_MAX",
+   "value": 16,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "SCRATCH_LEVEL",
+   "value": 60,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "SIZE_MAX",
+   "value": 32768,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "SLICE_STRIDE_BASE",
+   "value": 32,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "TABLE_LAST",
+   "value": 63,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "TILE_TEXELS",
+   "value": 16,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "UNUSED_FIRST",
+   "value": 16,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  },
+  {
+   "unit": "texture",
+   "kind": "constant",
+   "name": "UNUSED_LAST",
+   "value": 48,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library texture routines"
+  }
+ ]
+}

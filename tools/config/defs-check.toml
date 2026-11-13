@@ -1,0 +1,1864 @@
+[project]
+name = "odsy"
+plugin = "tools/odsy_checks.py"
+
+[banned]
+allow_includes = ["stdint.h"]
+
+[[banned.extra]]
+label = "odsy symbol"
+regex = '\bodsy(?:[A-Z_]\w*)'
+
+[[banned.extra]]
+label = "driver routine prefix"
+regex = '\b(?:gfP_|gfx_|ody_|odsy_)\w*'
+
+[[banned.extra]]
+label = "library routine"
+regex = '\b__gl\w*|\bRenderFunc\w*|\bImage(?:Chain|Xfer|Calc|Copy|ToDma)\w*'
+
+[[banned.extra]]
+label = "library routine"
+regex = '\b(?:SetupDMA|MovePixels|Validate(?:Hardware|Texture)|CalcTexel|ChooseSuitable)\w*'
+
+[[banned.extra]]
+label = "kernel object name"
+regex = '\b\w+_(?:tport|pon|sdram|brdmgr|pmm|ctxsw)\b'
+
+[[banned.extra]]
+label = "vendor register name"
+regex = '\bsys\.config\b|\b[a-z]+\.[a-z]+_config\b'
+
+[[banned.extra]]
+label = "binary name"
+regex = '\blibGL\w*|\bodyssey\.(?:a|so)\b|\bbuzz_xform\b|\bbuzz_ucode\b'
+
+[units.buzz]
+group = "BUZZ_DECODE.h"
+plugin_form = "legacy"
+prose_offsets = false
+
+[units.display]
+group = "display"
+notes_corpus = ["docs/display.md", "docs/pbj.md", "docs/registers.md", "DISPLAY.h", "PBJ.h"]
+
+[units.pbj]
+group = "display"
+notes_corpus = ["docs/display.md", "docs/pbj.md", "docs/registers.md", "DISPLAY.h", "PBJ.h"]
+
+[units.texture]
+group = "texture"
+notes_corpus = ["docs/texture-state.md", "docs/texture-formats.md", "docs/tokens.md", "BUZZ.h"]
+prose_offsets = false
+
+[units.dma]
+group = "dma"
+notes_corpus = ["docs/kernel.md", "BUZZ.h", "docs/buzz.md", "docs/registers.md"]
+no_addresses = true
+size_limit_macro = "DMA_ENTRY_MAX_BYTES"
+prose_offsets = false
+
+[units.board]
+group = "ODSY_DECODE.h"
+prose_offsets = false
+
+[units.compositor]
+group = "COMPOSITOR_DECODE.h"
+prose_offsets = false
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "read class/code split"
+doc = "docs/pixel-paths.md"
+regex = 'class \(bits (\d+):(\d+)\) \d+, code \(bits (\d+):(\d+)\)'
+binds = [
+  ["F", "HDR_W4.class", 1, 2],
+  ["F", "HDR_W4.code", 3, 4],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "read class/code split (table)"
+doc = "docs/pixel-paths.md"
+regex = 'bits (\d+):(\d+) class, (\d+):(\d+) code, 12 set'
+binds = [
+  ["F", "HDR_W4.class", 1, 2],
+  ["F", "HDR_W4.code", 3, 4],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "write format/type split"
+doc = "docs/pixel-paths.md"
+regex = 'format code in bits (\d+):(\d+), type code in\s+bits (\d+):(\d+)'
+binds = [
+  ["F", "HDR_W7.format", 1, 2],
+  ["F", "HDR_W7.type", 3, 4],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "write word 7 fields"
+doc = "docs/pixel-paths.md"
+regex = 'bits (\d+):(\d+) format code, (\d+):(\d+) type code, bit (\d+) expand, bit (\d+) unpack byte swap, (\d+):(\d+) bytes-per-pixel code, bit (\d+) transfer path, bit (\d+) as for a read'
+binds = [
+  ["F", "HDR_W7.format", 1, 2],
+  ["F", "HDR_W7.type", 3, 4],
+  ["F", "HDR_W7.expand", 5],
+  ["F", "HDR_W7.swap", 6],
+  ["F", "HDR_W7.psize", 7, 8],
+  ["F", "HDR_W7.transform", 9],
+  ["F", "HDR_W7.differs", 10],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 7 pixel-size code"
+doc = "docs/pixel-paths.md"
+regex = 'result goes to word 7 bits (\d+):(\d+) of both'
+binds = [
+  ["F", "HDR_W7.psize", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 4 pixel-size code"
+doc = "docs/pixel-paths.md"
+regex = 'pixel-size code from description \+0x28'
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 4 pixel-size width note"
+doc = "docs/pixel-paths.md"
+regex = 'pixel-size code is three bits, (\d+):(\d+), in both header words'
+binds = [
+  ["F", "HDR_W4.pixel_size", 1, 2],
+  ["F", "HDR_W7.psize", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 4 size field"
+doc = "docs/pixel-paths.md"
+regex = "15:13 the class field"
+binds = [
+  ["F", "HDR_W4.size_field"],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 1 and 3 packing"
+doc = "docs/pixel-paths.md"
+regex = '\| 1 \| x in bits (\d+):(\d+), y in (\d+):(\d+)'
+binds = [
+  ["F", "HDR_W1.x", 1, 2],
+  ["F", "HDR_W1.y", 3, 4],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 3 packing"
+doc = "docs/pixel-paths.md"
+regex = '\| 3 \| width in bits (\d+):(\d+), height in (\d+):(\d+)'
+binds = [
+  ["F", "HDR_W3.width", 1, 2],
+  ["F", "HDR_W3.height", 3, 4],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 6 row bytes"
+doc = "docs/pixel-paths.md"
+regex = '\| 6 \| row bytes in bits (\d+):(\d+)'
+binds = [
+  ["F", "HDR_W6.row_bytes", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "word 2 window word"
+doc = "docs/pixel-paths.md"
+regex = '\| 2 \| description \+0x1c in bits (\d+):(\d+)'
+binds = [
+  ["F", "HDR_W2.window_word", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "copy operand 2 packing"
+doc = "docs/pixel-paths.md"
+regex = "description \\+0x1c in bits (\\d+):(\\d+), the destination\\'s second field code in bits (\\d+):(\\d+)\\s+and the source \\+0x1c in bits (\\d+):(\\d+), with destination front in bit (\\d+)"
+binds = [
+  ["F", "COPY_W2.dst_window", 1, 2],
+  ["F", "COPY_W2.dst_field_b", 3, 4],
+  ["F", "COPY_W2.src_window", 5, 6],
+  ["F", "COPY_W2.dst_front", 7],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "copy operand 7 flags"
+doc = "docs/pixel-paths.md"
+regex = "bits (\\d+):(\\d+) set\\s+when context \\+0x16a68 is zero \\(.*?\\), bit (\\d+) exactly when.*?bit (\\d+) when the destination y lies\\s+in the source\\'s y range and bit (\\d+) when the destination x"
+binds = [
+  ["F", "COPY_W7.clamp_off", 1, 2],
+  ["F", "HDR_W7.transform", 3],
+  ["F", "COPY_W7.dst_y_in_src", 4],
+  ["F", "COPY_W7.dst_x_in_src", 5],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "pixel-mode word"
+doc = "docs/pixel-paths.md"
+regex = "\\+0x96a0\\s+bits (\\d+):(\\d+) the description\\'s \\+0x1c; \\+0x96a4 bits (\\d+):(\\d+) the field format above, (\\d+):(\\d+) the layout\\s+code, (\\d+):(\\d+) the storage code, (\\d+):(\\d+) the description\\'s \\+0x28, bit (\\d+) for pixel classes 16 and\\s+17, bit (\\d+) when"
+binds = [
+  ["F", "PIXMODE_W0.window_word", 1, 2],
+  ["F", "PIXMODE_W1.field_format", 3, 4],
+  ["F", "PIXMODE_W1.layout", 5, 6],
+  ["F", "PIXMODE_W1.storage", 7, 8],
+  ["F", "PIXMODE_W1.size_field", 9, 10],
+  ["F", "PIXMODE_W1.index_class", 11],
+  ["F", "PIXMODE_W1.bit27", 12],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "level descriptor format index"
+doc = "docs/texture-formats.md"
+regex = 'six-bit field in bits (\d+):(\d+) of word 1 of a level descriptor'
+binds = [
+  ["F", "TEXLEVEL_W1.format_index", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "level descriptor size code"
+doc = "docs/texture-formats.md"
+regex = '\*\*Word 1 bits (\d+):(\d+) are the size code'
+binds = [
+  ["F", "TEXLEVEL_W1.size_code", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "level descriptor offset code"
+doc = "docs/texture-formats.md"
+regex = 'offset code \(level word 1 bits (\d+):(\d+)\)'
+binds = [
+  ["F", "TEXLEVEL_W1.offset_code", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "level descriptor pitch"
+doc = "docs/texture-formats.md"
+regex = 'Word 1 bits (\d+):(\d+) come from the width in 16-texel tiles'
+binds = [
+  ["F", "TEXLEVEL_W1.pitch", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "level descriptor word 0"
+doc = "docs/texture-state.md"
+regex = '\| `__glOdysseyTextureActivate` \| bits (\d+):(\d+) '
+binds = [
+  ["F", "TEXLEVEL_W0.addr", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler wrap fields"
+doc = "docs/texture-state.md"
+regex = 'Word 4 field \(S bits (\d+):(\d+), T (\d+):(\d+), R (\d+):(\d+)\)'
+binds = [
+  ["F", "SAMPLER.wrap_s", 1, 2],
+  ["F", "SAMPLER.wrap_t", 3, 4],
+  ["F", "SAMPLER.wrap_r", 5, 6],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler table format and bit 0"
+doc = "docs/texture-formats.md"
+regex = '\| Table format code \| (\d+):(\d+) \|'
+binds = [
+  ["F", "SAMPLER.table_fmt", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler colour table enable"
+doc = "docs/texture-formats.md"
+regex = '\| Colour-table enable \| (\d+) \|'
+binds = [
+  ["F", "SAMPLER.colour_table", 1],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler image flag"
+doc = "docs/texture-formats.md"
+regex = '\| Image-step flag \| (\d+) \|'
+binds = [
+  ["F", "SAMPLER.image_flag18", 1],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler min filter"
+doc = "BUZZ.h"
+regex = 'Bits (\d+):(\d+): minification filter'
+binds = [
+  ["F", "SAMPLER.min", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler mag filter"
+doc = "BUZZ.h"
+regex = 'Bits (\d+):(\d+): magnification filter'
+binds = [
+  ["F", "SAMPLER.mag", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler trilinear"
+doc = "BUZZ.h"
+regex = '/\* Bit (\d+): set for GL_LINEAR_MIPMAP_LINEAR'
+binds = [
+  ["F", "SAMPLER.trilinear", 1],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler no-offset"
+doc = "BUZZ.h"
+regex = "/\\* Bit (\\d+): set when the object\\'s offset flag"
+binds = [
+  ["F", "SAMPLER.no_offset", 1],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "sampler activation"
+doc = "BUZZ.h"
+regex = '/\* Bits (\d+):(\d+): 3-bit value from the current-texture lookup'
+binds = [
+  ["F", "SAMPLER.activation", 1, 2],
+]
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "post-filter word format"
+doc = "BUZZ.h"
+regex = 'Each is signed 3\.12 in (\d+) bits'
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "COPY opcode"
+doc = "docs/pixel-paths.md"
+regex = "sends 0x2031 and the eight words"
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "POSTFILTER opcode"
+doc = "docs/pixel-paths.md"
+regex = "`0x0001203b` and the eight words"
+
+[[claims]]
+group = "BUZZ_DECODE.h"
+label = "level descriptor opcode"
+doc = "docs/buzz.md"
+regex = 'header `0x10e80 \| i`|word `0x00010ebc`|0x280 \+ i'
+
+[[claims]]
+group = "display"
+label = "colour map channels"
+doc = "docs/display.md"
+regex = 'R in bits (\d+):(\d+), G in (\d+):(\d+), B in (\d+):(\d+)'
+binds = [
+  ["F", "DISPLAY.cmap.r", 1, 2],
+  ["F", "DISPLAY.cmap.g", 3, 4],
+  ["F", "DISPLAY.cmap.b", 5, 6],
+]
+
+[[claims]]
+group = "display"
+label = "cursor colour channels"
+doc = "docs/display.md"
+regex = 'colour-table entry is three 10-bit fields at (\d+):(\d+), (\d+):(\d+) and (\d+):(\d+)'
+binds = [
+  ["F", "DISPLAY.cursor_colors.r", 1, 2],
+  ["F", "DISPLAY.cursor_colors.g", 3, 4],
+  ["F", "DISPLAY.cursor_colors.b", 5, 6],
+]
+
+[[claims]]
+group = "display"
+label = "colour map extent"
+doc = "docs/pbj.md"
+regex = "so entries (0) to (0x[0-9a-f]+) exist"
+binds = [
+  ["O", "DISPLAY.cmap", 1],
+  ["E", "DISPLAY.cmap", 2],
+]
+
+[[claims]]
+group = "display"
+label = "frame and line table"
+doc = "docs/display.md"
+regex = 'frame table lives at display address (0x[0-9a-f]+) \(up to (\d+) entries\) and the line table at (0x[0-9a-f]+) \(up to (\d+) entries\)'
+binds = [
+  ["O", "DISPLAY.frame_table", 1],
+  ["C", "DISPLAY.frame_table", 2, 2],
+  ["O", "DISPLAY.line_table", 3],
+  ["C", "DISPLAY.line_table", 4, 2],
+]
+
+[[claims]]
+group = "display"
+label = "table entry packing"
+doc = "docs/display.md"
+regex = 'word = e\[2k\] \| e\[2k\+1\] << (\d+)'
+binds = [
+  ["LO", "DISPLAY.line_table.e1_end", 1, 15],
+  ["LO", "DISPLAY.line_table.e1_duration", 1, 8],
+  ["LO", "DISPLAY.line_table.e1_levels", 1, 0],
+  ["LO", "DISPLAY.frame_table.repeat", 1, 0],
+]
+
+[[claims]]
+group = "display"
+label = "line entry end flag"
+doc = "docs/display.md"
+regex = 'run of 16-bit entries whose last has bit (\d+) set'
+binds = [
+  ["F", "DISPLAY.line_table.e0_end", 1],
+]
+
+[[claims]]
+group = "display"
+label = "line entry duration"
+doc = "docs/display.md"
+regex = 'bits (\d+):(\d+) are a duration in pixel clocks for timed entries and bits (\d+):(\d+) the output states'
+binds = [
+  ["F", "DISPLAY.line_table.e0_duration", 1, 2],
+  ["F", "DISPLAY.line_table.e0_levels", 3, 4],
+]
+
+[[claims]]
+group = "display"
+label = "init-state blank bit"
+doc = "docs/pbj.md"
+regex = 'shadow that `odsyBlankScreen` clears bit (\d+) of'
+binds = [
+  ["F", "DISPLAY.vtg_init_state.blank_gate", 1],
+]
+
+[[claims]]
+group = "display"
+label = "channel-enable blank bits"
+doc = "docs/pbj.md"
+regex = "clears the three bits of mask (0x[0-9a-f]+) in it"
+binds = [
+  ["M", ["DISPLAY.vtg_chan_en.blank_gate_5", "DISPLAY.vtg_chan_en.blank_gate_1", "DISPLAY.vtg_chan_en.blank_gate_0"], 1],
+]
+
+[[claims]]
+group = "display"
+label = "timing control locked bit"
+doc = "PBJ.h"
+regex = '0x2481 bit (\d+) is set while locked'
+binds = [
+  ["F", "DISPLAY.vtg_ctl.locked", 1],
+]
+
+[[claims]]
+group = "display"
+label = "cursor position and control"
+doc = "docs/display.md"
+regex = "(0x[0-9a-f]+) is the cursor position, (0x[0-9a-f]+) the control word"
+binds = [
+  ["O", "DISPLAY.cursor_pos", 1],
+  ["O", "DISPLAY.cursor_ctl", 2],
+]
+
+[[claims]]
+group = "display"
+label = "cursor image blocks"
+doc = "docs/display.md"
+regex = '(0x[0-9a-f]+) to (0x[0-9a-f]+) \((\d+) words\) and (0x[0-9a-f]+) to (0x[0-9a-f]+) \((\d+) words\) hold the cursor image'
+binds = [
+  ["O", "DISPLAY.cursor_image_a", 1],
+  ["E", "DISPLAY.cursor_image_a", 2],
+  ["C", "DISPLAY.cursor_image_a", 3, 1],
+  ["O", "DISPLAY.cursor_image_b", 4],
+  ["E", "DISPLAY.cursor_image_b", 5],
+  ["C", "DISPLAY.cursor_image_b", 6, 1],
+]
+
+[[claims]]
+group = "display"
+label = "cursor colour block"
+doc = "docs/display.md"
+regex = 'The (\d+) words at (0x[0-9a-f]+) are then the colours'
+binds = [
+  ["C", "DISPLAY.cursor_colors", 1, 1],
+  ["O", "DISPLAY.cursor_colors", 2],
+]
+
+[[claims]]
+group = "display"
+label = "cursor position packing"
+doc = "docs/display.md"
+regex = '\(\(x - x0\) << (\d+)\) \| \(\(y - y0\) & 0x(f+)\)'
+binds = [
+  ["LO", "DISPLAY.cursor_pos.x", 1, 0],
+  ["WHEX", "DISPLAY.cursor_pos.y", 2],
+]
+
+[[claims]]
+group = "display"
+label = "cursor control field groups"
+doc = "docs/display.md"
+regex = 'clears bits (\d+):(\d+) and sets bits (\d+):(\d+), so two fields sit in bits (\d+):(\d+) and three in bits (\d+):(\d+)'
+binds = [
+  ["IN", ["DISPLAY.cursor_ctl.enable", "DISPLAY.cursor_ctl.delay_enable"], 5, 6],
+  ["IN", ["DISPLAY.cursor_ctl.dual_head", "DISPLAY.cursor_ctl.field_seq", "DISPLAY.cursor_ctl.crosshair"], 7, 8],
+]
+
+[[claims]]
+group = "display"
+label = "cursor control bit assignment"
+doc = "docs/display.md"
+regex = 'dual head bit (\d+), second enable bit (\d+), cross-hair bit (\d+), enable bit (\d+), delay enable bit (\d+)'
+binds = [
+  ["F", "DISPLAY.cursor_ctl.dual_head", 1],
+  ["F", "DISPLAY.cursor_ctl.field_seq", 2],
+  ["F", "DISPLAY.cursor_ctl.crosshair", 3],
+  ["F", "DISPLAY.cursor_ctl.enable", 4],
+  ["F", "DISPLAY.cursor_ctl.delay_enable", 5],
+]
+
+[[claims]]
+group = "display"
+label = "cursor control toggle bit"
+doc = "docs/pbj.md"
+regex = 'rewrites it from that mirror with a toggled bit (\d+)'
+binds = [
+  ["F", "DISPLAY.cursor_ctl.toggle", 1],
+]
+
+[[claims]]
+group = "display"
+label = "data-path bits"
+doc = "docs/pbj.md"
+regex = 'setting bit (\d+) when bit (\d+) is set'
+binds = [
+  ["F", "DISPLAY.datapath_ctl.bit7", 1],
+  ["F", "DISPLAY.datapath_ctl.bit6", 2],
+]
+
+[[claims]]
+group = "display"
+label = "DAC bits"
+doc = "docs/pbj.md"
+regex = 'sets bit (\d+) here to blank, `odsySetDACGain` sets or clears bit (\d+)'
+binds = [
+  ["F", "DISPLAY.dac_ctl.blank", 1],
+  ["F", "DISPLAY.dac_ctl.gain", 2],
+]
+
+[[claims]]
+group = "display"
+label = "timing words to DAC, data path, state machine"
+doc = "docs/display.md"
+regex = "written to (0x[0-9a-f]+), (0x[0-9a-f]+), (0x[0-9a-f]+); bit 6 of word 164"
+binds = [
+  ["O", "DISPLAY.dac_ctl", 1],
+  ["O", "DISPLAY.datapath_ctl", 2],
+  ["O", "DISPLAY.aux_ctl", 3],
+]
+
+[[claims]]
+group = "display"
+label = "twelve timing words"
+doc = "docs/display.md"
+regex = "twelve words written in order to (0x[0-9a-f]+) to (0x[0-9a-f]+)"
+binds = [
+  ["O", "DISPLAY.vtg_misc", 1],
+  ["E", "DISPLAY.vtg_misc", 2],
+]
+
+[[claims]]
+group = "display"
+label = "genlock enabled bit"
+doc = "docs/pbj.md"
+regex = 'continues only when bit (\d+) is set'
+binds = [
+  ["F", "DISPLAY.genlock_ctl.enabled", 1],
+]
+
+[[claims]]
+group = "display"
+label = "genlock status bits"
+doc = "docs/pbj.md"
+regex = 'bit (\d+) selects the "got" or "lost" message.*?What bit (\d+) means beyond the handler returning when it is clear'
+binds = [
+  ["F", "DISPLAY.genlock_status.lost", 1],
+  ["F", "DISPLAY.genlock_status.valid", 2],
+]
+
+[[claims]]
+group = "display"
+label = "display-mode table base"
+doc = "docs/pbj.md"
+regex = 'display-mode table \((0x[0-9a-f]+) \+ id\)'
+binds = [
+  ["O", "DISPLAY.mode_table", 1],
+]
+
+[[claims]]
+group = "display"
+label = "display-mode table length"
+doc = "DISPLAY.h"
+regex = 'ids (\d+)-(\d+) follow in\s+\*? ?both'
+binds = [
+  ["CDEC", "DISPLAY.mode_table", 2, 1],
+]
+
+[[claims]]
+group = "display"
+label = "mode word columns"
+doc = "DISPLAY.h"
+regex = 'B mode\s+bits (\d+):(\d+)\s+(\d+):(\d+)\s+(\d+):(\d+)\s+(\d+):(\d+)'
+binds = [
+  ["F", "DISPLAY.mode_table.layout", 1, 2],
+  ["F", "DISPLAY.mode_table.pixel_format", 3, 4],
+  ["F", "DISPLAY.mode_table.cmap_group", 5, 6],
+  ["F", "DISPLAY.mode_table.low_code", 7, 8],
+]
+
+[[claims]]
+group = "display"
+label = "gamma group"
+doc = "DISPLAY.h"
+regex = 'MODE_CMAP_GAMMA\s+(\d+)'
+binds = [
+  ["EN", "DISPLAY.mode_table.cmap_group", "gamma", 1],
+]
+
+[[claims]]
+group = "display"
+label = "pixel format codes"
+doc = "DISPLAY.h"
+regex = 'MODE_FMT_RGB10\s+(\d+).*?MODE_FMT_RGB8\s+(\d+).*?MODE_FMT_RGB5\s+(\d+).*?MODE_FMT_RGB4\s+(\d+).*?MODE_FMT_RGB10_ALT\s+(\d+)'
+binds = [
+  ["EN", "DISPLAY.mode_table.pixel_format", "rgb10", 1],
+  ["EN", "DISPLAY.mode_table.pixel_format", "rgb8", 2],
+  ["EN", "DISPLAY.mode_table.pixel_format", "rgb5", 3],
+  ["EN", "DISPLAY.mode_table.pixel_format", "rgb4", 4],
+  ["EN", "DISPLAY.mode_table.pixel_format", "rgb10_alt", 5],
+]
+
+[[claims]]
+group = "display"
+label = "host-interface control fields"
+doc = "docs/pbj.md"
+regex = 'bits (\d+):(\d+) take the clock-select field of timing word 212, bits (\d+):(\d+) that of word 216, bit (\d+) is held clear'
+binds = [
+  ["F", "PBJ.hif_ctl.clock_sel_a", 1, 2],
+  ["F", "PBJ.hif_ctl.clock_sel_b", 3, 4],
+  ["F", "PBJ.hif_ctl.clock_run", 5],
+]
+
+[[claims]]
+group = "display"
+label = "identification fields"
+doc = "docs/pbj.md"
+regex = 'which stores bits (\d+):(\d+) at record'
+binds = [
+  ["F", "PBJ.id.version", 1, 2],
+]
+
+[[claims]]
+group = "display"
+label = "identification option bit"
+doc = "docs/pbj.md"
+regex = 'skips the option-card probe when bit (\d+) is set'
+binds = [
+  ["F", "PBJ.id.no_option", 1],
+]
+
+[[claims]]
+group = "display"
+label = "I2C option port"
+doc = "PBJ.h"
+regex = 'PBJ_I2C_OPT_CTRL\s+(0x[0-9a-f]+).*?PBJ_I2C_OPT_DATA\s+(0x[0-9a-f]+).*?PBJ_I2C_MAIN_CTRL\s+(0x[0-9a-f]+).*?PBJ_I2C_MAIN_DATA\s+(0x[0-9a-f]+)'
+binds = [
+  ["O", "PBJ.i2c_opt_ctl", 1],
+  ["O", "PBJ.i2c_opt_data", 2],
+  ["O", "PBJ.i2c_main_ctl", 3],
+  ["O", "PBJ.i2c_main_data", 4],
+]
+
+[[claims]]
+group = "display"
+label = "I2C control bits"
+doc = "PBJ.h"
+regex = 'clears bits (\d+), (\d+)[\s*]+and (\d+) in its shadow'
+binds = [
+  ["F", "PBJ.i2c_opt_ctl.bit12", 1],
+  ["F", "PBJ.i2c_opt_ctl.bit8", 2],
+  ["F", "PBJ.i2c_opt_ctl.bit10", 3],
+  ["F", "PBJ.i2c_main_ctl.bit12", 1],
+  ["F", "PBJ.i2c_main_ctl.bit8", 2],
+  ["F", "PBJ.i2c_main_ctl.bit10", 3],
+]
+
+[[claims]]
+group = "display"
+label = "I2C status bit"
+doc = "PBJ.h"
+regex = 'polls the second register for bit (\d+)'
+binds = [
+  ["F", "PBJ.i2c_opt_data.bit9", 1],
+  ["F", "PBJ.i2c_main_data.bit9", 1],
+]
+
+[[claims]]
+group = "display"
+label = "scanout base, pitch, depth"
+doc = "docs/display.md"
+regex = 'scanout base \((0x[0-9a-f]+), (0x[0-9a-f]+)\), pitch \((0x[0-9a-f]+)\) and depth \((0x[0-9a-f]+)\)'
+binds = [
+  ["O", "PBJ.fb_base_b", 1],
+  ["O", "PBJ.fb_base_a", 2],
+  ["O", "PBJ.fb_pitch", 3],
+  ["O", "PBJ.fb_depth", 4],
+]
+
+[[claims]]
+group = "display"
+label = "scan configuration words"
+doc = "docs/display.md"
+regex = "bits 1:0 to (0x[0-9a-f]+); bit 5 to (0x[0-9a-f]+) and to (0x[0-9a-f]+)"
+binds = [
+  ["O", "PBJ.scan_cfg_a", 1],
+  ["O", "PBJ.scan_cfg_c", 2],
+  ["O", "DISPLAY.cmap_unit_ctl", 3],
+]
+
+[[claims]]
+group = "display"
+label = "second scan configuration register"
+doc = "PBJ.h"
+regex = 'PBJ_REG_2805\s+(0x[0-9a-f]+)'
+binds = [
+  ["O", "PBJ.scan_cfg_b", 1],
+]
+
+[[claims]]
+group = "display"
+label = "pixel size codes"
+doc = "PBJ.h"
+regex = 'PBJ_FB_DEPTH_8\s+(\d+).*?PBJ_FB_DEPTH_16\s+(\d+).*?PBJ_FB_DEPTH_32\s+(\d+)'
+binds = [
+  ["EN", "PBJ.fb_depth.code", "bpp8", 1],
+  ["EN", "PBJ.fb_depth.code", "bpp16", 2],
+  ["EN", "PBJ.fb_depth.code", "bpp32", 3],
+]
+
+[[claims]]
+group = "display"
+label = "back-end interface clock field"
+doc = "docs/display.md"
+regex = '\| 208 \| bits (\d+):(\d+) to (0x[0-9a-f]+)'
+binds = [
+  ["F", "PBJ.dcb_ctl.dcb_clock", 1, 2],
+  ["O", "PBJ.dcb_ctl", 3],
+]
+
+[[claims]]
+group = "display"
+label = "FIFO header layout"
+doc = "PBJ.h"
+regex = 'a header \(type (\d+):(\d+), address (\d+):(\d+), count[\s*]+(\d+):(\d+)\)'
+binds = [
+  ["F", "FIFO_HDR.type", 1, 2],
+  ["F", "FIFO_HDR.address", 3, 4],
+  ["F", "FIFO_HDR.count", 5, 6],
+]
+
+[[claims]]
+group = "display"
+label = "FIFO header types"
+doc = "PBJ.h"
+regex = 'PBJ_TYPE_NOW\s+(\d+).*?PBJ_TYPE_SYNCED\s+(\d+)'
+binds = [
+  ["EN", "FIFO_HDR.type", "now", 1],
+  ["EN", "FIFO_HDR.type", "synced", 2],
+]
+
+[[claims]]
+group = "display"
+label = "FIFO address width"
+doc = "PBJ.h"
+regex = 'PBJ_ADDR_BITS\s+(\d+)'
+binds = [
+  ["DEF", "PBJ_ADDR_BITS", 1],
+]
+
+[[claims]]
+group = "display"
+label = "FIFO depth"
+doc = "PBJ.h"
+regex = 'the display FIFO is inferred to hold (\d+) doublewords'
+binds = [
+  ["DEF", "PBJ_FIFO_DEPTH_DWORDS", 1],
+]
+
+[[claims]]
+group = "display"
+label = "read-back slot"
+doc = "PBJ.h"
+regex = '0x4000 slots of (\d+) bytes'
+binds = [
+  ["DEF", "PBJ_READ_SLOT_BYTES", 1],
+]
+
+[[claims]]
+group = "display"
+label = "display FIFO level field"
+doc = "docs/registers.md"
+regex = 'bits (\d+):(\d+) are the display FIFO level'
+binds = [
+  ["WDEC", "", 1, 2, 7],
+]
+
+[[claims]]
+group = "display"
+label = "display FIFO port is a 64-bit store"
+doc = "docs/registers.md"
+regex = '\| 0x400000 \| store (\d+) bits \| \*\*established\.\*\* Display FIFO port'
+binds = [
+  ["EQ", 64, 1],
+]
+
+[[claims]]
+group = "texture"
+label = "texture-mode block word and count"
+doc = "BUZZ.h"
+regex = '(0x00011c16) \+ (\d+) words'
+binds = [
+  ["DEFL", "TEX_OP_TEXMODE", 1],
+  ["DEF", "TEX_MODE_WORDS", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "level-of-detail block word and count"
+doc = "BUZZ.h"
+regex = '(0x00011013) \+ (\d+),'
+binds = [
+  ["DEFL", "TEX_OP_TEXLOD", 1],
+  ["DEF", "TEX_LOD_WORDS", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "texture offset block word and count"
+doc = "BUZZ.h"
+regex = '(0x00010c3e) \+ (\d+),'
+binds = [
+  ["DEFL", "TEX_OP_TEXOFFSET", 1],
+  ["DEF", "TEX_OFFSET_WORDS", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "environment block word and count"
+doc = "BUZZ.h"
+regex = '(0x0001141b) \+ (\d+),'
+binds = [
+  ["DEFL", "TEX_OP_TEXENV", 1],
+  ["DEF", "TEX_ENV_WORDS", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "environment block id in the texture notes"
+doc = "docs/texture-state.md"
+regex = "## Texture environment block `(0x141b)`"
+binds = [
+  ["DEFN", "TEX_OP_TEXENV", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "first level block word"
+doc = "docs/tokens.md"
+regex = '\*\*0x006\*\*, word `(0x00010406)`.*?bits (\d+):(\d+) are the index of'
+binds = [
+  ["DEFL", "TEX_OP_FIRSTLEVEL", 1],
+  ["F", "FIRSTLEVEL.index", 2, 3],
+]
+
+[[claims]]
+group = "texture"
+label = "first level unwritten bits"
+doc = "docs/tokens.md"
+regex = 'Bits (\d+):(6) have no writer'
+binds = [
+  ["F", "FIRSTLEVEL.unwritten", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "scratch level descriptor"
+doc = "docs/tokens.md"
+regex = '\*\*0x006\*\* value (\d+):'
+binds = [
+  ["DEF", "TEX_SCRATCH_LEVEL", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "target block word"
+doc = "docs/tokens.md"
+regex = '\*\*0x005\*\*, word `(0x00010405)`, one operand'
+binds = [
+  ["DEFL", "TEX_OP_TARGET", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "active target bits"
+doc = "docs/tokens.md"
+regex = 'sets bit (\d+) for a complete `GL_TEXTURE_3D`, else\s+bit (\d+) for `GL_TEXTURE_2D`, else bit (\d+) for `GL_TEXTURE_1D`, sets bit (\d+) with any of them, and\s+clears bits (\d+):(\d+) and (\d+):(\d+)'
+binds = [
+  ["F", "TARGET.dim3", 1],
+  ["F", "TARGET.dim2", 2],
+  ["F", "TARGET.dim1", 3],
+  ["F", "TARGET.active", 4],
+]
+
+[[claims]]
+group = "texture"
+label = "environment mode codes"
+doc = "docs/texture-state.md"
+regex = 'Bits (\d+):(\d+) of word 0 are set to (\d) for `GL_REPLACE`.*?, (\d) for `GL_MODULATE`.*?, (\d) for `GL_DECAL`.*?, (\d) for `GL_BLEND`.*? and (\d) for `GL_ADD`'
+binds = [
+  ["F", "ENV_W0.mode", 1, 2],
+  ["EN", "ENV_W0.mode", "replace", 3],
+  ["EN", "ENV_W0.mode", "modulate", 4],
+  ["EN", "ENV_W0.mode", "decal", 5],
+  ["EN", "ENV_W0.mode", "blend", 6],
+  ["EN", "ENV_W0.mode", "add", 7],
+]
+
+[[claims]]
+group = "texture"
+label = "environment initial mode"
+doc = "docs/texture-state.md"
+regex = 'initialisation sets bits 2:0 to (\d), modulate'
+binds = [
+  ["EN", "ENV_W0.mode", "modulate", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "environment add colour"
+doc = "docs/texture-state.md"
+regex = "`GL_ADD` writes (0xfff) to the four environment colour channels"
+binds = [
+  ["DEFN", "TEX_COLOUR12_MAX", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "environment colour width"
+doc = "docs/texture-state.md"
+regex = 'converts four floats to (\d+) bits per channel'
+binds = [
+  ["DEF", "TEX_COLOUR12_BITS", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "environment colour packing"
+doc = "BUZZ.h"
+regex = 'GL_TEXTURE_ENV_COLOR as four unsigned 12-bit channels[\s*]+packed like the border colour'
+
+[[claims]]
+group = "texture"
+label = "environment add all ones"
+doc = "BUZZ.h"
+regex = 'writes all ones \(0xffffff, 0xffffff\)'
+
+[[claims]]
+group = "texture"
+label = "environment words 3 and 4"
+doc = "docs/texture-state.md"
+regex = "Words 3 and 4 of the block .*? are always zero for GL texturing"
+
+[[claims]]
+group = "texture"
+label = "border colour layout"
+doc = "BUZZ.h"
+regex = 'R in TEXMODE5 (\d+):(\d+), G in[\s*]+(\d+):(\d+), B in[\s*]+TEXMODE6 (\d+):(\d+), A in (\d+):(\d+)'
+binds = [
+  ["F", "MODE_W5.red", 1, 2],
+  ["F", "MODE_W5.green", 3, 4],
+  ["F", "MODE_W6.blue", 5, 6],
+  ["F", "MODE_W6.alpha", 7, 8],
+]
+
+[[claims]]
+group = "texture"
+label = "operand 6 offset flag"
+doc = "BUZZ.h"
+regex = 'TEXMODE6 bit (\d+): complement of TEXMODE4 bit (\d+)'
+binds = [
+  ["F", "MODE_W6.has_offset", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "detail combine bit"
+doc = "BUZZ.h"
+regex = '/\* Bit (\d+): detail combine'
+binds = [
+  ["F", "MODE_W0.detail_modulate", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "detail level field"
+doc = "BUZZ.h"
+regex = 'Bits (\d+):(\d+): detail level as a positive count, min\(-level, (\d+)\)'
+binds = [
+  ["F", "MODE_W0.detail_level", 1, 2],
+  ["DEF", "TEX_DETAIL_COUNT_MAX", 3],
+]
+
+[[claims]]
+group = "texture"
+label = "size exponents"
+doc = "BUZZ.h"
+regex = 'Bits (\d+):(\d+), (\d+):(\d+), (\d+):(\d+): log2 size'
+binds = [
+  ["F", "MODE_W0.log2_s", 1, 2],
+  ["F", "MODE_W0.log2_t", 3, 4],
+  ["F", "MODE_W0.log2_r", 5, 6],
+]
+
+[[claims]]
+group = "texture"
+label = "maximum clamp field"
+doc = "BUZZ.h"
+regex = 'Bits (\d+):(\d+): maximum clamp coordinate.*?\(mask (0x1ffff)\)'
+binds = [
+  ["F", "MODE_W1.max_clamp", 1, 2],
+  ["F", "MODE_W2.max_clamp", 1, 2],
+  ["F", "MODE_W3.max_clamp", 1, 2],
+  ["DEFN", "TEX_MODE_W1_MAX_CLAMP_MASK", 3],
+]
+
+[[claims]]
+group = "texture"
+label = "wrap auxiliary field"
+doc = "BUZZ.h"
+regex = 'Bits (\d+):(\d+): a 6-bit value set with the wrap mode'
+binds = [
+  ["F", "MODE_W1.wrap_aux", 1, 2],
+  ["F", "MODE_W2.wrap_aux", 1, 2],
+  ["F", "MODE_W3.wrap_aux", 1, 2],
+  ["FW", "WRAPAUX.value", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "wrap auxiliary field (texture notes)"
+doc = "docs/texture-state.md"
+regex = 'Size word bits (\d+):(\d+) of that axis'
+binds = [
+  ["F", "MODE_W1.wrap_aux", 1, 2],
+  ["F", "MODE_W2.wrap_aux", 1, 2],
+  ["F", "MODE_W3.wrap_aux", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "wrap auxiliary values"
+doc = "docs/texture-state.md"
+regex = '`GL_REPEAT` \(0x2901\) \| (\d+) \| (\d+) \|.*?`GL_CLAMP` \(0x2900\) \| (\d+) \| (\d+) \|.*?`GL_CLAMP_TO_EDGE_SGIS` \(0x812f\) \| (\d+) \| (\d+) \|.*?`GL_CLAMP_TO_BORDER_SGIS` \(0x812d\) \| (\d+) \| (\d+) \|'
+binds = [
+  ["EN", "WRAPAUX.value", "repeat_clamp", 2],
+  ["EN", "WRAPAUX.value", "repeat_clamp", 4],
+  ["EN", "WRAPAUX.value", "edge", 6],
+  ["EN", "WRAPAUX.value", "border", 8],
+]
+
+[[claims]]
+group = "texture"
+label = "level of detail word"
+doc = "BUZZ.h"
+regex = 'with 8 fraction bits in (\d+) bits.*?mask (0x3fff)'
+binds = [
+  ["DEF", "TEX_LOD_BITS", 1],
+  ["DEFN", "TEX_LOD_VALUE_MASK", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "level of detail field"
+doc = "docs/tokens.md"
+regex = "two's complement with eight fraction bits in bits (\\d+):(\\d+)"
+binds = [
+  ["F", "LOD.value", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "level of detail defaults"
+doc = "docs/tokens.md"
+regex = 'them at (0x3100) \(-15\) and (0xf00) \(\+15\)'
+binds = [
+  ["DEFN", "TEX_LOD_MIN_DEFAULT", 1],
+  ["DEFN", "TEX_LOD_MAX_DEFAULT", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "level of detail limits"
+doc = "docs/texture-state.md"
+regex = 'limited to -(\d+) to (\d+) before they are written'
+binds = [
+  ["DEF", "TEX_LOD_LIMIT", 1],
+  ["DEF", "TEX_LOD_LIMIT", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "level table size"
+doc = "docs/texture-state.md"
+regex = 'The level table is (\d+) entries of three words'
+binds = [
+  ["DEF", "TEX_LEVEL_TABLE_ENTRIES", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "primary and detail ranges"
+doc = "docs/texture-state.md"
+regex = 'at most (\d+), entries 0 to (\d+), and detail entries sit at (\d+) to (\d+)'
+binds = [
+  ["DEF", "TEX_PRIMARY_LEVELS_MAX", 1],
+  ["DEF", "TEX_PRIMARY_LAST", 2],
+  ["DEF", "TEX_DETAIL_FIRST", 3],
+  ["DEF", "TEX_TABLE_LAST", 4],
+]
+
+[[claims]]
+group = "texture"
+label = "unwritten entries"
+doc = "docs/texture-state.md"
+regex = 'Entries (\d+) to (\d+) are never written by activation'
+binds = [
+  ["DEF", "TEX_UNUSED_FIRST", 1],
+  ["DEF", "TEX_UNUSED_LAST", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "detail entry count"
+doc = "docs/texture-state.md"
+regex = 'entries `64 - n` to 63 \(the loop at 0x[0-9a-f]+, n the negated detail level, at most (\d+)\)'
+binds = [
+  ["DEF", "TEX_DETAIL_COUNT_MAX", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "size limit"
+doc = "docs/texture-state.md"
+regex = 'no larger than (0x8000) \(32,768\)'
+binds = [
+  ["DEFN", "TEX_SIZE_MAX", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "border limit"
+doc = "docs/texture-state.md"
+regex = 'a border other than 0 or (\d+) makes the check'
+binds = [
+  ["DEF", "TEX_BORDER_MAX", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "slice exponent field"
+doc = "docs/texture-formats.md"
+regex = 'Level word 2 bits (\d+):(\d+), written for 3D targets only'
+binds = [
+  ["F", "LEVEL3D_W2.slice_exp", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "slice stride"
+doc = "docs/texture-formats.md"
+regex = 'this is `\((\d+) << c\) << word 2` units'
+binds = [
+  ["DEF", "TEX_SLICE_STRIDE_BASE", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "tile width"
+doc = "docs/texture-formats.md"
+regex = 'from the width in (\d+)-texel tiles rounded up to even'
+binds = [
+  ["DEF", "TEX_TILE_TEXELS", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "format index width"
+doc = "docs/texture-formats.md"
+regex = 'six-bit field in bits (\d+):(\d+) of word 1'
+binds = [
+  ["FW", "FMT.index", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "class width"
+doc = "docs/texture-formats.md"
+regex = '"Class" is the (\d)-bit value'
+binds = [
+  ["FWD", "CLASS.value", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "size code width"
+doc = "docs/texture-formats.md"
+regex = '\*\*Word 1 bits (\d+):(\d+) are the size code'
+binds = [
+  ["FW", "SIZE.code", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "offset code width"
+doc = "docs/texture-formats.md"
+regex = 'offset code \(level word 1 bits (\d+):(\d+)\)'
+binds = [
+  ["FW", "OFFCODE.value", 1, 2],
+]
+
+[[claims]]
+group = "texture"
+label = "colour table width"
+doc = "docs/texture-state.md"
+regex = 'a width of 0 or a power of two up to (\d+) is accepted'
+binds = [
+  ["DEF", "TEX_COLTAB_MAX_WIDTH", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "colour table upload targets"
+doc = "docs/texture-state.md"
+regex = 'sixteen words to `(0x3e00) \+ i`.*?then sixteen to `(0x3e10) \+ i`.*?for i = 0 to (\d+)\)'
+binds = [
+  ["DEFN", "TEX_COLTAB_A_BASE", 1],
+  ["DEFN", "TEX_COLTAB_B_BASE", 2],
+  ["DEF", "TEX_COLTAB_UPLOAD_LAST", 3],
+]
+
+[[claims]]
+group = "texture"
+label = "colour table lanes"
+doc = "docs/texture-state.md"
+regex = 'red lane of entry n in bits (\d+):(\d+), green lane in bits (\d+):(\d+)\) and the second with word n = \(blue in (\d+):(\d+), alpha in (\d+):(\d+)\); bits (\d+):(\d+) of each word are kept'
+binds = [
+  ["F", "COLTAB_A.red", 1, 2],
+  ["F", "COLTAB_A.green", 3, 4],
+  ["F", "COLTAB_B.blue", 5, 6],
+  ["F", "COLTAB_B.alpha", 7, 8],
+  ["F", "COLTAB_A.kept", 9, 10],
+  ["F", "COLTAB_B.kept", 9, 10],
+]
+
+[[claims]]
+group = "texture"
+label = "colour table entry mapping"
+doc = "docs/texture-state.md"
+regex = 'words (\d+) i to \1 i \+ (\d+) of the first table.*?upload i = n >> (\d+) at word n & (\d+) of both'
+binds = [
+  ["DEF", "TEX_COLTAB_UPLOAD_WORDS", 1],
+  ["DEF", "TEX_COLTAB_WORD_MASK", 2],
+  ["DEF", "TEX_COLTAB_UPLOAD_SHIFT", 3],
+  ["DEF", "TEX_COLTAB_WORD_MASK", 4],
+]
+
+[[claims]]
+group = "texture"
+label = "colour table lane conversion"
+doc = "docs/texture-state.md"
+regex = '`trunc\((\d+) x \+ 0\.5\) & (0x[0-9a-f]+)`'
+binds = [
+  ["DEF", "TEX_COLOUR12_ROUND_SCALE", 1],
+  ["DEFN", "TEX_COLOUR12_LANE_MASK", 2],
+]
+
+[[claims]]
+group = "texture"
+label = "colour table entries"
+doc = "docs/texture-state.md"
+regex = 'never receives fewer than (\d+) entries'
+binds = [
+  ["DEF", "TEX_COLTAB_ENTRIES", 1],
+]
+
+[[claims]]
+group = "texture"
+label = "unsent upload targets"
+doc = "docs/texture-state.md"
+regex = '`(0x3e20)` \(dirty bit 0x040000\) and `(0x3e30)` \(0x080000\)'
+binds = [
+  ["DEFN", "TEX_COLTAB_C_BASE", 1],
+  ["DEFN", "TEX_COLTAB_D_BASE", 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "widget manufacturer and part"
+doc = "docs/board.md"
+regex = 'manufacturer (\d+) and part (0x[0-9a-f]+) under'
+binds = [
+  ["DEF", "ODSY_WIDGET_MFR", 1],
+  ["DEFN", "ODSY_WIDGET_PART", 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "pio window length"
+doc = "docs/driver-functions.md"
+regex = "a (0x[0-9a-f]+)-byte window; on success"
+binds = [
+  ["DEFN", "ODSY_PIO_WINDOW_BYTES", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "identity revision nibble"
+doc = "docs/board.md"
+regex = 'takes bits (\d+):(\d+) as a buzz revision type'
+binds = [
+  ["IN", ["WIDGET_ID.variant", "WIDGET_ID.revision"], 1, 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "identity variant flag"
+doc = "docs/board.md"
+regex = 'Bit (\d+) \(record \+280\) is a variant flag'
+binds = [
+  ["F", "WIDGET_ID.variant", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "variant B bias"
+doc = "docs/board.md"
+regex = '\| 9 to 15 \| value - (\d+)'
+binds = [
+  ["DEF", "ODSY_REV_TYPE_B_BIAS", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap size code"
+doc = "docs/board.md"
+regex = '\| (\d+):(\d+) \| SDRAM size code'
+binds = [
+  ["F", "STRAP.sdram_size", 1, 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap banks"
+doc = "docs/board.md"
+regex = '\| (\d+) \| SDRAM banks'
+binds = [
+  ["F", "STRAP.banks", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap latency"
+doc = "docs/board.md"
+regex = '\| (\d+) \| CAS latency'
+binds = [
+  ["F", "STRAP.cas", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "strap board revision"
+doc = "docs/board.md"
+regex = '\| (\d+):(\d+) \| board revision'
+binds = [
+  ["F", "STRAP.board_rev", 1, 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "fifo levels"
+doc = "docs/registers.md"
+regex = 'bits (\d+):(\d+) are the display FIFO level in doublewords \(\*\*established\*\*[^)]*\) and bits (\d+):(\d+) a command-side level'
+binds = [
+  ["F", "STRAP.display_level", 1, 2],
+  ["F", "STRAP.command_level", 3, 4],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration host id"
+doc = "docs/board.md"
+regex = 'bits (\d+):(\d+) = the widget master id'
+binds = [
+  ["F", "SDRAM_CFG.host_id", 1, 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration banks"
+doc = "docs/board.md"
+regex = 'bit (\d+) set for 4 banks'
+binds = [
+  ["F", "SDRAM_CFG.banks", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration latency"
+doc = "docs/board.md"
+regex = 'bit (\d+) set for CAS latency 2'
+binds = [
+  ["F", "SDRAM_CFG.cas", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration size"
+doc = "docs/board.md"
+regex = 'bits (\d+):(\d+): 0 for 32 MB, 1 for 64 MB, 2 for 128 MB'
+binds = [
+  ["F", "SDRAM_CFG.size", 1, 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "memory configuration pulse and enable"
+doc = "docs/board.md"
+regex = 'bit (\d+) pulses an SDRAM initialisation; bit (\d+) enables it'
+binds = [
+  ["F", "SDRAM_CFG.reset", 1],
+  ["F", "SDRAM_CFG.enable", 2],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register widget_id"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Widget identification word'
+binds = [
+  ["DEFN", "ODSY_BOARD_WIDGET_ID", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register widget_status"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Widget status word'
+binds = [
+  ["DEFN", "ODSY_BOARD_WIDGET_STATUS", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register err_addr_hi"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Upper error-address word'
+binds = [
+  ["DEFN", "ODSY_BOARD_ERR_ADDR_HI", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register err_addr_lo"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Lower error-address word'
+binds = [
+  ["DEFN", "ODSY_BOARD_ERR_ADDR_LO", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register widget_control"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Widget control word'
+binds = [
+  ["DEFN", "ODSY_BOARD_WIDGET_CONTROL", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_dest_hi"
+doc = "docs/registers.md"
+regex = "\\| (0x[0-9a-f]+) \\| [^|]+\\| \\*\\*(?:established|inferred)\\.\\*\\* Upper half of the widget's interrupt destination"
+binds = [
+  ["DEFN", "ODSY_BOARD_INTR_DEST_HI", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_dest_lo"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Lower half of the same interrupt destination'
+binds = [
+  ["DEFN", "ODSY_BOARD_INTR_DEST_LO", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register err_command"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Error command word'
+binds = [
+  ["DEFN", "ODSY_BOARD_ERR_COMMAND", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register xbar_intr_config"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Crossbar interrupt configuration word'
+binds = [
+  ["DEFN", "ODSY_BOARD_XBAR_INTR_CONFIG", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register sdram_config"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* SDRAM configuration word'
+binds = [
+  ["DEFN", "ODSY_BOARD_SDRAM_CONFIG", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register abort"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Abort and reset register'
+binds = [
+  ["DEFN", "ODSY_BOARD_ABORT", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flags"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* The flags register'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLAGS", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flag_clear"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flag-clear register'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLAG_CLEAR", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flag_intr_enable"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flag interrupt-enable mask'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLAG_INTR_ENABLE", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flag_intr_disable"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Interrupt-enable clear register'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLAG_INTR_DISABLE", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_ctl_hi"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Interrupt control, high half'
+binds = [
+  ["DEFN", "ODSY_BOARD_INTR_CTL_HI", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_ctl_lo"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low half of the shared interrupt destination'
+binds = [
+  ["DEFN", "ODSY_BOARD_INTR_CTL_LO", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_vector"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Four interrupt vectors packed one per byte'
+binds = [
+  ["DEFN", "ODSY_BOARD_INTR_VECTOR", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register intr_header"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Interrupt packet header word'
+binds = [
+  ["DEFN", "ODSY_BOARD_INTR_HEADER", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register status0"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Status word 0'
+binds = [
+  ["DEFN", "ODSY_BOARD_STATUS0", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register levels_straps"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Levels and straps'
+binds = [
+  ["DEFN", "ODSY_BOARD_LEVELS_STRAPS", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flow_config"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flow-control configuration'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLOW_CONFIG", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flow_off"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flow-control off switch'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLOW_OFF", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register flow_clear"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Flow-control clear'
+binds = [
+  ["DEFN", "ODSY_BOARD_FLOW_CLEAR", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register swap_trigger"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Per-window buffer-swap trigger'
+binds = [
+  ["DEFN", "ODSY_BOARD_SWAP_TRIGGER", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register swap_timing"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Per-window swap-timing select'
+binds = [
+  ["DEFN", "ODSY_BOARD_SWAP_TIMING", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register buffer_b_set"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Buffer-B select set register'
+binds = [
+  ["DEFN", "ODSY_BOARD_BUFFER_B_SET", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register buffer_b_clear"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Buffer-B select clear register'
+binds = [
+  ["DEFN", "ODSY_BOARD_BUFFER_B_CLEAR", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register buffer_b_state"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Read-back of the buffer select'
+binds = [
+  ["DEFN", "ODSY_BOARD_BUFFER_B_STATE", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register ctx_save_addr_hi"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* High 16 bits of the physical address of the context-save buffer'
+binds = [
+  ["DEFN", "ODSY_BOARD_CTX_SAVE_ADDR_HI", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register ctx_save_addr_lo"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low 32 bits of the same context-save buffer address'
+binds = [
+  ["DEFN", "ODSY_BOARD_CTX_SAVE_ADDR_LO", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register master_id_a"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Master-id control word of the 0x4000 group'
+binds = [
+  ["DEFN", "ODSY_BOARD_MASTER_ID_A", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register stats_addr_hi"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* High half \(bits 47:32\) of the physical address of the 16 KB statistics'
+binds = [
+  ["DEFN", "ODSY_BOARD_STATS_ADDR_HI", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register stats_addr_lo"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low half \(bits 31:0\) of the statistics region address'
+binds = [
+  ["DEFN", "ODSY_BOARD_STATS_ADDR_LO", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register stats_control"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Statistics control word'
+binds = [
+  ["DEFN", "ODSY_BOARD_STATS_CONTROL", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register shadow_addr_hi"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* High half of the physical address of the hardware-shadow cache region'
+binds = [
+  ["DEFN", "ODSY_BOARD_SHADOW_ADDR_HI", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register shadow_addr_lo"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Low half \(bits 31:0\) of the shadow cache region address'
+binds = [
+  ["DEFN", "ODSY_BOARD_SHADOW_ADDR_LO", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register master_id_b"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Master-id word of the second control pair'
+binds = [
+  ["DEFN", "ODSY_BOARD_MASTER_ID_B", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register cmd_fifo_port"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Command FIFO port'
+binds = [
+  ["DEFN", "ODSY_BOARD_CMD_FIFO_PORT", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register ctx_save_port"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Context-save request port'
+binds = [
+  ["DEFN", "ODSY_BOARD_CTX_SAVE_PORT", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register cmd_window_2"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Second command-word window'
+binds = [
+  ["DEFN", "ODSY_BOARD_CMD_WINDOW_2", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "board register display_fifo_port"
+doc = "docs/registers.md"
+regex = '\| (0x[0-9a-f]+) \| [^|]+\| \*\*(?:established|inferred)\.\*\* Display FIFO port'
+binds = [
+  ["DEFN", "ODSY_BOARD_DISPLAY_FIFO_PORT", 1],
+]
+
+[[claims]]
+group = "ODSY_DECODE.h"
+label = "twelve-bit formats need this much memory"
+doc = "docs/display.md"
+regex = 'Flag bits 5:4 are not 1 when the variant is nonzero, and not 2 when the variant is 0\. .*?3\. Flag bit 8 is clear when the memory is below (\d+) MB'
+binds = [
+  ["DEFN", "ODSY_RGBA12_MIN_MEMORY_MB", 1],
+]

@@ -1,0 +1,576 @@
+{
+ "schema": "defs-flat/1",
+ "source": "devices/pbj/registers.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "hif_ctl",
+   "offset": 9984,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "hif_ctl.clock_run",
+   "hi": 18,
+   "lo": 18,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "hif_ctl.clock_sel_b",
+   "hi": 17,
+   "lo": 15,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "hif_ctl.clock_sel_a",
+   "hi": 14,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "hif_ctl.low_bits",
+   "hi": 11,
+   "lo": 0,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "id",
+   "offset": 9985,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "id.no_option",
+   "hi": 10,
+   "lo": 10,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "id.version",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "i2c_opt_ctl",
+   "offset": 10048,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_opt_ctl.bit12",
+   "hi": 12,
+   "lo": 12,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_opt_ctl.bit10",
+   "hi": 10,
+   "lo": 10,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_opt_ctl.bit8",
+   "hi": 8,
+   "lo": 8,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "i2c_opt_data",
+   "offset": 10049,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_opt_data.bit9",
+   "hi": 9,
+   "lo": 9,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "i2c_main_ctl",
+   "offset": 10112,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_main_ctl.bit12",
+   "hi": 12,
+   "lo": 12,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_main_ctl.bit10",
+   "hi": 10,
+   "lo": 10,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_main_ctl.bit8",
+   "hi": 8,
+   "lo": 8,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "i2c_main_data",
+   "offset": 10113,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "i2c_main_data.bit9",
+   "hi": 9,
+   "lo": 9,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "fb_base_b",
+   "offset": 10240,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "fb_base_a",
+   "offset": 10241,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "scan_width",
+   "offset": 10242,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "scan_height",
+   "offset": 10243,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "scan_cfg_a",
+   "offset": 10244,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "scan_cfg_b",
+   "offset": 10245,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "scan_cfg_c",
+   "offset": 10246,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "fb_pitch",
+   "offset": 10247,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "fb_depth",
+   "offset": 10249,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "fb_depth.code",
+   "hi": 2,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "enum_value",
+   "name": "fb_depth.code.bpp8",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "enum_value",
+   "name": "fb_depth.code.bpp16",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "enum_value",
+   "name": "fb_depth.code.bpp32",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "register",
+   "name": "dcb_ctl",
+   "offset": 11008,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "pbj_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "dcb_ctl.dcb_clock",
+   "hi": 2,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "word",
+   "name": "FIFO_HDR",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "FIFO_HDR.type",
+   "hi": 31,
+   "lo": 28,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "enum_value",
+   "name": "FIFO_HDR.type.now",
+   "value": 3,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "enum_value",
+   "name": "FIFO_HDR.type.synced",
+   "value": 7,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "FIFO_HDR.address",
+   "hi": 27,
+   "lo": 14,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "field",
+   "name": "FIFO_HDR.count",
+   "hi": 13,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "ADDR_BITS",
+   "value": 14,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_DPA_CONTROL",
+   "value": 5,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_DPA_OFFSET",
+   "value": 4,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_FEEDBACK_DIV0",
+   "value": 2,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_FEEDBACK_DIV1",
+   "value": 3,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_INPUT_CONTROL",
+   "value": 0,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_LOOP_CONTROL",
+   "value": 1,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_OSC_DIV",
+   "value": 7,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_A_REG_OUTPUT_ENABLE",
+   "value": 6,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_I2C_ADDR_A",
+   "value": 38,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_I2C_ADDR_B",
+   "value": 88,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "CLOCK_WRITE_COUNT",
+   "value": 8,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "FIFO_DEPTH_DWORDS",
+   "value": 24,
+   "count": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "pbj",
+   "kind": "constant",
+   "name": "READ_SLOT_BYTES",
+   "value": 8,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  }
+ ]
+}

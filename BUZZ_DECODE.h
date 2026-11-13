@@ -1,10 +1,10 @@
-/* generated from defs/buzz.toml by defs-gen - do not edit, change the source */
-/* Transition header: include gen/c/buzz.h instead. It keeps the names this header
+/* generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source */
+/* Transition header: include generated/c/buzz.h instead. It keeps the names this header
  * had before the definitions moved to generated headers. */
 #ifndef BUZZ_DECODE_H
 #define BUZZ_DECODE_H
 
-#include "gen/c/buzz.h"
+#include "generated/c/buzz.h"
 
 #define BUZZ_FRAME_PIXEL_COMPONENT_MASK              BUZZ_FRAME_PIXEL_RED_MASK
 #define BUZZ_HDR_W0_WINDOW_REL                       BUZZ_HDR_W0_WINDOW_REL_INPLACE

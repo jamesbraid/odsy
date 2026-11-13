@@ -13,11 +13,11 @@ next.
 
 ## Hardware definitions
 
-The hardware facts live in `defs/*.toml`, one file per block; `defs/check.toml` holds the
-repo's check settings. `gen/` is generated from them and is never edited by hand. Its
-`gen/docs/` pages are the published reference for each block, and `gen/c/` holds the C
-headers. The root `*_DECODE.h` files are forwarding headers that include `gen/c/`, so
-existing consumers keep their old macro names. To change a fact, edit `defs/`, then run
+The hardware facts live in `devices/<unit>/registers.toml`, one file per block; `tools/config/defs-check.toml` holds the
+repo's check settings. `generated/` is generated from them and is never edited by hand. The
+`registers.md` page beside each `registers.toml` is the published reference for the block, and `generated/c/` holds the C
+headers. The root `*_DECODE.h` files are forwarding headers that include `generated/c/`, so
+existing consumers keep their old macro names. To change a fact, edit its `registers.toml`, then run
 
     retools/tools/defs/defs-gen
     retools/tools/defs/defs-check --build
@@ -41,7 +41,7 @@ and resolve once `root/` is filled.
 To reproduce a cited result:
 
 - Generated tables under `docs/inventory/` come from `retools/tools/re-run python3 retools/tools/inventory.py`.
-  `git status --short docs` shows nothing afterwards when your `root/` matches `scripts/inventory-root.sha256`.
+  `git status --short docs` shows nothing afterwards when your `root/` matches `tools/config/inventory-root.sha256`.
 - A claim an entry marks as established by execution is reproduced by the script in `retools/tools/` or `retools/tools/odsy/` that
   the entry names; its docstring says what it reproduces and how to run it, always as
   `retools/tools/re-run python3 retools/tools/odsy/NAME.py ...`.

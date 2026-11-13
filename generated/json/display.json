@@ -1,0 +1,713 @@
+{
+ "schema": "defs-flat/1",
+ "source": "devices/display/registers.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cmap",
+   "offset": 0,
+   "access": "w",
+   "width": 32,
+   "count": 8192,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cmap.top",
+   "hi": 31,
+   "lo": 30,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cmap.r",
+   "hi": 29,
+   "lo": 20,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cmap.g",
+   "hi": 19,
+   "lo": 10,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cmap.b",
+   "hi": 9,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "line_table",
+   "offset": 8192,
+   "access": "w",
+   "width": 32,
+   "count": 1024,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "line_table.e1_end",
+   "hi": 31,
+   "lo": 31,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "line_table.e1_duration",
+   "hi": 30,
+   "lo": 24,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "line_table.e1_levels",
+   "hi": 23,
+   "lo": 16,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "line_table.e0_end",
+   "hi": 15,
+   "lo": 15,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "line_table.e0_duration",
+   "hi": 14,
+   "lo": 8,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "line_table.e0_levels",
+   "hi": 7,
+   "lo": 0,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "frame_table",
+   "offset": 9216,
+   "access": "w",
+   "width": 32,
+   "count": 128,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "frame_table.repeat",
+   "hi": 31,
+   "lo": 16,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "frame_table.position",
+   "hi": 15,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "vtg_ctl",
+   "offset": 9345,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "vtg_ctl.locked",
+   "hi": 1,
+   "lo": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "vtg_init_state",
+   "offset": 9346,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "vtg_init_state.blank_gate",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "vtg_chan_en",
+   "offset": 9347,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "vtg_chan_en.blank_gate_5",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "vtg_chan_en.blank_gate_1",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "vtg_chan_en.blank_gate_0",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cursor_image_a",
+   "offset": 9472,
+   "access": "w",
+   "width": 32,
+   "count": 128,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cursor_pos",
+   "offset": 9600,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_pos.x",
+   "hi": 31,
+   "lo": 16,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_pos.y",
+   "hi": 15,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cursor_ctl",
+   "offset": 9601,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_ctl.toggle",
+   "hi": 5,
+   "lo": 5,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_ctl.dual_head",
+   "hi": 4,
+   "lo": 4,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_ctl.field_seq",
+   "hi": 3,
+   "lo": 3,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_ctl.crosshair",
+   "hi": 2,
+   "lo": 2,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_ctl.enable",
+   "hi": 1,
+   "lo": 1,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_ctl.delay_enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cursor_colors",
+   "offset": 9616,
+   "access": "w",
+   "width": 32,
+   "count": 15,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_colors.top",
+   "hi": 31,
+   "lo": 30,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_colors.r",
+   "hi": 29,
+   "lo": 20,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_colors.g",
+   "hi": 19,
+   "lo": 10,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "cursor_colors.b",
+   "hi": 9,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cursor_image_b",
+   "offset": 9664,
+   "access": "w",
+   "width": 32,
+   "count": 64,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "datapath_ctl",
+   "offset": 9728,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "datapath_ctl.bit7",
+   "hi": 7,
+   "lo": 7,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "datapath_ctl.bit6",
+   "hi": 6,
+   "lo": 6,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "aux_ctl",
+   "offset": 9856,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "dac_ctl",
+   "offset": 9920,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "dac_ctl.gain",
+   "hi": 1,
+   "lo": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "dac_ctl.blank",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "vtg_misc",
+   "offset": 10176,
+   "access": "w",
+   "width": 32,
+   "count": 12,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "genlock_ctl",
+   "offset": 10188,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "genlock_ctl.enabled",
+   "hi": 6,
+   "lo": 6,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "genlock_status",
+   "offset": 10189,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "genlock_status.lost",
+   "hi": 1,
+   "lo": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "genlock_status.valid",
+   "hi": 0,
+   "lo": 0,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "mode_table",
+   "offset": 10496,
+   "access": "w",
+   "width": 32,
+   "count": 37,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "mode_table.top",
+   "hi": 31,
+   "lo": 25,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "mode_table.bit24",
+   "hi": 24,
+   "lo": 24,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "mode_table.layout",
+   "hi": 23,
+   "lo": 12,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "mode_table.pixel_format",
+   "hi": 11,
+   "lo": 9,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "enum_value",
+   "name": "mode_table.pixel_format.rgb10",
+   "value": 1,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "enum_value",
+   "name": "mode_table.pixel_format.rgb8",
+   "value": 2,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "enum_value",
+   "name": "mode_table.pixel_format.rgb5",
+   "value": 3,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "enum_value",
+   "name": "mode_table.pixel_format.rgb4",
+   "value": 4,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "enum_value",
+   "name": "mode_table.pixel_format.rgb10_alt",
+   "value": 6,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "mode_table.cmap_group",
+   "hi": 8,
+   "lo": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "enum_value",
+   "name": "mode_table.cmap_group.gamma",
+   "value": 26,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "field",
+   "name": "mode_table.low_code",
+   "hi": 3,
+   "lo": 0,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cmap_unit_ctl",
+   "offset": 10537,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  },
+  {
+   "unit": "display",
+   "kind": "register",
+   "name": "cmap_override",
+   "offset": 10538,
+   "access": "w",
+   "width": 32,
+   "count": 3,
+   "stride": 1,
+   "space": "display_regs",
+   "reset": "unknown",
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped display driver"
+  }
+ ]
+}
