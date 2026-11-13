@@ -88,7 +88,7 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 
 ## Raster state blocks and their fields
 
-Release IRIX 6.5.30m, N32 libGLcore (`libglcore/asm/ODYSSEY/ody_attrib.s` and
+Release IRIX 6.5.30m, N32 libGLcore (`software/opengl/asm/ODYSSEY/ody_attrib.s` and
 the Odyssey GL driver context assembly unit, with source line numbers) and the kernel textport's start-up stream
 (`buzz_init` in `odsy_tport.o`, read in `ucode/buzz_routines.md`, routine 214). Field
 names are the GL state each setter changes.

@@ -191,7 +191,7 @@ def check_pbj_rows(rep, regs):
 
 # --- TEXTURE_DECODE.h ---
 
-SWEEP = 'libglcore/runs/texture-format-index-sweep.txt'
+SWEEP = 'software/opengl/runs/texture-format-index-sweep.txt'
 
 TEX_OPS = [('TEX_OP_TEXENV', 'TEX_ENV_WORDS', 0x01b), ('TEX_OP_TEXMODE', 'TEX_MODE_WORDS', 0x016),
            ('TEX_OP_TEXLOD', 'TEX_LOD_WORDS', 0x013), ('TEX_OP_TEXOFFSET', 'TEX_OFFSET_WORDS', 0x03e)]

@@ -78,7 +78,7 @@ gfx/lib/opengl/include/machdep.h	path in the published OpenGL sample implementat
 glcore_odsy.h	file in this workspace
 global.h	name in the published OpenGL sample implementation
 glxproto.h	name in published NetBSD, X.Org or Mesa source
-libglcore/asm/ODYSSEY/x.s	path to a file in this workspace
+software/opengl/asm/ODYSSEY/x.s	path to a file in this workspace
 lighting.h	name in the published OpenGL sample implementation
 mi/mivaltree.c	name in published OpenBSD X.Org source
 movelight.c	name in the published OpenGL sample implementation

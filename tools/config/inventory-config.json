@@ -58,7 +58,7 @@
       "software/xsgi/x-module-functions.md",
       "software/xsgi/x-server-and-iris-libraries.md",
       "evidence/routines/*.md",
-      "ucode/*.md",
+      "software/ucode/*.md",
       "README.md"
     ],
     "headers": [
@@ -72,7 +72,8 @@
       "devices/pbj/PBJ.h",
       "PBJ_DECODE.h",
       "TEXTURE_DECODE.h",
-      "*/include/*.h"
+      "software/*/include/*.h",
+      "software/kernel/*/include/*.h"
     ],
     "tables": [],
     "index": [
@@ -407,7 +408,7 @@
       "software/kernel/kernel.md",
       "software/opengl/opengl.md",
       "devices/buzz/BUZZ.h",
-      "ucode/buzz_isa.md"
+      "software/ucode/buzz_isa.md"
     ],
     "widths": {
       "word": 8,

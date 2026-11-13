@@ -1,6 +1,6 @@
 # Kernel driver functions, one entry each
 
-Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry starts with the function, then its member, offset in `.text` and size in bytes. Labels are **established** (read from the disassembly in `odsy_kernel/disasm/`) or **inferred**. The IP35 and patch builds carry byte-identical code for some of these and different code for others; an entry speaks for the IP30 media build only. Everything specific to IP35 rests on the IP35 binary. Register names are in `board/board-registers.md`.
+Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry starts with the function, then its member, offset in `.text` and size in bytes. Labels are **established** (read from the disassembly in `software/kernel/ip30/disasm/`) or **inferred**. The IP35 and patch builds carry byte-identical code for some of these and different code for others; an entry speaks for the IP30 media build only. Everything specific to IP35 rests on the IP35 binary. Register names are in `board/board-registers.md`.
 
 - `odsyReset` (`odsy_init.o`, offset 0x1c04, 1800 bytes): **established.**
   Build: `6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_init.o)`.

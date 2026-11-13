@@ -5,7 +5,7 @@ install into a local `root/` directory. They are not tracked in source control.
 Paths only: this repository holds no file contents.
 
 `root/` mirrors the IRIX filesystem. The top-level binary directories
-(`odsy_kernel/`, `libglcore/`, `irisgl/`, `ddx/`, `ucode/`) hold relative
+(`software/kernel/ip30/`, `software/opengl/`, `software/irisgl/`, `software/xsgi/`, `software/ucode/`) hold relative
 symlinks into `root/`.
 
 Two releases matter:
@@ -79,13 +79,13 @@ below was copied from that install.
 
 | Group | Files | Location under `root/` |
 |---|---|---|
-| Kernel (`odsy_kernel/`) | `odyssey.a` (members extracted with `ar x`), `kernel.o`, `gfx.o`, `rrm.o`, `gfxs.a`, `gfxstubs.a`, `odysseystubs.a` | `usr/cpu/sysgen/IP30boot/` |
-| OpenGL core (`libglcore/`) | `libGLcore.so`, `libGL.so` | `usr/gfx/arch/IP30ODSY64/` (also `IP30ODSY/` for o32 and `IP30ODSY32/` for N32) |
-| IrisGL (`irisgl/`) | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` |
-| X server modules (`ddx/`) | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` |
-| IP35 kernel (`odsy_kernel_ip35/`) | the same seven files as the IP30 row, from `IP35boot/` (Fuel, Tezro, Onyx 350). Not installed on the Octane2 reference image: take them from the 6.5.30 Installation Tools and Overlays (1 of 3) disc with `instigator extract --unpack --path /usr/cpu/sysgen/IP35boot <iso> <outdir>` | `usr/cpu/sysgen/IP35boot/` |
-| Microcode (`ucode/`) | `buzz_xform.bin`, `vof/` | `usr/gfx/ucode/ODSY/` |
-| Microcode in the kernel (`ucode/buzz_ucode_ip30.bin`, `_ip35.bin`) | the `buzz_ucode` array of `odsy_init.o`, written unchanged by `retools/tools/odsy/extract_buzz_ucode.py` | `usr/gfx/ucode/ODSY-kernel/` |
+| Kernel (`software/kernel/ip30/`) | `odyssey.a` (members extracted with `ar x`), `kernel.o`, `gfx.o`, `rrm.o`, `gfxs.a`, `gfxstubs.a`, `odysseystubs.a` | `usr/cpu/sysgen/IP30boot/` |
+| OpenGL core (`software/opengl/`) | `libGLcore.so`, `libGL.so` | `usr/gfx/arch/IP30ODSY64/` (also `IP30ODSY/` for o32 and `IP30ODSY32/` for N32) |
+| IrisGL (`software/irisgl/`) | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` |
+| X server modules (`software/xsgi/`) | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` |
+| IP35 kernel (`software/kernel/ip35/`) | the same seven files as the IP30 row, from `IP35boot/` (Fuel, Tezro, Onyx 350). Not installed on the Octane2 reference image: take them from the 6.5.30 Installation Tools and Overlays (1 of 3) disc with `instigator extract --unpack --path /usr/cpu/sysgen/IP35boot <iso> <outdir>` | `usr/cpu/sysgen/IP35boot/` |
+| Microcode (`software/ucode/`) | `buzz_xform.bin`, `vof/` | `usr/gfx/ucode/ODSY/` |
+| Microcode in the kernel (`software/ucode/buzz_ucode_ip30.bin`, `_ip35.bin`) | the `buzz_ucode` array of `odsy_init.o`, written unchanged by `retools/tools/odsy/extract_buzz_ucode.py` | `usr/gfx/ucode/ODSY-kernel/` |
 | Firmware | `IP30prom.bin` | `usr/cpu/firmware/` |
 
 The Odyssey kernel driver on an IP30 install is `odyssey.a` under `IP30boot/`
@@ -116,36 +116,36 @@ archive's members are unpacked inside `root/` and linked into `LINKDIR`. `links`
 lines are `LINK TARGET`, relative to the repository root.
 
 ```archives
-root/usr/cpu/sysgen/IP30boot/odyssey.a odsy_kernel
-root/usr/cpu/sysgen/IP35boot/odyssey.a odsy_kernel_ip35
+root/usr/cpu/sysgen/IP30boot/odyssey.a software/kernel/ip30
+root/usr/cpu/sysgen/IP35boot/odyssey.a software/kernel/ip35
 ```
 
 ```links
-odsy_kernel/odyssey.a root/usr/cpu/sysgen/IP30boot/odyssey.a
-odsy_kernel/odysseystubs.a root/usr/cpu/sysgen/IP30boot/odysseystubs.a
-odsy_kernel/kernel.o root/usr/cpu/sysgen/IP30boot/kernel.o
-odsy_kernel/gfx.o root/usr/cpu/sysgen/IP30boot/gfx.o
-odsy_kernel/gfxs.a root/usr/cpu/sysgen/IP30boot/gfxs.a
-odsy_kernel/gfxstubs.a root/usr/cpu/sysgen/IP30boot/gfxstubs.a
-odsy_kernel/rrm.o root/usr/cpu/sysgen/IP30boot/rrm.o
-odsy_kernel_ip35/odyssey.a root/usr/cpu/sysgen/IP35boot/odyssey.a
-odsy_kernel_ip35/odysseystubs.a root/usr/cpu/sysgen/IP35boot/odysseystubs.a
-odsy_kernel_ip35/kernel.o root/usr/cpu/sysgen/IP35boot/kernel.o
-odsy_kernel_ip35/gfx.o root/usr/cpu/sysgen/IP35boot/gfx.o
-odsy_kernel_ip35/gfxs.a root/usr/cpu/sysgen/IP35boot/gfxs.a
-odsy_kernel_ip35/gfxstubs.a root/usr/cpu/sysgen/IP35boot/gfxstubs.a
-odsy_kernel_ip35/rrm.o root/usr/cpu/sysgen/IP35boot/rrm.o
-libglcore/libGLcore.so root/usr/gfx/arch/IP30ODSY64/libGLcore.so
-libglcore/libGL.so root/usr/gfx/arch/IP30ODSY64/libGL.so
-libglcore/libGLcore_n32.so root/usr/gfx/arch/IP30ODSY32/libGLcore.so
-libglcore/libGLcore_o32.so root/usr/gfx/arch/IP30ODSY/libGLcore.so
-irisgl/libgl.so root/usr/gfx/arch/IGLOO32/libgl.so
-irisgl/libfm.so root/usr/lib32/libfm.so
-ddx/odyssey.so root/usr/lib/X11/dyDDX/odyssey.so
-ddx/glx.so root/usr/lib/X11/dyDDX/glx.so
-ddx/Xsgi root/usr/gfx/arch/GENERIC/Xsgi
-ucode/ODSY root/usr/gfx/ucode/ODSY
-firmware/IP30prom.bin root/usr/cpu/firmware/IP30prom.bin
+software/kernel/ip30/odyssey.a root/usr/cpu/sysgen/IP30boot/odyssey.a
+software/kernel/ip30/odysseystubs.a root/usr/cpu/sysgen/IP30boot/odysseystubs.a
+software/kernel/ip30/kernel.o root/usr/cpu/sysgen/IP30boot/kernel.o
+software/kernel/ip30/gfx.o root/usr/cpu/sysgen/IP30boot/gfx.o
+software/kernel/ip30/gfxs.a root/usr/cpu/sysgen/IP30boot/gfxs.a
+software/kernel/ip30/gfxstubs.a root/usr/cpu/sysgen/IP30boot/gfxstubs.a
+software/kernel/ip30/rrm.o root/usr/cpu/sysgen/IP30boot/rrm.o
+software/kernel/ip35/odyssey.a root/usr/cpu/sysgen/IP35boot/odyssey.a
+software/kernel/ip35/odysseystubs.a root/usr/cpu/sysgen/IP35boot/odysseystubs.a
+software/kernel/ip35/kernel.o root/usr/cpu/sysgen/IP35boot/kernel.o
+software/kernel/ip35/gfx.o root/usr/cpu/sysgen/IP35boot/gfx.o
+software/kernel/ip35/gfxs.a root/usr/cpu/sysgen/IP35boot/gfxs.a
+software/kernel/ip35/gfxstubs.a root/usr/cpu/sysgen/IP35boot/gfxstubs.a
+software/kernel/ip35/rrm.o root/usr/cpu/sysgen/IP35boot/rrm.o
+software/opengl/libGLcore.so root/usr/gfx/arch/IP30ODSY64/libGLcore.so
+software/opengl/libGL.so root/usr/gfx/arch/IP30ODSY64/libGL.so
+software/opengl/libGLcore_n32.so root/usr/gfx/arch/IP30ODSY32/libGLcore.so
+software/opengl/libGLcore_o32.so root/usr/gfx/arch/IP30ODSY/libGLcore.so
+software/irisgl/libgl.so root/usr/gfx/arch/IGLOO32/libgl.so
+software/irisgl/libfm.so root/usr/lib32/libfm.so
+software/xsgi/odyssey.so root/usr/lib/X11/dyDDX/odyssey.so
+software/xsgi/glx.so root/usr/lib/X11/dyDDX/glx.so
+software/xsgi/Xsgi root/usr/gfx/arch/GENERIC/Xsgi
+software/ucode/ODSY root/usr/gfx/ucode/ODSY
+software/firmware/IP30prom.bin root/usr/cpu/firmware/IP30prom.bin
 ```
 
 ## 5. Debug information by release
@@ -186,7 +186,7 @@ Found by reading the file lists (`instigator extract --manifest-only`) of the fo
 | Graphics tools | `gfxinit` (loads the transform microcode), `gfxinfo`, `setmon`, `dmconf`, `sgcombine`, `gfxtopology`, `startgfx`, `stopgfx`, `/usr/bin/X11/xsetmon` | Tools and Overlays 1 |
 | Diagnostics | `/sbin/stand/ide.IP30` (also installed as `/usr/stand/ide`; the IP30 IDE holds the textport part of the driver plus the timing-table and display-clock routines the PROM also carries), `usr/diags/compositor/bin/sting`, `usr/sbin/Confidence/dualchannel` (I2C tests), `usr/gfx/STINGRAY/bin/cmp_flash` and `cmp_flash_all` (compositor flash tools) | Tools and Overlays 1 |
 | Microcode and timing data | `ODSY/buzz_xform.bin`; `ODSY/vof/*.vfo` (video formats); `vfc/rules/VPro_*.def`; `STINGRAY/cmb`, `vfo`, `xlx` and `usr/diags/compositor/data/*.cmb` (compositor tables for the Odyssey dual-channel option); the kernel's own copy, `ODSY-kernel/buzz_ucode_ip30.bin` and `_ip35.bin`, made by `retools/tools/odsy/extract_buzz_ucode.py` | Tools and Overlays 1 |
-| Field diagnostics | `odydiags`, the VPro diagnostics that run under IRIX, from the Internal Support Tools 2.7 disc (builds for 6.5.10 and 6.5.15, both with the same microcode): `usr/diags/ody/ucode/diagxform.bin`, its own transform microcode (24,252 bytes, 2021 records, SHA-256 `dd27f727e58ee230ff61e711836096d810edaa152a50174c221ce6956ff47530`), linked at `root/builds/odydiags-6.5.15/usr/diags/ody/ucode/diagxform.bin`; listing `ucode/disasm/diagxform.lst`. The 6.5.15 program `usr/diags/ody/odydiags` (6,720,984 bytes, SHA-256 `46a9c870ebaa7ba43098687cb44a629d00698103cd9d3db696e29d3c0150158a`) and its stored frames and CRC lists `usr/diags/ody/checksum/` are linked under the same root. The package's user guide names one transform test, a microcode-memory write and read-back; its drawing tests replay command streams recorded from the board's C simulator and compare the frame with the simulator's (`ucode/buzz_isa.md`, passes 17 and 18; `retools/tools/odsy/odydiags_frame_check.py`) | Internal Support Tools 2.7 |
+| Field diagnostics | `odydiags`, the VPro diagnostics that run under IRIX, from the Internal Support Tools 2.7 disc (builds for 6.5.10 and 6.5.15, both with the same microcode): `usr/diags/ody/ucode/diagxform.bin`, its own transform microcode (24,252 bytes, 2021 records, SHA-256 `dd27f727e58ee230ff61e711836096d810edaa152a50174c221ce6956ff47530`), linked at `root/builds/odydiags-6.5.15/usr/diags/ody/ucode/diagxform.bin`; listing `software/ucode/disasm/diagxform.lst`. The 6.5.15 program `usr/diags/ody/odydiags` (6,720,984 bytes, SHA-256 `46a9c870ebaa7ba43098687cb44a629d00698103cd9d3db696e29d3c0150158a`) and its stored frames and CRC lists `usr/diags/ody/checksum/` are linked under the same root. The package's user guide names one transform test, a microcode-memory write and read-back; its drawing tests replay command streams recorded from the board's C simulator and compare the frame with the simulator's (`ucode/buzz_isa.md`, passes 17 and 18; `retools/tools/odsy/odydiags_frame_check.py`) | Internal Support Tools 2.7 |
 | PROM | `IP30prom.bin` carries graphics code: the Odyssey timing-table loader, the DCD2 register loader, the I2C reset and ID routines (about eleven `odsy` routine names appear as strings). `ip35prom.img` holds the string "odsy" once; its code is not readable as an ELF. Neither is disassembled here, only listed in the function inventory by name | Tools and Overlays 1 |
 
 Checked and left out. Reason in each case: the file has no VPro code.

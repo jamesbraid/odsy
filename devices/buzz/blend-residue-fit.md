@@ -14,7 +14,7 @@ uv run --with numpy python retools/tools/odsy/odydiags_blend_fit.py [panels|ampl
 It needs numpy for `fit` and `frame` and the files under `root/` that the frame
 builder reads. `frame` rebuilds the whole frame six times and takes about two
 minutes. `all` output from the run behind these numbers is in
-[ucode/runs/odydiags-blend-fit-candidates.txt](../../ucode/runs/odydiags-blend-fit-candidates.txt).
+[software/ucode/runs/odydiags-blend-fit-candidates.txt](../../software/ucode/runs/odydiags-blend-fit-candidates.txt).
 
 ## What each part measures
 

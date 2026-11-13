@@ -54,7 +54,7 @@ To reproduce a cited result:
   `retools/tools/re-run python3 retools/tools/odsy/NAME.py ...`.
 - The shared tooling (container definitions, wrappers, Ghidra scripts, the inventory, fact sheet and the device extractors) is the `retools/` submodule (sgi-retools); a change to a shared tool is made there and the pin here moves with a commit. This repository keeps no links into it. The optional Ghidra image is built from `retools/tools/Containerfile.ghidra` by
   `retools/tools/re-run --ghidra COMMAND`, and `retools/tools/re-run --ghidra-export OBJECT` writes decompiled C and
-  function-similarity output as JSON (see `ghidra/README.md`); nothing else needs it. `retools/tools/README-analysis.md`
+  function-similarity output as JSON (see `tools/ghidra/README.md`); nothing else needs it. `retools/tools/README-analysis.md`
   describes the `.mdebug` importer and the kernel table extractors.
 
 ## Documents
@@ -133,6 +133,13 @@ Every tracked document, grouped by topic. The generated register tables (`device
 - [software/firmware/firmware-images.md](software/firmware/firmware-images.md): Firmware and standalone images: IP30 and IP35 PROMs, IP30 monitor.
 - [software/video/display-files.md](software/video/display-files.md): Display-table files of the VPro install, read from each file.
 - [software/video/video-format-sources.md](software/video/video-format-sources.md): Video format compiler rules shipped with the VPro install.
+
+### Microcode and Ghidra tooling (`software/ucode/`, `tools/ghidra/`)
+
+- [software/ucode/buzz_isa.md](software/ucode/buzz_isa.md): BUZZ microcode: word format, loading and dispatch
+- [software/ucode/buzz_routines.md](software/ucode/buzz_routines.md): BUZZ microcode: routine map
+- [software/ucode/buzz_ucode.md](software/ucode/buzz_ucode.md): buzz_ucode: the microcode array in the kernel driver
+- [tools/ghidra/README.md](tools/ghidra/README.md): Ghidra tooling
 
 ### Published sources (`references/documents/`)
 

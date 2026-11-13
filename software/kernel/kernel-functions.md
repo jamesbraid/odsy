@@ -1,6 +1,6 @@
 # Kernel driver functions by object and role
 
-Release IRIX 6.5.30m, the objects of `odyssey.a` and `tport.a` for IP30 and IP35 (`odsy_kernel/`, `odsy_kernel_ip35/`; the two sets share these function names). Disassembly is under `odsy_kernel/disasm/<object>/`.
+Release IRIX 6.5.30m, the objects of `odyssey.a` and `tport.a` for IP30 and IP35 (`software/kernel/ip30/`, `software/kernel/ip35/`; the two sets share these function names). Disassembly is under `software/kernel/ip30/disasm/<object>/`.
 
 Labels: the function names and their objects are **established** from the symbol tables. The role of an object is **inferred** from the names in it, and the lists below say nothing about what any one function does: a name there is a name only. Functions read in full are in `kernel/kernel.md`, `display/README.md`, `buzz/README.md` and `opengl/opengl.md`, and in the last section here. Each list is the set of functions of one object.
 
@@ -106,7 +106,7 @@ Labels: the function names and their objects are **established** from the symbol
 
 the set graphics-context Odyssey driver request, `odsy_cmov2i`, `odsy_color`, `odsy_drawbitmap`, `odsy_getdesc`, `odsy_mapcolor`, `odsy_pnt2i`, `odsy_sboxfi`, `odsy_tpinit`, `odsy_tport_lock_init`, `odsy_unblank`
 
-`odsy_ucode.o`: microcode download from a caller's image (ucode/buzz_isa.md, "Loading").
+`odsy_ucode.o`: microcode download from a caller's image (software/ucode/buzz_isa.md, "Loading").
 
 `gf_OdsyDownload`, `odsyDownloadUcode`
 

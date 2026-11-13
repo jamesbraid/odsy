@@ -6,8 +6,8 @@
  *   inferred    - a reasoned reading; the reasoning is given
  *   unknown     - not yet derived
  *
- * Release: IRIX 6.5.30m. IP30 (Octane2) kernel objects (odsy_kernel/),
- * checked against the IP35 set (odsy_kernel_ip35/) where noted, and
+ * Release: IRIX 6.5.30m. IP30 (Octane2) kernel objects (software/kernel/ip30/),
+ * checked against the IP35 set (software/kernel/ip35/) where noted, and
  * usr/gfx/gfxinit (N32, stripped). Prose and derivations: pbj/README.md.
  * Display FIFO word format and the addresses already decoded for timing,
  * cursor and display modes: DISPLAY.h. This header owns the address space

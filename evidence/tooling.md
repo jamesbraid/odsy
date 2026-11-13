@@ -1,8 +1,8 @@
 # Tooling: the Ghidra processor module for the BUZZ microcode
 
-The index of all Ghidra tooling is [ghidra/README.md](../ghidra/README.md).
+The index of all Ghidra tooling is [ghidra/README.md](../tools/ghidra/README.md).
 
-The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra with the scripts in [retools/ghidra/scripts/](../retools/ghidra/scripts/README.md), which are shared with the other graphics workspaces. The BUZZ transform microcode (`ucode/ODSY/buzz_xform.bin`, the kernel's copy `ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
+The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra with the scripts in [retools/ghidra/scripts/](../retools/ghidra/scripts/README.md), which are shared with the other graphics workspaces. The BUZZ transform microcode (`software/ucode/ODSY/buzz_xform.bin`, the kernel's copy `software/ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `tools/ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -14,7 +14,7 @@ The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-
 
 ## How the decode works
 
-A record is 96 bits, six big-endian halfwords; bits 95:94 are never set ([ucode/buzz_isa.md](../ucode/buzz_isa.md#instruction-fields-provisional)). Ghidra only addresses units of 1, 2, 4 or 8 bytes, so:
+A record is 96 bits, six big-endian halfwords; bits 95:94 are never set ([ucode/buzz_isa.md](../software/ucode/buzz_isa.md#instruction-fields-provisional)). Ghidra only addresses units of 1, 2, 4 or 8 bytes, so:
 
 - code space `code` has an 8-byte unit holding record bits 63:0, one record per address. Ghidra's addressable word offset is the record number, so labels read `entry_214`, `prog_1520_loop` and so on. The listing column shows the byte offset, eight times the record number.
 - The import script writes bits 93:64 (fields `a`, `r1`, `r2`, `r3`, `b`, `ln`, `rb`, `bx`) and a few derived bits into the context register at each record, along with the end-mark bookkeeping below.
@@ -36,7 +36,7 @@ Registers: `SEQ20` to `SEQ35` are the sequencer registers, with `SEQ31` and `SEQ
 
 ## What the semantics cover
 
-The units follow [ucode/buzz_isa.md](../ucode/buzz_isa.md), passes 12 to 18. Each constructor carries its label from there as a comment. The latch-and-fire timing is modelled as delay lines that every record shifts by one before its units run:
+The units follow [ucode/buzz_isa.md](../software/ucode/buzz_isa.md), passes 12 to 18. Each constructor carries its label from there as a comment. The latch-and-fire timing is modelled as delay lines that every record shifts by one before its units run:
 
 - a fired product reaches port V and the scalar unit six records later, and the output stage ten;
 - a load reaches port V seven records later;
@@ -66,25 +66,25 @@ Flow follows the end marks and the program table:
 
 Functions: a function at each table program's 0x29 record, then at record 0, five records after every end mark, at the libGLcore list entries and at the eight opcode entries, unless a program's flow already covers the record. Those inside a program (1545 inside 1520, for example) are labelled entry points in that function.
 
-Not modelled: the patching of a program's value-3 mark and the overlay paging (Ghidra shows the image, not the 2048-word RAM). The sequencer registers' effect on the colour format (0x22 to 0x25) is not modelled either. Nothing models rounding: products and sums are IEEE single, while [ucode/buzz_isa.md](../ucode/buzz_isa.md#precision) infers a 22-bit truncating sum at 2^17.
+Not modelled: the patching of a program's value-3 mark and the overlay paging (Ghidra shows the image, not the 2048-word RAM). The sequencer registers' effect on the colour format (0x22 to 0x25) is not modelled either. Nothing models rounding: products and sums are IEEE single, while [ucode/buzz_isa.md](../software/ucode/buzz_isa.md#precision) infers a 22-bit truncating sum at 2^17.
 
 ## Build and run
 
 From the repository root, with `root/` populated and Ghidra's `support/` directory (`sleigh`, `analyzeHeadless`) on `PATH`:
 
 ```sh
-ghidra/processors/odsy-buzz/tests/run-ghidra.sh .cache/odsy-buzz     # needs Ghidra
-python3 ghidra/processors/odsy-buzz/tests/check.py .cache/odsy-buzz  # needs Python 3 only
+tools/ghidra/processors/odsy-buzz/tests/run-ghidra.sh .cache/odsy-buzz     # needs Ghidra
+python3 tools/ghidra/processors/odsy-buzz/tests/check.py .cache/odsy-buzz  # needs Python 3 only
 ```
 
 `run-ghidra.sh` installs the module as a user extension in a temporary settings directory, compiles the spec and imports each image. With no local Ghidra, the same commands run in any container that has Ghidra on `PATH` and the workspace mounted as the working directory. A `root/` that is a symlink must resolve inside the container.
 
-To use the module interactively, copy or link `ghidra/processors/odsy-buzz` into Ghidra's `Extensions` directory and run `sleigh` on the spec. Then import an image with the recipe, from the GUI (Raw Binary, language `ODSY-BUZZ:BE:16:default`, then run `BuzzImport.java` from the Script Manager) or headless:
+To use the module interactively, copy or link `tools/ghidra/processors/odsy-buzz` into Ghidra's `Extensions` directory and run `sleigh` on the spec. Then import an image with the recipe, from the GUI (Raw Binary, language `ODSY-BUZZ:BE:16:default`, then run `BuzzImport.java` from the Script Manager) or headless:
 
 ```sh
-analyzeHeadless PROJDIR PROJ -import ucode/ODSY/buzz_xform.bin -loader BinaryLoader \
+analyzeHeadless PROJDIR PROJ -import software/ucode/ODSY/buzz_xform.bin -loader BinaryLoader \
   -processor ODSY-BUZZ:BE:16:default \
-  -scriptPath ghidra/processors/odsy-buzz/ghidra_scripts -preScript BuzzImport.java
+  -scriptPath tools/ghidra/processors/odsy-buzz/ghidra_scripts -preScript BuzzImport.java
 ```
 
 Run the script before auto-analysis. It replaces the raw block with the code block and the data spaces, sets the context, decodes every record, and creates the labels and functions.
@@ -96,7 +96,7 @@ Reading the decompiler output: a routine's results are its writes to `vreg`, `pm
 From `check.py` against IRIX 6.5.30m `buzz_xform.bin`, the kernel copy and the 6.5.15 `odydiags` `diagxform.bin`:
 
 - **(a) passes.** All 2794, 2266 and 2021 records match `retools/tools/odsy/buzz_ucode_disasm.py` field for field, end marks and idle records included.
-- **(b) passes.** All 128 entries of the routine table in [ucode/buzz_routines.md](../ucode/buzz_routines.md#routines) are found in `buzz_xform.bin`: 102 as function entries, the rest as records inside a table program's flow. The same holds for all 119 kernel records that the copy holds.
+- **(b) passes.** All 128 entries of the routine table in [ucode/buzz_routines.md](../software/ucode/buzz_routines.md#routines) are found in `buzz_xform.bin`: 102 as function entries, the rest as records inside a table program's flow. The same holds for all 119 kernel records that the copy holds.
 - **(c) passes.** The decompiled routines show the documented arithmetic:
   - Clip-plane routine 0: `R27_x` to `R27_w` are the modelview rows R9 to R12 against `P`, and R26 takes plane B from `pm_124` to `pm_127`.
   - Unlit program 214: `word3 = 1.0 / (R3 . P)`, and words 5, 6 and 4 are the R0, R1 and R2 products times it, once before the vertex loop and once in it.

@@ -74,7 +74,7 @@ Positions come from the 6.5.30 binaries above.
 
 ## What stays unknown, and what would settle it
 
-Pass 8. IP35 `odsyGatherInfo` stores to the same record offsets as IP30 and IP35 `odsyReset` writes the same 0x1004 sequence (`kernel/kernel.md`), so the findings above hold for both hosts. **established:** no kernel object reads 0x1004 (every access with displacement 4100 in the disassembly of `odsy_kernel/` and `odsy_kernel_ip35/` is a store in `odsyReset`; the user-space libraries were not scanned: **unknown** whether they map the register), so nothing in the software says how the word's other bits behave.
+Pass 8. IP35 `odsyGatherInfo` stores to the same record offsets as IP30 and IP35 `odsyReset` writes the same 0x1004 sequence (`kernel/kernel.md`), so the findings above hold for both hosts. **established:** no kernel object reads 0x1004 (every access with displacement 4100 in the disassembly of `software/kernel/ip30/` and `software/kernel/ip35/` is a store in `odsyReset`; the user-space libraries were not scanned: **unknown** whether they map the register), so nothing in the software says how the word's other bits behave.
 
 - **unknown** (`questions/README.md`). Memory organisation (chip count, data width, address map). The software only sees size, banks and CAS latency from the strap word. On a board it would show in: a read of the SDRAM controller's own configuration after reset on a known board, or a board photograph naming the memory parts with their datasheets.
 - **unknown** (`questions/README.md`). What bit 5 (the pulse) and bit 8 (the last set) do in hardware, and bits 0, 7:6 and 21:9 of 0x1004. On a board it would show in: a bus-level trace of the SDRAM command lines during the 400 us after each store, or a read-back of 0x1004 before and after `odsyReset` (it is not known whether the register reads back: **unknown**).
@@ -144,5 +144,7 @@ Full note, with grades and open questions: `docs/questions/v12-nic.md` in the ch
 - [libGLcore: the Odyssey driver routines in the other builds](../../software/opengl/libglcore-odyssey-builds.md)
 - [Odyssey driver routines of `libGLcore.so`, read one by one](../../software/opengl/libglcore-odyssey-reads.md)
 - [OpenGL core and X module notes](../../software/opengl/opengl.md)
+- [BUZZ microcode: word format, loading and dispatch](../../software/ucode/buzz_isa.md)
+- [buzz_ucode: the microcode array in the kernel driver](../../software/ucode/buzz_ucode.md)
 - [VPro tool functions, one entry each](../../software/userland/vpro-tool-functions.md)
 - [X module (`odyssey.so`) functions read in full, one entry each](../../software/xsgi/odyssey-so-reads.md)

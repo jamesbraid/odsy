@@ -1,6 +1,6 @@
 # Kernel driver notes
 
-Companion to `odsy_kernel/include/odsy_kern.h`. Labels: **established** (read from a binary, with where), **inferred** (reasoned, with the reasoning), **unknown**. IRIX 6.5.30m, IP30 objects (`odsy_init.o` unless named). IP35 was not diffed for anything here: **unknown**.
+Companion to `software/kernel/ip30/include/odsy_kern.h`. Labels: **established** (read from a binary, with where), **inferred** (reasoned, with the reasoning), **unknown**. IRIX 6.5.30m, IP30 objects (`odsy_init.o` unless named). IP35 was not diffed for anything here: **unknown**.
 
 ## Attach and probe
 
@@ -44,7 +44,7 @@ The inlined helper, **established** as code: unless the record's "initialising" 
 
 ## odsyLowLevelReset on IP35
 
-**established** by reading the IP35 object beside the IP30 one (`odsy_kernel_ip35/disasm/odsy_init/`). Same board store, different host handling:
+**established** by reading the IP35 object beside the IP30 one (`software/kernel/ip35/disasm/odsy_init/`). Same board store, different host handling:
 
 - IP35 has only the 0x100c = 0x200 form: store, `odsy_usdelay(1000000)`, then a zero store to the driver's shadow word (record offset 34216), not to the register. The IP30 branches on the host chip id (0x200 path versus 0x16d path) and the 0x16d path with its `us_delay(200000)`, the six-bit sequence of `ori` stores (0x100, 0x40, 0x20, 0x8, 0x4, 0x1 accumulated on one word, written to the record's shadow and to 0x100c) and the `odsyLLPReset` call do not exist on IP35. IP35 never calls `odsyLLPReset`.
 - Both versions clear the same per-widget host-chip mask bits (widget word +0x24 loses bits 5, 2 and 1; word +268 loses bits 1, 3, 4, 5, 6, 7, 8, 16, 17 and 31; the identical immediates appear in both objects; the code also tests bit 31 of +276 and bit 5 of +316), try the reset up to four times (retry counter in steps of 2, stop at 7, `cmn_err` between attempts), restore widget word +0x24 and +268, and end with `odsy_usdelay(100000)`.
@@ -68,11 +68,11 @@ The inlined helper, **established** as code: unless the record's "initialising" 
 
 ## IP35 differences in `odsyReset`
 
-**established** by comparing store offsets and calls of `odsyReset` in `odsy_kernel_ip35/` against IP30: every board register store (the list in step 5 and the 0x1004 sequence) is identical in value and order, `odsyGatherInfo` stores the same record offsets, and the reset order is the same. IP35 adds host-hub calls: before the first board access `xwidget_info_get`, `xwidget_info_master_get`, `master_node_get` then `hub_widget_flags_set(node, widget, 1)`; after the register zeroing a `hub_widget_flags_set(..., 2, 16384, chimera type)` call; and `hub_set_piomode(..., 2)` at the end and in the retry path. **inferred** that these set host-hub widget flags and the PIO ordering mode for the board's widget (the names are the host kernel's; their register effects belong to the host chip and are **unknown**). `odsyLowLevelReset` is compared in the section below; IP35 never calls `odsyLLPReset`.
+**established** by comparing store offsets and calls of `odsyReset` in `software/kernel/ip35/` against IP30: every board register store (the list in step 5 and the 0x1004 sequence) is identical in value and order, `odsyGatherInfo` stores the same record offsets, and the reset order is the same. IP35 adds host-hub calls: before the first board access `xwidget_info_get`, `xwidget_info_master_get`, `master_node_get` then `hub_widget_flags_set(node, widget, 1)`; after the register zeroing a `hub_widget_flags_set(..., 2, 16384, chimera type)` call; and `hub_set_piomode(..., 2)` at the end and in the retry path. **inferred** that these set host-hub widget flags and the PIO ordering mode for the board's widget (the names are the host kernel's; their register effects belong to the host chip and are **unknown**). `odsyLowLevelReset` is compared in the section below; IP35 never calls `odsyLLPReset`.
 
 ## Host DMA: regions, diagnostic transfers, op ring, wait and finish
 
-Release IRIX 6.5.30m, IP30 `odsy_dma.o` and `odsy_init.o` (disassembly in `odsy_kernel/disasm/`; message strings from `readelf -p .rodata`). Offsets are bytes into the record named. IP35 was not diffed: **unknown**.
+Release IRIX 6.5.30m, IP30 `odsy_dma.o` and `odsy_init.o` (disassembly in `software/kernel/ip30/disasm/`; message strings from `readelf -p .rodata`). Offsets are bytes into the record named. IP35 was not diffed: **unknown**.
 
 ### DMA region record (`odsy_NewDmaRegion`, 88 bytes)
 
@@ -176,13 +176,13 @@ After issue the owner context stores the op number at +256 or +248 depending on 
 
 ## Pass 10: what the kernel sends and which registers it reaches
 
-IRIX 6.5.30m, IP30 kernel objects (`odsy_kernel/disasm/`). Each item carries its label.
+IRIX 6.5.30m, IP30 kernel objects (`software/kernel/ip30/disasm/`). Each item carries its label.
 
 ### Register access through arguments
 
 **established.** The register scan of `buzz/README.md` section 8 follows constants from the board record's PIO base (+824) and misses accesses through a base passed to a callee. A search of every IP30 `odsy*.o` for a call made right after `ld a0,824(...)` finds the base handed to only these callees: `odsy_poll_dfifo_level` (its only board access is the load at +0x106c, already listed), `odsyMMvalidatePcxSwap` and `odsyLLPReset` (neither has an access at an offset of 0x1000 or more), `odsyInitDBE` and `odsy_i2cPLLRegWrite` (the display FIFO and the I2C engine, covered in `pbj/README.md`), and the flow-control routines (`gfx_flow_*`, covered by the flow registers in `BUZZ.h`). So the list of PIO offsets in `buzz/README.md` section 8 is complete for the IP30 driver for constant offsets, and the 0x4000 group is read in `buzz/README.md` section 9.
 
-The board record itself is driver state, not hardware. Its offsets are defined in `odsy_kernel/include/odsy_kern.h` where a routine documented in these notes uses them, and each routine's section here names the fields it reads and writes. A complete census of all record fields would need the record's type, which the install does not carry (the DWARF holds no structure entries, `AGENTS.md` section 2); any further field is recovered from the routine that uses it when a reader needs it, and none is hardware-visible.
+The board record itself is driver state, not hardware. Its offsets are defined in `software/kernel/ip30/include/odsy_kern.h` where a routine documented in these notes uses them, and each routine's section here names the fields it reads and writes. A complete census of all record fields would need the record's type, which the install does not carry (the DWARF holds no structure entries, `AGENTS.md` section 2); any further field is recovered from the routine that uses it when a reader needs it, and none is hardware-visible.
 
 ### Command words the kernel emits
 

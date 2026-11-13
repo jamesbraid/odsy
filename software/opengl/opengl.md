@@ -1,6 +1,6 @@
 # OpenGL core and X module notes
 
-Companion to `libglcore/include/glcore_odsy.h` and the Odyssey kernel driver header 2. Labels: **established** (read from a binary, with where), **inferred**, **unknown**. IRIX 6.5.30m, IP30 V12. Disassembly of `ddx/odyssey.so` is `ddx/asm/odyssey/odsy/odsy.s` (functions below by name; the line numbers are for that file); libGLcore is `libglcore/asm/ODYSSEY/`. Words are written one 32-bit store at a time through a pointer the X module keeps in the screen record (every `sw ..., 0($s0)` below goes to the command FIFO window, `BUZZ.h` section 1).
+Companion to `software/opengl/include/glcore_odsy.h` and the Odyssey kernel driver header 2. Labels: **established** (read from a binary, with where), **inferred**, **unknown**. IRIX 6.5.30m, IP30 V12. Disassembly of `software/xsgi/odyssey.so` is `software/xsgi/asm/odyssey/odsy/odsy.s` (functions below by name; the line numbers are for that file); libGLcore is `software/opengl/asm/ODYSSEY/`. Words are written one 32-bit store at a time through a pointer the X module keeps in the screen record (every `sw ..., 0($s0)` below goes to the command FIFO window, `BUZZ.h` section 1).
 
 ## X server 2D drawing paths (odyssey.so)
 
@@ -62,7 +62,7 @@ Numbers 8, 9 and 12 match what libGLcore sends (`0x6f640008`, `0x6f640009`, `0x6
 
 ## Make-current and lose-current
 
-Sources: `MakeCurrentRead`, `MakeCurrent` and `LoseCurrent` in `libglcore/decomp/ODYSSEY/ody_context.c` (and `.s`), `__glOdysseyDriverMakeCurrent` and `__glOdysseySetDrawbuf` in the Odyssey GL driver native context source unit, kernel `gfP_OdsyMakeCurrent` and `gfP_OdsySetDrawBuffer` (`odsy_drawable.o`). IP30, N32 libGLcore.
+Sources: `MakeCurrentRead`, `MakeCurrent` and `LoseCurrent` in `software/opengl/decomp/ODYSSEY/ody_context.c` (and `.s`), `__glOdysseyDriverMakeCurrent` and `__glOdysseySetDrawbuf` in the Odyssey GL driver native context source unit, kernel `gfP_OdsyMakeCurrent` and `gfP_OdsySetDrawBuffer` (`odsy_drawable.o`). IP30, N32 libGLcore.
 
 ### libGLcore side
 
@@ -127,7 +127,7 @@ IRIX 6.5.30m, IP30, N32 libGLcore and `odyssey.so`. Labels as above.
 
 ### Which libGLcore file sends which block
 
-**established** for constant forms only: every `lui`/`ori` class-1 word (`BUZZ.h` section 1) in `libglcore/asm/ODYSSEY/*.s`, kept when its id and count match a block the kernel replays or one of the table ranges (`buzz/README.md` section 8), with words that are context offsets or address constants removed by hand (the words 0x1201c and 0x13420 of the accumulation and texture code are offsets, not commands; words with bit 14 set other than the primitive begin and end are offsets too). Words built by shifts and masks, such as the level descriptor ids 0x280 + i or the table ids 0x200 + i, show only as their base form. The per-vertex and attribute words are catalogued in `buzz/README.md` section 2.
+**established** for constant forms only: every `lui`/`ori` class-1 word (`BUZZ.h` section 1) in `software/opengl/asm/ODYSSEY/*.s`, kept when its id and count match a block the kernel replays or one of the table ranges (`buzz/README.md` section 8), with words that are context offsets or address constants removed by hand (the words 0x1201c and 0x13420 of the accumulation and texture code are offsets, not commands; words with bit 14 set other than the primitive begin and end are offsets too). Words built by shifts and masks, such as the level descriptor ids 0x280 + i or the table ids 0x200 + i, show only as their base form. The per-vertex and attribute words are catalogued in `buzz/README.md` section 2.
 
 | File | Blocks sent | Grade |
 |---|---|---|
@@ -143,7 +143,7 @@ This is the by-file view of the senders the earlier passes found by function; th
 
 ### The X module's image paths
 
-**established** by reading the word families in `odsyDrawImageDMA`, `odsyDrawImagePIO`, `odsyReadImage`, `odsyReadDeepImage`, `odsyDrawSmallCI8Image`, `odsyDrawMonoImage`, `odsyDrawOpaqueMonoImage` and `odsyImageGlyphBlt` (`ddx/asm/odyssey/odsy/odsy.s`):
+**established** by reading the word families in `odsyDrawImageDMA`, `odsyDrawImagePIO`, `odsyReadImage`, `odsyReadDeepImage`, `odsyDrawSmallCI8Image`, `odsyDrawMonoImage`, `odsyDrawOpaqueMonoImage` and `odsyImageGlyphBlt` (`software/xsgi/asm/odyssey/odsy/odsy.s`):
 
 - **State words.** All of the drawing image routines send the sync group and the window descriptor block 0x04b, then blocks 0x405 (the textport's raster mode, here one operand), 0x422, 0x053 (five operands, as in the rectangle copy) and register 0x29 (`0x29008000 | enc(n)`, the routine-entry register). They then send the colour as in the fill path (the index and RGB forms and the 0x22/0x23 pair), and block 0x023 (`0x11023`, four operands).
 - **DMA draw (`odsyDrawImageDMA`)** sends those words and the pixel data goes by kernel DMA: the ioctl is `0x6f640006` (`gfP_OdsyMMxfr`, 80-byte argument both ways), which `odsyReadImage` and `odsyReadDeepImage` use for reads. The request layout is in `kernel/kernel.md` (the `MMxfr` request); for the libGLcore senders the direction is flag bit 0, which the kernel turns into bit 24 of the transfer header; the X module's flag values were not read.
@@ -154,7 +154,7 @@ This is the by-file view of the senders the earlier passes found by function; th
 
 ### Private ioctl argument sizes
 
-**established** from the literal size in the `copyin` and `copyout` calls of each handler (`odsy_kernel/disasm`, IP30), bytes in and out; a blank means no copy, `var` means the size is a computed value:
+**established** from the literal size in the `copyin` and `copyout` calls of each handler (`software/kernel/ip30/disasm`, IP30), bytes in and out; a blank means no copy, `var` means the size is a computed value:
 
 | n | Handler | In | Out | Grade |
 |---|---|---|---|---|

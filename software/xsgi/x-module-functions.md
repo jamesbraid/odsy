@@ -1,6 +1,6 @@
 # X module functions, one entry each
 
-Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (stripped; names are from the dynamic symbol table, code from `ddx/asm/odyssey/odsy/odsy.s`). Each entry starts with the function, then its address and size from the symbol table. Labels are **established** (read from the assembly) or **inferred**. Request numbers are those of `kernel/ioctls.md`.
+Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so` (stripped; names are from the dynamic symbol table, code from `software/xsgi/asm/odyssey/odsy/odsy.s`). Each entry starts with the function, then its address and size from the symbol table. Labels are **established** (read from the assembly) or **inferred**. Request numbers are those of `kernel/ioctls.md`.
 
 - `odsyValidateSwapbuf` (offset 0x15c64f0, 276 bytes): **established.**
   Registers a window's swap-buffer id with the kernel. It packs three words, the clip id from its second argument at +12, a word from its first argument at +4 and a third from the second argument at +20, and sends them as resource-manager request 1012 on the descriptor kept in the screen private at +100. On failure it logs the errno value. It then stamps the first argument at +20 with the next value of a global serial counter (restarting at 1 once the counter passes 0x10000000), sets bit 3 of byte +4 in the window's private record and clears bit 3 of byte +5.

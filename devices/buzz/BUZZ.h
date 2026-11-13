@@ -7,15 +7,15 @@
  *   unknown     - not yet derived
  *
  * Release: IRIX 6.5.30m, IP30 (Octane2) install with a V12 board; the
- * IP35 kernel objects (odsy_kernel_ip35/) are cited where they were read.
+ * IP35 kernel objects (software/kernel/ip35/) are cited where they were read.
  * Binaries:
  *   libGLcore_n32.so  usr/gfx/arch/IP30ODSY32/libGLcore.so (N32, DWARF
  *                     names and line numbers only; no types)
  *   odyssey.a         usr/cpu/sysgen/IP30boot/odyssey.a (kernel objects)
  * Diagnostics: odydiags, Internal Support Tools 2.7, its microcode image
- *   usr/diags/ody/ucode/diagxform.bin (ucode/disasm/diagxform.lst)
+ *   usr/diags/ody/ucode/diagxform.bin (software/ucode/disasm/diagxform.lst)
  * Addresses are the N32 libGLcore virtual addresses printed in the
- * libglcore/asm/ODYSSEY/*.s headers.
+ * software/opengl/asm/ODYSSEY/*.s headers.
  */
 #ifndef BUZZ_H
 #define BUZZ_H
@@ -109,7 +109,7 @@
  * ===================================================================
  *
  * libGLcore keeps a shadow of the texture registers in each texture
- * object (layout in libglcore/include/glcore_odsy.h) and copies it to the
+ * object (layout in software/opengl/include/glcore_odsy.h) and copies it to the
  * context in __glOdysseyValidateTextureState (0x0d9d2bb0). The context
  * copies are emitted by __glOdysseyValidateHardware when the matching
  * dirty bit is set:
@@ -613,7 +613,7 @@
  *      binaries read here; the operands look like the bounds of a range
  *      (inferred from the values alone, 0 to the top of a 256 MB space).
  *      A read of the microcode routine that block 0x054 reaches
- *      (ucode/buzz_routines.md) would settle it.
+ *      (software/ucode/buzz_routines.md) would settle it.
  *   2. five doubleword stores (high word first is inferred, big-endian):
  *        0x000006b0_00000000  0x000006b1_00000100  0x000006b3_00005e50
  *        0x000006b2_00007dc0  0x000007b5_00000001
@@ -673,7 +673,7 @@
  * left by 3). So the 552 and the board marks are different quantities;
  * 552 is not derived from them in any code read. established.
  *
- * IP35 (6.5.30, odsy_kernel_ip35/): odsyInitCfifo stores the same five
+ * IP35 (6.5.30, software/kernel/ip35/): odsyInitCfifo stores the same five
  * doublewords with the same values, so the water marks do not depend on
  * the host; the board-side flow registers are the same too. The host-side
  * credit source differs: IP35 has no HEART access and its bias is 544

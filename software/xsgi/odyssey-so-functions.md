@@ -1,6 +1,6 @@
 # X module (`odyssey.so`) functions by role
 
-Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so`. The disassembly is `ddx/asm/odyssey/`, split by function-name prefix by `retools/tools/odsy/extract_odsy_ddx.py`. The module carries the board driver (`odsy*`), the resource-manager client (`rrm*`) and large parts of the MIT X sample server (`mi*`, `mfb*`, `cfb*`) plus an SGI frame-buffer layer (`nfb*`), the video-format symbol database and a copy of the audio library.
+Release IRIX 6.5.30m, `usr/lib/X11/dyDDX/odyssey.so`. The disassembly is `software/xsgi/asm/odyssey/`, split by function-name prefix by `retools/tools/odsy/extract_odsy_ddx.py`. The module carries the board driver (`odsy*`), the resource-manager client (`rrm*`) and large parts of the MIT X sample server (`mi*`, `mfb*`, `cfb*`) plus an SGI frame-buffer layer (`nfb*`), the video-format symbol database and a copy of the audio library.
 
 Labels: every function name is **established** from the module's symbol table; the roles are **inferred** from the names, since the module's sample-server code is the public X11 code. The lists name functions and say nothing about what any one of them does, except for the functions read in full in `opengl/opengl.md`, `display/README.md` and the audio paragraph below.
 
@@ -8,7 +8,7 @@ Labels: every function name is **established** from the module's symbol table; t
 
 ### Driver (`odsy`)
 
-Functions named `odsy*`, the board driver of the X module (`ddx/asm/odyssey/odsy/odsy.s`). The role is **inferred** from each name; functions read in full are in `opengl/opengl.md` and `display/README.md`.
+Functions named `odsy*`, the board driver of the X module (`software/xsgi/asm/odyssey/odsy/odsy.s`). The role is **inferred** from each name; functions read in full are in `opengl/opengl.md` and `display/README.md`.
 
 video timing, monitor and format files.
 

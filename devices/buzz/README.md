@@ -1,17 +1,17 @@
 # BUZZ notes
 
-Companion to `BUZZ.h`. Facts are labelled **established** (read from a binary, with where), **inferred** (a reasoned reading) or **unknown**. Release is IRIX 6.5.30 unless said. "IP35" means the kernel objects under `usr/cpu/sysgen/IP35boot/` (`odsy_kernel_ip35/`), read from the 6.5.30 Installation Tools and Overlays disc; the IP30 objects are under `odsy_kernel/`. A fact about one host does not fill a gap in the other.
+Companion to `BUZZ.h`. Facts are labelled **established** (read from a binary, with where), **inferred** (a reasoned reading) or **unknown**. Release is IRIX 6.5.30 unless said. "IP35" means the kernel objects under `usr/cpu/sysgen/IP35boot/` (`software/kernel/ip35/`), read from the 6.5.30 Installation Tools and Overlays disc; the IP30 objects are under `software/kernel/ip30/`. A fact about one host does not fill a gap in the other.
 
 ## 1. IP35 against IP30: command FIFO set-up, water marks, flow control
 
 ### What was compared
 
-IP35 `odyssey.a` members, `kernel.o`, `gfx.o`, `rrm.o`, `gfxs.a` and `gfxstubs.a` are in `root/`. They were disassembled with `retools/tools/odsy/disasm_kernel.py` (`KERNEL_DIR=odsy_kernel_ip35`) into `odsy_kernel_ip35/disasm/`. Line counts of the disassembly differ in most members (`odsy_init` 4394 against 5102, `odsy_flow` 285 against 490, `odsy_dvi` empty against 580, `kernel` 31723 against 77588); `odsy`, `odsy_compositor`, `odsy_ddc`, `odsy_denali`, `odsy_diag`, `odsy_hpipe`, `odsy_i2c` and `odsy_intr` are the same length. Only the parts below were read; the rest of the diff is **unknown**.
+IP35 `odyssey.a` members, `kernel.o`, `gfx.o`, `rrm.o`, `gfxs.a` and `gfxstubs.a` are in `root/`. They were disassembled with `retools/tools/odsy/disasm_kernel.py` (`KERNEL_DIR=software/kernel/ip35`) into `software/kernel/ip35/disasm/`. Line counts of the disassembly differ in most members (`odsy_init` 4394 against 5102, `odsy_flow` 285 against 490, `odsy_dvi` empty against 580, `kernel` 31723 against 77588); `odsy`, `odsy_compositor`, `odsy_ddc`, `odsy_denali`, `odsy_diag`, `odsy_hpipe`, `odsy_i2c` and `odsy_intr` are the same length. Only the parts below were read; the rest of the diff is **unknown**.
 
 ### Water-mark registers 0x6b0 to 0x6b3 and 0x7b5
 
 - **established.** IP35 `odsyInitCfifo` (`odsy_init.o`) sends the same five doubleword stores in the same order as IP30, with the same values: 0x6b0 = 0, 0x6b1 = 0x100, 0x6b3 = 0x5e50, 0x6b2 = 0x7dc0, 0x7b5 = 1, and 0x7f0 = 0x3b9aca00 after the microcode. The values sit in `.lit8` (IP30 offsets 0x30 to 0x50, IP35 offsets 0x48 to 0x68, byte-identical entries); the 0x6b0 store is built from `li 107; dsll32 4` in both. Source: `.lit8` dump of both `odsy_init.o`, and the `odsyInitCfifo` disassembly of both.
-- **established.** These are the only stores to those ids in either set of objects: an eight-byte scan of every non-debug section of every `.o` in `odsy_kernel/` and `odsy_kernel_ip35/` finds the five pairs only in `odsy_init.o` `.lit8`, and the IP35 disassembly has no immediate load of 0x6b0 to 0x6b3 or 0x7b5.
+- **established.** These are the only stores to those ids in either set of objects: an eight-byte scan of every non-debug section of every `.o` in `software/kernel/ip30/` and `software/kernel/ip35/` finds the five pairs only in `odsy_init.o` `.lit8`, and the IP35 disassembly has no immediate load of 0x6b0 to 0x6b3 or 0x7b5.
 - **established.** The rest of the init sequence is the same: block 0x054 with two operands, 2000 microsecond delay, read of board+0x201594 against `0x003d0046`, header words `0x2e008380`, `0x2600807f`, `0x27008000`, then 2048 groups of six from `buzz_ucode`. The array itself is byte-identical on both hosts (`ucode/buzz_ucode.md`).
 - **established.** One difference in that routine: the argument passed with the delay call. IP30 loads the address 0xaff00080 (HEART space, also read by IP30's `gfx_flow_flush_my_wg`); IP35 loads a gp-relative value that is not resolved in the object. The effect on timing: **unknown**.
 - **conclusion.** The values written to blocks 0x6b0 to 0x6b3 and 0x7b5 do not depend on the host. What those blocks configure is **unknown** from the binaries read here (`BUZZ.h` section 5); a read of the flags handler's tests of the FIFO fill status bits would settle the 0x6b2 and 0x6b3 pair.
@@ -40,7 +40,7 @@ The host-side threshold in `BUZZ.h` (552 on IP30) is a different number on IP35 
 
 ## 2. Per-vertex and attribute words
 
-The words below are written to the command FIFO by the immediate-mode entry points (`__glOdylc_*`), the vertex-array senders and the clipped-vertex senders in `libGLcore` (N32 build). Values come from every `lui`/`ori` pair in `libglcore/asm/ODYSSEY/*.s` whose result has bit 31 set and bit 15 set (script-free search; the function names are the first owners listed per value).
+The words below are written to the command FIFO by the immediate-mode entry points (`__glOdylc_*`), the vertex-array senders and the clipped-vertex senders in `libGLcore` (N32 build). Values come from every `lui`/`ori` pair in `software/opengl/asm/ODYSSEY/*.s` whose result has bit 31 set and bit 15 set (script-free search; the function names are the first owners listed per value).
 
 ### Layout
 
@@ -80,7 +80,7 @@ The words below are written to the command FIFO by the immediate-mode entry poin
 
 Order of the data type codes: unsigned byte, unsigned short, unsigned int, byte, short, int, float (colours); byte, short, int, float (normals). **established** from the opcode to entry-point pairing. Later passes found 0x1c (`0xc280cc1c`, slot 2), 0x26 (`0xc480c426`, the slot 4 default) and 0x33 and 0x34 (`0xd080c433`, `0xd080cc34`, kernel slot 16 words); see `buzz/words.md`. `BUZZ_DECODE.h` carries 0x1c, 0x26, 0x33 and 0x34 as `BUZZ_SLOT2_WORD`, `BUZZ_SLOT4_DEFAULT_WORD`, `BUZZ_SLOT16_WORD_OP33` and `BUZZ_SLOT16_WORD_OP34`. The stored-constant scan in `evidence/inventory/tokens.tsv` lists no word with opcode 0x1a, 0x1b, 0x1d or 0x27 to 0x2e, so no shipped code sends them; whether the board accepts them is **unknown: no shipped software or published source depends on it**. **Test that settles it:** rerun the inventory scan (`retools/tools/inventory.py`) when another release's binaries are added.
 
-Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`, `0x908091ea`, `0x9080bda2`, `0x9080bdc8`, `0x90008116`, `0x90808800`, `0x8f80a944`, `0x8f80b968`, `0xcf80a92f`, `0xd080c433`, `0xd080c439`) have bits 15:14 = 10 (or 11 for `0xd080c4xx`) and are state, program and pixel-transfer words (lighting, clip planes, matrices, `__glOdysseySetProgram`, `ApplyParameter`). Their field meaning: **unknown: no shipped software or published source names the fields.** Test that would settle it: for each id (the low ten bits of the word: 0x015, 0x1bb, 0x1df, 0x1ea, 0x1a2, 0x1c8, 0x116, 0x000, 0x144, 0x168, 0x12f, 0x033, 0x039), find the microcode routine the id reaches (`ucode/buzz_routines.md`, "How a command word reaches a routine"), disassemble it from `ucode/disasm`, and list which operand values (source codes 16 to 31, `ucode/buzz_isa.md`) it reads and the masks and shifts it applies; those bits are the fields. An id the microcode never consumes is handled outside the sequencer, and only a board capture of the FIFO with a known input can name its fields. `0x80000000`, `0xdeadbeef` and `0xbaadcade` in the same list are masks or markers, not words.
+Other words with the 0x8x or 0x9x form (`0x8e809015`, `0x908091bb`, `0x908091df`, `0x908091ea`, `0x9080bda2`, `0x9080bdc8`, `0x90008116`, `0x90808800`, `0x8f80a944`, `0x8f80b968`, `0xcf80a92f`, `0xd080c433`, `0xd080c439`) have bits 15:14 = 10 (or 11 for `0xd080c4xx`) and are state, program and pixel-transfer words (lighting, clip planes, matrices, `__glOdysseySetProgram`, `ApplyParameter`). Their field meaning: **unknown: no shipped software or published source names the fields.** Test that would settle it: for each id (the low ten bits of the word: 0x015, 0x1bb, 0x1df, 0x1ea, 0x1a2, 0x1c8, 0x116, 0x000, 0x144, 0x168, 0x12f, 0x033, 0x039), find the microcode routine the id reaches (`ucode/buzz_routines.md`, "How a command word reaches a routine"), disassemble it from `software/ucode/disasm`, and list which operand values (source codes 16 to 31, `ucode/buzz_isa.md`) it reads and the masks and shifts it applies; those bits are the fields. An id the microcode never consumes is handled outside the sequencer, and only a board capture of the FIFO with a known input can name its fields. `0x80000000`, `0xdeadbeef` and `0xbaadcade` in the same list are masks or markers, not words.
 
 ## 3. The maximum texture clamp field
 
@@ -91,7 +91,7 @@ Owner: `BUZZ.h` TEXMODE1 to TEXMODE3.
 - **established.** The default is 1.0 for all three (`InitTextureObject`, 0x0d9cf5a0, `_lit_3f800000` stored at offsets 72, 76, 80), so the register carries 2^n, the full level size in texels, not size - 1.
 - **established.** The TexParameter setters reject a negative value (`c.lt.s` against zero, then `__glSetError`); the float is stored unconverted and the conversion happens in the validate step above.
 - **established.** Bits 31:24 and 17 of words 2 and 3 start at 0 (`InitTextureObject`, offsets 172, 176) and this routine only preserves them; bits 23:18 are the wrap auxiliary field written by the wrap setters (see `BUZZ.h`). Word 1 (offset 168) keeps the bits it already holds in 31:17 in the same way. What a nonzero bit 17 or bits 31:24 would do: **unknown**.
-- **unknown.** How the board uses the value (clamp coordinate scale, comparison against texel coordinates, interaction with borders). No code in the driver reads it back. Test that would settle it: find the microcode routine that block 0x016 reaches (`ucode/buzz_routines.md`, "How a command word reaches a routine"), disassemble it from `ucode/disasm`, and list what it does with bits 16:0 of operand words 1 to 3 (`ucode/buzz_isa.md`, source codes 16 to 31): a multiply or compare against a texel coordinate shows the clamp scale, and a branch on a border flag shows the border interaction. If the microcode only forwards the field, a board capture with a known clamp is the remaining route.
+- **unknown.** How the board uses the value (clamp coordinate scale, comparison against texel coordinates, interaction with borders). No code in the driver reads it back. Test that would settle it: find the microcode routine that block 0x016 reaches (`ucode/buzz_routines.md`, "How a command word reaches a routine"), disassemble it from `software/ucode/disasm`, and list what it does with bits 16:0 of operand words 1 to 3 (`ucode/buzz_isa.md`, source codes 16 to 31): a multiply or compare against a texel coordinate shows the clamp scale, and a branch on a border flag shows the border interaction. If the microcode only forwards the field, a board capture with a known clamp is the remaining route.
 
 ## 4. Context save and restore (kernel, `odsy_ctxsw.o`)
 
@@ -201,7 +201,7 @@ See `display/README.md`.
 
 ## 6. Interrupt sources, routing and the handlers not covered earlier
 
-Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_dma.o`, `odsy_retrace.o`). IP35 was compared in pass 8 (below). Handler order was read from the `.rel.srdata` relocations of `odsy_init.o` (`readelf -r`), the board offsets from the disassembly in `odsy_kernel/disasm/`.
+Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_dma.o`, `odsy_retrace.o`). IP35 was compared in pass 8 (below). Handler order was read from the `.rel.srdata` relocations of `odsy_init.o` (`readelf -r`), the board offsets from the disassembly in `software/kernel/ip30/disasm/`.
 
 ### Five interrupt sources
 
@@ -258,7 +258,7 @@ Release IRIX 6.5.30m, IP30 kernel objects (`odsy_init.o`, `odsy_intr.o`, `odsy_d
 
 ## 7. IP35 context switch against IP30 (`odsy_ctxsw.o`)
 
-**established** by a diff of `odsy_kernel/disasm/odsy_ctxsw/` and `odsy_kernel_ip35/disasm/odsy_ctxsw/` (both 6.5.30, the IP35 set from the Installation Tools and Overlays disc), `.lit8` dumps and the jump-and-link target lists of the two objects. The two files have the same function labels in the same order.
+**established** by a diff of `software/kernel/ip30/disasm/odsy_ctxsw/` and `software/kernel/ip35/disasm/odsy_ctxsw/` (both 6.5.30, the IP35 set from the Installation Tools and Overlays disc), `.lit8` dumps and the jump-and-link target lists of the two objects. The two files have the same function labels in the same order.
 
 - **Same on both.** The save request and the select sequence of section 4: `.lit8` offsets 0x00 (`0xfffffffffffe0fff`, the slot-field mask), 0x08 (`0x00000700007f0001`, the slot-127 save word) and the slot mask `0xfffffffffff80fff` are byte-identical; the board save-address stores at +0x4004/+0x400c, the zeroing of the completion word at record +2300 and its poll, the 1500-tick timeout and the same six uses of +2300 occur in both. So the board-visible protocol is the same on IP35 and IP30.
 - **Read-back after the doorbell.** In `gf_OdsyPcxSwap` both hosts follow the 0x118000 store with `sync` and, in the delay slot of the `timeout` call, a doubleword load whose result is not used. IP30 loads from `0xaff00080` (a host-chip register). IP35 loads from the address in `.lit8` offset 0x10, `0x9200000001030100`, an uncached constant in the same 0x92000000_01xxxxxx range as the flow-control block of section 1. **inferred** that this load is a read-back that pushes the posted doorbell out to the board before the timeout is armed; the destination register is not used afterwards.
@@ -281,7 +281,7 @@ Each offset has its own entry, with the function that reaches it and its derivat
 
 ### Command-stream register blocks
 
-The full set of blocks the board holds as context state is what the kernel replays after a lost context (`odsyRestoreRaster`, `odsy_ctxsw.o`, decompiled with m2c from `odsy_kernel/disasm/odsy_ctxsw/`). **established**: each row is a class-1 word the routine sends, its operand count, and the offset in the hardware-shadow record (the structure at offset 0xb0 of the routine's second argument) it reads the operands from, in send order. Settle groups (0x043, 0x046, 0x019) between them are left out.
+The full set of blocks the board holds as context state is what the kernel replays after a lost context (`odsyRestoreRaster`, `odsy_ctxsw.o`, decompiled with m2c from `software/kernel/ip30/disasm/odsy_ctxsw/`). **established**: each row is a class-1 word the routine sends, its operand count, and the offset in the hardware-shadow record (the structure at offset 0xb0 of the routine's second argument) it reads the operands from, in send order. Settle groups (0x043, 0x046, 0x019) between them are left out.
 
 | Block | Words | Shadow offset | Known from | Grade |
 |---|---|---|---|---|
@@ -343,7 +343,7 @@ The word `0x3000c02e` (sequencer register 0x30 form, `ucode/buzz_isa.md`) is sto
 
 ## Interrupts: IP35 comparison and the flags no code tests
 
-Pass 8. **established** by comparing the IP30 and IP35 (`odsy_kernel_ip35/`) disassembly of `odsyInitIntr`, `odsyInitInterrupts`, `odsyDisableInterrupts` (identical loads, stores, constants and calls once registers are renamed) and of the five handlers plus `odsyRetraceHandler`, `odsySwapBuffer`, `odsyValidateBuffer` and `odsySwap_softsync_intr` (identical after masking the host-record displacements, which move by 24 bytes: for example -19352 against -19328, and the gp-relative loads). Board register offsets, written values, the five-source order, the teardown mask 0x39f02587 and the enable mask building are therefore the same on both hosts. `gf_OdsySchedSwapBuf` differs (53 instruction differences) and was not read: it is a scheduling call, not an interrupt path. The IP35 credit source for the DMA path is the one `section 1` already describes.
+Pass 8. **established** by comparing the IP30 and IP35 (`software/kernel/ip35/`) disassembly of `odsyInitIntr`, `odsyInitInterrupts`, `odsyDisableInterrupts` (identical loads, stores, constants and calls once registers are renamed) and of the five handlers plus `odsyRetraceHandler`, `odsySwapBuffer`, `odsyValidateBuffer` and `odsySwap_softsync_intr` (identical after masking the host-record displacements, which move by 24 bytes: for example -19352 against -19328, and the gp-relative loads). Board register offsets, written values, the five-source order, the teardown mask 0x39f02587 and the enable mask building are therefore the same on both hosts. `gf_OdsySchedSwapBuf` differs (53 instruction differences) and was not read: it is a scheduling call, not an interrupt path. The IP35 credit source for the DMA path is the one `section 1` already describes.
 
 **established.** The flags register's bit 12 (named CTXSW_DONE in the driver's own bit table) and bit 26 (unnamed in the table) are never tested by `odsyFlagInterrupt`, are outside the teardown mask, and the other flags readers (`gfP_OdsyDIAGdma` tests bit 11 only, `odsy_flow.o` writes the register without testing named bits) do not test them either. Context-switch completion in software is the host-memory word at record +2300 (section 4), not this bit. So no code in the install gives either bit a use, and nothing says whether the board ever raises them: **unknown** (`questions/README.md`) of the flags register (0x1014) read immediately after a context switch (bit 12) and across a workload (bit 26).
 
@@ -515,4 +515,7 @@ Linux has no VPro driver and no register definition beyond the widget header, so
 - [Public GL entry points and the command words their senders emit](../../software/opengl/gl-entry-points.md)
 - [Odyssey driver routines of `libGLcore.so`, read one by one](../../software/opengl/libglcore-odyssey-reads.md)
 - [OpenGL core and X module notes](../../software/opengl/opengl.md)
+- [BUZZ microcode: word format, loading and dispatch](../../software/ucode/buzz_isa.md)
+- [BUZZ microcode: routine map](../../software/ucode/buzz_routines.md)
+- [buzz_ucode: the microcode array in the kernel driver](../../software/ucode/buzz_ucode.md)
 - [VPro tool functions, one entry each](../../software/userland/vpro-tool-functions.md)
