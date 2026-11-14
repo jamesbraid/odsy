@@ -171,7 +171,7 @@ Types have to come from headers, the ucode and the RE notes. 6.5.30 is the lates
 
 ## 6. Wider scope: every 6.5.30 file that touches VPro
 
-Found by reading the file lists (`instigator extract --manifest-only`) of the four 6.5.30 discs (Installation Tools and Overlays 1 of 3, Overlays 2 of 3 and 3 of 3, and the Octane2 VPro Patches disc), then unpacking every disc whole (`instigator extract --unpack`) and checking each file for VPro symbols and strings (`odsy`, `Odsy`, `ODYSSEY`, `VPro`, `BUZZ`, `PB&J`). Machine tags in the file lists (`GFXBOARD=ODYSSEY`, `CPUBOARD=IP30` or `IP35`) agree with the string search. Everything below is in `root/`, under the install path, and is read by `retools/tools/inventory.py` (group names in `scripts/inventory.json`).
+Found by reading the file lists (`instigator extract --manifest-only`) of the four 6.5.30 discs (Installation Tools and Overlays 1 of 3, Overlays 2 of 3 and 3 of 3, and the Octane2 VPro Patches disc), then unpacking every disc whole (`instigator extract --unpack`) and checking each file for VPro symbols and strings (`odsy`, `Odsy`, `ODYSSEY`, `VPro`, `BUZZ`, `PB&J`). Machine tags in the file lists (`GFXBOARD=ODYSSEY`, `CPUBOARD=IP30` or `IP35`) agree with the string search. Everything below is in `root/`, under the install path, and is read by `retools/tools/inventory.py` (group names in `tools/config/inventory-config.json`).
 
 | Group | Files | Disc |
 |---|---|---|

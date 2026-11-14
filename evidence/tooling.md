@@ -2,7 +2,7 @@
 
 The index of all Ghidra tooling is [ghidra/README.md](../tools/ghidra/README.md).
 
-The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#5-reverse-engineering-toolchain--pipeline) or Ghidra with the scripts in [retools/ghidra/scripts/](../retools/ghidra/scripts/README.md), which are shared with the other graphics workspaces. The BUZZ transform microcode (`software/ucode/ODSY/buzz_xform.bin`, the kernel's copy `software/ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `tools/ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
+The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md#4-tools) or Ghidra with the scripts in [retools/ghidra/scripts/](../retools/ghidra/scripts/README.md), which are shared with the other graphics workspaces. The BUZZ transform microcode (`software/ucode/ODSY/buzz_xform.bin`, the kernel's copy `software/ucode/buzz_ucode_ip30.bin`, and the field diagnostics' `diagxform.bin`) is not MIPS code, and no stock Ghidra processor reads it. `tools/ghidra/processors/odsy-buzz/` is a Ghidra extension that disassembles and decompiles it. Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|

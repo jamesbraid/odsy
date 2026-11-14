@@ -5324,23 +5324,23 @@ binary/member: kernel/driver-functions.md); `odsy_usb_comp_readwrite_register` i
 binary/member: kernel/driver-functions.md); `usb_comp_readwrite_register` in
 `builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_hpipe.o)` (already documented for this
 binary/member: kernel/driver-functions.md); `odsy_usb_comp_update_tiles` in
-`usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` (already documented for this binary/member: docs/driver-
+`usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` (already documented for this binary/member: software/kernel/driver-
 functions.md); `usb_comp_update_tiles` in `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` (already
 documented for this binary/member: kernel/driver-functions.md); `odsy_usb_comp_readwrite_register` in
-`usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` (already documented for this binary/member: docs/driver-
+`usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` (already documented for this binary/member: software/kernel/driver-
 functions.md); `usb_comp_readwrite_register` in `usr/cpu/sysgen/IP35boot/odyssey.a(odsy_hpipe.o)` (already
 documented for this binary/member: kernel/driver-functions.md); `dma_mapinit` in
-`usr/cpu/sysgen/IP30boot/kernel.o` (already documented for this binary/member: docs/instruction-readings-
+`usr/cpu/sysgen/IP30boot/kernel.o` (already documented for this binary/member: evidence/instruction-readings-
 odsy-g12.md); `hub_dma_init` in `usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member:
 evidence/instruction-readings-odsy-g12.md); `hub_dmatrans_addr` in `usr/cpu/sysgen/IP35boot/kernel.o` (already
 documented for this binary/member: evidence/instruction-readings-odsy-g12.md); `hub_dmatrans_list` in
-`usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member: docs/instruction-readings-
+`usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member: evidence/instruction-readings-
 odsy-g12.md); `hub_dmamap_drain` in `usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this
 binary/member: evidence/instruction-readings-odsy-g12.md); `hub_dmaaddr_drain` in
-`usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member: docs/instruction-readings-
+`usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member: evidence/instruction-readings-
 odsy-g12.md); `hub_dmalist_drain` in `usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this
 binary/member: evidence/instruction-readings-odsy-g12.md); `dma_geth` in `usr/cpu/sysgen/IP35boot/kernel.o`
 (already documented for this binary/member: evidence/instruction-readings-odsy-g12.md); `dmamap_init` in
-`usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member: docs/instruction-readings-
+`usr/cpu/sysgen/IP35boot/kernel.o` (already documented for this binary/member: evidence/instruction-readings-
 odsy-g12.md); `sampleBuffersScore` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGL.so` (already documented
 for this binary/member: evidence/instruction-readings-odsy-g12.md).

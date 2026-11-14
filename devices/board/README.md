@@ -121,7 +121,7 @@ Release 6.5.30m, IP30 and IP35 builds. Each item carries its label.
 
 ### Board NIC and the manufacturing name (V6 to V12)
 
-Full note, with grades and open questions: `docs/questions/v12-nic.md` in the chips reverse-engineering repository.
+Full note, with grades and open questions: the V12 NIC note in the chips reverse-engineering repository.
 
 - **established.** The board NIC is a Dallas 1-Wire (MicroLAN) memory part, not I2C. The driver passes the host `board + 0x10dc` and the host's generic one-wire code bit-bangs a 32-bit IOC3-style control register there (pulse bit 10, sample bit 2, done bit 1, level bit 0; done is polled without a limit). Host reads family 0x0B (IP35 also 0x09): ROM search, Match ROM, status read of the redirection map at 0x0100, two 32-byte pages each ending in an inverted CRC-16, ROM CRC-8.
 - **established.** The IP30 PROM drives the same register with the word `(low time << 10) | (sample time << 2)` and the values reset 520 and 65, write 1 6 and 110, write 0 80 and 30, read 6 and 13, each followed by a software wait of 500, 0, 0 and 100 units; the units are inferred to be microseconds ([firmware-images.md](../../software/firmware/firmware-images.md), "The printing code").
