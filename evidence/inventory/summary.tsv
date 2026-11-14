@@ -8,8 +8,8 @@ ioctls	92	0	88	1	82	1	1	3	0	0	95.7	96.7	100.0	95.7			73.3	15	2026-10-29		0
 ucode	247	0	247	7	195	0	0	0	0	0	100.0	100.0	100.0	100.0			84.0	25	2026-10-29	198	0				
 spec-registers	0	0	0	0	0	0	0	0	0	0	0.0	0.0	0.0	0.0							0				
 input root manifest	181																								8819d9ce474136508453df6b1e2b37aecd34678ce4e70ed303e1faf61989c77a
-input sibling crime																									6fcd911f9fd0456881a2a5051d7adca9b729a375
-input sibling kona																									dc128aefdbef90d3827e1756e32f37feb549f936
+input sibling crime																									6b7bbe2ec01406f4819ca05f61b3bc03c2ccdb8e
+input sibling kona																									cd85f4e33623e1dc7a5672c046ee4a7a0fc387e8
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy.o)	4	0	4	2	4	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_adt.o)	18	0	18	0	18	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in builds/6.5.30-media/usr/cpu/sysgen/IP30boot/odyssey.a(odsy_attach.o)	3	0	3	0	3	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
