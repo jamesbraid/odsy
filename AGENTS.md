@@ -1,235 +1,77 @@
-# SGI VPro (Odyssey, odsy) Reverse Engineering Project
+# SGI VPro (Odyssey, odsy) reverse engineering
 
-This project reverse-engineers the SGI **VPro (Odyssey)** graphics subsystem (internal name **odsy (`odyssey.a`, `odyssey.so`)**).
-The goal is to document its architecture as C headers and notes, so that emulator authors, FPGA builders and the vintage SGI community can work from published findings.
+This repository reverse-engineers the SGI VPro (Odyssey, `odsy`) graphics subsystem. It publishes the result as C headers and notes for emulator authors, FPGA builders and the vintage SGI community. Layout and working style follow Dominik Behr's [gr2](https://github.com/techomancer/gr2) and [gr4](https://github.com/techomancer/gr4). Where this file is silent, do what gr4 does.
 
-The layout and working style follow [gr2](https://github.com/techomancer/gr2) and [gr4](https://github.com/techomancer/gr4) by Dominik Behr. Where this file is silent, do what gr4 does.
+## 1. The board
 
----
+VPro is the V6, V8, V10 and V12 line, used in the Octane2 (IP30) and in IP35 systems such as the Fuel, Tezro and Onyx 350. The software calls the driver `odyssey` (`odyssey.a`, `odyssey.so`). The first configuration read is a V12 Octane2 on IRIX 6.5.30m. Other boards and hosts are separate configurations, and a fact from one does not fill a gap in another.
 
-## 1. Board Overview
+The software on that install has an IP30 kernel driver, three `libGLcore.so` ABIs (o32, N32, 64-bit), IrisGL libraries, an X server module and a transform microcode image. **BUZZ** (the graphics ASIC) and **PB&J** (inferred to be the display back end behind the display FIFO) are names from the software. They are not findings until a header gives them a labelled description.
 
-VPro is SGI's workstation graphics line of the V6, V8, V10 and V12 boards, used in the Octane2 (IP30) and in IP35 systems such as the Fuel, Tezro and Onyx 350. SGI's own short name for the board is **odsy** (the software calls the driver `odyssey`). The first configuration this project reads is a V12 Octane2; other boards and hosts are separate configurations, and a fact from one does not fill a gap in another.
+Label every fact **established** (read directly, with function, offset or path), **inferred** (with the reasoning) or **unknown**. Anything unlabelled is unknown. Do not fill gaps from memory, from other SGI graphics families or from other emulators.
 
-The software on the reference install (IRIX 6.5.30m) spans an IP30 kernel driver (`odyssey.a`), three `libGLcore.so` ABIs (o32, N32, 64-bit), IrisGL libraries, an X server module and a transform microcode image.
+## 2. Binaries and public sources
 
-Facts in this file are labelled **established** (read directly from a binary or from the IRIX source tree, with the function, offset or path), **inferred** (a reasoned reading, with the reasoning) or **unknown**. Anything unlabelled is unknown. Do not fill gaps from memory, from other SGI graphics families or from other emulators.
+Proprietary SGI binaries are not tracked. Copy them from an authentic IRIX distribution into the gitignored `root/` as [evidence/irix-files.md](evidence/irix-files.md) lists. The tracked relative symlinks below resolve once `root/` is filled. Disassembly, decompiled C, headers and notes derived from the binaries are committed. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 
-### Major ASIC and block roles
-
-- **BUZZ**: the graphics ASIC named in the board inventory. A transform program, `buzz_xform.bin`, is uploaded by the driver. Internal role and registers: unknown.
-- **PB&J**: a second chip named in the board inventory. Inferred to be the display back end behind the display FIFO; see `PBJ.h`.
-- **Board memory**: bank count and timing are reported in the inventory. Organisation and addressing: unknown.
-- **Display output**: single- and dual-channel options. Output hardware and timing: unknown.
-
-Every role above is a name from the software, not a finding. Replace each with a labelled description as headers land.
-
----
-
-## 2. Project Binaries & Evidence
-
-For licensing reasons proprietary SGI binaries are **not checked into source control** (the local `root/` tree is gitignored). Copy them from an authentic IRIX distribution into `root/` following [evidence/irix-files.md](evidence/irix-files.md). Disassembly, decompiled C, headers and notes derived from them are committed.
-
-The subdirectories below contain relative symbolic links resolving into `root/` (they are tracked in git and resolve once `root/` is filled; the `links` block in evidence/irix-files.md lists them):
-
-| Directory | Symlinked files | Target in `root/` | DWARF status (6.5.30m) |
+| Directory | Files | Target in `root/` | DWARF (6.5.30m) |
 |---|---|---|---|
-| `software/kernel/ip30/` | `odyssey.a` members (`odsy_*.o`), `kernel.o`, `gfx.o`, `rrm.o`, `gfxs.a`, `gfxstubs.a`, `odysseystubs.a` | `usr/cpu/sysgen/IP30boot/` | **DWARF** in all 32 objects |
-| `software/opengl/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP30ODSY64/`, `IP30ODSY32/`, `IP30ODSY/` | **DWARF** in the 64-bit and N32 libGLcore (N32: 200 compilation units) and libGL; o32 stripped. `pyelftools` cannot read the 64-bit DWARF header, so the extractor uses its symbol table; `dwarfdump` shows no type entries either |
-| `software/irisgl/` | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` | **DWARF** (160 and 61 compilation units) |
-| `software/xsgi/` | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` | Stripped; dynamic symbols only (`odyssey.so`: 1010 functions) |
-| `software/ucode/` | `ODSY/` (`buzz_xform.bin`, `vof/`), `buzz_ucode_ip30.bin`, `buzz_ucode_ip35.bin` | `usr/gfx/ucode/ODSY/`, `ODSY-kernel/` (the kernel array, see `software/ucode/buzz_ucode.md`) | Data |
-| `software/firmware/` | `IP30prom.bin` | `usr/cpu/firmware/` | Data |
+| `software/kernel/ip30/` | `odyssey.a` members (`odsy_*.o`), `kernel.o`, `gfx.o`, `rrm.o`, stub archives | `usr/cpu/sysgen/IP30boot/` | all 32 objects |
+| `software/opengl/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP30ODSY64/`, `IP30ODSY32/`, `IP30ODSY/` | 64-bit, N32 and libGL; o32 stripped |
+| `software/irisgl/` | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` | yes |
+| `software/xsgi/` | `odyssey.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` | stripped; dynamic symbols only |
+| `software/ucode/` | `ODSY/` (`buzz_xform.bin`, `vof/`), `buzz_ucode_ip30.bin`, `buzz_ucode_ip35.bin` | `usr/gfx/ucode/ODSY/`, `ODSY-kernel/` | data |
+| `software/firmware/` | `IP30prom.bin` | `usr/cpu/firmware/` | data |
 
-The 6.5.30m DWARF in the kernel objects and the N32 libGLcore holds only compile units, function and variable names, and line tables: `dwarfdump -i` finds no structure, member or base-type entries. Structure layouts have to be recovered from the code. The install carries no VPro register-dump or diagnostic tool: `/usr/stand/ide` is the IP30 IDE with only the textport part of the driver, and `/usr/diags` holds the compositor and IR tools.
+The 6.5.30m DWARF holds compile units, function and variable names and line tables only. `dwarfdump -i` finds no structure, member or base-type entries, so layouts are recovered from code. `pyelftools` cannot read the 64-bit DWARF header; the extractor uses the symbol table there. The install has no VPro register-dump or diagnostic tool: `/usr/stand/ide` carries only the textport part of the driver. The DWARF column is what `map_binaries.py` reported on 6.5.30. Fill in a 6.5.0 column when you have a 6.5.0 install, since those binaries carry debug info.
 
-DWARF status is what `retools/tools/odsy/map_binaries.py` reported on the primary release (IRIX 6.5.30); fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
+Public source trees are submodules in `references/code/`. The OpenBSD sgi port is pinned to its last commit (7011342f6a72, May 2021) and holds a small text-console VPro driver. For the Octane, Linux contributes only crossbar enumeration; fetch it with `git submodule update --init --depth 1 linux`. [devices/buzz/README.md](devices/buzz/README.md) section 11 records what each part programs against the binaries. `references/documents/` holds full copies of the published patents, papers, reports and manuals that [references/documents/published-sources.md](references/documents/published-sources.md) cites, with SHA-256 values in [references/documents/README.md](references/documents/README.md). They are designers' published statements, graded as that file says.
 
-Other public sources in this repository:
+## 3. Deliverables
 
-- `references/code/openbsd/`: the OpenBSD sgi port, pinned to the last commit before it was retired from the tree (7011342f6a72, May 2021). The VPro driver is `sys/arch/sgi/xbow/odyssey.c` with `odysseyreg.h` and `odysseyvar.h`, the manual page is `share/man/man4/man4.sgi/odyssey.4`, and the raster-op values are in `sys/arch/sgi/dev/gl.h`. It is a small text-console driver (fill, copy, glyphs, gamma ramp), so it covers the command FIFO, the display FIFO and the start-up sequence only. `devices/buzz/README.md` section 11 records what each part programs against the binaries.
-- `references/code/linux/`: for the Octane (IP30), only crossbar enumeration, not a VPro driver: `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets, widget identity table with the Odyssey entry), `arch/mips/sgi-ip30/ip30-xtalk.c` (widget numbers, window addresses, link-alive probe) and `arch/mips/pci/pci-xtalk-bridge.c`. Fetch it shallow: `git submodule update --init --depth 1 linux`.
-- `references/documents/`: full copies of the published patents, papers, technical reports, manuals and white papers that [references/documents/published-sources.md](references/documents/published-sources.md) cites for VPro, one entry each with its SHA-256 in [references/documents/README.md](references/documents/README.md). These are published designers' statements (labelled "established (published)" or "inferred" as that file says), not vendor source. Documents already in the `references/code/sgi-docs/` submodule are cited there, not copied.
+The code is the document. Hardware facts live in `devices/<unit>/registers.toml`, one graded and sourced file per block. `generated/` (C, Rust, Python, JSON and XML) and every `devices/*/registers.md` are generated from them and never edited by hand. To change a fact, edit the `registers.toml`, then run `retools/tools/defs/defs-gen`. `retools/tools/defs/defs-check --build` checks the sources and their leak rules. CI runs `retools/tools/defs/ci-check`.
 
----
+Prose goes in the commented headers (`devices/buzz/BUZZ.h`, `devices/pbj/PBJ.h`, `devices/display/DISPLAY.h`), each unit's `README.md`, and pages under `devices/`, `software/` and `evidence/`. Every definition says how it was derived and how sure it is. [evidence/coverage.md](evidence/coverage.md) maps what is written and what is missing, with open problems in priority order. Driver structures are captured in `software/kernel/ip30/include/odsy_kern.h` and `software/opengl/include/glcore_odsy.h`.
 
-## 3. Deliverables: The Hardware Headers
+## 4. Tools
 
-Our primary output is a set of C header files under `devices/`, one per chip or block, in the style of gr2 and gr4. **The code is the document.** Each header holds register offsets and fields, packet and token formats, state machines and constants, with a comment on every definition saying how it was derived and whether it is established, inferred or unknown.
+Scripts come from the `retools/` submodule: shared tools in `retools/tools/`, VPro ones in `retools/tools/odsy/`. Run them from the repository root through `retools/tools/re-run`. Only the inventory config (`tools/config/inventory-config.json`) and `tools/odsy_checks.py` live here, with no local copies or symlinks of shared tools. [evidence/tooling.md](evidence/tooling.md) and [tools/ghidra/README.md](tools/ghidra/README.md) cover the BUZZ microcode Ghidra module. Ghidra scripts for IRIX code, and the rules for choosing between them and the pipeline, are in [retools/ghidra/scripts/README.md](retools/ghidra/scripts/README.md).
 
-Headers under `devices/`:
+The toolchain needs `dwarfdump` (build the `libdwarf` submodule), big-endian MIPS binutils (`MIPS_OBJDUMP` and `MIPS_READELF` name another prefix), `m2c` (`-t mipsn32` for N32, `-t mips` for o32 and 64-bit), `spimdisasm` and Python 3 with `pyelftools`. Initialise only what you need: `git submodule update --init references/code/m2c references/code/spimdisasm references/code/libdwarf`. The scripts descend from gr4's and carry its BSD-3 notice ([retools/tools/LICENSE-gr4](retools/tools/LICENSE-gr4)).
 
-1. **`devices/buzz/BUZZ.h`**: the graphics ASIC: registers, command and FIFO formats, texture and raster state, transform program interface. `generated/c/buzz.h`, `generated/c/texture.h` and `generated/c/dma.h` are the publish-safe generated headers for its command, texture and DMA words.
-2. **`devices/pbj/PBJ.h`**: the second chip, the display back end (`generated/c/pbj.h` is its generated header).
-3. **`devices/display/DISPLAY.h`**: display channels, mode word, colour formats, cursor and scanout (`generated/c/display.h` is its generated header).
-
-4. **`generated/c/board.h`**: the publish-safe board view: widget identity, the board register map, and the identity, strap and memory-configuration words. A fuller `ODSY.h` with the board configurations is still planned.
-
-The headers under `generated/c/` are not written by hand. The hardware facts they state live in `devices/<unit>/registers.toml`, the source of hardware facts, one file per block. `retools/tools/defs/defs-gen` writes `generated/c/` (the C headers), `generated/rust/`, `generated/python/`, `generated/json/`, `generated/xml/` and `devices/<unit>/registers.md` (one reference page per block, the published reference). `generated/` is generated and never edited by hand: change the `registers.toml`, then regenerate.
-
-[evidence/coverage.md](evidence/coverage.md) is the map of what is written and what is missing, with the open problems in priority order. Prose that does not fit a header goes in the unit's `README.md` or in a page under `devices/`, `software/` or `evidence/`.
-
----
-
-## 4. Software Driver Headers
-
-Local headers capture internal driver structures:
-
-- `software/kernel/ip30/include/odsy_kern.h`: kernel driver structures (attach state, ioctl arguments, DMA buffers, context and swap state).
-- `software/opengl/include/glcore_odsy.h`: OpenGL driver context and hardware state shadowing.
-- `software/xsgi/include/odsy_ddx.h`: X server module structures (screen, window and GC private data).
-- `software/irisgl/include/igloo.h`: IrisGL layer structures and dispatch.
-
----
-
-## 5. Reverse Engineering Toolchain & Pipeline
-
-Install these on your workstation:
-
-- **`dwarfdump`**: build the `libdwarf` submodule so that `references/code/libdwarf/build/src/bin/dwarfdump/dwarfdump` exists. It parses SGI MIPS DWARF-2.
-- **MIPS cross binutils**: `objdump`, `readelf`, `nm`, `gcc` for a big-endian MIPS target, normally `mips-unknown-linux-gnu-`. The scripts also accept `mips64-linux-gnuabi64-` and `mips-linux-gnu-`; set `MIPS_OBJDUMP` or `MIPS_READELF` to name another.
-- **`m2c`**: the assembly-to-C decompiler in the `m2c` submodule, run as `references/code/m2c/m2c.py -t mipsn32` (N32) or `-t mips` (o32, 64-bit objects).
-- **`spimdisasm`**: the `spimdisasm` submodule, for object-file disassembly and symbol recovery.
-- **Python 3** with `pyelftools` (the scripts import `elftools`).
-
-Initialise only the submodules you need: `git submodule update --init references/code/m2c references/code/spimdisasm references/code/libdwarf`.
-
-Scripts come from the `retools/` submodule: shared tools in `retools/tools/`, Odyssey-specific ones in `retools/tools/odsy/`. Run them from the repository root. This repository keeps no local copies or symlinks of them; only its own `scripts/` files (inventory config and `odsy_checks.py`, the checks specific to these headers) live here. The hardware definitions are checked and generated by the shared tools in `retools/tools/defs/`, from `defs/`: `retools/tools/defs/defs-check --build` checks the sources, their leak rules and prose claims, then builds the outputs, and `retools/tools/defs/defs-gen` regenerates `gen/` and the forwarding headers (`defs-gen --check` fails when they are stale).
-
-- `map_binaries.py`: catalogue every linked binary (sections, functions, DWARF compilation units) into `binaries_manifest.json`.
-- `disasm_kernel.py`: disassemble the kernel `.o` objects into m2c-ready assembly under `software/kernel/ip30/disasm/`. Unpack archives (`.a`) with `ar x` first.
-- `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
-- `extract_libglcore_odsy.py`: extract compilation units, types and functions from `libGLcore.so` into `software/opengl/asm/` and `manifest.json`, and write `software/opengl/decompile_libglcore.sh`. A binary without DWARF falls back to its symbol table.
-- `extract_odsy_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `software/xsgi/groups.json`.
-- `inventory.py` (config `inventory-config.json`): measure coverage from the binaries. It lists every binary, function, board offset, command word, ioctl and microcode routine in the in-scope files and marks each `documented`, `no-software-dependency`, `named-only` or `undocumented` by searching the docs and headers. Output is `evidence/inventory/*.tsv` (see `evidence/inventory/README.md`).
-- `tools/ghidra/`: the Ghidra tooling, including a processor module and import script for the BUZZ transform microcode with its acceptance tests (`tools/ghidra/processors/odsy-buzz/`); [tools/ghidra/README.md](tools/ghidra/README.md) indexes it and [evidence/tooling.md](evidence/tooling.md) says how to build and use the BUZZ module.
-- `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
-- `fifo_words.py`: for one routine's address range in an IRIX shared object, list the words it stores to a command window in program order, with each value folded to a constant or shown as its source (a context field, an argument, a call result). Calls are named from their target address. `test_fifo_words.py` covers its folding rules.
-- `texfmt_sweep.py`: run the four texture-format routines of a libGLcore build (GL internal format to board format index, index to component widths and size code, index to pixel class, index and format to class) for every input under Unicorn, in any of the o32, N32 and 64-bit builds, and compare builds; the table it feeds is `devices/texture/texture-formats.md`.
-- `glcore_probe.py`: run one routine of an N32 libGLcore under Unicorn with a zeroed (or all-ones) context record and print the context words, command-window words and calls it makes, for settling what a switch ladder or setter does with given arguments. It is software evidence of the shipped code, not of the board.
-- `retools/ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [retools/ghidra/scripts/README.md](retools/ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
-
-The scripts descend from gr4's and carry its BSD-3 notice ([retools/tools/LICENSE-gr4](retools/tools/LICENSE-gr4)).
-
----
+- `map_binaries.py`, `disasm_kernel.py`, `resolve_got.py`, `clean_asm.py`: catalogue the binaries and turn kernel objects into m2c-ready assembly.
+- `extract_libglcore_odsy.py`, `extract_odsy_ddx.py`: extract compile units, types and functions from `libGLcore.so` and the X module. A binary without DWARF falls back to its symbol table.
+- `analyze_fifo.py`, `extract_gl_tokens.py`, `fifo_words.py`: find accesses to a hardware window and the words a routine stores to a command window. They take the address window as an argument; none is built in.
+- `texfmt_sweep.py`, `glcore_probe.py`: run libGLcore routines under Unicorn. The result is the shipped code's behaviour, not the board's.
+- `inventory.py`: measure coverage from the binaries and write `evidence/inventory/*.tsv`.
 
 ## Evidence order
 
-For a register or behaviour fact, take it from the highest source that states it and grade it by that source:
+Take a register or behaviour fact from the highest source that states it, and grade it by that source. The order, the reset-value rules and the checks that enforce them are in [retools/tools/README-analysis.md](retools/tools/README-analysis.md#evidence-order). In short: IRIX source, shipped binaries, public Linux, OpenBSD and NetBSD drivers (established once the IRIX source confirms them), published manuals, then other projects' notes and emulator code, which may confirm or contradict a fact and never supply one. Emulator runs are model behaviour, never hardware evidence. A physical hardware read is a last resort and needs the repository owner's approval.
 
-1. IRIX source (public `irix-657m-src` tree): read it, write the fact in your own words, never copy source text, cite the path in the tree. A fact it defines is `established`.
-2. Shipped binaries (PROMs, kernels, libraries): confirm the source matches what shipped, and the release differences (6.5.7 source, 6.5.22 and 6.5.30 binaries).
-3. Public Linux, OpenBSD and NetBSD headers and drivers: `established` once the IRIX source confirms them.
-4. Published SGI and vendor manuals.
-5. Notes from other projects (Origami datasheets, QEMU manual pages, emulator code): may confirm or contradict, never supply a fact. A fact resting only on one stays `unknown`, with the note named.
+## 5. Evidence: software only, any source
 
-Reset values: `established` when the source states a power-on default or PROM code relies on a reset state; `inferred` when the PROM depends on a value before its first write (cite the PROM address); a read after firmware initialisation is not a reset value and can only rule values out; otherwise `unknown`. A physical hardware read is a last resort, needs the repository owner's approval, and counts as a reset value only for a register firmware provably never writes. Emulator runs are model behaviour, never hardware evidence.
+No hardware is available. Do not plan, request or wait for measurements on a real machine. Readers may open every shipped binary on every IRIX release and any disassembly of it, the public IRIX source tree (`irix-657m-src`), vendor specifications (including embedded source or HDL pages), public drivers and emulators, manuals and release notes, and published output from real machines (`hinv`, `gfxinfo`, ide transcripts, X server logs, newsgroup and forum posts).
 
-Full text and the checks that enforce it: `retools/tools/README-analysis.md#evidence-order`.
+Running a shipped routine in `retools/tools/mips_shim.py` shows what that software computes. It says nothing about the board, so label it as the software's behaviour.
 
----
+Write findings in your own words. Never paste vendor source, HDL, comments, macro bodies or proprietary binaries into the repository. Cite IRIX source by path in the tree. Symbol names from a shipped binary and names in published headers and manuals are fine.
 
-## 6. Evidence: software only, any source
+- Before you call a fact unknown, search the binaries, the published documents and captures, the PROM code and the IRIX source tree, and list those routes among the routes tried.
+- Use "established" only for what you read in full: the whole function body or table in a binary, the passage in a published document, or the IRIX source passage that defines the fact. A reading built from call lists, store summaries, a sibling build or a name is "inferred". Never reword an entry to change its grade. Independent audits sample entries against the binaries, and their rates are published beside the coverage figures.
+- An entry written quickly and not yet checked ends with "Unverified." in place of "Inferred." or "Established.". It grades at most `located`. When you re-read it, correct it and change the label.
+- Some facts no software reveals, such as the reset value of a register no driver reads. When every route is exhausted, write "unknown: no shipped software or published source depends on it" and list the routes. A reader who needs a value then chooses one and documents the choice. Never write "needs capture".
+- An open question is not a stopping point. Record it in `questions/README.md` with every route tried and the next one, then carry on. When it is answered, move it into the owning header or page and delete the entry.
 
-No hardware is available for this work. Do not plan, request or wait for
-measurements on a real machine. Every question is answered from software and
-published material, and a row is not finished while either still has
-something to read.
+## 6. Done, and how to work
 
-Readers may open anything:
+A coverage row is done when every inventory entry in its area (`evidence/inventory/`) is `understood` or `no-software-dependency`. `understood` needs a label, a role and hardware effect, and a citation specific to the item (offset, address, callee or archive member), in an entry whose subject the item is. Other names in an entry are mentions. A function is understood only in the binary the entry cites, plus builds with identical code. More than five entries sharing one sentence pattern count at most as `located`, so write each item its own sentence. `located` and `named-only` are partial. [evidence/inventory/README.md](evidence/inventory/README.md) has the exact rule. The repository is finished when every inventory table is done, not when the rows look full.
 
-- every shipped binary on every IRIX release, and any disassembly or
-  decompilation of it;
-- the public IRIX source tree (`irix-657m-src`): a fact it defines is established, cited by path in that tree and written in our own words;
-- vendor specifications, including any embedded source code or HDL pages;
-- public drivers and emulators: Linux, NetBSD, OpenBSD, MAME and others;
-- manuals, release notes and man pages;
-- published output from real machines: `hinv`, `gfxinfo`, `irsaudit`, ide
-  diagnostic transcripts, X server logs and screenshots in newsgroup and
-  mailing-list posts, web pages, archives and forums.
+- Deep readers take the Priority list in `evidence/coverage.md` in order, and take the `mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` rows of each item to `understood`.
+- Bulk readers pick rows below `understood`, `undocumented` first, one cluster at a time (rows sharing a function, register group or block). Start with `mmio.tsv` and `tokens.tsv`, then the `board-` functions in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written. Backfill `evidence/coverage.md` the same way.
+- Regenerate the inventory with `retools/tools/inventory.py` and commit the changed `evidence/inventory/` and `evidence/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim must show `understood` in the regenerated file. If it does not, the entry lacks a label, citation or role, names more than three items on a line, or does not name the thing. If the script mis-detects a row, fix `tools/config/inventory-config.json` and say why in the commit. `inventory.py` is shared byte for byte with the other graphics workspaces; this family's settings are in that config.
+- Findings go in the headers and pages under `devices/`, `software/` and `evidence/`, labelled with their derivation: binary and release, function or offset, or the published document. Findings may rest only on IRIX binaries, the IRIX source tree, published documents, captures, or public open-source code cited by project, revision and file.
+- Readers of the headers and docs should not need to read the binaries.
+- When you finish a task, regenerate the inventory and take the next entries below `understood`. Hand off only when your area meets the definition above or you must stop. Then say in `questions/README.md` where you stopped and what comes next.
 
-Running a shipped routine in the MIPS interpreter of `retools/tools/mips_shim.py`
-shows what that software computes. It says nothing about the board, so label
-the result as the software's behaviour, not as proof of hardware behaviour.
-
-Write findings in your own words. Never paste vendor source, HDL or
-proprietary binaries into the repository.
-
-The IRIX source tree is first-rank evidence. A fact it defines is established.
-Cite the path in the tree, write the fact in your own words, and never copy
-source text, comments or macro bodies into the repository. Symbol names in a
-shipped binary's own symbol table or debug information, and names in published
-headers and manuals, are fine.
-
-Before you call a fact unknown, search the shipped binaries and the published
-documents and captures for the device, its diagnostics and its PROM code, and
-list those routes among the routes tried, and search the IRIX source tree too.
-
-Label honestly. Use "established" only for what you read in full: the whole
-function body or table in a shipped binary, the passage in a published document or capture, or the passage of the IRIX source tree that defines the fact (cited by path). A reading built from call lists,
-register-store summaries, a sibling build or a name is "inferred". Never
-reword or reformat an entry to change its grade. Independent audits sample
-entries against the binaries, and their measured rates are published beside
-the coverage figures.
-
-An entry that was written quickly and not yet checked against the binary, its
-document or public open-source code (cited by project, revision and file) ends with "Unverified." in place of "Inferred." or "Established.".
-It grades at most `located`, whatever else it says, so the understood figure
-counts only what has been read. When you re-read it, correct it and change the
-label to established or inferred.
-
-Some facts no software reveals, such as the reset value of a register no
-driver reads. When every route is exhausted, label the fact "unknown: no
-shipped software or published source depends on it" and list the routes you
-tried. A reader who needs a value then chooses one and documents the choice. Never
-write "needs capture".
-
-An open question is not a stopping point. Record it in
-`questions/README.md` with every route already tried and the next one to
-try, then carry on with other work. When a question is answered, move it into
-the owning chip header or chapter and delete the entry.
-
-## 7. When work is finished
-
-A coverage row is done when every inventory entry in its area
-(`evidence/inventory/`) is `understood` or `no-software-dependency`. `understood`
-means the entry for that item carries a label (established or inferred), a role
-and hardware effect, and a derivation citation (release, binary and its install path under `root/`,
-offset, callee) in the same entry. Naming an item, or listing it
-with others, is not enough. `no-software-dependency` is the section 6 label
-"unknown: no shipped software or published source depends on it", with the
-routes tried. `located` (identity, address or size, and callers or sites cited,
-behaviour labelled unknown) and `named-only` are partial. The repository is
-finished when every inventory table reaches done, not when the rows look full.
-
-When you finish a task, regenerate the inventory, then pick the next entries
-below `understood` and carry on. Hand off only when your assigned area meets
-the definition above, or when you have to stop. In that case, say in
-`questions/README.md` where you stopped and what comes next.
-
-
-A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [evidence/inventory/README.md](evidence/inventory/README.md) gives the exact rule.
-
----
-
-## 8. Working on this repository
-
-Workflow: populate `root/` (evidence/irix-files.md), run the scripts above, then read, write headers and docs, and regenerate the inventory.
-
-Roles:
-
-- **Deep readers** take the Priority list in `evidence/coverage.md`, in order, and take the rows of `evidence/inventory/mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` that belong to the item to `understood`, whatever their status now.
-- **Bulk readers** pick rows below `understood` from the inventory, `undocumented` first, one cluster at a time (the rows that share a function, a register group or a block), starting with `mmio.tsv` and `tokens.tsv`, then the functions of `board-` roles in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written, not another mention. Backfill `evidence/coverage.md` area rows the same way.
-- Every reader regenerates the inventory (`retools/tools/inventory.py`) and commits the changed `evidence/inventory/` and `evidence/coverage.md` in the same commit as the doc or header that moves the rows. A row you claim to have understood must show `understood` in the regenerated file; if it does not, the entry lacks a label, a derivation citation or a role, names more than three items on a line, or does not name the thing (`evidence/inventory/README.md` gives the rule). If the script mis-detects a row, fix `tools/config/inventory-config.json` and say why in the commit. `retools/tools/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `tools/config/inventory-config.json`.
-
-Output rules:
-
-- Findings go in the chip headers and pages under `devices/`, `software/` and `evidence/`, written in your own words.
-- Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the published document or capture.
-- Update `evidence/coverage.md` and the inventory (`retools/tools/inventory.py`) in the same commit as the finding.
-- Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
-- Commit what you cite: findings may rest on IRIX binaries, the IRIX source tree (cited by path), published documents, captures or public open-source code (cited by project, revision and file) only.
-
-Readers of the headers and docs should not need to read the binaries.
-
-Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`software/kernel: label the display-mode field`); bodies say why. Do not wait to batch work.
+Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`software/kernel: label the display-mode field`). Bodies say why.
