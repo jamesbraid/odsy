@@ -299,6 +299,20 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
 - `0x00010424` (block 0x024, one operand, `odsy_tport.o`).
   Stored by the text-port state set-up routine, `odsyPushBufferSelect` (`odsy_drawable.o`) and replayed by `odsyRestoreRaster`. `odsyPushBufferSelect` builds the operand as a 4-bit mask copied from bits 0 to 3 of the board record word at +568, except that when the related record's word at +32 has any bit of 0x3c00 set the operand is 12 if any of those four flags is set and 0 otherwise; it sends the word after a settle sequence and also copies the four window-descriptor words (block 0x017) from +6948. The operand is a draw-buffer select (by inference, because no code names the field).
 
+## Edge-flag words stored to the FIFO
+
+- `0x2f00c02e` (no operand, `libGLcore.so`): **established.** The current edge flag set to true.
+  `__glOdyim_EdgeFlag` and `__glOdyim_EdgeFlagv` (the Odyssey GL driver vertex API assembly unit) store this word when the flag argument is
+  non-zero, and the clipped and unclipped vertex senders in the Odyssey GL driver vertex assembly unit (`RGBSendFc`, `RGBSendClippedFmN`,
+  `CISendFc` and their relatives) store it before a vertex whose saved flag is set. The kernel's slot replay
+  passes a zero-count word on only when it is this word or the next, ignoring bits 22:16
+  (`kernel/driver-functions.md`). The edge flag's current-value record holds it as its default (`opengl/opengl.md`).
+- `0x3000c02e` (no operand, `libGLcore.so`): **established.** The current edge flag set to false; the same
+  senders store it for a zero flag. **traced (driver in IRIS):** glEdgeFlag(GL_FALSE) inside a polygon drawn
+  in GL_LINE mode reaches the board as this word before the vertex, and nothing else in the stream differs
+  from a polygon with every edge flagged; the edges after the word must be left undrawn for piglit's
+  `gl-1.0-edgeflag` to pass, as it does on a V10 (`evidence/measured.md` section 11).
+
 ## Framing and synchronisation words stored to the FIFO
 
 - `0x00010019` (block 0x019, no operand, `libGLcore.so`): **unknown: no shipped software or published source depends on it.**

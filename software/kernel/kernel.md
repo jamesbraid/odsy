@@ -252,3 +252,97 @@ IP30 and IP35 `odsy_dma.o`, `odsy_flow.o`, `odsy_init.o`. Labels as above.
 - **established.** Order inside `gf_OdsyInitialize`: `odsyReset`, `gfx_flow_alloc`, FIFO drain wait, 0x1084 pulse, 0x1074, `odsyInitCfifo` (flow attached, program load), `OdsyInit32kSlotMask`, two slot allocations, `odsyInitMM`, `odsyInitDMA`, `odsyInitRetrace`, `odsyInitInterrupts`. `odsyInitInterrupts` stores 0x3c, 0x34, 0x5c, 0x1054, 0x104c, 0x105c, 0x1044 and last 0x1034. The high-water handler does not test whether the destination exists, and flow control is attached before it is programmed.
 - **established.** 0x233604 is read only by `odsySetDACGain` (display address 0x26c0). Of the Tezro clean-room log's 938 opcode words, 789 are in the kernel's program array and 24 more only in `buzz_xform.bin`; 91 more are sequencer-register words.
 
+## Where the driver waits for the board, and at what interrupt level
+
+**established** (IP30 disassembly; masked means between `splhi` and `splx`,
+or while a `mutex_spinlock` is held, which raises the interrupt level). An
+emulator that holds a processor access while the board works should know
+which accesses a masked processor makes, because a held access there keeps
+the processor's interrupts off for the whole hold.
+
+- **Buffer swaps never wait for the board to go idle.**
+  - `gf_OdsySchedSwapBuf` (ioctl 1005) records the swap and either swaps at
+    once or leaves it to an interrupt.
+  - `odsySwap_softsync_intr` swaps once the fence token has landed in a
+    host-visible table.
+  - `odsyRetraceHandler` swaps on the retrace count.
+  - Every board access in those paths goes to an interrupt or swap register
+    (0x1014, 0x101c, 0x1034, 0x103c, 0x10b4, 0x10bc, 0x10c4, 0x10cc, 0x10d4).
+- **The flow-control detach** runs in make-current, set-draw-buffer, the swap
+  entry, suspend, release-semaphore, unmap, the clip and clear paths, DDRN
+  teardown and the context switch. Under `splhi` it stores 1 to 0x107c,
+  issues `sync`, loads the level word 0x106c once (value discarded) and calls
+  `gfx_flow_detach_me`. These are the only board accesses those masked
+  sections make.
+- **The context-switch save poll is not masked.** `gf_OdsyPcxSwap` and
+  `gfP_OdsySaveHwShadow` request the save at +0x118000, then poll the
+  completion word (record +2300) with `us_delay(1)` until the board writes
+  it, outside any `splhi`.
+  - `gf_OdsyPcxSwap` is reached from `RRM_ValidFault` through
+    `rrmValidateMyPcx`, operation-table slot 128, which takes no lock around
+    the call.
+  - So the poll runs at the faulting process's interrupt level.
+- **DMA waits sleep** (`odsyDMAWait`: `sv_wait` with a timeout) and do not
+  poll.
+- **The FIFO high-water handler spins briefly.** `odsyHiwaterInterrupt` runs
+  with its spin lock held. It polls the flow-control credit count at most 10
+  times, 1 microsecond apart, then marks the FIFO full, forces a reschedule
+  of the producer and arms the FIFO timer. It is bounded at about 10
+  microseconds plus the loads.
+- **Display-FIFO stores are made masked.** The display-FIFO semaphore
+  (record +0x8530) is taken conditionally (`cpsema`) under the spin lock at
+  +0x8540.
+  - A cursor position that finds it taken is left pending (record -31416
+    and -31408).
+  - The holder's release path then does this:
+    1. takes the spin lock;
+    2. sees the pending word and drops the lock;
+    3. polls the display-FIFO level down to 12 (`odsy_poll_dfifo_level`,
+       unmasked);
+    4. takes the spin lock again;
+    5. stores two to four doublewords to board +0x400000;
+    6. clears the pending word and unlocks.
+  - Seen in `gfP_OdsyBRDMGRsetColors`, `gfP_OdsyBRDMGRcursor`,
+    `gfP_OdsyBRDMGRVTGcontrol`, `odsyBlankScreen`, `gf_OdsySetDisplayMode`
+    and `odsyConfigFb`.
+  - `odsyGenlockInterrupt` also stores to +0x400000 from its handler.
+  - The driver makes room in the display FIFO before each masked store, so
+    on the board these stores do not stall. **inferred**, from the level
+    poll that precedes them.
+- **Rare masked board work:** the textport's drawing (`odsy_drawbitmap`,
+  `odsy_mapcolor`) and `odsyReset` do board work while masked; neither runs
+  in a normal X session.
+
+## "attempted sharegroup operation from unbound gfxp"
+
+**established** (`odsy_pmm.o`, IP30). The warning (`cmn_err` severity 4, the
+string at `.rodata` +648 of `odsy_pmm.o`) is printed by the memory manager's
+ioctls `gfP_OdsyMMalloc`, `gfP_OdsyMMdealloc`, `gfP_OdsyMMmakeResident`,
+`gfP_OdsyMMquery` and `gfP_OdsyMMxfr`.
+
+- **The check.** Each reads the calling graphics process's resource node
+  (gfxp +72), then the node's per-client context record (node +112). When
+  that record is null it prints the warning and fails the call (1).
+- **Who sets the record.**
+  - `gf_OdsyCreateDDRN` stores the record at node +112.
+  - `gf_OdsyDestroyDDRN` clears it.
+  - `RRM_OpenRN` starts it at zero.
+  - So the warning means a memory-manager call from a process whose node has
+    no context record yet, never got one, or has lost it.
+- **When creation fails.** `gf_OdsyCreateDDRN` fails when the board is not
+  started (+794), is torn down (+816), has no free slot among its 127, or
+  runs out of memory.
+- **A second check.** A record whose +232 is null gives the next message
+  instead ("context not attached to sharegroup", +704).
+- **Timeouts as a cause.** The board's timeouts tear it down
+  (`odsy_ctxsw_timeout`, `odsy_glget_timeout`, `odsy_mm_ctxsw_timeout`,
+  `odsy_mm_mkres_timeout`, `odsy_dmawait_timeout`). Each prints its own
+  timeout message before `odsy_teardown` prints "Graphics error". A warning
+  with none of those before it points to a call made outside a bound
+  context, not to a teardown. **inferred.**
+- **Measured on a real V10** (octopus, Octane2, IRIX 6.5.22, 2026-11-05).
+  `tyr-glquake +map start +wait +wait +toggleconsole +quit` logs the
+  warning 57 times in the second the program quits (one line, then "last
+  message repeated 56 times"). Piglit's GL tests log it at exit too. So it is
+  the library's normal shutdown order: memory-manager calls arrive after the
+  process's context record is gone. It is not a board fault.
