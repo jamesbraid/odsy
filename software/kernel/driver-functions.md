@@ -3477,7 +3477,7 @@ Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. Each entry s
   from +132, the sequencer pair, and the colour: RGB mode sends 0xc580cc08 and the three bytes of the first colour, index mode sends 0xce80cc08, three zeros,
   0xc580c406 and the colour itself. The second colour fills +232 and +236 (RGB: widened per channel; index: shifted left by 12 and 1) and goes out in block
   0x023 with the words at +240 and +244. A six-word entry of 24 bytes, chosen by the mode from the table at +16664 of the second static object, is packed into
-  the block 0x022 word kept at +6956 of the hardware-state object (bits 15:13, 19, 12:10, 9:7 and 6:4 from entry words 16, 20, 4, 0
+  word 2 (the status word, `evidence/measured.md` section 5) of the block 0x017 operands, kept at +6956 of the hardware-state object (bits 15:13, 19, 12:10, 9:7 and 6:4 from entry words 16, 20, 4, 0
   and 8, bit 29 always set); the entry's word 12 becomes the first of the four operands of block 0x017 at +6948 to +6960. The routine writes block 0x022 from the
   third argument (+200), then sends block 0x017 four times, each time with a settle group in front or behind: the packed word, then the third operand zero,
   then the third operand with bit 23 set, then the packed word again; the third word of block 0x017 therefore carries bit 23 only transiently (`questions/README.md`, drawable registers).

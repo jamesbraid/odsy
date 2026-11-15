@@ -1,53 +1,3 @@
-Traceback (most recent call last):
-  File "/work/m2c/m2c/instruction.py", line 216, in set_current_instr
-    yield
-  File "/work/m2c/m2c/translate.py", line 2345, in set_current_instr
-    yield
-  File "/work/m2c/m2c/translate.py", line 4001, in translate_node_body
-    evaluate_instruction(instr_ref, state)
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/work/m2c/m2c/translate.py", line 3987, in evaluate_instruction
-    eval_fn(state, args)
-    ~~~~~~~^^^^^^^^^^^^^
-  File "/work/m2c/m2c/arch_mips.py", line 1155, in eval_fn
-    cond = cls.instrs_branches[mnemonic](a)
-  File "/work/m2c/m2c/arch_mips.py", line 1403, in <lambda>
-    "bgez": lambda a: handle_bgez(a),
-                      ~~~~~~~~~~~^^^
-  File "/work/m2c/m2c/evaluate.py", line 1324, in handle_bgez
-    return fold_shift_bgez(expr) or BinaryOp.scmp(expr, ">=", Literal(0))
-           ~~~~~~~~~~~~~~~^^^^^^
-  File "/work/m2c/m2c/evaluate.py", line 1318, in fold_shift_bgez
-    bitand = BinaryOp.int(uw_expr.left, "&", Literal(1 << (31 - shift)))
-                                                     ~~^^~~~~~~~~~~~~~
-ValueError: negative shift count
-Error occurred while processing instruction: bgez $t2, .L0d964930
-
-Traceback (most recent call last):
-  File "/work/m2c/m2c/instruction.py", line 216, in set_current_instr
-    yield
-  File "/work/m2c/m2c/translate.py", line 2345, in set_current_instr
-    yield
-  File "/work/m2c/m2c/translate.py", line 4001, in translate_node_body
-    evaluate_instruction(instr_ref, state)
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/work/m2c/m2c/translate.py", line 3987, in evaluate_instruction
-    eval_fn(state, args)
-    ~~~~~~~^^^^^^^^^^^^^
-  File "/work/m2c/m2c/arch_mips.py", line 1155, in eval_fn
-    cond = cls.instrs_branches[mnemonic](a)
-  File "/work/m2c/m2c/arch_mips.py", line 1403, in <lambda>
-    "bgez": lambda a: handle_bgez(a),
-                      ~~~~~~~~~~~^^^
-  File "/work/m2c/m2c/evaluate.py", line 1324, in handle_bgez
-    return fold_shift_bgez(expr) or BinaryOp.scmp(expr, ">=", Literal(0))
-           ~~~~~~~~~~~~~~~^^^^^^
-  File "/work/m2c/m2c/evaluate.py", line 1318, in fold_shift_bgez
-    bitand = BinaryOp.int(uw_expr.left, "&", Literal(1 << (31 - shift)))
-                                                     ~~^^~~~~~~~~~~~~~
-ValueError: negative shift count
-Error occurred while processing instruction: bgez $t2, .L0d964930
-
 s32 __glOdysseyIoctl(void *, ?, s32 *, s32, s32, s32, u32, u32, u32, u32, f32, s32, s32, s32, s32, s32, s32); /* extern */
 ? __glOdysseySetDrawbuf(void *, s64, s64, s64, s64); /* extern */
 ? __glOdysseyValidateHardware(void *, u8, s32, s32, ?, ?, s32, u32); /* extern */
@@ -142,9 +92,10 @@ block_9:
                         HQ2_READ_FIFO = 0x10046;
                         HQ2_READ_FIFO = 0x10046;
                     }
-                    // Error: negative shift count
-                    // At instruction: bgez $t2, .L0d964930
-                    if (M2C_ERROR()) {
+                    HQ2_READ_FIFO = 0x1081D;
+                    HQ2_READ_FIFO = temp_s0->unk7C20;
+                    HQ2_READ_FIFO = temp_s0->unk7C24;
+                    if (!((s64) temp_s0->unk7B70 & 0x100000)) {
                         sp10 = 0;
                         sp14 = 0;
                         sp18 = 0;
@@ -157,7 +108,7 @@ block_9:
                         sp1C = temp_s0->unk7C24 & 0xFFF;
                         __glOdysseyIoctl(temp_s0, 0x6F64000D, &sp10, temp_a3, temp_a4_2);
                     }
-                    M2C_ERROR(/* Read from unset register $v1 */)->unk6964 = (s32) (M2C_ERROR(/* Read from unset register $v1 */)->unk6964 | 0x2000);
+                    sp78->unk6964 = (s32) (sp78->unk6964 | 0x2000);
                     *(void *)0x1018 = 2;
                 }
                 temp_a7_2 = sp80 & 0x4000;
