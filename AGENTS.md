@@ -31,7 +31,7 @@ Public source trees are submodules in `references/code/`. The OpenBSD sgi port i
 
 The code is the document. Hardware facts live in `devices/<unit>/registers.toml`, one graded and sourced file per block. `generated/` (C, Rust, Python, JSON and XML) and every `devices/*/registers.md` are generated from them and never edited by hand. To change a fact, edit the `registers.toml`, then run `retools/tools/defs/defs-gen`. `retools/tools/defs/defs-check --build` checks the sources and their leak rules. CI runs `retools/tools/defs/ci-check`.
 
-Prose goes in the commented headers (`devices/buzz/BUZZ.h`, `devices/pbj/PBJ.h`, `devices/display/DISPLAY.h`), each unit's `README.md`, and pages under `devices/`, `software/` and `evidence/`. Every definition says how it was derived and how sure it is. [COVERAGE.md](COVERAGE.md) maps what is written and what is missing, with open problems in priority order. Driver structures are captured in `software/kernel/ip30/include/odsy_kern.h` and `software/opengl/include/glcore_odsy.h`.
+Prose goes in the commented headers (`devices/buzz/BUZZ.h`, `devices/pbj/PBJ.h`, `devices/display/DISPLAY.h`), each unit's `README.md`, and pages under `devices/`, `software/` and `references/`. Every definition says how it was derived and how sure it is. [COVERAGE.md](COVERAGE.md) maps what is written and what is missing, with open problems in priority order. Driver structures are captured in `software/kernel/ip30/include/odsy_kern.h` and `software/opengl/include/glcore_odsy.h`.
 
 ## 4. Tools
 
@@ -70,8 +70,26 @@ A coverage row is done when every inventory entry in its area (`generated/invent
 - Deep readers take the Priority list in `COVERAGE.md` in order, and take the `mmio.tsv`, `tokens.tsv`, `ioctls.tsv` and `ucode.tsv` rows of each item to `understood`.
 - Bulk readers pick rows below `understood`, `undocumented` first, one cluster at a time (rows sharing a function, register group or block). Start with `mmio.tsv` and `tokens.tsv`, then the `board-` functions in `functions.tsv`. A `named-only` or `located` row needs its role, hardware effect and derivation written. Backfill `COVERAGE.md` the same way.
 - Regenerate the inventory with `retools/tools/inventory.py` and commit the changed `generated/inventory/` and `COVERAGE.md` in the same commit as the doc or header that moves the rows. A row you claim must show `understood` in the regenerated file. If it does not, the entry lacks a label, citation or role, names more than three items on a line, or does not name the thing. If the script mis-detects a row, fix `tools/config/inventory-config.json` and say why in the commit. `inventory.py` is shared byte for byte with the other graphics workspaces; this family's settings are in that config.
-- Findings go in the headers and pages under `devices/`, `software/` and `evidence/`, labelled with their derivation: binary and release, function or offset, or the published document. Findings may rest only on IRIX binaries, the IRIX source tree, published documents, captures, or public open-source code cited by project, revision and file.
+- Findings go in the headers and pages under `devices/`, `software/` (readings under `<subject>/readings/`) and `references/`, labelled with their derivation: binary and release, function or offset, or the published document. Findings may rest only on IRIX binaries, the IRIX source tree, published documents, captures, or public open-source code cited by project, revision and file.
 - Readers of the headers and docs should not need to read the binaries.
 - When you finish a task, regenerate the inventory and take the next entries below `understood`. Hand off only when your area meets the definition above or you must stop. Then say in `questions/README.md` where you stopped and what comes next.
 
 Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`software/kernel: label the display-mode field`). Bodies say why.
+
+## Where new work goes
+
+There is no `evidence/` directory. File each page by what it is about:
+
+- `devices/<chip>/`, `platforms/<board>/`, `formats/<name>/`, `software/<area>/`: a note about one device, platform,
+  format or software component.
+- `<subject>/readings/<binary>.md`: per-routine readings of one binary, filed under the subject it explains (a driver
+  object under its chip, a kernel object under `software/kernel/<platform>/`). `retools/tools/reading_round.py` files
+  its entries there; `tools/config/readings-subjects.json` says which subject a binary belongs to.
+- `references/`: what we hold and cite: binary, PROM and firmware lists with checksums, scope lists, source lists.
+  Code submodules stay under `references/code/`.
+- `generated/`: tool output that is regenerated and never hand-edited (`generated/inventory/`, diff tables, symbol
+  tables, register output). Hand-kept audit tables sit in `generated/inventory/audits.tsv` by exception.
+- `COVERAGE.md` at the root: progress tallies. The inventory block in it is rewritten by `retools/tools/inventory.py`.
+- `questions/`: open questions.
+
+`retools/tools/defs/ci-check` fails when an `evidence/` directory comes back.

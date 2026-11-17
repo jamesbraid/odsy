@@ -18,9 +18,7 @@
       "software/kernel/driver-functions.md",
       "software/firmware/firmware-images.md",
       "software/opengl/gl-entry-points.md",
-      "evidence/hw-explanations-odsy-w1.md",
       "software/userland/install-tools.md",
-      "evidence/instruction-readings-*.md",
       "devices/board/interrupts-fifo-reset.md",
       "software/kernel/ioctls.md",
       "software/kernel/kernel-config.md",
@@ -57,7 +55,11 @@
       "devices/buzz/words.md",
       "software/xsgi/x-module-functions.md",
       "software/xsgi/x-server-and-iris-libraries.md",
-      "evidence/routines/*.md",
+      "devices/*/readings/*.md",
+      "platforms/*/readings/*.md",
+      "software/*/readings/*.md",
+      "software/*/*/readings/*.md",
+      "references/*.md",
       "software/ucode/*.md",
       "README.md"
     ],
@@ -91,10 +93,6 @@
       ]
     }
   },
-  "review_required": [
-    "evidence/routines/t1-*.md",
-    "evidence/routines/t2-*.md"
-  ],
   "prepare": [],
   "binaries": [
     {
