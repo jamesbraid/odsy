@@ -1,0 +1,11 @@
+{
+ "default": "software/kernel",
+ "rules": [
+  {"match": "/IP30boot/", "dir": "software/kernel/ip30"},
+  {"match": "/IP35boot/", "dir": "software/kernel/ip35"},
+  {"match": "/dyDDX/(glx|odyssey)\\.so$|/Xsgi$", "dir": "software/xsgi"},
+  {"match": "/IGLOO(32)?/libgl\\.so$|/libfm\\.so$", "dir": "software/irisgl"},
+  {"match": "/libGL(core)?\\.so$", "dir": "software/opengl"},
+  {"match": "usr/gfx/(dmconf|gfxinfo|gfxinit|setmon|sgcombine)$|/xsetmon$", "dir": "software/userland"}
+ ]
+}

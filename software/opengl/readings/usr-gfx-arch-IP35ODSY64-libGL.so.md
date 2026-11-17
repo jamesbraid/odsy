@@ -1,0 +1,67 @@
+# Readings: `usr/gfx/arch/IP35ODSY64/libGL.so`
+
+One entry per routine, filed here from the reading batches by binary.
+
+- `__glXOpenGraphicsDevice` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x214300c
+  **Inferred.** Takes a device index in a0 and branches to a `__glXFatal` path at 0x2143060 when the index is at least 0x41 (beq at 0x214302c). It loads a table pointer from abs 0x1028 (ld at 0x2143034) and reads a slot from that table with a load at 0x2143040. When that slot is non-negative it returns (0x2143058). Only when the slot is negative (bltz at 0x2143048) does it call `open` with flags 0x802 (jalr at 0x2143088), then `fcntl` with a1 = 0x2 and a2 = 0x5 (jalr at 0x21430a4). It calls `ioctl` with request 0x65 (jalr at 0x2143144) only when a word at +0x104 of the table is negative (bltz at 0x21430bc). Stores: `sw` at 0x2143100 writes to the slot at +0x4 on the return path and `sw` at 0x2143168 writes to +0x104 of the table pointer on the path where the `ioctl` result is positive; the facts do not show the stored values. `__glXFatal` is called at 0x214306c (the index test), at 0x2143110 (when `open` returns negative), at 0x2143128 (when `fcntl` returns negative), at 0x2143188 (when `ioctl` returns 0 or less), and at 0x21430d4 after a compare at 0x21430c0 whose operands the facts do not resolve. The open path string at 0x21773e0 is not resolved by the facts, and the meaning of request 0x65 and of the fcntl arguments is open.
+  Reviewed: 2026-11-12
+
+- `GetFBConfigsSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x214fe38
+  **Inferred.** Role (from name): the GLX framebuffer-config query for the SGIX extension. The facts show it waits for an X reply through `_XReply` (jalr at 0x214fef0; a5 = 0x11 and a6 = 0x10004 at the call, which the facts do not show to be arguments of `_XReply`), reads reply data with `_XRead` (jalr at 0x21501f8) and flushes with `_XFlush` (jalr at 0x215004c). It allocates with `malloc` (0x214ff64 and 0x214ffdc), clears with `memset` (0x21500b0) and frees through `free` (0x214fff4 and 0x2150bac) and `XFree` (0x2150bc0). A long chain of comparisons against constants (0x3 to 0x28, 0x8011 to 0x801a, 0x8028 and 0x186a1, for example at 0x2150254, 0x2150440 and 0x2150538) follows the reply read, which looks like tag parsing. There is one call to `__glXOverrideVisualGetVisualInfo` at 0x2150b7c, with a1 = 0x3. The tags' meanings and the role of that call are not in the facts, so the parser's details stay open.
+  Reviewed: 2026-11-12
+
+- `__glXGetDrawableAttributes` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2158a04
+  **Inferred.** Role (from name): the client side of a drawable attribute query. It calls `__glXSetupForCommand` (0x2158a38) and goes on only when that returns nonzero (branch at 0x2158a44). It reaches the first `_XReply` (0x2158ae4) when arg3 is nonzero (branch at 0x2158a50) and the second (0x2158bd8) when arg3 is zero. When a value in s0 is nonzero it calls `malloc` (0x2158b08), and on a nonzero result `_XRead` (0x2158ca4) fills that block. It then makes six doubleword stores at +0x0 through +0x28 (0x2158cac through 0x2158cc0) and word and byte stores at 0x2158d34 through 0x2158d54, and the facts do not resolve the base of those stores, so they are not shown to go through arg2. It calls `free` (0x2158d88) and returns 1 (0x2158da4); the returns of 0 are at 0x2158b58, 0x2158c38 and 0x2158c90. The callees at 0x2158a64, 0x2158b2c and 0x2158c08 are unnamed in the facts, so the attribute list and the reply layout are still open.
+  Reviewed: 2026-11-12
+
+- `glXGetVideoSyncSGI` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x215995c
+  **Inferred.** Role (from name): reads the video sync counter. The facts show an `ioctl` (0x21599b4) with request 0x3fe in a1, a stack buffer (sp-32) in a2, a3 passed through from arg3, and a0, a4 and a5 loaded through the pointer stored at absolute 0x1028. It loads a word at +0x4 (0x21599b8) and returns 0 (0x21599d4) with a word store at +0x0 (0x21599d8); the base of that store is not in the facts, so it is not shown to go through arg0. It returns 5 (0x21599e0) when either of two loaded words is zero (branches at 0x2159978 and 0x2159984). What the field offsets 0x108, 0x118 and 0x128 hold is not in the facts.
+  Reviewed: 2026-11-12
+
+- `glXDestroyGLXVideoSourceSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2159ab0
+  **Inferred.** Role (from name): tears down a video source. It calls `__glXSetupForCommand` (0x2159adc) and goes on only when that returns nonzero (branch at 0x2159ae8). It jumps to 0x2159bc4 when arg1 is zero (branch at 0x2159af0). Otherwise it calls `__glXAddDrawableInterest` on arg1 (0x2159afc), then `__glXRemoveDrawableInterest` (0x2159b0c) and `__glXFreeDrawablePrivate` (0x2159b18) with the add call's result as arg0. It then writes into the buffer at a0+176 and calls an unnamed callee (0x2159ba8) with a3 = 0x10003 and a4 = 0x10. The `_XFlush` (0x2159be0) is on the branch taken at 0x2159b48 when the word at a0+184 is below the word at a0+176 plus 16 (unsigned). Whether the add call takes a reference or only looks something up is not clear from these facts.
+  Reviewed: 2026-11-12
+
+- `glXCreateGLXVideoSourceSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2159cc4
+  **Inferred.** Role (from name): creates a video source. It calls `__glXSetupForCommand` (0x2159cf8) and goes on only when that returns nonzero (branch at 0x2159d04). It compares a4 with 0x2 and 0x5 (0x2159d10, 0x2159d1c); both equal cases lead to `__glXInitializeVideoLibrary` (0x2159d40), and the fall-through after the second compare reaches a return at 0x2159d34. It then calls `__glXAddDrawableInterest` (0x2159d68) and `__glXCreateVideoSourcePrivate` (0x2159da8, with a0 = the add result plus 64 and a1 = 3). Three unnamed calls (0x2159dd8, 0x2159e18, 0x2159e4c) pass 0x4, 0x6 and 0x7 as a3, the fourth argument. `videoPackingToInternalFormat` (0x2159bf0) is called at 0x2159e70. The `_XFlush` (0x2159fac) is on the branch taken at 0x2159eb0 when the word at a0+184 is below the word at a0+176 plus 44 (unsigned).
+  Reviewed: 2026-11-12
+
+- `glXSwapIntervalSGI` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x215a158
+  **Inferred.** Role (from name): sets the swap interval. It loads a pointer chain from absolute 0x1028 and branches to 0x215a2e8 when the first link is zero (0x215a174). It tests a0 as a signed value (0x215a17c) and branches to 0x215a308 when it is zero or negative. The facts do not trace where that a0 comes from, so reading it as the interval is a guess, although the `ioctl` (0x215a1bc) is passed arg0 as a5. The `ioctl` has request 0x3ee in a1 and runs when a word loaded at 0x215a184 is nonzero (branch at 0x215a188). When that word is zero, a pointer is tested at 0x215a1e0: zero returns 0x5 (0x215a1f0), and nonzero goes on to `__glXSetupForCommand` (0x215a208). It returns 0x0 at 0x215a1d0 after the `ioctl` and 0x0, 0x5 or 0x6 at 0x215a2e0; the facts do not say what the codes mean.
+  Reviewed: 2026-11-12
+
+- `glXSwapIntervalSGI` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x215a158
+  **Inferred.** Loads the context pointer at [0x1028]. When [[0x1028]+280] is zero or a0 is not above zero it branches away (0x215a2e8, 0x215a308). Otherwise, when [[[0x1028]+280]+280] is nonzero it calls `ioctl` at 0x215a1bc with a1=0x3ee and returns 0x0 at 0x215a1d0. When that field is zero and [[[0x1028]+280]+312] is also zero it returns 0x5 at 0x215a1f0, and when that is nonzero it calls `__glXSetupForCommand` at 0x215a208 with a0 taken from the +312 field. The two calls are on exclusive paths. It returns one of 0x0, 0x5 or 0x6. Role (from name): sets the swap interval.
+  Reviewed: 2026-11-12
+
+- `CreateContext` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2167248
+  **Inferred.** Role (from name): creates a GLX rendering context. It calls `__glXInitialize` (0x2167280) first and branches to 0x21675b4 when that returns zero, then allocates a record with `calloc(1, 0x1c8)` (0x216729c). It calls `__glXCreateDirectContext` (0x2167400) with the record and `__glXInitVertexArrayState` (0x21674c4). A load at 0x2167528 and stores at +0x1c0 and +0x0 (0x216752c, 0x2167534) look like pushing the record onto a list; the facts do not name the list. `getenv` is called at 0x2167354 and 0x21676c0; the first value's first character is compared with 'y' (0x79) and 'n' (0x6e), the second's with 'n' and 'N' (0x4e). Visual and config lookups go through `__glXFindFBConfigFromVid` (0x2167624), `__glXFindVisualConfig` (0x216796c) and `__glXOverrideVisualsIdToXid` (0x2167814, 0x2167900, 0x2167a20). It returns the `calloc` result at 0x216753c and 0 at 0x2167558, 0x21675ac, 0x21675cc and 0x21676a0. The second `getenv` path through 0x2167a8c ends in `fprintf` (0x2167a98, a0 = __iob plus 64, probably stderr, a3 = 'n') and `exit(0)` (0x2167aa4); the facts do not give the message text.
+  Reviewed: 2026-11-12
+
+- `glXCreateGLXPixmapWithConfigSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x216d8f0
+  **Inferred.** Role (from name): creates a GLX pixmap from a config. It calls `__glXSetupForCommand` (0x216d91c) first and returns 0 (0x216da38) when that returns zero (branch at 0x216d928). Otherwise it loads words at +0x24 and +0x48 of arg1 (0x216d9ac, 0x216d9b4) and stores them at +0xc and +0x14 of a request buffer (0x216d9b0, 0x216d9b8; the facts do not resolve that base). It passes those two loaded words as a4 and a3, arg2 as a2, and 0x10006 and 0x10 as a6 and a7, to an unnamed callee (0x216d9c8). The return at 0x216da14 gives the result of an unnamed call. The `_XFlush` (0x216da1c) is on the branch taken at 0x216d958 when the word at a0+184 is below the word at a0+176 plus 28 (unsigned).
+  Reviewed: 2026-11-12
+
+- `glXQueryMaxSwapBarriersSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2170eb0
+  **Inferred.** Role (from name): queries a maximum swap barrier count. It calls `__glXSetupForCommand` (0x2170ee0) and does not branch on the result. It then calls `_XReply` (0x2170f74, with a5 = 0x11 and a7 = 0x1000d). When `_XReply` returns nonzero it stores a word at +0x0 (0x2170fb8) and returns 1 (0x2170fc8); the base of that store is not in the facts, so it is not shown to go through arg2. When `_XReply` returns zero it returns 0 (0x217101c). The `_XFlush` (0x2170fd0) is on the branch taken at 0x2170f10 when the word at a0+184 is below the word at a0+176 plus 16 (unsigned). Which reply field is stored, and what it means, is not in the facts.
+  Reviewed: 2026-11-12
+
+- `glXQueryHyperpipeNetworkSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x217187c
+  **Inferred.** Role (from name): queries the hyperpipe networks and probably returns a list. It stores a word at +0x0 (0x21718b0, 0x217195c, 0x21719a4) from a base the facts do not resolve, calls `__glXSetupForCommand` (0x21718a8), and calls `_XReply` (0x2171944, with a5 = 0x1000e and a7 = 0x11). A zero result from `_XReply` jumps to 0x2171aa4, which ends in a return of 0 (0x2171ae8). The branch at 0x2171964 compares a signed value with 0x21; a value of 0x21 or more falls through to `_XEatData` (0x2171970) and a return of 0 (0x21719bc). Further down it calls `malloc` (0x21719e0); a zero result calls `_XEatData` (0x21719fc), and a nonzero one calls `_XRead` (0x2171a44) into the block and then returns a value the facts do not resolve (0x2171a8c). The size passed to `malloc` and the element layout are not in the facts.
+  Reviewed: 2026-11-12
+
+- `glXDestroyHyperpipeConfigSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2171db4
+  **Inferred.** The name says destroy, but the code sends a request and waits for a reply, so the role is left open. It calls `__glXSetupForCommand` (0x2171de0) and then `_XReply` (0x2171e78, with a4 loaded from a0+224, a5 = 0x10011 and a7 = 0x11). The branch at 0x2171e10 compares the word at a0+184 with the word at a0+176 plus 32 (unsigned) and goes to a `_XFlush` block (0x2171ed4) when it is smaller. It returns 0x5c (0x2171f20) on the path where `_XReply` returned zero (branch at 0x2171e80) and an unresolved value (0x2171ec8) when it returned nonzero.
+  Reviewed: 2026-11-12
+
+- `glXQueryHyperpipeConfigSGIX` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2171f28
+  **Inferred.** Role (from name): queries a hyperpipe configuration. It stores a word at +0x0 (0x2171f60), calls `__glXSetupForCommand` (0x2171f58), and calls `_XReply` (0x2171ff8, with a5 = arg1 and a7 = 0x1000f). The stores at 0x2172014, 0x2172018 and 0x2172158 are at +0x0 of bases the facts do not resolve, so the result is not shown to go through arg2. When the value tested at 0x2172010 is positive it goes on to `malloc` (0x217207c); a zero result calls `_XEatData` (0x2172094) and returns 0 (0x21720e0), and a nonzero one calls `_XRead` (0x21720f8) into the block and returns 0 or an unresolved value (0x217213c). When the value is not positive it returns 0 (0x217205c). The `_XFlush` (0x2172148) is on the branch taken at 0x2171f8c when the word at a0+184 is below the word at a0+176 plus 32 (unsigned). Which config fields the reply carries is not in the facts.
+  Reviewed: 2026-11-12
+
+- `_init` in `usr/gfx/arch/IP35ODSY64/libGL.so` at 0x2177350 (n64).
+  Evidence grade: inferred.
+  Exact binary: `usr/gfx/arch/IP35ODSY64/libGL.so`.
+  Range: 0x2177350-0x217738c (60 bytes).
+  It occupies 60 bytes.
+  The `jalr` at 0x2177370 calls __glXInit [0x2142b48] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The return at 0x2177384 has v0 = ret(__glXInit).
