@@ -38,6 +38,29 @@ The 128 x 64 streams name a microcode layout no held image has; the runs substit
 - **established**, `points.SUM` and `points.sml` (row "positions one single step low, truncated 1/256"): x reaches the rasteriser as exactly 470.0 for the vertices that land on a whole column. One single-precision step below (469.99997, as a truncated 1/w would leave it) truncates to 469.99609 and moves 28 and 26 pixels. So the transform's 1/w and the window scale give these positions exactly.
 - The data's own 1/256 offsets (the driver's y bias) sit on the grid, so truncation leaves them unchanged.
 
+### Vertex snap: truncation or rounding
+
+Question: does the 1/256 window-position conversion truncate or round to nearest? Answer, in two grades.
+
+- **established** (vendor simulation): the vendor simulator's stored frame `checkr3d.sml` (128 x 64, CRC matches `csumlist.sml`) is rebuilt exactly with truncation toward minus infinity to 1/256. Rounding to nearest 1/256 instead leaves 5 pixels wrong. This is the one stored frame that separates the two, and the other rules in the rebuild (texel index, perspective sampling) were fitted on the same frame.
+- **inferred**: the board does the same. The frames are simulator output, and the diagnostic's premise that the board matches it is not shown by any frame. Only `checkr3d.SUM` (1280 x 1024) is not working; the small frame matches and carries the evidence above.
+- **unknown**: the tie rule of a round-to-nearest variant (the survey row does not say), and any rounding mode named by a register. `registers.toml` and `BUZZ.h` name none.
+
+Sources examined, and whether each separates the two:
+
+| Source | Separates? |
+|---|---|
+| `checkr3d.sml` (survey rows "positions to nearest 1/256", "positions truncated to 1/256") | Yes: 5 pixels against 0. Positions are fractional there, next to texel boundaries. |
+| `points`, `lines`, `triangle`, `alpha` at both sizes | No: both variants give 0 differing pixels. Vertices already sit on the 1/256 grid (whole x, y 1/256 below a whole or half). |
+| `checkr3d.SUM` | No: unmatched (the file's CRC differs from the list's; 29 pixels differ even with texel index 32 limited to 31). |
+| `aapts`, `aalines` | No: stored, not rebuilt. |
+| US 6,259,460 | No: the parser "snaps vertices to grid", the grid is not stated, no rounding rule. |
+| `GL_SUBPIXEL_BITS` 3 from the driver ([measured.md](measured.md)) | No: a reported limit, not a conversion rule. |
+| `registers.toml`, `BUZZ.h`, `tokens.md` | No: no position-rounding register or field. The host's 12-bit colour conversion truncates, which says nothing about positions. |
+| `__glSnapXLeft`, `__glSnapXRight` in libGLcore (host software rasteriser) | Not read for this question; a host fallback would not settle the board's rule. |
+
+A new discriminator would be a frame with vertices that land between 1/256 steps: another fractional-position `odydiags` stream (none is held) or a board read-back.
+
 ### Points
 
 - **established**, `points.SUM`, `points.sml` (pass 18): a point of the default size lights the one pixel (floor x, floor y). A point at x = 470.0 exactly lights column 470, so a point on a pixel's left edge belongs to that pixel.
