@@ -311,7 +311,7 @@ after the settle group, and the kernel's `odsyRestoreRaster`, which replays the 
   senders store it for a zero flag. **traced (driver in IRIS):** glEdgeFlag(GL_FALSE) inside a polygon drawn
   in GL_LINE mode reaches the board as this word before the vertex, and nothing else in the stream differs
   from a polygon with every edge flagged; the edges after the word must be left undrawn for piglit's
-  `gl-1.0-edgeflag` to pass, as it does on a V10 (`evidence/measured.md` section 11).
+  `gl-1.0-edgeflag` to pass, as it does on a V10 (`devices/buzz/measured.md` section 11).
 
 ## Framing and synchronisation words stored to the FIFO
 

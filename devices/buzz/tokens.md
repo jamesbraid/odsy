@@ -1,6 +1,6 @@
 # Command words found in code, by family
 
-Release IRIX 6.5.30m (libGLcore in `usr/gfx/arch/IP30ODSY*`, kernel `odyssey.a`, `odyssey.so`), with the 4103 patch's libGLcore where named. Labels: **established** (read from a binary, with where), **inferred**, **unknown**. This page gives the full 32-bit value of command words the inventory scan (`evidence/inventory/tokens.tsv`) found in code and had no row for, grouped by what the word is. Word layouts are in `BUZZ.h` section 1; the block ids and shadow offsets are those of `buzz/README.md` section 4.
+Release IRIX 6.5.30m (libGLcore in `usr/gfx/arch/IP30ODSY*`, kernel `odyssey.a`, `odyssey.so`), with the 4103 patch's libGLcore where named. Labels: **established** (read from a binary, with where), **inferred**, **unknown**. This page gives the full 32-bit value of command words the inventory scan (`generated/inventory/tokens.tsv`) found in code and had no row for, grouped by what the word is. Word layouts are in `BUZZ.h` section 1; the block ids and shadow offsets are those of `buzz/README.md` section 4.
 
 ## Attribute words
 
@@ -63,7 +63,7 @@ Slot 14 (0xce in the top byte) is the scratch colour slot: the `__glOdyim_Scratc
 
 ## Class-1 words replayed after a lost context
 
-`odsyRestoreRaster` (`odsy_ctxsw.o`, IP30 and IP35) sends each block below with the operand count shown, reading the operands from the hardware-shadow record (offsets as in `buzz/README.md` section 4, "Command-stream register blocks"). **established** for the word value, operand count and shadow offset. The word is `0x10000 | count << 10 | id`; a count of 15 stands for sixteen operands (`buzz/README.md`, stipple blocks). Libraries and the X module send some of these too: the site count is in `evidence/inventory/tokens.tsv`.
+`odsyRestoreRaster` (`odsy_ctxsw.o`, IP30 and IP35) sends each block below with the operand count shown, reading the operands from the hardware-shadow record (offsets as in `buzz/README.md` section 4, "Command-stream register blocks"). **established** for the word value, operand count and shadow offset. The word is `0x10000 | count << 10 | id`; a count of 15 stands for sixteen operands (`buzz/README.md`, stipple blocks). Libraries and the X module send some of these too: the site count is in `generated/inventory/tokens.tsv`.
 
 | Word | Block id | Operands | Shadow offset | Reading | Grade |
 |---|---|---:|---|---|---|

@@ -224,7 +224,7 @@ Read 2026-11-10 from `odsy_pmm.o` of the 6.5.30m IP30 `odyssey.a` (`odsy_mm_obj_
 
 ## Other builds
 
-`retools/tools/odsy/texfmt_sweep.py all` runs the same four routines in every build and prints only differences. All eight outputs are identical: IP30 and IP35 o32, N32 and 64-bit, and the patch 4103 o32 and 64-bit builds. The code hashes of the four routines in `evidence/inventory/functions.tsv` also agree between the IP30 and IP35 builds of each ABI (the o32 and 64-bit hashes differ between ABIs because the code is compiled differently). The patch 4103 N32 library has no symbols for these routines and was not run.
+`retools/tools/odsy/texfmt_sweep.py all` runs the same four routines in every build and prints only differences. All eight outputs are identical: IP30 and IP35 o32, N32 and 64-bit, and the patch 4103 o32 and 64-bit builds. The code hashes of the four routines in `generated/inventory/functions.tsv` also agree between the IP30 and IP35 builds of each ABI (the o32 and 64-bit hashes differ between ABIs because the code is compiled differently). The patch 4103 N32 library has no symbols for these routines and was not run.
 
 ## Routes tried
 

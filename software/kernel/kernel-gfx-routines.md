@@ -1,6 +1,6 @@
 # Generic graphics layer routines, one entry each (group table and locks)
 
-Release IRIX 6.5.30m, `usr/cpu/sysgen/IP30boot/gfx.o`. The IP30 `gfxs.a(gfx.o)` member and both IP35 copies carry byte-identical code for every routine below (the code hashes in `evidence/inventory/functions.tsv` agree), so each entry speaks for all four. Labels are **established** (the whole routine was read from the fact sheet and the disassembly) or **inferred**. The object has no hardware access of its own; it is the table and lock code the board drivers call.
+Release IRIX 6.5.30m, `usr/cpu/sysgen/IP30boot/gfx.o`. The IP30 `gfxs.a(gfx.o)` member and both IP35 copies carry byte-identical code for every routine below (the code hashes in `generated/inventory/functions.tsv` agree), so each entry speaks for all four. Labels are **established** (the whole routine was read from the fact sheet and the disassembly) or **inferred**. The object has no hardware access of its own; it is the table and lock code the board drivers call.
 
 The table lock is an 8-byte record `gfx_group_table_lock`: a word reader count at +0 and a spin lock at +4. The group table `gfx_group_table` is a pointer in the small-data area to 16 doublewords, each the head of a chain of group records. A group record is 32 bytes: the group handle at +0, a word at +8 and another at +12 (both zeroed at creation), a spin lock at +16 and the next record at +24.
 

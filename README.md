@@ -65,7 +65,7 @@ tools/setup-clone.sh --root /path/to/your/irix/files
 retools/tools/re-run retools/tools/defs/ci-check
 ```
 
-You'll need Podman, git, python3 and your own IRIX files. [evidence/irix-files.md](evidence/irix-files.md) lists
+You'll need Podman, git, python3 and your own IRIX files. [references/irix-files.md](references/irix-files.md) lists
 which ones.
 
 ## How far along
@@ -75,12 +75,12 @@ If you spot a mistake or have a manual we don't, [open an issue](https://github.
 
 | Table | Rows | % understood | % located or better |
 |---|---:|---:|---:|
-| [binaries](evidence/inventory/binaries.tsv) | 276 | 97.1 | 97.1 |
-| [functions](evidence/inventory/functions.tsv) | 106592 | 7.2 | 59.6 |
-| [mmio](evidence/inventory/mmio.tsv) | 67 | 83.6 | 94.0 |
-| [tokens](evidence/inventory/tokens.tsv) | 271 | 84.9 | 93.4 |
-| [ioctls](evidence/inventory/ioctls.tsv) | 92 | 95.7 | 96.7 |
-| [ucode](evidence/inventory/ucode.tsv) | 247 | 100.0 | 100.0 |
+| [binaries](generated/inventory/binaries.tsv) | 276 | 97.1 | 97.1 |
+| [functions](generated/inventory/functions.tsv) | 106592 | 7.2 | 59.6 |
+| [mmio](generated/inventory/mmio.tsv) | 67 | 83.6 | 94.0 |
+| [tokens](generated/inventory/tokens.tsv) | 271 | 84.9 | 93.4 |
+| [ioctls](generated/inventory/ioctls.tsv) | 92 | 95.7 | 96.7 |
+| [ucode](generated/inventory/ucode.tsv) | 247 | 100.0 | 100.0 |
 
 ## License
 

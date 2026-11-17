@@ -1,6 +1,6 @@
 # libGLcore: the Odyssey driver routines in the other builds
 
-The driver routines of [libglcore-odyssey-reads.md](libglcore-odyssey-reads.md) were read in the N32 build of the 6.5.30 `libGLcore.so` for IP30 (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`). The same names exist in the other builds listed in [evidence/inventory/binaries.tsv](../../evidence/inventory/binaries.tsv): the o32 and 64-bit IP30 builds, the IP35 builds and the vpro-patch builds. Every row here gives one routine in one build, at that build's own address and size from the function table ([evidence/inventory/functions.tsv](../../evidence/inventory/functions.tsv)). No N32 offset is copied into a row.
+The driver routines of [libglcore-odyssey-reads.md](libglcore-odyssey-reads.md) were read in the N32 build of the 6.5.30 `libGLcore.so` for IP30 (`builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so`). The same names exist in the other builds listed in [generated/inventory/binaries.tsv](../../generated/inventory/binaries.tsv): the o32 and 64-bit IP30 builds, the IP35 builds and the vpro-patch builds. Every row here gives one routine in one build, at that build's own address and size from the function table ([generated/inventory/functions.tsv](../../generated/inventory/functions.tsv)). No N32 offset is copied into a row.
 
 A copy is either identical to the N32 routine or it is not.
 

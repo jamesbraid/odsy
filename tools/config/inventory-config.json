@@ -10,7 +10,7 @@
       "software/firmware/compositor-files.md",
       "software/kernel/compositor-probe.md",
       "devices/compositor/compositor-registers.md",
-      "evidence/coverage.md",
+      "COVERAGE.md",
       "software/kernel/diag-messages.md",
       "software/opengl/diagnostics-and-libgl-functions.md",
       "software/video/display-files.md",
@@ -51,7 +51,7 @@
       "devices/texture/texture-formats.md",
       "devices/texture/texture-state.md",
       "devices/buzz/tokens.md",
-      "evidence/tooling.md",
+      "tools/ghidra/buzz-processor.md",
       "software/video/video-format-sources.md",
       "software/userland/vpro-tool-functions.md",
       "devices/buzz/words.md",
@@ -72,13 +72,13 @@
     "index": [
       "AGENTS.md",
       "README.md",
-      "evidence/irix-files.md",
-      "evidence/coverage.md",
+      "references/irix-files.md",
+      "COVERAGE.md",
       "questions/README.md"
     ],
     "dumps": [],
     "skip": [
-      "evidence/inventory/*"
+      "generated/inventory/*"
     ],
     "context": {
       "ucode": [
