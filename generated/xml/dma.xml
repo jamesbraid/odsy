@@ -1,5 +1,8 @@
 <?xml version="1.0" ?>
 <!-- generated from devices/dma/registers.toml by defs-gen - do not edit, change the source -->
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+<!-- defs-gen 2 -->
+<!-- input sha256 9577612661e303bbd0e1b6559304e4f3883c8179da2fa82c075ab055bf90d637 -->
 <genxml unit="dma" prefix="DMA" title='VPro (Odyssey) "Buzz" graphics ASIC: host DMA engine' from="odsy binary analysis of the shipped kernel DMA routines">
   <doc>DMA-engine descriptor words of the Odyssey board: the kick words, the transfer entry and its tag.</doc>
   <enum name="entry_w7_transform">

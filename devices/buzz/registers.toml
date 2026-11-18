@@ -1,5 +1,6 @@
 # Imported from the former BUZZ_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "buzz"
+name_source = "imported-unchecked"
 prefix = "BUZZ"
 title = "VPro (Odyssey) \"Buzz\" graphics ASIC: command and image"
 doc = "Command opcodes and the image, copy, pixel-mode, texture-level and sampler words of the Odyssey geometry and pixel engine's command stream."

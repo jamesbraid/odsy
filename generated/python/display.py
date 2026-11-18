@@ -1,4 +1,7 @@
 """generated from devices/display/registers.toml by defs-gen - do not edit, change the source
+SPDX-License-Identifier: BSD-3-Clause
+defs-gen 2
+input sha256 76366916d6eae8e3c3e3ecb3fa1f186ee60a87d4b19ab17338c9f6d51f675fae
 VPro (Odyssey) display registers (publish-safe subset)"""
 
 UNIT = 'display'

@@ -1,4 +1,7 @@
 // generated from devices/compositor/registers.toml by defs-gen - do not edit, change the source
+// SPDX-License-Identifier: BSD-3-Clause
+// defs-gen 2
+// input sha256 364b06b75330451af26cae6306529c31ba32067eaced8ef57ffff0fe505d492a
 // VPro (Odyssey) compositor chip: register numbers
 #![allow(dead_code)]
 

@@ -1,4 +1,5 @@
 [project]
+license = "BSD-3-Clause"
 name = "odsy"
 plugin = "tools/odsy_checks.py"
 
@@ -1862,3 +1863,8 @@ regex = 'Flag bits 5:4 are not 1 when the variant is nonzero, and not 2 when the
 binds = [
   ["DEFN", "ODSY_RGBA12_MIN_MEMORY_MB", 1],
 ]
+
+[gen.qemu]
+board = "VPRO"
+
+[gen.qemu.units.buzz]

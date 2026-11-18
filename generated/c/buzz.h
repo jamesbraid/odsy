@@ -1,4 +1,7 @@
 /* generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source */
+/* SPDX-License-Identifier: BSD-3-Clause */
+/* defs-gen 2 */
+/* input sha256 ed08da9b6b5b373c7579853ad81b8ad20291568a5a1965d95368ba30c680b7a9 */
 /* VPro (Odyssey) "Buzz" graphics ASIC: command and image */
 #ifndef BUZZ_GEN_H
 #define BUZZ_GEN_H

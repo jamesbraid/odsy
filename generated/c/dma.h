@@ -1,4 +1,7 @@
 /* generated from devices/dma/registers.toml by defs-gen - do not edit, change the source */
+/* SPDX-License-Identifier: BSD-3-Clause */
+/* defs-gen 2 */
+/* input sha256 9577612661e303bbd0e1b6559304e4f3883c8179da2fa82c075ab055bf90d637 */
 /* VPro (Odyssey) "Buzz" graphics ASIC: host DMA engine */
 #ifndef DMA_GEN_H
 #define DMA_GEN_H

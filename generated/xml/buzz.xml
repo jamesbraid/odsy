@@ -1,5 +1,8 @@
 <?xml version="1.0" ?>
 <!-- generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source -->
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+<!-- defs-gen 2 -->
+<!-- input sha256 ed08da9b6b5b373c7579853ad81b8ad20291568a5a1965d95368ba30c680b7a9 -->
 <genxml unit="buzz" prefix="BUZZ" title='VPro (Odyssey) "Buzz" graphics ASIC: command and image' from="odsy binary analysis of the shipped GL library and kernel command senders">
   <doc>Command opcodes and the image, copy, pixel-mode, texture-level and sampler words of the Odyssey geometry and pixel engine's command stream.</doc>
   <enum name="fieldfmt">

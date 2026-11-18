@@ -1,4 +1,7 @@
 // generated from devices/texture/registers.toml by defs-gen - do not edit, change the source
+// SPDX-License-Identifier: BSD-3-Clause
+// defs-gen 2
+// input sha256 2d37f08e13b1446232b42e4c4b8ef38176f6f0eaf171e84b9761d5248e0775f9
 // VPro (Odyssey) "Buzz" texture state: environment,
 #![allow(dead_code)]
 
