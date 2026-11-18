@@ -1,7 +1,7 @@
 {
  "license": "BSD-3-Clause",
  "generator": "defs-gen 2",
- "input_sha256": "ed08da9b6b5b373c7579853ad81b8ad20291568a5a1965d95368ba30c680b7a9",
+ "input_sha256": "9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe",
  "schema": "defs-flat/1",
  "source": "devices/buzz/registers.toml",
  "profile": "public",
@@ -35,51 +35,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "COPY_W2",
-   "width": 32,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "COPY_W2.dst_front",
-   "hi": 31,
-   "lo": 31,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "COPY_W2.dst_window",
-   "hi": 27,
-   "lo": 16,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "COPY_W2.dst_field_b",
-   "hi": 15,
-   "lo": 12,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "COPY_W2.src_window",
-   "hi": 11,
-   "lo": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "word",
-   "name": "COPY_W7",
+   "name": "COPY_CONTROL",
    "width": 32,
    "grade": "inferred",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -87,7 +43,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "COPY_W7.dst_x_in_src",
+   "name": "COPY_CONTROL.dst_x_in_src",
    "hi": 31,
    "lo": 31,
    "grade": "inferred",
@@ -96,7 +52,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "COPY_W7.dst_y_in_src",
+   "name": "COPY_CONTROL.dst_y_in_src",
    "hi": 30,
    "lo": 30,
    "grade": "inferred",
@@ -105,7 +61,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "COPY_W7.clamp_off",
+   "name": "COPY_CONTROL.clamp_off",
    "hi": 29,
    "lo": 28,
    "grade": "inferred",
@@ -114,7 +70,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "COPY_W7.dst_field_a",
+   "name": "COPY_CONTROL.dst_first_field_code",
    "hi": 23,
    "lo": 20,
    "grade": "established",
@@ -123,9 +79,53 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "COPY_W7.size_code",
+   "name": "COPY_CONTROL.size_code",
    "hi": 19,
    "lo": 16,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "word",
+   "name": "COPY_WINDOWS",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "COPY_WINDOWS.dst_front",
+   "hi": 31,
+   "lo": 31,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "COPY_WINDOWS.dst_window",
+   "hi": 27,
+   "lo": 16,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "COPY_WINDOWS.dst_second_field_code",
+   "hi": 15,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "COPY_WINDOWS.src_window",
+   "hi": 11,
+   "lo": 0,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
   },
@@ -176,7 +176,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "HDR_W0",
+   "name": "IMAGE_BOARD_REF",
    "width": 32,
    "grade": "inferred",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -184,7 +184,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W0.kept",
+   "name": "IMAGE_BOARD_REF.kept",
    "hi": 31,
    "lo": 30,
    "grade": "inferred",
@@ -193,7 +193,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W0.window_rel",
+   "name": "IMAGE_BOARD_REF.window_rel",
    "hi": 29,
    "lo": 29,
    "grade": "established",
@@ -202,7 +202,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W0.ref",
+   "name": "IMAGE_BOARD_REF.ref",
    "hi": 28,
    "lo": 0,
    "grade": "established",
@@ -211,7 +211,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "HDR_W1",
+   "name": "IMAGE_CORNER",
    "width": 32,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -219,7 +219,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W1.y",
+   "name": "IMAGE_CORNER.y",
    "hi": 31,
    "lo": 16,
    "grade": "established",
@@ -228,7 +228,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W1.x",
+   "name": "IMAGE_CORNER.x",
    "hi": 15,
    "lo": 0,
    "grade": "established",
@@ -237,7 +237,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "HDR_W2",
+   "name": "IMAGE_ROW_BYTES",
    "width": 32,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -245,212 +245,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W2.window_word",
-   "hi": 11,
-   "lo": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "word",
-   "name": "HDR_W3",
-   "width": 32,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W3.height",
-   "hi": 31,
-   "lo": 16,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W3.width",
-   "hi": 15,
-   "lo": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "word",
-   "name": "HDR_W4",
-   "width": 32,
-   "grade": "unknown",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.front",
-   "hi": 31,
-   "lo": 31,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.drawable",
-   "hi": 28,
-   "lo": 28,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.field_b",
-   "hi": 27,
-   "lo": 24,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.field_a",
-   "hi": 23,
-   "lo": 20,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.pixel_size_b19",
-   "hi": 19,
-   "lo": 19,
-   "grade": "unknown",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.pixel_size",
-   "hi": 18,
-   "lo": 16,
-   "grade": "inferred",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.2b",
-   "value": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.4b",
-   "value": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.8b",
-   "value": 2,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.16b",
-   "value": 3,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.12b",
-   "value": 4,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.1b",
-   "value": 5,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.6b",
-   "value": 6,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W4.pixel_size.3b",
-   "value": 7,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.size_field",
-   "hi": 15,
-   "lo": 13,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.bit12",
-   "hi": 12,
-   "lo": 12,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.code",
-   "hi": 7,
-   "lo": 3,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W4.class",
-   "hi": 2,
-   "lo": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "word",
-   "name": "HDR_W6",
-   "width": 32,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W6.row_bytes",
+   "name": "IMAGE_ROW_BYTES.row_bytes",
    "hi": 19,
    "lo": 0,
    "grade": "established",
@@ -459,360 +254,24 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "HDR_W7",
+   "name": "IMAGE_SIZE",
    "width": 32,
-   "grade": "inferred",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.differs",
-   "hi": 30,
-   "lo": 30,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
   },
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W7.transform",
-   "hi": 27,
-   "lo": 27,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.read_dir",
-   "hi": 24,
-   "lo": 24,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.psize",
-   "hi": 18,
+   "name": "IMAGE_SIZE.height",
+   "hi": 31,
    "lo": 16,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
   },
   {
    "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.2b",
-   "value": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.4b",
-   "value": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.8b",
-   "value": 2,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.16b",
-   "value": 3,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.12b",
-   "value": 4,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.1b",
-   "value": 5,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.6b",
-   "value": 6,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.psize.3b",
-   "value": 7,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
    "kind": "field",
-   "name": "HDR_W7.size_field",
-   "hi": 15,
-   "lo": 13,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.swap",
-   "hi": 10,
-   "lo": 10,
-   "grade": "inferred",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.expand",
-   "hi": 9,
-   "lo": 9,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.type",
-   "hi": 8,
-   "lo": 5,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.byte",
-   "value": 2,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.short",
-   "value": 3,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.int",
-   "value": 4,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.332",
-   "value": 5,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.4444",
-   "value": 6,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.5551",
-   "value": 7,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.1010102",
-   "value": 8,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.565",
-   "value": 10,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.byte_12",
-   "value": 11,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.type.565_class10",
-   "value": 12,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "HDR_W7.format",
-   "hi": 4,
-   "lo": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.depth_stencil",
-   "value": 0,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.index",
-   "value": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.luminance",
-   "value": 2,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.intensity",
-   "value": 3,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.red",
-   "value": 4,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.green",
-   "value": 5,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.blue",
-   "value": 6,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.alpha",
-   "value": 7,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.lum_alpha",
-   "value": 8,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.rgb",
-   "value": 9,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.rgba",
-   "value": 11,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.abgr",
-   "value": 12,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.bgr",
-   "value": 13,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "enum_value",
-   "name": "HDR_W7.format.bgra",
-   "value": 17,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "word",
-   "name": "PF",
-   "width": 32,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "field",
-   "name": "PF.value",
+   "name": "IMAGE_SIZE.width",
    "hi": 15,
    "lo": 0,
    "grade": "established",
@@ -821,7 +280,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "PIXMODE_W0",
+   "name": "IMAGE_WINDOW",
    "width": 32,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -829,7 +288,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W0.window_word",
+   "name": "IMAGE_WINDOW.window_word",
    "hi": 11,
    "lo": 0,
    "grade": "established",
@@ -838,7 +297,24 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "PIXMODE_W1",
+   "name": "PIXEL_MODE_DESCRIPTOR_0",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "PIXEL_MODE_DESCRIPTOR_0.window_word",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "word",
+   "name": "PIXEL_MODE_DESCRIPTOR_1",
    "width": 32,
    "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -846,7 +322,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.bit27",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.bit27",
    "hi": 27,
    "lo": 27,
    "grade": "unknown",
@@ -855,7 +331,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.storage3",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.storage_bit22",
    "hi": 22,
    "lo": 22,
    "grade": "inferred",
@@ -864,7 +340,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.bit21",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.bit21",
    "hi": 21,
    "lo": 21,
    "grade": "unknown",
@@ -873,7 +349,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.index_class",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.index_class",
    "hi": 19,
    "lo": 19,
    "grade": "established",
@@ -882,7 +358,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.size_field",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.size_field",
    "hi": 15,
    "lo": 13,
    "grade": "established",
@@ -891,7 +367,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.storage",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.storage",
    "hi": 12,
    "lo": 10,
    "grade": "established",
@@ -900,7 +376,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.layout",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.layout",
    "hi": 9,
    "lo": 7,
    "grade": "established",
@@ -909,7 +385,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "PIXMODE_W1.field_format",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.field_format",
    "hi": 6,
    "lo": 4,
    "grade": "established",
@@ -918,7 +394,7 @@
   {
    "unit": "buzz",
    "kind": "enum_value",
-   "name": "PIXMODE_W1.field_format.index",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.field_format.index",
    "value": 0,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -926,7 +402,7 @@
   {
    "unit": "buzz",
    "kind": "enum_value",
-   "name": "PIXMODE_W1.field_format.one",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.field_format.one",
    "value": 2,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -934,7 +410,7 @@
   {
    "unit": "buzz",
    "kind": "enum_value",
-   "name": "PIXMODE_W1.field_format.two",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.field_format.two",
    "value": 3,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -942,7 +418,7 @@
   {
    "unit": "buzz",
    "kind": "enum_value",
-   "name": "PIXMODE_W1.field_format.rgba",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.field_format.rgba",
    "value": 5,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -950,8 +426,187 @@
   {
    "unit": "buzz",
    "kind": "enum_value",
-   "name": "PIXMODE_W1.field_format.rgba_short_a",
+   "name": "PIXEL_MODE_DESCRIPTOR_1.field_format.rgba_short_a",
    "value": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "word",
+   "name": "POST_FILTER_VALUE",
+   "width": 32,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "POST_FILTER_VALUE.value",
+   "hi": 15,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "word",
+   "name": "READ_HEADER",
+   "width": 32,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.front",
+   "hi": 31,
+   "lo": 31,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.drawable",
+   "hi": 28,
+   "lo": 28,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.second_field_code",
+   "hi": 27,
+   "lo": 24,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.first_field_code",
+   "hi": 23,
+   "lo": 20,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.pixel_size_bit19",
+   "hi": 19,
+   "lo": 19,
+   "grade": "unknown",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.pixel_size",
+   "hi": 18,
+   "lo": 16,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.2b",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.4b",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.8b",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.16b",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.12b",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.1b",
+   "value": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.6b",
+   "value": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "READ_HEADER.pixel_size.3b",
+   "value": 7,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.size_field",
+   "hi": 15,
+   "lo": 13,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.bit12",
+   "hi": 12,
+   "lo": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.code",
+   "hi": 7,
+   "lo": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "READ_HEADER.class",
+   "hi": 2,
+   "lo": 0,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
   },
@@ -984,7 +639,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "SAMPLER.table_fmt",
+   "name": "SAMPLER.table_format",
    "hi": 22,
    "lo": 20,
    "grade": "established",
@@ -993,7 +648,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "SAMPLER.image_flag18",
+   "name": "SAMPLER.image_flag_bit18",
    "hi": 18,
    "lo": 18,
    "grade": "established",
@@ -1011,7 +666,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "SAMPLER.image_flag14",
+   "name": "SAMPLER.image_flag_bit14",
    "hi": 14,
    "lo": 14,
    "grade": "established",
@@ -1258,7 +913,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "TEXLEVEL_W0",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_0",
    "width": 32,
    "grade": "unknown",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -1266,7 +921,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W0.kept",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_0.kept",
    "hi": 31,
    "lo": 29,
    "grade": "unknown",
@@ -1275,7 +930,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W0.addr",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_0.addr",
    "hi": 28,
    "lo": 0,
    "grade": "established",
@@ -1284,7 +939,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "TEXLEVEL_W1",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_1",
    "width": 32,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -1292,7 +947,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W1.size_code",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_1.size_code",
    "hi": 31,
    "lo": 30,
    "grade": "established",
@@ -1301,7 +956,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W1.offset_code",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_1.offset_code",
    "hi": 28,
    "lo": 26,
    "grade": "established",
@@ -1310,7 +965,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W1.format_index",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_1.format_index",
    "hi": 25,
    "lo": 20,
    "grade": "established",
@@ -1319,7 +974,7 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W1.pitch",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_1.pitch",
    "hi": 11,
    "lo": 0,
    "grade": "established",
@@ -1328,7 +983,7 @@
   {
    "unit": "buzz",
    "kind": "word",
-   "name": "TEXLEVEL_W2",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_2",
    "width": 32,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -1336,9 +991,354 @@
   {
    "unit": "buzz",
    "kind": "field",
-   "name": "TEXLEVEL_W2.bits",
+   "name": "TEXTURE_LEVEL_DESCRIPTOR_2.bits",
    "hi": 11,
    "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "word",
+   "name": "WRITE_HEADER",
+   "width": 32,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.differs",
+   "hi": 30,
+   "lo": 30,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.transform",
+   "hi": 27,
+   "lo": 27,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.read_dir",
+   "hi": 24,
+   "lo": 24,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.pixel_size",
+   "hi": 18,
+   "lo": 16,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.2b",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.4b",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.8b",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.16b",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.12b",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.1b",
+   "value": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.6b",
+   "value": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.pixel_size.3b",
+   "value": 7,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.size_field",
+   "hi": 15,
+   "lo": 13,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.swap",
+   "hi": 10,
+   "lo": 10,
+   "grade": "inferred",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.expand",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.type",
+   "hi": 8,
+   "lo": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.byte",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.short",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.int",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.332",
+   "value": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.4444",
+   "value": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.5551",
+   "value": 7,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.1010102",
+   "value": 8,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.565",
+   "value": 10,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.byte_12",
+   "value": 11,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.type.565_class10",
+   "value": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "field",
+   "name": "WRITE_HEADER.format",
+   "hi": 4,
+   "lo": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.depth_stencil",
+   "value": 0,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.index",
+   "value": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.luminance",
+   "value": 2,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.intensity",
+   "value": 3,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.red",
+   "value": 4,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.green",
+   "value": 5,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.blue",
+   "value": 6,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.alpha",
+   "value": 7,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.lum_alpha",
+   "value": 8,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.rgb",
+   "value": 9,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.rgba",
+   "value": 11,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.abgr",
+   "value": 12,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.bgr",
+   "value": 13,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "enum_value",
+   "name": "WRITE_HEADER.format.bgra",
+   "value": 17,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
   },
@@ -1417,7 +1417,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "ATTR_LOW_COUNT4_OP2F",
+   "name": "ATTR_SLOT6_LOW_HALF",
    "value": 53295,
    "count": 1,
    "grade": "established",
@@ -1552,78 +1552,6 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_BLK_01F",
-   "value": 66591,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_042",
-   "value": 67650,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_047",
-   "value": 71751,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_04C",
-   "value": 66636,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_04D",
-   "value": 80973,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_051",
-   "value": 66641,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_056",
-   "value": 66646,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_BLK_057",
-   "value": 66647,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
    "name": "CMD_BUFFER_SELECT",
    "value": 66596,
    "count": 1,
@@ -1723,6 +1651,15 @@
   {
    "unit": "buzz",
    "kind": "constant",
+   "name": "CMD_IMAGE_CHAIN_SETUP",
+   "value": 67650,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
    "name": "CMD_LINE_POINT_SIZE",
    "value": 67658,
    "count": 1,
@@ -1795,7 +1732,16 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_M1_0",
+   "name": "CMD_POSTFILTER_SCALE_BIAS",
+   "value": 67645,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_POSTFILTER_WORD_0",
    "value": 73776,
    "count": 1,
    "grade": "established",
@@ -1804,7 +1750,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_M1_1",
+   "name": "CMD_POSTFILTER_WORD_1",
    "value": 73777,
    "count": 1,
    "grade": "established",
@@ -1813,7 +1759,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_M1_2",
+   "name": "CMD_POSTFILTER_WORD_2",
    "value": 73778,
    "count": 1,
    "grade": "established",
@@ -1822,17 +1768,8 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_M1_3",
+   "name": "CMD_POSTFILTER_WORD_3",
    "value": 73779,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_POSTFILTER_M3",
-   "value": 67645,
    "count": 1,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -1984,6 +1921,69 @@
   {
    "unit": "buzz",
    "kind": "constant",
+   "name": "CMD_WORD_1041F",
+   "value": 66591,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_WORD_1044C",
+   "value": 66636,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_WORD_10451",
+   "value": 66641,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_WORD_10456",
+   "value": 66646,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_WORD_10457",
+   "value": 66647,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_WORD_11847",
+   "value": 71751,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_WORD_13C4D",
+   "value": 80973,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
    "name": "CMD_WRITE_MASKS",
    "value": 66642,
    "count": 1,
@@ -2002,7 +2002,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_DW_6B0",
+   "name": "INIT_WORD_6B0",
    "value": 7352984010752,
    "count": 1,
    "grade": "established",
@@ -2011,7 +2011,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_DW_6B1",
+   "name": "INIT_WORD_6B1",
    "value": 7357278978304,
    "count": 1,
    "grade": "established",
@@ -2020,7 +2020,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_DW_6B2",
+   "name": "INIT_WORD_6B2",
    "value": 7361573977536,
    "count": 1,
    "grade": "established",
@@ -2029,7 +2029,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_DW_6B3",
+   "name": "INIT_WORD_6B3",
    "value": 7365868936784,
    "count": 1,
    "grade": "established",
@@ -2038,7 +2038,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_DW_7B5",
+   "name": "INIT_WORD_7B5",
    "value": 8473970475009,
    "count": 1,
    "grade": "established",
@@ -2047,7 +2047,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_DW_7F0",
+   "name": "INIT_WORD_7F0",
    "value": 8728373545472,
    "count": 1,
    "grade": "established",
@@ -2110,7 +2110,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "PF_MAX_X4096",
+   "name": "PF_MAX_POSITIVE",
    "value": 32767,
    "count": 1,
    "grade": "inferred",
@@ -2461,7 +2461,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "SLOT15_WORD_OP12F",
+   "name": "SLOT15_WORD",
    "value": 3481315631,
    "count": 1,
    "grade": "established",
@@ -2470,7 +2470,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "SLOT16_WORD_OP33",
+   "name": "SLOT16_ONE_OPERAND_WORD",
    "value": 3498099763,
    "count": 1,
    "grade": "established",
@@ -2479,7 +2479,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "SLOT16_WORD_OP34",
+   "name": "SLOT16_THREE_OPERAND_WORD",
    "value": 3498101812,
    "count": 1,
    "grade": "established",
@@ -2488,7 +2488,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "SLOT2_WORD",
+   "name": "SLOT2_THREE_OPERAND_WORD",
    "value": 3263220764,
    "count": 1,
    "grade": "established",

@@ -1,7 +1,7 @@
 // generated from devices/texture/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 2d37f08e13b1446232b42e4c4b8ef38176f6f0eaf171e84b9761d5248e0775f9
+// input sha256 e1a72907bca982844abc1ab5d1b935d756326dc6422dcb5b01cf6984b9aa0609
 // VPro (Odyssey) "Buzz" texture state: environment,
 #![allow(dead_code)]
 
@@ -775,7 +775,7 @@ pub mod offcode {
         }
     }
 }
-/// Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18 and 49, 2 for (established)
+/// Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h TEXTURE_LEVEL_DESCRIPTOR_1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 1 (established)
 pub mod size {
     pub const WIDTH: u32 = 32;
     pub mod code { // bits 1:0, established

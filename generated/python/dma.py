@@ -1,7 +1,7 @@
 """generated from devices/dma/registers.toml by defs-gen - do not edit, change the source
 SPDX-License-Identifier: BSD-3-Clause
 defs-gen 2
-input sha256 9577612661e303bbd0e1b6559304e4f3883c8179da2fa82c075ab055bf90d637
+input sha256 b3aab3e19d204aee2d490751da96428ffd0a33ad1f0f3e449e42b05f2040c926
 VPro (Odyssey) "Buzz" graphics ASIC: host DMA engine"""
 
 UNIT = 'dma'

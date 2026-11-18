@@ -2,7 +2,7 @@
 <!-- generated from devices/texture/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 2d37f08e13b1446232b42e4c4b8ef38176f6f0eaf171e84b9761d5248e0775f9 -->
+<!-- input sha256 e1a72907bca982844abc1ab5d1b935d756326dc6422dcb5b01cf6984b9aa0609 -->
 <genxml unit="texture" prefix="TEX" title='VPro (Odyssey) "Buzz" texture state: environment,' from="odsy binary analysis of the shipped GL library texture routines">
   <doc>Texture state words of the Odyssey command stream: environment, mode, LOD, offset and target blocks, and the opcodes that carry them.</doc>
   <enum name="class_value">
@@ -269,7 +269,7 @@ operand 6 bits 31:25 are unknown. Operand 6 bit 24 is the offset flag
 of 16 and 32 bytes, codes 3 and 4, but no format row uses them).
 
 Offset code (level descriptor word 1 bits 28:26,
-generated/c/buzz.h TEXLEVEL_W1.offset_code). Two writers: the on-board
+generated/c/buzz.h TEXTURE_LEVEL_DESCRIPTOR_1.offset_code). Two writers: the on-board
 mipmap builder stores 2 only when the record's offset word equals 2,
 which the allocator never produces, so it stores 0; the
 pixel-to-texture move stores a value its helper derives from the
@@ -283,7 +283,7 @@ treats 1..7 differently from 0 is unknown.</doc>
   </struct>
   <struct name="SIZE" size="4" grade="established" from="odsy binary analysis of the shipped GL library texture routines">
     <doc>Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h
-TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
+TEXTURE_LEVEL_DESCRIPTOR_1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
 and 49, 2 for 32 and 33. The allocator books 2 &lt;&lt; c bytes per texel;
 the texture path and the pixel-to-texture move both send the same
 quantity (log2 bytes per texel minus 1), inferred for the move's

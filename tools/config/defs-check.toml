@@ -73,8 +73,8 @@ label = "read class/code split"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'class \(bits (\d+):(\d+)\) \d+, code \(bits (\d+):(\d+)\)'
 binds = [
-  ["F", "HDR_W4.class", 1, 2],
-  ["F", "HDR_W4.code", 3, 4],
+  ["F", "READ_HEADER.class", 1, 2],
+  ["F", "READ_HEADER.code", 3, 4],
 ]
 
 [[claims]]
@@ -83,8 +83,8 @@ label = "read class/code split (table)"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'bits (\d+):(\d+) class, (\d+):(\d+) code, 12 set'
 binds = [
-  ["F", "HDR_W4.class", 1, 2],
-  ["F", "HDR_W4.code", 3, 4],
+  ["F", "READ_HEADER.class", 1, 2],
+  ["F", "READ_HEADER.code", 3, 4],
 ]
 
 [[claims]]
@@ -93,8 +93,8 @@ label = "write format/type split"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'format code in bits (\d+):(\d+), type code in\s+bits (\d+):(\d+)'
 binds = [
-  ["F", "HDR_W7.format", 1, 2],
-  ["F", "HDR_W7.type", 3, 4],
+  ["F", "WRITE_HEADER.format", 1, 2],
+  ["F", "WRITE_HEADER.type", 3, 4],
 ]
 
 [[claims]]
@@ -103,13 +103,13 @@ label = "write word 7 fields"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'bits (\d+):(\d+) format code, (\d+):(\d+) type code, bit (\d+) expand, bit (\d+) unpack byte swap, (\d+):(\d+) bytes-per-pixel code, bit (\d+) transfer path, bit (\d+) as for a read'
 binds = [
-  ["F", "HDR_W7.format", 1, 2],
-  ["F", "HDR_W7.type", 3, 4],
-  ["F", "HDR_W7.expand", 5],
-  ["F", "HDR_W7.swap", 6],
-  ["F", "HDR_W7.psize", 7, 8],
-  ["F", "HDR_W7.transform", 9],
-  ["F", "HDR_W7.differs", 10],
+  ["F", "WRITE_HEADER.format", 1, 2],
+  ["F", "WRITE_HEADER.type", 3, 4],
+  ["F", "WRITE_HEADER.expand", 5],
+  ["F", "WRITE_HEADER.swap", 6],
+  ["F", "WRITE_HEADER.pixel_size", 7, 8],
+  ["F", "WRITE_HEADER.transform", 9],
+  ["F", "WRITE_HEADER.differs", 10],
 ]
 
 [[claims]]
@@ -118,7 +118,7 @@ label = "word 7 pixel-size code"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'result goes to word 7 bits (\d+):(\d+) of both'
 binds = [
-  ["F", "HDR_W7.psize", 1, 2],
+  ["F", "WRITE_HEADER.pixel_size", 1, 2],
 ]
 
 [[claims]]
@@ -133,8 +133,8 @@ label = "word 4 pixel-size width note"
 doc = "devices/buzz/pixel-paths.md"
 regex = 'pixel-size code is three bits, (\d+):(\d+), in both header words'
 binds = [
-  ["F", "HDR_W4.pixel_size", 1, 2],
-  ["F", "HDR_W7.psize", 1, 2],
+  ["F", "READ_HEADER.pixel_size", 1, 2],
+  ["F", "WRITE_HEADER.pixel_size", 1, 2],
 ]
 
 [[claims]]
@@ -143,7 +143,7 @@ label = "word 4 size field"
 doc = "devices/buzz/pixel-paths.md"
 regex = "15:13 the class field"
 binds = [
-  ["F", "HDR_W4.size_field"],
+  ["F", "READ_HEADER.size_field"],
 ]
 
 [[claims]]
@@ -152,8 +152,8 @@ label = "word 1 and 3 packing"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 1 \| x in bits (\d+):(\d+), y in (\d+):(\d+)'
 binds = [
-  ["F", "HDR_W1.x", 1, 2],
-  ["F", "HDR_W1.y", 3, 4],
+  ["F", "IMAGE_CORNER.x", 1, 2],
+  ["F", "IMAGE_CORNER.y", 3, 4],
 ]
 
 [[claims]]
@@ -162,8 +162,8 @@ label = "word 3 packing"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 3 \| width in bits (\d+):(\d+), height in (\d+):(\d+)'
 binds = [
-  ["F", "HDR_W3.width", 1, 2],
-  ["F", "HDR_W3.height", 3, 4],
+  ["F", "IMAGE_SIZE.width", 1, 2],
+  ["F", "IMAGE_SIZE.height", 3, 4],
 ]
 
 [[claims]]
@@ -172,7 +172,7 @@ label = "word 6 row bytes"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 6 \| row bytes in bits (\d+):(\d+)'
 binds = [
-  ["F", "HDR_W6.row_bytes", 1, 2],
+  ["F", "IMAGE_ROW_BYTES.row_bytes", 1, 2],
 ]
 
 [[claims]]
@@ -181,7 +181,7 @@ label = "word 2 window word"
 doc = "devices/buzz/pixel-paths.md"
 regex = '\| 2 \| description \+0x1c in bits (\d+):(\d+)'
 binds = [
-  ["F", "HDR_W2.window_word", 1, 2],
+  ["F", "IMAGE_WINDOW.window_word", 1, 2],
 ]
 
 [[claims]]
@@ -190,10 +190,10 @@ label = "copy operand 2 packing"
 doc = "devices/buzz/pixel-paths.md"
 regex = "description \\+0x1c in bits (\\d+):(\\d+), the destination\\'s second field code in bits (\\d+):(\\d+)\\s+and the source \\+0x1c in bits (\\d+):(\\d+), with destination front in bit (\\d+)"
 binds = [
-  ["F", "COPY_W2.dst_window", 1, 2],
-  ["F", "COPY_W2.dst_field_b", 3, 4],
-  ["F", "COPY_W2.src_window", 5, 6],
-  ["F", "COPY_W2.dst_front", 7],
+  ["F", "COPY_WINDOWS.dst_window", 1, 2],
+  ["F", "COPY_WINDOWS.dst_second_field_code", 3, 4],
+  ["F", "COPY_WINDOWS.src_window", 5, 6],
+  ["F", "COPY_WINDOWS.dst_front", 7],
 ]
 
 [[claims]]
@@ -202,10 +202,10 @@ label = "copy operand 7 flags"
 doc = "devices/buzz/pixel-paths.md"
 regex = "bits (\\d+):(\\d+) set\\s+when context \\+0x16a68 is zero \\(.*?\\), bit (\\d+) exactly when.*?bit (\\d+) when the destination y lies\\s+in the source\\'s y range and bit (\\d+) when the destination x"
 binds = [
-  ["F", "COPY_W7.clamp_off", 1, 2],
-  ["F", "HDR_W7.transform", 3],
-  ["F", "COPY_W7.dst_y_in_src", 4],
-  ["F", "COPY_W7.dst_x_in_src", 5],
+  ["F", "COPY_CONTROL.clamp_off", 1, 2],
+  ["F", "WRITE_HEADER.transform", 3],
+  ["F", "COPY_CONTROL.dst_y_in_src", 4],
+  ["F", "COPY_CONTROL.dst_x_in_src", 5],
 ]
 
 [[claims]]
@@ -214,13 +214,13 @@ label = "pixel-mode word"
 doc = "devices/buzz/pixel-paths.md"
 regex = "\\+0x96a0\\s+bits (\\d+):(\\d+) the description\\'s \\+0x1c; \\+0x96a4 bits (\\d+):(\\d+) the field format above, (\\d+):(\\d+) the layout\\s+code, (\\d+):(\\d+) the storage code, (\\d+):(\\d+) the description\\'s \\+0x28, bit (\\d+) for pixel classes 16 and\\s+17, bit (\\d+) when"
 binds = [
-  ["F", "PIXMODE_W0.window_word", 1, 2],
-  ["F", "PIXMODE_W1.field_format", 3, 4],
-  ["F", "PIXMODE_W1.layout", 5, 6],
-  ["F", "PIXMODE_W1.storage", 7, 8],
-  ["F", "PIXMODE_W1.size_field", 9, 10],
-  ["F", "PIXMODE_W1.index_class", 11],
-  ["F", "PIXMODE_W1.bit27", 12],
+  ["F", "PIXEL_MODE_DESCRIPTOR_0.window_word", 1, 2],
+  ["F", "PIXEL_MODE_DESCRIPTOR_1.field_format", 3, 4],
+  ["F", "PIXEL_MODE_DESCRIPTOR_1.layout", 5, 6],
+  ["F", "PIXEL_MODE_DESCRIPTOR_1.storage", 7, 8],
+  ["F", "PIXEL_MODE_DESCRIPTOR_1.size_field", 9, 10],
+  ["F", "PIXEL_MODE_DESCRIPTOR_1.index_class", 11],
+  ["F", "PIXEL_MODE_DESCRIPTOR_1.bit27", 12],
 ]
 
 [[claims]]
@@ -229,7 +229,7 @@ label = "level descriptor format index"
 doc = "devices/texture/texture-formats.md"
 regex = 'six-bit field in bits (\d+):(\d+) of word 1 of a level descriptor'
 binds = [
-  ["F", "TEXLEVEL_W1.format_index", 1, 2],
+  ["F", "TEXTURE_LEVEL_DESCRIPTOR_1.format_index", 1, 2],
 ]
 
 [[claims]]
@@ -238,7 +238,7 @@ label = "level descriptor size code"
 doc = "devices/texture/texture-formats.md"
 regex = '\*\*Word 1 bits (\d+):(\d+) are the size code'
 binds = [
-  ["F", "TEXLEVEL_W1.size_code", 1, 2],
+  ["F", "TEXTURE_LEVEL_DESCRIPTOR_1.size_code", 1, 2],
 ]
 
 [[claims]]
@@ -247,7 +247,7 @@ label = "level descriptor offset code"
 doc = "devices/texture/texture-formats.md"
 regex = 'offset code \(level word 1 bits (\d+):(\d+)\)'
 binds = [
-  ["F", "TEXLEVEL_W1.offset_code", 1, 2],
+  ["F", "TEXTURE_LEVEL_DESCRIPTOR_1.offset_code", 1, 2],
 ]
 
 [[claims]]
@@ -256,7 +256,7 @@ label = "level descriptor pitch"
 doc = "devices/texture/texture-formats.md"
 regex = 'Word 1 bits (\d+):(\d+) come from the width in 16-texel tiles'
 binds = [
-  ["F", "TEXLEVEL_W1.pitch", 1, 2],
+  ["F", "TEXTURE_LEVEL_DESCRIPTOR_1.pitch", 1, 2],
 ]
 
 [[claims]]
@@ -265,7 +265,7 @@ label = "level descriptor word 0"
 doc = "devices/texture/texture-state.md"
 regex = '\| `__glOdysseyTextureActivate` \| bits (\d+):(\d+) '
 binds = [
-  ["F", "TEXLEVEL_W0.addr", 1, 2],
+  ["F", "TEXTURE_LEVEL_DESCRIPTOR_0.addr", 1, 2],
 ]
 
 [[claims]]
@@ -285,7 +285,7 @@ label = "sampler table format and bit 0"
 doc = "devices/texture/texture-formats.md"
 regex = '\| Table format code \| (\d+):(\d+) \|'
 binds = [
-  ["F", "SAMPLER.table_fmt", 1, 2],
+  ["F", "SAMPLER.table_format", 1, 2],
 ]
 
 [[claims]]
@@ -303,7 +303,7 @@ label = "sampler image flag"
 doc = "devices/texture/texture-formats.md"
 regex = '\| Image-step flag \| (\d+) \|'
 binds = [
-  ["F", "SAMPLER.image_flag18", 1],
+  ["F", "SAMPLER.image_flag_bit18", 1],
 ]
 
 [[claims]]

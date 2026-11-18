@@ -59,13 +59,13 @@ def check_prose_vectors(rep, header, vecs):
     for value, fmt, typ, rx in PROSE_VECTORS:
         if not re.search(rx, pp, re.S):
             rep.fail('devices/buzz/pixel-paths.md', 'prose decode of 0x%x not found' % value)
-        v = vecs.get((value, 'HDR_W7'))
+        v = vecs.get((value, 'WRITE_HEADER'))
         if v is None:
-            rep.fail(header, 'no TESTVEC for 0x%x as HDR_W7' % value)
+            rep.fail(header, 'no TESTVEC for 0x%x as WRITE_HEADER' % value)
         elif v.get('format') != fmt or v.get('type') != typ:
             rep.fail(header, 'TESTVEC 0x%x decodes format=%s type=%s; prose says format=%d type=%d'
                      % (value, v.get('format'), v.get('type'), fmt, typ))
-    for value, word, want in [(0x08, 'HDR_W4', {'class': 0, 'code': 1})]:
+    for value, word, want in [(0x08, 'READ_HEADER', {'class': 0, 'code': 1})]:
         v = vecs.get((value, word))
         if v is None:
             rep.fail(header, 'no TESTVEC for 0x%x as %s' % (value, word))
@@ -496,9 +496,9 @@ def check_texture(rep, header, h, verbose):
     if not m or 'SAMPLER.no_offset' not in bz or int(m.group(2)) != bz['SAMPLER.no_offset'][0]:
         rep.fail(header, 'the offset flag pair does not match SAMPLER.no_offset in generated/c/buzz.h')
     # The unwritten word-2 statement: generated/c/buzz.h must not own the same bits under another name.
-    if 'LEVEL3D_W2.slice_exp' in fields and 'TEXLEVEL_W2.bits' in bz \
-            and fields['LEVEL3D_W2.slice_exp'][:2] != bz['TEXLEVEL_W2.bits'][:2]:
-        rep.fail(header, 'LEVEL3D_W2.slice_exp covers different bits than TEXLEVEL_W2.bits in generated/c/buzz.h')
+    if 'LEVEL3D_W2.slice_exp' in fields and 'TEXTURE_LEVEL_DESCRIPTOR_2.bits' in bz \
+            and fields['LEVEL3D_W2.slice_exp'][:2] != bz['TEXTURE_LEVEL_DESCRIPTOR_2.bits'][:2]:
+        rep.fail(header, 'LEVEL3D_W2.slice_exp covers different bits than TEXTURE_LEVEL_DESCRIPTOR_2.bits in generated/c/buzz.h')
     rows, pix_to_idx = check_fmt_table(rep, header, text, enums)
     calcs = check_calcs(rep, header, text)
     compiled = check_c_compile(rep, header, rows, pix_to_idx, calcs, verbose)
@@ -601,15 +601,17 @@ def dma_claims(rep, header, fields, defs, enums, buzz):
         if v != int(m.group(2)) or defs.get(DMA_SIZE_LIMIT_MACRO) != v:
             err('%s is %s, notes say 0x%x (%s)' % (DMA_SIZE_LIMIT_MACRO, defs.get(DMA_SIZE_LIMIT_MACRO), v, m.group(2)))
 
+    # Word numbers of the buzz words the notes name; the words were renamed from HDR_W1, HDR_W3, HDR_W6.
+    BUZZ_WORD_INDEX = {'IMAGE_CORNER': 1, 'IMAGE_SIZE': 3, 'IMAGE_ROW_BYTES': 6}
     def c_edits(m, err):
         w1, w3, w6 = int(m.group(1)) // 4, int(m.group(2)) // 4, int(m.group(3)) // 4
-        for key, word, rng in (('HDR_W1.x', w1, (15, 0)), ('HDR_W1.y', w1, (31, 16)),
-                               ('HDR_W3.width', w3, (15, 0)), ('HDR_W3.height', w3, (31, 16)),
-                               ('HDR_W6.row_bytes', w6, (int(m.group(4)), int(m.group(5))))):
+        for key, word, rng in (('IMAGE_CORNER.x', w1, (15, 0)), ('IMAGE_CORNER.y', w1, (31, 16)),
+                               ('IMAGE_SIZE.width', w3, (15, 0)), ('IMAGE_SIZE.height', w3, (31, 16)),
+                               ('IMAGE_ROW_BYTES.row_bytes', w6, (int(m.group(4)), int(m.group(5))))):
             if key not in buzz:
                 err('generated/c/buzz.h has no %s' % key)
                 continue
-            if int(re.search(r'W(\d)', key).group(1)) != word:
+            if BUZZ_WORD_INDEX[key.split('.')[0]] != word:
                 err('%s is not word %d as the notes say' % (key, word))
             if (buzz[key][0], buzz[key][1]) != rng:
                 err('%s is %d:%d in generated/c/buzz.h, notes say %d:%d' % (key, buzz[key][0], buzz[key][1], rng[0], rng[1]))
@@ -725,8 +727,8 @@ def check_dma(rep, header, h, verbose):
     if defs.get('DMA_ENTRY_MAX_BYTES', 0) > defs.get('DMA_ENTRY_PAGES_MAX', 0) * defs.get('DMA_PAGE_CHUNK_BYTES', 0) * 2:
         rep.fail(header, 'DMA_ENTRY_MAX_BYTES exceeds what the page list could cover even with slack')
     buzz = _hdr('buzz').fields
-    for key, other in (('ENTRY_W7.read_dir', 'HDR_W7.read_dir'), ('ENTRY_W7.transform', 'HDR_W7.transform'),
-                       ('ENTRY_W7.differs', 'HDR_W7.differs')):
+    for key, other in (('ENTRY_W7.read_dir', 'WRITE_HEADER.read_dir'), ('ENTRY_W7.transform', 'WRITE_HEADER.transform'),
+                       ('ENTRY_W7.differs', 'WRITE_HEADER.differs')):
         if key in fields and other in buzz and span(fields, key) != (buzz[other][0], buzz[other][1]):
             rep.fail(header, '%s is %s but %s is %d:%d in generated/c/buzz.h' % (key, span(fields, key), other, buzz[other][0], buzz[other][1]))
     dma_claims(rep, header, fields, defs, enums, buzz)

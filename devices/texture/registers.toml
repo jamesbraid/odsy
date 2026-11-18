@@ -343,7 +343,7 @@ Code 3 is never sent (the allocator's table does accept element sizes
 of 16 and 32 bytes, codes 3 and 4, but no format row uses them).
 
 Offset code (level descriptor word 1 bits 28:26,
-generated/c/buzz.h TEXLEVEL_W1.offset_code). Two writers: the on-board
+generated/c/buzz.h TEXTURE_LEVEL_DESCRIPTOR_1.offset_code). Two writers: the on-board
 mipmap builder stores 2 only when the record's offset word equals 2,
 which the allocator never produces, so it stores 0; the
 pixel-to-texture move stores a value its helper derives from the
@@ -367,7 +367,7 @@ code2 = { value = 2, grade = "established" }
 width = 32
 doc = """
 Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h
-TEXLEVEL_W1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
+TEXTURE_LEVEL_DESCRIPTOR_1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
 and 49, 2 for 32 and 33. The allocator books 2 << c bytes per texel;
 the texture path and the pixel-to-texture move both send the same
 quantity (log2 bytes per texel minus 1), inferred for the move's

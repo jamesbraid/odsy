@@ -1,7 +1,7 @@
 // generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 ed08da9b6b5b373c7579853ad81b8ad20291568a5a1965d95368ba30c680b7a9
+// input sha256 9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe
 // VPro (Odyssey) "Buzz" graphics ASIC: command and image
 #![allow(dead_code)]
 
@@ -366,52 +366,8 @@ pub mod alpha_test {
         }
     }
 }
-/// COPY operand 2: the two window words and the destination's second field code. (established)
-pub mod copy_w2 {
-    pub const WIDTH: u32 = 32;
-    pub mod dst_front { // bits 31:31, established
-        pub const SHIFT: u32 = 31;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod dst_window { // bits 27:16, established
-        pub const SHIFT: u32 = 16;
-        pub const MASK: u32 = 0xfff;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod dst_field_b { // bits 15:12, established
-        pub const SHIFT: u32 = 12;
-        pub const MASK: u32 = 0xf;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod src_window { // bits 11:0, established
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0xfff;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-}
-/// COPY operand 7 beyond the write header: flags set around the walk. (inferred)
-pub mod copy_w7 {
+/// COPY operand 7 beyond the write header: flags set around the walk. formerly COPY_W7. (inferred)
+pub mod copy_control {
     pub const WIDTH: u32 = 32;
     pub mod dst_x_in_src { // bits 31:31, inferred
         pub const SHIFT: u32 = 31;
@@ -443,7 +399,7 @@ pub mod copy_w7 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod dst_field_a { // bits 23:20, established
+    pub mod dst_first_field_code { // bits 23:20, established
         pub const SHIFT: u32 = 20;
         pub const MASK: u32 = 0xf;
         pub const fn get(v: u32) -> u32 {
@@ -456,6 +412,50 @@ pub mod copy_w7 {
     pub mod size_code { // bits 19:16, established
         pub const SHIFT: u32 = 16;
         pub const MASK: u32 = 0xf;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// COPY operand 2: the two window words and the destination's second field code. formerly COPY_W2. (established)
+pub mod copy_windows {
+    pub const WIDTH: u32 = 32;
+    pub mod dst_front { // bits 31:31, established
+        pub const SHIFT: u32 = 31;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod dst_window { // bits 27:16, established
+        pub const SHIFT: u32 = 16;
+        pub const MASK: u32 = 0xfff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod dst_second_field_code { // bits 15:12, established
+        pub const SHIFT: u32 = 12;
+        pub const MASK: u32 = 0xf;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod src_window { // bits 11:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xfff;
         pub const fn get(v: u32) -> u32 {
             (v >> SHIFT) & MASK
         }
@@ -508,8 +508,8 @@ pub mod frame_pixel {
         }
     }
 }
-/// Image header word 0: board reference. (inferred)
-pub mod hdr_w0 {
+/// Image header word 0: board reference. formerly HDR_W0. (inferred)
+pub mod image_board_ref {
     pub const WIDTH: u32 = 32;
     pub mod kept { // bits 31:30, inferred
         pub const SHIFT: u32 = 30;
@@ -542,8 +542,8 @@ pub mod hdr_w0 {
         }
     }
 }
-/// Image header word 1: x and y of the smaller corner. (established)
-pub mod hdr_w1 {
+/// Image header word 1: x and y of the smaller corner. formerly HDR_W1. (established)
+pub mod image_corner {
     pub const WIDTH: u32 = 32;
     pub mod y { // bits 31:16, established
         pub const SHIFT: u32 = 16;
@@ -566,12 +566,12 @@ pub mod hdr_w1 {
         }
     }
 }
-/// Image header word 2: the window word. (established)
-pub mod hdr_w2 {
+/// Image header word 6: row bytes. formerly HDR_W6. (established)
+pub mod image_row_bytes {
     pub const WIDTH: u32 = 32;
-    pub mod window_word { // bits 11:0, established
+    pub mod row_bytes { // bits 19:0, established
         pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0xfff;
+        pub const MASK: u32 = 0xfffff;
         pub const fn get(v: u32) -> u32 {
             (v >> SHIFT) & MASK
         }
@@ -580,8 +580,8 @@ pub mod hdr_w2 {
         }
     }
 }
-/// Image header word 3: width and height. (established)
-pub mod hdr_w3 {
+/// Image header word 3: width and height. formerly HDR_W3. (established)
+pub mod image_size {
     pub const WIDTH: u32 = 32;
     pub mod height { // bits 31:16, established
         pub const SHIFT: u32 = 16;
@@ -604,238 +604,8 @@ pub mod hdr_w3 {
         }
     }
 }
-/// Image header word 4: class and code, field geometry, pixel size. The read header's word 4, and the COPY source description. (unknown)
-pub mod hdr_w4 {
-    pub const WIDTH: u32 = 32;
-    pub mod front { // bits 31:31, established
-        pub const SHIFT: u32 = 31;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod drawable { // bits 28:28, established
-        pub const SHIFT: u32 = 28;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod field_b { // bits 27:24, established
-        pub const SHIFT: u32 = 24;
-        pub const MASK: u32 = 0xf;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod field_a { // bits 23:20, established
-        pub const SHIFT: u32 = 20;
-        pub const MASK: u32 = 0xf;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod pixel_size_b19 { // bits 19:19, unknown
-        pub const SHIFT: u32 = 19;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod pixel_size { // bits 18:16, inferred
-        pub const SHIFT: u32 = 16;
-        pub const MASK: u32 = 0x7;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-        pub use super::super::enums::psize::Value;
-    }
-    pub mod size_field { // bits 15:13, established
-        pub const SHIFT: u32 = 13;
-        pub const MASK: u32 = 0x7;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod bit12 { // bits 12:12, established
-        pub const SHIFT: u32 = 12;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod code { // bits 7:3, established
-        pub const SHIFT: u32 = 3;
-        pub const MASK: u32 = 0x1f;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod class { // bits 2:0, established
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0x7;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-}
-/// Image header word 6: row bytes. (established)
-pub mod hdr_w6 {
-    pub const WIDTH: u32 = 32;
-    pub mod row_bytes { // bits 19:0, established
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0xfffff;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-}
-/// Image header word 7: format, type, size and path control. The write header's word 7, and the COPY destination control. (inferred)
-pub mod hdr_w7 {
-    pub const WIDTH: u32 = 32;
-    pub mod differs { // bits 30:30, established
-        pub const SHIFT: u32 = 30;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod transform { // bits 27:27, established
-        pub const SHIFT: u32 = 27;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod read_dir { // bits 24:24, established
-        pub const SHIFT: u32 = 24;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod psize { // bits 18:16, established
-        pub const SHIFT: u32 = 16;
-        pub const MASK: u32 = 0x7;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-        pub use super::super::enums::psize::Value;
-    }
-    pub mod size_field { // bits 15:13, established
-        pub const SHIFT: u32 = 13;
-        pub const MASK: u32 = 0x7;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod swap { // bits 10:10, inferred
-        pub const SHIFT: u32 = 10;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod expand { // bits 9:9, established
-        pub const SHIFT: u32 = 9;
-        pub const MASK: u32 = 0x1;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-    pub mod r#type { // bits 8:5, established
-        pub const SHIFT: u32 = 5;
-        pub const MASK: u32 = 0xf;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-        pub use super::super::enums::r#type::Value;
-    }
-    pub mod format { // bits 4:0, established
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0x1f;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-        pub use super::super::enums::fmt::Value;
-    }
-}
-/// A scale or bias word of the post-filter block. (established)
-pub mod pf {
-    pub const WIDTH: u32 = 32;
-    pub mod value { // bits 15:0, established
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0xffff;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-}
-/// Pixel-mode descriptor, first word. (established)
-pub mod pixmode_w0 {
+/// Image header word 2: the window word. formerly HDR_W2. (established)
+pub mod image_window {
     pub const WIDTH: u32 = 32;
     pub mod window_word { // bits 11:0, established
         pub const SHIFT: u32 = 0;
@@ -848,8 +618,22 @@ pub mod pixmode_w0 {
         }
     }
 }
-/// Pixel-mode descriptor, second word. (unknown)
-pub mod pixmode_w1 {
+/// Pixel-mode descriptor, first word. formerly PIXMODE_W0. (established)
+pub mod pixel_mode_descriptor_0 {
+    pub const WIDTH: u32 = 32;
+    pub mod window_word { // bits 11:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xfff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Pixel-mode descriptor, second word. formerly PIXMODE_W1. (unknown)
+pub mod pixel_mode_descriptor_1 {
     pub const WIDTH: u32 = 32;
     pub mod bit27 { // bits 27:27, unknown
         pub const SHIFT: u32 = 27;
@@ -861,7 +645,7 @@ pub mod pixmode_w1 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod storage3 { // bits 22:22, inferred
+    pub mod storage_bit22 { // bits 22:22, inferred
         pub const SHIFT: u32 = 22;
         pub const MASK: u32 = 0x1;
         pub const fn get(v: u32) -> u32 {
@@ -933,6 +717,125 @@ pub mod pixmode_w1 {
         pub use super::super::enums::fieldfmt::Value;
     }
 }
+/// A scale or bias word of the post-filter block. formerly PF. (established)
+pub mod post_filter_value {
+    pub const WIDTH: u32 = 32;
+    pub mod value { // bits 15:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Image header word 4: class and code, field geometry, pixel size. The read header's word 4, and the COPY source description. formerly HDR_W4. (unknown)
+pub mod read_header {
+    pub const WIDTH: u32 = 32;
+    pub mod front { // bits 31:31, established
+        pub const SHIFT: u32 = 31;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod drawable { // bits 28:28, established
+        pub const SHIFT: u32 = 28;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod second_field_code { // bits 27:24, established
+        pub const SHIFT: u32 = 24;
+        pub const MASK: u32 = 0xf;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod first_field_code { // bits 23:20, established
+        pub const SHIFT: u32 = 20;
+        pub const MASK: u32 = 0xf;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod pixel_size_bit19 { // bits 19:19, unknown
+        pub const SHIFT: u32 = 19;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod pixel_size { // bits 18:16, inferred
+        pub const SHIFT: u32 = 16;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+        pub use super::super::enums::psize::Value;
+    }
+    pub mod size_field { // bits 15:13, established
+        pub const SHIFT: u32 = 13;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod bit12 { // bits 12:12, established
+        pub const SHIFT: u32 = 12;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod code { // bits 7:3, established
+        pub const SHIFT: u32 = 3;
+        pub const MASK: u32 = 0x1f;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod class { // bits 2:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
 /// The sampler word: operand 4 of the texture-mode block. (established)
 pub mod sampler {
     pub const WIDTH: u32 = 32;
@@ -956,7 +859,7 @@ pub mod sampler {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod table_fmt { // bits 22:20, established
+    pub mod table_format { // bits 22:20, established
         pub const SHIFT: u32 = 20;
         pub const MASK: u32 = 0x7;
         pub const fn get(v: u32) -> u32 {
@@ -966,7 +869,7 @@ pub mod sampler {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod image_flag18 { // bits 18:18, established
+    pub mod image_flag_bit18 { // bits 18:18, established
         pub const SHIFT: u32 = 18;
         pub const MASK: u32 = 0x1;
         pub const fn get(v: u32) -> u32 {
@@ -986,7 +889,7 @@ pub mod sampler {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod image_flag14 { // bits 14:14, established
+    pub mod image_flag_bit14 { // bits 14:14, established
         pub const SHIFT: u32 = 14;
         pub const MASK: u32 = 0x1;
         pub const fn get(v: u32) -> u32 {
@@ -1062,8 +965,8 @@ pub mod sampler {
         }
     }
 }
-/// Texture level descriptor, word 0. (unknown)
-pub mod texlevel_w0 {
+/// Texture level descriptor, word 0. formerly TEXLEVEL_W0. (unknown)
+pub mod texture_level_descriptor_0 {
     pub const WIDTH: u32 = 32;
     pub mod kept { // bits 31:29, unknown
         pub const SHIFT: u32 = 29;
@@ -1086,8 +989,8 @@ pub mod texlevel_w0 {
         }
     }
 }
-/// Texture level descriptor, word 1. (established)
-pub mod texlevel_w1 {
+/// Texture level descriptor, word 1. formerly TEXLEVEL_W1. (established)
+pub mod texture_level_descriptor_1 {
     pub const WIDTH: u32 = 32;
     pub mod size_code { // bits 31:30, established
         pub const SHIFT: u32 = 30;
@@ -1130,8 +1033,8 @@ pub mod texlevel_w1 {
         }
     }
 }
-/// Texture level descriptor, word 2. (established)
-pub mod texlevel_w2 {
+/// Texture level descriptor, word 2. formerly TEXLEVEL_W2. (established)
+pub mod texture_level_descriptor_2 {
     pub const WIDTH: u32 = 32;
     pub mod bits { // bits 11:0, established
         pub const SHIFT: u32 = 0;
@@ -1144,6 +1047,103 @@ pub mod texlevel_w2 {
         }
     }
 }
+/// Image header word 7: format, type, size and path control. The write header's word 7, and the COPY destination control. formerly HDR_W7. (inferred)
+pub mod write_header {
+    pub const WIDTH: u32 = 32;
+    pub mod differs { // bits 30:30, established
+        pub const SHIFT: u32 = 30;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod transform { // bits 27:27, established
+        pub const SHIFT: u32 = 27;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod read_dir { // bits 24:24, established
+        pub const SHIFT: u32 = 24;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod pixel_size { // bits 18:16, established
+        pub const SHIFT: u32 = 16;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+        pub use super::super::enums::psize::Value;
+    }
+    pub mod size_field { // bits 15:13, established
+        pub const SHIFT: u32 = 13;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod swap { // bits 10:10, inferred
+        pub const SHIFT: u32 = 10;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod expand { // bits 9:9, established
+        pub const SHIFT: u32 = 9;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod r#type { // bits 8:5, established
+        pub const SHIFT: u32 = 5;
+        pub const MASK: u32 = 0xf;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+        pub use super::super::enums::r#type::Value;
+    }
+    pub mod format { // bits 4:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1f;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+        pub use super::super::enums::fmt::Value;
+    }
+}
 pub const ALPHA_TEST_FUNC_ALWAYS: u32 = 0x7; // established
 pub const ALPHA_TEST_FUNC_EQUAL: u32 = 0x2; // established
 pub const ALPHA_TEST_FUNC_GEQUAL: u32 = 0x6; // established
@@ -1152,7 +1152,7 @@ pub const ALPHA_TEST_FUNC_LEQUAL: u32 = 0x3; // established
 pub const ALPHA_TEST_FUNC_LESS: u32 = 0x1; // established
 pub const ALPHA_TEST_FUNC_NEVER: u32 = 0x0; // established
 pub const ALPHA_TEST_FUNC_NOTEQUAL: u32 = 0x5; // established
-pub const ATTR_LOW_COUNT4_OP2F: u32 = 0xd02f; // established
+pub const ATTR_SLOT6_LOW_HALF: u32 = 0xd02f; // established
 pub const ATTR_VERTEX3F_WORD: u32 = 0x8080cc03; // established
 pub const BLK_ALPHA_TEST: u32 = 0x1e; // established
 pub const BLK_GAMMA_FIT: u32 = 0x45; // established
@@ -1167,14 +1167,6 @@ pub const CLASS0_ID_DATA: u32 = 0x341; // established
 pub const CLASS0_WRITE_ADDR: u32 = 0x740; // established
 pub const CLASS0_WRITE_DATA: u32 = 0x741; // established
 pub const CMD_ALPHA_TEST: u32 = 0x1041e; // established
-pub const CMD_BLK_01F: u32 = 0x1041f; // established
-pub const CMD_BLK_042: u32 = 0x10842; // established
-pub const CMD_BLK_047: u32 = 0x11847; // established
-pub const CMD_BLK_04C: u32 = 0x1044c; // established
-pub const CMD_BLK_04D: u32 = 0x13c4d; // established
-pub const CMD_BLK_051: u32 = 0x10451; // established
-pub const CMD_BLK_056: u32 = 0x10456; // established
-pub const CMD_BLK_057: u32 = 0x10457; // established
 pub const CMD_BUFFER_SELECT: u32 = 0x10424; // established
 pub const CMD_CLASS1_PREFIX: u32 = 0x10000; // established
 pub const CMD_CLIP_ORIGIN_PAIR: u32 = 0x10840; // established
@@ -1186,6 +1178,7 @@ pub const CMD_FIRST_TEXLEVEL: u32 = 0x10406; // established
 pub const CMD_FLUSH: u32 = 0x10019; // established
 pub const CMD_FOG: u32 = 0x1181a; // established
 pub const CMD_FRAG_LIGHT_MODEL: u32 = 0x10c1c; // established
+pub const CMD_IMAGE_CHAIN_SETUP: u32 = 0x10842; // established
 pub const CMD_LINE_POINT_SIZE: u32 = 0x1084a; // established
 pub const CMD_LINE_STIPPLE: u32 = 0x10c48; // established
 pub const CMD_LOD_LIMITS: u32 = 0x11013; // established
@@ -1194,11 +1187,11 @@ pub const CMD_PAD: u32 = 0x10046; // established
 pub const CMD_PATH_SELECT: u32 = 0x10405; // established
 pub const CMD_POLYGON_MODE: u32 = 0x10415; // established
 pub const CMD_POLYGON_OFFSET: u32 = 0x10458; // established
-pub const CMD_POSTFILTER_M1_0: u32 = 0x12030; // established
-pub const CMD_POSTFILTER_M1_1: u32 = 0x12031; // established
-pub const CMD_POSTFILTER_M1_2: u32 = 0x12032; // established
-pub const CMD_POSTFILTER_M1_3: u32 = 0x12033; // established
-pub const CMD_POSTFILTER_M3: u32 = 0x1083d; // established
+pub const CMD_POSTFILTER_SCALE_BIAS: u32 = 0x1083d; // established
+pub const CMD_POSTFILTER_WORD_0: u32 = 0x12030; // established
+pub const CMD_POSTFILTER_WORD_1: u32 = 0x12031; // established
+pub const CMD_POSTFILTER_WORD_2: u32 = 0x12032; // established
+pub const CMD_POSTFILTER_WORD_3: u32 = 0x12033; // established
 pub const CMD_PRIM_BEGIN: u32 = 0x14400; // established
 pub const CMD_PRIM_END: u32 = 0x14001; // established
 pub const CMD_RANGE_BLOCK: u32 = 0x10854; // established
@@ -1215,21 +1208,28 @@ pub const CMD_STIPPLE_ROWS_HI: u32 = 0x13c4e; // established
 pub const CMD_STIPPLE_ROWS_LO: u32 = 0x13c4f; // established
 pub const CMD_WAIT: u32 = 0x10443; // established
 pub const CMD_WINDOW_DESC: u32 = 0x11017; // established
+pub const CMD_WORD_1041F: u32 = 0x1041f; // established
+pub const CMD_WORD_1044C: u32 = 0x1044c; // established
+pub const CMD_WORD_10451: u32 = 0x10451; // established
+pub const CMD_WORD_10456: u32 = 0x10456; // established
+pub const CMD_WORD_10457: u32 = 0x10457; // established
+pub const CMD_WORD_11847: u32 = 0x11847; // established
+pub const CMD_WORD_13C4D: u32 = 0x13c4d; // established
 pub const CMD_WRITE_MASKS: u32 = 0x10452; // established
 pub const INIT_DELAY_US: u32 = 0x7d0; // established
-pub const INIT_DW_6B0: u64 = 0x6b000000000; // established
-pub const INIT_DW_6B1: u64 = 0x6b100000100; // established
-pub const INIT_DW_6B2: u64 = 0x6b200007dc0; // established
-pub const INIT_DW_6B3: u64 = 0x6b300005e50; // established
-pub const INIT_DW_7B5: u64 = 0x7b500000001; // established
-pub const INIT_DW_7F0: u64 = 0x7f03b9aca00; // established
+pub const INIT_WORD_6B0: u64 = 0x6b000000000; // established
+pub const INIT_WORD_6B1: u64 = 0x6b100000100; // established
+pub const INIT_WORD_6B2: u64 = 0x6b200007dc0; // established
+pub const INIT_WORD_6B3: u64 = 0x6b300005e50; // established
+pub const INIT_WORD_7B5: u64 = 0x7b500000001; // established
+pub const INIT_WORD_7F0: u64 = 0x7f03b9aca00; // established
 pub const OP_COPY: u32 = 0x2031; // established
 pub const OP_COPY_WORDS: u32 = 0x8; // established
 pub const OP_POSTFILTER: u32 = 0x203b; // established
 pub const OP_POSTFILTER_WORDS: u32 = 0x8; // established
 pub const OP_TEXMODE: u32 = 0x1c16; // established
 pub const PF_FRAC_BITS: u32 = 0xc; // established
-pub const PF_MAX_X4096: u32 = 0x7fff; // inferred
+pub const PF_MAX_POSITIVE: u32 = 0x7fff; // inferred
 pub const PF_ONE: u32 = 0x1000; // established
 pub const RANGE_BLOCK_HIGH: u32 = 0xfffffff; // established
 pub const RANGE_BLOCK_LOW: u32 = 0x0; // established
@@ -1268,10 +1268,10 @@ pub const SEQ_WORD_COLOUR_A_INDEX: u32 = 0x22008001; // established
 pub const SEQ_WORD_COLOUR_A_RGB: u32 = 0x22008000; // established
 pub const SEQ_WORD_COLOUR_B_INDEX: u32 = 0x23008003; // established
 pub const SEQ_WORD_COLOUR_B_RGB: u32 = 0x23008002; // established
-pub const SLOT15_WORD_OP12F: u32 = 0xcf80a92f; // established
-pub const SLOT16_WORD_OP33: u32 = 0xd080c433; // established
-pub const SLOT16_WORD_OP34: u32 = 0xd080cc34; // established
-pub const SLOT2_WORD: u32 = 0xc280cc1c; // established
+pub const SLOT15_WORD: u32 = 0xcf80a92f; // established
+pub const SLOT16_ONE_OPERAND_WORD: u32 = 0xd080c433; // established
+pub const SLOT16_THREE_OPERAND_WORD: u32 = 0xd080cc34; // established
+pub const SLOT2_THREE_OPERAND_WORD: u32 = 0xc280cc1c; // established
 pub const SLOT4_DEFAULT_WORD: u32 = 0xc480c426; // established
 pub const SYNC_WAIT_FIRST: u32 = 0xfa; // established
 pub const SYNC_WAIT_SECOND: u32 = 0x96; // established
@@ -1305,74 +1305,22 @@ mod tests {
     }
 
     #[test]
-    fn hdr_w4_8() {
-        assert_eq!(hdr_w4::class::get(0x8), 0);
-        assert_eq!(hdr_w4::code::get(0x8), 1);
+    fn read_header_8() {
+        assert_eq!(read_header::class::get(0x8), 0);
+        assert_eq!(read_header::code::get(0x8), 1);
     }
 
     #[test]
-    fn hdr_w4_83331008() {
-        assert_eq!(hdr_w4::class::get(0x83331008), 0);
-        assert_eq!(hdr_w4::code::get(0x83331008), 1);
-        assert_eq!(hdr_w4::bit12::get(0x83331008), 1);
-        assert_eq!(hdr_w4::size_field::get(0x83331008), 0);
-        assert_eq!(hdr_w4::pixel_size::get(0x83331008), 3);
-        assert_eq!(hdr_w4::field_a::get(0x83331008), 3);
-        assert_eq!(hdr_w4::field_b::get(0x83331008), 3);
-        assert_eq!(hdr_w4::drawable::get(0x83331008), 0);
-        assert_eq!(hdr_w4::front::get(0x83331008), 1);
-    }
-
-    #[test]
-    fn hdr_w7_41() {
-        assert_eq!(hdr_w7::format::get(0x41), 1);
-        assert_eq!(hdr_w7::r#type::get(0x41), 2);
-        assert_eq!(hdr_w7::expand::get(0x41), 0);
-    }
-
-    #[test]
-    fn hdr_w7_42() {
-        assert_eq!(hdr_w7::format::get(0x42), 2);
-        assert_eq!(hdr_w7::r#type::get(0x42), 2);
-        assert_eq!(hdr_w7::expand::get(0x42), 0);
-    }
-
-    #[test]
-    fn hdr_w7_4b() {
-        assert_eq!(hdr_w7::format::get(0x4b), 11);
-        assert_eq!(hdr_w7::r#type::get(0x4b), 2);
-        assert_eq!(hdr_w7::expand::get(0x4b), 0);
-    }
-
-    #[test]
-    fn hdr_w7_61() {
-        assert_eq!(hdr_w7::format::get(0x61), 1);
-        assert_eq!(hdr_w7::r#type::get(0x61), 3);
-        assert_eq!(hdr_w7::expand::get(0x61), 0);
-    }
-
-    #[test]
-    fn hdr_w7_6b() {
-        assert_eq!(hdr_w7::format::get(0x6b), 11);
-        assert_eq!(hdr_w7::r#type::get(0x6b), 3);
-        assert_eq!(hdr_w7::expand::get(0x6b), 0);
-    }
-
-    #[test]
-    fn hdr_w7_16c() {
-        assert_eq!(hdr_w7::format::get(0x16c), 12);
-        assert_eq!(hdr_w7::r#type::get(0x16c), 11);
-        assert_eq!(hdr_w7::expand::get(0x16c), 0);
-    }
-
-    #[test]
-    fn hdr_w7_32050041() {
-        assert_eq!(hdr_w7::format::get(0x32050041), 1);
-        assert_eq!(hdr_w7::r#type::get(0x32050041), 2);
-        assert_eq!(hdr_w7::psize::get(0x32050041), 5);
-        assert_eq!(hdr_w7::read_dir::get(0x32050041), 0);
-        assert_eq!(hdr_w7::transform::get(0x32050041), 0);
-        assert_eq!(hdr_w7::differs::get(0x32050041), 0);
+    fn read_header_83331008() {
+        assert_eq!(read_header::class::get(0x83331008), 0);
+        assert_eq!(read_header::code::get(0x83331008), 1);
+        assert_eq!(read_header::bit12::get(0x83331008), 1);
+        assert_eq!(read_header::size_field::get(0x83331008), 0);
+        assert_eq!(read_header::pixel_size::get(0x83331008), 3);
+        assert_eq!(read_header::first_field_code::get(0x83331008), 3);
+        assert_eq!(read_header::second_field_code::get(0x83331008), 3);
+        assert_eq!(read_header::drawable::get(0x83331008), 0);
+        assert_eq!(read_header::front::get(0x83331008), 1);
     }
 
     #[test]
@@ -1387,9 +1335,61 @@ mod tests {
         assert_eq!(sampler::colour_table::get(0x3640000), 0);
         assert_eq!(sampler::mag::get(0x3640000), 0);
         assert_eq!(sampler::min::get(0x3640000), 0);
-        assert_eq!(sampler::image_flag18::get(0x3640000), 1);
-        assert_eq!(sampler::table_fmt::get(0x3640000), 6);
+        assert_eq!(sampler::image_flag_bit18::get(0x3640000), 1);
+        assert_eq!(sampler::table_format::get(0x3640000), 6);
         assert_eq!(sampler::activation::get(0x3640000), 6);
         assert_eq!(sampler::no_offset::get(0x3640000), 0);
+    }
+
+    #[test]
+    fn write_header_41() {
+        assert_eq!(write_header::format::get(0x41), 1);
+        assert_eq!(write_header::r#type::get(0x41), 2);
+        assert_eq!(write_header::expand::get(0x41), 0);
+    }
+
+    #[test]
+    fn write_header_42() {
+        assert_eq!(write_header::format::get(0x42), 2);
+        assert_eq!(write_header::r#type::get(0x42), 2);
+        assert_eq!(write_header::expand::get(0x42), 0);
+    }
+
+    #[test]
+    fn write_header_4b() {
+        assert_eq!(write_header::format::get(0x4b), 11);
+        assert_eq!(write_header::r#type::get(0x4b), 2);
+        assert_eq!(write_header::expand::get(0x4b), 0);
+    }
+
+    #[test]
+    fn write_header_61() {
+        assert_eq!(write_header::format::get(0x61), 1);
+        assert_eq!(write_header::r#type::get(0x61), 3);
+        assert_eq!(write_header::expand::get(0x61), 0);
+    }
+
+    #[test]
+    fn write_header_6b() {
+        assert_eq!(write_header::format::get(0x6b), 11);
+        assert_eq!(write_header::r#type::get(0x6b), 3);
+        assert_eq!(write_header::expand::get(0x6b), 0);
+    }
+
+    #[test]
+    fn write_header_16c() {
+        assert_eq!(write_header::format::get(0x16c), 12);
+        assert_eq!(write_header::r#type::get(0x16c), 11);
+        assert_eq!(write_header::expand::get(0x16c), 0);
+    }
+
+    #[test]
+    fn write_header_32050041() {
+        assert_eq!(write_header::format::get(0x32050041), 1);
+        assert_eq!(write_header::r#type::get(0x32050041), 2);
+        assert_eq!(write_header::pixel_size::get(0x32050041), 5);
+        assert_eq!(write_header::read_dir::get(0x32050041), 0);
+        assert_eq!(write_header::transform::get(0x32050041), 0);
+        assert_eq!(write_header::differs::get(0x32050041), 0);
     }
 }

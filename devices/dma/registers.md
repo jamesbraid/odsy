@@ -1,7 +1,7 @@
 <!-- generated from devices/dma/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 9577612661e303bbd0e1b6559304e4f3883c8179da2fa82c075ab055bf90d637 -->
+<!-- input sha256 b3aab3e19d204aee2d490751da96428ffd0a33ad1f0f3e449e42b05f2040c926 -->
 
 # VPro (Odyssey) "Buzz" graphics ASIC: host DMA engine
 
@@ -31,8 +31,8 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 Header word 7 as the descriptor builder leaves it. The kernel forces the
 top byte before it builds descriptors: bits 29, 28 and 25 always set,
 bit 24 set for a board-to-host transfer, bits 27 and 30 kept from the
-caller. Bits 24, 27 and 30 are the same bits as HDR_W7.read_dir,
-HDR_W7.transform and HDR_W7.differs in generated/c/buzz.h. Bit 31 is added
+caller. Bits 24, 27 and 30 are the same bits as WRITE_HEADER.read_dir,
+WRITE_HEADER.transform and WRITE_HEADER.differs in generated/c/buzz.h. Bit 31 is added
 by the builder to the last descriptor of a board-to-host request.
 
 | Bits | Field | Grade | Values | Source | Description |

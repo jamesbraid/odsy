@@ -1,7 +1,7 @@
 /* generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
 /* defs-gen 2 */
-/* input sha256 ed08da9b6b5b373c7579853ad81b8ad20291568a5a1965d95368ba30c680b7a9 */
+/* input sha256 9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe */
 /* VPro (Odyssey) "Buzz" graphics ASIC: command and image */
 #ifndef BUZZ_GEN_H
 #define BUZZ_GEN_H
@@ -85,43 +85,43 @@
 #define BUZZ_ALPHA_TEST_REFERENCE_INPLACE            (BUZZ_ALPHA_TEST_REFERENCE_MASK << BUZZ_ALPHA_TEST_REFERENCE_SHIFT)
 
 /*
- * COPY operand 2: the two window words and the destination's second field code.
+ * COPY operand 7 beyond the write header: flags set around the walk. formerly COPY_W7.
  */
-/* word COPY_W2: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_COPY_W2_WIDTH                           32 /* established */
-#define BUZZ_COPY_W2_DST_FRONT_SHIFT                 31 /* established */
-#define BUZZ_COPY_W2_DST_FRONT_MASK                  0x1u
-#define BUZZ_COPY_W2_DST_FRONT_INPLACE               (BUZZ_COPY_W2_DST_FRONT_MASK << BUZZ_COPY_W2_DST_FRONT_SHIFT)
-#define BUZZ_COPY_W2_DST_WINDOW_SHIFT                16 /* established */
-#define BUZZ_COPY_W2_DST_WINDOW_MASK                 0xfffu
-#define BUZZ_COPY_W2_DST_WINDOW_INPLACE              (BUZZ_COPY_W2_DST_WINDOW_MASK << BUZZ_COPY_W2_DST_WINDOW_SHIFT)
-#define BUZZ_COPY_W2_DST_FIELD_B_SHIFT               12 /* established */
-#define BUZZ_COPY_W2_DST_FIELD_B_MASK                0xfu
-#define BUZZ_COPY_W2_DST_FIELD_B_INPLACE             (BUZZ_COPY_W2_DST_FIELD_B_MASK << BUZZ_COPY_W2_DST_FIELD_B_SHIFT)
-#define BUZZ_COPY_W2_SRC_WINDOW_SHIFT                0 /* established */
-#define BUZZ_COPY_W2_SRC_WINDOW_MASK                 0xfffu
-#define BUZZ_COPY_W2_SRC_WINDOW_INPLACE              (BUZZ_COPY_W2_SRC_WINDOW_MASK << BUZZ_COPY_W2_SRC_WINDOW_SHIFT)
+/* word COPY_CONTROL: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_COPY_CONTROL_WIDTH                      32 /* inferred */
+#define BUZZ_COPY_CONTROL_DST_X_IN_SRC_SHIFT         31 /* inferred */
+#define BUZZ_COPY_CONTROL_DST_X_IN_SRC_MASK          0x1u
+#define BUZZ_COPY_CONTROL_DST_X_IN_SRC_INPLACE       (BUZZ_COPY_CONTROL_DST_X_IN_SRC_MASK << BUZZ_COPY_CONTROL_DST_X_IN_SRC_SHIFT)
+#define BUZZ_COPY_CONTROL_DST_Y_IN_SRC_SHIFT         30 /* inferred */
+#define BUZZ_COPY_CONTROL_DST_Y_IN_SRC_MASK          0x1u
+#define BUZZ_COPY_CONTROL_DST_Y_IN_SRC_INPLACE       (BUZZ_COPY_CONTROL_DST_Y_IN_SRC_MASK << BUZZ_COPY_CONTROL_DST_Y_IN_SRC_SHIFT)
+#define BUZZ_COPY_CONTROL_CLAMP_OFF_SHIFT            28 /* inferred */
+#define BUZZ_COPY_CONTROL_CLAMP_OFF_MASK             0x3u
+#define BUZZ_COPY_CONTROL_CLAMP_OFF_INPLACE          (BUZZ_COPY_CONTROL_CLAMP_OFF_MASK << BUZZ_COPY_CONTROL_CLAMP_OFF_SHIFT)
+#define BUZZ_COPY_CONTROL_DST_FIRST_FIELD_CODE_SHIFT 20 /* established */
+#define BUZZ_COPY_CONTROL_DST_FIRST_FIELD_CODE_MASK  0xfu
+#define BUZZ_COPY_CONTROL_DST_FIRST_FIELD_CODE_INPLACE (BUZZ_COPY_CONTROL_DST_FIRST_FIELD_CODE_MASK << BUZZ_COPY_CONTROL_DST_FIRST_FIELD_CODE_SHIFT)
+#define BUZZ_COPY_CONTROL_SIZE_CODE_SHIFT            16 /* established */
+#define BUZZ_COPY_CONTROL_SIZE_CODE_MASK             0xfu
+#define BUZZ_COPY_CONTROL_SIZE_CODE_INPLACE          (BUZZ_COPY_CONTROL_SIZE_CODE_MASK << BUZZ_COPY_CONTROL_SIZE_CODE_SHIFT)
 
 /*
- * COPY operand 7 beyond the write header: flags set around the walk.
+ * COPY operand 2: the two window words and the destination's second field code. formerly COPY_W2.
  */
-/* word COPY_W7: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_COPY_W7_WIDTH                           32 /* inferred */
-#define BUZZ_COPY_W7_DST_X_IN_SRC_SHIFT              31 /* inferred */
-#define BUZZ_COPY_W7_DST_X_IN_SRC_MASK               0x1u
-#define BUZZ_COPY_W7_DST_X_IN_SRC_INPLACE            (BUZZ_COPY_W7_DST_X_IN_SRC_MASK << BUZZ_COPY_W7_DST_X_IN_SRC_SHIFT)
-#define BUZZ_COPY_W7_DST_Y_IN_SRC_SHIFT              30 /* inferred */
-#define BUZZ_COPY_W7_DST_Y_IN_SRC_MASK               0x1u
-#define BUZZ_COPY_W7_DST_Y_IN_SRC_INPLACE            (BUZZ_COPY_W7_DST_Y_IN_SRC_MASK << BUZZ_COPY_W7_DST_Y_IN_SRC_SHIFT)
-#define BUZZ_COPY_W7_CLAMP_OFF_SHIFT                 28 /* inferred */
-#define BUZZ_COPY_W7_CLAMP_OFF_MASK                  0x3u
-#define BUZZ_COPY_W7_CLAMP_OFF_INPLACE               (BUZZ_COPY_W7_CLAMP_OFF_MASK << BUZZ_COPY_W7_CLAMP_OFF_SHIFT)
-#define BUZZ_COPY_W7_DST_FIELD_A_SHIFT               20 /* established */
-#define BUZZ_COPY_W7_DST_FIELD_A_MASK                0xfu
-#define BUZZ_COPY_W7_DST_FIELD_A_INPLACE             (BUZZ_COPY_W7_DST_FIELD_A_MASK << BUZZ_COPY_W7_DST_FIELD_A_SHIFT)
-#define BUZZ_COPY_W7_SIZE_CODE_SHIFT                 16 /* established */
-#define BUZZ_COPY_W7_SIZE_CODE_MASK                  0xfu
-#define BUZZ_COPY_W7_SIZE_CODE_INPLACE               (BUZZ_COPY_W7_SIZE_CODE_MASK << BUZZ_COPY_W7_SIZE_CODE_SHIFT)
+/* word COPY_WINDOWS: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_COPY_WINDOWS_WIDTH                      32 /* established */
+#define BUZZ_COPY_WINDOWS_DST_FRONT_SHIFT            31 /* established */
+#define BUZZ_COPY_WINDOWS_DST_FRONT_MASK             0x1u
+#define BUZZ_COPY_WINDOWS_DST_FRONT_INPLACE          (BUZZ_COPY_WINDOWS_DST_FRONT_MASK << BUZZ_COPY_WINDOWS_DST_FRONT_SHIFT)
+#define BUZZ_COPY_WINDOWS_DST_WINDOW_SHIFT           16 /* established */
+#define BUZZ_COPY_WINDOWS_DST_WINDOW_MASK            0xfffu
+#define BUZZ_COPY_WINDOWS_DST_WINDOW_INPLACE         (BUZZ_COPY_WINDOWS_DST_WINDOW_MASK << BUZZ_COPY_WINDOWS_DST_WINDOW_SHIFT)
+#define BUZZ_COPY_WINDOWS_DST_SECOND_FIELD_CODE_SHIFT 12 /* established */
+#define BUZZ_COPY_WINDOWS_DST_SECOND_FIELD_CODE_MASK 0xfu
+#define BUZZ_COPY_WINDOWS_DST_SECOND_FIELD_CODE_INPLACE (BUZZ_COPY_WINDOWS_DST_SECOND_FIELD_CODE_MASK << BUZZ_COPY_WINDOWS_DST_SECOND_FIELD_CODE_SHIFT)
+#define BUZZ_COPY_WINDOWS_SRC_WINDOW_SHIFT           0 /* established */
+#define BUZZ_COPY_WINDOWS_SRC_WINDOW_MASK            0xfffu
+#define BUZZ_COPY_WINDOWS_SRC_WINDOW_INPLACE         (BUZZ_COPY_WINDOWS_SRC_WINDOW_MASK << BUZZ_COPY_WINDOWS_SRC_WINDOW_SHIFT)
 
 /*
  * Frame pixel as stored in the vendor simulator's reference frames: red in
@@ -147,180 +147,146 @@
 #define BUZZ_FRAME_PIXEL_ALPHA_INPLACE               (BUZZ_FRAME_PIXEL_ALPHA_MASK << BUZZ_FRAME_PIXEL_ALPHA_SHIFT)
 
 /*
- * Image header word 0: board reference.
+ * Image header word 0: board reference. formerly HDR_W0.
  */
-/* word HDR_W0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W0_WIDTH                            32 /* inferred */
-#define BUZZ_HDR_W0_KEPT_SHIFT                       30 /* inferred */
-#define BUZZ_HDR_W0_KEPT_MASK                        0x3u
-#define BUZZ_HDR_W0_KEPT_INPLACE                     (BUZZ_HDR_W0_KEPT_MASK << BUZZ_HDR_W0_KEPT_SHIFT)
-#define BUZZ_HDR_W0_WINDOW_REL_SHIFT                 29 /* established */
-#define BUZZ_HDR_W0_WINDOW_REL_MASK                  0x1u
-#define BUZZ_HDR_W0_WINDOW_REL_INPLACE               (BUZZ_HDR_W0_WINDOW_REL_MASK << BUZZ_HDR_W0_WINDOW_REL_SHIFT)
-#define BUZZ_HDR_W0_REF_SHIFT                        0 /* established */
-#define BUZZ_HDR_W0_REF_MASK                         0x1fffffffu
-#define BUZZ_HDR_W0_REF_INPLACE                      (BUZZ_HDR_W0_REF_MASK << BUZZ_HDR_W0_REF_SHIFT)
+/* word IMAGE_BOARD_REF: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_IMAGE_BOARD_REF_WIDTH                   32 /* inferred */
+#define BUZZ_IMAGE_BOARD_REF_KEPT_SHIFT              30 /* inferred */
+#define BUZZ_IMAGE_BOARD_REF_KEPT_MASK               0x3u
+#define BUZZ_IMAGE_BOARD_REF_KEPT_INPLACE            (BUZZ_IMAGE_BOARD_REF_KEPT_MASK << BUZZ_IMAGE_BOARD_REF_KEPT_SHIFT)
+#define BUZZ_IMAGE_BOARD_REF_WINDOW_REL_SHIFT        29 /* established */
+#define BUZZ_IMAGE_BOARD_REF_WINDOW_REL_MASK         0x1u
+#define BUZZ_IMAGE_BOARD_REF_WINDOW_REL_INPLACE      (BUZZ_IMAGE_BOARD_REF_WINDOW_REL_MASK << BUZZ_IMAGE_BOARD_REF_WINDOW_REL_SHIFT)
+#define BUZZ_IMAGE_BOARD_REF_REF_SHIFT               0 /* established */
+#define BUZZ_IMAGE_BOARD_REF_REF_MASK                0x1fffffffu
+#define BUZZ_IMAGE_BOARD_REF_REF_INPLACE             (BUZZ_IMAGE_BOARD_REF_REF_MASK << BUZZ_IMAGE_BOARD_REF_REF_SHIFT)
 
 /*
- * Image header word 1: x and y of the smaller corner.
+ * Image header word 1: x and y of the smaller corner. formerly HDR_W1.
  */
-/* word HDR_W1: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W1_WIDTH                            32 /* established */
-#define BUZZ_HDR_W1_Y_SHIFT                          16 /* established */
-#define BUZZ_HDR_W1_Y_MASK                           0xffffu
-#define BUZZ_HDR_W1_Y_INPLACE                        (BUZZ_HDR_W1_Y_MASK << BUZZ_HDR_W1_Y_SHIFT)
-#define BUZZ_HDR_W1_X_SHIFT                          0 /* established */
-#define BUZZ_HDR_W1_X_MASK                           0xffffu
-#define BUZZ_HDR_W1_X_INPLACE                        (BUZZ_HDR_W1_X_MASK << BUZZ_HDR_W1_X_SHIFT)
+/* word IMAGE_CORNER: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_IMAGE_CORNER_WIDTH                      32 /* established */
+#define BUZZ_IMAGE_CORNER_Y_SHIFT                    16 /* established */
+#define BUZZ_IMAGE_CORNER_Y_MASK                     0xffffu
+#define BUZZ_IMAGE_CORNER_Y_INPLACE                  (BUZZ_IMAGE_CORNER_Y_MASK << BUZZ_IMAGE_CORNER_Y_SHIFT)
+#define BUZZ_IMAGE_CORNER_X_SHIFT                    0 /* established */
+#define BUZZ_IMAGE_CORNER_X_MASK                     0xffffu
+#define BUZZ_IMAGE_CORNER_X_INPLACE                  (BUZZ_IMAGE_CORNER_X_MASK << BUZZ_IMAGE_CORNER_X_SHIFT)
 
 /*
- * Image header word 2: the window word.
+ * Image header word 6: row bytes. formerly HDR_W6.
  */
-/* word HDR_W2: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W2_WIDTH                            32 /* established */
-#define BUZZ_HDR_W2_WINDOW_WORD_SHIFT                0 /* established */
-#define BUZZ_HDR_W2_WINDOW_WORD_MASK                 0xfffu
-#define BUZZ_HDR_W2_WINDOW_WORD_INPLACE              (BUZZ_HDR_W2_WINDOW_WORD_MASK << BUZZ_HDR_W2_WINDOW_WORD_SHIFT)
+/* word IMAGE_ROW_BYTES: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_IMAGE_ROW_BYTES_WIDTH                   32 /* established */
+#define BUZZ_IMAGE_ROW_BYTES_ROW_BYTES_SHIFT         0 /* established */
+#define BUZZ_IMAGE_ROW_BYTES_ROW_BYTES_MASK          0xfffffu
+#define BUZZ_IMAGE_ROW_BYTES_ROW_BYTES_INPLACE       (BUZZ_IMAGE_ROW_BYTES_ROW_BYTES_MASK << BUZZ_IMAGE_ROW_BYTES_ROW_BYTES_SHIFT)
 
 /*
- * Image header word 3: width and height.
+ * Image header word 3: width and height. formerly HDR_W3.
  */
-/* word HDR_W3: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W3_WIDTH                            32 /* established */
-#define BUZZ_HDR_W3_HEIGHT_SHIFT                     16 /* established */
-#define BUZZ_HDR_W3_HEIGHT_MASK                      0xffffu
-#define BUZZ_HDR_W3_HEIGHT_INPLACE                   (BUZZ_HDR_W3_HEIGHT_MASK << BUZZ_HDR_W3_HEIGHT_SHIFT)
-#define BUZZ_HDR_W3_WIDTH_SHIFT                      0 /* established */
-#define BUZZ_HDR_W3_WIDTH_MASK                       0xffffu
-#define BUZZ_HDR_W3_WIDTH_INPLACE                    (BUZZ_HDR_W3_WIDTH_MASK << BUZZ_HDR_W3_WIDTH_SHIFT)
+/* word IMAGE_SIZE: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_IMAGE_SIZE_WIDTH                        32 /* established */
+#define BUZZ_IMAGE_SIZE_HEIGHT_SHIFT                 16 /* established */
+#define BUZZ_IMAGE_SIZE_HEIGHT_MASK                  0xffffu
+#define BUZZ_IMAGE_SIZE_HEIGHT_INPLACE               (BUZZ_IMAGE_SIZE_HEIGHT_MASK << BUZZ_IMAGE_SIZE_HEIGHT_SHIFT)
+#define BUZZ_IMAGE_SIZE_WIDTH_SHIFT                  0 /* established */
+#define BUZZ_IMAGE_SIZE_WIDTH_MASK                   0xffffu
+#define BUZZ_IMAGE_SIZE_WIDTH_INPLACE                (BUZZ_IMAGE_SIZE_WIDTH_MASK << BUZZ_IMAGE_SIZE_WIDTH_SHIFT)
+
+/*
+ * Image header word 2: the window word. formerly HDR_W2.
+ */
+/* word IMAGE_WINDOW: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_IMAGE_WINDOW_WIDTH                      32 /* established */
+#define BUZZ_IMAGE_WINDOW_WINDOW_WORD_SHIFT          0 /* established */
+#define BUZZ_IMAGE_WINDOW_WINDOW_WORD_MASK           0xfffu
+#define BUZZ_IMAGE_WINDOW_WINDOW_WORD_INPLACE        (BUZZ_IMAGE_WINDOW_WINDOW_WORD_MASK << BUZZ_IMAGE_WINDOW_WINDOW_WORD_SHIFT)
+
+/*
+ * Pixel-mode descriptor, first word. formerly PIXMODE_W0.
+ */
+/* word PIXEL_MODE_DESCRIPTOR_0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_0_WIDTH           32 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_0_WINDOW_WORD_SHIFT 0 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_0_WINDOW_WORD_MASK 0xfffu
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_0_WINDOW_WORD_INPLACE (BUZZ_PIXEL_MODE_DESCRIPTOR_0_WINDOW_WORD_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_0_WINDOW_WORD_SHIFT)
+
+/*
+ * Pixel-mode descriptor, second word. formerly PIXMODE_W1.
+ */
+/* word PIXEL_MODE_DESCRIPTOR_1: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_WIDTH           32 /* unknown */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT27_SHIFT     27 /* unknown */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT27_MASK      0x1u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT27_INPLACE   (BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT27_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT27_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_BIT22_SHIFT 22 /* inferred */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_BIT22_MASK 0x1u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_BIT22_INPLACE (BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_BIT22_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_BIT22_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT21_SHIFT     21 /* unknown */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT21_MASK      0x1u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT21_INPLACE   (BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT21_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_BIT21_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_INDEX_CLASS_SHIFT 19 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_INDEX_CLASS_MASK 0x1u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_INDEX_CLASS_INPLACE (BUZZ_PIXEL_MODE_DESCRIPTOR_1_INDEX_CLASS_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_INDEX_CLASS_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_SIZE_FIELD_SHIFT 13 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_SIZE_FIELD_MASK 0x7u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_SIZE_FIELD_INPLACE (BUZZ_PIXEL_MODE_DESCRIPTOR_1_SIZE_FIELD_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_SIZE_FIELD_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_SHIFT   10 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_MASK    0x7u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_INPLACE (BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_STORAGE_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_LAYOUT_SHIFT    7 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_LAYOUT_MASK     0x7u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_LAYOUT_INPLACE  (BUZZ_PIXEL_MODE_DESCRIPTOR_1_LAYOUT_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_LAYOUT_SHIFT)
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_FIELD_FORMAT_SHIFT 4 /* established */
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_FIELD_FORMAT_MASK 0x7u
+#define BUZZ_PIXEL_MODE_DESCRIPTOR_1_FIELD_FORMAT_INPLACE (BUZZ_PIXEL_MODE_DESCRIPTOR_1_FIELD_FORMAT_MASK << BUZZ_PIXEL_MODE_DESCRIPTOR_1_FIELD_FORMAT_SHIFT)
+
+/*
+ * A scale or bias word of the post-filter block. formerly PF.
+ */
+/* word POST_FILTER_VALUE: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_POST_FILTER_VALUE_WIDTH                 32 /* established */
+#define BUZZ_POST_FILTER_VALUE_VALUE_SHIFT           0 /* established */
+#define BUZZ_POST_FILTER_VALUE_VALUE_MASK            0xffffu
+#define BUZZ_POST_FILTER_VALUE_VALUE_INPLACE         (BUZZ_POST_FILTER_VALUE_VALUE_MASK << BUZZ_POST_FILTER_VALUE_VALUE_SHIFT)
 
 /*
  * Image header word 4: class and code, field geometry, pixel size.
- * The read header's word 4, and the COPY source description.
+ * The read header's word 4, and the COPY source description. formerly HDR_W4.
  */
-/* word HDR_W4: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W4_WIDTH                            32 /* unknown */
-#define BUZZ_HDR_W4_FRONT_SHIFT                      31 /* established */
-#define BUZZ_HDR_W4_FRONT_MASK                       0x1u
-#define BUZZ_HDR_W4_FRONT_INPLACE                    (BUZZ_HDR_W4_FRONT_MASK << BUZZ_HDR_W4_FRONT_SHIFT)
-#define BUZZ_HDR_W4_DRAWABLE_SHIFT                   28 /* established */
-#define BUZZ_HDR_W4_DRAWABLE_MASK                    0x1u
-#define BUZZ_HDR_W4_DRAWABLE_INPLACE                 (BUZZ_HDR_W4_DRAWABLE_MASK << BUZZ_HDR_W4_DRAWABLE_SHIFT)
-#define BUZZ_HDR_W4_FIELD_B_SHIFT                    24 /* established */
-#define BUZZ_HDR_W4_FIELD_B_MASK                     0xfu
-#define BUZZ_HDR_W4_FIELD_B_INPLACE                  (BUZZ_HDR_W4_FIELD_B_MASK << BUZZ_HDR_W4_FIELD_B_SHIFT)
-#define BUZZ_HDR_W4_FIELD_A_SHIFT                    20 /* established */
-#define BUZZ_HDR_W4_FIELD_A_MASK                     0xfu
-#define BUZZ_HDR_W4_FIELD_A_INPLACE                  (BUZZ_HDR_W4_FIELD_A_MASK << BUZZ_HDR_W4_FIELD_A_SHIFT)
-#define BUZZ_HDR_W4_PIXEL_SIZE_B19_SHIFT             19 /* unknown */
-#define BUZZ_HDR_W4_PIXEL_SIZE_B19_MASK              0x1u
-#define BUZZ_HDR_W4_PIXEL_SIZE_B19_INPLACE           (BUZZ_HDR_W4_PIXEL_SIZE_B19_MASK << BUZZ_HDR_W4_PIXEL_SIZE_B19_SHIFT)
-#define BUZZ_HDR_W4_PIXEL_SIZE_SHIFT                 16 /* inferred */
-#define BUZZ_HDR_W4_PIXEL_SIZE_MASK                  0x7u
-#define BUZZ_HDR_W4_PIXEL_SIZE_INPLACE               (BUZZ_HDR_W4_PIXEL_SIZE_MASK << BUZZ_HDR_W4_PIXEL_SIZE_SHIFT)
-#define BUZZ_HDR_W4_SIZE_FIELD_SHIFT                 13 /* established */
-#define BUZZ_HDR_W4_SIZE_FIELD_MASK                  0x7u
-#define BUZZ_HDR_W4_SIZE_FIELD_INPLACE               (BUZZ_HDR_W4_SIZE_FIELD_MASK << BUZZ_HDR_W4_SIZE_FIELD_SHIFT)
-#define BUZZ_HDR_W4_BIT12_SHIFT                      12 /* established */
-#define BUZZ_HDR_W4_BIT12_MASK                       0x1u
-#define BUZZ_HDR_W4_BIT12_INPLACE                    (BUZZ_HDR_W4_BIT12_MASK << BUZZ_HDR_W4_BIT12_SHIFT)
-#define BUZZ_HDR_W4_CODE_SHIFT                       3 /* established */
-#define BUZZ_HDR_W4_CODE_MASK                        0x1fu
-#define BUZZ_HDR_W4_CODE_INPLACE                     (BUZZ_HDR_W4_CODE_MASK << BUZZ_HDR_W4_CODE_SHIFT)
-#define BUZZ_HDR_W4_CLASS_SHIFT                      0 /* established */
-#define BUZZ_HDR_W4_CLASS_MASK                       0x7u
-#define BUZZ_HDR_W4_CLASS_INPLACE                    (BUZZ_HDR_W4_CLASS_MASK << BUZZ_HDR_W4_CLASS_SHIFT)
-
-/*
- * Image header word 6: row bytes.
- */
-/* word HDR_W6: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W6_WIDTH                            32 /* established */
-#define BUZZ_HDR_W6_ROW_BYTES_SHIFT                  0 /* established */
-#define BUZZ_HDR_W6_ROW_BYTES_MASK                   0xfffffu
-#define BUZZ_HDR_W6_ROW_BYTES_INPLACE                (BUZZ_HDR_W6_ROW_BYTES_MASK << BUZZ_HDR_W6_ROW_BYTES_SHIFT)
-
-/*
- * Image header word 7: format, type, size and path control.
- * The write header's word 7, and the COPY destination control.
- */
-/* word HDR_W7: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_HDR_W7_WIDTH                            32 /* inferred */
-#define BUZZ_HDR_W7_DIFFERS_SHIFT                    30 /* established */
-#define BUZZ_HDR_W7_DIFFERS_MASK                     0x1u
-#define BUZZ_HDR_W7_DIFFERS_INPLACE                  (BUZZ_HDR_W7_DIFFERS_MASK << BUZZ_HDR_W7_DIFFERS_SHIFT)
-#define BUZZ_HDR_W7_TRANSFORM_SHIFT                  27 /* established */
-#define BUZZ_HDR_W7_TRANSFORM_MASK                   0x1u
-#define BUZZ_HDR_W7_TRANSFORM_INPLACE                (BUZZ_HDR_W7_TRANSFORM_MASK << BUZZ_HDR_W7_TRANSFORM_SHIFT)
-#define BUZZ_HDR_W7_READ_DIR_SHIFT                   24 /* established */
-#define BUZZ_HDR_W7_READ_DIR_MASK                    0x1u
-#define BUZZ_HDR_W7_READ_DIR_INPLACE                 (BUZZ_HDR_W7_READ_DIR_MASK << BUZZ_HDR_W7_READ_DIR_SHIFT)
-#define BUZZ_HDR_W7_PSIZE_SHIFT                      16 /* established */
-#define BUZZ_HDR_W7_PSIZE_MASK                       0x7u
-#define BUZZ_HDR_W7_PSIZE_INPLACE                    (BUZZ_HDR_W7_PSIZE_MASK << BUZZ_HDR_W7_PSIZE_SHIFT)
-#define BUZZ_HDR_W7_SIZE_FIELD_SHIFT                 13 /* established */
-#define BUZZ_HDR_W7_SIZE_FIELD_MASK                  0x7u
-#define BUZZ_HDR_W7_SIZE_FIELD_INPLACE               (BUZZ_HDR_W7_SIZE_FIELD_MASK << BUZZ_HDR_W7_SIZE_FIELD_SHIFT)
-#define BUZZ_HDR_W7_SWAP_SHIFT                       10 /* inferred */
-#define BUZZ_HDR_W7_SWAP_MASK                        0x1u
-#define BUZZ_HDR_W7_SWAP_INPLACE                     (BUZZ_HDR_W7_SWAP_MASK << BUZZ_HDR_W7_SWAP_SHIFT)
-#define BUZZ_HDR_W7_EXPAND_SHIFT                     9 /* established */
-#define BUZZ_HDR_W7_EXPAND_MASK                      0x1u
-#define BUZZ_HDR_W7_EXPAND_INPLACE                   (BUZZ_HDR_W7_EXPAND_MASK << BUZZ_HDR_W7_EXPAND_SHIFT)
-#define BUZZ_HDR_W7_TYPE_SHIFT                       5 /* established */
-#define BUZZ_HDR_W7_TYPE_MASK                        0xfu
-#define BUZZ_HDR_W7_TYPE_INPLACE                     (BUZZ_HDR_W7_TYPE_MASK << BUZZ_HDR_W7_TYPE_SHIFT)
-#define BUZZ_HDR_W7_FORMAT_SHIFT                     0 /* established */
-#define BUZZ_HDR_W7_FORMAT_MASK                      0x1fu
-#define BUZZ_HDR_W7_FORMAT_INPLACE                   (BUZZ_HDR_W7_FORMAT_MASK << BUZZ_HDR_W7_FORMAT_SHIFT)
-
-/*
- * A scale or bias word of the post-filter block.
- */
-/* word PF: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_PF_WIDTH                                32 /* established */
-#define BUZZ_PF_VALUE_SHIFT                          0 /* established */
-#define BUZZ_PF_VALUE_MASK                           0xffffu
-#define BUZZ_PF_VALUE_INPLACE                        (BUZZ_PF_VALUE_MASK << BUZZ_PF_VALUE_SHIFT)
-
-/*
- * Pixel-mode descriptor, first word.
- */
-/* word PIXMODE_W0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_PIXMODE_W0_WIDTH                        32 /* established */
-#define BUZZ_PIXMODE_W0_WINDOW_WORD_SHIFT            0 /* established */
-#define BUZZ_PIXMODE_W0_WINDOW_WORD_MASK             0xfffu
-#define BUZZ_PIXMODE_W0_WINDOW_WORD_INPLACE          (BUZZ_PIXMODE_W0_WINDOW_WORD_MASK << BUZZ_PIXMODE_W0_WINDOW_WORD_SHIFT)
-
-/*
- * Pixel-mode descriptor, second word.
- */
-/* word PIXMODE_W1: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_PIXMODE_W1_WIDTH                        32 /* unknown */
-#define BUZZ_PIXMODE_W1_BIT27_SHIFT                  27 /* unknown */
-#define BUZZ_PIXMODE_W1_BIT27_MASK                   0x1u
-#define BUZZ_PIXMODE_W1_BIT27_INPLACE                (BUZZ_PIXMODE_W1_BIT27_MASK << BUZZ_PIXMODE_W1_BIT27_SHIFT)
-#define BUZZ_PIXMODE_W1_STORAGE3_SHIFT               22 /* inferred */
-#define BUZZ_PIXMODE_W1_STORAGE3_MASK                0x1u
-#define BUZZ_PIXMODE_W1_STORAGE3_INPLACE             (BUZZ_PIXMODE_W1_STORAGE3_MASK << BUZZ_PIXMODE_W1_STORAGE3_SHIFT)
-#define BUZZ_PIXMODE_W1_BIT21_SHIFT                  21 /* unknown */
-#define BUZZ_PIXMODE_W1_BIT21_MASK                   0x1u
-#define BUZZ_PIXMODE_W1_BIT21_INPLACE                (BUZZ_PIXMODE_W1_BIT21_MASK << BUZZ_PIXMODE_W1_BIT21_SHIFT)
-#define BUZZ_PIXMODE_W1_INDEX_CLASS_SHIFT            19 /* established */
-#define BUZZ_PIXMODE_W1_INDEX_CLASS_MASK             0x1u
-#define BUZZ_PIXMODE_W1_INDEX_CLASS_INPLACE          (BUZZ_PIXMODE_W1_INDEX_CLASS_MASK << BUZZ_PIXMODE_W1_INDEX_CLASS_SHIFT)
-#define BUZZ_PIXMODE_W1_SIZE_FIELD_SHIFT             13 /* established */
-#define BUZZ_PIXMODE_W1_SIZE_FIELD_MASK              0x7u
-#define BUZZ_PIXMODE_W1_SIZE_FIELD_INPLACE           (BUZZ_PIXMODE_W1_SIZE_FIELD_MASK << BUZZ_PIXMODE_W1_SIZE_FIELD_SHIFT)
-#define BUZZ_PIXMODE_W1_STORAGE_SHIFT                10 /* established */
-#define BUZZ_PIXMODE_W1_STORAGE_MASK                 0x7u
-#define BUZZ_PIXMODE_W1_STORAGE_INPLACE              (BUZZ_PIXMODE_W1_STORAGE_MASK << BUZZ_PIXMODE_W1_STORAGE_SHIFT)
-#define BUZZ_PIXMODE_W1_LAYOUT_SHIFT                 7 /* established */
-#define BUZZ_PIXMODE_W1_LAYOUT_MASK                  0x7u
-#define BUZZ_PIXMODE_W1_LAYOUT_INPLACE               (BUZZ_PIXMODE_W1_LAYOUT_MASK << BUZZ_PIXMODE_W1_LAYOUT_SHIFT)
-#define BUZZ_PIXMODE_W1_FIELD_FORMAT_SHIFT           4 /* established */
-#define BUZZ_PIXMODE_W1_FIELD_FORMAT_MASK            0x7u
-#define BUZZ_PIXMODE_W1_FIELD_FORMAT_INPLACE         (BUZZ_PIXMODE_W1_FIELD_FORMAT_MASK << BUZZ_PIXMODE_W1_FIELD_FORMAT_SHIFT)
+/* word READ_HEADER: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_READ_HEADER_WIDTH                       32 /* unknown */
+#define BUZZ_READ_HEADER_FRONT_SHIFT                 31 /* established */
+#define BUZZ_READ_HEADER_FRONT_MASK                  0x1u
+#define BUZZ_READ_HEADER_FRONT_INPLACE               (BUZZ_READ_HEADER_FRONT_MASK << BUZZ_READ_HEADER_FRONT_SHIFT)
+#define BUZZ_READ_HEADER_DRAWABLE_SHIFT              28 /* established */
+#define BUZZ_READ_HEADER_DRAWABLE_MASK               0x1u
+#define BUZZ_READ_HEADER_DRAWABLE_INPLACE            (BUZZ_READ_HEADER_DRAWABLE_MASK << BUZZ_READ_HEADER_DRAWABLE_SHIFT)
+#define BUZZ_READ_HEADER_SECOND_FIELD_CODE_SHIFT     24 /* established */
+#define BUZZ_READ_HEADER_SECOND_FIELD_CODE_MASK      0xfu
+#define BUZZ_READ_HEADER_SECOND_FIELD_CODE_INPLACE   (BUZZ_READ_HEADER_SECOND_FIELD_CODE_MASK << BUZZ_READ_HEADER_SECOND_FIELD_CODE_SHIFT)
+#define BUZZ_READ_HEADER_FIRST_FIELD_CODE_SHIFT      20 /* established */
+#define BUZZ_READ_HEADER_FIRST_FIELD_CODE_MASK       0xfu
+#define BUZZ_READ_HEADER_FIRST_FIELD_CODE_INPLACE    (BUZZ_READ_HEADER_FIRST_FIELD_CODE_MASK << BUZZ_READ_HEADER_FIRST_FIELD_CODE_SHIFT)
+#define BUZZ_READ_HEADER_PIXEL_SIZE_BIT19_SHIFT      19 /* unknown */
+#define BUZZ_READ_HEADER_PIXEL_SIZE_BIT19_MASK       0x1u
+#define BUZZ_READ_HEADER_PIXEL_SIZE_BIT19_INPLACE    (BUZZ_READ_HEADER_PIXEL_SIZE_BIT19_MASK << BUZZ_READ_HEADER_PIXEL_SIZE_BIT19_SHIFT)
+#define BUZZ_READ_HEADER_PIXEL_SIZE_SHIFT            16 /* inferred */
+#define BUZZ_READ_HEADER_PIXEL_SIZE_MASK             0x7u
+#define BUZZ_READ_HEADER_PIXEL_SIZE_INPLACE          (BUZZ_READ_HEADER_PIXEL_SIZE_MASK << BUZZ_READ_HEADER_PIXEL_SIZE_SHIFT)
+#define BUZZ_READ_HEADER_SIZE_FIELD_SHIFT            13 /* established */
+#define BUZZ_READ_HEADER_SIZE_FIELD_MASK             0x7u
+#define BUZZ_READ_HEADER_SIZE_FIELD_INPLACE          (BUZZ_READ_HEADER_SIZE_FIELD_MASK << BUZZ_READ_HEADER_SIZE_FIELD_SHIFT)
+#define BUZZ_READ_HEADER_BIT12_SHIFT                 12 /* established */
+#define BUZZ_READ_HEADER_BIT12_MASK                  0x1u
+#define BUZZ_READ_HEADER_BIT12_INPLACE               (BUZZ_READ_HEADER_BIT12_MASK << BUZZ_READ_HEADER_BIT12_SHIFT)
+#define BUZZ_READ_HEADER_CODE_SHIFT                  3 /* established */
+#define BUZZ_READ_HEADER_CODE_MASK                   0x1fu
+#define BUZZ_READ_HEADER_CODE_INPLACE                (BUZZ_READ_HEADER_CODE_MASK << BUZZ_READ_HEADER_CODE_SHIFT)
+#define BUZZ_READ_HEADER_CLASS_SHIFT                 0 /* established */
+#define BUZZ_READ_HEADER_CLASS_MASK                  0x7u
+#define BUZZ_READ_HEADER_CLASS_INPLACE               (BUZZ_READ_HEADER_CLASS_MASK << BUZZ_READ_HEADER_CLASS_SHIFT)
 
 /*
  * The sampler word: operand 4 of the texture-mode block.
@@ -333,18 +299,18 @@
 #define BUZZ_SAMPLER_ACTIVATION_SHIFT                23 /* established */
 #define BUZZ_SAMPLER_ACTIVATION_MASK                 0x7u
 #define BUZZ_SAMPLER_ACTIVATION_INPLACE              (BUZZ_SAMPLER_ACTIVATION_MASK << BUZZ_SAMPLER_ACTIVATION_SHIFT)
-#define BUZZ_SAMPLER_TABLE_FMT_SHIFT                 20 /* established */
-#define BUZZ_SAMPLER_TABLE_FMT_MASK                  0x7u
-#define BUZZ_SAMPLER_TABLE_FMT_INPLACE               (BUZZ_SAMPLER_TABLE_FMT_MASK << BUZZ_SAMPLER_TABLE_FMT_SHIFT)
-#define BUZZ_SAMPLER_IMAGE_FLAG18_SHIFT              18 /* established */
-#define BUZZ_SAMPLER_IMAGE_FLAG18_MASK               0x1u
-#define BUZZ_SAMPLER_IMAGE_FLAG18_INPLACE            (BUZZ_SAMPLER_IMAGE_FLAG18_MASK << BUZZ_SAMPLER_IMAGE_FLAG18_SHIFT)
+#define BUZZ_SAMPLER_TABLE_FORMAT_SHIFT              20 /* established */
+#define BUZZ_SAMPLER_TABLE_FORMAT_MASK               0x7u
+#define BUZZ_SAMPLER_TABLE_FORMAT_INPLACE            (BUZZ_SAMPLER_TABLE_FORMAT_MASK << BUZZ_SAMPLER_TABLE_FORMAT_SHIFT)
+#define BUZZ_SAMPLER_IMAGE_FLAG_BIT18_SHIFT          18 /* established */
+#define BUZZ_SAMPLER_IMAGE_FLAG_BIT18_MASK           0x1u
+#define BUZZ_SAMPLER_IMAGE_FLAG_BIT18_INPLACE        (BUZZ_SAMPLER_IMAGE_FLAG_BIT18_MASK << BUZZ_SAMPLER_IMAGE_FLAG_BIT18_SHIFT)
 #define BUZZ_SAMPLER_TRILINEAR_SHIFT                 17 /* established */
 #define BUZZ_SAMPLER_TRILINEAR_MASK                  0x1u
 #define BUZZ_SAMPLER_TRILINEAR_INPLACE               (BUZZ_SAMPLER_TRILINEAR_MASK << BUZZ_SAMPLER_TRILINEAR_SHIFT)
-#define BUZZ_SAMPLER_IMAGE_FLAG14_SHIFT              14 /* established */
-#define BUZZ_SAMPLER_IMAGE_FLAG14_MASK               0x1u
-#define BUZZ_SAMPLER_IMAGE_FLAG14_INPLACE            (BUZZ_SAMPLER_IMAGE_FLAG14_MASK << BUZZ_SAMPLER_IMAGE_FLAG14_SHIFT)
+#define BUZZ_SAMPLER_IMAGE_FLAG_BIT14_SHIFT          14 /* established */
+#define BUZZ_SAMPLER_IMAGE_FLAG_BIT14_MASK           0x1u
+#define BUZZ_SAMPLER_IMAGE_FLAG_BIT14_INPLACE        (BUZZ_SAMPLER_IMAGE_FLAG_BIT14_MASK << BUZZ_SAMPLER_IMAGE_FLAG_BIT14_SHIFT)
 #define BUZZ_SAMPLER_WRAP_S_SHIFT                    12 /* established */
 #define BUZZ_SAMPLER_WRAP_S_MASK                     0x3u
 #define BUZZ_SAMPLER_WRAP_S_INPLACE                  (BUZZ_SAMPLER_WRAP_S_MASK << BUZZ_SAMPLER_WRAP_S_SHIFT)
@@ -365,43 +331,77 @@
 #define BUZZ_SAMPLER_COLOUR_TABLE_INPLACE            (BUZZ_SAMPLER_COLOUR_TABLE_MASK << BUZZ_SAMPLER_COLOUR_TABLE_SHIFT)
 
 /*
- * Texture level descriptor, word 0.
+ * Texture level descriptor, word 0. formerly TEXLEVEL_W0.
  */
-/* word TEXLEVEL_W0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_TEXLEVEL_W0_WIDTH                       32 /* unknown */
-#define BUZZ_TEXLEVEL_W0_KEPT_SHIFT                  29 /* unknown */
-#define BUZZ_TEXLEVEL_W0_KEPT_MASK                   0x7u
-#define BUZZ_TEXLEVEL_W0_KEPT_INPLACE                (BUZZ_TEXLEVEL_W0_KEPT_MASK << BUZZ_TEXLEVEL_W0_KEPT_SHIFT)
-#define BUZZ_TEXLEVEL_W0_ADDR_SHIFT                  0 /* established */
-#define BUZZ_TEXLEVEL_W0_ADDR_MASK                   0x1fffffffu
-#define BUZZ_TEXLEVEL_W0_ADDR_INPLACE                (BUZZ_TEXLEVEL_W0_ADDR_MASK << BUZZ_TEXLEVEL_W0_ADDR_SHIFT)
+/* word TEXTURE_LEVEL_DESCRIPTOR_0: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_WIDTH        32 /* unknown */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_KEPT_SHIFT   29 /* unknown */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_KEPT_MASK    0x7u
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_KEPT_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_KEPT_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_KEPT_SHIFT)
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_ADDR_SHIFT   0 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_ADDR_MASK    0x1fffffffu
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_ADDR_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_ADDR_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0_ADDR_SHIFT)
 
 /*
- * Texture level descriptor, word 1.
+ * Texture level descriptor, word 1. formerly TEXLEVEL_W1.
  */
-/* word TEXLEVEL_W1: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_TEXLEVEL_W1_WIDTH                       32 /* established */
-#define BUZZ_TEXLEVEL_W1_SIZE_CODE_SHIFT             30 /* established */
-#define BUZZ_TEXLEVEL_W1_SIZE_CODE_MASK              0x3u
-#define BUZZ_TEXLEVEL_W1_SIZE_CODE_INPLACE           (BUZZ_TEXLEVEL_W1_SIZE_CODE_MASK << BUZZ_TEXLEVEL_W1_SIZE_CODE_SHIFT)
-#define BUZZ_TEXLEVEL_W1_OFFSET_CODE_SHIFT           26 /* established */
-#define BUZZ_TEXLEVEL_W1_OFFSET_CODE_MASK            0x7u
-#define BUZZ_TEXLEVEL_W1_OFFSET_CODE_INPLACE         (BUZZ_TEXLEVEL_W1_OFFSET_CODE_MASK << BUZZ_TEXLEVEL_W1_OFFSET_CODE_SHIFT)
-#define BUZZ_TEXLEVEL_W1_FORMAT_INDEX_SHIFT          20 /* established */
-#define BUZZ_TEXLEVEL_W1_FORMAT_INDEX_MASK           0x3fu
-#define BUZZ_TEXLEVEL_W1_FORMAT_INDEX_INPLACE        (BUZZ_TEXLEVEL_W1_FORMAT_INDEX_MASK << BUZZ_TEXLEVEL_W1_FORMAT_INDEX_SHIFT)
-#define BUZZ_TEXLEVEL_W1_PITCH_SHIFT                 0 /* established */
-#define BUZZ_TEXLEVEL_W1_PITCH_MASK                  0xfffu
-#define BUZZ_TEXLEVEL_W1_PITCH_INPLACE               (BUZZ_TEXLEVEL_W1_PITCH_MASK << BUZZ_TEXLEVEL_W1_PITCH_SHIFT)
+/* word TEXTURE_LEVEL_DESCRIPTOR_1: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_WIDTH        32 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_SIZE_CODE_SHIFT 30 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_SIZE_CODE_MASK 0x3u
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_SIZE_CODE_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_SIZE_CODE_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_SIZE_CODE_SHIFT)
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_OFFSET_CODE_SHIFT 26 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_OFFSET_CODE_MASK 0x7u
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_OFFSET_CODE_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_OFFSET_CODE_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_OFFSET_CODE_SHIFT)
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_FORMAT_INDEX_SHIFT 20 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_FORMAT_INDEX_MASK 0x3fu
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_FORMAT_INDEX_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_FORMAT_INDEX_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_FORMAT_INDEX_SHIFT)
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_PITCH_SHIFT  0 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_PITCH_MASK   0xfffu
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_PITCH_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_PITCH_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_PITCH_SHIFT)
 
 /*
- * Texture level descriptor, word 2.
+ * Texture level descriptor, word 2. formerly TEXLEVEL_W2.
  */
-/* word TEXLEVEL_W2: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
-#define BUZZ_TEXLEVEL_W2_WIDTH                       32 /* established */
-#define BUZZ_TEXLEVEL_W2_BITS_SHIFT                  0 /* established */
-#define BUZZ_TEXLEVEL_W2_BITS_MASK                   0xfffu
-#define BUZZ_TEXLEVEL_W2_BITS_INPLACE                (BUZZ_TEXLEVEL_W2_BITS_MASK << BUZZ_TEXLEVEL_W2_BITS_SHIFT)
+/* word TEXTURE_LEVEL_DESCRIPTOR_2: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_WIDTH        32 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_BITS_SHIFT   0 /* established */
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_BITS_MASK    0xfffu
+#define BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_BITS_INPLACE (BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_BITS_MASK << BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_BITS_SHIFT)
+
+/*
+ * Image header word 7: format, type, size and path control.
+ * The write header's word 7, and the COPY destination control. formerly HDR_W7.
+ */
+/* word WRITE_HEADER: 32 bits; odsy binary analysis of the shipped GL library and kernel command senders */
+#define BUZZ_WRITE_HEADER_WIDTH                      32 /* inferred */
+#define BUZZ_WRITE_HEADER_DIFFERS_SHIFT              30 /* established */
+#define BUZZ_WRITE_HEADER_DIFFERS_MASK               0x1u
+#define BUZZ_WRITE_HEADER_DIFFERS_INPLACE            (BUZZ_WRITE_HEADER_DIFFERS_MASK << BUZZ_WRITE_HEADER_DIFFERS_SHIFT)
+#define BUZZ_WRITE_HEADER_TRANSFORM_SHIFT            27 /* established */
+#define BUZZ_WRITE_HEADER_TRANSFORM_MASK             0x1u
+#define BUZZ_WRITE_HEADER_TRANSFORM_INPLACE          (BUZZ_WRITE_HEADER_TRANSFORM_MASK << BUZZ_WRITE_HEADER_TRANSFORM_SHIFT)
+#define BUZZ_WRITE_HEADER_READ_DIR_SHIFT             24 /* established */
+#define BUZZ_WRITE_HEADER_READ_DIR_MASK              0x1u
+#define BUZZ_WRITE_HEADER_READ_DIR_INPLACE           (BUZZ_WRITE_HEADER_READ_DIR_MASK << BUZZ_WRITE_HEADER_READ_DIR_SHIFT)
+#define BUZZ_WRITE_HEADER_PIXEL_SIZE_SHIFT           16 /* established */
+#define BUZZ_WRITE_HEADER_PIXEL_SIZE_MASK            0x7u
+#define BUZZ_WRITE_HEADER_PIXEL_SIZE_INPLACE         (BUZZ_WRITE_HEADER_PIXEL_SIZE_MASK << BUZZ_WRITE_HEADER_PIXEL_SIZE_SHIFT)
+#define BUZZ_WRITE_HEADER_SIZE_FIELD_SHIFT           13 /* established */
+#define BUZZ_WRITE_HEADER_SIZE_FIELD_MASK            0x7u
+#define BUZZ_WRITE_HEADER_SIZE_FIELD_INPLACE         (BUZZ_WRITE_HEADER_SIZE_FIELD_MASK << BUZZ_WRITE_HEADER_SIZE_FIELD_SHIFT)
+#define BUZZ_WRITE_HEADER_SWAP_SHIFT                 10 /* inferred */
+#define BUZZ_WRITE_HEADER_SWAP_MASK                  0x1u
+#define BUZZ_WRITE_HEADER_SWAP_INPLACE               (BUZZ_WRITE_HEADER_SWAP_MASK << BUZZ_WRITE_HEADER_SWAP_SHIFT)
+#define BUZZ_WRITE_HEADER_EXPAND_SHIFT               9 /* established */
+#define BUZZ_WRITE_HEADER_EXPAND_MASK                0x1u
+#define BUZZ_WRITE_HEADER_EXPAND_INPLACE             (BUZZ_WRITE_HEADER_EXPAND_MASK << BUZZ_WRITE_HEADER_EXPAND_SHIFT)
+#define BUZZ_WRITE_HEADER_TYPE_SHIFT                 5 /* established */
+#define BUZZ_WRITE_HEADER_TYPE_MASK                  0xfu
+#define BUZZ_WRITE_HEADER_TYPE_INPLACE               (BUZZ_WRITE_HEADER_TYPE_MASK << BUZZ_WRITE_HEADER_TYPE_SHIFT)
+#define BUZZ_WRITE_HEADER_FORMAT_SHIFT               0 /* established */
+#define BUZZ_WRITE_HEADER_FORMAT_MASK                0x1fu
+#define BUZZ_WRITE_HEADER_FORMAT_INPLACE             (BUZZ_WRITE_HEADER_FORMAT_MASK << BUZZ_WRITE_HEADER_FORMAT_SHIFT)
 
 #define BUZZ_ALPHA_TEST_FUNC_ALWAYS                  0x7u /* established */
 #define BUZZ_ALPHA_TEST_FUNC_EQUAL                   0x2u /* established */
@@ -411,7 +411,7 @@
 #define BUZZ_ALPHA_TEST_FUNC_LESS                    0x1u /* established */
 #define BUZZ_ALPHA_TEST_FUNC_NEVER                   0x0u /* established */
 #define BUZZ_ALPHA_TEST_FUNC_NOTEQUAL                0x5u /* established */
-#define BUZZ_ATTR_LOW_COUNT4_OP2F                    0xd02fu /* established */
+#define BUZZ_ATTR_SLOT6_LOW_HALF                     0xd02fu /* established */
 #define BUZZ_ATTR_VERTEX3F_WORD                      0x8080cc03u /* established */
 #define BUZZ_BLK_ALPHA_TEST                          0x1eu /* established */
 #define BUZZ_BLK_GAMMA_FIT                           0x45u /* established */
@@ -426,14 +426,6 @@
 #define BUZZ_CLASS0_WRITE_ADDR                       0x740u /* established */
 #define BUZZ_CLASS0_WRITE_DATA                       0x741u /* established */
 #define BUZZ_CMD_ALPHA_TEST                          0x1041eu /* established */
-#define BUZZ_CMD_BLK_01F                             0x1041fu /* established */
-#define BUZZ_CMD_BLK_042                             0x10842u /* established */
-#define BUZZ_CMD_BLK_047                             0x11847u /* established */
-#define BUZZ_CMD_BLK_04C                             0x1044cu /* established */
-#define BUZZ_CMD_BLK_04D                             0x13c4du /* established */
-#define BUZZ_CMD_BLK_051                             0x10451u /* established */
-#define BUZZ_CMD_BLK_056                             0x10456u /* established */
-#define BUZZ_CMD_BLK_057                             0x10457u /* established */
 #define BUZZ_CMD_BUFFER_SELECT                       0x10424u /* established */
 #define BUZZ_CMD_CLASS1_PREFIX                       0x10000u /* established */
 #define BUZZ_CMD_CLIP_ORIGIN_PAIR                    0x10840u /* established */
@@ -445,6 +437,7 @@
 #define BUZZ_CMD_FLUSH                               0x10019u /* established */
 #define BUZZ_CMD_FOG                                 0x1181au /* established */
 #define BUZZ_CMD_FRAG_LIGHT_MODEL                    0x10c1cu /* established */
+#define BUZZ_CMD_IMAGE_CHAIN_SETUP                   0x10842u /* established */
 #define BUZZ_CMD_LINE_POINT_SIZE                     0x1084au /* established */
 #define BUZZ_CMD_LINE_STIPPLE                        0x10c48u /* established */
 #define BUZZ_CMD_LOD_LIMITS                          0x11013u /* established */
@@ -453,11 +446,11 @@
 #define BUZZ_CMD_PATH_SELECT                         0x10405u /* established */
 #define BUZZ_CMD_POLYGON_MODE                        0x10415u /* established */
 #define BUZZ_CMD_POLYGON_OFFSET                      0x10458u /* established */
-#define BUZZ_CMD_POSTFILTER_M1_0                     0x12030u /* established */
-#define BUZZ_CMD_POSTFILTER_M1_1                     0x12031u /* established */
-#define BUZZ_CMD_POSTFILTER_M1_2                     0x12032u /* established */
-#define BUZZ_CMD_POSTFILTER_M1_3                     0x12033u /* established */
-#define BUZZ_CMD_POSTFILTER_M3                       0x1083du /* established */
+#define BUZZ_CMD_POSTFILTER_SCALE_BIAS               0x1083du /* established */
+#define BUZZ_CMD_POSTFILTER_WORD_0                   0x12030u /* established */
+#define BUZZ_CMD_POSTFILTER_WORD_1                   0x12031u /* established */
+#define BUZZ_CMD_POSTFILTER_WORD_2                   0x12032u /* established */
+#define BUZZ_CMD_POSTFILTER_WORD_3                   0x12033u /* established */
 #define BUZZ_CMD_PRIM_BEGIN                          0x14400u /* established */
 #define BUZZ_CMD_PRIM_END                            0x14001u /* established */
 #define BUZZ_CMD_RANGE_BLOCK                         0x10854u /* established */
@@ -474,21 +467,28 @@
 #define BUZZ_CMD_STIPPLE_ROWS_LO                     0x13c4fu /* established */
 #define BUZZ_CMD_WAIT                                0x10443u /* established */
 #define BUZZ_CMD_WINDOW_DESC                         0x11017u /* established */
+#define BUZZ_CMD_WORD_1041F                          0x1041fu /* established */
+#define BUZZ_CMD_WORD_1044C                          0x1044cu /* established */
+#define BUZZ_CMD_WORD_10451                          0x10451u /* established */
+#define BUZZ_CMD_WORD_10456                          0x10456u /* established */
+#define BUZZ_CMD_WORD_10457                          0x10457u /* established */
+#define BUZZ_CMD_WORD_11847                          0x11847u /* established */
+#define BUZZ_CMD_WORD_13C4D                          0x13c4du /* established */
 #define BUZZ_CMD_WRITE_MASKS                         0x10452u /* established */
 #define BUZZ_INIT_DELAY_US                           0x7d0u /* established */
-#define BUZZ_INIT_DW_6B0                             0x6b000000000ull /* established */
-#define BUZZ_INIT_DW_6B1                             0x6b100000100ull /* established */
-#define BUZZ_INIT_DW_6B2                             0x6b200007dc0ull /* established */
-#define BUZZ_INIT_DW_6B3                             0x6b300005e50ull /* established */
-#define BUZZ_INIT_DW_7B5                             0x7b500000001ull /* established */
-#define BUZZ_INIT_DW_7F0                             0x7f03b9aca00ull /* established */
+#define BUZZ_INIT_WORD_6B0                           0x6b000000000ull /* established */
+#define BUZZ_INIT_WORD_6B1                           0x6b100000100ull /* established */
+#define BUZZ_INIT_WORD_6B2                           0x6b200007dc0ull /* established */
+#define BUZZ_INIT_WORD_6B3                           0x6b300005e50ull /* established */
+#define BUZZ_INIT_WORD_7B5                           0x7b500000001ull /* established */
+#define BUZZ_INIT_WORD_7F0                           0x7f03b9aca00ull /* established */
 #define BUZZ_OP_COPY                                 0x2031u /* established */
 #define BUZZ_OP_COPY_WORDS                           0x8u /* established */
 #define BUZZ_OP_POSTFILTER                           0x203bu /* established */
 #define BUZZ_OP_POSTFILTER_WORDS                     0x8u /* established */
 #define BUZZ_OP_TEXMODE                              0x1c16u /* established */
 #define BUZZ_PF_FRAC_BITS                            0xcu /* established */
-#define BUZZ_PF_MAX_X4096                            0x7fffu /* inferred */
+#define BUZZ_PF_MAX_POSITIVE                         0x7fffu /* inferred */
 #define BUZZ_PF_ONE                                  0x1000u /* established */
 #define BUZZ_RANGE_BLOCK_HIGH                        0xfffffffu /* established */
 #define BUZZ_RANGE_BLOCK_LOW                         0x0u /* established */
@@ -527,10 +527,10 @@
 #define BUZZ_SEQ_WORD_COLOUR_A_RGB                   0x22008000u /* established */
 #define BUZZ_SEQ_WORD_COLOUR_B_INDEX                 0x23008003u /* established */
 #define BUZZ_SEQ_WORD_COLOUR_B_RGB                   0x23008002u /* established */
-#define BUZZ_SLOT15_WORD_OP12F                       0xcf80a92fu /* established */
-#define BUZZ_SLOT16_WORD_OP33                        0xd080c433u /* established */
-#define BUZZ_SLOT16_WORD_OP34                        0xd080cc34u /* established */
-#define BUZZ_SLOT2_WORD                              0xc280cc1cu /* established */
+#define BUZZ_SLOT15_WORD                             0xcf80a92fu /* established */
+#define BUZZ_SLOT16_ONE_OPERAND_WORD                 0xd080c433u /* established */
+#define BUZZ_SLOT16_THREE_OPERAND_WORD               0xd080cc34u /* established */
+#define BUZZ_SLOT2_THREE_OPERAND_WORD                0xc280cc1cu /* established */
 #define BUZZ_SLOT4_DEFAULT_WORD                      0xc480c426u /* established */
 #define BUZZ_SYNC_WAIT_FIRST                         0xfau /* established */
 #define BUZZ_SYNC_WAIT_SECOND                        0x96u /* established */
