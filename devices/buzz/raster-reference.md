@@ -11,7 +11,7 @@ What the RE corpus and the manuals show about the arithmetic BUZZ itself uses, o
 
 Clean-room note: every row rests on shipped binaries (6.5.30m N32 `libGLcore.so` and the kernel driver, with their line tables), the diagnostics package, published patents and manuals, and V10 and simulator runs recorded in this repository. No row rests on the 6.5.7 source readings that some pages cite (the pixel-mode block and frame-buffer layout in [measured.md](measured.md)), and no IRIX source was opened for this page. "Source line" in the cited pages means the line table of the 6.5.30m binary.
 
-This pass replayed no frames: the replay script needs the diagnostics package under `root/`, which is not in this checkout. The grades below use the stored survey run, [odydiags-raster-survey.txt](../../software/ucode/runs/odydiags-raster-survey.txt), and the stored fit logs beside it.
+The replay tooling was run with the diagnostics package linked under `root/` (see "Replay results" below), so the counts in this page are reproduced, not only quoted.
 
 ## The f32 question
 
@@ -26,7 +26,9 @@ Does the evidence support f32 for the interpolators? **Not as stated.** By inter
 | Depth | Two 32-bit floating-point perspective-corrected barycentrics in, one float out. This is the one place f32 is the published width | established (published), inferred for this board |
 | Texture s, t, r | Interpolated as s/w, t/w, r/w and 1/w, divided per pixel; address then goes float to fixed. Width of the divide unknown | inferred |
 
-So: f32 is supported for host input, transform and depth. For colour the published width is 12 bits, and the one frame that exercises interpolation (`blend`) is not reproduced by any exact (infinite-precision) perspective-correct model: 1070 of 13,934 pixels in panel 0 stay one 8-bit step off, and quantised variants (12-bit vertex colours, 10 to 16-bit weights, 6 to 14-bit 1/w) do not close it. The residue behaves like a value below 0.5 reading 1/16 of an output step high; 1/16 of an 8-bit step is one 12-bit step, which fits a 12-bit grid but is **inferred** from a fit only. No attempt in the repository tried f32 intermediates specifically, so f32 colour is neither shown nor excluded by a run; the published module width is the better-supported reading. Rounding of the stored 8-bit value is floor(256 c), clamped to 255 (established, simulator, `alpha` frames), not round(255 c).
+A replay fit now bears on this directly (see "Replay results"): evaluating the perspective-correct colour in f32 leaves 1069 pixels of panel 0 different, in f64 1070, and the two forms disagree on 1 pixel of 13,934. The frame cannot tell f32 from exact arithmetic, and neither explains the residue.
+
+So: f32 is supported for host input, transform and depth. For colour the published width is 12 bits, and the one frame that exercises interpolation (`blend`) is not reproduced by any exact (infinite-precision) perspective-correct model: 1070 of 13,934 pixels in panel 0 stay one 8-bit step off, and quantised variants (12-bit vertex colours, 10 to 16-bit weights, 6 to 14-bit 1/w) do not close it. The residue behaves like a value below 0.5 reading 1/16 of an output step high; 1/16 of an 8-bit step is one 12-bit step, which fits a 12-bit grid but is **inferred** from a fit only. F32 colour is therefore not excluded by any run and not shown by one; the published module width is the better-supported reading, and a 12-bit readback (V12 test 1) is the direct test. Rounding of the stored 8-bit value is floor(256 c), clamped to 255 (established, simulator, `alpha` frames), not round(255 c).
 
 ## Summary
 
@@ -36,7 +38,7 @@ So: f32 is supported for host input, transform and depth. For colour the publish
 | Edge and tie rule | established (simulator) for centre sampling; unknown for ties | Triangles light pixels whose centre is inside; no stored frame has a centre on an edge; patent says one owner per shared subpixel | The edge-tie test in [raster.md](raster.md), on a V10 |
 | Colour and alpha interpolation | inferred | Perspective-correct, 12-bit modules; stored as floor(256 c); exact arithmetic unknown (1070 px residue) | Fit the three-vertex frames against patent forms; vendor simulator constants; capture |
 | Depth interpolation and store | inferred (interpolation); established (software expectation) for the word | Float, perspective-corrected, eye-linear; host reads 24-bit exponent/mantissa word; board rounding unknown | A depth-test frame, or a V10 clear/draw/readback at a depth that needs rounding |
-| Stencil | software expectation | One block carries function, reference, mask and three ops; stencil is 8 bits beside 24-bit depth; no arithmetic shown | V10 test of INCR/DECR at 255/0 and INVERT with masks |
+| Stencil | software expectation (layout corroborated by stream values) | One block carries function, reference, mask and three ops; stencil is 8 bits beside 24-bit depth; no arithmetic shown | V10 test of INCR/DECR at 255/0 and INVERT with masks |
 | Alpha test | established (simulator) for the comparisons; inferred for precision | Eight comparisons act as GL; reference is 12 bits, compared in 12-bit steps rather than divided by 4095 | A frame with alpha within 1/256 of the reference |
 | Blending arithmetic | inferred | 12 bits per component, 12-bit constant colour; AA frames fit source-over on all four bytes; rounding unknown | V10 blendtest readback with chosen values; blend diagnostic frames |
 | Logic ops | inferred | Bitwise over the whole 32-bit word, alpha included; selected by blend bit 17 with equation 5 in the diagnostics | Same frame fixed by the colour residue; a V10 XOR test |
@@ -82,6 +84,7 @@ So: f32 is supported for host input, transform and depth. For colour the publish
 ### Stencil
 
 - Grade: **software expectation**. Block 0x01f (word 0x0001041f, shadow word +0x7c2c) carries the mask in bits 15:8, reference in 7:0, function in 27:25 and operation codes KEEP 0, ZERO 1, REPLACE 2, INCR 3, DECR 4, INVERT 5 in bits 24:22 (stencil fail), 21:19 (depth fail) and 18:16 (depth pass), read from `__glOdyim_StencilFunc` (0xd95d830) and `__glOdyim_StencilOp` (0xd95da60); the write mask is block 0x052 bits 19:12, enable block 0x004 bit 15 ([libglcore-odyssey-reads.md](../../software/opengl/libglcore-odyssey-reads.md)). [tokens.md](tokens.md) still lists block 0x01f contents as unknown; the readings above supersede that row.
+- Corroboration (replay): every diagnostic stream sends block 0x01f as 0x0e000000 and 0x0e92ff00 around its clears. Under the layout above these are function ALWAYS (7), reference 0, mask 0x00 and 0xff, with KEEP and REPLACE on all three outcomes. The values fit the layout; no frame draws under a stencil test (block 0x004 bit 15 is set only on the clear states, 0x1b200).
 - Storage: stencil is 8 bits; depth and stencil share a 4-byte field (bytes 8 to 11 of the 16-byte pixel), division of the bits inferred ([measured.md](measured.md) section 8). A V10 readback of drawn stencil values passes.
 - Unknown: whether INCR and DECR saturate, as GL requires, and the order of the stencil and depth tests; no frame or measurement.
 - Settle: V10 test with INCR at 255, DECR at 0, INVERT under a partial mask.
@@ -96,6 +99,7 @@ So: f32 is supported for host input, transform and depth. For colour the publish
 ### Blending arithmetic
 
 - Width: **established (published)** blending at 12 bits per component, constants 12 bits ([11:0]); register layout is **software expectation** (block 0x021, equation codes 0 to 7, factor codes six bits; [BUZZ.h](BUZZ.h) section 4).
+- Constant colour: every diagnostic stream sends block 0x021 words 1 and 2 as zero, and every stream's post-filter block 0x03b as scale 1.0, bias 0 (replay of `__clog_*`). No frame exercises a non-zero constant colour. The antialiased frames send word 0 as 0x639, which is equation 0 with factor codes 0x18 and 0x39 (SRC_ALPHA, ONE_MINUS_SRC_ALPHA in the library's table), so the factor codes are corroborated for that pair.
 - Arithmetic: **inferred (simulator)**: the antialiased frames fit source alpha over destination on all four bytes with alpha equal to coverage. Rounding of the product, the 12-bit intermediate, and the constant-colour factors: **unknown**. No stored frame blends with a non-trivial constant colour, and the `blend` frame's colour residue taints its other panels.
 - Settle: the `blendtest` program in the IRIS repository, run on a V10 with chosen source and destination values and constant colours and read back with glReadPixels (needs agreement before a physical run); the AA frames already bound the 8-bit result.
 
@@ -128,10 +132,86 @@ So: f32 is supported for host input, transform and depth. For colour the publish
 - Aliased, **established (V10 measurement)**: widths 1 to 10, x- and y-major, stipples and polygon modes match pixel for pixel the IRIS model: diamond exit for thin lines, width replicated along the minor axis, square points ([measured.md](measured.md) section 2). The IRIS model's rule text is not held in this repository.
 - Aliased, **established (simulator)**: a width-one line lights the columns (rows) whose centre lies between the ends, the row holding y at the column centre, exact crossings to the lower pixel on the minor axis; a point lights floor(x), floor(y); end-pixel inclusion and minor-axis ties on y are untested. Whether this and the diamond-exit rule are the same rule is not shown here and should not be assumed; an end that lands exactly on a centre separates them.
 - Width encoding: **software expectation** 128 x width, truncated, 24 bits; aliased sizes rounded to integer, smoothed clamped (lines 0.5 to 10, points 0.5 to 2) (block 0x04a).
-- Antialiased: **inferred (simulator)**: coverage is a monotone curve G of exact pixel area (tabulated at 1/16 in [raster.md](raster.md)); line ends and oblique lines unfit. **Measured (V10)**: the line ends at its endpoint pixel at full coverage, and a width-1 line centred at y = 9.6 stores 219 and 42 of 255 in rows 9 and 10. Reading the simulator's table at the same areas (0.9 and 0.1) gives about 0.87 and 0.25, so the low-coverage tail disagrees (about 42 against about 64 of 255), unless the V10 values include a background blend not recorded. Treat the simulator's G as not confirmed for the board.
+- Antialiased: **inferred (simulator)**: coverage is a monotone curve G of exact pixel area (tabulated at 1/16 in [raster.md](raster.md)); line ends and oblique lines unfit. Replay (new): extending the strip past each end by 0.5 pixel cuts the mean error over the 89 edge pixels within 1.5 of an end from 8.86 to 1.83 steps of 204, and any extension from 0.5 to 1.25 stays at 1.83 to 1.92. That agrees with the V10 note below and replaces the earlier statement in [raster.md](raster.md) that extending the strip is worse; the tool's output is the current evidence. The cap shape is still unfit. **Measured (V10)**: the line ends at its endpoint pixel at full coverage, and a width-1 line centred at y = 9.6 stores 219 and 42 of 255 in rows 9 and 10. Reading the simulator's table at the same areas (0.9 and 0.1) gives about 0.87 and 0.25, so the low-coverage tail disagrees (about 42 against about 64 of 255), unless the V10 values include a background blend not recorded. Treat the simulator's G as not confirmed for the board.
 - Settle: repeat the V10 readbacks against a recorded background; reconcile the two aliased rules on an end that falls on a centre.
 
 ### Dither
 
-- Grade: **unknown**. Enable is block 0x004 bit 18 (established, `__glOdyim_Enable`). No stored frame sets it; the flat-colour frames fit floor(256 c + b) for b from 0 to 0.2, so they show nothing. The patent's "dither" is the LOD fraction, not colour.
+- Grade: **unknown**. Replay of every stream's block 0x004 writes: bit 18 is set only in the state 0x42200, written twice in every stream beside the clears, and the blend stream's one begin/end pair under it has no vertex. No drawn primitive is dithered, and the clear colour is zero. Enable is block 0x004 bit 18 (established, `__glOdyim_Enable`). No stored frame sets it; the flat-colour frames fit floor(256 c + b) for b from 0 to 0.2, so they show nothing. The patent's "dither" is the LOD fraction, not colour.
 - Settle: V10 low-intensity gradient into an 8-bit and a 4:4:4:4 or 5:5:5:1 window with GL_DITHER on and off, compared pixel by pixel for the pattern.
+
+## Replay results
+
+Run from a fresh clone with `root/` linked to the held RE root (`root/builds/odydiags-6.5.15`) and the pinned `retools` checked out, using only existing tools. Frame counts are pixels differing from the stored frame.
+
+| Run | Result |
+|---|---|
+| `odydiags_frame_check.py --survey` | Byte-identical to the stored survey run, [odydiags-raster-survey.txt](../../software/ucode/runs/odydiags-raster-survey.txt) (152 s). |
+| points, lines, triangle, alpha, large and small | 0 pixels, CRC matches `csumlist` and `csumlist.sml` in all eight. |
+| `checkr3d` small | 0 pixels, CRC 4bb39aca matches. Large: 76,795 pixels differ; with the texel index limited to 31, 29. |
+| `blend` | Large 12,598 pixels (CRC b415d70e against 3d3662c0); small 83. With `--blend-fit`: large 5015, small 31. |
+| `--logic` | Operations 0 to 5 (CLEAR, AND, AND_REVERSE, COPY, AND_INVERTED, NOOP): 25,896 pixels each, 0 differ. XOR 70 and OR 58 differ, all 128 explained by a source one step off. |
+| `odydiags_blend_fit.py panels` and `amplify` | Panel 0 and COPY 1070 differ; 1325 pixels over 3 steps, of which 1311 follow from the panel 0 residue. |
+| `odydiags_blend_fit.py fit` | Reproduces the table in [blend-residue-fit.md](blend-residue-fit.md): baseline 1070; best quantised variants 774, 735, 729; RGB plus one 12-bit low bit 556, 500 with alpha as 4096; none reaches 0. |
+| `odydiags_aa_fit.py` | Near-axis lines 4527 edge pixels, mean 0.41 steps, largest 4; 15-degree line 1367 pixels, mean 7.05, largest 26; size 1 points 49, mean 2.89; size 2 points 277, mean 2.35. |
+
+New small fits (an ad hoc script, not committed; it imports `odydiags_blend_fit.samples` and does the arithmetic on the 13,934 pixels of panel 0):
+
+| Fit | Pixels still different |
+|---|---|
+| exact perspective-correct colour, f64, floor(256 c) | 1070 |
+| the same arithmetic in f32 (plane form) | 1069 |
+| edge distances times a reciprocal area, 1/w bilerped, barycentrics corrected, in f32 (the form US 6,259,460 describes) | 1069 |
+| the same in f64 | 1070 |
+| weights floored to 12, 14, 16 bits, 12-bit vertex colours, then converted | 2321, 1676, 1539 |
+| f32 against f64 results | differ on 1 pixel |
+
+Line ends in the antialiased frames, extension of the strip past each end (mean error over 89 edge pixels, steps of 204): 0 gives 8.86, 0.25 gives 4.13, 0.5 gives 1.83, then 1.86, 1.92, 1.92, 1.92 at 0.625, 0.75, 1.0 and 1.25.
+
+Streams: block 0x004 is 0x3200, 0x7200, 0x2200, 0x22200, 0x23201 or 0x23202 for every drawn primitive; bit 18 appears only in 0x42200. Block 0x020 (depth function) is 1 (LESS) or 7 (ALWAYS) with the depth test enable (bit 16) clear on every drawn primitive.
+
+### What the replay settles
+
+| Question | Result | Grade after |
+|---|---|---|
+| Snap between 1/256 steps | Nothing new: only `checkr3d.sml` has vertices off the 1/256 grid, and the survey rows are reproduced exactly (truncate 1/256: 0; round 1/256: 5; truncate 1/128: 6) | unchanged: established (simulator), inferred (board) |
+| Colour and alpha interpolation arithmetic | f32 and f64 are indistinguishable on this frame (1069 against 1070); no form tried removes the 1070-pixel residue; 12-bit-quantised weights are worse | unchanged: unknown arithmetic; f32 not excluded |
+| Blend rounding and constant colour | No stream has a non-zero constant colour or a blend of 8-bit destination other than the AA frames | unchanged: unknown |
+| Logic operations | Reproduced exactly: 0 of 25,896 pixels in six panels, 128 of the other two explained | unchanged: inferred |
+| Alpha-test rounding | No frame has alpha within 1/256 of the reference other than 0.5 | unchanged: inferred for the comparison width |
+| Depth rounding | No drawn primitive has the depth test on | unchanged: unknown |
+| Texture filtering | The one textured frame uses TEXMODE4 0x13002a00, filter field 0 (nearest) | unchanged: unknown |
+| Dither | Only the begin/end with no vertex and the clears set bit 18 | unchanged: unknown |
+| Stencil word layout | Stream values 0x0e000000 and 0x0e92ff00 fit the library layout | software expectation, now with stream values that fit |
+| AA line ends | A strip extended by at least 0.5 pixel fits to 1.83 steps | unfit to inferred (cap extension of about half a pixel) |
+
+### Tool changes that would help, not built
+
+- `odydiags_blend_fit.py` has no f32 mode; the f32 fit above would be a `--precision f32` option on `fit`.
+- `odydiags_aa_fit.py` takes its line-end extensions from a fixed tuple; making them an option would let the cap shape be fit directly.
+- No frame can answer the remaining unknowns, so no tool change would; the diagnostics' stream set is fixed.
+
+## V12 test candidates
+
+The Octane2 in question has a V12. Nothing here has been run, and none of it is a register read: each test is a GL program with a pixel, depth or stencil readback (`glReadPixels`), or a diagnostic checksum. They are the cheapest ways to settle what no stored frame can. The same list is in [questions/README.md](../../questions/README.md).
+
+What may not transfer from the V10 measurements ([measured.md](measured.md)):
+
+- The V10 runs were on the 32 MB V10 (BUZZ type B, revision B.1 or B.2, 2 banks) under IRIX 6.5.22 with patch 5578, with an 8-byte frame buffer. A V12 is 128 MB, 4 banks, and the published V12 sample reads "buzz revision is 10", which this repository reads as type B, printed B.1; V12 boards in the published records are B.0, B.1 and B.2 ([board README](../board/README.md)). Whether B.0, B.1 and B.2 differ in arithmetic is unknown, so a result from one revision is not shown to hold for another.
+- The V12 offers 12-bit colour visuals and accumulation type 1 that the 32 MB V10 does not ([display README](../display/README.md)). Tests of colour width need them, and nothing about the 12-bit paths has been measured on any board.
+- The X server's default frame buffer is 16 bytes a pixel; the V10 runs set 8 bytes. The library takes different paths by frame-buffer size (the FRONT_AND_BACK clear, inferred in [measured.md](measured.md) section 11), so a V12 readback should record the frame-buffer setting.
+- The aliased-line and point match, GL_SUBPIXEL_BITS 3, the antialiased line values and the depth probe came from the V10. Transfer to a V12 is expected, since both are BUZZ type B, but it is not shown.
+
+| # | Unknown it settles | Program or diagnostic | Read back | Why the replay cannot |
+|---|---|---|---|---|
+| 1 | Colour and alpha interpolation arithmetic and width (f32 against 12-bit modules; the 1070-pixel residue) | One triangle with the vertices, 1/w and colours of blend panel 0, in a 12:12:12:12 window or pbuffer, flat shaded off; also one in 8:8:8:8 | `glReadPixels` RGBA `GL_UNSIGNED_SHORT` over the triangle, and `GL_UNSIGNED_BYTE` | Stored frames are 8-bit simulator output; a 12-bit readback shows the module output directly |
+| 2 | Snap quantum and rounding; edge and shared-edge ties | A thin quad whose right edge sweeps 0 to 1/8 pixel past a pixel centre in 1/256 steps; then the shared-edge XOR test of [raster.md](raster.md) on half-integer centres, four orders | Lit or unlit per pixel; XOR white, black, or ADD grey for holes and doubles | No held stream has off-grid vertices or centres on edges; the simulator is not the board |
+| 3 | Depth rounding, clear mapping, depth interpolation width | `glClearDepth` 0.3 and other values with bits below the 18th mantissa bit; a slanted triangle at depths between mantissa steps, perspective and orthographic | `glReadPixels` `GL_DEPTH_COMPONENT` as `GL_FLOAT` and `GL_UNSIGNED_INT` | No stored frame depth-tests |
+| 4 | Stencil INCR/DECR saturation, INVERT under a mask, stencil against depth ordering | 8 quads under INCR at 255, DECR at 0, INVERT with mask 0x0f, and fail/depth-fail/pass combinations | `GL_STENCIL_INDEX` | No frame draws under a stencil test |
+| 5 | Blend rounding, constant colour, alpha-test rounding | Grid of source alpha 0 to 255 by destination values; GL_CONSTANT_COLOR factors with 12-bit constants; alpha-tested quads at reference plus and minus 1/4096 | 8-bit and 12-bit readback; pass or fail per quad | Streams use zero constant colour and one alpha reference |
+| 6 | Fog evaluation (exp, exp2, linear), the cubic's precision | A quad swept over depth under each fog mode, fog colour distinct from the quad | 12-bit readback against the exact formula | No stored frame is fogged |
+| 7 | Texture filter weights and sub-texel width; LOD fraction; index at 1.0 | Two-texel ramp under GL_LINEAR at sub-texel offsets in 1/256 steps; a two-level mip at chosen LODs; GL_NEAREST at s = 1.0 under clamp | 12-bit readback | The only textured frame is nearest, with a 32-slice index case from two different simulator runs |
+| 8 | Dither | Low-intensity gradient into 8:8:8:8, 4:4:4:4 and 5:5:5:1 windows, GL_DITHER on and off | Per-pixel difference pattern | No frame sets bit 18 on a drawn primitive |
+| 9 | Antialiased line tail and ends | Width-1 lines at y = 9.6 and other fractions over a recorded background; an end on a pixel centre | 8-bit readback | The simulator curve and the V10 values disagree in the low-coverage tail |
+
+Tests 1, 5, 6 and 7 can share one harness in the 12-bit visual. Test 2 also answers whether the aliased-line "diamond exit" rule and the simulator's centre-sampling rule agree where an end lands on a centre. Each physical run needs James's agreement first (proposal naming the unknown, evidence tried, smallest test and precautions).
