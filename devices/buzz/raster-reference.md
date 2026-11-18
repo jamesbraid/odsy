@@ -28,6 +28,8 @@ Does the evidence support f32 for the interpolators? **Not as stated.** By inter
 
 A replay fit now bears on this directly (see "Replay results"): evaluating the perspective-correct colour in f32 leaves 1069 pixels of panel 0 different, in f64 1070, and the two forms disagree on 1 pixel of 13,934. The frame cannot tell f32 from exact arithmetic, and neither explains the residue.
 
+The iris VPro colour path (f32 weights, 12-bit colour iteration, floor store) leaves 1073 pixels; see "The iris VPro colour path".
+
 So: f32 is supported for host input, transform and depth. For colour the published width is 12 bits, and the one frame that exercises interpolation (`blend`) is not reproduced by any exact (infinite-precision) perspective-correct model: 1070 of 13,934 pixels in panel 0 stay one 8-bit step off, and quantised variants (12-bit vertex colours, 10 to 16-bit weights, 6 to 14-bit 1/w) do not close it. The residue behaves like a value below 0.5 reading 1/16 of an output step high; 1/16 of an 8-bit step is one 12-bit step, which fits a 12-bit grid but is **inferred** from a fit only. F32 colour is therefore not excluded by any run and not shown by one; the published module width is the better-supported reading, and a 12-bit readback (V12 test 1) is the direct test. Rounding of the stored 8-bit value is floor(256 c), clamped to 255 (established, simulator, `alpha` frames), not round(255 c).
 
 ## Summary
@@ -165,6 +167,28 @@ New small fits (an ad hoc script, not committed; it imports `odydiags_blend_fit.
 | the same in f64 | 1070 |
 | weights floored to 12, 14, 16 bits, 12-bit vertex colours, then converted | 2321, 1676, 1539 |
 | f32 against f64 results | differ on 1 pixel |
+| iris VPro colour path (below) | 1073 (per channel 722, 714, 747, 253) |
+
+### The iris VPro colour path
+
+`odydiags_blend_fit.py iris` reproduces the arithmetic of iris's VPro quad pipeline (github.com/techomancer/iris, main at 9bc81b0, `src/dev/odyssey/pipe`; the name `upstream/main` in the request is not a branch of the jamesbraid fork, whose `main` d4fea4a has the same `interp.rs`, `fixed.rs`, `raster.rs`, `shader.rs`, `setup.rs` and `backend.rs`) in iris's own operation order, with numpy single-precision scalars so each step rounds as the Rust does. The steps and where iris does them:
+
+1. Vertex position: 1/256 pixel integers, `raster.rs:26-28`, edge values by `raster.rs:330-343` and `357-359`, evaluated at the pixel centre; area and the swap to positive winding `raster.rs:303-316`. Input here is the builder's already-truncated position (every vertex sits on the 1/256 grid; largest distance 0.0).
+2. Vertex colour: `fixed::from_f64`, truncation to 12.12 (`fixed.rs:31-39`, `setup.rs:443`).
+3. Barycentrics: `l1 = f32(e1) x f32(1/area)`, `l2` likewise (`raster.rs:352`, `511-512`).
+4. Weights: `w1 = l1 iw1`, `w2 = l2 iw2`, `sum = ((1 - l1 - l2) iw0 + w1) + w2` in single (`interp.rs:54-56`, with `iw` the 1/w narrowed to single, `setup.rs:507`); `r = 32768 / sum` (`interp.rs:59`); weights `trunc(w r + 0.5)` clamped, the third vertex taking the remainder so the three sum to 32768 (`interp.rs:61-64`).
+5. Colour: each vertex value `>> 8` to 12.4, times its 0.15 weight, summed, `>> 7` to 12.12 (`fixed.rs:119-125`).
+6. Store without a blend: 12.12 clamped to 12 bits (`backend.rs:213-215`, `setup.rs:570`), `>> 4` to 8 (`backend.rs:424`), which is floor(256 c).
+7. Blend: 12-bit `mul12` and equation (`backend.rs:225-229`, `399-417`). Not reached by any blend frame: panel 0 has blending off, and panels 1 to 8 set block 0x004 bit 17 with equation 5, which iris routes to the logic operation instead (`backend.rs:301-307`). The 12-bit blend arithmetic is untested by these frames.
+
+| Frame | iris pixels differing | existing rebuild |
+|---|---|---|
+| blend panel 0 (13,934 pixels) | 1073 (722, 714, 747, 253 per channel) | 1070 (730, 727, 751, 244); f32 plane 1069; f32 patent form 1069 |
+| blend panels 0 to 8 | 1073, 181, 1645, 1825, 1073, 1575, 1447, 2223, 1742 | 1070, 177, 1623, 1792, 1070, 1549, 1390, 2204, 1723 |
+| blend whole frame, large / small | 12,784 / 80 | 12,598 / 83 |
+| points, lines, triangle, alpha, large and small; `checkr3d` small | 0 in all nine | 0 |
+
+The model does not change the exact frames, and does not reduce the residue: it is 3 pixels worse than f64 on panel 0. Where iris's order differs from the patent form: iris takes edge values as exact integers and converts them to single once, where the patent's edge distances are floats with a shared exponent of unknown width; iris quantises the three perspective weights to 15 bits with the third as the remainder, where the patent keeps two 32-bit floating-point corrected barycentrics; iris truncates twice, the vertex colour to 12.12 and then to 12.4, and the weighted sum to 12.12. These are 2^-15 to 2^-16 effects against the 2^-12 (one 12-bit step) residue, which is why they do not move the count by more than a few pixels. Log: [odydiags-blend-iris.txt](../../software/ucode/runs/odydiags-blend-iris.txt).
 
 Line ends in the antialiased frames, extension of the strip past each end (mean error over 89 edge pixels, steps of 204): 0 gives 8.86, 0.25 gives 4.13, 0.5 gives 1.83, then 1.86, 1.92, 1.92, 1.92 at 0.625, 0.75, 1.0 and 1.25.
 

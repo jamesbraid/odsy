@@ -1,0 +1,20 @@
+panel 0, 13934 pixels
+f64 exact, floor(256 c)                              1070
+f32 plane form, floor(256 c)                         1069
+f32 edge distances, area reciprocal (patent)         1069
+iris VPro (f32 weights, 12.12 colour, >> 16)         1073  per channel [722, 714, 747, 253]
+largest distance of a vertex from the 1/256 grid: 0.0
+
+whole frames, iris colour model (pixels differing from the stored frame; baseline in brackets):
+points    large        0  (0)
+points    small        0  (0)
+lines     large        0  (0)
+lines     small        0  (0)
+triangle  large        0  (0)
+triangle  small        0  (0)
+alpha     large        0  (0)
+alpha     small        0  (0)
+checkr3d  small        0  (0)
+blend     large    12784  (12598)  per panel [1073, 181, 1645, 1825, 1073, 1575, 1447, 2223, 1742]
+                                        baseline per panel [1070, 177, 1623, 1792, 1070, 1549, 1390, 2204, 1723]
+blend     small       80  (83)

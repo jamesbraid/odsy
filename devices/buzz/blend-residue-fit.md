@@ -55,6 +55,7 @@ minutes. `all` output from the run behind these numbers is in
 | 12-bit vertex colours, the weighted sum quantised, then to 8 bits: best | 774 (sum rounded up, then >> 4) | inferred |
 | weights held to 10 to 16 bits in the forms tried, plus 0, 0.5 or 1 low bit | 735 best of 1368 variants | inferred |
 | vertex 1/w with a 6 to 14 bit mantissa, three rounding modes, plus one low bit | 729 best | inferred |
+| iris VPro colour path (f32 weights, 12.12 colour, floor store; [raster-reference.md](raster-reference.md)) | 1073 | inferred |
 | red, green and blue plus one 12-bit low bit (1/16 of an output step), alpha unchanged, 1.0 as 4096 | 556 | inferred |
 | the same with the vertex colour 1.0 as 4095 | 782 | inferred |
 | the same with red, green and blue 1.0 as 4095 at the vertices and alpha 1.0 as 4096 | 500 | inferred |
