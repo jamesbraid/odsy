@@ -3,7 +3,7 @@
 # defs-gen 2
 # input sha256 72e8bdf05943687115c863f3767b4e280c6d81273fe34ee331e1f29355d27ae8
 [package]
-name = "hwdefs"
+name = "odsy-defs"
 version = "0.1.0"
 edition = "2021"
 publish = false
