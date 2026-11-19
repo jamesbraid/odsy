@@ -190,6 +190,19 @@ New small fits (an ad hoc script, not committed; it imports `odydiags_blend_fit.
 
 The model does not change the exact frames, and does not reduce the residue: it is 3 pixels worse than f64 on panel 0. Where iris's order differs from the patent form: iris takes edge values as exact integers and converts them to single once, where the patent's edge distances are floats with a shared exponent of unknown width; iris quantises the three perspective weights to 15 bits with the third as the remainder, where the patent keeps two 32-bit floating-point corrected barycentrics; iris truncates twice, the vertex colour to 12.12 and then to 12.4, and the weighted sum to 12.12. These are 2^-15 to 2^-16 effects against the 2^-12 (one 12-bit step) residue, which is why they do not move the count by more than a few pixels. Log: [odydiags-blend-iris.txt](../../software/ucode/runs/odydiags-blend-iris.txt).
 
+### The same frame through iris's own back end
+
+The table above is a NumPy transcription of iris's colour path. To check the transcription, the blend frame was also drawn through iris's VPro back end itself, `VproBack::draw`, from the fork branch `spike/board-crates` at commit 2ccd770fdf085a786a5592deaf1330f43e5fc6b2, on the CPU and on the GPU path (RTX 4090, Vulkan). The harness is local and not published. It takes the replay's window positions (already on the 1/256 grid), 1/w and vertex colours, converts them to clip-space vertices, and passes the block 0x004, 0x021 and 0x022 words and the scissor of each quad as the draw's state words. Quads are drawn as the triangles (0, 1, 2) and (0, 2, 3), as the fit script does. Coverage, the barycentric and weight arithmetic, the store and the logic operation are iris's own code; only the input vertices come from the replay. The triangle and alpha frames, which the odsy rules reproduce exactly, come out with 0 differing pixels as a check on the harness.
+
+| Frame | CPU | GPU | NumPy model above |
+|---|---|---|---|
+| blend panel 0 (13,934 pixels) | 1073 (722, 714, 747, 253 per channel) | 1073 | 1073 |
+| blend panels 0 to 8 | 1073, 181, 1645, 1825, 1073, 1575, 1447, 2223, 1742 | the same | the same |
+| blend whole frame, large / small | 12,784 / 80 | 12,784 / 80 | 12,784 / 80 |
+| triangle, alpha (large) | 0, 0 | 0, 0 | 0, 0 |
+
+The CPU and GPU colour planes of the large frame are byte-identical, and every count equals the NumPy model's, including the eight panels that go through iris's logic route. So the transcription was faithful, and iris's actual colour path leaves 1073 pixels on panel 0, three more than exact arithmetic (observed, on the iris model at 2ccd770fd; not a statement about the board). One input differs from the board's own words: the harness takes 1/w from the replay and iris re-derives it as 1/(1/q) in single precision, which changed no pixel here. Log: [odydiags-blend-iris-backend.txt](../../software/ucode/runs/odydiags-blend-iris-backend.txt).
+
 Line ends in the antialiased frames, extension of the strip past each end (mean error over 89 edge pixels, steps of 204): 0 gives 8.86, 0.25 gives 4.13, 0.5 gives 1.83, then 1.86, 1.92, 1.92, 1.92 at 0.625, 0.75, 1.0 and 1.25.
 
 Streams: block 0x004 is 0x3200, 0x7200, 0x2200, 0x22200, 0x23201 or 0x23202 for every drawn primitive; bit 18 appears only in 0x42200. Block 0x020 (depth function) is 1 (LESS) or 7 (ALWAYS) with the depth test enable (bit 16) clear on every drawn primitive.

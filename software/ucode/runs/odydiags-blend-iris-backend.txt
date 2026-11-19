@@ -1,0 +1,13 @@
+iris VPro back end (VproBack::draw), iris fork branch spike/board-crates, commit 2ccd770fdf085a786a5592deaf1330f43e5fc6b2
+inputs: the odsy replay's window-space triangles (positions on the 1/256 grid, 1/w, vertex colours, scissor, block 0x004, 0x021 and 0x022 words per primitive); quads as triangles (0,1,2), (0,2,3)
+pixels differing from the stored frame (rows flipped to the stored top-first order)
+
+                               CPU        GPU (RTX 4090, Vulkan, NVIDIA 615.71.10)   NumPy model
+blend large, panel 0           1073       1073                                       1073
+  per channel R, G, B, A       722, 714, 747, 253  (same on GPU)                       722, 714, 747, 253
+blend large, per panel         1073, 181, 1645, 1825, 1073, 1575, 1447, 2223, 1742    (same on GPU, same as the model)
+blend large, whole frame       12784      12784                                      12784
+blend small, whole frame       80         80                                         80
+triangle large                 0          0                                          0
+alpha large                    0          0                                          0
+CPU and GPU colour planes of the large blend frame are byte-identical.
