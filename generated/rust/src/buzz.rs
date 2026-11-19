@@ -1,7 +1,7 @@
 // generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe
+// input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17
 // VPro (Odyssey) "Buzz" graphics ASIC: command and image
 #![allow(dead_code)]
 
@@ -1188,10 +1188,11 @@ pub const CMD_PATH_SELECT: u32 = 0x10405; // established
 pub const CMD_POLYGON_MODE: u32 = 0x10415; // established
 pub const CMD_POLYGON_OFFSET: u32 = 0x10458; // established
 pub const CMD_POSTFILTER_SCALE_BIAS: u32 = 0x1083d; // established
-pub const CMD_POSTFILTER_WORD_0: u32 = 0x12030; // established
-pub const CMD_POSTFILTER_WORD_1: u32 = 0x12031; // established
-pub const CMD_POSTFILTER_WORD_2: u32 = 0x12032; // established
-pub const CMD_POSTFILTER_WORD_3: u32 = 0x12033; // established
+pub const CMD_POSTFILTER_SET_0: u32 = 0x12030; // established
+pub const CMD_POSTFILTER_SET_1: u32 = 0x12031; // established
+pub const CMD_POSTFILTER_SET_2: u32 = 0x12032; // established
+pub const CMD_POSTFILTER_SET_3: u32 = 0x12033; // established
+pub const CMD_PRECLIP_DEPTH_FLAGS: u32 = 0x10451; // established
 pub const CMD_PRIM_BEGIN: u32 = 0x14400; // established
 pub const CMD_PRIM_END: u32 = 0x14001; // established
 pub const CMD_RANGE_BLOCK: u32 = 0x10854; // established
@@ -1203,26 +1204,25 @@ pub const CMD_REGION_BLOCK_2: u32 = 0x13c2a; // established
 pub const CMD_REGION_BLOCK_3: u32 = 0x13c2b; // established
 pub const CMD_REGION_ONE_BLOCK: u32 = 0x13c38; // established
 pub const CMD_SCREEN_MASK: u32 = 0x1204b; // established
+pub const CMD_STENCIL_CONTROL: u32 = 0x1041f; // established
 pub const CMD_STIPPLE_MODE: u32 = 0x1043f; // established
 pub const CMD_STIPPLE_ROWS_HI: u32 = 0x13c4e; // established
 pub const CMD_STIPPLE_ROWS_LO: u32 = 0x13c4f; // established
 pub const CMD_WAIT: u32 = 0x10443; // established
 pub const CMD_WINDOW_DESC: u32 = 0x11017; // established
-pub const CMD_WORD_1041F: u32 = 0x1041f; // established
+pub const CMD_WINDOW_HEIGHT_STATE: u32 = 0x10456; // established
 pub const CMD_WORD_1044C: u32 = 0x1044c; // established
-pub const CMD_WORD_10451: u32 = 0x10451; // established
-pub const CMD_WORD_10456: u32 = 0x10456; // established
 pub const CMD_WORD_10457: u32 = 0x10457; // established
 pub const CMD_WORD_11847: u32 = 0x11847; // established
 pub const CMD_WORD_13C4D: u32 = 0x13c4d; // established
 pub const CMD_WRITE_MASKS: u32 = 0x10452; // established
 pub const INIT_DELAY_US: u32 = 0x7d0; // established
-pub const INIT_WORD_6B0: u64 = 0x6b000000000; // established
-pub const INIT_WORD_6B1: u64 = 0x6b100000100; // established
-pub const INIT_WORD_6B2: u64 = 0x6b200007dc0; // established
-pub const INIT_WORD_6B3: u64 = 0x6b300005e50; // established
-pub const INIT_WORD_7B5: u64 = 0x7b500000001; // established
-pub const INIT_WORD_7F0: u64 = 0x7f03b9aca00; // established
+pub const INIT_FIFO_BASE: u64 = 0x6b000000000; // established
+pub const INIT_FIFO_BYPASS: u64 = 0x7b500000001; // established
+pub const INIT_FIFO_HIGH_MARK: u64 = 0x6b200007dc0; // established
+pub const INIT_FIFO_LOW_MARK: u64 = 0x6b300005e50; // established
+pub const INIT_FIFO_SIZE_TILES: u64 = 0x6b100000100; // established
+pub const INIT_SYNC_TIMEOUT: u64 = 0x7f03b9aca00; // established
 pub const OP_COPY: u32 = 0x2031; // established
 pub const OP_COPY_WORDS: u32 = 0x8; // established
 pub const OP_POSTFILTER: u32 = 0x203b; // established
@@ -1268,7 +1268,7 @@ pub const SEQ_WORD_COLOUR_A_INDEX: u32 = 0x22008001; // established
 pub const SEQ_WORD_COLOUR_A_RGB: u32 = 0x22008000; // established
 pub const SEQ_WORD_COLOUR_B_INDEX: u32 = 0x23008003; // established
 pub const SEQ_WORD_COLOUR_B_RGB: u32 = 0x23008002; // established
-pub const SLOT15_WORD: u32 = 0xcf80a92f; // established
+pub const SLOT15_TEN_OPERAND_WORD: u32 = 0xcf80a92f; // established
 pub const SLOT16_ONE_OPERAND_WORD: u32 = 0xd080c433; // established
 pub const SLOT16_THREE_OPERAND_WORD: u32 = 0xd080cc34; // established
 pub const SLOT2_THREE_OPERAND_WORD: u32 = 0xc280cc1c; // established

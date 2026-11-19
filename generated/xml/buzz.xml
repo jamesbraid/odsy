@@ -2,7 +2,7 @@
 <!-- generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe -->
+<!-- input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17 -->
 <genxml unit="buzz" prefix="BUZZ" title='VPro (Odyssey) "Buzz" graphics ASIC: command and image' from="odsy binary analysis of the shipped GL library and kernel command senders">
   <doc>Command opcodes and the image, copy, pixel-mode, texture-level and sampler words of the Odyssey geometry and pixel engine's command stream.</doc>
   <enum name="fieldfmt">
@@ -335,10 +335,11 @@ The write header's word 7, and the COPY destination control. formerly HDR_W7.</d
   <constant name="CMD_POLYGON_MODE" value="0x10415" grade="established"/>
   <constant name="CMD_POLYGON_OFFSET" value="0x10458" grade="established"/>
   <constant name="CMD_POSTFILTER_SCALE_BIAS" value="0x1083d" grade="established"/>
-  <constant name="CMD_POSTFILTER_WORD_0" value="0x12030" grade="established"/>
-  <constant name="CMD_POSTFILTER_WORD_1" value="0x12031" grade="established"/>
-  <constant name="CMD_POSTFILTER_WORD_2" value="0x12032" grade="established"/>
-  <constant name="CMD_POSTFILTER_WORD_3" value="0x12033" grade="established"/>
+  <constant name="CMD_POSTFILTER_SET_0" value="0x12030" grade="established"/>
+  <constant name="CMD_POSTFILTER_SET_1" value="0x12031" grade="established"/>
+  <constant name="CMD_POSTFILTER_SET_2" value="0x12032" grade="established"/>
+  <constant name="CMD_POSTFILTER_SET_3" value="0x12033" grade="established"/>
+  <constant name="CMD_PRECLIP_DEPTH_FLAGS" value="0x10451" grade="established"/>
   <constant name="CMD_PRIM_BEGIN" value="0x14400" grade="established"/>
   <constant name="CMD_PRIM_END" value="0x14001" grade="established"/>
   <constant name="CMD_RANGE_BLOCK" value="0x10854" grade="established"/>
@@ -350,26 +351,25 @@ The write header's word 7, and the COPY destination control. formerly HDR_W7.</d
   <constant name="CMD_REGION_BLOCK_3" value="0x13c2b" grade="established"/>
   <constant name="CMD_REGION_ONE_BLOCK" value="0x13c38" grade="established"/>
   <constant name="CMD_SCREEN_MASK" value="0x1204b" grade="established"/>
+  <constant name="CMD_STENCIL_CONTROL" value="0x1041f" grade="established"/>
   <constant name="CMD_STIPPLE_MODE" value="0x1043f" grade="established"/>
   <constant name="CMD_STIPPLE_ROWS_HI" value="0x13c4e" grade="established"/>
   <constant name="CMD_STIPPLE_ROWS_LO" value="0x13c4f" grade="established"/>
   <constant name="CMD_WAIT" value="0x10443" grade="established"/>
   <constant name="CMD_WINDOW_DESC" value="0x11017" grade="established"/>
-  <constant name="CMD_WORD_1041F" value="0x1041f" grade="established"/>
+  <constant name="CMD_WINDOW_HEIGHT_STATE" value="0x10456" grade="established"/>
   <constant name="CMD_WORD_1044C" value="0x1044c" grade="established"/>
-  <constant name="CMD_WORD_10451" value="0x10451" grade="established"/>
-  <constant name="CMD_WORD_10456" value="0x10456" grade="established"/>
   <constant name="CMD_WORD_10457" value="0x10457" grade="established"/>
   <constant name="CMD_WORD_11847" value="0x11847" grade="established"/>
   <constant name="CMD_WORD_13C4D" value="0x13c4d" grade="established"/>
   <constant name="CMD_WRITE_MASKS" value="0x10452" grade="established"/>
   <constant name="INIT_DELAY_US" value="0x7d0" grade="established"/>
-  <constant name="INIT_WORD_6B0" value="0x6b000000000" grade="established"/>
-  <constant name="INIT_WORD_6B1" value="0x6b100000100" grade="established"/>
-  <constant name="INIT_WORD_6B2" value="0x6b200007dc0" grade="established"/>
-  <constant name="INIT_WORD_6B3" value="0x6b300005e50" grade="established"/>
-  <constant name="INIT_WORD_7B5" value="0x7b500000001" grade="established"/>
-  <constant name="INIT_WORD_7F0" value="0x7f03b9aca00" grade="established"/>
+  <constant name="INIT_FIFO_BASE" value="0x6b000000000" grade="established"/>
+  <constant name="INIT_FIFO_BYPASS" value="0x7b500000001" grade="established"/>
+  <constant name="INIT_FIFO_HIGH_MARK" value="0x6b200007dc0" grade="established"/>
+  <constant name="INIT_FIFO_LOW_MARK" value="0x6b300005e50" grade="established"/>
+  <constant name="INIT_FIFO_SIZE_TILES" value="0x6b100000100" grade="established"/>
+  <constant name="INIT_SYNC_TIMEOUT" value="0x7f03b9aca00" grade="established"/>
   <constant name="OP_COPY" value="0x2031" grade="established"/>
   <constant name="OP_COPY_WORDS" value="0x8" grade="established"/>
   <constant name="OP_POSTFILTER" value="0x203b" grade="established"/>
@@ -415,7 +415,7 @@ The write header's word 7, and the COPY destination control. formerly HDR_W7.</d
   <constant name="SEQ_WORD_COLOUR_A_RGB" value="0x22008000" grade="established"/>
   <constant name="SEQ_WORD_COLOUR_B_INDEX" value="0x23008003" grade="established"/>
   <constant name="SEQ_WORD_COLOUR_B_RGB" value="0x23008002" grade="established"/>
-  <constant name="SLOT15_WORD" value="0xcf80a92f" grade="established"/>
+  <constant name="SLOT15_TEN_OPERAND_WORD" value="0xcf80a92f" grade="established"/>
   <constant name="SLOT16_ONE_OPERAND_WORD" value="0xd080c433" grade="established"/>
   <constant name="SLOT16_THREE_OPERAND_WORD" value="0xd080cc34" grade="established"/>
   <constant name="SLOT2_THREE_OPERAND_WORD" value="0xc280cc1c" grade="established"/>

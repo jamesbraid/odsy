@@ -1,7 +1,7 @@
 <!-- generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe -->
+<!-- input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17 -->
 
 # VPro (Odyssey) "Buzz" graphics ASIC: command and image
 
@@ -389,10 +389,11 @@ Write header type code (bits 8:5).
 | `CMD_POLYGON_MODE` | 0x10415 | established | odsy binary analysis of the shipped GL library and kernel command senders | one operand: bits 3:2 front, 1:0 back (GL enum minus 0x1b00) |
 | `CMD_POLYGON_OFFSET` | 0x10458 | established | odsy binary analysis of the shipped GL library and kernel command senders | one operand: bits 24:0 signed depth offset |
 | `CMD_POSTFILTER_SCALE_BIAS` | 0x1083d | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M3. two operands, identity scale 0x1000 and bias 0 by default |
-| `CMD_POSTFILTER_WORD_0` | 0x12030 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_0 |
-| `CMD_POSTFILTER_WORD_1` | 0x12031 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_1 |
-| `CMD_POSTFILTER_WORD_2` | 0x12032 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_2 |
-| `CMD_POSTFILTER_WORD_3` | 0x12033 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_3 |
+| `CMD_POSTFILTER_SET_0` | 0x12030 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_0. the first of four sets of eight post-filter scale and bias words, sent when the context's mode word is 1 (see the post-filter notes in the unit header); why there are four sets is unknown |
+| `CMD_POSTFILTER_SET_1` | 0x12031 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_1. the second of the four sets (see CMD_POSTFILTER_SET_0) |
+| `CMD_POSTFILTER_SET_2` | 0x12032 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_2. the third of the four sets (see CMD_POSTFILTER_SET_0) |
+| `CMD_POSTFILTER_SET_3` | 0x12033 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_POSTFILTER_M1_3. the fourth of the four sets (see CMD_POSTFILTER_SET_0) |
+| `CMD_PRECLIP_DEPTH_FLAGS` | 0x10451 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_051. bit 0 and bit 1 are set from the vertex pre-clip class and a reversed depth range (roles inferred); one operand |
 | `CMD_PRIM_BEGIN` | 0x14400 | established | odsy binary analysis of the shipped GL library and kernel command senders | bit 14 set, id 0, one operand: the primitive type |
 | `CMD_PRIM_END` | 0x14001 | established | odsy binary analysis of the shipped GL library and kernel command senders | no operand |
 | `CMD_RANGE_BLOCK` | 0x10854 | established | odsy binary analysis of the shipped GL library and kernel command senders | word; two operands. The operands sent at start-up are the pair below; the reading as the bounds of a range is inferred from the values alone |
@@ -404,26 +405,25 @@ Write header type code (bits 8:5).
 | `CMD_REGION_BLOCK_3` | 0x13c2b | established | odsy binary analysis of the shipped GL library and kernel command senders | sixteen operands |
 | `CMD_REGION_ONE_BLOCK` | 0x13c38 | established | odsy binary analysis of the shipped GL library and kernel command senders | sixteen operands |
 | `CMD_SCREEN_MASK` | 0x1204b | established | odsy binary analysis of the shipped GL library and kernel command senders | word; eight operands: four min/max pairs, x in 23:12 and y in 11:0, role inferred |
+| `CMD_STENCIL_CONTROL` | 0x1041f | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_01F. stencil control: mask 15:8, reference 7:0, function 27:25, fail, depth-fail and pass operations in 24:22, 21:19 and 18:16 (software expectation, see Stencil in raster-reference.md); one operand |
 | `CMD_STIPPLE_MODE` | 0x1043f | established | odsy binary analysis of the shipped GL library and kernel command senders | word; the operand's meaning is unknown |
 | `CMD_STIPPLE_ROWS_HI` | 0x13c4e | established | odsy binary analysis of the shipped GL library and kernel command senders | sixteen operands: rows 31 down to 16 of the 32 by 32 polygon stipple |
 | `CMD_STIPPLE_ROWS_LO` | 0x13c4f | established | odsy binary analysis of the shipped GL library and kernel command senders | sixteen operands: rows 15 down to 0 |
 | `CMD_WAIT` | 0x10443 | established | odsy binary analysis of the shipped GL library and kernel command senders | one operand, role inferred |
 | `CMD_WINDOW_DESC` | 0x11017 | established | odsy binary analysis of the shipped GL library and kernel command senders | four operands, role inferred |
-| `CMD_WORD_1041F` | 0x1041f | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_01F. one operand |
+| `CMD_WINDOW_HEIGHT_STATE` | 0x10456 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_056. one operand: bits 11:0 take the context window height (the library rewrites them when the window size changes and clears them for bitmap draws; role inferred), the other bits are unknown |
 | `CMD_WORD_1044C` | 0x1044c | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_04C. one operand |
-| `CMD_WORD_10451` | 0x10451 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_051. one operand: bit 0 and bit 1 are set from vertex pre-clip class and a reversed depth range (roles inferred) |
-| `CMD_WORD_10456` | 0x10456 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_056. one operand |
 | `CMD_WORD_10457` | 0x10457 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_057. one operand |
 | `CMD_WORD_11847` | 0x11847 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_047. six operands, only zeros are ever sent |
 | `CMD_WORD_13C4D` | 0x13c4d | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly CMD_BLK_04D. sixteen operands |
 | `CMD_WRITE_MASKS` | 0x10452 | established | odsy binary analysis of the shipped GL library and kernel command senders | one operand: index 11:0, stencil 19:12, RGBA enables 23:20, depth 24 |
 | `INIT_DELAY_US` | 0x7d0 | established | odsy binary analysis of the shipped GL library and kernel command senders |  |
-| `INIT_WORD_6B0` | 0x6b000000000 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B0. value 0 |
-| `INIT_WORD_6B1` | 0x6b100000100 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B1. value 256 |
-| `INIT_WORD_6B2` | 0x6b200007dc0 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B2. value 32192 |
-| `INIT_WORD_6B3` | 0x6b300005e50 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B3. value 24144 |
-| `INIT_WORD_7B5` | 0x7b500000001 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_7B5. value 1 |
-| `INIT_WORD_7F0` | 0x7f03b9aca00 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_7F0 |
+| `INIT_FIFO_BASE` | 0x6b000000000 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B0. value 0; role inferred as the command FIFO base (board/interrupts-fifo-reset.md) |
+| `INIT_FIFO_BYPASS` | 0x7b500000001 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_7B5. value 1; role inferred as a bypass switch from the value alone, unknown whether it is |
+| `INIT_FIFO_HIGH_MARK` | 0x6b200007dc0 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B2. value 32192; role inferred as the high-water mark, 32,768 minus 576 |
+| `INIT_FIFO_LOW_MARK` | 0x6b300005e50 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B3. value 24144; role inferred as the low-water mark, three quarters of the high mark |
+| `INIT_FIFO_SIZE_TILES` | 0x6b100000100 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_6B1. value 256; role inferred as the FIFO size in 128-word tiles (32,768 words) |
+| `INIT_SYNC_TIMEOUT` | 0x7f03b9aca00 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly INIT_DW_7F0. value 10^9; role inferred as a sync timeout in board clocks that raises flag bit 1 |
 | `OP_COPY` | 0x2031 | established | odsy binary analysis of the shipped GL library and kernel command senders |  |
 | `OP_COPY_WORDS` | 0x8 | established | odsy binary analysis of the shipped GL library and kernel command senders | operand count of the COPY command, always sent with eight operands |
 | `OP_POSTFILTER` | 0x203b | established | odsy binary analysis of the shipped GL library and kernel command senders |  |
@@ -469,7 +469,7 @@ Write header type code (bits 8:5).
 | `SEQ_WORD_COLOUR_A_RGB` | 0x22008000 | established | odsy binary analysis of the shipped GL library and kernel command senders |  |
 | `SEQ_WORD_COLOUR_B_INDEX` | 0x23008003 | established | odsy binary analysis of the shipped GL library and kernel command senders |  |
 | `SEQ_WORD_COLOUR_B_RGB` | 0x23008002 | established | odsy binary analysis of the shipped GL library and kernel command senders |  |
-| `SLOT15_WORD` | 0xcf80a92f | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly SLOT15_WORD_OP12F |
+| `SLOT15_TEN_OPERAND_WORD` | 0xcf80a92f | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly SLOT15_WORD_OP12F. opcode 0x12f, attribute slot 15, ten operands: the record that leads a pixel-copy rectangle (pixel-paths.md) |
 | `SLOT16_ONE_OPERAND_WORD` | 0xd080c433 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly SLOT16_WORD_OP33. opcode 0x33, attribute slot 16, one operand |
 | `SLOT16_THREE_OPERAND_WORD` | 0xd080cc34 | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly SLOT16_WORD_OP34. opcode 0x34, attribute slot 16, three operands |
 | `SLOT2_THREE_OPERAND_WORD` | 0xc280cc1c | established | odsy binary analysis of the shipped GL library and kernel command senders | formerly SLOT2_WORD. opcode 0x1c, attribute slot 2, three operands |

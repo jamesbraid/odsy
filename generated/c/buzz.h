@@ -1,7 +1,7 @@
 /* generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
 /* defs-gen 2 */
-/* input sha256 9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe */
+/* input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17 */
 /* VPro (Odyssey) "Buzz" graphics ASIC: command and image */
 #ifndef BUZZ_GEN_H
 #define BUZZ_GEN_H
@@ -447,10 +447,11 @@
 #define BUZZ_CMD_POLYGON_MODE                        0x10415u /* established */
 #define BUZZ_CMD_POLYGON_OFFSET                      0x10458u /* established */
 #define BUZZ_CMD_POSTFILTER_SCALE_BIAS               0x1083du /* established */
-#define BUZZ_CMD_POSTFILTER_WORD_0                   0x12030u /* established */
-#define BUZZ_CMD_POSTFILTER_WORD_1                   0x12031u /* established */
-#define BUZZ_CMD_POSTFILTER_WORD_2                   0x12032u /* established */
-#define BUZZ_CMD_POSTFILTER_WORD_3                   0x12033u /* established */
+#define BUZZ_CMD_POSTFILTER_SET_0                    0x12030u /* established */
+#define BUZZ_CMD_POSTFILTER_SET_1                    0x12031u /* established */
+#define BUZZ_CMD_POSTFILTER_SET_2                    0x12032u /* established */
+#define BUZZ_CMD_POSTFILTER_SET_3                    0x12033u /* established */
+#define BUZZ_CMD_PRECLIP_DEPTH_FLAGS                 0x10451u /* established */
 #define BUZZ_CMD_PRIM_BEGIN                          0x14400u /* established */
 #define BUZZ_CMD_PRIM_END                            0x14001u /* established */
 #define BUZZ_CMD_RANGE_BLOCK                         0x10854u /* established */
@@ -462,26 +463,25 @@
 #define BUZZ_CMD_REGION_BLOCK_3                      0x13c2bu /* established */
 #define BUZZ_CMD_REGION_ONE_BLOCK                    0x13c38u /* established */
 #define BUZZ_CMD_SCREEN_MASK                         0x1204bu /* established */
+#define BUZZ_CMD_STENCIL_CONTROL                     0x1041fu /* established */
 #define BUZZ_CMD_STIPPLE_MODE                        0x1043fu /* established */
 #define BUZZ_CMD_STIPPLE_ROWS_HI                     0x13c4eu /* established */
 #define BUZZ_CMD_STIPPLE_ROWS_LO                     0x13c4fu /* established */
 #define BUZZ_CMD_WAIT                                0x10443u /* established */
 #define BUZZ_CMD_WINDOW_DESC                         0x11017u /* established */
-#define BUZZ_CMD_WORD_1041F                          0x1041fu /* established */
+#define BUZZ_CMD_WINDOW_HEIGHT_STATE                 0x10456u /* established */
 #define BUZZ_CMD_WORD_1044C                          0x1044cu /* established */
-#define BUZZ_CMD_WORD_10451                          0x10451u /* established */
-#define BUZZ_CMD_WORD_10456                          0x10456u /* established */
 #define BUZZ_CMD_WORD_10457                          0x10457u /* established */
 #define BUZZ_CMD_WORD_11847                          0x11847u /* established */
 #define BUZZ_CMD_WORD_13C4D                          0x13c4du /* established */
 #define BUZZ_CMD_WRITE_MASKS                         0x10452u /* established */
 #define BUZZ_INIT_DELAY_US                           0x7d0u /* established */
-#define BUZZ_INIT_WORD_6B0                           0x6b000000000ull /* established */
-#define BUZZ_INIT_WORD_6B1                           0x6b100000100ull /* established */
-#define BUZZ_INIT_WORD_6B2                           0x6b200007dc0ull /* established */
-#define BUZZ_INIT_WORD_6B3                           0x6b300005e50ull /* established */
-#define BUZZ_INIT_WORD_7B5                           0x7b500000001ull /* established */
-#define BUZZ_INIT_WORD_7F0                           0x7f03b9aca00ull /* established */
+#define BUZZ_INIT_FIFO_BASE                          0x6b000000000ull /* established */
+#define BUZZ_INIT_FIFO_BYPASS                        0x7b500000001ull /* established */
+#define BUZZ_INIT_FIFO_HIGH_MARK                     0x6b200007dc0ull /* established */
+#define BUZZ_INIT_FIFO_LOW_MARK                      0x6b300005e50ull /* established */
+#define BUZZ_INIT_FIFO_SIZE_TILES                    0x6b100000100ull /* established */
+#define BUZZ_INIT_SYNC_TIMEOUT                       0x7f03b9aca00ull /* established */
 #define BUZZ_OP_COPY                                 0x2031u /* established */
 #define BUZZ_OP_COPY_WORDS                           0x8u /* established */
 #define BUZZ_OP_POSTFILTER                           0x203bu /* established */
@@ -527,7 +527,7 @@
 #define BUZZ_SEQ_WORD_COLOUR_A_RGB                   0x22008000u /* established */
 #define BUZZ_SEQ_WORD_COLOUR_B_INDEX                 0x23008003u /* established */
 #define BUZZ_SEQ_WORD_COLOUR_B_RGB                   0x23008002u /* established */
-#define BUZZ_SLOT15_WORD                             0xcf80a92fu /* established */
+#define BUZZ_SLOT15_TEN_OPERAND_WORD                 0xcf80a92fu /* established */
 #define BUZZ_SLOT16_ONE_OPERAND_WORD                 0xd080c433u /* established */
 #define BUZZ_SLOT16_THREE_OPERAND_WORD               0xd080cc34u /* established */
 #define BUZZ_SLOT2_THREE_OPERAND_WORD                0xc280cc1cu /* established */

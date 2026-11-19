@@ -1,7 +1,7 @@
 {
  "license": "BSD-3-Clause",
  "generator": "defs-gen 2",
- "input_sha256": "9212b1606db82cebfd4681c259fb3ac512901bc5b768a8ef4e3706b473697ffe",
+ "input_sha256": "942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17",
  "schema": "defs-flat/1",
  "source": "devices/buzz/registers.toml",
  "profile": "public",
@@ -1741,7 +1741,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_WORD_0",
+   "name": "CMD_POSTFILTER_SET_0",
    "value": 73776,
    "count": 1,
    "grade": "established",
@@ -1750,7 +1750,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_WORD_1",
+   "name": "CMD_POSTFILTER_SET_1",
    "value": 73777,
    "count": 1,
    "grade": "established",
@@ -1759,7 +1759,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_WORD_2",
+   "name": "CMD_POSTFILTER_SET_2",
    "value": 73778,
    "count": 1,
    "grade": "established",
@@ -1768,8 +1768,17 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_POSTFILTER_WORD_3",
+   "name": "CMD_POSTFILTER_SET_3",
    "value": 73779,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "CMD_PRECLIP_DEPTH_FLAGS",
+   "value": 66641,
    "count": 1,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -1876,6 +1885,15 @@
   {
    "unit": "buzz",
    "kind": "constant",
+   "name": "CMD_STENCIL_CONTROL",
+   "value": 66591,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
    "name": "CMD_STIPPLE_MODE",
    "value": 66623,
    "count": 1,
@@ -1921,8 +1939,8 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "CMD_WORD_1041F",
-   "value": 66591,
+   "name": "CMD_WINDOW_HEIGHT_STATE",
+   "value": 66646,
    "count": 1,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -1932,24 +1950,6 @@
    "kind": "constant",
    "name": "CMD_WORD_1044C",
    "value": 66636,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_WORD_10451",
-   "value": 66641,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "CMD_WORD_10456",
-   "value": 66646,
    "count": 1,
    "grade": "established",
    "from": "odsy binary analysis of the shipped GL library and kernel command senders"
@@ -2002,7 +2002,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_WORD_6B0",
+   "name": "INIT_FIFO_BASE",
    "value": 7352984010752,
    "count": 1,
    "grade": "established",
@@ -2011,34 +2011,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_WORD_6B1",
-   "value": 7357278978304,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "INIT_WORD_6B2",
-   "value": 7361573977536,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "INIT_WORD_6B3",
-   "value": 7365868936784,
-   "count": 1,
-   "grade": "established",
-   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
-  },
-  {
-   "unit": "buzz",
-   "kind": "constant",
-   "name": "INIT_WORD_7B5",
+   "name": "INIT_FIFO_BYPASS",
    "value": 8473970475009,
    "count": 1,
    "grade": "established",
@@ -2047,7 +2020,34 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "INIT_WORD_7F0",
+   "name": "INIT_FIFO_HIGH_MARK",
+   "value": 7361573977536,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "INIT_FIFO_LOW_MARK",
+   "value": 7365868936784,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "INIT_FIFO_SIZE_TILES",
+   "value": 7357278978304,
+   "count": 1,
+   "grade": "established",
+   "from": "odsy binary analysis of the shipped GL library and kernel command senders"
+  },
+  {
+   "unit": "buzz",
+   "kind": "constant",
+   "name": "INIT_SYNC_TIMEOUT",
    "value": 8728373545472,
    "count": 1,
    "grade": "established",
@@ -2461,7 +2461,7 @@
   {
    "unit": "buzz",
    "kind": "constant",
-   "name": "SLOT15_WORD",
+   "name": "SLOT15_TEN_OPERAND_WORD",
    "value": 3481315631,
    "count": 1,
    "grade": "established",

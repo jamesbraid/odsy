@@ -438,8 +438,7 @@ CLASS0_ID_DATA = { value = 0x341, grade = "established" }
 CLASS0_WRITE_ADDR = { value = 0x740, grade = "established" }
 CLASS0_WRITE_DATA = { value = 0x741, grade = "established" }
 CMD_ALPHA_TEST = { value = 0x1041e, grade = "established", doc = "see ALPHA_TEST above" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_BLK_01F.
-CMD_WORD_1041F = { value = 0x1041f, grade = "established", doc = "formerly CMD_BLK_01F. one operand" }
+CMD_STENCIL_CONTROL = { value = 0x1041f, grade = "established", doc = "formerly CMD_BLK_01F. stencil control: mask 15:8, reference 7:0, function 27:25, fail, depth-fail and pass operations in 24:22, 21:19 and 18:16 (software expectation, see Stencil in raster-reference.md); one operand" }
 CMD_IMAGE_CHAIN_SETUP = { value = 0x10842, grade = "established", doc = "formerly CMD_BLK_042. two operands, image-chain set-up" }
 # UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_BLK_047.
 CMD_WORD_11847 = { value = 0x11847, grade = "established", doc = "formerly CMD_BLK_047. six operands, only zeros are ever sent" }
@@ -447,10 +446,8 @@ CMD_WORD_11847 = { value = 0x11847, grade = "established", doc = "formerly CMD_B
 CMD_WORD_1044C = { value = 0x1044c, grade = "established", doc = "formerly CMD_BLK_04C. one operand" }
 # UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_BLK_04D.
 CMD_WORD_13C4D = { value = 0x13c4d, grade = "established", doc = "formerly CMD_BLK_04D. sixteen operands" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_BLK_051.
-CMD_WORD_10451 = { value = 0x10451, grade = "established", doc = "formerly CMD_BLK_051. one operand: bit 0 and bit 1 are set from vertex pre-clip class and a reversed depth range (roles inferred)" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_BLK_056.
-CMD_WORD_10456 = { value = 0x10456, grade = "established", doc = "formerly CMD_BLK_056. one operand" }
+CMD_PRECLIP_DEPTH_FLAGS = { value = 0x10451, grade = "established", doc = "formerly CMD_BLK_051. bit 0 and bit 1 are set from the vertex pre-clip class and a reversed depth range (roles inferred); one operand" }
+CMD_WINDOW_HEIGHT_STATE = { value = 0x10456, grade = "established", doc = "formerly CMD_BLK_056. one operand: bits 11:0 take the context window height (the library rewrites them when the window size changes and clears them for bitmap draws; role inferred), the other bits are unknown" }
 # UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_BLK_057.
 CMD_WORD_10457 = { value = 0x10457, grade = "established", doc = "formerly CMD_BLK_057. one operand" }
 CMD_BUFFER_SELECT = { value = 0x10424, grade = "established", doc = "one operand, role inferred as the draw-buffer select" }
@@ -472,14 +469,10 @@ CMD_PAD = { value = 0x10046, grade = "established", doc = "no operand, role infe
 CMD_PATH_SELECT = { value = 0x10405, grade = "established", doc = "one operand: clip planes, texture target, colour count" }
 CMD_POLYGON_MODE = { value = 0x10415, grade = "established", doc = "one operand: bits 3:2 front, 1:0 back (GL enum minus 0x1b00)" }
 CMD_POLYGON_OFFSET = { value = 0x10458, grade = "established", doc = "one operand: bits 24:0 signed depth offset" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_POSTFILTER_M1_0.
-CMD_POSTFILTER_WORD_0 = { value = 0x12030, grade = "established", doc = "formerly CMD_POSTFILTER_M1_0" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_POSTFILTER_M1_1.
-CMD_POSTFILTER_WORD_1 = { value = 0x12031, grade = "established", doc = "formerly CMD_POSTFILTER_M1_1" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_POSTFILTER_M1_2.
-CMD_POSTFILTER_WORD_2 = { value = 0x12032, grade = "established", doc = "formerly CMD_POSTFILTER_M1_2" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name CMD_POSTFILTER_M1_3.
-CMD_POSTFILTER_WORD_3 = { value = 0x12033, grade = "established", doc = "formerly CMD_POSTFILTER_M1_3" }
+CMD_POSTFILTER_SET_0 = { value = 0x12030, grade = "established", doc = "formerly CMD_POSTFILTER_M1_0. the first of four sets of eight post-filter scale and bias words, sent when the context's mode word is 1 (see the post-filter notes in the unit header); why there are four sets is unknown" }
+CMD_POSTFILTER_SET_1 = { value = 0x12031, grade = "established", doc = "formerly CMD_POSTFILTER_M1_1. the second of the four sets (see CMD_POSTFILTER_SET_0)" }
+CMD_POSTFILTER_SET_2 = { value = 0x12032, grade = "established", doc = "formerly CMD_POSTFILTER_M1_2. the third of the four sets (see CMD_POSTFILTER_SET_0)" }
+CMD_POSTFILTER_SET_3 = { value = 0x12033, grade = "established", doc = "formerly CMD_POSTFILTER_M1_3. the fourth of the four sets (see CMD_POSTFILTER_SET_0)" }
 CMD_POSTFILTER_SCALE_BIAS = { value = 0x1083d, grade = "established", doc = "formerly CMD_POSTFILTER_M3. two operands, identity scale 0x1000 and bias 0 by default" }
 CMD_PRIM_BEGIN = { value = 0x14400, grade = "established", doc = "bit 14 set, id 0, one operand: the primitive type" }
 CMD_PRIM_END = { value = 0x14001, grade = "established", doc = "no operand" }
@@ -499,18 +492,12 @@ CMD_WAIT = { value = 0x10443, grade = "established", doc = "one operand, role in
 CMD_WINDOW_DESC = { value = 0x11017, grade = "established", doc = "four operands, role inferred" }
 CMD_WRITE_MASKS = { value = 0x10452, grade = "established", doc = "one operand: index 11:0, stencil 19:12, RGBA enables 23:20, depth 24" }
 INIT_DELAY_US = { value = 0x7d0, grade = "established" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name INIT_DW_6B0.
-INIT_WORD_6B0 = { value = 0x6b000000000, grade = "established", doc = "formerly INIT_DW_6B0. value 0" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name INIT_DW_6B1.
-INIT_WORD_6B1 = { value = 0x6b100000100, grade = "established", doc = "formerly INIT_DW_6B1. value 256" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name INIT_DW_6B2.
-INIT_WORD_6B2 = { value = 0x6b200007dc0, grade = "established", doc = "formerly INIT_DW_6B2. value 32192" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name INIT_DW_6B3.
-INIT_WORD_6B3 = { value = 0x6b300005e50, grade = "established", doc = "formerly INIT_DW_6B3. value 24144" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name INIT_DW_7B5.
-INIT_WORD_7B5 = { value = 0x7b500000001, grade = "established", doc = "formerly INIT_DW_7B5. value 1" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name INIT_DW_7F0.
-INIT_WORD_7F0 = { value = 0x7f03b9aca00, grade = "established", doc = "formerly INIT_DW_7F0" }
+INIT_FIFO_BASE = { value = 0x6b000000000, grade = "established", doc = "formerly INIT_DW_6B0. value 0; role inferred as the command FIFO base (board/interrupts-fifo-reset.md)" }
+INIT_FIFO_SIZE_TILES = { value = 0x6b100000100, grade = "established", doc = "formerly INIT_DW_6B1. value 256; role inferred as the FIFO size in 128-word tiles (32,768 words)" }
+INIT_FIFO_HIGH_MARK = { value = 0x6b200007dc0, grade = "established", doc = "formerly INIT_DW_6B2. value 32192; role inferred as the high-water mark, 32,768 minus 576" }
+INIT_FIFO_LOW_MARK = { value = 0x6b300005e50, grade = "established", doc = "formerly INIT_DW_6B3. value 24144; role inferred as the low-water mark, three quarters of the high mark" }
+INIT_FIFO_BYPASS = { value = 0x7b500000001, grade = "established", doc = "formerly INIT_DW_7B5. value 1; role inferred as a bypass switch from the value alone, unknown whether it is" }
+INIT_SYNC_TIMEOUT = { value = 0x7f03b9aca00, grade = "established", doc = "formerly INIT_DW_7F0. value 10^9; role inferred as a sync timeout in board clocks that raises flag bit 1" }
 OP_COPY = { value = 0x2031, grade = "established" }
 OP_POSTFILTER = { value = 0x203b, grade = "established" }
 PF_ONE = { value = 0x1000, grade = "established" }
@@ -550,8 +537,7 @@ SEQ_WORD_COLOUR_A_INDEX = { value = 0x22008001, grade = "established" }
 SEQ_WORD_COLOUR_A_RGB = { value = 0x22008000, grade = "established" }
 SEQ_WORD_COLOUR_B_INDEX = { value = 0x23008003, grade = "established" }
 SEQ_WORD_COLOUR_B_RGB = { value = 0x23008002, grade = "established" }
-# UNSURE: positional name, the TOML does not say what this command or word does; old name SLOT15_WORD_OP12F.
-SLOT15_WORD = { value = 0xcf80a92f, grade = "established", doc = "formerly SLOT15_WORD_OP12F" }
+SLOT15_TEN_OPERAND_WORD = { value = 0xcf80a92f, grade = "established", doc = "formerly SLOT15_WORD_OP12F. opcode 0x12f, attribute slot 15, ten operands: the record that leads a pixel-copy rectangle (pixel-paths.md)" }
 SLOT16_ONE_OPERAND_WORD = { value = 0xd080c433, grade = "established", doc = "formerly SLOT16_WORD_OP33. opcode 0x33, attribute slot 16, one operand" }
 SLOT16_THREE_OPERAND_WORD = { value = 0xd080cc34, grade = "established", doc = "formerly SLOT16_WORD_OP34. opcode 0x34, attribute slot 16, three operands" }
 SLOT2_THREE_OPERAND_WORD = { value = 0xc280cc1c, grade = "established", doc = "formerly SLOT2_WORD. opcode 0x1c, attribute slot 2, three operands" }
