@@ -94,6 +94,12 @@
  *   23    2    -          0x964e00  0x964       7     0x00  0
  * (Table B repeats ids 0-14 of table A unchanged; ids 32-36 follow in
  * both with another layout: {0x3c00, 0xa1..0xc3}.) established.
+ * Earlier releases: the X module's two tables of IRIX 6.5.8 and 6.5.14
+ * (ids 0 to 31 compared word for word with 6.5.30m) differ only in the
+ * group of ids 4, 14 and 15. 6.5.8 has group 19 (0x4b5130, 0x4b5f31,
+ * 0x521131 and, in table B, 0x965131); 6.5.14 and 6.5.30m have 16 as
+ * listed. No release sets a bit in 31:25. established (tables read in
+ * full).
  *
  * Bits 8:4: colour-map group. odsyChangeDIDCmap rewrites bits 8:4 for
  * ids below 32 and bits 7:3 otherwise. Group 26 (0x1a) appears on every
@@ -167,7 +173,12 @@
  * unknown: bits 31:25. The OpenBSD driver sets two of them (bits 31 and
  * 28 of 0x905215a6, the word it writes to all 32 entries) and no
  * IRIX 6.5.30 word has either set; no named field covers them, so
- * their effect is not given by any software read. */
+ * their effect is not given by any software read. The same holds for
+ * 6.5.8 and 6.5.14: odsyInitDBE builds the word with the same masks
+ * (0xfe001fff, 0x4b5e00, 0xfffffe00) from a stack word it never stores
+ * to, and the display-mode request passes bits 31:25 through, so no
+ * release assigns them. established (the word build and the header build
+ * read in 6.5.8 and 6.5.14). */
 
 /* ===================================================================
  * 3. Narrow TrueColor visuals: how pixels are stored and shown

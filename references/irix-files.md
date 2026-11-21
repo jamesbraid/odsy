@@ -169,6 +169,15 @@ the IP35 (Origin 350) `odyssey.a` and `libGLcore.so` in 6.5.14. 6.5.0 to 6.5.7 h
 Types have to come from headers, the ucode and the RE notes. 6.5.30 is the latest build;
 6.5.8 is the earliest VPro build and is only useful for diffing.
 
+### Earlier releases read (2026-11-21)
+
+From the retail `Installation Tools and Overlays` and `Overlays` disc images of each release (SGI volume header, EFS, `inst` products; `tools/extract-irix` reads them).
+
+- No VPro file (`odyssey.a`, `libGLcore.so` of an `ODSY` arch, `odyssey.so`, `buzz_xform.bin`) is in 6.5.2 to 6.5.7 (both discs of 6.5.4 to 6.5.7, the first and second of 6.5.2 and 6.5.3, and the 6.5.1 overlay disc; the 6.5.1 first disc is not held). 6.5.8 is the first release with them, IP30 only, in the `m` and `f` streams (`odyssey.so` is on its third disc).
+- 6.5.9 to 6.5.13 carry the IP30 files and no IP35 `odyssey.a` or `IP35ODSY` library; 6.5.14 is the first with IP35 (`IP35boot/odyssey.a`, `IP35ODSY`, `IP35ODSY32`, `IP35ODSY64`).
+- `usr/gfx/ucode/ODSY/buzz_xform.bin` sizes: 27192 bytes (6.5.8, sha256 43a97846621ad2ca...), 32340 (6.5.14, dc413626232a7a15...), 33528 (6.5.30, a0201d88cf23752c...).
+- The 6.5.14 `odyssey.so` exists only in the `f` stream (`x_eoe_6514f`, second overlay disc); its display-mode tables equal 6.5.30m's.
+
 ## 6. Wider scope: every 6.5.30 file that touches VPro
 
 Found by reading the file lists (`instigator extract --manifest-only`) of the four 6.5.30 discs (Installation Tools and Overlays 1 of 3, Overlays 2 of 3 and 3 of 3, and the Octane2 VPro Patches disc), then unpacking every disc whole (`instigator extract --unpack`) and checking each file for VPro symbols and strings (`odsy`, `Odsy`, `ODYSSEY`, `VPro`, `BUZZ`, `PB&J`). Machine tags in the file lists (`GFXBOARD=ODYSSEY`, `CPUBOARD=IP30` or `IP35`) agree with the string search. Everything below is in `root/`, under the install path, and is read by `retools/tools/inventory.py` (group names in `tools/config/inventory-config.json`).
