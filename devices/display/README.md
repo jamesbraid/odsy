@@ -2,6 +2,8 @@
 
 Companion to `DISPLAY.h`. Labels: **established** (read from a binary, with where), **inferred** (reasoned), **unknown**. IRIX 6.5.30m; IP30 (Octane2) V12 unless a note says IP35.
 
+Swap groups, swap barriers, genlock, framelock, external status lines, video input and what `odydiags` tests of them are in [video-sync-hooks.md](video-sync-hooks.md).
+
 ## Display timing
 
 This is a first pass over the pieces that carry timing. It names what exists and what each piece does; no register-level map of the video timing generator has been derived.
