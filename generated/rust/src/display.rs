@@ -1,7 +1,7 @@
 // generated from devices/display/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 bee208aea068b01a3dbc2ede342e468a625658dc96de7337111f5b75db2a363b
+// input sha256 06291b3562f72cf1f7f06406562c9e1d12cf77decc2cb9092846951c1f5847ef
 // VPro (Odyssey) display registers (publish-safe subset)
 #![allow(dead_code)]
 
@@ -287,7 +287,7 @@ pub mod cursor_ctl {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod enable { // bits 1:1, unknown
+    pub mod bit1 { // bits 1:1, unknown
         pub const SHIFT: u32 = 1;
         pub const MASK: u32 = 0x1;
         pub const fn get(v: u32) -> u32 {
@@ -297,7 +297,7 @@ pub mod cursor_ctl {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
     }
-    pub mod delay_enable { // bits 0:0, unknown
+    pub mod enable { // bits 0:0, inferred
         pub const SHIFT: u32 = 0;
         pub const MASK: u32 = 0x1;
         pub const fn get(v: u32) -> u32 {

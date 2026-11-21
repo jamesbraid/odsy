@@ -1,7 +1,7 @@
 <!-- generated from devices/display/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 bee208aea068b01a3dbc2ede342e468a625658dc96de7337111f5b75db2a363b -->
+<!-- input sha256 06291b3562f72cf1f7f06406562c9e1d12cf77decc2cb9092846951c1f5847ef -->
 
 # VPro (Odyssey) display registers (publish-safe subset)
 
@@ -199,9 +199,12 @@ so the grades are the reading's own:
 - Bits 31:30: set by the firmware, never by the X module or the kernel.
   Hardware meaning unknown.
 
-The field names below are an older guess. They put delay enable at bit 0
-and enable at bit 1, which conflicts with the bit 0 usage above. Open
-questions records the conflict; the names stay until it is settled.
+Settled by reading the kernel's cursor replay code beside the X module
+(display README, "Replay code"): every word the
+software sends to the board has bit 1 clear (the kernel masks it off before each
+write; the X module clears it before each send), and the only bit 1 the code
+sets is in its own mirror of the word after a send. So bit 0 is the enable
+(inferred) and bit 1 is set by the firmware textport alone (meaning unknown).
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -209,8 +212,8 @@ questions records the conflict; the names stay until it is settled.
 | 4 | `dual_head` | unknown |  | odsy binary analysis of the shipped display driver |  |
 | 3 | `field_seq` | unknown |  | odsy binary analysis of the shipped display driver |  |
 | 2 | `crosshair` | unknown |  | odsy binary analysis of the shipped display driver |  |
-| 1 | `enable` | unknown |  | odsy binary analysis of the shipped display driver |  |
-| 0 | `delay_enable` | unknown |  | odsy binary analysis of the shipped display driver |  |
+| 1 | `bit1` | unknown |  | odsy binary analysis of the shipped display driver |  |
+| 0 | `enable` | inferred |  | odsy binary analysis of the shipped display driver |  |
 
 ### Register `cursor_colors`
 

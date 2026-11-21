@@ -196,9 +196,12 @@ so the grades are the reading's own:
 - Bits 31:30: set by the firmware, never by the X module or the kernel.
   Hardware meaning unknown.
 
-The field names below are an older guess. They put delay enable at bit 0
-and enable at bit 1, which conflicts with the bit 0 usage above. Open
-questions records the conflict; the names stay until it is settled."""
+Settled by reading the kernel's cursor replay code beside the X module
+(display README, "Replay code"): every word the
+software sends to the board has bit 1 clear (the kernel masks it off before each
+write; the X module clears it before each send), and the only bit 1 the code
+sets is in its own mirror of the word after a send. So bit 0 is the enable
+(inferred) and bit 1 is set by the firmware textport alone (meaning unknown)."""
 space = "display_regs"
 
 [registers.cursor_ctl.fields]
@@ -206,8 +209,8 @@ toggle = { bits = [5, 5], grade = "unknown" }
 dual_head = { bits = [4, 4], grade = "unknown" }
 field_seq = { bits = [3, 3], grade = "unknown" }
 crosshair = { bits = [2, 2], grade = "unknown" }
-enable = { bits = [1, 1], grade = "unknown" }
-delay_enable = { bits = [0, 0], grade = "unknown" }
+bit1 = { bits = [1, 1], grade = "unknown" }
+enable = { bits = [0, 0], grade = "inferred" }
 
 [registers.cursor_colors]
 offset = 0x2590

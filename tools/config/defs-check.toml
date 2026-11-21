@@ -530,7 +530,7 @@ label = "cursor control field groups"
 doc = "devices/display/README.md"
 regex = 'clears bits (\d+):(\d+) and sets bits (\d+):(\d+), so two fields sit in bits (\d+):(\d+) and three in bits (\d+):(\d+)'
 binds = [
-  ["IN", ["DISPLAY.cursor_ctl.enable", "DISPLAY.cursor_ctl.delay_enable"], 5, 6],
+  ["IN", ["DISPLAY.cursor_ctl.enable", "DISPLAY.cursor_ctl.bit1"], 5, 6],
   ["IN", ["DISPLAY.cursor_ctl.dual_head", "DISPLAY.cursor_ctl.field_seq", "DISPLAY.cursor_ctl.crosshair"], 7, 8],
 ]
 
@@ -538,13 +538,13 @@ binds = [
 group = "display"
 label = "cursor control bit assignment"
 doc = "devices/display/README.md"
-regex = 'dual head bit (\d+), second enable bit (\d+), cross-hair bit (\d+), enable bit (\d+), delay enable bit (\d+)'
+regex = 'dual head bit (\d+), second enable bit (\d+), cross-hair bit (\d+), unnamed bit (\d+), enable bit (\d+)'
 binds = [
   ["F", "DISPLAY.cursor_ctl.dual_head", 1],
   ["F", "DISPLAY.cursor_ctl.field_seq", 2],
   ["F", "DISPLAY.cursor_ctl.crosshair", 3],
-  ["F", "DISPLAY.cursor_ctl.enable", 4],
-  ["F", "DISPLAY.cursor_ctl.delay_enable", 5],
+  ["F", "DISPLAY.cursor_ctl.bit1", 4],
+  ["F", "DISPLAY.cursor_ctl.enable", 5],
 ]
 
 [[claims]]

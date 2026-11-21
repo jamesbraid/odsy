@@ -1,7 +1,7 @@
 /* generated from devices/display/registers.toml by defs-gen - do not edit, change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
 /* defs-gen 2 */
-/* input sha256 bee208aea068b01a3dbc2ede342e468a625658dc96de7337111f5b75db2a363b */
+/* input sha256 06291b3562f72cf1f7f06406562c9e1d12cf77decc2cb9092846951c1f5847ef */
 /* VPro (Odyssey) display registers (publish-safe subset) */
 #ifndef DISPLAY_GEN_H
 #define DISPLAY_GEN_H
@@ -185,9 +185,12 @@
  * - Bits 31:30: set by the firmware, never by the X module or the kernel.
  *   Hardware meaning unknown.
  *
- * The field names below are an older guess. They put delay enable at bit 0
- * and enable at bit 1, which conflicts with the bit 0 usage above. Open
- * questions records the conflict; the names stay until it is settled.
+ * Settled by reading the kernel's cursor replay code beside the X module
+ * (display README, "Replay code"): every word the
+ * software sends to the board has bit 1 clear (the kernel masks it off before each
+ * write; the X module clears it before each send), and the only bit 1 the code
+ * sets is in its own mirror of the word after a send. So bit 0 is the enable
+ * (inferred) and bit 1 is set by the firmware textport alone (meaning unknown).
  */
 /* cursor_ctl: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
 #define DISPLAY_CURSOR_CTL_OFFSET                    0x2581u /* established */
@@ -203,12 +206,12 @@
 #define DISPLAY_CURSOR_CTL_CROSSHAIR_SHIFT           2 /* unknown */
 #define DISPLAY_CURSOR_CTL_CROSSHAIR_MASK            0x1u
 #define DISPLAY_CURSOR_CTL_CROSSHAIR_INPLACE         (DISPLAY_CURSOR_CTL_CROSSHAIR_MASK << DISPLAY_CURSOR_CTL_CROSSHAIR_SHIFT)
-#define DISPLAY_CURSOR_CTL_ENABLE_SHIFT              1 /* unknown */
+#define DISPLAY_CURSOR_CTL_BIT1_SHIFT                1 /* unknown */
+#define DISPLAY_CURSOR_CTL_BIT1_MASK                 0x1u
+#define DISPLAY_CURSOR_CTL_BIT1_INPLACE              (DISPLAY_CURSOR_CTL_BIT1_MASK << DISPLAY_CURSOR_CTL_BIT1_SHIFT)
+#define DISPLAY_CURSOR_CTL_ENABLE_SHIFT              0 /* inferred */
 #define DISPLAY_CURSOR_CTL_ENABLE_MASK               0x1u
 #define DISPLAY_CURSOR_CTL_ENABLE_INPLACE            (DISPLAY_CURSOR_CTL_ENABLE_MASK << DISPLAY_CURSOR_CTL_ENABLE_SHIFT)
-#define DISPLAY_CURSOR_CTL_DELAY_ENABLE_SHIFT        0 /* unknown */
-#define DISPLAY_CURSOR_CTL_DELAY_ENABLE_MASK         0x1u
-#define DISPLAY_CURSOR_CTL_DELAY_ENABLE_INPLACE      (DISPLAY_CURSOR_CTL_DELAY_ENABLE_MASK << DISPLAY_CURSOR_CTL_DELAY_ENABLE_SHIFT)
 
 /*
  * Cursor colour table, 15 words for pixel values 0 to 14, in the colour-
