@@ -119,7 +119,8 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   `glxBindSwapBarrierSGIX` in the GLX module send it.
 - `RRM_SwapUnGroup` (ioctl 1014, `rrm.o`): **established.**
   Takes the semaphore, finds the clip's pane with `clip2pane` and removes it from its swap group through
-  `rrmSwapUnGroup`. The scan finds no sender in the shipped binaries.
+  `rrmSwapUnGroup`. `glxJoinSwapGroupSGIX` in `glx.so` sends it (0x29cddc0; `li 1014` at 0x29ce1dc) when
+  the member drawable is zero, i.e. to leave a group; with a member it sends 1013 (`li 1013` at 0x29ce1ec).
 - `RRM_ValidateMessage` (ioctl 1015, `rrm.o`): **established.**
   Under the pane spin lock it calls `rrmValidateBuffer`, the acknowledgement half of the `RRM_Message`
   exchange. The scan finds no sender in the shipped binaries.
@@ -145,7 +146,10 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   per-id table at +184 with the pane's word at +160 (error 17 when that pane already holds it, 16 when another
   does; errors 2, 6 and 15 for a missing pane, a pane of another node and a pane with no +160 word),
   zero releases the slot if that pane holds it (error 9 otherwise); the GLX swap barrier code
-  (`glxBindSwapBarrierSGIX`) sends it.
+  (`glxBindSwapBarrierSGIX`) sends it with {drawable, barrier minus 1, 1 or 0}. `odsyInitRetrace` sets the
+  bound at +176 to 1 and points the table at +184 at one zeroed slot, so a board has one barrier. The table is
+  bookkeeping: `rrmSwapUnGroup` clears slots and nothing in `odsy_retrace.o` reads them, so no swap waits on
+  a barrier in the shipped kernel ([video-sync-hooks.md](../../devices/display/video-sync-hooks.md)).
 - `RRM_MGR_SwapBuf` (ioctl 1020, `rrm.o`): **established.**
   After the caller check it stores argument word 4 into the node's per-id table at +96 for the id in word
   1 (when the id is below the table bound at +88), then calls the board driver's swap entry through slot 168
