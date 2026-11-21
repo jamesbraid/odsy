@@ -1,7 +1,7 @@
 /* generated from devices/display/registers.toml by defs-gen - do not edit, change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
 /* defs-gen 2 */
-/* input sha256 76366916d6eae8e3c3e3ecb3fa1f186ee60a87d4b19ab17338c9f6d51f675fae */
+/* input sha256 bee208aea068b01a3dbc2ede342e468a625658dc96de7337111f5b75db2a363b */
 /* VPro (Odyssey) display registers (publish-safe subset) */
 #ifndef DISPLAY_GEN_H
 #define DISPLAY_GEN_H
@@ -259,6 +259,25 @@
 #define DISPLAY_DATAPATH_CTL_BIT6_INPLACE            (DISPLAY_DATAPATH_CTL_BIT6_MASK << DISPLAY_DATAPATH_CTL_BIT6_SHIFT)
 
 /*
+ * DAC test input word, three 10-bit channels. No driver writes it; the field
+ * diagnostic's analog-output test writes it with a monitor attached, then
+ * reads the three comparator bits of the DAC control register: a channel at
+ * full scale reads 0 and a channel at zero reads 1, whatever the other two
+ * carry. Reading as the DAC's input is inferred from that test.
+ */
+/* dac_data: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_DAC_DATA_OFFSET                      0x2601u /* inferred */
+#define DISPLAY_DAC_DATA_G_SHIFT                     22 /* inferred */
+#define DISPLAY_DAC_DATA_G_MASK                      0x3ffu
+#define DISPLAY_DAC_DATA_G_INPLACE                   (DISPLAY_DAC_DATA_G_MASK << DISPLAY_DAC_DATA_G_SHIFT)
+#define DISPLAY_DAC_DATA_B_SHIFT                     12 /* inferred */
+#define DISPLAY_DAC_DATA_B_MASK                      0x3ffu
+#define DISPLAY_DAC_DATA_B_INPLACE                   (DISPLAY_DAC_DATA_B_MASK << DISPLAY_DAC_DATA_B_SHIFT)
+#define DISPLAY_DAC_DATA_R_SHIFT                     2 /* inferred */
+#define DISPLAY_DAC_DATA_R_MASK                      0x3ffu
+#define DISPLAY_DAC_DATA_R_INPLACE                   (DISPLAY_DAC_DATA_R_MASK << DISPLAY_DAC_DATA_R_SHIFT)
+
+/*
  * Written once per timing load from a word of the timing structure that
  * sits next to the DAC and data-path words. What it controls is unknown.
  */
@@ -269,10 +288,22 @@
  * DAC control. Blanking sets bit 0; the DAC-gain routine sets or clears
  * bit 1 with a read-modify-write; the timing load writes the structure's
  * DAC word. That bit 0 blanks is established by the routine; the polarity
- * of the gain bit is not known, so its name is inferred.
+ * of the gain bit is not known, so its name is inferred. Bits 6:4 are the
+ * red, green and blue comparator outputs the field diagnostic reads (the
+ * published diagnostic reference names them as the comparator bits of this
+ * register).
  */
 /* dac_ctl: rw32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
 #define DISPLAY_DAC_CTL_OFFSET                       0x26c0u /* established */
+#define DISPLAY_DAC_CTL_COMPARATOR_B_SHIFT           6 /* established */
+#define DISPLAY_DAC_CTL_COMPARATOR_B_MASK            0x1u
+#define DISPLAY_DAC_CTL_COMPARATOR_B_INPLACE         (DISPLAY_DAC_CTL_COMPARATOR_B_MASK << DISPLAY_DAC_CTL_COMPARATOR_B_SHIFT)
+#define DISPLAY_DAC_CTL_COMPARATOR_G_SHIFT           5 /* established */
+#define DISPLAY_DAC_CTL_COMPARATOR_G_MASK            0x1u
+#define DISPLAY_DAC_CTL_COMPARATOR_G_INPLACE         (DISPLAY_DAC_CTL_COMPARATOR_G_MASK << DISPLAY_DAC_CTL_COMPARATOR_G_SHIFT)
+#define DISPLAY_DAC_CTL_COMPARATOR_R_SHIFT           4 /* established */
+#define DISPLAY_DAC_CTL_COMPARATOR_R_MASK            0x1u
+#define DISPLAY_DAC_CTL_COMPARATOR_R_INPLACE         (DISPLAY_DAC_CTL_COMPARATOR_R_MASK << DISPLAY_DAC_CTL_COMPARATOR_R_SHIFT)
 #define DISPLAY_DAC_CTL_GAIN_SHIFT                   1 /* inferred */
 #define DISPLAY_DAC_CTL_GAIN_MASK                    0x1u
 #define DISPLAY_DAC_CTL_GAIN_INPLACE                 (DISPLAY_DAC_CTL_GAIN_MASK << DISPLAY_DAC_CTL_GAIN_SHIFT)
@@ -281,13 +312,160 @@
 #define DISPLAY_DAC_CTL_BLANK_INPLACE                (DISPLAY_DAC_CTL_BLANK_MASK << DISPLAY_DAC_CTL_BLANK_SHIFT)
 
 /*
- * Twelve consecutive timing generator words, written in order from twelve
- * consecutive words of the timing structure. Bit meanings are unknown.
+ * Genlock sync detector, first word. Written once per timing load from a word
+ * of the timing structure; the packing is the one the shipped format compiler
+ * uses, the roles are read from its variable names. Every shipped format has
+ * bit 20:19 = 1, bit 0 = 0, and the pulse-skip byte at most 255.
  */
-/* vtg_misc: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
-#define DISPLAY_VTG_MISC_OFFSET                      0x27c0u /* established */
-#define DISPLAY_VTG_MISC_COUNT                       12
-#define DISPLAY_VTG_MISC_STRIDE                      1
+/* gen_sync_detect: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_SYNC_DETECT_OFFSET               0x27c0u /* established */
+#define DISPLAY_GEN_SYNC_DETECT_PULSE_SKIP_SHIFT     24 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_PULSE_SKIP_MASK      0xffu
+#define DISPLAY_GEN_SYNC_DETECT_PULSE_SKIP_INPLACE   (DISPLAY_GEN_SYNC_DETECT_PULSE_SKIP_MASK << DISPLAY_GEN_SYNC_DETECT_PULSE_SKIP_SHIFT)
+#define DISPLAY_GEN_SYNC_DETECT_FIRST_PULSE_LEVEL_SHIFT 23 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_FIRST_PULSE_LEVEL_MASK 0x1u
+#define DISPLAY_GEN_SYNC_DETECT_FIRST_PULSE_LEVEL_INPLACE (DISPLAY_GEN_SYNC_DETECT_FIRST_PULSE_LEVEL_MASK << DISPLAY_GEN_SYNC_DETECT_FIRST_PULSE_LEVEL_SHIFT)
+#define DISPLAY_GEN_SYNC_DETECT_ENABLE_HIGH_PULSE_SHIFT 22 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_ENABLE_HIGH_PULSE_MASK 0x1u
+#define DISPLAY_GEN_SYNC_DETECT_ENABLE_HIGH_PULSE_INPLACE (DISPLAY_GEN_SYNC_DETECT_ENABLE_HIGH_PULSE_MASK << DISPLAY_GEN_SYNC_DETECT_ENABLE_HIGH_PULSE_SHIFT)
+#define DISPLAY_GEN_SYNC_DETECT_ENABLE_LOW_PULSE_SHIFT 21 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_ENABLE_LOW_PULSE_MASK 0x1u
+#define DISPLAY_GEN_SYNC_DETECT_ENABLE_LOW_PULSE_INPLACE (DISPLAY_GEN_SYNC_DETECT_ENABLE_LOW_PULSE_MASK << DISPLAY_GEN_SYNC_DETECT_ENABLE_LOW_PULSE_SHIFT)
+#define DISPLAY_GEN_SYNC_DETECT_SYNC_SOURCE_SHIFT    19 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_SYNC_SOURCE_MASK     0x3u
+#define DISPLAY_GEN_SYNC_DETECT_SYNC_SOURCE_INPLACE  (DISPLAY_GEN_SYNC_DETECT_SYNC_SOURCE_MASK << DISPLAY_GEN_SYNC_DETECT_SYNC_SOURCE_SHIFT)
+#define DISPLAY_GEN_SYNC_DETECT_COMPARE_TOLERANCE_SHIFT 1 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_COMPARE_TOLERANCE_MASK 0x3ffffu
+#define DISPLAY_GEN_SYNC_DETECT_COMPARE_TOLERANCE_INPLACE (DISPLAY_GEN_SYNC_DETECT_COMPARE_TOLERANCE_MASK << DISPLAY_GEN_SYNC_DETECT_COMPARE_TOLERANCE_SHIFT)
+#define DISPLAY_GEN_SYNC_DETECT_FRAME_DETECT_SHIFT   0 /* inferred */
+#define DISPLAY_GEN_SYNC_DETECT_FRAME_DETECT_MASK    0x1u
+#define DISPLAY_GEN_SYNC_DETECT_FRAME_DETECT_INPLACE (DISPLAY_GEN_SYNC_DETECT_FRAME_DETECT_MASK << DISPLAY_GEN_SYNC_DETECT_FRAME_DETECT_SHIFT)
+
+/*
+ * Genlock detector level routing. Value 1 in every shipped format; the role is inferred from the compiler's name.
+ */
+/* gen_sync_detect_level: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_SYNC_DETECT_LEVEL_OFFSET         0x27c1u /* established */
+
+/*
+ * Genlock high-going sync pattern, low bits. The shipped value depends on
+ * the format's scan type (one value for scan type 1, one for types 3 to 5,
+ * two for two-field broadcast formats at 30 and 25 Hz); the values are in the
+ * display notes.
+ */
+/* gen_pattern_hi_lo: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_PATTERN_HI_LO_OFFSET             0x27c2u /* established */
+
+/*
+ * High bits of the high-going sync pattern: 0 except in the two-field broadcast formats.
+ */
+/* gen_pattern_hi_hi: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_PATTERN_HI_HI_OFFSET             0x27c3u /* established */
+
+/*
+ * Genlock low-going sync pattern, low bits; same scan-type grouping as the
+ * high-going pattern, values in the display notes.
+ */
+/* gen_pattern_lo_lo: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_PATTERN_LO_LO_OFFSET             0x27c4u /* established */
+
+/*
+ * High bits of the low-going sync pattern: 0 except in the two-field broadcast formats.
+ */
+/* gen_pattern_lo_hi: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_PATTERN_LO_HI_OFFSET             0x27c5u /* established */
+
+/*
+ * Genlock phase detector, first word: the frame period in display-bus clocks
+ * in bits 23:0 and the low byte of the line count that gains lock in bits
+ * 31:24. The line count is a percentage of the frame (40, 40, 25, 15 and 20
+ * percent for scan types 1 to 5).
+ */
+/* gen_phase_lo: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_PHASE_LO_OFFSET                  0x27c6u /* established */
+#define DISPLAY_GEN_PHASE_LO_LINES_LOW_SHIFT         24 /* inferred */
+#define DISPLAY_GEN_PHASE_LO_LINES_LOW_MASK          0xffu
+#define DISPLAY_GEN_PHASE_LO_LINES_LOW_INPLACE       (DISPLAY_GEN_PHASE_LO_LINES_LOW_MASK << DISPLAY_GEN_PHASE_LO_LINES_LOW_SHIFT)
+#define DISPLAY_GEN_PHASE_LO_FRAME_PERIOD_SHIFT      0 /* inferred */
+#define DISPLAY_GEN_PHASE_LO_FRAME_PERIOD_MASK       0xffffffu
+#define DISPLAY_GEN_PHASE_LO_FRAME_PERIOD_INPLACE    (DISPLAY_GEN_PHASE_LO_FRAME_PERIOD_MASK << DISPLAY_GEN_PHASE_LO_FRAME_PERIOD_SHIFT)
+
+/*
+ * Genlock phase detector, second word. Every shipped format sets enable,
+ * loses lock after 6 frames and gains it after 3.
+ */
+/* gen_phase_hi: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_PHASE_HI_OFFSET                  0x27c7u /* established */
+#define DISPLAY_GEN_PHASE_HI_ENABLE_SHIFT            10 /* inferred */
+#define DISPLAY_GEN_PHASE_HI_ENABLE_MASK             0x1u
+#define DISPLAY_GEN_PHASE_HI_ENABLE_INPLACE          (DISPLAY_GEN_PHASE_HI_ENABLE_MASK << DISPLAY_GEN_PHASE_HI_ENABLE_SHIFT)
+#define DISPLAY_GEN_PHASE_HI_FRAMES_TO_LOSE_SHIFT    7 /* inferred */
+#define DISPLAY_GEN_PHASE_HI_FRAMES_TO_LOSE_MASK     0x7u
+#define DISPLAY_GEN_PHASE_HI_FRAMES_TO_LOSE_INPLACE  (DISPLAY_GEN_PHASE_HI_FRAMES_TO_LOSE_MASK << DISPLAY_GEN_PHASE_HI_FRAMES_TO_LOSE_SHIFT)
+#define DISPLAY_GEN_PHASE_HI_FRAMES_TO_GAIN_SHIFT    4 /* inferred */
+#define DISPLAY_GEN_PHASE_HI_FRAMES_TO_GAIN_MASK     0x7u
+#define DISPLAY_GEN_PHASE_HI_FRAMES_TO_GAIN_INPLACE  (DISPLAY_GEN_PHASE_HI_FRAMES_TO_GAIN_MASK << DISPLAY_GEN_PHASE_HI_FRAMES_TO_GAIN_SHIFT)
+#define DISPLAY_GEN_PHASE_HI_LINES_HIGH_SHIFT        0 /* inferred */
+#define DISPLAY_GEN_PHASE_HI_LINES_HIGH_MASK         0xfu
+#define DISPLAY_GEN_PHASE_HI_LINES_HIGH_INPLACE      (DISPLAY_GEN_PHASE_HI_LINES_HIGH_MASK << DISPLAY_GEN_PHASE_HI_LINES_HIGH_SHIFT)
+
+/*
+ * Genlock horizontal mask, first word: start (low byte), divider (0 in every
+ * shipped format), line length in display-bus clocks and the edge select.
+ */
+/* gen_hmask_lo: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_HMASK_LO_OFFSET                  0x27c8u /* established */
+#define DISPLAY_GEN_HMASK_LO_START_LOW_SHIFT         24 /* inferred */
+#define DISPLAY_GEN_HMASK_LO_START_LOW_MASK          0xffu
+#define DISPLAY_GEN_HMASK_LO_START_LOW_INPLACE       (DISPLAY_GEN_HMASK_LO_START_LOW_MASK << DISPLAY_GEN_HMASK_LO_START_LOW_SHIFT)
+#define DISPLAY_GEN_HMASK_LO_DIVIDER_SHIFT           16 /* inferred */
+#define DISPLAY_GEN_HMASK_LO_DIVIDER_MASK            0xffu
+#define DISPLAY_GEN_HMASK_LO_DIVIDER_INPLACE         (DISPLAY_GEN_HMASK_LO_DIVIDER_MASK << DISPLAY_GEN_HMASK_LO_DIVIDER_SHIFT)
+#define DISPLAY_GEN_HMASK_LO_LINE_LENGTH_SHIFT       1 /* inferred */
+#define DISPLAY_GEN_HMASK_LO_LINE_LENGTH_MASK        0x7fffu
+#define DISPLAY_GEN_HMASK_LO_LINE_LENGTH_INPLACE     (DISPLAY_GEN_HMASK_LO_LINE_LENGTH_MASK << DISPLAY_GEN_HMASK_LO_LINE_LENGTH_SHIFT)
+#define DISPLAY_GEN_HMASK_LO_EDGE_SHIFT              0 /* inferred */
+#define DISPLAY_GEN_HMASK_LO_EDGE_MASK               0x1u
+#define DISPLAY_GEN_HMASK_LO_EDGE_INPLACE            (DISPLAY_GEN_HMASK_LO_EDGE_MASK << DISPLAY_GEN_HMASK_LO_EDGE_SHIFT)
+
+/*
+ * Genlock horizontal mask, second word: width (three horizontal sync times) and the high bits of the start.
+ */
+/* gen_hmask_hi: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_HMASK_HI_OFFSET                  0x27c9u /* established */
+#define DISPLAY_GEN_HMASK_HI_WIDTH_SHIFT             7 /* inferred */
+#define DISPLAY_GEN_HMASK_HI_WIDTH_MASK              0x7fffu
+#define DISPLAY_GEN_HMASK_HI_WIDTH_INPLACE           (DISPLAY_GEN_HMASK_HI_WIDTH_MASK << DISPLAY_GEN_HMASK_HI_WIDTH_SHIFT)
+#define DISPLAY_GEN_HMASK_HI_START_HIGH_SHIFT        0 /* inferred */
+#define DISPLAY_GEN_HMASK_HI_START_HIGH_MASK         0x7fu
+#define DISPLAY_GEN_HMASK_HI_START_HIGH_INPLACE      (DISPLAY_GEN_HMASK_HI_START_HIGH_MASK << DISPLAY_GEN_HMASK_HI_START_HIGH_SHIFT)
+
+/*
+ * Genlock back-porch clamp: delay of one horizontal sync time, width 0 and edge 1 in every shipped format.
+ */
+/* gen_bp_clamp: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_BP_CLAMP_OFFSET                  0x27cau /* established */
+#define DISPLAY_GEN_BP_CLAMP_WIDTH_SHIFT             16 /* inferred */
+#define DISPLAY_GEN_BP_CLAMP_WIDTH_MASK              0x3ffu
+#define DISPLAY_GEN_BP_CLAMP_WIDTH_INPLACE           (DISPLAY_GEN_BP_CLAMP_WIDTH_MASK << DISPLAY_GEN_BP_CLAMP_WIDTH_SHIFT)
+#define DISPLAY_GEN_BP_CLAMP_DELAY_SHIFT             1 /* inferred */
+#define DISPLAY_GEN_BP_CLAMP_DELAY_MASK              0x7fffu
+#define DISPLAY_GEN_BP_CLAMP_DELAY_INPLACE           (DISPLAY_GEN_BP_CLAMP_DELAY_MASK << DISPLAY_GEN_BP_CLAMP_DELAY_SHIFT)
+#define DISPLAY_GEN_BP_CLAMP_EDGE_SHIFT              0 /* inferred */
+#define DISPLAY_GEN_BP_CLAMP_EDGE_MASK               0x1u
+#define DISPLAY_GEN_BP_CLAMP_EDGE_INPLACE            (DISPLAY_GEN_BP_CLAMP_EDGE_MASK << DISPLAY_GEN_BP_CLAMP_EDGE_SHIFT)
+
+/*
+ * Genlock clocking and horizontal-rate divide; 0 in every shipped format.
+ */
+/* gen_clocking: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
+#define DISPLAY_GEN_CLOCKING_OFFSET                  0x27cbu /* established */
+#define DISPLAY_GEN_CLOCKING_HRATE_DIV_SHIFT         2 /* inferred */
+#define DISPLAY_GEN_CLOCKING_HRATE_DIV_MASK          0x3fffffffu
+#define DISPLAY_GEN_CLOCKING_HRATE_DIV_INPLACE       (DISPLAY_GEN_CLOCKING_HRATE_DIV_MASK << DISPLAY_GEN_CLOCKING_HRATE_DIV_SHIFT)
+#define DISPLAY_GEN_CLOCKING_CLOCKING_SHIFT          0 /* inferred */
+#define DISPLAY_GEN_CLOCKING_CLOCKING_MASK           0x3u
+#define DISPLAY_GEN_CLOCKING_CLOCKING_INPLACE        (DISPLAY_GEN_CLOCKING_CLOCKING_MASK << DISPLAY_GEN_CLOCKING_CLOCKING_SHIFT)
 
 /*
  * Genlock control. The timing load writes the structure's word here after
@@ -298,9 +476,21 @@
  */
 /* genlock_ctl: rw32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
 #define DISPLAY_GENLOCK_CTL_OFFSET                   0x27ccu /* established */
+#define DISPLAY_GENLOCK_CTL_TEST_SHIFT               7 /* inferred */
+#define DISPLAY_GENLOCK_CTL_TEST_MASK                0x1u
+#define DISPLAY_GENLOCK_CTL_TEST_INPLACE             (DISPLAY_GENLOCK_CTL_TEST_MASK << DISPLAY_GENLOCK_CTL_TEST_SHIFT)
 #define DISPLAY_GENLOCK_CTL_ENABLED_SHIFT            6 /* inferred */
 #define DISPLAY_GENLOCK_CTL_ENABLED_MASK             0x1u
 #define DISPLAY_GENLOCK_CTL_ENABLED_INPLACE          (DISPLAY_GENLOCK_CTL_ENABLED_MASK << DISPLAY_GENLOCK_CTL_ENABLED_SHIFT)
+#define DISPLAY_GENLOCK_CTL_SOURCE_SELECT_SHIFT      4 /* inferred */
+#define DISPLAY_GENLOCK_CTL_SOURCE_SELECT_MASK       0x3u
+#define DISPLAY_GENLOCK_CTL_SOURCE_SELECT_INPLACE    (DISPLAY_GENLOCK_CTL_SOURCE_SELECT_MASK << DISPLAY_GENLOCK_CTL_SOURCE_SELECT_SHIFT)
+#define DISPLAY_GENLOCK_CTL_MUX_B_SHIFT              2 /* inferred */
+#define DISPLAY_GENLOCK_CTL_MUX_B_MASK               0x3u
+#define DISPLAY_GENLOCK_CTL_MUX_B_INPLACE            (DISPLAY_GENLOCK_CTL_MUX_B_MASK << DISPLAY_GENLOCK_CTL_MUX_B_SHIFT)
+#define DISPLAY_GENLOCK_CTL_MUX_A_SHIFT              0 /* inferred */
+#define DISPLAY_GENLOCK_CTL_MUX_A_MASK               0x3u
+#define DISPLAY_GENLOCK_CTL_MUX_A_INPLACE            (DISPLAY_GENLOCK_CTL_MUX_A_MASK << DISPLAY_GENLOCK_CTL_MUX_A_SHIFT)
 
 /*
  * Genlock status, read only. The handler returns if bit 0 is clear. Bit 1

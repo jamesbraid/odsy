@@ -28,7 +28,7 @@ This is a first pass over the pieces that carry timing. It names what exists and
 | 28 | ORed with 0x42, written to display address 0x2481 | **established** |
 | 32 | written to 0x2482 | **established** |
 | 36 | bit 5 replaced by the driver's own bit 5, written to 0x2483 | **established** |
-| 40 to 84 | twelve words written in order to 0x27c0 to 0x27cb | **established** |
+| 40 to 84 | twelve words written in order to 0x27c0 to 0x27cb (the genlock detector, pattern, phase, mask, clamp and clocking words; packing in [video-sync-hooks.md](video-sync-hooks.md)) | **established** |
 | 88 | written to 0x27cc, after bit 31 of the board register at +0x1034 (the flags enable register, `BUZZ.h`) is set | **established** |
 | 96 to 124 | eight clock-part register bytes, written over I2C as registers 5, 4, 2, 3, 0, 1, 7, 6 | **established**; used when board-record word 292 is zero or negative, with 0x26 stored in the I2C device record first |
 | 128 to 156 | eight clock-part register bytes, written as registers 0 to 7 | **established**; used when word 292 is positive, with 0x58 stored in the device record |

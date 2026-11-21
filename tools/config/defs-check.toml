@@ -593,8 +593,8 @@ label = "twelve timing words"
 doc = "devices/display/README.md"
 regex = "twelve words written in order to (0x[0-9a-f]+) to (0x[0-9a-f]+)"
 binds = [
-  ["O", "DISPLAY.vtg_misc", 1],
-  ["E", "DISPLAY.vtg_misc", 2],
+  ["O", "DISPLAY.gen_sync_detect", 1],
+  ["E", "DISPLAY.gen_clocking", 2],
 ]
 
 [[claims]]

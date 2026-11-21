@@ -1,7 +1,7 @@
 // generated from devices/display/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 76366916d6eae8e3c3e3ecb3fa1f186ee60a87d4b19ab17338c9f6d51f675fae
+// input sha256 bee208aea068b01a3dbc2ede342e468a625658dc96de7337111f5b75db2a363b
 // VPro (Odyssey) display registers (publish-safe subset)
 #![allow(dead_code)]
 
@@ -387,6 +387,41 @@ pub mod datapath_ctl {
         }
     }
 }
+/// DAC test input word, three 10-bit channels. No driver writes it; the field diagnostic's analog-output test writes it with a monitor attached, then rea (inferred)
+pub mod dac_data {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x2601;
+    pub mod g { // bits 31:22, inferred
+        pub const SHIFT: u32 = 22;
+        pub const MASK: u32 = 0x3ff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod b { // bits 21:12, inferred
+        pub const SHIFT: u32 = 12;
+        pub const MASK: u32 = 0x3ff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod r { // bits 11:2, inferred
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3ff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
 /// Written once per timing load from a word of the timing structure that sits next to the DAC and data-path words. What it controls is unknown. (established)
 pub mod aux_ctl {
     pub const WIDTH: u32 = 32;
@@ -396,6 +431,36 @@ pub mod aux_ctl {
 pub mod dac_ctl {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x26c0;
+    pub mod comparator_b { // bits 6:6, established
+        pub const SHIFT: u32 = 6;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod comparator_g { // bits 5:5, established
+        pub const SHIFT: u32 = 5;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod comparator_r { // bits 4:4, established
+        pub const SHIFT: u32 = 4;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
     pub mod gain { // bits 1:1, inferred
         pub const SHIFT: u32 = 1;
         pub const MASK: u32 = 0x1;
@@ -417,20 +482,353 @@ pub mod dac_ctl {
         }
     }
 }
-/// Twelve consecutive timing generator words, written in order from twelve consecutive words of the timing structure. Bit meanings are unknown. (established)
-pub mod vtg_misc {
+/// Genlock sync detector, first word. Written once per timing load from a word of the timing structure; the packing is the one the shipped format compile (established)
+pub mod gen_sync_detect {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x27c0;
-    pub const COUNT: u32 = 12;
-    pub const STRIDE: u64 = 1;
+    pub mod pulse_skip { // bits 31:24, inferred
+        pub const SHIFT: u32 = 24;
+        pub const MASK: u32 = 0xff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod first_pulse_level { // bits 23:23, inferred
+        pub const SHIFT: u32 = 23;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod enable_high_pulse { // bits 22:22, inferred
+        pub const SHIFT: u32 = 22;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod enable_low_pulse { // bits 21:21, inferred
+        pub const SHIFT: u32 = 21;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod sync_source { // bits 20:19, inferred
+        pub const SHIFT: u32 = 19;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod compare_tolerance { // bits 18:1, inferred
+        pub const SHIFT: u32 = 1;
+        pub const MASK: u32 = 0x3ffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod frame_detect { // bits 0:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Genlock detector level routing. Value 1 in every shipped format; the role is inferred from the compiler's name. (established)
+pub mod gen_sync_detect_level {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c1;
+}
+/// Genlock high-going sync pattern, low bits. The shipped value depends on the format's scan type (one value for scan type 1, one for types 3 to 5, two f (established)
+pub mod gen_pattern_hi_lo {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c2;
+}
+/// High bits of the high-going sync pattern: 0 except in the two-field broadcast formats. (established)
+pub mod gen_pattern_hi_hi {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c3;
+}
+/// Genlock low-going sync pattern, low bits; same scan-type grouping as the high-going pattern, values in the display notes. (established)
+pub mod gen_pattern_lo_lo {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c4;
+}
+/// High bits of the low-going sync pattern: 0 except in the two-field broadcast formats. (established)
+pub mod gen_pattern_lo_hi {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c5;
+}
+/// Genlock phase detector, first word: the frame period in display-bus clocks in bits 23:0 and the low byte of the line count that gains lock in bits 31: (established)
+pub mod gen_phase_lo {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c6;
+    pub mod lines_low { // bits 31:24, inferred
+        pub const SHIFT: u32 = 24;
+        pub const MASK: u32 = 0xff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod frame_period { // bits 23:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xffffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Genlock phase detector, second word. Every shipped format sets enable, loses lock after 6 frames and gains it after 3. (established)
+pub mod gen_phase_hi {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c7;
+    pub mod enable { // bits 10:10, inferred
+        pub const SHIFT: u32 = 10;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod frames_to_lose { // bits 9:7, inferred
+        pub const SHIFT: u32 = 7;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod frames_to_gain { // bits 6:4, inferred
+        pub const SHIFT: u32 = 4;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod lines_high { // bits 3:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xf;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Genlock horizontal mask, first word: start (low byte), divider (0 in every shipped format), line length in display-bus clocks and the edge select. (established)
+pub mod gen_hmask_lo {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c8;
+    pub mod start_low { // bits 31:24, inferred
+        pub const SHIFT: u32 = 24;
+        pub const MASK: u32 = 0xff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod divider { // bits 23:16, inferred
+        pub const SHIFT: u32 = 16;
+        pub const MASK: u32 = 0xff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod line_length { // bits 15:1, inferred
+        pub const SHIFT: u32 = 1;
+        pub const MASK: u32 = 0x7fff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod edge { // bits 0:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Genlock horizontal mask, second word: width (three horizontal sync times) and the high bits of the start. (established)
+pub mod gen_hmask_hi {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27c9;
+    pub mod width { // bits 21:7, inferred
+        pub const SHIFT: u32 = 7;
+        pub const MASK: u32 = 0x7fff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod start_high { // bits 6:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x7f;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Genlock back-porch clamp: delay of one horizontal sync time, width 0 and edge 1 in every shipped format. (established)
+pub mod gen_bp_clamp {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27ca;
+    pub mod width { // bits 25:16, inferred
+        pub const SHIFT: u32 = 16;
+        pub const MASK: u32 = 0x3ff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod delay { // bits 15:1, inferred
+        pub const SHIFT: u32 = 1;
+        pub const MASK: u32 = 0x7fff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod edge { // bits 0:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// Genlock clocking and horizontal-rate divide; 0 in every shipped format. (established)
+pub mod gen_clocking {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x27cb;
+    pub mod hrate_div { // bits 31:2, inferred
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3fffffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod clocking { // bits 1:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
 }
 /// Genlock control. The timing load writes the structure's word here after enabling the genlock interrupt source, and the genlock handler continues only  (established)
 pub mod genlock_ctl {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x27cc;
+    pub mod test { // bits 7:7, inferred
+        pub const SHIFT: u32 = 7;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
     pub mod enabled { // bits 6:6, inferred
         pub const SHIFT: u32 = 6;
         pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod source_select { // bits 5:4, inferred
+        pub const SHIFT: u32 = 4;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod mux_b { // bits 3:2, inferred
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod mux_a { // bits 1:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x3;
         pub const fn get(v: u32) -> u32 {
             (v >> SHIFT) & MASK
         }

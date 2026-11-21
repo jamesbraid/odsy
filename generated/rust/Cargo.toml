@@ -1,7 +1,7 @@
 # generated from devices/ and formats/ by defs-gen - do not edit, change the source
 # SPDX-License-Identifier: BSD-3-Clause
 # defs-gen 2
-# input sha256 72e8bdf05943687115c863f3767b4e280c6d81273fe34ee331e1f29355d27ae8
+# input sha256 87489096091463252075b6e113a91b6b83e27cf3447353f1f2f9f58989c759cf
 [package]
 name = "odsy-defs"
 version = "0.1.0"

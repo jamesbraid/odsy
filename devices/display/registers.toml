@@ -275,23 +275,188 @@ doc = """
 DAC control. Blanking sets bit 0; the DAC-gain routine sets or clears
 bit 1 with a read-modify-write; the timing load writes the structure's
 DAC word. That bit 0 blanks is established by the routine; the polarity
-of the gain bit is not known, so its name is inferred."""
+of the gain bit is not known, so its name is inferred. Bits 6:4 are the
+red, green and blue comparator outputs the field diagnostic reads (the
+published diagnostic reference names them as the comparator bits of this
+register)."""
 space = "display_regs"
 
 [registers.dac_ctl.fields]
+comparator_b = { bits = [6, 6], grade = "established" }
+comparator_g = { bits = [5, 5], grade = "established" }
+comparator_r = { bits = [4, 4], grade = "established" }
 gain = { bits = [1, 1], grade = "inferred" }
 blank = { bits = [0, 0], grade = "established" }
 
-[registers.vtg_misc]
+[registers.dac_data]
+offset = 0x2601
+access = "w"
+width = 32
+grade = "inferred"
+doc = """
+DAC test input word, three 10-bit channels. No driver writes it; the field
+diagnostic's analog-output test writes it with a monitor attached, then
+reads the three comparator bits of the DAC control register: a channel at
+full scale reads 0 and a channel at zero reads 1, whatever the other two
+carry. Reading as the DAC's input is inferred from that test."""
+space = "display_regs"
+
+[registers.dac_data.fields]
+g = { bits = [31, 22], grade = "inferred" }
+b = { bits = [21, 12], grade = "inferred" }
+r = { bits = [11, 2], grade = "inferred" }
+
+[registers.gen_sync_detect]
 offset = 0x27c0
 access = "w"
 width = 32
 grade = "established"
-count = 12
 doc = """
-Twelve consecutive timing generator words, written in order from twelve
-consecutive words of the timing structure. Bit meanings are unknown."""
+Genlock sync detector, first word. Written once per timing load from a word
+of the timing structure; the packing is the one the shipped format compiler
+uses, the roles are read from its variable names. Every shipped format has
+bit 20:19 = 1, bit 0 = 0, and the pulse-skip byte at most 255."""
 space = "display_regs"
+
+[registers.gen_sync_detect.fields]
+pulse_skip = { bits = [31, 24], grade = "inferred" }
+first_pulse_level = { bits = [23, 23], grade = "inferred" }
+enable_high_pulse = { bits = [22, 22], grade = "inferred" }
+enable_low_pulse = { bits = [21, 21], grade = "inferred" }
+sync_source = { bits = [20, 19], grade = "inferred" }
+compare_tolerance = { bits = [18, 1], grade = "inferred" }
+frame_detect = { bits = [0, 0], grade = "inferred" }
+
+[registers.gen_sync_detect_level]
+offset = 0x27c1
+access = "w"
+width = 32
+grade = "established"
+doc = "Genlock detector level routing. Value 1 in every shipped format; the role is inferred from the compiler's name."
+space = "display_regs"
+
+[registers.gen_pattern_hi_lo]
+offset = 0x27c2
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Genlock high-going sync pattern, low bits. The shipped value depends on
+the format's scan type (one value for scan type 1, one for types 3 to 5,
+two for two-field broadcast formats at 30 and 25 Hz); the values are in the
+display notes."""
+space = "display_regs"
+
+[registers.gen_pattern_hi_hi]
+offset = 0x27c3
+access = "w"
+width = 32
+grade = "established"
+doc = "High bits of the high-going sync pattern: 0 except in the two-field broadcast formats."
+space = "display_regs"
+
+[registers.gen_pattern_lo_lo]
+offset = 0x27c4
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Genlock low-going sync pattern, low bits; same scan-type grouping as the
+high-going pattern, values in the display notes."""
+space = "display_regs"
+
+[registers.gen_pattern_lo_hi]
+offset = 0x27c5
+access = "w"
+width = 32
+grade = "established"
+doc = "High bits of the low-going sync pattern: 0 except in the two-field broadcast formats."
+space = "display_regs"
+
+[registers.gen_phase_lo]
+offset = 0x27c6
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Genlock phase detector, first word: the frame period in display-bus clocks
+in bits 23:0 and the low byte of the line count that gains lock in bits
+31:24. The line count is a percentage of the frame (40, 40, 25, 15 and 20
+percent for scan types 1 to 5)."""
+space = "display_regs"
+
+[registers.gen_phase_lo.fields]
+lines_low = { bits = [31, 24], grade = "inferred" }
+frame_period = { bits = [23, 0], grade = "inferred" }
+
+[registers.gen_phase_hi]
+offset = 0x27c7
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Genlock phase detector, second word. Every shipped format sets enable,
+loses lock after 6 frames and gains it after 3."""
+space = "display_regs"
+
+[registers.gen_phase_hi.fields]
+enable = { bits = [10, 10], grade = "inferred" }
+frames_to_lose = { bits = [9, 7], grade = "inferred" }
+frames_to_gain = { bits = [6, 4], grade = "inferred" }
+lines_high = { bits = [3, 0], grade = "inferred" }
+
+[registers.gen_hmask_lo]
+offset = 0x27c8
+access = "w"
+width = 32
+grade = "established"
+doc = """
+Genlock horizontal mask, first word: start (low byte), divider (0 in every
+shipped format), line length in display-bus clocks and the edge select."""
+space = "display_regs"
+
+[registers.gen_hmask_lo.fields]
+start_low = { bits = [31, 24], grade = "inferred" }
+divider = { bits = [23, 16], grade = "inferred" }
+line_length = { bits = [15, 1], grade = "inferred" }
+edge = { bits = [0, 0], grade = "inferred" }
+
+[registers.gen_hmask_hi]
+offset = 0x27c9
+access = "w"
+width = 32
+grade = "established"
+doc = "Genlock horizontal mask, second word: width (three horizontal sync times) and the high bits of the start."
+space = "display_regs"
+
+[registers.gen_hmask_hi.fields]
+width = { bits = [21, 7], grade = "inferred" }
+start_high = { bits = [6, 0], grade = "inferred" }
+
+[registers.gen_bp_clamp]
+offset = 0x27ca
+access = "w"
+width = 32
+grade = "established"
+doc = "Genlock back-porch clamp: delay of one horizontal sync time, width 0 and edge 1 in every shipped format."
+space = "display_regs"
+
+[registers.gen_bp_clamp.fields]
+width = { bits = [25, 16], grade = "inferred" }
+delay = { bits = [15, 1], grade = "inferred" }
+edge = { bits = [0, 0], grade = "inferred" }
+
+[registers.gen_clocking]
+offset = 0x27cb
+access = "w"
+width = 32
+grade = "established"
+doc = "Genlock clocking and horizontal-rate divide; 0 in every shipped format."
+space = "display_regs"
+
+[registers.gen_clocking.fields]
+hrate_div = { bits = [31, 2], grade = "inferred" }
+clocking = { bits = [1, 0], grade = "inferred" }
 
 [registers.genlock_ctl]
 offset = 0x27cc
@@ -307,7 +472,11 @@ the word is held at 0."""
 space = "display_regs"
 
 [registers.genlock_ctl.fields]
+test = { bits = [7, 7], grade = "inferred" }
 enabled = { bits = [6, 6], grade = "inferred" }
+source_select = { bits = [5, 4], grade = "inferred" }
+mux_b = { bits = [3, 2], grade = "inferred" }
+mux_a = { bits = [1, 0], grade = "inferred" }
 
 [registers.genlock_status]
 offset = 0x27cd

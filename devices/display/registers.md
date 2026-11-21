@@ -1,7 +1,7 @@
 <!-- generated from devices/display/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 76366916d6eae8e3c3e3ecb3fa1f186ee60a87d4b19ab17338c9f6d51f675fae -->
+<!-- input sha256 bee208aea068b01a3dbc2ede342e468a625658dc96de7337111f5b75db2a363b -->
 
 # VPro (Odyssey) display registers (publish-safe subset)
 
@@ -34,9 +34,21 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `cursor_colors` | 0x2590 | w | 32 | 15 | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
 | `cursor_image_b` | 0x25c0 | w | 32 | 64 | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
 | `datapath_ctl` | 0x2600 | rw | 32 |  | display_regs | unknown | inferred | odsy binary analysis of the shipped display driver |
+| `dac_data` | 0x2601 | w | 32 |  | display_regs | unknown | inferred | odsy binary analysis of the shipped display driver |
 | `aux_ctl` | 0x2680 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
 | `dac_ctl` | 0x26c0 | rw | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
-| `vtg_misc` | 0x27c0 | w | 32 | 12 | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_sync_detect` | 0x27c0 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_sync_detect_level` | 0x27c1 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_pattern_hi_lo` | 0x27c2 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_pattern_hi_hi` | 0x27c3 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_pattern_lo_lo` | 0x27c4 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_pattern_lo_hi` | 0x27c5 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_phase_lo` | 0x27c6 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_phase_hi` | 0x27c7 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_hmask_lo` | 0x27c8 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_hmask_hi` | 0x27c9 | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_bp_clamp` | 0x27ca | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
+| `gen_clocking` | 0x27cb | w | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
 | `genlock_ctl` | 0x27cc | rw | 32 |  | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
 | `genlock_status` | 0x27cd | r | 32 |  | display_regs | unknown | inferred | odsy binary analysis of the shipped display driver |
 | `mode_table` | 0x2900 | w | 32 | 37 | display_regs | unknown | established | odsy binary analysis of the shipped display driver |
@@ -236,6 +248,20 @@ the driver's stores; bit meanings beyond the two named are unknown.
 | 7 | `bit7` | unknown |  | odsy binary analysis of the shipped display driver |  |
 | 6 | `bit6` | unknown |  | odsy binary analysis of the shipped display driver |  |
 
+### Register `dac_data`
+
+DAC test input word, three 10-bit channels. No driver writes it; the field
+diagnostic's analog-output test writes it with a monitor attached, then
+reads the three comparator bits of the DAC control register: a channel at
+full scale reads 0 and a channel at zero reads 1, whatever the other two
+carry. Reading as the DAC's input is inferred from that test.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 31:22 | `g` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 21:12 | `b` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 11:2 | `r` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
 ### Register `aux_ctl`
 
 Written once per timing load from a word of the timing structure that
@@ -246,19 +272,123 @@ sits next to the DAC and data-path words. What it controls is unknown.
 DAC control. Blanking sets bit 0; the DAC-gain routine sets or clears
 bit 1 with a read-modify-write; the timing load writes the structure's
 DAC word. That bit 0 blanks is established by the routine; the polarity
-of the gain bit is not known, so its name is inferred.
+of the gain bit is not known, so its name is inferred. Bits 6:4 are the
+red, green and blue comparator outputs the field diagnostic reads (the
+published diagnostic reference names them as the comparator bits of this
+register).
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
+| 6 | `comparator_b` | established |  | odsy binary analysis of the shipped display driver |  |
+| 5 | `comparator_g` | established |  | odsy binary analysis of the shipped display driver |  |
+| 4 | `comparator_r` | established |  | odsy binary analysis of the shipped display driver |  |
 | 1 | `gain` | inferred |  | odsy binary analysis of the shipped display driver |  |
 | 0 | `blank` | established |  | odsy binary analysis of the shipped display driver |  |
 
-### Register `vtg_misc`
+### Register `gen_sync_detect`
 
-Twelve consecutive timing generator words, written in order from twelve
-consecutive words of the timing structure. Bit meanings are unknown.
+Genlock sync detector, first word. Written once per timing load from a word
+of the timing structure; the packing is the one the shipped format compiler
+uses, the roles are read from its variable names. Every shipped format has
+bit 20:19 = 1, bit 0 = 0, and the pulse-skip byte at most 255.
 
-Array of 12 registers, stride 1.
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 31:24 | `pulse_skip` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 23 | `first_pulse_level` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 22 | `enable_high_pulse` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 21 | `enable_low_pulse` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 20:19 | `sync_source` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 18:1 | `compare_tolerance` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 0 | `frame_detect` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
+### Register `gen_sync_detect_level`
+
+Genlock detector level routing. Value 1 in every shipped format; the role is inferred from the compiler's name.
+
+### Register `gen_pattern_hi_lo`
+
+Genlock high-going sync pattern, low bits. The shipped value depends on
+the format's scan type (one value for scan type 1, one for types 3 to 5,
+two for two-field broadcast formats at 30 and 25 Hz); the values are in the
+display notes.
+
+### Register `gen_pattern_hi_hi`
+
+High bits of the high-going sync pattern: 0 except in the two-field broadcast formats.
+
+### Register `gen_pattern_lo_lo`
+
+Genlock low-going sync pattern, low bits; same scan-type grouping as the
+high-going pattern, values in the display notes.
+
+### Register `gen_pattern_lo_hi`
+
+High bits of the low-going sync pattern: 0 except in the two-field broadcast formats.
+
+### Register `gen_phase_lo`
+
+Genlock phase detector, first word: the frame period in display-bus clocks
+in bits 23:0 and the low byte of the line count that gains lock in bits
+31:24. The line count is a percentage of the frame (40, 40, 25, 15 and 20
+percent for scan types 1 to 5).
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 31:24 | `lines_low` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 23:0 | `frame_period` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
+### Register `gen_phase_hi`
+
+Genlock phase detector, second word. Every shipped format sets enable,
+loses lock after 6 frames and gains it after 3.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 10 | `enable` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 9:7 | `frames_to_lose` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 6:4 | `frames_to_gain` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 3:0 | `lines_high` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
+### Register `gen_hmask_lo`
+
+Genlock horizontal mask, first word: start (low byte), divider (0 in every
+shipped format), line length in display-bus clocks and the edge select.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 31:24 | `start_low` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 23:16 | `divider` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 15:1 | `line_length` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 0 | `edge` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
+### Register `gen_hmask_hi`
+
+Genlock horizontal mask, second word: width (three horizontal sync times) and the high bits of the start.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 21:7 | `width` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 6:0 | `start_high` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
+### Register `gen_bp_clamp`
+
+Genlock back-porch clamp: delay of one horizontal sync time, width 0 and edge 1 in every shipped format.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 25:16 | `width` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 15:1 | `delay` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 0 | `edge` | inferred |  | odsy binary analysis of the shipped display driver |  |
+
+### Register `gen_clocking`
+
+Genlock clocking and horizontal-rate divide; 0 in every shipped format.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 31:2 | `hrate_div` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 1:0 | `clocking` | inferred |  | odsy binary analysis of the shipped display driver |  |
 
 ### Register `genlock_ctl`
 
@@ -270,7 +400,11 @@ the word is held at 0.
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
+| 7 | `test` | inferred |  | odsy binary analysis of the shipped display driver |  |
 | 6 | `enabled` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 5:4 | `source_select` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 3:2 | `mux_b` | inferred |  | odsy binary analysis of the shipped display driver |  |
+| 1:0 | `mux_a` | inferred |  | odsy binary analysis of the shipped display driver |  |
 
 ### Register `genlock_status`
 
