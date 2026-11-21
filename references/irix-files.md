@@ -177,6 +177,7 @@ From the retail `Installation Tools and Overlays` and `Overlays` disc images of 
 - 6.5.9 to 6.5.13 carry the IP30 files and no IP35 `odyssey.a` or `IP35ODSY` library; 6.5.14 is the first with IP35 (`IP35boot/odyssey.a`, `IP35ODSY`, `IP35ODSY32`, `IP35ODSY64`).
 - `usr/gfx/ucode/ODSY/buzz_xform.bin` sizes: 27192 bytes (6.5.8, sha256 43a97846621ad2ca...), 32340 (6.5.14, dc413626232a7a15...), 33528 (6.5.30, a0201d88cf23752c...).
 - The 6.5.14 `odyssey.so` exists only in the `f` stream (`x_eoe_6514f`, second overlay disc); its display-mode tables equal 6.5.30m's.
+- **Review note (2026-11-21, independent review).** Re-read from the discs: the 6.5.7 first and second discs hold no VPro path; the 6.5.8 first disc holds `IP30boot/odyssey.a`, `buzz_xform.bin` (27192 bytes, sha256 prefix as above) and 40 VPro paths, with `odyssey.so` on the third; `odsy_init.o` of the IP30 `odyssey.a` builds the constant 0x003d0046 (a `lui` 0x3d and `ori` 0x46 pair) in 6.5.10 (at 0x3418) and not in 6.5.8 or 6.5.9. Only the constant's presence was checked, not that it feeds the `odsyInitCfifo` compare. Not re-read: the 6.5.14 mode tables, the group 19 against 16 difference and the 6.5.14 file lists.
 
 ## 6. Wider scope: every 6.5.30 file that touches VPro
 
