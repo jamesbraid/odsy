@@ -1,7 +1,7 @@
 // generated from devices/display/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 06291b3562f72cf1f7f06406562c9e1d12cf77decc2cb9092846951c1f5847ef
+// input sha256 4cc29ae5ce9f42cc9b5a6f5020f55ac0a52f4dace414858d2758b1deb2a71c60
 // VPro (Odyssey) display registers (publish-safe subset)
 #![allow(dead_code)]
 

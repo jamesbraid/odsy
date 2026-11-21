@@ -198,9 +198,10 @@ so the grades are the reading's own:
 
 Settled by reading the kernel's cursor replay code beside the X module
 (display README, "Replay code"): every word the
-software sends to the board has bit 1 clear (the kernel masks it off before each
-write; the X module clears it before each send), and the only bit 1 the code
-sets is in its own mirror of the word after a send. So bit 0 is the enable
+software sends to the board has bit 1 clear (the kernel's own writes mask it
+off, its request path forwards the X module's word, and the X module clears it
+before each send), and the only bit 1 the code sets is in its own mirror of
+the word after a send. So bit 0 is the enable
 (inferred) and bit 1 is set by the firmware textport alone (meaning unknown)."""
 space = "display_regs"
 

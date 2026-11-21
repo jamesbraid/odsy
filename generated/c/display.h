@@ -1,7 +1,7 @@
 /* generated from devices/display/registers.toml by defs-gen - do not edit, change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
 /* defs-gen 2 */
-/* input sha256 06291b3562f72cf1f7f06406562c9e1d12cf77decc2cb9092846951c1f5847ef */
+/* input sha256 4cc29ae5ce9f42cc9b5a6f5020f55ac0a52f4dace414858d2758b1deb2a71c60 */
 /* VPro (Odyssey) display registers (publish-safe subset) */
 #ifndef DISPLAY_GEN_H
 #define DISPLAY_GEN_H
@@ -187,9 +187,10 @@
  *
  * Settled by reading the kernel's cursor replay code beside the X module
  * (display README, "Replay code"): every word the
- * software sends to the board has bit 1 clear (the kernel masks it off before each
- * write; the X module clears it before each send), and the only bit 1 the code
- * sets is in its own mirror of the word after a send. So bit 0 is the enable
+ * software sends to the board has bit 1 clear (the kernel's own writes mask it
+ * off, its request path forwards the X module's word, and the X module clears it
+ * before each send), and the only bit 1 the code sets is in its own mirror of
+ * the word after a send. So bit 0 is the enable
  * (inferred) and bit 1 is set by the firmware textport alone (meaning unknown).
  */
 /* cursor_ctl: w32, space display_regs, reset unknown; odsy binary analysis of the shipped display driver */
