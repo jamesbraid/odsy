@@ -41,7 +41,7 @@ The IP35 PROM prints "Odyssey board #0 found on nasid N" for the board ([prom-bo
 Representative captures, one per row of the table (read 2026-11-24). They are public forum and mailing-list posts; the dump text was read in full for the location lines and the `Graphics board` line.
 
 - Octane2 V12: a Usenet post, `news:1154837200.525371.210600@75g2000cwc.googlegroups.com`; Octane2 V6: `news:1131341991.176074@erwin.inf.tu-dresden.de`.
-- Octane V12: https://forums.irixnet.org/thread-3227.html; Octane V6 at widget 9: https://nekonomicon.irixnet.org/forum/3/16723215/1.html.
+- Octane V12 (the dump is on page 2): https://forums.irixnet.org/thread-3227-page-2.html; Octane V6 at widget 9 (page 2, which also holds a capture with boards at widgets 9 and 11): https://nekonomicon.irixnet.org/forum/3/16723215/2.html.
 - Fuel V12: https://nekonomicon.irixnet.org/forum/14/13314/1.html and https://nekonomicon.irixnet.org/forum/14/16725766/1.html (ODY128B1_2); Fuel V10: https://forums.irixnet.org/thread-4195.html.
 - Tezro V12: https://nekonomicon.irixnet.org/forum/14/16728583/1.html and https://forums.irixnet.org/thread-785-post-26015.html; Tezro V10: https://nekonomicon.irixnet.org/forum/3/16724414/1.html.
 - Onyx 350 V12: https://nekonomicon.irixnet.org/forum/14/16721099/1.html; Origin 350 V10: https://nekonomicon.irixnet.org/forum/14/16725055/1.html.
