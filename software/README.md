@@ -8,11 +8,13 @@
 |---|---|---|
 | [compositor-files.md](firmware/compositor-files.md) | Compositor install files | The `STINGRAY` files are the compositor's firmware images, the list of their versions, the program that writes them... |
 | [firmware-images.md](firmware/firmware-images.md) | Firmware and standalone images | Three shipped files carry code that runs before IRIX or outside it: the IP30 boot PROM image, the IP35 boot PROM... |
+| [prom-board-handoff.md](firmware/prom-board-handoff.md) | What the boot PROMs leave on the board | Which parts of the VPro bring-up the IP30 and IP35 boot PROMs run, and what a client that starts after them (a... |
 
 ## kernel
 
 | Page | Title | Summary |
 |---|---|---|
+| [bringup-without-prom.md](kernel/bringup-without-prom.md) | Bringing the board up without a PROM, in order | The ordered list a driver needs to take a VPro board from power-on to a drawable 1280 x 1024 console, with every... |
 | [compositor-probe.md](kernel/compositor-probe.md) | The compositor probe and the gfxinfo compositor lines | How the driver decides a compositor is fitted, and what `gfxinfo` prints from the result. |
 | [diag-messages.md](kernel/diag-messages.md) | Diagnostic and kernel-driver messages | The table diag-messages.tsv lists every call that prints, in four shipped targets of IRIX 6.5.30m and its diagnostic... |
 | [driver-functions.md](kernel/driver-functions.md) | Kernel driver functions, one entry each | Release IRIX 6.5.30m, `odyssey.a` members of the IP30 kernel build. |
