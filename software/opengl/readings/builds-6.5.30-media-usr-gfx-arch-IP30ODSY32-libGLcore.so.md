@@ -4032,3 +4032,18 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `__glOdysseyImageLogBase2` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9c1e40
   **Established.** Rounded-up base-2 logarithm of a0, returned in v0. A zero argument returns 0 straight away (`beqz` at 0xd9c1e40). Otherwise `and` with a0 - 1 and `sltu` give v0 = 1 when a0 is not a power of two and 0 when it is; a0 is shifted right once, and each further shift adds 1 to v0 until a0 is zero. So 1 gives 0, 8 gives 3 and 9 gives 4.
+
+- `ApplyMaterialF` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd983680
+  **Inferred.** The n32 build of the float material setter keeps the context pointer at 0x1010 instead of 0x1020. It tests a1 against 0x1200 to 0x1202 and 0x1600 to 0x1602, converts the clamped components at a2 to 12-bit fields in the words at +24 and +28 of a0, and forwards the context's lighting table when the dirty flag is set. The forwarding sends the words 0x10443, 250 and 0x10046 twice at 0xd9837c0, then the header 0x13c4d at 0xd9837dc and the 16 words from +31856 of the context.
+
+- `ApplyMaterialI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd983df0
+  **Inferred.** Takes signed integer material components and writes the same 12-bit fixed-point fields as the float setter. Each value goes through `cvt.s.w`, a multiply-add on two constants and the scale at +3908 of the context, is clamped at 1.0 and truncated. When the lighting-table flag is pending it emits 0x10443, 250, 0x10046 and 0x10046 at 0xd983f8c to 0xd983f9c, then 0x13c4d and the 16 words at +31856 of the context at 0xd983fa8.
+
+- `__glOdysseyUnbindHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f4b80
+  **Established.** The n32 unbind routine stores its argument a1 at the start of a 32-byte stack block and passes it, with the context from the global at 0x1010, to `__glOdysseyIoctl` at 0xd9f4bac with the request 0x6f640015. Its return value is 0 when the request worked and 1 when it did not, produced with `movz`.
+
+- `__glOdysseyBindHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f4b10
+  **Established.** Joins the current context to a hyperpipe. The byte at +3222 of the context (read through the global at 0x1010) gates the work: when it is zero the function returns 1 straight away. Otherwise the pipe argument a1 is stored in a 16-byte block and sent with the request 0x6f640014, the driver's bind entry, at 0xd9f4b48, and the answer is mapped to 0 for success and 1 for failure.
+
+- `__glOdysseyGetHardwareShadow` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9d93e0
+  **Established.** Asks the driver to copy out the saved image of the board state. It forwards a1 as the block to `__glOdysseyIoctl` with the request 0x6f64000c, the driver's save-shadow entry, by a branch-and-link at 0xd9d9408. A negative result calls the context's error hook at +20 with the message address 0xdae4dc8 plus 19912.

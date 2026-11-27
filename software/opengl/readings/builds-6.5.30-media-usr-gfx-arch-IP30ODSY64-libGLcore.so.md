@@ -4983,3 +4983,30 @@ Reviewed: 2026-11-12
   The `ld` at 0x2326900 loads 8 bytes from abs 0x1ae0.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x2326904).
   The instructions from 0x232690c to 0x23269fc are not reached by any path from the entry, and their branches are not listed.
+
+- `__glOdysseySetProgram` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x220e490
+  **Inferred.** Makes the microcode program numbered by a1 the one the transform engine runs, by streaming its table words into the command window at 0x10000. A set byte at +0x285e0 ends the call at once with a single store of 0x298080c5. Otherwise the 32-byte slot of program a1 at +0xc9a8 gives a start and a length, and the loop at 0x220e660 walks up to 199 twelve-byte records, sending for each a header 0x27008000 holding the record number (bits above 10 shifted to bit 23, the low 10 bits kept) and six words 0x40008000 built from the record's halfwords the same way. The tail sends 0x29008000, 0x33008000, 0x90808800 and two zero words, and remembers the program at +0xc9f8, +0xc9fc and +0xca00 so a repeat selection skips the download.
+
+- `ApplyMaterialF` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x21c7170
+  **Inferred.** Stores a floating-point material colour into the hardware's lighting table. It compares a1 with the material names 0x1200, 0x1201, 0x1202 and 0x1600 to 0x1602, clamps each of the three floats at a2 against 1.0, multiplies by a constant and truncates to 12 bits, then packs the results into 12-bit fields of the words at +24 and +28 of the record in a0. The tail loads the context from the global at 0x1020 and, when its pending flag at +0xbb80 is set, clears it and sends the pause words 0x10443, 250 and 0x10046 twice, then the header 0x13c4d followed by the 16 words at +0x9fc0 of the context.
+
+- `ApplyMaterialI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x21c78d0
+  **Inferred.** The integer form of the material setter: each signed integer at a2 is turned into a float with `cvt.s.w`, mapped into the unit range by a fused multiply-add on two table constants, multiplied by the colour scale at +3908 of the context and clamped at 1.0. The scaled value is truncated to 12 bits and packed into the words at +24 and +28 of the record in a0, as in the float form, and the same table push follows: the words 0x10443, 250, 0x10046 and the header 0x13c4d at 0x21c7a88, then the 16 words from +0x9fc0 of the context.
+
+- `__glOdysseyHyperpipeStereo` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x2239050
+  **Established.** In the 64-bit build the stereo request block is built with plain `sw` stores: the context word at +0x285d8 at sp+0, the value read through a3 at sp+4, the kind code 3 at sp+8 and a2 at sp+12, with the pointer a3 kept whole at sp+16. `__glOdysseyIoctl` is called at 0x22390a0 with the request 0x6f640018 and the routine returns 1 when it reports an error and 0 when it does not.
+
+- `__glOdysseyUnbindHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x22392d0
+  **Established.** Same job as the 32-bit builds but with the 8-byte context pointer taken from the global at 0x1020. It writes a1 into a stack block, issues the unbind request 0x6f640015 at 0x22392fc and maps the ioctl status to 0 or 1 with `movz` at 0x2239314.
+
+- `ApplyViewport` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x21a9e70
+  **Inferred.** The 64-bit viewport applier calls `__glOdysseyFindWindowSize` at 0x21a9ea0 and `__glUpdateViewport` at 0x21a9eac, then four times `__glOdysseyImageDescribeWindow` at 0x21a9f54, 0x21a9f70, 0x21a9fa0 and 0x21a9fb8 on the window records at +82208, +82272, +82448 and +82384. It finishes by sending the pause words 0x10443, 250 and 0x10046 twice and the header 0x10456 followed by the shadow word at +47992 of the context to the window at 0x10000.
+
+- `ApplyParameterF` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x21a0650
+  **Inferred.** Distributes one four-float parameter to the units selected by a bit mask. The parameter name in a1 is compared with 0x1200 to 0x1202 and 0x1600 to 0x1602, each choosing a mask (8 for the first case when the byte at +3556 of the context is set, 2 for another). For every set bit the loop at 0x21a06c0 builds the header 0xc080d000 with a group number in the top byte and a running register number in the low byte, stores it to 0x10000 and follows it with the four floats read from a2.
+
+- `ApplyParameterI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x21a0d30
+  **Inferred.** The integer-argument parameter applier for the same unit set, the n64 build. It resends the context's 16-word table at +0x9fc0 behind the header 0x13c4d (after 0x10443, 250 and 0x10046 twice at 0x21a0d88), then writes a series of words that are headers built from the register numbers and the integer values at a2, ending with 0xd080c433 or 0xd080c439 at 0x21a1058. A call to `__glOdysseySetProgram` at 0x21a109c reselects the microcode program held at +51704 of the context.
+
+- `LoadAndSendStippledQuads` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0x21a3840
+  **Inferred.** Loads the polygon stipple into the board and draws a list of quads under it. The quad corners at a1 are rounded with four `ceil` calls (0x21a3888 onward) and the pause words 0x10443, 250 and 0x10046 precede the stipple load. The load sends the header 0x1043f with the word at +0x9f48, then the pattern words from +0x9f48 onward behind the headers 0x13c4e and 0x13c4f. Each quad is sent as 0x14400, 7 and 0x8f80b968, the four floats at +0 to +12 of the colour pointer, the corners, and the closing header 0x14001.

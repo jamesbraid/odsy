@@ -2709,3 +2709,12 @@ One entry per routine, filed here from the reading batches by binary.
   It occupies 60 bytes.
   The `jalr` at 0x2177370 calls __glXInit [0x2142b48] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The return at 0x2177384 has v0 = ret(__glXInit).
+
+- `glXGetVideoSyncSGI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x215995c
+  **Established.** Reads the video-sync counter by asking the graphics device directly rather than the X server. It takes the current context from the global at 0x1028 and returns 5 when there is none or its record at +280 is empty; otherwise it passes the ioctl request 1022 and a two-word block (the id at +296 of the record, then a result slot) to `ioctl` at 0x21599b4 on the board descriptor chosen by the index at +264. The result word at sp+4 is stored through a0 and the function returns 0.
+
+- `glXQueryMaxSwapBarriersSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2170eb0
+  **Established.** Finds how many swap barriers the server offers. After `__glXSetupForCommand` at 0x2170ee0 it queues a four-word vendor-private request with reply (byte 1 is 17, code 0x1000d) that carries the caller's screen number at +12, then waits in `_XReply` at 0x2170f74. A failed reply returns 0 after the display hooks at +2408 and +208 run; on success the count word from the reply is stored through the output pointer and the function returns 1.
+
+- `glXSwapIntervalSGI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x215a158
+  **Established.** Sets how many video frames must pass between buffer swaps. It returns 5 with no current context (the global at 0x1028) and 6 for an interval of zero or less. A direct context hands the interval and its record id at +296 to `ioctl` at 0x215a1bc with the request 1006. An indirect one calls `__glXSetupForCommand` at 0x215a208 and queues a four-word vendor-private request whose code word is 0x10000, with a word loaded from +104 of the context record at +8 and the interval at +12.

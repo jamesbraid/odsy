@@ -29802,3 +29802,42 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `__glOdyim_Color4dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdadeb80
   **Established.** Four doubles loaded from a0 and narrowed (first at 0xdadeb98); 0xc580d015 by `sw` at 0xdadeba4, then the four floats up to 0xdadebc0.
+
+- `__glOdysseyClear` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd967240
+  **Inferred.** Clears a rectangle of the current drawable to the colour and depth in its arguments, by the kernel when it can and by the command FIFO when it cannot. The prologue copies the five state words at +31740, +31744, +31748, +31788 and +31792 of the context to the stack, strips the blend, dither, stencil and test bits from them and sends the stripped copies to the window at 0x10000 behind the headers 0x10415, 0x1041f and 0x10420. Several eligibility tests on the mask bits at +5796 and +31600 decide whether the request 0x6f64000e (the kernel's clear-buffer entry) is passed to `__glOdysseyIoctl` at 0xd96788c with a 48-byte block of colour, rectangle and depth. When that is not allowed or fails, the fallback sends the header 0x14400, the word 0x8f80a944, the four colour floats and the corner coordinates converted with `cvt.s.w`, then the header 0x14001, and finally restores the saved state words through the same headers.
+
+- `__glOdysseyDriverMakeCurrent` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd9ec21c
+  **Inferred.** Binds a context to its drawable's buffers when it becomes current. It builds two small request blocks on the stack, each holding 2 when the buffer counts at +3300 and +3460 are positive and with bit 2 set when the flag bytes at +3220 and +3380 are clear, and sends them with the request 0x6f640008 to `__glOdysseyIoctl` at 0xd9ec2a0. A negative result calls the hook at +20 of the context with the message address 0xdaefd10 and returns 0. On success it copies the reply words into +27968 to +27984 of the context, switches on the reply's buffer-type byte (0, 1 or 2) to fill the record at +28008 onwards, clears 0x50 and 0x14 bytes at +93544, +93584 and +93604 with `bzero` and returns 1.
+
+- `ApplyMaterialF` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd986c8c
+  **Inferred.** The o32 version dispatches on a1 with a chain of compares against 0x1200, 0x1201, 0x1202, 0x1600, 0x1601, 0x1602 and 0x1603, and each case has its own inline float handling. It saves and restores the floating-point control register around `cvt.w.s` (`cfc1` and `ctc1` with 1) so that a value of 4096.0 or more is converted through a subtract of 2^31, and it packs the clamped components into 12-bit fields of the record in a0. The common tail at 0xd9883f4 sends the pause words 0x10443, 250 and 0x10046 and the header 0x13c4d, then the table words from +31856 of the context at 0xd98841c.
+
+- `__glOdysseyHyperpipeRect` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda0916c
+  **Established.** Hands a hyperpipe sub-rectangle to the kernel driver. It fills a 24-byte block on the stack: the handle word from +0x21ef0 of the context, a1, the kind code 1, a2, and a3 sign-extended into a 64-bit slot (a pointer travelling in a fixed-width field). The block goes to `__glOdysseyIoctl` at 0xda091c4 with the request 0x6f640018, the driver's attribute-set entry, and the wrapper returns 0 when that call succeeds and 1 otherwise.
+
+- `__glOdysseyHyperpipeStereo` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda091f0
+  **Established.** Sends the stereo setting for a hyperpipe to the driver. It reads the first word at the address in a3 and puts it in a block next to the handle from +0x21ef0 of the context, a2 and the kind code 3, with a3 itself widened to 64 bits. The block is passed with the request 0x6f640018 at 0xda0924c and the result is turned into 0 for success and 1 for failure.
+
+- `__glOdysseyQueryHyperpipePixelAverage` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda093b4
+  **Established.** Asks the kernel for a hyperpipe pixel-average figure. The block has the context handle from +0x21ef0, a1, the kind code 4 and a2, and the sign-extended pointer a3 at +24 and +28 where the answer is expected. It is sent with the request 0x6f640016, the driver's attribute-query entry, by the call at 0xda0940c, and the function returns 0 on success, 1 on failure.
+
+- `__glOdysseyUnbindHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xda094ac
+  **Established.** Detaches the current context from its hyperpipe. It stores the single argument and a0 in a small block and calls `__glOdysseyIoctl` at 0xda094dc with the global current context at 0x1010 and the request 0x6f640015, the driver's unbind entry. A zero result is returned as 0, anything else as 1.
+
+- `__glOdysseyReadFromPMObj` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd9d89d0
+  **Inferred.** Reads data out of a pixel-memory object. It copies the 32-byte transfer descriptor at the pointer in its fifth argument into a stack block, clears the top 16 bits of its first word, widens a3 to 64 bits and checks the whole block with `CheckMMXfrArgs` at 0xd9d8a88. A passing block goes to `__glOdysseyIoctl` with the request 0x6f640006, the driver's memory-transfer entry, at 0xd9d8ab0; on success the routine stores either zero or the saved word at sp+116 into +0x1ee8 of the context depending on bit 1 of the descriptor flags, and it returns 1 or 0.
+
+- `__glOdyim_ScratchColor4b` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdadea40
+  **Established.** The o32 scratch-slot colour sender for four byte values. The command word 0xce80d012 goes into f5 and a0 into f4 by `mtc1`, one `sdc1` at 0xdadea58 writes the pair to 0x10000 header first, and the other three components a1, a2 and a3 follow as separate `sw` stores to the same address.
+
+- `__glOdyim_ScratchColor4dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdadec00
+  **Established.** Sends a four-double colour into the scratch slot. The routine loads the doubles at a0, a0+8, a0+16 and a0+24, narrows each with `cvt.s.d`, stores the header word 0xce80d015 at 0xdadec24 to the window at 0x10000, and then stores the four floats there one after another with `swc1`.
+
+- `ApplyViewport` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd968540
+  **Established.** Pushes the current GL viewport into the context and the board. It calls `__glOdysseyFindWindowSize` and `__glUpdateViewport` at 0xd968568 and 0xd96857c, then turns the window height and the viewport rectangle at +1688 to +1700 into the float offsets stored at +1728, +1732 and +372. Four calls to `__glOdysseyImageDescribeWindow` at 0xd968638, 0xd968658, 0xd968690 and 0xd9686b0 rebuild the window image records, and the byte at +29892 records whether the rectangle lies inside the window. The last step merges the window height into the low 12 bits of the word at +0x8000+6184 and sends it to the window at 0x10000 behind the header 0x10456 at 0xd96879c, after the pause words 0x10443, 250 and 0x10046 when the dirty flag at +6192 is set.
+
+- `ApplyParameterI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd95eef0
+  **Inferred.** The o32 integer parameter applier is long (about 12 KB) because each case is expanded inline. It writes 22 variable words and the header 0x908091ea (with the values at +38932 and +38936 of the context) to the window at 0x10000, calls `__glOdysseySetProgram` at 0xd95f0f4 with the program number from +42664 and a program kind of 0x33 or 0x39, and at the end flushes the 16-word table at +31856 behind the pause words 0x10443, 250, 0x10046 and the header 0x13c4d at 0xd95f320.
+
+- `LoadAndSendStippledQuads` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xd961dd0
+  **Inferred.** The o32 form first rounds its coordinates with `ceil` at 0xd961e50, 0xd961f08, 0xd961fb8 and 0xd9621a4 and clears a 4-byte scratch with `memset` at 0xd962258. It then sends the pause words, the header 0x1043f with the word at +31736, and the 32-word pattern from +31608 behind the header 0x13c4e at 0xd962414. A final call through a function pointer at 0xd9625e4 hands a0+32768 on to the drawing step.
