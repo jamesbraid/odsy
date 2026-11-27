@@ -6735,3 +6735,12 @@ One entry per routine, filed here from the reading batches by binary.
   The `lw` at 0xdbb1500 loads 4 bytes from abs 0x1530.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xdbb1504).
   The instructions from 0xdbb150c to 0xdbb15fc are not reached by any path from the entry, and their branches are not listed.
+
+- `__glOdyim_Vertex3d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba72c0
+  **Established.** The patch build's o32 vertex sender for three doubles. The first two arrive in f12 and f14 and the third on the stack at sp+16; each is narrowed with `cvt.s.d`, the header 0x8080cc03 is stored to the address 0x4000 (the patch build's command window, not 0x10000) and the three floats follow with `swc1` to the same address.
+
+- `__glOdyim_ScratchColor3d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad640
+  **Established.** Sends a three-double colour to the scratch slot. The header 0xce80cc0e goes out first by `sw` at 0xdbad654, then the doubles from f12, f14 and sp+16 are narrowed with `cvt.s.d` and stored as floats at 0xdbad65c, 0xdbad660 and 0xdbad668, all to the window at 0x4000.
+
+- `__glOdyim_ScratchColor4i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae040
+  **Established.** The integer scratch colour sender: a0 is moved into f4 and the word 0xce80d014 into f5, so one `sdc1` at 0xdbae054 writes header and first component to 0x4000 in a single doubleword, and a1, a2 and a3 are stored raw behind it.

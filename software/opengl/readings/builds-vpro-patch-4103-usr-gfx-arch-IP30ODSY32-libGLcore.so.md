@@ -6980,3 +6980,33 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `__glOdyim_EdgeFlagv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdabd8c0
   **Established.** The flag byte at a0 is loaded (`lbu` at 0xdabd8c0), reduced to 0 or 1 by `sltu`, and selects 0x3000c02e (zero) or 0x2f00c02e (nonzero), built by shifting 16 or 15 left by 24 and ORing 0x2000c02e; the store at 0xdabd8e8 writes it to absolute 0x4000.
+
+- `__glOdysseyFindWindowSize` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xda55150
+  **Inferred.** Refreshes the cached window geometry. It saves the old size from +3692 and +3696, asks the window hook at +28 of the context for the new origin and size, and rewrites the float offsets at +0x20000-25428 and -25424 as the integer origin plus the bias at -25420. If the size changed it calls `__glChangeWindowSize` at 0xda551e8, then asks the hook at +72 for the read window and calls `__glChangeReadWindowSize` at 0xda55224 when that changed. A resize sets the byte at +8128 of the second record.
+
+- `LookupCoresidRange` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdaab230
+  **Inferred.** Finds or creates the record of a resident range inside a memory group. It walks the chain hanging off slot a2 of the group (+12 of the slot) until it meets a record whose end at +12 reaches a3; when none exists and a4 is set it allocates 44 bytes with the context allocator hook at 0xdaab29c, clears them with `bzero` and fills the range fields. The driver then gets the request 0x6f640004 at 0xdaab318 to describe the range, and on its answer the record's table pointers at +8, +32, +36 and +40 are linked in, or `__glSetError` at 0xdaab37c reports 0x505.
+
+- `__glOdysseyDriverMakeCurrent` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdabd290
+  **Inferred.** The n32 patch version of the context-binding routine. It asks the driver with the request 0x6f640008 at 0xdabd30c (the block holds 0 or 2 for each buffer), returns 1 at 0xdabd3a4 once the reply words are copied into the context, and on a failure calls the context hook with the message address 0xdbc1298 and returns 0 at 0xdabd468. Three `bzero` calls at 0xdabd480, 0xdabd4dc and 0xdabd4f4 clear 0x50, 0x14 and 0x14 bytes at +93304, +93344 and +93364.
+
+- `RGBSendClippedBmFmTN` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacb950
+  **Inferred.** Sends a clipped vertex with normal and texture data, n32 patch form. The routine opens with 0x2000c02e ORed with 15 or 16 in the top byte at 0xdacb9a8, then the register headers 0xc680d02f, 0xc880d031, 0xc780d030, 0xc980d032, 0xca80d035, 0xcc80d037, 0xcb80d036 and 0xcd80d038 each carry floats from +144 to +172 of the vertex or zeros, all stored to 0x4000. The return value is the word 0x8080d005.
+
+- `CISendClippedBmFmN` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacc140
+  **Inferred.** The colour-index counterpart of the clipped vertex senders, with normals. It sends 0x2000c02e with 15 or 16 in the top byte at 0xdacc16c, then the register headers 0xc680d02f to 0xcd80d038 with the floats at +144 and +160 or zeros, and ends with 0xc180cc19 followed by the floats at +192 and +196, all to the window at 0x4000. It returns 0x8080d005.
+
+- `ApplyParameterF` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xda4cb00
+  **Inferred.** In the n32 patch build the float parameter applier first sends the four floats at a2 under a header (eight stores at 0xda4cb84 onward), then calls `__glOdysseySetProgram` at 0xda4cd6c with the program number at +42440, the word 0x908091ea and 0xd080c400 ORed with 0x33 or 0x39, and finally writes the register headers 0xc680d02f, 0xc780d030, 0xc880d031, 0xc980d032 and 0xca80d035 with zero words between them, all to the window at 0x4000.
+
+- `ApplyParameterI` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xda4d190
+  **Inferred.** The integer form first sends the pause words 0x10443, 250 and 0x10046 twice and the header 0x13c4d followed by the 16 words at +31632 of the context to the window at 0x4000, then reloads the microcode with `__glOdysseySetProgram` at 0xda4d4dc using the program number at +42440, the word 0xd080c400, the kind 0x39 and a table pointer.
+
+- `__glOdyim_Clear` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xda54070
+  **Inferred.** glClear for the n32 patch build. It reports 0x502 through `__glSetError` at 0xda540a8 when a primitive is open (the global at 0x1018) and 0x501 at 0xda540f8 for an unknown mask bit. Depth conversion goes through `__glOdysseyWindowToNormalizedEyeZ` at 0xda54370, the clear itself through `__glOdysseyClear` at 0xda543c8 and again at 0xda544fc around `__glOdysseySetDrawbuf` (0xda544b4 and 0xda54518), and the driver gets the request 0x6f64000d at 0xda54614.
+
+- `ApplyViewport` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xda552a0
+  **Inferred.** Calls `__glOdysseyFindWindowSize` at 0xda552c8 and `__glUpdateViewport` at 0xda552d8, rebuilds two window image records at +72856 and +72912 with `__glOdysseyImageDescribeWindow` at 0xda55380 and 0xda5539c, and sends the pause words 0x10443, 250 and 0x10046 twice followed by the header 0x10456 and the word at +38728 to the window at 0x4000.
+
+- `__glOdysseyImageMovePixelsDMAtoGfx` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xda9e1e0
+  **Inferred.** The n32 patch copy of the host-to-board pixel mover. It clears two scratch blocks of 0x20 and 0x14 bytes with `memset` at 0xda9e2e0 and 0xda9e2f8, rounds the rectangle with `ceilf` from 0xda9e318, calls `__glOdysseyImageCalcXferWriteParams` at 0xda9e3e4 and `ImageCalcDmaFieldOffsets` at 0xda9e69c and pins the target with `__glOdysseyOpenPMObjWriteReference` at 0xda9e788. `__glOdysseyImageCalcPixelModeFields` at 0xda9ebf0 programs the pixel mode, `SendPixelsAsUserPIO` at 0xda9f054 and 0xda9f444 push the data, `__glOdysseyAssignToPMObj` at 0xda9f6e4 and 0xda9f78c bind the object and the driver gets the request 0x6f64000d at 0xda9f960. Errors 0x505 and 0x501 go to `__glSetError`.

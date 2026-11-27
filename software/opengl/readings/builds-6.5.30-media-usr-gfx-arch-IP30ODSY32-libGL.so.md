@@ -2781,3 +2781,9 @@ One entry per routine, filed here from the reading batches by binary.
   It occupies 56 bytes.
   The `jalr` at 0xd8427c0 calls __glXInit [0xd80dfd8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The return at 0xd8427d0 has v0 = ret(__glXInit).
+
+- `GetFBConfigsSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd81b210
+  **Inferred.** The n32 build issues the same reply-bearing request with the code 0x10004 (`_XReply` at 0xd81b2c8) and then allocates two buffers with `malloc` at 0xd81b33c and 0xd81b3b4, freeing one of them at 0xd81b3cc. The display lock hook at +1232 of the display record brackets every exchange, which tells it apart from the 64-bit build whose hook sits at +2408.
+
+- `glXQueryMaxSwapBarriersSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd83c218
+  **Inferred.** Reports how many swap barriers the server can synchronise. It sends a vendor-private request with reply and the code 0x1000d, waits in `_XReply` at 0xd83c2dc and calls the display hooks at +1232 around it. A good reply returns 1 at 0xd83c330 after the count is written through the caller's pointer; a bad one returns 0 at 0xd83c384, and `_XFlush` at 0xd83c338 runs when the output buffer is full.

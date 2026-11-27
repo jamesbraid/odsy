@@ -3577,3 +3577,9 @@ Reviewed: 2026-11-12
   The `beql` branch at 0xd8dcbd4 targets 0xd8dcbf4, is taken when v0(=[[[[0x1014]+276]+216]+1232]) == 0, and falls through when v0(=[[[[0x1014]+276]+216]+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd8dcbd8 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd8dcbf8 targets 0xd8dcc10, is taken when v0(=[[[[0x1014]+276]+216]+124]) == 0, and falls through when v0(=[[[[0x1014]+276]+216]+124]) != 0; its branch-likely delay slot `lw ra,36(sp)` at 0xd8dcbfc runs only when taken and is annulled on fall-through.
   The return at 0xd8dcc18 has v0 = one of ?, [[[[0x1014]+276]+216]+124], ret(?).
+
+- `glXCreateGLXVideoSourceSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd8c3328
+  **Inferred.** Creates a GLX video source in the o32 patch build. After `__glXSetupForCommand` at 0xd8c3358 and `__glXInitializeVideoLibrary` at 0xd8c3398 it registers the id with `__glXAddDrawableInterest` at 0xd8c33d0 and builds the private record with `__glXCreateVideoSourcePrivate` at 0xd8c3418. Three indirect queries with selectors 4, 6 and 7 follow at 0xd8c3470, 0xd8c34d0 and 0xd8c3528, each failure unwinding through `__glXRemoveDrawableInterest`, and `videoPackingToInternalFormat` at 0xd8c356c maps the packing before the request is flushed.
+
+- `glXDestroyHyperpipeConfigSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGL.so` at 0xd8d9774
+  **Inferred.** Removes a hyperpipe configuration through a reply-bearing request. `__glXSetupForCommand` at 0xd8d9798 supplies the opcode, `_XFlush` at 0xd8d97e8 makes room when the buffer is full and `_XReply` at 0xd8d9864 collects the answer, whose status becomes the return value at 0xd8d990c.

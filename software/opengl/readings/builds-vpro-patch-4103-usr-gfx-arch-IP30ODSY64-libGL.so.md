@@ -2513,3 +2513,12 @@ One entry per routine, filed here from the reading batches by binary.
   The `beq` branch at 0xcf922fc targets 0xcf92310, is taken when t9(=[[[[0x1028]:8+280]:8+312]:8+208]:8) == 0, and falls through when t9(=[[[[0x1028]:8+280]:8+312]:8+208]:8) != 0.
   The `beq` branch at 0xcf92330 targets 0xcf92258 and is always taken.
   The return at 0xcf92320 has v0 = one of ?, ret(?).
+
+- `__glXOpenGraphicsDevice` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so` at 0xcf607bc
+  **Inferred.** Opens the graphics device node and initialises it. `open` at 0xcf60838 uses the flags 0x802, `fcntl` at 0xcf60858 sets a descriptor flag, and `ioctl` at 0xcf608fc sends the request 0x65 to the new descriptor with the board number read from +260 of the global record at 0x1028. Five `__glXFatal` calls (0xcf60818, 0xcf60890, 0xcf608c4, 0xcf608e0 and 0xcf60940 in the failure branches) report an open, flag or ioctl error.
+
+- `__glXGetDrawableAttributes` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so` at 0xcf765dc
+  **Inferred.** Reads drawable attributes in two replies. The first `_XReply` at 0xcf766b4 returns a count and a `malloc` at 0xcf766d8 receives the pairs by `_XRead` at 0xcf76830; the second at 0xcf767a8 asks for the trailing words. The caller's 0x30-byte block is zeroed with `memset` at 0xcf76844 before it is filled and the buffer is released by `free` at 0xcf76914.
+
+- `glXWaitVideoSyncSGI` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGL.so` at 0xcf77734
+  **Inferred.** Blocks until a video-sync count is reached. It rejects bad arguments with the value 6 at 0xcf7778c, returns 5 when there is no current context at 0xcf7779c, and otherwise passes the request 0x3ff with a block built from a0 and a1 and the record at +280 of the context to `ioctl` at 0xcf777d4, returning 0 at 0xcf777f4.

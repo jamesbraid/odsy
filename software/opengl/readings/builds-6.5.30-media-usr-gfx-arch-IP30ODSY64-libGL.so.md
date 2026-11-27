@@ -2718,3 +2718,30 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `glXSwapIntervalSGI` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x215a158
   **Established.** Sets how many video frames must pass between buffer swaps. It returns 5 with no current context (the global at 0x1028) and 6 for an interval of zero or less. A direct context hands the interval and its record id at +296 to `ioctl` at 0x215a1bc with the request 1006. An indirect one calls `__glXSetupForCommand` at 0x215a208 and queues a four-word vendor-private request whose code word is 0x10000, with a word loaded from +104 of the context record at +8 and the interval at +12.
+
+- `glXCreateGLXPixmapWithConfigSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x216d8f0
+  **Established.** Turns an X pixmap into a GLX pixmap for a given framebuffer config and returns the new id. The id comes from the display's id-allocation hook at +72 (called at 0x216d9c8), and a seven-word vendor-private request with the code 0x10006 carries the config id from +36 of the config, the field at +72, the pixmap argument a2 and the new id, in that order from +12. If the output buffer is short it calls `_XFlush` at 0x216da1c first. A zero from `__glXSetupForCommand` at 0x216d91c returns zero without sending anything.
+
+- `glXDestroyGLXVideoSourceSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2159ab0
+  **Inferred.** Releases a video source on the client and on the server. It looks the source up with `__glXAddDrawableInterest` at 0x2159afc, drops it with `__glXRemoveDrawableInterest` at 0x2159b0c and frees its private data with `__glXFreeDrawablePrivate` at 0x2159b18. The request that follows has the code 0x10003 and the source id, and `_XFlush` at 0x2159be0 runs when the buffer is too full to take it.
+
+- `glXCreateGLXVideoSourceSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2159cc4
+  **Inferred.** Opens a video input as a GLX drawable. It initialises the video library with `__glXInitializeVideoLibrary` at 0x2159d40, registers the new id through `__glXAddDrawableInterest` at 0x2159d68 and creates the private record with `__glXCreateVideoSourcePrivate` at 0x2159da8 and kind 3. Three indirect queries with selectors 4, 6 and 7 (at 0x2159dd8, 0x2159e18 and 0x2159e4c) fill a 192-byte stack block, and `videoPackingToInternalFormat` at 0x2159e70 maps the packing. Every failure path ends in `__glXRemoveDrawableInterest` and the function returns 0.
+
+- `glXQueryHyperpipeNetworkSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x217187c
+  **Inferred.** Lists the hyperpipe network the server knows. A reply-bearing vendor-private request with the code 0x1000e goes out and `_XReply` at 0x2171944 returns the record count; extra reply data is skipped with `_XEatData` at 0x2171970 when it is empty. Otherwise the routine allocates a buffer with `malloc` at 0x21719e0, fills it with `_XRead` at 0x2171a44 and passes it back to the caller, and every failure path returns 0.
+
+- `glXQueryHyperpipeConfigSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2171f28
+  **Inferred.** Fetches the configuration table of a hyperpipe network. It clears the caller's count at a2, builds an eight-word request with the code 0x1000f and the network id from a1 at +16, then waits in `_XReply` at 0x2171ff8. A positive reply leads to a `malloc` at 0x217207c and an `_XRead` at 0x21720f8 that copies the table; an empty reply is drained with `_XEatData` at 0x2172094. The function returns 0 on any failure.
+
+- `glXDestroyHyperpipeConfigSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2171db4
+  **Inferred.** Asks the server to tear down a hyperpipe configuration. The request carries the code 0x10011 and goes through `_XReply` at 0x2171e78, so the answer decides the return: one exit at 0x2171f20 returns the constant 0x5c, the others return what the reply says. The display hooks at +2408 are called around the exchange and `_XFlush` at 0x2171ed4 empties a full buffer.
+
+- `__glXGetDrawableAttributes` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2158a04
+  **Inferred.** Reads the attributes of an X drawable from the server in two replies. The first request (code 0x1000a, reply at 0x2158ae4) returns an attribute count; a buffer is allocated with `malloc` at 0x2158b08 and filled with `_XRead` at 0x2158ca4, then the pairs are copied through a2. A second reply read at 0x2158bd8 handles the trailing words, and `free` at 0x2158d88 releases the buffer before `_XFlush` at 0x2158dbc.
+
+- `CreateContext` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x2167248
+  **Inferred.** Builds a GLX context record. It starts the library with `__glXInitialize` at 0x2167280, allocates a 0x1c8-byte record with `calloc` at 0x216729c and tries a direct context first through `__glXCreateDirectContext` at 0x2167400. When that route is not used it sets up the vertex-array state for the types 0x85a2, 0x8430 and 0x842e with `__glXInitVertexArrayState` at 0x21674c4, looks the visual up with `__glXFindFBConfigFromVid` at 0x2167624 and sends a create request carrying the code 0x10005. Failure paths free the record and return zero.
+
+- `GetFBConfigsSGIX` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY64/libGL.so` at 0x214fe38
+  **Inferred.** Collects the framebuffer configurations of a screen. The request with the code 0x10004 is answered by `_XReply` at 0x214fef0; the reply sizes `malloc` calls at 0x214ff64 and 0x214ffdc, and `_XRead` at 0x21501f8 pulls in the attribute lists, which are zeroed with `memset` at 0x21500b0 before they are filled. The final step builds visual information through `__glXOverrideVisualGetVisualInfo` at 0x2150b7c.

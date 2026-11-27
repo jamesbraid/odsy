@@ -4809,3 +4809,36 @@ Reviewed: 2026-11-12
   The `ld` at 0xb4a5500 loads 8 bytes from abs 0x1a50.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xb4a5504).
   The instructions from 0xb4a550c to 0xb4a55fc are not reached by any path from the entry, and their branches are not listed.
+
+- `ApplyViewport` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb339820
+  **Inferred.** The 64-bit patch viewport applier runs `__glOdysseyFindWindowSize` at 0xb339848 and `__glUpdateViewport` at 0xb339858, describes the window images at +82424 and +82488 with two calls at 0xb339900 and 0xb33991c, and finishes with the pause words, the header 0x10456 at 0xb339a0c and the shadow word at +48208, stored to the window at 0x4000.
+
+- `ApplyParameterF` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb330e80
+  **Inferred.** The 64-bit patch applier sends eight words (the four floats at a2 under a header) at 0xb330f04 to 0xb330f24, calls `__glOdysseySetProgram` at 0xb3310ec with the program number at +51920 and the word 0x908091ea, then stores the register headers 0xc680d02f through 0xcd80d038 with zero padding (13 zero words from 0xb33119c) to the window at 0x4000.
+
+- `ApplyParameterI` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb331510
+  **Inferred.** Sends the pause words and the header 0x13c4d with the 16 words at +41112 of the context to 0x4000 (starting at 0xb331580), then reloads the program number at +51920 with `__glOdysseySetProgram` at 0xb33185c, passing 0xd080c400 and the kind 0x39.
+
+- `__glOdysseyImageMovePixelsDMAtoGfx` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb383380
+  **Inferred.** Same sequence as the n32 patch copy, in 64-bit form: `memset` of 0x20 and 0x14 bytes at 0xb383480 and 0xb383498, four `ceilf` calls from 0xb3834b4, `__glOdysseyImageCalcXferWriteParams` at 0xb383584, `__glOdysseyOpenPMObjWriteReference` at 0xb383948 with the context at 0x1020, `__glOdysseyImageCalcPixelModeFields` at 0xb383db0, `__glOdysseyValidateHardware` at 0xb383f74 and `SendPixelsAsUserPIO` at 0xb38421c and 0xb384618. The reference is closed at 0xb3842d8 and the request 0x6f64000d is issued at 0xb384b88.
+
+- `__glOdysseyImageMovePixelsCopy` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb380aa0
+  **Inferred.** Copies a pixel rectangle inside the board's memory. It sizes the copy with `OdysseyImageCalcXferCopyParams` at 0xb380c88, computes source and destination field offsets with two `ImageCalcDmaFieldOffsets` calls at 0xb380da8 and 0xb380e20, and holds both memory objects with `__glOdysseyOpenPMObjReference` at 0xb380e44 and `__glOdysseyOpenPMObjWriteReference` at 0xb380e8c. After `__glOdysseyValidateHardware` at 0xb381514 it moves the pixels with `ImageCopyPixelBody`, called eleven times from 0xb381734 to 0xb382a00, releases both references at 0xb3817b4 and 0xb3817d0, reports 0x502 and 0x505 through `__glSetError` and finishes with the driver request 0x6f64000d at 0xb382ae8.
+
+- `DownsampleTextureThruHW` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3999e0
+  **Inferred.** Shrinks a texture level with the board in the 64-bit patch build. `__glOdysseyImageLogBase2` at 0xb399b28 and 0xb399b54 work out the level sizes, `ChooseSuitableBuzzTexModeBaseFmt` at 0xb399c50 picks the texture mode, `GetImageFmtEnumFromBuzzTexFormat` at 0xb399e08 and `__glOdysseyImageCalcFieldFormat` at 0xb399e14 give the pixel format, and `__glOdysseyValidateHardware` at 0xb399ff0 checks the pipe before the draw.
+
+- `AddConvolutionBorders` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb36ae00
+  **Inferred.** Border fix-up for a convolution in the 64-bit patch build. It programs the filter with `__glOdysseyProgramTexFilter` at 0xb36af68 (seven calls in all), loads the taps with `LoadTextureFilter` at 0xb36afd0 (six calls), and moves the border strips with `__glOdysseyImageMovePixelsTexture` (26 calls, the first at 0xb36b04c). About 100 `floorf` and six `ceilf` calls round the strip rectangles.
+
+- `LookupKnownGroup` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb390500
+  **Inferred.** Finds the memory-object group for an id, creating it when asked. Ids -3 and -4 return zero at once; any other id goes through `LookupCSetId` and, when no group exists and a3 is set, a 152-byte record is allocated through the context hook at 0xb390590, cleared with `bzero` at 0xb3905b0 and added with `AddKnownGroup`. `LookupCoresidRange` at 0xb3905e8 then creates its first range (offset 0, length 15), and on failure `RemoveKnownGroup` undoes the add and `__glSetError` reports 0x505 at 0xb390638.
+
+- `LookupCoresidRange` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb390690
+  **Inferred.** Returns the resident-range record covering a position in a memory group, allocating one when asked. A 0x40-byte record comes from the context hook at 0xb3906fc and is cleared by `bzero` at 0xb390714; the driver is then asked to describe the range with the request 0x6f640004 at 0xb390774, and a refusal frees the record and raises 0x505 with `__glSetError` at 0xb3908c0.
+
+- `__glOdysseyReadFromPMObj` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb38f960
+  **Inferred.** Reads from a pixel-memory object in the 64-bit patch build. It builds the transfer block on the stack, validates it with `CheckMMXfrArgs` at 0xb38f9e8 and sends it with the request 0x6f640006 at 0xb38fa08. A failed check returns 0 at 0xb38fa64 and otherwise the result is 0 or 1 at 0xb38fa4c.
+
+- `__glOdysseySetProgram` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY64/libGLcore.so` at 0xb3929a0
+  **Inferred.** The patch-build microcode loader writes to the window at 0x4000. A set flag byte at +0x287dc ends the call with a single store of 0x29808062, which differs from the media build's word. Otherwise it walks the program slot of a1, sending headers of the form 0x27008000 plus a split record number and 27 data words from 0xb392a44, and closes with 0x90808800 at 0xb392da4 and two zero words.

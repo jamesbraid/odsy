@@ -2836,3 +2836,30 @@ One entry per routine, filed here from the reading batches by binary.
   The `beq` branch at 0xd8ce4bc targets 0xd8ce4d0, is taken when t9(=[[[[0x1014]+276]+216]+124]) == 0, and falls through when t9(=[[[[0x1014]+276]+216]+124]) != 0.
   The `beq` branch at 0xd8ce4f0 targets 0xd8ce418 and is always taken.
   The return at 0xd8ce4e0 has v0 = one of ?, ret(?).
+
+- `glXSelectEventSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8b2728
+  **Inferred.** The n32 patch build queues a vendor-private request that selects the events a drawable reports. After `__glXSetupForCommand` at 0xd8b2750 the display hook at +1232 is called at 0xd8b277c, the attribute 0x801f is stored with the caller's mask at 0xd8b2808, and `_XFlush` at 0xd8b2838 runs when the buffer is too full. A zero from the setup call returns early with that value at 0xd8b2850.
+
+- `glXDestroyGLXPbufferSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8b2df4
+  **Inferred.** Destroys a pbuffer in the n32 patch build: `__glXAddDrawableInterest` at 0xd8b2e40 finds the record, `__glXRemoveDrawableInterest` at 0xd8b2e50 detaches it and `__glXFreeDrawablePrivate` at 0xd8b2e64 frees it with the field at +20. The server request with the code 0x10008 and a size of 16 bytes is stored at 0xd8b2ef4, and `_XFlush` at 0xd8b2f3c handles a full buffer.
+
+- `glXGetVideoSyncSGI` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8b3aa8
+  **Inferred.** Reads the video-sync counter from the board in the n32 patch build. The only call is `ioctl` at 0xd8b3b00 with the request 0x3fe, a block on the stack and the descriptor picked by the index at +264 of the context behind the global at 0x1014. It returns 0 at 0xd8b3b20 after storing the result and 5 at 0xd8b3b2c when there is no current context.
+
+- `glXCreateGLXVideoSourceSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8b3e14
+  **Inferred.** Opens a video source through the n32 patch library. It calls `__glXInitializeVideoLibrary` at 0xd8b3e94, registers the id with `__glXAddDrawableInterest` at 0xd8b3ec0 and creates the private data with `__glXCreateVideoSourcePrivate` at 0xd8b3f30 (kinds 1 and 3). The three selector queries 4, 6 and 7 at 0xd8b3f5c, 0xd8b3f90 and 0xd8b3fbc fill a 240-byte stack block, `videoPackingToInternalFormat` at 0xd8b3fdc converts the packing and the failure paths end in `__glXRemoveDrawableInterest` at 0xd8b40e0, 0xd8b411c and 0xd8b4158.
+
+- `glXBindSwapBarrierSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8cae48
+  **Inferred.** Joins a drawable to a swap barrier by sending a vendor-private request. The request word 0x1000c is stored at 0xd8caf1c between the display lock hooks at +1232, after `__glXSetupForCommand` at 0xd8cae74 has given the opcode, and `_XFlush` at 0xd8caf54 empties the buffer when it is too full.
+
+- `glXQueryMaxSwapBarriersSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8caf6c
+  **Inferred.** Asks how many swap barriers exist. `__glXSetupForCommand` at 0xd8caf98 returns the opcode, `_XReply` at 0xd8cb030 waits for the answer with a reply of 16 bytes and the function returns 1 at 0xd8cb088 on success and 0 at 0xd8cb0e4 on failure. The display hooks at +1232 are called before and after.
+
+- `glXQueryHyperpipeNetworkSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8cb918
+  **Inferred.** Fetches the list of hyperpipe network entries. The reply to the request with the code 0x1000e arrives in `_XReply` at 0xd8cb9dc; a zero count is dropped with `_XEatData` at 0xd8cba0c, a non-zero one is stored in a `malloc` buffer from 0xd8cba7c after `_XRead` at 0xd8cbaf4. Failures return 0 and `_XFlush` at 0xd8cbb44 empties a full buffer.
+
+- `glXHyperpipeConfigSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8cbba0
+  **Inferred.** Configures a hyperpipe network on the server and reports a status. The request is sent after `__glXSetupForCommand` at 0xd8cbbdc and its answer is read by `_XReply` at 0xd8cbd50. The routine returns 0 at 0xd8cbdc8 when the server agrees and the constant 0x5b at four other exits (0xd8cbde8, 0xd8cbe38, 0xd8cbea0 and 0xd8cbec4) when the setup call or the reply fails.
+
+- `glXQueryHyperpipeConfigSGIX` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGL.so` at 0xd8cc044
+  **Inferred.** Returns the configuration table of a hyperpipe network in the n32 patch build. The request with the code 0x1000f carries the network id a1 and its reply is read at 0xd8cc118; a `malloc` at 0xd8cc19c and `_XRead` at 0xd8cc214 copy the table, `_XEatData` at 0xd8cc1b4 drops an empty reply and every failure returns 0.

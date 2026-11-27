@@ -4047,3 +4047,12 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `__glOdysseyGetHardwareShadow` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9d93e0
   **Established.** Asks the driver to copy out the saved image of the board state. It forwards a1 as the block to `__glOdysseyIoctl` with the request 0x6f64000c, the driver's save-shadow entry, by a branch-and-link at 0xd9d9408. A negative result calls the context's error hook at +20 with the message address 0xdae4dc8 plus 19912.
+
+- `AddConvolutionBorders` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd99e4b0
+  **Inferred.** The n32 build interleaves the same three steps: `__glOdysseyProgramTexFilter` at 0xd99e5fc, 0xd99e76c and later, `LoadTextureFilter` at 0xd99e664, 0xd99e77c and later, and `__glOdysseyImageMovePixelsTexture` at 0xd99e6f8, 0xd99e844 and later. Between the passes `floorf` runs four or eight times at 0xd99e8f0 and 0xd99ebc0, and `ceilf` pairs at 0xd99efd0 and 0xd99f064 round the far edges of the border rectangles.
+
+- `__glOdyim_Clear` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9644d0
+  **Inferred.** The n32 glClear entry. It reports GL_INVALID_OPERATION (0x502) with `__glSetError` at 0xd964520 when the global at 0x1018 says a primitive is open, and GL_INVALID_VALUE (0x501) at 0xd964570 when the mask has bits outside 0x4700 (the test constant is -0x4701). It sends the header 0x1081d and the words at +31776 and +31780 of the context after a pause sequence, converts the clear depth with `__glOdysseyWindowToNormalizedEyeZ` at 0xd9647bc and clears through `__glOdysseyClear` at 0xd964810. A second round at 0xd964a28 follows the kernel request 0x6f64000d at 0xd964988 and the buffer switch `__glOdysseySetDrawbuf` at 0xd9649dc.
+
+- `DownsampleTextureThruHW` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9d11a0
+  **Inferred.** Builds smaller mipmap levels by letting the board draw the texture into itself. It finds the level sizes with `__glOdysseyImageLogBase2` at 0xd9d12cc and 0xd9d1300, chooses a texture mode with `ChooseSuitableBuzzTexModeBaseFmt` at 0xd9d1404 and a format with `GetImageFmtEnumFromBuzzTexFormat` and `__glOdysseyImageCalcFieldFormat` at 0xd9d15ac and 0xd9d15bc. Each level sends the header 0x10ebc with the three words from +32688 to +32696, `__glOdysseyValidateHardware` at 0xd9d17a0 checks the pipe and a quad goes out as 0x14400, 7, 0x8f80b968 and 14 coordinate words closed by 0x14001. It returns 7 or the validate flags ORed with 0x800.
