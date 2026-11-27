@@ -162,7 +162,7 @@ After issue the owner context stores the op number at +256 or +248 depending on 
 
 ## `odsy_teardown`
 
-**established** (`odsy_init.o`). Takes the board semaphore (record +28488), increments the torn-down count at +816; only the 0 to 1 transition acts: it logs "Graphics error", logs `dmawait_timeout` and `dmawait_finish` (the two words above) when nonzero, prints the flags register (0x1014) and status0 (0x1064) through `odsyPrintRegs`, and runs `gthread_scan` with signal 9 over every thread using this board (a `GTHREAD` callback taking the board as argument; the callback's action is **inferred** to be a kill from the signal number alone). After that every entry point that tests +816 refuses work (return 9 for the wait). Recovery: **unknown**, no path in the driver clears +816 other than `odsyReset`.
+**established** (`odsy_init.o`). Takes the board semaphore (record +28488), increments the torn-down count at +816; only the 0 to 1 transition acts: it logs "Graphics error", logs `dmawait_timeout` and `dmawait_finish` (the two words above) when nonzero, prints the flags register (0x1014) and status0 (0x1064) through `odsyPrintRegs`, and runs `gthread_scan` with signal 9 over every thread using this board (a `GTHREAD` callback taking the board as argument; the callback is `GfxKiller` and the signal is `SIGKILL`, **established** from the 6.5.7 `odsy_teardown` source, which sets `GfxKiller_args.signal = SIGKILL`, and the IRIX signal header, where `SIGKILL` is 9). After that every entry point that tests +816 refuses work (return 9 for the wait). Recovery: **unknown**, no path in the driver clears +816 other than `odsyReset`.
 
 ## RRM retrace and video-sync callbacks
 
