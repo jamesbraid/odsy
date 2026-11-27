@@ -1,6 +1,6 @@
 """generated from devices/pbj/registers.toml by defs-gen - do not edit, change the source
 SPDX-License-Identifier: BSD-3-Clause
-defs-gen 2
+defs-gen 4
 input sha256 300e63a9d600be39d01443f6380fe109eb049a4e6946e477d440f57fbedc2ca8
 VPro (Odyssey) PB&J display back end (publish-safe subset)"""
 

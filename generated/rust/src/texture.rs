@@ -1,9 +1,11 @@
-// generated from devices/texture/registers.toml by defs-gen - do not edit, change the source
+// @generated from devices/texture/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 e1a72907bca982844abc1ab5d1b935d756326dc6422dcb5b01cf6984b9aa0609
 // VPro (Odyssey) "Buzz" texture state: environment,
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 /// Texture class (the "class" columns above): the component set the environment sees, a 3-bit value stored in the sampler word bits 25:23 (generated/c/bu (established)
 pub mod class {

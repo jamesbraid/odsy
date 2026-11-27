@@ -1,6 +1,7 @@
-/* generated from devices/pbj/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/pbj/registers.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 300e63a9d600be39d01443f6380fe109eb049a4e6946e477d440f57fbedc2ca8 */
 /* VPro (Odyssey) PB&J display back end (publish-safe subset) */
 #ifndef PBJ_GEN_H
@@ -18,20 +19,21 @@
  * 5, bit 18 set, low bits 0x3e0); that is a driver-written start value,
  * not a reset value.
  */
-/* hif_ctl: rw32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* hif_ctl: rw32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_HIF_CTL_OFFSET                           0x2700u /* established */
 #define PBJ_HIF_CTL_CLOCK_RUN_SHIFT                  18 /* established */
 #define PBJ_HIF_CTL_CLOCK_RUN_MASK                   0x1u
-#define PBJ_HIF_CTL_CLOCK_RUN_INPLACE                (PBJ_HIF_CTL_CLOCK_RUN_MASK << PBJ_HIF_CTL_CLOCK_RUN_SHIFT)
+#define PBJ_HIF_CTL_CLOCK_RUN_INPLACE (PBJ_HIF_CTL_CLOCK_RUN_MASK << PBJ_HIF_CTL_CLOCK_RUN_SHIFT)
 #define PBJ_HIF_CTL_CLOCK_SEL_B_SHIFT                15 /* established */
 #define PBJ_HIF_CTL_CLOCK_SEL_B_MASK                 0x7u
-#define PBJ_HIF_CTL_CLOCK_SEL_B_INPLACE              (PBJ_HIF_CTL_CLOCK_SEL_B_MASK << PBJ_HIF_CTL_CLOCK_SEL_B_SHIFT)
+#define PBJ_HIF_CTL_CLOCK_SEL_B_INPLACE (PBJ_HIF_CTL_CLOCK_SEL_B_MASK << PBJ_HIF_CTL_CLOCK_SEL_B_SHIFT)
 #define PBJ_HIF_CTL_CLOCK_SEL_A_SHIFT                12 /* established */
 #define PBJ_HIF_CTL_CLOCK_SEL_A_MASK                 0x7u
-#define PBJ_HIF_CTL_CLOCK_SEL_A_INPLACE              (PBJ_HIF_CTL_CLOCK_SEL_A_MASK << PBJ_HIF_CTL_CLOCK_SEL_A_SHIFT)
+#define PBJ_HIF_CTL_CLOCK_SEL_A_INPLACE (PBJ_HIF_CTL_CLOCK_SEL_A_MASK << PBJ_HIF_CTL_CLOCK_SEL_A_SHIFT)
 #define PBJ_HIF_CTL_LOW_BITS_SHIFT                   0 /* unknown */
 #define PBJ_HIF_CTL_LOW_BITS_MASK                    0xfffu
-#define PBJ_HIF_CTL_LOW_BITS_INPLACE                 (PBJ_HIF_CTL_LOW_BITS_MASK << PBJ_HIF_CTL_LOW_BITS_SHIFT)
+#define PBJ_HIF_CTL_LOW_BITS_INPLACE (PBJ_HIF_CTL_LOW_BITS_MASK << PBJ_HIF_CTL_LOW_BITS_SHIFT)
 
 /*
  * Identification word. Bits 2:0 are the chip version the board information
@@ -40,14 +42,15 @@
  * channel display option, so a set bit 10 is read as "no option card"
  * (inferred).
  */
-/* id: r32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* id: r32, space pbj_regs, reset unknown; odsy binary analysis of the shipped
+ * display driver */
 #define PBJ_ID_OFFSET                                0x2701u /* established */
 #define PBJ_ID_NO_OPTION_SHIFT                       10 /* inferred */
 #define PBJ_ID_NO_OPTION_MASK                        0x1u
-#define PBJ_ID_NO_OPTION_INPLACE                     (PBJ_ID_NO_OPTION_MASK << PBJ_ID_NO_OPTION_SHIFT)
+#define PBJ_ID_NO_OPTION_INPLACE (PBJ_ID_NO_OPTION_MASK << PBJ_ID_NO_OPTION_SHIFT)
 #define PBJ_ID_VERSION_SHIFT                         0 /* established */
 #define PBJ_ID_VERSION_MASK                          0x7u
-#define PBJ_ID_VERSION_INPLACE                       (PBJ_ID_VERSION_MASK << PBJ_ID_VERSION_SHIFT)
+#define PBJ_ID_VERSION_INPLACE (PBJ_ID_VERSION_MASK << PBJ_ID_VERSION_SHIFT)
 
 /*
  * I2C controller control register, option port (first of the port's two
@@ -56,27 +59,29 @@
  * reads this register at the first word of the read-back slot, not the
  * second. Bit meanings are unknown.
  */
-/* i2c_opt_ctl: rw32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* i2c_opt_ctl: rw32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_I2C_OPT_CTL_OFFSET                       0x2740u /* established */
 #define PBJ_I2C_OPT_CTL_BIT12_SHIFT                  12 /* unknown */
 #define PBJ_I2C_OPT_CTL_BIT12_MASK                   0x1u
-#define PBJ_I2C_OPT_CTL_BIT12_INPLACE                (PBJ_I2C_OPT_CTL_BIT12_MASK << PBJ_I2C_OPT_CTL_BIT12_SHIFT)
+#define PBJ_I2C_OPT_CTL_BIT12_INPLACE (PBJ_I2C_OPT_CTL_BIT12_MASK << PBJ_I2C_OPT_CTL_BIT12_SHIFT)
 #define PBJ_I2C_OPT_CTL_BIT10_SHIFT                  10 /* unknown */
 #define PBJ_I2C_OPT_CTL_BIT10_MASK                   0x1u
-#define PBJ_I2C_OPT_CTL_BIT10_INPLACE                (PBJ_I2C_OPT_CTL_BIT10_MASK << PBJ_I2C_OPT_CTL_BIT10_SHIFT)
+#define PBJ_I2C_OPT_CTL_BIT10_INPLACE (PBJ_I2C_OPT_CTL_BIT10_MASK << PBJ_I2C_OPT_CTL_BIT10_SHIFT)
 #define PBJ_I2C_OPT_CTL_BIT8_SHIFT                   8 /* unknown */
 #define PBJ_I2C_OPT_CTL_BIT8_MASK                    0x1u
-#define PBJ_I2C_OPT_CTL_BIT8_INPLACE                 (PBJ_I2C_OPT_CTL_BIT8_MASK << PBJ_I2C_OPT_CTL_BIT8_SHIFT)
+#define PBJ_I2C_OPT_CTL_BIT8_INPLACE (PBJ_I2C_OPT_CTL_BIT8_MASK << PBJ_I2C_OPT_CTL_BIT8_SHIFT)
 
 /*
  * I2C controller status/data register, option port. The register-read
  * routine polls it for bit 9, up to 133 times. Bit meanings are unknown.
  */
-/* i2c_opt_data: r32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* i2c_opt_data: r32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_I2C_OPT_DATA_OFFSET                      0x2741u /* established */
 #define PBJ_I2C_OPT_DATA_BIT9_SHIFT                  9 /* unknown */
 #define PBJ_I2C_OPT_DATA_BIT9_MASK                   0x1u
-#define PBJ_I2C_OPT_DATA_BIT9_INPLACE                (PBJ_I2C_OPT_DATA_BIT9_MASK << PBJ_I2C_OPT_DATA_BIT9_SHIFT)
+#define PBJ_I2C_OPT_DATA_BIT9_INPLACE (PBJ_I2C_OPT_DATA_BIT9_MASK << PBJ_I2C_OPT_DATA_BIT9_SHIFT)
 
 /*
  * I2C controller control register, main port (first of the port's two
@@ -85,27 +90,29 @@
  * reads this register at the first word of the read-back slot, not the
  * second. Bit meanings are unknown.
  */
-/* i2c_main_ctl: rw32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* i2c_main_ctl: rw32, space pbj_regs, reset unknown; odsy binary analysis of
+ * the shipped display driver */
 #define PBJ_I2C_MAIN_CTL_OFFSET                      0x2780u /* established */
 #define PBJ_I2C_MAIN_CTL_BIT12_SHIFT                 12 /* unknown */
 #define PBJ_I2C_MAIN_CTL_BIT12_MASK                  0x1u
-#define PBJ_I2C_MAIN_CTL_BIT12_INPLACE               (PBJ_I2C_MAIN_CTL_BIT12_MASK << PBJ_I2C_MAIN_CTL_BIT12_SHIFT)
+#define PBJ_I2C_MAIN_CTL_BIT12_INPLACE (PBJ_I2C_MAIN_CTL_BIT12_MASK << PBJ_I2C_MAIN_CTL_BIT12_SHIFT)
 #define PBJ_I2C_MAIN_CTL_BIT10_SHIFT                 10 /* unknown */
 #define PBJ_I2C_MAIN_CTL_BIT10_MASK                  0x1u
-#define PBJ_I2C_MAIN_CTL_BIT10_INPLACE               (PBJ_I2C_MAIN_CTL_BIT10_MASK << PBJ_I2C_MAIN_CTL_BIT10_SHIFT)
+#define PBJ_I2C_MAIN_CTL_BIT10_INPLACE (PBJ_I2C_MAIN_CTL_BIT10_MASK << PBJ_I2C_MAIN_CTL_BIT10_SHIFT)
 #define PBJ_I2C_MAIN_CTL_BIT8_SHIFT                  8 /* unknown */
 #define PBJ_I2C_MAIN_CTL_BIT8_MASK                   0x1u
-#define PBJ_I2C_MAIN_CTL_BIT8_INPLACE                (PBJ_I2C_MAIN_CTL_BIT8_MASK << PBJ_I2C_MAIN_CTL_BIT8_SHIFT)
+#define PBJ_I2C_MAIN_CTL_BIT8_INPLACE (PBJ_I2C_MAIN_CTL_BIT8_MASK << PBJ_I2C_MAIN_CTL_BIT8_SHIFT)
 
 /*
  * I2C controller status/data register, main port. The register-read
  * routine polls it for bit 9, up to 133 times. Bit meanings are unknown.
  */
-/* i2c_main_data: r32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* i2c_main_data: r32, space pbj_regs, reset unknown; odsy binary analysis of
+ * the shipped display driver */
 #define PBJ_I2C_MAIN_DATA_OFFSET                     0x2781u /* established */
 #define PBJ_I2C_MAIN_DATA_BIT9_SHIFT                 9 /* unknown */
 #define PBJ_I2C_MAIN_DATA_BIT9_MASK                  0x1u
-#define PBJ_I2C_MAIN_DATA_BIT9_INPLACE               (PBJ_I2C_MAIN_DATA_BIT9_MASK << PBJ_I2C_MAIN_DATA_BIT9_SHIFT)
+#define PBJ_I2C_MAIN_DATA_BIT9_INPLACE (PBJ_I2C_MAIN_DATA_BIT9_MASK << PBJ_I2C_MAIN_DATA_BIT9_SHIFT)
 
 /*
  * Scanout base of the second buffer region, written by the frame-buffer
@@ -113,13 +120,15 @@
  * up to a multiple of four. A tile is 16 by 16 pixels. Reading as a
  * scanout base address is inferred.
  */
-/* fb_base_b: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* fb_base_b: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_FB_BASE_B_OFFSET                         0x2800u /* established */
 
 /*
  * Scanout base of the first buffer region, same encoding as the second.
  */
-/* fb_base_a: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* fb_base_a: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_FB_BASE_A_OFFSET                         0x2801u /* established */
 
 /*
@@ -128,7 +137,8 @@
  * that on one path) by the timing load. Active width in pixels is one
  * reading; a pan offset fits the same writes (inferred).
  */
-/* scan_width: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* scan_width: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_SCAN_WIDTH_OFFSET                        0x2802u /* inferred */
 
 /*
@@ -136,35 +146,40 @@
  * timing load's active-height value. Active height in lines (inferred,
  * same caveat).
  */
-/* scan_height: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* scan_height: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_SCAN_HEIGHT_OFFSET                       0x2803u /* inferred */
 
 /*
  * Written from the low two bits of a timing load value by the timing load.
  * Meaning unknown.
  */
-/* scan_cfg_a: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* scan_cfg_a: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_SCAN_CFG_A_OFFSET                        0x2804u /* established */
 
 /*
  * Listed among the addresses the kernel writes; no read of the source of
  * its value was completed. Meaning unknown.
  */
-/* scan_cfg_b: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* scan_cfg_b: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_SCAN_CFG_B_OFFSET                        0x2805u /* unknown */
 
 /*
  * Written from one flag bit of a timing load value by the timing load (the
  * same flag as the colour-map unit configuration). Meaning unknown.
  */
-/* scan_cfg_c: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* scan_cfg_c: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_SCAN_CFG_C_OFFSET                        0x2806u /* established */
 
 /*
  * Scanout pitch: the frame-buffer width in 16-pixel tiles, rounded up to
  * an even count. Reading as pitch is inferred from the arithmetic.
  */
-/* fb_pitch: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* fb_pitch: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_FB_PITCH_OFFSET                          0x2807u /* inferred */
 
 /*
@@ -173,11 +188,12 @@
  * not known; three bits is the least that holds them, so the field range
  * is inferred.
  */
-/* fb_depth: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* fb_depth: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_FB_DEPTH_OFFSET                          0x2809u /* inferred */
 #define PBJ_FB_DEPTH_CODE_SHIFT                      0 /* inferred */
 #define PBJ_FB_DEPTH_CODE_MASK                       0x7u
-#define PBJ_FB_DEPTH_CODE_INPLACE                    (PBJ_FB_DEPTH_CODE_MASK << PBJ_FB_DEPTH_CODE_SHIFT)
+#define PBJ_FB_DEPTH_CODE_INPLACE (PBJ_FB_DEPTH_CODE_MASK << PBJ_FB_DEPTH_CODE_SHIFT)
 #define PBJ_FB_DEPTH_CODE_BPP8                       2 /* established */
 #define PBJ_FB_DEPTH_CODE_BPP16                      3 /* established */
 #define PBJ_FB_DEPTH_CODE_BPP32                      4 /* established */
@@ -189,11 +205,12 @@
  * be a reset or a flush of this register's function (unknown). Nothing
  * reads it back.
  */
-/* dcb_ctl: w32, space pbj_regs, reset unknown; odsy binary analysis of the shipped display driver */
+/* dcb_ctl: w32, space pbj_regs, reset unknown; odsy binary analysis of the
+ * shipped display driver */
 #define PBJ_DCB_CTL_OFFSET                           0x2b00u /* inferred */
 #define PBJ_DCB_CTL_DCB_CLOCK_SHIFT                  0 /* inferred */
 #define PBJ_DCB_CTL_DCB_CLOCK_MASK                   0x7u
-#define PBJ_DCB_CTL_DCB_CLOCK_INPLACE                (PBJ_DCB_CTL_DCB_CLOCK_MASK << PBJ_DCB_CTL_DCB_CLOCK_SHIFT)
+#define PBJ_DCB_CTL_DCB_CLOCK_INPLACE (PBJ_DCB_CTL_DCB_CLOCK_MASK << PBJ_DCB_CTL_DCB_CLOCK_SHIFT)
 
 /*
  * A write is a header word followed by COUNT data words that go to
@@ -231,15 +248,15 @@
 #define PBJ_FIFO_HDR_WIDTH                           32 /* established */
 #define PBJ_FIFO_HDR_TYPE_SHIFT                      28 /* established */
 #define PBJ_FIFO_HDR_TYPE_MASK                       0xfu
-#define PBJ_FIFO_HDR_TYPE_INPLACE                    (PBJ_FIFO_HDR_TYPE_MASK << PBJ_FIFO_HDR_TYPE_SHIFT)
+#define PBJ_FIFO_HDR_TYPE_INPLACE (PBJ_FIFO_HDR_TYPE_MASK << PBJ_FIFO_HDR_TYPE_SHIFT)
 #define PBJ_FIFO_HDR_TYPE_NOW                        3 /* inferred */
 #define PBJ_FIFO_HDR_TYPE_SYNCED                     7 /* inferred */
 #define PBJ_FIFO_HDR_ADDRESS_SHIFT                   14 /* established */
 #define PBJ_FIFO_HDR_ADDRESS_MASK                    0x3fffu
-#define PBJ_FIFO_HDR_ADDRESS_INPLACE                 (PBJ_FIFO_HDR_ADDRESS_MASK << PBJ_FIFO_HDR_ADDRESS_SHIFT)
+#define PBJ_FIFO_HDR_ADDRESS_INPLACE (PBJ_FIFO_HDR_ADDRESS_MASK << PBJ_FIFO_HDR_ADDRESS_SHIFT)
 #define PBJ_FIFO_HDR_COUNT_SHIFT                     0 /* established */
 #define PBJ_FIFO_HDR_COUNT_MASK                      0x3fffu
-#define PBJ_FIFO_HDR_COUNT_INPLACE                   (PBJ_FIFO_HDR_COUNT_MASK << PBJ_FIFO_HDR_COUNT_SHIFT)
+#define PBJ_FIFO_HDR_COUNT_INPLACE (PBJ_FIFO_HDR_COUNT_MASK << PBJ_FIFO_HDR_COUNT_SHIFT)
 
 #define PBJ_ADDR_BITS                                0xeu /* established */
 #define PBJ_CLOCK_A_REG_DPA_CONTROL                  0x5u /* established */

@@ -1,9 +1,11 @@
-// generated from devices/compositor/registers.toml by defs-gen - do not edit, change the source
+// @generated from devices/compositor/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 364b06b75330451af26cae6306529c31ba32067eaced8ef57ffff0fe505d492a
 // VPro (Odyssey) compositor chip: register numbers
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 pub const ATPG_FIRST_PIXEL: u32 = 0x5c; // established
 pub const ATPG_OP_MODE: u32 = 0x5d; // established

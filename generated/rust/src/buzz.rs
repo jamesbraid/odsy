@@ -1,9 +1,11 @@
-// generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source
+// @generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17
 // VPro (Odyssey) "Buzz" graphics ASIC: command and image
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 pub mod enums {
     pub mod fieldfmt {
@@ -714,6 +716,7 @@ pub mod pixel_mode_descriptor_1 {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::fieldfmt::Value;
     }
 }
@@ -793,6 +796,7 @@ pub mod read_header {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::psize::Value;
     }
     pub mod size_field { // bits 15:13, established
@@ -908,6 +912,7 @@ pub mod sampler {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::sampler_wrap::Value;
     }
     pub mod wrap_t { // bits 11:10, established
@@ -919,6 +924,7 @@ pub mod sampler {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::sampler_wrap::Value;
     }
     pub mod wrap_r { // bits 9:8, established
@@ -930,6 +936,7 @@ pub mod sampler {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::sampler_wrap::Value;
     }
     pub mod min { // bits 7:5, established
@@ -941,6 +948,7 @@ pub mod sampler {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::sampler_min::Value;
     }
     pub mod mag { // bits 4:1, established
@@ -952,6 +960,7 @@ pub mod sampler {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::sampler_mag::Value;
     }
     pub mod colour_table { // bits 0:0, established
@@ -1089,6 +1098,7 @@ pub mod write_header {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::psize::Value;
     }
     pub mod size_field { // bits 15:13, established
@@ -1130,6 +1140,7 @@ pub mod write_header {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::r#type::Value;
     }
     pub mod format { // bits 4:0, established
@@ -1141,6 +1152,7 @@ pub mod write_header {
         pub const fn set(v: u32, x: u32) -> u32 {
             (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
         }
+        #[allow(unused_imports)]
         pub use super::super::enums::fmt::Value;
     }
 }

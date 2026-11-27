@@ -1,6 +1,7 @@
-/* generated from devices/board/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/board/registers.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 f3eecab175431ff094bfec71e650a390d1d1942fa0343161470aa7499a1cb59d */
 /* VPro (Odyssey) graphics board: widget identity, board */
 #ifndef ODSY_GEN_H
@@ -9,134 +10,141 @@
 #include <stdint.h>
 
 
-/* word HOST_FLOW_MODE: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word HOST_FLOW_MODE: 32 bits; odsy binary analysis of the shipped kernel
+ * board routines */
 #define ODSY_HOST_FLOW_MODE_WIDTH                    32 /* established */
 #define ODSY_HOST_FLOW_MODE_OWNER_CPU1_SHIFT         12 /* established */
 #define ODSY_HOST_FLOW_MODE_OWNER_CPU1_MASK          0x3u
-#define ODSY_HOST_FLOW_MODE_OWNER_CPU1_INPLACE       (ODSY_HOST_FLOW_MODE_OWNER_CPU1_MASK << ODSY_HOST_FLOW_MODE_OWNER_CPU1_SHIFT)
+#define ODSY_HOST_FLOW_MODE_OWNER_CPU1_INPLACE (ODSY_HOST_FLOW_MODE_OWNER_CPU1_MASK << ODSY_HOST_FLOW_MODE_OWNER_CPU1_SHIFT)
 #define ODSY_HOST_FLOW_MODE_OWNER_CPU0_SHIFT         10 /* established */
 #define ODSY_HOST_FLOW_MODE_OWNER_CPU0_MASK          0x3u
-#define ODSY_HOST_FLOW_MODE_OWNER_CPU0_INPLACE       (ODSY_HOST_FLOW_MODE_OWNER_CPU0_MASK << ODSY_HOST_FLOW_MODE_OWNER_CPU0_SHIFT)
+#define ODSY_HOST_FLOW_MODE_OWNER_CPU0_INPLACE (ODSY_HOST_FLOW_MODE_OWNER_CPU0_MASK << ODSY_HOST_FLOW_MODE_OWNER_CPU0_SHIFT)
 #define ODSY_HOST_FLOW_MODE_ATTACH_CPU1_SHIFT        9 /* established */
 #define ODSY_HOST_FLOW_MODE_ATTACH_CPU1_MASK         0x1u
-#define ODSY_HOST_FLOW_MODE_ATTACH_CPU1_INPLACE      (ODSY_HOST_FLOW_MODE_ATTACH_CPU1_MASK << ODSY_HOST_FLOW_MODE_ATTACH_CPU1_SHIFT)
+#define ODSY_HOST_FLOW_MODE_ATTACH_CPU1_INPLACE (ODSY_HOST_FLOW_MODE_ATTACH_CPU1_MASK << ODSY_HOST_FLOW_MODE_ATTACH_CPU1_SHIFT)
 #define ODSY_HOST_FLOW_MODE_ATTACH_CPU0_SHIFT        8 /* established */
 #define ODSY_HOST_FLOW_MODE_ATTACH_CPU0_MASK         0x1u
-#define ODSY_HOST_FLOW_MODE_ATTACH_CPU0_INPLACE      (ODSY_HOST_FLOW_MODE_ATTACH_CPU0_MASK << ODSY_HOST_FLOW_MODE_ATTACH_CPU0_SHIFT)
+#define ODSY_HOST_FLOW_MODE_ATTACH_CPU0_INPLACE (ODSY_HOST_FLOW_MODE_ATTACH_CPU0_MASK << ODSY_HOST_FLOW_MODE_ATTACH_CPU0_SHIFT)
 
-/* word MASTER_ID: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word MASTER_ID: 32 bits; odsy binary analysis of the shipped kernel board
+ * routines */
 #define ODSY_MASTER_ID_WIDTH                         32 /* established */
 #define ODSY_MASTER_ID_BIT24_SHIFT                   24 /* established */
 #define ODSY_MASTER_ID_BIT24_MASK                    0x1u
-#define ODSY_MASTER_ID_BIT24_INPLACE                 (ODSY_MASTER_ID_BIT24_MASK << ODSY_MASTER_ID_BIT24_SHIFT)
+#define ODSY_MASTER_ID_BIT24_INPLACE (ODSY_MASTER_ID_BIT24_MASK << ODSY_MASTER_ID_BIT24_SHIFT)
 #define ODSY_MASTER_ID_MASTER_SHIFT                  20 /* established */
 #define ODSY_MASTER_ID_MASTER_MASK                   0xfu
-#define ODSY_MASTER_ID_MASTER_INPLACE                (ODSY_MASTER_ID_MASTER_MASK << ODSY_MASTER_ID_MASTER_SHIFT)
+#define ODSY_MASTER_ID_MASTER_INPLACE (ODSY_MASTER_ID_MASTER_MASK << ODSY_MASTER_ID_MASTER_SHIFT)
 #define ODSY_MASTER_ID_BIT18_SHIFT                   18 /* established */
 #define ODSY_MASTER_ID_BIT18_MASK                    0x1u
-#define ODSY_MASTER_ID_BIT18_INPLACE                 (ODSY_MASTER_ID_BIT18_MASK << ODSY_MASTER_ID_BIT18_SHIFT)
+#define ODSY_MASTER_ID_BIT18_INPLACE (ODSY_MASTER_ID_BIT18_MASK << ODSY_MASTER_ID_BIT18_SHIFT)
 #define ODSY_MASTER_ID_CODE_SHIFT                    0 /* established */
 #define ODSY_MASTER_ID_CODE_MASK                     0xffffu
-#define ODSY_MASTER_ID_CODE_INPLACE                  (ODSY_MASTER_ID_CODE_MASK << ODSY_MASTER_ID_CODE_SHIFT)
+#define ODSY_MASTER_ID_CODE_INPLACE (ODSY_MASTER_ID_CODE_MASK << ODSY_MASTER_ID_CODE_SHIFT)
 
-/* word SDRAM_CFG: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word SDRAM_CFG: 32 bits; odsy binary analysis of the shipped kernel board
+ * routines */
 #define ODSY_SDRAM_CFG_WIDTH                         32 /* inferred */
 #define ODSY_SDRAM_CFG_HOST_ID_SHIFT                 19 /* established */
 #define ODSY_SDRAM_CFG_HOST_ID_MASK                  0xfu
-#define ODSY_SDRAM_CFG_HOST_ID_INPLACE               (ODSY_SDRAM_CFG_HOST_ID_MASK << ODSY_SDRAM_CFG_HOST_ID_SHIFT)
+#define ODSY_SDRAM_CFG_HOST_ID_INPLACE (ODSY_SDRAM_CFG_HOST_ID_MASK << ODSY_SDRAM_CFG_HOST_ID_SHIFT)
 #define ODSY_SDRAM_CFG_ENABLE_SHIFT                  8 /* inferred */
 #define ODSY_SDRAM_CFG_ENABLE_MASK                   0x1u
-#define ODSY_SDRAM_CFG_ENABLE_INPLACE                (ODSY_SDRAM_CFG_ENABLE_MASK << ODSY_SDRAM_CFG_ENABLE_SHIFT)
+#define ODSY_SDRAM_CFG_ENABLE_INPLACE (ODSY_SDRAM_CFG_ENABLE_MASK << ODSY_SDRAM_CFG_ENABLE_SHIFT)
 #define ODSY_SDRAM_CFG_RESET_SHIFT                   5 /* inferred */
 #define ODSY_SDRAM_CFG_RESET_MASK                    0x1u
-#define ODSY_SDRAM_CFG_RESET_INPLACE                 (ODSY_SDRAM_CFG_RESET_MASK << ODSY_SDRAM_CFG_RESET_SHIFT)
+#define ODSY_SDRAM_CFG_RESET_INPLACE (ODSY_SDRAM_CFG_RESET_MASK << ODSY_SDRAM_CFG_RESET_SHIFT)
 #define ODSY_SDRAM_CFG_SIZE_SHIFT                    3 /* established */
 #define ODSY_SDRAM_CFG_SIZE_MASK                     0x3u
-#define ODSY_SDRAM_CFG_SIZE_INPLACE                  (ODSY_SDRAM_CFG_SIZE_MASK << ODSY_SDRAM_CFG_SIZE_SHIFT)
+#define ODSY_SDRAM_CFG_SIZE_INPLACE (ODSY_SDRAM_CFG_SIZE_MASK << ODSY_SDRAM_CFG_SIZE_SHIFT)
 #define ODSY_SDRAM_CFG_SIZE_MB32                     0 /* established */
 #define ODSY_SDRAM_CFG_SIZE_MB64                     1 /* established */
 #define ODSY_SDRAM_CFG_SIZE_MB128                    2 /* established */
 #define ODSY_SDRAM_CFG_BANKS_SHIFT                   2 /* established */
 #define ODSY_SDRAM_CFG_BANKS_MASK                    0x1u
-#define ODSY_SDRAM_CFG_BANKS_INPLACE                 (ODSY_SDRAM_CFG_BANKS_MASK << ODSY_SDRAM_CFG_BANKS_SHIFT)
+#define ODSY_SDRAM_CFG_BANKS_INPLACE (ODSY_SDRAM_CFG_BANKS_MASK << ODSY_SDRAM_CFG_BANKS_SHIFT)
 #define ODSY_SDRAM_CFG_BANKS_TWO                     0 /* established */
 #define ODSY_SDRAM_CFG_BANKS_FOUR                    1 /* established */
 #define ODSY_SDRAM_CFG_CAS_SHIFT                     1 /* established */
 #define ODSY_SDRAM_CFG_CAS_MASK                      0x1u
-#define ODSY_SDRAM_CFG_CAS_INPLACE                   (ODSY_SDRAM_CFG_CAS_MASK << ODSY_SDRAM_CFG_CAS_SHIFT)
+#define ODSY_SDRAM_CFG_CAS_INPLACE (ODSY_SDRAM_CFG_CAS_MASK << ODSY_SDRAM_CFG_CAS_SHIFT)
 #define ODSY_SDRAM_CFG_CAS_CAS3                      0 /* established */
 #define ODSY_SDRAM_CFG_CAS_CAS2                      1 /* established */
 
-/* word STATS_CTL: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word STATS_CTL: 32 bits; odsy binary analysis of the shipped kernel board
+ * routines */
 #define ODSY_STATS_CTL_WIDTH                         32 /* established */
 #define ODSY_STATS_CTL_FIXED_TOP_SHIFT               31 /* established */
 #define ODSY_STATS_CTL_FIXED_TOP_MASK                0x1u
-#define ODSY_STATS_CTL_FIXED_TOP_INPLACE             (ODSY_STATS_CTL_FIXED_TOP_MASK << ODSY_STATS_CTL_FIXED_TOP_SHIFT)
+#define ODSY_STATS_CTL_FIXED_TOP_INPLACE (ODSY_STATS_CTL_FIXED_TOP_MASK << ODSY_STATS_CTL_FIXED_TOP_SHIFT)
 #define ODSY_STATS_CTL_FIXED_MID_SHIFT               27 /* established */
 #define ODSY_STATS_CTL_FIXED_MID_MASK                0x1u
-#define ODSY_STATS_CTL_FIXED_MID_INPLACE             (ODSY_STATS_CTL_FIXED_MID_MASK << ODSY_STATS_CTL_FIXED_MID_SHIFT)
+#define ODSY_STATS_CTL_FIXED_MID_INPLACE (ODSY_STATS_CTL_FIXED_MID_MASK << ODSY_STATS_CTL_FIXED_MID_SHIFT)
 #define ODSY_STATS_CTL_SELECT_SHIFT                  8 /* established */
 #define ODSY_STATS_CTL_SELECT_MASK                   0x7u
-#define ODSY_STATS_CTL_SELECT_INPLACE                (ODSY_STATS_CTL_SELECT_MASK << ODSY_STATS_CTL_SELECT_SHIFT)
+#define ODSY_STATS_CTL_SELECT_INPLACE (ODSY_STATS_CTL_SELECT_MASK << ODSY_STATS_CTL_SELECT_SHIFT)
 #define ODSY_STATS_CTL_FLAG_C_SHIFT                  6 /* established */
 #define ODSY_STATS_CTL_FLAG_C_MASK                   0x1u
-#define ODSY_STATS_CTL_FLAG_C_INPLACE                (ODSY_STATS_CTL_FLAG_C_MASK << ODSY_STATS_CTL_FLAG_C_SHIFT)
+#define ODSY_STATS_CTL_FLAG_C_INPLACE (ODSY_STATS_CTL_FLAG_C_MASK << ODSY_STATS_CTL_FLAG_C_SHIFT)
 #define ODSY_STATS_CTL_FLAG_B_SHIFT                  5 /* established */
 #define ODSY_STATS_CTL_FLAG_B_MASK                   0x1u
-#define ODSY_STATS_CTL_FLAG_B_INPLACE                (ODSY_STATS_CTL_FLAG_B_MASK << ODSY_STATS_CTL_FLAG_B_SHIFT)
+#define ODSY_STATS_CTL_FLAG_B_INPLACE (ODSY_STATS_CTL_FLAG_B_MASK << ODSY_STATS_CTL_FLAG_B_SHIFT)
 #define ODSY_STATS_CTL_FLAG_A_SHIFT                  4 /* established */
 #define ODSY_STATS_CTL_FLAG_A_MASK                   0x1u
-#define ODSY_STATS_CTL_FLAG_A_INPLACE                (ODSY_STATS_CTL_FLAG_A_MASK << ODSY_STATS_CTL_FLAG_A_SHIFT)
+#define ODSY_STATS_CTL_FLAG_A_INPLACE (ODSY_STATS_CTL_FLAG_A_MASK << ODSY_STATS_CTL_FLAG_A_SHIFT)
 #define ODSY_STATS_CTL_SIZE_EXP_SHIFT                0 /* established */
 #define ODSY_STATS_CTL_SIZE_EXP_MASK                 0xfu
-#define ODSY_STATS_CTL_SIZE_EXP_INPLACE              (ODSY_STATS_CTL_SIZE_EXP_MASK << ODSY_STATS_CTL_SIZE_EXP_SHIFT)
+#define ODSY_STATS_CTL_SIZE_EXP_INPLACE (ODSY_STATS_CTL_SIZE_EXP_MASK << ODSY_STATS_CTL_SIZE_EXP_SHIFT)
 
-/* word STRAP: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word STRAP: 32 bits; odsy binary analysis of the shipped kernel board
+ * routines */
 #define ODSY_STRAP_WIDTH                             32 /* inferred */
 #define ODSY_STRAP_SDRAM_SIZE_SHIFT                  30 /* established */
 #define ODSY_STRAP_SDRAM_SIZE_MASK                   0x3u
-#define ODSY_STRAP_SDRAM_SIZE_INPLACE                (ODSY_STRAP_SDRAM_SIZE_MASK << ODSY_STRAP_SDRAM_SIZE_SHIFT)
+#define ODSY_STRAP_SDRAM_SIZE_INPLACE (ODSY_STRAP_SDRAM_SIZE_MASK << ODSY_STRAP_SDRAM_SIZE_SHIFT)
 #define ODSY_STRAP_SDRAM_SIZE_MB32                   0 /* established */
 #define ODSY_STRAP_SDRAM_SIZE_MB64                   1 /* established */
 #define ODSY_STRAP_SDRAM_SIZE_MB128                  2 /* established */
 #define ODSY_STRAP_SDRAM_SIZE_MB32_ALT               3 /* established */
 #define ODSY_STRAP_BANKS_SHIFT                       29 /* established */
 #define ODSY_STRAP_BANKS_MASK                        0x1u
-#define ODSY_STRAP_BANKS_INPLACE                     (ODSY_STRAP_BANKS_MASK << ODSY_STRAP_BANKS_SHIFT)
+#define ODSY_STRAP_BANKS_INPLACE (ODSY_STRAP_BANKS_MASK << ODSY_STRAP_BANKS_SHIFT)
 #define ODSY_STRAP_BANKS_TWO                         0 /* established */
 #define ODSY_STRAP_BANKS_FOUR                        1 /* established */
 #define ODSY_STRAP_CAS_SHIFT                         28 /* established */
 #define ODSY_STRAP_CAS_MASK                          0x1u
-#define ODSY_STRAP_CAS_INPLACE                       (ODSY_STRAP_CAS_MASK << ODSY_STRAP_CAS_SHIFT)
+#define ODSY_STRAP_CAS_INPLACE (ODSY_STRAP_CAS_MASK << ODSY_STRAP_CAS_SHIFT)
 #define ODSY_STRAP_CAS_CAS3                          0 /* established */
 #define ODSY_STRAP_CAS_CAS2                          1 /* established */
 #define ODSY_STRAP_BOARD_REV_SHIFT                   24 /* established */
 #define ODSY_STRAP_BOARD_REV_MASK                    0xfu
-#define ODSY_STRAP_BOARD_REV_INPLACE                 (ODSY_STRAP_BOARD_REV_MASK << ODSY_STRAP_BOARD_REV_SHIFT)
+#define ODSY_STRAP_BOARD_REV_INPLACE (ODSY_STRAP_BOARD_REV_MASK << ODSY_STRAP_BOARD_REV_SHIFT)
 #define ODSY_STRAP_COMMAND_LEVEL_SHIFT               7 /* inferred */
 #define ODSY_STRAP_COMMAND_LEVEL_MASK                0x1ffu
-#define ODSY_STRAP_COMMAND_LEVEL_INPLACE             (ODSY_STRAP_COMMAND_LEVEL_MASK << ODSY_STRAP_COMMAND_LEVEL_SHIFT)
+#define ODSY_STRAP_COMMAND_LEVEL_INPLACE (ODSY_STRAP_COMMAND_LEVEL_MASK << ODSY_STRAP_COMMAND_LEVEL_SHIFT)
 #define ODSY_STRAP_DISPLAY_LEVEL_SHIFT               0 /* established */
 #define ODSY_STRAP_DISPLAY_LEVEL_MASK                0x7fu
-#define ODSY_STRAP_DISPLAY_LEVEL_INPLACE             (ODSY_STRAP_DISPLAY_LEVEL_MASK << ODSY_STRAP_DISPLAY_LEVEL_SHIFT)
+#define ODSY_STRAP_DISPLAY_LEVEL_INPLACE (ODSY_STRAP_DISPLAY_LEVEL_MASK << ODSY_STRAP_DISPLAY_LEVEL_SHIFT)
 
-/* word WIDGET_CONTROL: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word WIDGET_CONTROL: 32 bits; odsy binary analysis of the shipped kernel
+ * board routines */
 #define ODSY_WIDGET_CONTROL_WIDTH                    32 /* established */
 #define ODSY_WIDGET_CONTROL_CREDIT_SHIFT             12 /* established */
 #define ODSY_WIDGET_CONTROL_CREDIT_MASK              0xfu
-#define ODSY_WIDGET_CONTROL_CREDIT_INPLACE           (ODSY_WIDGET_CONTROL_CREDIT_MASK << ODSY_WIDGET_CONTROL_CREDIT_SHIFT)
+#define ODSY_WIDGET_CONTROL_CREDIT_INPLACE (ODSY_WIDGET_CONTROL_CREDIT_MASK << ODSY_WIDGET_CONTROL_CREDIT_SHIFT)
 #define ODSY_WIDGET_CONTROL_BIG_ENDIAN_SHIFT         9 /* established */
 #define ODSY_WIDGET_CONTROL_BIG_ENDIAN_MASK          0x1u
-#define ODSY_WIDGET_CONTROL_BIG_ENDIAN_INPLACE       (ODSY_WIDGET_CONTROL_BIG_ENDIAN_MASK << ODSY_WIDGET_CONTROL_BIG_ENDIAN_SHIFT)
+#define ODSY_WIDGET_CONTROL_BIG_ENDIAN_INPLACE (ODSY_WIDGET_CONTROL_BIG_ENDIAN_MASK << ODSY_WIDGET_CONTROL_BIG_ENDIAN_SHIFT)
 
-/* word WIDGET_ID: 32 bits; odsy binary analysis of the shipped kernel board routines */
+/* word WIDGET_ID: 32 bits; odsy binary analysis of the shipped kernel board
+ * routines */
 #define ODSY_WIDGET_ID_WIDTH                         32 /* inferred */
 #define ODSY_WIDGET_ID_VARIANT_SHIFT                 31 /* inferred */
 #define ODSY_WIDGET_ID_VARIANT_MASK                  0x1u
-#define ODSY_WIDGET_ID_VARIANT_INPLACE               (ODSY_WIDGET_ID_VARIANT_MASK << ODSY_WIDGET_ID_VARIANT_SHIFT)
+#define ODSY_WIDGET_ID_VARIANT_INPLACE (ODSY_WIDGET_ID_VARIANT_MASK << ODSY_WIDGET_ID_VARIANT_SHIFT)
 #define ODSY_WIDGET_ID_REVISION_SHIFT                28 /* inferred */
 #define ODSY_WIDGET_ID_REVISION_MASK                 0x7u
-#define ODSY_WIDGET_ID_REVISION_INPLACE              (ODSY_WIDGET_ID_REVISION_MASK << ODSY_WIDGET_ID_REVISION_SHIFT)
+#define ODSY_WIDGET_ID_REVISION_INPLACE (ODSY_WIDGET_ID_REVISION_MASK << ODSY_WIDGET_ID_REVISION_SHIFT)
 
 #define ODSY_BOARD_ABORT                             0x100cu /* inferred */
 #define ODSY_BOARD_BUFFER_B_CLEAR                    0x10ccu /* established */
@@ -199,7 +207,8 @@
 #define ODSY_PIO_WINDOW_BYTES                        0x401000u /* established */
 #define ODSY_REV_TYPE_B_BIAS                         0x8u /* established */
 #define ODSY_RGBA12_MIN_MEMORY_MB                    0x80u /* established */
-#define ODSY_STATS_CTL_FIXED_BITS                    0x88000000u /* established */
+/* established */
+#define ODSY_STATS_CTL_FIXED_BITS                    0x88000000u
 #define ODSY_WIDGET_ID_TYPE_A_FIRST                  0x1u /* established */
 #define ODSY_WIDGET_ID_TYPE_A_LAST                   0x3u /* established */
 #define ODSY_WIDGET_ID_TYPE_B_FIRST                  0x9u /* established */

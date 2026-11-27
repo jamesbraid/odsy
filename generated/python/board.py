@@ -1,6 +1,6 @@
 """generated from devices/board/registers.toml by defs-gen - do not edit, change the source
 SPDX-License-Identifier: BSD-3-Clause
-defs-gen 2
+defs-gen 4
 input sha256 f3eecab175431ff094bfec71e650a390d1d1942fa0343161470aa7499a1cb59d
 VPro (Odyssey) graphics board: widget identity, board"""
 

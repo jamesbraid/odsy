@@ -1,6 +1,6 @@
 <!-- generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
-<!-- defs-gen 2 -->
+<!-- defs-gen 4 -->
 <!-- input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17 -->
 
 # VPro (Odyssey) "Buzz" graphics ASIC: command and image

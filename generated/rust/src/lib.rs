@@ -1,8 +1,9 @@
-// generated from devices/ and formats/ by defs-gen - do not edit, change the source
+// @generated from devices/ and formats/ by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 30e1bed36e55810d09c129b82e5340c06bbb8a9c734398bafabe0ec8300f178e
 #![no_std]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 pub mod board;
 pub mod buzz;
 pub mod compositor;

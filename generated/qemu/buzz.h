@@ -1,6 +1,7 @@
-/* generated from devices/buzz/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/buzz/registers.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 942c05615dd7109ad399308248ce3e0c23fa9823f0c927c2f129bf3c24becd17 */
 /* VPro (Odyssey) "Buzz" graphics ASIC: command and image */
 /* Names are VPRO_BUZZ_*; name source: ours. */
@@ -100,7 +101,8 @@ FIELD(VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_0, ADDR, 0, 29) /* established */
 #define VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1_WIDTH 32 /* established; word */
 FIELD(VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1, SIZE_CODE, 30, 2) /* established */
 FIELD(VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1, OFFSET_CODE, 26, 3) /* established */
-FIELD(VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1, FORMAT_INDEX, 20, 6) /* established */
+/* established */
+FIELD(VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1, FORMAT_INDEX, 20, 6)
 FIELD(VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_1, PITCH, 0, 12) /* established */
 
 #define VPRO_BUZZ_TEXTURE_LEVEL_DESCRIPTOR_2_WIDTH 32 /* established; word */

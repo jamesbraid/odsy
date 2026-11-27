@@ -1,6 +1,7 @@
-/* generated from devices/texture/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/texture/registers.toml by defs-gen - do not edit,
+ * change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 e1a72907bca982844abc1ab5d1b935d756326dc6422dcb5b01cf6984b9aa0609 */
 /* VPro (Odyssey) "Buzz" texture state: environment, */
 #ifndef TEX_GEN_H
@@ -19,11 +20,12 @@
  * Established as the values returned; the names are inferred from the
  * formats that give each. The board's use of the field is unknown.
  */
-/* word CLASS: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word CLASS: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_CLASS_WIDTH                              32 /* established */
 #define TEX_CLASS_VALUE_SHIFT                        0 /* established */
 #define TEX_CLASS_VALUE_MASK                         0x7u
-#define TEX_CLASS_VALUE_INPLACE                      (TEX_CLASS_VALUE_MASK << TEX_CLASS_VALUE_SHIFT)
+#define TEX_CLASS_VALUE_INPLACE (TEX_CLASS_VALUE_MASK << TEX_CLASS_VALUE_SHIFT)
 #define TEX_CLASS_VALUE_NONE                         0 /* established */
 #define TEX_CLASS_VALUE_ALPHA                        1 /* inferred */
 #define TEX_CLASS_VALUE_LUMINANCE                    2 /* inferred */
@@ -32,38 +34,41 @@
 #define TEX_CLASS_VALUE_RGB                          5 /* inferred */
 #define TEX_CLASS_VALUE_RGBA                         6 /* inferred */
 
-/* word COLTAB_A: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word COLTAB_A: 32 bits; odsy binary analysis of the shipped GL library
+ * texture routines */
 #define TEX_COLTAB_A_WIDTH                           32 /* unknown */
 #define TEX_COLTAB_A_KEPT_SHIFT                      24 /* unknown */
 #define TEX_COLTAB_A_KEPT_MASK                       0xffu
-#define TEX_COLTAB_A_KEPT_INPLACE                    (TEX_COLTAB_A_KEPT_MASK << TEX_COLTAB_A_KEPT_SHIFT)
+#define TEX_COLTAB_A_KEPT_INPLACE (TEX_COLTAB_A_KEPT_MASK << TEX_COLTAB_A_KEPT_SHIFT)
 #define TEX_COLTAB_A_RED_SHIFT                       12 /* established */
 #define TEX_COLTAB_A_RED_MASK                        0xfffu
-#define TEX_COLTAB_A_RED_INPLACE                     (TEX_COLTAB_A_RED_MASK << TEX_COLTAB_A_RED_SHIFT)
+#define TEX_COLTAB_A_RED_INPLACE (TEX_COLTAB_A_RED_MASK << TEX_COLTAB_A_RED_SHIFT)
 #define TEX_COLTAB_A_GREEN_SHIFT                     0 /* established */
 #define TEX_COLTAB_A_GREEN_MASK                      0xfffu
-#define TEX_COLTAB_A_GREEN_INPLACE                   (TEX_COLTAB_A_GREEN_MASK << TEX_COLTAB_A_GREEN_SHIFT)
+#define TEX_COLTAB_A_GREEN_INPLACE (TEX_COLTAB_A_GREEN_MASK << TEX_COLTAB_A_GREEN_SHIFT)
 
-/* word COLTAB_B: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word COLTAB_B: 32 bits; odsy binary analysis of the shipped GL library
+ * texture routines */
 #define TEX_COLTAB_B_WIDTH                           32 /* unknown */
 #define TEX_COLTAB_B_KEPT_SHIFT                      24 /* unknown */
 #define TEX_COLTAB_B_KEPT_MASK                       0xffu
-#define TEX_COLTAB_B_KEPT_INPLACE                    (TEX_COLTAB_B_KEPT_MASK << TEX_COLTAB_B_KEPT_SHIFT)
+#define TEX_COLTAB_B_KEPT_INPLACE (TEX_COLTAB_B_KEPT_MASK << TEX_COLTAB_B_KEPT_SHIFT)
 #define TEX_COLTAB_B_BLUE_SHIFT                      12 /* established */
 #define TEX_COLTAB_B_BLUE_MASK                       0xfffu
-#define TEX_COLTAB_B_BLUE_INPLACE                    (TEX_COLTAB_B_BLUE_MASK << TEX_COLTAB_B_BLUE_SHIFT)
+#define TEX_COLTAB_B_BLUE_INPLACE (TEX_COLTAB_B_BLUE_MASK << TEX_COLTAB_B_BLUE_SHIFT)
 #define TEX_COLTAB_B_ALPHA_SHIFT                     0 /* established */
 #define TEX_COLTAB_B_ALPHA_MASK                      0xfffu
-#define TEX_COLTAB_B_ALPHA_INPLACE                   (TEX_COLTAB_B_ALPHA_MASK << TEX_COLTAB_B_ALPHA_SHIFT)
+#define TEX_COLTAB_B_ALPHA_INPLACE (TEX_COLTAB_B_ALPHA_MASK << TEX_COLTAB_B_ALPHA_SHIFT)
 
-/* word ENV_W0: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word ENV_W0: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_ENV_W0_WIDTH                             32 /* unknown */
 #define TEX_ENV_W0_UNWRITTEN_SHIFT                   3 /* unknown */
 #define TEX_ENV_W0_UNWRITTEN_MASK                    0x1fffffffu
-#define TEX_ENV_W0_UNWRITTEN_INPLACE                 (TEX_ENV_W0_UNWRITTEN_MASK << TEX_ENV_W0_UNWRITTEN_SHIFT)
+#define TEX_ENV_W0_UNWRITTEN_INPLACE (TEX_ENV_W0_UNWRITTEN_MASK << TEX_ENV_W0_UNWRITTEN_SHIFT)
 #define TEX_ENV_W0_MODE_SHIFT                        0 /* established */
 #define TEX_ENV_W0_MODE_MASK                         0x7u
-#define TEX_ENV_W0_MODE_INPLACE                      (TEX_ENV_W0_MODE_MASK << TEX_ENV_W0_MODE_SHIFT)
+#define TEX_ENV_W0_MODE_INPLACE (TEX_ENV_W0_MODE_MASK << TEX_ENV_W0_MODE_SHIFT)
 #define TEX_ENV_W0_MODE_REPLACE                      1 /* established */
 #define TEX_ENV_W0_MODE_MODULATE                     2 /* established */
 #define TEX_ENV_W0_MODE_DECAL                        3 /* established */
@@ -86,29 +91,31 @@
  * Mode add overwrites all four channels with 4095, so both words carry
  * 0xffffff. established.
  */
-/* word ENV_W1: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word ENV_W1: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_ENV_W1_WIDTH                             32 /* unknown */
 #define TEX_ENV_W1_TOP_SHIFT                         24 /* unknown */
 #define TEX_ENV_W1_TOP_MASK                          0xffu
-#define TEX_ENV_W1_TOP_INPLACE                       (TEX_ENV_W1_TOP_MASK << TEX_ENV_W1_TOP_SHIFT)
+#define TEX_ENV_W1_TOP_INPLACE (TEX_ENV_W1_TOP_MASK << TEX_ENV_W1_TOP_SHIFT)
 #define TEX_ENV_W1_RED_SHIFT                         12 /* inferred */
 #define TEX_ENV_W1_RED_MASK                          0xfffu
-#define TEX_ENV_W1_RED_INPLACE                       (TEX_ENV_W1_RED_MASK << TEX_ENV_W1_RED_SHIFT)
+#define TEX_ENV_W1_RED_INPLACE (TEX_ENV_W1_RED_MASK << TEX_ENV_W1_RED_SHIFT)
 #define TEX_ENV_W1_GREEN_SHIFT                       0 /* inferred */
 #define TEX_ENV_W1_GREEN_MASK                        0xfffu
-#define TEX_ENV_W1_GREEN_INPLACE                     (TEX_ENV_W1_GREEN_MASK << TEX_ENV_W1_GREEN_SHIFT)
+#define TEX_ENV_W1_GREEN_INPLACE (TEX_ENV_W1_GREEN_MASK << TEX_ENV_W1_GREEN_SHIFT)
 
-/* word ENV_W2: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word ENV_W2: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_ENV_W2_WIDTH                             32 /* unknown */
 #define TEX_ENV_W2_TOP_SHIFT                         24 /* unknown */
 #define TEX_ENV_W2_TOP_MASK                          0xffu
-#define TEX_ENV_W2_TOP_INPLACE                       (TEX_ENV_W2_TOP_MASK << TEX_ENV_W2_TOP_SHIFT)
+#define TEX_ENV_W2_TOP_INPLACE (TEX_ENV_W2_TOP_MASK << TEX_ENV_W2_TOP_SHIFT)
 #define TEX_ENV_W2_BLUE_SHIFT                        12 /* inferred */
 #define TEX_ENV_W2_BLUE_MASK                         0xfffu
-#define TEX_ENV_W2_BLUE_INPLACE                      (TEX_ENV_W2_BLUE_MASK << TEX_ENV_W2_BLUE_SHIFT)
+#define TEX_ENV_W2_BLUE_INPLACE (TEX_ENV_W2_BLUE_MASK << TEX_ENV_W2_BLUE_SHIFT)
 #define TEX_ENV_W2_ALPHA_SHIFT                       0 /* inferred */
 #define TEX_ENV_W2_ALPHA_MASK                        0xfffu
-#define TEX_ENV_W2_ALPHA_INPLACE                     (TEX_ENV_W2_ALPHA_MASK << TEX_ENV_W2_ALPHA_SHIFT)
+#define TEX_ENV_W2_ALPHA_INPLACE (TEX_ENV_W2_ALPHA_MASK << TEX_ENV_W2_ALPHA_SHIFT)
 
 /*
  * Words 3 and 4 are always zero for OpenGL texturing: the initialiser
@@ -116,17 +123,19 @@
  * what is sent. Their meaning is unknown. The image-transfer steps save
  * and restore the whole block as a copy, so they cannot change it.
  */
-/* word ENV_W3: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word ENV_W3: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_ENV_W3_WIDTH                             32 /* unknown */
 #define TEX_ENV_W3_BITS_SHIFT                        0 /* unknown */
 #define TEX_ENV_W3_BITS_MASK                         0xffffffffu
-#define TEX_ENV_W3_BITS_INPLACE                      (TEX_ENV_W3_BITS_MASK << TEX_ENV_W3_BITS_SHIFT)
+#define TEX_ENV_W3_BITS_INPLACE (TEX_ENV_W3_BITS_MASK << TEX_ENV_W3_BITS_SHIFT)
 
-/* word ENV_W4: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word ENV_W4: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_ENV_W4_WIDTH                             32 /* unknown */
 #define TEX_ENV_W4_BITS_SHIFT                        0 /* unknown */
 #define TEX_ENV_W4_BITS_MASK                         0xffffffffu
-#define TEX_ENV_W4_BITS_INPLACE                      (TEX_ENV_W4_BITS_MASK << TEX_ENV_W4_BITS_SHIFT)
+#define TEX_ENV_W4_BITS_INPLACE (TEX_ENV_W4_BITS_MASK << TEX_ENV_W4_BITS_SHIFT)
 
 /*
  * The write coverage of the level descriptor words (the bits the library
@@ -144,20 +153,22 @@
  * (TEX_SCRATCH_LEVEL) and restores the saved word. Bits 31:6 have no
  * writer and stay 0. established.
  */
-/* word FIRSTLEVEL: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word FIRSTLEVEL: 32 bits; odsy binary analysis of the shipped GL library
+ * texture routines */
 #define TEX_FIRSTLEVEL_WIDTH                         32 /* unknown */
 #define TEX_FIRSTLEVEL_UNWRITTEN_SHIFT               6 /* unknown */
 #define TEX_FIRSTLEVEL_UNWRITTEN_MASK                0x3ffffffu
-#define TEX_FIRSTLEVEL_UNWRITTEN_INPLACE             (TEX_FIRSTLEVEL_UNWRITTEN_MASK << TEX_FIRSTLEVEL_UNWRITTEN_SHIFT)
+#define TEX_FIRSTLEVEL_UNWRITTEN_INPLACE (TEX_FIRSTLEVEL_UNWRITTEN_MASK << TEX_FIRSTLEVEL_UNWRITTEN_SHIFT)
 #define TEX_FIRSTLEVEL_INDEX_SHIFT                   0 /* established */
 #define TEX_FIRSTLEVEL_INDEX_MASK                    0x3fu
-#define TEX_FIRSTLEVEL_INDEX_INPLACE                 (TEX_FIRSTLEVEL_INDEX_MASK << TEX_FIRSTLEVEL_INDEX_SHIFT)
+#define TEX_FIRSTLEVEL_INDEX_INPLACE (TEX_FIRSTLEVEL_INDEX_MASK << TEX_FIRSTLEVEL_INDEX_SHIFT)
 
-/* word FMT: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word FMT: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_FMT_WIDTH                                32 /* established */
 #define TEX_FMT_INDEX_SHIFT                          0 /* established */
 #define TEX_FMT_INDEX_MASK                           0x3fu
-#define TEX_FMT_INDEX_INPLACE                        (TEX_FMT_INDEX_MASK << TEX_FMT_INDEX_SHIFT)
+#define TEX_FMT_INDEX_INPLACE (TEX_FMT_INDEX_MASK << TEX_FMT_INDEX_SHIFT)
 #define TEX_FMT_INDEX_A8                             0 /* established */
 #define TEX_FMT_INDEX_A8_ALT                         1 /* established */
 #define TEX_FMT_INDEX_I8                             2 /* established */
@@ -199,41 +210,44 @@
  * (the only reading under which a later sample finds what an upload
  * wrote).
  */
-/* word LEVEL3D_W2: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word LEVEL3D_W2: 32 bits; odsy binary analysis of the shipped GL library
+ * texture routines */
 #define TEX_LEVEL3D_W2_WIDTH                         32 /* established */
 #define TEX_LEVEL3D_W2_SLICE_EXP_SHIFT               0 /* established */
 #define TEX_LEVEL3D_W2_SLICE_EXP_MASK                0xfffu
-#define TEX_LEVEL3D_W2_SLICE_EXP_INPLACE             (TEX_LEVEL3D_W2_SLICE_EXP_MASK << TEX_LEVEL3D_W2_SLICE_EXP_SHIFT)
+#define TEX_LEVEL3D_W2_SLICE_EXP_INPLACE (TEX_LEVEL3D_W2_SLICE_EXP_MASK << TEX_LEVEL3D_W2_SLICE_EXP_SHIFT)
 
-/* word LOD: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word LOD: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_LOD_WIDTH                                32 /* established */
 #define TEX_LOD_VALUE_SHIFT                          0 /* established */
 #define TEX_LOD_VALUE_MASK                           0x3fffu
-#define TEX_LOD_VALUE_INPLACE                        (TEX_LOD_VALUE_MASK << TEX_LOD_VALUE_SHIFT)
+#define TEX_LOD_VALUE_INPLACE (TEX_LOD_VALUE_MASK << TEX_LOD_VALUE_SHIFT)
 
-/* word MODE_W0: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word MODE_W0: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_MODE_W0_WIDTH                            32 /* unknown */
 #define TEX_MODE_W0_DETAIL_MODULATE_SHIFT            31 /* established */
 #define TEX_MODE_W0_DETAIL_MODULATE_MASK             0x1u
-#define TEX_MODE_W0_DETAIL_MODULATE_INPLACE          (TEX_MODE_W0_DETAIL_MODULATE_MASK << TEX_MODE_W0_DETAIL_MODULATE_SHIFT)
+#define TEX_MODE_W0_DETAIL_MODULATE_INPLACE (TEX_MODE_W0_DETAIL_MODULATE_MASK << TEX_MODE_W0_DETAIL_MODULATE_SHIFT)
 #define TEX_MODE_W0_BIT30_SHIFT                      30 /* unknown */
 #define TEX_MODE_W0_BIT30_MASK                       0x1u
-#define TEX_MODE_W0_BIT30_INPLACE                    (TEX_MODE_W0_BIT30_MASK << TEX_MODE_W0_BIT30_SHIFT)
+#define TEX_MODE_W0_BIT30_INPLACE (TEX_MODE_W0_BIT30_MASK << TEX_MODE_W0_BIT30_SHIFT)
 #define TEX_MODE_W0_DETAIL_LEVEL_SHIFT               25 /* established */
 #define TEX_MODE_W0_DETAIL_LEVEL_MASK                0x1fu
-#define TEX_MODE_W0_DETAIL_LEVEL_INPLACE             (TEX_MODE_W0_DETAIL_LEVEL_MASK << TEX_MODE_W0_DETAIL_LEVEL_SHIFT)
+#define TEX_MODE_W0_DETAIL_LEVEL_INPLACE (TEX_MODE_W0_DETAIL_LEVEL_MASK << TEX_MODE_W0_DETAIL_LEVEL_SHIFT)
 #define TEX_MODE_W0_UNWRITTEN_SHIFT                  15 /* unknown */
 #define TEX_MODE_W0_UNWRITTEN_MASK                   0x3ffu
-#define TEX_MODE_W0_UNWRITTEN_INPLACE                (TEX_MODE_W0_UNWRITTEN_MASK << TEX_MODE_W0_UNWRITTEN_SHIFT)
+#define TEX_MODE_W0_UNWRITTEN_INPLACE (TEX_MODE_W0_UNWRITTEN_MASK << TEX_MODE_W0_UNWRITTEN_SHIFT)
 #define TEX_MODE_W0_LOG2_S_SHIFT                     10 /* inferred */
 #define TEX_MODE_W0_LOG2_S_MASK                      0x1fu
-#define TEX_MODE_W0_LOG2_S_INPLACE                   (TEX_MODE_W0_LOG2_S_MASK << TEX_MODE_W0_LOG2_S_SHIFT)
+#define TEX_MODE_W0_LOG2_S_INPLACE (TEX_MODE_W0_LOG2_S_MASK << TEX_MODE_W0_LOG2_S_SHIFT)
 #define TEX_MODE_W0_LOG2_T_SHIFT                     5 /* inferred */
 #define TEX_MODE_W0_LOG2_T_MASK                      0x1fu
-#define TEX_MODE_W0_LOG2_T_INPLACE                   (TEX_MODE_W0_LOG2_T_MASK << TEX_MODE_W0_LOG2_T_SHIFT)
+#define TEX_MODE_W0_LOG2_T_INPLACE (TEX_MODE_W0_LOG2_T_MASK << TEX_MODE_W0_LOG2_T_SHIFT)
 #define TEX_MODE_W0_LOG2_R_SHIFT                     0 /* inferred */
 #define TEX_MODE_W0_LOG2_R_MASK                      0x1fu
-#define TEX_MODE_W0_LOG2_R_INPLACE                   (TEX_MODE_W0_LOG2_R_MASK << TEX_MODE_W0_LOG2_R_SHIFT)
+#define TEX_MODE_W0_LOG2_R_INPLACE (TEX_MODE_W0_LOG2_R_MASK << TEX_MODE_W0_LOG2_R_SHIFT)
 
 /*
  * detail_level is the detail level as a positive count, min(-level, 15):
@@ -254,50 +268,53 @@
  *              wrap mode in the sampler word (see WRAPAUX below). Its
  *              meaning on the board is unknown.
  */
-/* word MODE_W1: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word MODE_W1: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_MODE_W1_WIDTH                            32 /* unknown */
 #define TEX_MODE_W1_TOP_SHIFT                        24 /* unknown */
 #define TEX_MODE_W1_TOP_MASK                         0xffu
-#define TEX_MODE_W1_TOP_INPLACE                      (TEX_MODE_W1_TOP_MASK << TEX_MODE_W1_TOP_SHIFT)
+#define TEX_MODE_W1_TOP_INPLACE (TEX_MODE_W1_TOP_MASK << TEX_MODE_W1_TOP_SHIFT)
 #define TEX_MODE_W1_WRAP_AUX_SHIFT                   18 /* established */
 #define TEX_MODE_W1_WRAP_AUX_MASK                    0x3fu
-#define TEX_MODE_W1_WRAP_AUX_INPLACE                 (TEX_MODE_W1_WRAP_AUX_MASK << TEX_MODE_W1_WRAP_AUX_SHIFT)
+#define TEX_MODE_W1_WRAP_AUX_INPLACE (TEX_MODE_W1_WRAP_AUX_MASK << TEX_MODE_W1_WRAP_AUX_SHIFT)
 #define TEX_MODE_W1_BIT17_SHIFT                      17 /* unknown */
 #define TEX_MODE_W1_BIT17_MASK                       0x1u
-#define TEX_MODE_W1_BIT17_INPLACE                    (TEX_MODE_W1_BIT17_MASK << TEX_MODE_W1_BIT17_SHIFT)
+#define TEX_MODE_W1_BIT17_INPLACE (TEX_MODE_W1_BIT17_MASK << TEX_MODE_W1_BIT17_SHIFT)
 #define TEX_MODE_W1_MAX_CLAMP_SHIFT                  0 /* established */
 #define TEX_MODE_W1_MAX_CLAMP_MASK                   0x1ffffu
-#define TEX_MODE_W1_MAX_CLAMP_INPLACE                (TEX_MODE_W1_MAX_CLAMP_MASK << TEX_MODE_W1_MAX_CLAMP_SHIFT)
+#define TEX_MODE_W1_MAX_CLAMP_INPLACE (TEX_MODE_W1_MAX_CLAMP_MASK << TEX_MODE_W1_MAX_CLAMP_SHIFT)
 
-/* word MODE_W2: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word MODE_W2: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_MODE_W2_WIDTH                            32 /* unknown */
 #define TEX_MODE_W2_TOP_SHIFT                        24 /* unknown */
 #define TEX_MODE_W2_TOP_MASK                         0xffu
-#define TEX_MODE_W2_TOP_INPLACE                      (TEX_MODE_W2_TOP_MASK << TEX_MODE_W2_TOP_SHIFT)
+#define TEX_MODE_W2_TOP_INPLACE (TEX_MODE_W2_TOP_MASK << TEX_MODE_W2_TOP_SHIFT)
 #define TEX_MODE_W2_WRAP_AUX_SHIFT                   18 /* established */
 #define TEX_MODE_W2_WRAP_AUX_MASK                    0x3fu
-#define TEX_MODE_W2_WRAP_AUX_INPLACE                 (TEX_MODE_W2_WRAP_AUX_MASK << TEX_MODE_W2_WRAP_AUX_SHIFT)
+#define TEX_MODE_W2_WRAP_AUX_INPLACE (TEX_MODE_W2_WRAP_AUX_MASK << TEX_MODE_W2_WRAP_AUX_SHIFT)
 #define TEX_MODE_W2_BIT17_SHIFT                      17 /* unknown */
 #define TEX_MODE_W2_BIT17_MASK                       0x1u
-#define TEX_MODE_W2_BIT17_INPLACE                    (TEX_MODE_W2_BIT17_MASK << TEX_MODE_W2_BIT17_SHIFT)
+#define TEX_MODE_W2_BIT17_INPLACE (TEX_MODE_W2_BIT17_MASK << TEX_MODE_W2_BIT17_SHIFT)
 #define TEX_MODE_W2_MAX_CLAMP_SHIFT                  0 /* established */
 #define TEX_MODE_W2_MAX_CLAMP_MASK                   0x1ffffu
-#define TEX_MODE_W2_MAX_CLAMP_INPLACE                (TEX_MODE_W2_MAX_CLAMP_MASK << TEX_MODE_W2_MAX_CLAMP_SHIFT)
+#define TEX_MODE_W2_MAX_CLAMP_INPLACE (TEX_MODE_W2_MAX_CLAMP_MASK << TEX_MODE_W2_MAX_CLAMP_SHIFT)
 
-/* word MODE_W3: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word MODE_W3: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_MODE_W3_WIDTH                            32 /* unknown */
 #define TEX_MODE_W3_TOP_SHIFT                        24 /* unknown */
 #define TEX_MODE_W3_TOP_MASK                         0xffu
-#define TEX_MODE_W3_TOP_INPLACE                      (TEX_MODE_W3_TOP_MASK << TEX_MODE_W3_TOP_SHIFT)
+#define TEX_MODE_W3_TOP_INPLACE (TEX_MODE_W3_TOP_MASK << TEX_MODE_W3_TOP_SHIFT)
 #define TEX_MODE_W3_WRAP_AUX_SHIFT                   18 /* established */
 #define TEX_MODE_W3_WRAP_AUX_MASK                    0x3fu
-#define TEX_MODE_W3_WRAP_AUX_INPLACE                 (TEX_MODE_W3_WRAP_AUX_MASK << TEX_MODE_W3_WRAP_AUX_SHIFT)
+#define TEX_MODE_W3_WRAP_AUX_INPLACE (TEX_MODE_W3_WRAP_AUX_MASK << TEX_MODE_W3_WRAP_AUX_SHIFT)
 #define TEX_MODE_W3_BIT17_SHIFT                      17 /* unknown */
 #define TEX_MODE_W3_BIT17_MASK                       0x1u
-#define TEX_MODE_W3_BIT17_INPLACE                    (TEX_MODE_W3_BIT17_MASK << TEX_MODE_W3_BIT17_SHIFT)
+#define TEX_MODE_W3_BIT17_INPLACE (TEX_MODE_W3_BIT17_MASK << TEX_MODE_W3_BIT17_SHIFT)
 #define TEX_MODE_W3_MAX_CLAMP_SHIFT                  0 /* established */
 #define TEX_MODE_W3_MAX_CLAMP_MASK                   0x1ffffu
-#define TEX_MODE_W3_MAX_CLAMP_INPLACE                (TEX_MODE_W3_MAX_CLAMP_MASK << TEX_MODE_W3_MAX_CLAMP_SHIFT)
+#define TEX_MODE_W3_MAX_CLAMP_INPLACE (TEX_MODE_W3_MAX_CLAMP_MASK << TEX_MODE_W3_MAX_CLAMP_SHIFT)
 
 /*
  * The R axis setter writes repeat to the sampler for any target but 3D
@@ -314,39 +331,42 @@
  * operand 6 bits 31:25 are unknown. Operand 6 bit 24 is the offset flag
  * (below). The default border colour the library writes: not recorded.
  */
-/* word MODE_W5: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word MODE_W5: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_MODE_W5_WIDTH                            32 /* unknown */
 #define TEX_MODE_W5_TOP_SHIFT                        24 /* unknown */
 #define TEX_MODE_W5_TOP_MASK                         0xffu
-#define TEX_MODE_W5_TOP_INPLACE                      (TEX_MODE_W5_TOP_MASK << TEX_MODE_W5_TOP_SHIFT)
+#define TEX_MODE_W5_TOP_INPLACE (TEX_MODE_W5_TOP_MASK << TEX_MODE_W5_TOP_SHIFT)
 #define TEX_MODE_W5_RED_SHIFT                        12 /* established */
 #define TEX_MODE_W5_RED_MASK                         0xfffu
-#define TEX_MODE_W5_RED_INPLACE                      (TEX_MODE_W5_RED_MASK << TEX_MODE_W5_RED_SHIFT)
+#define TEX_MODE_W5_RED_INPLACE (TEX_MODE_W5_RED_MASK << TEX_MODE_W5_RED_SHIFT)
 #define TEX_MODE_W5_GREEN_SHIFT                      0 /* established */
 #define TEX_MODE_W5_GREEN_MASK                       0xfffu
-#define TEX_MODE_W5_GREEN_INPLACE                    (TEX_MODE_W5_GREEN_MASK << TEX_MODE_W5_GREEN_SHIFT)
+#define TEX_MODE_W5_GREEN_INPLACE (TEX_MODE_W5_GREEN_MASK << TEX_MODE_W5_GREEN_SHIFT)
 
-/* word MODE_W6: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word MODE_W6: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_MODE_W6_WIDTH                            32 /* unknown */
 #define TEX_MODE_W6_TOP_SHIFT                        25 /* unknown */
 #define TEX_MODE_W6_TOP_MASK                         0x7fu
-#define TEX_MODE_W6_TOP_INPLACE                      (TEX_MODE_W6_TOP_MASK << TEX_MODE_W6_TOP_SHIFT)
+#define TEX_MODE_W6_TOP_INPLACE (TEX_MODE_W6_TOP_MASK << TEX_MODE_W6_TOP_SHIFT)
 #define TEX_MODE_W6_HAS_OFFSET_SHIFT                 24 /* established */
 #define TEX_MODE_W6_HAS_OFFSET_MASK                  0x1u
-#define TEX_MODE_W6_HAS_OFFSET_INPLACE               (TEX_MODE_W6_HAS_OFFSET_MASK << TEX_MODE_W6_HAS_OFFSET_SHIFT)
+#define TEX_MODE_W6_HAS_OFFSET_INPLACE (TEX_MODE_W6_HAS_OFFSET_MASK << TEX_MODE_W6_HAS_OFFSET_SHIFT)
 #define TEX_MODE_W6_BLUE_SHIFT                       12 /* established */
 #define TEX_MODE_W6_BLUE_MASK                        0xfffu
-#define TEX_MODE_W6_BLUE_INPLACE                     (TEX_MODE_W6_BLUE_MASK << TEX_MODE_W6_BLUE_SHIFT)
+#define TEX_MODE_W6_BLUE_INPLACE (TEX_MODE_W6_BLUE_MASK << TEX_MODE_W6_BLUE_SHIFT)
 #define TEX_MODE_W6_ALPHA_SHIFT                      0 /* established */
 #define TEX_MODE_W6_ALPHA_MASK                       0xfffu
-#define TEX_MODE_W6_ALPHA_INPLACE                    (TEX_MODE_W6_ALPHA_MASK << TEX_MODE_W6_ALPHA_SHIFT)
+#define TEX_MODE_W6_ALPHA_INPLACE (TEX_MODE_W6_ALPHA_MASK << TEX_MODE_W6_ALPHA_SHIFT)
 
 /*
  * Code 3 is never sent (the allocator's table does accept element sizes
  * of 16 and 32 bytes, codes 3 and 4, but no format row uses them).
  *
  * Offset code (level descriptor word 1 bits 28:26,
- * generated/c/buzz.h TEXTURE_LEVEL_DESCRIPTOR_1.offset_code). Two writers: the on-board
+ * generated/c/buzz.h TEXTURE_LEVEL_DESCRIPTOR_1.offset_code). Two writers: the
+ * on-board
  * mipmap builder stores 2 only when the record's offset word equals 2,
  * which the allocator never produces, so it stores 0; the
  * pixel-to-texture move stores a value its helper derives from the
@@ -357,17 +377,19 @@
  * unreachable in the shipped software, not excluded. Whether the board
  * treats 1..7 differently from 0 is unknown.
  */
-/* word OFFCODE: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word OFFCODE: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_OFFCODE_WIDTH                            32 /* established */
 #define TEX_OFFCODE_VALUE_SHIFT                      0 /* established */
 #define TEX_OFFCODE_VALUE_MASK                       0x7u
-#define TEX_OFFCODE_VALUE_INPLACE                    (TEX_OFFCODE_VALUE_MASK << TEX_OFFCODE_VALUE_SHIFT)
+#define TEX_OFFCODE_VALUE_INPLACE (TEX_OFFCODE_VALUE_MASK << TEX_OFFCODE_VALUE_SHIFT)
 #define TEX_OFFCODE_VALUE_NONE                       0 /* established */
 #define TEX_OFFCODE_VALUE_CODE2                      2 /* established */
 
 /*
  * Size code c (level descriptor word 1 bits 31:30, generated/c/buzz.h
- * TEXTURE_LEVEL_DESCRIPTOR_1.size_code): 0 for indices 0..15 and 48, 1 for 16, 17, 18
+ * TEXTURE_LEVEL_DESCRIPTOR_1.size_code): 0 for indices 0..15 and 48, 1 for 16,
+ * 17, 18
  * and 49, 2 for 32 and 33. The allocator books 2 << c bytes per texel;
  * the texture path and the pixel-to-texture move both send the same
  * quantity (log2 bytes per texel minus 1), inferred for the move's
@@ -376,11 +398,12 @@
  * upper bound for 2D textures (ICC levels book the full width while the
  * pitch halves it) and a contract for 3D slices (section 5).
  */
-/* word SIZE: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word SIZE: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_SIZE_WIDTH                               32 /* established */
 #define TEX_SIZE_CODE_SHIFT                          0 /* established */
 #define TEX_SIZE_CODE_MASK                           0x3u
-#define TEX_SIZE_CODE_INPLACE                        (TEX_SIZE_CODE_MASK << TEX_SIZE_CODE_SHIFT)
+#define TEX_SIZE_CODE_INPLACE (TEX_SIZE_CODE_MASK << TEX_SIZE_CODE_SHIFT)
 #define TEX_SIZE_CODE_B2                             0 /* established */
 #define TEX_SIZE_CODE_B4                             1 /* established */
 #define TEX_SIZE_CODE_B8                             2 /* established */
@@ -394,23 +417,24 @@
  * enabled target has a complete texture, bits 5:3 and 11:10 are cleared.
  * Bit 11 is only ever cleared: unknown.
  */
-/* word TARGET: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word TARGET: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_TARGET_WIDTH                             32 /* unknown */
 #define TEX_TARGET_BIT11_SHIFT                       11 /* unknown */
 #define TEX_TARGET_BIT11_MASK                        0x1u
-#define TEX_TARGET_BIT11_INPLACE                     (TEX_TARGET_BIT11_MASK << TEX_TARGET_BIT11_SHIFT)
+#define TEX_TARGET_BIT11_INPLACE (TEX_TARGET_BIT11_MASK << TEX_TARGET_BIT11_SHIFT)
 #define TEX_TARGET_ACTIVE_SHIFT                      10 /* established */
 #define TEX_TARGET_ACTIVE_MASK                       0x1u
-#define TEX_TARGET_ACTIVE_INPLACE                    (TEX_TARGET_ACTIVE_MASK << TEX_TARGET_ACTIVE_SHIFT)
+#define TEX_TARGET_ACTIVE_INPLACE (TEX_TARGET_ACTIVE_MASK << TEX_TARGET_ACTIVE_SHIFT)
 #define TEX_TARGET_DIM3_SHIFT                        5 /* established */
 #define TEX_TARGET_DIM3_MASK                         0x1u
-#define TEX_TARGET_DIM3_INPLACE                      (TEX_TARGET_DIM3_MASK << TEX_TARGET_DIM3_SHIFT)
+#define TEX_TARGET_DIM3_INPLACE (TEX_TARGET_DIM3_MASK << TEX_TARGET_DIM3_SHIFT)
 #define TEX_TARGET_DIM2_SHIFT                        4 /* established */
 #define TEX_TARGET_DIM2_MASK                         0x1u
-#define TEX_TARGET_DIM2_INPLACE                      (TEX_TARGET_DIM2_MASK << TEX_TARGET_DIM2_SHIFT)
+#define TEX_TARGET_DIM2_INPLACE (TEX_TARGET_DIM2_MASK << TEX_TARGET_DIM2_SHIFT)
 #define TEX_TARGET_DIM1_SHIFT                        3 /* established */
 #define TEX_TARGET_DIM1_MASK                         0x1u
-#define TEX_TARGET_DIM1_INPLACE                      (TEX_TARGET_DIM1_MASK << TEX_TARGET_DIM1_SHIFT)
+#define TEX_TARGET_DIM1_INPLACE (TEX_TARGET_DIM1_MASK << TEX_TARGET_DIM1_SHIFT)
 
 /*
  * Wrap modes are independent per axis: each setter takes one enumerant,
@@ -419,11 +443,12 @@
  * word's wrap_s, wrap_t and wrap_r fields (generated/c/buzz.h). The value that
  * goes with each code in wrap_aux, established:
  */
-/* word WRAPAUX: 32 bits; odsy binary analysis of the shipped GL library texture routines */
+/* word WRAPAUX: 32 bits; odsy binary analysis of the shipped GL library texture
+ * routines */
 #define TEX_WRAPAUX_WIDTH                            32 /* established */
 #define TEX_WRAPAUX_VALUE_SHIFT                      0 /* established */
 #define TEX_WRAPAUX_VALUE_MASK                       0x3fu
-#define TEX_WRAPAUX_VALUE_INPLACE                    (TEX_WRAPAUX_VALUE_MASK << TEX_WRAPAUX_VALUE_SHIFT)
+#define TEX_WRAPAUX_VALUE_INPLACE (TEX_WRAPAUX_VALUE_MASK << TEX_WRAPAUX_VALUE_SHIFT)
 #define TEX_WRAPAUX_VALUE_REPEAT_CLAMP               0 /* established */
 #define TEX_WRAPAUX_VALUE_EDGE                       1 /* established */
 #define TEX_WRAPAUX_VALUE_BORDER                     63 /* established */
