@@ -3609,3 +3609,369 @@ One entry per routine, filed here from the reading batches by binary.
   The `lwc1` at 0xdae3d20 loads 4 bytes from a1 (arg1 at entry) +0x74.
   The `lwc1` at 0xdae3d28 loads 4 bytes from a1 (arg1 at entry) +0x78.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xdae3d24).
+
+- `__glOdyim_Indexf` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5280
+  **Established.** Immediate-mode colour-index sender for a float argument. The `sw` at 0xdad528c puts the command word 0xc580c407 on the FIFO window at process address 0x10000, and the float already in f12 follows in the delay slot of the return (`swc1` at 0xdad5294). Nothing is checked, counted or converted on the way.
+
+- `__glOdyim_Indexi` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5380
+  **Established.** Hands an integer colour index to the board in two stores to the FIFO window at 0x10000: the word 0xc580c406 (`sw` at 0xdad538c), then argument a0 untouched (`sw` at 0xdad5394, in the return's delay slot). The routine reads no memory and makes no call.
+
+- `__glOdyim_Indexs` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5480
+  **Established.** This colour-index entry for a short argument is byte for byte the integer routine's code: it stores 0xc580c406 to the window at 0x10000 (`sw` at 0xdad548c) and then a0 as it arrived (`sw` at 0xdad5494). No narrowing or masking is applied to the argument.
+
+- `__glOdyim_Indexub` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5580
+  **Established.** Sends an unsigned-byte colour index as the pair 0xc580c406 (`sw` at 0xdad558c) and a0 (`sw` at 0xdad5594) written to the command window at 0x10000. The six instructions have no branch, no load and no conversion; the byte is passed on as the full register.
+
+- `__glOdyim_ScratchIndexf` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad52c0
+  **Established.** The scratch-slot twin of the float colour-index sender: its command word is 0xce80c407, whose top half 0xce80 names the scratch colour slot instead of 0xc580. The store of the word is at 0xdad52cc and the float in f12 goes out in the return's delay slot at 0xdad52d4, both to the window at 0x10000.
+
+- `__glOdyim_ScratchIndexi` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad53c0
+  **Established.** Writes word 0xce80c406 (`sw` at 0xdad53cc) and then the integer in a0 (`sw` at 0xdad53d4) to the FIFO window at 0x10000. The 0xce80 half of the word selects the scratch colour slot, where the plain integer index sender uses 0xc580.
+
+- `__glOdyim_ScratchIndexs` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad54c0
+  **Established.** A scratch-slot colour-index sender that shares its code with the integer version: the word 0xce80c406 is stored at 0xdad54cc, then a0 is forwarded at 0xdad54d4. Both stores target address 0x10000, and the routine neither loads nor branches.
+
+- `__glOdyim_ScratchIndexub` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad55c0
+  **Established.** For the unsigned-byte scratch index, the two window writes are word 0xce80c406 at 0xdad55cc and the unmodified a0 at 0xdad55d4. The slot half 0xce80 of the word, not any processing in the routine, is what separates it from the ordinary byte index sender.
+
+- `__glOdyim_Indexd` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5180
+  **Established.** Colour-index sender for a double: `cvt.s.d` at 0xdad5180 narrows f12 to single precision before anything is written. The word 0xc580c407 then goes to the FIFO window at 0x10000 (`sw` at 0xdad5190) and the narrowed float follows in the delay slot at 0xdad5198.
+
+- `__glOdyim_Indexfv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5300
+  **Established.** Pointer form of the float colour-index sender. It loads the word at a0 +0 with `lw` at 0xdad5300, stores the command word 0xc580c407 to the window at 0x10000 (`sw` at 0xdad5310) and writes the loaded bits as the operand in the delay slot (`sw` at 0xdad5318); the value is moved as raw bits, with no float register involved.
+
+- `__glOdyim_Indexiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5400
+  **Established.** Reads the first integer of the array in a0 (`lw` at 0xdad5400) and emits it behind the word 0xc580c406 in two stores to 0x10000, at 0xdad5410 and 0xdad5418. It is the vector twin of the integer index sender and differs from the float vector sender only in the low word of the command.
+
+- `__glOdyim_Indexsv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5500
+  **Established.** Takes one signed halfword from a0 with `lh` at 0xdad5500, which sign-extends it to 32 bits, then stores the command word 0xc580c406 (`sw` at 0xdad5510) and that widened value (`sw` at 0xdad5518) to the command window at 0x10000.
+
+- `__glOdyim_Indexubv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5600
+  **Established.** Loads one unsigned byte from the array at a0 (`lbu` at 0xdad5600), zero-extending it, and sends it to the board after the word 0xc580c406. The stores are at 0xdad5610 and 0xdad5618, both to the window at 0x10000.
+
+- `__glOdyim_Indexdv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5200
+  **Established.** Pointer form of the double colour-index sender: `ldc1` at 0xdad5200 loads the double at a0, `cvt.s.d` at 0xdad520c narrows it, and the narrowed float is stored after the word 0xc580c407. The two window stores are at 0xdad5214 and 0xdad521c.
+
+- `__glOdyim_ScratchIndexfv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5340
+  **Established.** Scratch-slot colour-index sender taking a pointer to a float. The first word of the array is loaded at 0xdad5340 and forwarded as raw bits behind the command word 0xce80c407; the stores are at 0xdad5350 and 0xdad5358, to the window at 0x10000.
+
+- `__glOdyim_ScratchIndexiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5440
+  **Established.** Dereferences a0 with `lw` at 0xdad5440 and writes two words to 0x10000: the scratch-slot index command 0xce80c406 (at 0xdad5450) and the loaded integer (at 0xdad5458). It makes no calls and has no branch.
+
+- `__glOdyim_ScratchIndexsv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5540
+  **Established.** Halfword array form of the scratch-slot colour index: `lh` at 0xdad5540 fetches the value with sign extension, after which 0xce80c406 is stored at 0xdad5550 and the value at 0xdad5558. The window address is 0x10000 in both stores.
+
+- `__glOdyim_ScratchIndexubv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5640
+  **Established.** Unsigned byte array form of the scratch-slot colour index. A `lbu` at 0xdad5640 supplies the operand; the command word 0xce80c406 (`sw` at 0xdad5650) and the operand (`sw` at 0xdad5658) are the only writes, both to the FIFO window at 0x10000.
+
+- `__glOdyim_ScratchIndexdv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5240
+  **Established.** Double array form of the scratch-slot colour index: `ldc1` at 0xdad5240 reads the double at a0, `cvt.s.d` at 0xdad524c makes it a float, and the command word 0xce80c407 and that float are stored at 0xdad5254 and 0xdad525c to the window at 0x10000.
+
+- `__glOdyim_TexCoord1f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad36c0
+  **Established.** Texture-coordinate sender with one float component. The `sw` at 0xdad36cc writes the command word 0xc380c41f, an attribute word for the texture slot (top half 0xc380), to the FIFO window at 0x10000; f12 follows at 0xdad36d4.
+
+- `__glOdyim_TexCoord1i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3740
+  **Established.** A one-component integer texture coordinate is written as the word 0xc380c41e (`sw` at 0xdad374c) and the unchanged a0 (`sw` at 0xdad3754) to the window at 0x10000; the integer opcode is 0x1e where the float form uses 0x1f.
+
+- `__glOdyim_TexCoord1s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad37c0
+  **Established.** Short-argument texture coordinate. Its six instructions are the same as the integer variant's: 0xc380c41e stored at 0xdad37cc, a0 stored at 0xdad37d4, both to 0x10000.
+
+- `__glOdyim_TexCoord1d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3640
+  **Established.** Narrows the double in f12 with `cvt.s.d` at 0xdad3640 and sends it as a one-component texture coordinate: command word 0xc380c41f at 0xdad3650, then the float at 0xdad3658. Both stores go to the window at 0x10000.
+
+- `__glOdyim_TexCoord1fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3700
+  **Established.** Array form of the float s coordinate. It loads the first word at a0 (`lw` at 0xdad3700) as raw bits and stores it after 0xc380c41f; the two stores to 0x10000 are at 0xdad3710 and 0xdad3718.
+
+- `__glOdyim_TexCoord1iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3780
+  **Established.** Loads an integer from a0 (`lw` at 0xdad3780) and writes it behind the texture word 0xc380c41e; the stores at 0xdad3790 and 0xdad3798 both hit the command window at 0x10000. No float conversion happens in the routine.
+
+- `__glOdyim_TexCoord1sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3800
+  **Established.** Reads a signed halfword through a0 (`lh` at 0xdad3800) and forwards it, extended to 32 bits, after the integer texture word 0xc380c41e. The command store is at 0xdad3810 and the operand store at 0xdad3818.
+
+- `__glOdyim_TexCoord1dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3680
+  **Established.** Loads one double from a0 with `ldc1` at 0xdad3680, narrows it with `cvt.s.d` at 0xdad368c and stores it after the float texture word 0xc380c41f, at 0xdad3694 and 0xdad369c in the window at 0x10000.
+
+- `__glOdyim_TexCoord2f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad38c0
+  **Established.** Two-component float texture coordinate: after the word 0xc380c821 (`sw` at 0xdad38cc) the routine stores f12 at 0xdad38d0 and f13 at 0xdad38d8, all at the window address 0x10000. The word's opcode 0x21 marks the float pair.
+
+- `__glOdyim_TexCoord2i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3940
+  **Established.** Sends an integer s,t pair: 0xc380c820 (`sw` at 0xdad394c), then a0 (`sw` at 0xdad3950) and a1 (`sw` at 0xdad3958). Each store targets the FIFO window at process address 0x10000; the opcode field 0x20 is the integer pair.
+
+- `__glOdyim_TexCoord2s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad39c0
+  **Established.** The short-argument form carries the same body as the integer pair sender, so its two operands are a0 and a1 as received, stored at 0xdad39d0 and 0xdad39d8 after the command at 0xdad39cc (the word 0xc380c820).
+
+- `__glOdyim_TexCoord2d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3840
+  **Established.** Narrows both doubles first (`cvt.s.d` on f12 at 0xdad3840 and on f13 following it), then writes the word 0xc380c821 at 0xdad3854, f12 at 0xdad3858 and f13 at 0xdad3860 to the window at 0x10000.
+
+- `__glOdyim_TexCoord2fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3900
+  **Established.** Moves a float pair from the array at a0 to the board as one 64-bit store. The unaligned doubleword is assembled with `ldl` at 0xdad3900 and `ldr` and written with `sd` at 0xdad391c, after the word 0xc380c821 stored at 0xdad3914.
+
+- `__glOdyim_TexCoord2iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3980
+  **Established.** Integer pair from memory: `ldl` at 0xdad3980 with a matching `ldr` builds a doubleword out of the two ints at a0, and `sd` at 0xdad399c writes it behind the command 0xc380c820 (`sw` at 0xdad3994). Both go to the window at 0x10000, so the pair crosses the port as one 8-byte write.
+
+- `__glOdyim_TexCoord2sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3a00
+  **Established.** Reads two halfwords at a0 +0 and +2 (`lh` at 0xdad3a00 and the next load), then writes the integer pair word 0xc380c820 at 0xdad3a14 followed by the two widened values at 0xdad3a18 and 0xdad3a20. The port is the window at 0x10000.
+
+- `__glOdyim_TexCoord2dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3880
+  **Established.** Loads the two doubles at a0 +0 and +8 (`ldc1` at 0xdad3880), narrows each with `cvt.s.d` (the first at 0xdad3890), and sends the float pair after the word 0xc380c821. Stores are at 0xdad3898, 0xdad38a0 and 0xdad38a8.
+
+- `__glOdyim_TexCoord3f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3ac0
+  **Established.** Three float components go behind the word 0xc380cc23, whose opcode field 0x23 is the three-float texture form: stores at 0xdad3acc (the word), 0xdad3ad0 (f12), 0xdad3ad4 (f13) and 0xdad3adc (f14), all to the window at 0x10000.
+
+- `__glOdyim_TexCoord3i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3b40
+  **Established.** Writes the integer texture word 0xc380cc22 and then the integer arguments a0, a1 and a2 in order, as four stores to 0x10000 at 0xdad3b4c, 0xdad3b50, 0xdad3b54 and 0xdad3b5c. The opcode 0x22 is the three-integer form.
+
+- `__glOdyim_TexCoord3s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3bc0
+  **Established.** Short-argument three-component texture coordinate. The body is the integer sender's: command 0xc380cc22 at 0xdad3bcc, then a0, a1 and a2 at 0xdad3bd0, 0xdad3bd4 and 0xdad3bdc, all as received and all to the window at 0x10000.
+
+- `__glOdyim_TexCoord3fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3b00
+  **Established.** Sends a three-float coordinate from memory with two operand stores instead of three. A `lwu` supplies the first float and an unaligned doubleword pair (`ldl` at 0xdad3b00 with an `ldr`) the other two; the stores are the word 0xc380cc23 at 0xdad3b18, the single at 0xdad3b1c and the 8-byte store at 0xdad3b24.
+
+- `__glOdyim_TexCoord3iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3b80
+  **Established.** Integer triple in memory: one zero-extending word load and one unaligned doubleword load collect a0's three ints, and the port gets 0xc380cc22 (`sw` at 0xdad3b98), the first int (`sw` at 0xdad3b9c) and the last two together (`sd` at 0xdad3ba4) at address 0x10000.
+
+- `__glOdyim_TexCoord3sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3c00
+  **Established.** Three halfwords at a0 +0, +2 and +4 are loaded with `lh` from 0xdad3c00 on, and written to 0x10000 after the word 0xc380cc22: stores at 0xdad3c18, 0xdad3c1c, 0xdad3c20 and 0xdad3c28. The values go out sign-extended to 32 bits.
+
+- `__glOdyim_TexCoord3dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3a80
+  **Established.** Three doubles at a0 +0, +8 and +16 are loaded (`ldc1` from 0xdad3a80), narrowed one by one with `cvt.s.d` (first at 0xdad3a94) and written as floats behind the word 0xc380cc23; the four stores run from 0xdad3aa0 to 0xdad3ab4.
+
+- `__glOdyim_TexCoord4f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3d00
+  **Established.** Full four-component float texture coordinate. The word 0xc380d025 (opcode 0x25, `sw` at 0xdad3d0c) is followed by f12, f13, f14 and f15 stored at 0xdad3d10, 0xdad3d14, 0xdad3d18 and 0xdad3d20, all to the window at 0x10000.
+
+- `__glOdyim_TexCoord4i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3d80
+  **Established.** Integer four-component texture coordinate: the command 0xc380d024 at 0xdad3d8c (opcode 0x24) and then a0 to a3 at 0xdad3d90, 0xdad3d94, 0xdad3d98 and 0xdad3da0, five stores in all to the port at 0x10000.
+
+- `__glOdyim_TexCoord4s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3e00
+  **Established.** The short four-component sender repeats the integer one instruction for instruction: 0xc380d024 at 0xdad3e0c, then the four argument registers at 0xdad3e10, 0xdad3e14, 0xdad3e18 and 0xdad3e20. The window is 0x10000.
+
+- `__glOdyim_TexCoord4d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3c40
+  **Established.** Four doubles arrive in f12 to f15 and are each narrowed with `cvt.s.d` (the first at 0xdad3c40); the float word 0xc380d025 and the four floats are then stored from 0xdad3c5c to 0xdad3c70 to the window at 0x10000.
+
+- `__glOdyim_TexCoord4fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3d40
+  **Established.** Four floats are moved out of the array at a0 as two 8-byte stores built with `ldl` and `ldr` pairs (first load at 0xdad3d40). The command word 0xc380d025 is stored at 0xdad3d5c, the doublewords at 0xdad3d60 and 0xdad3d68, so five instruction groups cover the whole coordinate.
+
+- `__glOdyim_TexCoord4iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3dc0
+  **Established.** Two unaligned doubleword loads starting at 0xdad3dc0 pick up four integers from a0; the routine stores 0xc380d024 at 0xdad3ddc and then the two doublewords at 0xdad3de0 and 0xdad3de8 to the command window at 0x10000.
+
+- `__glOdyim_TexCoord4sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3e40
+  **Established.** Four halfwords at a0 +0, +2, +4 and +6 are fetched with `lh` from 0xdad3e40, and sent after the integer word 0xc380d024. The five stores sit between 0xdad3e5c and 0xdad3e70; the window is 0x10000.
+
+- `__glOdyim_TexCoord4dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3c80
+  **Established.** The vector form of the double four-component coordinate: four `ldc1` loads from 0xdad3c80, four `cvt.s.d` narrowings (the first at 0xdad3c98) and the command word 0xc380d025 with the four floats stored from 0xdad3ca4 to 0xdad3cc0.
+
+- `__glOdyim_Vertex2f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace640
+  **Established.** Two-float vertex sender. It sends the position word 0x8080c801 (top half 0x8080, the vertex slot) to the FIFO window at 0x10000 with `sw` at 0xdace64c, then f12 at 0xdace650 and f13 at 0xdace658. The word is built first in t0 and the window address in v0; no other register is touched.
+
+- `__glOdyim_Vertex2fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace680
+  **Established.** Reads x and y from the float array at a0 into f12 and f13 (`lwc1` at 0xdace680 and the next instruction) and then performs the same three stores as the two-float sender: the vertex word 0x8080c801 at 0xdace694, then the floats at 0xdace698 and 0xdace6a0.
+
+- `__glOdyim_Vertex2dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace600
+  **Established.** Two doubles at a0 +0 and +8 are loaded into f12 and f13 and each narrowed with `cvt.s.d` (the first at 0xdace604); the vertex word 0x8080c801 and the two singles then go to 0x10000, stored at 0xdace61c, 0xdace620 and 0xdace628.
+
+- `__glOdyim_Vertex2i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace6c0
+  **Established.** Integer two-component vertex sender. It converts a0 and a1 into floats in f12 and f13 (`mtc1` and `cvt.s.w`, first conversion at 0xdace6c8) but stores the original integers, behind the integer-form word 0x8080c800 (opcode 0x00): stores at 0xdace6dc, 0xdace6e0 and 0xdace6e8. The converted floats stay in registers and are not written by this routine.
+
+- `__glOdyim_Vertex2s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace740
+  **Established.** Short-argument two-component vertex sender, identical in code to the integer one: the converted floats in f12 and f13 are left in registers while the board receives the word 0x8080c800 (`sw` at 0xdace75c) and the arguments a0 and a1 (at 0xdace760 and 0xdace768).
+
+- `__glOdyim_Vertex2iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace700
+  **Established.** Loads two integers from a0 (`lw` at 0xdace700 and +4), converts them to f12 and f13 with `cvt.s.w` (first at 0xdace710), and writes the integers, not the floats, after the integer vertex word 0x8080c800. The three stores are at 0xdace724, 0xdace728 and 0xdace730.
+
+- `__glOdyim_Vertex2sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace780
+  **Established.** Takes two halfwords from the array at a0 (`lh` at 0xdace780), sign-extending them, leaves their float conversions in f12 and f13 and stores the word 0x8080c800 and the two widened integers (at 0xdace7a4, 0xdace7a8 and 0xdace7b0) to the window at 0x10000.
+
+- `__glOdyim_Vertex3f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace840
+  **Established.** Three-float vertex sender: the word 0x8080cc03 (opcode 0x03, `sw` at 0xdace84c) and then f12, f13 and f14 stored in order at 0xdace850, 0xdace854 and 0xdace85c. The routine has no loads, no branches and no calls.
+
+- `__glOdyim_Vertex3fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace880
+  **Established.** Array form of the three-float vertex: `lwc1` from 0xdace880 puts x, y and z in f12 to f14 and the stores that follow are the word 0x8080cc03 at 0xdace898 and the three floats at 0xdace89c, 0xdace8a0 and 0xdace8a8, all to the command window at 0x10000.
+
+- `__glOdyim_Vertex3dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace800
+  **Established.** Loads three doubles from a0, narrowing each one in turn with `cvt.s.d` (the first at 0xdace804); after that it writes the vertex word 0x8080cc03 and the three floats at 0xdace824 through 0xdace834. The window is 0x10000.
+
+- `__glOdyim_Vertex3s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace980
+  **Established.** Integer three-component vertex sender for short arguments. It converts a0, a1 and a2 to floats in f12 to f14 (`cvt.s.w`, first at 0xdace988) and sends the originals behind the integer-form word 0x8080cc02 (opcode 0x02): stores at 0xdace9a4, 0xdace9a8, 0xdace9ac and 0xdace9b4.
+
+- `__glOdyim_Vertex3iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace900
+  **Established.** Loads three integers from a0 into a4, a5 and a6, converts them to f12 to f14 (first `cvt.s.w` at 0xdace914) and stores the integers after the word 0x8080cc02. The four window stores run from 0xdace930 to 0xdace940.
+
+- `__glOdyim_Vertex3sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdace9c0
+  **Established.** A three-halfword array version of the integer vertex sender: `lh` from 0xdace9c0 loads the components, the float conversions land in f12 to f14, and the board receives 0x8080cc02 and the three integers (stores at 0xdace9f0, 0xdace9f4, 0xdace9f8 and 0xdacea00).
+
+- `__glOdyim_Vertex4f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdaceb00
+  **Established.** Four-float vertex sender using the word 0x8080d005 (opcode 0x05). The stores are the word at 0xdaceb0c and then f12, f13, f14 and f15 at 0xdaceb10, 0xdaceb14, 0xdaceb18 and 0xdaceb20, to the FIFO window at 0x10000.
+
+- `__glOdyim_Vertex4d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacea40
+  **Established.** Four doubles in f12 to f15 are narrowed in place by `cvt.s.d` (first at 0xdacea40) before the vertex word 0x8080d005 and the four floats are stored, from 0xdacea5c to 0xdacea70, to the window at 0x10000.
+
+- `__glOdyim_Vertex4fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdaceb40
+  **Established.** Reads the four floats at a0 +0, +4, +8 and +12 with `lwc1` (first at 0xdaceb40) and sends them behind 0x8080d005. Five stores, at 0xdaceb5c, 0xdaceb60, 0xdaceb64, 0xdaceb68 and 0xdaceb70.
+
+- `__glOdyim_Vertex4dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacea80
+  **Established.** The double array version of the four-component vertex: four `ldc1` and four `cvt.s.d` (first conversion at 0xdacea84) precede the word 0x8080d005, and the five stores run from 0xdaceaac to 0xdaceac0 in the window at 0x10000.
+
+- `__glOdyim_Vertex4s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacec80
+  **Established.** Short four-component vertex. a0 to a3 are converted into f12 to f15 for the caller's benefit (`cvt.s.w`, first at 0xdacec88), while the board gets the integer-form word 0x8080d004 (opcode 0x04) and the four original arguments, at 0xdacecac, 0xdacecb0, 0xdacecb4, 0xdacecb8 and 0xdacecc0.
+
+- `__glOdyim_Vertex4iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacec00
+  **Established.** Four integers are loaded from a0 into a4 to a7 (`lw` from 0xdacec00), converted to f12 to f15, and written unconverted after the word 0x8080d004. This is the longest of the vertex senders, at 84 bytes; its stores run from 0xdacec3c to 0xdacec50.
+
+- `__glOdyim_Color3b` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4100
+  **Established.** Signed-byte RGB colour sender: the colour word 0xc580cc0b (top half 0xc580) is stored at 0xdad410c, followed by a0, a1 and a2 as they arrived at 0xdad4110, 0xdad4114 and 0xdad411c. Every store goes to the window at 0x10000.
+
+- `__glOdyim_Color3f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4300
+  **Established.** Floating colour in three registers. The `sw` at 0xdad430c writes 0xc580cc0e; f12, f13 and f14 (red, green, blue) are then stored at 0xdad4310, 0xdad4314 and 0xdad431c. No clamping or scaling is done in this routine.
+
+- `__glOdyim_Color3i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4400
+  **Established.** Three integer colour components written straight from a0, a1 and a2 after the word 0xc580cc0d: stores at 0xdad440c, 0xdad4410, 0xdad4414 and 0xdad441c. The code is a four-store straight line with no branch.
+
+- `__glOdyim_Color3s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4500
+  **Established.** The word 0xc580cc0c is stored at 0xdad450c and the three short components a0 to a2 follow at 0xdad4510, 0xdad4514 and 0xdad451c. The routine neither extends nor scales them; they go to 0x10000 in the form the caller left them.
+
+- `__glOdyim_Color3ub` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4600
+  **Established.** Unsigned-byte RGB colour: command 0xc580cc08 at 0xdad460c, then a0, a1 and a2 at 0xdad4610, 0xdad4614 and 0xdad461c. Opcode 0x08 in the low half of the word marks the unsigned-byte form.
+
+- `__glOdyim_Color3ui` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4700
+  **Established.** Unsigned-integer RGB colour. After 0xc580cc0a (`sw` at 0xdad470c), the three argument registers a0, a1 and a2 are stored at 0xdad4710, 0xdad4714 and 0xdad471c, so the board sees the raw 32-bit values.
+
+- `__glOdyim_Color3us` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4800
+  **Established.** Unsigned-short RGB colour: the word 0xc580cc09 (opcode 0x09) at 0xdad480c and the three arguments at 0xdad4810, 0xdad4814 and 0xdad481c. Like its sibling senders the routine is straight-line code ending in the delay-slot store.
+
+- `__glOdyim_Color3fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4380
+  **Established.** Float array RGB colour with a 64-bit operand store: `lwu` loads the first float, an `ldl` at 0xdad4380 and `ldr` pair loads the other two as one doubleword, and the stores are 0xc580cc0e at 0xdad4398, the first float at 0xdad439c and the doubleword at 0xdad43a4.
+
+- `__glOdyim_Color3iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4480
+  **Established.** Integer array RGB colour. The first int is loaded with `lwu`, the last two are gathered by `ldl` at 0xdad4480 plus `ldr`, and the port gets the word 0xc580cc0d (`sw` at 0xdad4498), then one 4-byte store at 0xdad449c and one 8-byte store at 0xdad44a4.
+
+- `__glOdyim_Color3uiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4780
+  **Established.** Unsigned integer array RGB colour sent with the same three-store shape as the signed array form: 0xc580cc0a at 0xdad4798, one word at 0xdad479c, and a doubleword built by `ldl` at 0xdad4780 and `ldr` stored at 0xdad47a4.
+
+- `__glOdyim_Color3bv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4180
+  **Established.** Reads three signed bytes from a0 (`lb` at 0xdad4180, +1 and +2) and sends them as separate 32-bit operands after 0xc580cc0b; stores at 0xdad4198, 0xdad419c, 0xdad41a0 and 0xdad41a8.
+
+- `__glOdyim_Color3sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4580
+  **Established.** Three halfwords at a0 +0, +2 and +4 are loaded with `lh` from 0xdad4580 and sent, sign-extended, behind 0xc580cc0c. The word is stored at 0xdad4598, the components at 0xdad459c, 0xdad45a0 and 0xdad45a8.
+
+- `__glOdyim_Color3ubv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4680
+  **Established.** Loads three unsigned bytes at a0 (`lbu` from 0xdad4680), so each component reaches the board zero-extended after the command word 0xc580cc08; the four stores run from 0xdad4698 to 0xdad46a8.
+
+- `__glOdyim_Color3usv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4880
+  **Established.** Unsigned halfword array colour: `lhu` at 0xdad4880 and the two following loads fetch the components at a0 +0, +2 and +4, which are written after 0xc580cc09 at 0xdad489c, 0xdad48a0 and 0xdad48a8. The command store is at 0xdad4898.
+
+- `__glOdyim_Color3dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4280
+  **Established.** Double array RGB colour: `ldc1` from 0xdad4280 loads red, green and blue, `cvt.s.d` (first at 0xdad4294) narrows each one and the board receives 0xc580cc0e and the three floats from 0xdad42a0 to 0xdad42b4.
+
+- `__glOdyim_Color4f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4b80
+  **Established.** Four-float colour with alpha. The word 0xc580d015 (opcode 0x15) is stored at 0xdad4b8c; f12 to f15 follow at 0xdad4b90, 0xdad4b94, 0xdad4b98 and 0xdad4ba0. All stores target 0x10000.
+
+- `__glOdyim_Color4ub` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4e80
+  **Established.** Unsigned-byte RGBA colour: command 0xc580d00f at 0xdad4e8c and the four argument registers a0 to a3 at 0xdad4e90, 0xdad4e94, 0xdad4e98 and 0xdad4ea0. No packing is done; each byte travels in its own 32-bit store.
+
+- `__glOdyim_Color4fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4c00
+  **Established.** RGBA float array sent as two 8-byte operands: two `ldl` and two `ldr` loads (the first at 0xdad4c00) gather the four floats and the stores are the word 0xc580d015 at 0xdad4c1c and doublewords at 0xdad4c20 and 0xdad4c28.
+
+- `__glOdyim_Color4iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4d00
+  **Established.** Integer RGBA array, forwarded with the doubleword technique: unaligned loads from 0xdad4d00 on build two 64-bit values, and the port receives 0xc580d014 (`sw` at 0xdad4d1c) followed by the two `sd` stores at 0xdad4d20 and 0xdad4d28.
+
+- `__glOdyim_Color4uiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5000
+  **Established.** Unsigned integer RGBA array. The command word 0xc580d011 (opcode 0x11) is stored at 0xdad501c, then two 8-byte stores at 0xdad5020 and 0xdad5028 carry the four values loaded by the `ldl` and `ldr` pairs from 0xdad5000.
+
+- `__glOdyim_Color4d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4a00
+  **Established.** Double RGBA colour in f12 to f15; each is narrowed in place by `cvt.s.d` (first at 0xdad4a00) and written as a float after 0xc580d015. Five stores, at 0xdad4a1c, 0xdad4a20, 0xdad4a24, 0xdad4a28 and 0xdad4a30.
+
+- `__glOdyim_Color4dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4a80
+  **Established.** The array twin of the double RGBA sender: four `ldc1` loads from 0xdad4a80, four narrowings (first at 0xdad4a98), and five stores starting with 0xc580d015 at 0xdad4aa4. At 68 bytes it is one of the longer colour entries.
+
+- `__glOdyim_ScratchColor3f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4340
+  **Established.** Scratch-slot RGB float colour. Its command word is 0xce80cc0e, and the 0xce80 half routes the colour to the scratch slot; the stores are at 0xdad434c (word), 0xdad4350, 0xdad4354 and 0xdad435c (f12, f13, f14).
+
+- `__glOdyim_ScratchColor3ub` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4640
+  **Established.** Unsigned-byte colour for the scratch slot: 0xce80cc08 at 0xdad464c and a0, a1, a2 at 0xdad4650, 0xdad4654 and 0xdad465c. Compared with the normal byte colour sender only the top half of the word differs.
+
+- `__glOdyim_ScratchColor3fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad43c0
+  **Established.** Float array colour for the scratch slot, with the same loads as the plain float array version (`lwu` plus an `ldl` and `ldr` pair from 0xdad43c0) and the word 0xce80cc0e stored at 0xdad43d8; operands go out at 0xdad43dc and 0xdad43e4.
+
+- `__glOdyim_ScratchColor3iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad44c0
+  **Established.** Integer array colour for the scratch slot. The word 0xce80cc0d is stored at 0xdad44d8, one 32-bit operand at 0xdad44dc and one 64-bit operand at 0xdad44e4, assembled from three ints by `lwu` and the `ldl` at 0xdad44c0 with its `ldr`.
+
+- `__glOdyim_ScratchColor3uiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad47c0
+  **Established.** Unsigned integer array colour for the scratch slot: 0xce80cc0a at 0xdad47d8, the first component at 0xdad47dc, and the remaining two as one doubleword at 0xdad47e4.
+
+- `__glOdyim_ScratchColor3bv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad41c0
+  **Established.** Signed-byte array colour for the scratch slot. Three `lb` loads from 0xdad41c0 feed the stores that follow the word 0xce80cc0b: 0xdad41d8, 0xdad41dc, 0xdad41e0 and 0xdad41e8.
+
+- `__glOdyim_ScratchColor3sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad45c0
+  **Established.** Short array colour for the scratch slot; `lh` loads at 0xdad45c0, +2 and +4, the word 0xce80cc0c stored at 0xdad45d8, and operands stored at 0xdad45dc, 0xdad45e0 and 0xdad45e8.
+
+- `__glOdyim_ScratchColor3ubv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad46c0
+  **Established.** Unsigned byte array colour for the scratch slot, three `lbu` loads from 0xdad46c0 and four stores from 0xdad46d8 (the word 0xce80cc08) to 0xdad46e8.
+
+- `__glOdyim_ScratchColor3usv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad48c0
+  **Established.** Unsigned halfword array scratch colour: loads with `lhu` from 0xdad48c0, command 0xce80cc09 at 0xdad48d8, components at 0xdad48dc, 0xdad48e0 and 0xdad48e8.
+
+- `__glOdyim_ScratchColor3dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad42c0
+  **Established.** Double array scratch colour: three `ldc1` loads from 0xdad42c0, three `cvt.s.d` narrowings (first at 0xdad42d4), then 0xce80cc0e and three floats from 0xdad42e0 to 0xdad42f4.
+
+- `__glOdyim_ScratchColor4f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4bc0
+  **Established.** Scratch-slot RGBA float colour: 0xce80d015 at 0xdad4bcc, then f12 to f15 at 0xdad4bd0, 0xdad4bd4, 0xdad4bd8 and 0xdad4be0.
+
+- `__glOdyim_ScratchColor4fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4c40
+  **Established.** Scratch-slot RGBA float array. The command word 0xce80d015 is stored at 0xdad4c5c and the four floats leave as two doublewords at 0xdad4c60 and 0xdad4c68, gathered by `ldl` and `ldr` pairs from 0xdad4c40.
+
+- `__glOdyim_ScratchColor4iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4d40
+  **Established.** Scratch-slot RGBA integer array with the doubleword store pattern: 0xce80d014 at 0xdad4d5c, doublewords at 0xdad4d60 and 0xdad4d68, loads from 0xdad4d40.
+
+- `__glOdyim_ScratchColor4uiv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5040
+  **Established.** Scratch-slot RGBA unsigned integer array: command 0xce80d011 (`sw` at 0xdad505c) and two 8-byte operand stores at 0xdad5060 and 0xdad5068.
+
+- `__glOdyim_ScratchColor4bv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad49c0
+  **Established.** Signed byte RGBA array for the scratch slot. Four `lb` loads from 0xdad49c0 give the components, and the stores are 0xce80d012 at 0xdad49dc and then one word each at 0xdad49e0, 0xdad49e4, 0xdad49e8 and 0xdad49f0.
+
+- `__glOdyim_ScratchColor4d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4a40
+  **Established.** Double RGBA to the scratch slot, narrowed by `cvt.s.d` (first at 0xdad4a40) and written after 0xce80d015; stores at 0xdad4a5c, 0xdad4a60, 0xdad4a64, 0xdad4a68 and 0xdad4a70.
+
+- `__glOdyim_ScratchColor4sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4e40
+  **Established.** Halfword RGBA array for the scratch slot: `lh` loads from 0xdad4e40 through +6, the word 0xce80d013 at 0xdad4e5c, then four 32-bit stores ending at 0xdad4e70.
+
+- `__glOdyim_ScratchColor4ubv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4f40
+  **Established.** Four unsigned bytes from a0 (`lbu` from 0xdad4f40) after the scratch colour word 0xce80d00f, stored at 0xdad4f5c, 0xdad4f60, 0xdad4f64, 0xdad4f68 and 0xdad4f70.
+
+- `__glOdyim_ScratchColor4usv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad5140
+  **Established.** Four unsigned halfwords from a0 (`lhu` from 0xdad5140) after the scratch colour word 0xce80d010; the five stores run from 0xdad515c to 0xdad5170.
+
+- `__glOdyim_Normal3b` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3e80
+  **Established.** Normal sender for signed bytes. The word 0xc180cc16 carries the normal slot in its top half (0xc180); it is stored at 0xdad3e8c, and a0, a1 and a2 follow unchanged at 0xdad3e90, 0xdad3e94 and 0xdad3e9c.
+
+- `__glOdyim_Normal3f` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3f80
+  **Established.** Float normal: 0xc180cc19 at 0xdad3f8c and then f12, f13 and f14 at 0xdad3f90, 0xdad3f94 and 0xdad3f9c. The routine passes the three components through without normalising them.
+
+- `__glOdyim_Normal3i` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4000
+  **Established.** Integer normal. Stores at 0xdad400c (the word 0xc180cc18), 0xdad4010, 0xdad4014 and 0xdad401c write the command and the three integers a0, a1 and a2 to the window at 0x10000.
+
+- `__glOdyim_Normal3s` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4080
+  **Established.** Short normal; same body as the integer normal, so after 0xc180cc17 (at 0xdad408c) the stores at 0xdad4090, 0xdad4094 and 0xdad409c carry a0, a1 and a2 as they came.
+
+- `__glOdyim_Normal3fv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3fc0
+  **Established.** Float array normal in the three-store shape: 0xc180cc19 at 0xdad3fd8, one word (`lwu`) at 0xdad3fdc and the other two components as one doubleword (`ldl` at 0xdad3fc0 and `ldr`) at 0xdad3fe4.
+
+- `__glOdyim_Normal3iv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad4040
+  **Established.** Integer array normal. Its loads are one `lwu` and an `ldl` at 0xdad4040 with an `ldr`, and the three stores are the word 0xc180cc18 at 0xdad4058, then 0xdad405c and 0xdad4064.
+
+- `__glOdyim_Normal3bv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3ec0
+  **Established.** Signed bytes at a0 +0, +1 and +2 (`lb` from 0xdad3ec0) become three 32-bit operands after the normal word 0xc180cc16; stores at 0xdad3ed8, 0xdad3edc, 0xdad3ee0 and 0xdad3ee8.
+
+- `__glOdyim_Normal3d` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3f00
+  **Established.** Double normal: f12, f13 and f14 are each narrowed with `cvt.s.d` (first at 0xdad3f00), then the word 0xc180cc19 and the three floats are written, from 0xdad3f18 to 0xdad3f28.
+
+- `__glOdyim_Normal3sv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad40c0
+  **Established.** Short array normal, three `lh` loads from 0xdad40c0, then 0xc180cc17 at 0xdad40d8 and the components at 0xdad40dc, 0xdad40e0 and 0xdad40e8.
+
+- `__glOdyim_Normal3dv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad3f40
+  **Established.** Double array normal: `ldc1` loads from 0xdad3f40 and `cvt.s.d` narrowings (first at 0xdad3f54) before 0xc180cc19 and the three floats are stored, from 0xdad3f60 to 0xdad3f74.
+
+- `__glOdyim_EdgeFlag` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9da2e0
+  **Established.** Edge-flag sender. A single `movz` at 0xd9da2f4 chooses between two command words, 0x3000c02e when the flag in a0 is zero and 0x2f00c02e when it is nonzero, and the delay-slot store at 0xd9da2fc writes the choice to the window at 0x10000. It sends no operand.
+
+- `__glOdyim_EdgeFlagv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9da300
+  **Established.** Loads the flag byte at a0 with `lbu` at 0xd9da300 and then behaves like the by-value edge flag sender: a `movz` selects 0x3000c02e for a zero byte and 0x2f00c02e for a nonzero one, and the one store at 0xd9da320 puts the word on the command window at 0x10000.
