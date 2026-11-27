@@ -856,8 +856,12 @@
  * odsy_tpinit. inferred: 1 disables credit flow control. */
 #define ODSY_REG_FLOW_OFF          0x107c
 /* odsy_tpinit pulses this 0, 1, 0 before odsyInitCfifo. established.
- * inferred: command FIFO reset. */
-#define ODSY_REG_CFIFO_RESET       0x1084
+ * established (6.5.7 textport source, where the register is the
+ * flow-control clear): this is the flow-control clear, not a command
+ * FIFO reset; the earlier reading as a FIFO reset is withdrawn. What
+ * clears the front end's partial-command state is unknown
+ * (board/interrupts-fifo-reset.md). */
+#define ODSY_REG_FLOW_CLEAR        0x1084
 /* Low-water interrupt handling, all writes of 0x200 (the CFIFO_LW_FLAG
  * bit). odsyHiwaterInterrupt, after HEART reports credits below its
  * bias: write 0x101c; if STATUS0_CFIFO_LW is already set write 0x1014
