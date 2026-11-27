@@ -23088,3 +23088,15 @@ One entry per routine, filed here from the reading batches by binary.
   The `bal` at 0xdaec534 calls __glMipsXForm4 [0xdaec388] with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0xdaec480 targets 0xdaec50c, is taken when a0 != a2, and falls through when a0 == a2.
   The return at 0xdaec540 has v0 = ret(__glMipsXForm4).
+
+## Entry stubs that jump through an absolute slot (o32 and n32 builds)
+
+```family
+binaries: *usr/gfx/arch/IP30ODSY/libGLcore.so, *usr/gfx/arch/IP30ODSY32/libGLcore.so, *usr/gfx/arch/IP35ODSY/libGLcore.so, *usr/gfx/arch/IP35ODSY32/libGLcore.so
+members: gl*
+match: 8c 19 .. ..  03 20 00 08  00 00 00 00
+field: slot = u16be@2
+shape: Three words: lw t9 from an absolute address, jr t9, empty delay slot (nop).
+varies: slot, the 16-bit absolute address the first word loads t9 from.
+role: Inferred. Public GL entry stub: it loads the routine's pointer from a fixed low-memory slot and tail-jumps through it with no frame of its own, so each entry is one indirect jump. In IP30ODSY, glNewList at 0xdad6960 uses slot 0x1050 and glFlush at 0xdad6e94 uses slot 0x118c. IP30ODSY32 has them at 0xdacd4a0 and 0xdacd9d4 with the same slots.
+```

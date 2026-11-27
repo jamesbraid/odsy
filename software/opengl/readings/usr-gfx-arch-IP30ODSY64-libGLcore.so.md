@@ -1585,3 +1585,15 @@ One entry per routine, filed here from the reading batches by binary.
   The `ld` at 0x3376900 loads 8 bytes from abs 0x1ae0.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0x3376904).
   The instructions from 0x337690c to 0x33769fc are not reached by any path from the entry, and their branches are not listed.
+
+## Entry stubs that jump through an absolute slot (n64 builds)
+
+```family
+binaries: *usr/gfx/arch/IP30ODSY64/libGLcore.so, *usr/gfx/arch/IP35ODSY64/libGLcore.so
+members: gl*
+match: dc 19 .. ..  03 20 00 08  00 00 00 00
+field: slot = u16be@2
+shape: Three words: ld t9 from an absolute address, jr t9, empty delay slot (nop).
+varies: slot, the 16-bit absolute address the first word loads t9 from.
+role: Inferred. Public GL entry stub: it loads the routine's pointer from a fixed low-memory slot and tail-jumps through it with no frame of its own, so each entry is one indirect jump. In IP30ODSY64, glNewList at 0x3368260 uses slot 0x1090 and glFlush at 0x3368794 uses slot 0x1308. IP35ODSY64 has them at 0x2318260 and 0x2318794 with the same slots.
+```

@@ -572,3 +572,18 @@ One entry per routine, filed here from the reading batches by binary.
   The `lw` at 0xdada900 loads 4 bytes from abs 0x1578.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xdada904).
   The instructions from 0xdada90c to 0xdada9fc are not reached by any path from the entry, and their branches are not listed.
+
+## Entry stubs with a fixed argument record (n32 builds)
+
+```family
+binaries: *usr/gfx/arch/IP30ODSY32/libGLcore.so, *usr/gfx/arch/IP35ODSY32/libGLcore.so
+members: __glle_Co*, __glle_Ed*, __glle_EvalC*, __glle_Indexd*, __glle_Indexf*, __glle_Indexi*, __glle_Indexs*, __glle_Indexu*, __glle_LoadM*, __glle_Mu*, __glle_N*, __glle_Ra*, __glle_Ref*, __glle_Te*, __glle_V*
+match: 27 bd ff e0 3c 01 00 04/fe ff bc 00 10 24 21 .. 00/0f 03 21 e0 21 8c 19 10/f8 00/03 ff be 00 08 00 00 00 00 ff bf 00 00 03 20 f8 09 00 80 f0 25 df bf 00 00 df bc 00 10 27 c2 00 00/03 df be 00 08 03 e0 00 08 27 bd 00 20
+field: got_hi = u16be@6 & 0x1
+field: got_lo = u16be@14 & 0xfff0
+field: slot = u16be@22 & 0x7fc
+field: advance = u16be@54 & 0xfc
+shape: Seventeen words: a 32-byte frame, a PIC prologue that sets gp from t9 and a 16-bit offset, a load of a handler pointer from an absolute address into t9, a jalr through t9 with an empty delay slot, a return of the argument pointer plus a constant, and the frame restore.
+varies: got_hi and got_lo, the offset that sets gp; slot, the absolute address the handler pointer is loaded from; advance, the constant added to the argument pointer on return.
+role: Inferred. Entry stub for a routine with a fixed argument record: it keeps the argument pointer in fp, calls the handler at slot with that pointer unchanged, and returns fp plus advance, the bytes of argument it consumes. In IP30ODSY32, __glle_Color3bv at 0xdaadef0 advances 4 and __glle_Color4fv at 0xdaae210 advances 0x10.
+```
