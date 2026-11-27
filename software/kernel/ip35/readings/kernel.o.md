@@ -20052,3 +20052,32 @@ One entry per routine, filed here from the reading batches by binary.
 - `otherprda` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x43a2c (n64)
   **Inferred.** The branch at 0x43a34 sends a zero a0 to 0x43a48, just before the `get_kmod_info` call at 0x43a4c. A nonzero a0 falls through to a store to a0+0x800 at 0x43a3c and a return at 0x43a40 whose value is not traced. The call has a0 = 0, a1 = sp-48, a2 = the static word at sym(.sbss)+284 and a3 as at entry. Role (from name): the callee name suggests a kernel module lookup; the facts do not show what the result is used for.
   Reviewed: 2026-11-12
+
+- `utlbmiss_sharedseg2a` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x2e128 (n64).
+  Evidence grade: inferred.
+  Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Range: 0x2e128-0x2e130 (8 bytes).
+  It occupies 8 bytes.
+
+- `eutlbmissj` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x2e2b4 (n64).
+  Evidence grade: inferred.
+  Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Range: 0x2e2b4-0x2e2c0 (12 bytes).
+  It occupies 12 bytes.
+
+- `resetcounter` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x37464 (n64).
+  Evidence grade: inferred.
+  Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Range: 0x37464-0x374b8 (84 bytes).
+  It occupies 84 bytes.
+  The `bne` branch at 0x37480 targets 0x374a0, is taken when t0(?) < t2(?) (unsigned), and falls through when t0(?) >= t2(?) (unsigned).
+  The `bne` branch at 0x3748c targets 0x374a0, is taken when a0 < a4(?) (unsigned), and falls through when a0 >= a4(?) (unsigned).
+  The `beq` branch at 0x37498 targets 0x374a4, is taken when a0(?) >= t3(=0x3e8) (unsigned), and falls through when a0(?) < t3(=0x3e8) (unsigned).
+  The return at 0x374b0 has v0 = ?.
+
+- `initcounter` in `usr/cpu/sysgen/IP35boot/kernel.o` at 0x374b8 (n64).
+  Evidence grade: inferred.
+  Exact binary: `usr/cpu/sysgen/IP35boot/kernel.o`.
+  Range: 0x374b8-0x374d8 (32 bytes).
+  It occupies 32 bytes.
+  The return at 0x374d0 has v0 = ?.
