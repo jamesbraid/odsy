@@ -6587,3 +6587,396 @@ One entry per routine, filed here from the reading batches by binary.
   The `lw` at 0xdbb9500 loads 4 bytes from abs 0x1530.
   Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jr` at 0xdbb9504).
   The instructions from 0xdbb950c to 0xdbb95fc are not reached by any path from the entry, and their branches are not listed.
+
+- `__glOdyim_Indexf` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4200
+  **Established.** In the patch build this float colour-index sender sets up the command word 0xc580c407 in a7 and writes it to absolute address 0x4000 (`sw` at 0xdbb4208); the argument in f12 is stored to the same address in the return's delay slot (0xdbb4210). The window is addressed off the zero register, with no `lui` for it.
+
+- `__glOdyim_Indexi` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4300
+  **Established.** Patch-build integer colour index: the word 0xc580c406 and then a0 are the two stores, at 0xdbb4308 and 0xdbb4310, both with base register zero and displacement 16384. The FIFO window here sits at 0x4000 where the media build uses 0x10000.
+
+- `__glOdyim_Indexs` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4400
+  **Established.** Short-argument colour index in the patch build, byte-identical to the integer sender: stores 0xc580c406 at 0xdbb4408, then a0 untouched at 0xdbb4410, each to absolute address 0x4000.
+
+- `__glOdyim_Indexub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4500
+  **Established.** Writes 0xc580c406 and then a0 to absolute address 0x4000, at 0xdbb4508 and 0xdbb4510; the routine is the same twenty bytes as the integer and short senders and does not mask a0 to eight bits.
+
+- `__glOdyim_Indexd` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4100
+  **Established.** The `cvt.s.d` at 0xdbb4100 narrows f12 before the two stores to absolute 0x4000: the word 0xc580c407 at 0xdbb410c and the narrowed float at 0xdbb4114. In this patch build the double colour index needs only five instructions besides the return.
+
+- `__glOdyim_Indexfv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4280
+  **Established.** Loads the first word at a0 (`lw` at 0xdbb4280) and stores it, as raw bits, after the word 0xc580c407; both writes use displacement 16384 off the zero register, at 0xdbb428c and 0xdbb4294.
+
+- `__glOdyim_Indexiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4380
+  **Established.** Integer pointer form of the colour index in the patch build. `lw` at 0xdbb4380 fetches the value; the command word 0xc580c406 (store at 0xdbb438c) goes first and the value follows at 0xdbb4394, all at absolute 0x4000.
+
+- `__glOdyim_Indexsv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4480
+  **Established.** Fetches a halfword with sign extension (`lh` at 0xdbb4480) and sends it behind 0xc580c406 to absolute 0x4000; the two stores are at 0xdbb448c and 0xdbb4494.
+
+- `__glOdyim_Indexubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4580
+  **Established.** An unsigned byte at a0 is loaded by `lbu` at 0xdbb4580 and written after the command word 0xc580c406, with the stores at 0xdbb458c and 0xdbb4594 to absolute address 0x4000.
+
+- `__glOdyim_Indexdv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4180
+  **Established.** Double pointer form: a load of the double at 0xdbb4180, its narrowing at 0xdbb4188, and then 0xc580c407 (at 0xdbb4190) followed by the single-precision value (at 0xdbb4198), all at absolute 0x4000.
+
+- `__glOdyim_ScratchIndexf` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4240
+  **Established.** Scratch-slot float index sender of the patch build. Command word 0xce80c407, stored at 0xdbb4248, carries slot 0xce in its top byte; f12 follows at 0xdbb4250. Both go to absolute 0x4000.
+
+- `__glOdyim_ScratchIndexi` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4340
+  **Established.** Two stores to absolute 0x4000, at 0xdbb4348 and 0xdbb4350: the scratch-slot index word 0xce80c406, then a0 as passed. There is no load, branch or call.
+
+- `__glOdyim_ScratchIndexs` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4440
+  **Established.** Patch-build scratch index for a short value; it shares code with the integer version, storing 0xce80c406 at 0xdbb4448 and a0 at 0xdbb4450 at absolute address 0x4000.
+
+- `__glOdyim_ScratchIndexub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4540
+  **Established.** Scratch-slot byte index: 0xce80c406 at 0xdbb4548, a0 at 0xdbb4550, both to absolute 0x4000. As in the other index senders the byte is not masked.
+
+- `__glOdyim_ScratchIndexfv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb42c0
+  **Established.** Scratch-slot float index from memory: `lw` at 0xdbb42c0 gives the bits, which are written after 0xce80c407; stores at 0xdbb42cc and 0xdbb42d4, displacement 16384 off zero.
+
+- `__glOdyim_ScratchIndexiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb43c0
+  **Established.** Pointer form of the scratch integer index. The value comes from a0 through `lw` at 0xdbb43c0; 0xce80c406 is stored at 0xdbb43cc, the value at 0xdbb43d4, both to 0x4000.
+
+- `__glOdyim_ScratchIndexsv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb44c0
+  **Established.** The value at a0 is sign-extended by `lh` at 0xdbb44c0 and forwarded after the scratch index word 0xce80c406, with stores at 0xdbb44cc and 0xdbb44d4 to 0x4000.
+
+- `__glOdyim_ScratchIndexubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb45c0
+  **Established.** `lbu` at 0xdbb45c0 reads the byte at a0; the scratch index word 0xce80c406 and that value are stored at 0xdbb45cc and 0xdbb45d4 to the window at 0x4000.
+
+- `__glOdyim_ScratchIndexdv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb41c0
+  **Established.** Reads a double with `ldc1` at 0xdbb41c0, narrows it at 0xdbb41c8 and emits the scratch index word 0xce80c407 (store at 0xdbb41d0) and the float (store at 0xdbb41d8) at absolute 0x4000.
+
+- `__glOdyim_TexCoord1f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2700
+  **Established.** Patch-build one-component float texture coordinate: the word 0xc380c41f is stored at 0xdbb2708 and f12 at 0xdbb2710, both to absolute 0x4000. The routine is five instructions long.
+
+- `__glOdyim_TexCoord1i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2780
+  **Established.** Writes 0xc380c41e, whose low byte 0x1e picks the integer form, and then a0 to absolute 0x4000, at 0xdbb2788 and 0xdbb2790.
+
+- `__glOdyim_TexCoord1s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2800
+  **Established.** The patch-build short texture coordinate uses the integer sender's twenty bytes unchanged: 0xc380c41e at 0xdbb2808, a0 at 0xdbb2810, both addressed off the zero register at 0x4000.
+
+- `__glOdyim_TexCoord1d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2680
+  **Established.** After narrowing f12 at 0xdbb2680, the routine stores 0xc380c41f (at 0xdbb268c) and the narrowed float (at 0xdbb2694) to absolute 0x4000.
+
+- `__glOdyim_TexCoord1fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2740
+  **Established.** `lw` at 0xdbb2740 takes the float's bits from a0; the stores at 0xdbb274c (word 0xc380c41f) and 0xdbb2754 (the bits) go to absolute address 0x4000.
+
+- `__glOdyim_TexCoord1iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb27c0
+  **Established.** Pointer form of the integer s coordinate, patch build: load at 0xdbb27c0, command 0xc380c41e at 0xdbb27cc, value at 0xdbb27d4, all at 0x4000.
+
+- `__glOdyim_TexCoord1sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2840
+  **Established.** A halfword at a0, sign-extended by `lh` at 0xdbb2840, goes out behind 0xc380c41e; stores at 0xdbb284c and 0xdbb2854, window 0x4000.
+
+- `__glOdyim_TexCoord1dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb26c0
+  **Established.** Double pointer form: `ldc1` at 0xdbb26c0, narrowing at 0xdbb26c8, and then 0xc380c41f and the float written at 0xdbb26d0 and 0xdbb26d8 to absolute 0x4000.
+
+- `__glOdyim_TexCoord2f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2900
+  **Established.** In the patch build two float texture coordinates leave through three stores to absolute 0x4000: 0xc380c821 at 0xdbb2908, f12 at 0xdbb290c, f13 at 0xdbb2914.
+
+- `__glOdyim_TexCoord2i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2980
+  **Established.** Integer s,t pair: the word 0xc380c820 (store at 0xdbb2988), a0 (at 0xdbb298c) and a1 (at 0xdbb2994), each addressed as 16384 off the zero register.
+
+- `__glOdyim_TexCoord2s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2a00
+  **Established.** Short s,t pair with the integer sender's body: 0xc380c820 at 0xdbb2a08, then a0 at 0xdbb2a0c and a1 at 0xdbb2a14, to absolute 0x4000.
+
+- `__glOdyim_TexCoord2d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2880
+  **Established.** Two doubles are narrowed by `cvt.s.d` (first at 0xdbb2880) and sent with 0xc380c821: stores at 0xdbb2890, 0xdbb2894 and 0xdbb289c to absolute 0x4000.
+
+- `__glOdyim_TexCoord2fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2940
+  **Established.** The float pair at a0 travels as one 8-byte store: `ldl` at 0xdbb2940 with `ldr` loads it unaligned, `sd` at 0xdbb2958 writes it after 0xc380c821 (store at 0xdbb2950), at absolute 0x4000.
+
+- `__glOdyim_TexCoord2iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb29c0
+  **Established.** Two integers fetched with an unaligned doubleword load starting at 0xdbb29c0 and written by one `sd` at 0xdbb29d8, following the word 0xc380c820 stored at 0xdbb29d0; window 0x4000.
+
+- `__glOdyim_TexCoord2sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2a40
+  **Established.** Loads halfwords at a0 +0 and +2 (first `lh` at 0xdbb2a40), then stores 0xc380c820 at 0xdbb2a50 and the two values at 0xdbb2a54 and 0xdbb2a5c to 0x4000.
+
+- `__glOdyim_TexCoord2dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb28c0
+  **Established.** Loads two doubles from a0 (first `ldc1` at 0xdbb28c0), narrows them (first `cvt.s.d` at 0xdbb28cc) and stores 0xc380c821, then the pair of floats, at 0xdbb28d4, 0xdbb28dc and 0xdbb28e4.
+
+- `__glOdyim_TexCoord3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2b00
+  **Established.** Patch-build three-float texture coordinate: 0xc380cc23 at 0xdbb2b08 and f12, f13, f14 at 0xdbb2b0c, 0xdbb2b10 and 0xdbb2b18, to absolute 0x4000.
+
+- `__glOdyim_TexCoord3i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2b80
+  **Established.** Four stores to 0x4000: 0xc380cc22 at 0xdbb2b88, then the three integer arguments a0, a1 and a2 at 0xdbb2b8c, 0xdbb2b90 and 0xdbb2b98.
+
+- `__glOdyim_TexCoord3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2c00
+  **Established.** Short r,s,t form of the integer sender; 0xc380cc22 at 0xdbb2c08, a0 to a2 at 0xdbb2c0c, 0xdbb2c10 and 0xdbb2c18, all to absolute address 0x4000.
+
+- `__glOdyim_TexCoord3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2b40
+  **Established.** Three floats in memory go out in two operand stores. `lwu` takes the first, an unaligned load pair (`ldl` at 0xdbb2b40) takes the rest, and the stores are 0xc380cc23 at 0xdbb2b54, a word at 0xdbb2b58 and a doubleword at 0xdbb2b60.
+
+- `__glOdyim_TexCoord3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2bc0
+  **Established.** Integer triple from memory, again as one word plus one doubleword: stores 0xc380cc22 at 0xdbb2bd4, the first int at 0xdbb2bd8 and the other two at 0xdbb2be0, window 0x4000.
+
+- `__glOdyim_TexCoord3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2c40
+  **Established.** Three sign-extended halfwords (first `lh` at 0xdbb2c40) follow the word 0xc380cc22; four stores from 0xdbb2c54 to 0xdbb2c64, absolute address 0x4000.
+
+- `__glOdyim_TexCoord3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2ac0
+  **Established.** Three doubles are loaded (first at 0xdbb2ac0) and narrowed (first at 0xdbb2ad0) before the word 0xc380cc23 and the floats are stored from 0xdbb2adc to 0xdbb2af0 at absolute 0x4000.
+
+- `__glOdyim_TexCoord4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2d00
+  **Established.** Four-float texture coordinate, patch build: 0xc380d025 at 0xdbb2d08, then f12 to f15 at 0xdbb2d0c, 0xdbb2d10, 0xdbb2d14 and 0xdbb2d1c. Window 0x4000.
+
+- `__glOdyim_TexCoord4i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2d80
+  **Established.** Integer four-component texture coordinate: the word 0xc380d024 and a0 to a3, five stores from 0xdbb2d88 to 0xdbb2d9c, all to absolute 0x4000.
+
+- `__glOdyim_TexCoord4s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2e00
+  **Established.** Short four-component form with the integer sender's body, at absolute 0x4000; stores at 0xdbb2e08, 0xdbb2e0c, 0xdbb2e10, 0xdbb2e14 and 0xdbb2e1c.
+
+- `__glOdyim_TexCoord4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2c80
+  **Established.** Four doubles narrowed in place (first `cvt.s.d` at 0xdbb2c80) and written behind 0xc380d025, stores 0xdbb2c98 to 0xdbb2cac, absolute 0x4000.
+
+- `__glOdyim_TexCoord4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2d40
+  **Established.** Float quadruple in memory written as two doublewords: unaligned loads from 0xdbb2d40, command 0xc380d025 at 0xdbb2d58, `sd` stores at 0xdbb2d5c and 0xdbb2d64, at 0x4000.
+
+- `__glOdyim_TexCoord4iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2dc0
+  **Established.** Four ints from a0 via two unaligned doubleword loads (first at 0xdbb2dc0); 0xc380d024 at 0xdbb2dd8, doubleword stores at 0xdbb2ddc and 0xdbb2de4, absolute 0x4000.
+
+- `__glOdyim_TexCoord4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2e40
+  **Established.** Four halfwords (`lh` from 0xdbb2e40) go to the window at 0x4000 after 0xc380d024; five stores from 0xdbb2e58 to 0xdbb2e6c.
+
+- `__glOdyim_TexCoord4dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2cc0
+  **Established.** Four doubles narrowed one by one (first at 0xdbb2cd4) and written to 0x4000 with the word 0xc380d025; stores run from 0xdbb2ce0 to 0xdbb2cfc.
+
+- `__glOdyim_Vertex2f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbad900
+  **Established.** Two floats behind the vertex word 0x8080c801, written at 0xdbad908, 0xdbad90c and 0xdbad914 to absolute 0x4000; f12 and f13 are stored as they stand.
+
+- `__glOdyim_Vertex2fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbad940
+  **Established.** x and y come from `lwc1` loads at a0 (first at 0xdbad940) and are sent after 0x8080c801; stores at 0xdbad950, 0xdbad954 and 0xdbad95c, absolute address 0x4000.
+
+- `__glOdyim_Vertex2dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbad8c0
+  **Established.** Two doubles loaded and narrowed (first `cvt.s.d` at 0xdbad8c4), then 0x8080c801 and the floats stored at 0xdbad8d8, 0xdbad8dc and 0xdbad8e4 to 0x4000.
+
+- `__glOdyim_Vertex2i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbad980
+  **Established.** Integer vertex word 0x8080c800 (opcode 0x00) with a0 and a1 as operands, stored at 0xdbad998, 0xdbad99c and 0xdbad9a4 at 0x4000; the float conversions in f12 and f13 (first at 0xdbad988) are only left in registers.
+
+- `__glOdyim_Vertex2s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbada00
+  **Established.** Same body as the integer two-component vertex, stores at 0xdbada18, 0xdbada1c and 0xdbada24 to absolute address 0x4000; f12 and f13 receive converted copies that this routine never writes.
+
+- `__glOdyim_Vertex2iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbad9c0
+  **Established.** Loads two integers (a4, a5) from a0, converts copies into f12 and f13 and stores the integers after 0x8080c800, at 0xdbad9e0, 0xdbad9e4 and 0xdbad9ec, at 0x4000.
+
+- `__glOdyim_Vertex2sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbada40
+  **Established.** `lh` loads at 0xdbada40 fetch two components; their float copies go to f12 and f13, and the integer pair is written behind 0x8080c800 at 0xdbada60, 0xdbada64 and 0xdbada6c, to absolute 0x4000.
+
+- `__glOdyim_Vertex3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadb00
+  **Established.** 0x8080cc03 then f12, f13 and f14, four stores at 0xdbadb08, 0xdbadb0c, 0xdbadb10 and 0xdbadb18, to absolute 0x4000, with no conversion.
+
+- `__glOdyim_Vertex3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadb40
+  **Established.** Three `lwc1` loads (first at 0xdbadb40) feed the three float stores that follow 0x8080cc03; stores at 0xdbadb54, 0xdbadb58, 0xdbadb5c and 0xdbadb64, window 0x4000.
+
+- `__glOdyim_Vertex3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadac0
+  **Established.** Three doubles narrowed (first at 0xdbadac4) and written to 0x4000 after the vertex word 0x8080cc03, stores at 0xdbadae0 through 0xdbadaf0.
+
+- `__glOdyim_Vertex3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadc00
+  **Established.** Integer-form three-component vertex: the word 0x8080cc02 (opcode 0x02) and a0, a1 and a2 at 0xdbadc20, 0xdbadc24, 0xdbadc28 and 0xdbadc30; float copies are made in f12 to f14 and not stored.
+
+- `__glOdyim_Vertex3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadbc0
+  **Established.** Three ints from a0 (`lw` at 0xdbadbc0) are copied to floats and also stored unchanged after 0x8080cc02; four stores from 0xdbadbec to 0xdbadbfc at 0x4000.
+
+- `__glOdyim_Vertex3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadc40
+  **Established.** Three halfword loads from 0xdbadc40, three float conversions, and four stores of the integer form to absolute address 0x4000, from 0xdbadc6c to 0xdbadc7c.
+
+- `__glOdyim_Vertex4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadd00
+  **Established.** The word 0x8080d005 and four floats f12 to f15, five stores from 0xdbadd08 to 0xdbadd1c, all to absolute 0x4000.
+
+- `__glOdyim_Vertex4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadc80
+  **Established.** Four narrowings (first at 0xdbadc80) and then five stores to 0x4000: 0x8080d005 at 0xdbadc98 and the floats up to 0xdbadcac.
+
+- `__glOdyim_Vertex4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadd40
+  **Established.** Four `lwc1` loads from 0xdbadd40 and five stores after them, 0x8080d005 at 0xdbadd58; the window is 0x4000.
+
+- `__glOdyim_Vertex4dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbadcc0
+  **Established.** Four doubles loaded and narrowed (first `cvt.s.d` at 0xdbadcc4) before the word 0x8080d005 and the four floats are stored from 0xdbadce8 to 0xdbadcfc at absolute 0x4000.
+
+- `__glOdyim_Vertex4s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbade40
+  **Established.** Integer-form four-component vertex with the word 0x8080d004 (opcode 0x04), a0 to a3 stored from 0xdbade68 to 0xdbade7c; the float copies in f12 to f15 are not written here.
+
+- `__glOdyim_Vertex4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbade80
+  **Established.** Four halfwords loaded from 0xdbade80, converted for registers f12 to f15 and stored unconverted behind 0x8080d004; five stores ending at 0xdbadecc, window 0x4000.
+
+- `__glOdyim_Color3b` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3100
+  **Established.** Signed-byte RGB colour in the patch build: command 0xc580cc0b at 0xdbb3108, then a0, a1 and a2 at 0xdbb310c, 0xdbb3110 and 0xdbb3118, all at displacement 16384 off zero.
+
+- `__glOdyim_Color3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3300
+  **Established.** Float RGB: 0xc580cc0e at 0xdbb3308, f12 to f14 at 0xdbb330c, 0xdbb3310 and 0xdbb3318 to absolute 0x4000.
+
+- `__glOdyim_Color3i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3400
+  **Established.** Integer RGB: after 0xc580cc0d, the three argument registers are stored at 0xdbb340c, 0xdbb3410 and 0xdbb3418; address 0x4000.
+
+- `__glOdyim_Color3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3500
+  **Established.** Short RGB, same four stores as the integer sender (0xdbb3508, 0xdbb350c, 0xdbb3510, 0xdbb3518), command 0xc580cc0c, absolute 0x4000.
+
+- `__glOdyim_Color3ub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3600
+  **Established.** Unsigned-byte RGB: 0xc580cc08 (low half 0xcc08), then a0 to a2, stored at 0xdbb3608, 0xdbb360c, 0xdbb3610 and 0xdbb3618.
+
+- `__glOdyim_Color3ui` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3700
+  **Established.** Unsigned integer RGB, stored as 0xc580cc0a at 0xdbb3708 and a0, a1, a2 at 0xdbb370c, 0xdbb3710, 0xdbb3718; window 0x4000.
+
+- `__glOdyim_Color3us` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3800
+  **Established.** Unsigned short RGB: the command 0xc580cc09 (low half 0xcc09) followed by a0 to a2, four stores to absolute address 0x4000.
+
+- `__glOdyim_Color3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3380
+  **Established.** Float array RGB with one 4-byte and one 8-byte operand store: `lwu`, then `ldl` at 0xdbb3380 and `ldr`; stores 0xc580cc0e at 0xdbb3394, 0xdbb3398 and 0xdbb33a0.
+
+- `__glOdyim_Color3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3480
+  **Established.** Integer array RGB, loaded as one word and one unaligned doubleword (the `ldl` is at 0xdbb3480); the stores are 0xc580cc0d at 0xdbb3494, then 0xdbb3498 and 0xdbb34a0.
+
+- `__glOdyim_Color3uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3780
+  **Established.** Unsigned integer array RGB, same shape as the signed array form: stores at 0xdbb3794, 0xdbb3798 (word) and 0xdbb37a0 (doubleword), absolute 0x4000.
+
+- `__glOdyim_Color3bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3180
+  **Established.** Three `lb` loads from 0xdbb3180 and four stores to absolute 0x4000: 0xc580cc0b at 0xdbb3194, the bytes sign-extended at 0xdbb3198, 0xdbb319c and 0xdbb31a4.
+
+- `__glOdyim_Color3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3580
+  **Established.** Three halfwords (`lh` from 0xdbb3580) after the colour word 0xc580cc0c; stores at 0xdbb3594, 0xdbb3598, 0xdbb359c and 0xdbb35a4.
+
+- `__glOdyim_Color3ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3680
+  **Established.** `lbu` from 0xdbb3680 fetches three bytes at a0 +0, +1 and +2, sent after 0xc580cc08 with stores at 0xdbb3694, 0xdbb3698, 0xdbb369c and 0xdbb36a4.
+
+- `__glOdyim_Color3usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3880
+  **Established.** Three unsigned halfwords (`lhu`) follow the command word 0xc580cc09; four stores from 0xdbb3894 to 0xdbb38a4 at 0x4000.
+
+- `__glOdyim_Color3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3280
+  **Established.** Three doubles loaded and narrowed (first `cvt.s.d` at 0xdbb3290); 0xc580cc0e at 0xdbb329c, floats at 0xdbb32a4, 0xdbb32a8 and 0xdbb32b0, window 0x4000.
+
+- `__glOdyim_Color4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3b00
+  **Established.** RGBA float: 0xc580d015, then f12 to f15, stores from 0xdbb3b08 to 0xdbb3b1c at absolute 0x4000.
+
+- `__glOdyim_Color4b` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3900
+  **Established.** Signed-byte RGBA: word 0xc580d012 at 0xdbb3908, then a0 to a3 at 0xdbb390c, 0xdbb3910, 0xdbb3914 and 0xdbb391c.
+
+- `__glOdyim_Color4i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3c00
+  **Established.** Integer RGBA straight from registers: 0xc580d014 (low half 0xd014) and a0 to a3, five stores ending at 0xdbb3c1c.
+
+- `__glOdyim_Color4s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3d00
+  **Established.** Short RGBA with the integer sender's body: 0xc580d013 at 0xdbb3d08, a0 to a3 up to 0xdbb3d1c, absolute 0x4000.
+
+- `__glOdyim_Color4ub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3e00
+  **Established.** Unsigned-byte RGBA: command 0xc580d00f, four argument registers stored at 0xdbb3e0c, 0xdbb3e10, 0xdbb3e14 and 0xdbb3e1c, address 0x4000.
+
+- `__glOdyim_Color4ui` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3f00
+  **Established.** Unsigned integer RGBA: 0xc580d011 at 0xdbb3f08, a0 to a3 at 0xdbb3f0c, 0xdbb3f10, 0xdbb3f14, 0xdbb3f1c.
+
+- `__glOdyim_Color4us` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4000
+  **Established.** Unsigned short RGBA: command 0xc580d010 and four argument registers, stored from 0xdbb4008 to 0xdbb401c to the window at absolute 0x4000.
+
+- `__glOdyim_Color4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3a00
+  **Established.** Double RGBA narrowed in place (first at 0xdbb3a00); 0xc580d015 and four floats stored at 0xdbb3a18, 0xdbb3a1c, 0xdbb3a20, 0xdbb3a24, 0xdbb3a2c.
+
+- `__glOdyim_Color4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3b80
+  **Established.** Float RGBA array as two doublewords: unaligned loads from 0xdbb3b80, 0xc580d015 at 0xdbb3b98, `sd` at 0xdbb3b9c and 0xdbb3ba4; address 0x4000.
+
+- `__glOdyim_Color4iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3c80
+  **Established.** Integer RGBA array moved as two 8-byte stores, at 0xdbb3c9c and 0xdbb3ca4, after 0xc580d014 at 0xdbb3c98; the loads start at 0xdbb3c80.
+
+- `__glOdyim_Color4uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3f80
+  **Established.** Unsigned integer RGBA array: the word 0xc580d011 (low half 0xd011) and two doublewords, stored at 0xdbb3f98, 0xdbb3f9c and 0xdbb3fa4.
+
+- `__glOdyim_Color4bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3980
+  **Established.** Four `lb` loads from 0xdbb3980 feed four 4-byte stores after 0xc580d012, at 0xdbb399c, 0xdbb39a0, 0xdbb39a4 and 0xdbb39ac.
+
+- `__glOdyim_Color4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3d80
+  **Established.** Four halfword loads from 0xdbb3d80; the stores are 0xc580d013 at 0xdbb3d98 and the components at 0xdbb3d9c, 0xdbb3da0, 0xdbb3da4 and 0xdbb3dac.
+
+- `__glOdyim_Color4ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3e80
+  **Established.** Four unsigned bytes through `lbu` at 0xdbb3e80; stores run from 0xdbb3e98 (0xc580d00f) to 0xdbb3eac, to absolute 0x4000.
+
+- `__glOdyim_Color4usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb4080
+  **Established.** Four unsigned halfwords through `lhu` at 0xdbb4080 after the command word 0xc580d010; five stores from 0xdbb4098 to 0xdbb40ac.
+
+- `__glOdyim_Color4dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3a80
+  **Established.** Four `ldc1` loads from 0xdbb3a80, four narrowings (first at 0xdbb3a94) and five stores to 0x4000 starting with 0xc580d015 at 0xdbb3aa0.
+
+- `__glOdyim_ScratchColor3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3340
+  **Established.** Scratch-slot float RGB: the word 0xce80cc0e, in slot 0xce, at 0xdbb3348, then f12, f13 and f14 at 0xdbb334c, 0xdbb3350 and 0xdbb3358, absolute 0x4000.
+
+- `__glOdyim_ScratchColor3ub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3640
+  **Established.** Scratch-slot unsigned-byte RGB: 0xce80cc08 at 0xdbb3648, then a0, a1 and a2 at 0xdbb364c, 0xdbb3650 and 0xdbb3658.
+
+- `__glOdyim_ScratchColor3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb33c0
+  **Established.** Scratch-slot float array: `lwu`, an `ldl` at 0xdbb33c0 and an `ldr` read the three floats; 0xce80cc0e at 0xdbb33d4, then the single word at 0xdbb33d8 and the doubleword at 0xdbb33e0.
+
+- `__glOdyim_ScratchColor3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb34c0
+  **Established.** Scratch-slot integer array, loaded as one word plus one doubleword (first `ldl` at 0xdbb34c0); stores 0xce80cc0d at 0xdbb34d4, then 0xdbb34d8 and 0xdbb34e0.
+
+- `__glOdyim_ScratchColor3uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb37c0
+  **Established.** Scratch-slot unsigned array: word 0xce80cc0a stored at 0xdbb37d4, one word at 0xdbb37d8 and one 8-byte store at 0xdbb37e0.
+
+- `__glOdyim_ScratchColor3bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb31c0
+  **Established.** Scratch-slot byte array: three `lb` loads from 0xdbb31c0; the stores are 0xce80cc0b at 0xdbb31d4 and the bytes, widened, at 0xdbb31d8, 0xdbb31dc and 0xdbb31e4.
+
+- `__glOdyim_ScratchColor3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb35c0
+  **Established.** Scratch-slot short array; `lh` from 0xdbb35c0, 0xce80cc0c at 0xdbb35d4, components at 0xdbb35d8, 0xdbb35dc and 0xdbb35e4.
+
+- `__glOdyim_ScratchColor3ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb36c0
+  **Established.** Scratch-slot unsigned byte array; `lbu` from 0xdbb36c0, stores from 0xdbb36d4 (0xce80cc08) to 0xdbb36e4.
+
+- `__glOdyim_ScratchColor3usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb38c0
+  **Established.** Scratch-slot unsigned short array: `lhu` loads from 0xdbb38c0 and four stores starting with 0xce80cc09 at 0xdbb38d4.
+
+- `__glOdyim_ScratchColor3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb32c0
+  **Established.** Scratch-slot double array: loads from 0xdbb32c0, narrowing from 0xdbb32d0, then 0xce80cc0e and three floats from 0xdbb32dc to 0xdbb32f0.
+
+- `__glOdyim_ScratchColor4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3b40
+  **Established.** Scratch RGBA float: 0xce80d015 at 0xdbb3b48 and f12 to f15 at 0xdbb3b4c, 0xdbb3b50, 0xdbb3b54 and 0xdbb3b5c.
+
+- `__glOdyim_ScratchColor4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3a40
+  **Established.** Scratch RGBA double: four narrowings (first at 0xdbb3a40), then 0xce80d015 and four floats from 0xdbb3a58 to 0xdbb3a6c.
+
+- `__glOdyim_ScratchColor4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3bc0
+  **Established.** Scratch RGBA float array as two 8-byte stores at 0xdbb3bdc and 0xdbb3be4 after 0xce80d015 at 0xdbb3bd8.
+
+- `__glOdyim_ScratchColor4iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3cc0
+  **Established.** Scratch RGBA integer array, two doubleword stores at 0xdbb3cdc and 0xdbb3ce4 after the word 0xce80d014; loads from 0xdbb3cc0.
+
+- `__glOdyim_ScratchColor4uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3fc0
+  **Established.** Scratch RGBA unsigned array: the command 0xce80d011 and two doublewords, stored at 0xdbb3fd8, 0xdbb3fdc and 0xdbb3fe4.
+
+- `__glOdyim_ScratchColor4bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb39c0
+  **Established.** Scratch RGBA byte array: `lb` from 0xdbb39c0, 0xce80d012 at 0xdbb39d8, four operand stores ending at 0xdbb39ec.
+
+- `__glOdyim_ScratchColor4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3dc0
+  **Established.** Scratch RGBA short array: `lh` from 0xdbb3dc0, 0xce80d013 at 0xdbb3dd8, four operand stores ending at 0xdbb3dec.
+
+- `__glOdyim_ScratchColor4ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3ec0
+  **Established.** Scratch RGBA unsigned byte array: `lbu` from 0xdbb3ec0, stores from 0xdbb3ed8 to 0xdbb3eec.
+
+- `__glOdyim_ScratchColor4usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb40c0
+  **Established.** Scratch RGBA unsigned short array: `lhu` from 0xdbb40c0, five stores from 0xdbb40d8 to 0xdbb40ec.
+
+- `__glOdyim_Normal3b` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2e80
+  **Established.** Normal slot 0xc1 word 0xc180cc16 at 0xdbb2e88, then a0, a1 and a2 at 0xdbb2e8c, 0xdbb2e90 and 0xdbb2e98, patch-build window 0x4000.
+
+- `__glOdyim_Normal3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2f80
+  **Established.** Float normal: 0xc180cc19 at 0xdbb2f88, f12 to f14 at 0xdbb2f8c, 0xdbb2f90 and 0xdbb2f98, with no normalising.
+
+- `__glOdyim_Normal3i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3000
+  **Established.** Integer normal: four stores to absolute 0x4000, 0xc180cc18 at 0xdbb3008 and a0 to a2 at 0xdbb300c, 0xdbb3010 and 0xdbb3018.
+
+- `__glOdyim_Normal3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3080
+  **Established.** Short normal, the integer sender's body: 0xc180cc17 at 0xdbb3088, a0 to a2 up to 0xdbb3098.
+
+- `__glOdyim_Normal3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2fc0
+  **Established.** Float array normal: `lwu` plus an unaligned doubleword load (`ldl` at 0xdbb2fc0); 0xc180cc19 at 0xdbb2fd4, one word at 0xdbb2fd8, one doubleword at 0xdbb2fe0.
+
+- `__glOdyim_Normal3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb3040
+  **Established.** Integer array normal, loaded as one word plus one doubleword from 0xdbb3040; stores 0xc180cc18, then 0xdbb3058 and 0xdbb3060.
+
+- `__glOdyim_Normal3bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2ec0
+  **Established.** Normal from three signed bytes (`lb` from 0xdbb2ec0), four stores from 0xdbb2ed4 to 0xdbb2ee4.
+
+- `__glOdyim_Normal3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb30c0
+  **Established.** Normal from three halfwords (`lh` from 0xdbb30c0); 0xc180cc17 at 0xdbb30d4, components at 0xdbb30d8, 0xdbb30dc and 0xdbb30e4.
+
+- `__glOdyim_Normal3d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2f00
+  **Established.** Double normal narrowed by `cvt.s.d` (first at 0xdbb2f00); 0xc180cc19 and the three floats stored from 0xdbb2f14 to 0xdbb2f24.
+
+- `__glOdyim_Normal3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdbb2f40
+  **Established.** Double array normal: `ldc1` loads from 0xdbb2f40, narrowing from 0xdbb2f50, then 0xc180cc19 and three floats from 0xdbb2f5c to 0xdbb2f70.
+
+- `__glOdyim_EdgeFlag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdabd890
+  **Established.** Picks the command word without a `movz`: `sltu` at 0xdabd898 turns a0 into 0 or 1, then `movz` chooses 16 or 15, which is shifted left by 24 and ORed with 0x2000c02e. A zero flag therefore sends 0x3000c02e and a nonzero flag 0x2f00c02e; the one store is at 0xdabd8b4, to absolute 0x4000.
+
+- `__glOdyim_EdgeFlagv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdabd8c0
+  **Established.** The flag byte at a0 is loaded (`lbu` at 0xdabd8c0), reduced to 0 or 1 by `sltu`, and selects 0x3000c02e (zero) or 0x2f00c02e (nonzero), built by shifting 16 or 15 left by 24 and ORing 0x2000c02e; the store at 0xdabd8e8 writes it to absolute 0x4000.

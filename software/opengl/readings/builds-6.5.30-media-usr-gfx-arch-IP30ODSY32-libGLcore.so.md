@@ -3975,3 +3975,60 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `__glOdyim_EdgeFlagv` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9da300
   **Established.** Loads the flag byte at a0 with `lbu` at 0xd9da300 and then behaves like the by-value edge flag sender: a `movz` selects 0x3000c02e for a zero byte and 0x2f00c02e for a nonzero one, and the one store at 0xd9da320 puts the word on the command window at 0x10000.
+
+- `__glOdysseyDisableHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f4690
+  **Established.** Does nothing in this N32 build: the whole 8-byte body is `jr ra` at 0xd9f4690 with a `nop` in its delay slot. It reads no register, touches no memory and sets no result, so a caller's disable request has no effect here.
+
+- `__glOdysseyEnableHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f4680
+  **Established.** Empty routine: a return at 0xd9f4680 and a `nop` in the delay slot are all there is. It shares its bytes with the disable and finish hyperpipe stubs, and calling it changes nothing in the context or on the board.
+
+- `__glOdysseyFinishHyperpipe` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f46a0
+  **Established.** A return-only stub (`jr ra` at 0xd9f46a0, delay slot `nop`). It does not wait, flush or set a value, so the caller continues at once.
+
+- `__glOdysseyInitAsyncState` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd956030
+  **Established.** The asynchronous-state initialiser has an empty body in this build, two instructions long: `jr ra` at 0xd956030 and a `nop`. No field of the context is written.
+
+- `__glOdysseyInitFragmentMaterial` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd985210
+  **Established.** Returns at once. The 8 bytes are `jr ra` at 0xd985210 and a `nop`, with no stores, so no fragment-material state is initialised in this build.
+
+- `__glOdysseyPickDepthProcs` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9c59e0
+  **Established.** The depth-procedure picker is a bare return (`jr ra` at 0xd9c59e0, then `nop`); it assigns no function pointers and returns nothing.
+
+- `__glOdysseyInitHyperpipeState` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f46b0
+  **Established.** Clears one word. The delay slot of the return stores zero at the address in a0 (`sw` at 0xd9f46b4), so the first word of the hyperpipe state record is reset and nothing else is touched.
+
+- `__glOdysseyMIPS_SYNC` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacd040
+  **Established.** Wraps the MIPS `sync` instruction: the return at 0xdacd040 carries `sync` in its delay slot, so every earlier load and store completes before the caller proceeds. It reads no argument and returns no value.
+
+- `__glOdysseyChangeMaterialAmbient` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f0800
+  **Established.** Copies the four floats held at context +432, +436, +440 and +444 (a0) to the first four words of the destination in a1, loading from 0xd9f0800 on and storing at offsets 0, 4, 8 and 12. The last store sits in the return's delay slot at 0xd9f0820.
+
+- `__glOdysseyChangeMaterialDiffuse` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f0830
+  **Established.** Takes the four floats at context +432 to +444 and writes them into the destination at a1 +16, +20, +24 and +28; loads start at 0xd9f0830 and the final store is at 0xd9f0850. The block at +16 follows the four words used for ambient colour.
+
+- `__glOdysseyChangeMaterialSpecular` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f07d0
+  **Established.** Moves the colour quadruple at a0 +432 through +444 to a1 +32, +36, +40 and +44 using four `lwc1` and four `swc1` pairs (first load at 0xd9f07d0, last store at 0xd9f07f0). It fills the third group of four words of the destination.
+
+- `__glOdysseyChangeMaterialEmission` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f07a0
+  **Established.** Fourth of the material copy helpers: the same four floats at a0 +432 to +444 are stored at a1 +48, +52, +56 and +60. Interleaved loads and stores run from 0xd9f07a0 to 0xd9f07c0, and the helper calls nothing.
+
+- `__glOdysseyChangeMaterialAmbientAndDiffuse` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9f0860
+  **Established.** Writes each of the four floats at a0 +432 to +444 twice, once to a1 +0..+12 and once to a1 +16..+28, so ambient and diffuse take the same colour in one pass. Four loads (the first at 0xd9f0860) feed eight stores, the last at 0xd9f0890.
+
+- `__glOdysseyAtomicTestAndSet` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacd050
+  **Established.** Atomic exchange with one: the `ll` at 0xdacd050 reads the word at a0, `sc` stores 1 back, and the loop repeats while `sc` reports failure (`beqz` at 0xdacd0e0, after thirty-two `nop` words). The previous value is returned in v0, so the caller learns the earlier state of the word.
+
+- `__glOdysseyAtomicAdd` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacd0f0
+  **Established.** Atomically increments the word at a0 with a load-linked and store-conditional pair (`ll` at 0xdacd0f0) and retries until the store succeeds. The value it returns is the incremented one: v0 holds the old value plus 1.
+
+- `__glOdysseyAtomicSubtract` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdacd190
+  **Established.** Atomic decrement of the word at a0: `ll` at 0xdacd190, `addi` by -1, `sc`, and a retry branch on failure. v0 returns the new, decremented value, not the one that was read. Thirty-two `nop` instructions separate the `sc` from the retry branch.
+
+- `__glOdyssey_FastDispatchBase` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdad8000
+  **Established.** Trampoline for the fast-dispatch code region. The first instruction at 0xdad8000 loads a code address from absolute location 5592 (0x15d8), `jr` jumps to it, and the remaining 120 bytes of the 128 are `nop` padding. It leaves the arguments in place for the target.
+
+- `__glOdyssey_FastDispatchVertexBase` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xdada900
+  **Established.** Vertex-side trampoline of the fast dispatch region: `lw` at 0xdada900 reads the target address from absolute location 5496 (0x1578) and `jr` jumps to it. The other 250 bytes of the 256 are `nop` words.
+
+- `__glOdysseyImageLogBase2` in `builds/6.5.30-media/usr/gfx/arch/IP30ODSY32/libGLcore.so` at 0xd9c1e40
+  **Established.** Rounded-up base-2 logarithm of a0, returned in v0. A zero argument returns 0 straight away (`beqz` at 0xd9c1e40). Otherwise `and` with a0 - 1 and `sltu` give v0 = 1 when a0 is not a power of two and 0 when it is; a0 is shifted right once, and each further shift adds 1 to v0 until a0 is zero. So 1 gives 0, 8 gives 3 and 9 gives 4.
