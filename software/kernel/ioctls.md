@@ -30,10 +30,14 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
   table at `GfxDev` +32. It then runs the board operation at offset 192 of the same table, only when that entry is
   nonzero, between `splhi` and `splx`. The label is inferred from the case's call sequence in the disassembly.
   Which board routine each pointer holds is unknown; the table's initial values in `GfxDev` would settle it.
-- 0x6b (ioctl 107, `gfx.o`).
+- 0x6b (ioctl 107, `gfx.o`): **inferred.**
   Same locked call shape as 106, into the board driver's start entry, `gf_OdsyStart` (`odsy_init.o`),
   which hands the hardware-shadow cache region to the board at 0x4034 and 0x403c; `gfxinfo` sends it after
-  the download.
+  the download. In `gfxioctl` the case at 0x3038 of the IP30 `gfx.o` first checks that the board record's lock owner at +72
+  is the calling record, falling to 0x31bc otherwise, then calls the board-table slot at +40 through `jalr` at 0x304c.
+- 0x6d (ioctl 109, `gfx.o`): **established.**
+  The comparison chain of `gfxioctl` reaches the case at 0x305c, whose only instructions are a branch to the common exit and
+  a move of zero into the return value, so the request succeeds without copying an argument or calling the board.
 - 0x6c (ioctl 108, `gfx.o`): **established.**
   A 40-byte argument is converted in with `copyin_xlate` (the case's copy length is 0x28 in `gfxioctl`). `gfxinit`'s
   `odsy_init` (`usr/gfx/gfxinfo`) maps the microcode file and sends it with this request; `gf_OdsyDownload`
@@ -45,12 +49,15 @@ Each entry starts with the request number in hex. Every one of them reaches `gfx
 - 0x6f `GFX_LABEL` (ioctl 111, `gfx.o`): **established.**
   `gfxioctl` copies a 16-byte argument in with `copyin` and passes it on; the X server sends it from
   `irixKernInit`; **inferred** that it names the board for the hardware graph.
-- 0x70 (ioctl 112, `gfx.o`).
-  A 16-byte argument converted with `copyin_xlate`, the same layout size as the attach request;
+- 0x70 (ioctl 112, `gfx.o`): **inferred.**
+  The case at 0x2f28 of the IP30 `gfx.o` asks `curproc_abi` for the caller's ABI and converts a 16-byte argument in with `copyin_xlate`
+  and the table `irix5_to_gfx_attach_board_args`, the same layout size and converter as the attach request; a failed copy returns 14.
+  At 0x30cc it compares the first word against `GfxNumberOfBoards` and returns 19 for an index outside the registered boards.
   `ng1_setmon` sends it.
-- 0x71 (ioctl 113, `gfx.o`).
-  The case calls `drv_priv` first and, for a privileged caller, sets bit 2 of the board record's flag word at
-  +4 without copying any argument; the compositor diagnostic and `saXSGIvcQueryChannelGammaMap` send it.
+- 0x71 (ioctl 113, `gfx.o`): **established.**
+  The case at 0x2f60 calls `drv_priv` and returns its error for an unprivileged caller; otherwise it ORs bit 2 into the board record's
+  flag word at +4 (loaded at 0x2f70, stored at 0x2f7c) without copying any argument. The compositor diagnostic and
+  `saXSGIvcQueryChannelGammaMap` send it.
 
 ## Resource-manager requests (1000 to 1025)
 

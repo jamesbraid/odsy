@@ -213,3 +213,6 @@ One entry per routine, filed here from the reading batches by binary.
   The `bne` branch at 0x3358 targets 0x2d10, is taken when a1(=[[entry(sym(GfxDev))+8]:8+16]:8) != 0, and falls through when a1(=[[entry(sym(GfxDev))+8]:8+16]:8) == 0.
   The `beq` branch at 0x3360 targets 0x2d10 and is always taken.
   The return at 0x2d44 has v0 = one of 0xd, 0x6, ?, 0x13.
+
+- `gfxioctl` in `usr/cpu/sysgen/IP35boot/gfx.o` at 0x2b94
+  **Established.** The IP35 build of the same dispatcher, 0x4c bytes further into the object but with the same code: `psema` at 0x2c70, `RRM_Dispatch` for the 1000 to 9999 range at 0x2e00 and a `cmn_err_tag` report at 0x2e3c for a number it does not know. The per-request argument handling sits at `copyin_xlate` 0x2ee4 (24-byte board info), `copyin` 0x2f04 (4 bytes), `copyin_xlate` 0x2f5c and 0x2f94 (16-byte attach), `drv_priv` 0x2fac, `copyin_xlate` 0x2fec (40-byte download) and `copyin` 0x30ec (16-byte label), with `vsema` at 0x2f1c and 0x3054.

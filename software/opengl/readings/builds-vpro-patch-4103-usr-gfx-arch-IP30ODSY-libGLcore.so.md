@@ -6744,3 +6744,396 @@ One entry per routine, filed here from the reading batches by binary.
 
 - `__glOdyim_ScratchColor4i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae040
   **Established.** The integer scratch colour sender: a0 is moved into f4 and the word 0xce80d014 into f5, so one `sdc1` at 0xdbae054 writes header and first component to 0x4000 in a single doubleword, and a1, a2 and a3 are stored raw behind it.
+
+- `__glOdyim_EdgeFlag` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac0740
+  **Established.** Flags the next vertex as a boundary or interior edge. The byte argument picks 15 when non-zero and 16 when zero, shifted to bit 24 and ORed with 0x2000c02e, and the word leaves in the delay slot of the return at 0xdac076c to the window at 0x4000.
+
+- `__glOdyim_EdgeFlagv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdac0770
+  **Established.** Pointer form of the edge-flag setter: `lbu` at 0xdac0770 reads the byte behind a0, a branch chooses 15 for a set flag and 16 for a clear one, and the combined word 0x2000c02e plus that value in the top byte is stored to 0x4000 at 0xdac07a0.
+
+- `__glOdyim_Vertex2dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7100
+  **Established.** Reads the two doubles at a0 and a0+8 with `ldc1`, narrows them with `cvt.s.d`, then writes the vertex header 0x8080c801 and both floats to 0x4000 (stores at 0xdba7118 to 0xdba7124).
+
+- `__glOdyim_Vertex2f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7140
+  **Established.** Float xy vertex with no preparation at all: the header 0x8080c801 is stored at 0xdba7148 and the two floats already waiting in f12 and f14 follow with `swc1` ending at 0xdba7154.
+
+- `__glOdyim_Vertex2fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7180
+  **Established.** The float-array version loads both coordinates straight into f12 and f14 with `lwc1` and emits them behind 0x8080c801 at 0xdba7190, three stores to the one window address in total.
+
+- `__glOdyim_Vertex2i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba71c0
+  **Established.** Integer pair vertex. The header here is 0x8080c800, one lower than the float form, and a0 and a1 are stored unchanged at 0xdba71d8 onward; the `cvt.s.w` results in f12 and f14 are never stored.
+
+- `__glOdyim_Vertex2iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7200
+  **Established.** Fetches two words with `lw` at a0 and a0+4 and forwards them as they are behind the integer vertex header 0x8080c800. Like the register form it converts to float with `cvt.s.w` but does not store the conversion.
+
+- `__glOdyim_Vertex2s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7240
+  **Established.** A 16-bit pair arrives in a0 and a1 already sign-extended, so the routine stores the header 0x8080c800 and both registers to 0x4000 as raw words, leaving the unused float conversions in f12 and f14 behind.
+
+- `__glOdyim_Vertex2sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7280
+  **Established.** Loads the two halfwords at a0 and a0+2 with sign extension (`lh`), then stores 0x8080c800 and the widened values; the float copies made by `cvt.s.w` are dead.
+
+- `__glOdyim_Vertex3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7300
+  **Established.** Three doubles at a0, a0+8 and a0+16 are loaded with `ldc1`, narrowed by `cvt.s.d` and sent as floats under the three-component header 0x8080cc03.
+
+- `__glOdyim_Vertex3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7340
+  **Established.** Three-float vertex: a2 is moved into f0 with `mtc1`, the header 0x8080cc03 goes out at 0xdba734c and f12, f14 and f0 follow, one `swc1` each, finishing at 0xdba735c.
+
+- `__glOdyim_Vertex3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7380
+  **Established.** Loads x, y and z from a0, a0+4 and a0+8 with `lwc1` and stores them behind the header 0x8080cc03, so the whole call is three loads and four stores.
+
+- `__glOdyim_Vertex3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7400
+  **Established.** Integer triple read by `lw` from a0, a0+4 and a0+8, sent unconverted behind 0x8080cc02 (the float header ends in 3); three `cvt.s.w` results are computed and ignored.
+
+- `__glOdyim_Vertex3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7440
+  **Established.** Three 16-bit coordinates in a0, a1 and a2 are written as raw words after the header 0x8080cc02 at 0xdba7460; the converted floats in f12, f14 and f0 are not used.
+
+- `__glOdyim_Vertex3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7480
+  **Established.** `lh` reads three signed halfwords at a0, a0+2 and a0+4 and the widened words follow the header 0x8080cc02 into the window at 0x4000.
+
+- `__glOdyim_Vertex4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba74c0
+  **Established.** Four doubles: the first two come in f12 and f14, the last two from sp+16 and sp+24. All four are narrowed with `cvt.s.d` and sent behind the four-component header 0x8080d005.
+
+- `__glOdyim_Vertex4dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7500
+  **Established.** Reads four doubles at a0, a0+8, a0+16 and a0+24, narrows each and emits them as floats after 0x8080d005; eight loads and conversions precede five stores to the window.
+
+- `__glOdyim_Vertex4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7540
+  **Established.** Four floats: f12 and f14 stay where the caller left them, a2 and a3 are moved to f0 and f2, and the header 0x8080d005 plus the four values go to 0x4000.
+
+- `__glOdyim_Vertex4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7580
+  **Established.** Four `lwc1` loads at a0, a0+4, a0+8 and a0+12 feed the header 0x8080d005 and four `swc1` stores, ending at 0xdba75ac.
+
+- `__glOdyim_Vertex4s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba7680
+  **Established.** Raw integer form with four operands: 0x8080d004 and then a0, a1, a2 and a3 unchanged. Four `cvt.s.w` conversions are made first and then never stored.
+
+- `__glOdyim_Vertex4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdba76c0
+  **Established.** Four sign-extended halfwords from a0, a0+2, a0+4 and a0+6 are stored after the header 0x8080d004; this is the longest of the vertex senders at 80 bytes because of the dead float conversions.
+
+- `__glOdyim_TexCoord1d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbaca80
+  **Established.** One-component texture coordinate from a double: `cvt.s.d` narrows f12, the word 0xc380c41f is moved into f13 and one `sdc1` at 0xdbaca94 sends header and float together to 0x4000.
+
+- `__glOdyim_TexCoord1dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacac0
+  **Established.** Loads the double at a0 with `ldc1`, narrows it, pairs it with 0xc380c41f in f5 and writes the pair with a single `sdc1` at 0xdbacad8.
+
+- `__glOdyim_TexCoord1f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacb00
+  **Established.** Shortest of the float senders at 20 bytes: f13 gets 0xc380c41f and the doubleword store of f12 and f13 at 0xdbacb10 ships header and coordinate together.
+
+- `__glOdyim_TexCoord1fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacb40
+  **Established.** The float coordinate at a0 goes to f4 with `lwc1`, the header 0xc380c41f to f5, and one `sdc1` at 0xdbacb54 writes both to 0x4000.
+
+- `__glOdyim_TexCoord1i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacb80
+  **Established.** Integer s coordinate: a0 enters f4 unconverted and the word 0xc380c41e (the integer header, one below the float one) enters f5, then `sdc1` at 0xdbacb94 stores the pair.
+
+- `__glOdyim_TexCoord1iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacbc0
+  **Established.** Loads the integer at a0 with `lwc1`, which copies the bits without interpreting them, joins it to 0xc380c41e and stores both in one doubleword.
+
+- `__glOdyim_TexCoord1s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacc00
+  **Established.** A short s coordinate in a0 is used as is: f4 holds it, f5 holds 0xc380c41e and `sdc1` at 0xdbacc14 writes the pair.
+
+- `__glOdyim_TexCoord1sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacc40
+  **Established.** `lh` at 0xdbacc40 sign-extends the halfword behind a0, `mtc1` moves it to f4, and the pair with 0xc380c41e is stored by one `sdc1`.
+
+- `__glOdyim_TexCoord2d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacc80
+  **Established.** Two doubles in f12 and f14 are narrowed; 0xc380c821 goes into f13 so `sdc1` at 0xdbacc98 sends header and first float, and a following `swc1` sends the second.
+
+- `__glOdyim_TexCoord2dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbaccc0
+  **Established.** Both doubles at a0 and a0+8 are loaded and narrowed, 0xc380c821 sits in f5 beside the first one and a single `swc1` for the second float completes the call.
+
+- `__glOdyim_TexCoord2f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacd00
+  **Established.** Header 0xc380c821 in f13 plus f12 form the doubleword written at 0xdbacd10; f14 follows as a single float store at 0xdbacd18.
+
+- `__glOdyim_TexCoord2fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacd40
+  **Established.** `lwc1` loads s and t from a0 and a0+4, the header 0xc380c821 shares a pair with s, and t is stored singly afterwards.
+
+- `__glOdyim_TexCoord2i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacd80
+  **Established.** The integer form uses 0xc380c820 and stores a0 with it as one doubleword at 0xdbacd94, then a1 as a lone `sw`.
+
+- `__glOdyim_TexCoord2iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacdc0
+  **Established.** Both integers are fetched with `lwc1` at a0 and a0+4; header 0xc380c820 pairs with the first, the second follows with a single `swc1`.
+
+- `__glOdyim_TexCoord2s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbace00
+  **Established.** Short pair delivered in registers: a0 shares a doubleword with the header 0xc380c820 and a1 is stored by `sw` at 0xdbace1c.
+
+- `__glOdyim_TexCoord2sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbace40
+  **Established.** Two `lh` loads at a0 and a0+2 sign-extend the halfwords; the first is paired with 0xc380c820 in an `sdc1` and the second stored raw.
+
+- `__glOdyim_TexCoord3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacec0
+  **Established.** Three doubles at a0, a0+8 and a0+16 are loaded and narrowed, then the header 0xc380cc23 and the floats go out as four 32-bit stores.
+
+- `__glOdyim_TexCoord3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacf00
+  **Established.** Three floats: a2 is moved into f4, 0xc380cc23 into f13, a doubleword store carries header and s, and two single stores carry t and r.
+
+- `__glOdyim_TexCoord3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacf40
+  **Established.** One `lwc1` and two `lw` loads at a0, a0+4 and a0+8 move the coordinates; header 0xc380cc23 shares a doubleword with the first.
+
+- `__glOdyim_TexCoord3i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacf80
+  **Established.** Integer triple from registers, header 0xc380cc22: a0 and the header form one pair, a1 and a2 are placed in f7 and f6 so that a second `sdc1` writes them in order.
+
+- `__glOdyim_TexCoord3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbacfc0
+  **Established.** The integer vector at a0 is loaded as bit patterns (`lwc1` plus two `lw`) and sent after 0xc380cc22 without conversion.
+
+- `__glOdyim_TexCoord3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad000
+  **Established.** Short triple in a0, a1 and a2; 0xc380cc22 pairs with a0 in the first `sdc1` and the swapped pair f6/f7 carries a2 and a1 into the second.
+
+- `__glOdyim_TexCoord3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad040
+  **Established.** Three halfwords at a0, a0+2 and a0+4 are loaded with `lh` and written behind 0xc380cc22 with one pair store and two word stores.
+
+- `__glOdyim_TexCoord4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad080
+  **Established.** Four-component double form: f12 and f14 are narrowed, the stack doubles at sp+16 and sp+24 are loaded and narrowed, and 0xc380d025 joins f12 in the first doubleword store.
+
+- `__glOdyim_TexCoord4dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad0c0
+  **Established.** Loads four doubles from a0 on, narrows each and stores 0xc380d025 first and then the four floats, using plain word stores rather than doubleword ones.
+
+- `__glOdyim_TexCoord4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad100
+  **Established.** No loads at all: the header 0xc380d025 is stored at 0xdbad108, then f12 and f14 with `swc1` and a2 and a3 as raw words.
+
+- `__glOdyim_TexCoord4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad140
+  **Established.** Reads r from a0+8 and q from a0+12 along with s and t; header 0xc380d025 joins s in the first `sdc1`, t and r go in the second and q follows as a word.
+
+- `__glOdyim_TexCoord4i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad180
+  **Established.** Integer quadruple, header 0xc380d024: a0 shares a pair with it and a1, a2 and a3 follow as separate `sw` stores.
+
+- `__glOdyim_TexCoord4iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad1c0
+  **Established.** The four integers at a0 are loaded without conversion and sent behind 0xc380d024 using two doubleword stores and one word store.
+
+- `__glOdyim_TexCoord4s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad200
+  **Established.** Four short coordinates in registers: 0xc380d024 plus a0 in one doubleword and a1, a2, a3 as word stores ending at 0xdbad224.
+
+- `__glOdyim_TexCoord4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad240
+  **Established.** Four `lh` loads (offsets 0, 2, 4, 6) feed 0xc380d024 and the halfwords, mixing two doubleword stores with one word store; at 60 bytes it is the largest texture-coordinate sender.
+
+- `__glOdyim_Normal3b` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad280
+  **Established.** Byte normal in registers: a0 and the header 0xc180cc16 share the first pair, a2 and a1 are loaded into f6 and f7 for the second, giving header, a0, a1, a2 in memory order.
+
+- `__glOdyim_Normal3bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad2c0
+  **Established.** `lb` reads three signed bytes at a0, a0+1 and a0+2; the first travels with 0xc180cc16 in a doubleword and the other two as words.
+
+- `__glOdyim_Normal3d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad300
+  **Established.** Narrows f12 and f14 and the stack double at sp+16 with `cvt.s.d` and sends 0xc180cc19 followed by three floats, the double-precision normal header being the same as the float one.
+
+- `__glOdyim_Normal3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad340
+  **Established.** Loads three doubles at a0, a0+8 and a0+16, narrows them and sends 0xc180cc19 and the floats with word stores.
+
+- `__glOdyim_Normal3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad380
+  **Established.** A float normal: a2 to f4, header 0xc180cc19 to f13, one doubleword store for header and nx and a single store each for ny and nz.
+
+- `__glOdyim_Normal3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad3c0
+  **Established.** `lwc1` at a0 pairs nx with the header 0xc180cc19; ny and nz are copied by `lw` and `sw` untouched.
+
+- `__glOdyim_Normal3i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad400
+  **Established.** Integer normal with header 0xc180cc18, distinct from the float header only in the last bit, delivered as two pair stores because a1 and a2 are routed through f7 and f6.
+
+- `__glOdyim_Normal3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad440
+  **Established.** Integer array form: the bit patterns at a0, a0+4 and a0+8 are loaded and sent behind 0xc180cc18 without conversion.
+
+- `__glOdyim_Normal3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad480
+  **Established.** Short normal from registers: header 0xc180cc17, with the second pair (f6, f7) carrying a2 then a1 in the order the hardware receives them.
+
+- `__glOdyim_Normal3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad4c0
+  **Established.** Three `lh` loads at a0, a0+2 and a0+4 and a store of header 0xc180cc17 and the widened values, one of them in the doubleword.
+
+- `__glOdyim_Color3b` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad500
+  **Established.** Signed-byte colour from registers, header 0xc580cc0b: a0 pairs with it in f4/f5, and a2 and a1 sit in f6/f7 for the second doubleword.
+
+- `__glOdyim_Color3bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad580
+  **Established.** `lb` reads three signed bytes from a0 and the following bytes and writes them behind 0xc580cc0b, the first inside a doubleword store.
+
+- `__glOdyim_ScratchColor3bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad5c0
+  **Established.** The scratch-slot twin of the byte-vector colour sender: identical loads, but the header is 0xce80cc0b so the value lands in the scratch slot instead of the current-colour slot.
+
+- `__glOdyim_Color3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad680
+  **Established.** Three doubles narrowed to floats and written behind 0xc580cc0e, the header shared by the float and double colour senders.
+
+- `__glOdyim_ScratchColor3dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad6c0
+  **Established.** Same body as the current-colour double vector sender but with the header 0xce80cc0e, which targets the scratch slot; three narrowing conversions at 0xdbad6c0 precede the stores.
+
+- `__glOdyim_Color3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad700
+  **Established.** A float colour: f12 and header 0xc580cc0e leave in one `sdc1`, f14 and a2 (moved to f4) follow as single stores.
+
+- `__glOdyim_ScratchColor3f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad740
+  **Established.** Scratch variant of the float colour sender, header 0xce80cc0e in f13 and otherwise the same 36 bytes as `Color3f`.
+
+- `__glOdyim_Color3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad780
+  **Established.** Loads r with `lwc1`, g and b with `lw`, and stores 0xc580cc0e with r as a doubleword, g and b as words.
+
+- `__glOdyim_ScratchColor3fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad7c0
+  **Established.** As the current-colour float vector sender, only the header differs: 0xce80cc0e.
+
+- `__glOdyim_Color3i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad800
+  **Established.** Integer colour with header 0xc580cc0d; a0 is paired with it and a1 and a2 are moved into f7 and f6 for a second doubleword store.
+
+- `__glOdyim_Color3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad880
+  **Established.** The three integers at a0 are carried over as bit patterns behind 0xc580cc0d with one doubleword and two word stores.
+
+- `__glOdyim_ScratchColor3iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad8c0
+  **Established.** Scratch counterpart: bit patterns of the three integers at a0 under the header 0xce80cc0d.
+
+- `__glOdyim_Color3s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad900
+  **Established.** Short colour, header 0xc580cc0c; a0 joins the header and a2/a1 form the second pair, written by two `sdc1` instructions at 0xdbad918 and 0xdbad920.
+
+- `__glOdyim_Color3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad980
+  **Established.** Three halfwords loaded with `lh` and written behind 0xc580cc0c; the first is part of the doubleword with the header.
+
+- `__glOdyim_ScratchColor3sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbad9c0
+  **Established.** `lh` loads of the three halfwords at a0 feed the scratch header 0xce80cc0c.
+
+- `__glOdyim_Color3ub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbada00
+  **Established.** Unsigned-byte colour in registers; header 0xc580cc08 and a0 in one pair, a2 and a1 in the other, no masking of the bytes.
+
+- `__glOdyim_ScratchColor3ub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbada40
+  **Established.** Scratch-slot variant using 0xce80cc08; two doubleword stores at 0xdbada58 and 0xdbada60 send header, a0, a1 and a2.
+
+- `__glOdyim_Color3ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbada80
+  **Established.** `lbu` reads three zero-extended bytes at a0 to a0+2 and sends them behind 0xc580cc08, the first in a doubleword.
+
+- `__glOdyim_ScratchColor3ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadac0
+  **Established.** Same loads (`lbu` at offsets 0 to 2) as `Color3ubv` but stored behind the scratch header 0xce80cc08.
+
+- `__glOdyim_Color3ui` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadb00
+  **Established.** Unsigned integer colour: header 0xc580cc0a with a0, then the pair f6/f7 carrying a2 and a1.
+
+- `__glOdyim_Color3uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadb80
+  **Established.** The three words at a0 are loaded as bit patterns and sent after 0xc580cc0a.
+
+- `__glOdyim_ScratchColor3uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadbc0
+  **Established.** Scratch version of the unsigned vector colour: 0xce80cc0a and the three words at a0.
+
+- `__glOdyim_Color3us` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadc00
+  **Established.** Unsigned-short colour in registers, header 0xc580cc09 and a doubleword store at 0xdbadc18.
+
+- `__glOdyim_Color3usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadc80
+  **Established.** `lhu` loads zero-extended halfwords from a0, a0+2 and a0+4 and writes them behind 0xc580cc09.
+
+- `__glOdyim_ScratchColor3usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadcc0
+  **Established.** The scratch slot gets the three zero-extended halfwords (`lhu`) behind the header 0xce80cc09.
+
+- `__glOdyim_Color4b` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadd00
+  **Established.** Signed-byte RGBA from registers: a0 pairs with the header 0xc580d012 in one doubleword, and a1, a2 and a3 are stored as plain words.
+
+- `__glOdyim_Color4bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadd80
+  **Established.** Four `lb` loads at a0 to a0+3; the first three are paired through f4/f5 and f6/f7 with the header 0xc580d012 and the fourth is stored as a word.
+
+- `__glOdyim_ScratchColor4bv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbaddc0
+  **Established.** Scratch counterpart of the signed-byte vector colour, with the header 0xce80d012 and the same four `lb` loads.
+
+- `__glOdyim_Color4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbade00
+  **Established.** Narrows two register doubles and two stack doubles (sp+16, sp+24) and sends the header 0xc580d015 in f13 with the first float in a doubleword.
+
+- `__glOdyim_ScratchColor4d` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbade40
+  **Established.** Same sequence as `Color4d`, the scratch header 0xce80d015 being the only difference; four `cvt.s.d` conversions at 0xdbade40 precede the stores.
+
+- `__glOdyim_Color4dv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbade80
+  **Established.** Four doubles at a0, a0+8, a0+16 and a0+24 are loaded, narrowed and sent as floats behind 0xc580d015 with word stores.
+
+- `__glOdyim_Color4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadf00
+  **Established.** The simplest RGBA float sender: header 0xc580d015 at 0xdbadf08, f12 and f14 as floats, a2 and a3 raw.
+
+- `__glOdyim_ScratchColor4f` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadf40
+  **Established.** Scratch-slot RGBA float sender, same five stores with the header 0xce80d015.
+
+- `__glOdyim_Color4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadf80
+  **Established.** Loads r, g, b with `lwc1`, a with `lw`; header 0xc580d015 pairs with r and the second doubleword carries b and g.
+
+- `__glOdyim_ScratchColor4fv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbadfc0
+  **Established.** Same array handling as `Color4fv` but the header is 0xce80d015.
+
+- `__glOdyim_Color4i` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae000
+  **Established.** Integer RGBA, header 0xc580d014 paired with a0; a1, a2 and a3 follow as word stores at 0xdbae024.
+
+- `__glOdyim_Color4iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae080
+  **Established.** The four integers at a0 are copied as bit patterns behind 0xc580d014, two of them in a second doubleword.
+
+- `__glOdyim_ScratchColor4iv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae0c0
+  **Established.** Scratch twin of `Color4iv` using the header 0xce80d014.
+
+- `__glOdyim_Color4s` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae100
+  **Established.** Short RGBA from registers with header 0xc580d013; a0 is part of the first doubleword, a1 to a3 are word stores.
+
+- `__glOdyim_Color4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae180
+  **Established.** Four `lh` loads and the header 0xc580d013; the second pair carries the third and second halfwords in swapped registers.
+
+- `__glOdyim_ScratchColor4sv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae1c0
+  **Established.** The scratch-slot version of `Color4sv`, header 0xce80d013.
+
+- `__glOdyim_Color4ub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae200
+  **Established.** Four unsigned bytes in a0 to a3 are written unmasked behind 0xc580d00f, the first inside the doubleword.
+
+- `__glOdyim_Color4ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae280
+  **Established.** `lbu` reads four bytes from a0 and the header 0xc580d00f precedes them; no conversion to float is done.
+
+- `__glOdyim_ScratchColor4ubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae2c0
+  **Established.** As `Color4ubv` but for the scratch slot, with 0xce80d00f.
+
+- `__glOdyim_Color4ui` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae300
+  **Established.** Unsigned-int RGBA from registers, header 0xc580d011.
+
+- `__glOdyim_Color4uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae380
+  **Established.** Four unsigned words copied from a0 behind 0xc580d011.
+
+- `__glOdyim_ScratchColor4uiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae3c0
+  **Established.** The scratch variant of the unsigned-int vector colour: 0xce80d011 and the four words at a0.
+
+- `__glOdyim_Color4us` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae400
+  **Established.** Four unsigned shorts in a0 to a3 under the header 0xc580d010.
+
+- `__glOdyim_Color4usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae480
+  **Established.** `lhu` loads of four halfwords at a0 to a0+6 behind 0xc580d010.
+
+- `__glOdyim_ScratchColor4usv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae4c0
+  **Established.** Scratch version of the unsigned-short vector colour, header 0xce80d010.
+
+- `__glOdyim_Indexd` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae500
+  **Established.** Colour index from a double: `cvt.s.d` narrows f12, f13 receives 0xc580c407 and one `sdc1` at 0xdbae514 writes header and float.
+
+- `__glOdyim_Indexdv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae580
+  **Established.** Loads the double at a0 with `ldc1`, narrows it and writes it with 0xc580c407 as a doubleword; 28 bytes in all.
+
+- `__glOdyim_ScratchIndexdv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae5c0
+  **Established.** Narrowed double index sent under the scratch header 0xce80c407.
+
+- `__glOdyim_Indexf` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae600
+  **Established.** Smallest sender in the family at 20 bytes: f13 gets 0xc580c407 and f12 is already the index, so only one `mtc1` and one `sdc1` are needed.
+
+- `__glOdyim_ScratchIndexf` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae640
+  **Established.** Float index into the scratch slot with the header 0xce80c407, 20 bytes.
+
+- `__glOdyim_Indexfv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae680
+  **Established.** `lwc1` at a0 then 0xc580c407 in f5, written by one `sdc1`.
+
+- `__glOdyim_ScratchIndexfv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae6c0
+  **Established.** Float index from memory with the scratch header 0xce80c407.
+
+- `__glOdyim_Indexi` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae700
+  **Established.** Integer index in a0 goes to f4 unconverted, 0xc580c406 goes to f5 and `sdc1` at 0xdbae714 stores the pair.
+
+- `__glOdyim_ScratchIndexi` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae740
+  **Established.** Integer index stored with the scratch header 0xce80c406.
+
+- `__glOdyim_Indexiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae780
+  **Established.** Reads the index with `lwc1` from a0 and writes it behind 0xc580c406.
+
+- `__glOdyim_ScratchIndexiv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae7c0
+  **Established.** Scratch twin of the integer vector index sender, 0xce80c406.
+
+- `__glOdyim_Indexs` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae800
+  **Established.** Short index: used as it arrives in a0, with header 0xc580c406 in a doubleword.
+
+- `__glOdyim_ScratchIndexs` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae840
+  **Established.** Short index into the scratch slot, 0xce80c406.
+
+- `__glOdyim_Indexsv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae880
+  **Established.** `lh` at 0xdbae880 sign-extends the halfword at a0 and the pair with 0xc580c406 is stored once.
+
+- `__glOdyim_ScratchIndexsv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae8c0
+  **Established.** Scratch counterpart: one `lh` and the header 0xce80c406.
+
+- `__glOdyim_Indexub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae900
+  **Established.** An unsigned-byte index in a0 is passed through with 0xc580c406, unmasked.
+
+- `__glOdyim_ScratchIndexub` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae940
+  **Established.** Unsigned-byte index with the scratch header 0xce80c406.
+
+- `__glOdyim_Indexubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae980
+  **Established.** `lbu` at 0xdbae980 loads the byte behind a0 and a single doubleword with 0xc580c406 follows.
+
+- `__glOdyim_ScratchIndexubv` in `builds/vpro-patch-4103/usr/gfx/arch/IP30ODSY/libGLcore.so` at 0xdbae9c0
+  **Established.** Byte-vector index to the scratch slot, 0xce80c406.

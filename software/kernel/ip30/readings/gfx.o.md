@@ -452,3 +452,6 @@ One entry per routine, filed here from the reading batches by binary.
   The `bne` branch at 0x330c targets 0x2cc0, is taken when a1(=[[entry(sym(GfxDev))+8]:8+16]:8) != 0, and falls through when a1(=[[entry(sym(GfxDev))+8]:8+16]:8) == 0.
   The `beq` branch at 0x3314 targets 0x2cc0 and is always taken.
   The return at 0x2cf4 has v0 = one of 0xd, 0x6, ?, 0x13.
+
+- `gfxioctl` in `usr/cpu/sysgen/IP30boot/gfx.o` at 0x2b48
+  **Established.** The board-independent ioctl dispatcher of the graphics driver. It takes the driver semaphore with `psema` at 0x2c24, then compares the request number against 101, 102, 105, 103, 112 and 113, and further down 108, 104, 110, 106, 107, 109 and 111; numbers from 1000 up to 9999 go to `RRM_Dispatch` at 0x2db4. An unknown number reports through `cmn_err_tag` at 0x2df0 and returns 22. Request 102 converts a 24-byte argument with `copyin_xlate` and the table `irix5_to_gfx_getboardinfo_args` at 0x2e98, 105 copies four bytes with `copyin` at 0x2eb8, 103 and 112 convert 16-byte attach arguments at 0x2f10 and 0x2f48, 113 tests `drv_priv` at 0x2f60, 108 converts a 40-byte download argument at 0x2fa0 and 111 copies 16 bytes at 0x30a0. The semaphore is released with `vsema` at 0x2ed0 and 0x3008.

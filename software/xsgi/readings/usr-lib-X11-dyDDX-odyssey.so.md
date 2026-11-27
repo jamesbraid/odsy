@@ -2601,3 +2601,6 @@ One entry per routine, filed here from the reading batches by binary.
   The indirect jump at 0x16c5e18 uses the jump table at 0x172a158 with targets 0x16c5c7c, 0x16c5c68, 0x16c5c54, 0x16c5c40, 0x16c5c2c, 0x16c5c18, 0x16c5c04, 0x16c5bf0.
   The indirect jump at 0x16c5be8 uses the jump table at 0x172a138 with targets 0x16c5ad4, 0x16c5ac8, 0x16c5abc, 0x16c5ab0, 0x16c5aa4, 0x16c5a98, 0x16c5a8c, 0x16c5a80.
   The indirect jump at 0x16c5e18 uses the jump table at 0x172a158 with targets 0x16c5c7c, 0x16c5c68, 0x16c5c54, 0x16c5c40, 0x16c5c2c, 0x16c5c18, 0x16c5c04, 0x16c5bf0.
+
+- `miSubtract` in `usr/lib/X11/dyDDX/odyssey.so` at 0x16325f0
+  **Inferred.** Region subtraction for the X server's clip code: the destination in a0 receives the first region (a1) minus the second (a2). When either operand has no rectangle data or the two bounding boxes (the shorts at +0 to +6) do not overlap, it returns a copy of a1 through `miRegionCopy` at 0x16326e8. When both operands are the same region it releases the data with `Xfree` at 0x16326a0 and stores the shared empty-region data pointer with a collapsed box. Otherwise `miRegionOp` runs at 0x1632714 with the subtract callback at 0x15aeff0, and the result's bounding box is recomputed from its first and last rectangles.

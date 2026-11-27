@@ -943,3 +943,57 @@ The inventory's second store scan lists every constant the kernel and library st
 - `0x8f80a92f` (ten-operand state word, `odsy_clip.o`): **inferred.**
   `gfP_OdsyClearBuffer` builds it at 0xe2c; its count field (bits 13:10) is ten, the same as the pixel-copy word `0xcf80a92f` in `opengl/opengl.md`.
   The clear sends it with primitive type 0xa (`buzz/raster.md`); what the ten operands are in this form was not traced.
+
+## Words re-read against the shipped code
+
+Each entry below was read from the disassembly of the build it names. The senders are the first ones found; the same word appears at more sites in the same binaries.
+
+- `0x2e008380` (sequencer register 0x2e, value 896, `odsy_init.o`): **established.**
+  `odsyInitCfifo` stores it at 0x2464 as the first of three header words before the microcode download, then `0x2600807f` at 0x2470 and the record-address word `0x27008000` at 0x2478. They go out once, ahead of the loop at 0x2494 that sends 2048 records of six halfwords each.
+- `0x2600807f` (sequencer register 0x26, value 127, `odsy_init.o`): **established.**
+  Stored by `odsyInitCfifo` at 0x2470, directly after `0x2e008380` and before `0x27008000`; the data 127 is the low ten bits and no higher part is set.
+- `0x00010854` (block 0x054, two operands, `odsy_init.o`): **established.**
+  `odsyInitCfifo` stores it at 0x23ac, followed by the operands 0 at 0x23b8 and 0x0fffffff at 0x23c4, then five doublewords, the word `0x00010046` and a call to `odsy_usdelay` at 0x2414, before it reads +0x201594 of the board to check for 0x003d0046.
+- `0x298080c5` (sequencer register 0x29, value 1221, `libGLcore.so`): **established.**
+  In the 64-bit media build `__glOdysseySetProgram` stores it at 0x220e4c0, in the return's delay slot, when the byte at +0x285e0 of the context is set, so a program select costs one word when the flag is on. `__glOdysseyValidateProgram` also stores it; the patch libraries use `0x29808062` for the same job.
+- `0x22008000` (sequencer register 0x22, value 0, the textport routine in `odsy_tport.o`): **established.**
+  The word is built from the cached value at shadow +9828 (cleared at 0x274), so it is the RGB form of the register pair; the matching `0x23008002` is built from +9832 (set to 2 at 0x27c) and stored at 0x2e4. The index form instead puts 1 and 3 into those two shadow words at 0x7e0 and 0x7e8.
+- `0x8f80a944` (ten-operand state word, `libGLcore.so`): **established.**
+  `__glOdysseyClear` in the o32 media build stores it at 0xd967970 right after the headers `0x00014400` and the operand 7. Ten words follow: the four colour floats, the corner coordinates (x, y, depth, x plus width, y plus height, depth) converted with `cvt.s.w`, and the closing header `0x00014001` at 0xd967a10.
+- `0x8f80b968` (fourteen-operand state word, `libGLcore.so`): **established.**
+  Stored after `0x00014400` and the operand 7 by `LoadAndSendStippledQuads` at 0x21a3c84 in the 64-bit media build and by `DownsampleTextureThruHW` at 0xd9d17e8 in the n32 build; fourteen words (the quad's corner coordinates and texture values) follow and `0x00014001` closes the packet at 0xd9d1880.
+- `0xc580c406` (colour slot 5, one operand, opcode 6, `libGLcore.so`): **established.**
+  The integer colour-index header. `__glOdyim_Indexi` in the o32 media build sends it with the integer from a0 in one doubleword store at 0xdadf498, and the kernel's colour routine `odsy_color` forms it at 0xa54 in `odsy_tport.o`.
+- `0xc580cc08` (colour slot 5, three operands, opcode 8, `libGLcore.so`): **established.**
+  Header of an unsigned-byte RGB colour. `__glOdyim_Color3ub` forms it at 0xdade70c and sends it with three byte operands, and the textport routine in `odsy_tport.o` forms it at 0x2e8 and stores it followed by the three bytes of its colour argument, each masked with 0xff.
+- `0xce80cc08` (scratch slot 0xe, three operands, opcode 8, `libGLcore.so`): **established.**
+  The scratch-slot twin of the unsigned-byte colour header: `__glOdyim_ScratchColor3ub` forms it at 0xdade74c, and `odsy_color` in `odsy_tport.o` forms it at 0xa28.
+- `0x00010422` (block 0x022, one operand, `odsy_tport.o`): **established.**
+  The textport routine stores it at 0x434, followed by the third argument a2, which it also saves into the shadow word at +200; `odsyRestoreRaster` replays it from that shadow offset at 0xd4c.
+- `0x00010424` (block 0x024, one operand, `odsy_tport.o`): **established.**
+  Stored at 0xec by the textport routine with the shadow word at +11112 as its operand; that word was set at 0x54 to 12, or to a5 when the fourth argument equals 2. `odsyRestoreRaster` sends it again at 0x1f34.
+- `0x00010404` (block 0x004, one operand, `odsy_tport.o`): **established.**
+  The raster-mode word of the textport routine, stored at 0x254 and again at 0x7c0 with the shadow word at +132 as operand; before the first store the routine ORs the bits 0x10 and 0x8 into it (0x170 and 0x174) and before the second it ORs 0x80000.
+- `0x00010c21` (block 0x021, three operands, `odsy_tport.o`): **established.**
+  The blender words. The textport routine stores the header at 0x200 and sends the shadow words at +188, +192 and +196, which it sets to 512 and two colour-derived values at 0x1d0 to 0x1fc; the second path at 0x76c sets +188 to 512 and +196 to 1 instead.
+- `0x00011017` (block 0x017, four operands, `odsy_tport.o`): **established.**
+  Stored at 0x4e8 by the textport routine and followed by the four shadow words at +6948 to +6960, which the routine loads one by one; `odsyRestoreRaster` and `odsyRestartContext` send the same header at 0xb5c and 0x4d54.
+- `0x00011023` (block 0x023, four operands, `odsy_tport.o`): **established.**
+  The textport routine stores it at 0x344 and at 0x89c with the four shadow words at +232 to +244; the first two are built from the colour argument a3 at 0x320 to 0x340, and `odsyRestoreRaster` sends the same block at 0xbec.
+- `0x0001043f` (block 0x03f, one operand, `libGLcore.so`): **established.**
+  `LoadAndSendStippledQuads` stores it at 0x21a3b18 in the 64-bit media build, followed by one context word, and then the two 16-word bitmap blocks `0x00013c4e` and `0x00013c4f`; the kernel's `odsy_drawbitmap` forms it at 0x1088 in `odsy_tport.o`, where the block serves glyph set-up.
+- `0x00010407` (block 0x007, one operand, `odsyRestoreRaster`): **established.**
+  `odsyRestoreRaster` stores it at 0x1d74 once for each of eight indexes (7 down to 0), each time followed by block 0x250 plus the index with six operands; `__glOdysseyValidateContext` sends it once at 0xd96cfa0 with a zero operand.
+
+### Blocks
+
+- `0x021` (block, three operands, blender state): **established.**
+  Word 0 holds the blend equation in bits 15:13 and the factor codes in bits 12:6 and 5:0; words 1 and 2 are the constant colour. The kernel's textport routine builds the header `0x00010c21` at 0x200 and `odsyRestoreRaster` at 0x10a0, both followed by the shadow words at +188, +192 and +196, and the 64-bit libGLcore forms it in `__glOdysseyValidateHardware` at 0xd96b0c8.
+- `0x023` (block, four operands, shadow +0xe8): **established.**
+  The textport routine sends it at 0x344 right after the sequencer pair that selects the colour form, with four words that it repacks from its second colour argument into 12-bit fields; `odsyRestoreRaster` replays it from the same shadow offset at 0xbec.
+- `0x024` (block, one operand, shadow +0x2b68): **established.**
+  The textport routine sets the operand to 12, or to its fifth argument when the fourth equals 2, at 0x54 and sends the word at 0xec; `odsyRestoreRaster` sends it again at 0x1f34.
+- `0x03e` (block, three operands, shadow +0x11f4): **established.**
+  The texture offset block. `__glOdysseyValidateHardware` forms the header `0x00010c3e` at 0xd96b440 when dirty bit 0x8000 is set and sends three operands that are zero in practice, since `SetTexOffsetValues` zeroes their source for any border value; the kernel replays the block at 0x176c.
+- `0x054` (block, two operands): **inferred.**
+  Sent once by `odsyInitCfifo` at 0x23ac with the operands 0 and 0x0fffffff before the microcode download. Taken as a lower and an upper bound, the pair spans the whole 28-bit range, so the block is read as opening a board-memory window to its full width.
