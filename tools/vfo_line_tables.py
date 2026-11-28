@@ -1,109 +1,106 @@
 #!/usr/bin/env python3
-"""Check the line-table entry classification of devices/display/README.md against every .vfo file.
+"""Decode the line and frame tables of every VPro .vfo file and check them against the file's own header.
 
-Each VPro .vfo file of the install stores its line table as 32-bit big-endian words,
-one 16-bit table entry per word, after a count word. This script finds the table by
-shape (a plausible count, entries that fit 16 bits, each line type ending at an
-entry with bit 15 set and followed by a trailer equal to its own start), classifies
-the entries into events and timed entries, and prints the timed total of every line
-type next to the values of the file's header that equal it. It then reads the
-frame table that follows (a count, position and repeat pairs ending in (0, 0), and
-the pixel clock in hertz) and prints the frame rate clock / (lines x pixels).
+A line type is a run of 16-bit entries ending at the first one with bit 15 set. A timed
+entry holds a duration in pixels (bits 14:8) and a low byte; an entry that follows a
+timed entry whose low byte has bit 7 clear is an event and takes no time. Bits 6:0 of a
+timed entry's low byte are the levels of the generator outputs A14 to A20 of
+usr/gfx/ucode/vfc/rules/VPro_Board.def (VINT, SWP_RDY_LCK, END_OF_LINE, HIF_V_UPDATE_EN,
+XMP_CBLANK_N, END_OF_FIELD, REQUEST_SRC). The frame table gives (start, repeat) pairs.
 
-    python3 tools/vfo_line_tables.py [ROOT]
+    retools/tools/re-run python3 tools/vfo_line_tables.py [ROOT]
 
-ROOT defaults to root/. Files whose table this shape test does not find (the
-dual-channel "2@" formats and a few others) are listed as "no table".
+Per file it checks that every line type sums to TotalPixelsPerLine, that the repeats sum
+to TotalLinesPerFrame, that VINT is one pulse from the start of line 1 to the start of
+line 2 and SWP_RDY_LCK one from line 0 to line 3, and that END_OF_FIELD rises once per
+field (once for full-screen stereo). Exit status 1 if any file fails.
 """
 import glob
 import os
-import struct
 import sys
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "retools", "tools", "odsy"))
+import display_files  # noqa: E402
 
-def is_event(entry):
-    high = (entry >> 12) & 7
-    low = entry & 0xFF
-    return high != 0 and bool(low & 4 or (low & 0x18) == 0x18)
+VINT, SWP_RDY_LCK, END_OF_FIELD = 0, 1, 5
 
 
-def timed_total(entries):
-    total = 0
-    for i, e in enumerate(entries):
-        if is_event(e):
+def line_type(seq, start):
+    ents = []
+    while True:
+        ents.append(seq[start + len(ents)])
+        if ents[-1] & 0x8000:
+            return ents
+
+
+def timed_segments(ents):
+    """Return (total pixels, [(start px, end px, low byte)]) with the events left out."""
+    px, segs, event_next = 0, [], False
+    for e in ents:
+        if event_next:
+            event_next = False
             continue
-        # 0x458a is an event in the first half of a line (previous entry's low
-        # byte has bit 7 clear) and a 69-pixel timed entry in the second half.
-        if (e & 0x7FFF) == 0x458A and i and not entries[i - 1] & 0x80:
-            continue
-        total += (e >> 8) & 0x7F
-    return total
+        segs.append((px, px + ((e >> 8) & 0x7F), e & 0xFF))
+        px += (e >> 8) & 0x7F
+        event_next = not e & 0x80
+    return px, segs
 
 
-def split_types(seq):
-    types, i = [], 0
-    while i < len(seq):
-        start, ents = i, []
-        while i < len(seq):
-            ents.append(seq[i])
-            i += 1
-            if ents[-1] & 0x8000:
-                break
-        else:
-            return None
-        trailer = []
-        while i < len(seq) and seq[i] < 0x400:
-            trailer.append(seq[i])
-            i += 1
-        types.append((start, ents, trailer))
-    for k, (start, _, trailer) in enumerate(types):
-        if k and (not trailer or trailer[-1] != start):
-            return None
-    return types
+def frame_lines(v):
+    seq = [x & 0xFFFF for x in v["LineSeqTab"]]
+    ft = v["FrameTab"]
+    lines, bad = [], []
+    for pos, rep in zip(ft[0::2], ft[1::2]):
+        if (pos, rep) == (0, 0):
+            break
+        px, segs = timed_segments(line_type(seq, pos * 2))
+        if px != v["TotalPixelsPerLine"]:
+            bad.append((pos * 2, px))
+        lines += [segs] * rep
+    return lines, bad
 
 
-def find_table(words):
-    """Return (line types, index of the word after the table) or None."""
-    for p, count in enumerate(words):
-        end = p + 1 + count
-        if not 40 <= count <= 2048 or end > len(words):
-            continue
-        seq = words[p + 1:end]
-        if max(seq) >= 0x10000 or seq[0] < 0x400 or seq[0] & 0x8000:
-            continue
-        types = split_types(seq)
-        if types and len(types) >= 3:
-            return types, end
-    return None
+def high_runs(lines, bit):
+    """(line, pixel) of each rise and the next fall of one low-byte bit; None for a run still open at the end."""
+    runs, level, start = [], 0, None
+    for ln, segs in enumerate(lines):
+        for px, _, low in segs:
+            if (low >> bit) & 1 != level:
+                level ^= 1
+                if level:
+                    start = (ln, px)
+                else:
+                    runs.append((start, (ln, px)))
+    if level:
+        runs.append((start, None))
+    return runs
 
 
 def main():
     root = sys.argv[1] if len(sys.argv) > 1 else "root"
+    failed = 0
     for path in sorted(glob.glob(os.path.join(root, "usr/gfx/ucode/ODSY/vof/*.vfo"))):
-        data = open(path, "rb").read()
-        words = struct.unpack(">%dI" % (len(data) // 4), data[:len(data) // 4 * 4])
-        name = os.path.basename(path)
-        found = find_table(words)
-        if not found:
-            print(name, "no table")
-            continue
-        types, after = found
-        sums = [timed_total(e) for _, e, _ in types]
-        common = max(set(sums), key=sums.count)
-        in_header = common in words[0x1C0 // 4:0x2C0 // 4]
-        # The frame table follows the line table: a word count, (position,
-        # repeat) pairs ending with (0, 0), then the pixel clock in hertz.
-        count = words[after]
-        pairs = list(zip(words[after + 1:after + 1 + count:2],
-                         words[after + 2:after + 1 + count:2]))
-        lines = sum(rep for pos, rep in pairs if (pos, rep) != (0, 0))
-        clock = words[after + 1 + count]
-        print(name, "types", len(types), "common total", common,
-              "in header" if in_header else "NOT in header",
-              "uniform" if len(set(sums)) == 1 else "varies %s" % sorted(set(sums)),
-              "lines", lines, "clock", clock,
-              "rate %.4f" % (clock / (lines * common)))
+        v = display_files.load(path)[4]
+        lines, bad = frame_lines(v)
+        vint, swp = high_runs(lines, VINT), high_runs(lines, SWP_RDY_LCK)
+        eof = len(high_runs(lines, END_OF_FIELD))
+        fields = 1 if v.get("FormatInfo_FullScreenStereo") else v["FieldsPerFrame"]
+        problems = []
+        if bad:
+            problems.append("line types with the wrong pixel total %s" % bad)
+        if len(lines) != v["TotalLinesPerFrame"]:
+            problems.append("%d lines, header says %d" % (len(lines), v["TotalLinesPerFrame"]))
+        if vint != [((1, 0), (2, 0))]:
+            problems.append("VINT %s" % vint)
+        if swp != [((0, 0), (3, 0))]:
+            problems.append("SWP_RDY_LCK %s" % swp)
+        if eof != fields:
+            problems.append("END_OF_FIELD rises %d, expected %d" % (eof, fields))
+        print(os.path.basename(path), "lines", len(lines), "fields", v["FieldsPerFrame"],
+              "VINT per frame", len(vint), "END_OF_FIELD rises", eof, "FAIL " + "; ".join(problems) if problems else "ok")
+        failed += bool(problems)
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
