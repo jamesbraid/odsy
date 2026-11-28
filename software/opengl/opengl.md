@@ -207,7 +207,7 @@ The generic resource-manager ioctls 1000 to 1025 take 4 to 64 bytes (`display/RE
 
 | Description offset | Texture value |
 |---|---|
-| byte 0 | 4 for the detail texture target (0x8095), 20 for every other target |
+| byte 0 | 20 for the detail texture target (0x8095), 4 for every other target (`AllocateGfxMemForTexture`, source line 779: `(target != 0x8095) ? 4 : 0x14`; the kernel's `odsy_mm_reserve` takes 4 as image and 20 as detail) |
 | byte 1 | element size, `2 << c` where c is the size code `CalcTexelSizes` returns |
 | 4, 8, 12 | `(16 - b) & 15` for the border width b of each axis: the image's offset within its first 16-texel tile, 0 with no border |
 | 16, 20, 24 | width, height and depth in texels, border included |

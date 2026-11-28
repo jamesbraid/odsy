@@ -48,6 +48,7 @@
 
 | Page | Title | Summary |
 |---|---|---|
+| [array-or-image.md](ucode/array-or-image.md) | Which microcode a driver must load: the kernel's array or buzz_xform.bin | Release IRIX 6.5.30m, `usr/gfx/ucode/ODSY/buzz_xform.bin` (the image, 2794 records), the `buzz_ucode` array of IP30... |
 | [buzz_isa.md](ucode/buzz_isa.md) | BUZZ microcode: word format, loading and dispatch | Labels: established (read from a binary, with where), inferred (a reasoned reading, with the reasoning), unknown. |
 | [buzz_routines.md](ucode/buzz_routines.md) | BUZZ microcode: routine map | Release IRIX 6.5.30m. |
 | [buzz_ucode.md](ucode/buzz_ucode.md) | buzz_ucode: the microcode array in the kernel driver | Facts are labelled established (read from a binary, with where), inferred (a reasoned reading) or unknown. |
