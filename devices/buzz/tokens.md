@@ -247,19 +247,19 @@ kernel's `odsyRestoreRaster` (`odsy_ctxsw.o`) replays them after a lost context.
 
 | 0x004 bit | GL state | Writer (the Odyssey GL driver attribute state assembly unit `__glOdyim_Enable` unless named) | Grade |
 |---:|---|---|---|
-| 0 | `GL_POINT_SMOOTH` | line 332 | established |
-| 1 | `GL_LINE_SMOOTH` | line 296 | established |
-| 2 | `GL_POLYGON_SMOOTH` | line 338 | established |
-| 3 | `GL_LINE_STIPPLE` | line 302 | established |
-| 4 | `GL_POLYGON_STIPPLE` | line 344 | established |
-| 5, 6, 7 | `GL_POLYGON_OFFSET_POINT`, `_LINE`, `_FILL` | lines 463, 472, 454 | established |
-| 14 | `GL_ALPHA_TEST` | line 239 | established |
-| 18 | `GL_DITHER` | line 265 | established |
-| 19 | `GL_INDEX_LOGIC_OP` | line 307 | established |
-| 20 | `GL_COLOR_LOGIC_OP` | line 317 | established |
-| 22 | `GL_FOG` | line 270 | established |
+| 0 | `GL_POINT_SMOOTH` | line 332 | inferred |
+| 1 | `GL_LINE_SMOOTH` | line 296 | inferred |
+| 2 | `GL_POLYGON_SMOOTH` | line 338 | inferred |
+| 3 | `GL_LINE_STIPPLE` | line 302 | inferred |
+| 4 | `GL_POLYGON_STIPPLE` | line 344 | inferred |
+| 5, 6, 7 | `GL_POLYGON_OFFSET_POINT`, `_LINE`, `_FILL` | lines 463, 472, 454 | inferred |
+| 14 | `GL_ALPHA_TEST` | line 239 | inferred |
+| 18 | `GL_DITHER` | line 265 | inferred |
+| 19 | `GL_INDEX_LOGIC_OP` | line 307 | inferred |
+| 20 | `GL_COLOR_LOGIC_OP` | line 317 | inferred |
+| 22 | `GL_FOG` | line 270 | inferred |
 
-The Grade column is **established** by running `__glOdyim_Enable` (0xd956bc0, N32 libGLcore, 6.5.30m) once per enumerant under `retools/tools/odsy/glcore_probe.py` with a zeroed context: each enumerant sets exactly the one bit shown in the word at context +31740 (0x7bfc), the shadow this block is sent from. GL_POINT_SMOOTH 0xb10 gives 0x1, GL_LINE_SMOOTH 0xb20 0x2, GL_POLYGON_SMOOTH 0xb41 0x4, GL_LINE_STIPPLE 0xb24 0x8, GL_POLYGON_STIPPLE 0xb42 0x10, the three polygon-offset enumerants 0x2a01, 0x2a02 and 0x8037 0x20, 0x40 and 0x80, GL_ALPHA_TEST 0xbc0 0x4000, GL_DITHER 0xbd0 0x40000, GL_INDEX_LOGIC_OP 0xbf1 0x80000, GL_COLOR_LOGIC_OP 0xbf2 0x100000 and GL_FOG 0xb60 0x400000. The same probe of `__glOdyim_CullFace` (0x404 front gives 0x400, 0x405 back 0x200, 0x408 both 0x600), `__glOdyim_ShadeModel` (GL_FLAT 0x1d00 gives 0x1000) and `__glOdyim_FrontFace` (GL_CW 0x900 gives 0x800000) confirms bits 9, 10, 12 and 23. Whether the board treats a bit as the table names it is not shown by this: the evidence is the driver's own store.
+The Grade column is **inferred** from running `__glOdyim_Enable` (0xd956bc0, N32 libGLcore, 6.5.30m) once per enumerant under `retools/tools/odsy/glcore_probe.py` with a zeroed context: each enumerant sets exactly the one bit shown in the word at context +31740 (0x7bfc), the shadow this block is sent from. GL_POINT_SMOOTH 0xb10 gives 0x1, GL_LINE_SMOOTH 0xb20 0x2, GL_POLYGON_SMOOTH 0xb41 0x4, GL_LINE_STIPPLE 0xb24 0x8, GL_POLYGON_STIPPLE 0xb42 0x10, the three polygon-offset enumerants 0x2a01, 0x2a02 and 0x8037 0x20, 0x40 and 0x80, GL_ALPHA_TEST 0xbc0 0x4000, GL_DITHER 0xbd0 0x40000, GL_INDEX_LOGIC_OP 0xbf1 0x80000, GL_COLOR_LOGIC_OP 0xbf2 0x100000 and GL_FOG 0xb60 0x400000. The same probe of `__glOdyim_CullFace` (0x404 front gives 0x400, 0x405 back 0x200, 0x408 both 0x600), `__glOdyim_ShadeModel` (GL_FLAT 0x1d00 gives 0x1000) and `__glOdyim_FrontFace` (GL_CW 0x900 gives 0x800000) confirms bits 9, 10, 12 and 23. Whether the board treats a bit as the table names it is not shown by this: the evidence is the driver's own store.
 
 - Bits 13 and 25 of block 0x004 are set once by `__glOdysseyInitDefaultValues` (the Odyssey GL driver context assembly unit,
   source lines 2630 and 2631) and never cleared in libGLcore; `PopAttributes` restores bit 13

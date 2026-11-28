@@ -153,7 +153,7 @@ A reading of the X server routine that sends the upload would make the command-s
 
 Two class and code pairs in the board-to-host table are shared: class 0 code 0 (a stencil byte, and
 colour index bytes on one kind of window) and class 2 code 2 (a 32-bit depth word and `BGRA`/
-`UI_8_8_8_8_REV`). What separates them in the header the library sends is **established** by running
+`UI_8_8_8_8_REV`). What separates them in the header the library sends is **inferred** from running
 the shipped routines under `retools/tools/odsy/read_header_sweep.py` (the description routine, the read-parameter
 routine and the field-offset routine, on a mode record filled for each window kind), and by reading
 the read builder's call to the field-offset routine:
@@ -658,7 +658,7 @@ texture move's filter bits are not the application's.
   live state words (texture modes 0 to 4 and the rest of block 0x016, block 0x017's words, 0x004, 0x005, 0x021, the tables, 0x052) into a
   user save at context +0x11bf0; the loader copies a second block of the same layout at +0x11cc4 into the live state when its argument is 0
   and the user save when it is 1. So every step of a transfer runs under the library's own default block unless a step loads the user save itself.
-- **established**, by running `__glOdysseyImageInit` (0x0d988ae0) on a zeroed context (`glcore_probe.py`): the default block is TEXMODE4 `0x03640000` (bits 25, 24, 22, 21 and 18),
+- **inferred**, from running `__glOdysseyImageInit` (0x0d988ae0) on a zeroed context (`glcore_probe.py`): the default block is TEXMODE4 `0x03640000` (bits 25, 24, 22, 21 and 18),
   block 0x052 `0x01ffffff` (every write enable, depth write included) and block 0x005 `0x2400`; block 0x004 is not written, so it is 0 if the
   context starts zeroed (**inferred**: no depth test, blend, stencil test or alpha test during a transfer). The only users of the user save inside a step
   are the loader at 0x0d9bff00, which copies the user's 0x004, 0x021, 0x052 and descriptor word back (the texture move calls it, at 0xd9bc5c4; the write routine calls it at 0xd9bb2f4 on the path entered at 0xd9bb22c when the destination's byte +8 is set and the fifth argument matches), and the write
@@ -736,7 +736,7 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
   stores byte 20 in the low bits of the shadow of the burst select word (`0x13c00 | tag`: the `lbu 68($sp)` feeding the store to context +0x9704 in its transfer branch), and the burst sender
   `SendPixelsAsUserPIO` (0x0d9b9680) reads it back (`context +0x9704 & 0x3ff`) as the tag of every burst word it emits
   (`0x14000 | tag | (words - words/16) << 10`).
-- **established**, by running the routine for every format, type and destination pixel class (`retools/tools/odsy/write_burst_sweep.py`):
+- **inferred**, from running the routine for every format, type and destination pixel class (`retools/tools/odsy/write_burst_sweep.py`):
   - tag `0x10` for 1-byte index (`0x41`) and 16-bit index (`0x61`) sources, accepted only into classes 1, 2 and 4 to 17, and for
     `0x80` and `0x81` (index, depth and stencil with `UNSIGNED_INT`) into every class that accepts them;
   - class-dependent, `0x11` into the expand classes (7, 8, 10, 11, 12 and 13) and `0x10` into the others (0 to 6, 9, 14 to 17), for the
@@ -803,7 +803,7 @@ evidence only: it fixes the words the library sends and the bytes it expects, no
 
 ### Read conversion on the host
 
-- **established** (`__glOdysseyImageCalcXferReadParams` run on an RGBA8 window, class 10): `RGB`, `RED` and `GREEN` with `UNSIGNED_SHORT`, `SHORT` or
+- **inferred** (`__glOdysseyImageCalcXferReadParams` run on an RGBA8 window, class 10): `RGB`, `RED` and `GREEN` with `UNSIGNED_SHORT`, `SHORT` or
   `FLOAT`, and `RGBA` with `UNSIGNED_SHORT`, are not exact; the pair the library requests is `RGBA`/`UNSIGNED_BYTE` (class 2, code 8), four
   bytes a pixel, and it converts on the host. On an RGBA12 window (class 12) `RGB`/`UNSIGNED_SHORT` is exact (class 3, code 8).
 - **established** (`__glOdysseyRenderFunc_ReadbackColor`): the scratch host image for that read has alignment 1 and image byte 0
@@ -928,7 +928,7 @@ eight floats (a2: source x0, y0, x1, y1 then destination x0, y0, x1, y1) and the
   word sent; `glDisable` clears it, `__glOdyim_IsEnabled` returns it (0xd956960). Its only reader is the colour chain builder
   (0xd9905e0, above). **established** for enable, disable and `glIsEnabled`. The generic getter has no case for 0x8353 in any
   immediate comparison, so `glGetBooleanv` leaves the output alone and raises an error: running the getter on 0x8353 under
-  `glcore_probe.py` calls the error routine with 0x500 (`GL_INVALID_ENUM`). **established**.
+  `glcore_probe.py` calls the error routine with 0x500 (`GL_INVALID_ENUM`). **inferred**.
 
 ## Image-write corner order, scissor words, paging header and colour operands
 
