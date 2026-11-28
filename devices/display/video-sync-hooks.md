@@ -38,7 +38,7 @@ All **established** by reading the named routines, objdump-checked where marked 
 
 ### 1.3 Timing generator outputs
 
-The format compiler's board rules (`usr/gfx/ucode/vfc/rules/VPro_Board.def`, shipped with the install) wire the timing generator's 21 outputs to named signals (the compiler adds two internal dummy signals) and give each one's timing in every compiled `.vfo` file. **established** as the rules; that the compiled line and frame tables carry the same edges is **inferred** from the first three lines of a frame being three single-line types in `1280x1024_60.vfo` (frame table rows at line-sequence offsets 0, 9 and 0x14).
+The format compiler's board rules (`usr/gfx/ucode/vfc/rules/VPro_Board.def`, shipped with the install) wire the timing generator's 21 outputs to named signals (the compiler adds two internal dummy signals) and give each one's timing in every compiled `.vfo` file. **established** as the rules. The compiled tables carry the A14 to A20 edges as bits 0 to 6 of each timed entry's low byte, matching the rules' times in `1920x1200_30f.vfo` and the `VINT` and `SWP_RDY_LCK` pulses in all 71 files (**established**, arithmetic: [retrace-field-or-frame.md](../../software/kernel/ip30/readings/retrace-field-or-frame.md) section 3a). B7 to B13 and C0 to C6 are not in the low byte and are not decoded.
 
 | Output | Signal | Timing the rules produce |
 |---|---|---|
@@ -50,7 +50,7 @@ The format compiler's board rules (`usr/gfx/ucode/vfc/rules/VPro_Board.def`, shi
 | B8, B9 | `GEN_PDEN`, `LOC_HSYNC` | genlock phase-detector enable, a window around the vertical sync interval with 1.5 lines of margin (1.75 lines plus the sync time for scan type 2), and a local horizontal sync 10 pixels after each line start inside that window, `HorizontalSync` wide |
 | B10, B11 | `CURS_HPOS`, `CURS_VPOS` | cursor position strobes |
 | B12, B13 | `DMA_RESET_N`, `HIF_H_UPDATE_EN` | DMA reset; host-interface update window, low from 46 pixels before each active line to 16 pixels before its end |
-| A14 | `VINT` | a one-line pulse about one line from each frame boundary (the compiler's time direction was not checked); **inferred** to be the vertical retrace interrupt (source 3) |
+| A14 | `VINT` | one pulse per frame, high from the start of line 1 to the start of line 2, in all 71 shipped formats whatever the field count (**established** in the compiled tables); **inferred**, weakly, to be the vertical retrace interrupt (source 3): nothing routes it |
 | A15 | `SWP_RDY_LCK` | one three-line pulse at the frame boundary, in frame 1 of the format's frame sequence only; **inferred** to be the swap-ready and lock strobe |
 | A16 to A20 | `END_OF_LINE`, `HIF_V_UPDATE_EN`, `XMP_CBLANK_N`, `END_OF_FIELD`, `REQUEST_SRC` | pixel-request and field boundaries |
 
