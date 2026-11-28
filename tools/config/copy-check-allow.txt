@@ -70,7 +70,6 @@ diag_base_addr_lo
 dynsym_index
 fifo_levels
 flag_intr_enab_set
-flow_ctl_clr
 flow_ctl_config
 hHMASK
 hPFD
